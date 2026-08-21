@@ -1,187 +1,351 @@
 import { useState } from 'react';
-import { CONTACT_EMAIL } from '@/lib/contact';
 
-const STEPS = [
-  {
-    question: 'In welcher Branche bist du aktiv?',
-    options: [
-      { label: 'Consumer Electronics', icon: 'ri-tv-line' },
-      { label: 'Haushaltsgeräte', icon: 'ri-blaze-line' },
-      { label: 'Beauty & Kosmetik', icon: 'ri-seedling-line' },
-      { label: 'Sport & Outdoor', icon: 'ri-run-line' },
-      { label: 'Food & Beverages', icon: 'ri-restaurant-line' },
-      { label: 'Pharma & Health', icon: 'ri-heart-pulse-line' },
-    ],
-  },
-  {
-    question: 'Was ist dein primäres Ziel?',
-    options: [
-      { label: 'Markteintritt', icon: 'ri-rocket-line' },
-      { label: 'Absatz steigern', icon: 'ri-line-chart-line' },
-      { label: 'Omnichannel', icon: 'ri-global-line' },
-      { label: 'Markenbekanntheit', icon: 'ri-megaphone-line' },
-      { label: 'Kundenbindung', icon: 'ri-heart-line' },
-      { label: 'Sell-in-Support', icon: 'ri-store-line' },
-    ],
-  },
-  {
-    question: 'Wie viele POS-Standorte planst du?',
-    options: [
-      { label: '1–10', icon: 'ri-map-pin-line' },
-      { label: '11–50', icon: 'ri-map-2-line' },
-      { label: '51–200', icon: 'ri-earth-line' },
-      { label: '200+', icon: 'ri-global-line' },
-      { label: 'Noch unklar', icon: 'ri-question-line' },
-      { label: 'National', icon: 'ri-flag-line' },
-    ],
-  },
-  {
-    question: 'Wann möchtest du starten?',
-    options: [
-      { label: 'Sofort', icon: 'ri-flashlight-line' },
-      { label: 'In 1–3 Monaten', icon: 'ri-calendar-2-line' },
-      { label: 'In 3–6 Monaten', icon: 'ri-calendar-check-line' },
-      { label: 'In 6+ Monaten', icon: 'ri-calendar-line' },
-      { label: 'Noch in Planung', icon: 'ri-draft-line' },
-    ],
-  },
+const FORM_SUBMIT_ADDR = 'https://readdy.ai/api/form/d9vgg8u859p3u981dq10';
+
+const BRANCHES = [
+  { label: 'Consumer Electronics', icon: 'ri-tv-line' },
+  { label: 'Haushaltsgeräte', icon: 'ri-blaze-line' },
+  { label: 'Beauty & Kosmetik', icon: 'ri-seedling-line' },
+  { label: 'Sport & Outdoor', icon: 'ri-run-line' },
+  { label: 'Food & Beverages', icon: 'ri-restaurant-line' },
+  { label: 'Pharma & Health', icon: 'ri-heart-pulse-line' },
 ];
+
+const TEAM_SIZES = ['1–10', '11–50', '51–200', '200+'];
+
+const LEISTUNGEN = [
+  { label: 'SRT & Forecasting', icon: 'ri-bar-chart-2-line' },
+  { label: 'POS Full Service', icon: 'ri-store-2-line' },
+  { label: 'Live Video Promotion', icon: 'ri-live-line' },
+  { label: 'Staff as a Service', icon: 'ri-team-line' },
+  { label: 'Events & Messen', icon: 'ri-calendar-event-line' },
+  { label: 'Warehouse & Logistik', icon: 'ri-truck-line' },
+];
+
+const TOTAL_STEPS = 4;
+
+type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function IndustrySelector() {
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<string[]>([]);
-  const [done, setDone] = useState(false);
+  const [branch, setBranch] = useState('');
+  const [teamSize, setTeamSize] = useState('');
+  const [services, setServices] = useState<string[]>([]);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<Status>('idle');
+  const [formError, setFormError] = useState('');
 
-  const handleAnswer = (option: string) => {
-    const next = [...answers, option];
-    setAnswers(next);
-    if (step < STEPS.length - 1) {
-      setStep(step + 1);
-    } else {
-      setDone(true);
+  const selectBranch = (value: string) => {
+    setBranch(value);
+    window.setTimeout(() => setStep(1), 280);
+  };
+
+  const selectTeamSize = (value: string) => {
+    setTeamSize(value);
+    window.setTimeout(() => setStep(2), 280);
+  };
+
+  const toggleService = (value: string) => {
+    setServices((prev) =>
+      prev.includes(value) ? prev.filter((x) => x !== value) : [...prev, value],
+    );
+  };
+
+  const goBack = () => setStep((s) => Math.max(0, s - 1));
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    // Honeypot — bots that fill it get the same "success" UI, no real submission
+    const honeypot = String(fd.get('company_alt') ?? '').trim();
+    if (honeypot) {
+      setStatus('success');
+      setFormError('');
+      return;
+    }
+
+    setStatus('submitting');
+    setFormError('');
+
+    try {
+      const params = new URLSearchParams();
+      fd.forEach((value, key) => {
+        if (typeof value === 'string') params.append(key, value);
+      });
+
+      const res = await fetch(FORM_SUBMIT_ADDR, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Accept: 'application/json',
+        },
+        body: params.toString(),
+      });
+
+      const responseText = await res.text();
+      let parsed: { code?: string; meta?: { message?: string; detail?: string }; message?: string } = {};
+      try {
+        parsed = JSON.parse(responseText);
+      } catch {
+        /* non-JSON response */
+      }
+
+      const code = parsed?.code;
+      const ok = res.ok && code === 'OK';
+      const serverMsg =
+        parsed?.meta?.message || parsed?.message || parsed?.meta?.detail || responseText;
+
+      if (ok) {
+        setStatus('success');
+        setFormError('');
+      } else {
+        setStatus('error');
+        setFormError(
+          typeof serverMsg === 'string' && serverMsg.trim()
+            ? serverMsg
+            : 'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
+        );
+      }
+    } catch {
+      setStatus('error');
+      setFormError('Netzwerkfehler. Bitte prüfe deine Verbindung und versuche es erneut.');
     }
   };
 
-  const reset = () => { setStep(0); setAnswers([]); setDone(false); };
+  const questionLabel =
+    step === 0
+      ? 'In welcher Branche bist du aktiv?'
+      : step === 1
+        ? 'Wie groß ist dein Team im Vertrieb / Feld?'
+        : step === 2
+          ? 'Welche Leistungen interessieren dich?'
+          : 'Wo dürfen wir dich erreichen?';
 
   return (
-    <section className="py-14 md:py-16 px-6 bg-white relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C8D400]/4 rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="relative max-w-2xl mx-auto">
-        {/* Label */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#111]/8 border border-[#111]/15 px-4 py-1.5 mb-6">
-            <div className="w-1.5 h-1.5 bg-[#111] animate-pulse" />
-            <span className="text-xs font-black text-[#111] uppercase tracking-widest">Projekt in 60 Sekunden</span>
+    <section className="py-10 md:py-12 px-4 md:px-6 bg-white">
+      <div className="max-w-3xl mx-auto">
+        {status === 'success' ? (
+          <div className="border border-primary-500/40 bg-primary-500/10 px-6 md:px-8 py-10 text-center">
+            <div className="w-12 h-12 flex items-center justify-center bg-primary-500 rounded-full mx-auto mb-4">
+              <i className="ri-check-line text-2xl text-white"></i>
+            </div>
+            <h3 className="text-xl md:text-2xl font-black text-foreground-950 uppercase tracking-tight">
+              Vielen Dank!
+            </h3>
+            <p className="text-sm text-foreground-600 leading-relaxed mt-2 max-w-md mx-auto">
+              Deine Angaben sind bei uns eingegangen. Wir melden uns in Kürze mit einer ersten
+              Einschätzung zu deiner Branche.
+            </p>
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-[#1a1a1a] mb-3 leading-tight uppercase">
-            Bereit für messbaren Erfolg?
-          </h2>
-          <p className="text-gray-500 text-sm">Beantworte 4 Fragen — wir zeigen dir den richtigen Weg.</p>
-        </div>
+        ) : (
+          <form
+            data-readdy-form
+            onSubmit={handleSubmit}
+            className="border border-foreground-200 bg-background-50 px-5 md:px-8 py-6 md:py-8"
+          >
+            {/* Hidden answer carriers (also collected into FormData on submit) */}
+            <input type="hidden" name="branche" value={branch} />
+            <input type="hidden" name="team_groesse" value={teamSize} />
+            <input type="hidden" name="leistungen" value={services.join(', ')} />
+            {/* Anti-spam honeypot */}
+            <input
+              type="text"
+              name="company_alt"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              readOnly
+              className="survey-hp-field"
+            />
 
-        {/* Card */}
-        <div
-          className="overflow-hidden rounded-none"
-          style={{
-            background: '#ffffff',
-            boxShadow: '0 2px 12px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.06)',
-          }}
-        >
-          {/* Lime top bar */}
-          <div className="h-[3px] bg-[#C8D400]" style={{ boxShadow: '0 0 20px rgba(200,212,0,0.6)' }} />
-
-          {!done ? (
-            <div className="p-8 md:p-10">
-              {/* Progress */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[#1a1a1a] text-xs font-black uppercase tracking-widest">
-                  Schritt {step + 1} / {STEPS.length}
+            {/* Progress header */}
+            <div className="flex items-center justify-between gap-4 mb-5">
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-primary-500" aria-hidden="true"></span>
+                <span className="text-[10px] font-black uppercase tracking-[0.25em] text-primary-500">
+                  Deine Branche
                 </span>
-                <div className="flex gap-1.5">
-                  {STEPS.map((_, i) => (
-                    <div
-                      key={i}
-                      className="h-1 rounded-full transition-all duration-400"
-                      style={{ width: i <= step ? '28px' : '10px', background: i <= step ? '#C8D400' : 'rgba(0,0,0,0.1)' }}
-                    />
-                  ))}
-                </div>
               </div>
-              <div className="w-full h-0.5 bg-gray-100 rounded-full mb-8 overflow-hidden">
-                <div
-                  className="h-full bg-[#C8D400] rounded-full transition-all duration-600"
-                  style={{ width: `${(step / STEPS.length) * 100}%` }}
-                />
-              </div>
+              <span className="text-xs font-black text-foreground-400 uppercase tracking-wider">
+                Schritt {step + 1} / {TOTAL_STEPS}
+              </span>
+            </div>
 
-              <h3 className="text-xl font-black text-[#1a1a1a] mb-6 leading-snug uppercase">
-                {STEPS[step].question}
-              </h3>
-              <div className="grid grid-cols-2 gap-3">
-                {STEPS[step].options.map((opt, oi) => (
+            <div className="h-1 w-full bg-foreground-100 mb-6 overflow-hidden">
+              <div
+                className="h-full bg-primary-500 transition-all duration-500 ease-out"
+                style={{ width: `${((step + 1) / TOTAL_STEPS) * 100}%` }}
+              />
+            </div>
+
+            <h3 className="text-lg md:text-xl font-black text-foreground-950 leading-snug">
+              {questionLabel}
+            </h3>
+
+            {/* Step 0 — Branche */}
+            {step === 0 && (
+              <div className="flex flex-wrap gap-2 mt-5">
+                {BRANCHES.map((opt) => (
                   <button
-                    key={oi}
-                    onClick={() => handleAnswer(opt.label)}
-                    className="flex items-center gap-3 bg-gray-50 hover:bg-[#C8D400]/10 border border-gray-200 hover:border-[#C8D400]/50 px-4 py-3.5 text-left transition-all duration-250 group cursor-pointer rounded-none"
+                    key={opt.label}
+                    type="button"
+                    onClick={() => selectBranch(opt.label)}
+                    className={`inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold border cursor-pointer whitespace-nowrap transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${
+                      branch === opt.label
+                        ? 'bg-primary-500 border-primary-500 text-white'
+                        : 'bg-white border-foreground-200 text-foreground-600 hover:border-primary-500/60 hover:text-foreground-950'
+                    }`}
                   >
-                    <div
-                      className="w-8 h-8 flex items-center justify-center flex-shrink-0 transition-colors duration-250"
-                      style={{ background: 'rgba(0,0,0,0.05)' }}
-                    >
-                      <i className={`${opt.icon} text-sm text-gray-400 group-hover:text-[#1a1a1a] transition-colors duration-250`}></i>
-                    </div>
-                    <span className="text-gray-600 font-semibold text-sm group-hover:text-[#1a1a1a] transition-colors duration-250">
-                      {opt.label}
-                    </span>
+                    <i className={`${opt.icon} text-base ${branch === opt.label ? 'text-white' : 'text-primary-500'}`}></i>
+                    {opt.label}
                   </button>
                 ))}
               </div>
+            )}
 
-              {step > 0 && (
+            {/* Step 1 — Teamgröße */}
+            {step === 1 && (
+              <div className="flex flex-wrap gap-2 mt-5">
+                {TEAM_SIZES.map((size) => (
+                  <button
+                    key={size}
+                    type="button"
+                    onClick={() => selectTeamSize(size)}
+                    className={`inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold border cursor-pointer whitespace-nowrap transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${
+                      teamSize === size
+                        ? 'bg-primary-500 border-primary-500 text-white'
+                        : 'bg-white border-foreground-200 text-foreground-600 hover:border-primary-500/60 hover:text-foreground-950'
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Step 2 — Leistungen (multi) */}
+            {step === 2 && (
+              <div className="flex flex-wrap gap-2 mt-5">
+                {LEISTUNGEN.map((opt) => {
+                  const isOn = services.includes(opt.label);
+                  return (
+                    <button
+                      key={opt.label}
+                      type="button"
+                      onClick={() => toggleService(opt.label)}
+                      aria-pressed={isOn}
+                      className={`inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold border cursor-pointer whitespace-nowrap transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${
+                        isOn
+                          ? 'bg-primary-500 border-primary-500 text-white'
+                          : 'bg-white border-foreground-200 text-foreground-600 hover:border-primary-500/60 hover:text-foreground-950'
+                      }`}
+                    >
+                      <i className={`${opt.icon} text-base ${isOn ? 'text-white' : 'text-primary-500'}`}></i>
+                      {opt.label}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Step 3 — Kontakt */}
+            {step === 3 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+                <div>
+                  <label
+                    htmlFor="survey-name"
+                    className="block text-[11px] font-black uppercase tracking-wider text-foreground-600 mb-1.5"
+                  >
+                    Name
+                  </label>
+                  <input
+                    id="survey-name"
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Dein Name"
+                    className="w-full px-4 py-2.5 text-sm bg-white border border-foreground-200 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 transition-colors"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="survey-email"
+                    className="block text-[11px] font-black uppercase tracking-wider text-foreground-600 mb-1.5"
+                  >
+                    E-Mail *
+                  </label>
+                  <input
+                    id="survey-email"
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="du@unternehmen.de"
+                    required
+                    className="w-full px-4 py-2.5 text-sm bg-white border border-foreground-200 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 transition-colors"
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Error message */}
+            {formError && (
+              <p className="text-sm font-semibold text-red-600 mt-4" role="alert">
+                {formError}
+              </p>
+            )}
+
+            {/* Nav / actions */}
+            <div className="flex items-center justify-between gap-3 mt-6">
+              {step > 0 ? (
                 <button
-                  onClick={() => { setStep(step - 1); setAnswers(answers.slice(0, -1)); }}
-                  className="mt-6 flex items-center gap-1.5 text-gray-400 hover:text-[#1a1a1a] transition-colors cursor-pointer text-xs font-bold"
+                  type="button"
+                  onClick={goBack}
+                  className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-foreground-500 hover:text-foreground-950 cursor-pointer whitespace-nowrap transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
                 >
-                  <i className="ri-arrow-left-line text-sm"></i>
+                  <i className="ri-arrow-left-line"></i>
                   Zurück
                 </button>
+              ) : (
+                <span />
               )}
-            </div>
-          ) : (
-            <div className="p-10 text-center">
-              <div
-                className="w-16 h-16 flex items-center justify-center bg-[#C8D400]/20 mx-auto mb-6 border-2 border-[#C8D400]/40 rounded-none"
-              >
-                <i className="ri-check-double-line text-3xl text-[#1a1a1a]"></i>
-              </div>
-              <h3 className="text-2xl font-black text-[#1a1a1a] mb-2 uppercase">Perfekt, danke!</h3>
-              <p className="text-gray-500 text-sm mb-2 leading-relaxed">
-                <strong className="text-[#1a1a1a]">Branche:</strong> {answers[0]} &nbsp;·&nbsp; <strong className="text-[#1a1a1a]">Ziel:</strong> {answers[1]}
-              </p>
-              <p className="text-gray-500 text-sm mb-8 leading-relaxed">
-                <strong className="text-[#1a1a1a]">Standorte:</strong> {answers[2]} &nbsp;·&nbsp; <strong className="text-[#1a1a1a]">Start:</strong> {answers[3]}
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a
-                  href={`mailto:${CONTACT_EMAIL}?subject=Beratungsanfrage%20%E2%80%94%20${encodeURIComponent(answers[0])}&body=Branche%3A%20${encodeURIComponent(answers[0])}%0AZiel%3A%20${encodeURIComponent(answers[1])}%0AStandorte%3A%20${encodeURIComponent(answers[2])}%0AStart%3A%20${encodeURIComponent(answers[3])}`}
-                  className="inline-flex items-center gap-2 bg-[#C8D400] text-[#111] px-8 py-3.5 font-black hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm rounded-none"
-                >
-                  <i className="ri-calendar-line"></i>
-                  Beratungsgespräch buchen
-                </a>
+
+              {step === 2 ? (
                 <button
-                  onClick={reset}
-                  className="inline-flex items-center gap-2 border-2 border-gray-200 text-gray-500 hover:text-[#1a1a1a] px-6 py-3.5 font-black hover:border-gray-400 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm rounded-none"
+                  type="button"
+                  onClick={() => setStep(3)}
+                  disabled={services.length === 0}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white font-black text-xs uppercase tracking-widest cursor-pointer whitespace-nowrap transition-colors duration-300 hover:bg-primary-600 disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
                 >
-                  <i className="ri-refresh-line"></i>
-                  Neu starten
+                  Weiter
+                  <i className="ri-arrow-right-line"></i>
                 </button>
-              </div>
+              ) : step === 3 ? (
+                <button
+                  type="submit"
+                  disabled={status === 'submitting'}
+                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary-500 text-white font-black text-xs uppercase tracking-widest cursor-pointer whitespace-nowrap transition-colors duration-300 hover:bg-primary-600 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                >
+                  {status === 'submitting' ? (
+                    <>
+                      <i className="ri-loader-4-line animate-spin"></i>
+                      Wird gesendet…
+                    </>
+                  ) : (
+                    <>
+                      Anfrage senden
+                      <i className="ri-send-plane-line"></i>
+                    </>
+                  )}
+                </button>
+              ) : null}
             </div>
-          )}
-        </div>
+          </form>
+        )}
       </div>
     </section>
   );

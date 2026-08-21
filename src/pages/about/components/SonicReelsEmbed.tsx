@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import EraNav from '@/pages/sonic-reels/components/EraNav';
 import PhotoAlbum from '@/pages/sonic-reels/components/PhotoAlbum';
 import { EraData } from '@/pages/sonic-reels/page';
+import { useMediaStore } from '@/lib/mediaStore';
 
 const eras: EraData[] = [
   {
@@ -166,6 +167,14 @@ export default function SonicReelsEmbed() {
   const [activeEraIndex, setActiveEraIndex] = useState(0);
   const [showHighlights, setShowHighlights] = useState(false);
 
+  // ── Dashboard-managed era hero/accent images ──
+  const { images: sonicreelsAccent } = useMediaStore('about_sonicreels_hero_accent');
+  const overriddenEras = eras.map((era, i) => ({
+    ...era,
+    heroImage: (sonicreelsAccent[i * 2] && sonicreelsAccent[i * 2].url) || era.heroImage,
+    accentImage: (sonicreelsAccent[i * 2 + 1] && sonicreelsAccent[i * 2 + 1].url) || era.accentImage,
+  }));
+
   const handleEraChange = useCallback((index: number) => {
     setActiveEraIndex(index);
   }, []);
@@ -178,7 +187,7 @@ export default function SonicReelsEmbed() {
   const activeEraId = eras[activeEraIndex]?.id ?? eras[0].id;
 
   return (
-    <div className="bg-sonic-dark overflow-x-hidden">
+    <div className="bg-foreground-950 overflow-x-hidden">
       {/* Intro strip */}
       <div className="relative py-10 px-6 text-center overflow-hidden" style={{ background: '#1A1A1A' }}>
         <div
@@ -215,7 +224,7 @@ export default function SonicReelsEmbed() {
 
       {/* Photo Album */}
       <PhotoAlbum
-        eras={eras}
+        eras={overriddenEras}
         activeEraIndex={activeEraIndex}
         onEraChange={handleEraChange}
         showHighlights={showHighlights}

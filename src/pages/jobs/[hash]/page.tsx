@@ -58,10 +58,10 @@ export default function JobDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="min-h-[100dvh] flex items-center justify-center bg-white">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-[#C8D400]/30 border-t-[#C8D400] rounded-full animate-spin" />
-          <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">Wird geladen…</p>
+          <p className="text-sm font-bold text-foreground-400 uppercase tracking-widest">Wird geladen…</p>
         </div>
       </div>
     );
@@ -69,15 +69,15 @@ export default function JobDetailPage() {
 
   if (error || !job) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white px-4">
+      <div className="min-h-[100dvh] flex items-center justify-center bg-white px-4">
         <div className="text-center max-w-sm">
-          <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-[#f7f7f5]">
-            <i className="ri-file-damage-line text-2xl text-gray-300" />
+          <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4 bg-white">
+            <i className="ri-file-damage-line text-2xl text-foreground-300" />
           </div>
-          <p className="text-sm font-bold text-gray-500 mb-4">{error || 'Stelle nicht gefunden.'}</p>
+          <p className="text-sm font-bold text-foreground-500 mb-4">{error || 'Stelle nicht gefunden.'}</p>
           <Link
             to="/jobs"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#111] text-white text-xs font-black uppercase tracking-widest hover:bg-[#C8D400] hover:text-[#111] transition-all duration-200"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#111] text-white text-xs font-black uppercase tracking-widest hover:bg-primary-500 hover:text-[#111] transition-all duration-200"
             style={{ borderRadius: 0 }}
           >
             <i className="ri-arrow-left-line" />
@@ -89,7 +89,7 @@ export default function JobDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-[100dvh] bg-white">
       {/* Hero bar */}
       <div className="bg-[#111] pt-20 pb-10 px-4 md:px-6">
         <div className="max-w-5xl mx-auto">
@@ -102,12 +102,12 @@ export default function JobDetailPage() {
           </Link>
           <div className="flex flex-wrap items-center gap-2 mb-4">
             {job.department && (
-              <span className="px-3 py-1 bg-white/10 text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
+              <span className="px-3 py-1 bg-white/10 text-2xs font-black uppercase tracking-[0.2em] text-white/60">
                 {job.department}
               </span>
             )}
             {job.employmentType && (
-              <span className="px-3 py-1 bg-[#C8D400]/20 text-[10px] font-black uppercase tracking-[0.2em] text-[#C8D400]">
+              <span className="px-3 py-1 bg-primary-500/20 text-2xs font-black uppercase tracking-[0.2em] text-[#C8D400]">
                 {job.employmentType}
               </span>
             )}
@@ -150,7 +150,7 @@ export default function JobDetailPage() {
             {job.tasks && (
               <div className="mb-8">
                 <h2 className="text-lg font-black text-[#1a1a1a] mb-4 flex items-center gap-3">
-                  <span className="w-6 h-6 flex items-center justify-center bg-[#C8D400]">
+                  <span className="w-6 h-6 flex items-center justify-center bg-primary-500">
                     <i className="ri-task-line text-[#111] text-sm" />
                   </span>
                   Deine Aufgaben
@@ -166,7 +166,7 @@ export default function JobDetailPage() {
             {job.requirements && (
               <div className="mb-8">
                 <h2 className="text-lg font-black text-[#1a1a1a] mb-4 flex items-center gap-3">
-                  <span className="w-6 h-6 flex items-center justify-center bg-[#C8D400]">
+                  <span className="w-6 h-6 flex items-center justify-center bg-primary-500">
                     <i className="ri-shield-check-line text-[#111] text-sm" />
                   </span>
                   Dein Profil
@@ -182,7 +182,7 @@ export default function JobDetailPage() {
             {job.benefits && (
               <div className="mb-8">
                 <h2 className="text-lg font-black text-[#1a1a1a] mb-4 flex items-center gap-3">
-                  <span className="w-6 h-6 flex items-center justify-center bg-[#C8D400]">
+                  <span className="w-6 h-6 flex items-center justify-center bg-primary-500">
                     <i className="ri-gift-line text-[#111] text-sm" />
                   </span>
                   Was wir bieten
@@ -209,7 +209,7 @@ export default function JobDetailPage() {
                 </h3>
                 <button
                   onClick={() => setShowForm(!showForm)}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#C8D400] text-[#111] font-black text-xs uppercase tracking-widest hover:bg-white transition-all duration-200 cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-primary-500 text-[#111] font-black text-xs uppercase tracking-widest hover:bg-white transition-all duration-200 cursor-pointer"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-file-user-line" />
@@ -217,19 +217,19 @@ export default function JobDetailPage() {
                 </button>
                 <div className="flex items-center gap-2 mt-3">
                   <i className="ri-lock-line text-xs text-white/30" />
-                  <span className="text-[10px] text-white/30">Deine Daten werden sicher übertragen</span>
+                  <span className="text-2xs text-white/30">Deine Daten werden sicher übertragen</span>
                 </div>
               </div>
 
               {/* Quick facts */}
-              <div className="border border-gray-100 p-5">
-                <p className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400 mb-3">Details zur Stelle</p>
+              <div className="border border-foreground-100 p-5">
+                <p className="text-2xs font-black uppercase tracking-[0.25em] text-foreground-400 mb-3">Details zur Stelle</p>
                 <div className="flex flex-col gap-3">
                   {job.location && (
                     <div className="flex items-start gap-3">
                       <i className="ri-map-pin-line text-[#C8D400] text-sm mt-0.5 flex-shrink-0" />
                       <div>
-                        <p className="text-[10px] uppercase tracking-wide text-gray-400 font-bold">Standort</p>
+                        <p className="text-2xs uppercase tracking-wide text-foreground-400 font-bold">Standort</p>
                         <p className="text-sm font-black text-[#1a1a1a]">{job.location}</p>
                       </div>
                     </div>
@@ -238,7 +238,7 @@ export default function JobDetailPage() {
                     <div className="flex items-start gap-3">
                       <i className="ri-building-line text-[#C8D400] text-sm mt-0.5 flex-shrink-0" />
                       <div>
-                        <p className="text-[10px] uppercase tracking-wide text-gray-400 font-bold">Abteilung</p>
+                        <p className="text-2xs uppercase tracking-wide text-foreground-400 font-bold">Abteilung</p>
                         <p className="text-sm font-black text-[#1a1a1a]">{job.department}</p>
                       </div>
                     </div>
@@ -247,7 +247,7 @@ export default function JobDetailPage() {
                     <div className="flex items-start gap-3">
                       <i className="ri-briefcase-line text-[#C8D400] text-sm mt-0.5 flex-shrink-0" />
                       <div>
-                        <p className="text-[10px] uppercase tracking-wide text-gray-400 font-bold">Anstellungsart</p>
+                        <p className="text-2xs uppercase tracking-wide text-foreground-400 font-bold">Anstellungsart</p>
                         <p className="text-sm font-black text-[#1a1a1a]">{job.employmentType}</p>
                       </div>
                     </div>
@@ -259,7 +259,7 @@ export default function JobDetailPage() {
               <div className="mt-4 flex gap-2">
                 <button
                   onClick={() => navigator.clipboard.writeText(window.location.href)}
-                  className="flex items-center gap-2 px-4 py-2.5 border border-gray-100 text-xs font-bold text-gray-500 hover:border-[#C8D400] hover:text-[#1a1a1a] transition-all duration-200 cursor-pointer flex-1 justify-center"
+                  className="flex items-center gap-2 px-4 py-2.5 border border-foreground-100 text-xs font-bold text-foreground-500 hover:border-[#C8D400] hover:text-[#1a1a1a] transition-all duration-200 cursor-pointer flex-1 justify-center"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-link text-sm" />
@@ -269,7 +269,7 @@ export default function JobDetailPage() {
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2.5 border border-gray-100 text-xs font-bold text-gray-500 hover:border-[#C8D400] hover:text-[#1a1a1a] transition-all duration-200 cursor-pointer flex-1 justify-center"
+                  className="flex items-center gap-2 px-4 py-2.5 border border-foreground-100 text-xs font-bold text-foreground-500 hover:border-[#C8D400] hover:text-[#1a1a1a] transition-all duration-200 cursor-pointer flex-1 justify-center"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-linkedin-line text-sm" />
@@ -282,7 +282,7 @@ export default function JobDetailPage() {
 
         {/* Inline application form (shows when button is clicked) */}
         {showForm && hash && (
-          <div className="mt-12 pt-8 border-t border-gray-100" id="bewerbung">
+          <div className="mt-12 pt-8 border-t border-foreground-100" id="bewerbung">
             <JobApplicationForm hash={hash} jobTitle={job.title} onClose={() => setShowForm(false)} />
           </div>
         )}

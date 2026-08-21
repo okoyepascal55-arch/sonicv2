@@ -1,5 +1,7 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useMediaStore } from '@/lib/mediaStore';
+import { useText } from '@/hooks/useText';
 
 const DYNAMIC_KEYWORDS = [
   'THINGS',
@@ -15,15 +17,72 @@ const DYNAMIC_KEYWORDS = [
   'TRADE MARKETING',
 ];
 
-interface ExplosionParticle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  birthTime: number;
-  lifetime: number;
-  size: number;
-  hue: number;
+const CHAR_DELAY = 100; // ms per character reveal
+const HOLD_TIME = 2400; // ms to hold the completed word before advancing
+
+function useTextTypewriter(text: string, trigger: number, charDelay = CHAR_DELAY) {
+  const [revealed, setRevealed] = useState(text.length);
+  const hasRun = useRef(false);
+
+  useEffect(() => {
+    if (!hasRun.current) {
+      hasRun.current = true;
+      setRevealed(text.length);
+      return;
+    }
+
+    setRevealed(0);
+    let count = 0;
+
+    const tick = setInterval(() => {
+      count++;
+      setRevealed(count);
+      if (count >= text.length) {
+        clearInterval(tick);
+      }
+    }, charDelay);
+
+    return () => clearInterval(tick);
+  }, [text, trigger, charDelay]);
+
+  return revealed;
+}
+
+function AnimatedLine({ text, className, lineDelay = 0 }: { text: string; className?: string; lineDelay?: number }) {
+  return (
+    <span className={className}>
+      {text.split('').map((char, i) => (
+        <span
+          key={i}
+          className="hero-char"
+          style={{
+            ['--char-index' as string]: i,
+            animation: 'charIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+            animationDelay: `${lineDelay + i * 22}ms`,
+            opacity: 0,
+          }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+function HoverLine({ text, className }: { text: string; className?: string }) {
+  return (
+    <span className={className}>
+      {text.split('').map((char, i) => (
+        <span
+          key={i}
+          className="hero-char"
+          style={{ ['--char-index' as string]: i }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ))}
+    </span>
+  );
 }
 
 interface HeroRevampProps {
@@ -48,6 +107,12 @@ function useCountUp(target: number, duration: number = 1800, start: boolean = fa
   return count;
 }
 
+/* ── reusable image error handler ── */
+function hideBrokenImg(e: React.SyntheticEvent<HTMLImageElement>) {
+  const target = e.currentTarget;
+  target.style.display = 'none';
+}
+
 export default function HeroRevamp({ scrolled }: HeroRevampProps) {
   const [hoveredSide, setHoveredSide] = useState<'left' | 'right' | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -56,39 +121,56 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
   const [statsVisible, setStatsVisible] = useState(false);
   const [hoveredStat, setHoveredStat] = useState<number | null>(null);
 
+  // ── Dashboard-managed media ──
+  const { images: statIcons } = useMediaStore('home_hero_stats');
+  const { images: ctaIcons } = useMediaStore('home_hero_cta_icons');
+  const { images: woodTextures } = useMediaStore('home_hero_wood_textures');
+
   // Parallax: normalized mouse offset (-0.5 to 0.5) relative to viewport
-  const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
-  const parallaxRaf = useRef<number | null>(null);
   const targetParallax = useRef({ x: 0, y: 0 });
+  const currentParallax = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
+    let rafId: number | null = null;
+
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+    const tick = () => {
+      const nx = lerp(currentParallax.current.x, targetParallax.current.x, 0.06);
+      const ny = lerp(currentParallax.current.y, targetParallax.current.y, 0.06);
+      currentParallax.current = { x: nx, y: ny };
+
+      if (statsRef.current) {
+        statsRef.current.style.setProperty('--parallax-x', nx.toFixed(5));
+        statsRef.current.style.setProperty('--parallax-y', ny.toFixed(5));
+      }
+
+      // Idle out once converged — no endless per-frame loop when the mouse is still
+      const settled =
+        Math.abs(nx - targetParallax.current.x) < 0.0005 &&
+        Math.abs(ny - targetParallax.current.y) < 0.0005;
+      if (settled) {
+        rafId = null;
+        return;
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
       targetParallax.current = {
         x: (e.clientX / window.innerWidth - 0.5),
         y: (e.clientY / window.innerHeight - 0.5),
       };
+      // (Re)start the animation loop if it has idled out
+      if (rafId === null) {
+        rafId = requestAnimationFrame(tick);
+      }
     };
 
-    // Smooth lerp towards target each frame
-    let running = true;
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-    const tick = () => {
-      if (!running) return;
-      setParallaxOffset((prev) => {
-        const nx = lerp(prev.x, targetParallax.current.x, 0.06);
-        const ny = lerp(prev.y, targetParallax.current.y, 0.06);
-        return Math.abs(nx - prev.x) < 0.0001 && Math.abs(ny - prev.y) < 0.0001
-          ? prev
-          : { x: nx, y: ny };
-      });
-      parallaxRaf.current = requestAnimationFrame(tick);
-    };
     window.addEventListener('mousemove', handleMouseMove);
-    parallaxRaf.current = requestAnimationFrame(tick);
     return () => {
-      running = false;
       window.removeEventListener('mousemove', handleMouseMove);
-      if (parallaxRaf.current) cancelAnimationFrame(parallaxRaf.current);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -98,156 +180,27 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
   const navigate = useNavigate();
 
   const [keywordIndex, setKeywordIndex] = useState(0);
-  const [keywordVisible, setKeywordVisible] = useState(true);
-  const [phase, setPhase] = useState<'initial' | 'exploding' | 'cycling'>('initial');
-  const [isShaking, setIsShaking] = useState(false);
-  const keywordRef = useRef<HTMLSpanElement>(null);
-  const explosionCanvasRef = useRef<HTMLCanvasElement>(null);
-  const particlesRef = useRef<ExplosionParticle[]>([]);
-  const explosionRafRef = useRef<number>(0);
+  const [scrambleKey, setScrambleKey] = useState(0);
+  const [started, setStarted] = useState(false);
+  const keyword = DYNAMIC_KEYWORDS[keywordIndex];
+  const combo = `DOING ${keyword}`;
+  const comboRevealed = useTextTypewriter(combo, scrambleKey);
 
-  const cycleKeyword = useCallback(() => {
-    setKeywordVisible(false);
-    setTimeout(() => {
-      setKeywordIndex((prev) => (prev + 1) % DYNAMIC_KEYWORDS.length);
-      setKeywordVisible(true);
-    }, 350);
+  useEffect(() => {
+    const timer = setTimeout(() => setStarted(true), 3500);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
-    if (phase !== 'cycling') return;
-    const id = setInterval(cycleKeyword, 2400);
-    return () => clearInterval(id);
-  }, [cycleKeyword, phase]);
-
-  /* ── Initial THINGS hold → explosion → start cycling ── */
-  useEffect(() => {
-    if (phase !== 'initial') return;
-
-    /* Hold THINGS for 3.5 seconds */
-    const holdTimer = setTimeout(() => {
-      setPhase('exploding');
-    }, 3500);
-
-    return () => clearTimeout(holdTimer);
-  }, [phase]);
-
-  /* ── Explosion particle animation ── */
-  useEffect(() => {
-    if (phase !== 'exploding') return;
-
-    /* Trigger subtle screen shake */
-    setIsShaking(true);
-    setTimeout(() => setIsShaking(false), 520);
-
-    const canvas = explosionCanvasRef.current;
-    const keywordEl = keywordRef.current;
-    if (!canvas || !keywordEl) return;
-
-    const rect = keywordEl.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    /* Size canvas to cover the keyword area plus splash radius — clamped on mobile */
-    const paddingX = Math.min(120, Math.max(40, window.innerWidth * 0.12));
-    const paddingY = Math.min(100, Math.max(30, window.innerHeight * 0.08));
-    const cw = rect.width + paddingX * 2;
-    const ch = rect.height + paddingY * 2;
-    canvas.style.position = 'fixed';
-    canvas.style.left = (rect.left - paddingX) + 'px';
-    canvas.style.top = (rect.top - paddingY) + 'px';
-    canvas.style.width = cw + 'px';
-    canvas.style.height = ch + 'px';
-    canvas.style.zIndex = '50';
-    canvas.style.pointerEvents = 'none';
-    canvas.style.display = 'block';
-    canvas.width = cw * dpr;
-    canvas.height = ch * dpr;
-
-    const ctx = canvas.getContext('2d', { alpha: true });
-    if (!ctx) return;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    const GRAVITY = 280;
-    const centerX = cw / 2;
-    const centerY = ch / 2 + rect.height * 0.1;
-
-    /* Spawn particles */
-    const particleCount = 45 + Math.floor(Math.random() * 20);
-    const spawnTime = performance.now();
-    const newParticles: ExplosionParticle[] = [];
-
-    for (let i = 0; i < particleCount; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 80 + Math.random() * 180;
-      newParticles.push({
-        x: centerX + (Math.random() - 0.5) * rect.width * 0.9,
-        y: centerY + (Math.random() - 0.5) * rect.height * 0.6,
-        vx: Math.cos(angle) * speed * (0.4 + Math.random() * 0.6),
-        vy: -Math.abs(Math.sin(angle)) * speed * 0.7 - Math.random() * 60,
-        birthTime: spawnTime,
-        lifetime: 0.65 + Math.random() * 0.7,
-        size: 1.0 + Math.random() * 2.5,
-        hue: 70 + Math.random() * 30,
-      });
-    }
-    particlesRef.current = newParticles;
-
-    /* Immediately hide the text keyword */
-    setKeywordVisible(false);
-
-    const draw = (ts: number) => {
-      /* Fade-trail overlay — leaves ghostly afterglow instead of hard-clearing */
-      ctx.fillStyle = 'rgba(240,235,220, 0.04)';
-      ctx.fillRect(0, 0, cw, ch);
-
-      let anyAlive = false;
-
-      for (const p of particlesRef.current) {
-        const pAge = (ts - p.birthTime) / 1000;
-        const progress = pAge / p.lifetime;
-        if (progress > 1) continue;
-        anyAlive = true;
-
-        const px = p.x + p.vx * pAge;
-        const py = p.y + p.vy * pAge + 0.5 * GRAVITY * pAge * pAge;
-        const alpha = (1 - progress) * (1 - progress) * 0.8;
-        const hue = p.hue + progress * 25;
-
-        /* glow aura */
-        const glow = ctx.createRadialGradient(px, py, 0, px, py, p.size * 2.5);
-        glow.addColorStop(0, `hsla(${hue}, 45%, 88%, ${alpha * 0.55})`);
-        glow.addColorStop(0.5, `hsla(${hue}, 35%, 78%, ${alpha * 0.14})`);
-        glow.addColorStop(1, 'rgba(240,245,225,0)');
-        ctx.fillStyle = glow;
-        ctx.beginPath();
-        ctx.arc(px, py, p.size * 2.5, 0, Math.PI * 2);
-        ctx.fill();
-
-        /* bright core */
-        ctx.beginPath();
-        ctx.arc(px, py, p.size * 0.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,252,240,${alpha * 0.75})`;
-        ctx.fill();
-      }
-
-      if (anyAlive) {
-        explosionRafRef.current = requestAnimationFrame(draw);
-      } else {
-        /* Explosion done — switch to cycling */
-        canvas.style.display = 'none';
-        setKeywordIndex(1);
-        setKeywordVisible(true);
-        setPhase('cycling');
-      }
-    };
-
-    explosionRafRef.current = requestAnimationFrame(draw);
-
-    return () => {
-      cancelAnimationFrame(explosionRafRef.current);
-      if (canvas) canvas.style.display = 'none';
-    };
-  }, [phase]);
+    if (!started) return;
+    const word = DYNAMIC_KEYWORDS[keywordIndex];
+    const buildTime = (word.length + 6) * CHAR_DELAY; // +6 accounts for the "DOING " prefix
+    const timeout = window.setTimeout(() => {
+      setKeywordIndex((prev) => (prev + 1) % DYNAMIC_KEYWORDS.length);
+      setScrambleKey((prev) => prev + 1);
+    }, buildTime + HOLD_TIME);
+    return () => clearTimeout(timeout);
+  }, [keywordIndex, started]);
 
   useEffect(() => {
     if (!('IntersectionObserver' in window)) { setStatsVisible(true); return; }
@@ -286,10 +239,32 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
 
   const handleJoinSonic = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigate('/careers');
+    navigate('/karriere');
   };
 
   const formatNumber = (num: number) => new Intl.NumberFormat('de-DE').format(num);
+
+  // ── Text Store hooks ──
+  const tH1Line1 = useText('home_hero', 'home-hero-h1-line1', 'WE HAVE A');
+  const tH1Line2 = useText('home_hero', 'home-hero-h1-line2', 'STRATEGIC PLAN.');
+  const tH1Line3 = useText('home_hero', 'home-hero-h1-line3', "IT'S CALLED DOING");
+  const tSubtitle = useText('home_hero', 'home-hero-subtitle', 'People powered. Data proven.');
+  const tLeftBadge = useText('home_hero', 'home-hero-left-badge', 'Daten Liefern Fakten.');
+  const tLeftH3 = useText('home_hero', 'home-hero-left-h3', 'SUCHST DU EINE');
+  const tLeftH3Accent = useText('home_hero', 'home-hero-left-h3-accent', 'AGENTUR');
+  const tLeftH3End = useText('home_hero', 'home-hero-left-h3-line3', 'MIT POWER?');
+  const tLeftDesc = useText('home_hero', 'home-hero-left-desc', 'Dein Full-Service-Partner für Performance Marketing, Retail-Aktivierung und nachhaltiges Markenwachstum.');
+  const tLeftBtn = useText('home_hero', 'home-hero-left-btn', 'Starte deinen Markteintritt');
+  const tRightBadge = useText('home_hero', 'home-hero-right-badge', 'Mensch. Der Unterschied.');
+  const tRightH3 = useText('home_hero', 'home-hero-right-h3', 'SUCHST DU EINEN');
+  const tRightH3Accent = useText('home_hero', 'home-hero-right-h3-accent', 'JOB');
+  const tRightH3End = useText('home_hero', 'home-hero-right-h3-line3', 'MIT ENERGIE?');
+  const tRightDesc = useText('home_hero', 'home-hero-right-desc', 'Arbeite für die größten Marken Deutschlands — und mach sie noch erfolgreicher.');
+  const tRightBtn = useText('home_hero', 'home-hero-right-btn', 'Komm zu Sonic');
+  const tStatLabel1 = useText('home_hero', 'home-hero-stat-1-label', 'Produkte verkauft');
+  const tStatLabel2 = useText('home_hero', 'home-hero-stat-2-label', 'Umsatz generiert');
+  const tStatLabel3 = useText('home_hero', 'home-hero-stat-3-label', 'Einsätze');
+  const tStatLabel4 = useText('home_hero', 'home-hero-stat-4-label', '1:1 Live Video Calls');
 
   const produkte = useCountUp(3700000, 1800, statsVisible);
   const umsatz = useCountUp(2000, 1600, statsVisible);
@@ -300,30 +275,34 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
     {
       value: produkte,
       display: (v: number) => `>${(v / 1_000_000).toFixed(1).replace('.', ',')} Mio.`,
-      label: 'Produkte verkauft',
-      woodIcon: 'https://readdy.ai/api/search-image?query=finely%20hand%20carved%20walnut%20wood%20victory%20laurel%20wreath%20encircling%20an%20upward%20arrow%20sculptural%20relief%20carving%20deep%20shadow%20casting%20warm%20dark%20amber%20brown%20wood%20grain%20visible%20rich%20three%20dimensional%20craftsmanship%20museum%20quality%20artisan%20object%20centered%20on%20pure%20white%20matte%20background%20studio%20product%20photography%20sharp%20focus%20dramatic%20side%20lighting&width=120&height=120&seq=wood-icon-stat-laurel-v3&orientation=squarish',
-      color: '#C8D400',
+      label: tStatLabel1,
+      woodIcon: (statIcons[0] && statIcons[0].url) || '',
+      fallbackIcon: 'ri-shopping-bag-line',
+      color: 'oklch(var(--primary-500))',
     },
     {
       value: umsatz,
       display: (v: number) => `>${v >= 2000 ? '2' : (v / 1000).toFixed(1)} Mrd. €`,
-      label: 'Umsatz generiert',
-      woodIcon: 'https://readdy.ai/api/search-image?query=precision%20hand%20carved%20solid%20walnut%20wood%20balance%20scale%20with%20two%20equal%20pans%20sculptural%20three%20dimensional%20relief%20deep%20wood%20grain%20texture%20warm%20amber%20honey%20brown%20tone%20high%20contrast%20dramatic%20lighting%20centered%20museum%20quality%20artisan%20piece%20pure%20white%20studio%20background%20sharp%20product%20photography%20minimal&width=120&height=120&seq=wood-icon-stat-scale-v3&orientation=squarish',
-      color: '#111111',
+      label: tStatLabel2,
+      woodIcon: (statIcons[1] && statIcons[1].url) || '',
+      fallbackIcon: 'ri-money-euro-circle-line',
+      color: 'oklch(var(--foreground-950))',
     },
     {
       value: einsaetze,
       display: (v: number) => `>${(v / 1_000_000).toFixed(2).replace('.', ',')} Mio.`,
-      label: 'Einsätze',
-      woodIcon: 'https://readdy.ai/api/search-image?query=hand%20carved%20solid%20walnut%20wood%20precision%20compass%20rose%20eight%20point%20navigation%20star%20deeply%20incised%20relief%20carving%20rich%20dark%20amber%20brown%20grain%20highly%20detailed%20three%20dimensional%20military%20instrument%20quality%20centered%20on%20clean%20white%20studio%20background%20dramatic%20directional%20lighting%20sharp%20focus%20artisan%20craft&width=120&height=120&seq=wood-icon-stat-compass-v3&orientation=squarish',
-      color: '#C8D400',
+      label: tStatLabel3,
+      woodIcon: (statIcons[2] && statIcons[2].url) || '',
+      fallbackIcon: 'ri-map-pin-line',
+      color: 'oklch(var(--primary-500))',
     },
     {
       value: videoCalls,
       display: (v: number) => `>${v >= 50000 ? '50.000' : v.toLocaleString('de-DE')}`,
-      label: '1:1 Live Video Calls',
-      woodIcon: 'https://readdy.ai/api/search-image?query=hand%20carved%20solid%20walnut%20wood%20broadcast%20antenna%20tower%20with%20three%20concentric%20signal%20arcs%20radiating%20outward%20sculptural%20relief%20deep%20precision%20carving%20warm%20honey%20amber%20brown%20wood%20grain%20three%20dimensional%20high%20contrast%20centered%20on%20white%20studio%20background%20dramatic%20side%20lighting%20museum%20quality%20artisan%20object%20minimal&width=120&height=120&seq=wood-icon-stat-antenna-v3&orientation=squarish',
-      color: '#111111',
+      label: tStatLabel4,
+      woodIcon: (statIcons[3] && statIcons[3].url) || '',
+      fallbackIcon: 'ri-video-line',
+      color: 'oklch(var(--foreground-950))',
     },
   ];
 
@@ -331,49 +310,65 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
     <section className="relative pt-16 md:pt-20 pb-10 md:pb-16 px-4 md:px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto relative" style={{ zIndex: 10 }}>
         {/* Hero Headline */}
-        <div className={`text-center pt-8 md:pt-14 pb-8 md:pb-14 px-2 ${isShaking ? '[animation:shake_0.5s_cubic-bezier(.36,.07,.19,.97)_both]' : ''}`}>
+        <div className="text-center pt-6 md:pt-14 pb-5 md:pb-14 px-2">
           <style>{`
-            @keyframes shake {
-              0%, 100% { transform: translate(0, 0); }
-              10% { transform: translate(-2px, -1px); }
-              20% { transform: translate(3px, 2px); }
-              30% { transform: translate(-4px, -1px); }
-              40% { transform: translate(2px, -2px); }
-              50% { transform: translate(-2px, 3px); }
-              60% { transform: translate(3px, 0px); }
-              70% { transform: translate(-3px, -2px); }
-              80% { transform: translate(1px, 2px); }
-              90% { transform: translate(-1px, -1px); }
+            @keyframes charIn {
+              from { opacity: 0; transform: translateY(24px) rotateX(-12deg); }
+              to   { opacity: 1; transform: translateY(0) rotateX(0deg); }
+            }
+            .hero-headline { perspective: 900px; }
+            .hero-char {
+              display: inline-block;
+              transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), text-shadow 0.35s ease;
+              transition-delay: calc(var(--char-index) * 14ms);
+            }
+            .hero-headline:hover .hero-char {
+              transform: translateY(-5px);
+              text-shadow: 0 8px 24px oklch(var(--primary-500) / 0.22);
+            }
+            .hero-keyword-char {
+              display: inline-block;
+              transition: transform 0.2s ease;
+              transition-delay: calc(var(--char-index) * 8ms);
+            }
+            .hero-headline:hover .hero-keyword-char {
+              transform: translateY(-3px);
             }
           `}</style>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-sonic-dark mb-4 md:mb-6 leading-[1.05] tracking-tight">
-            WE HAVE A<br />
-            STRATEGIC PLAN.<br />
-            {/* DOING + keyword bounce in unison */}
+          <h1 className="hero-headline text-4xl md:text-5xl lg:text-7xl font-black text-foreground-950 mb-4 md:mb-6 leading-[1.05] tracking-tight">
+            <AnimatedLine text={tH1Line1} lineDelay={0} />
+            <br />
+            <AnimatedLine text={tH1Line2} lineDelay={120} />
+            <br />
             <span
               className="inline-block"
               style={{
-                opacity: keywordVisible ? 1 : 0,
-                transform: keywordVisible ? 'translateY(0)' : 'translateY(8px)',
-                transition: phase === 'initial' ? 'none' : 'opacity 0.35s ease, transform 0.35s ease',
+                opacity: 0,
+                animation: 'charIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                animationDelay: '260ms',
               }}
             >
-              <span className="text-sonic-dark">IT&apos;S CALLED DOING</span>
+              <HoverLine text={tH1Line3.split('DOING')[0]} />
               <br />
-              <span
-                ref={keywordRef}
-                className="text-sonic-lime inline-block relative text-2xl sm:text-3xl md:text-5xl lg:text-7xl"
-                style={{
-                  textShadow: '0 1px 2px rgba(0,0,0,0.08)',
-                }}
-              >
-                {DYNAMIC_KEYWORDS[keywordIndex]}
+              <span className="text-primary-500 inline-block relative text-2xl sm:text-3xl md:text-5xl lg:text-7xl" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.08)' }}>
+                {combo.split('').map((char, i) => (
+                  <span
+                    key={i}
+                    className="hero-keyword-char"
+                    style={{
+                      ['--char-index' as string]: i,
+                      opacity: i < comboRevealed ? 1 : 0,
+                      display: char === ' ' ? 'inline' : undefined,
+                    }}
+                  >
+                    {char === ' ' ? ' ' : char}
+                  </span>
+                ))}
               </span>
             </span>
-            <canvas ref={explosionCanvasRef} style={{ display: 'none' }} aria-hidden="true" />
           </h1>
-          <p className="text-base md:text-lg text-gray-700 mb-0 leading-relaxed max-w-3xl mx-auto">
-            People powered. Data proven.
+          <p className="text-base md:text-lg text-foreground-700 mb-0 leading-relaxed max-w-3xl mx-auto">
+            {tSubtitle}
           </p>
         </div>
 
@@ -389,9 +384,9 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
             style={{
               background:
                 hoveredSide === 'left'
-                  ? 'radial-gradient(circle, #1A1A1A 0%, transparent 70%)'
+                  ? 'radial-gradient(circle, oklch(var(--foreground-900)) 0%, transparent 70%)'
                   : hoveredSide === 'right'
-                  ? 'radial-gradient(circle, #C8D400 0%, transparent 70%)'
+                  ? 'radial-gradient(circle, oklch(var(--primary-500)) 0%, transparent 70%)'
                   : 'none',
               left: `${mousePos.x}%`,
               top: `${mousePos.y}%`,
@@ -404,73 +399,83 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
             <a
               href="#losungen"
               onClick={scrollToLosungen}
-              className="relative group cursor-pointer overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime focus-visible:ring-offset-2"
+              className="relative group cursor-pointer overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
               onMouseEnter={() => setHoveredSide('left')}
               onMouseLeave={() => setHoveredSide(null)}
             >
               {/* Solid dark glass */}
-              <div className="absolute inset-0 transition-all duration-700" style={{ background: '#111111' }} />
+              <div className="absolute inset-0 transition-all duration-700" style={{ background: 'oklch(var(--foreground-950))' }} />
               <div
                 className="absolute inset-0 opacity-[0.04]"
                 style={{
                   backgroundImage:
-                    'linear-gradient(rgba(200,212,0,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.3) 1px, transparent 1px)',
+                    'linear-gradient(oklch(var(--primary-500) / 0.3) 1px, transparent 1px), linear-gradient(90deg, oklch(var(--primary-500) / 0.3) 1px, transparent 1px)',
                   backgroundSize: '40px 40px',
                 }}
               />
               <div
-                className={`absolute inset-0 bg-gradient-to-br from-[#C8D400]/10 via-transparent to-[#C8D400]/5 transition-opacity duration-700 ${
+                className={`absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-primary-500/5 transition-opacity duration-700 ${
                   hoveredSide === 'left' ? 'opacity-100' : 'opacity-0'
                 }`}
               />
               <div className={`absolute top-0 left-0 w-24 h-24 transition-all duration-700 ${hoveredSide === 'left' ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#C8D400] to-transparent" />
-                <div className="absolute top-0 left-0 h-full w-[2px] bg-gradient-to-b from-[#C8D400] to-transparent" />
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-primary-500 to-transparent" />
+                <div className="absolute top-0 left-0 h-full w-[2px] bg-gradient-to-b from-primary-500 to-transparent" />
               </div>
               <div className={`absolute bottom-0 right-0 w-24 h-24 transition-all duration-700 ${hoveredSide === 'left' ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="absolute bottom-0 right-0 w-full h-[2px] bg-gradient-to-l from-[#C8D400] to-transparent" />
-                <div className="absolute bottom-0 right-0 h-full w-[2px] bg-gradient-to-t from-[#C8D400] to-transparent" />
+                <div className="absolute bottom-0 right-0 w-full h-[2px] bg-gradient-to-l from-primary-500 to-transparent" />
+                <div className="absolute bottom-0 right-0 h-full w-[2px] bg-gradient-to-t from-primary-500 to-transparent" />
               </div>
 
-              <div className="relative z-10 p-7 md:p-10 lg:p-12 flex flex-col" style={{ minHeight: 'clamp(280px, 50vw, 420px)' }}>
-                <div className="flex items-center gap-2 mb-5 md:mb-8">
-                  <div className={`w-2 h-2 rounded-full transition-all duration-500 ${hoveredSide === 'left' ? 'bg-[#C8D400] shadow-lg shadow-[#C8D400]/50 scale-125' : 'bg-[#C8D400]/50'}`} />
-                  <span className="text-sonic-lime/70 text-xs font-bold tracking-widest uppercase">Daten Liefern Fakten.</span>
+              <div className="relative z-10 p-5 md:p-10 lg:p-12 flex flex-col h-full" style={{ minHeight: 'clamp(220px, 45vw, 420px)' }}>
+                <div className="flex items-center gap-2 mb-4 md:mb-8">
+                  <div className={`w-2 h-2 rounded-full transition-all duration-500 ${hoveredSide === 'left' ? 'bg-primary-500 shadow-lg shadow-[#C8D400]/50 scale-125' : 'bg-primary-500/50'}`} />
+                  <span className="text-primary-500/70 text-xs font-bold tracking-widest uppercase">{tLeftBadge}</span>
                 </div>
-                <div className={`w-12 h-12 md:w-16 md:h-16 overflow-hidden mb-5 md:mb-8 transition-all duration-500 ring-1 ring-white/10 ${hoveredSide === 'left' ? 'scale-110 ring-sonic-lime/40 shadow-xl shadow-sonic-lime/20' : ''}`}>
-                  <img
-                    src="https://readdy.ai/api/search-image?query=carved%20wooden%20chart%20icon%20rising%20bar%20graph%20symbol%20made%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20brown%20color%20simple%20minimalist%20business%20growth%20icon%20handcrafted%20artisan%20quality%20on%20white%20background%20top%20view%20product%20photography&width=120&height=120&seq=wood-carved-chart-icon-walnut&orientation=squarish"
-                    alt="Datenicon"
-                    className="w-full h-full object-cover"
-                  />
+                <div className={`w-10 h-10 md:w-16 md:h-16 relative overflow-hidden mb-4 md:mb-8 transition-all duration-500 ring-1 ring-white/10 ${hoveredSide === 'left' ? 'scale-110 ring-primary-500/40 shadow-xl shadow-primary-500/20' : ''}`}>
+                  {/* Fallback icon — sits behind the wooden icon image */}
+                  <div className="absolute inset-0 bg-primary-500 flex items-center justify-center">
+                    <i className="ri-bar-chart-box-line text-lg md:text-xl text-gray-900"></i>
+                  </div>
+                  {(ctaIcons[0] && ctaIcons[0].url) ? (
+                    <img
+                      src={ctaIcons[0].url}
+                      alt="Datenicon"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      onError={hideBrokenImg}
+                    />
+                  ) : null}
                 </div>
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3 leading-tight tracking-tight">
-                  SUCHST DU EINE<br />
-                  <span className={`transition-colors duration-500 ${hoveredSide === 'left' ? 'text-[#C8D400]' : 'text-white/60'}`}>
-                    AGENTUR
+                <h3 className="text-xl md:text-3xl lg:text-4xl font-black text-white mb-2 md:mb-3 leading-tight tracking-tight">
+                  {tLeftH3}<br />
+                  <span className={`transition-colors duration-500 ${hoveredSide === 'left' ? 'text-primary-500' : 'text-white/60'}`}>
+                    {tLeftH3Accent}
                   </span>
                   <br />
-                  MIT POWER?
+                  {tLeftH3End}
                 </h3>
-                <p className="text-white/50 text-sm leading-relaxed mb-6 md:mb-8 max-w-xs">
-                  Dein Full-Service-Partner für Performance Marketing, Retail-Aktivierung und nachhaltiges Markenwachstum.
+                <p className="text-white/50 text-xs md:text-sm leading-relaxed mb-4 md:mb-8 max-w-xs">
+                  {tLeftDesc}
                 </p>
                 <div className="flex-grow" />
                 <div className="flex items-center gap-4">
-                  <span className="relative inline-flex items-center gap-2 font-bold text-xs sm:text-sm transition-all duration-500 whitespace-nowrap max-w-full">
+                  <span className="relative inline-flex items-center gap-2 font-bold text-xs sm:text-sm transition-all duration-500 whitespace-normal sm:whitespace-nowrap max-w-full">
                     <span className="absolute inset-0 overflow-hidden">
-                      <img
-                        src="https://readdy.ai/api/search-image?query=extremely%20ancient%20century%20old%20reclaimed%20barn%20wood%20plank%20texture%20rich%20dark%20brown%20walnut%20color%20with%20severe%20weathering%20massive%20deep%20cracks%20heavy%20splits%20wormholes%20rot%20marks%20thick%20oxidation%20layers%20extreme%20patina%20warm%20brown%20tones%20with%20dark%20decay%20marks%20heavily%20distressed%20vintage%20surface%20archaeological%20relic%20quality%20museum%20artifact%20aged%20timber%20with%20peeling%20finish&width=400&height=80&seq=wood-texture-btn-left-1&orientation=landscape"
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
-                      <span className={`absolute inset-0 transition-all duration-500 ${hoveredSide === 'left' ? 'bg-[#C8D400]/90' : 'bg-black/50'}`} />
+                      {(woodTextures[0] && woodTextures[0].url) ? (
+                        <img
+                          src={woodTextures[0].url}
+                          alt=""
+                          className="w-full h-full object-cover"
+                          onError={hideBrokenImg}
+                        />
+                      ) : null}
+                      <span className={`absolute inset-0 transition-all duration-500 ${hoveredSide === 'left' ? 'bg-primary-500/90' : 'bg-black/50'}`} />
                     </span>
-                    <span className="relative z-10 flex items-center gap-2 px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 transition-all duration-500 text-white text-xs sm:text-sm whitespace-nowrap">
-                      Starte deinen Markteintritt
+                    <span className="relative z-10 flex items-center gap-2 px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 transition-all duration-500 text-white text-xs sm:text-sm whitespace-normal sm:whitespace-nowrap">
+                      {tLeftBtn}
                       <i className={`ri-arrow-right-line transition-transform duration-300 ${hoveredSide === 'left' ? 'translate-x-1' : ''}`} />
                     </span>
-                    <span className={`absolute inset-0 ring-2 transition-all duration-500 ${hoveredSide === 'left' ? 'ring-[#C8D400]/60 shadow-lg shadow-[#C8D400]/20' : 'ring-white/10'}`} />
+                    <span className={`absolute inset-0 ring-2 transition-all duration-500 ${hoveredSide === 'left' ? 'ring-primary-500/60 shadow-lg shadow-primary-500/20' : 'ring-white/10'}`} />
                   </span>
                 </div>
               </div>
@@ -478,21 +483,24 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
 
             {/* CENTER — Wood Divider — hidden on mobile, shown as horizontal line */}
             <div className="relative w-full h-1 md:w-6 md:h-auto hidden md:block z-20" aria-hidden="true">
-              <img
-                src="https://readdy.ai/api/search-image?query=extremely%20ancient%20century%20old%20reclaimed%20barn%20wood%20plank%20texture%20rich%20dark%20brown%20walnut%20color%20with%20severe%20weathering%20massive%20deep%20cracks%20heavy%20splits%20wormholes%20rot%20marks%20thick%20oxidation%20layers%20extreme%20patina%20warm%20brown%20tones%20with%20dark%20decay%20marks%20heavily%20distressed%20vintage%20surface%20archaeological%20relic%20quality%20museum%20artifact%20aged%20timber%20with%20peeling%20finish&width=60&height=600&seq=wood-texture-divider-vertical-1&orientation=portrait"
-                alt=""
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-y-0 left-0 w-[1px] bg-gradient-to-b from-transparent via-[#C8D400]/40 to-transparent" />
-              <div className="absolute inset-y-0 right-0 w-[1px] bg-gradient-to-b from-transparent via-[#C8D400]/40 to-transparent" />
+              {(woodTextures[2] && woodTextures[2].url) ? (
+                <img
+                  src={woodTextures[2].url}
+                  alt=""
+                  className="w-full h-full object-cover"
+                  onError={hideBrokenImg}
+                />
+              ) : null}
+              <div className="absolute inset-y-0 left-0 w-[1px] bg-gradient-to-b from-transparent via-primary-500/40 to-transparent" />
+              <div className="absolute inset-y-0 right-0 w-[1px] bg-gradient-to-b from-transparent via-primary-500/40 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20" />
             </div>
 
             {/* RIGHT — For Talent — LIGHT GLASS */}
             <a
-              href="/careers"
+              href="/karriere"
               onClick={handleJoinSonic}
-              className="relative group cursor-pointer overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime focus-visible:ring-offset-2"
+              className="relative group cursor-pointer overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 border-t border-foreground-200/20 md:border-t-0"
               onMouseEnter={() => setHoveredSide('right')}
               onMouseLeave={() => setHoveredSide(null)}
             >
@@ -501,59 +509,69 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
               <div
                 className="absolute inset-0 opacity-[0.06]"
                 style={{
-                  backgroundImage: 'radial-gradient(circle, #1A1A1A 1px, transparent 1px)',
+                  backgroundImage: 'radial-gradient(circle, oklch(var(--foreground-900)) 1px, transparent 1px)',
                   backgroundSize: '24px 24px',
                 }}
               />
-              <div className={`absolute inset-0 bg-gradient-to-br from-[#C8D400]/8 via-transparent to-[#C8D400]/5 transition-opacity duration-700 ${hoveredSide === 'right' ? 'opacity-100' : 'opacity-0'}`} />
+              <div className={`absolute inset-0 bg-gradient-to-br from-primary-500/8 via-transparent to-primary-500/5 transition-opacity duration-700 ${hoveredSide === 'right' ? 'opacity-100' : 'opacity-0'}`} />
               <div className={`absolute top-0 right-0 w-24 h-24 transition-all duration-700 ${hoveredSide === 'right' ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="absolute top-0 right-0 w-full h-[2px] bg-gradient-to-l from-[#C8D400] to-transparent" />
-                <div className="absolute top-0 right-0 h-full w-[2px] bg-gradient-to-b from-[#C8D400] to-transparent" />
+                <div className="absolute top-0 right-0 w-full h-[2px] bg-gradient-to-l from-primary-500 to-transparent" />
+                <div className="absolute top-0 right-0 h-full w-[2px] bg-gradient-to-b from-primary-500 to-transparent" />
               </div>
               <div className={`absolute bottom-0 left-0 w-24 h-24 transition-all duration-700 ${hoveredSide === 'right' ? 'opacity-100' : 'opacity-0'}`}>
-                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#C8D400] to-transparent" />
-                <div className="absolute bottom-0 left-0 h-full w-[2px] bg-gradient-to-t from-[#C8D400] to-transparent" />
+                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-primary-500 to-transparent" />
+                <div className="absolute bottom-0 left-0 h-full w-[2px] bg-gradient-to-t from-primary-500 to-transparent" />
               </div>
 
-              <div className="relative z-10 p-7 md:p-10 lg:p-12 flex flex-col" style={{ minHeight: 'clamp(280px, 50vw, 420px)' }}>
-                <div className="flex items-center gap-2 mb-5 md:mb-8">
-                  <div className={`w-2 h-2 rounded-full transition-all duration-500 ${hoveredSide === 'right' ? 'bg-[#C8D400] shadow-lg shadow-[#C8D400]/50 scale-125' : 'bg-gray-300'}`} />
-                  <span className="text-gray-400 text-xs font-bold tracking-widest uppercase">Mensch. Der Unterschied.</span>
+              <div className="relative z-10 p-5 md:p-10 lg:p-12 flex flex-col h-full" style={{ minHeight: 'clamp(220px, 45vw, 420px)' }}>
+                <div className="flex items-center gap-2 mb-4 md:mb-8">
+                  <div className={`w-2 h-2 rounded-full transition-all duration-500 ${hoveredSide === 'right' ? 'bg-primary-500 shadow-lg shadow-[#C8D400]/50 scale-125' : 'bg-foreground-300'}`} />
+                  <span className="text-foreground-400 text-xs font-bold tracking-widest uppercase">{tRightBadge}</span>
                 </div>
-                <div className={`w-12 h-12 md:w-16 md:h-16 overflow-hidden mb-5 md:mb-8 transition-all duration-500 ring-1 ring-gray-200 ${hoveredSide === 'right' ? 'scale-110 ring-sonic-lime/40 shadow-xl shadow-sonic-lime/20' : ''}`}>
-                  <img
-                    src="https://readdy.ai/api/search-image?query=carved%20wooden%20people%20icon%20team%20group%20symbol%20made%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20brown%20color%20simple%20minimalist%20human%20figures%20icon%20handcrafted%20artisan%20quality%20on%20white%20background%20top%20view%20product%20photography&width=120&height=120&seq=wood-carved-team-icon-walnut&orientation=squarish"
-                    alt="Sonic Team"
-                    className="w-full h-full object-cover"
-                  />
+                <div className={`w-10 h-10 md:w-16 md:h-16 relative overflow-hidden mb-4 md:mb-8 transition-all duration-500 ring-1 ring-foreground-200 ${hoveredSide === 'right' ? 'scale-110 ring-primary-500/40 shadow-xl shadow-primary-500/20' : ''}`}>
+                  {/* Fallback icon — sits behind the wooden icon image */}
+                  <div className="absolute inset-0 bg-primary-500 flex items-center justify-center">
+                    <i className="ri-team-line text-lg md:text-xl text-gray-900"></i>
+                  </div>
+                  {(ctaIcons[1] && ctaIcons[1].url) ? (
+                    <img
+                      src={ctaIcons[1].url}
+                      alt="Sonic Team"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      onError={hideBrokenImg}
+                    />
+                  ) : null}
                 </div>
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-sonic-dark mb-3 leading-tight tracking-tight">
-                  SUCHST DU EINEN<br />
-                  <span className={`transition-colors duration-500 ${hoveredSide === 'right' ? 'text-[#C8D400]' : 'text-gray-400'}`}>
-                    JOB
+                <h3 className="text-xl md:text-3xl lg:text-4xl font-black text-foreground-950 mb-2 md:mb-3 leading-tight tracking-tight">
+                  {tRightH3}<br />
+                  <span className={`transition-colors duration-500 ${hoveredSide === 'right' ? 'text-primary-500' : 'text-foreground-400'}`}>
+                    {tRightH3Accent}
                   </span>
                   <br />
-                  MIT ENERGIE?
+                  {tRightH3End}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-6 md:mb-8 max-w-xs">
-                  Arbeite für die größten Marken Deutschlands — und mach sie noch erfolgreicher.
+                <p className="text-foreground-500 text-xs md:text-sm leading-relaxed mb-4 md:mb-8 max-w-xs">
+                  {tRightDesc}
                 </p>
                 <div className="flex-grow" />
                 <div className="flex items-center gap-4">
                   <span className="relative inline-flex items-center gap-2 font-bold text-xs sm:text-sm transition-all duration-500 whitespace-nowrap max-w-full">
                     <span className="absolute inset-0 overflow-hidden">
-                      <img
-                        src="https://readdy.ai/api/search-image?query=extremely%20ancient%20century%20old%20reclaimed%20barn%20wood%20plank%20texture%20rich%20dark%20brown%20walnut%20color%20with%20severe%20weathering%20massive%20deep%20cracks%20heavy%20splits%20wormholes%20rot%20marks%20thick%20oxidation%20layers%20extreme%20patina%20warm%20brown%20tones%20with%20dark%20decay%20marks%20heavily%20distressed%20vintage%20surface%20archaeological%20relic%20quality%20museum%20artifact%20aged%20timber%20with%20peeling%20finish&width=400&height=80&seq=wood-texture-btn-right-1&orientation=landscape"
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
-                      <span className={`absolute inset-0 transition-all duration-500 ${hoveredSide === 'right' ? 'bg-[#C8D400]/90' : 'bg-black/40'}`} />
+                      {(woodTextures[1] && woodTextures[1].url) ? (
+                        <img
+                          src={woodTextures[1].url}
+                          alt=""
+                          className="w-full h-full object-cover"
+                          onError={hideBrokenImg}
+                        />
+                      ) : null}
+                      <span className={`absolute inset-0 transition-all duration-500 ${hoveredSide === 'right' ? 'bg-primary-500/90' : 'bg-black/40'}`} />
                     </span>
                     <span className="relative z-10 flex items-center gap-2 px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 transition-all duration-500 text-white text-xs sm:text-sm whitespace-nowrap">
-                      Komm zu Sonic
+                      {tRightBtn}
                       <i className={`ri-arrow-right-line transition-transform duration-300 ${hoveredSide === 'right' ? 'translate-x-1' : ''}`} />
                     </span>
-                    <span className={`absolute inset-0 ring-2 transition-all duration-500 ${hoveredSide === 'right' ? 'ring-[#C8D400]/60 shadow-lg shadow-[#C8D400]/20' : 'ring-gray-200/40'}`} />
+                    <span className={`absolute inset-0 ring-2 transition-all duration-500 ${hoveredSide === 'right' ? 'ring-primary-500/60 shadow-lg shadow-primary-500/20' : 'ring-foreground-200/40'}`} />
                   </span>
                 </div>
               </div>
@@ -561,56 +579,66 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
           </div>
 
           {/* ── Stats Strip ── */}
-          <div ref={statsRef} className="mt-6 md:mt-8">
+          <div className="mt-6 md:mt-8">
 
-            {/* 4 Stat Cards — aria-live for count-up announcements */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4" aria-live="polite" aria-atomic="true">
+            {/* 4 Stat Cards — GPU-optimized via CSS custom properties */}
+            <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
               {statsData.map((stat, i) => (
                 <div
                   key={i}
-                  className="relative bg-white/60 backdrop-blur-md px-4 md:px-6 py-5 md:py-7 text-center ring-1 ring-gray-200/60 hover:ring-[#C8D400]/50 hover:bg-white/75 hover:shadow-xl transition-all duration-400 group cursor-default overflow-hidden"
+                  className="relative bg-white/60 backdrop-blur-md px-4 md:px-6 py-5 md:py-7 text-center ring-1 ring-foreground-200/60 hover:ring-[#C8D400]/50 hover:bg-white/75 hover:shadow-xl transition-all duration-400 group cursor-default overflow-hidden"
                   style={{
                     borderRadius: 0,
-                    transform: `translateX(${parallaxOffset.x * PARALLAX_DEPTHS[i]}px) translateY(${parallaxOffset.y * PARALLAX_DEPTHS[i] * 0.6}px)`,
+                    transform: `translateX(calc(var(--parallax-x, 0) * ${PARALLAX_DEPTHS[i]}px)) translateY(calc(var(--parallax-y, 0) * ${PARALLAX_DEPTHS[i] * 0.6}px))`,
                     transition: 'transform 0.08s linear, ring-color 0.4s, background-color 0.4s, box-shadow 0.4s',
                     willChange: 'transform',
                   }}
                   onMouseEnter={() => setHoveredStat(i)}
                   onMouseLeave={() => setHoveredStat(null)}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br from-[#C8D400]/5 to-transparent transition-opacity duration-400 ${hoveredStat === i ? 'opacity-100' : 'opacity-0'}`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent transition-opacity duration-400 ${hoveredStat === i ? 'opacity-100' : 'opacity-0'}`} />
 
                   <div
-                    className="w-10 h-10 md:w-14 md:h-14 overflow-hidden mx-auto mb-2 md:mb-3 shadow-md transition-all duration-400 ring-2"
+                    className="w-10 h-10 md:w-14 md:h-14 relative overflow-hidden mx-auto mb-2 md:mb-3 shadow-md transition-all duration-400 ring-2"
                     style={{
                       borderRadius: 0,
                       transform: hoveredStat === i ? 'scale(1.12)' : 'scale(1)',
                       boxShadow: hoveredStat === i
                         ? '0 6px 20px rgba(139,90,43,0.35), 0 0 12px rgba(200,212,0,0.2)'
                         : '0 2px 8px rgba(139,90,43,0.18)',
-                      outline: hoveredStat === i ? '2px solid rgba(200,212,0,0.5)' : '2px solid transparent',
+                      outline: hoveredStat === i ? '2px solid oklch(var(--primary-500) / 0.5)' : '2px solid transparent',
                     }}
                   >
+                    {/* Fallback icon shown behind image */}
+                    <div
+                      className="absolute inset-0 flex items-center justify-center"
+                      style={{ background: stat.color }}
+                    >
+                      <i className={`${stat.fallbackIcon} text-sm md:text-base text-white`}></i>
+                    </div>
                     <img
                       src={stat.woodIcon}
                       alt={stat.label}
-                      className="w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      onError={hideBrokenImg}
                     />
                   </div>
 
                   <div
                     className="text-xl md:text-2xl lg:text-3xl font-black font-sans tabular-nums mb-1 leading-tight transition-all duration-400 group-hover:scale-105"
-                    style={{ color: i % 2 === 0 ? '#C8D400' : '#1A1A1A' }}
+                    style={{ color: i % 2 === 0 ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-900))' }}
                   >
                     {stat.display(stat.value)}
                   </div>
 
-                  <div className="text-xs font-bold text-gray-500 uppercase tracking-wider leading-tight line-clamp-2">
+                  <div className="text-xs font-bold text-foreground-500 uppercase tracking-wider leading-tight line-clamp-2">
                     {stat.label}
                   </div>
 
                   <div
-                    className={`absolute bottom-0 left-0 h-[3px] bg-[#C8D400] transition-all duration-500 ${hoveredStat === i ? 'w-full' : 'w-0'}`}
+                    className={`absolute bottom-0 left-0 h-[3px] bg-primary-500 transition-all duration-500 ${hoveredStat === i ? 'w-full' : 'w-0'}`}
                   />
                 </div>
               ))}

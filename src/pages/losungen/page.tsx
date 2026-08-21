@@ -2,10 +2,12 @@ import { useState, useRef, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
 import { submitContactForm } from '@/lib/contact';
-import Navigation from '../../components/feature/Navigation';
+import { useMediaStore } from '@/lib/mediaStore';
 import ClientProof from '../../components/feature/ClientProof';
 import WoodenDivider from '../../components/base/WoodenDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
+
+const SURVEY_FORM_URL = 'https://readdy.ai/api/form/d9vdom6th95mubjtu6q0';
 
 /* ─────────────────────────────────────────
    SOLUTION DATA — exact content from brief
@@ -37,12 +39,12 @@ const SOLUTIONS = {
       },
     ],
     deliverables: [
-      { icon: 'ri-user-star-line', title: 'Brand Ambassadors am POS', desc: 'Geschulte Markenbotschafter aus unserem Talentepool. Festangestellt, keine Freelancer. Trainiert auf dein Produkt, leidenschaftlich im Kundenkontakt.', img: '/images/losungen/ambassador.png' },
+      { icon: 'ri-user-star-line', title: 'Brand Ambassadors am POS', desc: 'Geschulte Markenbotschafter aus unserem Talentepool. Festangestellt, keine Freelancer. Trainiert auf dein Produkt, leidenschaftlich im Kundenkontakt.', img: '/images/losungen/ambassador.webp' },
       { icon: 'ri-presentation-line', title: 'Verkäuferschulungen', desc: 'Deine Handelspartner sollen Fans deiner Marke werden. Wir begeistern sie mit Schulungen, die im Gedächtnis bleiben.', img: 'https://readdy.ai/api/search-image?query=professional%20sales%20training%20workshop%20group%20of%20retail%20staff%20learning%20product%20knowledge%20in%20modern%20conference%20room%20presenter%20at%20whiteboard%20engaged%20audience%20corporate%20training&width=800&height=500&seq=deliv-mkt-2&orientation=landscape' },
       { icon: 'ri-calendar-event-line', title: 'Launch-Events & Promotions', desc: 'Wir inszenieren deinen Auftritt: Roadshows, Instore-Events, Produkt-Demos. Dort, wo deine Zielgruppe einkauft. Konzept, Personal, Logistik: alles aus einer Hand.', img: 'https://readdy.ai/api/search-image?query=exciting%20product%20launch%20event%20in%20retail%20store%20with%20branded%20displays%20crowd%20of%20shoppers%20promotional%20staff%20demonstrating%20new%20product%20vibrant%20atmosphere%20professional%20event%20setup&width=800&height=500&seq=deliv-mkt-3&orientation=landscape' },
-      { icon: 'ri-video-line', title: 'Videocontent & Live-Beratung', desc: 'Erklärvideos, Social Content und Live-Video-Calls. Damit dein Produkt auch digital erlebbar ist. Vom Unboxing bis zur persönlichen Kaufberatung.', img: '/images/losungen/video.png' },
+      { icon: 'ri-video-line', title: 'Videocontent & Live-Beratung', desc: 'Erklärvideos, Social Content und Live-Video-Calls. Damit dein Produkt auch digital erlebbar ist. Vom Unboxing bis zur persönlichen Kaufberatung.', img: '/images/Lösungen/2. Markteintritt/4. Videocontent & Live-Beratung/3. Bild Kopie.webp' },
       { icon: 'ri-store-2-line', title: 'POS-Design & Aufbau', desc: 'Displays, Shop-in-Shops, Collateral, Give-aways: Wir gestalten und bestücken deine Fläche. End-to-end. Inklusive Lagerung in unserem eigenen Warehouse.', img: 'https://readdy.ai/api/search-image?query=premium%20retail%20point%20of%20sale%20display%20design%20shop%20in%20shop%20setup%20elegant%20branded%20display%20stand%20with%20products%20modern%20retail%20interior%20professional%20merchandising%20clean%20design&width=800&height=500&seq=deliv-mkt-5&orientation=landscape' },
-      { icon: 'ri-bar-chart-box-line', title: 'Datenbasierte Planung', desc: 'Über das Sonic Reporting Tool (SRT) identifizieren wir Märkte und Standorte mit dem größten Potenzial für deinen Launch. Keine Bauchentscheidungen, sondern Daten.', img: '/images/losungen/dashboard.png' },
+      { icon: 'ri-bar-chart-box-line', title: 'Datenbasierte Planung', desc: 'Über das Sonic Reporting Tool (SRT) identifizieren wir Märkte und Standorte mit dem größten Potenzial für deinen Launch. Keine Bauchentscheidungen, sondern Daten.', img: '/images/losungen/dashboard.webp' },
       { icon: 'ri-dashboard-line', title: 'Live-Reporting', desc: 'Vom ersten Einsatztag an siehst du in Echtzeit, was passiert: Kontakte, Verkäufe, Feedback, Zielerreichung, Wunsch-KPIs. In deinem persönlichen Dashboard.', img: 'https://readdy.ai/api/search-image?query=real%20time%20reporting%20dashboard%20on%20tablet%20and%20laptop%20showing%20live%20sales%20metrics%20KPI%20charts%20performance%20data%20modern%20business%20analytics%20interface%20clean%20design&width=800&height=500&seq=deliv-mkt-7&orientation=landscape' },
     ],
     steps: [
@@ -67,7 +69,7 @@ const SOLUTIONS = {
     },
     finalCta: 'Bereit für deinen Markteintritt? Lass uns in 30 Minuten klären, wie dein Launch aussehen kann.',
     ctaLabel: 'Markteintritt planen',
-    link: '/services/market-entry',
+    link: '/losungen?open=markteintritt',
   },
   absatz: {
     id: 'absatz',
@@ -95,8 +97,8 @@ const SOLUTIONS = {
       },
     ],
     deliverables: [
-      { icon: 'ri-user-star-line', title: 'Menschen auf der Fläche', desc: 'Festangestellte Promoter, die dein Produkt kennen und lieben. Echte Markenbotschafter, mit Motivation, Produktwissen und Live-Einblick in ihre eigene Zielerreichung.', img: '/images/losungen/ambassador.png' },
-      { icon: 'ri-bar-chart-2-line', title: 'Daten in der Planung', desc: 'Mit dem Sonic Reporting Tool (SRT) analysieren wir Marktpotenziale, Standort-Performance und historische Sell-out-Daten. Einsätze werden dort geplant, wo sie den größten ROI liefern.', img: '/images/losungen/dashboard.png' },
+      { icon: 'ri-user-star-line', title: 'Menschen auf der Fläche', desc: 'Festangestellte Promoter, die dein Produkt kennen und lieben. Echte Markenbotschafter, mit Motivation, Produktwissen und Live-Einblick in ihre eigene Zielerreichung.', img: '/images/losungen/ambassador.webp' },
+      { icon: 'ri-bar-chart-2-line', title: 'Daten in der Planung', desc: 'Mit dem Sonic Reporting Tool (SRT) analysieren wir Marktpotenziale, Standort-Performance und historische Sell-out-Daten. Einsätze werden dort geplant, wo sie den größten ROI liefern.', img: '/images/losungen/dashboard.webp' },
       { icon: 'ri-dashboard-line', title: 'Transparenz im Dashboard', desc: 'Du siehst jederzeit: Wo sind unsere Leute, mit GPS-genauem Standort. Was haben sie heute verkauft. Wie performen sie gegen dein Ziel. Live. Ohne Excel. Ohne Warten auf Reports.', img: 'https://readdy.ai/api/search-image?query=live%20GPS%20tracking%20dashboard%20showing%20field%20force%20locations%20on%20city%20map%20real%20time%20sales%20performance%20metrics%20modern%20business%20intelligence%20interface%20tablet%20and%20desktop%20view&width=800&height=500&seq=deliv-abs-3&orientation=landscape' },
       { icon: 'ri-search-eye-line', title: 'Forecasting', desc: 'Auf Basis unserer historischen Daten prognostizieren wir Sell-out-Ergebnisse. Bevor der erste Einsatz startet. Du weißt vorher, was du erwarten kannst.', img: 'https://readdy.ai/api/search-image?query=sales%20forecasting%20model%20on%20screen%20showing%20predicted%20revenue%20curves%20trend%20analysis%20charts%20professional%20business%20forecasting%20software%20modern%20office%20data%20science%20team&width=800&height=500&seq=deliv-abs-4&orientation=landscape' },
       { icon: 'ri-map-pin-2-line', title: 'Einsatzplanung', desc: 'Standorte, Zeitfenster, Personalstärke: Alles datenbasiert optimiert. Skalierbar von 10 auf 500 Einsätze pro Woche. Das SRT berücksichtigt Saisonalität, Standort-Historie und Team-Performance.', img: 'https://readdy.ai/api/search-image?query=field%20force%20deployment%20planning%20map%20with%20store%20locations%20staffing%20schedule%20calendar%20view%20professional%20operations%20planning%20software%20retail%20coverage%20optimization%20modern%20interface&width=800&height=500&seq=deliv-abs-5&orientation=landscape' },
@@ -126,7 +128,7 @@ const SOLUTIONS = {
     },
     finalCta: 'Bereit, deinen Absatz zu steigern? Lass uns in 30 Minuten klären, wie dein Projekt aussehen kann.',
     ctaLabel: 'Absatz steigern planen',
-    link: '/services/retail-pos',
+    link: '/losungen?open=absatz',
   },
   omnichannel: {
     id: 'omnichannel',
@@ -154,13 +156,13 @@ const SOLUTIONS = {
       },
     ],
     deliverables: [
-      { icon: 'ri-shopping-cart-line', title: 'Im Online-Shop', desc: 'Ein Button oder Widget im Shop startet die Live-Video-Beratung oder Verkaufsvideos. Wie im Laden, nur digital. Die Conversion steigt, die Retourenquote sinkt. Plus Cross- und Upselling-Potenzial.', img: '/images/losungen/video.png' },
+      { icon: 'ri-shopping-cart-line', title: 'Im Online-Shop', desc: 'Ein Button oder Widget im Shop startet die Live-Video-Beratung oder Verkaufsvideos. Wie im Laden, nur digital. Die Conversion steigt, die Retourenquote sinkt. Plus Cross- und Upselling-Potenzial.', img: '/images/Lösungen/2. Markteintritt/4. Videocontent & Live-Beratung/3. Bild Kopie.webp' },
       { icon: 'ri-qr-code-line', title: 'Auf der Verpackung', desc: 'QR-Code scannen, Live-Video-Call mit einem Produktexperten starten. Beratung genau dort, wo die Kaufentscheidung fällt. Der direkteste Weg von der Verpackung zum Verkaufsgespräch.', img: 'https://readdy.ai/api/search-image?query=customer%20scanning%20QR%20code%20on%20product%20packaging%20with%20smartphone%20connecting%20to%20live%20video%20advisor%20product%20expert%20consultation%20at%20point%20of%20purchase%20modern%20retail%20packaging%20design&width=800&height=500&seq=deliv-omni-2&orientation=landscape' },
       { icon: 'ri-tablet-line', title: 'Am POS-Display', desc: 'Kein Berater vor Ort? Kein Problem. Über Displays, Tablets oder QR-Codes am Regal verbinden sich Kunden live mit unseren Video-Experten. Fachberatung auf Knopfdruck.', img: 'https://readdy.ai/api/search-image?query=interactive%20tablet%20display%20at%20retail%20shelf%20customer%20using%20touchscreen%20to%20connect%20with%20live%20video%20product%20expert%20modern%20retail%20technology%20digital%20advisory%20kiosk%20in%20store&width=800&height=500&seq=deliv-omni-3&orientation=landscape' },
-      { icon: 'ri-user-star-line', title: 'Geschulte Video-Berater', desc: 'Aus unserem Talentepool, trainiert auf dein Produkt, dein Branding. Festangestellt, keine Freelancer.', img: '/images/losungen/video.png' },
+      { icon: 'ri-user-star-line', title: 'Geschulte Video-Berater', desc: 'Aus unserem Talentepool, trainiert auf dein Produkt, dein Branding. Festangestellt, keine Freelancer.', img: '/images/Lösungen/2. Markteintritt/4. Videocontent & Live-Beratung/VIDEO01 Kopie.webp' },
       { icon: 'ri-customer-service-2-line', title: 'Multitalente', desc: 'Unsere Talente können nicht nur beraten und verkaufen, sie können auch Kundensupport. Eine Video-Hotline, viele Funktionen: Pre-Sales, After-Sales, Service, Troubleshooting.', img: 'https://readdy.ai/api/search-image?query=versatile%20customer%20service%20team%20handling%20multiple%20video%20calls%20pre-sales%20after-sales%20support%20troubleshooting%20modern%20call%20center%20with%20video%20capabilities%20professional%20branded%20environment&width=800&height=500&seq=deliv-omni-5&orientation=landscape' },
       { icon: 'ri-settings-3-line', title: 'Technische Integration', desc: 'QR-Codes, Shop-Widgets, POS-Displays, Einbettung in deine bestehende Infrastruktur: Wir liefern die Anbindung. Keine IT-Projekte auf deiner Seite.', img: 'https://readdy.ai/api/search-image?query=seamless%20technical%20integration%20diagram%20showing%20QR%20code%20shop%20widget%20POS%20display%20connections%20to%20existing%20infrastructure%20clean%20technology%20architecture%20visualization%20modern%20digital%20ecosystem&width=800&height=500&seq=deliv-omni-6&orientation=landscape' },
-      { icon: 'ri-bar-chart-line', title: 'Reporting', desc: 'Jeder Call wird getrackt: Dauer, Ergebnis, Kundenzufriedenheit, Kaufabschluss. In deinem persönlichen Dashboard im SRT.', img: '/images/losungen/dashboard.png' },
+      { icon: 'ri-bar-chart-line', title: 'Reporting', desc: 'Jeder Call wird getrackt: Dauer, Ergebnis, Kundenzufriedenheit, Kaufabschluss. In deinem persönlichen Dashboard im SRT.', img: '/images/losungen/dashboard.webp' },
       { icon: 'ri-scales-line', title: 'Skalierbarkeit', desc: 'Von 100 auf 10.000 Calls pro Monat. Wir skalieren das Team, die Schichtpläne und die Technik mit deinem Bedarf. Saisonal, kampagnengetrieben oder dauerhaft.', img: 'https://readdy.ai/api/search-image?query=scalable%20video%20advisory%20team%20growing%20from%20small%20to%20large%20operation%20multiple%20advisors%20in%20modern%20studio%20environment%20flexible%20staffing%20seasonal%20scaling%20professional%20setup&width=800&height=500&seq=deliv-omni-8&orientation=landscape' },
     ],
     steps: [
@@ -194,18 +196,47 @@ const KEYS: SolutionKey[] = ['markteintritt', 'absatz', 'omnichannel'];
 /* ─────────────────────────────────────────
    EXPANDED PANEL
 ───────────────────────────────────────── */
-function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onClose: () => void; carouselRef: React.RefObject<HTMLDivElement> }) {
+function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures, deliverableImages, stepImages, testimonialImages, iconImages }: { sKey: SolutionKey; onClose: () => void; carouselRef: React.RefObject<HTMLDivElement>; heroBgImages: import('@/lib/mediaStore').MediaItem[]; woodTextures: import('@/lib/mediaStore').MediaItem[]; deliverableImages: import('@/lib/mediaStore').MediaItem[]; stepImages: import('@/lib/mediaStore').MediaItem[]; testimonialImages: import('@/lib/mediaStore').MediaItem[]; iconImages: import('@/lib/mediaStore').MediaItem[] }) {
   const s = SOLUTIONS[sKey];
   const [activeDeliverable, setActiveDeliverable] = useState(0);
   const [delivFade, setDelivFade] = useState(true);
 
+  // ── Dashboard-managed image overrides ──
+  // Deliverable base offsets: Markteintritt starts at 0 (7 slots), Absatz at 7 (8 slots), Omnichannel at 15 (8 slots) → 23 total
+  const dBase = { markteintritt: 0, absatz: 7, omnichannel: 15 };
+  const sBase = { markteintritt: 0, absatz: 5, omnichannel: 10 };
+
+  // Icon override map — use dashboard-managed icons when available
+  const iconOverrides: Record<string, string> = {};
+  if (iconImages[0]) iconOverrides['ambassador'] = iconImages[0].url;
+  if (iconImages[1]) iconOverrides['dashboard'] = iconImages[1].url;
+  if (iconImages[2]) iconOverrides['video'] = iconImages[2].url;
+
+  // Testimonial override — use dashboard-managed testimonial image when available
+  const testimonialIdx = sKey === 'markteintritt' ? 0 : sKey === 'absatz' ? 1 : 2;
+  const testimonialOverride = testimonialImages[testimonialIdx];
+
+  const overriddenDeliverables = s.deliverables.map((d, i) => {
+    const override = deliverableImages[dBase[sKey] + i];
+    if (override) return { ...d, img: override.url };
+    // Check icon overrides for local file paths
+    if (d.img.includes('/images/losungen/ambassador') && iconOverrides['ambassador'])
+      return { ...d, img: iconOverrides['ambassador'] };
+    if (d.img.includes('/images/losungen/dashboard') && iconOverrides['dashboard'])
+      return { ...d, img: iconOverrides['dashboard'] };
+    return d;
+  });
+  const overriddenSteps = s.steps.map((st, i) => {
+    const override = stepImages[sBase[sKey] + i];
+    return override ? { ...st, img: override.url } : st;
+  });
+  // Override testimonial image
+  const testimonialImg = testimonialOverride ? testimonialOverride.url : s.testimonial.img;
+
   const heroImages: Record<SolutionKey, string> = {
-    markteintritt:
-      'https://readdy.ai/api/search-image?query=dynamic%20brand%20launch%20event%20at%20modern%20retail%20store%20multiple%20brand%20ambassadors%20engaging%20customers%20with%20new%20product%20displays%20vibrant%20energy%20professional%20activation%20team%20in%20action%20contemporary%20retail%20environment%20dramatic%20lighting%20cinematic%20atmosphere&width=1920&height=800&seq=hero-mkt-expanded-v2&orientation=landscape',
-    absatz:
-      'https://readdy.ai/api/search-image?query=confident%20field%20force%20sales%20team%20at%20retail%20point%20of%20sale%20professional%20promoters%20at%20product%20display%20stands%20busy%20electronics%20store%20customers%20engaging%20with%20products%20high%20energy%20retail%20activation%20dramatic%20overhead%20lighting%20modern%20store%20environment&width=1920&height=800&seq=hero-abs-expanded-v2&orientation=landscape',
-    omnichannel:
-      'https://readdy.ai/api/search-image?query=seamless%20omnichannel%20retail%20experience%20customer%20on%20smartphone%20video%20call%20with%20product%20advisor%20while%20standing%20in%20store%20QR%20code%20on%20packaging%20digital%20and%20physical%20retail%20convergence%20modern%20technology%20lifestyle%20dramatic%20cinematic%20lighting&width=1920&height=800&seq=hero-omni-expanded-v2&orientation=landscape',
+    markteintritt: (heroBgImages[1] && heroBgImages[1].url) || '',
+    absatz: (heroBgImages[2] && heroBgImages[2].url) || '',
+    omnichannel: (heroBgImages[3] && heroBgImages[3].url) || '',
   };
 
   const handleDeliverableChange = (idx: number) => {
@@ -227,22 +258,26 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
     <div style={{ animation: 'expandIn 0.5s ease-out' }}>
 
       {/* ── FULL-WIDTH DARK HERO BANNER — exact Case Studies style ── */}
-      <div className="relative bg-[#111] overflow-hidden">
+      <div className="relative bg-foreground-950 overflow-hidden">
         <div className="absolute inset-0 opacity-15">
-          <img
-            src="https://readdy.ai/api/search-image?query=extremely%20ancient%20century%20old%20reclaimed%20barn%20wood%20plank%20texture%20rich%20dark%20brown%20walnut%20color%20with%20severe%20weathering%20massive%20deep%20cracks%20heavy%20splits%20wormholes%20rot%20marks%20thick%20oxidation%20layers%20extreme%20patina%20warm%20brown%20tones%20with%20dark%20decay%20marks%20heavily%20distressed%20vintage%20surface&width=1920&height=400&seq=expanded-hero-wood-bg&orientation=landscape"
-            alt=""
-            className="w-full h-full object-cover"
-          />
+          {(woodTextures[1] && woodTextures[1].url) ? (
+            <img
+              src={woodTextures[1].url}
+              alt=""
+              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          ) : null}
         </div>
-        <div className="absolute top-0 left-1/3 w-96 h-48 bg-[#C8D400]/8 rounded-none blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/3 w-96 h-48 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-14">
           {/* Top nav */}
           <div className="flex items-center justify-between mb-6 md:mb-10">
             <button
               onClick={onClose}
-              className="flex items-center gap-2 text-white/70 hover:text-[#C8D400] transition-colors font-bold text-sm cursor-pointer"
+              className="flex items-center gap-2 text-white/70 hover:text-primary-500 transition-colors font-bold text-sm cursor-pointer"
             >
               <i className="ri-arrow-up-line text-lg"></i>
               <span className="hidden sm:inline">Zurück zur Übersicht</span>
@@ -250,8 +285,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
             </button>
             <button
               onClick={onClose}
-              className="w-10 h-10 flex items-center justify-center bg-white/10 border border-white/20 hover:bg-white/20 transition-all cursor-pointer"
-              style={{ borderRadius: 0 }}
+              className="w-10 h-10 flex items-center justify-center bg-white/[0.06] border border-white/[0.10] hover:bg-white/[0.12] hover:scale-110 transition-all cursor-pointer rounded-sm"
             >
               <i className="ri-close-line text-xl text-white"></i>
             </button>
@@ -261,8 +295,8 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
               <div className="flex items-center gap-3 mb-4 md:mb-6">
-                <div className="w-10 h-10 flex items-center justify-center bg-[#C8D400]/20" style={{ borderRadius: 0 }}>
-                  <i className={`${s.icon} text-xl text-[#C8D400]`}></i>
+                <div className="w-10 h-10 flex items-center justify-center bg-primary-500/20" style={{ borderRadius: 0 }}>
+                  <i className={`${s.icon} text-xl text-primary-500`}></i>
                 </div>
                 <div>
                   <p className="text-white font-black text-sm">{s.label}</p>
@@ -279,9 +313,9 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
             {/* Hero stats grid */}
             <div className="grid grid-cols-2 gap-3 md:gap-4">
               {s.stats.map((stat, idx) => (
-                <div key={idx} className="bg-white/10 backdrop-blur-sm p-4 md:p-5 border border-white/20" style={{ borderRadius: 0 }}>
-                  <div className="text-xl md:text-3xl font-black text-sonic-lime font-sans tabular-nums mb-1">{stat.value}</div>
-                  <div className="text-white/70 text-[10px] md:text-xs font-bold uppercase tracking-wide leading-snug">{stat.label}</div>
+                <div key={idx} className="bg-white/[0.04] backdrop-blur-[2px] p-4 md:p-5 border border-white/[0.06] rounded-sm">
+                  <div className="text-xl md:text-3xl font-black text-primary-500 font-sans tabular-nums mb-1">{stat.value}</div>
+                  <div className="text-white/70 text-2xs md:text-xs font-bold uppercase tracking-wide leading-snug">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -295,8 +329,8 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
         {/* ── Herausforderungen ── */}
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
           <div className="mb-8 md:mb-12">
-            <p className="text-xs md:text-sm font-black text-gray-400 uppercase tracking-widest mb-2">Deine Herausforderung</p>
-            <h3 className="text-2xl md:text-4xl font-black text-[#111]">
+            <p className="text-xs md:text-sm font-black text-foreground-400 uppercase tracking-widest mb-2">Deine Herausforderung</p>
+            <h3 className="text-2xl md:text-4xl font-black text-foreground-950">
               {sKey === 'markteintritt' ? 'Drei typische Markteintritts-Hürden' :
                sKey === 'absatz' ? 'Der Retail-Alltag frisst Potenzial' :
                'Die Lücke, die kein Algorithmus schließt'}
@@ -304,31 +338,26 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
           </div>
           <div className="grid md:grid-cols-3 gap-4 md:gap-8">
             {s.challenges.map((ch, i) => (
-              <div key={i} className="bg-white p-6 md:p-10 border border-gray-100 hover:border-[#C8D400]/30 hover:-translate-y-1 transition-all duration-300 group" style={{ borderRadius: 0 }}>
-                <div className="w-10 h-10 md:w-14 md:h-14 flex items-center justify-center bg-[#C8D400]/10 border border-[#C8D400]/20 mb-4 md:mb-6 group-hover:bg-[#C8D400]/20 transition-colors" style={{ borderRadius: 0 }}>
-                  <i className={`${ch.icon} text-xl md:text-2xl text-[#C8D400]`}></i>
+              <div key={i} className="bg-white p-6 md:p-10 border border-foreground-100 hover:border-primary-500/30 hover:-translate-y-1 transition-all duration-300 group" style={{ borderRadius: 0 }}>
+                <div className="w-10 h-10 md:w-14 md:h-14 flex items-center justify-center bg-primary-500/10 border border-primary-500/20 mb-4 md:mb-6 group-hover:bg-primary-500/20 transition-colors" style={{ borderRadius: 0 }}>
+                  <i className={`${ch.icon} text-xl md:text-2xl text-primary-500`}></i>
                 </div>
-                <h4 className="font-black text-lg md:text-xl text-[#111] mb-2 md:mb-4">{ch.title}</h4>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed">{ch.desc}</p>
+                <h4 className="font-black text-lg md:text-xl text-foreground-950 mb-2 md:mb-4">{ch.title}</h4>
+                <p className="text-sm md:text-base text-foreground-600 leading-relaxed">{ch.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* ── Mid CTA ── */}
-        <div className="bg-[#111] py-10 md:py-14 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 md:gap-8 text-center md:text-left">
-            <div>
-              <p className="text-white font-black text-xl md:text-2xl">Bereit für messbaren Erfolg?</p>
-              <p className="text-white/50 text-sm md:text-base mt-1">Starte dein Projekt in 60 Sekunden</p>
-            </div>
+        {/* ── Compact Mid CTA ── */}
+        <div className="border-t border-foreground-100 py-3 md:py-4 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <p className="text-xs md:text-sm text-foreground-500 font-medium">Bereit für messbaren Erfolg?</p>
             <a
-              href="mailto:${CONTACT_EMAIL}`?subject=Beratungsgespräch%20anfragen"
-              className="inline-flex items-center gap-3 bg-[#C8D400] text-[#111] px-8 md:px-10 py-3.5 md:py-4 font-black hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm md:text-base"
-              style={{ borderRadius: 0 }}
+              href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch%20anfragen`}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-primary-500 hover:text-primary-500 transition-colors cursor-pointer whitespace-nowrap"
             >
-              <i className="ri-calendar-line"></i>
-              Beratungsgespräch buchen
+              <i className="ri-calendar-line text-sm"></i>Beratungsgespräch
             </a>
           </div>
         </div>
@@ -338,10 +367,10 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
         {/* ── Deliverables ── */}
         <div className="py-12 md:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 md:px-8 mb-8 md:mb-12">
-            <p className="text-xs md:text-sm font-black text-gray-400 uppercase tracking-widest mb-2">
+            <p className="text-xs md:text-sm font-black text-foreground-400 uppercase tracking-widest mb-2">
               {sKey === 'omnichannel' ? 'Unsere Antwort' : 'Unser Komplettpaket'}
             </p>
-            <h3 className="text-2xl md:text-4xl font-black text-[#111]">
+            <h3 className="text-2xl md:text-4xl font-black text-foreground-950">
               {sKey === 'markteintritt' ? 'Wir machen deinen Markteintritt messbar erlebbar' :
                sKey === 'absatz' ? 'Sell-out-Steigerung als System' :
                'Video: drei Touchpoints, ein Studio'}
@@ -350,43 +379,43 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
 
           {/* Editorial split: left list + right image */}
           <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <div className="grid lg:grid-cols-[360px_1fr] border border-gray-100" style={{ minHeight: '520px' }}>
+            <div className="grid lg:grid-cols-[360px_1fr] border border-foreground-100">
 
               {/* Left: vertical selector list */}
-              <div className="lg:border-r border-gray-100 divide-y divide-gray-100 flex flex-col">
-                {s.deliverables.map((d, idx) => (
+              <div className="lg:border-r border-foreground-100 divide-y divide-foreground-100 flex flex-col">
+                {overriddenDeliverables.map((d, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleDeliverableChange(idx)}
                     className={`w-full flex items-center gap-4 px-5 py-4 text-left transition-all duration-200 cursor-pointer group border-l-4 ${
                       activeDeliverable === idx
-                        ? 'bg-[#111] border-[#C8D400]'
-                        : 'bg-white border-transparent hover:bg-[#f5f5f5] hover:border-[#C8D400]/30'
+                        ? 'bg-foreground-950 border-primary-500'
+                        : 'bg-white border-transparent hover:bg-primary-50 hover:border-primary-500/30'
                     }`}
                     style={{ borderRadius: 0 }}
                   >
-                    <span className={`text-[10px] font-black tabular-nums flex-shrink-0 w-5 ${
-                      activeDeliverable === idx ? 'text-[#C8D400]' : 'text-gray-300 group-hover:text-[#C8D400]/50'
+                    <span className={`text-2xs font-black tabular-nums flex-shrink-0 w-5 ${
+                      activeDeliverable === idx ? 'text-primary-500' : 'text-foreground-300 group-hover:text-primary-500/50'
                     }`}>
                       {String(idx + 1).padStart(2, '0')}
                     </span>
                     <div
                       className={`w-7 h-7 flex items-center justify-center flex-shrink-0 transition-colors ${
-                        activeDeliverable === idx ? 'bg-[#C8D400]/20' : 'bg-gray-100 group-hover:bg-[#C8D400]/10'
+                        activeDeliverable === idx ? 'bg-primary-500/20' : 'bg-foreground-100 group-hover:bg-primary-500/10'
                       }`}
                       style={{ borderRadius: 0 }}
                     >
                       <i className={`${d.icon} text-xs ${
-                        activeDeliverable === idx ? 'text-[#C8D400]' : 'text-gray-400'
+                        activeDeliverable === idx ? 'text-primary-500' : 'text-foreground-400'
                       }`}></i>
                     </div>
                     <span className={`text-xs font-bold leading-snug flex-1 min-w-0 ${
-                      activeDeliverable === idx ? 'text-white' : 'text-[#111]'
+                      activeDeliverable === idx ? 'text-white' : 'text-foreground-950'
                     }`}>
                       {d.title}
                     </span>
                     {activeDeliverable === idx && (
-                      <i className="ri-arrow-right-s-line text-[#C8D400] text-sm flex-shrink-0"></i>
+                      <i className="ri-arrow-right-s-line text-primary-500 text-sm flex-shrink-0"></i>
                     )}
                   </button>
                 ))}
@@ -395,40 +424,41 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
               {/* Right: image + content panel */}
               <div
                 className="relative overflow-hidden"
-                style={{ minHeight: 'clamp(320px, 40vw, 580px)', transition: 'opacity 0.2s', opacity: delivFade ? 1 : 0 }}
+                style={{ transition: 'opacity 0.2s', opacity: delivFade ? 1 : 0 }}
               >
                 <img
-                  src={s.deliverables[activeDeliverable].img}
-                  alt={s.deliverables[activeDeliverable].title}
+                  src={overriddenDeliverables[activeDeliverable].img}
+                  alt={overriddenDeliverables[activeDeliverable].title}
                   className="absolute inset-0 w-full h-full object-cover object-top"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
                 <div
                   className="relative z-10 h-full flex flex-col justify-end p-6 md:p-10"
-                  style={{ minHeight: 'clamp(320px, 40vw, 580px)' }}
                 >
                   <div className="flex items-center gap-3 mb-3 md:mb-4">
                     <div
-                      className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center bg-[#C8D400]/20 border border-[#C8D400]/40"
+                      className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center bg-primary-500/20 border border-primary-500/40"
                       style={{ borderRadius: 0 }}
                     >
-                      <i className={`${s.deliverables[activeDeliverable].icon} text-lg md:text-xl text-[#C8D400]`}></i>
+                      <i className={`${overriddenDeliverables[activeDeliverable].icon} text-lg md:text-xl text-primary-500`}></i>
                     </div>
                     <h4 className="text-xl md:text-3xl font-black text-white drop-shadow-lg">
-                      {s.deliverables[activeDeliverable].title}
+                      {overriddenDeliverables[activeDeliverable].title}
                     </h4>
                   </div>
                   <p className="text-white/80 leading-relaxed text-sm md:text-base max-w-2xl">
-                    {s.deliverables[activeDeliverable].desc}
+                    {overriddenDeliverables[activeDeliverable].desc}
                   </p>
                   {/* Progress indicator */}
                   <div className="flex items-center gap-1.5 mt-5">
-                    {s.deliverables.map((_, idx) => (
+                    {overriddenDeliverables.map((_, idx) => (
                       <button
                         key={idx}
                         onClick={() => handleDeliverableChange(idx)}
                         className={`h-1 transition-all duration-300 cursor-pointer ${
-                          activeDeliverable === idx ? 'bg-[#C8D400] w-6' : 'bg-white/30 w-3 hover:bg-white/60'
+                          activeDeliverable === idx ? 'bg-primary-500 w-6' : 'bg-white/[0.12] w-3 hover:bg-primary-500/60'
                         }`}
                         style={{ borderRadius: 0 }}
                       />
@@ -444,25 +474,34 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
         <WoodenDivider />
 
         {/* ── Process Steps ── */}
-        <div className="bg-[#f5f5f5] py-12 md:py-20 px-4 md:px-8">
+        <div className="bg-white py-12 md:py-20 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="mb-8 md:mb-14">
-              <p className="text-xs md:text-sm font-black text-gray-400 uppercase tracking-widest mb-2">Der Weg zum Erfolg</p>
-              <h3 className="text-2xl md:text-4xl font-black text-[#111]">
+              <p className="text-xs md:text-sm font-black text-foreground-400 uppercase tracking-widest mb-2">Der Weg zum Erfolg</p>
+              <h3 className="text-2xl md:text-4xl font-black text-foreground-950">
                 {sKey === 'markteintritt' ? 'So läuft dein Markteintritt mit Sonic' :
                  sKey === 'absatz' ? 'Das Sonic-System mit fünf Schritten' :
                  'So führen wir Video ein'}
               </h3>
+              {/* ── Compact stats pills ── */}
+              <div className="flex flex-wrap items-center gap-2 mt-4 md:mt-6">
+                {s.stats.map((stat, idx) => (
+                  <span key={idx} className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-primary-500/6 border border-primary-500/15 text-xs font-bold">
+                    <span className="text-primary-500 tabular-nums">{stat.value}</span>
+                    <span className="text-foreground-400 font-medium">{stat.label}</span>
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* Alternating editorial grid */}
-            <div className="space-y-0 border border-gray-200">
-              {s.steps.map((st, i) => {
+            <div className="space-y-0 border border-foreground-200">
+              {overriddenSteps.map((st, i) => {
                 const isEven = i % 2 === 0;
                 return (
                   <div
                     key={i}
-                    className="group grid md:grid-cols-2 border-b border-gray-200 last:border-b-0 hover:border-b-gray-200 transition-colors"
+                    className="group grid md:grid-cols-2 border-b border-foreground-200 last:border-b-0 hover:border-b-gray-200 transition-colors"
                     style={{ borderRadius: 0 }}
                   >
                     {/* Image panel */}
@@ -473,6 +512,8 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
                         src={st.img}
                         alt={st.title}
                         className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-103 transition-transform duration-700"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/10 to-transparent" />
                       {/* Step number watermark */}
@@ -488,20 +529,20 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
 
                     {/* Content panel */}
                     <div
-                      className={`flex flex-col justify-center px-7 py-8 md:px-10 md:py-12 bg-white group-hover:bg-[#111] transition-colors duration-300 ${
+                      className={`flex flex-col justify-center px-7 py-8 md:px-10 md:py-12 bg-white group-hover:bg-foreground-950 transition-colors duration-300 ${
                         isEven ? 'md:order-2' : 'md:order-1'
                       }`}
                     >
                       <div className="flex items-center gap-3 mb-4">
-                        <span className="text-[10px] font-black text-gray-300 group-hover:text-[#C8D400]/50 uppercase tracking-widest transition-colors">
+                        <span className="text-2xs font-black text-foreground-300 group-hover:text-primary-500/50 uppercase tracking-widest transition-colors">
                           {st.num}
                         </span>
-                        <div className="h-px flex-1 bg-gray-100 group-hover:bg-white/10 transition-colors" />
+                        <div className="h-px flex-1 bg-foreground-100 group-hover:bg-white/10 transition-colors" />
                       </div>
-                      <h4 className="font-black text-xl md:text-2xl text-[#111] group-hover:text-white transition-colors duration-300 mb-3 leading-snug">
+                      <h4 className="font-black text-xl md:text-2xl text-foreground-950 group-hover:text-white transition-colors duration-300 mb-3 leading-snug">
                         {st.title}
                       </h4>
-                      <p className="text-gray-500 group-hover:text-white/75 leading-relaxed text-sm md:text-base transition-colors duration-300">
+                      <p className="text-foreground-500 group-hover:text-white/75 leading-relaxed text-sm md:text-base transition-colors duration-300">
                         {st.desc}
                       </p>
                     </div>
@@ -512,152 +553,25 @@ function ExpandedPanel({ sKey, onClose, carouselRef }: { sKey: SolutionKey; onCl
           </div>
         </div>
 
-        <WoodenDivider />
-
-        {/* ── Stats / Die Bilanz ── */}
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
-          <div className="mb-8 md:mb-12">
-            <p className="text-xs md:text-sm font-black text-gray-400 uppercase tracking-widest mb-2">Die Bilanz</p>
-            <h3 className="text-2xl md:text-4xl font-black text-[#111]">
-              {sKey === 'markteintritt' ? 'Markteintritt mit Sonic in Zahlen' :
-               sKey === 'absatz' ? 'Absatz steigern mit Sonic in Zahlen' :
-               'Omnichannel mit Sonic'}
-            </h3>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
-            {s.stats.map((stat, idx) => (
-              <div key={idx} className="bg-gradient-to-br from-[#C8D400]/15 to-[#C8D400]/5 p-5 md:p-10 border-2 border-[#C8D400]/30 text-center hover:border-[#C8D400] hover:-translate-y-1 transition-all duration-300" style={{ borderRadius: 0 }}>
-                <div className="text-2xl md:text-4xl font-black text-sonic-lime font-sans tabular-nums mb-2 md:mb-3 leading-tight">{stat.value}</div>
-                <div className="text-[#111] font-bold text-xs md:text-sm uppercase tracking-wide leading-snug">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <WoodenDivider />
-
-        {/* ── Testimonial + Calendly dual-sided ── */}
-        <div className="bg-white py-12 md:py-16 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-6 md:mb-8">
-              <p className="text-xs md:text-sm font-black text-gray-400 uppercase tracking-widest mb-2">Erfolgsgeschichte</p>
-              <h3 className="text-2xl md:text-3xl font-black text-[#111]">{s.testimonial.brand}</h3>
-            </div>
-
-            <div className="grid lg:grid-cols-5 gap-6 items-stretch">
-              {/* Left: Testimonial card — ClientProof style but slightly bigger */}
-              <div className="lg:col-span-3">
-                <div className="relative bg-white p-6 md:p-8 border border-gray-100 h-full flex flex-col" style={{ borderRadius: 0 }}>
-                  {/* Wavy SVG border */}
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" viewBox="0 0 600 340">
-                    <defs>
-                      <linearGradient id="exp-test-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#C8D400" stopOpacity="0.65" />
-                        <stop offset="50%" stopColor="#a8b300" stopOpacity="0.45" />
-                        <stop offset="100%" stopColor="#C8D400" stopOpacity="0.65" />
-                      </linearGradient>
-                    </defs>
-                    <path d="M 16,3 Q 40,8 60,3 Q 90,-2 120,3 Q 150,8 180,3 Q 210,-2 240,3 Q 270,8 300,3 Q 330,-2 360,3 Q 390,8 420,3 Q 450,-2 480,3 Q 510,8 540,3 Q 570,-2 584,3 Q 597,8 597,16 Q 592,60 597,100 Q 602,140 597,180 Q 592,220 597,260 Q 602,300 597,324 Q 592,340 584,337 Q 570,332 540,337 Q 510,342 480,337 Q 450,332 420,337 Q 390,342 360,337 Q 330,332 300,337 Q 270,342 240,337 Q 210,332 180,337 Q 150,342 120,337 Q 90,332 60,337 Q 30,342 16,337 Q 3,332 3,324 Q 8,300 3,260 Q -2,220 3,180 Q 8,140 3,100 Q -2,60 3,16 Z"
-                      fill="none" stroke="url(#exp-test-grad)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
-                      style={{ filter: 'drop-shadow(0 0 5px rgba(200,212,0,0.4))' }} />
-                  </svg>
-
-                  <div className="relative z-10 flex flex-col h-full">
-                    {/* Quote icon */}
-                    <i className="ri-double-quotes-l text-3xl text-[#C8D400]/40 block mb-3"></i>
-                    
-                    {/* Quote text */}
-                    <p className="text-gray-700 leading-relaxed text-sm md:text-base italic mb-5 flex-1">
-                      &ldquo;{s.testimonial.quote}&rdquo;
-                    </p>
-
-                    {/* Author */}
-                    <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                      <div className="w-10 h-10 flex items-center justify-center bg-[#C8D400]/15 flex-shrink-0" style={{ borderRadius: 0 }}>
-                        <i className="ri-user-star-line text-lg text-[#C8D400]"></i>
-                      </div>
-                      <div>
-                        <p className="font-black text-[#111] text-sm">{s.testimonial.author}</p>
-                        <p className="text-xs text-gray-500">{s.testimonial.role}</p>
-                      </div>
-                    </div>
-
-                    <Link to="/case-studies" className="mt-4 inline-flex items-center gap-2 text-[#111] font-black text-xs uppercase tracking-widest hover:text-[#C8D400] transition-colors cursor-pointer">
-                      Fallstudie lesen <i className="ri-arrow-right-line"></i>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right: Calendly-style booking card */}
-              <div className="lg:col-span-2">
-                <div className="relative bg-[#111] p-6 md:p-8 h-full flex flex-col justify-center overflow-hidden" style={{ borderRadius: 0 }}>
-                  {/* Corner accents */}
-                  <div className="absolute top-0 left-0 w-12 h-[2px] bg-gradient-to-r from-[#C8D400] to-transparent" />
-                  <div className="absolute top-0 left-0 w-[2px] h-12 bg-gradient-to-b from-[#C8D400] to-transparent" />
-                  <div className="absolute bottom-0 right-0 w-12 h-[2px] bg-gradient-to-l from-[#C8D400] to-transparent" />
-                  <div className="absolute bottom-0 right-0 w-[2px] h-12 bg-gradient-to-t from-[#C8D400] to-transparent" />
-
-                  <div className="relative z-10 text-center">
-                    <div className="w-12 h-12 flex items-center justify-center bg-[#C8D400]/15 border border-[#C8D400]/30 mx-auto mb-4" style={{ borderRadius: 0 }}>
-                      <i className="ri-calendar-line text-xl text-[#C8D400]"></i>
-                    </div>
-                    <h4 className="text-lg font-black text-white mb-2">Beratungsgespräch</h4>
-                    <p className="text-white/50 text-xs leading-relaxed mb-5">
-                      Ähnliche Ergebnisse für dein Projekt? Lass uns in 30 Minuten unverbindlich sprechen.
-                    </p>
-                    <a
-                      href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch%20anfragen`}
-                      className="inline-flex items-center gap-2 bg-[#C8D400] text-[#111] px-6 py-3 font-black text-xs uppercase tracking-wider hover:bg-white hover:text-[#111] transition-all duration-300 cursor-pointer whitespace-nowrap"
-                      style={{ borderRadius: 0 }}
-                    >
-                      <i className="ri-calendar-line text-sm"></i>
-                      Jetzt Termin buchen
-                    </a>
-                    <p className="text-white/20 text-[10px] mt-3">Kostenlos & unverbindlich</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Final CTA ── */}
-        <div className="bg-[#111] py-12 md:py-20 px-4 md:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-white font-black text-xl md:text-3xl mb-2 md:mb-3">{s.finalCta}</p>
-            <p className="text-white/50 text-sm md:text-base mb-7 md:mb-10">Kein Commitment. Nur ein Gespräch.</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
-              <Link
-                to={s.link}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#C8D400] text-[#111] px-8 md:px-12 py-4 md:py-5 font-black hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm md:text-base"
-                style={{ borderRadius: 0 }}
-              >
-                {s.ctaLabel} <i className="ri-arrow-right-line"></i>
-              </Link>
+        {/* ── Compact bottom bar ── */}
+        <div className="border-t border-foreground-100 py-5 md:py-7 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-xs md:text-sm text-foreground-500 text-center sm:text-left max-w-lg leading-relaxed">{s.finalCta}</p>
+            <div className="flex items-center gap-3 flex-shrink-0">
               <button
-                onClick={onClose}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 md:px-10 py-4 md:py-5 font-black hover:bg-white/20 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm md:text-base border border-white/20"
-                style={{ borderRadius: 0 }}
+                onClick={scrollToCarousel}
+                className="text-xs font-bold text-foreground-400 hover:text-foreground-950 transition-colors cursor-pointer whitespace-nowrap"
               >
-                <i className="ri-arrow-up-line"></i> Zurück zur Übersicht
+                <i className="ri-arrow-up-line mr-1"></i>Zurück
               </button>
+              <a
+                href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch%20anfragen`}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-primary-500 hover:text-primary-500 transition-colors cursor-pointer whitespace-nowrap"
+              >
+                <i className="ri-calendar-line text-sm"></i>Beratungsgespräch
+              </a>
             </div>
           </div>
-        </div>
-
-        {/* ── ZURÜCK NACH OBEN BUTTON ── */}
-        <div className="bg-white py-10 flex justify-center">
-          <button
-            onClick={scrollToCarousel}
-            className="group flex items-center gap-3 px-10 py-4 bg-white border-2 border-[#C8D400] text-[#111] font-black hover:bg-[#C8D400] transition-all duration-300 cursor-pointer whitespace-nowrap"
-            style={{ borderRadius: 0 }}
-          >
-            <span className="w-8 h-8 flex items-center justify-center bg-[#C8D400] group-hover:bg-white transition-colors duration-300" style={{ borderRadius: 0 }}>
-              <i className="ri-arrow-up-line text-[#111] text-base"></i>
-            </span>
-            Zurück nach oben
-          </button>
         </div>
 
       </div>
@@ -699,16 +613,16 @@ function ContactForm() {
   if (formStatus === 'success') {
     return (
       <div className="text-center py-12">
-        <div className="w-16 h-16 flex items-center justify-center bg-[#C8D400]/20 rounded-full mx-auto mb-5">
-          <i className="ri-check-double-line text-3xl text-[#C8D400]"></i>
+        <div className="w-16 h-16 flex items-center justify-center bg-primary-500/20 rounded-md mx-auto mb-5">
+          <i className="ri-check-double-line text-3xl text-primary-500"></i>
         </div>
-        <h3 className="text-2xl font-black text-[#111] mb-2 uppercase">Nachricht gesendet!</h3>
-        <p className="text-gray-500 text-sm leading-relaxed">
+        <h3 className="text-2xl font-black text-foreground-950 mb-2 uppercase">Nachricht gesendet!</h3>
+        <p className="text-foreground-500 text-sm leading-relaxed">
           Vielen Dank für deine Anfrage. Wir melden uns innerhalb von 24 Stunden bei dir.
         </p>
         <button
           onClick={() => setFormStatus('idle')}
-          className="mt-6 text-[#C8D400] font-black text-sm hover:underline cursor-pointer"
+          className="mt-6 text-primary-500 font-black text-sm hover:underline cursor-pointer"
         >
           Weitere Anfrage senden
         </button>
@@ -725,53 +639,63 @@ function ContactForm() {
     >
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-1.5">Vorname *</label>
+          <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Vorname *</label>
           <input
             type="text"
             name="vorname"
             required
             placeholder="Max"
-            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm text-[#111] focus:outline-none focus:border-[#C8D400] transition-colors"
+            className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
           />
         </div>
         <div>
-          <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-1.5">Nachname *</label>
+          <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Nachname *</label>
           <input
             type="text"
             name="nachname"
             required
             placeholder="Mustermann"
-            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm text-[#111] focus:outline-none focus:border-[#C8D400] transition-colors"
+            className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-1.5">E-Mail *</label>
+        <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">E-Mail *</label>
         <input
           type="email"
           name="email"
           required
           placeholder="max@unternehmen.de"
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm text-[#111] focus:outline-none focus:border-[#C8D400] transition-colors"
+          className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
         />
       </div>
 
       <div>
-        <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-1.5">Unternehmen</label>
+        <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Unternehmen</label>
         <input
           type="text"
           name="unternehmen"
           placeholder="Dein Unternehmen GmbH"
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm text-[#111] focus:outline-none focus:border-[#C8D400] transition-colors"
+          className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
         />
       </div>
 
       <div>
-        <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-1.5">Ich interessiere mich für</label>
+        <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Telefon</label>
+        <input
+          type="tel"
+          name="telefon"
+          placeholder="+49 2151 479 444 0"
+          className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
+        />
+      </div>
+
+      <div>
+        <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Ich interessiere mich für</label>
         <select
           name="interesse"
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm text-[#111] focus:outline-none focus:border-[#C8D400] transition-colors bg-white cursor-pointer"
+          className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors bg-white cursor-pointer"
         >
           <option value="">Bitte wählen...</option>
           <option value="Markteintritt">Markteintritt</option>
@@ -782,9 +706,9 @@ function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-xs font-black text-gray-500 uppercase tracking-widest mb-1.5">
+        <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">
           Deine Nachricht *
-          <span className={`ml-2 font-normal normal-case ${charCount > 480 ? 'text-red-400' : 'text-gray-400'}`}>
+          <span className={`ml-2 font-normal normal-case ${charCount > 480 ? 'text-red-400' : 'text-foreground-400'}`}>
             {charCount}/500
           </span>
         </label>
@@ -795,7 +719,7 @@ function ContactForm() {
           maxLength={500}
           placeholder="Beschreibe kurz dein Projekt oder deine Frage..."
           onChange={(e) => setCharCount(e.target.value.length)}
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm text-[#111] focus:outline-none focus:border-[#C8D400] transition-colors resize-none"
+          className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors resize-none"
         />
       </div>
 
@@ -808,7 +732,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={formStatus === 'sending' || charCount > 500}
-        className="w-full flex items-center justify-center gap-3 bg-[#C8D400] text-[#111] py-4 font-black hover:bg-[#111] hover:text-white transition-all duration-300 cursor-pointer whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+        className="w-full flex items-center justify-center gap-3 bg-primary-500 text-foreground-950 py-4 font-black hover:bg-foreground-950 hover:text-white transition-all duration-300 cursor-pointer whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed text-sm"
       >
         {formStatus === 'sending' ? (
           <>
@@ -823,7 +747,7 @@ function ContactForm() {
         )}
       </button>
 
-      <p className="text-gray-400 text-xs text-center">
+      <p className="text-foreground-400 text-xs text-center">
         Mit dem Absenden stimmst du unserer Datenschutzerklärung zu.
       </p>
     </form>
@@ -837,215 +761,115 @@ function WoodCard({
   sKey,
   isExpanded,
   onToggle,
+  woodTextures,
 }: {
   sKey: SolutionKey;
   isExpanded: boolean;
   onToggle: () => void;
+  woodTextures: import('@/lib/mediaStore').MediaItem[];
 }) {
   const s = SOLUTIONS[sKey];
-  const idx = KEYS.indexOf(sKey);
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [dims, setDims] = useState({ width: 900, height: 300 });
-
-  useEffect(() => {
-    if (!cardRef.current) return;
-    const update = () => {
-      if (cardRef.current) {
-        setDims({ width: cardRef.current.offsetWidth, height: cardRef.current.offsetHeight });
-      }
-    };
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(cardRef.current);
-    return () => ro.disconnect();
-  }, []);
-
-  const generateWavyPath = (inset: number, amp: number, freq: number) => {
-    const w = dims.width;
-    const h = dims.height;
-    const segsH = Math.max(Math.floor((w - 2 * inset) / 30), 14);
-    const segsV = Math.max(Math.floor((h - 2 * inset) / 30), 10);
-    let path = `M ${inset},${inset}`;
-    for (let i = 1; i <= segsH; i++) {
-      const x = inset + ((w - 2 * inset) * i / segsH);
-      const wave = Math.sin(i * freq) * amp;
-      const prevX = inset + ((w - 2 * inset) * (i - 1) / segsH);
-      const cpWave = Math.sin((i - 0.5) * freq) * amp * 1.2;
-      path += ` Q ${(prevX + x) / 2},${inset + cpWave} ${x},${inset + wave}`;
-    }
-    for (let i = 1; i <= segsV; i++) {
-      const y = inset + ((h - 2 * inset) * i / segsV);
-      const wave = Math.sin(i * freq + 1) * amp;
-      const prevY = inset + ((h - 2 * inset) * (i - 1) / segsV);
-      const cpWave = Math.sin((i - 0.5) * freq + 1) * amp * 1.2;
-      path += ` Q ${w - inset + cpWave},${(prevY + y) / 2} ${w - inset + wave},${y}`;
-    }
-    for (let i = 1; i <= segsH; i++) {
-      const x = w - inset - ((w - 2 * inset) * i / segsH);
-      const wave = Math.sin(i * freq + 2) * amp;
-      const prevX = w - inset - ((w - 2 * inset) * (i - 1) / segsH);
-      const cpWave = Math.sin((i - 0.5) * freq + 2) * amp * 1.2;
-      path += ` Q ${(prevX + x) / 2},${h - inset + cpWave} ${x},${h - inset + wave}`;
-    }
-    for (let i = 1; i <= segsV; i++) {
-      const y = h - inset - ((h - 2 * inset) * i / segsV);
-      const wave = Math.sin(i * freq + 3) * amp;
-      const prevY = h - inset - ((h - 2 * inset) * (i - 1) / segsV);
-      const cpWave = Math.sin((i - 0.5) * freq + 3) * amp * 1.2;
-      path += ` Q ${inset + cpWave},${(prevY + y) / 2} ${inset + wave},${y}`;
-    }
-    path += ' Z';
-    return path;
-  };
+  const heroStat = s.stats[0];
+  const factStats = s.stats.slice(1, 4);
+  const barHeights = [42, 58, 72, 88];
 
   return (
-    <div ref={cardRef} className="w-full relative overflow-hidden" style={{ borderRadius: 0, boxShadow: '0 20px 60px rgba(0,0,0,0.3)' }}>
-      {/* Wood texture */}
+    <div className="w-full relative overflow-hidden rounded-none" style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.4), 0 0 100px rgba(200,212,0,0.06)' }}>
+      {/* Wood texture — actual image, not a dark gradient */}
       <div className="absolute inset-0">
-        <img
-          src="https://readdy.ai/api/search-image?query=extremely%20ancient%20century%20old%20reclaimed%20barn%20wood%20plank%20texture%20rich%20dark%20brown%20walnut%20color%20with%20severe%20weathering%20massive%20deep%20cracks%20heavy%20splits%20wormholes%20rot%20marks%20thick%20oxidation%20layers%20extreme%20patina%20warm%20brown%20tones%20with%20dark%20decay%20marks%20heavily%20distressed%20vintage%20surface%20archaeological%20relic%20quality%20museum%20artifact%20aged%20timber%20with%20peeling%20finish&width=1920&height=600&seq=wood-card-losungen-clean-v8&orientation=landscape"
-          alt=""
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40" />
+        {(woodTextures[0] && woodTextures[0].url) ? (
+          <img
+            src={woodTextures[0].url}
+            alt=""
+            className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        ) : null}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/35 to-black/50" />
       </div>
 
-      {/* Wavy border — matches ClientProof review card style */}
-      <svg
-        className="absolute inset-0 pointer-events-none overflow-visible"
-        viewBox={`0 0 ${dims.width} ${dims.height}`}
-        width={dims.width}
-        height={dims.height}
-        style={{ zIndex: 1 }}
-      >
-        <defs>
-          <linearGradient id={`wb-${idx}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#C8D400" stopOpacity="0.95" />
-            <stop offset="40%" stopColor="#a8b300" stopOpacity="0.55" />
-            <stop offset="100%" stopColor="#C8D400" stopOpacity="0.95" />
-          </linearGradient>
-        </defs>
-        <path
-          d={generateWavyPath(2, 3.5, 0.42)}
-          fill="none"
-          stroke={`url(#wb-${idx})`}
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          style={{ filter: 'drop-shadow(0 0 10px rgba(200,212,0,0.55)) drop-shadow(0 0 3px rgba(200,212,0,0.30))' }}
-        />
-      </svg>
+      {/* Fine grain overlay */}
+      <div className="absolute inset-0 opacity-25" style={{ backgroundImage: 'repeating-linear-gradient(115deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 2px, transparent 4px)' }} />
 
-      {/* Content */}
-      <div className="relative px-5 py-6 md:px-12 md:py-10" style={{ zIndex: 2 }}>
-        {/* Mobile layout: stacked */}
-        <div className="flex flex-col gap-5 md:hidden">
-          {/* Header row */}
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 flex items-center justify-center bg-[#C8D400]/20 border border-[#C8D400]/50 flex-shrink-0">
-                <i className={`${s.icon} text-xl text-[#C8D400]`}></i>
-              </div>
-              <div>
-                <p className="text-[#C8D400] text-[10px] font-black uppercase tracking-widest">Sonic Lösung</p>
-                <h2 className="text-base font-black text-white leading-tight">{s.label}</h2>
-              </div>
+      {/* Signature blade — one wide diagonal light-blade at ~18° */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -right-8 top-1/2 -translate-y-1/2 w-40 md:w-64 h-[120%]" style={{ background: 'linear-gradient(180deg, transparent 0%, rgba(200,212,0,0.20) 50%, transparent 100%)', transform: 'rotate(-18deg)', filter: 'blur(26px)' }} />
+      </div>
+
+      <div className="relative z-10 px-5 py-5 md:px-12 md:py-7">
+        {/* 1. Card header row */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-7">
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-primary-500/15 border border-primary-500/40 rounded-lg flex-shrink-0">
+              <i className={`${s.icon} text-xl md:text-2xl text-primary-500`}></i>
             </div>
-            <p className="text-white/30 text-xs font-bold uppercase tracking-widest flex-shrink-0">{idx + 1}/{KEYS.length}</p>
+            <div className="min-w-0">
+              <p className="text-primary-500 text-2xs font-black uppercase tracking-widest">Sonic Lösung</p>
+              <h2 className="text-xl md:text-2xl font-black text-white leading-tight">{s.label}</h2>
+            </div>
+          </div>
+          <div className="inline-flex items-center gap-2 self-start sm:self-auto rounded-none border border-white/15 bg-white/5 px-4 py-2">
+            <span className="text-white/75 text-xs font-bold whitespace-nowrap">Sonic Group · Seit 2007</span>
+          </div>
+        </div>
+
+        {/* 2. Two-column hero row */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+          {/* Left: big stat + label + description */}
+          <div className="lg:col-span-5 flex flex-col justify-center">
+            <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-primary-500 font-sans tabular-nums leading-none drop-shadow-lg">{heroStat.value}</div>
+            <p className="text-white/75 text-sm md:text-base font-bold uppercase tracking-wide mt-3">{heroStat.label}</p>
+            <p className="text-white/60 text-sm leading-relaxed mt-4 max-w-md">{s.description}</p>
           </div>
 
-          {/* Title */}
-          <p className="text-white font-black text-lg leading-snug drop-shadow">{s.title}</p>
-
-          {/* Description */}
-          <div className="border-l-2 border-[#C8D400]/60 pl-4">
-            <p className="text-white/75 text-sm leading-relaxed">{s.description}</p>
-          </div>
-
-          {/* Challenges */}
-          <div>
-            <p className="text-[#C8D400] text-[10px] font-black uppercase tracking-widest mb-2">Typische Herausforderungen</p>
-            <ul className="space-y-2">
-              {s.challenges.map((c, ci) => (
-                <li key={ci} className="flex items-start gap-2.5">
-                  <div className="w-5 h-5 flex items-center justify-center bg-white/10 flex-shrink-0 mt-0.5" style={{ borderRadius: 0 }}>
-                    <i className={`${c.icon} text-xs text-[#C8D400]`}></i>
-                  </div>
-                  <span className="text-white/70 text-sm leading-snug">{c.title}</span>
-                </li>
+          {/* Right: chart panel */}
+          <div className="lg:col-span-7 rounded-lg bg-black/30 border border-white/10 backdrop-blur-[2px] p-6 md:p-8 flex flex-col">
+            <div className="flex items-center justify-between mb-6">
+              <span className="text-white/85 text-xs font-black uppercase tracking-wide">Performance-Trend</span>
+              <span className="text-primary-500 text-xs font-sans tabular-nums font-black bg-white/10 rounded-none px-3 py-1">2021–2024</span>
+            </div>
+            <div className="flex-1 flex items-end gap-1.5 md:gap-2 min-h-[120px]">
+              {s.stats.map((_, i) => (
+                <div key={i} className="flex-1 flex flex-col justify-end h-full">
+                  <div className="w-full rounded-t-sm bg-gradient-to-t from-primary-500/60 to-primary-500 transition-all duration-700" style={{ height: `${barHeights[i]}%` }} />
+                </div>
               ))}
-            </ul>
+            </div>
+            <div className="flex justify-between mt-3">
+              {s.stats.map((st, i) => (
+                <span key={i} className="text-white/40 flex-1 text-center text-[10px] md:text-xs">{st.label.split(' ').slice(0, 2).join(' ')}</span>
+              ))}
+            </div>
           </div>
+        </div>
 
-          {/* CTA */}
+        {/* 3. Fact row — 3 compact tiles */}
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 mt-6">
+          {factStats.map((stat, i) => (
+            <div key={i} className="rounded-lg bg-black/25 border border-white/10 p-2.5 sm:p-4 md:p-5 text-center">
+              <div className="text-primary-500 font-sans tabular-nums font-black text-lg md:text-2xl mb-1">{stat.value}</div>
+              <div className="text-white/60 text-[10px] md:text-xs font-bold uppercase tracking-wide">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* 4. CTA row */}
+        <div className="flex items-center justify-between mt-6 pt-5 border-t border-white/10">
           <button
             onClick={onToggle}
-            className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#C8D400] text-[#111] font-black uppercase tracking-wider hover:bg-white hover:text-[#111] transition-all duration-300 cursor-pointer whitespace-nowrap text-xs"
-            style={{ borderRadius: 0 }}
+            className="inline-flex items-center gap-2 rounded-none bg-primary-500 text-foreground-950 px-7 py-3 font-black uppercase tracking-wider hover:bg-white hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap text-xs md:text-sm"
           >
             {isExpanded ? 'Schließen' : 'Mehr dazu'}
             <i className={`ri-arrow-down-line text-sm transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}></i>
           </button>
-        </div>
-
-        {/* Desktop layout: 12-col grid */}
-        <div className="hidden md:grid grid-cols-12 gap-10 items-start">
-          {/* LEFT — identity */}
-          <div className="col-span-4 flex flex-col gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 flex items-center justify-center bg-[#C8D400]/20 border border-[#C8D400]/50 flex-shrink-0">
-                <i className={`${s.icon} text-2xl text-[#C8D400]`}></i>
-              </div>
-              <div>
-                <p className="text-[#C8D400] text-xs font-black uppercase tracking-widest">Sonic Lösung</p>
-                <h2 className="text-xl font-black text-white leading-tight">{s.label}</h2>
-              </div>
-            </div>
-            <div
-              className="select-none font-black leading-none"
-              style={{ fontSize: '7rem', color: 'rgba(200,212,0,0.12)', letterSpacing: '-0.04em', lineHeight: 1 }}
-            >
-              {String(idx + 1).padStart(2, '0')}
-            </div>
-            <p className="text-white font-black text-lg leading-snug drop-shadow">{s.title}</p>
-          </div>
-
-          {/* MIDDLE — description + challenges */}
-          <div className="col-span-5 flex flex-col gap-5">
-            <div className="border-l-2 border-[#C8D400]/60 pl-5">
-              <p className="text-white/80 text-sm leading-relaxed italic">{s.description}</p>
-            </div>
-            <div>
-              <p className="text-[#C8D400] text-xs font-black uppercase tracking-widest mb-3">Typische Herausforderungen</p>
-              <ul className="space-y-2.5">
-                {s.challenges.map((c, ci) => (
-                  <li key={ci} className="flex items-start gap-3">
-                    <div className="w-6 h-6 flex items-center justify-center bg-white/10 flex-shrink-0 mt-0.5" style={{ borderRadius: 0 }}>
-                      <i className={`${c.icon} text-sm text-[#C8D400]`}></i>
-                    </div>
-                    <span className="text-white/75 text-sm leading-snug">{c.title}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* RIGHT — CTA */}
-          <div className="col-span-3 flex flex-col items-end justify-between h-full gap-6">
-            <div className="text-right">
-              <p className="text-white/40 text-xs font-bold uppercase tracking-widest">
-                {idx + 1} / {KEYS.length}
-              </p>
-            </div>
-            <button
-              onClick={onToggle}
-              className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#C8D400] text-[#111] font-black uppercase tracking-wider hover:bg-white hover:text-[#111] transition-all duration-300 cursor-pointer whitespace-nowrap text-xs"
-              style={{ borderRadius: 0 }}
-            >
-              {isExpanded ? 'Schließen' : 'Mehr dazu'}
-              <i className={`ri-arrow-down-line text-sm transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}></i>
-            </button>
-          </div>
+          <button
+            onClick={onToggle}
+            className="w-11 h-11 md:w-12 md:h-12 rounded-none flex items-center justify-center border border-white/25 text-white hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer"
+            aria-label={isExpanded ? 'Schließen' : 'Mehr dazu'}
+          >
+            <i className={`ri-arrow-down-line text-lg transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}></i>
+          </button>
         </div>
       </div>
     </div>
@@ -1064,12 +888,32 @@ export default function LosungenPage() {
     ogTitle: 'Lösungen — Sonic Group DACH',
     ogDescription: 'Markteintritt, Absatzsteigerung & Omnichannel: Drei datenbasierte Retail-Lösungen für den DACH-Markt.',
   });
+  // ── Dashboard-managed media ──
+  const { images: heroBgImages } = useMediaStore('losungen_hero_backgrounds');
+  const { images: woodTextures } = useMediaStore('losungen_wood_textures');
+  const { images: testimonialImages } = useMediaStore('losungen_testimonial_images');
+  const { images: deliverableImages } = useMediaStore('losungen_deliverable_images');
+  const { images: stepImages } = useMediaStore('losungen_step_images');
+  const { images: iconImages } = useMediaStore('/images/losungen');
+
   const [searchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState<SolutionKey>('markteintritt');
   const [expandedKey, setExpandedKey] = useState<SolutionKey | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
+  const [surveyExpanded, setSurveyExpanded] = useState(false);
+  const [showSurveyContact, setShowSurveyContact] = useState(false);
   const [surveyDone, setSurveyDone] = useState(false);
+  const [surveyName, setSurveyName] = useState('');
+  const [surveyLastName, setSurveyLastName] = useState('');
+  const [surveyEmail, setSurveyEmail] = useState('');
+  const [surveyPhone, setSurveyPhone] = useState('');
+  const [surveyCompany, setSurveyCompany] = useState('');
+  const [surveyRole, setSurveyRole] = useState('');
+  const [surveyBudget, setSurveyBudget] = useState('');
+  const [surveyNotes, setSurveyNotes] = useState('');
+  const [surveySubmitting, setSurveySubmitting] = useState(false);
+  const [surveyError, setSurveyError] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const expandedRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -1101,10 +945,11 @@ export default function LosungenPage() {
   };
 
   const surveyQuestions = [
-    { question: 'In welcher Branche bist du aktiv?', options: ['Consumer Electronics', 'Haushaltsgeräte', 'Sport & Outdoor', 'Kosmetik', 'Food & Beverages'] },
-    { question: 'Was ist dein primäres Ziel?', options: ['Markteintritt', 'Absatzsteigerung', 'Omnichannel-Strategie', 'Markenbekanntheit', 'Kundenbindung'] },
-    { question: 'Wie viele POS-Standorte planst du?', options: ['1–10', '11–50', '51–100', '100+', 'Noch unklar'] },
-    { question: 'Wann möchtest du starten?', options: ['Sofort', 'In 1–3 Monaten', 'In 3–6 Monaten', 'In 6+ Monaten', 'Noch in Planung'] },
+    { question: 'In welcher Branche bist du aktiv?', options: ['Consumer Electronics', 'Haushaltsgeräte', 'Sport & Outdoor', 'Kosmetik & Beauty', 'Food & Beverages', 'Pharma & Healthcare', 'Fashion & Lifestyle', 'Sonstiges'] },
+    { question: 'Was ist dein primäres Ziel?', options: ['Markteintritt', 'Absatzsteigerung', 'Omnichannel-Strategie', 'Markenbekanntheit', 'Kundenbindung', 'POS-Optimierung', 'Live-Video-Beratung', 'Sales-Training & Enablement'] },
+    { question: 'Wie viele POS-Standorte planst du?', options: ['1–10', '11–50', '51–100', '100–500', '500+', 'Noch unklar'] },
+    { question: 'Wann möchtest du starten?', options: ['Sofort', 'In 1–3 Monaten', 'In 3–6 Monaten', 'In 6–12 Monaten', 'Noch in Planung'] },
+    { question: 'Hast du bereits Erfahrung mit Field-Marketing-Agenturen?', options: ['Ja, aktuell in Zusammenarbeit', 'Ja, aber unzufrieden', 'Nein, erstes Mal', 'Bereits probiert, abgebrochen', 'Evaluiere verschiedene Anbieter'] },
   ];
 
   const handleAnswer = (answer: string) => {
@@ -1113,7 +958,50 @@ export default function LosungenPage() {
     if (currentQuestion < surveyQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      setSurveyDone(true);
+      setShowSurveyContact(true);
+    }
+  };
+
+  const handleSurveySubmit = async () => {
+    if (!surveyEmail.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(surveyEmail)) {
+      setSurveyError('Bitte gib eine gültige E-Mail-Adresse ein.');
+      return;
+    }
+    setSurveySubmitting(true);
+    setSurveyError('');
+
+    try {
+      const form = document.getElementById('losungen-survey-form') as HTMLFormElement;
+      const formData = new FormData(form);
+      // Add survey answers as hidden fields
+      formData.append('branche', answers[0] || '');
+      formData.append('ziel', answers[1] || '');
+      formData.append('standorte', answers[2] || '');
+      formData.append('start', answers[3] || '');
+      formData.append('erfahrung', answers[4] || '');
+
+      const response = await fetch(SURVEY_FORM_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(Array.from(formData.entries()) as [string, string][]).toString(),
+      });
+      const responseText = await response.text();
+      let parsed;
+      try { parsed = JSON.parse(responseText); } catch { /* ignore */ }
+
+      const serverMsg = parsed?.meta?.message || parsed?.meta?.detail || parsed?.message || responseText;
+      if (response.ok && parsed?.code === 'OK') {
+        setSurveyDone(true);
+        setShowSurveyContact(false);
+      } else if (serverMsg?.toLowerCase().includes('spam') || serverMsg?.toLowerCase().includes('form data is spam')) {
+        setSurveyError('Deine Anfrage konnte nicht verarbeitet werden. Bitte versuche es später erneut.');
+      } else {
+        setSurveyError(serverMsg || 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.');
+      }
+    } catch {
+      setSurveyError('Ein Fehler ist aufgetreten. Bitte versuche es erneut.');
+    } finally {
+      setSurveySubmitting(false);
     }
   };
 
@@ -1153,44 +1041,47 @@ export default function LosungenPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
-      <Navigation />
+    <div className="min-h-[100dvh] bg-white overflow-x-hidden">
 
       {/* ── HERO ── */}
       <section className="relative flex items-center overflow-hidden" style={{ minHeight: '480px' }}>
         {/* Background image */}
         <div className="absolute inset-0">
-          <img
-            src="https://readdy.ai/api/search-image?query=dramatic%20wide%20angle%20shot%20of%20modern%20retail%20environment%20sleek%20product%20display%20stands%20brand%20activation%20professionals%20confident%20poses%20cinematic%20moody%20lighting%20deep%20contrast%20dark%20shadows%20warm%20amber%20highlights%20premium%20commercial%20photography%20editorial%20style%20highly%20stylized%20dramatic%20atmosphere%20retail%20marketing%20agency&width=1920&height=1080&seq=losungen-hero-editorial-v3&orientation=landscape"
-            alt="Lösungen Hero"
-            className="w-full h-full object-cover object-top"
-          />
+          {(heroBgImages[0] && heroBgImages[0].url) && (
+            <img
+              src={heroBgImages[0].url}
+              alt="Lösungen Hero"
+              className="w-full h-full object-cover object-top"
+              fetchPriority="high"
+              decoding="async"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/25" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
         </div>
 
         {/* Lime ambient glow */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-[#C8D400]/6 blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-primary-500/6 blur-[100px] pointer-events-none" />
 
         {/* Content — left-aligned, bottom-anchored */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 py-0">
           <div className="max-w-3xl">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-7">
-              <div className="w-1.5 h-1.5 bg-[#C8D400] animate-pulse" />
-              <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Lösungen</span>
+            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-7">
+              <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" />
+              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Lösungen</span>
             </div>
 
             {/* Main headline — editorial split type */}
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tight mb-5 md:mb-6">
               DREI WEGE<br />
-              <span className="text-[#C8D400]">DURCH DIE</span><br />
+              <span className="text-primary-500">DURCH DIE</span><br />
               RETAIL-SCHALLMAUER.
             </h1>
 
             {/* Divider + subtitle */}
             <div className="flex items-start gap-4 mb-8">
-              <div className="w-1 h-14 bg-[#C8D400] flex-shrink-0 mt-1" />
+              <div className="w-1 h-14 bg-primary-500 flex-shrink-0 mt-1" />
               <div>
                 <p className="text-white font-black text-base md:text-lg mb-1">
                   Die richtige Lösung für jede Phase deiner Retail-Strategie.
@@ -1214,7 +1105,7 @@ export default function LosungenPage() {
                       carouselRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }, 100);
                   }}
-                  className="inline-flex items-center gap-2 border border-white/25 text-white px-5 py-2.5 font-black text-xs uppercase tracking-wider hover:border-[#C8D400] hover:text-[#C8D400] transition-all duration-300 cursor-pointer whitespace-nowrap group"
+                  className="inline-flex items-center gap-2 border border-white/25 text-white px-5 py-2.5 font-black text-xs uppercase tracking-wider hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer whitespace-nowrap group"
                 >
                   <i className={`${SOLUTIONS[key].icon} text-sm`} />
                   {SOLUTIONS[key].label}
@@ -1231,8 +1122,8 @@ export default function LosungenPage() {
 
       {/* ── WOODEN CAROUSEL ── */}
       <section ref={carouselRef} id="losungen-carousel" className="relative py-16 bg-white overflow-visible">
-        <div className="absolute top-1/3 left-0 w-72 h-72 bg-[#C8D400]/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/3 right-0 w-80 h-80 bg-[#C8D400]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/3 left-0 w-72 h-72 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/3 right-0 w-80 h-80 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 px-6 max-w-7xl mx-auto">
           {/* Tab switcher */}
@@ -1243,14 +1134,41 @@ export default function LosungenPage() {
                 onClick={() => handleTabClick(key)}
                 className={`px-5 md:px-8 py-2 md:py-2.5 font-black uppercase tracking-wider text-xs md:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer ${
                   activeTab === key
-                    ? 'bg-[#111] text-[#C8D400] border-2 border-[#111]'
-                    : 'bg-white text-gray-600 border border-gray-200 hover:border-[#C8D400]/60 hover:text-[#111]'
+                    ? 'bg-foreground-950 text-primary-500'
+                    : 'bg-white text-foreground-600 border border-foreground-200 hover:border-primary-500/60 hover:text-foreground-950'
                 }`}
-                style={{ borderRadius: 0 }}
               >
                 {SOLUTIONS[key].label}
               </button>
             ))}
+          </div>
+
+          {/* Intro block — eyebrow + stats line */}
+          <div className="mb-10 md:mb-14">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
+              <div>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-4" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.30)' }}>
+                  <span className="w-1.5 h-1.5" style={{ background: 'oklch(var(--primary-500))' }}></span>
+                  <span className="text-xs font-black uppercase tracking-widest whitespace-nowrap text-foreground-950">Lösungen für den DACH-Markt</span>
+                </div>
+                <p className="text-sm md:text-base text-foreground-700 leading-relaxed max-w-xl">
+                  Ganz gleich ob du neu im Markt bist, deinen Absatz skalieren willst oder deine Omnichannel-Strategie zum Fliegen bringen musst: Wir haben die Menschen, die Daten und die Erfolgslösungen.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 lg:gap-5">
+                {[
+                  { value: '>500', label: 'Projekte' },
+                  { value: '>1,35 Mio.', label: 'Einsätze' },
+                  { value: '>100.000', label: 'POS' },
+                  { value: '2007', label: 'Seit' },
+                ].map((stat, i) => (
+                  <div key={i} className="pl-3 border-l-2 border-primary-500 min-w-0 overflow-hidden">
+                    <div className="text-lg md:text-xl font-black text-foreground-950 font-sans tabular-nums leading-none whitespace-nowrap">{stat.value}</div>
+                    <div className="text-xs text-foreground-600 font-bold uppercase tracking-wide mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Wood card */}
@@ -1258,6 +1176,7 @@ export default function LosungenPage() {
             sKey={activeTab}
             isExpanded={expandedKey === activeTab}
             onToggle={() => handleToggle(activeTab)}
+            woodTextures={woodTextures}
           />
 
           {/* Nav dots */}
@@ -1266,8 +1185,8 @@ export default function LosungenPage() {
               <button
                 key={i}
                 onClick={() => handleTabClick(key)}
-                className={`h-2 rounded-full transition-all cursor-pointer hover:scale-110 ${
-                  activeTab === key ? 'bg-[#C8D400] w-6 shadow-lg' : 'bg-gray-300 w-2 hover:bg-[#C8D400]/60'
+                className={`h-2 rounded-none transition-all cursor-pointer hover:scale-110 ${
+                  activeTab === key ? 'bg-primary-500 w-6 shadow-lg' : 'bg-foreground-300 w-2 hover:bg-primary-500/60'
                 }`}
                 aria-label={`View ${SOLUTIONS[key].label}`}
               />
@@ -1284,7 +1203,7 @@ export default function LosungenPage() {
                   width: '100vw',
                 }}
               >
-                <ExpandedPanel sKey={expandedKey} onClose={() => setExpandedKey(null)} carouselRef={carouselRef} />
+                <ExpandedPanel sKey={expandedKey} onClose={() => setExpandedKey(null)} carouselRef={carouselRef} heroBgImages={heroBgImages} woodTextures={woodTextures} deliverableImages={deliverableImages} stepImages={stepImages} testimonialImages={testimonialImages} iconImages={iconImages} />
               </div>
             )}
           </div>
@@ -1294,10 +1213,10 @@ export default function LosungenPage() {
       <WoodenDivider />
 
       {/* ── THREE PILLARS ── */}
-      <section className="py-14 md:py-20 px-4 md:px-6 bg-[#111]">
+      <section className="py-14 md:py-20 px-4 md:px-6 bg-foreground-950">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-black text-[#C8D400]/60 uppercase tracking-widest mb-3">Was immer gilt</p>
+            <p className="text-xs font-black text-primary-500/60 uppercase tracking-widest mb-3">Was immer gilt</p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-2 uppercase">Ganz gleich wo du stehst</h2>
             <p className="text-base md:text-xl text-white/50 font-semibold">Du bekommst immer</p>
           </div>
@@ -1307,13 +1226,13 @@ export default function LosungenPage() {
               { icon: 'ri-bar-chart-box-line', title: 'Datenbasierte Planung', desc: 'Das Sonic Reporting Tool (SRT) liefert Forecasts, Standortanalysen und ROI-Prognosen.' },
               { icon: 'ri-dashboard-line', title: 'Live-Reporting via SRT', desc: 'Echtzeit-Dashboards, angedockt an deine Software. Volle Transparenz.' },
             ].map((item, i) => (
-              <div key={i} className="relative bg-white/5 border border-white/10 hover:border-[#C8D400]/50 hover:bg-white/8 hover:-translate-y-1 transition-all duration-300 group overflow-hidden" style={{ borderRadius: 0 }}>
+              <div key={i} className="relative bg-white/[0.03] backdrop-blur-[2px] border border-white/[0.06] hover:border-primary-500/50 hover:bg-white/[0.06] hover:-translate-y-1 transition-all duration-300 group overflow-hidden rounded-sm">
                 {/* lime corner accent */}
-                <div className="absolute top-0 left-0 w-16 h-[2px] bg-gradient-to-r from-[#C8D400] to-transparent" />
-                <div className="absolute top-0 left-0 w-[2px] h-16 bg-gradient-to-b from-[#C8D400] to-transparent" />
+                <div className="absolute top-0 left-0 w-16 h-[2px] bg-gradient-to-r from-primary-500 to-transparent" />
+                <div className="absolute top-0 left-0 w-[2px] h-16 bg-gradient-to-b from-primary-500 to-transparent" />
                 <div className="pt-10 pb-8 px-8 text-center">
-                  <div className="w-14 h-14 flex items-center justify-center bg-[#C8D400]/15 border border-[#C8D400]/30 mx-auto mb-5 group-hover:bg-[#C8D400]/25 transition-colors" style={{ borderRadius: 0 }}>
-                    <i className={`${item.icon} text-2xl text-[#C8D400]`}></i>
+                  <div className="w-14 h-14 flex items-center justify-center bg-primary-500/15 border border-primary-500/30 mx-auto mb-5 group-hover:bg-primary-500/25 transition-colors rounded-sm">
+                    <i className={`${item.icon} text-2xl text-primary-500`}></i>
                   </div>
                   <h3 className="text-lg font-black text-white mb-3">{item.title}</h3>
                   <p className="text-white/55 text-sm leading-relaxed">{item.desc}</p>
@@ -1327,96 +1246,353 @@ export default function LosungenPage() {
       <WoodenDivider />
 
       {/* ── SURVEY ── */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-10 md:py-14 px-4 md:px-6 bg-background-50">
         <div className="max-w-3xl mx-auto">
-          {/* Premium dark survey card */}
-          <div className="relative bg-[#111] overflow-hidden" style={{ borderRadius: 0 }}>
-            {/* Wood texture overlay */}
-            <div className="absolute inset-0 opacity-10">
-              <img
-                src="https://readdy.ai/api/search-image?query=extremely%20ancient%20century%20old%20reclaimed%20barn%20wood%20plank%20texture%20rich%20dark%20brown%20walnut%20color%20with%20severe%20weathering%20massive%20deep%20cracks%20heavy%20splits%20wormholes%20rot%20marks%20thick%20oxidation%20layers%20extreme%20patina%20warm%20brown%20tones%20with%20dark%20decay%20marks%20heavily%20distressed%20vintage%20surface&width=900&height=600&seq=survey-wood-bg&orientation=landscape"
-                alt=""
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* Corner accents */}
-            <div className="absolute top-0 left-0 w-20 h-[2px] bg-gradient-to-r from-[#C8D400] to-transparent" />
-            <div className="absolute top-0 left-0 w-[2px] h-20 bg-gradient-to-b from-[#C8D400] to-transparent" />
-            <div className="absolute bottom-0 right-0 w-20 h-[2px] bg-gradient-to-l from-[#C8D400] to-transparent" />
-            <div className="absolute bottom-0 right-0 w-[2px] h-20 bg-gradient-to-t from-[#C8D400] to-transparent" />
+          {!surveyExpanded ? (
+            /* ── Collapsed teaser ── */
+            <div
+              onClick={() => setSurveyExpanded(true)}
+              className="relative bg-white border border-background-200 overflow-hidden cursor-pointer group hover:border-primary-500/40 transition-all duration-300"
+              style={{ borderRadius: 0 }}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSurveyExpanded(true); }}
+            >
+              {/* Subtle lime corner accent */}
+              <div className="absolute top-0 left-0 w-12 h-[2px] bg-gradient-to-r from-primary-500 to-transparent" />
+              <div className="absolute top-0 left-0 w-[2px] h-12 bg-gradient-to-b from-primary-500 to-transparent" />
 
-            <div className="relative z-10 p-8 md:p-12">
-              {!surveyDone ? (
-                <>
-                  <div className="text-center mb-8">
-                    <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
-                      <div className="w-1.5 h-1.5 bg-[#C8D400] animate-pulse" />
-                      <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Schnell-Check</span>
-                    </div>
-                    <h2 className="text-2xl md:text-3xl font-black text-white mb-2 uppercase">Bereit für messbaren Erfolg?</h2>
-                    <p className="text-white/50 font-semibold text-sm">Starte dein Projekt in 60 Sekunden</p>
+              <div className="relative z-10 p-5 md:p-6 flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4 min-w-0">
+                  <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-primary-500/10 border border-primary-500/25">
+                    <i className="ri-flashlight-line text-lg text-primary-500"></i>
                   </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-black text-primary-500 uppercase tracking-widest mb-0.5">Schnell-Check</p>
+                    <h3 className="text-sm md:text-base font-black text-foreground-950 leading-snug">Finde die passende Sonic-Lösung für dein Projekt</h3>
+                    <p className="text-xs text-foreground-500 mt-0.5 hidden sm:block">5 Fragen · 60 Sekunden · Maßgeschneidertes Ergebnis</p>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-primary-500 text-foreground-950 font-black text-xs uppercase tracking-wider group-hover:bg-foreground-950 group-hover:text-white transition-all duration-300">
+                  <span className="hidden sm:inline">Loslegen</span>
+                  <i className="ri-arrow-right-line text-sm"></i>
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* ── Expanded survey card ── */
+            <div
+              className="relative bg-foreground-950 overflow-hidden"
+              style={{ borderRadius: 0, animation: 'expandIn 0.3s ease-out' }}
+            >
+              {/* Corner accents */}
+              <div className="absolute top-0 left-0 w-16 h-[2px] bg-gradient-to-r from-primary-500 to-transparent" />
+              <div className="absolute top-0 left-0 w-[2px] h-16 bg-gradient-to-b from-primary-500 to-transparent" />
+              <div className="absolute bottom-0 right-0 w-16 h-[2px] bg-gradient-to-l from-primary-500 to-transparent" />
+              <div className="absolute bottom-0 right-0 w-[2px] h-16 bg-gradient-to-t from-primary-500 to-transparent" />
 
-                  {/* Progress */}
-                  <div className="flex items-center gap-3 mb-8">
-                    <p className="text-xs font-black text-[#C8D400]/70 uppercase tracking-widest whitespace-nowrap">
-                      {currentQuestion + 1} / {surveyQuestions.length}
-                    </p>
-                    <div className="flex-1 h-px bg-white/10">
-                      <div
-                        className="h-full bg-[#C8D400] transition-all duration-500"
-                        style={{ width: `${((currentQuestion + 1) / surveyQuestions.length) * 100}%` }}
-                      />
+              {/* Close button */}
+              <button
+                onClick={() => {
+                  setSurveyExpanded(false);
+                  setCurrentQuestion(0);
+                  setAnswers([]);
+                  setShowSurveyContact(false);
+                  setSurveyDone(false);
+                  setSurveyEmail('');
+                  setSurveyPhone('');
+                  setSurveyCompany('');
+                  setSurveyName('');
+                  setSurveyLastName('');
+                  setSurveyRole('');
+                  setSurveyBudget('');
+                  setSurveyNotes('');
+                  setSurveyError('');
+                }}
+                className="absolute top-4 right-4 z-20 w-9 h-9 flex items-center justify-center bg-white/[0.06] border border-white/[0.10] hover:bg-white/[0.12] hover:scale-110 transition-all cursor-pointer"
+                aria-label="Schließen"
+              >
+                <i className="ri-close-line text-lg text-white"></i>
+              </button>
+
+              <div className="relative z-10 p-6 md:p-8 pt-12 md:pt-10">
+                {!surveyDone && !showSurveyContact ? (
+                  <>
+                    {/* Header */}
+                    <div className="mb-6">
+                      <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-3 py-1 mb-3">
+                        <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" />
+                        <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Schnell-Check</span>
+                      </div>
+                      <h2 className="text-xl md:text-2xl font-black text-white uppercase leading-tight">Finde deine Sonic-Lösung</h2>
                     </div>
-                    <div className="flex gap-1.5">
-                      {surveyQuestions.map((_, qi) => (
+
+                    {/* Progress */}
+                    <div className="flex items-center gap-3 mb-6">
+                      <p className="text-xs font-black text-primary-500/70 uppercase tracking-widest whitespace-nowrap">
+                        {currentQuestion + 1} / {surveyQuestions.length}
+                      </p>
+                      <div className="flex-1 h-px bg-white/10">
                         <div
-                          key={qi}
-                          className="h-1 transition-all duration-300"
-                          style={{ width: qi <= currentQuestion ? '24px' : '8px', background: qi <= currentQuestion ? '#C8D400' : 'rgba(255,255,255,0.15)' }}
+                          className="h-full bg-primary-500 transition-all duration-500"
+                          style={{ width: `${((currentQuestion + 1) / surveyQuestions.length) * 100}%` }}
                         />
+                      </div>
+                      <div className="flex gap-1.5">
+                        {surveyQuestions.map((_, qi) => (
+                          <div
+                            key={qi}
+                            className="h-1 transition-all duration-300"
+                            style={{ width: qi <= currentQuestion ? '24px' : '8px', background: qi <= currentQuestion ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.15)' }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Question */}
+                    <h3 className="text-base md:text-lg font-black text-white mb-4 leading-snug">{surveyQuestions[currentQuestion].question}</h3>
+
+                    <div className="space-y-2">
+                      {surveyQuestions[currentQuestion].options.map((opt, oi) => (
+                        <button
+                          key={oi}
+                          onClick={() => handleAnswer(opt)}
+                          className="w-full flex items-center gap-3 px-4 py-3 bg-white/[0.03] backdrop-blur-[2px] border border-white/[0.06] text-left font-semibold text-white/80 hover:bg-primary-500/15 hover:border-primary-500/50 hover:text-white transition-all duration-200 cursor-pointer text-sm group rounded-sm"
+                        >
+                          <span className="w-6 h-6 flex-shrink-0 flex items-center justify-center border border-white/20 group-hover:border-primary-500/60 group-hover:bg-primary-500/15 transition-all text-2xs font-black text-white/40 group-hover:text-primary-500">
+                            {String.fromCharCode(65 + oi)}
+                          </span>
+                          <span className="min-w-0">{opt}</span>
+                          <i className="ri-arrow-right-line ml-auto opacity-0 group-hover:opacity-80 transition-all text-sm text-primary-500 flex-shrink-0" />
+                        </button>
                       ))}
                     </div>
-                  </div>
 
-                  <h3 className="text-lg md:text-xl font-black text-white mb-5 leading-snug">{surveyQuestions[currentQuestion].question}</h3>
-
-                  <div className="space-y-2.5">
-                    {surveyQuestions[currentQuestion].options.map((opt, oi) => (
+                    {/* Back button (except first question) */}
+                    {currentQuestion > 0 && (
                       <button
-                        key={oi}
-                        onClick={() => handleAnswer(opt)}
-                        className="w-full flex items-center gap-4 px-5 py-4 bg-white/5 border border-white/10 text-left font-semibold text-white/80 hover:bg-[#C8D400]/15 hover:border-[#C8D400]/50 hover:text-white transition-all duration-200 cursor-pointer text-sm group"
+                        onClick={() => {
+                          setCurrentQuestion(currentQuestion - 1);
+                          setAnswers(answers.slice(0, -1));
+                        }}
+                        className="mt-4 text-xs font-bold text-white/40 hover:text-white/70 transition-colors cursor-pointer flex items-center gap-1"
+                      >
+                        <i className="ri-arrow-left-line"></i>
+                        Zurück
+                      </button>
+                    )}
+                  </>
+                ) : showSurveyContact && !surveyDone ? (
+                  /* ── Contact + data collection step ── */
+                  <div>
+                    <div className="mb-6">
+                      <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-3 py-1 mb-3">
+                        <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Kontakt</span>
+                      </div>
+                      <h2 className="text-xl md:text-2xl font-black text-white uppercase leading-tight">Fast geschafft!</h2>
+                      <p className="text-white/50 text-sm mt-1">Hinterlasse deine Daten — wir erstellen dein persönliches Ergebnis.</p>
+                    </div>
+
+                    <form data-readdy-form id="losungen-survey-form" onSubmit={(e) => { e.preventDefault(); handleSurveySubmit(); }} className="space-y-4">
+                      {/* Honeypot */}
+                      <input
+                        id="survey-company-alt"
+                        name="company_alt"
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                        readOnly
+                        className="survey-hp-field"
+                      />
+
+                      {/* Name row */}
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Vorname <span className="text-white/60">*</span></label>
+                          <input
+                            type="text"
+                            name="vorname"
+                            required
+                            value={surveyName}
+                            onChange={(e) => setSurveyName(e.target.value)}
+                            placeholder="Max"
+                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors rounded-sm"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Nachname <span className="text-white/60">*</span></label>
+                          <input
+                            type="text"
+                            name="nachname"
+                            required
+                            value={surveyLastName}
+                            onChange={(e) => setSurveyLastName(e.target.value)}
+                            placeholder="Mustermann"
+                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors rounded-sm"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Email + Phone */}
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">E-Mail <span className="text-white/60">*</span></label>
+                          <input
+                            type="email"
+                            name="email"
+                            required
+                            value={surveyEmail}
+                            onChange={(e) => setSurveyEmail(e.target.value)}
+                            placeholder="max@unternehmen.de"
+                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors rounded-sm"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Telefon</label>
+                          <input
+                            type="tel"
+                            name="phone"
+                            value={surveyPhone}
+                            onChange={(e) => setSurveyPhone(e.target.value)}
+                            placeholder="+49 000 000000"
+                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors rounded-sm"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Company + Role */}
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Unternehmen</label>
+                          <input
+                            type="text"
+                            name="unternehmen"
+                            value={surveyCompany}
+                            onChange={(e) => setSurveyCompany(e.target.value)}
+                            placeholder="Dein Unternehmen GmbH"
+                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors rounded-sm"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Position</label>
+                          <input
+                            type="text"
+                            name="position"
+                            value={surveyRole}
+                            onChange={(e) => setSurveyRole(e.target.value)}
+                            placeholder="z. B. Marketing Manager"
+                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors rounded-sm"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Budget */}
+                      <div>
+                        <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Budget-Range (optional)</label>
+                        <select
+                          name="budget"
+                          value={surveyBudget}
+                          onChange={(e) => setSurveyBudget(e.target.value)}
+                          className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white focus:outline-none focus:border-primary-500 transition-colors rounded-sm cursor-pointer"
+                        >
+                          <option value="" className="bg-foreground-950 text-white">Bitte wählen...</option>
+                          <option value="< 10.000 €" className="bg-foreground-950 text-white">&lt; 10.000 €</option>
+                          <option value="10.000 – 50.000 €" className="bg-foreground-950 text-white">10.000 – 50.000 €</option>
+                          <option value="50.000 – 100.000 €" className="bg-foreground-950 text-white">50.000 – 100.000 €</option>
+                          <option value="100.000 – 250.000 €" className="bg-foreground-950 text-white">100.000 – 250.000 €</option>
+                          <option value="250.000 €+" className="bg-foreground-950 text-white">250.000 €+</option>
+                          <option value="Noch unklar" className="bg-foreground-950 text-white">Noch unklar</option>
+                        </select>
+                      </div>
+
+                      {/* Notes */}
+                      <div>
+                        <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">
+                          Zusätzliche Anmerkungen
+                          <span className={`ml-2 font-normal normal-case ${surveyNotes.length > 400 ? 'text-red-400' : 'text-white/40'}`}>
+                            {surveyNotes.length}/500
+                          </span>
+                        </label>
+                        <textarea
+                          name="notizen"
+                          rows={3}
+                          maxLength={500}
+                          value={surveyNotes}
+                          onChange={(e) => setSurveyNotes(e.target.value)}
+                          placeholder="Erzähle uns kurz von deinem Projekt, deinen Zielen oder offenen Fragen..."
+                          className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors resize-none rounded-sm"
+                        />
+                      </div>
+
+                      {/* Survey answers summary (hidden) */}
+                      <input type="hidden" name="branche" value={answers[0] || ''} />
+                      <input type="hidden" name="ziel" value={answers[1] || ''} />
+                      <input type="hidden" name="standorte" value={answers[2] || ''} />
+                      <input type="hidden" name="start" value={answers[3] || ''} />
+                      <input type="hidden" name="erfahrung" value={answers[4] || ''} />
+
+                      {surveyError && (
+                        <p className="text-red-400 text-xs font-semibold flex items-center gap-1"><i className="ri-error-warning-line"></i>{surveyError}</p>
+                      )}
+
+                      <button
+                        type="submit"
+                        disabled={surveySubmitting}
+                        className="w-full flex items-center justify-center gap-2 py-3.5 bg-primary-500 text-foreground-950 font-black text-sm uppercase tracking-wider hover:bg-white hover:text-foreground-950 transition-all duration-300 cursor-pointer disabled:opacity-50 whitespace-nowrap"
                         style={{ borderRadius: 0 }}
                       >
-                        <span className="w-6 h-6 flex items-center justify-center border border-white/20 group-hover:border-[#C8D400]/60 group-hover:bg-[#C8D400]/15 transition-all flex-shrink-0 text-[10px] font-black text-white/40 group-hover:text-[#C8D400]">
-                          {String.fromCharCode(65 + oi)}
-                        </span>
-                        {opt}
-                        <i className="ri-arrow-right-line ml-auto opacity-0 group-hover:opacity-80 transition-all text-sm text-[#C8D400]" />
+                        {surveySubmitting ? <><i className="ri-loader-4-line animate-spin"></i> Wird gesendet...</> : <><i className="ri-send-plane-line"></i> Ergebnis anfordern</>}
                       </button>
-                    ))}
+                      <p className="text-white/30 text-xs text-center">Kein Spam. Nur relevant für dein Projekt.</p>
+                    </form>
                   </div>
-                </>
-              ) : (
-                <div className="text-center py-6">
-                  <div className="w-16 h-16 flex items-center justify-center bg-[#C8D400]/20 border border-[#C8D400]/40 mx-auto mb-5" style={{ borderRadius: 0 }}>
-                    <i className="ri-check-double-line text-3xl text-[#C8D400]"></i>
+                ) : (
+                  /* ── Thank you state ── */
+                  <div className="text-center py-6">
+                    <div className="w-14 h-14 flex items-center justify-center bg-primary-500/20 border border-primary-500/40 mx-auto mb-4" style={{ borderRadius: 0 }}>
+                      <i className="ri-check-double-line text-2xl text-primary-500"></i>
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-black text-white mb-2 uppercase">Vielen Dank!</h3>
+                    <p className="text-white/50 mb-6 text-sm max-w-md mx-auto">Wir melden uns innerhalb von 24 Stunden bei dir mit einem maßgeschneiderten Ergebnis.</p>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                      <a
+                        href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch%20anfragen`}
+                        className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 px-6 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap text-xs uppercase tracking-wider"
+                        style={{ borderRadius: 0 }}
+                      >
+                        <i className="ri-calendar-line"></i>
+                        Beratungsgespräch buchen
+                      </a>
+                      <button
+                        onClick={() => {
+                          setSurveyExpanded(false);
+                          setCurrentQuestion(0);
+                          setAnswers([]);
+                          setShowSurveyContact(false);
+                          setSurveyDone(false);
+                          setSurveyEmail('');
+                          setSurveyPhone('');
+                          setSurveyCompany('');
+                          setSurveyName('');
+                          setSurveyLastName('');
+                          setSurveyRole('');
+                          setSurveyBudget('');
+                          setSurveyNotes('');
+                          setSurveyError('');
+                        }}
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-white/[0.06] border border-white/[0.10] text-white font-black text-xs uppercase tracking-wider hover:bg-white/[0.12] transition-all duration-300 cursor-pointer whitespace-nowrap"
+                        style={{ borderRadius: 0 }}
+                      >
+                        <i className="ri-restart-line"></i>
+                        Neu starten
+                      </button>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-black text-white mb-2 uppercase">Vielen Dank!</h3>
-                  <p className="text-white/50 mb-8 text-sm">Wir melden uns in Kürze bei dir mit einem maßgeschneiderten Angebot.</p>
-                  <a
-                    href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch%20anfragen`}
-                    className="inline-flex items-center gap-2 bg-[#C8D400] text-[#111] px-8 py-4 font-black hover:bg-white hover:text-[#111] transition-all duration-300 cursor-pointer whitespace-nowrap"
-                    style={{ borderRadius: 0 }}
-                  >
-                    <i className="ri-calendar-line"></i>
-                    Beratungsgespräch buchen
-                  </a>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -1431,12 +1607,12 @@ export default function LosungenPage() {
       <section className="py-28 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-[#C8D400]/20 border border-[#C8D400]/40 px-5 py-2 mb-6" style={{ borderRadius: 0 }}>
-              <i className="ri-question-line text-[#C8D400] text-sm"></i>
-              <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">FAQ</span>
+            <div className="inline-flex items-center gap-2 bg-primary-500/20 border border-primary-500/40 px-5 py-2 mb-6" style={{ borderRadius: 0 }}>
+              <i className="ri-question-line text-primary-500 text-sm"></i>
+              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">FAQ</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-[#111] mb-4">Häufig gestellte Fragen</h2>
-            <p className="text-gray-500 text-base max-w-xl mx-auto leading-relaxed">Alles, was du über unsere Lösungen, unsere Arbeitsweise und den Start einer Zusammenarbeit wissen musst.</p>
+            <h2 className="text-4xl md:text-5xl font-black text-foreground-950 mb-4">Häufig gestellte Fragen</h2>
+            <p className="text-foreground-500 text-base max-w-xl mx-auto leading-relaxed">Alles, was du über unsere Lösungen, unsere Arbeitsweise und den Start einer Zusammenarbeit wissen musst.</p>
           </div>
           <div className="space-y-4">
             {faqItems.map((item, index) => (
@@ -1445,25 +1621,25 @@ export default function LosungenPage() {
                 className="border-2 overflow-hidden transition-all duration-300"
                 style={{
                   borderRadius: 0,
-                  borderColor: openFaq === index ? '#C8D400' : '#e5e7eb',
+                  borderColor: openFaq === index ? 'oklch(var(--primary-500))' : 'oklch(var(--background-200))',
                   boxShadow: openFaq === index ? '0 6px 30px rgba(200,212,0,0.12)' : 'none',
                 }}
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full px-8 py-6 flex items-center justify-between text-left cursor-pointer bg-white hover:bg-[#f5f5f5] transition-colors duration-200"
+                  className="w-full px-8 py-6 flex items-center justify-between text-left cursor-pointer bg-white hover:bg-primary-50 transition-colors duration-200"
                 >
-                  <span className="text-lg font-black text-[#111] pr-6">{item.question}</span>
-                  <div className={`w-9 h-9 flex-shrink-0 flex items-center justify-center transition-all duration-300 ${openFaq === index ? 'bg-[#C8D400]' : 'bg-gray-100'}`} style={{ borderRadius: 0 }}>
-                    <i className={`ri-arrow-down-s-line text-xl transition-transform duration-300 ${openFaq === index ? 'rotate-180 text-[#111]' : 'text-gray-500'}`} />
+                  <span className="text-lg font-black text-foreground-950 pr-6">{item.question}</span>
+                  <div className={`w-9 h-9 flex-shrink-0 flex items-center justify-center transition-all duration-300 ${openFaq === index ? 'bg-primary-500' : 'bg-foreground-100'}`} style={{ borderRadius: 0 }}>
+                    <i className={`ri-arrow-down-s-line text-xl transition-transform duration-300 ${openFaq === index ? 'rotate-180 text-foreground-950' : 'text-foreground-500'}`} />
                   </div>
                 </button>
                 <div
                   className="overflow-hidden transition-all duration-400"
                   style={{ maxHeight: openFaq === index ? '600px' : '0' }}
                 >
-                  <div className="px-8 pb-7 bg-white border-t border-gray-100">
-                    <p className="text-gray-600 leading-relaxed text-base pt-5">{item.answer}</p>
+                  <div className="px-8 pb-7 bg-white border-t border-foreground-100">
+                    <p className="text-foreground-600 leading-relaxed text-base pt-5">{item.answer}</p>
                   </div>
                 </div>
               </div>
@@ -1471,24 +1647,14 @@ export default function LosungenPage() {
           </div>
 
           {/* Bottom CTA */}
-          <div className="mt-14 relative bg-[#111] p-10 overflow-hidden" style={{ borderRadius: 0 }}>
-            {/* Corner accents */}
-            <div className="absolute top-0 left-0 w-14 h-[2px] bg-gradient-to-r from-[#C8D400] to-transparent" />
-            <div className="absolute top-0 left-0 w-[2px] h-14 bg-gradient-to-b from-[#C8D400] to-transparent" />
-            <div className="absolute bottom-0 right-0 w-14 h-[2px] bg-gradient-to-l from-[#C8D400] to-transparent" />
-            <div className="absolute bottom-0 right-0 w-[2px] h-14 bg-gradient-to-t from-[#C8D400] to-transparent" />
-            <div className="relative z-10 text-center">
-              <p className="text-xl font-black text-white mb-2">Noch Fragen offen?</p>
-              <p className="text-white/50 text-sm mb-6">Wir beantworten sie gerne persönlich – in einem kostenlosen 30-Minuten-Gespräch.</p>
-              <a
-                href={`mailto:${CONTACT_EMAIL}?subject=Frage%20zu%20Sonic%20L%C3%B6sungen`}
-                className="inline-flex items-center gap-2 bg-[#C8D400] text-[#111] px-10 py-4 font-black hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-base"
-                style={{ borderRadius: 0 }}
-              >
-                <i className="ri-mail-line text-base"></i>
-                Jetzt Frage stellen
-              </a>
-            </div>
+          <div className="mt-10 py-5 px-5 border border-foreground-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-xs md:text-sm text-foreground-500 text-center sm:text-left">Noch Fragen offen? Wir beantworten sie gerne persönlich.</p>
+            <a
+              href={`mailto:${CONTACT_EMAIL}?subject=Frage%20zu%20Sonic%20L%C3%B6sungen`}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-primary-500 hover:text-primary-500 transition-colors cursor-pointer whitespace-nowrap"
+            >
+              <i className="ri-mail-line text-sm"></i>Frage stellen
+            </a>
           </div>
         </div>
       </section>
@@ -1497,6 +1663,15 @@ export default function LosungenPage() {
         @keyframes expandIn {
           from { opacity: 0; transform: translateY(-10px); }
           to   { opacity: 1; transform: translateY(0); }
+        }
+        .survey-hp-field {
+          position: absolute;
+          left: -9999px;
+          top: -9999px;
+          width: 1px;
+          height: 1px;
+          opacity: 0;
+          pointer-events: none;
         }
       `}</style>
     </div>

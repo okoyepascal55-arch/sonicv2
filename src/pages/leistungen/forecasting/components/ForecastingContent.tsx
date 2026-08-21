@@ -1,7 +1,11 @@
-import { useState, useRef } from 'react';
-import SectionBadge from '@/components/base/SectionBadge';
+import { useState } from 'react';
+import LimeBadge from '@/components/base/LimeBadge';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
+import ScrollCardSection from '@/components/feature/ScrollCardSection';
+import WoodenDivider from '@/components/base/WoodenDivider';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useText } from '@/hooks/useText';
 
 const FORECASTING_CHALLENGES: ChallengeItem[] = [
   {
@@ -34,10 +38,26 @@ const SOLUTIONS = [
 ];
 
 const HOW_IT_WORKS = [
-  { num: '01', title: 'Datenbasis aufbauen', desc: 'Wir analysieren deine historischen Sell-out-Daten, Standortinformationen und Marktparameter. Je mehr Daten, desto präziser die Prognose.' },
-  { num: '02', title: 'Modell kalibrieren', desc: 'Unser Forecasting-Modell wird auf dein Produkt, deine Kategorie und dein Retailer-Setup kalibriert. Benchmarks aus 1,35 Mio. Einsätzen fließen ein.' },
-  { num: '03', title: 'Prognose ausgeben', desc: 'Du erhältst eine transparente Prognose: Erwarteter Sell-out pro Standort, pro Zeitraum, pro Szenario. Mit Konfidenzintervall und Sensitivitätsanalyse.' },
-  { num: '04', title: 'Live abgleichen', desc: 'Nach Projektstart wird die Prognose täglich mit echten Einsatzdaten abgeglichen. Optimierungspotenziale werden sofort sichtbar.' },
+  { num: '01', title: 'Datenbasis aufbauen', desc: 'Wir analysieren deine historischen Sell-out-Daten, Standortinformationen und Marktparameter. Je mehr Daten, desto präziser die Prognose.', imgIndex: 0 },
+  { num: '02', title: 'Modell kalibrieren', desc: 'Unser Forecasting-Modell wird auf dein Produkt, deine Kategorie und dein Retailer-Setup kalibriert. Benchmarks aus 1,35 Mio. Einsätzen fließen ein.', imgIndex: 1 },
+  { num: '03', title: 'Prognose ausgeben', desc: 'Du erhältst eine transparente Prognose: Erwarteter Sell-out pro Standort, pro Zeitraum, pro Szenario. Mit Konfidenzintervall und Sensitivitätsanalyse.', imgIndex: 2 },
+  { num: '04', title: 'Live abgleichen', desc: 'Nach Projektstart wird die Prognose täglich mit echten Einsatzdaten abgeglichen. Optimierungspotenziale werden sofort sichtbar.', imgIndex: 3 },
+];
+
+const FALLBACK_HOW_IMAGES = [
+  'https://readdy.ai/api/search-image?query=professional%20data%20analyst%20reviewing%20sales%20data%20spreadsheets%20charts%20on%20large%20monitor%20screen%20modern%20office%20warm%20desk%20lighting%20business%20intelligence%20analytics%20clean%20minimalist%20workspace%20editorial%20photography&width=600&height=400&seq=forecast-how-01-v1&orientation=landscape',
+  'https://readdy.ai/api/search-image?query=AI%20machine%20learning%20model%20calibration%20algorithm%20tuning%20data%20science%20dashboard%20with%20prediction%20graphs%20modern%20dark%20interface%20beautiful%20visualization%20warm%20ambient%20light%20professional%20tech%20workspace&width=600&height=400&seq=forecast-how-02-v1&orientation=landscape',
+  'https://readdy.ai/api/search-image?query=detailed%20sales%20forecast%20report%20dashboard%20with%20charts%20confidence%20intervals%20scenario%20analysis%20beautiful%20modern%20data%20visualization%20on%20screen%20professional%20business%20presentation%20warm%20lighting%20clean%20minimalist%20design&width=600&height=400&seq=forecast-how-03-v1&orientation=landscape',
+  'https://readdy.ai/api/search-image?query=real%20time%20live%20data%20comparison%20dashboard%20tracking%20actual%20versus%20predicted%20results%20side%20by%20side%20charts%20glowing%20green%20positive%20indicators%20modern%20business%20intelligence%20interface%20warm%20ambient%20lighting&width=600&height=400&seq=forecast-how-04-v1&orientation=landscape',
+];
+
+const FALLBACK_FORECASTING_SOLUTION_ICONS = [
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20robot%20AI%20brain%20intelligence%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-forecast-sol-robot-01&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20map%20pin%20location%20marker%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-forecast-sol-pin-02&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20calendar%20check%20date%20schedule%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-forecast-sol-cal-03&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20bar%20chart%20grouped%20scenarios%20analysis%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-forecast-sol-chart-04&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20dashboard%20speedometer%20gauge%20live%20tracking%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-forecast-sol-dash-05&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20chain%20link%20integration%20connection%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-forecast-sol-link-06&orientation=squarish',
 ];
 
 const STATS = [
@@ -48,26 +68,35 @@ const STATS = [
 ];
 
 export default function ForecastingContent() {
-  const [activeStep, setActiveStep] = useState(0);
-  const [solActive, setSolActive] = useState<number | null>(null);
-  const solRef = useRef<HTMLDivElement>(null);
+  const tChallengeHeading = useText('leistungen_forecasting_content', 'forecasting-challenge-heading', 'Ohne Prognose fliegt ihr im Blindflug.');
+  const tChallengeSub = useText('leistungen_forecasting_content', 'forecasting-challenge-sub', 'Zu viele Retail-Projekte starten ohne belastbare Planung.');
+  const tSolutionHeading = useText('leistungen_forecasting_content', 'forecasting-solution-heading', 'FORECASTING. DATENBASIERT. BELASTBAR.');
+  const tSolutionSub = useText('leistungen_forecasting_content', 'forecasting-solution-sub', 'Prognosen auf echten Daten — nicht auf Excel-Tabellen und Bauchgefühl.');
+  const tHowHeading = useText('leistungen_forecasting_content', 'forecasting-how-heading', 'In 4 Schritten zur belastbaren Prognose');
+  const tHowSub = useText('leistungen_forecasting_content', 'forecasting-how-sub', 'Unser Forecasting-Prozess: datenbasiert, transparent und direkt in dein Dashboard integriert.');
+  const { images: processImages } = useMediaStore('leistungen_forecasting_process_images');
+  const { images: solutionWoodIcons } = useMediaStore('leistungen_forecasting_solution_wood_icons');
 
-  const scrollSol = (dir: 'left' | 'right') => {
-    solRef.current?.scrollBy({ left: dir === 'left' ? -360 : 360, behavior: 'smooth' });
+  const getHowImg = (index: number) => {
+    const item = processImages[index];
+    return item?.url ? resolveImageUrl(item.url) : FALLBACK_HOW_IMAGES[index];
   };
-  const goTo = (i: number) => {
-    setSolActive(i);
-    solRef.current?.scrollTo({ left: i * 376, behavior: 'smooth' });
+
+  const getSolutionWoodIcon = (index: number) => {
+    const item = solutionWoodIcons[index];
+    return item?.url ? resolveImageUrl(item.url) : FALLBACK_FORECASTING_SOLUTION_ICONS[index];
   };
 
   return (
     <>
       <ChallengeSection
         badge="Das Problem"
-        headline="Ohne Prognose fliegt ihr im Blindflug."
-        subline="Zu viele Retail-Projekte starten ohne belastbare Planung — und merken es erst am Quartalsende."
+        headline={tChallengeHeading}
+        subline={tChallengeSub}
         challenges={FORECASTING_CHALLENGES}
       />
+
+      <WoodenDivider />
 
       {/* ── Solution (horizontal scroll, light warm bg) ── */}
       <section id="loesung" className="bg-white py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
@@ -81,85 +110,53 @@ export default function ForecastingContent() {
                 <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Sonic-Lösung</span>
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#111] leading-tight tracking-tight uppercase">
-                FORECASTING. <span className="text-[#C8D400]" style={{ WebkitTextStroke: '1px #9ea800' }}>DATENBASIERT.</span><br />BELASTBAR.
+                {tSolutionHeading}
               </h2>
             </div>
-            <p className="text-[#111]/45 text-sm leading-relaxed max-w-xs lg:text-right">Prognosen auf echten Daten — nicht auf Excel-Tabellen und Bauchgefühl.</p>
+            <p className="text-[#111]/45 text-sm leading-relaxed max-w-xs lg:text-right">{tSolutionSub}</p>
           </div>
 
-          <div className="flex items-center mb-6 gap-3">
-            <span className="text-[11px] font-black uppercase tracking-widest text-[#111]/30 flex-grow">{SOLUTIONS.length} Features — scrollen</span>
-            <button onClick={() => scrollSol('left')} className="w-10 h-10 flex items-center justify-center border border-[#111]/20 text-[#111]/40 hover:border-[#111] hover:text-[#111] transition-all duration-200 cursor-pointer" aria-label="links"><i className="ri-arrow-left-s-line text-xl" /></button>
-            <button onClick={() => scrollSol('right')} className="w-10 h-10 flex items-center justify-center border border-[#111]/20 text-[#111]/40 hover:border-[#111] hover:text-[#111] transition-all duration-200 cursor-pointer" aria-label="rechts"><i className="ri-arrow-right-s-line text-xl" /></button>
-          </div>
-
-          <div ref={solRef} className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            {SOLUTIONS.map((s, idx) => {
-              const isA = solActive === idx;
-              return (
-                <div key={idx} className="flex-shrink-0 snap-start relative overflow-hidden cursor-default"
-                  style={{ width: 'clamp(280px, 26vw, 340px)', minHeight: '380px', background: isA ? '#111' : '#ffffff', border: `1px solid ${isA ? 'rgba(200,212,0,0.5)' : 'rgba(0,0,0,0.09)'}`, transition: 'all 0.3s ease', transform: isA ? 'translateY(-6px)' : 'translateY(0)', boxShadow: isA ? '0 0 0 1px rgba(200,212,0,0.3), 0 24px 48px rgba(0,0,0,0.18)' : '0 2px 8px rgba(0,0,0,0.04)' }}
-                  onMouseEnter={() => setSolActive(idx)} onMouseLeave={() => setSolActive(null)}
-                >
-                  <div className="absolute top-0 left-0 right-0 z-20" style={{ height: isA ? '3px' : '2px', background: isA ? '#C8D400' : 'rgba(0,0,0,0.08)', boxShadow: isA ? '0 0 14px rgba(200,212,0,0.5)' : 'none', transition: 'all 0.3s ease' }} />
-                  <div className="absolute top-0 left-0 bottom-0 z-20 w-0.5" style={{ background: isA ? '#C8D400' : 'transparent', transition: 'background 0.3s ease' }} />
-                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-4 right-4 font-black leading-none select-none pointer-events-none z-0" style={{ fontSize: '6rem', color: isA ? 'rgba(200,212,0,0.07)' : 'rgba(0,0,0,0.04)', lineHeight: 1, transition: 'color 0.3s ease' }}>{s.num}</div>
-                  <div className="relative z-10 p-7 flex flex-col" style={{ minHeight: '380px' }}>
-                    <div className="flex items-center gap-2 mb-5">
-                      <div className="w-1.5 h-1.5" style={{ background: isA ? '#C8D400' : 'rgba(200,212,0,0.6)', transition: 'background 0.3s ease' }} />
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? '#C8D400' : 'rgba(139,110,0,0.7)', transition: 'color 0.3s ease' }}>{s.accent}</span>
-                    </div>
-                    <div className="w-[56px] h-[56px] overflow-hidden mb-6 flex-shrink-0 transition-all duration-500" style={{ boxShadow: isA ? '0 8px 24px rgba(139,90,43,0.4)' : '0 4px 14px rgba(139,90,43,0.18)', transform: isA ? 'scale(1.1) rotate(-3deg)' : 'scale(1)' }}>
-                      <img src={s.woodIcon} alt={s.title} className="w-full h-full object-cover" />
-                    </div>
-                    <h3 className="text-base font-black mb-3 leading-snug uppercase" style={{ color: isA ? '#fff' : '#111', transition: 'color 0.3s ease' }}>{s.title}</h3>
-                    <p className="text-sm leading-relaxed flex-grow" style={{ color: isA ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.55)', transition: 'color 0.3s ease' }}>{s.desc}</p>
-                    <div className="flex items-center justify-between pt-4 mt-4" style={{ borderTop: `1px solid ${isA ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`, transition: 'border-color 0.3s ease' }}>
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)' }}>{s.num} / {String(SOLUTIONS.length).padStart(2, '0')}</span>
-                      <div className="w-7 h-7 flex items-center justify-center" style={{ background: isA ? '#C8D400' : 'rgba(0,0,0,0.07)', transform: isA ? 'translateX(3px)' : 'translateX(0)', transition: 'all 0.25s ease' }}>
-                        <i className="ri-arrow-right-line text-sm" style={{ color: isA ? '#111' : 'rgba(0,0,0,0.45)' }} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="flex items-center justify-center gap-1.5 mt-6">
-            {SOLUTIONS.map((_, i) => (
-              <button key={i} onClick={() => goTo(i)} className="cursor-pointer" style={{ width: i === (solActive ?? 0) ? '22px' : '6px', height: '3px', background: i === (solActive ?? 0) ? '#C8D400' : 'rgba(0,0,0,0.2)', border: 'none', padding: 0, transition: 'all 0.3s ease' }} aria-label={`${i + 1}`} />
-            ))}
-          </div>
+          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Features — scrollen`} theme="light" variant="wood" />
         </div>
       </section>
 
-      {/* ── How it works ── */}
+      {/* ── How it works — pictorial ── */}
       <section id="wie-es-funktioniert" className="bg-white py-14 md:py-24 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10 md:mb-14">
-            <SectionBadge text="So funktioniert es" variant="dark" className="mb-5" />
-            <h2 className="text-3xl lg:text-4xl font-black text-[#111] leading-tight uppercase">In 4 Schritten zur<br />belastbaren Prognose</h2>
+            <LimeBadge text="So funktioniert es" className="mb-5" />
+            <h2 className="text-3xl lg:text-4xl font-black text-[#111] leading-tight uppercase">{tHowHeading}</h2>
+            <p className="text-[#111]/45 text-sm mt-3 max-w-xl mx-auto">{tHowSub}</p>
           </div>
-          <div className="flex gap-0 mb-0 overflow-x-auto border border-[#111]/10" style={{ scrollbarWidth: 'none' }}>
+
+          <div className="grid md:grid-cols-2 gap-6">
             {HOW_IT_WORKS.map((step, i) => (
-              <button key={i} onClick={() => setActiveStep(i)} className={`flex-shrink-0 flex-1 px-3 md:px-4 py-3 font-black text-xs whitespace-nowrap transition-all duration-300 cursor-pointer border-r border-[#111]/10 last:border-r-0 ${activeStep === i ? 'bg-[#111] text-[#C8D400]' : 'bg-white text-[#111]/50 hover:text-[#111] hover:bg-white'}`} style={{ minWidth: '80px' }}>
-                <span className="block text-[10px] opacity-60 mb-0.5">{step.num}</span>
-                <span className="hidden sm:block">{step.title}</span>
-                <span className="sm:hidden">{step.num}</span>
-              </button>
+              <div key={i} className="group relative overflow-hidden border border-[#111]/10 bg-white hover:border-[#C8D400]/30 transition-all duration-300">
+                {/* Image */}
+                <div className="relative overflow-hidden" style={{ height: '220px' }}>
+                  <img
+                    src={getHowImg(i)}
+                    alt={step.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    style={{ minHeight: '220px' }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111]/60 to-transparent" />
+                  <div className="absolute top-4 left-4 bg-[#C8D400] text-[#111] w-10 h-10 flex items-center justify-center font-black text-lg">
+                    {step.num}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] font-black text-[#111]/30 uppercase tracking-widest">Schritt {step.num}</span>
+                  </div>
+                  <h3 className="text-lg font-black text-[#111] mb-3 uppercase">{step.title}</h3>
+                  <p className="text-[#111]/60 text-sm leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
             ))}
-          </div>
-          <div key={activeStep} className="border border-[#111]/10 border-t-0 bg-white p-6 md:p-10 relative overflow-hidden" style={{ animation: 'fadeIn 0.35s ease-out' }}>
-            <div className="absolute top-0 left-0 text-7xl md:text-9xl font-black leading-none select-none pointer-events-none" style={{ color: 'rgba(200,212,0,0.08)', lineHeight: 1 }}>{HOW_IT_WORKS[activeStep].num}</div>
-            <div className="relative">
-              <div className="text-[#111] font-black text-xs uppercase tracking-widest mb-3">Schritt {HOW_IT_WORKS[activeStep].num}</div>
-              <h3 className="text-xl md:text-2xl font-black text-[#111] mb-3 md:mb-4 uppercase">{HOW_IT_WORKS[activeStep].title}</h3>
-              <p className="text-[#111]/65 text-sm md:text-base leading-relaxed">{HOW_IT_WORKS[activeStep].desc}</p>
-            </div>
           </div>
         </div>
       </section>
@@ -178,34 +175,6 @@ export default function ForecastingContent() {
         </div>
       </section>
 
-      {/* ── Proof ── */}
-      <section className="bg-white py-14 md:py-24 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="border border-[#111]/10 bg-white p-7 md:p-14 relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#C8D400]" />
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#C8D400]/10 blur-3xl pointer-events-none translate-x-16 -translate-y-16" />
-            <div className="relative">
-              <div className="text-[#C8D400]/20 text-6xl md:text-8xl font-black leading-none mb-2 select-none">&ldquo;</div>
-              <p className="text-[#111] text-base md:text-xl font-semibold italic leading-relaxed mb-6 md:mb-8">
-                &ldquo;Auf Basis unserer historischen Daten prognostizieren wir Sell-out-Ergebnisse. Bevor der erste Einsatz startet. Du weißt vorher, was du erwarten kannst.&rdquo;
-              </p>
-              <div className="flex items-center gap-3 md:gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#C8D400] flex-shrink-0">
-                  <i className="ri-user-star-line text-lg md:text-xl text-[#111]" />
-                </div>
-                <div>
-                  <div className="text-[#111] font-black text-sm">Sonic Analytics Team</div>
-                  <div className="text-[#111]/45 text-xs">SRT — Sonic Reporting Tool</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <style>{`
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-      `}</style>
     </>
   );
 }

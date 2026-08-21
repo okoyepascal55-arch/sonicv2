@@ -1,38 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
-const STATS = [
-  {
-    value: 3700000,
-    display: (v: number) => `>${(v / 1_000_000).toFixed(1).replace('.', ',')} Mio.`,
-    label: 'Produkte verkauft',
-    sub: 'Direkter Abverkauf am POS',
-    woodIcon:
-      'https://readdy.ai/api/search-image?query=finely%20hand%20carved%20walnut%20wood%20victory%20laurel%20wreath%20encircling%20an%20upward%20arrow%20sculptural%20relief%20carving%20deep%20shadow%20casting%20warm%20dark%20amber%20brown%20wood%20grain%20visible%20rich%20three%20dimensional%20craftsmanship%20museum%20quality%20artisan%20object%20centered%20on%20pure%20white%20matte%20background%20studio%20product%20photography%20sharp%20focus%20dramatic%20side%20lighting&width=120&height=120&seq=wood-leist-stat-laurel-v2&orientation=squarish',
-  },
-  {
-    value: 2000,
-    display: (v: number) => `>${v >= 2000 ? '2' : (v / 1000).toFixed(1)} Mrd. €`,
-    label: 'Umsatz generiert',
-    sub: 'Für unsere Markenpartner',
-    woodIcon:
-      'https://readdy.ai/api/search-image?query=precision%20hand%20carved%20solid%20walnut%20wood%20balance%20scale%20with%20two%20equal%20pans%20sculptural%20three%20dimensional%20relief%20deep%20wood%20grain%20texture%20warm%20amber%20honey%20brown%20tone%20high%20contrast%20dramatic%20lighting%20centered%20museum%20quality%20artisan%20piece%20pure%20white%20studio%20background%20sharp%20product%20photography%20minimal&width=120&height=120&seq=wood-leist-stat-scale-v2&orientation=squarish',
-  },
-  {
-    value: 2000,
-    display: (v: number) => `>${v >= 2000 ? '2.000' : v.toLocaleString('de-DE')}`,
-    label: 'Talente im Pool',
-    sub: 'Geschulte Brand Ambassadors',
-    woodIcon:
-      'https://readdy.ai/api/search-image?query=hand%20carved%20solid%20walnut%20wood%20group%20of%20three%20standing%20human%20figures%20team%20icon%20sculptural%20relief%20carving%20rich%20dark%20amber%20brown%20grain%20highly%20detailed%20three%20dimensional%20artisan%20quality%20centered%20on%20clean%20white%20studio%20background%20dramatic%20directional%20lighting%20sharp%20focus&width=120&height=120&seq=wood-leist-stat-team-v2&orientation=squarish',
-  },
-  {
-    value: 1350000,
-    display: (v: number) => `>${(v / 1_000_000).toFixed(2).replace('.', ',')} Mio.`,
-    label: 'Einsätze durchgeführt',
-    sub: 'Deutschlandweit seit 2007',
-    woodIcon:
-      'https://readdy.ai/api/search-image?query=hand%20carved%20solid%20walnut%20wood%20precision%20compass%20rose%20eight%20point%20navigation%20star%20deeply%20incised%20relief%20carving%20rich%20dark%20amber%20brown%20grain%20highly%20detailed%20three%20dimensional%20military%20instrument%20quality%20centered%20on%20clean%20white%20studio%20background%20dramatic%20directional%20lighting%20sharp%20focus%20artisan%20craft&width=120&height=120&seq=wood-leist-stat-compass-v2&orientation=squarish',
-  },
+const FALLBACK_STAT_ICONS = [
+  'https://readdy.ai/api/search-image?query=finely%20hand%20carved%20walnut%20wood%20victory%20laurel%20wreath%20encircling%20an%20upward%20arrow%20sculptural%20relief%20carving%20deep%20shadow%20casting%20warm%20dark%20amber%20brown%20wood%20grain%20visible%20rich%20three%20dimensional%20craftsmanship%20museum%20quality%20artisan%20object%20centered%20on%20pure%20white%20matte%20background%20studio%20product%20photography%20sharp%20focus%20dramatic%20side%20lighting&width=120&height=120&seq=wood-leist-stat-laurel-v2&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=precision%20hand%20carved%20solid%20walnut%20wood%20balance%20scale%20with%20two%20equal%20pans%20sculptural%20three%20dimensional%20relief%20deep%20wood%20grain%20texture%20warm%20amber%20honey%20brown%20tone%20high%20contrast%20dramatic%20lighting%20centered%20museum%20quality%20artisan%20piece%20pure%20white%20studio%20background%20sharp%20product%20photography%20minimal&width=120&height=120&seq=wood-leist-stat-scale-v2&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=hand%20carved%20solid%20walnut%20wood%20group%20of%20three%20standing%20human%20figures%20team%20icon%20sculptural%20relief%20carving%20rich%20dark%20amber%20brown%20grain%20highly%20detailed%20three%20dimensional%20artisan%20quality%20centered%20on%20clean%20white%20studio%20background%20dramatic%20directional%20lighting%20sharp%20focus&width=120&height=120&seq=wood-leist-stat-team-v2&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=hand%20carved%20solid%20walnut%20wood%20precision%20compass%20rose%20eight%20point%20navigation%20star%20deeply%20incised%20relief%20carving%20rich%20dark%20amber%20brown%20grain%20highly%20detailed%20three%20dimensional%20military%20instrument%20quality%20centered%20on%20clean%20white%20studio%20background%20dramatic%20directional%20lighting%20sharp%20focus%20artisan%20craft&width=120&height=120&seq=wood-leist-stat-compass-v2&orientation=squarish',
+];
+
+const STAT_LABELS = ['Produkte verkauft', 'Umsatz generiert', 'Talente im Pool', 'Einsätze durchgeführt'];
+const STAT_SUBS = [
+  'Direkter Abverkauf am POS',
+  'Für unsere Markenpartner',
+  'Geschulte Brand Ambassadors',
+  'Deutschlandweit seit 2007',
+];
+const STAT_VALUES = [3_700_000, 2_000, 2_000, 1_350_000];
+const STAT_DISPLAY = [
+  (v: number) => `>${(v / 1_000_000).toFixed(1).replace('.', ',')} Mio.`,
+  (v: number) => `>${v >= 2000 ? '2' : (v / 1000).toFixed(1)} Mrd. €`,
+  (v: number) => `>${v >= 2000 ? '2.000' : v.toLocaleString('de-DE')}`,
+  (v: number) => `>${(v / 1_000_000).toFixed(2).replace('.', ',')} Mio.`,
 ];
 
 function useCountUp(target: number, duration = 1600, active = false) {
@@ -54,12 +42,20 @@ function useCountUp(target: number, duration = 1600, active = false) {
 }
 
 function StatCard({
-  stat,
+  value,
+  display,
+  label,
+  sub,
+  woodIcon,
   delay,
   countActive,
   index,
 }: {
-  stat: (typeof STATS)[0];
+  value: number;
+  display: (v: number) => string;
+  label: string;
+  sub: string;
+  woodIcon: string;
   delay: number;
   countActive: boolean;
   index: number;
@@ -67,7 +63,7 @@ function StatCard({
   const [entered, setEntered] = useState(false);
   const [hovered, setHovered] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const count = useCountUp(stat.value, 1600, countActive);
+  const count = useCountUp(value, 1600, countActive);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -124,7 +120,7 @@ function StatCard({
             transform: hovered ? 'scale(1.06)' : 'scale(1)',
           }}
         >
-          <img src={stat.woodIcon} alt={stat.label} className="w-full h-full object-cover" />
+          <img src={woodIcon} alt={label} className="w-full h-full object-cover" />
         </div>
 
         {/* Text stack */}
@@ -137,18 +133,18 @@ function StatCard({
               color: isLime ? '#C8D400' : '#1a1a1a',
             }}
           >
-            {stat.display(count)}
+            {display(count)}
           </div>
           <div className="text-[10px] font-black uppercase tracking-wider text-[#1a1a1a] leading-tight mb-0.5">
-            {stat.label}
+            {label}
           </div>
-          <div className="text-[9.5px] text-gray-400 leading-tight">{stat.sub}</div>
+          <div className="text-[9.5px] text-foreground-400 leading-tight">{sub}</div>
         </div>
       </div>
 
       {/* Bottom sweep bar */}
       <div
-        className="absolute bottom-0 left-0 h-[2px] bg-[#C8D400]"
+        className="absolute bottom-0 left-0 h-[2px] bg-primary-500"
         style={{ width: hovered ? '100%' : '0%', transition: 'width 0.4s ease' }}
       />
     </div>
@@ -156,8 +152,14 @@ function StatCard({
 }
 
 export default function LeistungenStats() {
+  const { images: woodIcons } = useMediaStore('leistungen_stats_wood_icons');
   const [countActive, setCountActive] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  const getWoodIcon = (index: number) => {
+    const item = woodIcons[index];
+    return item?.url ? resolveImageUrl(item.url) : FALLBACK_STAT_ICONS[index];
+  };
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -173,7 +175,7 @@ export default function LeistungenStats() {
   return (
     <section
       id="zahlen"
-      className="py-6 md:py-8 px-6 bg-white border-b border-gray-100 relative overflow-hidden"
+      className="py-6 md:py-8 px-6 bg-white border-b border-foreground-100 relative overflow-hidden"
     >
       {/* Subtle lime top edge */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8D400] to-transparent opacity-50" />
@@ -186,7 +188,7 @@ export default function LeistungenStats() {
               className="inline-flex items-center gap-1.5 border border-[#C8D400]/40 px-2.5 py-0.5"
               style={{ background: 'rgba(200,212,0,0.06)' }}
             >
-              <span className="w-1 h-1 bg-[#C8D400] rounded-full animate-pulse" />
+              <span className="w-1 h-1 bg-primary-500 rounded-full animate-pulse" />
               <span className="text-[9px] font-black text-[#C8D400] uppercase tracking-widest">
                 Unsere Zahlen
               </span>
@@ -201,7 +203,7 @@ export default function LeistungenStats() {
             {[14, 32, 50, 24].map((w, i) => (
               <div
                 key={i}
-                className="h-[2px] bg-[#C8D400]"
+                className="h-[2px] bg-primary-500"
                 style={{
                   width: `${w}px`,
                   transform: 'skewX(-20deg)',
@@ -214,8 +216,18 @@ export default function LeistungenStats() {
 
         {/* Stats grid — horizontal row of 4 */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
-          {STATS.map((s, i) => (
-            <StatCard key={i} stat={s} delay={i * 100} countActive={countActive} index={i} />
+          {STAT_VALUES.map((val, i) => (
+            <StatCard
+              key={i}
+              value={val}
+              display={STAT_DISPLAY[i]}
+              label={STAT_LABELS[i]}
+              sub={STAT_SUBS[i]}
+              woodIcon={getWoodIcon(i)}
+              delay={i * 100}
+              countActive={countActive}
+              index={i}
+            />
           ))}
         </div>
       </div>

@@ -1,7 +1,10 @@
 import { useState, useRef } from 'react';
-import WoodenDivider from '../../../../components/base/WoodenDivider';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
+import ScrollCardSection from '@/components/feature/ScrollCardSection';
+import WoodenDivider from '@/components/base/WoodenDivider';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useText } from '@/hooks/useText';
 
 const POS_CHALLENGES: ChallengeItem[] = [
   {
@@ -37,101 +40,111 @@ const ASSETS = [
     category: 'Gedrucktes & Gebautes',
     icon: 'ri-printer-line',
     items: ['POS-Design und Kampagnenadaption', 'Aufsteller, Plakate, Flyer, Beklebungen, Gebäudebanner', 'Standequipment und Promotion-Tools', 'Produktion, Aufbau, Logistik und Lager'],
-    images: [
-      'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO02.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/06/10.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/02/2a.jpg',
-    ],
+    imageStartIndex: 0,
   },
   {
     category: 'E-Commerce Marketing',
     icon: 'ri-shopping-bag-line',
     items: ['Shop-Optimierung, inkl. Web-Design', 'PDPs, A+ Content', 'Performance-Marketing, inkl. Ads, Media und Newslettern', 'Social Commerce, inkl. Community Management'],
-    images: [
-      'https://www.sonic-group.de/wp-content/uploads/2023/06/LVP_NEU.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/03/TPV.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/02/2b.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/02/2f.jpg',
-    ],
+    imageStartIndex: 4,
   },
   {
     category: 'Möbelsysteme & Shop-in-Shop',
     icon: 'ri-building-4-line',
     items: ['Architektur, Design, Technik und Warensicherung', 'Möbel, Regale, Shop-in-Shop-Systeme, Roadshow-Module', 'Interaktive Displaykonzepte', 'Produktion, Warehousing, Aufbau, Ausstattung, Pflege'],
-    images: [
-      'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO01.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/01/10-1.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg',
-    ],
+    imageStartIndex: 8,
   },
   {
     category: 'Retail-Video',
     icon: 'ri-video-line',
     items: ['Live-Video-Promotion / Beratung', 'Für E-Commerce und über Displays am POS'],
-    images: [
-      'https://www.sonic-group.de/wp-content/uploads/2023/06/LVP_NEU.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/02/5-1-1024x576.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/01/2-1-1024x706.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/03/shower.jpg',
-    ],
+    imageStartIndex: 12,
   },
   {
     category: 'Give-aways',
     icon: 'ri-gift-line',
     items: ['Hochwertige Werbeartikel', 'Kosteneffiziente Streuartikel', 'Merchandise'],
-    images: [
-      'https://www.sonic-group.de/wp-content/uploads/2023/03/OPPOX5Pro_unboxing.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/02/2e.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/02/1_NEU.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/01/4.jpg',
-    ],
+    imageStartIndex: 16,
   },
+];
+
+const FALLBACK_ASSETS = [
+  'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO02.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/06/10.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/02/2a.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/06/LVP_NEU.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/03/TPV.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/02/2b.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/02/2f.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO01.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/01/10-1.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/06/LVP_NEU.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/02/5-1-1024x576.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/01/2-1-1024x706.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/03/shower.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/03/OPPOX5Pro_unboxing.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/02/2e.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/02/1_NEU.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/01/4.jpg',
 ];
 
 const STEPS = [
-  {
-    num: '01', title: 'Bedarfsanalyse', desc: 'Wir analysieren Marke, Produkte, Zielgruppen und POS-Anforderungen.', time: '1–2 Tage',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/3.jpg',
-  },
-  {
-    num: '02', title: 'Konzeptentwicklung', desc: 'Kreative POS-Lösungen und Materialien für maximale Aufmerksamkeit: Kampagnenkreation oder -adaption, Design, Materialauswahl.', time: '1–4 Wochen',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/2.jpg',
-  },
-  {
-    num: '03', title: 'Produktion', desc: 'Herstellung aller POS-Materialien in der passenden Qualität: Print, Displays, Möbelsysteme.', time: '1–4 Wochen',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
-  },
-  {
-    num: '04', title: 'Personal-Recruiting', desc: 'Auswahl und Schulung qualifizierter Promoter bzw. Sales Supporter für deine Kampagne.', time: '1–2 Wochen',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg',
-  },
-  {
-    num: '05', title: 'Rollout', desc: 'Koordinierte Auslieferung und Platzierung in allen Verkaufsstellen. Logistik über unser eigenes Warehouse.', time: '1–4 Wochen',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg',
-  },
-  {
-    num: '06', title: 'Monitoring & Reporting', desc: 'Kontinuierliche Überwachung und detaillierte Performance-Auswertung. Im SRT, tagesaktuell.', time: 'Ongoing',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/SRT_OPENER.jpg',
-  },
+  { num: '01', icon: 'ri-search-line', title: 'Bedarfsanalyse', desc: 'Wir analysieren Marke, Produkte, Zielgruppen und POS-Anforderungen.', time: '1–2 Tage', imgIndex: 0 },
+  { num: '02', icon: 'ri-lightbulb-line', title: 'Konzeptentwicklung', desc: 'Kreative POS-Lösungen und Materialien für maximale Aufmerksamkeit: Kampagnenkreation oder -adaption, Design, Materialauswahl.', time: '1–4 Wochen', imgIndex: 1 },
+  { num: '03', icon: 'ri-hammer-line', title: 'Produktion', desc: 'Herstellung aller POS-Materialien in der passenden Qualität: Print, Displays, Möbelsysteme.', time: '1–4 Wochen', imgIndex: 2 },
+  { num: '04', icon: 'ri-user-add-line', title: 'Personal-Recruiting', desc: 'Auswahl und Schulung qualifizierter Promoter bzw. Sales Supporter für deine Kampagne.', time: '1–2 Wochen', imgIndex: 3 },
+  { num: '05', icon: 'ri-truck-line', title: 'Rollout', desc: 'Koordinierte Auslieferung und Platzierung in allen Verkaufsstellen. Logistik über unser eigenes Warehouse.', time: '1–4 Wochen', imgIndex: 4 },
+  { num: '06', icon: 'ri-bar-chart-box-line', title: 'Monitoring & Reporting', desc: 'Kontinuierliche Überwachung und detaillierte Performance-Auswertung. Im SRT, tagesaktuell.', time: 'Ongoing', imgIndex: 5 },
+];
+
+const FALLBACK_PROCESS = [
+  'https://www.sonic-group.de/wp-content/uploads/2023/01/3.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/01/2.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/06/SRT_OPENER.jpg',
 ];
 
 export default function POSContent() {
+  const tChallengeHeading = useText('leistungen_pos_content', 'pos-challenge-heading', 'POS-Qualität sichern ist aufwändig.');
+  const tChallengeSub = useText('leistungen_pos_content', 'pos-challenge-sub', 'Warum es die Big Idea nicht immer bis ins Outlet schafft.');
+  const tSolutionHeading = useText('leistungen_pos_content', 'pos-solution-heading', 'Dein POS-Komplettpaket.');
+  const tSolutionSub = useText('leistungen_pos_content', 'pos-solution-sub', 'Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.');
+  const tAssetsHeading = useText('leistungen_pos_content', 'pos-assets-heading', 'POS-Materialien & Branding');
+  const tAssetsSub = useText('leistungen_pos_content', 'pos-assets-sub', 'Wir setzen deine Vorstellung vom idealen POS-Auftritt um.');
+  const tProcessHeading = useText('leistungen_pos_content', 'pos-process-heading', 'So arbeiten wir');
+  const tProcessSub = useText('leistungen_pos_content', 'pos-process-sub', 'Von der Planung bis zur Umsetzung: professionell und effizient.');
+  const { images: assetsImages } = useMediaStore('leistungen_pos_assets_images');
+  const { images: processImages } = useMediaStore('leistungen_pos_process_images');
+  const { images: solutionWoodIcons } = useMediaStore('leistungen_pos_solution_wood_icons');
   const [activeAsset, setActiveAsset] = useState(0);
   const [activeAssetImg, setActiveAssetImg] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
-  const scrollRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [solActive, setSolActive] = useState<number | null>(null);
-  const solRef = useRef<HTMLDivElement>(null);
 
-  const scrollSol = (dir: 'left' | 'right') => {
-    solRef.current?.scrollBy({ left: dir === 'left' ? -360 : 360, behavior: 'smooth' });
+  const getAssetImg = (index: number) => {
+    const item = assetsImages[index];
+    return item?.url ? resolveImageUrl(item.url) : FALLBACK_ASSETS[index];
   };
-  const goToSol = (i: number) => {
-    setSolActive(i);
-    solRef.current?.scrollTo({ left: i * 376, behavior: 'smooth' });
+
+  const getProcessImg = (index: number) => {
+    const item = processImages[index];
+    return item?.url ? resolveImageUrl(item.url) : FALLBACK_PROCESS[index];
   };
+
+  const getSolutionWoodIcon = (index: number) => {
+    const item = solutionWoodIcons[index];
+    return item?.url ? resolveImageUrl(item.url) : item?.url || '';
+  };
+
+  // Build resolved asset category images
+  const resolvedAssetCategories = ASSETS.map((cat) => ({
+    ...cat,
+    images: [0, 1, 2, 3].map((offset) => getAssetImg(cat.imageStartIndex + offset)),
+  }));
 
   const handleAssetChange = (idx: number) => {
     setActiveAsset(idx);
@@ -141,8 +154,8 @@ export default function POSContent() {
   return (
     <>
       <ChallengeSection
-        headline="POS-Qualität sichern ist aufwändig."
-        subline="Warum es die Big Idea nicht immer bis ins Outlet schafft."
+        headline={tChallengeHeading}
+        subline={tChallengeSub}
         challenges={POS_CHALLENGES}
       />
 
@@ -157,80 +170,36 @@ export default function POSContent() {
               <i className="ri-check-double-line text-[#111] text-sm"></i>
               <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Lösung</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#111] mb-3 leading-tight uppercase">Dein POS-<br /><span className="text-[#C8D400]" style={{ WebkitTextStroke: '1px #9ea800' }}>Komplettpaket.</span></h2>
-            <p className="text-[#111]/55 text-sm md:text-base max-w-2xl mx-auto">Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.</p>
+            <h2 className="text-4xl lg:text-5xl font-black text-[#111] mb-3 leading-tight uppercase">{tSolutionHeading}</h2>
+            <p className="text-[#111]/55 text-sm md:text-base max-w-2xl mx-auto">{tSolutionSub}</p>
           </div>
-          <div className="flex items-center mb-6 gap-3">
-            <span className="text-[11px] font-black uppercase tracking-widest text-[#111]/30 flex-grow">{SOLUTIONS.length} Leistungen — scrollen</span>
-            <button onClick={() => scrollSol('left')} className="w-10 h-10 flex items-center justify-center border border-[#111]/20 text-[#111]/40 hover:border-[#111] hover:text-[#111] transition-all duration-200 cursor-pointer" aria-label="links"><i className="ri-arrow-left-s-line text-xl" /></button>
-            <button onClick={() => scrollSol('right')} className="w-10 h-10 flex items-center justify-center border border-[#111]/20 text-[#111]/40 hover:border-[#111] hover:text-[#111] transition-all duration-200 cursor-pointer" aria-label="rechts"><i className="ri-arrow-right-s-line text-xl" /></button>
-          </div>
-          <div ref={solRef} className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            {SOLUTIONS.map((s, idx) => {
-              const isA = solActive === idx;
-              return (
-                <div key={idx} className="flex-shrink-0 snap-start relative overflow-hidden cursor-default"
-                  style={{ width: 'clamp(280px, 28vw, 340px)', minHeight: '340px', background: isA ? '#111' : '#ffffff', border: `1px solid ${isA ? 'rgba(200,212,0,0.5)' : 'rgba(0,0,0,0.09)'}`, transition: 'all 0.3s ease', transform: isA ? 'translateY(-6px)' : 'translateY(0)', boxShadow: isA ? '0 0 0 1px rgba(200,212,0,0.3), 0 24px 48px rgba(0,0,0,0.18)' : '0 2px 8px rgba(0,0,0,0.04)' }}
-                  onMouseEnter={() => setSolActive(idx)} onMouseLeave={() => setSolActive(null)}
-                >
-                  <div className="absolute top-0 left-0 right-0 z-20" style={{ height: isA ? '3px' : '2px', background: isA ? '#C8D400' : 'rgba(0,0,0,0.08)', boxShadow: isA ? '0 0 14px rgba(200,212,0,0.5)' : 'none', transition: 'all 0.3s ease' }} />
-                  <div className="absolute top-0 left-0 bottom-0 z-20 w-0.5" style={{ background: isA ? '#C8D400' : 'transparent', transition: 'background 0.3s ease' }} />
-                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-4 right-4 font-black leading-none select-none pointer-events-none z-0" style={{ fontSize: '6rem', color: isA ? 'rgba(200,212,0,0.07)' : 'rgba(0,0,0,0.04)', lineHeight: 1, transition: 'color 0.3s ease' }}>{s.num}</div>
-                  <div className="relative z-10 p-7 flex flex-col" style={{ minHeight: '340px' }}>
-                    <div className="flex items-center gap-2 mb-5">
-                      <div className="w-1.5 h-1.5" style={{ background: isA ? '#C8D400' : 'rgba(200,212,0,0.6)', transition: 'background 0.3s ease' }} />
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? '#C8D400' : 'rgba(139,110,0,0.7)', transition: 'color 0.3s ease' }}>{s.accent}</span>
-                    </div>
-                    <div className="w-[56px] h-[56px] overflow-hidden mb-6 flex-shrink-0" style={{ boxShadow: isA ? '0 10px 24px rgba(139,90,43,0.35)' : '0 4px 14px rgba(139,90,43,0.18)', transition: 'all 0.35s ease', transform: isA ? 'scale(1.08)' : 'scale(1)' }}>
-                      <img src={s.woodIcon} alt={s.title} className="w-full h-full object-cover" />
-                    </div>
-                    <h3 className="text-base font-black mb-3 leading-snug uppercase" style={{ color: isA ? '#fff' : '#111', transition: 'color 0.3s ease' }}>{s.title}</h3>
-                    <p className="text-sm leading-relaxed flex-grow" style={{ color: isA ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.55)', transition: 'color 0.3s ease' }}>{s.desc}</p>
-                    <div className="flex items-center justify-between pt-4 mt-4" style={{ borderTop: `1px solid ${isA ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`, transition: 'border-color 0.3s ease' }}>
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)' }}>{s.num} / {String(SOLUTIONS.length).padStart(2, '0')}</span>
-                      <div className="w-7 h-7 flex items-center justify-center" style={{ background: isA ? '#C8D400' : 'rgba(0,0,0,0.07)', transform: isA ? 'translateX(3px)' : 'translateX(0)', transition: 'all 0.25s ease' }}>
-                        <i className="ri-arrow-right-line text-sm" style={{ color: isA ? '#111' : 'rgba(0,0,0,0.45)' }} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="flex items-center justify-center gap-1.5 mt-6">
-            {SOLUTIONS.map((_, i) => (
-              <button key={i} onClick={() => goToSol(i)} className="cursor-pointer" style={{ width: i === (solActive ?? 0) ? '22px' : '6px', height: '3px', background: i === (solActive ?? 0) ? '#C8D400' : 'rgba(0,0,0,0.2)', border: 'none', padding: 0, transition: 'all 0.3s ease' }} aria-label={`${i + 1}`} />
-            ))}
-          </div>
+          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="wood" cardMinHeight="340px" />
         </div>
       </section>
 
-      <WoodenDivider />
-
       {/* Assets with scrollable images */}
-      <section id="beispiele" className="bg-white py-14 md:py-24 px-4 md:px-6">
-        <div className="max-w-7xl mx-auto">
+      <section id="beispiele" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#C8D400]/4 blur-[120px] pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto">
           <div className="mb-10 md:mb-12 text-center">
-            <div className="inline-flex items-center gap-2 bg-[#111]/10 border border-[#111]/15 px-4 py-1.5 mb-5">
-              <i className="ri-stack-line text-[#111] text-sm"></i>
-              <span className="text-xs font-black text-[#111] uppercase tracking-widest">Alle Assets</span>
+            <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
+              <i className="ri-stack-line text-primary-500 text-sm"></i>
+              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Alle Assets</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#111] leading-tight uppercase">POS-Materialien &amp; Branding</h2>
-            <p className="text-[#111]/45 text-sm mt-3">Wir setzen deine Vorstellung vom idealen POS-Auftritt um.</p>
+            <h2 className="text-4xl lg:text-5xl font-black text-white leading-tight uppercase">{tAssetsHeading}</h2>
+            <p className="text-white/40 text-sm mt-3">{tAssetsSub}</p>
           </div>
 
           {/* Category tabs — scrollable on mobile */}
-          <div className="flex gap-0 border border-[#111]/15 mb-0 overflow-x-auto">
+          <div className="flex gap-0 border border-white/10 mb-0 overflow-x-auto">
             {ASSETS.map((a, i) => (
               <button
                 key={i}
                 onClick={() => handleAssetChange(i)}
-                className={`flex items-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all duration-300 cursor-pointer border-r border-[#111]/15 last:border-r-0 flex-shrink-0 ${
-                  activeAsset === i ? 'bg-[#111] text-[#C8D400]' : 'bg-white text-[#111]/50 hover:text-[#111] hover:bg-[#111]/5'
+                className={`flex items-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all duration-300 cursor-pointer border-r border-white/10 last:border-r-0 flex-shrink-0 ${
+                  activeAsset === i ? 'bg-[#C8D400] text-[#111]' : 'bg-transparent text-white/40 hover:text-white hover:bg-white/5'
                 }`}
               >
                 <i className={`${a.icon} text-sm`}></i>
@@ -239,18 +208,18 @@ export default function POSContent() {
             ))}
           </div>
 
-          <div key={activeAsset} className="border border-[#111]/15 border-t-0" style={{ animation: 'fadeIn 0.35s ease-out' }}>
+          <div key={activeAsset} className="border border-white/10 border-t-0" style={{ animation: 'fadeSlideIn 0.35s ease-out' }}>
             {/* Image strip — 2 cols on mobile, 4 on desktop */}
-            <div className="grid grid-cols-2 md:grid-cols-4 border-b border-[#111]/10">
-              {ASSETS[activeAsset].images.map((img, i) => (
+            <div className="grid grid-cols-2 md:grid-cols-4 border-b border-white/10">
+              {resolvedAssetCategories[activeAsset].images.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveAssetImg(i)}
-                  className={`relative overflow-hidden cursor-pointer transition-all duration-300 ${activeAssetImg === i ? 'ring-2 ring-inset ring-[#C8D400]' : 'opacity-60 hover:opacity-90'}`}
+                  className={`relative overflow-hidden cursor-pointer transition-all duration-300 ${activeAssetImg === i ? 'ring-2 ring-inset ring-[#C8D400]' : 'opacity-50 hover:opacity-80'}`}
                   style={{ minHeight: '90px' }}
                 >
-                  <img src={img} alt="" className="w-full h-full object-cover object-top" style={{ minHeight: '90px' }} />
-                  <div className="absolute inset-0 bg-black/20" />
+                  <img src={img} alt="" className="w-full h-full object-cover object-top" loading="lazy" decoding="async" style={{ minHeight: '90px' }} />
+                  <div className="absolute inset-0 bg-black/30" />
                   {activeAssetImg === i && (
                     <div className="absolute bottom-2 right-2 w-4 h-4 flex items-center justify-center bg-[#C8D400]">
                       <i className="ri-check-line text-[#111] text-xs"></i>
@@ -262,33 +231,35 @@ export default function POSContent() {
 
             {/* Main image + items — stacks on mobile */}
             <div className="grid grid-cols-1 lg:grid-cols-12">
-              <div className="lg:col-span-7 relative overflow-hidden" style={{ minHeight: '220px' }}>
+              <div className="lg:col-span-7 relative overflow-hidden lg:h-[300px] h-[220px]">
                 <img
                   key={activeAssetImg}
-                  src={ASSETS[activeAsset].images[activeAssetImg]}
-                  alt={ASSETS[activeAsset].category}
+                  src={resolvedAssetCategories[activeAsset].images[activeAssetImg]}
+                  alt={resolvedAssetCategories[activeAsset].category}
                   className="w-full h-full object-cover object-top"
-                  style={{ animation: 'fadeIn 0.3s ease-out', minHeight: '220px' }}
+                  loading="lazy"
+                  decoding="async"
+                  style={{ animation: 'fadeSlideIn 0.3s ease-out' }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute top-3 left-3">
-                  <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-2 py-1">{ASSETS[activeAsset].category}</span>
+                  <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-2 py-1">{resolvedAssetCategories[activeAsset].category}</span>
                 </div>
               </div>
-              <div className="lg:col-span-5 bg-white p-5 md:p-8 border-t lg:border-t-0 lg:border-l border-[#111]/10">
+              <div className="lg:col-span-5 bg-[#161616] p-5 md:p-8 border-t lg:border-t-0 lg:border-l border-white/10 lg:h-[300px] overflow-y-auto">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 flex items-center justify-center bg-[#111]">
-                    <i className={`${ASSETS[activeAsset].icon} text-base text-[#C8D400]`}></i>
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center bg-[#C8D400]/15 border border-[#C8D400]/30">
+                    <i className={`${resolvedAssetCategories[activeAsset].icon} text-base text-primary-500`}></i>
                   </div>
-                  <h3 className="text-base font-black text-[#111] uppercase">{ASSETS[activeAsset].category}</h3>
+                  <h3 className="text-base font-black text-white uppercase">{resolvedAssetCategories[activeAsset].category}</h3>
                 </div>
                 <div className="space-y-2.5">
-                  {ASSETS[activeAsset].items.map((item, i) => (
+                  {resolvedAssetCategories[activeAsset].items.map((item, i) => (
                     <div key={i} className="flex items-start gap-2.5">
-                      <div className="w-4 h-4 flex items-center justify-center bg-[#C8D400] flex-shrink-0 mt-0.5">
+                      <div className="w-4 h-4 flex items-center justify-center bg-[#C8D400] flex-shrink-0 mt-0.5 rounded-full">
                         <i className="ri-check-line text-[#111] text-xs"></i>
                       </div>
-                      <span className="text-[#111]/70 text-sm leading-relaxed">{item}</span>
+                      <span className="text-white/55 text-sm leading-relaxed">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -298,73 +269,101 @@ export default function POSContent() {
         </div>
       </section>
 
-      <WoodenDivider />
-
       {/* Process with images */}
       <section id="arbeitsweise" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#C8D400]/4 blur-[120px] pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto">
-          <div className="text-center mb-10 md:mb-14">
+
+        <div className="relative max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12 md:mb-16">
             <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
-              <i className="ri-route-line text-[#C8D400] text-sm"></i>
-              <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Ablauf</span>
+              <i className="ri-route-line text-primary-500 text-sm" />
+              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Ablauf</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">So arbeiten wir</h2>
-            <p className="text-white/45 text-sm mt-3">Von der Planung bis zur Umsetzung: professionell und effizient.</p>
+            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">{tProcessHeading}</h2>
+            <p className="text-white/40 text-sm mt-3">{tProcessSub}</p>
           </div>
 
-          {/* Step tabs — scrollable on mobile */}
-          <div className="flex gap-0 border border-[#C8D400]/15 mb-0 overflow-x-auto">
-            {STEPS.map((step, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveStep(i)}
-                className={`flex-shrink-0 px-3 md:px-4 py-3 font-black text-xs whitespace-nowrap transition-all duration-300 cursor-pointer border-r border-[#C8D400]/15 last:border-r-0 ${
-                  activeStep === i ? 'bg-[#C8D400] text-[#111]' : 'bg-white/3 text-white/50 hover:text-white hover:bg-white/7'
-                }`}
-              >
-                <span className="block text-[10px] opacity-60 mb-0.5">{step.num}</span>
-                {step.title}
-              </button>
-            ))}
+          {/* Connected Timeline */}
+          <div className="relative mb-10 md:mb-14">
+            <div className="absolute top-[20px] md:top-[28px] left-[8.33%] right-[8.33%] h-px bg-white/10" />
+            <div className="absolute top-[20px] md:top-[28px] left-[8.33%] h-px bg-[#C8D400] transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
+
+            <div className="grid grid-cols-6 gap-2">
+              {STEPS.map((step, i) => (
+                <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
+                  <div className={`w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111] shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-[#C8D400]/15 border-[#C8D400]/40 text-primary-500' : 'bg-[#111] border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
+                    <i className={`${step.icon} text-sm md:text-xl`} />
+                  </div>
+                  <span className={`mt-3 text-[10px] md:text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeStep === i ? 'text-primary-500' : 'text-white/30'}`}>{step.num}</span>
+                  <span className={`text-[9px] md:text-[11px] font-bold text-center leading-tight mt-0.5 transition-all duration-300 hidden md:block ${activeStep === i ? 'text-white/70' : 'text-white/25'}`}>{step.title}</span>
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Step panel — stacks on mobile */}
-          <div key={activeStep} className="grid grid-cols-1 lg:grid-cols-12 border border-[#C8D400]/15 border-t-0" style={{ animation: 'fadeIn 0.35s ease-out' }}>
-            <div className="lg:col-span-7 relative overflow-hidden" style={{ minHeight: '200px' }}>
-              <img
-                src={STEPS[activeStep].img}
-                alt={STEPS[activeStep].title}
-                className="w-full h-full object-cover object-top"
-                style={{ minHeight: '200px' }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute top-3 left-3">
-                <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-2 py-1">Schritt {STEPS[activeStep].num}</span>
+          {/* Content Card */}
+          <div key={activeStep} className="border border-white/10 bg-[#161616] overflow-hidden" style={{ animation: 'fadeSlideIn 0.4s ease-out' }}>
+            <div className="grid md:grid-cols-12 gap-0">
+              {/* Left: Step Image */}
+              <div className="md:col-span-5 relative overflow-hidden border-b md:border-b-0 md:border-r border-white/10 min-h-[240px] md:min-h-[380px]">
+                <img
+                  src={getProcessImg(activeStep)}
+                  alt={STEPS[activeStep].title}
+                  className="w-full h-full object-cover object-top"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/40" />
+                <div className="absolute top-4 left-4">
+                  <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-3 py-1">Schritt {STEPS[activeStep].num}</span>
+                </div>
+                <div className="absolute bottom-4 left-4 flex gap-1.5">
+                  {STEPS.map((_, i) => (
+                    <button key={i} onClick={() => setActiveStep(i)} className={`h-1 transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-[#C8D400]' : 'w-3 bg-white/40'}`} />
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <div className="lg:col-span-5 bg-white/5 p-6 md:p-8 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-[#C8D400]/15 relative">
-              <div className="absolute top-0 left-0 text-7xl md:text-9xl font-black leading-none select-none pointer-events-none" style={{ color: 'rgba(200,212,0,0.04)', lineHeight: 1 }}>
-                {STEPS[activeStep].num}
+              {/* Right: Content */}
+              <div className="md:col-span-7 p-8 md:p-12 flex flex-col justify-center min-h-[240px] md:min-h-[380px]">
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {STEPS[activeStep].num}</span>
+                  <span className="px-3 py-1.5 bg-[#C8D400] text-[#111] text-xs font-black">{STEPS[activeStep].time}</span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight">{STEPS[activeStep].title}</h3>
+                <p className="text-white/55 text-sm md:text-base leading-relaxed">{STEPS[activeStep].desc}</p>
+
+                {/* Navigation */}
+                <div className="mt-8 flex items-center gap-4">
+                  <button
+                    onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
+                    disabled={activeStep === 0}
+                    className="w-11 h-11 border border-white/15 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all disabled:opacity-15 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <i className="ri-arrow-left-line text-lg" />
+                  </button>
+                  <div className="flex gap-2">
+                    {STEPS.map((_, i) => (
+                      <button key={i} onClick={() => setActiveStep(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-[#C8D400]' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => setActiveStep(Math.min(STEPS.length - 1, activeStep + 1))}
+                    disabled={activeStep === STEPS.length - 1}
+                    className="w-11 h-11 border border-white/15 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all disabled:opacity-15 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <i className="ri-arrow-right-line text-lg" />
+                  </button>
+                  <span className="text-white/25 text-xs font-bold ml-2">{activeStep + 1} / {STEPS.length}</span>
+                </div>
               </div>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="text-[#C8D400] font-black text-xs uppercase tracking-widest">Schritt {STEPS[activeStep].num}</div>
-                <div className="px-3 py-1 bg-[#C8D400] text-[#111] text-xs font-black">{STEPS[activeStep].time}</div>
-              </div>
-              <h3 className="text-xl md:text-2xl font-black text-white mb-3 uppercase">{STEPS[activeStep].title}</h3>
-              <p className="text-white/65 text-sm md:text-base leading-relaxed">{STEPS[activeStep].desc}</p>
             </div>
           </div>
         </div>
       </section>
 
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </>
   );
 }

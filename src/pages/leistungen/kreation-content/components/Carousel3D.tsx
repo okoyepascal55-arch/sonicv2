@@ -1,11 +1,24 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 interface MediaTile {
   src: string;
   alt: string;
 }
 
-const TILES: MediaTile[] = [
+const TILE_LABELS = [
+  'Produktfotografie',
+  'Brand Design',
+  'Video Produktion',
+  'CGI & 3D',
+  'Social Content',
+  'POS & Events',
+  'Print & Packaging',
+  'Beauty & Kosmetik',
+  'Food & Lifestyle',
+];
+
+const FALLBACK_TILES: MediaTile[] = [
   {
     src: 'https://readdy.ai/api/search-image?query=professional%20product%20photography%20studio%20shoot%20consumer%20electronics%20packaging%20premium%20bright%20clean%20white%20background%20soft%20natural%20lighting%20commercial%20quality%20editorial%20photography%20minimalist%20modern&width=420&height=600&seq=c4-tile-01&orientation=portrait',
     alt: 'Produktfotografie',
@@ -44,8 +57,6 @@ const TILES: MediaTile[] = [
   },
 ];
 
-const TOTAL = TILES.length;
-const ANGLE_STEP = 360 / TOTAL;
 const TILE_W = 280;
 const TILE_H = 420;
 const RADIUS = 820;
@@ -214,13 +225,24 @@ function GroundReflection({
 }
 
 export default function Carousel3D() {
-  const currentIndexRef = useRef(0);
+  const { images: carouselImages } = useMediaStore('leistungen_kreation_carousel_images');
+  const TILES = useMemo(() => {
+    return TILE_LABELS.map((label, i) => {
+      const dashItem = carouselImages[i];
+      return { src: dashItem?.url ? resolveImageUrl(dashItem.url) : FALLBACK_TILES[i].src, alt: label };
+    });
+  }, [carouselImages]);
+  const TOTAL = TILES.length;
+  const ANGLE_STEP = 360 / TOTAL;
+
+  // Animation state
   const [displayIndex, setDisplayIndex] = useState(0);
+  const currentIndexRef = useRef(0);
   const targetIndexRef = useRef(0);
-  const animFrameRef = useRef<number | null>(null);
-  const lastTimeRef = useRef<number | null>(null);
+  const lastTimeRef = useRef(0);
   const isUserInteracting = useRef(false);
   const interactionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const animFrameRef = useRef<number | null>(null);
 
   // Pop-in reveal
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -322,9 +344,30 @@ export default function Carousel3D() {
       animFrameRef.current = requestAnimationFrame(loop);
     };
 
-    animFrameRef.current = requestAnimationFrame(loop);
-    return () => {
+    const startLoop = () => {
+      if (animFrameRef.current) return;
+      lastTimeRef.current = 0; // reset dt so the carousel doesn't jump on resume
+      animFrameRef.current = requestAnimationFrame(loop);
+    };
+    const stopLoop = () => {
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      animFrameRef.current = null;
+    };
+
+    /* ── Pause auto-rotation while the carousel is off-screen ── */
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) startLoop();
+        else stopLoop();
+      },
+      { rootMargin: '120px' }
+    );
+    if (sectionRef.current) obs.observe(sectionRef.current);
+
+    startLoop();
+    return () => {
+      stopLoop();
+      obs.disconnect();
     };
   }, [prefersReducedMotion]);
 
@@ -465,7 +508,7 @@ export default function Carousel3D() {
         <div className="flex items-center justify-center gap-4 mt-8">
           <button
             onClick={() => moveBy(-1)}
-            className="w-10 h-10 flex items-center justify-center border border-black/20 text-black/60 hover:border-black hover:text-black transition-all duration-200 cursor-pointer"
+            className="w-10 h-10 flex items-center justify-center border border-foreground-950/20 text-foreground-950/60 hover:border-foreground-950 hover:text-foreground-950 transition-all duration-200 cursor-pointer"
             style={{ borderRadius: 0 }}
             aria-label="Vorheriges"
           >
@@ -473,7 +516,7 @@ export default function Carousel3D() {
           </button>
           <button
             onClick={() => moveBy(1)}
-            className="w-10 h-10 flex items-center justify-center border border-black/20 text-black/60 hover:border-black hover:text-black transition-all duration-200 cursor-pointer"
+            className="w-10 h-10 flex items-center justify-center border border-foreground-950/20 text-foreground-950/60 hover:border-foreground-950 hover:text-foreground-950 transition-all duration-200 cursor-pointer"
             style={{ borderRadius: 0 }}
             aria-label="Nächstes"
           >
@@ -490,7 +533,7 @@ export default function Carousel3D() {
       ref={sectionRef}
       className="relative w-full select-none overflow-hidden"
       style={{
-        /* No background — inherits hero's #F7F7F5 seamlessly */
+        /* No background — inherits hero's white seamlessly */
         paddingTop: '40px',
         paddingBottom: '100px',
         transform: `scale(${popScale})`,
@@ -661,8 +704,8 @@ export default function Carousel3D() {
         className="flex items-center justify-center gap-2 mt-1"
         style={{ opacity: popOpacity * 0.4 }}
       >
-        <i className="ri-drag-move-line text-sm text-black/35" />
-        <span className="text-xs font-black uppercase tracking-widest text-black/30">
+        <i className="ri-drag-move-line text-sm text-foreground-950/35" />
+        <span className="text-xs font-black uppercase tracking-widest text-foreground-950/30">
           Ziehen oder klicken
         </span>
       </div>

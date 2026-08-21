@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
+import { useText } from '@/hooks/useText';
 
 interface DataStream {
   id: string;
@@ -24,117 +25,21 @@ interface NodeData {
 }
 
 const NODES: NodeData[] = [
-  {
-    id: 'srt',
-    label: 'SRT',
-    sublabel: 'Sonic Reporting Tool',
-    icon: 'ri-cpu-line',
-    streams: ['agentur-srt', 'srt-kunde', 'mitarbeiter-srt', 'extern-srt'],
-    details: [
-      { title: 'Echtzeit-Verarbeitung', items: ['Alle Datenströme laufen hier zusammen', 'KI-gestützte Auswertung', 'Automatische Report-Generierung'] },
-      { title: 'Single Source of Truth', items: ['Einheitliche Datenbasis', 'Versionierte Datenhistorie', 'Auditfähige Logs'] },
-    ],
-    position: { x: 50, y: 50 },
-  },
-  {
-    id: 'agentur',
-    label: 'SONIC AGENTUR',
-    sublabel: 'Interne Daten & Planung',
-    icon: 'ri-user-star-line',
-    streams: ['agentur-srt'],
-    details: [
-      { title: 'Planungsdaten', items: ['Einsatzplanung & Schichtpläne', 'Kampagnenziele & Briefings', 'Budgetrahmen & Ressourcen'] },
-      { title: 'Kontrolldaten', items: ['Qualitätssicherung', 'Account-Management', 'Projektdokumentation'] },
-    ],
-    position: { x: 50, y: 8 },
-  },
-  {
-    id: 'mitarbeiter',
-    label: 'MITARBEITER',
-    sublabel: 'Field Force · Mobile App',
-    icon: 'ri-smartphone-line',
-    streams: ['mitarbeiter-srt'],
-    details: [
-      { title: 'Live-Felddaten', items: ['GPS-Check-in (nur vor Ort)', 'Verkaufszahlen & Abschlüsse', 'Fotos & Produktrückmeldungen'] },
-      { title: 'Aufgaben & Abrechnung', items: ['Zielerreichungs-Tracking', 'Zeiterfassung & Pausen', 'Provisionen & Boni'] },
-    ],
-    position: { x: 50, y: 92 },
-  },
-  {
-    id: 'kunde',
-    label: 'KUNDE',
-    sublabel: 'Dashboard & Reports',
-    icon: 'ri-file-list-3-line',
-    streams: ['srt-kunde'],
-    details: [
-      { title: 'Empfangene Insights', items: ['Live-KPI-Dashboard', 'Custom Reports (Excel/PPT/SQL)', 'Forecasting & Prognosen'] },
-      { title: 'Transparenz', items: ['Abverkaufsdaten in Echtzeit', 'Standort-Performance-Ranking', 'Benchmarks & Marktvergleich'] },
-    ],
-    position: { x: 90, y: 50 },
-  },
-  {
-    id: 'extern',
-    label: 'EXTERNE DATEN',
-    sublabel: 'ERP · WaWi · APIs',
-    icon: 'ri-global-line',
-    streams: ['extern-srt'],
-    details: [
-      { title: 'Datenquellen', items: ['ERP- & WaWi-Systeme', 'Hersteller-Apps & POS', 'Marktforschungsdaten'] },
-      { title: 'Integrationen', items: ['Planogramm-Daten', 'WKZ-Verwaltung', 'Handelsdaten & Nielsen'] },
-    ],
-    position: { x: 10, y: 50 },
-  },
+  { id: 'srt', label: 'SRT', sublabel: 'Sonic Reporting Tool', icon: 'ri-cpu-line', streams: ['agentur-srt', 'srt-kunde', 'mitarbeiter-srt', 'extern-srt'], details: [{ title: 'Echtzeit-Verarbeitung', items: ['Alle Datenströme laufen hier zusammen', 'KI-gestützte Auswertung', 'Automatische Report-Generierung'] }, { title: 'Single Source of Truth', items: ['Einheitliche Datenbasis', 'Versionierte Datenhistorie', 'Auditfähige Logs'] }], position: { x: 50, y: 50 } },
+  { id: 'agentur', label: 'SONIC AGENTUR', sublabel: 'Interne Daten & Planung', icon: 'ri-user-star-line', streams: ['agentur-srt'], details: [{ title: 'Planungsdaten', items: ['Einsatzplanung & Schichtpläne', 'Kampagnenziele & Briefings', 'Budgetrahmen & Ressourcen'] }, { title: 'Kontrolldaten', items: ['Qualitätssicherung', 'Account-Management', 'Projektdokumentation'] }], position: { x: 50, y: 8 } },
+  { id: 'mitarbeiter', label: 'MITARBEITER', sublabel: 'Field Force · Mobile App', icon: 'ri-smartphone-line', streams: ['mitarbeiter-srt'], details: [{ title: 'Live-Felddaten', items: ['GPS-Check-in (nur vor Ort)', 'Verkaufszahlen & Abschlüsse', 'Fotos & Produktrückmeldungen'] }, { title: 'Aufgaben & Abrechnung', items: ['Zielerreichungs-Tracking', 'Zeiterfassung & Pausen', 'Provisionen & Boni'] }], position: { x: 50, y: 92 } },
+  { id: 'kunde', label: 'KUNDE', sublabel: 'Dashboard & Reports', icon: 'ri-file-list-3-line', streams: ['srt-kunde'], details: [{ title: 'Empfangene Insights', items: ['Live-KPI-Dashboard', 'Custom Reports (Excel/PPT/SQL)', 'Forecasting & Prognosen'] }, { title: 'Transparenz', items: ['Abverkaufsdaten in Echtzeit', 'Standort-Performance-Ranking', 'Benchmarks & Marktvergleich'] }], position: { x: 87, y: 50 } },
+  { id: 'extern', label: 'EXTERNE DATEN', sublabel: 'ERP · WaWi · APIs', icon: 'ri-global-line', streams: ['extern-srt'], details: [{ title: 'Datenquellen', items: ['ERP- & WaWi-Systeme', 'Hersteller-Apps & POS', 'Marktforschungsdaten'] }, { title: 'Integrationen', items: ['Planogramm-Daten', 'WKZ-Verwaltung', 'Handelsdaten & Nielsen'] }], position: { x: 13, y: 50 } },
 ];
 
 const STREAMS: DataStream[] = [
-  {
-    id: 'agentur-srt',
-    from: 'agentur',
-    to: 'srt',
-    label: 'Planung → SRT',
-    icon: 'ri-route-line',
-    color: '#C8D400',
-    direction: 'both',
-    dataPoints: ['Einsatzplanung', 'Kampagnenziele', 'Briefings', 'Budgets'],
-    description: 'Sonic überträgt Einsatzpläne, Kampagnenziele und Projektdaten ins SRT — und erhält aggregierte Performance-Daten zurück.',
-  },
-  {
-    id: 'srt-kunde',
-    from: 'srt',
-    to: 'kunde',
-    label: 'SRT → Kunde',
-    icon: 'ri-dashboard-line',
-    color: '#C8D400',
-    direction: 'out',
-    dataPoints: ['Live-KPIs', 'Reports', 'Forecasts', 'Rankings'],
-    description: 'Kunden erhalten maßgeschneiderte Dashboards mit Live-KPIs, automatisch generierten Reports und datenbasierten Prognosen.',
-  },
-  {
-    id: 'mitarbeiter-srt',
-    from: 'mitarbeiter',
-    to: 'srt',
-    label: 'Field → SRT',
-    icon: 'ri-map-pin-2-line',
-    color: '#C8D400',
-    direction: 'both',
-    dataPoints: ['GPS-Check-in', 'Verkäufe', 'Fotos', 'Abrechnung'],
-    description: 'Außendienstmitarbeiter erfassen Einsätze, Verkaufszahlen und Fotos in Echtzeit über die mobile App — GPS-verifiziert.',
-  },
-  {
-    id: 'extern-srt',
-    from: 'extern',
-    to: 'srt',
-    label: 'Extern → SRT',
-    icon: 'ri-database-2-line',
-    color: '#C8D400',
-    direction: 'in',
-    dataPoints: ['ERP-Daten', 'Marktdaten', 'POS-Feed', 'WKZ'],
-    description: 'Externe Systeme (ERP, WaWi, Hersteller-Apps) liefern Kontext-Daten, die das SRT mit Felddaten zusammenführt.',
-  },
+  { id: 'agentur-srt', from: 'agentur', to: 'srt', label: 'Planung → SRT', icon: 'ri-route-line', color: '#C8D400', direction: 'both', dataPoints: ['Einsatzplanung', 'Kampagnenziele', 'Briefings', 'Budgets'], description: 'Sonic überträgt Einsatzpläne, Kampagnenziele und Projektdaten ins SRT — und erhält aggregierte Performance-Daten zurück.' },
+  { id: 'srt-kunde', from: 'srt', to: 'kunde', label: 'SRT → Kunde', icon: 'ri-dashboard-line', color: '#C8D400', direction: 'out', dataPoints: ['Live-KPIs', 'Reports', 'Forecasts', 'Rankings'], description: 'Kunden erhalten maßgeschneiderte Dashboards mit Live-KPIs, automatisch generierten Reports und datenbasierten Prognosen.' },
+  { id: 'mitarbeiter-srt', from: 'mitarbeiter', to: 'srt', label: 'Field → SRT', icon: 'ri-map-pin-2-line', color: '#C8D400', direction: 'both', dataPoints: ['GPS-Check-in', 'Verkäufe', 'Fotos', 'Abrechnung'], description: 'Außendienstmitarbeiter erfassen Einsätze, Verkaufszahlen und Fotos in Echtzeit über die mobile App — GPS-verifiziert.' },
+  { id: 'extern-srt', from: 'extern', to: 'srt', label: 'Extern → SRT', icon: 'ri-database-2-line', color: '#C8D400', direction: 'in', dataPoints: ['ERP-Daten', 'Marktdaten', 'POS-Feed', 'WKZ'], description: 'Externe Systeme (ERP, WaWi, Hersteller-Apps) liefern Kontext-Daten, die das SRT mit Felddaten zusammenführt.' },
 ];
 
 function AnimatedPath({ x1, y1, x2, y2, active, stream }: { x1: number; y1: number; x2: number; y2: number; active: boolean; stream: DataStream }) {
-  const id = `path-${stream.id}`;
   const midX = (x1 + x2) / 2;
   const midY = (y1 + y2) / 2;
   const dx = x2 - x1;
@@ -145,23 +50,12 @@ function AnimatedPath({ x1, y1, x2, y2, active, stream }: { x1: number; y1: numb
 
   return (
     <g>
-      {/* Glow track */}
       <path d={d} stroke="rgba(200,212,0,0.08)" strokeWidth="8" fill="none" />
-      {/* Base line */}
-      <path
-        d={d}
-        stroke={active ? '#C8D400' : 'rgba(200,212,0,0.25)'}
-        strokeWidth={active ? 2.5 : 1.5}
-        fill="none"
-        strokeDasharray={active ? 'none' : '4 4'}
-        style={{ transition: 'stroke 0.4s ease, stroke-width 0.4s ease' }}
-      />
-      {/* Animated pulse dot */}
+      <path d={d} stroke={active ? '#C8D400' : 'rgba(200,212,0,0.25)'} strokeWidth={active ? 2.5 : 1.5} fill="none"
+        strokeDasharray={active ? 'none' : '4 4'} style={{ transition: 'stroke 0.4s ease, stroke-width 0.4s ease' }} />
       {active && (
         <>
-          <circle r="4" fill="#C8D400">
-            <animateMotion dur="1.8s" repeatCount="indefinite" path={d} />
-          </circle>
+          <circle r="4" fill="#C8D400"><animateMotion dur="1.8s" repeatCount="indefinite" path={d} /></circle>
           {stream.direction === 'both' && (
             <circle r="3" fill="#fff" opacity="0.7">
               <animateMotion dur="2.2s" repeatCount="indefinite" begin="1.1s" path={`M ${x2} ${y2} Q ${cpX} ${cpY} ${x1} ${y1}`} />
@@ -169,7 +63,6 @@ function AnimatedPath({ x1, y1, x2, y2, active, stream }: { x1: number; y1: numb
           )}
         </>
       )}
-      {/* Stream label badge */}
       {active && (
         <g transform={`translate(${cpX - 28} ${cpY - 11})`}>
           <rect width="56" height="16" fill="#C8D400" rx="2" />
@@ -178,12 +71,16 @@ function AnimatedPath({ x1, y1, x2, y2, active, stream }: { x1: number; y1: numb
           </text>
         </g>
       )}
-      <title id={id}>{stream.label}</title>
+      <title>{stream.label}</title>
     </g>
   );
 }
 
 export default function DataPaths() {
+  const tBadge = useText('srt_datapaths', 'srt-data-badge', 'Datenfluss');
+  const tHeading = useText('srt_datapaths', 'srt-data-heading', 'SO FLIESSEN DIE DATEN DURCH DAS SRT.');
+  const tP1 = useText('srt_datapaths', 'srt-data-p1', '');
+
   const [activeNode, setActiveNode] = useState<string | null>(null);
   const [activeStream, setActiveStream] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
@@ -207,7 +104,6 @@ export default function DataPaths() {
   const activeNodeData = NODES.find((n) => n.id === activeNode);
   const activeStreamData = STREAMS.find((s) => s.id === activeStream);
 
-  // SVG coordinate conversion (percent -> SVG units out of 500x400)
   const px = (pct: number) => (pct / 100) * 500;
   const py = (pct: number) => (pct / 100) * 400;
 
@@ -230,7 +126,7 @@ export default function DataPaths() {
     if (activeNode) {
       const node = NODES.find((n) => n.id === activeNode);
       return node?.streams.some((sid) => {
-        const s = STREAMS.find((s) => s.id === sid);
+        const s = STREAMS.find((st) => st.id === sid);
         return s?.from === nodeId || s?.to === nodeId;
       }) ?? false;
     }
@@ -238,82 +134,63 @@ export default function DataPaths() {
   };
 
   return (
-    <section
-      ref={sectionRef}
-      id="datenfluss"
-      className="py-24 px-4 md:px-6 bg-[#0e0f0a] relative overflow-hidden"
+    <section ref={sectionRef} id="datenfluss" className="py-24 px-4 md:px-6 bg-foreground-950 relative overflow-hidden"
       style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.8s ease' }}
     >
-      {/* Background grid */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
-        style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,1) 1px, transparent 1px)', backgroundSize: '48px 48px' }}
+        style={{ backgroundImage: 'linear-gradient(oklch(var(--primary-500)) 1px, transparent 1px), linear-gradient(90deg, oklch(var(--primary-500)) 1px, transparent 1px)', backgroundSize: '48px 48px' }}
       />
-      {/* Glow orbs */}
-      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-[#C8D400]/5 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#C8D400]/5 blur-3xl pointer-events-none" />
-      <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-[#C8D400]/40 to-transparent" />
+      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary-500/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary-500/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary-500/40 to-transparent" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
         <div className="mb-14">
           <div className="flex items-center gap-4 mb-8">
-            <SectionBadge text="Datenfluss" variant="light" />
-            <div className="h-px flex-1 bg-gradient-to-r from-[#C8D400]/20 to-transparent" />
-            <span className="text-[10px] font-black text-white/20 uppercase tracking-widest hidden md:block">Interaktiv — Klicken zum Erkunden</span>
+            <SectionBadge text={tBadge} variant="light" />
+            <div className="h-px flex-1 bg-gradient-to-r from-primary-500/20 to-transparent" />
+            <span className="text-2xs font-black text-background-50/20 uppercase tracking-widest hidden md:block">Interaktiv — Klicken zum Erkunden</span>
           </div>
           <div className="grid lg:grid-cols-2 gap-8 items-end">
-            <h2
-              className="font-black text-white leading-tight tracking-tight"
-              style={{ fontSize: 'clamp(28px,4vw,48px)' }}
-            >
-              SO FLIESSEN<br />
-              DIE DATEN<br />
-              <span className="text-[#C8D400]">DURCH DAS SRT.</span>
+            <h2 className="font-black text-background-50 leading-tight tracking-tight" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
+              {tHeading}
             </h2>
             <div className="lg:pb-2">
-              <p className="text-white/60 text-base leading-relaxed mb-3">
-                Das SRT ist das zentrale Nervensystem — es verbindet Sonic, Kunden, Mitarbeiter und externe Systeme in einer einzigen, synchronen Datenbasis.
+              <p className="text-background-50/60 text-base leading-relaxed mb-3">
+                {tP1 || 'Das SRT ist das zentrale Nervensystem — es verbindet Sonic, Kunden, Mitarbeiter und externe Systeme in einer einzigen, synchronen Datenbasis.'}
               </p>
-              <p className="text-white/40 text-xs font-semibold uppercase tracking-widest">
-                Klicke auf einen Knoten oder Verbindung für Details
-              </p>
+              <p className="text-background-50/40 text-xs font-semibold uppercase tracking-widest">Klicke auf einen Knoten oder Verbindung für Details</p>
             </div>
           </div>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8 items-start">
-          {/* Left: Detail panel */}
           <div className="lg:col-span-2 space-y-4">
-            {/* Active node/stream details */}
             {(activeNodeData || activeStreamData) ? (
-              <div className="border border-[#C8D400]/30 bg-[#C8D400]/5 p-6 relative">
-                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#C8D400] to-transparent" />
-                <button
-                  onClick={() => { setActiveNode(null); setActiveStream(null); }}
-                  className="absolute top-3 right-3 w-6 h-6 flex items-center justify-center text-gray-600 hover:text-gray-300 transition-colors cursor-pointer"
-                  aria-label="Details schließen"
-                >
+              <div className="border border-primary-500/30 bg-primary-500/5 p-6 relative">
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary-500 to-transparent" />
+                <button onClick={() => { setActiveNode(null); setActiveStream(null); }}
+                  className="absolute top-3 right-3 w-6 h-6 flex items-center justify-center text-foreground-500 hover:text-background-50/80 transition-colors cursor-pointer" aria-label="Details schließen">
                   <i className="ri-close-line text-sm" />
                 </button>
                 {activeNodeData && (
                   <div>
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 bg-[#C8D400]/15 border border-[#C8D400]/30 flex items-center justify-center">
-                        <i className={`${NODES.find(n => n.id === activeNode)?.icon} text-[#C8D400] text-lg`} />
+                      <div className="w-10 h-10 bg-primary-500/15 border border-primary-500/30 flex items-center justify-center">
+                        <i className={`${NODES.find(n => n.id === activeNode)?.icon} text-primary-500 text-lg`} />
                       </div>
                       <div>
-                        <p className="text-[#C8D400] font-black text-xs uppercase tracking-widest">{activeNodeData.label}</p>
-                        <p className="text-white/40 text-xs">{activeNodeData.sublabel}</p>
+                        <p className="text-primary-500 font-black text-xs uppercase tracking-widest">{activeNodeData.label}</p>
+                        <p className="text-background-50/40 text-xs">{activeNodeData.sublabel}</p>
                       </div>
                     </div>
                     {activeNodeData.details.map((detail, i) => (
                       <div key={i} className="mb-4">
-                        <p className="text-white/75 font-bold text-xs uppercase tracking-wider mb-2">{detail.title}</p>
+                        <p className="text-background-50/75 font-bold text-xs uppercase tracking-wider mb-2">{detail.title}</p>
                         <ul className="space-y-1.5">
                           {detail.items.map((item, j) => (
-                            <li key={j} className="flex items-center gap-2 text-gray-400 text-xs">
-                              <div className="w-1 h-1 bg-[#C8D400] flex-shrink-0" />
-                              {item}
+                            <li key={j} className="flex items-center gap-2 text-foreground-500 text-xs">
+                              <div className="w-1 h-1 bg-primary-500 flex-shrink-0" />{item}
                             </li>
                           ))}
                         </ul>
@@ -324,20 +201,20 @@ export default function DataPaths() {
                 {activeStreamData && !activeNodeData && (
                   <div>
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 bg-[#C8D400]/15 border border-[#C8D400]/30 flex items-center justify-center">
-                        <i className={`${activeStreamData.icon} text-[#C8D400] text-lg`} />
+                      <div className="w-10 h-10 bg-primary-500/15 border border-primary-500/30 flex items-center justify-center">
+                        <i className={`${activeStreamData.icon} text-primary-500 text-lg`} />
                       </div>
                       <div>
-                        <p className="text-[#C8D400] font-black text-xs uppercase tracking-widest">{activeStreamData.label}</p>
-                        <p className="text-white/40 text-xs capitalize">{activeStreamData.direction === 'both' ? 'Bidirektional' : activeStreamData.direction === 'in' ? 'Eingehend' : 'Ausgehend'}</p>
+                        <p className="text-primary-500 font-black text-xs uppercase tracking-widest">{activeStreamData.label}</p>
+                        <p className="text-background-50/40 text-xs capitalize">{activeStreamData.direction === 'both' ? 'Bidirektional' : activeStreamData.direction === 'in' ? 'Eingehend' : 'Ausgehend'}</p>
                       </div>
                     </div>
-                    <p className="text-white/75 text-xs leading-relaxed mb-4">{activeStreamData.description}</p>
-                    <div className="border-t border-white/10 pt-3">
-                      <p className="text-white/50 text-[10px] font-black uppercase tracking-widest mb-2">Datentypen</p>
+                    <p className="text-background-50/75 text-xs leading-relaxed mb-4">{activeStreamData.description}</p>
+                    <div className="border-t border-background-50/10 pt-3">
+                      <p className="text-background-50/50 text-2xs font-black uppercase tracking-widest mb-2">Datentypen</p>
                       <div className="flex flex-wrap gap-1.5">
                         {activeStreamData.dataPoints.map((dp) => (
-                          <span key={dp} className="text-[10px] font-bold text-[#C8D400] bg-[#C8D400]/10 border border-[#C8D400]/20 px-2 py-0.5">{dp}</span>
+                          <span key={dp} className="text-2xs font-bold text-primary-500 bg-primary-500/10 border border-primary-500/20 px-2 py-0.5">{dp}</span>
                         ))}
                       </div>
                     </div>
@@ -345,32 +222,28 @@ export default function DataPaths() {
                 )}
               </div>
             ) : (
-              <div className="border border-white/10 bg-white/5 p-6">
-                <p className="text-white/60 text-xs font-bold uppercase tracking-widest mb-4">Datenpfade im Überblick</p>
+              <div className="border border-background-50/10 bg-background-50/5 p-6">
+                <p className="text-background-50/60 text-xs font-bold uppercase tracking-widest mb-4">Datenpfade im Überblick</p>
                 <div className="space-y-3">
                   {STREAMS.map((stream) => (
-                    <button
-                      key={stream.id}
-                      onClick={() => setActiveStream(stream.id)}
-                      className="w-full flex items-center gap-3 p-3 border border-white/10 hover:border-[#C8D400]/30 hover:bg-[#C8D400]/5 transition-all duration-200 cursor-pointer text-left group"
-                    >
-                      <div className="w-7 h-7 bg-[#C8D400]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#C8D400]/20 transition-colors">
-                        <i className={`${stream.icon} text-[#C8D400] text-sm`} />
+                    <button key={stream.id} onClick={() => setActiveStream(stream.id)}
+                      className="w-full flex items-center gap-3 p-3 border border-background-50/10 hover:border-primary-500/30 hover:bg-primary-500/5 transition-all duration-200 cursor-pointer text-left group">
+                      <div className="w-7 h-7 bg-primary-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary-500/20 transition-colors">
+                        <i className={`${stream.icon} text-primary-500 text-sm`} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-white/70 font-bold text-xs group-hover:text-white transition-colors">{stream.label}</p>
-                        <p className="text-white/30 text-[10px] truncate group-hover:text-white/50 transition-colors">{stream.dataPoints.join(' · ')}</p>
+                        <p className="text-background-50/70 font-bold text-xs group-hover:text-background-50 transition-colors">{stream.label}</p>
+                        <p className="text-background-50/30 text-2xs truncate group-hover:text-background-50/50 transition-colors">{stream.dataPoints.join(' · ')}</p>
                       </div>
-                      <i className="ri-arrow-right-s-line text-gray-600 group-hover:text-[#C8D400] transition-colors text-base flex-shrink-0" />
+                      <i className="ri-arrow-right-s-line text-foreground-600 group-hover:text-primary-500 transition-colors text-base flex-shrink-0" />
                     </button>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* Direction legend */}
-            <div className="border border-white/10 bg-white/5 p-4">
-              <p className="text-white/40 text-[10px] font-black uppercase tracking-widest mb-3">Legende</p>
+            <div className="border border-background-50/10 bg-background-50/5 p-4">
+              <p className="text-background-50/40 text-2xs font-black uppercase tracking-widest mb-3">Legende</p>
               <div className="space-y-2">
                 {[
                   { line: 'solid', label: 'Aktiver Datenstrom', color: '#C8D400' },
@@ -383,155 +256,82 @@ export default function DataPaths() {
                     ) : (
                       <div className="w-8 flex-shrink-0" style={{ height: 2, background: item.color, borderTop: item.line === 'dashed' ? `2px dashed ${item.color}` : `2px solid ${item.color}`, borderBottom: 'none' }} />
                     )}
-                    <span className="text-white/60 text-[10px]">{item.label}</span>
+                    <span className="text-background-50/60 text-2xs">{item.label}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Right: Interactive diagram */}
           <div className="lg:col-span-3">
-            <div className="relative border border-white/10 bg-[#0d0d0d] overflow-hidden" style={{ aspectRatio: '5/4', minHeight: 320, maxHeight: 520 }}>
-              {/* Inner grid */}
+            <div className="relative border border-background-50/10 bg-foreground-950 overflow-hidden" style={{ aspectRatio: '5/4', minHeight: 320, maxHeight: 520 }}>
               <div className="absolute inset-0 opacity-[0.03]"
-                style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,1) 1px, transparent 1px)', backgroundSize: '32px 32px' }}
+                style={{ backgroundImage: 'linear-gradient(oklch(var(--primary-500)) 1px, transparent 1px), linear-gradient(90deg, oklch(var(--primary-500)) 1px, transparent 1px)', backgroundSize: '32px 32px' }}
               />
-
-              <svg
-                viewBox="0 0 500 400"
-                className="absolute inset-0 w-full h-full"
-                preserveAspectRatio="xMidYMid meet"
-                aria-label="SRT Datenfluß-Diagramm"
-              >
-                {/* Connection lines */}
-                {/* Agentur → SRT (top to center) */}
-                <AnimatedPath
-                  x1={px(50)} y1={py(15)} x2={px(50)} y2={py(42)}
-                  active={isStreamActive('agentur-srt')}
-                  stream={STREAMS[0]}
-                />
-                {/* SRT → Kunde (center to right) */}
-                <AnimatedPath
-                  x1={px(58)} y1={py(50)} x2={px(83)} y2={py(50)}
-                  active={isStreamActive('srt-kunde')}
-                  stream={STREAMS[1]}
-                />
-                {/* Mitarbeiter → SRT (bottom to center) */}
-                <AnimatedPath
-                  x1={px(50)} y1={py(85)} x2={px(50)} y2={py(58)}
-                  active={isStreamActive('mitarbeiter-srt')}
-                  stream={STREAMS[2]}
-                />
-                {/* Extern → SRT (left to center) */}
-                <AnimatedPath
-                  x1={px(17)} y1={py(50)} x2={px(42)} y2={py(50)}
-                  active={isStreamActive('extern-srt')}
-                  stream={STREAMS[3]}
-                />
+              <svg viewBox="0 0 500 400" className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid meet" aria-label="SRT Datenfluß-Diagramm">
+                <AnimatedPath x1={px(50)} y1={py(15)} x2={px(50)} y2={py(42)} active={isStreamActive('agentur-srt')} stream={STREAMS[0]} />
+                <AnimatedPath x1={px(58)} y1={py(50)} x2={px(83)} y2={py(50)} active={isStreamActive('srt-kunde')} stream={STREAMS[1]} />
+                <AnimatedPath x1={px(50)} y1={py(85)} x2={px(50)} y2={py(58)} active={isStreamActive('mitarbeiter-srt')} stream={STREAMS[2]} />
+                <AnimatedPath x1={px(17)} y1={py(50)} x2={px(42)} y2={py(50)} active={isStreamActive('extern-srt')} stream={STREAMS[3]} />
               </svg>
 
-              {/* Nodes rendered as HTML over the SVG */}
               {NODES.map((node) => {
                 const highlighted = isNodeHighlighted(node.id);
                 const isCenter = node.id === 'srt';
                 const isActive = activeNode === node.id;
                 return (
-                  <button
-                    key={node.id}
-                    onClick={() => setActiveNode(isActive ? null : node.id)}
+                  <button key={node.id} onClick={() => setActiveNode(isActive ? null : node.id)}
                     className={`absolute z-20 flex flex-col items-center gap-1 cursor-pointer group transition-all duration-300 ${isActive ? 'scale-110' : highlighted ? 'scale-100' : 'scale-90 opacity-40'}`}
-                    style={{
-                      left: `${node.position.x}%`,
-                      top: `${node.position.y}%`,
-                      transform: `translate(-50%, -50%) ${isActive ? 'scale(1.12)' : highlighted ? 'scale(1)' : 'scale(0.9)'}`,
-                    }}
-                    aria-label={`${node.label} — ${node.sublabel}`}
-                  >
+                    style={{ left: `${node.position.x}%`, top: `${node.position.y}%`, transform: `translate(-50%, -50%) ${isActive ? 'scale(1.12)' : highlighted ? 'scale(1)' : 'scale(0.9)'}` }}
+                    aria-label={`${node.label} — ${node.sublabel}`}>
                     {isCenter ? (
-                      <div
-                        className={`flex flex-col items-center justify-center transition-all duration-300 ${isActive ? 'ring-4 ring-[#C8D400]/50' : 'group-hover:ring-2 group-hover:ring-[#C8D400]/30'}`}
+                      <div className={`flex flex-col items-center justify-center transition-all duration-300 ${isActive ? 'ring-4 ring-primary-500/50' : 'group-hover:ring-2 group-hover:ring-primary-500/30'}`}
                         style={{
-                          width: 88,
-                          height: 88,
-                          background: isActive ? 'linear-gradient(135deg, #C8D400, #a8b200)' : 'linear-gradient(135deg, #C8D400 0%, #a8b200 100%)',
+                          width: 88, height: 88,
+                          background: isActive ? 'linear-gradient(135deg, #C8D400, #a8b300)' : 'linear-gradient(135deg, #C8D400 0%, #a8b300 100%)',
                           boxShadow: isActive ? '0 0 40px rgba(200,212,0,0.6), 0 0 80px rgba(200,212,0,0.2)' : '0 0 20px rgba(200,212,0,0.3)',
-                        }}
-                      >
-                        <div className="w-6 h-6 flex items-center justify-center text-[#111]">
-                          <i className={`${node.icon} text-2xl`} />
-                        </div>
-                        <span className="text-[#111] text-[7px] font-black uppercase tracking-wider text-center leading-tight mt-1 px-1">{node.label}<br />{node.sublabel.split(' ')[0]}</span>
-                        {isActive && <span className="absolute inset-0 animate-ping bg-[#C8D400]/20 pointer-events-none" />}
+                        }}>
+                        <div className="w-6 h-6 flex items-center justify-center text-foreground-950"><i className={`${node.icon} text-2xl`} /></div>
+                        <span className="text-foreground-950 text-2xs font-black uppercase tracking-wider text-center leading-tight mt-1 px-1">{node.label}<br />{node.sublabel.split(' ')[0]}</span>
+                        {isActive && <span className="absolute inset-0 animate-ping bg-primary-500/20 pointer-events-none" />}
                       </div>
                     ) : (
-                      <div
-                        className="flex flex-col items-center justify-center transition-all duration-300"
+                      <div className="flex flex-col items-center justify-center transition-all duration-300"
                         style={{
-                          width: 72,
-                          height: 72,
+                          width: 64, height: 64,
                           background: isActive ? 'rgba(200,212,0,0.15)' : 'rgba(26,26,26,0.95)',
                           border: `2px solid ${isActive ? '#C8D400' : 'rgba(200,212,0,0.3)'}`,
                           boxShadow: isActive ? '0 0 24px rgba(200,212,0,0.4)' : '0 4px 16px rgba(0,0,0,0.6)',
-                        }}
-                      >
-                        <div className={`w-5 h-5 flex items-center justify-center transition-colors duration-300 ${isActive ? 'text-[#C8D400]' : 'text-[#C8D400]/60'}`}>
+                        }}>
+                        <div className={`w-5 h-5 flex items-center justify-center transition-colors duration-300 ${isActive ? 'text-primary-500' : 'text-primary-500/60'}`}>
                           <i className={`${node.icon} text-xl`} />
                         </div>
                       </div>
                     )}
                     {!isCenter && (
-                      <span
-                        className={`text-[8px] font-black uppercase tracking-wider whitespace-nowrap text-center leading-tight transition-colors duration-300 mt-0.5 max-w-[90px] ${isActive ? 'text-[#C8D400]' : highlighted ? 'text-gray-400' : 'text-gray-600'}`}
-                      >
+                      <span className={`text-3xs font-black uppercase tracking-wider whitespace-nowrap text-center leading-tight transition-colors duration-300 mt-0.5 max-w-[80px] ${isActive ? 'text-primary-500' : highlighted ? 'text-foreground-500' : 'text-foreground-600'}`}>
                         {node.label}
                       </span>
                     )}
                   </button>
                 );
               })}
-
-              {/* Stream click zones - invisible but clickable areas near lines */}
-              <button
-                onClick={() => setActiveStream(activeStream === 'agentur-srt' ? null : 'agentur-srt')}
-                className="absolute z-10 cursor-pointer"
-                style={{ top: '20%', left: '44%', width: '12%', height: '18%', background: 'transparent' }}
-                aria-label="Agentur → SRT Verbindung"
-              />
-              <button
-                onClick={() => setActiveStream(activeStream === 'srt-kunde' ? null : 'srt-kunde')}
-                className="absolute z-10 cursor-pointer"
-                style={{ top: '44%', left: '60%', width: '18%', height: '12%', background: 'transparent' }}
-                aria-label="SRT → Kunde Verbindung"
-              />
-              <button
-                onClick={() => setActiveStream(activeStream === 'mitarbeiter-srt' ? null : 'mitarbeiter-srt')}
-                className="absolute z-10 cursor-pointer"
-                style={{ top: '62%', left: '44%', width: '12%', height: '18%', background: 'transparent' }}
-                aria-label="Mitarbeiter → SRT Verbindung"
-              />
-              <button
-                onClick={() => setActiveStream(activeStream === 'extern-srt' ? null : 'extern-srt')}
-                className="absolute z-10 cursor-pointer"
-                style={{ top: '44%', left: '20%', width: '18%', height: '12%', background: 'transparent' }}
-                aria-label="Extern → SRT Verbindung"
-              />
+              <button onClick={() => setActiveStream(activeStream === 'agentur-srt' ? null : 'agentur-srt')} className="absolute z-10 cursor-pointer" style={{ top: '20%', left: '44%', width: '12%', height: '18%', background: 'transparent' }} aria-label="Agentur → SRT Verbindung" />
+              <button onClick={() => setActiveStream(activeStream === 'srt-kunde' ? null : 'srt-kunde')} className="absolute z-10 cursor-pointer" style={{ top: '44%', left: '60%', width: '18%', height: '12%', background: 'transparent' }} aria-label="SRT → Kunde Verbindung" />
+              <button onClick={() => setActiveStream(activeStream === 'mitarbeiter-srt' ? null : 'mitarbeiter-srt')} className="absolute z-10 cursor-pointer" style={{ top: '62%', left: '44%', width: '12%', height: '18%', background: 'transparent' }} aria-label="Mitarbeiter → SRT Verbindung" />
+              <button onClick={() => setActiveStream(activeStream === 'extern-srt' ? null : 'extern-srt')} className="absolute z-10 cursor-pointer" style={{ top: '44%', left: '20%', width: '18%', height: '12%', background: 'transparent' }} aria-label="Extern → SRT Verbindung" />
             </div>
 
-            {/* Below diagram: stream summary chips */}
             <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
               {STREAMS.map((stream) => (
-                <button
-                  key={stream.id}
-                  onClick={() => setActiveStream(activeStream === stream.id ? null : stream.id)}
-                  className={`flex items-center gap-2 px-3 py-2 border text-left transition-all duration-200 cursor-pointer group ${activeStream === stream.id ? 'border-[#C8D400] bg-[#C8D400]/10' : 'border-white/10 bg-white/5 hover:border-[#C8D400]/30 hover:bg-[#C8D400]/5'}`}
-                >
-                  <div className={`w-5 h-5 flex items-center justify-center flex-shrink-0 ${activeStream === stream.id ? 'text-[#C8D400]' : 'text-gray-600 group-hover:text-[#C8D400]'} transition-colors`}>
+                <button key={stream.id} onClick={() => setActiveStream(activeStream === stream.id ? null : stream.id)}
+                  className={`flex items-center gap-2 px-3 py-2 border text-left transition-all duration-200 cursor-pointer group ${activeStream === stream.id ? 'border-primary-500 bg-primary-500/10' : 'border-background-50/10 bg-background-50/5 hover:border-primary-500/30 hover:bg-primary-500/5'}`}>
+                  <div className={`w-5 h-5 flex items-center justify-center flex-shrink-0 ${activeStream === stream.id ? 'text-primary-500' : 'text-foreground-600 group-hover:text-primary-500'} transition-colors`}>
                     <i className={`${stream.icon} text-sm`} />
                   </div>
                   <div className="min-w-0">
-                    <p className={`text-[9px] font-black uppercase tracking-wider leading-tight transition-colors ${activeStream === stream.id ? 'text-[#C8D400]' : 'text-gray-500 group-hover:text-gray-300'}`}>
-                      {stream.label.split('→').map((s, i) => i === 0 ? s.trim() : <span key={i} className="text-[#C8D400]/60"> →{s}</span>)}
+                    <p className={`text-3xs font-black uppercase tracking-wider leading-tight transition-colors ${activeStream === stream.id ? 'text-primary-500' : 'text-foreground-600 group-hover:text-background-50/70'}`}>
+                      {stream.label.split('→').map((s, i) => i === 0 ? s.trim() : <span key={i} className="text-primary-500/60"> →{s}</span>)}
                     </p>
                   </div>
                 </button>
@@ -540,8 +340,7 @@ export default function DataPaths() {
           </div>
         </div>
 
-        {/* Bottom stats bar */}
-        <div className="mt-14 border-t border-white/8 pt-10 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="mt-14 border-t border-background-50/8 pt-10 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { icon: 'ri-refresh-line', val: '<50 ms', label: 'Latenz', detail: 'Echtzeit ohne Batch-Verzögerung' },
             { icon: 'ri-shield-keyhole-line', val: 'AES-256', label: 'Verschlüsselung', detail: 'End-to-End, TLS 1.3, DSGVO-konform' },
@@ -549,13 +348,13 @@ export default function DataPaths() {
             { icon: 'ri-server-line', val: '99,97%', label: 'Uptime SLA', detail: 'Redundant, Frankfurt RZ, ISO 27001' },
           ].map((stat, i) => (
             <div key={i} className="flex items-start gap-3 group">
-              <div className="w-9 h-9 bg-[#C8D400]/10 border border-[#C8D400]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#C8D400]/20 transition-colors">
-                <i className={`${stat.icon} text-[#C8D400] text-base`} />
+              <div className="w-9 h-9 bg-primary-500/10 border border-primary-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary-500/20 transition-colors">
+                <i className={`${stat.icon} text-primary-500 text-base`} />
               </div>
               <div>
-                <p className="text-[#C8D400] font-black text-base leading-tight">{stat.val}</p>
-                <p className="text-white/60 text-xs font-bold">{stat.label}</p>
-                <p className="text-white/40 text-[10px] mt-0.5">{stat.detail}</p>
+                <p className="text-primary-500 font-black text-base leading-tight">{stat.val}</p>
+                <p className="text-background-50/60 text-xs font-bold">{stat.label}</p>
+                <p className="text-background-50/40 text-2xs mt-0.5">{stat.detail}</p>
               </div>
             </div>
           ))}

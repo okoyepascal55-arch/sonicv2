@@ -60,12 +60,13 @@ export default function SectionReveal({
     }
   };
 
-  // Reduced motion: no blur, no translate, instant fade
+  // Reduced motion: no translate, instant fade.
+  // NOTE: no `filter: blur()` — blurring full-width sections caused visible
+  // scroll flicker and expensive repaints. Opacity + transform are GPU-cheap.
   const transform = prefersReducedMotion
     ? 'translateY(0) translateX(0) scale(1)'
     : (isVisible ? 'translateY(0) translateX(0) scale(1)' : getInitialTransform());
   const opacity = isVisible ? 1 : 0;
-  const filter = prefersReducedMotion ? 'blur(0px)' : (isVisible ? 'blur(0px)' : 'blur(2px)');
 
   return (
     <div
@@ -74,24 +75,21 @@ export default function SectionReveal({
       style={{
         transform,
         opacity,
-        filter,
         transition: isVisible
-          ? `transform ${prefersReducedMotion ? '0.2s' : '1.1s'} cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms,
-             opacity ${prefersReducedMotion ? '0.2s' : '0.85s'} cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms,
-             filter ${prefersReducedMotion ? '0.2s' : '0.9s'} cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`
+          ? `transform ${prefersReducedMotion ? '0.2s' : '0.85s'} cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms,
+             opacity ${prefersReducedMotion ? '0.2s' : '0.65s'} cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`
           : 'none',
-        willChange: prefersReducedMotion ? 'auto' : 'transform, opacity, filter',
       }}
     >
-      {/* Lime top-edge shimmer — fades in then out */}
+      {/* Lime top-edge shimmer — grows from center, then fades */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 h-[1px] pointer-events-none z-10"
         style={{
           width: isVisible ? '200px' : '0px',
           background: 'linear-gradient(90deg, transparent, #C8D400, transparent)',
           opacity: isVisible ? 0.5 : 0,
-          transition: `width ${prefersReducedMotion ? '0.2s' : '1s'} cubic-bezier(0.16, 1, 0.3, 1) ${delay + 80}ms,
-                       opacity ${prefersReducedMotion ? '0.2s' : '1.4s'} ease-out ${delay + 80}ms`,
+          transition: `width ${prefersReducedMotion ? '0.2s' : '0.8s'} cubic-bezier(0.16, 1, 0.3, 1) ${delay + 80}ms,
+                       opacity ${prefersReducedMotion ? '0.2s' : '1s'} ease-out ${delay + 80}ms`,
         }}
       />
 
@@ -147,17 +145,18 @@ export function StackedSectionReveal({
     return () => observer.disconnect();
   }, [index, hasAnimated, prefersReducedMotion]);
 
-  // Depth offset — sections further down the stack start slightly lower + more blurred
+  // Depth offset — sections further down the stack start slightly lower.
+  // NOTE: no `zIndex` stacking — dynamic z-index (totalSections - index) made
+  // earlier sections paint over later ones, causing visible overlap/ghosting.
+  // Sections flow in normal document order instead.
   const depthOffset = Math.min((totalSections - index - 1) * 1.5, 12);
   const translateY = isVisible ? 0 : 36 + depthOffset;
   const scale = isVisible ? 1 : 0.988 - depthOffset * 0.001;
-  const blur = isVisible ? 0 : 3 + depthOffset * 0.2;
 
   const transform = prefersReducedMotion
     ? 'translateY(0) scale(1)'
     : (isVisible ? 'translateY(0) scale(1)' : `translateY(${translateY}px) scale(${scale})`);
   const opacity = isVisible ? 1 : 0;
-  const filter = prefersReducedMotion ? 'blur(0px)' : (isVisible ? 'blur(0px)' : `blur(${blur}px)`);
 
   return (
     <div
@@ -166,14 +165,10 @@ export function StackedSectionReveal({
       style={{
         transform,
         opacity,
-        filter,
         transition: isVisible
-          ? `transform ${prefersReducedMotion ? '0.2s' : '1.15s'} cubic-bezier(0.16, 1, 0.3, 1) ${index * (prefersReducedMotion ? 0 : 40)}ms,
-             opacity ${prefersReducedMotion ? '0.2s' : '0.8s'} cubic-bezier(0.16, 1, 0.3, 1) ${index * (prefersReducedMotion ? 0 : 40)}ms,
-             filter ${prefersReducedMotion ? '0.2s' : '0.95s'} cubic-bezier(0.16, 1, 0.3, 1) ${index * (prefersReducedMotion ? 0 : 40)}ms`
+          ? `transform ${prefersReducedMotion ? '0.2s' : '0.85s'} cubic-bezier(0.16, 1, 0.3, 1) ${index * (prefersReducedMotion ? 0 : 40)}ms,
+             opacity ${prefersReducedMotion ? '0.2s' : '0.6s'} cubic-bezier(0.16, 1, 0.3, 1) ${index * (prefersReducedMotion ? 0 : 40)}ms`
           : 'none',
-        willChange: prefersReducedMotion ? 'auto' : 'transform, opacity, filter',
-        zIndex: totalSections - index,
       }}
     >
       {/* Lime shimmer line — grows from center, then fades */}
@@ -183,8 +178,8 @@ export function StackedSectionReveal({
           width: isVisible ? '180px' : '0px',
           background: 'linear-gradient(90deg, transparent, #C8D400, transparent)',
           opacity: isVisible ? 0.45 : 0,
-          transition: `width ${prefersReducedMotion ? '0.2s' : '1.1s'} cubic-bezier(0.16, 1, 0.3, 1) ${index * (prefersReducedMotion ? 0 : 40) + 100}ms,
-                       opacity ${prefersReducedMotion ? '0.2s' : '1.6s'} ease-out ${index * (prefersReducedMotion ? 0 : 40) + 100}ms`,
+          transition: `width ${prefersReducedMotion ? '0.2s' : '0.9s'} cubic-bezier(0.16, 1, 0.3, 1) ${index * (prefersReducedMotion ? 0 : 40) + 100}ms,
+                       opacity ${prefersReducedMotion ? '0.2s' : '1.2s'} ease-out ${index * (prefersReducedMotion ? 0 : 40) + 100}ms`,
         }}
       />
 

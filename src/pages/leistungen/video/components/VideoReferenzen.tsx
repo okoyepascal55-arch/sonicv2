@@ -16,7 +16,7 @@ interface VideoClient {
 const VIDEO_CLIENTS: VideoClient[] = [
   {
     brand: 'PHILIPS TV & SOUND',
-    logo: 'https://cdn.brandfetch.io/philips.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+    logo: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887',
     category: 'Consumer Electronics',
     quote: '„Mit Sonic\'s Live-Video-Beratung konnten wir unsere Online-Conversion Rate signifikant steigern. Die Produktexperten kennen unsere Geräte in- und auswendig — das spüren die Kunden sofort."',
     author: 'Murat Yatkin',
@@ -40,7 +40,7 @@ const VIDEO_CLIENTS: VideoClient[] = [
   },
   {
     brand: 'NESPRESSO',
-    logo: 'https://www.sonic-group.de/wp-content/uploads/2023/06/nespresso.png',
+    logo: 'https://cdn.brandfetch.io/idaYSyWs1H/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1668078167864',
     category: 'Lifestyle & Food',
     quote: '„Sonic hat für uns ein komplettes Live-Video-Programm aufgebaut — von der Schulung der Presenter bis zur technischen Infrastruktur. Alles aus einer Hand, alles professionell."',
     author: 'Veronika Vriens',
@@ -89,9 +89,9 @@ const VIDEO_CLIENTS: VideoClient[] = [
 ];
 
 const LOGO_STRIP = [
-  { brand: 'PHILIPS', logo: 'https://cdn.brandfetch.io/philips.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
+  { brand: 'PHILIPS', logo: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887' },
   { brand: 'GARMIN', logo: 'https://cdn.brandfetch.io/garmin.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-  { brand: 'NESPRESSO', logo: 'https://www.sonic-group.de/wp-content/uploads/2023/06/nespresso.png' },
+  { brand: 'NESPRESSO', logo: 'https://cdn.brandfetch.io/idaYSyWs1H/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1668078167864' },
   { brand: 'GROUPE SEB', logo: 'https://cdn.brandfetch.io/groupeseb.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
   { brand: "L'ORÉAL", logo: 'https://cdn.brandfetch.io/loreal.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
   { brand: 'WMF', logo: 'https://cdn.brandfetch.io/wmf.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
@@ -132,7 +132,7 @@ export default function VideoReferenzen() {
               </p>
             </div>
             <a
-              href="/case-studies"
+              href="/fallbeispiele"
               className="inline-flex items-center gap-2 border border-[#111]/20 text-[#111]/70 px-6 py-3 font-black text-xs uppercase tracking-widest hover:bg-[#111] hover:text-white transition-all duration-300 whitespace-nowrap cursor-pointer self-start lg:self-auto"
             >
               Alle Case Studies
@@ -188,6 +188,8 @@ export default function VideoReferenzen() {
                     src={client.logo}
                     alt={client.brand}
                     className={`w-full h-full object-contain transition-all duration-200 ${activeCard === i ? 'brightness-0 invert' : ''}`}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 {/* Info */}
@@ -223,6 +225,8 @@ export default function VideoReferenzen() {
                     src={VIDEO_CLIENTS[activeCard].logo}
                     alt={VIDEO_CLIENTS[activeCard].brand}
                     className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div>
@@ -286,6 +290,8 @@ export default function VideoReferenzen() {
                   src={item.logo}
                   alt={item.brand}
                   className="h-7 w-auto object-contain grayscale"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}
@@ -293,12 +299,6 @@ export default function VideoReferenzen() {
         </div>
       </div>
 
-      <style>{`
-        @keyframes fadeInRight {
-          from { opacity: 0; transform: translateX(12px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-      `}</style>
     </section>
   );
 }

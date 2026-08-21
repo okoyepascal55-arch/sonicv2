@@ -1,94 +1,144 @@
-import { useNavigate } from 'react-router-dom';
+import { useMediaStore } from '@/lib/mediaStore';
 
 export default function KarriereHero() {
-  const navigate = useNavigate();
+  const { images: heroBgImages } = useMediaStore('careers_hero_images');
+  const { images: karriereImages } = useMediaStore('/images/Karriere');
+
+  const heroImage =
+    heroBgImages[0]?.url ||
+    karriereImages[0]?.url ||
+    '/images/Karriere/GIGATV_029.webp';
+
+  const scrollToJobs = () => {
+    const el = document.getElementById('stellenangebote');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
-    <section className="relative min-h-[480px] md:min-h-[520px] flex items-center pt-24 md:pt-28 pb-14 md:pb-20 px-4 md:px-6 bg-white overflow-hidden">
-      {/* Subtle grid overlay */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,212,0,0.03) 1px,transparent 1px)', backgroundSize: '64px 64px' }} />
-
-      {/* Right-side portrait image — subtle */}
-      <div className="absolute right-0 top-0 h-full w-[45%] hidden lg:block z-0 overflow-hidden">
+    <section
+      className="relative flex min-h-[520px] md:min-h-[640px] items-center overflow-hidden"
+      id="stellen"
+    >
+      {/* Full-bleed background image */}
+      <div className="absolute inset-0" aria-hidden="true">
         <img
-          src="https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg"
-          alt="Sonic Team"
-          className="w-full h-full object-cover object-top"
-          style={{ opacity: 0.12 }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.6) 30%, rgba(255,255,255,0) 60%)' }}
-          aria-hidden="true"
+          src={heroImage}
+          alt=""
+          className="h-full w-full object-cover object-top"
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto w-full text-center">
-        <div className="max-w-3xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 mb-7 bg-[#C8D400]/10 px-5 py-2 border border-[#C8D400]/30">
-            <div className="w-1.5 h-1.5 bg-[#C8D400] animate-pulse" style={{ borderRadius: 0 }} />
-            <p className="text-xs font-black tracking-widest uppercase text-[#111]/80">Karriere bei Sonic</p>
+      {/* Decorative wave SVG background */}
+      <div
+        className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none"
+        aria-hidden="true"
+      >
+        <svg
+          viewBox="0 0 300 140"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-[70%] md:w-[50%] max-w-[700px]"
+        >
+          <path
+            d="M0 70 Q 25 20 50 70 T 100 70 T 150 70 T 200 70 T 250 70 T 300 70"
+            fill="none"
+            stroke="#DCE94D"
+            strokeWidth="4"
+            strokeLinecap="round"
+          />
+          <path
+            d="M0 90 Q 25 60 50 90 T 100 90 T 150 90 T 200 90 T 250 90 T 300 90"
+            fill="none"
+            stroke="#3A3A3C"
+            strokeWidth="3"
+            strokeLinecap="round"
+            opacity="0.6"
+          />
+          <path
+            d="M0 50 Q 25 30 50 50 T 100 50 T 150 50 T 200 50 T 250 50 T 300 50"
+            fill="none"
+            stroke="#3A3A3C"
+            strokeWidth="3"
+            strokeLinecap="round"
+            opacity="0.4"
+          />
+        </svg>
+      </div>
+
+      {/* Dark gradient overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(11,11,12,0.25) 0%, rgba(11,11,12,0.50) 50%, rgba(11,11,12,0.90) 100%)',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Content */}
+      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-8 py-20 md:py-[80px]">
+        <div className="max-w-[640px]">
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-xs font-bold uppercase tracking-[0.06em] px-3.5 py-[7px] pr-3.5 mb-5 ">
+            <span className="w-1.5 h-1.5 bg-[#0B0B0C] " />
+            Karriere bei Sonic
           </div>
 
-          {/* Heading */}
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-sonic-dark mb-4 leading-tight tracking-tight">
-            MENSCHEN MIT
-            <br />
-            <span className="text-[#C8D400]">ENERGIE</span> GESUCHT
+          <h1 className="text-[clamp(38px,5vw,58px)] font-black text-white leading-[1.08] tracking-tight uppercase mb-[22px]">
+            Menschen mit{' '}
+            <span className="bg-[#DCE94D] text-[#0B0B0C] px-2.5 py-[2px] inline-block">
+              Energie
+            </span>{' '}
+            gesucht
           </h1>
 
-          {/* Description */}
-          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-6 leading-relaxed">
-            Zeige was du kannst, und freue dich auf gemeinsame Erfolge. Wichtig ist für uns deine Einstellung zum Job — nicht nur das, was du schon erreicht hast.
+          <p className="text-base text-white/80 leading-[1.65] max-w-[480px] mb-4">
+            Zeige, was du kannst, und freue dich auf gemeinsame Erfolge. Wichtig
+            ist uns deine Einstellung zum Job — nicht nur das, was du schon
+            erreicht hast.
           </p>
-
-          <p className="text-sm text-gray-400 max-w-lg mx-auto mb-10 leading-relaxed">
-            Aktuelle Stellen am Sonic-Campus in Krefeld und deutschlandweite Einsätze für unsere Kundenprojekte.
+          <p className="text-sm text-white/60 leading-[1.6] max-w-[480px] mb-8">
+            Aktuelle Stellen am Sonic-Campus in Krefeld und deutschlandweite
+            Einsätze für unsere Kundenprojekte.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-wrap gap-3.5 mb-10">
             <button
-              onClick={() => {
-                const el = document.getElementById('stellenangebote');
-                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#C8D400] text-[#111] font-black uppercase tracking-wider hover:bg-[#111] hover:text-[#C8D400] transition-all cursor-pointer whitespace-nowrap text-sm active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2"
-              style={{ borderRadius: 0 }}
+              onClick={scrollToJobs}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#DCE94D] text-[#0B0B0C] font-bold text-sm hover:bg-[#C3D62A] transition-all duration-200 cursor-pointer whitespace-nowrap "
             >
-              <i className="ri-briefcase-line" />
               Alle Stellen ansehen
             </button>
             <a
               href="https://calendly.com/sonic-group/tanja-15min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent text-gray-600 font-black uppercase tracking-wider border-2 border-gray-200 hover:border-[#C8D400] hover:text-[#C8D400] transition-all cursor-pointer whitespace-nowrap text-sm active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2"
-              style={{ borderRadius: 0 }}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 border-[1.5px] border-white text-white font-bold text-sm hover:bg-white/10 transition-all duration-200 cursor-pointer whitespace-nowrap "
             >
-              <i className="ri-send-plane-line" />
               Initiativbewerbung
             </a>
           </div>
 
-          {/* Trust micro stats */}
-          <div className="flex flex-wrap gap-6 justify-center mt-10 pt-8 border-t border-gray-100">
+          {/* Trust stats row */}
+          <div className="flex flex-wrap gap-9 border-t border-white/20 pt-6">
             {[
-              { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20star%20award%20rating%20quality%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20star%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=64&height=64&seq=wood-star-karriere-hero-01&orientation=squarish', value: '4.8/5', label: 'Kununu Score' },
-              { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20clock%20time%20tenure%20loyalty%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20clock%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=64&height=64&seq=wood-clock-karriere-hero-02&orientation=squarish', value: 'Ø 5,15J.', label: 'Betriebszugehörigkeit' },
-              { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20team%20people%20network%20talent%20pool%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20people%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=64&height=64&seq=wood-team-karriere-hero-03&orientation=squarish', value: '20.000+', label: 'Talente im Netzwerk' },
+              { icon: 'ri-star-fill', value: '4.8/5', label: 'Kununu Score' },
+              { icon: 'ri-time-line', value: '\u00D8 5,15 J.', label: 'Betriebszugeh\u00F6rigkeit' },
+              { icon: 'ri-user-community-line', value: '20.000+', label: 'Talente im Netzwerk' },
             ].map((stat, i) => (
               <div key={i} className="flex items-center gap-2.5">
-                <div
-                  className="w-8 h-8 overflow-hidden flex-shrink-0"
-                  style={{ borderRadius: 0, boxShadow: '0 2px 6px rgba(139,90,43,0.2)' }}
-                >
-                  <img src={stat.woodIcon} alt={stat.label} className="w-full h-full object-cover" />
+                <div className="w-[34px] h-[34px]  bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
+                  <i className={`${stat.icon} text-sm text-[#DCE94D]`} />
                 </div>
                 <div>
-                  <div className="text-sm font-black text-[#111] leading-none">{stat.value}</div>
-                  <div className="text-xs text-gray-400 font-bold mt-0.5">{stat.label}</div>
+                  <div className="text-[17px] font-black text-white leading-none tabular-nums">
+                    {stat.value}
+                  </div>
+                  <div className="text-[11px] text-white/50 font-bold mt-0.5 uppercase tracking-[0.04em]">
+                    {stat.label}
+                  </div>
                 </div>
               </div>
             ))}

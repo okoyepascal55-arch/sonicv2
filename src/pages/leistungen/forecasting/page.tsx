@@ -1,11 +1,10 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import Navigation from '../../../components/feature/Navigation';
-import LeistungenPageNav from '../../../components/feature/LeistungenPageNav';
-import LeistungenKontakt from '../../../components/feature/LeistungenKontakt';
-import ScrollToTopButton from '../../../components/feature/ScrollToTopButton';
-import WoodenDivider from '../../../components/base/WoodenDivider';
-import ClientProof from '../../../components/feature/ClientProof';
+import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
+import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
+import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
+import ClientProof from '@/components/feature/ClientProof';
+import WoodenDivider from '@/components/base/WoodenDivider';
 import ForecastingHero from './components/ForecastingHero';
 import ForecastingContent from './components/ForecastingContent';
 
@@ -30,8 +29,7 @@ export default function ForecastingPage() {
   const heroRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white">
-      <Navigation />
+    <div className="min-h-[100dvh] overflow-x-hidden bg-white">
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
 
       {/* Hero */}
@@ -39,7 +37,6 @@ export default function ForecastingPage() {
         <ForecastingHero />
       </div>
 
-      <WoodenDivider />
       <div style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
         <ForecastingContent />
       </div>

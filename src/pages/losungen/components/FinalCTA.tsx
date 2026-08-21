@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useText } from '@/hooks/useText';
 import { CONTACT_EMAIL } from '@/lib/contact';
 
 export default function FinalCTA() {
+  const tBadge = useText('losungen_cta', 'losungen-cta-badge', 'Jetzt starten');
+  const tHeading = useText('losungen_cta', 'losungen-cta-heading', 'BEREIT FÜR MESSBAREN ERFOLG?');
+  const tSub = useText('losungen_cta', 'losungen-cta-sub', 'Starte dein Projekt in 60 Sekunden — wähle deine Branche und wir melden uns.');
+  const tConsult = useText('losungen_cta', 'losungen-cta-consult', '30-minütiges Beratungsgespräch buchen');
   const [selectedIndustry, setSelectedIndustry] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
@@ -32,35 +37,34 @@ export default function FinalCTA() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-6">
             <div className="w-1.5 h-1.5 bg-[#C8D400] animate-pulse" />
-            <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Jetzt starten</span>
+            <span className="text-xs font-black text-primary-500 uppercase tracking-widest">{tBadge}</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight tracking-tight">
             BEREIT FÜR<br />
-            <span className="text-[#C8D400]">MESSBAREN ERFOLG?</span>
+            <span className="text-primary-500">MESSBAREN ERFOLG?</span>
           </h2>
           <p className="text-base text-white/60 max-w-xl mx-auto mt-4">
-            Starte dein Projekt in 60 Sekunden — wähle deine Branche und wir melden uns.
+            {tSub}
           </p>
         </div>
 
         {/* Quick Start Form */}
-        <div className="bg-white/5 border border-white/10 p-8 md:p-10 mb-8">
+        <div className="bg-white/[0.03] backdrop-blur-[2px] border border-white/[0.06] p-8 md:p-10 mb-8 rounded-sm">
           {/* Lime top accent */}
           <div className="h-[2px] bg-[#C8D400] mb-8 w-12"></div>
 
           {submitted ? (
             <div className="text-center py-8">
               <div className="w-16 h-16 flex items-center justify-center bg-[#C8D400]/20 border-2 border-[#C8D400]/40 mx-auto mb-4">
-                <i className="ri-check-double-line text-3xl text-[#C8D400]"></i>
+                <i className="ri-check-double-line text-3xl text-primary-500"></i>
               </div>
               <h3 className="text-xl font-black text-white mb-2 uppercase">Vielen Dank!</h3>
               <p className="text-white/60 text-sm mb-6">
-                Wir melden uns in Kürze bezüglich <strong className="text-[#C8D400]">{selectedIndustry}</strong>.
+                Wir melden uns in Kürze bezüglich <strong className="text-primary-500">{selectedIndustry}</strong>.
               </p>
               <button
                 onClick={() => { setSubmitted(false); setSelectedIndustry(''); }}
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 text-white/70 font-black text-xs uppercase tracking-wider hover:border-[#C8D400] hover:text-[#C8D400] transition-all cursor-pointer whitespace-nowrap"
-                style={{ borderRadius: 0 }}
+                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/[0.08] text-white/70 font-black text-xs uppercase tracking-wider hover:border-[#C8D400] hover:text-primary-500 transition-all cursor-pointer whitespace-nowrap rounded-sm"
               >
                 <i className="ri-refresh-line"></i>
                 Neu starten
@@ -98,7 +102,7 @@ export default function FinalCTA() {
                         {industry}
                       </span>
                       {selectedIndustry === industry && (
-                        <i className="ri-check-line text-[#C8D400] ml-auto text-base"></i>
+                        <i className="ri-check-line text-primary-500 ml-auto text-base"></i>
                       )}
                     </label>
                   ))}
@@ -110,8 +114,8 @@ export default function FinalCTA() {
                 disabled={!selectedIndustry}
                 className={`w-full py-4 font-black text-sm uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-3 whitespace-nowrap ${
                   selectedIndustry
-                    ? 'bg-[#C8D400] text-[#111] hover:bg-white cursor-pointer'
-                    : 'bg-white/10 text-white/20 cursor-not-allowed'
+                    ? 'bg-[#C8D400] text-[#111] hover:bg-white hover:scale-[1.02] cursor-pointer'
+                    : 'bg-white/[0.06] text-white/20 cursor-not-allowed'
                 }`}
                 style={{ borderRadius: 0 }}
               >
@@ -128,12 +132,12 @@ export default function FinalCTA() {
             Oder buche direkt ein Beratungsgespräch
           </p>
           <a
-            href="mailto:${CONTACT_EMAIL}`?subject=Beratungsgespräch%20anfragen"
-            className="inline-flex items-center gap-3 bg-transparent border-2 border-[#C8D400]/40 text-white px-8 py-4 font-black text-sm uppercase tracking-wider hover:border-[#C8D400] hover:text-[#C8D400] transition-all duration-300 cursor-pointer whitespace-nowrap"
+            href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespräch%20anfragen`}
+            className="inline-flex items-center gap-3 bg-transparent border-2 border-[#C8D400]/40 text-white px-8 py-4 font-black text-sm uppercase tracking-wider hover:border-[#C8D400] hover:text-primary-500 transition-all duration-300 cursor-pointer whitespace-nowrap"
             style={{ borderRadius: 0 }}
           >
             <i className="ri-calendar-line text-lg"></i>
-            <span>30-minütiges Beratungsgespräch buchen</span>
+            <span>{tConsult}</span>
           </a>
         </div>
       </div>

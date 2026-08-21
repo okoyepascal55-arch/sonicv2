@@ -1,289 +1,269 @@
-import { useState, useRef, useEffect } from 'react';
-import SectionBadge from '@/components/base/SectionBadge';
+import { useState } from 'react';
+import { useMediaStore } from '@/lib/mediaStore';
+import { useText } from '@/hooks/useText';
 
 const EVENTS = [
   {
-    id: 'summit', ep: '01',
-    label: 'Team Summit',
-    icon: 'ri-building-line',
-    tag: 'Jährlich',
-    title: 'Sonic Team Summit',
-    subtitle: 'Unser größtes Event des Jahres',
-    highlight: '500+ Teilnehmer',
-    desc: 'Drei Tage Strategie, Zusammenhalt und Feier an exklusiven Locations. Das ganze Sonic Team an einem Ort — vernetzt, motiviert, ausgezeichnet.',
-    image: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png',
+    id: 'content',
+    tag: 'Kreation',
+    title: 'Content Creation',
+    stat: '50+ Shoots pro Monat',
+    fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png',
+    videoUrl: 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&rel=0&modestbranding=1',
   },
   {
-    id: 'celebrations', ep: '02',
-    label: 'Quarterly Wins',
-    icon: 'ri-trophy-line',
-    tag: 'Quartalsweise',
-    title: 'Quartals-Highlights',
-    subtitle: 'Erfolge feiern, Talente ehren',
-    highlight: 'Top Performer',
-    desc: 'Wir feiern gemeinsam Ergebnisse, erkennen Leistungen an und stärken das Gemeinschaftsgefühl im Team. Jeder Erfolg gehört allen.',
-    image: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg',
+    id: 'team',
+    tag: 'Intern',
+    title: 'Team Events',
+    stat: '50+ Events pro Jahr',
+    fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg',
+    videoUrl: 'https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1&rel=0&modestbranding=1',
   },
   {
-    id: 'training', ep: '03',
-    label: 'Training Days',
-    icon: 'ri-lightbulb-line',
-    tag: 'Monatlich',
-    title: 'Training & Entwicklung',
-    subtitle: 'Expert-geführte Workshops',
-    highlight: 'Expertenwissen',
-    desc: 'Praxisnahe Trainings mit Branchen-Experten, Produktdemos und Skills-Aufbau. Lernen ist bei uns keine Pflicht — es ist Kultur.',
-    image: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg',
-  },
-  {
-    id: 'outing', ep: '04',
-    label: 'Team Ausflüge',
-    icon: 'ri-gamepad-line',
-    tag: 'Regelmäßig',
-    title: 'Team Ausflüge & Events',
-    subtitle: 'Spaß, der verbindet',
-    highlight: 'Pure Energie',
-    desc: 'Von Go-Kart bis Escape Room — wir schaffen echte Verbindungen außerhalb des Büros. Gemeinsam arbeiten, gemeinsam lachen.',
-    image: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg',
-  },
-  {
-    id: 'holiday', ep: '05',
-    label: 'Firmenfeiern',
-    icon: 'ri-gift-line',
-    tag: 'Tradition',
-    title: 'Firmen- & Jahresfeiern',
-    subtitle: 'Unvergessliche Nächte',
-    highlight: 'Seit 2007',
-    desc: 'Jahresabschluss-Events, die die gesamte Sonic Family zusammenbringen. Eine Tradition, die unsere Kultur definiert.',
-    image: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg',
-  },
-  {
-    id: 'bts', ep: '06',
-    label: 'Behind the Scenes',
-    icon: 'ri-camera-line',
-    tag: 'Täglich',
-    title: 'Alltag bei Sonic',
-    subtitle: 'Die echte Kultur',
-    highlight: 'Täglich gelebt',
-    desc: 'Kaffee-Pausen, Mittags-Runden, spontane Erfolgsmomente. Die echte Unternehmenskultur passiert nicht auf Bühnen — sie passiert jeden Tag.',
-    image: 'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg',
+    id: 'promoter',
+    tag: 'Extern',
+    title: 'Promoter Events',
+    stat: '98% Zufriedenheit',
+    fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg',
+    videoUrl: 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&rel=0&modestbranding=1',
   },
 ];
 
-function useReveal(threshold = 0.05) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [vis, setVis] = useState(false);
-  useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold });
-    obs.observe(el); return () => obs.disconnect();
-  }, [threshold]);
-  return { ref, vis };
-}
-
 export default function SonicTeamEvents() {
-  const [activeId, setActiveId] = useState('summit');
-  const [transitioning, setTransitioning] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  const [hoveredPolaroid, setHoveredPolaroid] = useState(false);
-  const headerReveal = useReveal();
-  const bodyReveal = useReveal(0.03);
+  const [activeId, setActiveId] = useState('content');
+  const [playing, setPlaying] = useState(false);
+  const { images: eventImages } = useMediaStore('careers_events_images');
+  const { images: eventVideos } = useMediaStore('careers_events_videos');
 
-  const current = EVENTS.find(e => e.id === activeId) ?? EVENTS[0];
+  const tBadge = useText('careers_events', 'careers-events-badge', 'Leben bei Sonic');
+  const tHeading = useText('careers_events', 'careers-events-heading', 'Wir arbeiten hart. Wir feiern noch mehr.');
 
-  const switchTo = (id: string) => {
-    if (id === activeId) return;
-    setTransitioning(true);
-    setTimeout(() => { setActiveId(id); setTransitioning(false); }, 220);
+  const tCampusBadge = useText('careers_campus', 'careers-campus-badge', 'Unser Campus');
+  const tCampusHeading = useText('careers_campus', 'careers-campus-heading', 'BÜRO ERKUNDEN');
+  const tCampusSub = useText('careers_campus', 'careers-campus-sub', '360°-Rundgang durch unseren Hauptsitz in Krefeld — Campus Fichtenhain 46.');
+  const tCampusAddress = useText('careers_campus', 'careers-campus-address', 'Campus Fichtenhain 46');
+  const tCampusCity = useText('careers_campus', 'careers-campus-city', '47807 Krefeld, Deutschland');
+  const tCampusRoute = useText('careers_campus', 'careers-campus-route', 'Route planen');
+  const tCampusTip1 = useText('careers_campus', 'careers-campus-tip-1', 'Klicken & Ziehen zum Umsehen');
+  const tCampusTip2 = useText('careers_campus', 'careers-campus-tip-2', 'Kreise klicken zum Bewegen');
+  const tCampusTip3 = useText('careers_campus', 'careers-campus-tip-3', 'Vollbild für beste Erfahrung');
+
+  const resolvedEvents = EVENTS.map((ev, i) => ({
+    ...ev,
+    image: eventImages[i]?.url || ev.fallbackImage,
+    videoUrl: eventVideos[i]?.url || ev.videoUrl,
+  }));
+
+  const current = resolvedEvents.find((e) => e.id === activeId) ?? resolvedEvents[0];
+
+  const selectEvent = (id: string) => {
+    setActiveId(id);
+    setPlaying(true);
   };
 
   return (
-    <section id="sonic-events" className="relative overflow-hidden" style={{ background: '#111' }}>
-      {/* Top accent */}
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg,transparent 0%,rgba(200,212,0,0.3) 25%,rgba(200,212,0,0.3) 75%,transparent 100%)' }} />
-
-      {/* Background grid */}
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(200,212,0,0.025) 1px,transparent 1px)', backgroundSize: '64px 64px' }} />
-
-      {/* ── HEADER ── */}
-      <div
-        ref={headerReveal.ref}
-        className="max-w-7xl mx-auto px-6 md:px-10 pt-20 md:pt-28 pb-12 relative z-10"
-        style={{ opacity: headerReveal.vis ? 1 : 0, transform: headerReveal.vis ? 'none' : 'translateY(32px)', transition: 'opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1)' }}
-      >
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-5 h-px bg-[#C8D400]" />
-              <span className="text-[9px] font-black uppercase tracking-[0.18em] text-[#C8D400]/70">Sonic Team Events</span>
-            </div>
-            <SectionBadge text="Wir arbeiten hart. Wir feiern noch mehr." variant="light" className="mb-5" />
-            <h2 className="text-5xl md:text-7xl font-black text-white leading-[0.9] tracking-tight uppercase">
-              Sonic<br /><span className="text-[#C8D400]">Team</span>
-            </h2>
+    <section id="leben" className="py-[88px] px-8 bg-white">
+      <div className="max-w-[1200px] mx-auto">
+        {/* Header */}
+        <div className="max-w-[640px] mb-11">
+          <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-xs font-bold uppercase tracking-[0.06em] px-3.5 py-[7px] pr-3.5 mb-5 ">
+            <span className="w-1.5 h-1.5 bg-[#0B0B0C] " />
+            {tBadge}
           </div>
-          <p className="text-sm font-light leading-relaxed max-w-xs text-white/35">
-            Echte Verbindungen jenseits des Büros. Wir schaffen Momente, die verbinden.
-          </p>
+          <h2 className="text-[clamp(28px,3.4vw,40px)] font-black text-[#0B0B0C] leading-[1.1] tracking-tight uppercase">
+            {tHeading.split('. ')[0]}.{' '}
+            <span className="text-[#C3D62A]">
+              {tHeading.includes('.') ? tHeading.split('. ').slice(1).join('. ') : 'Wir feiern noch mehr.'}
+            </span>
+          </h2>
         </div>
-      </div>
 
-      {/* ── BODY ── */}
-      <div
-        ref={bodyReveal.ref}
-        className="max-w-7xl mx-auto px-6 md:px-10 pb-20 md:pb-28 relative z-10"
-        style={{ opacity: bodyReveal.vis ? 1 : 0, transform: bodyReveal.vis ? 'none' : 'translateY(40px)', transition: 'opacity 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s, transform 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s' }}
-      >
-        {/* Main showcase */}
-        <div
-          className="relative cursor-pointer"
-          style={{ overflow: 'visible' }}
-          onMouseEnter={() => { setHovered(true); setHoveredPolaroid(true); }}
-          onMouseLeave={() => { setHovered(false); setHoveredPolaroid(false); }}
-        >
-          {/* ── POLAROID FRAME ── */}
-          <div
-            className="relative flex flex-col w-full"
-            style={{
-              background: '#f5f2ec',
-              padding: '8px 8px 52px 8px',
-              boxShadow: hoveredPolaroid
-                ? '0 28px 72px rgba(0,0,0,0.55), 0 8px 24px rgba(0,0,0,0.35)'
-                : '0 16px 48px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.25)',
-              transform: hoveredPolaroid
-                ? 'rotate(0deg) translateY(-5px)'
-                : 'rotate(-0.4deg)',
-              transition: 'transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s cubic-bezier(0.16,1,0.3,1)',
-            }}
-          >
-            {/* Photo area */}
-            <div
-              className="relative overflow-hidden group"
-              style={{ border: '0.5px solid rgba(255,255,255,0.07)' }}
-            >
-              <div className="relative w-full" style={{ height: 'clamp(320px, 42vw, 520px)' }}>
-                <img
-                  key={current.id}
-                  src={current.image}
-                  alt={current.title}
-                  className="w-full h-full object-cover object-top"
-                  style={{
-                    transform: hovered ? 'scale(1.04)' : 'scale(1)',
-                    opacity: transitioning ? 0 : 1,
-                    transition: 'transform 0.7s cubic-bezier(0.16,1,0.3,1), opacity 0.22s ease',
-                  }}
-                />
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(17,17,17,0.9) 0%,rgba(17,17,17,0.35) 45%,rgba(17,17,17,0.2) 100%)' }} />
+        {/* Video grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {resolvedEvents.map((ev) => {
+            const isActive = ev.id === activeId;
+            return (
+              <button
+                key={ev.id}
+                onClick={() => selectEvent(ev.id)}
+                className="text-left cursor-pointer"
+              >
+                <div className="relative  overflow-hidden bg-[#0B0B0C] aspect-[16/10]">
+                  {/* Event image */}
+                  <img
+                    src={ev.image}
+                    alt={ev.title}
+                    className="absolute inset-0 h-full w-full object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  {/* Dark overlay for readability */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        'linear-gradient(to bottom, rgba(11,11,12,0.35) 0%, rgba(11,11,12,0.55) 100%)',
+                    }}
+                  />
+                  {/* Subtle repeating pattern overlay */}
+                  <div
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                      background: 'repeating-linear-gradient(45deg, #1E1E20 0 8px, #171718 8px 16px)',
+                    }}
+                  />
+                  {isActive && (
+                    <div className="absolute inset-0 border-2 border-[#DCE94D] " />
+                  )}
 
-                {/* Lime border on hover */}
-                <div
-                  className="absolute inset-0 pointer-events-none z-10 transition-opacity duration-300"
-                  style={{ boxShadow: 'inset 0 0 0 1.5px #C8D400', opacity: hovered ? 1 : 0 }}
-                />
-                {/* Lime accent line at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 h-[2px]" style={{ background: '#C8D400' }} />
-
-                {/* Top-left highlight chip */}
-                <div className="absolute top-5 left-5 z-20">
-                  <div className="flex items-center gap-2 px-3 py-1.5" style={{ background: 'rgba(200,212,0,0.15)', border: '0.5px solid rgba(200,212,0,0.4)', backdropFilter: 'blur(8px)' }}>
-                    <div className="w-1.5 h-1.5 animate-pulse bg-[#C8D400]" />
-                    <span className="text-[9px] font-black uppercase tracking-[0.1em] text-[#C8D400]">{current.highlight}</span>
+                  {/* Tag */}
+                  <div className="absolute top-3.5 left-3.5 z-10">
+                    <span className="inline-block bg-[#DCE94D] text-[#0B0B0C] text-[10px] font-black uppercase px-2.5 py-1 ">
+                      {ev.tag}
+                    </span>
                   </div>
-                </div>
-                {/* EP badge top-right */}
-                <div className="absolute top-5 right-5 z-20 px-2.5 py-1.5 bg-[#C8D400]">
-                  <span className="text-[9px] font-black tracking-[0.1em] text-[#111]">EP. {current.ep}</span>
-                </div>
 
-                {/* Bottom content */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-8"
-                  style={{ opacity: transitioning ? 0 : 1, transform: transitioning ? 'translateY(6px)' : 'none', transition: 'opacity 0.22s ease, transform 0.22s ease' }}
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-9 h-9 flex items-center justify-center flex-shrink-0 bg-[#C8D400]">
-                      <i className={`${current.icon} text-base text-[#111]`} />
+                  {/* Play button */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                    <div className="w-[52px] h-[52px]  bg-[#DCE94D] flex items-center justify-center">
+                      <i className="ri-play-fill text-xl text-[#0B0B0C] ml-0.5" />
                     </div>
-                    <span className="text-xs font-black uppercase tracking-[0.1em] text-[#C8D400]">{current.subtitle}</span>
-                    <span className="text-[9px] font-black uppercase tracking-widest px-2 py-1" style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.35)' }}>{current.tag}</span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-black text-white leading-none tracking-tight mb-2.5 uppercase">{current.title}</h3>
-                  <p className="text-sm font-light leading-relaxed max-w-2xl text-white/60">{current.desc}</p>
-                </div>
-              </div>
-            </div>
 
-            {/* Polaroid caption strip — paper grain */}
-            <div className="flex flex-col items-center justify-center pt-3 pb-1 relative overflow-hidden" style={{ background: '#f5f2ec' }}>
+                  {/* Caption */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 p-4 z-10"
+                    style={{
+                      background: 'linear-gradient(0deg, rgba(0,0,0,0.75), transparent)',
+                    }}
+                  >
+                    <h5 className="text-sm font-bold text-white">{ev.title}</h5>
+                    <span className="text-[11px] text-[#DCE94D]">{ev.stat}</span>
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Active event — expanded video player */}
+        <div className="mt-6 border border-[#0B0B0C] bg-[#0B0B0C] overflow-hidden">
+          {playing ? (
+            <div className="relative w-full aspect-video">
+              <iframe
+                key={current.id}
+                src={current.videoUrl}
+                title={current.title}
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          ) : (
+            <button
+              onClick={() => setPlaying(true)}
+              className="relative w-full aspect-video block cursor-pointer"
+            >
+              <img
+                src={current.image}
+                alt={current.title}
+                className="absolute inset-0 h-full w-full object-cover object-top"
+              />
               <div
-                className="absolute inset-0 pointer-events-none"
+                className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'grain\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3CfeColorMatrix type=\'saturate\' values=\'0\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23grain)\' opacity=\'0.12\'/%3E%3C/svg%3E")',
-                  backgroundSize: '120px 120px',
-                  opacity: 0.6,
-                  mixBlendMode: 'multiply',
+                  background:
+                    'linear-gradient(to bottom, rgba(11,11,12,0.35) 0%, rgba(11,11,12,0.7) 100%)',
                 }}
               />
-              <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(180,160,120,0.04) 3px, rgba(180,160,120,0.04) 4px)', opacity: 0.8 }} />
-              <div className="relative z-10 text-[10px] font-black uppercase tracking-[0.14em] text-[#111]/70 leading-none">{current.title}</div>
-              <div className="relative z-10 text-[8px] font-medium uppercase tracking-[0.1em] text-[#111]/40 mt-0.5">Sonic Team Events · {current.tag}</div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                <div className="w-[72px] h-[72px] bg-[#DCE94D] flex items-center justify-center">
+                  <i className="ri-play-fill text-3xl text-[#0B0B0C] ml-1" />
+                </div>
+              </div>
+              <span className="absolute bottom-5 left-0 right-0 text-center text-white/80 text-xs font-bold uppercase tracking-[0.2em]">
+                Klicken zum Abspielen
+              </span>
+            </button>
+          )}
+
+          <div className="px-5 py-4 flex items-center justify-between gap-4 border-t border-white/10">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="bg-[#DCE94D] text-[#0B0B0C] text-[10px] font-black uppercase px-2 py-0.5">
+                  {current.tag}
+                </span>
+                <h4 className="text-sm font-bold text-white uppercase tracking-tight">
+                  {current.title}
+                </h4>
+              </div>
+              <p className="text-xs text-white/55">{current.stat}</p>
             </div>
+            <span className="text-[11px] font-bold text-[#DCE94D] whitespace-nowrap hidden sm:block">
+              {playing ? 'Wird abgespielt' : 'Bereit'}
+            </span>
           </div>
         </div>
 
-        {/* ── THUMBNAIL STRIP (tab strip) ── */}
-        <div className="grid gap-[3px] mt-[3px]" style={{ gridTemplateColumns: 'repeat(6, 1fr)' }}>
-          {EVENTS.map((ev) => (
-            <button
-              key={ev.id}
-              onClick={() => switchTo(ev.id)}
-              className="relative overflow-hidden cursor-pointer group transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400]"
-              style={{
-                background: activeId === ev.id ? 'rgba(200,212,0,0.1)' : '#1a1a1a',
-                border: activeId === ev.id ? '0.5px solid rgba(200,212,0,0.4)' : '0.5px solid rgba(255,255,255,0.06)',
-                borderRadius: 0,
-                padding: '14px 16px',
-              }}
-            >
-              {/* Active indicator */}
-              {activeId === ev.id && <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#C8D400]" />}
-              <div className="flex items-center gap-2 mb-2">
-                <div
-                  className="w-6 h-6 flex items-center justify-center flex-shrink-0 transition-all duration-200"
-                  style={{ background: activeId === ev.id ? '#C8D400' : 'rgba(255,255,255,0.06)', borderRadius: 0 }}
-                >
-                  <i className={`${ev.icon} text-[11px]`} style={{ color: activeId === ev.id ? '#111' : 'rgba(255,255,255,0.35)' }} />
-                </div>
-                <span className="text-[8px] font-black uppercase tracking-[0.1em]" style={{ color: activeId === ev.id ? '#C8D400' : 'rgba(255,255,255,0.25)' }}>EP. {ev.ep}</span>
-              </div>
-              <div className="text-[10px] font-black uppercase tracking-[0.06em] text-left leading-snug" style={{ color: activeId === ev.id ? '#fff' : 'rgba(255,255,255,0.4)' }}>{ev.label}</div>
-            </button>
-          ))}
-        </div>
+        {/* Campus tour */}
+        <div className="mt-14 pt-12 border-t border-[#E7E4D4]">
+          <div className="max-w-[640px] mb-8">
+            <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-xs font-bold uppercase tracking-[0.06em] px-3.5 py-[7px] pr-3.5 mb-5">
+              <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
+              {tCampusBadge}
+            </div>
+            <h3 className="text-[clamp(24px,3vw,34px)] font-black text-[#0B0B0C] leading-[1.1] tracking-tight uppercase">
+              {tCampusHeading}
+            </h3>
+            <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[520px]">
+              {tCampusSub}
+            </p>
+          </div>
 
-        {/* ── BOTTOM STATS BAR ── */}
-        <div className="grid gap-[3px] mt-[3px]" style={{ gridTemplateColumns: 'repeat(3,1fr)' }}>
-          {[
-            { icon: 'ri-calendar-check-line', val: '50+', label: 'Events pro Jahr' },
-            { icon: 'ri-map-pin-line', val: 'DACH', label: 'Exklusive Locations' },
-            { icon: 'ri-emotion-happy-line', val: '98%', label: 'Zufriedenheitsrate' },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-4 px-6 py-5 group transition-colors duration-200"
-              style={{ background: '#1a1a1a', border: '0.5px solid rgba(255,255,255,0.06)' }}
-            >
-              <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-[rgba(200,212,0,0.15)]" style={{ background: 'rgba(200,212,0,0.08)', border: '0.5px solid rgba(200,212,0,0.15)' }}>
-                <i className={`${item.icon} text-lg text-[#C8D400]`} />
+          <div className="relative overflow-hidden border border-[#0B0B0C] bg-[#0B0B0C]">
+            <div className="relative w-full" style={{ paddingBottom: '50%' }}>
+              <iframe
+                src="https://my.matterport.com/show/?m=NUpWzUwWfMQ"
+                className="absolute inset-0 w-full h-full border-0"
+                allowFullScreen
+                title="Sonic Office Virtual Tour"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2.5 mt-4">
+            {[
+              { icon: 'ri-drag-move-line', label: tCampusTip1 },
+              { icon: 'ri-walk-line', label: tCampusTip2 },
+              { icon: 'ri-fullscreen-line', label: tCampusTip3 },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2 px-3.5 py-2 bg-[#FAFDF5] border border-[#E7E4D4]">
+                <i className={`${item.icon} text-sm text-[#C3D62A]`} />
+                <span className="text-xs font-bold text-[#0B0B0C]">{item.label}</span>
               </div>
+            ))}
+          </div>
+
+          <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-[#FAFDF5] border border-[#E7E4D4] p-5">
+            <div className="flex items-center gap-3">
+              <i className="ri-map-pin-line text-lg text-[#C3D62A]" />
               <div>
-                <div className="text-3xl font-black text-[#C8D400] leading-none tracking-tight">{item.val}</div>
-                <div className="text-[10px] font-black uppercase tracking-[0.08em] mt-0.5 text-white/30">{item.label}</div>
+                <p className="font-black text-sm text-[#0B0B0C]">{tCampusAddress}</p>
+                <p className="text-xs text-[#6E6E68]">{tCampusCity}</p>
               </div>
             </div>
-          ))}
+            <a
+              href="https://maps.google.com/?q=Campus+Fichtenhain+46,+47807+Krefeld"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#DCE94D] text-[#0B0B0C] font-bold text-xs hover:bg-[#C3D62A] transition-all duration-200 cursor-pointer whitespace-nowrap"
+            >
+              <i className="ri-map-pin-line text-sm" />
+              {tCampusRoute}
+            </a>
+          </div>
         </div>
-
       </div>
     </section>
   );

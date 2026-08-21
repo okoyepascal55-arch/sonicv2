@@ -1,11 +1,25 @@
 import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
+import { useMediaStore } from '@/lib/mediaStore';
+import { useText } from '@/hooks/useText';
 
 export default function MeetTheTeam() {
+  const tBadge = useText('team_meet_the_team', 'team-mtt-badge', 'Our People');
+  const tHeading = useText('team_meet_the_team', 'team-mtt-heading', 'MEET THE TEAM');
+  const tSub = useText('team_meet_the_team', 'team-mtt-sub', 'Real people, real stories, real impact');
+
   const [activeProfile, setActiveProfile] = useState(0);
   const [isVideoHovered, setIsVideoHovered] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [hoveredPolaroid, setHoveredPolaroid] = useState(false);
+  const { images: woodIcons } = useMediaStore('team_meet_team_wood_icons');
+  const getWoodIcon = (idx: number) => woodIcons[idx]?.url || highlightsData[idx].fallbackWoodIcon;
+
+  const highlightsData = [
+    { icon: 'ri-heart-pulse-line', title: 'Human-First Culture', desc: '5.15 years average tenure—3x the industry standard', fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20heart%20pulse%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-heart-chestnut&orientation=squarish' },
+    { icon: 'ri-user-star-line', title: 'Growth Opportunities', desc: 'Clear career paths with mentorship and training programs', fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20star%20person%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-star-chestnut&orientation=squarish' },
+    { icon: 'ri-team-line', title: 'Diverse Family', desc: '20,000+ professionals from all backgrounds united by purpose', fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20team%20group%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-group-chestnut&orientation=squarish' },
+  ];
 
   const profiles = [
     {
@@ -80,15 +94,15 @@ export default function MeetTheTeam() {
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-10 md:mb-12">
-          <SectionBadge text="Our People" variant="dark" className="mb-6" />
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-sonic-dark mb-3 leading-tight tracking-tight">MEET THE TEAM</h2>
-          <p className="text-base md:text-xl text-gray-600 max-w-2xl mx-auto">Real people, real stories, real impact</p>
+          <SectionBadge text={tBadge} variant="dark" className="mb-6" />
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-foreground-950 mb-3 leading-tight tracking-tight">{tHeading}</h2>
+          <p className="text-base md:text-xl text-foreground-600 max-w-2xl mx-auto">{tSub}</p>
         </div>
 
-        {/* Video Showcase Area */}
+        {/* Video Showcase Area — side-by-side layout */}
         <div 
-          className="relative overflow-visible group cursor-pointer flex items-center justify-center"
-          style={{ borderRadius: 0, minHeight: '500px', background: '#1a1a1a' }}
+          className="relative overflow-visible group cursor-pointer"
+          style={{ borderRadius: 0, minHeight: '420px', background: '#1a1a1a' }}
           onMouseEnter={() => setIsVideoHovered(true)}
           onMouseLeave={() => setIsVideoHovered(false)}
         >
@@ -99,107 +113,88 @@ export default function MeetTheTeam() {
           <div className={`hidden md:block absolute top-5 left-5 w-10 h-10 z-20 transition-all duration-500 ${isVideoHovered ? 'opacity-100' : 'opacity-40'}`} style={{ borderTop: '1.5px solid rgba(200,212,0,0.5)', borderLeft: '1.5px solid rgba(200,212,0,0.5)' }} />
           <div className={`hidden md:block absolute top-5 right-5 w-10 h-10 z-20 transition-all duration-500 ${isVideoHovered ? 'opacity-100' : 'opacity-40'}`} style={{ borderTop: '1.5px solid rgba(200,212,0,0.5)', borderRight: '1.5px solid rgba(200,212,0,0.5)' }} />
 
-          {/* ── POLAROID FRAME ── */}
-          <div
-            className="relative z-10 flex flex-col"
-            onMouseEnter={() => setHoveredPolaroid(true)}
-            onMouseLeave={() => setHoveredPolaroid(false)}
-            style={{
-              background: '#f5f2ec',
-              padding: '10px 10px 52px 10px',
-              boxShadow: hoveredPolaroid
-                ? '0 32px 80px rgba(0,0,0,0.85), 0 8px 24px rgba(0,0,0,0.6)'
-                : '0 20px 60px rgba(0,0,0,0.7), 0 4px 16px rgba(0,0,0,0.5)',
-              transform: hoveredPolaroid
-                ? 'rotate(0deg) scale(1.02) translateY(-8px)'
-                : 'rotate(-0.8deg) scale(1)',
-              transition: 'transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s cubic-bezier(0.16,1,0.3,1)',
-              width: '68%',
-              maxWidth: '520px',
-              cursor: 'pointer',
-            }}
-          >
-            {/* Photo area */}
-            <div className="relative overflow-hidden" style={{ aspectRatio: '16/9' }}>
-              <img
-                src={currentProfile.image}
-                alt={currentProfile.name}
-                className={`w-full h-full object-cover object-top transition-transform duration-700 ${isVideoHovered ? 'scale-105' : 'scale-100'}`}
-                style={{ filter: 'contrast(1.04) brightness(0.93)' }}
-              />
-              {/* Dark overlay */}
-              <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/40 transition-opacity duration-500 ${isVideoHovered ? 'opacity-80' : 'opacity-100'}`} />
-              {/* Vignette */}
-              <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%)' }} />
-              {/* Lime accent line at bottom of photo */}
-              <div className="absolute bottom-0 left-0 right-0 h-[2px]" style={{ background: '#C8D400' }} />
-
-              {/* Play Button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <button className={`w-14 h-14 md:w-20 md:h-20 bg-[#C8D400] flex items-center justify-center shadow-2xl transform transition-all duration-500 cursor-pointer ${isVideoHovered ? 'scale-125 bg-[#b8c400]' : 'scale-100'}`} style={{ borderRadius: 0 }}>
-                  <i className={`ri-play-fill text-2xl md:text-4xl text-white ml-1 md:ml-2 transition-transform duration-300 ${isVideoHovered ? 'scale-110' : 'scale-100'}`}></i>
-                </button>
-              </div>
-
-              {/* Video Info Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
-                <div className="flex items-center gap-2 md:gap-3 mb-2">
-                  <div className="w-7 h-7 md:w-9 md:h-9 bg-[#C8D400] flex items-center justify-center" style={{ borderRadius: 0 }}>
-                    <i className={`${currentProfile.icon} text-sm md:text-lg text-white`}></i>
-                  </div>
-                  <span className="text-[#C8D400] font-bold text-xs md:text-sm">{currentProfile.role}</span>
-                </div>
-                <h3 className="text-lg md:text-2xl font-black mb-1">{currentProfile.name}&apos;s Story</h3>
-                <p className="text-xs md:text-sm opacity-90 mb-2 max-w-2xl hidden sm:block">{currentProfile.story}</p>
-                <div className="flex items-center gap-3 md:gap-6 text-xs">
-                  <div className="flex items-center gap-1.5">
-                    <i className="ri-time-line"></i>
-                    <span>{currentProfile.duration}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <i className="ri-eye-line"></i>
-                    <span>{currentProfile.views} views</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-[#C8D400] font-bold">
-                    <i className="ri-trophy-line"></i>
-                    <span>{currentProfile.metric}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Polaroid caption strip — with paper grain */}
-            <div
-              className="flex flex-col items-center justify-center pt-3 pb-1 relative overflow-hidden"
-              style={{ background: '#f5f2ec' }}
-            >
-              {/* Paper grain overlay */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'grain\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3CfeColorMatrix type=\'saturate\' values=\'0\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23grain)\' opacity=\'0.12\'/%3E%3C/svg%3E")',
-                  backgroundSize: '120px 120px',
-                  opacity: 0.6,
-                  mixBlendMode: 'multiply',
-                }}
-              />
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(180,160,120,0.04) 3px, rgba(180,160,120,0.04) 4px)',
-                  opacity: 0.8,
-                }}
-              />
-              <div className="relative z-10 text-[11px] font-black uppercase tracking-[0.14em] text-[#111]/70 leading-none">{currentProfile.name}</div>
-              <div className="relative z-10 text-[9px] font-medium uppercase tracking-[0.1em] text-[#111]/40 mt-0.5">{currentProfile.role}</div>
-            </div>
-          </div>
-
           {/* Animated lime border on hover */}
           <div
             className={`absolute inset-0 border-4 transition-all duration-500 pointer-events-none z-20 ${isVideoHovered ? 'border-[#C8D400]' : 'border-transparent'}`}
             style={{ borderRadius: 0 }}
           />
+
+          {/* Content — side by side: polaroid left + profile panel right */}
+          <div className="relative z-10 flex flex-col md:flex-row items-center md:items-stretch gap-0 h-full min-h-[420px]">
+            {/* ── POLAROID FRAME — left side ── */}
+            <div
+              className="relative flex flex-col flex-shrink-0 self-center md:self-auto m-4 md:m-0"
+              onMouseEnter={() => setHoveredPolaroid(true)}
+              onMouseLeave={() => setHoveredPolaroid(false)}
+              style={{
+                background: '#f5f2ec',
+                padding: '8px 8px 40px 8px',
+                boxShadow: hoveredPolaroid
+                  ? '0 32px 80px rgba(0,0,0,0.85), 0 8px 24px rgba(0,0,0,0.6)'
+                  : '0 20px 60px rgba(0,0,0,0.7), 0 4px 16px rgba(0,0,0,0.5)',
+                transform: hoveredPolaroid
+                  ? 'rotate(0deg) scale(1.02) translateY(-8px)'
+                  : 'rotate(-0.8deg) scale(1)',
+                transition: 'transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s cubic-bezier(0.16,1,0.3,1)',
+                width: 'clamp(280px, 44%, 420px)',
+                cursor: 'pointer',
+              }}
+            >
+              {/* Photo area */}
+              <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                <img
+                  src={currentProfile.image}
+                  alt={currentProfile.name}
+                  className={`w-full h-full object-cover object-top transition-transform duration-700 ${isVideoHovered ? 'scale-105' : 'scale-100'}`}
+                  style={{ filter: 'contrast(1.04) brightness(0.93)' }}
+                />
+                <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/40 transition-opacity duration-500 ${isVideoHovered ? 'opacity-80' : 'opacity-100'}`} />
+                <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%)' }} />
+                <div className="absolute bottom-0 left-0 right-0 h-[2px]" style={{ background: '#C8D400' }} />
+
+                {/* Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button className={`w-12 h-12 md:w-16 md:h-16 bg-[#C8D400] flex items-center justify-center shadow-2xl transform transition-all duration-500 cursor-pointer ${isVideoHovered ? 'scale-125 bg-[#b8c400]' : 'scale-100'}`} style={{ borderRadius: 0 }}>
+                    <i className={`ri-play-fill text-xl md:text-3xl text-white ml-0.5 md:ml-1 transition-transform duration-300 ${isVideoHovered ? 'scale-110' : 'scale-100'}`}></i>
+                  </button>
+                </div>
+              </div>
+
+              {/* Polaroid caption strip */}
+              <div className="flex flex-col items-center justify-center pt-2.5 pb-1 relative overflow-hidden" style={{ background: '#f5f2ec' }}>
+                <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'grain\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3CfeColorMatrix type=\'saturate\' values=\'0\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23grain)\' opacity=\'0.12\'/%3E%3C/svg%3E")', backgroundSize: '120px 120px', opacity: 0.6, mixBlendMode: 'multiply' }} />
+                <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(180,160,120,0.04) 3px, rgba(180,160,120,0.04) 4px)', opacity: 0.8 }} />
+                <div className="relative z-10 text-[11px] font-black uppercase tracking-[0.14em] text-[#111]/70 leading-none">{currentProfile.name}</div>
+                <div className="relative z-10 text-[9px] font-medium uppercase tracking-[0.1em] text-[#111]/40 mt-0.5">{currentProfile.role}</div>
+              </div>
+            </div>
+
+            {/* ── PROFILE PANEL — right side ── */}
+            <div className="flex-1 flex flex-col justify-center p-6 md:p-8 lg:p-10">
+              <div className="flex items-center gap-2 md:gap-3 mb-3">
+                <div className="w-7 h-7 md:w-9 md:h-9 bg-[#C8D400] flex items-center justify-center" style={{ borderRadius: 0 }}>
+                  <i className={`${currentProfile.icon} text-sm md:text-lg text-white`}></i>
+                </div>
+                <span className="text-[#C8D400] font-bold text-xs md:text-sm">{currentProfile.role}</span>
+              </div>
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-black text-white mb-3">{currentProfile.name}&apos;s Story</h3>
+              <p className="text-sm md:text-base text-white/70 mb-5 leading-relaxed max-w-lg">{currentProfile.story}</p>
+              <div className="flex flex-wrap items-center gap-4 md:gap-6 text-xs md:text-sm">
+                <div className="flex items-center gap-1.5 text-white/50">
+                  <i className="ri-time-line"></i>
+                  <span>{currentProfile.duration}</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-white/50">
+                  <i className="ri-eye-line"></i>
+                  <span>{currentProfile.views} views</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[#C8D400] font-bold">
+                  <i className="ri-trophy-line"></i>
+                  <span>{currentProfile.metric}</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Profile Switcher Buttons */}
@@ -211,7 +206,7 @@ export default function MeetTheTeam() {
               className={`flex items-center gap-2 px-3 md:px-5 py-2 md:py-3 font-bold transition-all whitespace-nowrap cursor-pointer text-sm ${
                 activeProfile === index
                   ? 'bg-[#C8D400] text-[#111] shadow-lg'
-                  : 'bg-white text-gray-600 hover:bg-gray-50 border-2 border-gray-200 hover:border-[#C8D400]/50'
+                  : 'bg-white text-foreground-600 hover:bg-foreground-100 border-2 border-foreground-200 hover:border-[#C8D400]/50'
               }`}
               style={{ borderRadius: 0 }}
             >
@@ -224,13 +219,13 @@ export default function MeetTheTeam() {
         {/* Key Highlights Below */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12">
           {[
-            { icon: 'ri-heart-pulse-line', title: 'Human-First Culture', desc: '5.15 years average tenure—3x the industry standard', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20heart%20pulse%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-heart-chestnut&orientation=squarish' },
-            { icon: 'ri-user-star-line', title: 'Growth Opportunities', desc: 'Clear career paths with mentorship and training programs', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20star%20person%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-star-chestnut&orientation=squarish' },
-            { icon: 'ri-team-line', title: 'Diverse Family', desc: '20,000+ professionals from all backgrounds united by purpose', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20team%20group%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-group-chestnut&orientation=squarish' },
+            { icon: 'ri-heart-pulse-line', title: 'Human-First Culture', desc: '5.15 years average tenure—3x the industry standard', woodIcon: getWoodIcon(0) },
+            { icon: 'ri-user-star-line', title: 'Growth Opportunities', desc: 'Clear career paths with mentorship and training programs', woodIcon: getWoodIcon(1) },
+            { icon: 'ri-team-line', title: 'Diverse Family', desc: '20,000+ professionals from all backgrounds united by purpose', woodIcon: getWoodIcon(2) },
           ].map((item, index) => (
             <div 
               key={index}
-              className="bg-white p-5 md:p-6 border border-gray-100 hover:border-[#C8D400]/40 transition-all duration-500 relative overflow-visible cursor-pointer"
+              className="bg-white p-5 md:p-6 border border-foreground-100 hover:border-[#C8D400]/40 transition-all duration-500 relative overflow-visible cursor-pointer"
               style={{ borderRadius: 0 }}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
@@ -286,8 +281,8 @@ export default function MeetTheTeam() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h4 className="text-base font-black text-sonic-dark mb-1.5 leading-tight tracking-tight">{item.title}</h4>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
+                <h4 className="text-base font-black text-foreground-950 mb-1.5 leading-tight tracking-tight">{item.title}</h4>
+                <p className="text-foreground-600 text-sm">{item.desc}</p>
               </div>
             </div>
           ))}

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useMediaStore } from '@/lib/mediaStore';
 
 // Static company data - no random fluctuations
 const COMPANY_DATA = {
@@ -21,6 +22,8 @@ export default function LiveMetrics() {
   const [isVisible, setIsVisible] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const { images: woodBgImages } = useMediaStore('home_livemetrics_wood_bg');
+  const woodBgUrl = woodBgImages[0]?.url || 'https://readdy.ai/api/search-image?query=warm%20chestnut%20brown%20hardwood%20plank%20with%20clearly%20visible%20natural%20wood%20grain%20texture%20rich%20amber%20brown%20tone%20deep%20grain%20lines%20carved%20oak%20walnut%20surface%20close%20up%20macro%20photography%20warm%20brown%20color%20natural%20material%20visible%20grain%20depth%20dark%20rich%20finish%20consistent%20with%20briefcase%20star%20wooden%20icons&width=1920&height=100&seq=wood-ticker-chestnut-dualcta-match-v1&orientation=landscape';
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -63,7 +66,7 @@ export default function LiveMetrics() {
       {/* Chestnut brown wood texture - exact match to DualCTA wooden icons */}
       <div className="absolute inset-0" aria-hidden="true">
         <img
-          src="https://readdy.ai/api/search-image?query=warm%20chestnut%20brown%20hardwood%20plank%20with%20clearly%20visible%20natural%20wood%20grain%20texture%20rich%20amber%20brown%20tone%20deep%20grain%20lines%20carved%20oak%20walnut%20surface%20close%20up%20macro%20photography%20warm%20brown%20color%20natural%20material%20visible%20grain%20depth%20dark%20rich%20finish%20consistent%20with%20briefcase%20star%20wooden%20icons&width=1920&height=100&seq=wood-ticker-chestnut-dualcta-match-v1&orientation=landscape"
+          src={woodBgUrl}
           alt=""
           className="w-full h-full object-cover"
         />
@@ -81,7 +84,7 @@ export default function LiveMetrics() {
         >
           {/* Live indicator */}
           <div className="flex items-center gap-2 px-4">
-            <div className="w-2 h-2 bg-[#C8D400] rounded-full animate-pulse-slow"></div>
+            <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse-slow"></div>
             <span className="text-xs font-sans tabular-nums text-white uppercase tracking-wider font-black drop-shadow-md">
               LIVE
             </span>
@@ -89,20 +92,20 @@ export default function LiveMetrics() {
 
           {metrics.map((metric, idx) => (
             <div key={idx} className="flex items-center gap-2">
-              <span className="text-[#C8D400] drop-shadow-md">•</span>
-              <i className={`${metric.icon} text-[#C8D400] drop-shadow-md`}></i>
+              <span className="text-primary-500 drop-shadow-md">•</span>
+              <i className={`${metric.icon} text-primary-500 drop-shadow-md`}></i>
               <span className="text-sm font-sans tabular-nums font-black text-white drop-shadow-md">{metric.value}</span>
               <span className="text-xs text-white/90 drop-shadow-md font-bold">{metric.label}</span>
             </div>
           ))}
 
-          <span className="text-[#C8D400] drop-shadow-md">•</span>
+          <span className="text-primary-500 drop-shadow-md">•</span>
           <span className="text-xs text-white/80 drop-shadow-md font-bold">Powered by SRT</span>
-          <span className="text-[#C8D400] drop-shadow-md">•</span>
+          <span className="text-primary-500 drop-shadow-md">•</span>
 
           {/* Duplicate for seamless scroll */}
           <div className="flex items-center gap-2 px-4">
-            <div className="w-2 h-2 bg-[#C8D400] rounded-full animate-pulse-slow"></div>
+            <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse-slow"></div>
             <span className="text-xs font-sans tabular-nums text-white uppercase tracking-wider font-black drop-shadow-md">
               LIVE
             </span>
@@ -110,16 +113,16 @@ export default function LiveMetrics() {
 
           {metrics.map((metric, idx) => (
             <div key={`dup-${idx}`} className="flex items-center gap-2">
-              <span className="text-[#C8D400] drop-shadow-md">•</span>
-              <i className={`${metric.icon} text-[#C8D400] drop-shadow-md`}></i>
+              <span className="text-primary-500 drop-shadow-md">•</span>
+              <i className={`${metric.icon} text-primary-500 drop-shadow-md`}></i>
               <span className="text-sm font-sans tabular-nums font-black text-white drop-shadow-md">{metric.value}</span>
               <span className="text-xs text-white/90 drop-shadow-md font-bold">{metric.label}</span>
             </div>
           ))}
 
-          <span className="text-[#C8D400] drop-shadow-md">•</span>
+          <span className="text-primary-500 drop-shadow-md">•</span>
           <span className="text-xs text-white/80 drop-shadow-md font-bold">Powered by SRT</span>
-          <span className="text-[#C8D400] drop-shadow-md">•</span>
+          <span className="text-primary-500 drop-shadow-md">•</span>
         </div>
 
         {/* Screen-reader accessible static list — same content, no animation */}

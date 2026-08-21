@@ -17,7 +17,7 @@ export interface JobPosting {
   shortDescription?: string;
 }
 
-const BITE_KEY = 'INSERT_YOUR_KEY_HERE';
+const BITE_KEY = 'sonic-sales-support-gmbh:main-listing';
 
 export default function JobsPage() {
   useSEO({
@@ -85,7 +85,7 @@ export default function JobsPage() {
   const locations = Array.from(new Set(jobs.map((j) => j.location).filter(Boolean)));
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-[100dvh] bg-white">
       <JobsHero jobCount={jobs.length} />
 
       <WoodenDivider />
@@ -107,19 +107,19 @@ export default function JobsPage() {
             <div className="mt-12">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {[...Array(6)].map((_, i) => (
-                  <div key={i} className="bg-white border border-gray-100 overflow-hidden" style={{ borderRadius: 0 }}>
-                    <div className="h-[3px] w-full bg-gray-100" />
+                  <div key={i} className="bg-white border border-foreground-100 overflow-hidden" style={{ borderRadius: 0 }}>
+                    <div className="h-[3px] w-full bg-foreground-100" />
                     <div className="p-5 space-y-3">
                       <div className="flex gap-2">
-                        <div className="h-5 w-20 bg-gray-100 animate-pulse" />
-                        <div className="h-5 w-16 bg-gray-100 animate-pulse" />
+                        <div className="h-5 w-20 bg-foreground-100 animate-pulse" />
+                        <div className="h-5 w-16 bg-foreground-100 animate-pulse" />
                       </div>
-                      <div className="h-5 w-3/4 bg-gray-100 animate-pulse" />
-                      <div className="h-4 w-full bg-gray-100 animate-pulse" />
-                      <div className="h-4 w-2/3 bg-gray-100 animate-pulse" />
-                      <div className="pt-4 border-t border-gray-50 flex justify-between">
-                        <div className="h-4 w-24 bg-gray-100 animate-pulse" />
-                        <div className="h-4 w-16 bg-gray-100 animate-pulse" />
+                      <div className="h-5 w-3/4 bg-foreground-100 animate-pulse" />
+                      <div className="h-4 w-full bg-foreground-100 animate-pulse" />
+                      <div className="h-4 w-2/3 bg-foreground-100 animate-pulse" />
+                      <div className="pt-4 border-t border-foreground-50 flex justify-between">
+                        <div className="h-4 w-24 bg-foreground-100 animate-pulse" />
+                        <div className="h-4 w-16 bg-foreground-100 animate-pulse" />
                       </div>
                     </div>
                   </div>
@@ -129,25 +129,25 @@ export default function JobsPage() {
           )}
 
           {!loading && error && (
-            <div className="mt-12 text-center py-20 px-4 bg-[#fafaf8] border border-gray-100">
+            <div className="mt-12 text-center py-20 px-4 bg-[#fafaf8] border border-foreground-100">
               <div className="w-20 h-20 flex items-center justify-center mx-auto mb-5 bg-white border-2 border-[#C8D400]/30">
                 <i className="ri-wifi-off-line text-3xl text-[#C8D400]" />
               </div>
               <p className="text-base font-black text-[#1a1a1a] mb-2">Unser Stellenportal ist momentan nicht erreichbar.</p>
-              <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto leading-relaxed">
+              <p className="text-sm text-foreground-500 mb-6 max-w-md mx-auto leading-relaxed">
                 Wir entschuldigen uns für die Unannehmlichkeiten. Sie können uns direkt eine Initiativbewerbung senden.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <button
                   onClick={() => window.location.reload()}
-                  className="px-8 py-3 bg-[#111] text-white text-xs font-black uppercase tracking-widest hover:bg-[#C8D400] hover:text-[#111] transition-all duration-200 cursor-pointer"
+                  className="px-8 py-3 bg-[#111] text-white text-xs font-black uppercase tracking-widest hover:bg-primary-500 hover:text-[#111] transition-all duration-200 cursor-pointer"
                   style={{ borderRadius: 0 }}
                 >
                   Erneut versuchen
                 </button>
                 <a
                   href="mailto:bewerbung@sonic-group.de?subject=Initiativbewerbung"
-                  className="px-8 py-3 bg-white text-[#111] text-xs font-black uppercase tracking-widest border-2 border-[#111] hover:border-[#C8D400] hover:bg-[#C8D400]/10 transition-all duration-200 cursor-pointer"
+                  className="px-8 py-3 bg-white text-[#111] text-xs font-black uppercase tracking-widest border-2 border-[#111] hover:border-[#C8D400] hover:bg-primary-500/10 transition-all duration-200 cursor-pointer"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-mail-send-line mr-1.5"></i>
@@ -158,22 +158,22 @@ export default function JobsPage() {
           )}
 
           {!loading && !error && filtered.length === 0 && (
-            <div className="mt-12 text-center py-20 px-4 bg-[#fafaf8] border border-gray-100">
+            <div className="mt-12 text-center py-20 px-4 bg-[#fafaf8] border border-foreground-100">
               <div className="w-20 h-20 flex items-center justify-center mx-auto mb-5 bg-white border-2 border-[#C8D400]/30">
                 <i className="ri-search-line text-3xl text-[#C8D400]" />
               </div>
               <p className="text-base font-black text-[#1a1a1a] mb-2">Keine passenden Stellen gefunden</p>
-              <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto leading-relaxed">
+              <p className="text-sm text-foreground-500 mb-6 max-w-md mx-auto leading-relaxed">
                 Versuche andere Suchbegriffe oder Filter. Wir haben ständig neue Positionen — schau später wieder vorbei.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <button onClick={() => { setSearch(''); setLocationFilter(''); }} className="px-8 py-3 bg-[#C8D400] text-white text-xs font-black uppercase tracking-widest hover:bg-[#111] transition-all duration-200 cursor-pointer" style={{ borderRadius: 0 }}>
+                <button onClick={() => { setSearch(''); setLocationFilter(''); }} className="px-8 py-3 bg-primary-500 text-white text-xs font-black uppercase tracking-widest hover:bg-[#111] transition-all duration-200 cursor-pointer" style={{ borderRadius: 0 }}>
                   <i className="ri-restart-line mr-1.5"></i>
                   Filter zurücksetzen
                 </button>
                 <a
                   href="mailto:bewerbung@sonic-group.de?subject=Initiativbewerbung"
-                  className="px-8 py-3 bg-white text-[#111] text-xs font-black uppercase tracking-widest border-2 border-[#111] hover:border-[#C8D400] hover:bg-[#C8D400]/10 transition-all duration-200 cursor-pointer"
+                  className="px-8 py-3 bg-white text-[#111] text-xs font-black uppercase tracking-widest border-2 border-[#111] hover:border-[#C8D400] hover:bg-primary-500/10 transition-all duration-200 cursor-pointer"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-mail-send-line mr-1.5"></i>
@@ -202,7 +202,7 @@ export default function JobsPage() {
           </div>
           <a
             href="mailto:bewerbung@sonic-group.de?subject=Initiativbewerbung"
-            className="flex-shrink-0 inline-flex items-center gap-3 px-8 py-3.5 bg-[#C8D400] text-white font-black text-xs uppercase tracking-widest hover:bg-white hover:text-[#111] transition-all duration-200 whitespace-nowrap cursor-pointer"
+            className="flex-shrink-0 inline-flex items-center gap-3 px-8 py-3.5 bg-primary-500 text-white font-black text-xs uppercase tracking-widest hover:bg-white hover:text-[#111] transition-all duration-200 whitespace-nowrap cursor-pointer"
             style={{ borderRadius: 0 }}
           >
             <i className="ri-mail-send-line" />

@@ -1,19 +1,34 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import Navigation from '../../../components/feature/Navigation';
-import LeistungenPageNav from '../../../components/feature/LeistungenPageNav';
-import LeistungenKontakt from '../../../components/feature/LeistungenKontakt';
-import ScrollToTopButton from '../../../components/feature/ScrollToTopButton';
-import WoodenDivider from '../../../components/base/WoodenDivider';
-import ClientProof from '../../../components/feature/ClientProof';
+import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
+import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
+import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
+import ClientProof from '@/components/feature/ClientProof';
+import WoodenDivider from '@/components/base/WoodenDivider';
 import KreationShowcase from './components/KreationShowcase';
 import Carousel3D from './components/Carousel3D';
-import SectionBadge from '../../../components/base/SectionBadge';
-import ChallengeSection from '../../../components/feature/ChallengeSection';
-import type { ChallengeItem } from '../../../components/feature/ChallengeSection';
+import LimeBadge from '@/components/base/LimeBadge';
+import ChallengeSection from '@/components/feature/ChallengeSection';
+import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import { CONTACT_EMAIL } from '@/lib/contact';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useText } from '@/hooks/useText';
+
+const FALLBACK_KREATION_SOLUTION_ICONS = [
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20lightbulb%20idea%20concept%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-bulb-01&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20paintbrush%20palette%20design%20creative%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-palette-02&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20camera%20photography%20video%20production%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-camera-03&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20document%20file%20copy%20asset%20production%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-file-04&orientation=squarish',
+];
+
+const FALLBACK_KREATION_DISCIPLINE_ICONS = [
+  'https://readdy.ai/api/search-image?query=wooden%20paintbrush%20creative%20design%20palette%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-kreation-icon&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=wooden%20tools%20production%20gear%20workshop%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-produktion-icon&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=wooden%20cube%20box%203D%20geometric%20design%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-cgi-3d-icon&orientation=squarish',
+];
 
 const NAV_ITEMS = [
+  { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'konzept', label: 'Konzept & Kreation', icon: 'ri-palette-line' },
   { id: 'content-creation', label: 'Content Creation', icon: 'ri-camera-line' },
@@ -124,10 +139,10 @@ function AnimatedStat({
 
   return (
     <div className="text-center">
-      <div className="text-3xl font-black text-[#1A1A1A] tabular-nums">
+      <div className="text-3xl font-black text-foreground-950 tabular-nums">
         {active ? count.toLocaleString('de-DE') : '0'}{suffix}
       </div>
-      <div className="text-black/30 text-xs font-black uppercase tracking-widest mt-1">{label}</div>
+      <div className="text-foreground-950/30 text-xs font-black uppercase tracking-widest mt-1">{label}</div>
     </div>
   );
 }
@@ -164,7 +179,7 @@ function useReveal() {
 }
 
 /* ── Wooden icons strip with stagger scroll reveal ── */
-function WoodIconsStrip() {
+function WoodIconsStrip({ icons }: { icons: { img: string; label: string }[] }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -180,10 +195,10 @@ function WoodIconsStrip() {
   }, []);
 
   return (
-    <section className="bg-white py-14 px-6 border-b border-[#111]/8">
+    <section className="bg-white py-14 px-6 border-b border-foreground-950/8">
       <div className="max-w-4xl mx-auto">
         <div ref={ref} className="grid grid-cols-3 gap-8">
-          {WOOD_ICONS.map((w, i) => (
+          {icons.map((w, i) => (
             <div
               key={i}
               className="flex flex-col items-center gap-4"
@@ -207,7 +222,7 @@ function WoodIconsStrip() {
               </div>
               {/* Label with animated underline */}
               <div className="flex flex-col items-center gap-1">
-                <span className="text-xs font-black text-[#111]/55 uppercase tracking-widest">{w.label}</span>
+                <span className="text-xs font-black text-foreground-950/55 uppercase tracking-widest">{w.label}</span>
                 {/* Thin lime underline draws in after icon appears */}
                 <div
                   style={{
@@ -227,12 +242,33 @@ function WoodIconsStrip() {
 }
 
 export default function KreationContentPage() {
+  const { images: solutionWoodIcons } = useMediaStore('leistungen_kreation_solution_wood_icons');
+  const { images: disciplineWoodIcons } = useMediaStore('leistungen_kreation_discipline_wood_icons');
+  const tChallengeHeading = useText('leistungen_kreation_content', 'kreation-challenge-heading', 'Content aus zu vielen Einzelteilen.');
+  const tChallengeSub = useText('leistungen_kreation_content', 'kreation-challenge-sub', 'Assets kommen oft aus verschiedenen Quellen.');
+  const tSolutionHeading = useText('leistungen_kreation_content', 'kreation-solution-heading', 'Content aus einer Hand. Inhouse.');
+  const tSolutionSub = useText('leistungen_kreation_content', 'kreation-solution-sub', 'Von Kampagnenkonzept bis Design und Roll-out, von Fotografie bis zu (Live) Video.');
+  const tCtaBtn = useText('leistungen_kreation_content', 'kreation-cta-btn', 'Content-Beratung buchen');
+  const tHeroBadge = useText('leistungen_kreation', 'kreation-hero-badge', 'Inhouse Kreation & Content');
+  const tHeroH1Line1 = useText('leistungen_kreation', 'kreation-hero-heading-line1', 'Kreation,');
+  const tHeroH1Accent = useText('leistungen_kreation', 'kreation-hero-heading-accent', 'die verkauft.');
+  const tHeroSubtitle = useText('leistungen_kreation', 'kreation-hero-subtitle', 'Von Kampagnenkonzept bis Rollout — Foto, Video, CGI und POS-Design aus einer Hand.');
   const heroRef = useRef<HTMLDivElement>(null);
   const solutionScroll = useRef<HTMLDivElement>(null);
   const [hoveredSolution, setHoveredSolution] = useState<number | null>(null);
   const solutionReveal = useReveal();
   const statsRef = useRef<HTMLDivElement>(null);
   const [statsTriggered, setStatsTriggered] = useState(false);
+
+  const getSolutionWoodIcon = (index: number) => {
+    const item = solutionWoodIcons[index];
+    return item?.url ? resolveImageUrl(item.url) : FALLBACK_KREATION_SOLUTION_ICONS[index];
+  };
+
+  const resolvedDisciplineIcons = WOOD_ICONS.map((w, i) => {
+    const item = disciplineWoodIcons[i];
+    return { img: item?.url ? resolveImageUrl(item.url) : w.img, label: w.label };
+  });
 
   useEffect(() => {
     const el = statsRef.current;
@@ -260,15 +296,12 @@ export default function KreationContentPage() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white">
-      <Navigation />
+    <div className="min-h-[100dvh] overflow-x-hidden bg-white">
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
 
       {/* ── HERO + CAROUSEL — one unified composition on warm background ── */}
       <div ref={heroRef}>
-        <section
-          className="relative w-full overflow-hidden"
-          style={{ background: '#ffffff', paddingTop: '120px', paddingBottom: '0' }}
+        <section className="relative w-full overflow-hidden min-h-[480px] md:min-h-[520px] bg-white pt-20 pb-[60px]"
         >
           {/* Lime radial glow — very subtle, behind headline */}
           <div
@@ -284,28 +317,24 @@ export default function KreationContentPage() {
           <div className="relative z-10 w-full max-w-5xl mx-auto px-6 text-center">
             {/* Breadcrumb */}
             <div className="flex items-center justify-center gap-2 mb-8">
-              <span className="text-black/30 text-xs font-bold uppercase tracking-widest">Leistungen</span>
-              <i className="ri-arrow-right-s-line text-black/25 text-sm"></i>
-              <span className="text-[#C8D400] text-xs font-black uppercase tracking-widest">Kreation &amp; Content</span>
+              <span className="text-foreground-950/30 text-xs font-bold uppercase tracking-widest">Leistungen</span>
+              <i className="ri-arrow-right-s-line text-foreground-950/25 text-sm"></i>
+              <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Kreation &amp; Content</span>
             </div>
 
             {/* Badge */}
-            <div
-              className="inline-flex items-center gap-2 bg-[#C8D400]/10 border border-[#C8D400]/25 px-4 py-1.5 mb-10"
-              style={{ borderRadius: 0 }}
-            >
-              <div className="w-1.5 h-1.5 bg-[#C8D400] animate-pulse" style={{ borderRadius: 0 }} />
-              <span className="text-xs font-black text-[#1A1A1A] uppercase tracking-widest">Inhouse Kreation &amp; Content</span>
+            <div className="mb-10 flex justify-center">
+              <LimeBadge text={tHeroBadge} />
             </div>
 
             {/* Headline */}
-            <h1 className="text-5xl md:text-7xl font-black text-[#1A1A1A] mb-6 leading-tight tracking-tight">
-              Kreation,<br />
-              <span style={{ color: '#C8D400' }}>die verkauft.</span>
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-foreground-950 mb-6 leading-tight tracking-tight">
+              {tHeroH1Line1}<br />
+              <span className="text-primary-500">{tHeroH1Accent}</span>
             </h1>
 
-            <p className="text-base md:text-lg text-black/50 max-w-2xl mx-auto leading-relaxed mb-10">
-              Von Kampagnenkonzept bis Rollout — Foto, Video, CGI und POS-Design aus einer Hand.
+            <p className="text-base md:text-lg text-foreground-950/50 max-w-2xl mx-auto leading-relaxed mb-10">
+              {tHeroSubtitle}
             </p>
 
             {/* Stats — count-up on scroll into view */}
@@ -325,15 +354,15 @@ export default function KreationContentPage() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
               <a
-                href="mailto:${CONTACT_EMAIL}`?subject=Kreation%20Content%20Beratung"
-                className="inline-flex items-center gap-2 bg-[#1A1A1A] text-white px-7 py-3 font-black hover:bg-[#C8D400] hover:text-[#1A1A1A] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
+                href={`mailto:${CONTACT_EMAIL}?subject=Kreation%20Content%20Beratung`}
+                className="inline-flex items-center gap-2 bg-foreground-950 text-background-50 px-7 py-3 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
                 style={{ borderRadius: 0 }}
               >
-                <i className="ri-calendar-line"></i>Content-Beratung buchen
+                <i className="ri-calendar-line"></i>{tCtaBtn}
               </a>
               <a
                 href="/leistungen/live-video"
-                className="inline-flex items-center gap-2 border-2 border-black/12 text-black/60 px-6 py-3 font-black hover:border-[#1A1A1A] hover:text-[#1A1A1A] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
+                className="inline-flex items-center gap-2 border-2 border-foreground-950/12 text-foreground-950/60 px-6 py-3 font-black hover:border-foreground-950 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
                 style={{ borderRadius: 0 }}
               >
                 Live Video<i className="ri-arrow-right-line ml-1"></i>
@@ -346,24 +375,22 @@ export default function KreationContentPage() {
         </section>
       </div>
 
-      <WoodenDivider />
-
       {/* Wooden icons strip — stagger reveal on scroll */}
-      <WoodIconsStrip />
+      <WoodIconsStrip icons={resolvedDisciplineIcons} />
 
       {/* ── CHALLENGE — shared dark component ── */}
       <ChallengeSection
-        id="loesung"
-        headline="Content aus zu vielen Einzelteilen."
-        subline="Assets kommen oft aus verschiedenen Quellen."
+        id="herausforderung"
+        headline={tChallengeHeading}
+        subline={tChallengeSub}
         challenges={KREATION_CHALLENGES}
       />
 
       <WoodenDivider />
 
-      {/* ── SOLUTION — light warm bg (directly after dark ChallengeSection), subtle tint matching homepage ── */}
-      <section className="py-20 px-4 md:px-6 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C8D400]/8 blur-[120px] pointer-events-none" />
+      {/* ── SOLUTION — light warm bg (directly after dark ChallengeSection) ── */}
+      <section id="loesung" className="py-20 px-4 md:px-6 relative overflow-hidden bg-white">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div
           ref={solutionReveal.ref}
           className="relative max-w-7xl mx-auto"
@@ -375,20 +402,20 @@ export default function KreationContentPage() {
         >
           <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#111]/8 border border-[#111]/15 px-4 py-1.5 mb-5" style={{ borderRadius: 0 }}>
-                <i className="ri-check-double-line text-[#111] text-sm" />
-                <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Lösung</span>
+              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5" style={{ borderRadius: 0 }}>
+                <i className="ri-check-double-line text-foreground-950 text-sm" />
+                <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-[#111] mb-3 leading-tight uppercase">
-                Content aus einer Hand.<br /><span className="text-[#C8D400]" style={{ WebkitTextStroke: '1px #9ea800' }}>Inhouse.</span>
+              <h2 className="text-4xl md:text-5xl font-black text-foreground-950 mb-3 leading-tight uppercase">
+                {tSolutionHeading}
               </h2>
-              <p className="text-[#111]/50 text-base max-w-2xl">Von Kampagnenkonzept bis Design und Roll-out, von Fotografie bis zu (Live) Video.</p>
+              <p className="text-foreground-950/50 text-base max-w-2xl">{tSolutionSub}</p>
             </div>
             <div className="flex gap-2 flex-shrink-0">
-              <button onClick={() => scrollCards(solutionScroll, 'left')} className="w-10 h-10 flex items-center justify-center border border-[#111]/15 text-[#111]/50 hover:border-[#111] hover:text-[#111] transition-all duration-200 cursor-pointer" style={{ borderRadius: 0 }}>
+              <button onClick={() => scrollCards(solutionScroll, 'left')} className="w-10 h-10 flex items-center justify-center border border-foreground-950/15 text-foreground-950/50 hover:border-foreground-950 hover:text-foreground-950 transition-all duration-200 cursor-pointer" style={{ borderRadius: 0 }}>
                 <i className="ri-arrow-left-s-line text-xl" />
               </button>
-              <button onClick={() => scrollCards(solutionScroll, 'right')} className="w-10 h-10 flex items-center justify-center border border-[#111]/15 text-[#111]/50 hover:border-[#111] hover:text-[#111] transition-all duration-200 cursor-pointer" style={{ borderRadius: 0 }}>
+              <button onClick={() => scrollCards(solutionScroll, 'right')} className="w-10 h-10 flex items-center justify-center border border-foreground-950/15 text-foreground-950/50 hover:border-foreground-950 hover:text-foreground-950 transition-all duration-200 cursor-pointer" style={{ borderRadius: 0 }}>
                 <i className="ri-arrow-right-s-line text-xl" />
               </button>
             </div>
@@ -404,58 +431,50 @@ export default function KreationContentPage() {
               return (
                 <div
                   key={i}
-                  className="flex-shrink-0 snap-start relative overflow-hidden group cursor-default"
+                  className={`flex-shrink-0 snap-start relative overflow-hidden group cursor-default ${isHov ? 'bg-foreground-950 border border-primary-500/50' : 'bg-white border border-foreground-950/[0.09]'}`}
                   style={{
                     width: 'clamp(280px, 30vw, 360px)',
                     minHeight: '300px',
-                    background: isHov ? '#111' : '#ffffff',
-                    border: `1px solid ${isHov ? 'rgba(200,212,0,0.5)' : 'rgba(0,0,0,0.09)'}`,
                     borderRadius: 0,
                     transition: 'background 0.35s ease, border-color 0.35s ease',
                   }}
                   onMouseEnter={() => setHoveredSolution(i)}
                   onMouseLeave={() => setHoveredSolution(null)}
                 >
-                  <div className="absolute top-0 left-0 right-0 h-0 group-hover:h-[3px] bg-[#C8D400] transition-all duration-300" />
-                  <div className="absolute left-0 top-0 bottom-0 w-0 group-hover:w-[2px] transition-all duration-500" style={{ background: 'rgba(200,212,0,0.7)' }} />
-                  <div className="absolute top-3 right-3 w-4 h-4 border-t border-r border-[#C8D400]/0 group-hover:border-[#C8D400]/60 transition-all duration-300" />
-                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b border-r border-[#C8D400]/0 group-hover:border-[#C8D400]/60 transition-all duration-300" />
+                  <div className="absolute top-0 left-0 right-0 h-0 group-hover:h-[3px] bg-primary-500 transition-all duration-300" />
+                  <div className="absolute left-0 top-0 bottom-0 w-0 group-hover:w-[2px] transition-all duration-500 bg-primary-500/70" />
+                  <div className="absolute top-3 right-3 w-4 h-4 border-t border-r border-primary-500/0 group-hover:border-primary-500/60 transition-all duration-300" />
+                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b border-r border-primary-500/0 group-hover:border-primary-500/60 transition-all duration-300" />
                   <div
-                    className="absolute top-2 right-4 text-7xl font-black pointer-events-none select-none leading-none"
-                    style={{ color: isHov ? 'rgba(200,212,0,0.08)' : 'rgba(0,0,0,0.04)' }}
+                    className={`absolute top-2 right-4 text-7xl font-black pointer-events-none select-none leading-none ${isHov ? 'text-primary-500/8' : 'text-foreground-950/[0.04]'}`}
                   >
                     {s.num}
                   </div>
                   <div className="relative z-10 p-7">
                     <div
-                      className="w-12 h-12 overflow-hidden mb-6 flex-shrink-0 transition-all duration-500"
+                      className={`w-12 h-12 overflow-hidden mb-6 flex-shrink-0 transition-all duration-500 ${isHov ? 'scale-110 -rotate-3' : 'scale-100'}`}
                       style={{
                         borderRadius: 0,
-                        transform: isHov ? 'scale(1.1) rotate(-3deg)' : 'scale(1)',
+                        transition: 'transform 0.5s ease',
                       }}
                     >
-                      <img src={s.woodIcon} alt={s.title} className="w-full h-full object-cover" />
+                      <img src={getSolutionWoodIcon(i)} alt={s.title} className="w-full h-full object-cover" />
                     </div>
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="font-mono font-black text-xs text-[#C8D400]">{s.num}</span>
-                      <div className="flex-1 h-px" style={{ background: isHov ? 'rgba(200,212,0,0.25)' : 'rgba(0,0,0,0.08)' }} />
+                      <span className="font-mono font-black text-xs text-primary-500">{s.num}</span>
+                      <div className={isHov ? 'flex-1 h-px bg-primary-500/25' : 'flex-1 h-px bg-foreground-950/8'} />
                     </div>
-                    <h3 className="font-black text-base uppercase tracking-wide mb-3 transition-colors duration-300" style={{ color: isHov ? '#fff' : '#111' }}>
+                    <h3 className={`font-black text-base uppercase tracking-wide mb-3 transition-colors duration-300 ${isHov ? 'text-background-50' : 'text-foreground-950'}`}>
                       {s.title}
                     </h3>
-                    <p className="text-sm leading-relaxed mb-4 transition-colors duration-300" style={{ color: isHov ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.55)' }}>
+                    <p className={`text-sm leading-relaxed mb-4 transition-colors duration-300 ${isHov ? 'text-background-50/60' : 'text-foreground-950/55'}`}>
                       {s.desc}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {s.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-[9px] font-black px-2 py-0.5 uppercase tracking-widest transition-colors duration-300"
-                          style={{
-                            color: isHov ? '#fff' : '#111',
-                            background: isHov ? 'rgba(200,212,0,0.12)' : 'rgba(200,212,0,0.08)',
-                            border: `1px solid ${isHov ? 'rgba(200,212,0,0.3)' : 'rgba(200,212,0,0.2)'}`,
-                          }}
+                          className={`text-[9px] font-black px-2 py-0.5 uppercase tracking-widest transition-colors duration-300 ${isHov ? 'text-background-50 bg-primary-500/[0.12] border border-primary-500/30' : 'text-foreground-950 bg-primary-500/8 border border-primary-500/20'}`}
                         >
                           {tag}
                         </span>
@@ -471,8 +490,8 @@ export default function KreationContentPage() {
             {SOLUTIONS.map((_, i) => (
               <div
                 key={i}
-                className="transition-all duration-300"
-                style={{ width: i === 0 ? '20px' : '6px', height: '4px', borderRadius: 0, background: i === 0 ? '#C8D400' : 'rgba(0,0,0,0.15)' }}
+                className={`transition-all duration-300 h-1 ${i === 0 ? 'w-5 bg-primary-500' : 'w-1.5 bg-foreground-950/15'}`}
+                style={{ borderRadius: 0 }}
               />
             ))}
           </div>
@@ -480,6 +499,8 @@ export default function KreationContentPage() {
       </section>
 
       {/* Bento Showcase */}
+      <div id="content-creation" />
+      <div id="cgi-3d" />
       <KreationShowcase />
 
       <WoodenDivider />
@@ -490,19 +511,21 @@ export default function KreationContentPage() {
 
       <WoodenDivider />
 
-      <LeistungenKontakt
-        headline="Content-Beratung"
-        headlineAccent="buchen."
-        subline="Wir zeigen dir in 30 Minuten, wie wir im Bereich Kreation und Content arbeiten — von Konzept bis Produktion."
-        checkItems={[
-          { text: 'Strategische Herangehensweise' },
-          { text: 'Deine Ziele, unsere Beispiele' },
-          { text: 'Studio-Tour' },
-        ]}
-        ctaLabel="Beratung buchen"
-        ctaMailSubject="Kreation Content Beratung"
-        ctaIcon="ri-calendar-line"
-      />
+      <div id="kontakt">
+        <LeistungenKontakt
+          headline="Content-Beratung"
+          headlineAccent="buchen."
+          subline="Wir zeigen dir in 30 Minuten, wie wir im Bereich Kreation und Content arbeiten — von Konzept bis Produktion."
+          checkItems={[
+            { text: 'Strategische Herangehensweise' },
+            { text: 'Deine Ziele, unsere Beispiele' },
+            { text: 'Studio-Tour' },
+          ]}
+          ctaLabel="Beratung buchen"
+          ctaMailSubject="Kreation Content Beratung"
+          ctaIcon="ri-calendar-line"
+        />
+      </div>
       <ScrollToTopButton />
     </div>
   );

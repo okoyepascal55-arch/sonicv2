@@ -14,25 +14,25 @@ interface TagProps {
 /**
  * Tag — unified small pill/label across the site.
  *
- * variant="lime"   → bg-[#C8D400]/12 text-[#C8D400] border-[#C8D400]/25   (dark sections)
- * variant="dark"   → bg-black/5 text-[#6b7280] border-transparent           (light sections)
- * variant="subtle" → bg-black/3 text-[#9ca3af] border-transparent           (inactive/secondary)
+ * variant="lime"   → uses primary-500 with low opacity (dark sections)
+ * variant="dark"   → uses foreground-950 at low opacity (light sections)
+ * variant="subtle" → uses foreground-400 at low opacity (inactive/secondary)
  */
 export default function Tag({ children, variant = 'dark', className = '' }: TagProps) {
   const styles: Record<string, React.CSSProperties> = {
     lime: {
-      background: 'rgba(200,212,0,0.12)',
-      color: '#C8D400',
-      border: '1px solid rgba(200,212,0,0.25)',
+      background: 'oklch(var(--primary-500) / 0.12)',
+      color: 'oklch(var(--primary-500))',
+      border: '1px solid oklch(var(--primary-500) / 0.25)',
     },
     dark: {
-      background: 'rgba(0,0,0,0.06)',
-      color: '#6B7280',
+      background: 'oklch(var(--foreground-950) / 0.06)',
+      color: 'oklch(var(--foreground-500))',
       border: '1px solid transparent',
     },
     subtle: {
-      background: 'rgba(0,0,0,0.03)',
-      color: '#9CA3AF',
+      background: 'oklch(var(--foreground-950) / 0.03)',
+      color: 'oklch(var(--foreground-400))',
       border: '1px solid transparent',
     },
   };

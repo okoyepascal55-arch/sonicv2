@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { RouteObject } from 'react-router-dom';
+import { Navigate, RouteObject, useParams } from 'react-router-dom';
 
 // Lazy load pages
 const HomePage = lazy(() => import('../pages/home/page'));
@@ -26,12 +26,41 @@ const WarehouseLogistikPage = lazy(() => import('../pages/leistungen/warehouse-l
 const NotFoundPage = lazy(() => import('../pages/NotFound'));
 const JobsPage = lazy(() => import('../pages/jobs/page'));
 const JobDetailPage = lazy(() => import('../pages/jobs/[hash]/page'));
-const ContentStudioPage = lazy(() => import('../pages/services/content-studio/page'));
-const EventsServicePage = lazy(() => import('../pages/services/events/page'));
-const MarketEntryPage = lazy(() => import('../pages/services/market-entry/page'));
-const RetailPOSPage = lazy(() => import('../pages/services/retail-pos/page'));
-const StaffingPage = lazy(() => import('../pages/services/staffing/page'));
 const KontaktPage = lazy(() => import('../pages/kontakt/page'));
+const ErlebnismarketingPage = lazy(() => import('../pages/ratgeber/erlebnismarketing/page'));
+const VerkaufsfoerderungPOSPage = lazy(() => import('../pages/ratgeber/verkaufsfoerderung-pos/page'));
+const MesseEventmarketingPage = lazy(() => import('../pages/ratgeber/messe-eventmarketing/page'));
+const FieldMarketingSamplingPage = lazy(() => import('../pages/ratgeber/field-marketing-sampling/page'));
+const RetailMerchandisingPage = lazy(() => import('../pages/ratgeber/retail-merchandising/page'));
+const MysteryShoppingPage = lazy(() => import('../pages/ratgeber/mystery-shopping/page'));
+const PromotionspersonalPage = lazy(() => import('../pages/ratgeber/promotionspersonal/page'));
+const MarkenaktivierungPage = lazy(() => import('../pages/ratgeber/markenaktivierung/page'));
+const LiveShoppingPage = lazy(() => import('../pages/ratgeber/live-shopping/page'));
+const GuerillaMarketingPage = lazy(() => import('../pages/ratgeber/guerilla-marketing/page'));
+const NachhaltigkeitsmarketingPage = lazy(() => import('../pages/ratgeber/nachhaltigkeitsmarketing/page'));
+const TiktokShopLivePage = lazy(() => import('../pages/ratgeber/tiktok-shop-live/page'));
+const MarkteintrittDachPage = lazy(() => import('../pages/ratgeber/markteintritt-dach/page'));
+const LiveVideoPromotionRatgeberPage = lazy(() => import('../pages/ratgeber/live-video-promotion/page'));
+const RoadshowsAktionenPage = lazy(() => import('../pages/ratgeber/roadshows-aktionen/page'));
+const SocialCommercePage = lazy(() => import('../pages/ratgeber/social-commerce/page'));
+const VerkaeuferschulungenPage = lazy(() => import('../pages/ratgeber/verkaeuferschulungen/page'));
+const ShopperMarketingPage = lazy(() => import('../pages/ratgeber/shopper-marketing/page'));
+const TradeMarketingPage = lazy(() => import('../pages/ratgeber/trade-marketing/page'));
+const InfluencerMarketingPage = lazy(() => import('../pages/ratgeber/influencer-marketing/page'));
+const PopUpStoresPage = lazy(() => import('../pages/ratgeber/pop-up-stores/page'));
+const InstoreMediaPage = lazy(() => import('../pages/ratgeber/instore-media/page'));
+const ProduktLaunchPage = lazy(() => import('../pages/ratgeber/produkt-launch/page'));
+const CustomerExperiencePage = lazy(() => import('../pages/ratgeber/customer-experience/page'));
+const CommunityManagementPage = lazy(() => import('../pages/ratgeber/community-management/page'));
+const KulturEventsPage = lazy(() => import('../pages/ratgeber/kultur-events/page'));
+const SegmentierteAnsprachePage = lazy(() => import('../pages/ratgeber/segmentierte-ansprache/page'));
+const RatgeberHubPage = lazy(() => import('../pages/ratgeber/page'));
+const DashboardPage = lazy(() => import('../pages/dashboard/page'));
+
+function CaseStudySlugRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={slug ? `/fallbeispiele/${slug}` : '/fallbeispiele'} replace />;
+}
 
 const routes: RouteObject[] = [
   {
@@ -39,19 +68,51 @@ const routes: RouteObject[] = [
     element: <HomePage />,
   },
   {
+    path: '/dashboard',
+    element: <DashboardPage />,
+  },
+  {
+    path: '/login',
+    element: <Navigate to="/dashboard" replace />,
+  },
+  {
+    path: '/auth',
+    element: <Navigate to="/dashboard" replace />,
+  },
+  {
+    path: '/media-dashboard',
+    element: <Navigate to="/dashboard" replace />,
+  },
+  {
     path: '/about',
-    element: <AboutPage />,
+    element: <Navigate to="/ueber-uns" replace />,
   },
   {
     path: '/careers',
-    element: <CareersPage />,
+    element: <Navigate to="/karriere" replace />,
   },
   {
     path: '/case-studies',
-    element: <CaseStudiesPage />,
+    element: <Navigate to="/fallbeispiele" replace />,
   },
   {
     path: '/case-studies/:slug',
+    element: <CaseStudySlugRedirect />,
+  },
+  {
+    path: '/ueber-uns',
+    element: <AboutPage />,
+  },
+  {
+    path: '/karriere',
+    element: <CareersPage />,
+  },
+  {
+    path: '/fallbeispiele',
+    element: <CaseStudiesPage />,
+  },
+  {
+    path: '/fallbeispiele/:slug',
     element: <CaseStudyDetailPage />,
   },
   {
@@ -127,28 +188,120 @@ const routes: RouteObject[] = [
     element: <JobDetailPage />,
   },
   {
-    path: '/services/content-studio',
-    element: <ContentStudioPage />,
-  },
-  {
-    path: '/services/events',
-    element: <EventsServicePage />,
-  },
-  {
-    path: '/services/market-entry',
-    element: <MarketEntryPage />,
-  },
-  {
-    path: '/services/retail-pos',
-    element: <RetailPOSPage />,
-  },
-  {
-    path: '/services/staffing',
-    element: <StaffingPage />,
-  },
-  {
     path: '/kontakt',
     element: <KontaktPage />,
+  },
+  {
+    path: '/ratgeber/erlebnismarketing',
+    element: <ErlebnismarketingPage />,
+  },
+  {
+    path: '/ratgeber/verkaufsfoerderung-pos',
+    element: <VerkaufsfoerderungPOSPage />,
+  },
+  {
+    path: '/ratgeber/messe-eventmarketing',
+    element: <MesseEventmarketingPage />,
+  },
+  {
+    path: '/ratgeber/field-marketing-sampling',
+    element: <FieldMarketingSamplingPage />,
+  },
+  {
+    path: '/ratgeber/retail-merchandising',
+    element: <RetailMerchandisingPage />,
+  },
+  {
+    path: '/ratgeber/mystery-shopping',
+    element: <MysteryShoppingPage />,
+  },
+  {
+    path: '/ratgeber/promotionspersonal',
+    element: <PromotionspersonalPage />,
+  },
+  {
+    path: '/ratgeber/markenaktivierung',
+    element: <MarkenaktivierungPage />,
+  },
+  {
+    path: '/ratgeber/live-shopping',
+    element: <LiveShoppingPage />,
+  },
+  {
+    path: '/ratgeber/guerilla-marketing',
+    element: <GuerillaMarketingPage />,
+  },
+  {
+    path: '/ratgeber/nachhaltigkeitsmarketing',
+    element: <NachhaltigkeitsmarketingPage />,
+  },
+  {
+    path: '/ratgeber/tiktok-shop-live',
+    element: <TiktokShopLivePage />,
+  },
+  {
+    path: '/ratgeber/markteintritt-dach',
+    element: <MarkteintrittDachPage />,
+  },
+  {
+    path: '/ratgeber/live-video-promotion',
+    element: <LiveVideoPromotionRatgeberPage />,
+  },
+  {
+    path: '/ratgeber/roadshows-aktionen',
+    element: <RoadshowsAktionenPage />,
+  },
+  {
+    path: '/ratgeber/social-commerce',
+    element: <SocialCommercePage />,
+  },
+  {
+    path: '/ratgeber/verkaeuferschulungen',
+    element: <VerkaeuferschulungenPage />,
+  },
+  {
+    path: '/ratgeber/shopper-marketing',
+    element: <ShopperMarketingPage />,
+  },
+  {
+    path: '/ratgeber/trade-marketing',
+    element: <TradeMarketingPage />,
+  },
+  {
+    path: '/ratgeber/influencer-marketing',
+    element: <InfluencerMarketingPage />,
+  },
+  {
+    path: '/ratgeber/pop-up-stores',
+    element: <PopUpStoresPage />,
+  },
+  {
+    path: '/ratgeber/instore-media',
+    element: <InstoreMediaPage />,
+  },
+  {
+    path: '/ratgeber/produkt-launch',
+    element: <ProduktLaunchPage />,
+  },
+  {
+    path: '/ratgeber/customer-experience',
+    element: <CustomerExperiencePage />,
+  },
+  {
+    path: '/ratgeber/community-management',
+    element: <CommunityManagementPage />,
+  },
+  {
+    path: '/ratgeber/kultur-events',
+    element: <KulturEventsPage />,
+  },
+  {
+    path: '/ratgeber/segmentierte-ansprache',
+    element: <SegmentierteAnsprachePage />,
+  },
+  {
+    path: '/ratgeber',
+    element: <RatgeberHubPage />,
   },
   {
     path: '*',

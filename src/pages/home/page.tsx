@@ -26,7 +26,7 @@ export default function HomePage() {
   const totalSections = 9;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-[100dvh]">
 
       {/* ── Hero wrapper ── */}
       <div className="relative bg-gradient-to-b from-white via-[#FFF9F0]/40 to-white overflow-hidden">

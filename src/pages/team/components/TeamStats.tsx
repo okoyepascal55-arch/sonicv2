@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
+import { useText } from '@/hooks/useText';
 
 export default function TeamStats() {
+  const tBadge = useText('team_stats', 'team-stats-badge', 'Our Numbers');
+  const tHeading = useText('team_stats', 'team-stats-heading', 'ZAHLEN, DIE SPRECHEN');
+  const tSub = useText('team_stats', 'team-stats-sub', 'Über ein Jahrzehnt Erfahrung mit den größten Marken');
+
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const stats = [
@@ -28,67 +33,95 @@ export default function TeamStats() {
   ];
 
   return (
-    <section className="py-24 px-6 bg-[#f5f5f5]">
+    <section className="py-24 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <SectionBadge text="Our Numbers" variant="dark" className="mb-6" />
-          <h2 className="text-3xl lg:text-5xl font-black text-sonic-dark mb-6 leading-tight tracking-tight">
-            ZAHLEN, DIE <span className="relative inline-block">
-              SPRECHEN
-              <span className="absolute -bottom-1 left-0 right-0 h-3 bg-[#C8D400]/30 -z-10"></span>
-            </span>
+          <SectionBadge text={tBadge} variant="dark" className="mb-6" />
+          <h2 className="text-3xl lg:text-5xl font-black text-foreground-950 mb-6 leading-tight tracking-tight">
+            {tHeading}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Über ein Jahrzehnt Erfahrung mit den größten Marken
+          <p className="text-xl text-foreground-600 max-w-3xl mx-auto">
+            {tSub}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+          {/* Featured stat — full width on mobile, spans 1 col + taller on desktop */}
+          <div 
+            className="lg:col-span-1 lg:row-span-1 relative p-8 md:p-10 bg-white transition-all border border-foreground-100 cursor-pointer flex flex-col justify-center"
+            style={{
+              borderRadius: 0,
+              minHeight: '200px',
+              transform: hoveredIndex === 0 ? 'translateY(-4px)' : 'translateY(0)',
+              boxShadow: hoveredIndex === 0 ? '0 20px 40px rgba(0,0,0,0.1)' : '0 4px 6px rgba(0,0,0,0.05)'
+            }}
+            onMouseEnter={() => setHoveredIndex(0)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
             <div 
-              key={index}
-              className="relative text-center p-8 bg-white transition-all border border-gray-100 cursor-pointer"
+              className="absolute bottom-0 left-0 right-0 transition-all duration-300"
+              style={{
+                height: hoveredIndex === 0 ? '3px' : '0px',
+                background: '#C8D400'
+              }}
+            />
+            <div className="flex items-center gap-5">
+              <div className="w-16 h-16 flex items-center justify-center transition-colors duration-300 flex-shrink-0"
+                style={{
+                  borderRadius: 0,
+                  background: hoveredIndex === 0 ? '#C8D400' : 'rgba(200,212,0,0.12)'
+                }}
+              >
+                <i className={`${stats[0].icon} text-2xl transition-colors duration-300`}
+                  style={{ color: hoveredIndex === 0 ? '#111' : '#C8D400' }}
+                ></i>
+              </div>
+              <div>
+                <div className="text-5xl md:text-6xl font-black mb-1 text-[#C8D400]">{stats[0].number}</div>
+                <div className="text-sm text-foreground-500 uppercase tracking-wider font-semibold">{stats[0].label}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Remaining 3 stats */}
+          {stats.slice(1).map((stat, index) => {
+            const realIndex = index + 1;
+            return (
+            <div 
+              key={realIndex}
+              className="relative p-6 md:p-8 bg-white transition-all border border-foreground-100 cursor-pointer flex items-center gap-4"
               style={{
                 borderRadius: 0,
-                transform: hoveredIndex === index ? 'translateY(-4px)' : 'translateY(0)',
-                boxShadow: hoveredIndex === index ? '0 20px 40px rgba(0,0,0,0.1)' : '0 4px 6px rgba(0,0,0,0.05)'
+                transform: hoveredIndex === realIndex ? 'translateY(-4px)' : 'translateY(0)',
+                boxShadow: hoveredIndex === realIndex ? '0 20px 40px rgba(0,0,0,0.1)' : '0 4px 6px rgba(0,0,0,0.05)'
               }}
-              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseEnter={() => setHoveredIndex(realIndex)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              {/* Bottom Accent Bar on hover */}
               <div 
                 className="absolute bottom-0 left-0 right-0 transition-all duration-300"
                 style={{
-                  height: hoveredIndex === index ? '3px' : '0px',
+                  height: hoveredIndex === realIndex ? '3px' : '0px',
                   background: '#C8D400'
                 }}
               />
-
-              <div className="w-14 h-14 flex items-center justify-center mx-auto mb-6 transition-colors duration-300"
+              <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 transition-colors duration-300"
                 style={{
                   borderRadius: 0,
-                  background: hoveredIndex === index ? '#C8D400' : 'rgba(200,212,0,0.12)'
+                  background: hoveredIndex === realIndex ? '#C8D400' : 'rgba(200,212,0,0.12)'
                 }}
               >
-                <i className={`${stat.icon} text-2xl transition-colors duration-300`}
-                  style={{
-                    color: hoveredIndex === index ? '#111' : '#C8D400'
-                  }}
+                <i className={`${stat.icon} text-xl transition-colors duration-300`}
+                  style={{ color: hoveredIndex === realIndex ? '#111' : '#C8D400' }}
                 ></i>
               </div>
-              <div className="text-4xl md:text-5xl font-black mb-3 transition-colors duration-300"
-                style={{
-                  color: index % 2 === 0 ? '#C8D400' : '#111'
-                }}
-              >
-                {stat.number}
-              </div>
-              <div className="text-sm text-gray-500 uppercase tracking-wider font-semibold">
-                {stat.label}
+              <div>
+                <div className="text-3xl md:text-4xl font-black mb-0.5 text-foreground-950">{stat.number}</div>
+                <div className="text-xs text-foreground-500 uppercase tracking-wider font-semibold">{stat.label}</div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -10,7 +10,7 @@ const ORGANIZATION_SCHEMA = {
   '@type': 'Organization',
   name: 'Sonic Group',
   url: 'https://sonic-group.de',
-  logo: 'https://sonic-group.de/logo.png',
+  logo: 'https://www.sonic-group.de/wp-content/uploads/elementor/thumbs/SONIC_GESAMTLOGO_LIME-q0lflz24exgoq4608jg9ggegh9pjfwmmc0m1jsee5i.png',
   description: 'Sonic Group ist Europas führende Sales Promotion Agentur für den DACH-Markt. POS-Promotion, Live Video, Events, Staffing & Forecasting seit 2007.',
   foundingDate: '2007',
   areaServed: ['DE', 'AT', 'CH'],
@@ -29,10 +29,6 @@ const ORGANIZATION_SCHEMA = {
     'https://www.linkedin.com/company/sonic-group',
     'https://www.instagram.com/sonicgroup',
   ],
-  numberOfEmployees: {
-    '@type': 'QuantitativeValue',
-    value: 20000,
-  },
 };
 
 const SERVICES_SCHEMA = {
@@ -123,7 +119,7 @@ const WEBSITE_SCHEMA = {
   url: 'https://sonic-group.de',
   potentialAction: {
     '@type': 'SearchAction',
-    target: 'https://sonic-group.de/case-studies?q={search_term_string}',
+    target: 'https://sonic-group.de/fallbeispiele?q={search_term_string}',
     'query-input': 'required name=search_term_string',
   },
 };

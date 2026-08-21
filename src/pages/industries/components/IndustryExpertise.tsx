@@ -1,60 +1,28 @@
 import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
 import Tag from '@/components/base/Tag';
+import { useMediaStore } from '@/lib/mediaStore';
+import { useText } from '@/hooks/useText';
 
 export default function IndustryExpertise() {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const tBadge = useText('industries_expertise', 'industries-expertise-badge', 'Unsere Kompetenz');
+  const tHeading = useText('industries_expertise', 'industries-expertise-heading', 'WAS UNS UNTERSCHEIDET');
+  const tSub = useText('industries_expertise', 'industries-expertise-sub', '17+ Jahre Branchen-Expertise mit nachweisbaren Ergebnissen für führende Marken.');
 
-  const expertise = [
-    {
-      number: '01',
-      title: 'Marktkenntnis',
-      description: 'Tiefes Verständnis der DACH-Marktdynamik, des Verbraucherverhaltens und der Retail-Landschaften.',
-      icon: 'ri-compass-3-line',
-      tags: ['DACH-Markt', 'Consumer Insights'],
-      woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20compass%20navigation%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=100&height=100&seq=wood-compass-walnut&orientation=squarish',
-    },
-    {
-      number: '02',
-      title: 'Produkttraining',
-      description: 'Umfassende Schulungsprogramme, die sicherstellen, dass Markenbotschafter echte Produktexperten sind.',
-      icon: 'ri-graduation-cap-line',
-      tags: ['Schulungen', 'Produktwissen'],
-      woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20graduation%20cap%20education%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=100&height=100&seq=wood-grad-walnut&orientation=squarish',
-    },
-    {
-      number: '03',
-      title: 'Handelspartnerschaften',
-      description: 'Etablierte Partnerschaften mit führenden Retailern in Deutschland, Österreich und der Schweiz.',
-      icon: 'ri-links-line',
-      tags: ['Retail-Netzwerk', 'Partnerschaften'],
-      woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20handshake%20partnership%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=100&height=100&seq=wood-handshake-walnut&orientation=squarish',
-    },
-    {
-      number: '04',
-      title: 'Datenbasierte Insights',
-      description: 'Echtzeit-Analysen und Reporting, um Performance und ROI kontinuierlich zu optimieren.',
-      icon: 'ri-bar-chart-2-line',
-      tags: ['Analytics', 'Echtzeit-ROI'],
-      woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20bar%20chart%20analytics%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=100&height=100&seq=wood-chart-walnut&orientation=squarish',
-    },
-    {
-      number: '05',
-      title: 'Skalierbare Lösungen',
-      description: 'Von Einzelstore-Piloten bis zu deutschlandweiten Kampagnen — wir wachsen mit deinen Anforderungen.',
-      icon: 'ri-rocket-line',
-      tags: ['Skalierung', 'Nationwide'],
-      woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20rocket%20launch%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=100&height=100&seq=wood-rocket-walnut&orientation=squarish',
-    },
-    {
-      number: '06',
-      title: 'Phygitale Integration',
-      description: 'Nahtlose Verbindung zwischen physischem Retail und digitalen Erlebnissen.',
-      icon: 'ri-global-line',
-      tags: ['Phygital', 'Omnichannel'],
-      woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20globe%20world%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=100&height=100&seq=wood-globe-walnut&orientation=squarish',
-    },
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const { images: woodIcons } = useMediaStore('industries_expertise_wood_icons');
+  const getWoodIcon = (idx: number) => woodIcons[idx]?.url || expertiseData[idx].fallbackWoodIcon;
+
+  const expertiseData = [
+    { number: '01', title: 'Marktkenntnis', description: 'Tiefes Verständnis der DACH-Marktdynamik, des Verbraucherverhaltens und der Retail-Landschaften.', icon: 'ri-compass-3-line', tags: ['DACH-Markt', 'Consumer Insights'], fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20compass%20navigation%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=100&height=100&seq=wood-compass-walnut&orientation=squarish' },
+    { number: '02', title: 'Produkttraining', description: 'Umfassende Schulungsprogramme, die sicherstellen, dass Markenbotschafter echte Produktexperten sind.', icon: 'ri-graduation-cap-line', tags: ['Schulungen', 'Produktwissen'], fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20graduation%20cap%20education%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=100&height=100&seq=wood-grad-walnut&orientation=squarish' },
+    { number: '03', title: 'Handelspartnerschaften', description: 'Etablierte Partnerschaften mit führenden Retailern in Deutschland, Österreich und der Schweiz.', icon: 'ri-links-line', tags: ['Retail-Netzwerk', 'Partnerschaften'], fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20handshake%20partnership%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=100&height=100&seq=wood-handshake-walnut&orientation=squarish' },
+    { number: '04', title: 'Datenbasierte Insights', description: 'Echtzeit-Analysen und Reporting, um Performance und ROI kontinuierlich zu optimieren.', icon: 'ri-bar-chart-2-line', tags: ['Analytics', 'Echtzeit-ROI'], fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20bar%20chart%20analytics%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=100&height=100&seq=wood-chart-walnut&orientation=squarish' },
+    { number: '05', title: 'Skalierbare Lösungen', description: 'Von Einzelstore-Piloten bis zu deutschlandweiten Kampagnen — wir wachsen mit deinen Anforderungen.', icon: 'ri-rocket-line', tags: ['Skalierung', 'Nationwide'], fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20rocket%20launch%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=100&height=100&seq=wood-rocket-walnut&orientation=squarish' },
+    { number: '06', title: 'Phygitale Integration', description: 'Nahtlose Verbindung zwischen physischem Retail und digitalen Erlebnissen.', icon: 'ri-global-line', tags: ['Phygital', 'Omnichannel'], fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20globe%20world%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=100&height=100&seq=wood-globe-walnut&orientation=squarish' },
   ];
+
+  const expertise = expertiseData.map((e, i) => ({ ...e, woodIcon: getWoodIcon(i) }));
 
   const stats = [
     { value: '650K+', label: 'Man-Days' },
@@ -68,12 +36,12 @@ export default function IndustryExpertise() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <SectionBadge text="Unsere Kompetenz" variant="dark" className="mb-6" />
-          <h2 className="text-4xl lg:text-5xl font-black text-sonic-dark mb-4 leading-tight tracking-tight">
-            WAS UNS UNTERSCHEIDET
+          <SectionBadge text={tBadge} variant="dark" className="mb-6" />
+          <h2 className="text-4xl lg:text-5xl font-black text-foreground-950 mb-4 leading-tight tracking-tight">
+            {tHeading}
           </h2>
-          <p className="text-base text-gray-600 max-w-2xl mx-auto">
-            17+ Jahre Branchen-Expertise mit nachweisbaren Ergebnissen für führende Marken.
+          <p className="text-base text-foreground-600 max-w-2xl mx-auto">
+            {tSub}
           </p>
         </div>
 

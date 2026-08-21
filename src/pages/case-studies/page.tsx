@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
-import SectionBadge from '@/components/base/SectionBadge';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
+import { useMediaStore } from '@/lib/mediaStore';
 
 /* ─────────────────────────────────────────
    LEISTUNGEN IM EINSATZ — split image + content panel
@@ -26,16 +26,16 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
     <div className="mb-14">
       {/* Section heading */}
       <div className="flex items-center gap-3 mb-5">
-        <div className="w-1 h-8 bg-[#C8D400]"></div>
+        <div className="w-1 h-8 bg-primary-500"></div>
         <div>
-          <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-0.5">Leistungen im Einsatz</p>
+          <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Leistungen im Einsatz</p>
           <h3 className="text-xl font-black text-[#1a1a1a] uppercase tracking-wide">{brand} — Was wir eingesetzt haben</h3>
         </div>
       </div>
 
       {/* Tab buttons */}
       <div
-        className="flex gap-0 overflow-x-auto mb-0 border border-b-0 border-gray-200"
+        className="flex gap-0 overflow-x-auto mb-0 border border-b-0 border-foreground-200"
         style={{ scrollbarWidth: 'none' }}
         role="tablist"
         aria-label={`Leistungen im Einsatz — ${brand}`}
@@ -48,16 +48,16 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
             aria-selected={activeIdx === idx}
             aria-controls={`module-panel-${idx}`}
             id={`module-tab-${idx}`}
-            className={`flex items-center gap-2 px-4 md:px-5 py-3 transition-all duration-200 cursor-pointer text-xs md:text-sm font-bold whitespace-nowrap flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] border-r border-gray-200 last:border-r-0 ${
+            className={`flex items-center gap-2 px-4 md:px-5 py-3 transition-all duration-200 cursor-pointer text-xs md:text-sm font-bold whitespace-nowrap flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] border-r border-foreground-200 last:border-r-0 ${
               activeIdx === idx
-                ? 'bg-[#1a1a1a] text-[#C8D400] border-b-2 border-b-[#C8D400]'
-                : 'bg-white text-gray-500 hover:bg-[#f9f9f7] hover:text-[#1a1a1a]'
+                ? 'bg-[#1a1a1a] text-primary-500 border-b-2 border-b-[#C8D400]'
+                : 'bg-white text-foreground-500 hover:bg-[#FAFDF5] hover:text-[#1a1a1a]'
             }`}
             style={{ borderRadius: 0 }}
           >
             <span
               className={`inline-flex items-center justify-center w-5 h-5 text-[10px] font-black flex-shrink-0 ${
-                activeIdx === idx ? 'bg-[#C8D400] text-[#1a1a1a]' : 'bg-gray-200 text-gray-500'
+                activeIdx === idx ? 'bg-primary-500 text-[#1a1a1a]' : 'bg-foreground-200 text-foreground-500'
               }`}
               style={{ borderRadius: 0 }}
             >
@@ -74,7 +74,7 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
         id={`module-panel-${activeIdx}`}
         role="tabpanel"
         aria-labelledby={`module-tab-${activeIdx}`}
-        className="grid grid-cols-1 lg:grid-cols-5 border border-gray-200 overflow-hidden"
+        className="grid grid-cols-1 lg:grid-cols-5 border border-foreground-200 overflow-hidden"
         style={{ borderRadius: 0, transition: 'opacity 0.2s ease', opacity: fade ? 1 : 0, minHeight: '380px' }}
       >
         {/* LEFT — image (3 cols) */}
@@ -104,7 +104,7 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
             {/* Module number + title */}
             <div className="flex items-start gap-3 mb-5">
               <div
-                className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-[#C8D400] mt-0.5"
+                className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-primary-500 mt-0.5"
                 style={{ borderRadius: 0 }}
               >
                 <span className="text-[#1a1a1a] font-black text-sm tabular-nums">{mod.num}</span>
@@ -115,7 +115,7 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
             </div>
 
             {/* Lime divider */}
-            <div className="w-10 h-0.5 bg-[#C8D400] mb-5"></div>
+            <div className="w-10 h-0.5 bg-primary-500 mb-5"></div>
 
             {/* Description */}
             <p className="text-white/80 leading-relaxed text-sm md:text-base">
@@ -135,7 +135,7 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
                   aria-label={`Modul ${m.num}: ${m.title}`}
                   className={`transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C8D400] ${
                     activeIdx === idx
-                      ? 'w-7 h-2 bg-[#C8D400]'
+                      ? 'w-7 h-2 bg-primary-500'
                       : 'w-2 h-2 bg-white/25 hover:bg-white/50'
                   }`}
                   style={{ borderRadius: 0 }}
@@ -196,6 +196,7 @@ export default function CaseStudiesPage() {
   });
 
   const navigate = useNavigate();
+  const { images: woodTextures } = useMediaStore('losungen_wood_textures');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [expandedStory, setExpandedStory] = useState<string | null>(null);
   const expandedRef = useRef<HTMLDivElement>(null);
@@ -240,10 +241,10 @@ export default function CaseStudiesPage() {
         'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg',
       ],
       bentoImages: [
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg', span: 'col-span-2 row-span-2', label: 'POS Activation' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', span: 'col-span-1 row-span-1', label: 'POS-Möbel 2024' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', span: 'col-span-1 row-span-1', label: 'Training Krefeld' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', span: 'col-span-2 row-span-1', label: 'Lager & Logistik' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg', span: 'md:col-span-2 md:row-span-2', label: 'POS Activation' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', span: 'md:col-span-1 md:row-span-1', label: 'POS-Möbel 2024' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', span: 'md:col-span-1 md:row-span-1', label: 'Training Krefeld' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', span: 'md:col-span-2 md:row-span-1', label: 'Lager & Logistik' },
       ],
       relatedStories: ['philips', 'groupe-seb'],
     },
@@ -287,10 +288,10 @@ export default function CaseStudiesPage() {
         'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg',
       ],
       bentoImages: [
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', span: 'col-span-2 row-span-2', label: 'Live-Video Studio' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', span: 'col-span-1 row-span-1', label: 'Airstream Roadshow' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', span: 'col-span-1 row-span-1', label: 'Live-Cooking' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', span: 'col-span-2 row-span-1', label: 'Tägliches Reporting' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', span: 'md:col-span-2 md:row-span-2', label: 'Live-Video Studio' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', span: 'md:col-span-1 md:row-span-1', label: 'Airstream Roadshow' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', span: 'md:col-span-1 md:row-span-1', label: 'Live-Cooking' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', span: 'md:col-span-2 md:row-span-1', label: 'Tägliches Reporting' },
       ],
       relatedStories: ['garmin', 'avoury'],
     },
@@ -298,7 +299,7 @@ export default function CaseStudiesPage() {
       id: 'philips',
       slug: 'philips',
       brand: 'Philips',
-      woodIcon: 'https://cdn.brandfetch.io/philips.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+      woodIcon: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887',
       metric: '+54%',
       metricLabel: 'Absatzwachstum pro Einsatztag 2021–2024',
       headline: 'Erfolgreichster europäischer Markt',
@@ -334,10 +335,10 @@ export default function CaseStudiesPage() {
         'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
       ],
       bentoImages: [
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', span: 'col-span-2 row-span-2', label: 'POS Promotion' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', span: 'col-span-1 row-span-1', label: 'TVundSound Academy' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', span: 'col-span-1 row-span-1', label: 'Messen' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', span: 'col-span-2 row-span-1', label: 'Digitaler Homeplaner' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', span: 'md:col-span-2 md:row-span-2', label: 'POS Promotion' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', span: 'md:col-span-1 md:row-span-1', label: 'TVundSound Academy' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', span: 'md:col-span-1 md:row-span-1', label: 'Messen' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', span: 'md:col-span-2 md:row-span-1', label: 'Digitaler Homeplaner' },
       ],
       relatedStories: ['garmin', 'avoury'],
     },
@@ -345,7 +346,7 @@ export default function CaseStudiesPage() {
       id: 'avoury',
       slug: 'avoury',
       brand: 'Avoury',
-      woodIcon: 'https://readdy.ai/api/search-image?query=Avoury%20tea%20machine%20Melitta%20premium%20brand%20logo%20clean%20white%20background%20minimal%20modern%20branding&width=200&height=80&seq=avoury-logo-001&orientation=landscape',
+      woodIcon: 'https://cdn.brandfetch.io/melitta.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
       metric: '+1.187%',
       metricLabel: 'Umsatzwachstum pro Einsatztag 2021–2023',
       headline: 'Heißes Wachstum mit Tee',
@@ -380,19 +381,17 @@ export default function CaseStudiesPage() {
         'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
       ],
       bentoImages: [
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', span: 'col-span-2 row-span-2', label: 'POS Demo' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', span: 'col-span-1 row-span-1', label: 'Schulungen Krefeld' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', span: 'col-span-1 row-span-1', label: 'Reporting & Daten' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', span: 'col-span-2 row-span-1', label: 'Avoury One — Melitta' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', span: 'md:col-span-2 md:row-span-2', label: 'POS Demo' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', span: 'md:col-span-1 md:row-span-1', label: 'Schulungen Krefeld' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', span: 'md:col-span-1 md:row-span-1', label: 'Reporting & Daten' },
+        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', span: 'md:col-span-2 md:row-span-1', label: 'Avoury One — Melitta' },
       ],
       relatedStories: ['groupe-seb', 'philips'],
     },
   ];
 
-  // Manual navigation only — no auto-advance
-  // Users control their own reading pace
-
   const handleBrandClick = (index: number) => {
+    if (index === currentSlide) return;
     setCurrentSlide(index);
     setExpandedStory(null);
     const el = document.getElementById('case-studies-carousel');
@@ -423,62 +422,6 @@ export default function CaseStudiesPage() {
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [lightboxItems, setLightboxItems] = useState<LightboxItem[]>([]);
 
-  // Wood card dimensions for wavy SVG border
-  const carouselCardRef = useRef<HTMLDivElement>(null);
-  const [cardDims, setCardDims] = useState({ width: 900, height: 400 });
-
-  useEffect(() => {
-    if (!carouselCardRef.current) return;
-    const update = () => {
-      if (carouselCardRef.current) {
-        setCardDims({
-          width: carouselCardRef.current.offsetWidth,
-          height: carouselCardRef.current.offsetHeight,
-        });
-      }
-    };
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(carouselCardRef.current);
-    return () => ro.disconnect();
-  }, []);
-
-  const generateWavyPath = (w: number, h: number, inset: number, amp: number, freq: number) => {
-    const segsH = Math.max(Math.floor((w - 2 * inset) / 30), 14);
-    const segsV = Math.max(Math.floor((h - 2 * inset) / 30), 10);
-    let path = `M ${inset},${inset}`;
-    for (let i = 1; i <= segsH; i++) {
-      const x = inset + ((w - 2 * inset) * i / segsH);
-      const wave = Math.sin(i * freq) * amp;
-      const prevX = inset + ((w - 2 * inset) * (i - 1) / segsH);
-      const cpWave = Math.sin((i - 0.5) * freq) * amp * 1.2;
-      path += ` Q ${(prevX + x) / 2},${inset + cpWave} ${x},${inset + wave}`;
-    }
-    for (let i = 1; i <= segsV; i++) {
-      const y = inset + ((h - 2 * inset) * i / segsV);
-      const wave = Math.sin(i * freq + 1) * amp;
-      const prevY = inset + ((h - 2 * inset) * (i - 1) / segsV);
-      const cpWave = Math.sin((i - 0.5) * freq + 1) * amp * 1.2;
-      path += ` Q ${w - inset + cpWave},${(prevY + y) / 2} ${w - inset + wave},${y}`;
-    }
-    for (let i = 1; i <= segsH; i++) {
-      const x = w - inset - ((w - 2 * inset) * i / segsH);
-      const wave = Math.sin(i * freq + 2) * amp;
-      const prevX = w - inset - ((w - 2 * inset) * (i - 1) / segsH);
-      const cpWave = Math.sin((i - 0.5) * freq + 2) * amp * 1.2;
-      path += ` Q ${(prevX + x) / 2},${h - inset + cpWave} ${x},${h - inset + wave}`;
-    }
-    for (let i = 1; i <= segsV; i++) {
-      const y = h - inset - ((h - 2 * inset) * i / segsV);
-      const wave = Math.sin(i * freq + 3) * amp;
-      const prevY = h - inset - ((h - 2 * inset) * (i - 1) / segsV);
-      const cpWave = Math.sin((i - 0.5) * freq + 3) * amp * 1.2;
-      path += ` Q ${inset + cpWave},${(prevY + y) / 2} ${inset + wave},${y}`;
-    }
-    path += ' Z';
-    return path;
-  };
-
   const openLightbox = (items: LightboxItem[], index: number) => {
     setLightboxItems(items);
     setLightboxIndex(index);
@@ -489,7 +432,7 @@ export default function CaseStudiesPage() {
   const expanded = caseStudies.find((s) => s.id === expandedStory);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-[100dvh] bg-white">
 
       {/* Lightbox */}
       <Lightbox
@@ -502,280 +445,190 @@ export default function CaseStudiesPage() {
       />
 
       {/* ── HERO BANNER ── */}
-      <section className="relative overflow-hidden" style={{ minHeight: 'clamp(320px, 50vw, 440px)' }}>
-        <div className="absolute inset-0 bg-[#1a1a1a]"></div>
-        <div className="absolute inset-0 opacity-15">
+      <section className="relative overflow-hidden -mt-20" style={{ minHeight: 'clamp(320px, 50vw, 440px)' }}>
+        <div className="absolute inset-0">
           <img
             src="https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg"
-            alt=""
-            className="w-full h-full object-cover"
+            alt="Erfolgsgeschichten"
+            className="w-full h-full object-cover object-center"
+            fetchPriority="high"
+            decoding="async"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/55 to-black/75" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1a1a1a]/80 to-[#1a1a1a]" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center justify-center text-center h-full" style={{ minHeight: 'clamp(320px, 50vw, 440px)', paddingTop: '5rem', paddingBottom: '3rem' }}>
           <div className="inline-flex items-center gap-3 mb-4 md:mb-6">
-            <div className="w-8 h-8 flex items-center justify-center bg-[#C8D400]/20">
-              <i className="ri-trophy-line text-xl text-[#C8D400]"></i>
+            <div className="w-8 h-8 flex items-center justify-center bg-primary-500/20">
+              <i className="ri-trophy-line text-xl text-primary-500"></i>
             </div>
-            <span className="text-[#C8D400] text-xs font-black uppercase tracking-widest">Fallbeispiele</span>
+            <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Fallbeispiele</span>
           </div>
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4 md:mb-5">
-            ERFOLGS<span className="text-[#C8D400]">GESCHICHTEN</span>
+            ERFOLGS<span className="text-primary-500">GESCHICHTEN</span>
           </h1>
           <p className="text-2xl md:text-3xl font-black text-white/90 mb-3">Sonic performt</p>
         </div>
       </section>
 
 
-      <WoodenDivider />
+      {/* ── UNIFIED SECTION: Tabs + Intro + Balanced Blade Card ── */}
+      <section id="case-studies-carousel" className="relative overflow-hidden bg-white">
 
-      {/* ── INTRO TEXT BLOCK ── */}
-      <section className="bg-white py-12 md:py-16 border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-4 md:px-6">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+        {/* Brand tabs — full-bleed dark bar */}
+        <div className="bg-[#111] border-b border-[#C8D400]/20">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+            <div className="flex items-center justify-start md:justify-center gap-3 flex-nowrap md:flex-wrap overflow-x-auto py-5 md:py-8 scrollbar-hide" role="tablist" aria-label="Fallbeispiele nach Marke">
+              {caseStudies.map((study, index) => (
+                <button
+                  key={study.brand}
+                  onClick={() => handleBrandClick(index)}
+                  role="tab"
+                  aria-selected={currentSlide === index}
+                  aria-label={`${study.brand} — ${study.metric} ${study.metricLabel}`}
+                  className={`px-6 py-2.5 font-black uppercase tracking-wider text-xs md:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer flex-shrink-0 rounded-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
+                    currentSlide === index
+                      ? 'bg-primary-500 text-[#1a1a1a]'
+                      : 'bg-transparent text-foreground-400 border border-white/20 hover:border-[#C8D400]/60 hover:text-white'
+                  }`}
+                  title={study.brand}
+                >
+                  {study.brand}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Intro block — eyebrow + copy left, 4 stats right */}
+        <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-8 md:py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
             <div>
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-1 h-8 bg-[#C8D400]"></div>
-                <span className="text-xs font-black uppercase tracking-widest text-[#C8D400]">Performance Marketing für Retail</span>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-4" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.30)' }}>
+                <span className="w-1.5 h-1.5" style={{ background: 'oklch(var(--primary-500))' }}></span>
+                <span className="text-xs font-black uppercase tracking-widest whitespace-nowrap text-foreground-950">Performance Marketing für Retail</span>
               </div>
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed font-medium">
+              <p className="text-sm md:text-base text-foreground-700 leading-relaxed max-w-xl">
                 Das bedeutet für uns, gemeinsam mit und für unsere Kunden messbare Erfolge zu erzielen. Da unsere Arbeitsweise datengetrieben ist und dadurch Optimierungen ermöglicht, werden die Erfolge in jedem weiteren Jahr der Zusammenarbeit noch größer.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 lg:gap-5">
               {[
-                { value: '>500', label: 'Projekte', icon: 'ri-folder-chart-line' },
-                { value: '>1,35 Mio.', label: 'Einsätze', icon: 'ri-user-star-line' },
-                { value: '>100.000', label: 'POS-Umsetzungen', icon: 'ri-store-2-line' },
-                { value: 'Seit 2007', label: 'Erfahrung', icon: 'ri-award-line' },
+                { value: '>500', label: 'Projekte' },
+                { value: '>1,35 Mio.', label: 'Einsätze' },
+                { value: '>100.000', label: 'POS' },
+                { value: '2007', label: 'Seit' },
               ].map((stat, i) => (
-                <div key={i} className="bg-[#f9f9f7] p-5 border border-gray-100" style={{ borderRadius: 0 }}>
-                  <div className="w-9 h-9 flex items-center justify-center bg-[#C8D400]/15 mb-3">
-                    <i className={`${stat.icon} text-xl text-[#C8D400]`}></i>
-                  </div>
-                  <div className="text-xl font-black text-[#1a1a1a] font-sans tabular-nums mb-0.5">{stat.value}</div>
-                  <div className="text-xs text-gray-500 font-bold uppercase tracking-wide">{stat.label}</div>
+                <div key={i} className="pl-3 border-l-2 border-primary-500 min-w-0 overflow-hidden">
+                  <div className="text-lg md:text-xl font-black text-foreground-950 font-sans tabular-nums leading-none whitespace-nowrap">{stat.value}</div>
+                  <div className="text-xs text-foreground-600 font-bold uppercase tracking-wide mt-1">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
-      </section>
 
-      <WoodenDivider />
-
-      {/* ── BRAND TABS ── */}
-      <section className="py-5 md:py-8 bg-[#111] border-b border-[#C8D400]/20">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3 flex-nowrap md:flex-wrap overflow-x-auto pb-2 md:pb-0 scrollbar-hide" role="tablist" aria-label="Fallbeispiele nach Marke">
-            {caseStudies.map((study, index) => (
-              <button
-                key={study.brand}
-                onClick={() => handleBrandClick(index)}
-                role="tab"
-                aria-selected={currentSlide === index}
-                aria-label={`${study.brand} — ${study.metric} ${study.metricLabel}`}
-                className={`px-5 md:px-8 py-2.5 font-black uppercase tracking-wider text-xs md:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer flex-shrink-0 truncate max-w-[200px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime ${
-                  currentSlide === index
-                    ? 'bg-[#C8D400] text-white'
-                    : 'bg-white/5 text-white/70 border border-white/15 hover:border-[#C8D400]/60 hover:text-white'
-                }`}
-                style={{ borderRadius: 0 }}
-                title={study.brand}
-              >
-                {study.brand}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── WOODEN CAROUSEL ── */}
-      <section id="case-studies-carousel" className="relative py-8 md:py-12 overflow-hidden bg-white">
-        <div className="absolute top-1/3 left-0 w-80 h-80 bg-[#C8D400]/5 blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-[#C8D400]/7 blur-3xl pointer-events-none"></div>
-        <div className="relative z-10 px-4 md:px-6 max-w-7xl mx-auto">
+        {/* Balanced Blade card */}
+        <div className="max-w-[1200px] mx-auto px-6 md:px-10 pb-14 md:pb-20">
           <div
-            ref={carouselCardRef}
-            className="w-full relative overflow-hidden"
-            style={{ borderRadius: 0, boxShadow: '0 20px 60px rgba(0,0,0,0.35)' }}
+            className="relative overflow-hidden rounded-none"
+            style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.4), 0 0 100px rgba(200,212,0,0.06)' }}
           >
-            {/* Wood texture background */}
+            {/* Wood texture — actual image, matching the Lösungen card */}
             <div className="absolute inset-0">
-              <img
-                src="https://readdy.ai/api/search-image?query=extremely%20ancient%20century%20old%20reclaimed%20barn%20wood%20plank%20texture%20rich%20dark%20brown%20walnut%20color%20with%20severe%20weathering%20massive%20deep%20cracks%20heavy%20splits%20wormholes%20rot%20marks%20thick%20oxidation%20layers%20extreme%20patina%20warm%20brown%20tones%20with%20dark%20decay%20marks%20heavily%20distressed%20vintage%20surface%20archaeological%20relic%20quality%20museum%20artifact%20aged%20timber%20with%20peeling%20finish&width=1920&height=700&seq=case-study-wood-bg-v1&orientation=landscape"
-                alt=""
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/45" />
+              {(woodTextures[0] && woodTextures[0].url) ? (
+                <img
+                  src={woodTextures[0].url}
+                  alt=""
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : null}
+              <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/35 to-black/50" />
             </div>
 
-            {/* Wavy lime SVG border — same as Lösungen WoodCard */}
-            <svg
-              className="absolute inset-0 pointer-events-none overflow-visible"
-              viewBox={`0 0 ${cardDims.width} ${cardDims.height}`}
-              width={cardDims.width}
-              height={cardDims.height}
-              style={{ zIndex: 1 }}
-            >
-              <defs>
-                <linearGradient id="wb-case" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#C8D400" stopOpacity="0.95" />
-                  <stop offset="40%" stopColor="#a8b300" stopOpacity="0.55" />
-                  <stop offset="100%" stopColor="#C8D400" stopOpacity="0.95" />
-                </linearGradient>
-              </defs>
-              <path
-                d={generateWavyPath(cardDims.width, cardDims.height, 2, 3.5, 0.42)}
-                fill="none"
-                stroke="url(#wb-case)"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{ filter: 'drop-shadow(0 0 10px rgba(200,212,0,0.55)) drop-shadow(0 0 3px rgba(200,212,0,0.30))' }}
-              />
-            </svg>
+            {/* Fine grain overlay */}
+            <div className="absolute inset-0 opacity-25" style={{ backgroundImage: 'repeating-linear-gradient(115deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 2px, transparent 4px)' }} />
 
-            <div className="relative p-5 md:p-10" style={{ zIndex: 2 }}>
-              <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-10 items-start gap-6">
+            {/* Signature blade — one wide diagonal light-blade (~18°) on the right */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute -right-8 top-1/2 -translate-y-1/2 w-40 md:w-64 h-[120%]" style={{ background: 'linear-gradient(180deg, transparent 0%, rgba(200,212,0,0.20) 50%, transparent 100%)', transform: 'rotate(-18deg)', filter: 'blur(26px)' }} />
+            </div>
 
-                {/* LEFT — Brand + headline + metric */}
-                <div className="w-full lg:col-span-3 flex flex-col gap-4 md:gap-5">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 md:w-14 md:h-14 overflow-hidden border-2 border-[#C8D400]/50 flex-shrink-0" style={{ borderRadius: 0 }}>
-                      <img src={current.woodIcon} alt={`${current.brand} Logo`} className="w-full h-full object-cover" />
-                    </div>
-                    <div className="min-w-0">
-                      <h2 className="text-xl md:text-2xl font-black text-white leading-tight">{current.brand}</h2>
-                      <p className="text-[#C8D400] font-bold text-xs uppercase tracking-wide">{current.campaignType}</p>
-                    </div>
+            <div key={current.id} className="relative z-10 p-5 md:p-8 lg:p-9" style={{ animation: 'brandFadeIn 0.3s ease-out forwards' }}>
+              {/* 1. Card header row */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-7">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg overflow-hidden bg-white/10 border border-white/15 flex items-center justify-center flex-shrink-0">
+                    <img src={current.woodIcon} alt={`${current.brand} Logo`} className="w-full h-full object-contain p-1.5" loading="lazy" decoding="async" style={{ filter: 'brightness(0) invert(1)' }} />
                   </div>
-
-                  <div>
-                    <div className="text-5xl md:text-6xl font-black text-[#C8D400] font-sans tabular-nums mb-1 leading-none drop-shadow-lg">{current.metric}</div>
-                    <p className="text-white/70 text-xs font-bold uppercase tracking-wide">{current.metricLabel}</p>
-                  </div>
-
-                  <div>
-                    <p className="text-white text-base font-black leading-snug mb-1">{current.headline}</p>
-                    <p className="text-white/60 text-xs leading-relaxed">{current.subline}</p>
-                  </div>
-
-                  {/* Overview snippet instead of quote */}
-                  <div className="hidden md:block bg-white/10 backdrop-blur-sm p-4 border border-white/15" style={{ borderRadius: 0 }}>
-                    <p className="text-white/80 text-xs leading-relaxed font-medium">{current.overview.slice(0, 160)}…</p>
+                  <div className="min-w-0">
+                    <h2 className="text-2xl md:text-3xl font-black text-white leading-none">{current.brand}</h2>
+                    <p className="text-primary-500 font-bold text-xs uppercase tracking-wide mt-1.5">{current.campaignType}</p>
                   </div>
                 </div>
+                <div className="inline-flex items-center gap-2 self-start sm:self-auto rounded-none border border-white/15 bg-white/5 px-4 py-2">
+                  <i className="ri-award-line text-primary-500 text-sm"></i>
+                  <span className="text-white/75 text-xs font-bold whitespace-nowrap">Partnerschaft seit {current.since} · {current.woodPills[1]?.value ?? ''}</span>
+                </div>
+              </div>
 
-                {/* MID — Stats bars + pills + CTA */}
-                <div className="w-full lg:col-span-5 flex flex-col gap-4">
-                  <div className="space-y-3">
-                    {current.woodStats.map((stat, idx) => (
-                      <div key={idx} className="bg-white/10 backdrop-blur-sm px-4 py-3 border border-white/15" style={{ borderRadius: 0 }}>
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-white/75 text-xs font-bold">{stat.label}</span>
-                          <span className="text-white font-sans tabular-nums font-black text-sm">{stat.value}</span>
-                        </div>
-                        <div className="h-2 bg-white/20 overflow-hidden" style={{ borderRadius: 0 }}>
-                          <div className="h-full bg-gradient-to-r from-[#C8D400] to-[#a8b300] transition-all duration-1000" style={{ width: `${stat.progress}%` }}></div>
-                        </div>
+              {/* 2. Two-column hero row */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+                {/* Left — hero stat + description */}
+                <div className="lg:col-span-5 flex flex-col justify-center">
+                  <div className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-primary-500 font-sans tabular-nums leading-none drop-shadow-lg">{current.metric}</div>
+                  <p className="text-white/75 text-sm md:text-base font-bold uppercase tracking-wide mt-3">{current.metricLabel}</p>
+                  <p className="text-white/60 text-sm leading-relaxed mt-4 max-w-md">{current.overview}</p>
+                </div>
+
+                {/* Right — chart panel */}
+                <div className="lg:col-span-7 rounded-lg bg-black/30 border border-white/10 backdrop-blur-[2px] p-6 md:p-8 flex flex-col">
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-white/85 text-xs font-black uppercase tracking-wide">Performance-Trend</span>
+                    <span className="text-primary-500 text-xs font-sans tabular-nums font-black bg-white/10 rounded-none px-3 py-1">{current.since}–{(current.metricLabel.match(/20\d{2}/g) || []).pop() || '2024'}</span>
+                  </div>
+                  <div className="flex-1 flex items-end gap-1.5 md:gap-2 min-h-[130px]">
+                    {current.monthlyTrend.map((h, i) => (
+                      <div key={i} className="flex-1 flex flex-col justify-end h-full">
+                        <div className="w-full rounded-t-sm bg-gradient-to-t from-[#C8D400]/60 to-[#C8D400] transition-all duration-700" style={{ height: `${(h / 100) * 100}%` }} />
                       </div>
                     ))}
                   </div>
-
-                  <div className="grid grid-cols-3 gap-2">
-                    {current.woodPills.map((pill, idx) => (
-                      <div key={idx} className="bg-white/10 backdrop-blur-sm p-3 border border-white/15 text-center" style={{ borderRadius: 0 }}>
-                        <div className="text-[#C8D400] font-sans tabular-nums font-black text-base mb-0.5">{pill.value}</div>
-                        <div className="text-white/65 text-xs font-bold">{pill.label}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center gap-3 mt-1">
-                    <button
-                      onClick={() => handleReadFullStory(current.slug)}
-                      className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#C8D400] text-white font-black uppercase tracking-wider hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 shadow-xl cursor-pointer whitespace-nowrap text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                      style={{ borderRadius: 0 }}
-                    >
-                      <span className="hidden sm:inline">Vollständige Story</span>
-                      <span className="sm:hidden">Full Story</span>
-                      <i className="ri-arrow-down-line text-sm animate-bounce"></i>
-                    </button>
-                    <button
-                      onClick={handleNext}
-                      className="w-10 h-10 flex items-center justify-center bg-white/20 border border-white/30 hover:bg-white/30 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                      style={{ borderRadius: 0 }}
-                      aria-label="Nächste Erfolgsgeschichte"
-                    >
-                      <i className="ri-arrow-right-line text-lg text-white"></i>
-                    </button>
-                  </div>
-                </div>
-
-                {/* RIGHT — Trend chart + nav dots */}
-                <div className="hidden lg:flex lg:col-span-4 flex-col gap-4">
-                  <div className="bg-white/10 backdrop-blur-sm p-5 border border-white/15" style={{ borderRadius: 0 }}>
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="text-white/80 text-xs font-black uppercase tracking-wide">Performance-Trend</span>
-                      <span className="text-sonic-lime text-xs font-sans tabular-nums font-black bg-white/10 px-2 py-0.5">{current.since} →</span>
-                    </div>
-                    <div className="h-28 flex items-end gap-0.5">
-                      {current.monthlyTrend.map((h, i) => (
-                        <div key={i} className="flex-1">
-                          <div className="w-full bg-gradient-to-t from-white/20 to-[#C8D400] transition-all duration-700" style={{ height: `${(h / 100) * 112}px` }}></div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="flex justify-between mt-2">
-                      {['J','F','M','A','M','J','J','A','S','O','N','D'].map((m, i) => (
-                        <span key={i} className="text-white/40 flex-1 text-center text-xs">{m}</span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-white/10 backdrop-blur-sm p-4 border border-white/15 text-center" style={{ borderRadius: 0 }}>
-                      <div className="w-9 h-9 flex items-center justify-center bg-[#C8D400]/20 mx-auto mb-2">
-                        <i className="ri-medal-line text-xl text-[#C8D400]"></i>
-                      </div>
-                      <p className="text-white/60 text-xs font-bold uppercase tracking-wide leading-tight">{current.campaignType}</p>
-                    </div>
-                    <div className="bg-[#C8D400]/20 backdrop-blur-sm p-4 border border-[#C8D400]/30 text-center" style={{ borderRadius: 0 }}>
-                      <div className="text-sonic-lime font-sans tabular-nums font-black text-2xl mb-1">{current.metric}</div>
-                      <p className="text-white/70 text-xs font-bold uppercase tracking-wide">Seit {current.since}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-center gap-2" role="tablist" aria-label="Story-Navigation">
-                    {caseStudies.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => { setCurrentSlide(i); setExpandedStory(null); }}
-                        role="tab"
-                        aria-selected={currentSlide === i}
-                        aria-label={`${caseStudies[i].brand} anzeigen`}
-                        className={`h-2 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime ${currentSlide === i ? 'bg-[#C8D400] w-6' : 'bg-white/30 w-2 hover:bg-[#C8D400]/60'}`}
-                        style={{ borderRadius: 0 }}
-                      />
+                  <div className="flex justify-between mt-3">
+                    {['J','F','M','A','M','J','J','A','S','O','N','D'].map((m, i) => (
+                      <span key={i} className="text-white/40 flex-1 text-center text-[10px] md:text-xs">{m}</span>
                     ))}
                   </div>
                 </div>
+              </div>
 
-                {/* Mobile nav dots */}
-                <div className="flex lg:hidden items-center justify-center gap-2 w-full" role="tablist" aria-label="Story-Navigation">
-                  {caseStudies.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => { setCurrentSlide(i); setExpandedStory(null); }}
-                      role="tab"
-                      aria-selected={currentSlide === i}
-                      aria-label={`${caseStudies[i].brand} anzeigen`}
-                      className={`h-2 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime ${currentSlide === i ? 'bg-[#C8D400] w-6' : 'bg-white/30 w-2'}`}
-                      style={{ borderRadius: 0 }}
-                    />
-                  ))}
-                </div>
+              {/* 3. Fact row — 3 compact tiles */}
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-6">
+                {current.woodPills.map((pill, idx) => (
+                  <div key={idx} className="rounded-lg bg-black/25 border border-white/10 p-2.5 sm:p-4 md:p-5 text-center">
+                    <div className="text-primary-500 font-sans tabular-nums font-black text-lg md:text-2xl mb-1">{pill.value}</div>
+                    <div className="text-white/60 text-[10px] md:text-xs font-bold uppercase tracking-wide">{pill.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* 4. CTA row */}
+              <div className="flex items-center justify-between mt-6 pt-5 border-t border-white/10">
+                <button
+                  onClick={() => handleReadFullStory(current.slug)}
+                  className="inline-flex items-center gap-2 rounded-none bg-primary-500 text-[#1a1a1a] px-7 py-3 font-black uppercase tracking-wider hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer whitespace-nowrap text-xs md:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                >
+                  Vollständige Story
+                  <i className="ri-arrow-down-line text-sm"></i>
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="w-11 h-11 md:w-12 md:h-12 rounded-none flex items-center justify-center border border-white/25 text-white hover:border-[#C8D400] hover:text-primary-500 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                  aria-label="Nächste Erfolgsgeschichte"
+                >
+                  <i className="ri-arrow-right-line text-lg"></i>
+                </button>
               </div>
             </div>
           </div>
@@ -796,24 +649,30 @@ export default function CaseStudiesPage() {
                 src="https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg"
                 alt=""
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a]" />
-            <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 flex flex-col items-start">
+            {/* Subtle lime ambient glow */}
+            <div className="absolute top-1/3 right-1/4 w-96 h-48 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-24 flex flex-col items-start">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-1.5 h-10 bg-[#C8D400]"></div>
-                <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tight">
-                  {expanded.brand} <span className="text-[#C8D400]">Fallstudie</span>
+                <div className="w-1.5 h-10 bg-primary-500"></div>
+                <h2 className="text-2xl sm:text-4xl md:text-6xl font-black text-white uppercase tracking-tight">
+                  {expanded.brand} <span className="text-primary-500">Fallstudie</span>
                 </h2>
               </div>
               <p className="text-xl md:text-2xl text-white/80 font-bold mb-6 max-w-2xl">{expanded.headline}</p>
               <div className="max-w-3xl">
-                <p className="text-gray-400 leading-relaxed text-lg">{expanded.overview}</p>
+                <div className="bg-white/[0.03] backdrop-blur-[2px] border border-white/[0.06] p-5 rounded-sm">
+                  <p className="text-white/65 leading-relaxed text-base">{expanded.overview}</p>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-24">
 
             {/* ── LEISTUNGEN IM EINSATZ ── */}
             <LeistungenImEinsatz modules={expanded.modules} brand={expanded.brand} />
@@ -821,14 +680,14 @@ export default function CaseStudiesPage() {
             {/* Bento Grid */}
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-1 h-8 bg-[#C8D400]"></div>
+                <div className="w-1 h-8 bg-primary-500"></div>
                 <div>
-                  <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-0.5">Bildergalerie</p>
+                  <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Bildergalerie</p>
                   <h3 className="text-xl font-black text-[#1a1a1a] uppercase tracking-wide">{expanded.brand} — Impressionen</h3>
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-14" style={{ minHeight: '160px' }}>
+            <div className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[180px] gap-4 mb-14">
               {expanded.bentoImages.map((item, i) => {
                   const bentoLightboxItems: LightboxItem[] = expanded.bentoImages.map((b) => ({
                     image: b.src,
@@ -839,7 +698,7 @@ export default function CaseStudiesPage() {
                   return (
                     <div
                       key={i}
-                      className={`relative overflow-hidden group cursor-pointer ${item.span}`}
+                      className={`relative overflow-hidden group cursor-pointer h-48 md:h-auto ${item.span}`}
                       style={{ borderRadius: 0 }}
                       onClick={() => openLightbox(bentoLightboxItems, i)}
                       role="button"
@@ -856,35 +715,36 @@ export default function CaseStudiesPage() {
                         src={item.src}
                         alt={`${item.label} — ${expanded.brand} Fallbeispiel`}
                         className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                        decoding="async"
                       />
                       {/* Overlay */}
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-400"></div>
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/45 transition-all duration-400"></div>
                       {/* Expand icon on hover */}
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="w-10 h-10 flex items-center justify-center bg-[#C8D400]/90 backdrop-blur-sm">
+                        <div className="w-12 h-12 flex items-center justify-center bg-primary-500/85 backdrop-blur-[2px] rounded-sm">
                           <i className="ri-zoom-in-line text-white text-lg"></i>
                         </div>
                       </div>
                       {/* Label chip */}
                       <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <span className="inline-block bg-[#C8D400] text-white text-xs font-black px-3 py-1 uppercase tracking-wide">{item.label}</span>
+                        <span className="inline-block bg-primary-500 text-white text-xs font-black px-3 py-1 uppercase tracking-wide">{item.label}</span>
                       </div>
                       {/* Lime corner accent */}
-                      <div className="absolute top-0 left-0 w-0 h-0.5 bg-[#C8D400] group-hover:w-12 transition-all duration-500"></div>
-                      <div className="absolute top-0 left-0 w-0.5 h-0 bg-[#C8D400] group-hover:h-12 transition-all duration-500"></div>
+                      <div className="absolute top-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-12 transition-all duration-500"></div>
+                      <div className="absolute top-0 left-0 w-0.5 h-0 bg-primary-500 group-hover:h-12 transition-all duration-500"></div>
                     </div>
                   );
                 })}
               </div>
-            {/* The wrapper div continues below to include related stories and CTA */}
 
             {/* Related stories */}
             <div className="mb-10">
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-1 h-8 bg-[#C8D400]"></div>
+                <div className="w-1 h-8 bg-primary-500"></div>
                 <h3 className="text-xl font-black text-[#1a1a1a] uppercase tracking-wide">Weitere Erfolgsgeschichten</h3>
               </div>
-              <div className="grid sm:grid-cols-2 gap-5">
+              <div className="grid sm:grid-cols-2 gap-8">
                 {expanded.relatedStories.map((relSlug) => {
                   const rel = caseStudies.find((s) => s.id === relSlug);
                   if (!rel) return null;
@@ -892,22 +752,24 @@ export default function CaseStudiesPage() {
                     <div
                       key={relSlug}
                       onClick={() => handleReadFullStory(relSlug)}
-                      className="flex items-center gap-5 p-5 border-2 border-gray-100 hover:border-[#C8D400] transition-all duration-300 cursor-pointer group bg-white hover:bg-[#fafef0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime"
+                      className="flex items-start gap-5 p-6 border border-foreground-200 hover:border-[#C8D400] transition-all duration-300 cursor-pointer group bg-white hover:bg-[#FAFDF5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 overflow-hidden"
                       style={{ borderRadius: 0 }}
                       role="button"
                       tabIndex={0}
                       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleReadFullStory(relSlug); }}
                     >
-                      <div className="flex-shrink-0 text-center">
-                        <div className="text-2xl font-black text-[#C8D400] font-sans tabular-nums">{rel.metric}</div>
-                        <div className="text-xs text-gray-500 font-bold mt-0.5 max-w-20 leading-tight">{rel.metricLabel}</div>
+                      <div className="flex-shrink-0 w-28 text-left">
+                        <div className="text-2xl font-black text-primary-500 font-sans tabular-nums leading-none">{rel.metric}</div>
+                        <div className="text-[10px] text-foreground-500 font-bold mt-1.5 leading-snug">{rel.metricLabel}</div>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-black text-[#1a1a1a] group-hover:text-[#C8D400] transition-colors text-base mb-1">{rel.brand}</h4>
-                        <p className="text-xs text-gray-500 font-bold uppercase tracking-wide mb-2">{rel.campaignType}</p>
-                        <p className="text-xs text-gray-600 leading-relaxed line-clamp-2">{rel.headline} — {rel.subline}</p>
+                        <h4 className="font-black text-[#1a1a1a] group-hover:text-primary-500 transition-colors text-base mb-1">{rel.brand}</h4>
+                        <p className="text-[11px] text-foreground-500 font-bold uppercase tracking-wide mb-2">{rel.campaignType}</p>
+                        <p className="text-sm text-foreground-500 leading-relaxed line-clamp-2">{rel.headline} — {rel.subline}</p>
                       </div>
-                      <i className="ri-arrow-right-line text-[#C8D400] text-xl group-hover:translate-x-1 transition-transform flex-shrink-0"></i>
+                      <div className="flex-shrink-0 self-center">
+                        <i className="ri-arrow-right-line text-primary-500 text-xl group-hover:translate-x-1 transition-transform"></i>
+                      </div>
                     </div>
                   );
                 })}
@@ -918,11 +780,11 @@ export default function CaseStudiesPage() {
             <div className="mb-10 bg-[#1a1a1a] border-2 border-[#C8D400]/30 p-6 md:p-8">
               <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
-                  <p className="text-[#C8D400] text-xs font-black uppercase tracking-widest mb-2">{expanded.metric} {expanded.metricLabel}</p>
+                  <p className="text-primary-500 text-xs font-black uppercase tracking-widest mb-2">{expanded.metric} {expanded.metricLabel}</p>
                   <h3 className="text-xl md:text-2xl font-black text-white leading-tight">
                     Auch für Ihre Marke möglich?
                   </h3>
-                  <p className="text-gray-400 text-sm mt-2">
+                  <p className="text-foreground-400 text-sm mt-2">
                     Lassen Sie uns besprechen, wie Sonic ähnliche Ergebnisse für Ihr Unternehmen erzielen kann.
                   </p>
                 </div>
@@ -930,7 +792,7 @@ export default function CaseStudiesPage() {
                   href="https://calendly.com/sonic-group/beratungsgespraech"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-shrink-0 inline-flex items-center gap-3 px-8 py-4 bg-[#C8D400] text-white font-black uppercase tracking-wider hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer whitespace-nowrap text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
+                  className="flex-shrink-0 inline-flex items-center gap-3 px-8 py-4 bg-primary-500 text-white font-black uppercase tracking-wider hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer whitespace-nowrap text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-calendar-line text-base"></i>
@@ -940,13 +802,16 @@ export default function CaseStudiesPage() {
             </div>
 
             {/* Next story CTA */}
-            <div className="text-center pt-6 border-t border-gray-100">
+            <div className="text-center pt-6 border-t border-foreground-100">
               <button
                 onClick={() => {
                   const nextIdx = (caseStudies.findIndex((s) => s.id === expanded.id) + 1) % caseStudies.length;
-                  handleReadFullStory(caseStudies[nextIdx].slug);
+                  setExpandedStory(null);
+                  setCurrentSlide(nextIdx);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  setTimeout(() => setExpandedStory(caseStudies[nextIdx].slug), 500);
                 }}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#1a1a1a] text-white font-black uppercase tracking-wider hover:bg-[#C8D400] hover:text-white transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime active:scale-95"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#1a1a1a] text-white font-black uppercase tracking-wider hover:bg-primary-500 hover:text-white transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
                 style={{ borderRadius: 0 }}
               >
                 Nächste Story
@@ -960,42 +825,42 @@ export default function CaseStudiesPage() {
       <WoodenDivider />
 
       {/* ── CTA ── */}
-      <section className="py-14 md:py-20 bg-white border-t border-gray-100">
-        <div className="max-w-3xl mx-auto px-4 md:px-6 text-center">
-          <div className="inline-flex items-center gap-3 mb-5">
-            <div className="w-8 h-8 flex items-center justify-center bg-[#C8D400]/15">
-              <i className="ri-rocket-line text-xl text-[#C8D400]"></i>
+      <section className="py-10 md:py-14 bg-[#1a1a1a] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary-500/10 blur-3xl pointer-events-none"></div>
+        <div className="max-w-[1200px] mx-auto px-6 md:px-10 relative z-10">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <span className="text-primary-500 text-xs font-black uppercase tracking-widest mb-2 block">Lass uns sprechen</span>
+              <h2 className="text-xl md:text-2xl font-black text-white mb-1">Deine Marke. Unser Einsatz.</h2>
+              <p className="text-sm text-white/60 max-w-md">
+                Wir bringen deine Marke dort zum Leuchten, wo die Kaufentscheidung fällt.
+              </p>
             </div>
-            <span className="text-[#C8D400] text-xs font-black uppercase tracking-widest">Lass uns sprechen</span>
-          </div>
-          <h2 className="text-2xl md:text-4xl font-black text-[#1a1a1a] mb-4">DEINE MARKE. UNSER EINSATZ.</h2>
-          <p className="text-base text-gray-600 mb-8 max-w-xl mx-auto">
-            Wir bringen deine Marke dort zum Leuchten, wo die Kaufentscheidung fällt — am POS, auf Events und digital.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button
-              onClick={() => { navigate('/'); setTimeout(() => { const el = document.getElementById('contact'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }, 300); }}
-              className="w-full sm:w-auto px-8 py-4 bg-[#C8D400] text-white font-black uppercase tracking-wider hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 shadow-xl cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime active:scale-95"
-              style={{ borderRadius: 0 }}
-            >
-              Beratungsgespräch buchen
-            </button>
-            <button
-              onClick={() => navigate('/leistungen')}
-              className="w-full sm:w-auto px-8 py-4 bg-white text-[#1a1a1a] font-black uppercase tracking-wider border-2 border-[#1a1a1a] hover:border-[#C8D400] hover:bg-[#C8D400]/10 transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime active:scale-95"
-              style={{ borderRadius: 0 }}
-            >
-              Leistungen ansehen
-            </button>
+            <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+              <button
+                onClick={() => { navigate('/'); setTimeout(() => { const el = document.getElementById('contact'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }, 300); }}
+                className="px-6 py-3 bg-primary-500 text-white font-black uppercase tracking-wider text-xs hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
+                style={{ borderRadius: 0 }}
+              >
+                Gespräch buchen
+              </button>
+              <button
+                onClick={() => navigate('/leistungen')}
+                className="px-6 py-3 bg-transparent text-white font-black uppercase tracking-wider text-xs border border-white/30 hover:border-[#C8D400] hover:text-primary-500 transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
+                style={{ borderRadius: 0 }}
+              >
+                Leistungen ansehen
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
       <style>{`
         @keyframes expandIn { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes brandFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        .group:hover .group-hover\\:scale-108 { transform: scale(1.08); }
       `}</style>
     </div>
   );

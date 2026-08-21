@@ -9,7 +9,7 @@ interface SectionBadgeProps {
 /**
  * SectionBadge — unified category label used above section headings across the entire site.
  *
- * variant="light"  → for dark / #111 background sections (SRT, DualCTA, LVP dark areas)
+ * variant="light"  → for dark / foreground-950 background sections (SRT, DualCTA, LVP dark areas)
  * variant="dark"   → for white / light background sections (Challenge, DarumSonic, Careers)
  */
 export default function SectionBadge({
@@ -24,20 +24,20 @@ export default function SectionBadge({
     <div
       className={`inline-flex items-center gap-2 px-4 py-1.5 ${className}`}
       style={{
-        background: isLight ? 'rgba(200,212,0,0.15)' : 'rgba(200,212,0,0.20)',
-        border: '1px solid rgba(200,212,0,0.30)',
+        background: isLight ? 'oklch(var(--primary-500) / 0.15)' : 'oklch(var(--primary-500) / 0.20)',
+        border: '1px solid oklch(var(--primary-500) / 0.30)',
       }}
     >
       <div
-        className={`w-1.5 h-1.5 ${animated ? 'animate-pulse' : ''}`}
+        className={`w-1.5 h-1.5 ${animated ? 'animate-badge-dot' : ''}`}
         style={{
-          background: '#C8D400',
+          background: 'oklch(var(--primary-500))',
           borderRadius: 0,
         }}
       />
       <span
         className="text-xs font-black uppercase tracking-widest whitespace-nowrap"
-        style={{ color: isLight ? '#C8D400' : '#1A1A1A' }}
+        style={{ color: isLight ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-950))' }}
       >
         {text}
       </span>

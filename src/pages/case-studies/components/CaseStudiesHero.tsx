@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
+import { useMediaStore } from '@/lib/mediaStore';
 
 export default function CaseStudiesHero() {
   const [hoveredStat, setHoveredStat] = useState<number | null>(null);
+  const { images: heroBg } = useMediaStore('casestudies_hero_background');
 
   const stats = [
     { value: '€2.19B', label: 'Total Sales Generated' },
@@ -11,24 +13,26 @@ export default function CaseStudiesHero() {
   ];
 
   return (
-    <section className="relative min-h-[480px] md:min-h-[520px] flex items-center py-14 px-6 overflow-hidden">
+    <section className="relative min-h-[480px] md:min-h-[520px] flex items-center overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
-          src="https://www.sonic-group.de/wp-content/uploads/2023/01/image002Sonic-Hp.png"
-          alt="Case Studies Hero"
-          className="w-full h-full object-cover"
-        />
+        {(heroBg[0] && heroBg[0].url) ? (
+          <img
+            src={heroBg[0].url}
+            alt="Case Studies Hero"
+            className="w-full h-full object-cover"
+          />
+        ) : null}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
       </div>
 
       {/* Content */}
-      <div className="max-w-6xl mx-auto relative z-10 text-center text-white">
+      <div className="max-w-6xl mx-auto px-6 relative z-10 text-center text-white">
         <SectionBadge text="Fallbeispiele" variant="light" className="mb-6" />
 
         <h1 className="text-4xl md:text-5xl lg:text-7xl font-black mb-6 leading-tight">
           BEWIESENE ERGEBNISSE.<br />
-          <span className="text-sonic-lime">ECHTER IMPACT.</span>
+          <span className="text-primary-500">ECHTER IMPACT.</span>
         </h1>
         
         <p className="text-xl text-white/75 max-w-3xl mx-auto mb-12 font-semibold">
@@ -39,7 +43,7 @@ export default function CaseStudiesHero() {
           {stats.map((stat, index) => (
             <div 
               key={index}
-              className="relative bg-white/10 backdrop-blur-md px-8 py-4 rounded-none border border-white/20 cursor-pointer overflow-visible"
+              className="relative bg-white/[0.04] backdrop-blur-[2px] px-8 py-4 rounded-sm border border-white/[0.06] cursor-pointer overflow-visible"
               onMouseEnter={() => setHoveredStat(index)}
               onMouseLeave={() => setHoveredStat(null)}
             >

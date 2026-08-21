@@ -1,27 +1,28 @@
 import { useState } from 'react';
+import { useMediaStore } from '@/lib/mediaStore';
 
-const principles = [
+const principleData = [
   {
     number: '01',
-    icon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20human%20figure%20people%20team%20group%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20human%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-human-dna-01&orientation=squarish',
+    fallbackIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20human%20figure%20people%20team%20group%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20human%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-human-dna-01&orientation=squarish',
     title: 'Der Mensch',
     description: 'Menschen, die Marken prägen. Promotions leben von den Menschen, die sie durchführen.',
   },
   {
     number: '02',
-    icon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20lightning%20bolt%20energy%20power%20drive%20motivation%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20energy%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-energy-dna-02&orientation=squarish',
+    fallbackIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20lightning%20bolt%20energy%20power%20drive%20motivation%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20energy%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-energy-dna-02&orientation=squarish',
     title: 'Der Antrieb',
     description: 'Wettbewerbsfähige Bezahlung und Entwicklungsperspektiven motivieren unser Team.',
   },
   {
     number: '03',
-    icon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20bar%20chart%20analytics%20data%20graph%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20data%20analytics%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-data-dna-03&orientation=squarish',
+    fallbackIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20bar%20chart%20analytics%20data%20graph%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20data%20analytics%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-data-dna-03&orientation=squarish',
     title: 'Die Daten',
     description: 'Datenbasierte Entscheidungen verwandeln Intuition in messbare Erfolge.',
   },
   {
     number: '04',
-    icon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20wrench%20tool%20gear%20settings%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20tool%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-tool-dna-04&orientation=squarish',
+    fallbackIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20wrench%20tool%20gear%20settings%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20tool%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-tool-dna-04&orientation=squarish',
     title: 'Das Werkzeug',
     description: 'Inhouse-IT und starke Partner lösen Herausforderungen mit den richtigen Tools.',
   },
@@ -30,6 +31,9 @@ const principles = [
 export default function ModernDNA() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [focusedCard, setFocusedCard] = useState<number | null>(null);
+  const { images: woodIcons } = useMediaStore('home_moderndna_wood_icons');
+
+  const getIcon = (idx: number) => woodIcons[idx]?.url || principleData[idx].fallbackIcon;
 
   const isActive = (index: number) => hoveredCard === index || focusedCard === index;
 
@@ -38,30 +42,28 @@ export default function ModernDNA() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 bg-[#C8D400]/20 px-4 py-1.5 border-2 border-[#C8D400]/40 mb-3">
+          <div className="inline-flex items-center gap-2 bg-primary-500/20 px-4 py-1.5 border-2 border-[#C8D400]/40 mb-3">
             <div className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full animate-pulse"></div>
-            <p className="text-xs font-semibold text-sonic-dark tracking-wide uppercase">
+            <p className="text-xs font-semibold text-foreground-950 tracking-wide uppercase">
               Sonic DNA
             </p>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-black text-sonic-dark mb-5 leading-tight">
+          <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 mb-5 leading-tight">
             DIE SONIC DNA
           </h2>
-          <p className="text-xs text-gray-700 max-w-xl mx-auto">
+          <p className="text-xs text-foreground-700 max-w-xl mx-auto">
             Was uns ausmacht und antreibt
           </p>
         </div>
 
         {/* Cards Grid — compact */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
-          {principles.map((principle, index) => {
+          {principleData.map((principle, index) => {
             const active = isActive(index);
             return (
               <div
                 key={index}
-                role="button"
-                tabIndex={0}
-                className="relative overflow-hidden cursor-pointer transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime"
+                className="relative overflow-hidden cursor-default transition-all duration-500"
                 style={{
                   transform: active ? 'translateY(-4px)' : 'translateY(0)',
                   background: active
@@ -112,7 +114,7 @@ export default function ModernDNA() {
                       }}
                     >
                       <img
-                        src={principle.icon}
+                        src={getIcon(index)}
                         alt={principle.title}
                         className="w-full h-full object-cover"
                       />

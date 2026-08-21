@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 
 interface QuizModalProps {
@@ -15,41 +16,41 @@ interface QuizStep {
 const quizSteps: QuizStep[] = [
   {
     id: 1,
-    question: 'What\'s your biggest challenge in the DACH market?',
+    question: 'Was ist deine größte Herausforderung im DACH-Markt?',
     options: [
-      { label: 'Breaking into the market', icon: 'ri-rocket-line', result: 'market-entry' },
-      { label: 'Scaling retail presence', icon: 'ri-store-3-line', result: 'retail-pos' },
-      { label: 'Finding qualified staff', icon: 'ri-team-line', result: 'staffing' },
-      { label: 'Event & fair execution', icon: 'ri-calendar-event-line', result: 'events' },
+      { label: 'Markteintritt', icon: 'ri-rocket-line', result: 'market-entry' },
+      { label: 'Retail-Präsenz ausbauen', icon: 'ri-store-3-line', result: 'retail-pos' },
+      { label: 'Qualifiziertes Personal finden', icon: 'ri-team-line', result: 'staffing' },
+      { label: 'Event- & Messeumsetzung', icon: 'ri-calendar-event-line', result: 'events' },
     ],
   },
   {
     id: 2,
-    question: 'What\'s your current stage?',
+    question: 'In welcher Phase stehst du gerade?',
     options: [
-      { label: 'Planning entry', icon: 'ri-lightbulb-line', result: 'planning' },
-      { label: 'Already active', icon: 'ri-line-chart-line', result: 'active' },
-      { label: 'Optimizing performance', icon: 'ri-settings-3-line', result: 'optimizing' },
-      { label: 'Expanding operations', icon: 'ri-arrow-right-up-line', result: 'expanding' },
+      { label: 'Einstieg planen', icon: 'ri-lightbulb-line', result: 'planning' },
+      { label: 'Bereits aktiv', icon: 'ri-line-chart-line', result: 'active' },
+      { label: 'Performance optimieren', icon: 'ri-settings-3-line', result: 'optimizing' },
+      { label: 'Operationen ausbauen', icon: 'ri-arrow-right-up-line', result: 'expanding' },
     ],
   },
   {
     id: 3,
-    question: 'What\'s your priority right now?',
+    question: 'Was ist gerade deine Priorität?',
     options: [
-      { label: 'Speed to market', icon: 'ri-flashlight-line', result: 'speed' },
-      { label: 'Cost efficiency', icon: 'ri-money-euro-circle-line', result: 'cost' },
-      { label: 'Quality & compliance', icon: 'ri-shield-check-line', result: 'quality' },
-      { label: 'Data & insights', icon: 'ri-bar-chart-box-line', result: 'data' },
+      { label: 'Schneller Markteintritt', icon: 'ri-flashlight-line', result: 'speed' },
+      { label: 'Kosteneffizienz', icon: 'ri-money-euro-circle-line', result: 'cost' },
+      { label: 'Qualität & Compliance', icon: 'ri-shield-check-line', result: 'quality' },
+      { label: 'Daten & Insights', icon: 'ri-bar-chart-box-line', result: 'data' },
     ],
   },
 ];
 
 const resultMapping: Record<string, { title: string; description: string; service: string; link: string }> = {
-  'market-entry': { title: 'Market Entry Strategy', description: 'You need a proven partner to navigate DACH regulations, retail relationships, and local market dynamics.', service: 'Market Entry Services', link: '/services/market-entry' },
-  'retail-pos': { title: 'Retail & POS Excellence', description: 'Scale your retail presence with expert merchandising, POS execution, and in-store performance optimization.', service: 'Retail & POS Services', link: '/services/retail-pos' },
-  staffing: { title: 'Staffing Solutions', description: 'Access qualified, trained sales promoters and brand ambassadors ready to represent your brand across DACH.', service: 'Staffing Services', link: '/services/staffing' },
-  events: { title: 'Events & Fairs', description: 'Execute flawless events and trade fairs with experienced staff, logistics support, and real-time reporting.', service: 'Events Services', link: '/services/events' },
+  'market-entry': { title: 'Markteintritts-Strategie', description: 'Du brauchst einen erprobten Partner, der dich durch DACH-Regularien, Handelsbeziehungen und lokale Marktdynamiken führt.', service: 'Markteintritts-Lösungen', link: '/losungen?open=markteintritt' },
+  'retail-pos': { title: 'Retail- & POS-Excellence', description: 'Baue deine Retail-Präsenz mit professionellem Merchandising, POS-Umsetzung und In-Store-Performance-Optimierung aus.', service: 'Retail- & POS-Services', link: '/leistungen/pos-full-service' },
+  staffing: { title: 'Staffing-Lösungen', description: 'Zugriff auf qualifizierte, geschulte Sales-Promoter und Markenbotschafter, die deine Marke in ganz DACH vertreten.', service: 'Staffing-Services', link: '/leistungen/staff-as-a-service' },
+  events: { title: 'Events & Messen', description: 'Führe Events und Messen mit erfahrenem Personal, Logistik-Support und Echtzeit-Reporting reibungslos durch.', service: 'Event-Services', link: '/leistungen/events-messen' },
 };
 
 export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
@@ -91,8 +92,13 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
     }
   }, [isOpen]);
 
-  // Keep Tab focus inside the modal
+  // Escape to close + Tab focus trap
   const handleModalKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      onClose();
+      return;
+    }
     if (e.key !== 'Tab' || !modalRef.current) return;
     const focusable = modalRef.current.querySelectorAll<HTMLElement>(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -104,7 +110,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
     } else {
       if (document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
-  }, []);
+  }, [onClose]);
 
   if (!isOpen) return null;
 
@@ -125,13 +131,27 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
 
   const handleContactSubmit = async () => {
     if (!contactData.email || !contactData.email.includes('@')) {
-      setContactError('Please enter a valid email address.');
+      setContactError('Bitte gib eine gültige E-Mail-Adresse ein.');
       return;
     }
     setContactError('');
     setSubmitting(true);
-    // Simulate form submission
-    await new Promise((r) => setTimeout(r, 600));
+    try {
+      const honeypot = (document.getElementById('quiz-phone-alt') as HTMLInputElement)?.value?.trim();
+      if (honeypot) { setShowResult(true); setSubmitting(false); return; }
+      const payload = new URLSearchParams();
+      payload.append('email', contactData.email);
+      if (contactData.phone.trim()) payload.append('phone', contactData.phone.trim());
+      payload.append('recommendation', selectedAnswers[0] || '');
+      payload.append('stage', selectedAnswers[1] || '');
+      payload.append('priority', selectedAnswers[2] || '');
+      payload.append('_subject', 'Quiz-Empfehlung: ' + (getRecommendedService().title));
+      await fetch('https://readdy.ai/api/form/d9fkh9kugrdi4rjg4umg', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload.toString(),
+      });
+    } catch { /* non-critical */ }
     setSubmitting(false);
     setShowContactForm(false);
     setShowResult(true);
@@ -146,7 +166,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
 
   const progress = ((currentStep + (showContactForm ? 1 : 0) + (showResult ? 1 : 0)) / (quizSteps.length + 1)) * 100;
 
-  return (
+  const modalContent = (
     <div
       className="fixed inset-0 z-system flex items-center justify-center p-4"
       role="dialog"
@@ -156,11 +176,11 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
     >
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-[fadeIn_0.2s_ease]" onClick={handleClose} aria-hidden="true" />
       <div ref={modalRef} className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white shadow-2xl animate-[slideUp_0.3s_ease]" style={{ borderRadius: 0 }}>
-        {/* Close — 44×44 minimum touch target */}
+        {/* Close — 44×44 minimum touch target — more visible now */}
         <button
           ref={closeButtonRef}
           onClick={handleClose}
-          className="absolute top-3 right-3 z-20 w-11 h-11 flex items-center justify-center bg-gray-100 hover:bg-[#C8D400]/15 text-gray-500 hover:text-[#C8D400] transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime active:scale-95"
+          className="absolute top-3 right-3 z-20 w-11 h-11 flex items-center justify-center bg-[#111] hover:bg-primary-500 text-white hover:text-[#111] transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95 shadow-lg"
           style={{ borderRadius: 0 }}
           aria-label="Quiz schließen"
         >
@@ -170,23 +190,23 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
         {/* Header */}
         <div className="px-8 pt-8 pb-4">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 flex items-center justify-center bg-[#C8D400]/15" style={{ borderRadius: 0 }}>
+            <div className="w-10 h-10 flex items-center justify-center bg-primary-500/15" style={{ borderRadius: 0 }}>
               <i className="ri-question-line text-xl text-[#111]" />
             </div>
             <div>
-              <p className="text-xs font-bold text-[#C8D400] uppercase tracking-wider">Quick Quiz</p>
-              <p className="text-sm text-gray-500">Find your perfect Sonic solution</p>
+              <p className="text-xs font-bold text-primary-500 uppercase tracking-wider">Kurz-Check</p>
+              <p className="text-sm text-foreground-500">Finde deine passende Sonic-Lösung</p>
             </div>
           </div>
           {/* Progress */}
-          <div className="h-1.5 bg-gray-100 overflow-hidden" style={{ borderRadius: 0 }}>
-            <div className="h-full bg-[#C8D400] transition-all duration-500 ease-out" style={{ width: `${showResult ? 100 : progress}%` }} />
+          <div className="h-1.5 bg-foreground-100 overflow-hidden" style={{ borderRadius: 0 }}>
+            <div className="h-full bg-primary-500 transition-all duration-500 ease-out" style={{ width: `${showResult ? 100 : progress}%` }} />
           </div>
           <div className="flex items-center justify-between mt-2">
-            <span className="text-xs font-bold text-gray-400 uppercase tracking-wide">
-              {showResult ? 'Complete' : showContactForm ? 'Contact Details' : `Step ${currentStep + 1} of ${quizSteps.length}`}
+            <span className="text-xs font-bold text-foreground-400 uppercase tracking-wide">
+              {showResult ? 'Fertig' : showContactForm ? 'Kontaktdaten' : `Schritt ${currentStep + 1} von ${quizSteps.length}`}
             </span>
-            <span className="text-xs font-bold text-sonic-lime">{Math.round(showResult ? 100 : progress)}%</span>
+            <span className="text-xs font-bold text-primary-500">{Math.round(showResult ? 100 : progress)}%</span>
           </div>
         </div>
 
@@ -202,7 +222,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                     onClick={() => handleOptionClick(option.result, currentStep)}
                     onMouseEnter={() => setHoveredOption(index)}
                     onMouseLeave={() => setHoveredOption(null)}
-                    className="group relative p-5 transition-all duration-300 cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime active:scale-95"
+                    className="group relative p-5 transition-all duration-300 cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
                     style={{
                       background: '#fff',
                       border: hoveredOption === index ? '2px solid #C8D400' : '2px solid #f0f0f0',
@@ -228,18 +248,18 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                             : '0 2px 4px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8)',
                         }}
                       >
-                        <i className={`${option.icon} text-xl transition-colors duration-300 ${hoveredOption === index ? 'text-[#111]' : 'text-gray-500'}`} />
+                        <i className={`${option.icon} text-xl transition-colors duration-300 ${hoveredOption === index ? 'text-[#111]' : 'text-foreground-500'}`} />
                       </div>
                       <p className="font-bold text-[#111] text-sm flex-1">{option.label}</p>
-                      <i className={`ri-arrow-right-line text-base transition-all duration-300 ${hoveredOption === index ? 'text-[#C8D400] translate-x-1' : 'text-gray-300'}`} />
+                      <i className={`ri-arrow-right-line text-base transition-all duration-300 ${hoveredOption === index ? 'text-primary-500 translate-x-1' : 'text-foreground-300'}`} />
                     </div>
                   </button>
                 ))}
               </div>
               {currentStep > 0 && (
                 <div className="text-center mt-5">
-                  <button onClick={() => setCurrentStep(currentStep - 1)} className="inline-flex items-center gap-2 text-gray-400 hover:text-[#C8D400] font-semibold text-sm transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime">
-                    <i className="ri-arrow-left-line" /> Back
+                  <button onClick={() => setCurrentStep(currentStep - 1)} className="inline-flex items-center gap-2 text-foreground-400 hover:text-primary-500 font-semibold text-sm transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
+                    <i className="ri-arrow-left-line" /> Zurück
                   </button>
                 </div>
               )}
@@ -248,40 +268,50 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
             // Contact capture step
             <div>
               <div className="text-center mb-6">
-                <div className="w-14 h-14 bg-[#C8D400]/15 border-2 border-[#C8D400]/30 flex items-center justify-center mx-auto mb-4" style={{ borderRadius: 0 }}>
-                  <i className="ri-user-line text-2xl text-[#C8D400]" />
+                <div className="w-14 h-14 bg-primary-500/15 border-2 border-[#C8D400]/30 flex items-center justify-center mx-auto mb-4" style={{ borderRadius: 0 }}>
+                  <i className="ri-user-line text-2xl text-primary-500" />
                 </div>
-                <h3 className="text-xl font-black text-[#111] mb-2 uppercase">Almost there!</h3>
-                <p className="text-gray-500 text-sm">Enter your contact details to see your personalized recommendation.</p>
+                <h3 className="text-xl font-black text-[#111] mb-2 uppercase">Fast geschafft!</h3>
+                <p className="text-foreground-500 text-sm">Gib deine Kontaktdaten ein, um deine persönliche Empfehlung zu sehen.</p>
               </div>
 
               <div className="space-y-4 mb-6">
+                <input
+                  id="quiz-phone-alt"
+                  name="phone_alt"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  readOnly
+                  className="survey-hp-field"
+                />
                 <div>
-                  <label className="block text-xs font-black text-[#111] uppercase tracking-widest mb-2">Email Address <span className="text-red-500">*</span></label>
+                  <label className="block text-xs font-black text-[#111] uppercase tracking-widest mb-2">E-Mail-Adresse <span className="text-red-500">*</span></label>
                   <div className="relative">
-                    <i className="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
+                    <i className="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-foreground-400 text-sm" />
                     <input
                       type="email"
                       name="email"
                       value={contactData.email}
                       onChange={(e) => setContactData({ ...contactData, email: e.target.value })}
                       placeholder="your@company.com"
-                      className="w-full pl-9 pr-4 py-3 border-2 border-gray-200 text-sm text-[#111] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-[#C8D400] transition-colors"
+                      className="w-full pl-9 pr-4 py-3 border-2 border-foreground-200 text-sm text-[#111] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-[#C8D400] transition-colors"
                       style={{ borderRadius: 0 }}
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-black text-[#111] uppercase tracking-widest mb-2">Phone Number <span className="text-gray-400 font-normal">(Optional)</span></label>
+                  <label className="block text-xs font-black text-[#111] uppercase tracking-widest mb-2">Telefonnummer <span className="text-foreground-400 font-normal">(Optional)</span></label>
                   <div className="relative">
-                    <i className="ri-phone-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
+                    <i className="ri-phone-line absolute left-3 top-1/2 -translate-y-1/2 text-foreground-400 text-sm" />
                     <input
                       type="tel"
                       name="phone"
                       value={contactData.phone}
                       onChange={(e) => setContactData({ ...contactData, phone: e.target.value })}
                       placeholder="+49 000 000 0000"
-                      className="w-full pl-9 pr-4 py-3 border-2 border-gray-200 text-sm text-[#111] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-[#C8D400] transition-colors"
+                      className="w-full pl-9 pr-4 py-3 border-2 border-foreground-200 text-sm text-[#111] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-[#C8D400] transition-colors"
                       style={{ borderRadius: 0 }}
                     />
                   </div>
@@ -294,28 +324,28 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
               <button
                 onClick={handleContactSubmit}
                 disabled={submitting}
-                className="w-full flex items-center justify-center gap-2 py-4 bg-[#111] text-white font-black text-sm uppercase tracking-widest hover:bg-[#C8D400] hover:text-white transition-all duration-300 cursor-pointer disabled:opacity-50 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime active:scale-95"
+                className="w-full flex items-center justify-center text-center gap-2 py-4 px-3 bg-[#111] text-white font-black text-sm uppercase tracking-widest hover:bg-primary-500 hover:text-white transition-all duration-300 cursor-pointer disabled:opacity-50 whitespace-normal sm:whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
                 style={{ borderRadius: 0 }}
               >
-                {submitting ? <><i className="ri-loader-4-line animate-spin" /> Processing…</> : <><i className="ri-lightbulb-flash-line" /> See My Recommendation</>}
+                {submitting ? <><i className="ri-loader-4-line animate-spin" /> Wird verarbeitet…</> : <><i className="ri-lightbulb-flash-line" /> Meine Empfehlung ansehen</>}
               </button>
-              <p className="text-center text-xs text-gray-400 mt-3">No spam. We'll only reach out if relevant to your challenge.</p>
+              <p className="text-center text-xs text-foreground-400 mt-3">Kein Spam. Wir melden uns nur, wenn es für deine Herausforderung relevant ist.</p>
             </div>
           ) : (
             // Result
             <div className="text-center">
-              <div className="w-16 h-16 bg-[#C8D400]/15 flex items-center justify-center mx-auto mb-5" style={{ borderRadius: 0 }}>
-                <i className="ri-lightbulb-flash-line text-3xl text-[#C8D400]" />
+              <div className="w-16 h-16 bg-primary-500/15 flex items-center justify-center mx-auto mb-5" style={{ borderRadius: 0 }}>
+                <i className="ri-lightbulb-flash-line text-3xl text-primary-500" />
               </div>
               <h3 className="text-2xl font-black text-[#111] mb-3">
-                We Recommend: <span className="text-[#C8D400]">{getRecommendedService().title}</span>
+                Unsere Empfehlung: <span className="text-primary-500">{getRecommendedService().title}</span>
               </h3>
-              <div className="bg-[#f7f7f5] border border-gray-200 p-5 mb-6 text-left">
-                <p className="text-xs font-black text-[#C8D400] uppercase tracking-widest mb-2">Ihre Empfohlene Lösung</p>
+              <div className="bg-white border border-foreground-200 p-5 mb-6 text-left">
+                <p className="text-xs font-black text-primary-500 uppercase tracking-widest mb-2">Ihre Empfohlene Lösung</p>
                 <h4 className="text-lg font-black text-[#111] mb-2">{getRecommendedService().title}</h4>
-                <p className="text-gray-500 text-sm leading-relaxed">{getRecommendedService().description}</p>
+                <p className="text-foreground-500 text-sm leading-relaxed">{getRecommendedService().description}</p>
               </div>
-              <p className="text-gray-500 text-sm leading-relaxed mb-6 max-w-md mx-auto">
+              <p className="text-foreground-500 text-sm leading-relaxed mb-6 max-w-md mx-auto">
                 Buchen Sie jetzt ein kostenloses Beratungsgespräch, um Ihre passende Lösung im Detail zu besprechen.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -324,7 +354,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleClose}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#C8D400] text-white font-black text-sm transition-all duration-300 whitespace-nowrap cursor-pointer uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-3.5 bg-primary-500 text-white font-black text-sm transition-all duration-300 whitespace-normal sm:whitespace-nowrap cursor-pointer uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-calendar-check-line text-base mr-1"></i>
@@ -333,15 +363,15 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                 </a>
                 <button
                   onClick={handleReset}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#111] font-black text-sm transition-all duration-300 whitespace-nowrap cursor-pointer border-2 border-gray-200 hover:border-[#C8D400] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime active:scale-95"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-3.5 bg-white text-[#111] font-black text-sm transition-all duration-300 whitespace-normal sm:whitespace-nowrap cursor-pointer border-2 border-foreground-200 hover:border-[#C8D400] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-refresh-line text-lg" /> Neu starten
                 </button>
               </div>
-              <div className="mt-6 pt-5 border-t border-gray-100">
-                <p className="text-sm text-gray-400 mb-2">Nicht ganz passend?</p>
-                <a href="https://calendly.com/sonic-group/beratungsgespraech" target="_blank" rel="noopener noreferrer" onClick={handleClose} className="text-[#C8D400] hover:text-[#a8b300] font-semibold text-sm transition-colors cursor-pointer">
+              <div className="mt-6 pt-5 border-t border-foreground-100">
+                <p className="text-sm text-foreground-400 mb-2">Nicht ganz passend?</p>
+                <a href="https://calendly.com/sonic-group/beratungsgespraech" target="_blank" rel="noopener noreferrer" onClick={handleClose} className="text-primary-500 hover:text-[#a8b300] font-semibold text-sm transition-colors cursor-pointer">
                   Direkt mit unserem Team sprechen →
                 </a>
               </div>
@@ -350,10 +380,8 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
         </div>
       </div>
 
-      <style>{`
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(24px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
-      `}</style>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 }

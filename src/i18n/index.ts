@@ -7,13 +7,19 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    lng: 'en',
-    fallbackLng: 'en',
+    lng: 'de',
+    fallbackLng: 'de',
+    supportedLngs: ['de'],
     debug: false,
     resources: messages,
     interpolation: {
       escapeValue: false,
     },
+    detection: {
+      order: ['querystring', 'navigator', 'htmlTag'],
+      caches: [],
+    },
+    load: 'languageOnly',
   });
 
 export default i18n;

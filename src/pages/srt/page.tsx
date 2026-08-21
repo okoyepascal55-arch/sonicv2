@@ -1,5 +1,7 @@
 import { useSEO } from '@/hooks/useSEO';
 import { useRef } from 'react';
+import { useMediaStore } from '@/lib/mediaStore';
+import WoodenDivider from '@/components/base/WoodenDivider';
 import SRTHero from './components/SRTHero';
 import TheProblem from './components/TheProblem';
 import Features from './components/Features';
@@ -10,10 +12,7 @@ import DataPaths from './components/DataPaths';
 import Zusammenarbeit from './components/Zusammenarbeit';
 import Proof from './components/Proof';
 import Industries from './components/Industries';
-import Pricing from './components/Pricing';
-import GetAccess from './components/GetAccess';
-import WoodenDivider from '../../components/base/WoodenDivider';
-import Navigation from '../../components/feature/Navigation';
+import PricingAndAccess from './components/PricingAndAccess';
 import LeistungenPageNav from '../../components/feature/LeistungenPageNav';
 
 const NAV_ITEMS = [
@@ -26,8 +25,7 @@ const NAV_ITEMS = [
   { id: 'datenfluss', label: 'Datenfluss', icon: 'ri-flow-chart' },
   { id: 'branchen', label: 'Branchen', icon: 'ri-building-line' },
   { id: 'kundenstimmen', label: 'Kundenstimmen', icon: 'ri-chat-quote-line' },
-  { id: 'preise', label: 'Preise', icon: 'ri-price-tag-3-line' },
-  { id: 'get-access', label: 'Zugang', icon: 'ri-key-line' },
+  { id: 'preise-zugang', label: 'Preise & Zugang', icon: 'ri-price-tag-3-line' },
 ];
 
 export default function SRTPage() {
@@ -41,10 +39,11 @@ export default function SRTPage() {
   });
 
   const heroRef = useRef<HTMLDivElement>(null);
+  const { images: srtHeroIcons } = useMediaStore('srt_hero_icons');
+  const { images: srtFeatureIcons } = useMediaStore('srt_feature_icons');
 
   return (
     <div className="bg-white">
-      <Navigation />
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
 
       {/* Hero */}
@@ -52,85 +51,46 @@ export default function SRTPage() {
         <SRTHero onScrollToFeatures={() => {
           const el = document.getElementById('features');
           if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
-        }} />
+        }} heroIcons={srtHeroIcons} />
       </div>
+
+      {/* Problem */}
+      <div id="das-problem"><TheProblem /></div>
 
       <WoodenDivider />
 
-      {/* Problem — sets context before solution */}
-      <div id="das-problem">
-        <TheProblem />
-      </div>
+      {/* Features */}
+      <div id="features"><Features featureIcons={srtFeatureIcons} /></div>
+
+      {/* Video showcase */}
+      <div id="srt-in-aktion"><VideoShowcase /></div>
 
       <WoodenDivider />
 
-      {/* Solution: features */}
-      <div id="features">
-        <Features />
-      </div>
+      {/* Function overview */}
+      <div id="funktionsumfang"><FunctionalityOverview /></div>
+
+      {/* Employee app */}
+      <div id="team-app"><EmployeeApp /></div>
+
+      {/* Collaboration process */}
+      <div id="zusammenarbeit"><Zusammenarbeit /></div>
 
       <WoodenDivider />
 
-      {/* See it in action */}
-      <div id="srt-in-aktion">
-        <VideoShowcase />
-      </div>
+      {/* Data flow */}
+      <div id="datenfluss"><DataPaths /></div>
 
-      <WoodenDivider />
-
-      {/* Full function overview */}
-      <div id="funktionsumfang">
-        <FunctionalityOverview />
-      </div>
-
-      <WoodenDivider />
-
-      {/* Team / employee app */}
-      <div id="team-app">
-        <EmployeeApp />
-      </div>
-
-      <WoodenDivider />
-
-      {/* 6-step collaboration process */}
-      <div id="zusammenarbeit">
-        <Zusammenarbeit />
-      </div>
-
-      <WoodenDivider />
-
-      {/* Interactive data paths — the SRT data flow diagram */}
-      <div id="datenfluss">
-        <DataPaths />
-      </div>
-
-      <WoodenDivider />
-
-      {/* Industry fit selector */}
-      <div id="branchen">
-        <Industries />
-      </div>
-
-      <WoodenDivider />
+      {/* Industries + Config */}
+      <div id="branchen"><Industries /></div>
 
       {/* Social proof */}
-      <div id="kundenstimmen">
-        <Proof />
-      </div>
+      <div id="kundenstimmen"><Proof /></div>
 
       <WoodenDivider />
 
-      {/* Pricing */}
-      <div id="preise">
-        <Pricing />
-      </div>
-
-      <WoodenDivider />
-
-      {/* Access / contact */}
-      <div id="get-access">
-        <GetAccess />
-      </div>
+      {/* Pricing + Access — combined */}
+      <div id="preise-zugang"><PricingAndAccess /></div>
     </div>
   );
 }

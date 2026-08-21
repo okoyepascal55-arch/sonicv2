@@ -56,7 +56,7 @@ export default function ContactForm() {
         aria-hidden="true"
       />
 
-      <div className="px-10 py-12 md:px-14 md:py-16">
+      <div className="px-5 py-10 sm:px-10 md:px-14 md:py-16">
         {/* Header */}
         <div className="mb-10">
           <p className="text-xs font-black uppercase tracking-[0.3em] text-[#C8D400] mb-3">
@@ -65,7 +65,7 @@ export default function ContactForm() {
           <h2 className="text-3xl md:text-4xl font-black text-[#111] leading-tight mb-3">
             SCHREIB UNS
           </h2>
-          <p className="text-sm text-gray-500 leading-relaxed max-w-md">
+          <p className="text-sm text-foreground-500 leading-relaxed max-w-md">
             Kein Commitment. Nur ein gutes Gespräch. Wir melden uns innerhalb von 24 Stunden.
           </p>
         </div>
@@ -76,7 +76,7 @@ export default function ContactForm() {
               <i className="ri-check-double-line text-2xl text-[#C8D400]" />
             </div>
             <h3 className="text-xl font-black text-[#111] mb-2 uppercase">Nachricht erhalten!</h3>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-foreground-500">
               Wir melden uns innerhalb von 24 Stunden bei dir.
             </p>
           </div>
@@ -91,7 +91,7 @@ export default function ContactForm() {
             {/* Name + Firma */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="name" className="block text-xs font-black uppercase tracking-[0.18em] text-gray-500 mb-1.5">
+                <label htmlFor="name" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
                   Name <span className="text-[#C8D400]">*</span>
                 </label>
                 <input
@@ -100,12 +100,12 @@ export default function ContactForm() {
                   type="text"
                   required
                   placeholder="Max Mustermann"
-                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-gray-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200"
+                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200"
                   style={{ borderRadius: 0 }}
                 />
               </div>
               <div>
-                <label htmlFor="unternehmen" className="block text-xs font-black uppercase tracking-[0.18em] text-gray-500 mb-1.5">
+                <label htmlFor="unternehmen" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
                   Unternehmen
                 </label>
                 <input
@@ -113,7 +113,7 @@ export default function ContactForm() {
                   name="unternehmen"
                   type="text"
                   placeholder="Muster GmbH"
-                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-gray-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200"
+                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200"
                   style={{ borderRadius: 0 }}
                 />
               </div>
@@ -122,7 +122,7 @@ export default function ContactForm() {
             {/* E-Mail + Telefon */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="email" className="block text-xs font-black uppercase tracking-[0.18em] text-gray-500 mb-1.5">
+                <label htmlFor="email" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
                   E-Mail <span className="text-[#C8D400]">*</span>
                 </label>
                 <input
@@ -131,12 +131,12 @@ export default function ContactForm() {
                   type="email"
                   required
                   placeholder="max@muster.de"
-                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-gray-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200"
+                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200"
                   style={{ borderRadius: 0 }}
                 />
               </div>
               <div>
-                <label htmlFor="telefon" className="block text-xs font-black uppercase tracking-[0.18em] text-gray-500 mb-1.5">
+                <label htmlFor="telefon" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
                   Telefon
                 </label>
                 <input
@@ -144,7 +144,7 @@ export default function ContactForm() {
                   name="telefon"
                   type="tel"
                   placeholder="+49 0000 000000"
-                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-gray-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200"
+                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200"
                   style={{ borderRadius: 0 }}
                 />
               </div>
@@ -152,13 +152,13 @@ export default function ContactForm() {
 
             {/* Interesse */}
             <div>
-              <label htmlFor="interesse" className="block text-xs font-black uppercase tracking-[0.18em] text-gray-500 mb-1.5">
+              <label htmlFor="interesse" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
                 Interesse an
               </label>
               <select
                 id="interesse"
                 name="interesse"
-                className="w-full px-4 py-3 bg-[#f8f8f6] border border-gray-200 text-sm text-[#111] focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200 cursor-pointer"
+                className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-[#111] focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200 cursor-pointer"
                 style={{ borderRadius: 0 }}
               >
                 <option value="">Bitte auswählen…</option>
@@ -170,7 +170,7 @@ export default function ContactForm() {
 
             {/* Nachricht */}
             <div>
-              <label htmlFor="nachricht" className="block text-xs font-black uppercase tracking-[0.18em] text-gray-500 mb-1.5">
+              <label htmlFor="nachricht" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
                 Nachricht <span className="text-[#C8D400]">*</span>
               </label>
               <textarea
@@ -181,14 +181,14 @@ export default function ContactForm() {
                 maxLength={500}
                 placeholder="Erzähl uns kurz, worum es geht…"
                 onChange={(e) => setCharCount(e.target.value.length)}
-                className="w-full px-4 py-3 bg-[#f8f8f6] border border-gray-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200 resize-none"
+                className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200 resize-none"
                 style={{ borderRadius: 0 }}
               />
               <div className="flex justify-between items-center mt-1">
                 {charCount > 500 && (
                   <p className="text-xs text-red-500 font-semibold">Maximal 500 Zeichen</p>
                 )}
-                <span className="ml-auto text-xs text-gray-400 tabular-nums">{charCount} / 500</span>
+                <span className="ml-auto text-xs text-foreground-400 tabular-nums">{charCount} / 500</span>
               </div>
             </div>
 
@@ -204,7 +204,7 @@ export default function ContactForm() {
             <button
               type="submit"
               disabled={status === 'sending' || charCount > 500}
-              className="inline-flex items-center gap-3 bg-[#C8D400] text-white px-7 py-3 font-black text-sm uppercase tracking-wider hover:bg-[#111] hover:text-[#C8D400] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime focus-visible:ring-offset-2"
+              className="inline-flex items-center gap-3 bg-[#C8D400] text-white px-7 py-3 font-black text-sm uppercase tracking-wider hover:bg-[#111] hover:text-[#C8D400] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
               style={{ borderRadius: 0 }}
             >
               {status === 'sending' ? (
@@ -221,7 +221,7 @@ export default function ContactForm() {
             </button>
 
             {/* Trust */}
-            <p className="text-xs text-gray-400 mt-2">
+            <p className="text-xs text-foreground-400 mt-2">
               Kein Spam. Keine Weitergabe. Nur echter Kontakt. ✓
             </p>
           </form>

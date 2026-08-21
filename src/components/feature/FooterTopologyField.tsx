@@ -144,6 +144,8 @@ export default function FooterTopologyField() {
   const lastScrollTimeRef = useRef<number>(0);
   const smoothVelRef      = useRef<number>(0);
   const isMobileRef       = useRef<boolean>(false);
+  const inViewRef          = useRef<boolean>(true);
+  const dprRef             = useRef<number>(1);
 
   useEffect(() => {
     const canvas  = canvasRef.current;
@@ -219,6 +221,7 @@ export default function FooterTopologyField() {
     const resize = () => {
       const rect = wrapper.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dprRef.current = dpr;
       canvas.width  = rect.width * dpr;
       canvas.height = rect.height * dpr;
       canvas.style.width  = rect.width + 'px';
@@ -229,17 +232,16 @@ export default function FooterTopologyField() {
     resize();
     window.addEventListener('resize', resize);
 
-    /* ── Mouse interaction ────────────────────────────────────── */
-    const onMouseMove = (e: MouseEvent) => {
+    /* ── Shared interaction handler (mouse + touch) ───────────── */
+    const handlePointerMove = (x: number, y: number, now: number) => {
       const rect = wrapper.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const now = performance.now();
+      const px = x - rect.left;
+      const py = y - rect.top;
       const m = mouseRef.current;
 
       if (m.active) {
-        const dx = x - m.lastX;
-        const dy = y - m.lastY;
+        const dx = px - m.lastX;
+        const dy = py - m.lastY;
         const dist = Math.sqrt(dx * dx + dy * dy);
         const dt = (now - m.lastTime) / 1000;
         const speed = dt > 0 ? dist / dt : 0;
@@ -260,14 +262,14 @@ export default function FooterTopologyField() {
         }
       }
 
-      m.x = x; m.y = y; m.active = true; m.lastX = x; m.lastY = y; m.lastTime = now;
+      m.x = px; m.y = py; m.active = true; m.lastX = px; m.lastY = py; m.lastTime = now;
       lastMouseActivityRef.current = (now - (startRef.current || now)) / 1000;
 
       if (now - lastRippleRef.current > 180) {
         lastRippleRef.current = now;
         const t2 = (now - (startRef.current || now)) / 1000;
         ripplesRef.current.push({
-          x, y,
+          x: px, y: py,
           birthTime: t2,
           amplitude: 18 + Math.random() * 12,
           frequency: 0.18 + Math.random() * 0.08,
@@ -278,18 +280,18 @@ export default function FooterTopologyField() {
       }
     };
 
-    const onMouseLeave = () => {
+    const handlePointerEnd = () => {
       mouseRef.current.active = false;
     };
 
-    const onClick = (e: MouseEvent) => {
+    const handleClickLike = (x: number, y: number, now: number) => {
       const rect = wrapper.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const t2 = (performance.now() - (startRef.current || performance.now())) / 1000;
+      const px = x - rect.left;
+      const py = y - rect.top;
+      const t2 = (now - (startRef.current || now)) / 1000;
       lastMouseActivityRef.current = t2;
       ripplesRef.current.push({
-        x, y,
+        x: px, y: py,
         birthTime: t2,
         amplitude: 35,
         frequency: 0.15,
@@ -300,9 +302,45 @@ export default function FooterTopologyField() {
       if (!isMobileRef.current) playDroplet();
     };
 
+    /* ── Mouse interaction ────────────────────────────────────── */
+    const onMouseMove = (e: MouseEvent) => {
+      handlePointerMove(e.clientX, e.clientY, performance.now());
+    };
+
+    const onMouseLeave = () => {
+      handlePointerEnd();
+    };
+
+    const onClick = (e: MouseEvent) => {
+      handleClickLike(e.clientX, e.clientY, performance.now());
+    };
+
     wrapper.addEventListener('mousemove', onMouseMove);
     wrapper.addEventListener('mouseleave', onMouseLeave);
     wrapper.addEventListener('click', onClick);
+
+    /* ── Touch interaction ──────────────────────────────────── */
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 0) return;
+      const t = e.touches[0];
+      const now = performance.now();
+      handlePointerMove(t.clientX, t.clientY, now);
+      handleClickLike(t.clientX, t.clientY, now);
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length === 0) return;
+      const t = e.touches[0];
+      handlePointerMove(t.clientX, t.clientY, performance.now());
+    };
+
+    const onTouchEnd = () => {
+      handlePointerEnd();
+    };
+
+    wrapper.addEventListener('touchstart', onTouchStart, { passive: true });
+    wrapper.addEventListener('touchmove', onTouchMove, { passive: true });
+    wrapper.addEventListener('touchend', onTouchEnd);
 
     /* ── Pre-compute sparse displacement field (called ONCE per frame) ── */
     const computeSparseDisplacement = (W: number, H: number, t: number): number[][] => {
@@ -428,8 +466,9 @@ export default function FooterTopologyField() {
       frameCountRef.current++;
       if (!startRef.current) startRef.current = ts;
       const realT = (ts - startRef.current) / 1000;
-      const W = canvas.width / (window.devicePixelRatio || 1);
-      const H = canvas.height / (window.devicePixelRatio || 1);
+      const dpr = dprRef.current;
+      const W = canvas.width / dpr;
+      const H = canvas.height / dpr;
       const isMobile = isMobileRef.current;
 
       /* Decay scroll velocity when idle */
@@ -586,7 +625,6 @@ export default function FooterTopologyField() {
       }
 
       /* ── Rain droplets ────────────────────────────────────────── */
-      if (!isMobile) {
       rainRef.current = rainRef.current.filter(d => (realT - d.birthTime) < 3.5);
 
       for (const d of rainRef.current) {
@@ -612,8 +650,9 @@ export default function FooterTopologyField() {
               hue: 75 + Math.random() * 25,
             });
           }
-          if (splashRef.current.length > (isMobile ? 30 : 120)) {
-            splashRef.current = splashRef.current.slice(isMobile ? -30 : -120);
+          const maxSplash = isMobile ? 30 : 120;
+          if (splashRef.current.length > maxSplash) {
+            splashRef.current = splashRef.current.slice(-maxSplash);
           }
         }
 
@@ -679,7 +718,6 @@ export default function FooterTopologyField() {
         ctx.arc(px, py, sp.size * 0.55, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255,255,240,${alpha * 0.80})`;
         ctx.fill();
-      }
       }
 
       /* ── Volumetric Wave Bodies — DOF via opacity, NO ctx.filter ── */
@@ -881,18 +919,41 @@ export default function FooterTopologyField() {
         }
       }
 
-      rafRef.current = requestAnimationFrame(draw);
+      if (inViewRef.current) {
+        rafRef.current = requestAnimationFrame(draw);
+      } else {
+        rafRef.current = 0;
+      }
     };
 
     rafRef.current = requestAnimationFrame(draw);
 
+    /* ── Fully pause rendering when the footer is off-screen ── */
+    const visObserver = new IntersectionObserver(
+      ([entry]) => {
+        inViewRef.current = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          if (!rafRef.current) rafRef.current = requestAnimationFrame(draw);
+        } else if (rafRef.current) {
+          cancelAnimationFrame(rafRef.current);
+          rafRef.current = 0;
+        }
+      },
+      { rootMargin: '100px' }
+    );
+    visObserver.observe(wrapper);
+
     return () => {
-      cancelAnimationFrame(rafRef.current);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      visObserver.disconnect();
       window.removeEventListener('resize', resize);
       window.removeEventListener('scroll', onScroll);
       wrapper.removeEventListener('mousemove', onMouseMove);
       wrapper.removeEventListener('mouseleave', onMouseLeave);
       wrapper.removeEventListener('click', onClick);
+      wrapper.removeEventListener('touchstart', onTouchStart);
+      wrapper.removeEventListener('touchmove', onTouchMove);
+      wrapper.removeEventListener('touchend', onTouchEnd);
       if (audioCtx) audioCtx.close();
     };
   }, []);
@@ -900,8 +961,8 @@ export default function FooterTopologyField() {
   return (
     <div
       ref={wrapperRef}
-      className="relative overflow-hidden cursor-crosshair"
-      style={{ zIndex: 0, background: '#181818', height: 'clamp(220px, 26vw, 300px)' }}
+      className="relative w-full overflow-hidden cursor-crosshair"
+      style={{ zIndex: 0, background: '#181818', height: 'clamp(140px, 22vw, 300px)' }}
     >
       <canvas
         ref={canvasRef}

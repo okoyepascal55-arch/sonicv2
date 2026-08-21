@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
+import { useText } from '@/hooks/useText';
 
 const highlights = [
   { icon: 'ri-bar-chart-2-line', number: '01', title: 'Datenbasierte Optimierung', desc: 'Jede Kampagne wird durch Echtzeit-KPI gesteuert — Tagesumsätze, Outlet-Matching, Personalwahl.' },
@@ -43,6 +44,9 @@ function HighlightCard({ item }: { item: typeof highlights[0] }) {
 }
 
 export default function FeaturedCases() {
+  const tBadge = useText('casestudies_intro', 'casestudies-intro-badge', 'Performance Marketing für Retail');
+  const tP = useText('casestudies_intro', 'casestudies-intro-p', 'Das bedeutet für uns, gemeinsam mit und für unsere Kunden messbare Erfolge zu erzielen.');
+
   const [activeCase, setActiveCase] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -50,6 +54,7 @@ export default function FeaturedCases() {
     {
       id: 'garmin',
       brand: 'Garmin',
+      logo: 'https://cdn.brandfetch.io/garmin.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
       category: 'Retail Activation & POS Full-Service',
       since: '2021',
       challenge: 'Garmin benötigte eine starke Retail-Präsenz im DACH-Raum, um Wearables und GPS-Produkte erlebbar zu machen und Endkunden direkt am POS für die Marke zu begeistern.',
@@ -59,7 +64,28 @@ export default function FeaturedCases() {
         { label: 'Märkte', value: 'DE + AT' },
         { label: 'Module', value: '5' },
       ],
-      image: 'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg',
+      images: [
+        '/images/Case Studies -Fallbsp/Garmin/210330_Banner_Kacheln_310x150px_Seite_13_Reporting (1).webp',
+        '/images/Case Studies -Fallbsp/Garmin/210330_Banner_Kacheln_310x150px_Seite_13_Reporting.webp',
+        '/images/Case Studies -Fallbsp/Garmin/5243_190035993.webp',
+        '/images/Case Studies -Fallbsp/Garmin/5243_190036664.webp',
+        '/images/Case Studies -Fallbsp/Garmin/5279_10060291 (1).webp',
+        '/images/Case Studies -Fallbsp/Garmin/5279_10060291.webp',
+        '/images/Case Studies -Fallbsp/Garmin/5315_195525779.webp',
+        '/images/Case Studies -Fallbsp/Garmin/5431_162510371 (1).webp',
+        '/images/Case Studies -Fallbsp/Garmin/5431_162510371.webp',
+        '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_1000_A26_Front.webp',
+        '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_1000_B26_Front.webp',
+        '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_600_A26_Front.webp',
+        '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_Unterschrank-Light_1000_A26_Front.webp',
+        '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_Unterschrank-Light_600_A26_Front.webp',
+        '/images/Case Studies -Fallbsp/Garmin/MM Chemnitz_Rene G.webp',
+        '/images/Case Studies -Fallbsp/Garmin/MM Hückelhoven_Chris L (1).webp',
+        '/images/Case Studies -Fallbsp/Garmin/MM Hückelhoven_Chris L.webp',
+        '/images/Case Studies -Fallbsp/Garmin/Saturn Frankfurt_Redouan B.webp',
+        '/images/Case Studies -Fallbsp/Garmin/Tacx_Neu (1).webp',
+        '/images/Case Studies -Fallbsp/Garmin/Tacx_Neu.webp'
+      ],
       testimonial: 'Seit 2021 verbindet GARMIN und Sonic eine erfolgreiche Partnerschaft im Bereich Verkaufsunterstützung am POS. Besonders schätzen wir die partnerschaftliche Zusammenarbeit auf Augenhöhe — stets lösungsorientiert und engagiert.',
       author: 'Dana Eichinger',
       authorRole: 'Director Marketing DACH, Garmin Deutschland GmbH',
@@ -67,6 +93,7 @@ export default function FeaturedCases() {
     {
       id: 'groupe-seb',
       brand: 'Groupe SEB',
+      logo: 'https://cdn.brandfetch.io/groupeseb.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
       category: 'Multi-Brand Field Force & Live-Video',
       since: '2019',
       challenge: 'Für vier Topmarken (Tefal, Rowenta, Krups, WMF) waren gleichzeitig Effizienz, Markenseparation und anhaltend hohe Abverkaufsleistung gefragt — mit klarer Datentransparenz.',
@@ -76,7 +103,35 @@ export default function FeaturedCases() {
         { label: 'Marken', value: '4' },
         { label: 'Module', value: '6' },
       ],
-      image: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg',
+      images: [
+        '/images/Case Studies -Fallbsp/SEB/20250604_205405_187.webp',
+        '/images/Case Studies -Fallbsp/SEB/Außenansicht.webp',
+        '/images/Case Studies -Fallbsp/SEB/Bild_NecafeDolceGusto.webp',
+        '/images/Case Studies -Fallbsp/SEB/Gruppe Braun (37).webp',
+        '/images/Case Studies -Fallbsp/SEB/Gruppe Gold (5).webp',
+        '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (13).webp',
+        '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (26).webp',
+        '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (34).webp',
+        '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (37).webp',
+        '/images/Case Studies -Fallbsp/SEB/Optigrill Tisch.webp',
+        '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam.webp',
+        '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam1.webp',
+        '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam12.webp',
+        '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam2.webp',
+        '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam4.webp',
+        '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam5.webp',
+        '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam7.webp',
+        '/images/Case Studies -Fallbsp/SEB/WhatsApp Image 2020-07-30 at 15.11.27.webp',
+        '/images/Case Studies -Fallbsp/SEB/WhatsApp Image 2020-07-31 at 12.12.37 (2).webp',
+        '/images/Case Studies -Fallbsp/SEB/WhatsApp Image 2020-07-31 at 12.12.39.webp',
+        '/images/Case Studies -Fallbsp/SEB/WhatsApp Image 2024-02-22 at 11.50.47.webp',
+        '/images/Case Studies -Fallbsp/SEB/WhatsApp Image 2026-03-03 at 13.11.27 (7).webp',
+        '/images/Case Studies -Fallbsp/SEB/image10.webp',
+        '/images/Case Studies -Fallbsp/SEB/image12.webp',
+        '/images/Case Studies -Fallbsp/SEB/image16.webp',
+        '/images/Case Studies -Fallbsp/SEB/image17.webp',
+        '/images/Case Studies -Fallbsp/SEB/image7.webp'
+      ],
       testimonial: 'Hier finde ich, ohne großes Excel Kung-Fu, das was ich für die Vorbereitung von Meetings benötige — mit wenigen Klicks und Exportfunktion. Das SRT ist ein nützliches Tool und erleichtert unsere tägliche Arbeit.',
       author: 'Ramin Dirinpur',
       authorRole: 'Sales Promotion & Sales Training Manager, Groupe SEB Deutschland GmbH',
@@ -84,6 +139,7 @@ export default function FeaturedCases() {
     {
       id: 'philips',
       brand: 'Philips',
+      logo: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887',
       category: 'Field Force, Training & Digital',
       since: '2021',
       challenge: 'Philips TV & Sound benötigte einen End-to-End-Partner, der Schulungen, Field Force und digitale Kampagnen nahtlos bündelt — mit dem Ziel, Deutschland zum stärksten EU-Markt zu machen.',
@@ -93,7 +149,28 @@ export default function FeaturedCases() {
         { label: 'Marktposition Europa', value: '#1 EU' },
         { label: 'Module', value: '6' },
       ],
-      image: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
+      images: [
+        '/images/Case Studies -Fallbsp/Philips/5589_23290336.webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW4_SA_Möncke_2 (1).webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW4_SA_Möncke_2 (2).webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW4_SA_Möncke_2 (3).webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW4_SA_Möncke_2 (4).webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW4_SA_Möncke_2.webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW6_MM_Dornbirn_AT (1).webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW6_MM_Dornbirn_AT (2).webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW6_MM_Dornbirn_AT (3).webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW6_MM_Dornbirn_AT (4).webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW6_MM_Dornbirn_AT.webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW6_Media Markt Ingolstadt - Eriagstr. 28 - 85046 Ingolstadt1 (1).webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW6_Media Markt Ingolstadt - Eriagstr. 28 - 85046 Ingolstadt1 (2).webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW6_Media Markt Ingolstadt - Eriagstr. 28 - 85046 Ingolstadt1.webp',
+        '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-30 at 15.11.27 (1).webp',
+        '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-30 at 15.11.27.webp',
+        '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.37 (2) (1).webp',
+        '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.37 (2).webp',
+        '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp',
+        '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39.webp'
+      ],
       testimonial: 'Durch das SRT können wir live in unsere Projekte mit Sonic reinschauen und jederzeit sehen, wie unsere Erwartungen erfüllt werden.',
       author: 'Murat Yatkin',
       authorRole: 'Managing Director DACH, Philips TV & Sound @TP Vision',
@@ -101,6 +178,7 @@ export default function FeaturedCases() {
     {
       id: 'avoury',
       brand: 'Avoury',
+      logo: 'https://cdn.brandfetch.io/melitta.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
       category: 'Field Force, Recruiting & Datenoptimierung',
       since: '2021',
       challenge: 'Die Avoury One (Teemaschine von Melitta) brauchte beim Markteintritt eine Field Force mit maximaler Konversionsrate — aufgebaut aus Null, optimiert durch Daten.',
@@ -110,7 +188,26 @@ export default function FeaturedCases() {
         { label: 'Marke', value: 'Melitta' },
         { label: 'Module', value: '5' },
       ],
-      image: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg',
+      images: [
+        '/images/Case Studies -Fallbsp/Avoury/0c841385-a52b-4462-a08e-42922772ffa7.webp',
+        '/images/Case Studies -Fallbsp/Avoury/2.webp',
+        '/images/Case Studies -Fallbsp/Avoury/46a17f65-5760-48a1-9d54-6269a08b705f.webp',
+        '/images/Case Studies -Fallbsp/Avoury/Banner_Skyscraper_2_160x600.webp',
+        '/images/Case Studies -Fallbsp/Avoury/Banner_Skyscraper_3_160x600.webp',
+        '/images/Case Studies -Fallbsp/Avoury/IMG-20230928-WA0000.webp',
+        '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_01.webp',
+        '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_05.webp',
+        '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_07.webp',
+        '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_08.webp',
+        '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_V4_02.webp',
+        '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_V4_06.webp',
+        '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_V4_MASSE_THEKE.webp',
+        '/images/Case Studies -Fallbsp/Avoury/b111db44-a0cf-4eea-b5b7-5a0fd48e1762.webp',
+        '/images/Case Studies -Fallbsp/Avoury/ce8dc1a9-9db2-48e8-bc91-de257f9c7da7.webp',
+        '/images/Case Studies -Fallbsp/Avoury/d131a95d-592d-41a8-beb7-a893c1b2faa6.webp',
+        '/images/Case Studies -Fallbsp/Avoury/d3b2ba5d-0462-4429-ad76-536f27b6a445.webp',
+        '/images/Case Studies -Fallbsp/Avoury/f2d4262a-2c1b-4abd-b0a3-406901a73db0.webp'
+      ],
       testimonial: 'Dank Tracking und Logging aller Einsätze und Umsätze im Sonic Reporting Tool werden Erfolge und Potenziale sichtbar — und gezielt ausgebaut.',
       author: 'Avoury by Melitta',
       authorRole: 'Projektteam, Sonic Group',
@@ -126,7 +223,7 @@ export default function FeaturedCases() {
         <div className="text-center mb-14">
           <SectionBadge text="Deep Dive" variant="dark" className="mb-6" />
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#1a1a1a] mb-4 leading-tight">UNSERE 4 ERFOLGSPARTNERSCHAFTEN</h2>
-          <p className="text-base text-gray-600 max-w-2xl mx-auto">Echte Zahlen, echte Zitate, echte Ergebnisse — aus laufenden Langzeitpartnerschaften im DACH-Raum</p>
+          <p className="text-base text-foreground-600 max-w-2xl mx-auto">Echte Zahlen, echte Zitate, echte Ergebnisse — aus laufenden Langzeitpartnerschaften im DACH-Raum</p>
         </div>
 
         {/* Brand Switcher Tabs */}
@@ -138,7 +235,7 @@ export default function FeaturedCases() {
               className={`px-6 py-3 font-black text-sm uppercase tracking-wider transition-all duration-300 whitespace-nowrap cursor-pointer ${
                 activeCase === index
                   ? 'bg-[#C8D400] text-white scale-105'
-                  : 'bg-white text-gray-700 hover:border-[#C8D400] hover:text-[#1a1a1a] border border-gray-200'
+                  : 'bg-white text-foreground-700 hover:border-[#C8D400] hover:text-[#1a1a1a] border border-foreground-200'
               }`}
               style={{ borderRadius: 0 }}
             >
@@ -154,13 +251,13 @@ export default function FeaturedCases() {
           onMouseLeave={() => setIsHovered(false)}
           style={{ borderRadius: 0 }}
         >
-          <div className={`absolute inset-0 border-4 transition-all duration-500 pointer-events-none z-20 ${isHovered ? 'border-[#C8D400]' : 'border-gray-100'}`}></div>
+          <div className={`absolute inset-0 border-4 transition-all duration-500 pointer-events-none z-20 ${isHovered ? 'border-[#C8D400]' : 'border-foreground-100'}`}></div>
 
           <div className="grid lg:grid-cols-2 gap-0">
             {/* Image Side */}
-            <div className="relative h-[420px] lg:h-[520px]">
+            <div className="relative h-[240px] sm:h-[340px] lg:h-[520px]">
               <img
-                src={cases[activeCase].image}
+                src={cases[activeCase].images[0]}
                 alt={cases[activeCase].brand}
                 className={`w-full h-full object-cover object-top transition-transform duration-700 ${isHovered ? 'scale-105' : 'scale-100'}`}
               />
@@ -174,7 +271,17 @@ export default function FeaturedCases() {
                 <div className="inline-block bg-[#C8D400] text-white px-4 py-1.5 font-black text-xs uppercase tracking-wider mb-3" style={{ borderRadius: 0 }}>
                   {cases[activeCase].category}
                 </div>
-                <h3 className="text-4xl font-black text-white">{cases[activeCase].brand}</h3>
+                <div className="flex items-center gap-3">
+                  <div className="h-9 w-12 bg-white/12 flex items-center justify-center px-1 py-0.5 flex-shrink-0">
+                    <img
+                      src={cases[activeCase].logo}
+                      alt={cases[activeCase].brand}
+                      className="w-full h-full object-contain"
+                      style={{ filter: 'brightness(0) invert(1)' }}
+                    />
+                  </div>
+                  <h3 className="text-4xl font-black text-white">{cases[activeCase].brand}</h3>
+                </div>
                 <p className="text-white/60 text-xs font-bold uppercase tracking-wide mt-1">Partnerschaft seit {cases[activeCase].since}</p>
               </div>
             </div>
@@ -187,11 +294,11 @@ export default function FeaturedCases() {
               <div className="space-y-5">
                 <div>
                   <h4 className="text-xs font-black text-[#C8D400] uppercase tracking-widest mb-2">Die Herausforderung</h4>
-                  <p className="text-gray-700 text-sm leading-relaxed">{cases[activeCase].challenge}</p>
+                  <p className="text-foreground-700 text-sm leading-relaxed">{cases[activeCase].challenge}</p>
                 </div>
                 <div>
                   <h4 className="text-xs font-black text-[#C8D400] uppercase tracking-widest mb-2">Unsere Lösung</h4>
-                  <p className="text-gray-700 text-sm leading-relaxed">{cases[activeCase].solution}</p>
+                  <p className="text-foreground-700 text-sm leading-relaxed">{cases[activeCase].solution}</p>
                 </div>
 
                 {/* Results */}
@@ -199,9 +306,9 @@ export default function FeaturedCases() {
                   <h4 className="text-xs font-black text-[#C8D400] uppercase tracking-widest mb-3">Ergebnisse</h4>
                   <div className="grid grid-cols-3 gap-3">
                     {cases[activeCase].results.map((result, idx) => (
-                      <div key={idx} className="bg-gray-50 p-3 text-center border border-gray-100" style={{ borderRadius: 0 }}>
+                      <div key={idx} className="bg-foreground-50 p-3 text-center border border-foreground-100" style={{ borderRadius: 0 }}>
                         <div className="text-lg font-black text-[#1a1a1a] leading-tight font-sans tabular-nums">{result.value}</div>
-                        <div className="text-[10px] text-gray-500 mt-1 leading-tight">{result.label}</div>
+                        <div className="text-[10px] text-foreground-500 mt-1 leading-tight">{result.label}</div>
                       </div>
                     ))}
                   </div>
@@ -209,10 +316,10 @@ export default function FeaturedCases() {
 
                 {/* Testimonial */}
                 <div className="bg-[#C8D400]/8 p-5 border-l-4 border-[#C8D400]" style={{ borderRadius: 0 }}>
-                  <p className="text-gray-700 italic text-sm leading-relaxed mb-3">"{cases[activeCase].testimonial}"</p>
+                  <p className="text-foreground-700 italic text-sm leading-relaxed mb-3">"{cases[activeCase].testimonial}"</p>
                   <div>
                     <p className="text-xs font-black text-[#1a1a1a] uppercase tracking-wide">— {cases[activeCase].author}</p>
-                    <p className="text-[10px] text-gray-500 mt-0.5">{cases[activeCase].authorRole}</p>
+                    <p className="text-[10px] text-foreground-500 mt-0.5">{cases[activeCase].authorRole}</p>
                   </div>
                 </div>
               </div>

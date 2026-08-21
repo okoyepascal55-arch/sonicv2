@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 interface ScrollToTopButtonProps {
   /** Scroll distance in px before the button appears. Default: 400 */
@@ -9,17 +9,22 @@ export default function ScrollToTopButton({ threshold = 400 }: ScrollToTopButton
   const [visible, setVisible] = useState(false);
   const [scrollPct, setScrollPct] = useState(0);
 
-  const handleScroll = useCallback(() => {
-    const scrollY = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    setVisible(scrollY > threshold);
-    setScrollPct(docHeight > 0 ? Math.min(100, (scrollY / docHeight) * 100) : 0);
-  }, [threshold]);
-
   useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        setVisible(scrollY > threshold);
+        setScrollPct(docHeight > 0 ? Math.min(100, (scrollY / docHeight) * 100) : 0);
+        ticking = false;
+      });
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+  }, [threshold]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -38,7 +43,7 @@ export default function ScrollToTopButton({ threshold = 400 }: ScrollToTopButton
         fixed bottom-8 right-8 z-50 group
         flex items-center justify-center
         w-12 h-12
-        bg-sonic-dark hover:bg-sonic-lime
+        bg-foreground-950 hover:bg-primary-500
         transition-all duration-500 ease-out cursor-pointer
         ${visible
           ? 'opacity-100 translate-y-0 pointer-events-auto'
@@ -78,13 +83,13 @@ export default function ScrollToTopButton({ threshold = 400 }: ScrollToTopButton
       </svg>
 
       {/* Arrow icon */}
-      <i className="ri-arrow-up-line text-white group-hover:text-sonic-dark text-base relative z-10 transition-colors duration-300" />
+      <i className="ri-arrow-up-line text-white group-hover:text-foreground-950 text-base relative z-10 transition-colors duration-300" />
 
       {/* Tooltip */}
       <span
         className="
           absolute right-full mr-3 top-1/2 -translate-y-1/2
-          bg-sonic-dark text-white text-xs font-black uppercase tracking-widest
+          bg-foreground-950 text-white text-xs font-black uppercase tracking-widest
           px-3 py-1.5 whitespace-nowrap
           opacity-0 group-hover:opacity-100
           translate-x-2 group-hover:translate-x-0

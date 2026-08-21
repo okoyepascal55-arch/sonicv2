@@ -1,16 +1,15 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import Navigation from '../../components/feature/Navigation';
-import LeistungenPageNav from '../../components/feature/LeistungenPageNav';
+import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenHero from './components/LeistungenHero';
 import LeistungenStats from './components/LeistungenStats';
 import ServiceGrid from './components/ServiceGrid';
 import SchallmauerWays from './components/SchallmauerWays';
 import IndustrySelector from './components/IndustrySelector';
 import LeistungenTestimonials from './components/LeistungenTestimonials';
-import LeistungenKontakt from '../../components/feature/LeistungenKontakt';
-import { StackedSectionReveal } from '@/components/feature/SectionReveal';
+import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import WoodenDivider from '@/components/base/WoodenDivider';
+import { StackedSectionReveal } from '@/components/feature/SectionReveal';
 
 const NAV_ITEMS = [
   { id: 'zahlen', label: 'Zahlen', icon: 'ri-bar-chart-2-line' },
@@ -43,8 +42,7 @@ export default function LeistungenPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen overflow-x-hidden">
-      <Navigation />
+    <div className="bg-white min-h-[100dvh] overflow-x-hidden">
       <main id="main-content">
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
 
@@ -89,15 +87,15 @@ export default function LeistungenPage() {
 
       <WoodenDivider />
 
-      {/* Testimonials — gentle sandwich tint separates it, matching homepage SRTTeaser */}
+      {/* Testimonials */}
       <div id="kundenstimmen" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #FAFDF5 50%, #ffffff 100%)' }}>
         <StackedSectionReveal index={4} totalSections={5}>
           <LeistungenTestimonials />
         </StackedSectionReveal>
       </div>
+      </main>
 
       <WoodenDivider />
-      </main>
 
       {/* Final CTA — standardized with LeistungenKontakt like all sub-pages */}
       <LeistungenKontakt

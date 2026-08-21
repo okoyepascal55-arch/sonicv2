@@ -1,15 +1,15 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import Navigation from '../../../components/feature/Navigation';
-import LeistungenPageNav from '../../../components/feature/LeistungenPageNav';
-import LeistungenKontakt from '../../../components/feature/LeistungenKontakt';
-import ScrollToTopButton from '../../../components/feature/ScrollToTopButton';
-import WoodenDivider from '../../../components/base/WoodenDivider';
-import ClientProof from '../../../components/feature/ClientProof';
+import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
+import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
+import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
+import ClientProof from '@/components/feature/ClientProof';
+import WoodenDivider from '@/components/base/WoodenDivider';
 import TalentpoolHero from './components/TalentpoolHero';
 import TalentpoolContent from './components/TalentpoolContent';
 
 const NAV_ITEMS = [
+  { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'talentprofile', label: 'Talentprofile', icon: 'ri-user-star-line' },
   { id: 'stats', label: 'Zahlen', icon: 'ri-bar-chart-line' },
@@ -30,15 +30,13 @@ export default function TalentpoolPage() {
   const heroRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white">
-      <Navigation />
+    <div className="min-h-[100dvh] overflow-x-hidden bg-white">
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
 
       <div ref={heroRef}>
         <TalentpoolHero />
       </div>
 
-      <WoodenDivider />
       <div style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
         <TalentpoolContent />
       </div>

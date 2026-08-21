@@ -101,7 +101,7 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
           <i className="ri-check-line text-3xl text-[#111]" />
         </div>
         <h3 className="text-2xl font-black text-[#1a1a1a] mb-3 uppercase">Bewerbung gesendet!</h3>
-        <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
+        <p className="text-sm text-foreground-500 mb-6 max-w-md mx-auto">
           Vielen Dank für deine Bewerbung als <strong>{jobTitle}</strong>. Wir melden uns so schnell wie möglich bei dir.
         </p>
         <button
@@ -125,7 +125,7 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
           </div>
           <button
             onClick={onClose}
-            className="w-9 h-9 flex items-center justify-center border border-gray-200 hover:border-[#C8D400] text-gray-400 hover:text-[#1a1a1a] transition-all cursor-pointer"
+            className="w-9 h-9 flex items-center justify-center border border-foreground-200 hover:border-[#C8D400] text-foreground-400 hover:text-[#1a1a1a] transition-all cursor-pointer"
             style={{ borderRadius: 0 }}
             aria-label="Formular schließen"
           >
@@ -140,7 +140,7 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
           {/* Name + Email */}
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
-              <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1.5">
+              <label className="block text-2xs font-black uppercase tracking-[0.2em] text-foreground-500 mb-1.5">
                 Vollständiger Name <span className="text-[#C8D400]">*</span>
               </label>
               <input
@@ -148,12 +148,12 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
                 type="text"
                 required
                 placeholder="Max Mustermann"
-                className="w-full px-4 py-3 bg-[#f7f7f5] border border-gray-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] transition-colors"
+                className="w-full px-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] transition-colors"
                 style={{ borderRadius: 0 }}
               />
             </div>
             <div className="flex-1">
-              <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1.5">
+              <label className="block text-2xs font-black uppercase tracking-[0.2em] text-foreground-500 mb-1.5">
                 E-Mail-Adresse <span className="text-[#C8D400]">*</span>
               </label>
               <input
@@ -161,7 +161,7 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
                 type="email"
                 required
                 placeholder="max@example.com"
-                className="w-full px-4 py-3 bg-[#f7f7f5] border border-gray-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] transition-colors"
+                className="w-full px-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] transition-colors"
                 style={{ borderRadius: 0 }}
               />
             </div>
@@ -169,42 +169,42 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
 
           {/* Phone */}
           <div>
-            <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1.5">
-              Telefonnummer <span className="text-gray-300">(optional)</span>
+            <label className="block text-2xs font-black uppercase tracking-[0.2em] text-foreground-500 mb-1.5">
+              Telefonnummer <span className="text-foreground-300">(optional)</span>
             </label>
             <input
               name="phone"
               type="tel"
               placeholder="+49 151 12345678"
-              className="w-full px-4 py-3 bg-[#f7f7f5] border border-gray-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] transition-colors"
+              className="w-full px-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] transition-colors"
               style={{ borderRadius: 0 }}
             />
           </div>
 
           {/* Message */}
           <div>
-            <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1.5">
-              Anschreiben / Nachricht <span className="text-gray-300">(optional)</span>
+            <label className="block text-2xs font-black uppercase tracking-[0.2em] text-foreground-500 mb-1.5">
+              Anschreiben / Nachricht <span className="text-foreground-300">(optional)</span>
             </label>
             <textarea
               name="message"
               rows={4}
               maxLength={500}
               placeholder="Warum möchtest du bei Sonic Group arbeiten?"
-              className="w-full px-4 py-3 bg-[#f7f7f5] border border-gray-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] transition-colors resize-none"
+              className="w-full px-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] transition-colors resize-none"
               style={{ borderRadius: 0 }}
             />
-            <p className="text-[10px] text-gray-400 mt-1">Max. 500 Zeichen</p>
+            <p className="text-2xs text-foreground-400 mt-1">Max. 500 Zeichen</p>
           </div>
 
           {/* CV Upload */}
           <div>
-            <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-1.5">
+            <label className="block text-2xs font-black uppercase tracking-[0.2em] text-foreground-500 mb-1.5">
               Lebenslauf / CV
             </label>
             <div
               className={`relative border-2 border-dashed transition-all duration-200 cursor-pointer ${
-                dragOver ? 'border-[#C8D400] bg-[#C8D400]/5' : 'border-gray-200 bg-[#f7f7f5] hover:border-[#C8D400]/50'
+                dragOver ? 'border-[#C8D400] bg-[#C8D400]/5' : 'border-foreground-200 bg-white hover:border-[#C8D400]/50'
               }`}
               style={{ borderRadius: 0 }}
               onClick={() => fileInputRef.current?.click()}
@@ -231,15 +231,15 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
                 onChange={(e) => handleFileChange(e.target.files?.[0] ?? null)}
               />
               <div className="px-6 py-8 flex flex-col items-center justify-center gap-2 text-center pointer-events-none">
-                <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-100">
-                  <i className={`text-xl ${cvFileName ? 'ri-file-check-line text-[#C8D400]' : 'ri-upload-cloud-line text-gray-400'}`} />
+                <div className="w-10 h-10 flex items-center justify-center bg-white border border-foreground-100">
+                  <i className={`text-xl ${cvFileName ? 'ri-file-check-line text-[#C8D400]' : 'ri-upload-cloud-line text-foreground-400'}`} />
                 </div>
                 {cvFileName ? (
                   <p className="text-sm font-black text-[#1a1a1a]">{cvFileName}</p>
                 ) : (
                   <>
                     <p className="text-sm font-bold text-[#1a1a1a]">Datei hierher ziehen oder klicken</p>
-                    <p className="text-xs text-gray-400">PDF, DOC, DOCX · max. 10 MB</p>
+                    <p className="text-xs text-foreground-400">PDF, DOC, DOCX · max. 10 MB</p>
                   </>
                 )}
               </div>
@@ -276,7 +276,7 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
             )}
           </button>
 
-          <p className="text-[10px] text-gray-400 text-center">
+          <p className="text-2xs text-foreground-400 text-center">
             Mit dem Absenden stimmst du unserer Datenschutzrichtlinie zu. Deine Daten werden vertraulich behandelt.
           </p>
         </div>

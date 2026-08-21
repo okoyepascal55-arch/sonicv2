@@ -49,20 +49,26 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
 
   // Scroll handler: visibility + active section
   useEffect(() => {
+    let ticking = false;
     const onScroll = () => {
-      const threshold = heroThresholdRef.current ?? 300;
-      setVisible(window.scrollY >= threshold);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const threshold = heroThresholdRef.current ?? 300;
+        setVisible(window.scrollY >= threshold);
 
-      // Active section tracking
-      const offset = SCROLL_OFFSET + 16;
-      let current = items[0]?.id || '';
-      for (const item of items) {
-        const el = document.getElementById(item.id);
-        if (el && el.getBoundingClientRect().top <= offset) {
-          current = item.id;
+        // Active section tracking
+        const offset = SCROLL_OFFSET + 16;
+        let current = items[0]?.id || '';
+        for (const item of items) {
+          const el = document.getElementById(item.id);
+          if (el && el.getBoundingClientRect().top <= offset) {
+            current = item.id;
+          }
         }
-      }
-      setActiveId(current);
+        setActiveId(current);
+        ticking = false;
+      });
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -124,9 +130,9 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
         style={{ top: `${MAIN_NAV_H}px` }}
       >
         {/* Accent line */}
-        <div className="h-[2px] bg-sonic-dark w-full" />
+        <div className="h-[2px] bg-foreground-950 w-full" />
 
-        <div className="w-full bg-sonic-dark">
+        <div className="w-full bg-foreground-950">
           <div className="w-full px-4 md:px-6">
 
             {/* ── DESKTOP ── */}
@@ -216,7 +222,7 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
 
               {mobileOpen && (
                 <div
-                  className="absolute top-full left-0 right-0 z-50 bg-sonic-dark border-t border-white/10"
+                  className="absolute top-full left-0 right-0 z-50 bg-foreground-950 border-t border-white/10"
                   style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.5)', animation: 'slideDown 0.2s ease-out' }}
                 >
                   {items.map((item, i) => {
@@ -243,7 +249,7 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
                         {item.href && <i className="ri-external-link-line text-xs opacity-50" />}
                         {isActive && !item.href && (
                           <div className="w-4 h-4 flex items-center justify-center bg-[#C8D400] flex-shrink-0">
-                            <i className="ri-check-line text-sonic-dark text-xs" />
+                            <i className="ri-check-line text-foreground-950 text-xs" />
                           </div>
                         )}
                       </>

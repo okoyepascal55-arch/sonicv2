@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
+import { useMediaStore } from '@/lib/mediaStore';
+import { useText } from '@/hooks/useText';
 
 export default function IndustryGrid() {
+  const tBadge = useText('industries_grid', 'industries-grid-badge', 'Unsere Sektoren');
+  const tHeading = useText('industries_grid', 'industries-grid-heading', 'BRANCHEN-EXPERTISE.');
+  const tSub = useText('industries_grid', 'industries-grid-sub', 'Bewährte Erfolge in verschiedenen Sektoren mit maßgeschneiderten Strategien.');
+
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const { images: gridImages } = useMediaStore('industries_grid_images');
 
   const industries = [
     {
@@ -10,7 +17,7 @@ export default function IndustryGrid() {
       description: 'TVs, smartphones, wearables, audio equipment, and smart home devices',
       brands: ['Philips', 'Canon', 'Garmin', 'TCL', 'OPPO'],
       woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20smartphone%20electronics%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=64&height=64&seq=wood-electronics-chestnut&orientation=squarish',
-      image: 'https://readdy.ai/api/search-image?query=modern%20consumer%20electronics%20display%20with%20smartphones%20smartwatches%20and%20audio%20devices%20in%20premium%20retail%20setting%20clean%20professional%20lighting&width=800&height=600&seq=industry-electronics&orientation=landscape',
+      image: (gridImages[0] && gridImages[0].url) || 'https://readdy.ai/api/search-image?query=modern%20consumer%20electronics%20display%20with%20smartphones%20smartwatches%20and%20audio%20devices%20in%20premium%20retail%20setting%20clean%20professional%20lighting&width=800&height=600&seq=industry-electronics&orientation=landscape',
       stats: ['100,000+ POS', '€2B+ Sales Influenced']
     },
     {
@@ -18,7 +25,7 @@ export default function IndustryGrid() {
       description: 'Kitchen appliances, vacuum cleaners, coffee machines, and household electronics',
       brands: ['Groupe SEB', 'Tefal', 'Krups', 'Rowenta', 'WMF'],
       woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20home%20appliance%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=64&height=64&seq=wood-appliance-chestnut&orientation=squarish',
-      image: 'https://readdy.ai/api/search-image?query=premium%20kitchen%20appliances%20and%20home%20electronics%20displayed%20in%20modern%20showroom%20with%20clean%20white%20background%20professional%20product%20photography&width=800&height=600&seq=industry-appliances&orientation=landscape',
+      image: (gridImages[1] && gridImages[1].url) || 'https://readdy.ai/api/search-image?query=premium%20kitchen%20appliances%20and%20home%20electronics%20displayed%20in%20modern%20showroom%20with%20clean%20white%20background%20professional%20product%20photography&width=800&height=600&seq=industry-appliances&orientation=landscape',
       stats: ['24% Cost Reduction', '130+ POS Locations']
     },
     {
@@ -26,7 +33,7 @@ export default function IndustryGrid() {
       description: 'Cosmetics, skincare, haircare, and professional beauty equipment',
       brands: ['L\'Oréal', 'Professional Beauty Brands'],
       woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20beauty%20cosmetics%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=64&height=64&seq=wood-beauty-chestnut&orientation=squarish',
-      image: 'https://readdy.ai/api/search-image?query=luxury%20beauty%20and%20cosmetics%20products%20elegantly%20displayed%20in%20premium%20retail%20environment%20with%20soft%20lighting%20and%20clean%20aesthetic&width=800&height=600&seq=industry-beauty&orientation=landscape',
+      image: (gridImages[2] && gridImages[2].url) || 'https://readdy.ai/api/search-image?query=luxury%20beauty%20and%20cosmetics%20products%20elegantly%20displayed%20in%20premium%20retail%20environment%20with%20soft%20lighting%20and%20clean%20aesthetic&width=800&height=600&seq=industry-beauty&orientation=landscape',
       stats: ['Premium Positioning', 'Expert Training']
     },
     {
@@ -34,7 +41,7 @@ export default function IndustryGrid() {
       description: 'Fitness equipment, wellness products, and lifestyle brands',
       brands: ['Vorwerk', 'Melitta', 'Avoury'],
       woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20heart%20wellness%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=64&height=64&seq=wood-wellness-chestnut&orientation=squarish',
-      image: 'https://readdy.ai/api/search-image?query=wellness%20and%20lifestyle%20products%20including%20fitness%20equipment%20and%20premium%20lifestyle%20brands%20in%20modern%20retail%20space%20bright%20clean%20environment&width=800&height=600&seq=industry-lifestyle&orientation=landscape',
+      image: (gridImages[3] && gridImages[3].url) || 'https://readdy.ai/api/search-image?query=wellness%20and%20lifestyle%20products%20including%20fitness%20equipment%20and%20premium%20lifestyle%20brands%20in%20modern%20retail%20space%20bright%20clean%20environment&width=800&height=600&seq=industry-lifestyle&orientation=landscape',
       stats: ['1,987% Growth', 'Cross-Selling Success']
     },
     {
@@ -42,7 +49,7 @@ export default function IndustryGrid() {
       description: 'Navigation systems, dashcams, and automotive accessories',
       brands: ['Garmin Automotive'],
       woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20car%20automobile%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=64&height=64&seq=wood-car-chestnut&orientation=squarish',
-      image: 'https://readdy.ai/api/search-image?query=automotive%20navigation%20systems%20and%20car%20accessories%20displayed%20in%20modern%20retail%20setting%20with%20professional%20lighting%20and%20clean%20background&width=800&height=600&seq=industry-automotive&orientation=landscape',
+      image: (gridImages[4] && gridImages[4].url) || 'https://readdy.ai/api/search-image?query=automotive%20navigation%20systems%20and%20car%20accessories%20displayed%20in%20modern%20retail%20setting%20with%20professional%20lighting%20and%20clean%20background&width=800&height=600&seq=industry-automotive&orientation=landscape',
       stats: ['130% Revenue Growth', '€2,178/day Average']
     },
     {
@@ -50,7 +57,7 @@ export default function IndustryGrid() {
       description: 'Streaming services, entertainment systems, and media subscriptions',
       brands: ['Sky', 'Entertainment Providers'],
       woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20television%20tv%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=64&height=64&seq=wood-tv-chestnut&orientation=squarish',
-      image: 'https://readdy.ai/api/search-image?query=entertainment%20and%20streaming%20service%20promotional%20display%20in%20modern%20retail%20environment%20with%20screens%20and%20media%20equipment%20clean%20professional%20setup&width=800&height=600&seq=industry-entertainment&orientation=landscape',
+      image: (gridImages[5] && gridImages[5].url) || 'https://readdy.ai/api/search-image?query=entertainment%20and%20streaming%20service%20promotional%20display%20in%20modern%20retail%20environment%20with%20screens%20and%20media%20equipment%20clean%20professional%20setup&width=800&height=600&seq=industry-entertainment&orientation=landscape',
       stats: ['Subscription Growth', 'Customer Acquisition']
     }
   ];
@@ -59,12 +66,12 @@ export default function IndustryGrid() {
     <section id="industries" className="py-24 px-6 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <SectionBadge text="Unsere Sektoren" variant="dark" className="mb-6" />
-          <h2 className="text-4xl md:text-5xl font-black text-sonic-dark mb-4 leading-tight tracking-tight">
-            BRANCHEN-EXPERTISE.
+          <SectionBadge text={tBadge} variant="dark" className="mb-6" />
+          <h2 className="text-4xl md:text-5xl font-black text-foreground-950 mb-4 leading-tight tracking-tight">
+            {tHeading}
           </h2>
-          <p className="text-base text-gray-600 max-w-3xl mx-auto">
-            Bewährte Erfolge in verschiedenen Sektoren mit maßgeschneiderten Strategien für jeden Markt.
+          <p className="text-base text-foreground-600 max-w-3xl mx-auto">
+            {tSub}
           </p>
         </div>
 

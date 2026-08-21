@@ -1,135 +1,105 @@
 import { CONTACT_EMAIL } from '@/lib/contact';
 import SectionBadge from '@/components/base/SectionBadge';
+import { useText } from '@/hooks/useText';
+import type { MediaItem } from '@/lib/mediaStore';
 
 interface SRTHeroProps {
   onScrollToFeatures: () => void;
+  heroIcons: MediaItem[];
 }
 
-const STATS = [
-  { val: '>15', label: 'Versionen', sub: 'Laufend weiterentwickelt' },
-  { val: '>1,3 Mio.', label: 'Erledigte Tasks', sub: 'Kumuliert seit Start' },
-  { val: '>€100 Mio.', label: 'Gehälter ausgezahlt', sub: 'Gesamt verarbeitet' },
-  { val: 'Seit 2008', label: 'In Betrieb', sub: 'Seit 2024 mit KI' },
-];
+export default function SRTHero({ onScrollToFeatures, heroIcons }: SRTHeroProps) {
 
-function scrollTo(id: string) {
-  const el = document.getElementById(id);
-  if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
-}
+  // ── Text Store hooks ──
+  const tBadge = useText('srt_hero', 'srt-hero-badge', 'Sonic-eigene Software');
+  const tH1_1 = useText('srt_hero', 'srt-hero-h1-1', 'SONIC');
+  const tH1_2 = useText('srt_hero', 'srt-hero-h1-2', 'REPORTING');
+  const tH1_3 = useText('srt_hero', 'srt-hero-h1-3', 'TOOL.');
+  const tSub = useText('srt_hero', 'srt-hero-sub', '');
+  const tTagline = useText('srt_hero', 'srt-hero-tagline', 'Field-Force-ERP-System · Seit 2008 · Seit 2024 mit KI');
+  const tCtaPrimary = useText('srt_hero', 'srt-hero-cta-primary', 'Beratungsgespräch buchen');
+  const tCtaSecondary = useText('srt_hero', 'srt-hero-cta-secondary', 'Features entdecken');
+  const tNavLabel = useText('srt_hero', 'srt-hero-nav-label', 'Direkt zu:');
+  const tChip1 = useText('srt_hero', 'srt-hero-chip-1', 'All-in-Software');
+  const tChip2 = useText('srt_hero', 'srt-hero-chip-2', 'Funktionsumfang');
+  const tChip3 = useText('srt_hero', 'srt-hero-chip-3', 'Team-App');
+  const tChip4 = useText('srt_hero', 'srt-hero-chip-4', 'Branchen');
+  const tChip5 = useText('srt_hero', 'srt-hero-chip-5', 'Kundenstimmen');
 
-export default function SRTHero({ onScrollToFeatures }: SRTHeroProps) {
+  function scrollTo(id: string) {
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
+  }
+
   return (
-    <section className="relative flex flex-col overflow-hidden bg-[#0e0f0a]" style={{ minHeight: '520px' }}>
+    <section className="relative flex flex-col overflow-hidden bg-foreground-950 min-h-[520px] md:min-h-[600px]" style={{ paddingTop: '80px', paddingBottom: '0' }}>
 
-      {/* ——— Diagonal lime slice ——— */}
-      <div
-        className="absolute top-0 right-0 w-[55%] h-full pointer-events-none"
-        style={{
-          background: 'linear-gradient(135deg, transparent 30%, rgba(200,212,0,0.04) 100%)',
-          clipPath: 'polygon(18% 0, 100% 0, 100% 100%, 0% 100%)',
-        }}
-      />
-
-      {/* Very subtle grid */}
-      <div
-        className="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(200,212,0,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.8) 1px, transparent 1px)',
-          backgroundSize: '72px 72px',
-        }}
-      />
+      {/* Diagonal lime glow */}
+      <div className="absolute top-0 right-0 w-[60%] h-full pointer-events-none"
+        style={{ background: 'linear-gradient(135deg, transparent 25%, oklch(var(--primary-500) / 0.05) 100%)', clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }} />
 
       {/* Top lime line */}
-      <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#C8D400] via-[#C8D400]/60 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary-500 via-primary-500/60 to-transparent" />
 
-      {/* ——— Main content — centered ——— */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 w-full flex flex-col items-center text-center pt-12 md:pt-14 pb-6">
-
-        {/* Badge row */}
-        <div className="flex items-center gap-3 mb-5">
-          <div className="h-px w-10 bg-gradient-to-r from-transparent to-[#C8D400]/30" />
-          <SectionBadge text="Sonic-eigene Software" variant="light" />
-          <div className="h-px w-10 bg-gradient-to-l from-transparent to-[#C8D400]/30" />
+      {/* Main content */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 w-full flex flex-col items-center text-center flex-1 justify-center pb-10">
+        {/* Badge */}
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary-500/40" />
+          <SectionBadge text={tBadge} variant="light" />
+          <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary-500/40" />
         </div>
 
-        {/* Headline — centered, compact */}
-        <h1 className="font-black leading-none tracking-tight mb-4" style={{ fontSize: 'clamp(30px, 5vw, 56px)' }}>
-          <span className="text-white">SONIC</span>{' '}
-          <span className="text-[#C8D400]">REPORTING</span>{' '}
-          <span className="text-white">TOOL.</span>
+        {/* Mega headline */}
+        <h1 className="font-black leading-tight tracking-tight mb-5" style={{ fontSize: 'clamp(38px, 6vw, 72px)' }}>
+          <span className="text-background-50">{tH1_1}</span>{' '}
+          <span className="text-primary-500">{tH1_2}</span>{' '}
+          <span className="text-background-50">{tH1_3}</span>
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-xl mb-2 font-normal">
-          Das SRT liefert Echtzeit-Zugriff auf Performance-Daten, Reportings und integriert
-          Recruiting, Projektmanagement und Abrechnung — alles in einer Plattform.
+        <p className="text-background-50/55 text-sm md:text-base leading-relaxed max-w-xl mb-2 font-normal">
+          {tSub}
         </p>
-        <p className="text-white/25 text-[10px] uppercase tracking-[0.25em] font-black mb-6">
-          Field-Force-ERP-System · Seit 2008 · Seit 2024 mit KI
+        <p className="text-background-50/20 text-[10px] uppercase tracking-[0.25em] font-black mb-8">
+          {tTagline}
         </p>
 
-        {/* CTAs — centered */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-5">
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-3 mb-8">
           <a
             href={`mailto:${CONTACT_EMAIL}?subject=SRT%20Beratungsgespr%C3%A4ch`}
-            className="inline-flex items-center gap-3 bg-[#C8D400] text-[#111] px-7 py-3 font-black text-xs uppercase tracking-widest hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer group"
+            className="inline-flex items-center gap-3 bg-primary-500 text-foreground-950 px-8 py-4 font-black text-xs uppercase tracking-widest hover:bg-background-50 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer group"
           >
             <i className="ri-calendar-line text-base" />
-            Beratungsgespräch buchen
+            {tCtaPrimary}
             <i className="ri-arrow-right-line transition-transform duration-300 group-hover:translate-x-1" />
           </a>
           <button
             onClick={onScrollToFeatures}
-            className="inline-flex items-center gap-3 border border-white/15 text-white/60 px-7 py-3 font-bold text-xs hover:border-[#C8D400]/50 hover:text-[#C8D400] transition-all duration-300 whitespace-nowrap cursor-pointer"
+            className="inline-flex items-center gap-3 border border-background-50/12 text-background-50/55 px-8 py-4 font-bold text-xs hover:border-primary-500/50 hover:text-primary-500 transition-all duration-300 whitespace-nowrap cursor-pointer"
           >
             <i className="ri-play-circle-line text-base" />
-            Features entdecken
+            {tCtaSecondary}
           </button>
         </div>
 
         {/* Section nav chips */}
         <div className="flex flex-wrap items-center justify-center gap-2">
-          <span className="text-[10px] font-black text-white/15 uppercase tracking-[0.2em] mr-1">Direkt zu:</span>
+          <span className="text-[9px] font-black text-background-50/12 uppercase tracking-[0.2em] mr-1 hidden sm:inline">{tNavLabel}</span>
           {[
-            { id: 'features', label: 'All-in-Software' },
-            { id: 'funktionsumfang', label: 'Funktionsumfang' },
-            { id: 'team-app', label: 'Team-App' },
-            { id: 'branchen', label: 'Branchen' },
-            { id: 'kundenstimmen', label: 'Kundenstimmen' },
+            { id: 'features', label: tChip1 },
+            { id: 'funktionsumfang', label: tChip2 },
+            { id: 'team-app', label: tChip3 },
+            { id: 'branchen', label: tChip4 },
+            { id: 'kundenstimmen', label: tChip5 },
           ].map((chip) => (
             <button
               key={chip.id}
               onClick={() => scrollTo(chip.id)}
-              className="px-3 py-1.5 border border-white/10 text-white/35 text-[10px] font-black hover:border-[#C8D400]/50 hover:text-[#C8D400] hover:bg-[#C8D400]/8 transition-all duration-200 cursor-pointer whitespace-nowrap uppercase tracking-wider"
+              className="px-3 py-1.5 border border-background-50/8 text-background-50/30 text-[10px] font-black hover:border-primary-500/50 hover:text-primary-500 hover:bg-primary-500/6 transition-all duration-200 cursor-pointer whitespace-nowrap uppercase tracking-wider"
             >
               {chip.label}
             </button>
-          ))}
-        </div>
-      </div>
-
-      {/* ——— Stats strip — full-width bottom panel ——— */}
-      <div className="relative z-10 mt-auto border-t border-white/8">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/8">
-          {STATS.map((s, i) => (
-            <div
-              key={i}
-              className="px-6 py-5 group hover:bg-[#C8D400]/5 transition-colors duration-300 relative overflow-hidden"
-            >
-              {/* Hover top border */}
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#C8D400] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              <div
-                className="text-2xl md:text-3xl font-black leading-none mb-1 tabular-nums"
-                style={{ color: '#C8D400' }}
-              >
-                {s.val}
-              </div>
-              <div className="text-[10px] font-black text-white/60 uppercase tracking-widest leading-snug mb-0.5">
-                {s.label}
-              </div>
-              <div className="text-[9px] text-white/20 leading-snug">{s.sub}</div>
-            </div>
           ))}
         </div>
       </div>

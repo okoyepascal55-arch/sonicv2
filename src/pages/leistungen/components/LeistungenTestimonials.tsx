@@ -29,7 +29,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     brand: 'PHILIPS TV & SOUND',
-    logo: 'https://cdn.brandfetch.io/philips.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+    logo: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887',
     quote: '„Durch die SRT können wir live in unsere Projekte reinschauen und jederzeit sehen, wie unsere Erwartungen erfüllt werden."',
     author: 'Murat Yatkin',
     role: 'Managing Director DACH',
@@ -37,7 +37,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     brand: 'NESPRESSO',
-    logo: 'https://www.sonic-group.de/wp-content/uploads/2023/06/nespresso.png',
+    logo: 'https://cdn.brandfetch.io/idaYSyWs1H/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1668078167864',
     quote: '„Die SRT ermöglicht es Sonic, unsere Projekte effizient und zielgerichtet zu steuern und umzusetzen."',
     author: 'Veronika Vriens',
     role: 'B2C Commercial Excellence',
@@ -123,7 +123,7 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
     <div
       ref={cardRef}
       className="relative bg-white p-6 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-visible flex flex-col rounded-none"
-      style={{ minWidth: '420px', flex: '0 0 calc(50% - 12px)' }}
+      style={{ minWidth: 'min(420px, 85vw)', flex: '0 0 calc(50% - 12px)' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -158,31 +158,31 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
 
       <div className="relative z-10 flex flex-col h-full">
         {/* Logo + brand */}
-        <div className="flex items-center gap-3 mb-5 pb-5 border-b border-gray-100">
+        <div className="flex items-center gap-3 mb-5 pb-5 border-b border-foreground-100">
           <div
-            className="w-14 h-14 bg-white shadow-md flex items-center justify-center p-2 ring-2 ring-gray-100 flex-shrink-0 rounded-none"
+            className="w-14 h-14 bg-white shadow-md flex items-center justify-center p-2 ring-2 ring-foreground-100 flex-shrink-0 rounded-none"
           >
             <img src={item.logo} alt={item.brand} className="w-full h-full object-contain" />
           </div>
-          <h3 className="text-sm font-black text-sonic-dark tracking-wide leading-tight">{item.brand}</h3>
+          <h3 className="text-sm font-black text-foreground-950 tracking-wide leading-tight">{item.brand}</h3>
         </div>
 
         {/* Quote */}
         <div className="flex-1 mb-5">
           <i className="ri-double-quotes-l text-3xl text-[#C8D400]/40 block mb-2" />
-          <p className="text-gray-700 leading-relaxed text-sm italic">{item.quote}</p>
+          <p className="text-foreground-700 leading-relaxed text-sm italic">{item.quote}</p>
         </div>
 
         {/* Author + CTA */}
         <div className="mt-auto">
           <div className="mb-5">
-            <div className="font-black text-sonic-dark text-sm">{item.author}</div>
-            <div className="text-xs text-gray-500 mt-0.5">{item.role}</div>
-            <div className="text-xs text-sonic-lime font-semibold mt-0.5">{item.company}</div>
+            <div className="font-black text-foreground-950 text-sm">{item.author}</div>
+            <div className="text-xs text-foreground-500 mt-0.5">{item.role}</div>
+            <div className="text-xs text-primary-500 font-semibold mt-0.5">{item.company}</div>
           </div>
           <a
-            href="/case-studies"
-            className="inline-block border-2 border-sonic-dark text-sonic-dark text-xs font-black tracking-widest px-5 py-2.5 hover:bg-sonic-lime hover:border-sonic-lime hover:text-white transition-all duration-300 whitespace-nowrap active:scale-95 rounded-none"
+            href="/fallbeispiele"
+            className="inline-block border-2 border-foreground-950 text-foreground-950 text-xs font-black tracking-widest px-5 py-2.5 hover:bg-primary-500 hover:border-primary-500 hover:text-white transition-all duration-300 whitespace-nowrap active:scale-95 rounded-none"
           >
             FALLSTUDIE LESEN
           </a>
@@ -221,18 +221,18 @@ export default function LeistungenTestimonials() {
   return (
     <section className="py-16 px-6 bg-white relative overflow-hidden">
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#C8D400]/4 blur-3xl pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-primary-500/4 blur-3xl pointer-events-none"
         aria-hidden="true"
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header — centered, same pattern as ClientProof */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 bg-sonic-dark/8 border border-sonic-dark/15 px-4 py-1.5 mb-4">
-            <div className="w-1.5 h-1.5 bg-sonic-dark animate-pulse" />
-            <span className="text-xs font-black text-sonic-dark uppercase tracking-widest">Kundenstimmen</span>
+          <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-4">
+            <div className="w-1.5 h-1.5 bg-foreground-950 animate-pulse" />
+            <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Kundenstimmen</span>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-black text-sonic-dark leading-tight tracking-tight mb-6 uppercase">
+          <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 leading-tight tracking-tight mb-6 uppercase">
             WAS UNSERE PARTNER<br />ÜBER UNS SAGEN
           </h2>
           {/* Scroll controls — centered */}
@@ -241,17 +241,17 @@ export default function LeistungenTestimonials() {
               onClick={() => scroll('left')}
               disabled={!canScrollLeft}
               aria-label="Vorheriges Testimonial"
-              className="w-10 h-10 flex items-center justify-center border-2 border-gray-200 hover:border-[#C8D400] hover:bg-[#C8D400] transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime rounded-none"
+              className="w-10 h-10 flex items-center justify-center border-2 border-foreground-200 hover:border-[#C8D400] hover:bg-primary-500 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-none"
             >
-              <i className="ri-arrow-left-line text-base text-sonic-dark" />
+              <i className="ri-arrow-left-line text-base text-foreground-950" />
             </button>
             <button
               onClick={() => scroll('right')}
               disabled={!canScrollRight}
               aria-label="Nächstes Testimonial"
-              className="w-10 h-10 flex items-center justify-center border-2 border-gray-200 hover:border-[#C8D400] hover:bg-[#C8D400] transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime rounded-none"
+              className="w-10 h-10 flex items-center justify-center border-2 border-foreground-200 hover:border-[#C8D400] hover:bg-primary-500 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-none"
             >
-              <i className="ri-arrow-right-line text-base text-sonic-dark" />
+              <i className="ri-arrow-right-line text-base text-foreground-950" />
             </button>
           </div>
         </div>
@@ -278,7 +278,7 @@ export default function LeistungenTestimonials() {
                 scrollRef.current.scrollTo({ left: i * cardW * 2, behavior: 'smooth' });
               }}
               aria-label={`Seite ${i + 1}`}
-              className="h-1 w-5 bg-gray-300 hover:bg-[#C8D400] transition-colors duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime rounded-none"
+              className="h-1 w-5 bg-foreground-300 hover:bg-primary-500 transition-colors duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-none"
             />
           ))}
         </div>

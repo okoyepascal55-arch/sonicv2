@@ -15,7 +15,7 @@ export default function WoodenCard({ children, className = '', hover = true, bor
     <div
       className={`
         relative bg-white p-8 shadow-lg
-        ${hover ? 'hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group' : ''}
+        ${hover ? 'hover:shadow-2xl hover:-translate-y-2 transition-all duration-moderate ease-sonic-spring group' : ''}
         ${className}
       `}
       style={{ borderRadius: `${borderRadius}px` }}
@@ -24,7 +24,7 @@ export default function WoodenCard({ children, className = '', hover = true, bor
     >
       {/* Subtle green background highlight */}
       <div 
-        className="absolute inset-0 bg-gradient-to-br from-[#C8D400]/3 via-transparent to-[#C8D400]/5 pointer-events-none" 
+        className="absolute inset-0 bg-gradient-to-br from-primary-500/[0.03] via-transparent to-primary-500/[0.05] pointer-events-none" 
         style={{ borderRadius: `${borderRadius}px` }}
       />
       
@@ -35,9 +35,9 @@ export default function WoodenCard({ children, className = '', hover = true, bor
       >
         <defs>
           <linearGradient id={`card-sketch-single-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#C8D400" stopOpacity={isHovered ? 1 : 0.2} />
-            <stop offset="50%" stopColor="#a8b300" stopOpacity={isHovered ? 1 : 0.12} />
-            <stop offset="100%" stopColor="#C8D400" stopOpacity={isHovered ? 1 : 0.2} />
+            <stop offset="0%" style={{ stopColor: 'oklch(var(--primary-500))', stopOpacity: isHovered ? 1 : 0.2 }} />
+            <stop offset="50%" style={{ stopColor: 'oklch(var(--primary-600))', stopOpacity: isHovered ? 1 : 0.12 }} />
+            <stop offset="100%" style={{ stopColor: 'oklch(var(--primary-500))', stopOpacity: isHovered ? 1 : 0.2 }} />
           </linearGradient>
         </defs>
         
@@ -56,7 +56,7 @@ export default function WoodenCard({ children, className = '', hover = true, bor
           strokeLinejoin="round"
           className="transition-all ease-out"
           style={{
-            filter: isHovered ? 'drop-shadow(0 0 8px rgba(200, 212, 0, 0.6))' : 'none',
+            filter: isHovered ? 'drop-shadow(0 0 8px oklch(var(--primary-500) / 0.6))' : 'none',
             transitionDuration: '1.2s',
           }}
         />

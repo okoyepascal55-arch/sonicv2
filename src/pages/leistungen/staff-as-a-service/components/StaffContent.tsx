@@ -1,9 +1,11 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
-import Tag from '@/components/base/Tag';
-import WoodenDivider from '../../../../components/base/WoodenDivider';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
+import ScrollCardSection from '@/components/feature/ScrollCardSection';
+import WoodenDivider from '@/components/base/WoodenDivider';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useText } from '@/hooks/useText';
 
 const STAFF_CHALLENGES: ChallengeItem[] = [
   {
@@ -34,12 +36,12 @@ const SOLUTIONS = [
 ];
 
 const STEPS = [
-  { num: '01', title: 'Bedarfsanalyse', desc: 'Wir verstehen dein Geschäft, deine Produkte und deinen Personalbedarf. Welche Rollen, welche Skills und welchen Umfang brauchst du?', time: '1–2 Tage' },
-  { num: '02', title: 'Recruiting & Auswahl', desc: 'Erst gezielte Suche im Talentepool, plus ggf. Neurekrutierung. Interviews, Assessments, finale Auswahl, Arbeitsverträge. Alles in Abstimmung mit dir.', time: 'Ab 5–10 Tage' },
-  { num: '03', title: 'Schulung & Onboarding', desc: 'Intensives Produkttraining, Marken-Briefing, Verkaufstechniken: Dein Team ist ab Tag 1 einsatzbereit.', time: '2–5 Tage' },
-  { num: '04', title: 'Einsatz & Steuerung', desc: 'Koordinierte Einsatzplanung über das Sonic Reporting Tool (SRT). Dein Personal ist zur richtigen Zeit am richtigen Ort, und du hast darauf Live-Zugriff.', time: 'Ongoing' },
-  { num: '05', title: 'Performance & Optimierung', desc: 'Laufendes Monitoring, Coaching, Team-Rotation bei Bedarf. Wir optimieren, bis die Zahlen stimmen.', time: 'Ongoing' },
-  { num: '06', title: 'Abrechnung', desc: 'Wir erstellen für dich übersichtliche Rechnungen, die deine Buchhaltungs- und Controlling-Prozesse vereinfachen.', time: 'Ongoing' },
+  { num: '01', icon: 'ri-search-line', title: 'Bedarfsanalyse', desc: 'Wir verstehen dein Geschäft, deine Produkte und deinen Personalbedarf. Welche Rollen, welche Skills und welchen Umfang brauchst du?', time: '1–2 Tage' },
+  { num: '02', icon: 'ri-user-add-line', title: 'Recruiting & Auswahl', desc: 'Erst gezielte Suche im Talentepool, plus ggf. Neurekrutierung. Interviews, Assessments, finale Auswahl, Arbeitsverträge. Alles in Abstimmung mit dir.', time: 'Ab 5–10 Tage' },
+  { num: '03', icon: 'ri-graduation-cap-line', title: 'Schulung & Onboarding', desc: 'Intensives Produkttraining, Marken-Briefing, Verkaufstechniken: Dein Team ist ab Tag 1 einsatzbereit.', time: '2–5 Tage' },
+  { num: '04', icon: 'ri-route-line', title: 'Einsatz & Steuerung', desc: 'Koordinierte Einsatzplanung über das Sonic Reporting Tool (SRT). Dein Personal ist zur richtigen Zeit am richtigen Ort, und du hast darauf Live-Zugriff.', time: 'Ongoing' },
+  { num: '05', icon: 'ri-line-chart-line', title: 'Performance & Optimierung', desc: 'Laufendes Monitoring, Coaching, Team-Rotation bei Bedarf. Wir optimieren, bis die Zahlen stimmen.', time: 'Ongoing' },
+  { num: '06', icon: 'ri-file-list-line', title: 'Abrechnung', desc: 'Wir erstellen für dich übersichtliche Rechnungen, die deine Buchhaltungs- und Controlling-Prozesse vereinfachen.', time: 'Ongoing' },
 ];
 
 const SPECIALIZATIONS = [
@@ -55,178 +57,73 @@ const SOCKS = [
   {
     letter: 'S', title: 'Selection',
     desc: 'Die Gewissheit, den besten Kanal, die beste Region, den besten Shop und den besten Tag gewählt zu haben, um die meisten Produkte mit dem höchsten ROI zu verkaufen.',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/SRT_OPENER.jpg',
+    imgIndex: 0,
   },
   {
     letter: 'O', title: 'Orientation',
     desc: 'Sicherstellen, dass der Besucher das gewünschte Produkt auf einfachste Weise im Shop findet oder auf das Produkt aufmerksam wird.',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
+    imgIndex: 1,
   },
   {
     letter: 'C', title: 'Condition',
     desc: 'Sicherstellen, dass das Produkt so dargestellt ist, dass es kaufenswert erscheint. Begehrlich.',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/6.jpg',
+    imgIndex: 2,
   },
   {
     letter: 'K', title: 'Knowledge',
     desc: 'Sicherstellen, dass die Empfehler das Produkt mit all seinen Vorteilen kennen. Sie fühlen sich sicher, den Besucher nach seinen Bedürfnissen zu fragen.',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg',
+    imgIndex: 3,
   },
   {
     letter: 'S', title: 'Sellout',
     desc: 'Das einzig mögliche Ergebnis, wenn alle Schritte perfekt ausgeführt wurden: Der Empfehler wird zum Verkäufer, der Besucher zum Käufer.',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/6-1-1024x570.jpg',
+    imgIndex: 4,
   },
 ];
 
-interface ScrollCardData {
-  woodIcon: string;
-  num: string;
-  accent: string;
-  title: string;
-  desc: string;
-}
-
-function DarkScrollSection({
-  data,
-  scrollRef,
-  activeIdx,
-  setActiveIdx,
-  label,
-  theme = 'dark',
-}: {
-  data: ScrollCardData[];
-  scrollRef: React.RefObject<HTMLDivElement>;
-  activeIdx: number | null;
-  setActiveIdx: (i: number | null) => void;
-  label: string;
-  theme?: 'dark' | 'light';
-}) {
-  const isDark = theme === 'dark';
-  const scroll = (dir: 'left' | 'right') => {
-    scrollRef.current?.scrollBy({ left: dir === 'left' ? -380 : 380, behavior: 'smooth' });
-  };
-  const goTo = (i: number) => {
-    setActiveIdx(i);
-    scrollRef.current?.scrollTo({ left: i * 380, behavior: 'smooth' });
-  };
-
-  return (
-    <>
-      <div className="flex items-center mb-6 gap-3">
-        <span className={`text-[11px] font-black uppercase tracking-widest flex-grow ${isDark ? 'text-white/20' : 'text-[#111]/30'}`}>{label}</span>
-        <button onClick={() => scroll('left')} className={`w-10 h-10 flex items-center justify-center border transition-all duration-200 cursor-pointer ${isDark ? 'border-white/15 text-white/40' : 'border-[#111]/20 text-[#111]/40'} hover:border-[#C8D400]/60 hover:text-[#C8D400]`} aria-label="links">
-          <i className="ri-arrow-left-s-line text-xl" />
-        </button>
-        <button onClick={() => scroll('right')} className={`w-10 h-10 flex items-center justify-center border transition-all duration-200 cursor-pointer ${isDark ? 'border-white/15 text-white/40' : 'border-[#111]/20 text-[#111]/40'} hover:border-[#C8D400]/60 hover:text-[#C8D400]`} aria-label="rechts">
-          <i className="ri-arrow-right-s-line text-xl" />
-        </button>
-      </div>
-      <div ref={scrollRef} className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-        {data.map((s, idx) => {
-          const isA = activeIdx === idx;
-          const cardBg = isDark
-            ? (isA ? '#ffffff' : 'rgba(255,255,255,0.05)')
-            : (isA ? '#111' : '#ffffff');
-          const cardBorder = isDark
-            ? (isA ? 'rgba(200,212,0,0.5)' : 'rgba(255,255,255,0.08)')
-            : (isA ? 'rgba(200,212,0,0.5)' : 'rgba(0,0,0,0.09)');
-          const titleColor = isDark ? (isA ? '#111' : '#fff') : (isA ? '#fff' : '#111');
-          const descColor = isDark ? (isA ? '#555' : 'rgba(255,255,255,0.5)') : (isA ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.55)');
-          const accentColor = isDark
-            ? (isA ? '#C8D400' : 'rgba(200,212,0,0.5)')
-            : (isA ? '#C8D400' : 'rgba(139,110,0,0.7)');
-          const numWatermarkColor = isDark
-            ? (isA ? 'rgba(200,212,0,0.07)' : 'rgba(255,255,255,0.04)')
-            : (isA ? 'rgba(200,212,0,0.07)' : 'rgba(0,0,0,0.04)');
-          const borderTopColor = isDark
-            ? (isA ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.06)')
-            : (isA ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)');
-          const countColor = isDark
-            ? (isA ? '#999' : 'rgba(255,255,255,0.25)')
-            : (isA ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)');
-          const arrowBg = isDark
-            ? (isA ? '#C8D400' : 'rgba(255,255,255,0.06)')
-            : (isA ? '#C8D400' : 'rgba(0,0,0,0.07)');
-          const arrowColor = isDark
-            ? (isA ? '#111' : 'rgba(255,255,255,0.4)')
-            : (isA ? '#111' : 'rgba(0,0,0,0.45)');
-          const topBarBg = isDark
-            ? (isA ? '#C8D400' : 'rgba(200,212,0,0.2)')
-            : (isA ? '#C8D400' : 'rgba(0,0,0,0.08)');
-          const dotPipBg = isDark
-            ? (isA ? '#C8D400' : 'rgba(200,212,0,0.4)')
-            : (isA ? '#C8D400' : 'rgba(200,212,0,0.6)');
-
-          return (
-            <div
-              key={idx}
-              className="flex-shrink-0 snap-start relative overflow-hidden cursor-default"
-              style={{
-                width: 'clamp(280px, 26vw, 340px)',
-                minHeight: '380px',
-                background: cardBg,
-                border: `1px solid ${cardBorder}`,
-                transition: 'all 0.3s ease',
-                transform: isA ? 'translateY(-6px)' : 'translateY(0)',
-                boxShadow: isA
-                  ? (isDark ? '0 0 0 1px rgba(200,212,0,0.35), 0 24px 48px rgba(0,0,0,0.4)' : '0 0 0 1px rgba(200,212,0,0.3), 0 24px 48px rgba(0,0,0,0.18)')
-                  : (isDark ? '0 2px 8px rgba(0,0,0,0.2)' : '0 2px 8px rgba(0,0,0,0.04)'),
-              }}
-              onMouseEnter={() => setActiveIdx(idx)}
-              onMouseLeave={() => setActiveIdx(null)}
-            >
-              <div className="absolute top-0 left-0 right-0 z-20" style={{ height: isA ? '3px' : '2px', background: topBarBg, boxShadow: isA ? '0 0 14px rgba(200,212,0,0.5)' : 'none', transition: 'all 0.3s ease' }} />
-              <div className="absolute top-0 left-0 bottom-0 z-20 w-0.5" style={{ background: isA ? '#C8D400' : 'transparent', transition: 'background 0.3s ease' }} />
-              <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-              <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-              <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-              <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-              <div className="absolute bottom-4 right-4 font-black leading-none select-none pointer-events-none z-0" style={{ fontSize: '6rem', color: numWatermarkColor, lineHeight: 1, transition: 'color 0.3s ease' }}>{s.num}</div>
-
-              <div className="relative z-10 p-7 flex flex-col" style={{ minHeight: '380px' }}>
-                <div className="flex items-center gap-2 mb-5">
-                  <div className="w-1.5 h-1.5" style={{ background: dotPipBg, transition: 'background 0.3s ease' }} />
-                  <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: accentColor, transition: 'color 0.3s ease' }}>{s.accent}</span>
-                </div>
-                <div className="w-[56px] h-[56px] overflow-hidden mb-6 flex-shrink-0" style={{ boxShadow: isA ? '0 10px 24px rgba(139,90,43,0.35)' : '0 4px 14px rgba(139,90,43,0.22)', transition: 'all 0.35s ease', transform: isA ? 'scale(1.08)' : 'scale(1)' }}>
-                  <img src={s.woodIcon} alt={s.title} className="w-full h-full object-cover" />
-                </div>
-                <h3 className="text-base font-black mb-3 leading-snug uppercase" style={{ color: titleColor, transition: 'color 0.3s ease' }}>{s.title}</h3>
-                <p className="text-sm leading-relaxed flex-grow" style={{ color: descColor, transition: 'color 0.3s ease' }}>{s.desc}</p>
-                <div className="flex items-center justify-between pt-4 mt-4" style={{ borderTop: `1px solid ${borderTopColor}`, transition: 'border-color 0.3s ease' }}>
-                  <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: countColor }}>{s.num} / {String(data.length).padStart(2, '0')}</span>
-                  <div className="w-7 h-7 flex items-center justify-center" style={{ background: arrowBg, transform: isA ? 'translateX(3px)' : 'translateX(0)', transition: 'all 0.25s ease' }}>
-                    <i className="ri-arrow-right-line text-sm" style={{ color: arrowColor }} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="flex items-center justify-center gap-1.5 mt-6">
-        {data.map((_, i) => (
-          <button key={i} onClick={() => goTo(i)} className="cursor-pointer" style={{ width: i === (activeIdx ?? 0) ? '22px' : '6px', height: '3px', background: i === (activeIdx ?? 0) ? '#C8D400' : (isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'), border: 'none', padding: 0, transition: 'all 0.3s ease' }} aria-label={`${i + 1}`} />
-        ))}
-      </div>
-    </>
-  );
-}
+const FALLBACK_SOCKS = [
+  'https://www.sonic-group.de/wp-content/uploads/2023/06/SRT_OPENER.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/06/6.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/02/6-1-1024x570.jpg',
+];
 
 export default function StaffContent() {
+  const tChallengeHeading = useText('leistungen_staff_content', 'staff-challenge-heading', 'Staffing flexibilisieren ist komplex.');
+  const tChallengeSub = useText('leistungen_staff_content', 'staff-challenge-sub', 'Im Bereich Sales und Promotion kommt klassisches Recruiting ans Limit.');
+  const tSolutionHeading = useText('leistungen_staff_content', 'staff-solution-heading', 'PERSONALDIENSTLEISTUNG ALS DIGITALISIERTER SERVICE.');
+  const tSolutionSub = useText('leistungen_staff_content', 'staff-solution-sub', 'Recruiting Task Force — Auswahl, Betreuung und Abrechnung aus einer Hand.');
+  const tProcessHeading = useText('leistungen_staff_content', 'staff-process-heading', 'So läuft die Personalbeschaffung mit Sonic');
+  const tSpecsHeading = useText('leistungen_staff_content', 'staff-specs-heading', 'ARBEITNEHMERÜBERLASSUNG FÜR DEINE FIELD FORCE.');
+  const tSocksHeading = useText('leistungen_staff_content', 'staff-socks-heading', 'Das S.O.C.K.S.-Prinzip');
+  const tSocksSub = useText('leistungen_staff_content', 'staff-socks-sub', 'Unsere Qualitätsstrategie für Planung und Umsetzung von Sell-out-Maßnahmen.');
+  const { images: socksImages } = useMediaStore('leistungen_staff_socks_images');
+  const { images: solutionWoodIcons } = useMediaStore('leistungen_staff_solution_wood_icons');
+  const { images: specializationWoodIcons } = useMediaStore('leistungen_staff_specialization_wood_icons');
   const [activeStep, setActiveStep] = useState(0);
   const [activeSocks, setActiveSocks] = useState(0);
-  const [solActive, setSolActive] = useState<number | null>(null);
-  const [specActive, setSpecActive] = useState<number | null>(null);
-  const solRef = useRef<HTMLDivElement>(null);
-  const specRef = useRef<HTMLDivElement>(null);
+
+  const getSocksImg = (index: number) => {
+    const item = socksImages[index];
+    return item?.url ? resolveImageUrl(item.url) : FALLBACK_SOCKS[index];
+  };
+
+  const getSolutionWoodIcon = (index: number) => {
+    const item = solutionWoodIcons[index];
+    return item?.url ? resolveImageUrl(item.url) : item?.url || '';
+  };
+
+  const getSpecializationWoodIcon = (index: number) => {
+    const item = specializationWoodIcons[index];
+    return item?.url ? resolveImageUrl(item.url) : item?.url || '';
+  };
 
   return (
     <>
       <ChallengeSection
-        headline="Staffing flexibilisieren ist komplex."
-        subline="Im Bereich Sales und Promotion kommt klassisches Recruiting ans Limit."
+        headline={tChallengeHeading}
+        subline={tChallengeSub}
         challenges={STAFF_CHALLENGES}
       />
 
@@ -235,7 +132,7 @@ export default function StaffContent() {
       {/* ── Solution (horizontal scroll) ── */}
       <section id="loesung" className="bg-white py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.018] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C8D400]/8 blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
@@ -244,145 +141,221 @@ export default function StaffContent() {
                 <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Lösung</span>
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#111] leading-none uppercase">
-                PERSONALDIENSTLEISTUNG ALS<br /><span className="text-[#C8D400]" style={{ WebkitTextStroke: '1px #9ea800' }}>DIGITALISIERTER SERVICE.</span>
+                {tSolutionHeading}
               </h2>
             </div>
-            <p className="text-[#111]/45 text-sm leading-relaxed max-w-xs lg:text-right">Recruiting Task Force — Auswahl, Betreuung und Abrechnung aus einer Hand.</p>
+            <p className="text-[#111]/45 text-sm leading-relaxed max-w-xs lg:text-right">{tSolutionSub}</p>
           </div>
-          <DarkScrollSection data={SOLUTIONS} scrollRef={solRef} activeIdx={solActive} setActiveIdx={setSolActive} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" />
+          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="wood" />
         </div>
       </section>
 
-      <WoodenDivider />
-
       {/* ── Process ── */}
-      <section id="ablauf" className="bg-white py-14 md:py-24 px-4 md:px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-10 md:mb-14">
-            <SectionBadge text="Ablauf" variant="dark" className="mb-5" />
-            <h2 className="text-3xl lg:text-4xl font-black text-[#111] leading-tight uppercase">So läuft die Personalbeschaffung<br />mit Sonic</h2>
-            <p className="text-[#111]/45 text-sm mt-3">Volle Kostenkontrolle, volle Flexibilität, volle Performance, volle Entlastung.</p>
+      <section id="ablauf" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
+
+        <div className="relative max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12 md:mb-16">
+            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
+              <i className="ri-route-line text-primary-500 text-sm" />
+              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Ablauf</span>
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">
+              {tProcessHeading}
+            </h2>
+            <p className="text-white/40 text-sm mt-3">Volle Kostenkontrolle, volle Flexibilität, volle Performance, volle Entlastung.</p>
           </div>
-          <div className="flex gap-0 mb-0 overflow-x-auto border border-[#111]/10">
-            {STEPS.map((step, i) => (
-              <button key={i} onClick={() => setActiveStep(i)} className={`flex-shrink-0 px-3 md:px-4 py-3 font-black text-xs whitespace-nowrap transition-all duration-300 cursor-pointer border-r border-[#111]/10 last:border-r-0 ${activeStep === i ? 'bg-[#111] text-[#C8D400]' : 'bg-white text-[#111]/50 hover:text-[#111] hover:bg-[#111]/5'}`}>
-                <span className="block text-[10px] opacity-60 mb-0.5">{step.num}</span>
-                {step.title}
-              </button>
-            ))}
+
+          {/* Connected Timeline */}
+          <div className="relative mb-10 md:mb-14">
+            {/* Background line */}
+            <div className="absolute top-[20px] md:top-[28px] left-[8.33%] right-[8.33%] h-px bg-white/10" />
+            {/* Active progress line */}
+            <div className="absolute top-[20px] md:top-[28px] left-[8.33%] h-px bg-[#C8D400] transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
+
+            <div className="grid grid-cols-6 gap-2">
+              {STEPS.map((step, i) => (
+                <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
+                  <div className={`w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111] shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-primary-500/15 border-[#C8D400]/40 text-primary-500' : 'bg-[#111] border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
+                    <i className={`${step.icon} text-sm md:text-xl`} />
+                  </div>
+                  <span className={`mt-3 text-[10px] md:text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeStep === i ? 'text-primary-500' : 'text-white/30'}`}>{step.num}</span>
+                  <span className={`text-[9px] md:text-[11px] font-bold text-center leading-tight mt-0.5 transition-all duration-300 hidden md:block ${activeStep === i ? 'text-white/70' : 'text-white/25'}`}>{step.title}</span>
+                </button>
+              ))}
+            </div>
           </div>
-          <div key={activeStep} className="border border-[#111]/10 border-t-0 bg-white p-6 md:p-10 relative overflow-hidden" style={{ animation: 'fadeIn 0.35s ease-out' }}>
-            <div className="absolute top-0 left-0 text-7xl md:text-9xl font-black leading-none select-none pointer-events-none" style={{ color: 'rgba(200,212,0,0.08)', lineHeight: 1 }}>{STEPS[activeStep].num}</div>
-            <div className="relative">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="text-[#111] font-black text-xs uppercase tracking-widest">Schritt {STEPS[activeStep].num}</div>
-                <div className="px-3 py-1 bg-[#C8D400] text-[#111] text-xs font-black">{STEPS[activeStep].time}</div>
+
+          {/* Content Card */}
+          <div key={activeStep} className="border border-white/10 bg-[#161616] overflow-hidden" style={{ animation: 'fadeSlideIn 0.4s ease-out' }}>
+            <div className="grid md:grid-cols-12 gap-0">
+              {/* Left: Visual */}
+              <div className="md:col-span-5 relative bg-[#111] p-8 md:p-12 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-white/10 min-h-[240px] md:min-h-[380px]">
+                {/* Giant decorative number */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+                  <span className="text-[160px] md:text-[240px] font-black text-white/[0.04] leading-none select-none">{STEPS[activeStep].num}</span>
+                </div>
+                {/* Icon */}
+                <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#C8D400]/10 border border-primary-500/30 flex items-center justify-center mb-5">
+                  <i className={`${STEPS[activeStep].icon} text-primary-500 text-2xl md:text-3xl`} />
+                </div>
+                <div className="relative text-primary-500 text-xs font-black uppercase tracking-widest mb-1">Schritt {STEPS[activeStep].num}</div>
+                <div className="relative text-white/40 text-sm font-bold text-center">{STEPS[activeStep].title}</div>
               </div>
-              <h3 className="text-xl md:text-2xl font-black text-[#111] mb-3 uppercase">{STEPS[activeStep].title}</h3>
-              <p className="text-[#111]/65 text-sm md:text-base leading-relaxed">{STEPS[activeStep].desc}</p>
+
+              {/* Right: Content */}
+              <div className="md:col-span-7 p-8 md:p-12 flex flex-col justify-center min-h-[240px] md:min-h-[380px]">
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {STEPS[activeStep].num}</span>
+                  <span className="px-3 py-1.5 bg-[#C8D400] text-[#111] text-xs font-black">{STEPS[activeStep].time}</span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight">{STEPS[activeStep].title}</h3>
+                <p className="text-white/55 text-sm md:text-base leading-relaxed">{STEPS[activeStep].desc}</p>
+
+                {/* Navigation */}
+                <div className="mt-8 flex items-center gap-4">
+                  <button
+                    onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
+                    disabled={activeStep === 0}
+                    className="w-11 h-11 border border-white/15 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all disabled:opacity-15 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <i className="ri-arrow-left-line text-lg" />
+                  </button>
+                  <div className="flex gap-2">
+                    {STEPS.map((_, i) => (
+                      <button key={i} onClick={() => setActiveStep(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-[#C8D400]' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => setActiveStep(Math.min(STEPS.length - 1, activeStep + 1))}
+                    disabled={activeStep === STEPS.length - 1}
+                    className="w-11 h-11 border border-white/15 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all disabled:opacity-15 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <i className="ri-arrow-right-line text-lg" />
+                  </button>
+                  <span className="text-white/25 text-xs font-bold ml-2">{activeStep + 1} / {STEPS.length}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
-
-      <WoodenDivider />
 
       {/* ── Specializations (horizontal scroll, dark bg) ── */}
       <section id="aufgabenbereiche" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#C8D400]/4 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
-                <i className="ri-focus-3-line text-[#C8D400] text-sm" />
-                <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Unsere Spezialisierung</span>
+              <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
+                <i className="ri-focus-3-line text-primary-500 text-sm" />
+                <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Unsere Spezialisierung</span>
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-none">
-                ARBEITNEHMERÜBERLASSUNG<br /><span className="text-[#C8D400]">FÜR DEINE FIELD FORCE.</span>
+                {tSpecsHeading}
               </h2>
             </div>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs lg:text-right">6 Einsatzbereiche — ein Ansprechpartner bei Sonic.</p>
           </div>
-          <DarkScrollSection data={SPECIALIZATIONS} scrollRef={specRef} activeIdx={specActive} setActiveIdx={setSpecActive} label={`${SPECIALIZATIONS.length} Einsatzbereiche — scrollen`} theme="dark" />
+          <ScrollCardSection data={SPECIALIZATIONS.map((s, i) => ({ ...s, woodIcon: getSpecializationWoodIcon(i) }))} label={`${SPECIALIZATIONS.length} Einsatzbereiche — scrollen`} theme="dark" variant="wood" />
         </div>
       </section>
 
-      <WoodenDivider />
-
       {/* ── S.O.C.K.S. ── */}
-      <section id="socks" className="bg-white py-14 md:py-24 px-4 md:px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10 md:mb-14">
-            <SectionBadge text="Sell-out mit System" variant="dark" className="mb-5" />
-            <h2 className="text-3xl lg:text-4xl font-black text-[#111] leading-tight">
-              Das <span className="text-[#C8D400]">S.O.C.K.S.</span>-Prinzip
+      <section id="socks" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
+
+        <div className="relative max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12 md:mb-16">
+            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
+              <i className="ri-check-double-line text-primary-500 text-sm" />
+              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Sell-out mit System</span>
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight">
+              {tSocksHeading}
             </h2>
-            <p className="text-[#111]/45 text-sm mt-3 max-w-xl mx-auto">Unsere Qualitätsstrategie für Planung und Umsetzung von Sell-out-Maßnahmen.</p>
+            <p className="text-white/40 text-sm mt-3 max-w-xl mx-auto">{tSocksSub}</p>
           </div>
 
-          {/* Mobile */}
-          <div className="flex gap-2 mb-4 lg:hidden overflow-x-auto">
-            {SOCKS.map((s, i) => (
-              <button key={i} onClick={() => setActiveSocks(i)} className={`flex-shrink-0 flex items-center gap-2 px-4 py-2.5 font-black text-sm transition-all duration-300 cursor-pointer border border-[#111]/15 ${activeSocks === i ? 'bg-[#111] text-[#C8D400] border-[#111]' : 'bg-white text-[#111]/50 hover:text-[#111]'}`}>
-                <span className="text-xl font-black">{s.letter}</span>
-                <span className="text-xs">{s.title}</span>
-              </button>
-            ))}
-          </div>
-          <div className="lg:hidden border border-[#111]/10 bg-white overflow-hidden mb-4">
-            <div className="relative overflow-hidden" style={{ height: '200px' }}>
-              <img key={activeSocks} src={SOCKS[activeSocks].img} alt={SOCKS[activeSocks].title} className="w-full h-full object-cover object-top" style={{ animation: 'fadeIn 0.4s ease-out' }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute top-3 left-3">
-                <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-2 py-1">{SOCKS[activeSocks].letter} — {SOCKS[activeSocks].title}</span>
-              </div>
-            </div>
-            <div className="p-5">
-              <div className="text-[#C8D400] text-xs font-black uppercase tracking-widest mb-2">{SOCKS[activeSocks].letter} — {SOCKS[activeSocks].title}</div>
-              <p className="text-[#111]/70 text-sm leading-relaxed">{SOCKS[activeSocks].desc}</p>
-            </div>
-          </div>
+          {/* Connected Timeline */}
+          <div className="relative mb-10 md:mb-14">
+            {/* Background line */}
+            <div className="absolute top-[20px] md:top-[28px] left-[10%] right-[10%] h-px bg-white/10" />
+            {/* Active progress line */}
+            <div className="absolute top-[20px] md:top-[28px] left-[10%] h-px bg-[#C8D400] transition-all duration-700 ease-out" style={{ width: `${(activeSocks / (SOCKS.length - 1)) * 80}%` }} />
 
-          {/* Desktop */}
-          <div className="hidden lg:grid lg:grid-cols-12 gap-0 border border-[#111]/10">
-            <div className="lg:col-span-2 border-r border-[#111]/10">
+            <div className="grid grid-cols-5 gap-2">
               {SOCKS.map((s, i) => (
-                <button key={i} onClick={() => setActiveSocks(i)} className={`w-full flex items-center gap-4 p-5 transition-all duration-300 cursor-pointer border-b border-[#111]/10 last:border-b-0 ${activeSocks === i ? 'bg-[#111] text-[#C8D400]' : 'bg-white text-[#111]/40 hover:bg-white hover:text-[#111]'}`}>
-                  <span className="text-3xl font-black leading-none">{s.letter}</span>
-                  <span className="text-xs font-black uppercase tracking-widest">{s.title}</span>
+                <button key={i} onClick={() => setActiveSocks(i)} className="flex flex-col items-center cursor-pointer group">
+                  <div className={`w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeSocks === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111] shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeSocks > i ? 'bg-primary-500/15 border-[#C8D400]/40 text-primary-500' : 'bg-[#111] border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
+                    <span className="text-sm md:text-xl font-black">{s.letter}</span>
+                  </div>
+                  <span className={`mt-3 text-[10px] md:text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeSocks === i ? 'text-primary-500' : 'text-white/30'}`}>{s.letter}</span>
+                  <span className={`text-[9px] md:text-[11px] font-bold text-center leading-tight mt-0.5 transition-all duration-300 hidden md:block ${activeSocks === i ? 'text-white/70' : 'text-white/25'}`}>{s.title}</span>
                 </button>
               ))}
             </div>
-            <div className="lg:col-span-6 relative overflow-hidden" style={{ minHeight: '400px' }}>
-              <img key={activeSocks} src={SOCKS[activeSocks].img} alt={SOCKS[activeSocks].title} className="w-full h-full object-cover object-top" style={{ animation: 'fadeIn 0.4s ease-out', minHeight: '400px' }} />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/30" />
-              <div className="absolute top-4 left-4">
-                <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-3 py-1">{SOCKS[activeSocks].letter} — {SOCKS[activeSocks].title}</span>
+          </div>
+
+          {/* Content Card */}
+          <div key={activeSocks} className="border border-white/10 bg-[#161616] overflow-hidden" style={{ animation: 'fadeSlideIn 0.4s ease-out' }}>
+            <div className="grid md:grid-cols-12 gap-0">
+              {/* Left: Image */}
+              <div className="md:col-span-6 relative overflow-hidden h-[240px] md:h-[400px]">
+                <img src={getSocksImg(activeSocks)} alt={SOCKS[activeSocks].title} className="w-full h-full object-cover object-top" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+                <div className="absolute top-4 left-4">
+                  <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-3 py-1">{SOCKS[activeSocks].letter} — {SOCKS[activeSocks].title}</span>
+                </div>
+                <div className="absolute bottom-4 left-4 flex gap-1.5">
+                  {SOCKS.map((_, i) => (
+                    <button key={i} onClick={() => setActiveSocks(i)} className={`h-1 transition-all duration-300 cursor-pointer ${activeSocks === i ? 'w-8 bg-[#C8D400]' : 'w-3 bg-white/40'}`} />
+                  ))}
+                </div>
               </div>
-              <div className="absolute bottom-4 left-4 flex gap-1.5">
-                {SOCKS.map((_, i) => (
-                  <button key={i} onClick={() => setActiveSocks(i)} className={`h-1 transition-all duration-300 cursor-pointer ${activeSocks === i ? 'w-8 bg-[#C8D400]' : 'w-3 bg-white/40'}`} />
-                ))}
-              </div>
-            </div>
-            <div key={activeSocks} className="lg:col-span-4 bg-white p-8 flex flex-col justify-center border-l border-[#111]/10" style={{ animation: 'fadeIn 0.4s ease-out' }}>
-              <div className="text-[120px] font-black leading-none text-[#C8D400]/10 select-none mb-2">{SOCKS[activeSocks].letter}</div>
-              <div className="text-[#C8D400] text-xs font-black uppercase tracking-widest mb-3">{SOCKS[activeSocks].letter} — {SOCKS[activeSocks].title}</div>
-              <p className="text-[#111]/70 text-base leading-relaxed">{SOCKS[activeSocks].desc}</p>
-              <div className="mt-8 flex gap-2">
-                {SOCKS.map((s, i) => (
-                  <button key={i} onClick={() => setActiveSocks(i)} className={`w-9 h-9 flex items-center justify-center font-black text-sm transition-all duration-300 cursor-pointer ${activeSocks === i ? 'bg-[#111] text-[#C8D400]' : 'border border-[#111]/15 text-[#111]/40 hover:border-[#111]/40 hover:text-[#111]'}`}>{s.letter}</button>
-                ))}
+
+              {/* Right: Content */}
+              <div className="md:col-span-6 p-8 md:p-12 flex flex-col justify-center min-h-[280px] md:min-h-[400px]">
+                {/* Giant decorative letter */}
+                <div className="text-[100px] md:text-[140px] font-black leading-none text-white/[0.04] select-none -mb-6 md:-mb-10">{SOCKS[activeSocks].letter}</div>
+                <div className="text-primary-500 text-xs font-black uppercase tracking-widest mb-3">{SOCKS[activeSocks].letter} — {SOCKS[activeSocks].title}</div>
+                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight">{SOCKS[activeSocks].title}</h3>
+                <p className="text-white/55 text-sm md:text-base leading-relaxed">{SOCKS[activeSocks].desc}</p>
+
+                {/* Navigation */}
+                <div className="mt-8 flex items-center gap-4">
+                  <button
+                    onClick={() => setActiveSocks(Math.max(0, activeSocks - 1))}
+                    disabled={activeSocks === 0}
+                    className="w-11 h-11 border border-white/15 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all disabled:opacity-15 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <i className="ri-arrow-left-line text-lg" />
+                  </button>
+                  <div className="flex gap-2">
+                    {SOCKS.map((_, i) => (
+                      <button key={i} onClick={() => setActiveSocks(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeSocks === i ? 'w-8 bg-[#C8D400]' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => setActiveSocks(Math.min(SOCKS.length - 1, activeSocks + 1))}
+                    disabled={activeSocks === SOCKS.length - 1}
+                    className="w-11 h-11 border border-white/15 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all disabled:opacity-15 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <i className="ri-arrow-right-line text-lg" />
+                  </button>
+                  <span className="text-white/25 text-xs font-bold ml-2">{activeSocks + 1} / {SOCKS.length}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <style>{`
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-      `}</style>
     </>
   );
 }

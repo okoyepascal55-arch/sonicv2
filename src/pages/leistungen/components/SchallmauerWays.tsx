@@ -1,12 +1,30 @@
 import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
 import { useNavigate } from 'react-router-dom';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
-const WAYS = [
+const FALLBACK_SCHALLMAUER_ICONS = [
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20rocket%20launch%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-way-rocket-leist-1&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20bar%20chart%20growth%20arrow%20upward%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-way-chart-leist-2&orientation=squarish',
+  'https://readdy.ai/api/search-image?query=carved%20wooden%20globe%20world%20internet%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-way-globe-leist-3&orientation=squarish',
+];
+
+interface Way {
+  key: string;
+  num: string;
+  title: string;
+  headline: string;
+  desc: string;
+  bullets: string[];
+  cta: string;
+  link: string;
+  tags: string[];
+}
+
+const WAYS: Way[] = [
   {
     key: 'markteintritt',
     num: '01',
-    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20rocket%20launch%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-way-rocket-leist-1&orientation=squarish',
     title: 'Markteintritt',
     headline: 'Neu im Markt. Maximale Sichtbarkeit.',
     desc: 'Dein Produkt ist kaufbereit, aber noch unbekannt? Wir ändern das. Mit Menschen, die deine Marke verstehen und sie am Point of Sale, per Video und bei Events zum Leben erwecken.',
@@ -23,7 +41,6 @@ const WAYS = [
   {
     key: 'absatz',
     num: '02',
-    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20bar%20chart%20growth%20arrow%20upward%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-way-chart-leist-2&orientation=squarish',
     title: 'Absatz steigern',
     headline: 'Produkt im Regal. Sell-out über Plan.',
     desc: 'Unsere Field-Force-Teams sind deine verlängerte Vertriebsmannschaft am POS: daten- und ROI-getrieben geplant, lückenlos reportet. Du weißt vorher, was du erwarten kannst.',
@@ -40,7 +57,6 @@ const WAYS = [
   {
     key: 'omnichannel',
     num: '03',
-    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20globe%20world%20internet%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-way-globe-leist-3&orientation=squarish',
     title: 'Omnichannel',
     headline: 'Human Power in allen Kanälen.',
     desc: 'Die größte Schwachstelle im Omnichannel? Beratung. Unsere Lösung: Live-Video-Kaufberatung, erreichbar im Online-Shop oder per QR-Code auf der Verpackung.',
@@ -57,13 +73,19 @@ const WAYS = [
 ];
 
 export default function SchallmauerWays() {
+  const { images: woodIcons } = useMediaStore('leistungen_schallmauer_wood_icons');
   const [active, setActive] = useState(0);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const navigate = useNavigate();
   const way = WAYS[active];
 
+  const getWoodIcon = (index: number) => {
+    const item = woodIcons[index];
+    return item?.url ? resolveImageUrl(item.url) : FALLBACK_SCHALLMAUER_ICONS[index];
+  };
+
   return (
-    <section className="bg-white py-14 md:py-18 px-6 relative overflow-hidden">
+    <section className="bg-white py-10 md:py-14 px-4 md:px-6 relative overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#C8D400]/3 blur-[120px]" />
@@ -72,20 +94,21 @@ export default function SchallmauerWays() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-14">
-          <SectionBadge text="Die Retail-Schallmauer" variant="dark" className="mb-6" />
+        <div className="text-center mb-8 md:mb-10">
+          <SectionBadge text="Die Retail-Schallmauer" variant="dark" className="mb-5" />
           <h2 className="text-4xl lg:text-5xl font-black text-[#1a1a1a] leading-tight tracking-tight mb-4 uppercase">
             DEIN WEG ZUM RETAIL-ERFOLG
           </h2>
-          <p className="text-base text-gray-600 max-w-xl mx-auto">
+          <p className="text-base text-foreground-600 max-w-xl mx-auto">
             Wähle deinen Pfad — oder kombiniere alle drei für maximale Marktdurchdringung.
           </p>
         </div>
 
         {/* Challenge Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {WAYS.map((w) => {
+          {WAYS.map((w, i) => {
             const isHovered = hoveredCard === w.key;
+            const woodIcon = getWoodIcon(i);
             return (
               <div
                 key={w.key}
@@ -113,9 +136,9 @@ export default function SchallmauerWays() {
                   }}
                 />
 
-                <div className="p-8 flex flex-col h-full min-h-[340px]">
+                <div className="p-6 flex flex-col h-full min-h-[260px]">
                   {/* Number + Wood Icon */}
-                  <div className="flex items-start justify-between mb-7">
+                  <div className="flex items-start justify-between mb-5">
                     <span
                       className="font-black leading-none select-none transition-all duration-500"
                       style={{
@@ -136,19 +159,19 @@ export default function SchallmauerWays() {
                           : '0 2px 8px rgba(139,90,43,0.15)',
                       }}
                     >
-                      <img src={w.woodIcon} alt={w.title} className="w-full h-full object-cover" />
+                      <img src={woodIcon} alt={w.title} className="w-full h-full object-cover" />
                     </div>
                   </div>
 
                   <h3
-                    className="text-xl font-black mb-3 leading-tight transition-colors duration-500 uppercase"
+                    className="text-lg font-black mb-2 leading-tight transition-colors duration-500 uppercase"
                     style={{ color: isHovered ? '#ffffff' : '#1a1a1a' }}
                   >
                     {w.title}
                   </h3>
 
                   <div
-                    className="mb-4 transition-all duration-500"
+                    className="mb-3 transition-all duration-500"
                     style={{
                       height: '1px',
                       background: isHovered ? 'rgba(200,212,0,0.25)' : 'rgba(0,0,0,0.08)',
@@ -156,14 +179,14 @@ export default function SchallmauerWays() {
                   />
 
                   <p
-                    className="text-sm leading-relaxed flex-1 mb-5 transition-colors duration-500"
+                    className="text-sm leading-relaxed flex-1 mb-4 transition-colors duration-500"
                     style={{ color: isHovered ? 'rgba(255,255,255,0.7)' : '#6b7280' }}
                   >
                     {w.headline}
                   </p>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-6">
+                  <div className="flex flex-wrap gap-1.5 mb-4">
                     {w.tags.map((tag) => (
                       <span
                         key={tag}

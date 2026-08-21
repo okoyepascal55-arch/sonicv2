@@ -1,9 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '../../../components/base/WoodenDivider';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 export default function CaseStudyDetailPage() {
   const { slug } = useParams<{ slug: string }>();
+  const { images: detailHeroImages } = useMediaStore('casestudies_detail_heroes');
 
   // Case study data - in production this would come from an API or CMS
   const caseStudies: Record<string, any> = {
@@ -65,12 +68,28 @@ export default function CaseStudyDetailPage() {
 
   const caseStudy = slug ? caseStudies[slug] : null;
 
+  useSEO({
+    title: caseStudy ? `${caseStudy.brand} Fallbeispiel | Retail Transformation | Sonic Group` : 'Fallbeispiel | Sonic Group',
+    description: caseStudy
+      ? `Fallbeispiel ${caseStudy.brand}: Wie Sonic Group die Retail-Performance durch strategische Markenaktivierung transformiert hat.`
+      : 'Fallbeispiele von Sonic Group — Retail Activation Erfolge im DACH-Raum.',
+    keywords: caseStudy
+      ? `${caseStudy.brand.toLowerCase()}, retail transformation, markenaktivierung, fallbeispiel, pos aktivierung`
+      : 'fallbeispiele, retail activation, markenaktivierung, pos aktivierung',
+    canonical: slug ? `https://sonic-group.de/fallbeispiele/${slug}` : 'https://sonic-group.de/fallbeispiele',
+  });
+
+  // Override hero image from dashboard if available
+  if (caseStudy && detailHeroImages[0]?.url) {
+    caseStudy.heroImage = resolveImageUrl(detailHeroImages[0].url) || caseStudy.heroImage;
+  }
+
   if (!caseStudy) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-[100dvh] flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-black text-sonic-dark mb-4">Fallbeispiel nicht gefunden</h1>
-          <Link to="/case-studies" className="text-[#C8D400] font-bold hover:text-sonic-dark">
+          <h1 className="text-4xl font-black text-foreground-950 mb-4">Fallbeispiel nicht gefunden</h1>
+          <Link to="/fallbeispiele" className="text-primary-500 font-bold hover:text-foreground-950">
             ← Zurück zu den Fallbeispielen
           </Link>
         </div>
@@ -79,32 +98,34 @@ export default function CaseStudyDetailPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-[100dvh]">
       {/* Hero Section */}
-      <section className="relative min-h-[580px] md:min-h-[640px] overflow-hidden">
+      <section className="relative min-h-[480px] md:min-h-[520px] overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
         <img
           src={caseStudy.heroImage}
           alt={caseStudy.brand}
           className="w-full h-full object-cover"
+          fetchPriority="high"
+          decoding="async"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-sonic-dark via-sonic-dark/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground-950 via-foreground-950/60 to-transparent"></div>
         
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-7xl mx-auto px-6 pb-16 w-full">
             <Link 
-              to="/case-studies" 
-              className="inline-flex items-center text-[#C8D400] font-bold mb-6 hover:text-white transition-colors"
+              to="/fallbeispiele" 
+              className="inline-flex items-center text-primary-500 font-bold mb-6 hover:text-white transition-colors"
             >
               <i className="ri-arrow-left-line mr-2"></i>
               Zurück zu den Fallbeispielen
             </Link>
-            <div className="bg-[#C8D400] text-[#111] px-4 py-2 inline-block font-black text-sm mb-4">
+            <div className="bg-primary-500 text-[#111] px-4 py-2 inline-block font-black text-sm mb-4">
               {caseStudy.category}
             </div>
             <h1 className="text-5xl lg:text-7xl font-black text-white mb-4">
               {caseStudy.brand}
             </h1>
-            <p className="text-xl text-gray-200 max-w-3xl">
+            <p className="text-xl text-foreground-200 max-w-3xl">
               Wie Sonic die Retail-Performance durch strategische Markenaktivierung transformiert hat
             </p>
           </div>
@@ -118,7 +139,7 @@ export default function CaseStudyDetailPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {caseStudy.results.map((result: any, idx: number) => (
-              <div key={idx} className="text-center bg-gray-50 p-6 relative overflow-hidden group border border-gray-100">
+              <div key={idx} className="text-center bg-foreground-50 p-6 relative overflow-hidden group border border-foreground-100">
                 {/* Wooden texture */}
                 <div 
                   className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500"
@@ -134,10 +155,12 @@ export default function CaseStudyDetailPage() {
                       src={result.icon} 
                       alt={result.label}
                       className="w-full h-full object-contain"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
-                  <div className="text-4xl font-black text-[#C8D400] mb-2">{result.value}</div>
-                  <div className="text-sm text-gray-600 font-semibold">{result.label}</div>
+                  <div className="text-4xl font-black text-primary-500 mb-2">{result.value}</div>
+                  <div className="text-sm text-foreground-600 font-semibold">{result.label}</div>
                 </div>
               </div>
             ))}
@@ -148,7 +171,7 @@ export default function CaseStudyDetailPage() {
       <WoodenDivider variant="diagonal" />
 
       {/* Challenge Section */}
-      <section className="py-24 px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      <section className="py-24 px-6 bg-gradient-to-br from-background-100 via-white to-background-100">
         <div className="max-w-4xl mx-auto">
           <div className="mb-12">
             <div className="inline-flex items-center gap-3 mb-6">
@@ -157,13 +180,15 @@ export default function CaseStudyDetailPage() {
                   src="https://readdy.ai/api/search-image?query=wooden%20target%20goal%20challenge%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-target-icon&orientation=squarish"
                   alt="Challenge"
                   className="w-full h-full object-contain"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
-              <h2 className="text-3xl lg:text-4xl font-black text-sonic-dark">
+              <h2 className="text-3xl lg:text-4xl font-black text-foreground-950">
                 Die Herausforderung
               </h2>
             </div>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-foreground-700 leading-relaxed">
               {caseStudy.challenge}
             </p>
           </div>
@@ -175,20 +200,22 @@ export default function CaseStudyDetailPage() {
                   src="https://readdy.ai/api/search-image?query=wooden%20lightbulb%20solution%20idea%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-solution-icon&orientation=squarish"
                   alt="Solution"
                   className="w-full h-full object-contain"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
-              <h2 className="text-3xl lg:text-4xl font-black text-sonic-dark">
+              <h2 className="text-3xl lg:text-4xl font-black text-foreground-950">
                 Unsere Lösung
               </h2>
             </div>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-foreground-700 leading-relaxed">
               {caseStudy.solution}
             </p>
           </div>
 
-          <div className="bg-[#C8D400]/5 p-8 border-l-4 border-[#C8D400]">
-            <p className="text-xl text-gray-700 italic mb-4">"{caseStudy.testimonial}"</p>
-            <p className="text-sm font-bold text-sonic-dark">— {caseStudy.author}</p>
+          <div className="bg-primary-500/5 p-8 border-l-4 border-[#C8D400]">
+            <p className="text-xl text-foreground-700 italic mb-4">"{caseStudy.testimonial}"</p>
+            <p className="text-sm font-bold text-foreground-950">— {caseStudy.author}</p>
           </div>
         </div>
       </section>
@@ -198,11 +225,11 @@ export default function CaseStudyDetailPage() {
       {/* Project Details */}
       <section className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl lg:text-4xl font-black text-sonic-dark mb-12 text-center">
+          <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 mb-12 text-center">
             Projektdetails
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center bg-gray-50 p-8 relative overflow-hidden group border border-gray-100">
+            <div className="text-center bg-foreground-50 p-8 relative overflow-hidden group border border-foreground-100">
               <div 
                 className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500"
                 style={{
@@ -217,14 +244,16 @@ export default function CaseStudyDetailPage() {
                     src="https://readdy.ai/api/search-image?query=wooden%20clock%20time%20duration%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-clock-icon&orientation=squarish"
                     alt="Timeline"
                     className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
-                <h3 className="text-lg font-bold text-sonic-dark mb-2">Timeline</h3>
-                <p className="text-2xl font-black text-[#C8D400]">{caseStudy.timeline}</p>
+                <h3 className="text-lg font-bold text-foreground-950 mb-2">Timeline</h3>
+                <p className="text-2xl font-black text-primary-500">{caseStudy.timeline}</p>
               </div>
             </div>
 
-            <div className="text-center bg-gray-50 p-8 relative overflow-hidden group border border-gray-100">
+            <div className="text-center bg-foreground-50 p-8 relative overflow-hidden group border border-foreground-100">
               <div 
                 className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500"
                 style={{
@@ -239,14 +268,16 @@ export default function CaseStudyDetailPage() {
                     src="https://readdy.ai/api/search-image?query=wooden%20map%20location%20pin%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-location-icon&orientation=squarish"
                     alt="Locations"
                     className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
-                <h3 className="text-lg font-bold text-sonic-dark mb-2">Locations</h3>
-                <p className="text-2xl font-black text-[#C8D400]">{caseStudy.locations}</p>
+                <h3 className="text-lg font-bold text-foreground-950 mb-2">Locations</h3>
+                <p className="text-2xl font-black text-primary-500">{caseStudy.locations}</p>
               </div>
             </div>
 
-            <div className="text-center bg-gray-50 p-8 relative overflow-hidden group border border-gray-100">
+            <div className="text-center bg-foreground-50 p-8 relative overflow-hidden group border border-foreground-100">
               <div 
                 className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500"
                 style={{
@@ -261,10 +292,12 @@ export default function CaseStudyDetailPage() {
                     src="https://readdy.ai/api/search-image?query=wooden%20team%20people%20group%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-team-icon&orientation=squarish"
                     alt="Team"
                     className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
-                <h3 className="text-lg font-bold text-sonic-dark mb-2">Team Size</h3>
-                <p className="text-2xl font-black text-[#C8D400]">{caseStudy.teamSize}</p>
+                <h3 className="text-lg font-bold text-foreground-950 mb-2">Team Size</h3>
+                <p className="text-2xl font-black text-primary-500">{caseStudy.teamSize}</p>
               </div>
             </div>
           </div>
@@ -274,12 +307,12 @@ export default function CaseStudyDetailPage() {
       <WoodenDivider variant="diagonal" />
 
       {/* CTA Section */}
-      <section className="py-24 px-6 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      <section className="py-24 px-6 bg-gradient-to-br from-background-100 via-white to-background-100">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl lg:text-5xl font-black text-sonic-dark mb-6">
+          <h2 className="text-3xl lg:text-5xl font-black text-foreground-950 mb-6">
             Bereit, Ihre Retail-Performance zu transformieren?
           </h2>
-          <p className="text-xl text-gray-700 mb-8">
+          <p className="text-xl text-foreground-700 mb-8">
             Lassen Sie uns besprechen, wie Sonic ähnliche Ergebnisse für Ihre Marke erzielen kann
           </p>
           <div className="flex flex-wrap justify-center gap-4">
@@ -287,14 +320,14 @@ export default function CaseStudyDetailPage() {
               href="https://calendly.com/sonic-group/beratungsgespraech"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#C8D400] text-[#111] px-8 py-4 font-black hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap inline-flex items-center"
+              className="bg-primary-500 text-[#111] px-8 py-4 font-black hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap inline-flex items-center"
             >
               Beratungsgespräch buchen
               <i className="ri-arrow-right-line ml-2"></i>
             </a>
             <Link
-              to="/case-studies"
-              className="bg-white text-sonic-dark px-8 py-4 font-black hover:bg-gray-100 transition-all duration-300 whitespace-nowrap border-2 border-gray-200 inline-flex items-center"
+              to="/fallbeispiele"
+              className="bg-white text-foreground-950 px-8 py-4 font-black hover:bg-gray-100 transition-all duration-300 whitespace-nowrap border-2 border-foreground-200 inline-flex items-center"
             >
               Weitere Fallbeispiele
             </Link>

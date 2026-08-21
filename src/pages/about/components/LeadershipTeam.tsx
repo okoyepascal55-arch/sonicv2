@@ -1,187 +1,122 @@
-import { useEffect, useRef, useState } from 'react';
-import SectionBadge from '@/components/base/SectionBadge';
+import { useEffect, useState } from 'react';
+import { useText } from '@/hooks/useText';
+import { useMediaStore } from '@/lib/mediaStore';
 
-const teamProfiles = [
-  {
-    background: 'Ex-Europa-CMO',
-    detail: 'Consumer-Electronics-Marke',
-    icon: 'ri-award-line',
-    color: '#C8D400',
-  },
-  {
-    background: 'Field-Force-Projektmanager',
-    detail: 'Erfahrene Führungskräfte',
-    icon: 'ri-team-line',
-    color: '#1a1a1a',
-  },
-  {
-    background: 'Kreative & Strategen',
-    detail: 'Marken- und Agenturerfahrung',
-    icon: 'ri-paint-brush-line',
-    color: '#C8D400',
-  },
-  {
-    background: 'Telco-Experten',
-    detail: 'Hintergrund & Netzwerk',
-    icon: 'ri-phone-line',
-    color: '#1a1a1a',
-  },
-  {
-    background: 'Programmierer',
-    detail: 'Liebe zu Performance-Daten',
-    icon: 'ri-code-s-slash-line',
-    color: '#C8D400',
-  },
-  {
-    background: 'Digital Natives',
-    detail: 'Digitalprofis & E-Commerce',
-    icon: 'ri-smartphone-line',
-    color: '#1a1a1a',
-  },
-  {
-    background: 'Eventprofis & Messebauer',
-    detail: 'Live-Erlebnisse aus einer Hand',
-    icon: 'ri-building-4-line',
-    color: '#C8D400',
-  },
-  {
-    background: 'Logistikprofis',
-    detail: 'Warehouse & Last-Mile',
-    icon: 'ri-truck-line',
-    color: '#1a1a1a',
-  },
-];
-
-const teamStats = [
+const TEAM_STATS = [
   { value: '5,15', unit: 'Jahre', label: 'Ø Betriebszugehörigkeit' },
-  { value: 'Dual', unit: '', label: 'Studium – Ausbildungspartner' },
-  { value: 'B2B + D2C', unit: '', label: 'Erfahrung aus Kunden- & Agenturseite' },
+  { value: 'Dual', unit: 'Studium', label: 'Ausbildungspartner' },
+  { value: 'B2B + D2C', unit: '', label: 'Kunden- & Agenturseite' },
 ];
 
 export default function LeadershipTeam() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const tBadge = useText('about_leadership', 'about-leadership-badge', 'Das Team');
+  const tHeading = useText('about_leadership', 'about-leadership-heading', 'FACHLICHE UND MENSCHLICHE VIELFALT.');
+  const tSub = useText('about_leadership', 'about-leadership-sub', 'Bei Sonic treffen Expertisen aufeinander, die sich perfekt ergänzen.');
+  const tCta = useText('about_leadership', 'about-leadership-cta', 'Offene Stellen');
+
+  const { images } = useMediaStore('/images/Über uns/Über uns/3. Das Sonic Team');
+  const teamPhoto = images[0]?.url || '/images/Über uns/Über uns/3. Das Sonic Team/Gruppenfoto-00336 Kopie.webp';
+
   const [activeStatIndex, setActiveStatIndex] = useState(0);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.08 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!visible) return;
     const interval = setInterval(() => {
-      setActiveStatIndex((prev) => (prev + 1) % teamStats.length);
+      setActiveStatIndex((prev) => (prev + 1) % TEAM_STATS.length);
     }, 2800);
     return () => clearInterval(interval);
-  }, [visible]);
+  }, []);
+
+  const words = tHeading.trim().split(/\s+/);
+  const headingMain = words.length > 1 ? words.slice(0, -1).join(' ') : tHeading;
+  const headingAccent = words.length > 1 ? words[words.length - 1] : '';
 
   return (
-    <section ref={sectionRef} className="bg-white py-16 md:py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-
+    <section className="bg-white py-14 md:py-20 overflow-hidden">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
         {/* ── HEADER ── */}
-        <div
-          className={`mb-14 md:mb-20 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-        >
-          <div className="flex items-center justify-center mb-6">
-            <SectionBadge text="Das Team" variant="dark" />
+        <div className="max-w-[640px] mb-10 md:mb-14">
+          <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-xs font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-5">
+            <span className="w-1.5 h-1.5 bg-[#0B0B0C] flex-shrink-0" />
+            {tBadge}
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-sonic-dark leading-tight tracking-tight text-center mb-4">
-            FACHLICHE UND<br />
-            MENSCHLICHE VIELFALT.
+          <h2 className="text-[clamp(28px,3.4vw,42px)] font-black text-[#0B0B0C] leading-[1.08] tracking-tight uppercase">
+            {headingMain}{' '}
+            <span className="text-[#C3D62A]">{headingAccent}</span>
           </h2>
-          <p className="text-center text-black/40 text-sm md:text-base max-w-lg mx-auto">
-            Bei Sonic treffen Backgrounds aufeinander, die sich perfekt ergänzen.
-          </p>
+          <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[520px]">{tSub}</p>
         </div>
 
-        {/* ── TEAM PHOTO + ROTATING STAT ── */}
-        <div
-          className={`grid lg:grid-cols-[1.3fr_1fr] gap-0 mb-2 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-          style={{ transitionDelay: '100ms' }}
-        >
-          {/* Photo */}
-          <div className="relative overflow-hidden min-h-[300px] lg:min-h-[480px]">
+        {/* ── BOLD SPLIT: TEAM PHOTO + DARK STAT PANEL ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-0 bg-white border border-[#E7E4D4] overflow-hidden">
+          {/* Team group photo */}
+          <div className="relative overflow-hidden min-h-[240px] sm:min-h-[360px] lg:min-h-[580px] bg-[#0B0B0C]">
             <img
-              src="https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg"
-              alt="Das Sonic Team — Vielfältige Fachkräfte aus unterschiedlichen Branchen"
+              src={teamPhoto}
+              alt="Das Sonic Team — vielfältige Fachkräfte aus unterschiedlichen Branchen"
               className="w-full h-full object-cover object-top"
+              loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/15" />
-            {/* Corner tag */}
-            <div className="absolute top-5 left-5 bg-[#C8D400] text-black px-4 py-1.5 text-xs font-black uppercase tracking-widest">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C]/80 via-[#0B0B0C]/5 to-transparent" />
+            <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-[10px] font-black uppercase tracking-widest px-3 py-1">
               Das Sonic Team
             </div>
           </div>
 
-          {/* Right panel: animated stat cycle + description */}
-          <div className="bg-sonic-dark p-8 md:p-12 flex flex-col justify-between" style={{ boxShadow: 'inset 4px 4px 12px rgba(0,0,0,0.45), inset -2px -2px 8px rgba(255,255,255,0.04)' }}>
+          {/* Dark ink panel */}
+          <div className="bg-[#0B0B0C] p-8 md:p-12 flex flex-col justify-between">
             {/* Rotating stat */}
-            <div className="flex-1 flex flex-col justify-center min-h-[140px]">
-              <div
-                key={activeStatIndex}
-                style={{ animation: 'fadeSlideIn 0.5s ease-out' }}
-              >
-                <div className="text-[#C8D400] text-[10px] font-black uppercase tracking-[0.3em] mb-2">
-                  {activeStatIndex + 1} / {teamStats.length}
+            <div className="flex-1 flex flex-col justify-center">
+              <div key={activeStatIndex} className="animate-fadeSlideIn">
+                <div className="text-[#DCE94D] text-[10px] font-black uppercase tracking-[0.3em] mb-3">
+                  {String(activeStatIndex + 1).padStart(2, '0')} / {String(TEAM_STATS.length).padStart(2, '0')}
                 </div>
-                <div className="text-5xl md:text-7xl font-black text-white leading-none mb-2">
-                  {teamStats[activeStatIndex].value}
-                  {teamStats[activeStatIndex].unit && (
-                    <span className="text-2xl md:text-3xl text-[#C8D400] ml-2 font-black">{teamStats[activeStatIndex].unit}</span>
+                <div className="text-4xl md:text-5xl font-black text-white leading-none">
+                  {TEAM_STATS[activeStatIndex].value}
+                  {TEAM_STATS[activeStatIndex].unit && (
+                    <span className="text-lg md:text-xl text-[#DCE94D] ml-2 font-black">{TEAM_STATS[activeStatIndex].unit}</span>
                   )}
                 </div>
-                <div className="text-white/50 text-sm font-bold uppercase tracking-wider mt-3">
-                  {teamStats[activeStatIndex].label}
+                <div className="text-[11px] text-white/40 font-bold uppercase tracking-wider mt-3">
+                  {TEAM_STATS[activeStatIndex].label}
                 </div>
               </div>
 
-              {/* Stat progress dots */}
-              <div className="flex gap-2 mt-8">
-                {teamStats.map((_, i) => (
+              {/* Stat dots */}
+              <div className="flex gap-2 mt-7">
+                {TEAM_STATS.map((_, i) => (
                   <button
                     key={i}
+                    type="button"
                     onClick={() => setActiveStatIndex(i)}
-                    aria-label={`Statistik ${i + 1} von ${teamStats.length}`}
+                    aria-label={`Statistik ${i + 1} von ${TEAM_STATS.length}`}
                     aria-pressed={activeStatIndex === i}
-                    className={`transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime ${
-                      activeStatIndex === i ? 'w-8 h-2 bg-[#C8D400]' : 'w-2 h-2 bg-white/20 hover:bg-white/40'
+                    className={`transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCE94D] ${
+                      activeStatIndex === i ? 'w-7 h-1.5 bg-[#DCE94D]' : 'w-1.5 h-1.5 bg-white/20 hover:bg-white/40'
                     }`}
-                    style={{ borderRadius: 0 }}
                   />
                 ))}
               </div>
             </div>
 
-            {/* Description */}
-            <div className="border-t border-white/10 pt-8 mt-8">
-              <p className="text-white/55 text-sm leading-relaxed">
-                Vielfalt zeichnet uns aus: Bei Sonic arbeiten Talente mit Berufserfahrungen, die sich perfekt ergänzen.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Bei uns sprichst du mit einem Ex-Europa-CMO einer Consumer-Electronics-Marke, erfahrenen Field-Force-Projektmanagern, Kreativen mit Marken- und Agenturerfahrung, Leuten mit Telco-Background, Programmieren mit Liebe zu Performance-Daten, Digital Natives und Digitalprofis, Eventprofis, Messebauern, Logistikprofis und vielen mehr. Wir verstehen deine Herausforderungen und Ziele, weil wir sie sowohl aus Kunden- und Agenturseite kennen.
+            {/* Description — original Vielfalt copy */}
+            <div className="border-t border-white/10 pt-5 mt-6">
+              <p className="text-white/55 text-[13px] leading-relaxed">
+                Vielfalt zeichnet uns aus: Ex-Europa-CMOs, Field-Force-Projektmanager, Kreative, Telco-Experten, Programmierer, Digitalprofis, Eventprofis, Messebauer und Logistikprofis. Wir verstehen deine Herausforderungen, weil wir sie aus Kunden- und Agenturseite kennen.
               </p>
+            </div>
+
+            {/* CTA */}
+            <div className="pt-5 mt-2">
+              <a
+                href="/karriere"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#DCE94D] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.06em] hover:bg-[#C3D62A] transition-colors whitespace-nowrap"
+              >
+                {tCta}
+                <i className="ri-arrow-right-line" />
+              </a>
             </div>
           </div>
         </div>
-
-        {/* ── CTA ── */}
-        <div
-          className={`text-center mt-14 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-          style={{ transitionDelay: '300ms' }}
-        >
-          <p className="text-black/35 text-xs uppercase tracking-widest font-black mb-6">Werde Teil unseres Teams</p>
-          <a
-            href="/careers"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-sonic-dark text-white font-black hover:bg-sonic-lime hover:text-sonic-dark transition-all duration-300 whitespace-nowrap text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sonic-lime"
-          >
-            Offene Stellen ansehen
-            <i className="ri-arrow-right-line" />
-          </a>
-        </div>
-
       </div>
     </section>
   );

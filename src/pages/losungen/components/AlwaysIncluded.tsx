@@ -1,6 +1,10 @@
 import SectionBadge from '@/components/base/SectionBadge';
+import { useText } from '@/hooks/useText';
 
 export default function AlwaysIncluded() {
+  const tBadge = useText('losungen_always', 'losungen-always-badge', 'Immer dabei');
+  const tHeading = useText('losungen_always', 'losungen-always-heading', 'GANZ GLEICH WO DU STEHST');
+  const tSub = useText('losungen_always', 'losungen-always-sub', 'Du bekommst immer das vollständige Paket — ohne Extras, ohne Überraschungen.');
   const features = [
     {
       icon: 'ri-team-line',
@@ -33,13 +37,13 @@ export default function AlwaysIncluded() {
       <div className="max-w-6xl mx-auto">
         {/* Section Header — homepage style */}
         <div className="text-center mb-16">
-          <SectionBadge text="Immer dabei" variant="dark" className="mb-6" />
+          <SectionBadge text={tBadge} variant="dark" className="mb-6" />
           <h2 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-4 leading-tight tracking-tight uppercase">
             GANZ GLEICH WO<br />
             <span className="text-[#1a1a1a]">DU STEHST</span>
           </h2>
-          <p className="text-base text-gray-600 max-w-xl mx-auto mt-4">
-            Du bekommst immer das vollständige Paket — ohne Extras, ohne Überraschungen.
+          <p className="text-base text-foreground-600 max-w-xl mx-auto mt-4">
+            {tSub}
           </p>
         </div>
 
@@ -61,7 +65,7 @@ export default function AlwaysIncluded() {
               }}
             >
               {/* Lime top bar */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#C8D400]/30 group-hover:h-[3px] group-hover:bg-[#C8D400] transition-all duration-500" style={{ boxShadow: undefined }} />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary-500/30 group-hover:h-[3px] group-hover:bg-primary-500 transition-all duration-500" style={{ boxShadow: undefined }} />
 
               <div className="p-8 flex flex-col h-full min-h-[320px]">
                 {/* Wooden icon */}
@@ -77,7 +81,7 @@ export default function AlwaysIncluded() {
                 {/* Stat badge */}
                 <div className="inline-flex items-baseline gap-1.5 mb-4">
                   <span className="text-3xl font-black text-[#C8D400] leading-none">{feature.stat}</span>
-                  <span className="text-xs font-black text-gray-400 uppercase tracking-wide group-hover:text-white/40 transition-colors duration-500">{feature.statLabel}</span>
+                  <span className="text-xs font-black text-foreground-400 uppercase tracking-wide group-hover:text-white/40 transition-colors duration-500">{feature.statLabel}</span>
                 </div>
 
                 <h3 className="text-sm font-black mb-3 leading-tight tracking-wider text-[#1a1a1a] group-hover:text-white transition-colors duration-500">
@@ -86,12 +90,12 @@ export default function AlwaysIncluded() {
 
                 <div className="h-px bg-black/8 group-hover:bg-white/10 mb-4 transition-colors duration-500" />
 
-                <p className="text-sm leading-relaxed text-gray-500 group-hover:text-white/65 transition-colors duration-500 flex-1">
+                <p className="text-sm leading-relaxed text-foreground-500 group-hover:text-white/65 transition-colors duration-500 flex-1">
                   {feature.description}
                 </p>
 
                 {/* Icon */}
-                <div className="mt-6 w-10 h-10 flex items-center justify-center bg-[#C8D400]/10 group-hover:bg-[#C8D400]/20 transition-colors duration-500">
+                <div className="mt-6 w-10 h-10 flex items-center justify-center bg-primary-500/10 group-hover:bg-primary-500/20 transition-colors duration-500">
                   <i className={`${feature.icon} text-lg text-[#C8D400]`}></i>
                 </div>
               </div>

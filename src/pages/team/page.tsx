@@ -2,8 +2,15 @@ import WoodenDivider from '../../components/base/WoodenDivider';
 import SectionReveal from '../../components/feature/SectionReveal';
 
 export default function TeamPage() {
+  useSEO({
+    title: 'Unser Team | 20.000+ Markenbotschafter & Promoter | Sonic Group',
+    description: 'Das Sonic Group Team: 20.000+ geschulte Markenbotschafter, Promoter und Retail-Spezialisten für Events, Messen und POS-Aktivierung im DACH-Raum.',
+    keywords: 'sonic group team, markenbotschafter, promotionspersonal, retail spezialisten, pos aktivierung',
+    canonical: 'https://sonic-group.de/team',
+  });
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-[100dvh] bg-white">
       <TeamHero />
       <WoodenDivider />
       <SectionReveal direction="up" intensity="subtle">
@@ -35,6 +42,7 @@ export default function TeamPage() {
 }
 
 import TeamHero from './components/TeamHero';
+import { useSEO } from '@/hooks/useSEO';
 import MeetTheTeam from './components/MeetTheTeam';
 import RecruitmentPhilosophy from './components/RecruitmentPhilosophy';
 import TeamStats from './components/TeamStats';

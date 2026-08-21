@@ -1,4 +1,5 @@
 import { useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 
 export interface LightboxItem {
   image: string;
@@ -50,9 +51,9 @@ export default function Lightbox({
 
   const current = items[activeIndex] ?? items[0];
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 bg-black/95 z-modal flex items-center justify-center opacity-0 animate-fadeIn"
+      className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center opacity-0 animate-fadeIn"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -64,14 +65,14 @@ export default function Lightbox({
           e.stopPropagation();
           onClose();
         }}
-        className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-sm border-2 border-sonic-lime hover:bg-sonic-lime transition-all duration-standard ease-sonic group z-10 cursor-pointer"
+        className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-sm border-2 border-primary-500 hover:bg-primary-500 transition-all duration-standard ease-sonic group z-10 cursor-pointer"
         aria-label="Close lightbox"
       >
-        <i className="ri-close-line text-2xl text-white group-hover:text-sonic-dark" />
+        <i className="ri-close-line text-2xl text-white group-hover:text-foreground-950" />
       </button>
 
       {/* Image Counter */}
-      <div className="absolute top-6 left-6 bg-black/60 backdrop-blur-sm border-2 border-sonic-lime/40 px-6 py-3 z-10">
+      <div className="absolute top-6 left-6 bg-black/60 backdrop-blur-sm border-2 border-primary-500/40 px-6 py-3 z-10">
         <span className="text-white font-black text-lg">
           {activeIndex + 1} / {items.length}
         </span>
@@ -83,10 +84,10 @@ export default function Lightbox({
           e.stopPropagation();
           onPrev();
         }}
-        className="absolute left-6 w-14 h-14 flex items-center justify-center bg-white/10 backdrop-blur-sm border-2 border-sonic-lime hover:bg-sonic-lime transition-all duration-standard ease-sonic group cursor-pointer"
+        className="absolute left-6 w-14 h-14 flex items-center justify-center bg-white/10 backdrop-blur-sm border-2 border-primary-500 hover:bg-primary-500 transition-all duration-standard ease-sonic group cursor-pointer"
         aria-label="Previous image"
       >
-        <i className="ri-arrow-left-line text-2xl text-white group-hover:text-sonic-dark" />
+        <i className="ri-arrow-left-line text-2xl text-white group-hover:text-foreground-950" />
       </button>
 
       {/* Next Arrow */}
@@ -95,10 +96,10 @@ export default function Lightbox({
           e.stopPropagation();
           onNext();
         }}
-        className="absolute right-6 w-14 h-14 flex items-center justify-center bg-white/10 backdrop-blur-sm border-2 border-sonic-lime hover:bg-sonic-lime transition-all duration-standard ease-sonic group cursor-pointer"
+        className="absolute right-6 w-14 h-14 flex items-center justify-center bg-white/10 backdrop-blur-sm border-2 border-primary-500 hover:bg-primary-500 transition-all duration-standard ease-sonic group cursor-pointer"
         aria-label="Next image"
       >
-        <i className="ri-arrow-right-line text-2xl text-white group-hover:text-sonic-dark" />
+        <i className="ri-arrow-right-line text-2xl text-white group-hover:text-foreground-950" />
       </button>
 
       {/* Main Image */}
@@ -112,19 +113,19 @@ export default function Lightbox({
           className="max-w-full max-h-[80vh] object-contain"
         />
 
-        {/* Image Info Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-8">
-          <div className="inline-block bg-sonic-lime/20 backdrop-blur-sm border border-sonic-lime/40 px-4 py-1 mb-3">
-            <span className="text-xs font-black uppercase tracking-wider text-white">
+        {/* Image Info Overlay — compact pill, image-first */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-full px-4 flex justify-center">
+          <div className="flex items-center flex-wrap justify-center gap-2 sm:gap-3 max-w-full bg-black/70 backdrop-blur-sm border border-primary-500/40 px-4 sm:px-5 py-2.5">
+            <span className="text-[10px] font-black uppercase tracking-widest text-primary-500 whitespace-nowrap">
               {current.category}
             </span>
+            <span className="text-white/50 text-[10px] hidden sm:inline">|</span>
+            <span className="text-white font-bold text-xs truncate max-w-[140px] sm:max-w-[200px]">{current.title}</span>
+            <span className="text-white/30 text-xs tabular-nums ml-1">{activeIndex + 1}/{items.length}</span>
           </div>
-          <h3 className="text-3xl font-black text-white mb-2">
-            {current.title}
-          </h3>
-          <p className="text-white/90 text-lg">{current.description}</p>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

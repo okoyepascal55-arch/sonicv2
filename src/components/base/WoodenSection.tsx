@@ -10,9 +10,9 @@ export default function WoodenSection({
   className = '',
 }: WoodenSectionProps) {
   const variantClasses = {
-    light: 'bg-sonic-gray/50',
-    medium: 'bg-sonic-gray',
-    white: 'bg-white',
+    white: 'bg-background-50',
+    light: 'bg-background-200/70',
+    medium: 'bg-background-100',
   };
 
   return (

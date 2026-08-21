@@ -23,7 +23,7 @@ export default function SkipLink() {
       href="#main-content"
       onFocus={() => setVisible(true)}
       onBlur={() => setVisible(false)}
-      className={`fixed top-4 left-4 z-[9999] px-6 py-3 bg-sonic-lime text-white font-black text-sm uppercase tracking-widest shadow-2xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-sonic-lime/50 ${
+      className={`fixed top-4 left-4 z-[9999] px-6 py-3 bg-primary-500 text-background-50 font-black text-sm uppercase tracking-widest shadow-2xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-primary-500/50 ${
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
       }`}
       style={{ borderRadius: 0 }}

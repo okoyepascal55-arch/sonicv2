@@ -8,6 +8,7 @@ interface SEOProps {
   ogTitle?: string;
   ogDescription?: string;
   ogType?: string;
+  ogImage?: string;
 }
 
 export function useSEO({
@@ -18,6 +19,7 @@ export function useSEO({
   ogTitle,
   ogDescription,
   ogType = 'website',
+  ogImage,
 }: SEOProps) {
   useEffect(() => {
     // Title
@@ -54,10 +56,17 @@ export function useSEO({
     setMeta('meta[property="og:description"]', 'property=og:description', ogDescription || description);
     setMeta('meta[property="og:type"]', 'property=og:type', ogType);
     if (canonical) setMeta('meta[property="og:url"]', 'property=og:url', canonical);
+    if (ogImage) {
+      setMeta('meta[property="og:image"]', 'property=og:image', ogImage);
+      setMeta('meta[property="og:image:width"]', 'property=og:image:width', '1200');
+      setMeta('meta[property="og:image:height"]', 'property=og:image:height', '630');
+    }
 
     // Twitter
+    setMeta('meta[name="twitter:card"]', 'name=twitter:card', 'summary_large_image');
     setMeta('meta[name="twitter:title"]', 'name=twitter:title', ogTitle || title);
     setMeta('meta[name="twitter:description"]', 'name=twitter:description', ogDescription || description);
+    if (ogImage) setMeta('meta[name="twitter:image"]', 'name=twitter:image', ogImage);
 
     // Last modified
     setMeta('meta[name="last-modified"]', 'name=last-modified', new Date().toISOString().split('T')[0]);
@@ -66,5 +75,5 @@ export function useSEO({
       // Restore base title on unmount
       document.title = 'Sonic Group | DACH Market Activation & Retail Excellence';
     };
-  }, [title, description, keywords, canonical, ogTitle, ogDescription, ogType]);
+  }, [title, description, keywords, canonical, ogTitle, ogDescription, ogType, ogImage]);
 }

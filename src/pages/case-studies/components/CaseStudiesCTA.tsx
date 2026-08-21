@@ -1,8 +1,16 @@
 import { useState } from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
+import { useText } from '@/hooks/useText';
+import SectionBadge from '@/components/base/SectionBadge';
 
 export default function CaseStudiesCTA() {
+  const tBadge = useText('casestudies_cta', 'casestudies-cta-badge', 'Lass uns sprechen');
+  const tHeading = useText('casestudies_cta', 'casestudies-cta-heading', 'Deine Marke. Unser Einsatz.');
+  const tSub = useText('casestudies_cta', 'casestudies-cta-sub', 'Wir bringen deine Marke dort zum Leuchten, wo die Kaufentscheidung fällt.');
+  const tBtn1 = useText('casestudies_cta', 'casestudies-cta-btn-1', 'Gespräch buchen');
+  const tBtn2 = useText('casestudies_cta', 'casestudies-cta-btn-2', 'Leistungen ansehen');
+
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredContact, setHoveredContact] = useState<number | null>(null);
 
@@ -20,47 +28,42 @@ export default function CaseStudiesCTA() {
 
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 flex items-center justify-center">
-              <i className="ri-lightbulb-line text-3xl text-[#C8D400]"></i>
-            </div>
-            <div className="bg-[#C8D400]/20 px-6 py-3 rounded-lg border border-[#C8D400]/30">
-              <p className="text-sm font-semibold text-sonic-dark tracking-wide uppercase">Ready to Start?</p>
-            </div>
+          <div className="flex justify-center mb-6">
+            <SectionBadge text={tBadge} variant="dark" />
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-sonic-dark mb-4 leading-tight">
-            LET'S CREATE YOUR<br />SUCCESS STORY
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 mb-4 leading-tight">
+            {tHeading}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Join the leading brands who trust SONIC to deliver exceptional retail results across the DACH region.
+          <p className="text-lg text-foreground-600 max-w-2xl mx-auto">
+            {tSub}
           </p>
         </div>
 
         {/* Main CTA Card */}
         <div
-          className="rounded-none overflow-hidden shadow-2xl relative mb-10"
+          className="rounded-none overflow-hidden relative mb-10"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className={`absolute inset-0 rounded-none border-4 transition-all duration-500 pointer-events-none z-20 ${isHovered ? 'border-[#C8D400] shadow-[0_0_30px_rgba(200,212,0,0.3)]' : 'border-gray-100'}`}></div>
+          <div className={`absolute inset-0 rounded-none border-4 transition-all duration-500 pointer-events-none z-20 ${isHovered ? 'border-[#C8D400]' : 'border-foreground-100'}`} style={isHovered ? { boxShadow: '0 0 30px rgba(200,212,0,0.3)' } : {}}></div>
 
           <div className="grid lg:grid-cols-2 gap-0">
             {/* Image */}
-            <div className="relative h-[360px] lg:h-auto min-h-[360px]">
+            <div className="relative h-[260px] lg:h-auto min-h-[260px]">
               <img
                 src="https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg"
                 alt="Partner with SONIC"
                 className={`w-full h-full object-cover object-top transition-transform duration-700 ${isHovered ? 'scale-105' : 'scale-100'}`}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-sonic-dark/60 via-transparent to-transparent pointer-events-none"></div>
-              <div className={`absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-[#C8D400] rounded-tl-xl transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
-              <div className={`absolute bottom-4 left-4 w-12 h-12 border-b-4 border-l-4 border-[#C8D400] rounded-bl-xl transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground-950/60 via-transparent to-transparent pointer-events-none"></div>
+              <div className={`absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-[#C8D400] transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`absolute bottom-4 left-4 w-12 h-12 border-b-4 border-l-4 border-[#C8D400] transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
             </div>
 
             {/* Content */}
             <div className="p-10 bg-white flex flex-col justify-center relative">
-              <div className={`absolute top-4 right-4 w-12 h-12 border-t-4 border-r-4 border-[#C8D400] rounded-tr-xl transition-all duration-500 pointer-events-none hidden lg:block ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
-              <div className={`absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-[#C8D400] rounded-br-xl transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`absolute top-4 right-4 w-12 h-12 border-t-4 border-r-4 border-[#C8D400] transition-all duration-500 pointer-events-none hidden lg:block ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-[#C8D400] transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
 
               <div className="space-y-3 mb-8">
                 {benefits.map((benefit, index) => (
@@ -80,14 +83,14 @@ export default function CaseStudiesCTA() {
                   className="bg-[#C8D400] text-[#111] px-7 py-4 font-black text-sm uppercase tracking-wider hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-center flex items-center justify-center gap-2"
                 >
                   <i className="ri-calendar-line"></i>
-                  Kostenloses Gespräch buchen
+                  {tBtn1}
                 </button>
                 <a
                   href={`mailto:${CONTACT_EMAIL}?subject=Case Studies Request`}
-                  className="bg-sonic-dark text-white px-7 py-4 font-black text-sm uppercase tracking-wider hover:bg-[#2A2A2A] transition-all duration-300 whitespace-nowrap cursor-pointer text-center flex items-center justify-center gap-2"
+                  className="bg-foreground-950 text-white px-7 py-4 font-black text-sm uppercase tracking-wider hover:bg-[#2A2A2A] transition-all duration-300 whitespace-nowrap cursor-pointer text-center flex items-center justify-center gap-2"
                 >
                   <i className="ri-download-line"></i>
-                  Download Case Studies
+                  {tBtn2}
                 </a>
               </div>
             </div>
@@ -103,7 +106,7 @@ export default function CaseStudiesCTA() {
             <a
               key={index}
               href={contact.href}
-              className="bg-white rounded-none p-5 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden cursor-pointer flex items-center gap-4 border border-gray-100 hover:border-[#C8D400]/40 group"
+              className="bg-white rounded-none p-5 transition-all duration-300 relative overflow-hidden cursor-pointer flex items-center gap-4 border border-foreground-100 hover:border-[#C8D400]/40 group"
               onMouseEnter={() => setHoveredContact(index)}
               onMouseLeave={() => setHoveredContact(null)}
             >
@@ -114,7 +117,7 @@ export default function CaseStudiesCTA() {
                     <stop offset="100%" stopColor="#C8D400" stopOpacity={hoveredContact === index ? 0.4 : 0.05} />
                   </linearGradient>
                 </defs>
-                <rect x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="10" ry="10" fill="none"
+                <rect x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="0" ry="0" fill="none"
                   stroke={`url(#contact-grad-${index})`}
                   strokeWidth={hoveredContact === index ? 2 : 1}
                   style={{ filter: hoveredContact === index ? 'drop-shadow(0 0 5px rgba(200,212,0,0.4))' : 'none', transition: 'all 0.4s ease' }}
@@ -124,12 +127,12 @@ export default function CaseStudiesCTA() {
                   )}
                 </rect>
               </svg>
-              <div className="w-11 h-11 bg-[#C8D400]/15 rounded-lg flex items-center justify-center relative z-10 group-hover:bg-[#C8D400]/25 transition-colors duration-300 flex-shrink-0">
+              <div className="w-11 h-11 bg-[#C8D400]/15 flex items-center justify-center relative z-10 group-hover:bg-[#C8D400]/25 transition-colors duration-300 flex-shrink-0" style={{ borderRadius: 0 }}>
                 <i className={`${contact.icon} text-xl text-[#C8D400]`}></i>
               </div>
               <div className="relative z-10 min-w-0">
-                <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide">{contact.label}</p>
-                <p className="text-sm font-black text-sonic-dark truncate">{contact.value}</p>
+                <p className="text-xs text-foreground-500 font-semibold uppercase tracking-wide">{contact.label}</p>
+                <p className="text-sm font-black text-foreground-950 truncate">{contact.value}</p>
               </div>
             </a>
           ))}

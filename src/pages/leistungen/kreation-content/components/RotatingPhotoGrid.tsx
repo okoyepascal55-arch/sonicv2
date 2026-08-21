@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 const PHOTOS = [
   {
@@ -54,13 +55,42 @@ const PHOTOS = [
   },
 ];
 
+const FALLBACK_PHOTOS = [
+  'https://readdy.ai/api/search-image?query=professional%20product%20photography%20studio%20shoot%20consumer%20electronics%20packaging%20premium%20dark%20moody%20atmospheric%20lighting%20dramatic%20shadows%20commercial%20quality%20editorial%20photography&width=400&height=560&seq=rpg-kreation-01&orientation=portrait',
+  'https://readdy.ai/api/search-image?query=brand%20identity%20design%20creative%20agency%20visual%20design%20system%20typography%20color%20palette%20minimalist%20flat%20lay%20professional%20elegant%20premium%20studio%20photography&width=400&height=560&seq=rpg-kreation-02&orientation=portrait',
+  'https://readdy.ai/api/search-image?query=video%20production%20studio%20professional%20camera%20crew%20filming%20product%20commercial%20creative%20agency%20dark%20dramatic%20lighting%20cinematic%20quality%20behind%20the%20scenes&width=400&height=560&seq=rpg-kreation-03&orientation=portrait',
+  'https://readdy.ai/api/search-image?query=3D%20CGI%20photorealistic%20product%20visualization%20render%20floating%20packaging%20consumer%20electronics%20dramatic%20studio%20lighting%20lime%20green%20accent%20commercial%20quality&width=400&height=560&seq=rpg-kreation-04&orientation=portrait',
+  'https://readdy.ai/api/search-image?query=social%20media%20content%20creation%20lifestyle%20photography%20product%20shoot%20vibrant%20colorful%20editorial%20fashion%20beauty%20consumer%20goods%20clean%20white%20background%20professional&width=400&height=560&seq=rpg-kreation-05&orientation=portrait',
+];
+
+const PHOTO_LABELS = ['Produktfoto', 'Brand Design', 'Video', 'CGI & 3D', 'Social Content'];
+const PHOTO_TAGS = ['FOTO', 'DESIGN', 'VIDEO', 'CGI', 'SOCIAL'];
+
 export default function RotatingPhotoGrid() {
+  const { images: gridPhotos } = useMediaStore('leistungen_kreation_photo_grid');
   const [hovered, setHovered] = useState<number | null>(null);
   const [visible, setVisible] = useState(false);
   const [floatOffset, setFloatOffset] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
   const startRef = useRef<number>(0);
+
+  // Mobile fan is compressed horizontally so the outer cards aren't pushed
+  // entirely off-screen — desktop spread is untouched (scale stays 1).
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)');
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+  const xScale = isMobile ? 0.4 : 1;
+
+  const getPhotoSrc = (index: number) => {
+    const item = gridPhotos[index];
+    return item?.url ? resolveImageUrl(item.url) : FALLBACK_PHOTOS[index];
+  };
 
   // Scroll reveal
   useEffect(() => {
@@ -89,12 +119,8 @@ export default function RotatingPhotoGrid() {
   return (
     <div
       ref={sectionRef}
-      className="relative w-full overflow-hidden"
-      style={{
-        background: 'linear-gradient(to bottom, #000 0%, #0a0a0a 100%)',
-        paddingTop: '80px',
-        paddingBottom: '100px',
-      }}
+      className="relative w-full overflow-hidden bg-white"
+      style={{ paddingTop: '80px', paddingBottom: '100px' }}
     >
       {/* Lime ambient glow */}
       <div
@@ -102,7 +128,7 @@ export default function RotatingPhotoGrid() {
         style={{
           width: '700px',
           height: '300px',
-          background: 'radial-gradient(ellipse, rgba(200,212,0,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(200,212,0,0.08) 0%, transparent 70%)',
           borderRadius: 0,
         }}
         aria-hidden="true"
@@ -110,12 +136,12 @@ export default function RotatingPhotoGrid() {
 
       {/* Section label */}
       <div className="text-center mb-12 relative z-10">
-        <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-4">
-          <div className="w-1.5 h-1.5 bg-[#C8D400] animate-pulse" style={{ borderRadius: 0 }} />
-          <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Unsere Arbeit</span>
+        <div className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/25 px-4 py-1.5 mb-4">
+          <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" style={{ borderRadius: 0 }} />
+          <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Unsere Arbeit</span>
         </div>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
-          Kreation, die<br /><span className="text-[#C8D400]">verkauft.</span>
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight">
+          Kreation, die<br /><span className="text-primary-500">verkauft.</span>
         </h2>
       </div>
 
@@ -137,7 +163,7 @@ export default function RotatingPhotoGrid() {
                 width: '200px',
                 height: '280px',
                 transform: `
-                  translateX(${photo.x}px)
+                  translateX(${photo.x * xScale}px)
                   translateY(${isHov ? baseY - 24 : baseY}px)
                   rotate(${isHov ? 0 : photo.rotate}deg)
                   scale(${isHov ? 1.08 : photo.scale})
@@ -160,7 +186,7 @@ export default function RotatingPhotoGrid() {
                 style={{ borderRadius: 0 }}
               >
                 <img
-                  src={photo.src}
+                  src={getPhotoSrc(i)}
                   alt={photo.label}
                   className="w-full h-full object-cover object-top transition-transform duration-700"
                   style={{ transform: isHov ? 'scale(1.08)' : 'scale(1)' }}
@@ -170,8 +196,8 @@ export default function RotatingPhotoGrid() {
                 <div
                   className="absolute inset-0 transition-opacity duration-400"
                   style={{
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)',
-                    opacity: isHov ? 1 : 0.7,
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.08) 50%, transparent 100%)',
+                    opacity: isHov ? 1 : 0.65,
                   }}
                 />
 
@@ -201,10 +227,10 @@ export default function RotatingPhotoGrid() {
                   className="absolute bottom-0 left-0 right-0 px-4 py-4 transition-all duration-400"
                   style={{
                     transform: isHov ? 'translateY(0)' : 'translateY(4px)',
-                    opacity: isHov ? 1 : 0.8,
+                    opacity: isHov ? 1 : 0.75,
                   }}
                 >
-                  <span className="text-white text-xs font-black uppercase tracking-wider">{photo.label}</span>
+                  <span className="text-background-50 text-xs font-black uppercase tracking-wider">{photo.label}</span>
                 </div>
 
                 {/* Center card: LIVE dot */}
@@ -241,15 +267,15 @@ export default function RotatingPhotoGrid() {
             onMouseLeave={() => setHovered(null)}
           >
             <div
-              className="h-0.5 w-8 transition-all duration-300"
+              className="h-0.5 transition-all duration-300"
               style={{
-                background: hovered === i ? '#C8D400' : 'rgba(255,255,255,0.2)',
+                background: hovered === i ? '#C8D400' : 'rgba(0,0,0,0.15)',
                 width: hovered === i ? '32px' : '20px',
               }}
             />
             <span
               className="text-[10px] font-black uppercase tracking-widest transition-colors duration-300"
-              style={{ color: hovered === i ? '#C8D400' : 'rgba(255,255,255,0.4)' }}
+              style={{ color: hovered === i ? '#C8D400' : 'rgba(0,0,0,0.35)' }}
             >
               {photo.label}
             </span>
@@ -260,9 +286,9 @@ export default function RotatingPhotoGrid() {
       {/* Bottom CTA */}
       <div className="text-center mt-12 relative z-10">
         <a
-          href="mailto:${CONTACT_EMAIL}`?subject=Kreation%20Portfolio%20anfragen"
-          className="inline-flex items-center gap-2 px-8 py-4 font-black text-xs uppercase tracking-widest transition-all duration-300 hover:bg-white hover:text-[#111] whitespace-nowrap cursor-pointer"
-          style={{ background: '#C8D400', color: '#111', borderRadius: 0 }}
+          href={`mailto:${CONTACT_EMAIL}?subject=Kreation%20Portfolio%20anfragen`}
+          className="inline-flex items-center gap-2 px-8 py-4 font-black text-xs uppercase tracking-widest transition-all duration-300 hover:bg-foreground-950 hover:text-background-50 whitespace-nowrap cursor-pointer bg-primary-500 text-foreground-950"
+          style={{ borderRadius: 0 }}
         >
           <i className="ri-image-line" />
           Portfolio anfragen

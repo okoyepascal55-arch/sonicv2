@@ -2,19 +2,21 @@ import SectionBadge from '@/components/base/SectionBadge';
 
 export default function LosungenHero() {
   return (
-    <section className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://readdy.ai/api/search-image?query=dramatic%20retail%20store%20environment%20with%20bold%20product%20displays%20modern%20consumer%20electronics%20showcase%20dark%20cinematic%20atmosphere%20confident%20sales%20team%20in%20action%20premium%20brand%20activation%20point%20of%20sale%20wide%20angle%20editorial%20photography%20deep%20moody%20lighting&width=1920&height=1080&seq=losungen-hero-bg-v2&orientation=landscape"
+          src="/images/Lösungen/1. Header/DSC04394 Kopie.webp"
           alt="Lösungen Hero"
           className="w-full h-full object-cover object-top"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/75" />
       </div>
 
       {/* Lime ambient */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#C8D400]/6 rounded-full blur-[120px] pointer-events-none z-10" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-primary-500/6 rounded-full blur-[120px] pointer-events-none z-10" />
 
       <div className="relative z-20 max-w-6xl mx-auto px-4 md:px-6 text-center w-full">
         <div className="mb-8">
@@ -40,7 +42,7 @@ export default function LosungenHero() {
         <div className="flex flex-wrap justify-center gap-4">
           <a
             href="#markteintritt"
-            className="inline-flex items-center gap-2 bg-sonic-lime text-[#111] px-8 py-4 font-black text-sm uppercase tracking-wider hover:bg-white hover:text-sonic-dark transition-all duration-300 cursor-pointer whitespace-nowrap"
+            className="inline-flex items-center gap-2 bg-primary-500 text-[#111] px-8 py-4 font-black text-sm uppercase tracking-wider hover:bg-white hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap"
             style={{ borderRadius: 0 }}
           >
             <i className="ri-rocket-line"></i>
@@ -48,7 +50,7 @@ export default function LosungenHero() {
           </a>
           <a
             href="#absatz-steigern"
-            className="inline-flex items-center gap-2 border-2 border-white/30 text-white px-8 py-4 font-black text-sm uppercase tracking-wider hover:border-sonic-lime hover:text-sonic-lime transition-all duration-300 cursor-pointer whitespace-nowrap"
+            className="inline-flex items-center gap-2 border-2 border-white/30 text-white px-8 py-4 font-black text-sm uppercase tracking-wider hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer whitespace-nowrap"
             style={{ borderRadius: 0 }}
           >
             <i className="ri-line-chart-line"></i>
@@ -56,7 +58,7 @@ export default function LosungenHero() {
           </a>
           <a
             href="#omnichannel"
-            className="inline-flex items-center gap-2 border-2 border-white/30 text-white px-8 py-4 font-black text-sm uppercase tracking-wider hover:border-sonic-lime hover:text-sonic-lime transition-all duration-300 cursor-pointer whitespace-nowrap"
+            className="inline-flex items-center gap-2 border-2 border-white/30 text-white px-8 py-4 font-black text-sm uppercase tracking-wider hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer whitespace-nowrap"
             style={{ borderRadius: 0 }}
           >
             <i className="ri-global-line"></i>

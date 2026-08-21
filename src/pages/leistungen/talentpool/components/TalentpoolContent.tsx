@@ -3,7 +3,10 @@ import SectionBadge from '@/components/base/SectionBadge';
 import Tag from '@/components/base/Tag';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
-import WoodenDivider from '../../../../components/base/WoodenDivider';
+import ScrollCardSection from '@/components/feature/ScrollCardSection';
+import WoodenDivider from '@/components/base/WoodenDivider';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useText } from '@/hooks/useText';
 
 const TALENTPOOL_CHALLENGES: ChallengeItem[] = [
   {
@@ -85,7 +88,7 @@ const PROFILES = [
     accent: 'POS & Verkauf',
     tags: ['POS-Aktivierung', 'Beratung & Verkauf', 'Demo & Erklärung'],
     desc: 'Das Herzstück unseres Talentepool — Live am POS, erklärt, begeistert, verkauft.',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
+    imgIndex: 0,
   },
   {
     number: '02',
@@ -94,7 +97,7 @@ const PROFILES = [
     accent: 'Live-Video & E-Commerce',
     tags: ['Live-Video-Calls', 'Online-Shop-Integration', 'After-Sales'],
     desc: 'Für Live-Video-Promotion im Online-Shop, QR-Code und POS-Display.',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO01.jpg',
+    imgIndex: 1,
   },
   {
     number: '03',
@@ -103,7 +106,7 @@ const PROFILES = [
     accent: 'Training & Coaching',
     tags: ['Händlerschulungen', 'Produktwissen', 'Retail-Coaching'],
     desc: 'Macht Handelspartner zu echten Fans deiner Marke — mit Schulungen, die wirken.',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg',
+    imgIndex: 2,
   },
   {
     number: '04',
@@ -112,8 +115,15 @@ const PROFILES = [
     accent: 'Events & Roadshows',
     tags: ['Instore-Events', 'Roadshows', 'Messen & Promotions'],
     desc: 'Für Launch-Events, Roadshows und Instore-Aktivierungen — erfahren und skalierbar.',
-    img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg',
+    imgIndex: 3,
   },
+];
+
+const FALLBACK_PROFILES = [
+  'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO01.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg',
+  'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg',
 ];
 
 const STATS = [
@@ -183,15 +193,17 @@ function ScrollSection({
 
 export default function TalentpoolContent() {
   const [challengeHover, setChallengeHover] = useState<number | null>(null);
+  const { images: profileImages } = useMediaStore('leistungen_talentpool_profiles_images');
+  const tChallengeHeading = useText('leistungen_talentpool_content', 'talentpool-challenge-heading', 'Wechselnde Gesichter. Kein Markenwissen. Kein ROI.');
+  const tChallengeSub = useText('leistungen_talentpool_content', 'talentpool-challenge-sub', 'Das Standardmodell in der Promotion-Branche ist kaputt. Freelancer-Netzwerke liefern keine echten Markenbotschafter.');
+  const tSolutionHeading = useText('leistungen_talentpool_content', 'talentpool-solution-heading', 'DER SONIC-TALENTEPOOL. KEIN VERGLEICH.');
+  const tSolutionSub = useText('leistungen_talentpool_content', 'talentpool-solution-sub', 'Festangestellt, trainiert und live-getrackt — das ist der Unterschied.');
+  const tProfilesHeading = useText('leistungen_talentpool_content', 'talentpool-profiles-heading', '4 ROLLEN. EIN ANSPRECHPARTNER.');
+  const tProfilesSub = useText('leistungen_talentpool_content', 'talentpool-profiles-sub', 'Jeden Talent-Typ aus einer Hand — koordiniert, geschult und live getrackt.');
 
-  const solScrollRef = useRef<HTMLDivElement>(null);
-  const [solActive, setSolActive] = useState<number | null>(null);
-  const scrollSol = (dir: 'left' | 'right') => {
-    solScrollRef.current?.scrollBy({ left: dir === 'left' ? -380 : 380, behavior: 'smooth' });
-  };
-  const dotSol = (i: number) => {
-    setSolActive(i);
-    solScrollRef.current?.scrollTo({ left: i * 396, behavior: 'smooth' });
+  const getProfileImg = (index: number) => {
+    const item = profileImages[index];
+    return item?.url ? resolveImageUrl(item.url) : FALLBACK_PROFILES[index];
   };
 
   const profScrollRef = useRef<HTMLDivElement>(null);
@@ -208,15 +220,16 @@ export default function TalentpoolContent() {
     <>
       {/* ── Challenge Section — shared component with black bg ── */}
       <ChallengeSection
-        headline="Wechselnde Gesichter. Kein Markenwissen. Kein ROI."
-        subline="Das Standardmodell in der Promotion-Branche ist kaputt. Freelancer-Netzwerke liefern keine echten Markenbotschafter."
+        id="herausforderung"
+        headline={tChallengeHeading}
+        subline={tChallengeSub}
         challenges={TALENTPOOL_CHALLENGES}
       />
 
       <WoodenDivider />
 
       {/* ── Solution Section (light warm bg — directly after dark ChallengeSection) ── */}
-      <section className="bg-white py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="loesung" className="bg-white py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.018] pointer-events-none"
           style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }}
@@ -231,70 +244,17 @@ export default function TalentpoolContent() {
                 <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Sonic-Lösung</span>
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#111] leading-tight tracking-tight uppercase">
-                DER SONIC-TALENTEPOOL.<br />
-                <span className="text-[#C8D400]" style={{ WebkitTextStroke: '1px #9ea800' }}>KEIN VERGLEICH.</span>
+                {tSolutionHeading}
               </h2>
             </div>
             <p className="text-[#111]/40 text-sm leading-relaxed max-w-xs lg:text-right">
-              Festangestellt, trainiert und live-getrackt — das ist der Unterschied.
+              {tSolutionSub}
             </p>
           </div>
 
-          <ScrollSection theme="light" scrollRef={solScrollRef} onLeft={() => scrollSol('left')} onRight={() => scrollSol('right')} label={`${SOLUTIONS.length} Leistungsmerkmale — scrollen`} dots={SOLUTIONS.length} activeIdx={solActive} onDot={dotSol}>
-            {SOLUTIONS.map((s, idx) => {
-              const isA = solActive === idx;
-              return (
-                <div
-                  key={idx}
-                  className="flex-shrink-0 snap-start relative overflow-hidden cursor-default"
-                  style={{
-                    width: 'clamp(300px, 28vw, 370px)',
-                    minHeight: '420px',
-                    background: isA ? '#111' : '#ffffff',
-                    border: `1px solid ${isA ? 'rgba(200,212,0,0.5)' : 'rgba(0,0,0,0.09)'}`,
-                    transition: 'all 0.3s ease',
-                    transform: isA ? 'translateY(-6px)' : 'translateY(0)',
-                    boxShadow: isA ? '0 0 0 1px rgba(200,212,0,0.3), 0 24px 48px rgba(0,0,0,0.18)' : '0 2px 8px rgba(0,0,0,0.04)',
-                  }}
-                  onMouseEnter={() => setSolActive(idx)}
-                  onMouseLeave={() => setSolActive(null)}
-                >
-                  <div className="absolute top-0 left-0 right-0 z-20" style={{ height: isA ? '3px' : '2px', background: isA ? '#C8D400' : 'rgba(0,0,0,0.08)', boxShadow: isA ? '0 0 14px rgba(200,212,0,0.5)' : 'none', transition: 'all 0.3s ease' }} />
-                  <div className="absolute top-0 left-0 bottom-0 z-20 w-0.5" style={{ background: isA ? '#C8D400' : 'transparent', transition: 'background 0.3s ease' }} />
-                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-4 right-4 font-black leading-none select-none pointer-events-none z-0" style={{ fontSize: '7rem', color: isA ? 'rgba(200,212,0,0.07)' : 'rgba(0,0,0,0.04)', lineHeight: 1, transition: 'color 0.3s ease' }}>{s.number}</div>
-
-                  <div className="relative z-10 p-8 flex flex-col" style={{ minHeight: '420px' }}>
-                    <div className="flex items-center gap-2 mb-6">
-                      <div className="w-1.5 h-1.5" style={{ background: isA ? '#C8D400' : 'rgba(200,212,0,0.6)', transition: 'background 0.3s ease' }} />
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? '#C8D400' : 'rgba(139,110,0,0.7)', transition: 'color 0.3s ease' }}>{s.accent}</span>
-                    </div>
-                    <div className="w-[60px] h-[60px] flex items-center justify-center mb-7 flex-shrink-0" style={{ background: isA ? 'linear-gradient(145deg, #d4e100, #C8D400)' : 'rgba(0,0,0,0.07)', boxShadow: isA ? '0 12px 28px rgba(200,212,0,0.35), inset 0 1px 0 rgba(255,255,255,0.4)' : '0 2px 8px rgba(0,0,0,0.08)', transition: 'all 0.35s ease' }}>
-                      <i className={`${s.icon} text-xl`} style={{ color: isA ? '#111' : 'rgba(0,0,0,0.5)', transition: 'color 0.35s ease' }} />
-                    </div>
-                    <h3 className="text-lg font-black mb-3 leading-snug uppercase" style={{ color: isA ? '#fff' : '#111', transition: 'color 0.3s ease' }}>{s.title}</h3>
-                    <p className="text-sm leading-relaxed mb-5 flex-grow" style={{ color: isA ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.55)', transition: 'color 0.3s ease' }}>{s.desc}</p>
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {s.tags.map((tag, ti) => <Tag key={ti} variant={isA ? 'lime' : 'subtle'}>{tag}</Tag>)}
-                    </div>
-                    <div className="flex items-center justify-between pt-4" style={{ borderTop: `1px solid ${isA ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`, transition: 'border-color 0.3s ease' }}>
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)' }}>{s.number} / {String(SOLUTIONS.length).padStart(2, '0')}</span>
-                      <div className="w-7 h-7 flex items-center justify-center" style={{ background: isA ? '#C8D400' : 'rgba(0,0,0,0.07)', transform: isA ? 'translateX(3px)' : 'translateX(0)', transition: 'all 0.25s ease' }}>
-                        <i className="ri-arrow-right-line text-sm" style={{ color: isA ? '#111' : 'rgba(0,0,0,0.45)' }} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </ScrollSection>
+          <ScrollCardSection data={SOLUTIONS.map(s => ({ ...s, num: s.number, woodIcon: undefined, icon: s.icon }))} label={`${SOLUTIONS.length} Leistungsmerkmale — scrollen`} theme="light" variant="remix" cardWidth="clamp(300px, 28vw, 370px)" cardMinHeight="420px" showWoodIcon={false} />
         </div>
       </section>
-
-      <WoodenDivider />
 
       {/* ── Talent Profiles (horizontal scroll, dark bg — intentional alternation) ── */}
       <section id="talentprofile" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
@@ -306,10 +266,10 @@ export default function TalentpoolContent() {
                 <i className="ri-focus-3-line text-[#C8D400] text-sm" />
                 <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Talentprofile</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight uppercase">4 ROLLEN.<br />EIN ANSPRECHPARTNER.</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight uppercase">{tProfilesHeading}</h2>
             </div>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs lg:text-right">
-              Jeden Talent-Typ aus einer Hand — koordiniert, geschult und live getrackt.
+              {tProfilesSub}
             </p>
           </div>
 
@@ -341,7 +301,7 @@ export default function TalentpoolContent() {
                   <div className="absolute bottom-4 right-4 font-black leading-none select-none pointer-events-none z-0" style={{ fontSize: '6rem', color: isA ? 'rgba(200,212,0,0.07)' : 'rgba(255,255,255,0.04)', lineHeight: 1, transition: 'color 0.3s ease' }}>{p.number}</div>
 
                   <div className="relative overflow-hidden" style={{ height: '180px' }}>
-                    <img src={p.img} alt={p.type} className="w-full h-full object-cover object-top transition-transform duration-700" style={{ transform: isA ? 'scale(1.05)' : 'scale(1)' }} />
+                    <img src={getProfileImg(idx)} alt={p.type} className="w-full h-full object-cover object-top transition-transform duration-700" style={{ transform: isA ? 'scale(1.05)' : 'scale(1)' }} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-3 left-3">
                       <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1" style={{ background: '#C8D400', color: '#111' }}>{p.type}</span>

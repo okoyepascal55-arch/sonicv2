@@ -35,3 +35,6 @@ out
 
 # Zip files
 *.zip
+
+# Project-specific
+image_check_report.txt

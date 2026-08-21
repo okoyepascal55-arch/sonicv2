@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { useMediaStore } from '@/lib/mediaStore';
 
 interface Testimonial {
   brand: string;
@@ -18,7 +19,7 @@ const testimonials: Testimonial[] = [
     author: 'Dana Eichinger',
     role: 'Director Marketing DACH',
     company: 'Garmin Deutschland GmbH',
-    caseStudyLink: '/case-studies',
+    caseStudyLink: '/fallbeispiele',
   },
   {
     brand: 'GROUPE SEB',
@@ -27,25 +28,25 @@ const testimonials: Testimonial[] = [
     author: 'Ramin Dirinpur',
     role: 'Sales Promotion & Sales Training Manager',
     company: 'Groupe SEB Deutschland GmbH',
-    caseStudyLink: '/case-studies',
+    caseStudyLink: '/fallbeispiele',
   },
   {
     brand: 'PHILIPS TV & SOUND',
-    logo: 'https://cdn.brandfetch.io/philips.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+    logo: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887',
     quote: '„Durch die SRT können wir live in unsere Projekte reinschauen und jederzeit sehen, wie unsere Erwartungen erfüllt werden."',
     author: 'Murat Yatkin',
     role: 'Managing Director DACH',
     company: 'Philips TV & Sound @TP Vision',
-    caseStudyLink: '/case-studies',
+    caseStudyLink: '/fallbeispiele',
   },
   {
     brand: 'NESPRESSO',
-    logo: 'https://www.sonic-group.de/wp-content/uploads/2023/06/nespresso.png',
+    logo: 'https://cdn.brandfetch.io/idaYSyWs1H/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1668078167864',
     quote: '„Die SRT ermöglicht es Sonic, unsere Projekte effizient und zielgerichtet zu steuern und umzusetzen."',
     author: 'Veronika Vriens',
     role: 'B2C Commercial Excellence',
     company: 'Nespresso Deutschland GmbH',
-    caseStudyLink: '/case-studies',
+    caseStudyLink: '/fallbeispiele',
   },
   {
     brand: "L'ORÉAL",
@@ -54,7 +55,7 @@ const testimonials: Testimonial[] = [
     author: 'Sophie Müller',
     role: 'Field Sales Manager DACH',
     company: "L'Oréal Deutschland GmbH",
-    caseStudyLink: '/case-studies',
+    caseStudyLink: '/fallbeispiele',
   },
   {
     brand: 'WMF',
@@ -63,7 +64,7 @@ const testimonials: Testimonial[] = [
     author: 'Thomas Becker',
     role: 'Head of Trade Marketing',
     company: 'WMF Group GmbH',
-    caseStudyLink: '/case-studies',
+    caseStudyLink: '/fallbeispiele',
   },
 ];
 
@@ -136,7 +137,7 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Subtle lime tint */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#C8D400]/3 via-transparent to-[#C8D400]/5 pointer-events-none" style={{ borderRadius: 0 }} />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/[0.03] via-transparent to-primary-500/[0.05] pointer-events-none" style={{ borderRadius: 0 }} />
 
       {/* Wavy SVG border */}
       <svg
@@ -145,9 +146,9 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
       >
         <defs>
           <linearGradient id={`cp-wavy-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#C8D400" stopOpacity={isHovered ? 0.95 : 0.4} />
-            <stop offset="50%" stopColor="#a8b300" stopOpacity={isHovered ? 0.95 : 0.3} />
-            <stop offset="100%" stopColor="#C8D400" stopOpacity={isHovered ? 0.95 : 0.4} />
+            <stop offset="0%" style={{ stopColor: 'oklch(var(--primary-500))', stopOpacity: isHovered ? 0.95 : 0.4 }} />
+            <stop offset="50%" style={{ stopColor: 'oklch(var(--primary-600))', stopOpacity: isHovered ? 0.95 : 0.3 }} />
+            <stop offset="100%" style={{ stopColor: 'oklch(var(--primary-500))', stopOpacity: isHovered ? 0.95 : 0.4 }} />
           </linearGradient>
         </defs>
         <path
@@ -159,7 +160,7 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
           strokeLinejoin="round"
           className="transition-all ease-out"
           style={{
-            filter: isHovered ? 'drop-shadow(0 0 6px rgba(200,212,0,0.5))' : 'none',
+            filter: isHovered ? 'drop-shadow(0 0 6px oklch(var(--primary-500) / 0.5))' : 'none',
             transitionDuration: '1.2s',
           }}
         />
@@ -167,29 +168,29 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
 
       <div className="relative z-10 flex flex-col h-full">
         {/* TOP: Logo + Brand Name */}
-        <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
-          <div className="w-11 h-11 bg-white shadow-md flex items-center justify-center p-1.5 ring-2 ring-gray-100 flex-shrink-0" style={{ borderRadius: 0 }}>
+        <div className="flex items-center gap-3 mb-4 pb-4 border-b border-background-200/70">
+          <div className="w-11 h-11 bg-white shadow-md flex items-center justify-center p-1.5 ring-2 ring-background-200/70 flex-shrink-0" style={{ borderRadius: 0 }}>
             <img src={item.logo} alt={item.brand} className="w-full h-full object-contain" />
           </div>
-          <h3 className="text-sm font-black text-sonic-dark tracking-wide leading-tight">{item.brand}</h3>
+          <h3 className="text-sm font-black text-foreground-950 tracking-wide leading-tight">{item.brand}</h3>
         </div>
 
         {/* MIDDLE: Quote */}
         <div className="flex-1 mb-4">
-          <i className="ri-double-quotes-l text-2xl text-[#C8D400]/40 block mb-1"></i>
-          <p className="text-gray-700 leading-relaxed text-xs italic">{item.quote}</p>
+          <i className="ri-double-quotes-l text-2xl text-primary-500/40 block mb-1"></i>
+          <p className="text-foreground-700 leading-relaxed text-sm md:text-xs italic">{item.quote}</p>
         </div>
 
         {/* BOTTOM: Author + Button */}
         <div className="mt-auto">
           <div className="mb-4">
-            <div className="font-black text-sonic-dark text-xs">{item.author}</div>
-            <div className="text-xs text-gray-500 mt-0.5">{item.role}</div>
-            <div className="text-xs text-sonic-lime font-semibold mt-0.5">{item.company}</div>
+            <div className="font-black text-foreground-950 text-sm md:text-xs">{item.author}</div>
+            <div className="text-sm md:text-xs text-foreground-500 mt-0.5">{item.role}</div>
+            <div className="text-sm md:text-xs text-primary-500 font-semibold mt-0.5">{item.company}</div>
           </div>
           <a
             href={item.caseStudyLink}
-            className="inline-block border-2 border-sonic-dark text-sonic-dark text-xs font-black tracking-widest px-4 py-2 hover:bg-sonic-lime hover:border-sonic-lime hover:text-white transition-all duration-300 whitespace-nowrap"
+            className="inline-flex items-center justify-center min-h-[44px] border-2 border-foreground-950 text-foreground-950 text-sm md:text-xs font-black tracking-widest px-4 py-2 hover:bg-primary-500 hover:border-primary-500 hover:text-background-50 transition-all duration-300 whitespace-nowrap"
             style={{ borderRadius: 0 }}
           >
             FALLSTUDIE LESEN
@@ -204,18 +205,23 @@ export default function ClientProof() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const autoScrollPaused = useRef(false);
   const autoScrollRaf = useRef<number>(0);
+  const { images: logoImages } = useMediaStore('common_clientproof_logos');
 
-  // Smooth auto-drift animation
+  // Positional override: dashboard logo at index i replaces testimonial i's logo.
+  // Falls back to the hardcoded CDN URL if no dashboard image at that position.
+  const getLogo = (index: number, brandFallback: string) => {
+    return logoImages[index]?.url || brandFallback;
+  };
+
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
-    const SCROLL_SPEED = 0.4; // px per frame — very gentle
+    const SCROLL_SPEED = 0.4;
 
     const drift = () => {
       if (!autoScrollPaused.current && el) {
         el.scrollLeft += SCROLL_SPEED;
-        // Loop back to start when reaching the end
         if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 2) {
           el.scrollLeft = 0;
         }
@@ -223,19 +229,44 @@ export default function ClientProof() {
       autoScrollRaf.current = requestAnimationFrame(drift);
     };
 
-    autoScrollRaf.current = requestAnimationFrame(drift);
-    return () => cancelAnimationFrame(autoScrollRaf.current);
+    const start = () => {
+      if (!autoScrollRaf.current) {
+        autoScrollRaf.current = requestAnimationFrame(drift);
+      }
+    };
+    const stop = () => {
+      if (autoScrollRaf.current) {
+        cancelAnimationFrame(autoScrollRaf.current);
+        autoScrollRaf.current = 0;
+      }
+    };
+
+    // Only drift while the carousel is actually on screen — idle it out otherwise
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) start();
+        else stop();
+      },
+      { threshold: 0 }
+    );
+    observer.observe(el);
+
+    start();
+    return () => {
+      stop();
+      observer.disconnect();
+    };
   }, []);
 
   return (
     <section className="py-16 px-6 bg-white relative overflow-hidden">
-      {/* Subtle warm ambient glow — much lighter */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#C8D400]/3 rounded-full blur-3xl pointer-events-none" />
+      {/* Subtle warm ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-primary-500/[0.03] rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header — clean, no pill badge */}
+        {/* Header */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl lg:text-4xl font-black text-sonic-dark mb-6">
+          <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 mb-6">
             INDUSTRY LEADERS<br />TRUST SONIC
           </h2>
         </div>
@@ -248,9 +279,8 @@ export default function ClientProof() {
           onMouseEnter={() => { autoScrollPaused.current = true; }}
           onMouseLeave={() => { autoScrollPaused.current = false; }}
         >
-          {/* Duplicate testimonials for seamless looping */}
           {[...testimonials, ...testimonials].map((item, i) => (
-            <TestimonialCard key={`${i}-${item.brand}`} item={item} index={i % testimonials.length} />
+            <TestimonialCard key={`${i}-${item.brand}`} item={{ ...item, logo: getLogo(i % testimonials.length, item.logo) }} index={i % testimonials.length} />
           ))}
         </div>
 
@@ -264,9 +294,11 @@ export default function ClientProof() {
                 const cardW = scrollRef.current.scrollWidth / (testimonials.length * 2);
                 scrollRef.current.scrollTo({ left: i * cardW * 3, behavior: 'smooth' });
               }}
-              className="h-1 w-5 bg-gray-300 hover:bg-[#C8D400] transition-colors duration-300 cursor-pointer"
-              style={{ borderRadius: 0 }}
-            />
+              className="group flex items-center justify-center w-11 h-11 md:w-5 md:h-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+              aria-label={`Zu Testimonials ${i + 1}`}
+            >
+              <span className="block h-1.5 w-6 md:h-1 md:w-5 bg-foreground-500/60 group-hover:bg-primary-500 transition-colors duration-300" style={{ borderRadius: 0 }} />
+            </button>
           ))}
         </div>
       </div>

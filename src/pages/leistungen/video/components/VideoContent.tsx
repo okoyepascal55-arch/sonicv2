@@ -1,11 +1,14 @@
 import { useState, useRef } from 'react';
-import WoodenDivider from '../../../../components/base/WoodenDivider';
-import LVPProcessFlow from '../../../lvp/components/LVPProcessFlow';
+
 import VideoStudioPhone from './VideoStudioPhone';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { CONTACT_EMAIL } from '@/lib/contact';
+import ScrollCardSection from '@/components/feature/ScrollCardSection';
+import WoodenDivider from '@/components/base/WoodenDivider';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useText } from '@/hooks/useText';
 
 const VIDEO_CHALLENGES: ChallengeItem[] = [
   {
@@ -99,15 +102,26 @@ const PHYGITAL_COMPARE = [
   { label: 'Promoter nutzbar für Videos', video: false, field: true },
 ];
 
+const FALLBACK_FORMATS = [
+  'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/9aba7e4f-1f00-4f96-b6fc-90fc615b11b3_1-Kopie.jpg',
+  'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/a1484e91-882b-498d-b849-e6655b3952c0_2-Kopie.jpg',
+  'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/ec769083-996f-4f19-a1aa-f82558ce1c27_3-Kopie.jpg',
+  'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/21a65c0f-e370-4202-875f-8b9858903d15_4-Kopie.jpg',
+  'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/6d9e8360-acc8-4646-9d6a-ae6ab41d65e1_5-Kopie.jpg',
+  'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/25ab2718-26bf-4db4-b304-22c7d310a3e6_6-Kopie.jpg',
+];
+
 export default function VideoContent() {
-  const [solActive, setSolActive] = useState<number | null>(null);
-  const [advActive, setAdvActive] = useState<number | null>(null);
-  const solRef = useRef<HTMLDivElement>(null);
-  const advRef = useRef<HTMLDivElement>(null);
-  const scrollSol = (dir: 'left' | 'right') => { solRef.current?.scrollBy({ left: dir === 'left' ? -360 : 360, behavior: 'smooth' }); };
-  const goToSol = (i: number) => { setSolActive(i); solRef.current?.scrollTo({ left: i * 376, behavior: 'smooth' }); };
-  const scrollAdv = (dir: 'left' | 'right') => { advRef.current?.scrollBy({ left: dir === 'left' ? -360 : 360, behavior: 'smooth' }); };
-  const goToAdv = (i: number) => { setAdvActive(i); advRef.current?.scrollTo({ left: i * 376, behavior: 'smooth' }); };
+  const tChallengeHeading = useText('leistungen_video_content', 'video-challenge-heading', 'Bewegtbild ist die Königsklasse.');
+  const tChallengeSub = useText('leistungen_video_content', 'video-challenge-sub', 'Wenn (Live) Video Shopping einfach wäre, würde es jede Marke machen. Ist es aber nicht.');
+  const tSolutionHeading = useText('leistungen_video_content', 'video-solution-heading', 'Sonic (Live) Video im Full Service.');
+  const tSolutionSub = useText('leistungen_video_content', 'video-solution-sub', 'Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit.');
+  const tAdvantagesHeading = useText('leistungen_video_content', 'video-advantages-heading', 'Darum (Live) Video Promotion');
+  const tPhygitalHeading = useText('leistungen_video_content', 'video-phygital-heading', 'Phygital optimal nutzen');
+  const tFormatsHeading = useText('leistungen_video_content', 'video-formats-heading', '6 Formate. Ein Partner.');
+  const { images: formatImages } = useMediaStore('leistungen_video_format_photos');
+  const { images: solutionWoodIcons } = useMediaStore('leistungen_video_solution_wood_icons');
+  const { images: advantagesWoodIcons } = useMediaStore('leistungen_video_advantages_wood_icons');
   const [daysPerWeek, setDaysPerWeek] = useState(3);
   const [hoursPerDay, setHoursPerDay] = useState(8);
   const [teamSize, setTeamSize] = useState(2);
@@ -117,7 +131,15 @@ export default function VideoContent() {
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [formatHovered, setFormatHovered] = useState(false);
 
-  const lightboxItems: LightboxItem[] = FORMATS.map((f) => ({
+  const getFormatImg = (index: number) => {
+    const item = formatImages[index];
+    return item?.url ? resolveImageUrl(item.url) : FALLBACK_FORMATS[index];
+  };
+
+  // Resolve FORMATS images
+  const resolvedFormats = FORMATS.map((f, i) => ({ ...f, img: getFormatImg(i) }));
+
+  const lightboxItems: LightboxItem[] = resolvedFormats.map((f) => ({
     image: f.img,
     title: f.title,
     category: f.tag,
@@ -142,8 +164,8 @@ export default function VideoContent() {
   return (
     <>
       <ChallengeSection
-        headline="Bewegtbild ist die Königsklasse."
-        subline="Wenn (Live) Video Shopping einfach wäre, würde es jede Marke machen. Ist es aber nicht."
+        headline={tChallengeHeading}
+        subline={tChallengeSub}
         challenges={VIDEO_CHALLENGES}
       />
 
@@ -158,67 +180,16 @@ export default function VideoContent() {
               <i className="ri-check-double-line text-[#111] text-sm"></i>
               <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Lösung</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#111] mb-3 leading-tight uppercase">Sonic (Live) Video<br /><span className="text-[#C8D400]" style={{ WebkitTextStroke: '1px #9ea800' }}>im Full Service.</span></h2>
-            <p className="text-[#111]/55 text-base max-w-2xl mx-auto">Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit. Plus: Aufgezeichneter Videocontent, der dauerhaft verkauft.</p>
+            <h2 className="text-4xl lg:text-5xl font-black text-[#111] mb-3 leading-tight uppercase">{tSolutionHeading}</h2>
+            <p className="text-[#111]/55 text-base max-w-2xl mx-auto">{tSolutionSub}</p>
           </div>
-          <div className="flex items-center mb-6 gap-3">
-            <span className="text-[11px] font-black uppercase tracking-widest text-[#111]/30 flex-grow">{SOLUTIONS.length} Kanäle — scrollen</span>
-            <button onClick={() => scrollSol('left')} className="w-10 h-10 flex items-center justify-center border border-[#111]/20 text-[#111]/40 hover:border-[#111] hover:text-[#111] transition-all duration-200 cursor-pointer" aria-label="links"><i className="ri-arrow-left-s-line text-xl" /></button>
-            <button onClick={() => scrollSol('right')} className="w-10 h-10 flex items-center justify-center border border-[#111]/20 text-[#111]/40 hover:border-[#111] hover:text-[#111] transition-all duration-200 cursor-pointer" aria-label="rechts"><i className="ri-arrow-right-s-line text-xl" /></button>
-          </div>
-          <div ref={solRef} className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            {SOLUTIONS.map((s, idx) => {
-              const isA = solActive === idx;
-              return (
-                <div key={idx} className="flex-shrink-0 snap-start relative overflow-hidden cursor-default"
-                  style={{ width: 'clamp(280px, 32vw, 380px)', minHeight: '340px', background: isA ? '#111' : '#ffffff', border: `1px solid ${isA ? 'rgba(200,212,0,0.5)' : 'rgba(0,0,0,0.09)'}`, transition: 'all 0.3s ease', transform: isA ? 'translateY(-6px)' : 'translateY(0)', boxShadow: isA ? '0 0 0 1px rgba(200,212,0,0.3), 0 24px 48px rgba(0,0,0,0.18)' : '0 2px 8px rgba(0,0,0,0.04)' }}
-                  onMouseEnter={() => setSolActive(idx)} onMouseLeave={() => setSolActive(null)}
-                >
-                  <div className="absolute top-0 left-0 right-0 z-20" style={{ height: isA ? '3px' : '2px', background: isA ? '#C8D400' : 'rgba(0,0,0,0.08)', boxShadow: isA ? '0 0 14px rgba(200,212,0,0.5)' : 'none', transition: 'all 0.3s ease' }} />
-                  <div className="absolute top-0 left-0 bottom-0 z-20 w-0.5" style={{ background: isA ? '#C8D400' : 'transparent', transition: 'background 0.3s ease' }} />
-                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-4 right-4 font-black leading-none select-none pointer-events-none z-0" style={{ fontSize: '6rem', color: isA ? 'rgba(200,212,0,0.07)' : 'rgba(0,0,0,0.04)', lineHeight: 1, transition: 'color 0.3s ease' }}>{s.num}</div>
-                  <div className="relative z-10 p-7 flex flex-col" style={{ minHeight: '340px' }}>
-                    <div className="flex items-center gap-2 mb-5">
-                      <div className="w-1.5 h-1.5" style={{ background: isA ? '#C8D400' : 'rgba(200,212,0,0.6)', transition: 'background 0.3s ease' }} />
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? '#C8D400' : 'rgba(139,110,0,0.7)', transition: 'color 0.3s ease' }}>{s.accent}</span>
-                    </div>
-                    <div className="w-[56px] h-[56px] overflow-hidden mb-6 flex-shrink-0" style={{ boxShadow: isA ? '0 10px 24px rgba(139,90,43,0.35)' : '0 4px 14px rgba(139,90,43,0.18)', transition: 'all 0.35s ease', transform: isA ? 'scale(1.08)' : 'scale(1)' }}>
-                      <img src={s.woodIcon} alt={s.title} className="w-full h-full object-cover" />
-                    </div>
-                    <h3 className="text-base font-black mb-3 leading-snug uppercase" style={{ color: isA ? '#fff' : '#111', transition: 'color 0.3s ease' }}>{s.title}</h3>
-                    <p className="text-sm leading-relaxed flex-grow" style={{ color: isA ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.55)', transition: 'color 0.3s ease' }}>{s.desc}</p>
-                    <div className="flex items-center justify-between pt-4 mt-4" style={{ borderTop: `1px solid ${isA ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`, transition: 'border-color 0.3s ease' }}>
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)' }}>{s.num} / {String(SOLUTIONS.length).padStart(2, '0')}</span>
-                      <div className="w-7 h-7 flex items-center justify-center" style={{ background: isA ? '#C8D400' : 'rgba(0,0,0,0.07)', transform: isA ? 'translateX(3px)' : 'translateX(0)', transition: 'all 0.25s ease' }}><i className="ri-arrow-right-line text-sm" style={{ color: isA ? '#111' : 'rgba(0,0,0,0.45)' }} /></div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="flex items-center justify-center gap-1.5 mt-6 mb-2">
-            {SOLUTIONS.map((_, i) => (<button key={i} onClick={() => goToSol(i)} className="cursor-pointer" style={{ width: i === (solActive ?? 0) ? '22px' : '6px', height: '3px', background: i === (solActive ?? 0) ? '#C8D400' : 'rgba(0,0,0,0.2)', border: 'none', padding: 0, transition: 'all 0.3s ease' }} aria-label={`${i + 1}`} />))}
-          </div>
+          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: solutionWoodIcons[i]?.url ? resolveImageUrl(solutionWoodIcons[i].url) : s.woodIcon || '' }))} label={`${SOLUTIONS.length} Kanäle — scrollen`} theme="light" variant="wood" cardWidth="clamp(280px, 32vw, 380px)" cardMinHeight="340px" />
         </div>
       </section>
-
-      <WoodenDivider />
 
       {/* Live Studio Experience — Phone Mockup */}
       <VideoStudioPhone />
 
-      <WoodenDivider />
-
-      {/* Process Flow — 5th section */}
-      <section id="process-flow">
-        <LVPProcessFlow />
-      </section>
-
-      <WoodenDivider />
 
       {/* Advantages */}
       <section id="vorteile" className="bg-[#111] py-24 px-6">
@@ -228,51 +199,12 @@ export default function VideoContent() {
               <i className="ri-thumb-up-line text-[#C8D400] text-sm"></i>
               <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Vorteile</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">Darum (Live) Video Promotion</h2>
+            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">{tAdvantagesHeading}</h2>
             <p className="text-white/45 text-sm mt-3">Chancen auf mehr Verkäufe und weniger Retouren.</p>
           </div>
-          <div className="flex items-center mb-6 gap-3">
-            <span className="text-[11px] font-black uppercase tracking-widest text-white/20 flex-grow">{ADVANTAGES.length} Vorteile — scrollen</span>
-            <button onClick={() => scrollAdv('left')} className="w-10 h-10 flex items-center justify-center border border-white/15 text-white/40 hover:border-[#C8D400]/60 hover:text-[#C8D400] transition-all duration-200 cursor-pointer" aria-label="links"><i className="ri-arrow-left-s-line text-xl" /></button>
-            <button onClick={() => scrollAdv('right')} className="w-10 h-10 flex items-center justify-center border border-white/15 text-white/40 hover:border-[#C8D400]/60 hover:text-[#C8D400] transition-all duration-200 cursor-pointer" aria-label="rechts"><i className="ri-arrow-right-s-line text-xl" /></button>
-          </div>
-          <div ref={advRef} className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            {ADVANTAGES.map((a, idx) => {
-              const isA = advActive === idx;
-              return (
-                <div key={idx} className="flex-shrink-0 snap-start relative overflow-hidden cursor-default"
-                  style={{ width: 'clamp(260px, 24vw, 320px)', minHeight: '300px', background: isA ? '#ffffff' : 'rgba(255,255,255,0.05)', border: `1px solid ${isA ? 'rgba(200,212,0,0.5)' : 'rgba(255,255,255,0.08)'}`, transition: 'all 0.3s ease', transform: isA ? 'translateY(-6px)' : 'translateY(0)', boxShadow: isA ? '0 0 0 1px rgba(200,212,0,0.35), 0 24px 48px rgba(0,0,0,0.4)' : '0 2px 8px rgba(0,0,0,0.2)' }}
-                  onMouseEnter={() => setAdvActive(idx)} onMouseLeave={() => setAdvActive(null)}
-                >
-                  <div className="absolute top-0 left-0 right-0 z-20" style={{ height: isA ? '3px' : '2px', background: isA ? '#C8D400' : 'rgba(200,212,0,0.2)', boxShadow: isA ? '0 0 14px rgba(200,212,0,0.5)' : 'none', transition: 'all 0.3s ease' }} />
-                  <div className="absolute top-0 left-0 bottom-0 z-20 w-0.5" style={{ background: isA ? '#C8D400' : 'transparent', transition: 'background 0.3s ease' }} />
-                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-4 right-4 font-black leading-none select-none pointer-events-none z-0" style={{ fontSize: '5rem', color: isA ? 'rgba(200,212,0,0.07)' : 'rgba(255,255,255,0.04)', lineHeight: 1, transition: 'color 0.3s ease' }}>{a.num}</div>
-                  <div className="relative z-10 p-6 flex flex-col" style={{ minHeight: '300px' }}>
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className="w-1.5 h-1.5" style={{ background: isA ? '#C8D400' : 'rgba(200,212,0,0.4)', transition: 'background 0.3s ease' }} />
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? '#C8D400' : 'rgba(200,212,0,0.5)', transition: 'color 0.3s ease' }}>{a.accent}</span>
-                    </div>
-                    <div className="w-[52px] h-[52px] overflow-hidden mb-5 flex-shrink-0" style={{ boxShadow: isA ? '0 10px 24px rgba(139,90,43,0.35)' : '0 4px 14px rgba(139,90,43,0.22)', transition: 'all 0.35s ease', transform: isA ? 'scale(1.08)' : 'scale(1)' }}>
-                      <img src={a.woodIcon} alt={a.title} className="w-full h-full object-cover" />
-                    </div>
-                    <h3 className="text-sm font-black mb-2 leading-snug uppercase" style={{ color: isA ? '#111' : '#fff', transition: 'color 0.3s ease' }}>{a.title}</h3>
-                    <p className="text-xs leading-relaxed flex-grow" style={{ color: isA ? '#555' : 'rgba(255,255,255,0.5)', transition: 'color 0.3s ease' }}>{a.desc}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="flex items-center justify-center gap-1.5 mt-6">
-            {ADVANTAGES.map((_, i) => (<button key={i} onClick={() => goToAdv(i)} className="cursor-pointer" style={{ width: i === (advActive ?? 0) ? '22px' : '6px', height: '3px', background: i === (advActive ?? 0) ? '#C8D400' : 'rgba(255,255,255,0.2)', border: 'none', padding: 0, transition: 'all 0.3s ease' }} aria-label={`${i + 1}`} />))}
-          </div>
+          <ScrollCardSection data={ADVANTAGES.map((a, i) => ({ ...a, woodIcon: advantagesWoodIcons[i]?.url ? resolveImageUrl(advantagesWoodIcons[i].url) : a.woodIcon || '' }))} label={`${ADVANTAGES.length} Vorteile — scrollen`} theme="dark" variant="wood" cardWidth="clamp(260px, 24vw, 320px)" cardMinHeight="300px" />
         </div>
       </section>
-
-      <WoodenDivider />
 
       {/* Cost Calculator */}
       <section id="kostenrechner" className="bg-white py-24 px-6">
@@ -329,15 +261,13 @@ export default function VideoContent() {
             </div>
 
             <div className="mt-8 text-center">
-              <a href="mailto:${CONTACT_EMAIL}`?subject=Video-Konzept%20anfragen" className="inline-flex items-center gap-2 bg-[#111] text-white px-8 py-4 font-black hover:bg-[#C8D400] hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm">
+              <a href={`mailto:${CONTACT_EMAIL}?subject=Video-Konzept%20anfragen`} className="inline-flex items-center gap-2 bg-[#111] text-white px-8 py-4 font-black hover:bg-[#C8D400] hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm">
                 <i className="ri-send-plane-line"></i>Video-Konzept anfragen
               </a>
             </div>
           </div>
         </div>
       </section>
-
-      <WoodenDivider />
 
       {/* Phygital */}
       <section id="phygital" className="bg-[#111] py-24 px-6">
@@ -347,36 +277,36 @@ export default function VideoContent() {
               <i className="ri-links-line text-[#C8D400] text-sm"></i>
               <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Ideale Kombination</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">Phygital optimal nutzen</h2>
+            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">{tPhygitalHeading}</h2>
             <p className="text-white/45 text-sm mt-3 max-w-xl mx-auto">Video und Field Force ergänzen sich wunderbar. Clever eingesetzt wird der ROI beider Maßnahmen im Omnichannel erhöht.</p>
           </div>
 
           <div className="border border-[#C8D400]/15 overflow-hidden">
             <div className="grid grid-cols-3 bg-white/5 border-b border-[#C8D400]/15">
-              <div className="p-4 text-white/40 text-xs font-black uppercase tracking-wider"></div>
-              <div className="p-4 text-center border-l border-[#C8D400]/15">
-                <div className="flex items-center justify-center gap-2">
+              <div className="p-2 sm:p-4 text-white/40 text-xs font-black uppercase tracking-wider"></div>
+              <div className="p-2 sm:p-4 text-center border-l border-[#C8D400]/15">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2">
                   <i className="ri-video-line text-[#C8D400] text-sm"></i>
-                  <span className="text-[#C8D400] text-xs font-black uppercase tracking-wider">Video</span>
+                  <span className="text-[#C8D400] text-[9px] sm:text-xs font-black uppercase tracking-wider">Video</span>
                 </div>
               </div>
-              <div className="p-4 text-center border-l border-[#C8D400]/15">
-                <div className="flex items-center justify-center gap-2">
+              <div className="p-2 sm:p-4 text-center border-l border-[#C8D400]/15">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2">
                   <i className="ri-user-line text-white/60 text-sm"></i>
-                  <span className="text-white/60 text-xs font-black uppercase tracking-wider">Field Force</span>
+                  <span className="text-white/60 text-[9px] sm:text-xs font-black uppercase tracking-wider text-center">Field Force</span>
                 </div>
               </div>
             </div>
             {PHYGITAL_COMPARE.map((row, i) => (
               <div key={i} className={`grid grid-cols-3 border-b border-white/5 ${i % 2 === 0 ? '' : 'bg-white/2'}`}>
-                <div className="p-4 text-white/60 text-xs font-semibold">{row.label}</div>
-                <div className="p-4 flex items-center justify-center border-l border-white/5">
+                <div className="p-2 sm:p-4 text-white/60 text-[11px] sm:text-xs font-semibold">{row.label}</div>
+                <div className="p-2 sm:p-4 flex items-center justify-center border-l border-white/5">
                   {row.video
                     ? <div className="w-5 h-5 flex items-center justify-center bg-[#C8D400]"><i className="ri-check-line text-[#111] text-xs"></i></div>
                     : <div className="w-5 h-5 flex items-center justify-center bg-white/5"><i className="ri-close-line text-white/20 text-xs"></i></div>
                   }
                 </div>
-                <div className="p-4 flex items-center justify-center border-l border-white/5">
+                <div className="p-2 sm:p-4 flex items-center justify-center border-l border-white/5">
                   {row.field
                     ? <div className="w-5 h-5 flex items-center justify-center bg-[#C8D400]"><i className="ri-check-line text-[#111] text-xs"></i></div>
                     : <div className="w-5 h-5 flex items-center justify-center bg-white/5"><i className="ri-close-line text-white/20 text-xs"></i></div>
@@ -388,8 +318,6 @@ export default function VideoContent() {
         </div>
       </section>
 
-      <WoodenDivider />
-
       {/* Formats — dynamic with image backgrounds */}
       <section id="formate" className="bg-white py-24 px-6">
         <div className="max-w-7xl mx-auto">
@@ -398,7 +326,7 @@ export default function VideoContent() {
               <i className="ri-film-line text-[#111] text-sm"></i>
               <span className="text-xs font-black text-[#111] uppercase tracking-widest">Video-Formate</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-[#111] leading-tight uppercase">6 Formate. Ein Partner.</h2>
+            <h2 className="text-3xl lg:text-4xl font-black text-[#111] leading-tight uppercase">{tFormatsHeading}</h2>
           </div>
 
           {/* Format selector */}
@@ -420,12 +348,11 @@ export default function VideoContent() {
           <div
             key={activeFormat}
             className="grid lg:grid-cols-12 border border-[#111]/15 border-t-0"
-            style={{ animation: 'fadeIn 0.4s ease-out' }}
+            style={{ animation: 'fadeSlideIn 0.4s ease-out' }}
           >
             {/* Image — click to open fullscreen lightbox */}
             <div
-              className="lg:col-span-7 relative overflow-hidden cursor-pointer group"
-              style={{ minHeight: '360px' }}
+              className="lg:col-span-7 relative overflow-hidden cursor-pointer group lg:h-[480px] h-[240px]"
               onClick={() => openFormatLightbox(activeFormat)}
               onMouseEnter={() => setFormatHovered(true)}
               onMouseLeave={() => setFormatHovered(false)}
@@ -435,10 +362,9 @@ export default function VideoContent() {
               onKeyDown={(e) => e.key === 'Enter' && openFormatLightbox(activeFormat)}
             >
               <img
-                src={FORMATS[activeFormat].img}
+                src={resolvedFormats[activeFormat].img}
                 alt={FORMATS[activeFormat].title}
                 className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                style={{ minHeight: '360px' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute top-4 left-4">
@@ -453,7 +379,7 @@ export default function VideoContent() {
             </div>
 
             {/* Info */}
-            <div className="lg:col-span-5 bg-white p-8 flex flex-col justify-center border-l border-[#111]/15">
+            <div className="lg:col-span-5 bg-white p-8 flex flex-col justify-center border-l border-[#111]/15 lg:h-[480px] overflow-y-auto">
               <div className="w-12 h-12 flex items-center justify-center bg-[#111] mb-5">
                 <i className={`${FORMATS[activeFormat].icon} text-xl text-[#C8D400]`}></i>
               </div>
@@ -496,12 +422,6 @@ export default function VideoContent() {
         onPrev={handleLbPrev}
       />
 
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </>
   );
 }

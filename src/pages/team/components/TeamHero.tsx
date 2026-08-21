@@ -1,26 +1,30 @@
 import SectionBadge from '@/components/base/SectionBadge';
+import { useMediaStore } from '@/lib/mediaStore';
 
 export default function TeamHero() {
+  const { images: teamHeroImages } = useMediaStore('team_hero_images');
+  const heroImage = teamHeroImages[0]?.url || 'https://readdy.ai/api/search-image?query=professional%20team%20collaboration%20in%20modern%20office%20workspace%20diverse%20group%20of%20sales%20consultants%20working%20together%20bright%20natural%20lighting%20contemporary%20interior%20design%20teamwork%20atmosphere%20business%20environment%20productive%20meeting%20space&width=1920&height=1080&seq=team-hero-dark-bg&orientation=landscape';
+
   return (
-    <section className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
       {/* Dark background image with overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://readdy.ai/api/search-image?query=professional%20team%20collaboration%20in%20modern%20office%20workspace%20diverse%20group%20of%20sales%20consultants%20working%20together%20bright%20natural%20lighting%20contemporary%20interior%20design%20teamwork%20atmosphere%20business%20environment%20productive%20meeting%20space&width=1920&height=1080&seq=team-hero-dark-bg&orientation=landscape"
+          src={heroImage}
           alt="Team background"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
       </div>
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 text-center">
         <SectionBadge text="Our Team" variant="light" className="mb-5" />
         
-        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white mb-5 md:mb-8 leading-tight">
-          NUR WELTKLASSE-PROFIS
+        <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white mb-5 md:mb-8 leading-tight break-words">
+          NUR WELTKLASSE-<wbr />PROFIS
           <br />
           FÜR{' '}
-          <span className="text-[#C8D400]">WELTKLASSE-MARKEN</span>
+          <span className="text-[#C8D400]">WELTKLASSE-<wbr />MARKEN</span>
         </h1>
         
         <p className="text-base md:text-xl text-white/90 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed">
@@ -30,8 +34,8 @@ export default function TeamHero() {
         
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
           <a 
-            href="/careers" 
-            className="w-full sm:w-auto px-6 py-3.5 bg-[#C8D400] text-[#111] font-black hover:bg-white hover:text-[#111] transition-all whitespace-nowrap cursor-pointer text-sm"
+            href="/karriere" 
+            className="w-full sm:w-auto px-6 py-3.5 bg-primary-500 text-[#111] font-black hover:bg-white hover:text-[#111] transition-all whitespace-nowrap cursor-pointer text-sm"
             style={{ borderRadius: 0 }}
           >
             Offene Stellen ansehen

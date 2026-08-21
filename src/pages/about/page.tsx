@@ -1,108 +1,184 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSEO } from '@/hooks/useSEO';
+import { useMediaStore } from '@/lib/mediaStore';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import OriginStory from './components/OriginStory';
 import Timeline from './components/Timeline';
 import ValuesVisual from './components/ValuesVisual';
 import LeadershipTeam from './components/LeadershipTeam';
-import WhySonic from './components/WhySonic';
 import ManagementVoices from './components/ManagementVoices';
 import { StackedSectionReveal } from '@/components/feature/SectionReveal';
+import { useText } from '@/hooks/useText';
 
 const ABOUT_NAV_ITEMS = [
   { id: 'uber-uns', label: 'Über uns', icon: 'ri-home-heart-line' },
-  { id: 'referenzen', label: 'Referenzen', icon: 'ri-medal-line' },
   { id: 'innovation', label: 'Timeline', icon: 'ri-history-line' },
   { id: 'team', label: 'Team', icon: 'ri-group-line' },
   { id: 'management-voices', label: 'Management', icon: 'ri-mic-line' },
   { id: 'kontakt', label: 'Kontakt', icon: 'ri-mail-send-line' },
 ];
 
+/* ── In-page anchor strip matching careers sub-nav ── */
+function AboutSubNav() {
+  const [active, setActive] = useState('uber-uns');
+
+  const handleClick = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActive(id);
+    }
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.3, rootMargin: '-80px 0px -60% 0px' }
+    );
+    ABOUT_NAV_ITEMS.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="bg-[#0B0B0C] sticky top-0 z-40">
+      <div className="max-w-[1200px] mx-auto px-8 flex gap-9 h-12 items-center overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+        {ABOUT_NAV_ITEMS.map((item) => (
+          <button
+            key={item.id}
+            onClick={() => handleClick(item.id)}
+            className={`relative text-[11px] font-black uppercase tracking-[0.07em] whitespace-nowrap cursor-pointer transition-colors duration-200 pb-1 ${
+              active === item.id ? 'text-[#DCE94D]' : 'text-[#9A9A93] hover:text-white'
+            }`}
+          >
+            {item.label}
+            {active === item.id && (
+              <span className="absolute left-0 right-0 -bottom-[2px] h-0.5 bg-[#DCE94D]" />
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function AboutPage() {
   useSEO({
     title: 'Über uns | Sonic Group — Sales- & Marketing-Agentur seit 2007',
-    description: 'Sonic Group: Unabhängige Marketing- und Sales-Agentur seit 2007. Über 500 Projekte, 1,35 Mio. Einsätze. Partner von Philips, Rowenta, Krups, Canon, Garmin & mehr.',
+    description: 'Sonic Group: Unabhängige Marketing- und Sales-Agentur seit 2007. Über 500 Projekte, 1,35 Mio. Einsätze. Partner von Philips, Rowenta, Krups, Canon, Garmin & mehr. Jetzt kennenlernen.',
     keywords: 'Sonic Group, Sales Promotion Agentur Deutschland, Marketing Agentur seit 2007, POS Agentur',
-    canonical: 'https://sonic-group.de/about',
+    canonical: 'https://sonic-group.de/ueber-uns',
     ogTitle: 'Über Sonic Group — Marken im Herzen, Erfolg im Fokus',
-    ogDescription: 'Unabhängige Marketing- und Sales-Agentur mit Schwerpunkten rund um Konzeption, Kreation und Koordination von Kundenprojekten seit 2007.',
+    ogDescription: 'Seit 2007 unabhängig: Sonic Group vereint Konzeption, Kreation und Koordination unter einem Dach. 500+ Projekte, 1,35 Mio. Einsätze für Top-Marken wie Philips, Garmin, Canon und mehr.',
+    ogType: 'website',
+    ogImage: 'https://readdy.ai/api/search-image?query=Professional%20team%20of%20diverse%20marketing%20and%20sales%20professionals%20standing%20together%20in%20a%20modern%20industrial%20studio%20space%20with%20warm%20lighting%2C%20collaborative%20atmosphere%2C%20brand%20logos%20subtly%20visible%20on%20screens%20in%20background%2C%20editorial%20corporate%20photography%2C%20authentic%20expressions%2C%20clean%20composition&width=1200&height=630&seq=about-og-2026&orientation=landscape',
   });
+
+  // ── Dashboard-managed media ──
+  const { images: headerImages } = useMediaStore('/images/Über uns/Über uns/1. Header');
+  const { images: focusImages } = useMediaStore('/images/Über uns/Über uns/2. Marken im Herzen. Erfolg im Fokus');
+  const { images: leadershipImages } = useMediaStore('/images/Über uns/Leadership Perspectives');
+
+  // ── Text Store hooks ──
+  const tHeroBadge = useText('about_hero', 'about-hero-badge', 'Über Sonic');
+  const tHeroH1 = useText('about_hero', 'about-hero-h1', 'MARKEN IM HERZEN.');
+  const tHeroH1Line2 = useText('about_hero', 'about-hero-h1-line2', 'ERFOLG IM FOKUS.');
+  const tHeroSub = useText('about_hero', 'about-hero-sub', 'Unabhängige Marketing- und Sales-Agentur — von Konzeption bis Koordination, am POS, im Studio, auf Messen und Events. Seit 2007 mit vollem Einsatz für deine Marke.');
 
   const heroRef = useRef<HTMLDivElement>(null);
 
   const scrollToContent = () => {
-    const contentSection = document.getElementById('uber-uns');
-    if (contentSection) {
-      contentSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    const el = document.getElementById('uber-uns');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="bg-white overflow-x-hidden">
+    <div className="bg-white">
       <main id="main-content">
-      {/* ── IN-PAGE NAV — self-manages visibility via heroRef ── */}
+      {/* ── IN-PAGE NAV — desktop float ── */}
       <LeistungenPageNav items={ABOUT_NAV_ITEMS} heroRef={heroRef} />
 
-      {/* Hero Section */}
+      {/* ── CAREERS-STYLE HERO ── */}
       <div ref={heroRef}>
-        <section className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0">
+        <section
+          className="relative min-h-[540px] md:min-h-[600px] flex flex-col justify-end overflow-hidden bg-[#0B0B0C]"
+          style={{ paddingTop: '80px' }}
+        >
+          {/* Full-bleed background image */}
+          {headerImages[0]?.url && (
             <img
-              src="https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png"
+              src={headerImages[0].url}
               alt="Sonic Group — Über uns"
-              className="w-full h-full object-cover object-top"
+              className="absolute inset-0 w-full h-full object-cover object-top"
+              fetchPriority="high"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/55 to-black/70" />
-          </div>
+          )}
+          {/* Dark overlay — lighter at top, heavier at bottom for text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
 
-          {/* Lime ambient glow */}
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#C8D400]/6 rounded-full blur-[120px] pointer-events-none z-10" />
+          {/* Subtle lime glow */}
+          <div
+            className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none"
+            style={{ background: 'radial-gradient(ellipse at center, rgba(220,233,77,0.06) 0%, transparent 65%)' }}
+          />
 
-          {/* Hero content */}
-          <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 text-center w-full">
-            <div className="inline-flex items-center gap-2 bg-sonic-lime/15 border border-sonic-lime/30 px-4 py-1.5 mb-6">
-              <div className="w-1.5 h-1.5 bg-sonic-lime animate-pulse" />
-              <span className="text-xs font-black text-sonic-lime uppercase tracking-widest">Über Sonic</span>
+          {/* Hero content — bottom-anchored like careers */}
+          <div className="relative z-10 max-w-[1200px] mx-auto px-8 pb-14 w-full">
+            {/* Eyebrow badge — careers-style solid lime square + black dot */}
+            <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-6">
+              <span className="w-1.5 h-1.5 bg-[#0B0B0C] flex-shrink-0" />
+              {tHeroBadge}
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tight mb-4">
-              MARKEN IM HERZEN.<br />ERFOLG IM FOKUS.
+            {/* Large headline — uppercase, one word in lime */}
+            <h1 className="text-[clamp(38px,5.5vw,68px)] font-black text-white leading-[1.05] tracking-tight uppercase mb-5">
+              {tHeroH1}<br />
+              <span className="text-[#DCE94D]">{tHeroH1Line2}</span>
             </h1>
 
-            <p className="text-white/65 text-base md:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-              Unabhängige Marketing- und Sales-Agentur — von Konzeption bis Koordination, am POS, im Studio, auf Messen und Events. Seit 2007 mit vollem Einsatz für deine Marke.
+            <p className="text-white/60 text-sm md:text-base max-w-[520px] leading-relaxed mb-10">
+              {tHeroSub}
             </p>
 
-            <button
-              onClick={scrollToContent}
-              className="group inline-flex flex-col items-center gap-3 cursor-pointer"
-            >
-              <span className="text-white/50 text-xs font-black tracking-widest uppercase">Unsere Geschichte</span>
-              <div className="w-10 h-10 border border-white/25 flex items-center justify-center group-hover:border-[#C8D400] transition-colors" style={{ borderRadius: 0 }}>
-                <i className="ri-arrow-down-line text-white/50 group-hover:text-[#C8D400] transition-colors animate-bounce" />
-              </div>
-            </button>
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce z-20">
-            <i className="ri-arrow-down-line text-3xl text-[#C8D400]" />
+            {/* Stats row matching careers hero */}
+            <div className="flex flex-wrap gap-8 border-t border-white/15 pt-6">
+              {[
+                { value: '500+', label: 'Projekte' },
+                { value: '1,35 Mio.', label: 'Einsätze' },
+                { value: '>2.000', label: 'Talente im Pool' },
+                { value: '2007', label: 'Gegründet' },
+              ].map((s) => (
+                <div key={s.label} className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 border border-white/20 flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.06)' }}>
+                    <i className="ri-arrow-right-up-line text-[#DCE94D] text-sm" />
+                  </div>
+                  <div>
+                    <div className="text-base font-black text-white leading-none">{s.value}</div>
+                    <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-0.5">{s.label}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
+
+        {/* ── CAREERS-STYLE DARK SUB-NAV ── */}
+        <AboutSubNav />
       </div>
 
       {/* ── SECTIONS ── */}
       <div id="uber-uns">
-        <StackedSectionReveal index={0} totalSections={5}>
-          <OriginStory />
-        </StackedSectionReveal>
-      </div>
-
-      <WoodenDivider />
-
-      <div id="referenzen">
-        <StackedSectionReveal index={1} totalSections={5}>
+        <StackedSectionReveal index={0} totalSections={4}>
+          <OriginStory focusImages={focusImages} />
           <ValuesVisual />
         </StackedSectionReveal>
       </div>
@@ -110,7 +186,7 @@ export default function AboutPage() {
       <WoodenDivider />
 
       <div id="innovation">
-        <StackedSectionReveal index={2} totalSections={5}>
+        <StackedSectionReveal index={1} totalSections={4}>
           <Timeline />
         </StackedSectionReveal>
       </div>
@@ -118,7 +194,7 @@ export default function AboutPage() {
       <WoodenDivider />
 
       <div id="team">
-        <StackedSectionReveal index={3} totalSections={6}>
+        <StackedSectionReveal index={2} totalSections={4}>
           <LeadershipTeam />
         </StackedSectionReveal>
       </div>
@@ -126,16 +202,8 @@ export default function AboutPage() {
       <WoodenDivider />
 
       <div id="management-voices">
-        <StackedSectionReveal index={4} totalSections={6}>
-          <ManagementVoices />
-        </StackedSectionReveal>
-      </div>
-
-      <WoodenDivider />
-
-      <div id="kontakt">
-        <StackedSectionReveal index={5} totalSections={6}>
-          <WhySonic />
+        <StackedSectionReveal index={3} totalSections={4}>
+          <ManagementVoices leadershipImages={leadershipImages} />
         </StackedSectionReveal>
       </div>
 

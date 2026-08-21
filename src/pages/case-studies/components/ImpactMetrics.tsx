@@ -44,7 +44,7 @@ export default function ImpactMetrics() {
   ];
 
   return (
-    <section className="py-24 px-6 bg-sonic-dark text-white relative overflow-hidden">
+    <section className="py-24 px-6 bg-foreground-950 text-white relative overflow-hidden">
       <div className="absolute top-0 left-0 w-96 h-96 bg-[#C8D400]/8 blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#C8D400]/8 blur-3xl pointer-events-none"></div>
 

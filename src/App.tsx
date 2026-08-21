@@ -20,7 +20,7 @@ function PageLoader() {
 
   return (
     <div
-      className="fixed top-0 left-0 h-[3px] bg-sonic-lime z-system transition-all duration-300 ease-out shadow-[0_0_8px_rgba(200,212,0,0.6)]"
+      className="fixed top-0 left-0 h-[3px] bg-primary-500 z-system transition-all duration-300 ease-out shadow-[0_0_8px_rgba(200,212,0,0.6)]"
       style={{ width: `${width}%` }}
     />
   );
@@ -51,11 +51,11 @@ function AnimatedRoutes() {
             if (!pendingLocation.current.hash && window.scrollY > 0) {
               window.scrollTo({ top: 0, behavior: 'instant' });
             }
-          }, 20);
+          }, 10);
         });
 
         setVisible(true);
-      }, 300); // Wait for fade out
+      }, 150); // Snappy page swap
       
       return () => clearTimeout(swap);
     }
@@ -64,7 +64,7 @@ function AnimatedRoutes() {
   return (
     <div
       key={displayLocation.pathname}
-      className="transition-opacity duration-300 ease-in-out"
+      className="transition-opacity duration-150 ease-in-out"
       style={{ opacity: visible ? 1 : 0 }}
     >
       <Suspense fallback={<PageLoader />}>
@@ -74,20 +74,31 @@ function AnimatedRoutes() {
   );
 }
 
-function App() {
+function AppLayout() {
+  const location = useLocation();
+  const isDashboard = location.pathname === '/dashboard';
+
   return (
-    <BrowserRouter basename={__BASE_PATH__}>
+    <>
       <SchemaOrg type="organization" />
       <CalendlyWidget />
       <SkipLink />
       <ScrollToHash />
-      <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-wood-light/5 to-white">
-        <Navigation />
-        <main id="main-content" className="flex-1 pt-20">
+      <div className={isDashboard ? 'min-h-[100dvh] flex flex-col bg-foreground-950' : 'min-h-[100dvh] flex flex-col bg-gradient-to-b from-background-50 via-wood-light/5 to-background-50'}>
+        {!isDashboard && <Navigation />}
+        <main id="main-content" className={isDashboard ? 'flex-1' : 'flex-1 pt-20'}>
           <AnimatedRoutes />
         </main>
-        <Footer />
+        {!isDashboard && <Footer />}
       </div>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter basename={__BASE_PATH__}>
+      <AppLayout />
     </BrowserRouter>
   );
 }

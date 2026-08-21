@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { CONTACT_EMAIL } from '@/lib/contact';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
-const TABS = [
+const TAB_INFO = [
   {
     id: 'events',
     label: 'Events',
@@ -10,12 +11,7 @@ const TABS = [
     headline: 'Deine Marke. Unsere Bühne.',
     sub: 'Von der exklusiven Produktpreview bis zum hybriden Kongress.',
     pills: ['Consumer & Corporate Events', 'Händler-Events', 'Kick-Off-Events', 'Kongresse & Tagungen', 'PR-Events', 'Produktlaunches', 'Promotions', 'Roadshows & Festivals'],
-    images: [
-      { img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg', title: 'Brand Activation', tag: 'Corporate' },
-      { img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg', title: 'Event-Dokumentation', tag: 'Dokumentation' },
-      { img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', title: 'Roadshow & Festival', tag: 'Roadshow' },
-      { img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg', title: 'Händler-Event', tag: 'VIP' },
-    ],
+    imageIndexes: [0, 1, 2, 3],
   },
   {
     id: 'messen',
@@ -24,12 +20,7 @@ const TABS = [
     headline: 'Messen verbinden Menschen mit Marken.',
     sub: 'Messe-Komplettpakete in allen Größen — von der Idee bis zum Abbau.',
     pills: ['Messebau & Ausstattung', 'Messedesign', 'Messe-Events', 'On- & Offline-Foren'],
-    images: [
-      { img: 'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO01.jpg', title: 'Messebau Premium', tag: 'Messebau' },
-      { img: 'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO02.jpg', title: 'Interaktive Demos', tag: 'Demo' },
-      { img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/LUCID01.jpg', title: 'Produktpräsentation', tag: 'CGI' },
-      { img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', title: 'Messe-Stand Konzept', tag: 'Stand' },
-    ],
+    imageIndexes: [4, 5, 6, 7],
   },
   {
     id: 'fahrzeuge',
@@ -38,21 +29,50 @@ const TABS = [
     headline: 'Deine erfolgreiche Roadshow.',
     sub: 'Von uns gebaute Eventfahrzeuge oder transportierbare Module. Inklusive Ideen, Personal und laufendem Betrieb.',
     pills: ['Eventtrucks', 'Eventcontainer', 'Eventmodule', 'Promotionfahrzeuge'],
-    images: [
-      { img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/LAGER_OPENER.jpg', title: 'Logistik & Aufbau', tag: 'Logistik' },
-      { img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', title: 'Eventcontainer', tag: 'Container' },
-      { img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg', title: 'Sonic Campus Aerial', tag: 'Campus' },
-      { img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/5.jpg', title: 'Promotionfahrzeug', tag: 'Promo' },
-    ],
+    imageIndexes: [8, 9, 10, 11],
   },
 ];
 
+const FALLBACK_IMAGES = [
+  { img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg', title: 'Brand Activation', tag: 'Corporate' },
+  { img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg', title: 'Event-Dokumentation', tag: 'Dokumentation' },
+  { img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', title: 'Roadshow & Festival', tag: 'Roadshow' },
+  { img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg', title: 'Händler-Event', tag: 'VIP' },
+  { img: 'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO01.jpg', title: 'Messebau Premium', tag: 'Messebau' },
+  { img: 'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO02.jpg', title: 'Interaktive Demos', tag: 'Demo' },
+  { img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/LUCID01.jpg', title: 'Produktpräsentation', tag: 'CGI' },
+  { img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', title: 'Messe-Stand Konzept', tag: 'Stand' },
+  { img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/LAGER_OPENER.jpg', title: 'Logistik & Aufbau', tag: 'Logistik' },
+  { img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', title: 'Eventcontainer', tag: 'Container' },
+  { img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg', title: 'Sonic Campus Aerial', tag: 'Campus' },
+  { img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/5.jpg', title: 'Promotionfahrzeug', tag: 'Promo' },
+];
+
+const FALLBACK_TAG = ['Corporate', 'Dokumentation', 'Roadshow', 'VIP', 'Messebau', 'Demo', 'CGI', 'Stand', 'Logistik', 'Container', 'Campus', 'Promo'];
+const FALLBACK_TITLE = ['Brand Activation', 'Event-Dokumentation', 'Roadshow & Festival', 'Händler-Event', 'Messebau Premium', 'Interaktive Demos', 'Produktpräsentation', 'Messe-Stand Konzept', 'Logistik & Aufbau', 'Eventcontainer', 'Sonic Campus Aerial', 'Promotionfahrzeug'];
+
+function resolveTabs(dashboardImages: { url: string; caption: string }[]) {
+  return TAB_INFO.map((tab) => ({
+    ...tab,
+    images: tab.imageIndexes.map((idx) => {
+      const dashItem = dashboardImages[idx];
+      return {
+        img: dashItem?.url ? resolveImageUrl(dashItem.url) : FALLBACK_IMAGES[idx].img,
+        title: dashItem?.caption || FALLBACK_TITLE[idx],
+        tag: FALLBACK_TAG[idx],
+      };
+    }),
+  }));
+}
+
 export default function EventsShowcase() {
+  const { images: showcaseImages } = useMediaStore('leistungen_events_showcase_images');
   const [activeTab, setActiveTab] = useState(0);
   const [activeImg, setActiveImg] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
+  const TABS = resolveTabs(showcaseImages);
   const tab = TABS[activeTab];
 
   const lightboxItems: LightboxItem[] = tab.images.map((item) => ({
@@ -97,7 +117,7 @@ export default function EventsShowcase() {
               className={`flex items-center gap-2 px-5 py-2.5 font-bold text-sm transition-all whitespace-nowrap cursor-pointer ${
                 activeTab === i
                   ? 'bg-white shadow-lg ring-2 ring-[#C8D400] text-[#C8D400]'
-                  : 'bg-white/60 hover:bg-white hover:shadow-md ring-1 ring-gray-200 hover:ring-[#C8D400]/50 text-gray-600'
+                  : 'bg-white/60 hover:bg-white hover:shadow-md ring-1 ring-foreground-200 hover:ring-[#C8D400]/50 text-foreground-600'
               }`}
               style={{ borderRadius: 0 }}
             >
@@ -111,12 +131,11 @@ export default function EventsShowcase() {
         <div
           key={activeTab}
           className="grid lg:grid-cols-12 border border-[#111]/10"
-          style={{ animation: 'fadeIn 0.4s ease-out' }}
+          style={{ animation: 'fadeSlideIn 0.4s ease-out' }}
         >
           {/* Large main image — clickable for lightbox */}
           <div
-            className="lg:col-span-8 relative overflow-hidden group cursor-pointer"
-            style={{ minHeight: '460px' }}
+            className="lg:col-span-8 relative overflow-hidden group cursor-pointer lg:h-[500px] h-[220px]"
             onClick={() => openLightbox(activeImg)}
             aria-label="Bild im Vollbild öffnen"
           >
@@ -125,7 +144,9 @@ export default function EventsShowcase() {
               src={tab.images[activeImg].img}
               alt={tab.images[activeImg].title}
               className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-              style={{ animation: 'imgFade 0.35s ease-out', minHeight: '460px' }}
+              loading="lazy"
+              decoding="async"
+              style={{ animation: 'fadeIn 0.35s ease-out' }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
             <div className="absolute top-4 left-4">
@@ -147,14 +168,14 @@ export default function EventsShowcase() {
                   onClick={() => setActiveImg(i)}
                   className={`w-14 h-10 overflow-hidden cursor-pointer transition-all duration-300 flex-shrink-0 ${activeImg === i ? 'ring-2 ring-[#C8D400]' : 'opacity-50 hover:opacity-80'}`}
                 >
-                  <img src={img.img} alt={img.title} className="w-full h-full object-cover object-top" />
+                  <img src={img.img} alt={img.title} className="w-full h-full object-cover object-top" loading="lazy" decoding="async" />
                 </button>
               ))}
             </div>
           </div>
 
           {/* Right info panel */}
-          <div className="lg:col-span-4 bg-white border-l border-[#111]/10 flex flex-col">
+          <div className="lg:col-span-4 bg-white border-l border-[#111]/10 flex flex-col lg:h-[500px] overflow-y-auto">
             {/* Headline block */}
             <div className="bg-[#111] p-6">
               <div className="flex items-center gap-2 mb-3">
@@ -190,7 +211,7 @@ export default function EventsShowcase() {
                     style={{ minHeight: '60px' }}
                     aria-label={`${img.title} im Vollbild öffnen`}
                   >
-                    <img src={img.img} alt={img.title} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" style={{ minHeight: '60px' }} />
+                    <img src={img.img} alt={img.title} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" style={{ minHeight: '60px' }} />
                     <div className="absolute inset-0 bg-black/25" />
                     {/* Zoom hint on hover */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -212,7 +233,7 @@ export default function EventsShowcase() {
             {/* CTA */}
             <div className="p-6 border-t border-[#111]/10">
               <a
-                href="mailto:${CONTACT_EMAIL}`?subject=Events%20Messen%20Beratung"
+                href={`mailto:${CONTACT_EMAIL}?subject=Events%20Messen%20Beratung`}
                 className="flex items-center justify-center gap-2 bg-[#111] text-white px-5 py-3.5 font-black text-xs uppercase tracking-widest hover:bg-[#C8D400] hover:text-white transition-all duration-300 whitespace-nowrap cursor-pointer w-full"
                 style={{ borderRadius: 0 }}
               >
@@ -234,10 +255,6 @@ export default function EventsShowcase() {
         onPrev={() => setLightboxIndex((prev) => (prev - 1 + lightboxItems.length) % lightboxItems.length)}
       />
 
-      <style>{`
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes imgFade { from { opacity: 0; } to { opacity: 1; } }
-      `}</style>
     </section>
   );
 }
