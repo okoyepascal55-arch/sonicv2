@@ -27,7 +27,7 @@ export default function VideoShowcase() {
             <SectionBadge text={tBadge} variant="dark" />
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="sonic-h2 text-foreground-950" style={{ fontSize: 'clamp(32px,5vw,60px)' }}>
+            <h2 className="sonic-h2 text-foreground-950">
               {tHeading}
             </h2>
             <p className="text-foreground-600 text-sm leading-relaxed lg:pb-1">

@@ -12,7 +12,7 @@ const PROBLEM_DATA = [
 
 export default function TheProblem() {
   const tBadge = useText('srt_problem', 'srt-problem-badge', 'Deine Herausforderung');
-  const tHeading = useText('srt_problem', 'srt-problem-heading', 'DATENQUELLEN ZUSAMMEN FÜHREN.');
+  const tHeading = useText('srt_problem', 'srt-problem-heading', 'Datenquellen zusammenführen');
   const tP1 = useText('srt_problem', 'srt-problem-p1', '');
   const tCta = useText('srt_problem', 'srt-problem-cta', 'Das SRT löst alle drei Probleme.');
   const tCtaSub = useText('srt_problem', 'srt-problem-cta-sub', 'Eine Plattform. Alle Daten. Echtzeit.');
@@ -62,7 +62,6 @@ export default function TheProblem() {
             <div>
               <h2
                 className="sonic-h2 text-foreground-950"
-                style={{ fontSize: 'clamp(28px,4vw,48px)' }}
               >
                 {tHeading}
               </h2>

@@ -327,7 +327,7 @@ export default function KreationContentPage() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-2xl sm:text-4xl md:text-7xl font-black text-foreground-950 mb-6 leading-tight tracking-tight">
+            <h1 className="sonic-h1 text-foreground-950 mb-6">
               {tHeroH1Line1}<br />
               <span className="text-primary-500">{tHeroH1Accent}</span>
             </h1>

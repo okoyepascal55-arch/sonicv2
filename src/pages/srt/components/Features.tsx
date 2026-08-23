@@ -73,8 +73,8 @@ export default function Features({ featureIcons }: FeaturesProps) {
             </span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="sonic-h2 text-foreground-950" style={{ fontSize: 'clamp(28px,4vw,44px)' }}>
-              SRT: DIE <span className="text-primary-500">ALL-IN-ONE</span> SOFTWARE.
+            <h2 className="sonic-h2 text-foreground-950">
+              SRT: Die <span className="text-primary-500">All-in-One</span> Software
             </h2>
             <p className="text-sm text-foreground-600 leading-relaxed lg:pb-1">
               Seit 2008 laufend weiterentwickelt, für maximalen Nutzwert. Seit 2024 mit KI-Features.
@@ -112,7 +112,7 @@ export default function Features({ featureIcons }: FeaturesProps) {
                       />
                     </div>
                     <div>
-                      <h3 className="text-sm font-black text-foreground-950 leading-snug tracking-tight">{feat.title}</h3>
+                      <h3 className="sonic-h3 text-foreground-950 leading-snug">{feat.title}</h3>
                       <span className="text-[9px] font-bold text-primary-500 uppercase tracking-widest">{feat.number} / 06</span>
                     </div>
                   </div>

@@ -158,7 +158,7 @@ function PhoneScreen({ screen }: { screen: string }) {
 
 export default function EmployeeApp() {
   const tBadge = useText('srt_employee_app', 'srt-app-badge', 'SRT aus Mitarbeitersicht');
-  const tHeading = useText('srt_employee_app', 'srt-app-heading', 'DIE EINSATZ-APP FÜR DIE FIELD FORCE.');
+  const tHeading = useText('srt_employee_app', 'srt-app-heading', 'Die Einsatz-App für die Field Force');
   const tSub = useText('srt_employee_app', 'srt-app-sub', '');
 
   const [activeStep, setActiveStep] = useState(0);
@@ -183,7 +183,7 @@ export default function EmployeeApp() {
             <SectionBadge text={tBadge} variant="dark" />
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="sonic-h2 text-foreground-950" style={{ fontSize: 'clamp(28px,4vw,42px)' }}>
+            <h2 className="sonic-h2 text-foreground-950">
               {tHeading}
             </h2>
             <p className="text-foreground-600 text-sm leading-relaxed lg:pb-1">

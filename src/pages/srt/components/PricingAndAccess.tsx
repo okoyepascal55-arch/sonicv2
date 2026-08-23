@@ -19,9 +19,9 @@ const interests = [
 
 export default function PricingAndAccess() {
   const tBadge = useText('srt_pricing', 'srt-pricing-badge', 'Preise & Zugang');
-  const tHeading = useText('srt_pricing', 'srt-pricing-heading', 'TRANSPARENTE PREISE. DIREKTER ZUGANG.');
+  const tHeading = useText('srt_pricing', 'srt-pricing-heading', 'Transparente Preise. Direkter Zugang.');
   const tSub = useText('srt_pricing', 'srt-pricing-sub', 'Drei Stufen, klarer Mehrwert, keine versteckten Kosten.');
-  const tAccessHeading = useText('srt_pricing', 'srt-pricing-access-heading', 'BEREIT FÜR VOLLE TRANSPARENZ?');
+  const tAccessHeading = useText('srt_pricing', 'srt-pricing-access-heading', 'Bereit für volle Transparenz?');
   const tBtn = useText('srt_pricing', 'srt-pricing-btn', 'Beratungsgespräch buchen');
 
   const [formData, setFormData] = useState({ name: '', email: '', company: '', interest: '', message: '' });
@@ -101,9 +101,9 @@ export default function PricingAndAccess() {
             <SectionBadge text={tBadge} variant="dark" />
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="sonic-h2 text-foreground-950" style={{ fontSize: 'clamp(28px,4vw,44px)' }}>
+            <h2 className="sonic-h2 text-foreground-950">
               {tHeading.split('. ')[0] || tHeading}.<br />
-              <span className="text-primary-500">{tHeading.includes('. ') ? tHeading.split('. ').slice(1).join('. ') : 'DIREKTER ZUGANG.'}</span>
+              <span className="text-primary-500">{tHeading.includes('. ') ? tHeading.split('. ').slice(1).join('. ') : 'Direkter Zugang.'}</span>
             </h2>
             <p className="text-sm text-foreground-600 leading-relaxed lg:pb-1">
               {tSub}
@@ -120,12 +120,18 @@ export default function PricingAndAccess() {
                   ? 'border-primary-500/60'
                   : 'border-background-200/60 hover:border-primary-500/30'
               }`}>
+              {/* Lime top bar for featured tier */}
+              {tier.highlight && (
+                <div className="h-[3px] bg-primary-500 w-full" aria-hidden="true" />
+              )}
               <div className="p-6">
+                {tier.highlight && (
+                  <p className="sonic-label text-primary-500 mb-3">Empfohlen</p>
+                )}
                 <div className="flex items-center gap-2 mb-3">
-                  <span className={`text-xs font-black uppercase tracking-widest px-2.5 py-1 ${tier.highlight ? 'bg-primary-500 text-foreground-950' : 'bg-primary-500/10 text-primary-500'}`}>
+                  <span className={`text-xs font-black uppercase tracking-widest px-2.5 py-1 ${tier.highlight ? 'bg-foreground-950 text-primary-500' : 'bg-foreground-100 text-foreground-600'}`}>
                     {tier.name}
                   </span>
-                  {tier.highlight && <span className="text-3xs font-black text-primary-500 uppercase tracking-wider">Empfohlen</span>}
                 </div>
                 <div className="text-xl font-black text-primary-500 mb-2">{tier.price}</div>
                 <p className="text-xs text-foreground-500 leading-relaxed mb-4">{tier.desc}</p>

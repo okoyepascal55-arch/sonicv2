@@ -83,7 +83,7 @@ export default function Proof() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
             <div>
               <div className="mb-3"><SectionBadge text={tBadge} variant="dark" /></div>
-              <h2 className="sonic-h2 text-foreground-950" style={{ fontSize: 'clamp(24px,3vw,40px)' }}>{tHeading.split('.')[0] || tHeading}.<br />{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.').trim() : 'für sich.'}</h2>
+              <h2 className="sonic-h2 text-foreground-950">{tHeading.split('.')[0] || tHeading}.<br />{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.').trim() : 'für sich.'}</h2>
             </div>
             <p className="text-foreground-500 text-xs max-w-xs text-right leading-relaxed hidden md:block">
               {tSub || 'Tatsächlich gemessene Ergebnisse aus über 15 Jahren Retail-Aktivierungen.'}

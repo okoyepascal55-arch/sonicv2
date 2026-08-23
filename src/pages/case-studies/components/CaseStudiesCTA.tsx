@@ -16,9 +16,9 @@ export default function CaseStudiesCTA() {
   const [hoveredContact, setHoveredContact] = useState<number | null>(null);
 
   const benefits = [
-    'Free consultation to understand your goals',
-    'Custom strategy tailored to your brand',
-    'Measurable results from day one',
+    'Kostenloses Erstgespräch — wir hören zu',
+    'Individuelle Strategie für deine Marke',
+    'Messbare Ergebnisse ab dem ersten Einsatztag',
   ];
 
   return (
@@ -71,9 +71,9 @@ export default function CaseStudiesCTA() {
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <div className="w-5 h-5 bg-primary-500 rounded-none flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <i className="ri-check-line text-white text-xs"></i>
+                      <i className="ri-check-line text-foreground-950 text-xs"></i>
                     </div>
-                    <p className="text-gray-700 text-sm leading-relaxed">{benefit}</p>
+                    <p className="text-foreground-700 text-sm leading-relaxed">{benefit}</p>
                   </div>
                 ))}
               </div>
@@ -102,8 +102,8 @@ export default function CaseStudiesCTA() {
         {/* Contact Cards */}
         <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto">
           {[
-            { icon: 'ri-mail-line', label: 'Email Us', value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
-            { icon: 'ri-phone-line', label: 'Call Us', value: '+49 2151 479 444 0', href: 'tel:+4921514794440' },
+            { icon: 'ri-mail-line', label: 'E-Mail', value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
+            { icon: 'ri-phone-line', label: 'Telefon', value: '+49 2151 479 444 0', href: 'tel:+4921514794440' },
           ].map((contact, index) => (
             <a
               key={index}

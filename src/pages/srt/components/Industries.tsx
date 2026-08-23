@@ -124,7 +124,7 @@ export default function Industries() {
               <SectionBadge text={tBadge} variant="dark" />
             </div>
             <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end mb-5">
-              <h2 className="sonic-h2 text-foreground-950" style={{ fontSize: 'clamp(26px,3.5vw,40px)' }}>
+              <h2 className="sonic-h2 text-foreground-950">
                 VON RETAIL EXECUTION BIS <span className="text-primary-500">HEALTHCARE.</span>
               </h2>
               <p className="text-sm text-foreground-600 leading-relaxed lg:pb-1">

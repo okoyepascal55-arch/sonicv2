@@ -236,7 +236,7 @@ export default function FeaturedCases() {
               className={`px-6 py-3 font-black text-sm uppercase tracking-wider transition-all duration-300 whitespace-nowrap cursor-pointer ${
                 activeCase === index
                   ? 'bg-primary-500 text-white scale-105'
-                  : 'bg-white text-foreground-700 hover:border-primary-500 hover:text-[#1a1a1a] border border-foreground-200'
+                  : 'bg-white text-foreground-700 hover:border-primary-500 hover:text-[oklch(var(--foreground-950))] border border-foreground-200'
               }`}
               style={{ borderRadius: 0 }}
             >
@@ -283,7 +283,7 @@ export default function FeaturedCases() {
                       loading="lazy"
                     />
                   </div>
-                  <h3 className="text-4xl font-black text-white">{cases[activeCase].brand}</h3>
+                  <h3 className="sonic-h2 text-white">{cases[activeCase].brand}</h3>
                 </div>
                 <p className="text-white/60 text-xs font-bold uppercase tracking-wide mt-1">Partnerschaft seit {cases[activeCase].since}</p>
               </div>
@@ -310,7 +310,7 @@ export default function FeaturedCases() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {cases[activeCase].results.map((result, idx) => (
                       <div key={idx} className="bg-foreground-50 p-3 text-center border border-foreground-100" style={{ borderRadius: 0 }}>
-                        <div className="text-lg font-black text-[#1a1a1a] leading-tight font-sans tabular-nums">{result.value}</div>
+                        <div className="text-lg font-black text-[oklch(var(--foreground-950))] leading-tight font-sans tabular-nums">{result.value}</div>
                         <div className="text-[10px] text-foreground-500 mt-1 leading-tight">{result.label}</div>
                       </div>
                     ))}
@@ -321,7 +321,7 @@ export default function FeaturedCases() {
                 <div className="bg-primary-500/8 p-5 border-l-4 border-primary-500" style={{ borderRadius: 0 }}>
                   <p className="text-foreground-700 italic text-sm leading-relaxed mb-3">"{cases[activeCase].testimonial}"</p>
                   <div>
-                    <p className="text-xs font-black text-[#1a1a1a] uppercase tracking-wide">— {cases[activeCase].author}</p>
+                    <p className="text-xs font-black text-[oklch(var(--foreground-950))] uppercase tracking-wide">— {cases[activeCase].author}</p>
                     <p className="text-[10px] text-foreground-500 mt-0.5">{cases[activeCase].authorRole}</p>
                   </div>
                 </div>
@@ -330,7 +330,7 @@ export default function FeaturedCases() {
               <a
                 href="#case-studies-carousel"
                 onClick={(e) => { e.preventDefault(); document.getElementById('case-studies-carousel')?.scrollIntoView({ behavior: 'smooth' }); }}
-                className="mt-6 w-full bg-primary-500 text-white px-8 py-4 font-black uppercase tracking-wider hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap flex items-center justify-center cursor-pointer text-sm border-2 border-primary-500 hover:border-[#1a1a1a]"
+                className="mt-6 w-full bg-primary-500 text-white px-8 py-4 font-black uppercase tracking-wider hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap flex items-center justify-center cursor-pointer text-sm border-2 border-primary-500 hover:border-[oklch(var(--foreground-950))]"
                 style={{ borderRadius: 0 }}
               >
                 Vollständige Story lesen

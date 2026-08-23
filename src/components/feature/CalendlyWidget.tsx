@@ -41,6 +41,18 @@ export default function CalendlyWidget() {
           branding: false
         });
       }
+      // 4. Mobile size fix — Calendly badge is fixed-size, override for small screens
+      const mobileStyle = document.createElement('style');
+      mobileStyle.id = 'calendly-mobile-fix';
+      mobileStyle.textContent = `
+        @media (max-width: 640px) {
+          .calendly-badge-widget .calendly-badge-content {
+            font-size: 11px !important;
+            padding: 8px 14px !important;
+          }
+        }
+      `;
+      document.head.appendChild(mobileStyle);
     };
 
     // 4. Global Click Listener for 'Beratungsgespräch buchen' buttons
@@ -65,6 +77,8 @@ export default function CalendlyWidget() {
       // Cleanup badge
       const badge = document.querySelector('.calendly-badge-widget');
       if (badge) badge.remove();
+      const mobileStyle = document.getElementById('calendly-mobile-fix');
+      if (mobileStyle) mobileStyle.remove();
     };
   }, []);
 
