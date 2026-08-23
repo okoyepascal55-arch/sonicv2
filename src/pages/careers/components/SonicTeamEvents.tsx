@@ -27,6 +27,14 @@ const EVENTS = [
     fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg',
     videoUrl: 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&rel=0&modestbranding=1',
   },
+  {
+    id: 'roadshow',
+    tag: 'Unterwegs',
+    title: 'Roadshows & Messen',
+    stat: '100+ Städte pro Jahr',
+    fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg',
+    videoUrl: 'https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1&rel=0&modestbranding=1',
+  },
 ];
 
 export default function SonicTeamEvents() {
@@ -62,206 +70,222 @@ export default function SonicTeamEvents() {
   };
 
   return (
-    <section id="leben" className="py-[88px] px-8 bg-white">
-      <div className="max-w-[1200px] mx-auto">
-        {/* Header */}
-        <div className="max-w-[640px] mb-11">
-          <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-xs font-bold uppercase tracking-[0.06em] px-3.5 py-[7px] pr-3.5 mb-5 ">
-            <span className="w-1.5 h-1.5 bg-[#0B0B0C] " />
-            {tBadge}
-          </div>
-          <h2 className="text-[clamp(28px,3.4vw,40px)] font-black text-[#0B0B0C] leading-[1.1] tracking-tight uppercase">
-            {tHeading.split('. ')[0]}.{' '}
-            <span className="text-[#C3D62A]">
-              {tHeading.includes('.') ? tHeading.split('. ').slice(1).join('. ') : 'Wir feiern noch mehr.'}
-            </span>
-          </h2>
-        </div>
+    <section id="leben" className="py-14 md:py-20 px-4 md:px-6 bg-white">
+      <div className="max-w-6xl mx-auto space-y-14 md:space-y-20">
+        {/* ── Events Card ── */}
+        <div
+          className="relative overflow-hidden bg-white"
+          style={{
+            boxShadow: '0 1px 3px rgba(15,23,42,0.04), 0 8px 32px rgba(15,23,42,0.05)',
+            border: '1px solid rgba(15,23,42,0.05)',
+          }}
+        >
+          <div className="px-6 pt-10 pb-8 md:px-12 md:pt-14 md:pb-10">
+            {/* Header */}
+            <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
+              <h2 className="text-[clamp(28px,3.6vw,46px)] font-black text-[#0B0B0C] leading-[1.06] tracking-tight uppercase">
+                {tHeading.split('. ')[0]}.{' '}
+                <span className="text-[#C8D400]">
+                  {tHeading.includes('.') ? tHeading.split('. ').slice(1).join('. ') : 'Wir feiern noch mehr.'}
+                </span>
+              </h2>
+              <p className="mt-4 text-sm md:text-base font-bold text-[#6E6E68] tracking-wide max-w-xl mx-auto leading-relaxed">
+                Von Content-Shootings bis Team-Events — bei Sonic ist jeder Moment eine Chance, zusammen etwas zu erleben.
+              </p>
+            </div>
 
-        {/* Video grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {resolvedEvents.map((ev) => {
-            const isActive = ev.id === activeId;
-            return (
-              <button
-                key={ev.id}
-                onClick={() => selectEvent(ev.id)}
-                className="text-left cursor-pointer"
-              >
-                <div className="relative  overflow-hidden bg-[#0B0B0C] aspect-[16/10]">
-                  {/* Event image */}
+            {/* Video Player */}
+            <div
+              className="relative mx-auto overflow-hidden bg-[#1a1a1a]"
+              style={{
+                maxWidth: 960,
+                boxShadow: '0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08)',
+              }}
+            >
+              {!playing ? (
+                <div
+                  className="relative w-full cursor-pointer group"
+                  style={{ aspectRatio: '16/9' }}
+                  onClick={() => setPlaying(true)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Play Sonic video"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') setPlaying(true);
+                  }}
+                >
                   <img
-                    src={ev.image}
-                    alt={ev.title}
-                    className="absolute inset-0 h-full w-full object-cover object-top"
-                    loading="lazy"
-                    decoding="async"
+                    src={current.image}
+                    alt={current.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                   />
-                  {/* Dark overlay for readability */}
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        'linear-gradient(to bottom, rgba(11,11,12,0.35) 0%, rgba(11,11,12,0.55) 100%)',
-                    }}
-                  />
-                  {/* Subtle repeating pattern overlay */}
-                  <div
-                    className="absolute inset-0 opacity-20"
-                    style={{
-                      background: 'repeating-linear-gradient(45deg, #1E1E20 0 8px, #171718 8px 16px)',
-                    }}
-                  />
-                  {isActive && (
-                    <div className="absolute inset-0 border-2 border-[#DCE94D] " />
-                  )}
-
-                  {/* Tag */}
-                  <div className="absolute top-3.5 left-3.5 z-10">
-                    <span className="inline-block bg-[#DCE94D] text-[#0B0B0C] text-[10px] font-black uppercase px-2.5 py-1 ">
-                      {ev.tag}
-                    </span>
-                  </div>
+                  <div className="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/30" />
 
                   {/* Play button */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                    <div className="w-[52px] h-[52px]  bg-[#DCE94D] flex items-center justify-center">
-                      <i className="ri-play-fill text-xl text-[#0B0B0C] ml-0.5" />
+                  <div className="absolute inset-0 flex items-center justify-center z-10">
+                    <div className="relative">
+                      <div
+                        className="absolute inset-0 w-20 h-20 md:w-24 md:h-24 border border-[#C8D400]/30 animate-ping opacity-60"
+                        style={{ borderRadius: '50%', animationDuration: '2.5s' }}
+                      />
+                      <div
+                        className="relative w-20 h-20 md:w-24 md:h-24 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-active:scale-95"
+                        style={{
+                          backgroundColor: '#C8D400',
+                          borderRadius: '50%',
+                          boxShadow: '0 8px 32px rgba(200,212,0,0.35), 0 2px 8px rgba(0,0,0,0.15)',
+                        }}
+                      >
+                        <div
+                          className="w-0 h-0 ml-1"
+                          style={{
+                            borderTop: '10px solid transparent',
+                            borderBottom: '10px solid transparent',
+                            borderLeft: '18px solid #fff',
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
 
-                  {/* Caption */}
-                  <div
-                    className="absolute bottom-0 left-0 right-0 p-4 z-10"
-                    style={{
-                      background: 'linear-gradient(0deg, rgba(0,0,0,0.75), transparent)',
-                    }}
-                  >
-                    <h5 className="text-sm font-bold text-white">{ev.title}</h5>
-                    <span className="text-[11px] text-[#DCE94D]">{ev.stat}</span>
+                  <div className="absolute bottom-5 left-0 right-0 text-center z-10">
+                    <span className="text-white/60 text-xs font-semibold uppercase tracking-[0.2em] transition-opacity duration-300 group-hover:opacity-0">
+                      {current.title} — Klicken zum Abspielen
+                    </span>
                   </div>
                 </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Active event — expanded video player */}
-        <div className="mt-6 border border-[#0B0B0C] bg-[#0B0B0C] overflow-hidden">
-          {playing ? (
-            <div className="relative w-full aspect-video">
-              <iframe
-                key={current.id}
-                src={current.videoUrl}
-                title={current.title}
-                className="absolute inset-0 w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          ) : (
-            <button
-              onClick={() => setPlaying(true)}
-              className="relative w-full aspect-video block cursor-pointer"
-            >
-              <img
-                src={current.image}
-                alt={current.title}
-                className="absolute inset-0 h-full w-full object-cover object-top"
-              />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    'linear-gradient(to bottom, rgba(11,11,12,0.35) 0%, rgba(11,11,12,0.7) 100%)',
-                }}
-              />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                <div className="w-[72px] h-[72px] bg-[#DCE94D] flex items-center justify-center">
-                  <i className="ri-play-fill text-3xl text-[#0B0B0C] ml-1" />
+              ) : (
+                <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+                  <iframe
+                    key={current.id}
+                    src={current.videoUrl}
+                    title={current.title}
+                    className="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
-              </div>
-              <span className="absolute bottom-5 left-0 right-0 text-center text-white/80 text-xs font-bold uppercase tracking-[0.2em]">
-                Klicken zum Abspielen
-              </span>
-            </button>
-          )}
-
-          <div className="px-5 py-4 flex items-center justify-between gap-4 border-t border-white/10">
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="bg-[#DCE94D] text-[#0B0B0C] text-[10px] font-black uppercase px-2 py-0.5">
-                  {current.tag}
-                </span>
-                <h4 className="text-sm font-bold text-white uppercase tracking-tight">
-                  {current.title}
-                </h4>
-              </div>
-              <p className="text-xs text-white/55">{current.stat}</p>
+              )}
             </div>
-            <span className="text-[11px] font-bold text-[#DCE94D] whitespace-nowrap hidden sm:block">
-              {playing ? 'Wird abgespielt' : 'Bereit'}
-            </span>
+
+            {/* Event selector thumbnails */}
+            <div className="flex justify-center gap-3 md:gap-4 mt-6 md:mt-8 flex-wrap">
+              {resolvedEvents.map((ev) => {
+                const isActive = ev.id === activeId;
+                return (
+                  <button
+                    key={ev.id}
+                    onClick={() => selectEvent(ev.id)}
+                    className="relative overflow-hidden cursor-pointer group"
+                    style={{
+                      width: 160,
+                      height: 100,
+                      border: isActive ? '2px solid #C8D400' : '2px solid transparent',
+                      boxShadow: isActive ? '0 4px 12px rgba(200,212,0,0.2)' : '0 2px 8px rgba(0,0,0,0.08)',
+                    }}
+                  >
+                    <img
+                      src={ev.image}
+                      alt={ev.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300" />
+                    <div className="absolute bottom-2 left-2 right-2 z-10">
+                      <span className="text-[10px] font-bold text-white/70 uppercase tracking-wider">
+                        {ev.tag}
+                      </span>
+                      <p className="text-xs font-bold text-white truncate">{ev.title}</p>
+                    </div>
+                    {isActive && (
+                      <div className="absolute top-2 right-2 w-5 h-5 bg-[#C8D400] flex items-center justify-center">
+                        <i className="ri-check-line text-[10px] text-[#0B0B0C] font-bold" />
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        {/* Campus tour */}
-        <div className="mt-14 pt-12 border-t border-[#E7E4D4]">
-          <div className="max-w-[640px] mb-8">
-            <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-xs font-bold uppercase tracking-[0.06em] px-3.5 py-[7px] pr-3.5 mb-5">
-              <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
-              {tCampusBadge}
+        {/* ── Campus Card ── */}
+        <div
+          className="relative overflow-hidden bg-white"
+          style={{
+            boxShadow: '0 1px 3px rgba(15,23,42,0.04), 0 8px 32px rgba(15,23,42,0.05)',
+            border: '1px solid rgba(15,23,42,0.05)',
+          }}
+        >
+          <div className="px-6 pt-10 pb-8 md:px-12 md:pt-14 md:pb-10">
+            {/* Header */}
+            <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
+              <h2 className="text-[clamp(28px,3.6vw,46px)] font-black text-[#0B0B0C] leading-[1.06] tracking-tight uppercase">
+                {tCampusHeading.split(' ').slice(0, -1).join(' ')}{' '}
+                <span className="text-[#C8D400]">
+                  {tCampusHeading.split(' ').slice(-1)}
+                </span>
+              </h2>
+              <p className="mt-4 text-sm md:text-base font-bold text-[#6E6E68] tracking-wide max-w-xl mx-auto leading-relaxed">
+                {tCampusSub}
+              </p>
             </div>
-            <h3 className="text-[clamp(24px,3vw,34px)] font-black text-[#0B0B0C] leading-[1.1] tracking-tight uppercase">
-              {tCampusHeading}
-            </h3>
-            <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[520px]">
-              {tCampusSub}
-            </p>
-          </div>
 
-          <div className="relative overflow-hidden border border-[#0B0B0C] bg-[#0B0B0C]">
-            <div className="relative w-full" style={{ paddingBottom: '50%' }}>
-              <iframe
-                src="https://my.matterport.com/show/?m=NUpWzUwWfMQ"
-                className="absolute inset-0 w-full h-full border-0"
-                allowFullScreen
-                title="Sonic Office Virtual Tour"
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-2.5 mt-4">
-            {[
-              { icon: 'ri-drag-move-line', label: tCampusTip1 },
-              { icon: 'ri-walk-line', label: tCampusTip2 },
-              { icon: 'ri-fullscreen-line', label: tCampusTip3 },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-2 px-3.5 py-2 bg-[#FAFDF5] border border-[#E7E4D4]">
-                <i className={`${item.icon} text-sm text-[#C3D62A]`} />
-                <span className="text-xs font-bold text-[#0B0B0C]">{item.label}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-[#FAFDF5] border border-[#E7E4D4] p-5">
-            <div className="flex items-center gap-3">
-              <i className="ri-map-pin-line text-lg text-[#C3D62A]" />
-              <div>
-                <p className="font-black text-sm text-[#0B0B0C]">{tCampusAddress}</p>
-                <p className="text-xs text-[#6E6E68]">{tCampusCity}</p>
-              </div>
-            </div>
-            <a
-              href="https://maps.google.com/?q=Campus+Fichtenhain+46,+47807+Krefeld"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#DCE94D] text-[#0B0B0C] font-bold text-xs hover:bg-[#C3D62A] transition-all duration-200 cursor-pointer whitespace-nowrap"
+            {/* 360 Tour */}
+            <div
+              className="relative mx-auto overflow-hidden bg-[#1a1a1a]"
+              style={{
+                maxWidth: 960,
+                boxShadow: '0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08)',
+              }}
             >
-              <i className="ri-map-pin-line text-sm" />
-              {tCampusRoute}
-            </a>
+              <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+                <iframe
+                  src="https://my.matterport.com/show/?m=NUpWzUwWfMQ"
+                  className="absolute inset-0 w-full h-full border-0"
+                  allowFullScreen
+                  title="Sonic Office Virtual Tour"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            {/* Tips + Address */}
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mt-6 md:mt-8">
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { icon: 'ri-drag-move-line', label: tCampusTip1 },
+                  { icon: 'ri-walk-line', label: tCampusTip2 },
+                  { icon: 'ri-fullscreen-line', label: tCampusTip3 },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-2 px-3 py-2 bg-[#FAFDF5] border border-[#E7E4D4]"
+                  >
+                    <i className={`${item.icon} text-sm text-[#C8D400]`} />
+                    <span className="text-xs font-bold text-[#0B0B0C]">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <i className="ri-map-pin-line text-lg text-[#C8D400]" />
+                  <div>
+                    <p className="font-black text-sm text-[#0B0B0C]">{tCampusAddress}</p>
+                    <p className="text-xs text-[#6E6E68]">{tCampusCity}</p>
+                  </div>
+                </div>
+                <a
+                  href="https://maps.google.com/?q=Campus+Fichtenhain+46,+47807+Krefeld"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#C8D400] text-[#0B0B0C] font-bold text-xs hover:bg-white transition-all duration-200 cursor-pointer whitespace-nowrap"
+                >
+                  <i className="ri-map-pin-line text-sm" />
+                  {tCampusRoute}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
-import Tag from '@/components/base/Tag';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import ScrollCardSection from '@/components/feature/ScrollCardSection';
@@ -301,7 +300,7 @@ export default function TalentpoolContent() {
                   <div className="absolute bottom-4 right-4 font-black leading-none select-none pointer-events-none z-0" style={{ fontSize: '6rem', color: isA ? 'rgba(200,212,0,0.07)' : 'rgba(255,255,255,0.04)', lineHeight: 1, transition: 'color 0.3s ease' }}>{p.number}</div>
 
                   <div className="relative overflow-hidden" style={{ height: '180px' }}>
-                    <img src={getProfileImg(idx)} alt={p.type} className="w-full h-full object-cover object-top transition-transform duration-700" style={{ transform: isA ? 'scale(1.05)' : 'scale(1)' }} />
+                    <img src={getProfileImg(idx)} alt={p.type} className="w-full h-full object-cover object-top transition-transform duration-700" style={{ transform: isA ? 'scale(1.05)' : 'scale(1)' }} loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-3 left-3">
                       <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1" style={{ background: '#C8D400', color: '#111' }}>{p.type}</span>
@@ -317,9 +316,6 @@ export default function TalentpoolContent() {
                       <i className={`${p.icon} text-xl`} style={{ color: isA ? '#111' : '#C8D400', transition: 'color 0.35s ease' }} />
                     </div>
                     <p className="text-sm leading-relaxed mb-4 flex-grow" style={{ color: isA ? '#555' : 'rgba(255,255,255,0.55)', transition: 'color 0.3s ease' }}>{p.desc}</p>
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {p.tags.map((tag, ti) => <Tag key={ti} variant={isA ? 'dark' : 'lime'}>{tag}</Tag>)}
-                    </div>
                     <div className="flex items-center justify-between pt-4" style={{ borderTop: `1px solid ${isA ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.07)'}`, transition: 'border-color 0.3s ease' }}>
                       <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? '#999' : 'rgba(255,255,255,0.25)' }}>{p.number} / {String(PROFILES.length).padStart(2, '0')}</span>
                       <div className="w-7 h-7 flex items-center justify-center" style={{ background: isA ? '#C8D400' : 'rgba(255,255,255,0.06)', transform: isA ? 'translateX(3px)' : 'translateX(0)', transition: 'all 0.25s ease' }}>

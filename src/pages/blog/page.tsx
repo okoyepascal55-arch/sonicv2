@@ -246,10 +246,11 @@ export default function BlogPage() {
                     >
                       <div className="relative h-56 md:h-64 overflow-hidden bg-[#1a1a1a]">
                         {imageUrl ? (
-                          <img 
-                            src={imageUrl} 
-                            alt={post.title.rendered} 
+                          <img
+                            src={imageUrl}
+                            alt={post.title.rendered}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                            loading="lazy"
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center bg-[#1a1a1a]">

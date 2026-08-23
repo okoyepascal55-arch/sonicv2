@@ -16,7 +16,7 @@ export default function KarriereHero() {
 
   return (
     <section
-      className="relative flex min-h-[520px] md:min-h-[640px] items-center overflow-hidden"
+      className="relative flex min-h-[380px] sm:min-h-[480px] md:min-h-[640px] items-center overflow-hidden"
       id="stellen"
     >
       {/* Full-bleed background image */}
@@ -43,7 +43,7 @@ export default function KarriereHero() {
           <path
             d="M0 70 Q 25 20 50 70 T 100 70 T 150 70 T 200 70 T 250 70 T 300 70"
             fill="none"
-            stroke="#DCE94D"
+            stroke="#C8D400"
             strokeWidth="4"
             strokeLinecap="round"
           />
@@ -77,37 +77,38 @@ export default function KarriereHero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-8 py-20 md:py-[80px]">
+      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 md:px-8 py-16 md:py-20">
         <div className="max-w-[640px]">
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-xs font-bold uppercase tracking-[0.06em] px-3.5 py-[7px] pr-3.5 mb-5 ">
-            <span className="w-1.5 h-1.5 bg-[#0B0B0C] " />
+          {/* Eyebrow — cleaner, rounded */}
+          <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5">
+            <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
             Karriere bei Sonic
           </div>
 
-          <h1 className="text-[clamp(38px,5vw,58px)] font-black text-white leading-[1.08] tracking-tight uppercase mb-[22px]">
+          {/* Headline — Naboo-style rounded lime highlight on key word */}
+          <h1 className="text-[clamp(26px,5vw,58px)] font-black text-white leading-[1.06] tracking-tight uppercase mb-5 md:mb-6">
             Menschen mit{' '}
-            <span className="bg-[#DCE94D] text-[#0B0B0C] px-2.5 py-[2px] inline-block">
+            <span className="bg-[#C8D400] text-[#0B0B0C] px-2 py-[3px] inline-block">
               Energie
             </span>{' '}
             gesucht
           </h1>
 
-          <p className="text-base text-white/80 leading-[1.65] max-w-[480px] mb-4">
+          <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-3">
             Zeige, was du kannst, und freue dich auf gemeinsame Erfolge. Wichtig
             ist uns deine Einstellung zum Job — nicht nur das, was du schon
             erreicht hast.
           </p>
-          <p className="text-sm text-white/60 leading-[1.6] max-w-[480px] mb-8">
+          <p className="text-xs md:text-sm text-white/60 leading-relaxed max-w-[480px] mb-6 md:mb-8">
             Aktuelle Stellen am Sonic-Campus in Krefeld und deutschlandweite
             Einsätze für unsere Kundenprojekte.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-3.5 mb-10">
+          <div className="flex flex-wrap gap-3 mb-8 md:mb-10">
             <button
               onClick={scrollToJobs}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#DCE94D] text-[#0B0B0C] font-bold text-sm hover:bg-[#C3D62A] transition-all duration-200 cursor-pointer whitespace-nowrap "
+              className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 bg-[#C8D400] text-[#0B0B0C] font-bold text-xs md:text-sm hover:bg-white transition-all duration-200 cursor-pointer whitespace-nowrap"
             >
               Alle Stellen ansehen
             </button>
@@ -115,28 +116,28 @@ export default function KarriereHero() {
               href="https://calendly.com/sonic-group/tanja-15min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 border-[1.5px] border-white text-white font-bold text-sm hover:bg-white/10 transition-all duration-200 cursor-pointer whitespace-nowrap "
+              className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 border border-white/40 text-white font-bold text-xs md:text-sm hover:bg-white/10 transition-all duration-200 cursor-pointer whitespace-nowrap"
             >
               Initiativbewerbung
             </a>
           </div>
 
-          {/* Trust stats row */}
-          <div className="flex flex-wrap gap-9 border-t border-white/20 pt-6">
+          {/* Trust stats row — cleaner spacing */}
+          <div className="flex flex-wrap gap-6 md:gap-9 border-t border-white/15 pt-5 md:pt-6">
             {[
               { icon: 'ri-star-fill', value: '4.8/5', label: 'Kununu Score' },
               { icon: 'ri-time-line', value: '\u00D8 5,15 J.', label: 'Betriebszugeh\u00F6rigkeit' },
               { icon: 'ri-user-community-line', value: '20.000+', label: 'Talente im Netzwerk' },
             ].map((stat, i) => (
               <div key={i} className="flex items-center gap-2.5">
-                <div className="w-[34px] h-[34px]  bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
-                  <i className={`${stat.icon} text-sm text-[#DCE94D]`} />
+                <div className="w-8 h-8 bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
+                  <i className={`${stat.icon} text-sm text-[#C8D400]`} />
                 </div>
                 <div>
-                  <div className="text-[17px] font-black text-white leading-none tabular-nums">
+                  <div className="text-sm md:text-base font-black text-white leading-none tabular-nums">
                     {stat.value}
                   </div>
-                  <div className="text-[11px] text-white/50 font-bold mt-0.5 uppercase tracking-[0.04em]">
+                  <div className="text-[10px] text-white/50 font-bold mt-0.5 uppercase tracking-wider">
                     {stat.label}
                   </div>
                 </div>

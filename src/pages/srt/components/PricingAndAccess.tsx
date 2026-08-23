@@ -181,7 +181,7 @@ export default function PricingAndAccess() {
             <div className="relative z-10">
               <div className="flex items-center gap-2 mb-5">
                 <div className="w-1 h-6 bg-primary-500" />
-                <span className="text-2xs font-black text-primary-500 uppercase tracking-widest">Zugang beantragen</span>
+                <span className="text-2xs font-black text-primary-500 uppercase tracking-[0.2em]">Zugang beantragen</span>
               </div>
               <h3 className="font-black text-background-50 leading-tight tracking-tight mb-4" style={{ fontSize: 'clamp(22px,2.5vw,34px)' }}>
                 BEREIT FÜR <span className="text-primary-500">VOLLE</span> TRANSPARENZ?

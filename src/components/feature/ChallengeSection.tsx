@@ -7,6 +7,7 @@ export interface ChallengeItem {
   title: string;
   desc: string;
   trigger?: string;
+  woodIcon?: string;
 }
 
 interface ChallengeSectionProps {
@@ -75,10 +76,7 @@ export default function ChallengeSection({
           }}
         >
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 border border-primary-500/25 bg-primary-500/10 px-4 py-1.5 mb-6">
-              <span className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-pulse" />
-              <span className="text-[11px] font-black text-primary-500 uppercase tracking-[0.2em]">{badge}</span>
-            </div>
+            <p className="text-[11px] font-black text-primary-500 uppercase tracking-[0.2em] mb-6">{badge}</p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground-950 leading-[1.05] mb-4">
               {headline}
             </h2>

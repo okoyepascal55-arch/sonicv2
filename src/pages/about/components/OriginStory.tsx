@@ -41,19 +41,19 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
     <section ref={sectionRef} className="bg-white">
 
       {/* ── MAIN CONTENT ── */}
-      <div className="py-10 md:py-14">
+      <div className="py-8 md:py-14">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
 
           {/* Section label */}
           <div
-            className={`flex items-center justify-center mb-8 md:mb-12 transition-all duration-700 ${
+            className={`flex items-center justify-center mb-6 md:mb-10 transition-all duration-700 ${
               visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
             <LimeBadge text={tBadge} />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-start">
             {/* Left: Image with stat overlay */}
             <div
               className={`relative transition-all duration-900 ${
@@ -70,47 +70,42 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
                     loading="lazy"
                   />
                 ) : null}
-                <div className="absolute top-4 left-4 md:top-6 md:left-6 bg-primary-500 text-black px-3 md:px-4 py-1.5 md:py-2 text-xs font-black uppercase tracking-widest">
+                <div className="absolute top-3 left-3 md:top-5 md:left-5 bg-primary-500 text-foreground-950 px-3 md:px-4 py-1.5 md:py-2 text-[11px] font-black uppercase tracking-widest">
                   Seit 2007
                 </div>
               </div>
 
-              {/* Floating stat card */}
-              <div className="mt-4 md:mt-0 md:absolute md:-bottom-8 md:-right-6 bg-white border border-black/8 p-4 md:p-5 md:w-52" style={{ boxShadow: '4px 4px 14px rgba(0,0,0,0.08), -2px -2px 8px rgba(255,255,255,0.9), inset 0 1px 0 rgba(255,255,255,0.95)' }}>
+              {/* Floating stat card — rounded, clean */}
+              <div className="mt-4 md:mt-0 md:absolute md:-bottom-6 md:-right-4 lg:-right-6 bg-white border border-background-200 p-4 md:p-5 md:w-52" style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
                 <div className="text-3xl md:text-4xl font-black text-foreground-950 leading-none mb-1 md:mb-2">17+</div>
-                <div className="text-xs font-bold text-black/40 uppercase tracking-wider">
+                <div className="text-xs font-bold text-foreground-400 uppercase tracking-wider">
                   Jahre Markenerfolg im DACH-Raum
                 </div>
-                <div className="mt-3 h-1 w-10 bg-black/20" />
+                <div className="mt-3 h-1 w-10 bg-primary-500" />
               </div>
             </div>
 
             {/* Right: Text content */}
             <div
-              className={`pt-0 md:pt-4 lg:pt-10 transition-all duration-900 ${
+              className={`pt-0 md:pt-2 lg:pt-8 transition-all duration-900 ${
                 visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: '250ms' }}
             >
-              <h2 className="text-2xl md:text-3xl font-black text-foreground-950 mb-5 md:mb-6 leading-tight tracking-tight">
-                {tHeading.split('.')[0] || tHeading}<br /><span className="text-[#C8D400]">{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.') + '.' : ''}</span>
+              <h2 className="text-xl md:text-3xl font-black text-foreground-950 mb-4 md:mb-6 leading-tight tracking-tight">
+                {tHeading.split('.')[0] || tHeading}<br />
+                <span className="text-primary-500">{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.') + '.' : ''}</span>
               </h2>
 
-              <div className="space-y-4 md:space-y-5 text-sm md:text-[15px] leading-relaxed text-black/55 mb-6 md:mb-8">
-                <p>
-                  {tP1}
-                </p>
-                <p>
-                  {tP2}
-                </p>
-                <p>
-                  {tP3}
-                </p>
+              <div className="space-y-3 md:space-y-4 text-sm md:text-[15px] leading-relaxed text-foreground-600 mb-5 md:mb-8">
+                <p>{tP1}</p>
+                <p>{tP2}</p>
+                <p>{tP3}</p>
               </div>
 
               <a
                 href="/losungen"
-                className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-3.5 bg-foreground-950 text-white font-black hover:bg-primary-500 hover:text-[#111] transition-all duration-300 whitespace-nowrap text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400]"
+                className="inline-flex items-center gap-3 px-5 md:px-7 py-2.5 md:py-3 bg-foreground-950 text-white font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap text-xs md:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
               >
                 {tCta}
                 <i className="ri-arrow-right-line" />
@@ -121,8 +116,8 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
         </div>
       </div>
 
-      {/* ── WOOD TICKER STRIP — flows directly into Referenzen below ── */}
-      <div className="relative overflow-hidden border-y border-[#C8D400]/15 py-3.5" aria-hidden="true">
+      {/* ── WOOD TICKER STRIP ── */}
+      <div className="relative overflow-hidden border-y border-primary-500/15 py-3" aria-hidden="true">
         <div className="absolute inset-0">
           <img
             src={tickerBg}
@@ -168,11 +163,11 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
       </div>
 
       {/* ── Thin transition label into Referenzen ── */}
-      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-12 pb-6">
-        <div className="flex items-center gap-2 sm:gap-4">
-          <div className="h-px flex-1 bg-black/6" />
-          <span className="text-[9px] sm:text-xs font-black uppercase tracking-[0.1em] sm:tracking-[0.3em] text-black/20 whitespace-normal sm:whitespace-nowrap text-center">Über die Sonic Group — Referenzen</span>
-          <div className="h-px flex-1 bg-black/6" />
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-10 md:pt-12 pb-5 md:pb-6">
+        <div className="flex items-center gap-4">
+          <div className="h-px flex-1 bg-foreground-200/60" />
+          <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-foreground-300 whitespace-nowrap">Über die Sonic Group — Referenzen</span>
+          <div className="h-px flex-1 bg-foreground-200/60" />
         </div>
       </div>
 

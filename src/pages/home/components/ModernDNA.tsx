@@ -117,6 +117,7 @@ export default function ModernDNA() {
                         src={getIcon(index)}
                         alt={principle.title}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                     </div>
                   </div>

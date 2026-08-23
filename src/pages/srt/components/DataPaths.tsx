@@ -134,7 +134,7 @@ export default function DataPaths() {
   };
 
   return (
-    <section ref={sectionRef} id="datenfluss" className="py-24 px-4 md:px-6 bg-foreground-950 relative overflow-hidden"
+    <section ref={sectionRef} id="datenfluss" className="py-12 md:py-20 px-4 md:px-6 bg-foreground-950 relative overflow-hidden"
       style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.8s ease' }}
     >
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
@@ -285,31 +285,29 @@ export default function DataPaths() {
                     style={{ left: `${node.position.x}%`, top: `${node.position.y}%`, transform: `translate(-50%, -50%) ${isActive ? 'scale(1.12)' : highlighted ? 'scale(1)' : 'scale(0.9)'}` }}
                     aria-label={`${node.label} — ${node.sublabel}`}>
                     {isCenter ? (
-                      <div className={`flex flex-col items-center justify-center transition-all duration-300 ${isActive ? 'ring-4 ring-primary-500/50' : 'group-hover:ring-2 group-hover:ring-primary-500/30'}`}
+                      <div className={`flex flex-col items-center justify-center transition-all duration-300 w-14 h-14 sm:w-[88px] sm:h-[88px] ${isActive ? 'ring-4 ring-primary-500/50' : 'group-hover:ring-2 group-hover:ring-primary-500/30'}`}
                         style={{
-                          width: 88, height: 88,
-                          background: isActive ? 'linear-gradient(135deg, #C8D400, #a8b300)' : 'linear-gradient(135deg, #C8D400 0%, #a8b300 100%)',
+                          background: '#C8D400',
                           boxShadow: isActive ? '0 0 40px rgba(200,212,0,0.6), 0 0 80px rgba(200,212,0,0.2)' : '0 0 20px rgba(200,212,0,0.3)',
                         }}>
-                        <div className="w-6 h-6 flex items-center justify-center text-foreground-950"><i className={`${node.icon} text-2xl`} /></div>
+                        <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center text-foreground-950"><i className={`${node.icon} text-lg sm:text-2xl`} /></div>
                         <span className="text-foreground-950 text-2xs font-black uppercase tracking-wider text-center leading-tight mt-1 px-1">{node.label}<br />{node.sublabel.split(' ')[0]}</span>
                         {isActive && <span className="absolute inset-0 animate-ping bg-primary-500/20 pointer-events-none" />}
                       </div>
                     ) : (
-                      <div className="flex flex-col items-center justify-center transition-all duration-300"
+                      <div className="flex flex-col items-center justify-center transition-all duration-300 w-12 h-12 sm:w-16 sm:h-16"
                         style={{
-                          width: 64, height: 64,
                           background: isActive ? 'rgba(200,212,0,0.15)' : 'rgba(26,26,26,0.95)',
                           border: `2px solid ${isActive ? '#C8D400' : 'rgba(200,212,0,0.3)'}`,
                           boxShadow: isActive ? '0 0 24px rgba(200,212,0,0.4)' : '0 4px 16px rgba(0,0,0,0.6)',
                         }}>
-                        <div className={`w-5 h-5 flex items-center justify-center transition-colors duration-300 ${isActive ? 'text-primary-500' : 'text-primary-500/60'}`}>
-                          <i className={`${node.icon} text-xl`} />
+                        <div className={`w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center transition-colors duration-300 ${isActive ? 'text-primary-500' : 'text-primary-500/60'}`}>
+                          <i className={`${node.icon} text-base sm:text-xl`} />
                         </div>
                       </div>
                     )}
                     {!isCenter && (
-                      <span className={`text-3xs font-black uppercase tracking-wider whitespace-nowrap text-center leading-tight transition-colors duration-300 mt-0.5 max-w-[80px] ${isActive ? 'text-primary-500' : highlighted ? 'text-foreground-500' : 'text-foreground-600'}`}>
+                      <span className={`text-3xs font-black uppercase tracking-wider text-center leading-tight transition-colors duration-300 mt-0.5 max-w-[64px] sm:max-w-[80px] ${isActive ? 'text-primary-500' : highlighted ? 'text-foreground-500' : 'text-foreground-600'}`}>
                         {node.label}
                       </span>
                     )}

@@ -98,7 +98,7 @@ export default function KontaktPage() {
     <div className="min-h-[100dvh] bg-white">
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[480px] md:min-h-[520px] flex items-center px-6 bg-black overflow-hidden" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+      <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex items-center px-4 md:px-6 bg-black overflow-hidden" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
         {/* Grid texture */}
         <div
           className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -120,11 +120,9 @@ export default function KontaktPage() {
 
             {/* Left: text */}
             <div>
-              <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-[#C8D400]/30 px-4 py-1.5 mb-7">
-                <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" />
-                <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">
-                  {tHeroBadge}
-                </span>
+              <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
+                <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
+                {tHeroBadge}
               </div>
 
               <h1 className="text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-black text-white leading-tight mb-6">

@@ -99,6 +99,7 @@ export default function PhotoSelector({
                       filter: isActive ? 'none' : 'grayscale(0.65) brightness(0.55)',
                       transition: 'filter 0.3s ease',
                     }}
+                    loading="lazy"
                   />
                   {isActive && <div className="absolute inset-0 pointer-events-none" style={{ background: `${accent}1f`, mixBlendMode: 'overlay' }} />}
                 </div>

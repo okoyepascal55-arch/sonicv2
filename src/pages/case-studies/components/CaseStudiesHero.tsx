@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import SectionBadge from '@/components/base/SectionBadge';
 import { useMediaStore } from '@/lib/mediaStore';
 
 export default function CaseStudiesHero() {
@@ -13,7 +12,7 @@ export default function CaseStudiesHero() {
   ];
 
   return (
-    <section className="relative min-h-[480px] md:min-h-[520px] flex items-center overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-[#0B0B0C]" style={{ paddingTop: '80px' }}>
       {/* Background Image */}
       <div className="absolute inset-0">
         {(heroBg[0] && heroBg[0].url) ? (
@@ -23,23 +22,28 @@ export default function CaseStudiesHero() {
             className="w-full h-full object-cover"
           />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/80"></div>
       </div>
 
       {/* Content */}
-      <div className="max-w-6xl mx-auto px-6 relative z-10 text-center text-white">
-        <SectionBadge text="Fallbeispiele" variant="light" className="mb-6" />
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
+        <div className="max-w-[640px]">
+        <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
+          <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
+          Fallbeispiele
+        </div>
 
-        <h1 className="text-4xl md:text-5xl lg:text-7xl font-black mb-6 leading-tight">
+        <h1 className="text-[clamp(32px,5vw,58px)] font-black text-white leading-[1.06] tracking-tight uppercase mb-5 md:mb-6">
           BEWIESENE ERGEBNISSE.<br />
-          <span className="text-primary-500">ECHTER IMPACT.</span>
+          <span className="text-[#C8D400]">ECHTER IMPACT.</span>
         </h1>
-        
-        <p className="text-xl text-white/75 max-w-3xl mx-auto mb-12 font-semibold">
+
+        <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-6 md:mb-8">
           Wie wir führende Marken zu außergewöhnlichen Ergebnissen im DACH-Raum geführt haben.
         </p>
+        </div>
 
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap gap-6 mt-6 md:mt-8">
           {stats.map((stat, index) => (
             <div 
               key={index}

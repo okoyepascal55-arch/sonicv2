@@ -108,7 +108,7 @@ export default function VideoReferenzen() {
   const [activeCard, setActiveCard] = useState(0);
 
   return (
-    <section id="referenzen" className="bg-white py-24 px-6 relative overflow-hidden">
+    <section id="referenzen" className="bg-white py-12 md:py-20 px-4 md:px-6 relative overflow-hidden">
       {/* Background texture */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8D400]/40 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8D400]/40 to-transparent" />

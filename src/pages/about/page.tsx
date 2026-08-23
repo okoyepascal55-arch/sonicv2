@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
 import { useMediaStore } from '@/lib/mediaStore';
 import WoodenDivider from '@/components/base/WoodenDivider';
@@ -16,60 +16,7 @@ const ABOUT_NAV_ITEMS = [
   { id: 'innovation', label: 'Timeline', icon: 'ri-history-line' },
   { id: 'team', label: 'Team', icon: 'ri-group-line' },
   { id: 'management-voices', label: 'Management', icon: 'ri-mic-line' },
-  { id: 'kontakt', label: 'Kontakt', icon: 'ri-mail-send-line' },
 ];
-
-/* ── In-page anchor strip matching careers sub-nav ── */
-function AboutSubNav() {
-  const [active, setActive] = useState('uber-uns');
-
-  const handleClick = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setActive(id);
-    }
-  };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.3, rootMargin: '-80px 0px -60% 0px' }
-    );
-    ABOUT_NAV_ITEMS.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div className="bg-[#0B0B0C] sticky top-0 z-40">
-      <div className="max-w-[1200px] mx-auto px-8 flex gap-9 h-12 items-center overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
-        {ABOUT_NAV_ITEMS.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => handleClick(item.id)}
-            className={`relative text-[11px] font-black uppercase tracking-[0.07em] whitespace-nowrap cursor-pointer transition-colors duration-200 pb-1 ${
-              active === item.id ? 'text-[#DCE94D]' : 'text-[#9A9A93] hover:text-white'
-            }`}
-          >
-            {item.label}
-            {active === item.id && (
-              <span className="absolute left-0 right-0 -bottom-[2px] h-0.5 bg-[#DCE94D]" />
-            )}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export default function AboutPage() {
   useSEO({
@@ -96,21 +43,16 @@ export default function AboutPage() {
 
   const heroRef = useRef<HTMLDivElement>(null);
 
-  const scrollToContent = () => {
-    const el = document.getElementById('uber-uns');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className="bg-white">
       <main id="main-content">
       {/* ── IN-PAGE NAV — desktop float ── */}
       <LeistungenPageNav items={ABOUT_NAV_ITEMS} heroRef={heroRef} />
 
-      {/* ── CAREERS-STYLE HERO ── */}
+      {/* ── HERO — bottom-anchored, matching careers ── */}
       <div ref={heroRef}>
         <section
-          className="relative min-h-[540px] md:min-h-[600px] flex flex-col justify-end overflow-hidden bg-[#0B0B0C]"
+          className="relative min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex flex-col justify-end overflow-hidden bg-[#0B0B0C]"
           style={{ paddingTop: '80px' }}
         >
           {/* Full-bleed background image */}
@@ -122,7 +64,7 @@ export default function AboutPage() {
               fetchPriority="high"
             />
           )}
-          {/* Dark overlay — lighter at top, heavier at bottom for text legibility */}
+          {/* Dark overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
 
           {/* Subtle lime glow */}
@@ -131,26 +73,28 @@ export default function AboutPage() {
             style={{ background: 'radial-gradient(ellipse at center, rgba(220,233,77,0.06) 0%, transparent 65%)' }}
           />
 
-          {/* Hero content — bottom-anchored like careers */}
-          <div className="relative z-10 max-w-[1200px] mx-auto px-8 pb-14 w-full">
-            {/* Eyebrow badge — careers-style solid lime square + black dot */}
-            <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-6">
-              <span className="w-1.5 h-1.5 bg-[#0B0B0C] flex-shrink-0" />
+          {/* Hero content — bottom-anchored */}
+          <div className="relative z-10 max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14 w-full">
+            {/* Eyebrow badge — sharp corners */}
+            <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
+              <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
               {tHeroBadge}
             </div>
 
-            {/* Large headline — uppercase, one word in lime */}
-            <h1 className="text-[clamp(38px,5.5vw,68px)] font-black text-white leading-[1.05] tracking-tight uppercase mb-5">
+            {/* Large headline — lime highlight on key line */}
+            <h1 className="text-[clamp(34px,5.5vw,64px)] font-black text-white leading-[1.05] tracking-tight uppercase mb-4 md:mb-5">
               {tHeroH1}<br />
-              <span className="text-[#DCE94D]">{tHeroH1Line2}</span>
+              <span className="bg-[#C8D400] text-[#0B0B0C] px-2.5 py-0.5 inline-block mt-1">
+                {tHeroH1Line2}
+              </span>
             </h1>
 
-            <p className="text-white/60 text-sm md:text-base max-w-[520px] leading-relaxed mb-10">
+            <p className="text-white/60 text-sm md:text-base max-w-[520px] leading-relaxed mb-8 md:mb-10">
               {tHeroSub}
             </p>
 
-            {/* Stats row matching careers hero */}
-            <div className="flex flex-wrap gap-8 border-t border-white/15 pt-6">
+            {/* Stats row — sharp icon boxes */}
+            <div className="flex flex-wrap gap-6 md:gap-8 border-t border-white/15 pt-5 md:pt-6">
               {[
                 { value: '500+', label: 'Projekte' },
                 { value: '1,35 Mio.', label: 'Einsätze' },
@@ -159,10 +103,10 @@ export default function AboutPage() {
               ].map((s) => (
                 <div key={s.label} className="flex items-center gap-2.5">
                   <div className="w-8 h-8 border border-white/20 flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.06)' }}>
-                    <i className="ri-arrow-right-up-line text-[#DCE94D] text-sm" />
+                    <i className="ri-arrow-right-up-line text-[#C8D400] text-sm" />
                   </div>
                   <div>
-                    <div className="text-base font-black text-white leading-none">{s.value}</div>
+                    <div className="text-sm md:text-base font-black text-white leading-none">{s.value}</div>
                     <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-0.5">{s.label}</div>
                   </div>
                 </div>
@@ -170,9 +114,6 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-
-        {/* ── CAREERS-STYLE DARK SUB-NAV ── */}
-        <AboutSubNav />
       </div>
 
       {/* ── SECTIONS ── */}

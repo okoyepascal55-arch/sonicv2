@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-import Tag from '@/components/base/Tag';
 
 export interface ScrollCardData {
   woodIcon?: string;
@@ -202,7 +201,7 @@ export default function ScrollCardSection({
                       transform: isA ? 'scale(1.08)' : 'scale(1)',
                     }}
                   >
-                    <img src={item.woodIcon} alt={item.title} className="w-full h-full object-cover" />
+                    <img src={item.woodIcon} alt={item.title} className="w-full h-full object-cover" loading="lazy" />
                   </div>
                 )}
 
@@ -241,17 +240,6 @@ export default function ScrollCardSection({
                 >
                   {item.desc}
                 </p>
-
-                {/* Tags */}
-                {item.tags && item.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {item.tags.map((tag, ti) => (
-                      <Tag key={ti} variant={isA ? (theme === 'dark' ? 'dark' : 'lime') : (theme === 'dark' ? 'lime' : 'subtle')}>
-                        {tag}
-                      </Tag>
-                    ))}
-                  </div>
-                )}
 
                 {/* Footer */}
                 <div

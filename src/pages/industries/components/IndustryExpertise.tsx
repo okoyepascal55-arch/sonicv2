@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
-import Tag from '@/components/base/Tag';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 
@@ -37,10 +36,10 @@ export default function IndustryExpertise() {
         {/* Header */}
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
-          <h2 className="text-4xl lg:text-5xl font-black text-foreground-950 mb-4 leading-tight tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 mb-4 leading-tight tracking-tight">
             {tHeading}
           </h2>
-          <p className="text-base text-foreground-600 max-w-2xl mx-auto">
+          <p className="text-sm md:text-base text-foreground-600 max-w-2xl mx-auto">
             {tSub}
           </p>
         </div>
@@ -128,7 +127,7 @@ export default function IndustryExpertise() {
                           : '0 2px 8px rgba(139,90,43,0.12)',
                       }}
                     >
-                      <img src={item.woodIcon} alt={item.title} className="w-full h-full object-cover" />
+                      <img src={item.woodIcon} alt={item.title} className="w-full h-full object-cover" loading="lazy" />
                     </div>
                   </div>
 
@@ -151,11 +150,6 @@ export default function IndustryExpertise() {
                     {item.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {item.tags.map((tag) => (
-                      <Tag key={tag} variant={isHovered ? 'lime' : 'subtle'}>{tag}</Tag>
-                    ))}
-                  </div>
                 </div>
               </div>
             );

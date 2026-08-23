@@ -147,6 +147,7 @@ export default function MeetTheTeam() {
                   alt={currentProfile.name}
                   className={`w-full h-full object-cover object-top transition-transform duration-700 ${isVideoHovered ? 'scale-105' : 'scale-100'}`}
                   style={{ filter: 'contrast(1.04) brightness(0.93)' }}
+                  loading="lazy"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/40 transition-opacity duration-500 ${isVideoHovered ? 'opacity-80' : 'opacity-100'}`} />
                 <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%)' }} />
@@ -275,10 +276,11 @@ export default function MeetTheTeam() {
               
               <div className="relative z-10">
                 <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mb-3 md:mb-4 overflow-hidden bg-[#C8D400]/15" style={{ borderRadius: 0 }}>
-                  <img 
+                  <img
                     src={item.woodIcon}
                     alt={item.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <h4 className="text-base font-black text-foreground-950 mb-1.5 leading-tight tracking-tight">{item.title}</h4>

@@ -335,7 +335,7 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
               transform: translateY(-3px);
             }
           `}</style>
-          <h1 className="hero-headline text-4xl md:text-5xl lg:text-7xl font-black text-foreground-950 mb-4 md:mb-6 leading-[1.05] tracking-tight">
+          <h1 className="hero-headline text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-foreground-950 mb-4 md:mb-6 leading-[1.05] tracking-tight">
             <AnimatedLine text={tH1Line1} lineDelay={0} />
             <br />
             <AnimatedLine text={tH1Line2} lineDelay={120} />
@@ -350,7 +350,7 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
             >
               <HoverLine text={tH1Line3.split('DOING')[0]} />
               <br />
-              <span className="text-primary-500 inline-block relative text-2xl sm:text-3xl md:text-5xl lg:text-7xl" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.08)' }}>
+              <span className="text-primary-500 inline-block relative text-2xl sm:text-3xl md:text-5xl lg:text-6xl" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.08)' }}>
                 {combo.split('').map((char, i) => (
                   <span
                     key={i}
@@ -446,7 +446,7 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
                     />
                   ) : null}
                 </div>
-                <h3 className="text-xl md:text-3xl lg:text-4xl font-black text-white mb-2 md:mb-3 leading-tight tracking-tight">
+                <h3 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-black text-white mb-2 md:mb-3 leading-tight tracking-tight">
                   {tLeftH3}<br />
                   <span className={`transition-colors duration-500 ${hoveredSide === 'left' ? 'text-primary-500' : 'text-white/60'}`}>
                     {tLeftH3Accent}
@@ -459,7 +459,7 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
                 </p>
                 <div className="flex-grow" />
                 <div className="flex items-center gap-4">
-                  <span className="relative inline-flex items-center gap-2 font-bold text-xs sm:text-sm transition-all duration-500 whitespace-normal sm:whitespace-nowrap max-w-full">
+                  <span className="relative inline-flex items-center gap-2 font-bold text-xs sm:text-sm transition-all duration-500 whitespace-nowrap max-w-full">
                     <span className="absolute inset-0 overflow-hidden">
                       {(woodTextures[0] && woodTextures[0].url) ? (
                         <img
@@ -471,7 +471,7 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
                       ) : null}
                       <span className={`absolute inset-0 transition-all duration-500 ${hoveredSide === 'left' ? 'bg-primary-500/90' : 'bg-black/50'}`} />
                     </span>
-                    <span className="relative z-10 flex items-center gap-2 px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 transition-all duration-500 text-white text-xs sm:text-sm whitespace-normal sm:whitespace-nowrap">
+                    <span className="relative z-10 flex items-center gap-2 px-3 sm:px-5 md:px-6 py-2.5 sm:py-3 transition-all duration-500 text-white text-xs sm:text-sm whitespace-nowrap">
                       {tLeftBtn}
                       <i className={`ri-arrow-right-line transition-transform duration-300 ${hoveredSide === 'left' ? 'translate-x-1' : ''}`} />
                     </span>
@@ -542,7 +542,7 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
                     />
                   ) : null}
                 </div>
-                <h3 className="text-xl md:text-3xl lg:text-4xl font-black text-foreground-950 mb-2 md:mb-3 leading-tight tracking-tight">
+                <h3 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-black text-foreground-950 mb-2 md:mb-3 leading-tight tracking-tight">
                   {tRightH3}<br />
                   <span className={`transition-colors duration-500 ${hoveredSide === 'right' ? 'text-primary-500' : 'text-foreground-400'}`}>
                     {tRightH3Accent}
@@ -578,72 +578,7 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
             </a>
           </div>
 
-          {/* ── Stats Strip ── */}
-          <div className="mt-6 md:mt-8">
-
-            {/* 4 Stat Cards — GPU-optimized via CSS custom properties */}
-            <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-              {statsData.map((stat, i) => (
-                <div
-                  key={i}
-                  className="relative bg-white/60 backdrop-blur-md px-4 md:px-6 py-5 md:py-7 text-center ring-1 ring-foreground-200/60 hover:ring-[#C8D400]/50 hover:bg-white/75 hover:shadow-xl transition-all duration-400 group cursor-default overflow-hidden"
-                  style={{
-                    borderRadius: 0,
-                    transform: `translateX(calc(var(--parallax-x, 0) * ${PARALLAX_DEPTHS[i]}px)) translateY(calc(var(--parallax-y, 0) * ${PARALLAX_DEPTHS[i] * 0.6}px))`,
-                    transition: 'transform 0.08s linear, ring-color 0.4s, background-color 0.4s, box-shadow 0.4s',
-                    willChange: 'transform',
-                  }}
-                  onMouseEnter={() => setHoveredStat(i)}
-                  onMouseLeave={() => setHoveredStat(null)}
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent transition-opacity duration-400 ${hoveredStat === i ? 'opacity-100' : 'opacity-0'}`} />
-
-                  <div
-                    className="w-10 h-10 md:w-14 md:h-14 relative overflow-hidden mx-auto mb-2 md:mb-3 shadow-md transition-all duration-400 ring-2"
-                    style={{
-                      borderRadius: 0,
-                      transform: hoveredStat === i ? 'scale(1.12)' : 'scale(1)',
-                      boxShadow: hoveredStat === i
-                        ? '0 6px 20px rgba(139,90,43,0.35), 0 0 12px rgba(200,212,0,0.2)'
-                        : '0 2px 8px rgba(139,90,43,0.18)',
-                      outline: hoveredStat === i ? '2px solid oklch(var(--primary-500) / 0.5)' : '2px solid transparent',
-                    }}
-                  >
-                    {/* Fallback icon shown behind image */}
-                    <div
-                      className="absolute inset-0 flex items-center justify-center"
-                      style={{ background: stat.color }}
-                    >
-                      <i className={`${stat.fallbackIcon} text-sm md:text-base text-white`}></i>
-                    </div>
-                    <img
-                      src={stat.woodIcon}
-                      alt={stat.label}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      onError={hideBrokenImg}
-                    />
-                  </div>
-
-                  <div
-                    className="text-xl md:text-2xl lg:text-3xl font-black font-sans tabular-nums mb-1 leading-tight transition-all duration-400 group-hover:scale-105"
-                    style={{ color: i % 2 === 0 ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-900))' }}
-                  >
-                    {stat.display(stat.value)}
-                  </div>
-
-                  <div className="text-xs font-bold text-foreground-500 uppercase tracking-wider leading-tight line-clamp-2">
-                    {stat.label}
-                  </div>
-
-                  <div
-                    className={`absolute bottom-0 left-0 h-[3px] bg-primary-500 transition-all duration-500 ${hoveredStat === i ? 'w-full' : 'w-0'}`}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* ── Stats Strip ── REMOVED — stats now live in LiveMetrics ticker ── */}
         </div>
       </div>
     </section>

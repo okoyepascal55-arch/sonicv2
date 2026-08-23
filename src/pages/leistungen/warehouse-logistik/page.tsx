@@ -204,7 +204,7 @@ export default function WarehouseLogistikPage() {
               <i className="ri-check-double-line text-[#111] text-sm"></i>
               <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Lösung</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black text-[#111] mb-3 leading-tight uppercase">Warehousing und Logistik als<br /><span className="text-[#C8D400]" style={{ WebkitTextStroke: '1px #9ea800' }}>integraler Baustein.</span></h2>
+            <h2 className="text-3xl md:text-5xl font-black text-[#111] mb-3 leading-tight uppercase">Warehousing und Logistik als<br /><span className="text-[#C8D400]">integraler Baustein.</span></h2>
             <p className="text-[#111]/50 text-sm md:text-base max-w-2xl">Einlagerung, Bereitstellung, Auslagerung, Anlieferung und Aufbau deiner Produkte, Werbematerialien, Messestände etc. Als Teil des Sonic Gesamtpakts.</p>
           </div>
           <ScrollCardSection data={SOLUTIONS} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="remix" cardMinHeight="320px" showWoodIcon={false} />
@@ -296,7 +296,7 @@ export default function WarehouseLogistikPage() {
       <section id="full-service" className="bg-[#111] py-14 md:py-20 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
         <div className="relative max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-stretch">
+          <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5 md:mb-6">
                 <i className="ri-shield-check-line text-[#C8D400] text-sm"></i>
@@ -318,13 +318,14 @@ export default function WarehouseLogistikPage() {
                 ))}
               </div>
             </div>
-            <div className="relative min-h-[300px]">
+            <div className="relative">
               <img
                 src={warehouseFullservicePhoto}
                 alt="Sonic Warehouse"
-                className="absolute inset-0 w-full h-full object-cover object-top"
+                className="w-full object-cover object-top"
                 loading="lazy"
                 decoding="async"
+                style={{ minHeight: '300px' }}
               />
               <div className="absolute top-4 left-4 bg-primary-500 px-3 md:px-4 py-2">
                 <span className="text-[#111] text-xs font-black uppercase tracking-widest">~500 qm Lagerfläche</span>

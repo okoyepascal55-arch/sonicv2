@@ -71,6 +71,7 @@ export default function TrainingDevelopment() {
                 src={trainingImg}
                 alt="Training Session"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
             {/* Lime accent corner */}

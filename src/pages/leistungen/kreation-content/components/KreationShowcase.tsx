@@ -134,7 +134,7 @@ function BeforeAfterSlider() {
 
   return (
     <div ref={revealRef} className="mt-[3px]" style={{ opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(32px)', transition: 'opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1)' }}>
-      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 px-4 sm:px-8 py-5 sm:py-7 bg-foreground-950/5 border border-foreground-950/[0.08]">
+      <div className="flex items-start justify-between gap-4 px-8 py-7 bg-foreground-950/5 border border-foreground-950/[0.08]">
         <div>
           <div className="text-[9px] font-black uppercase tracking-[0.18em] text-primary-500 mb-2">CGI → Reality Vergleich</div>
           <h3 className="text-3xl md:text-4xl font-black text-foreground-950 leading-none tracking-tight mb-1.5">CGI-Render vs. gebauter Stand</h3>
@@ -355,8 +355,8 @@ function ShowcaseCard({ item, colSpan, rowSpan, onOpen, titleSize, isWide = fals
       )}
 
       {/* Tag */}
-      <div className="absolute top-3 left-3 z-10 max-w-[70%]">
-        <span className={`block truncate text-[8px] font-black uppercase tracking-[0.12em] px-2.5 py-1 transition-all duration-300 ${hov ? 'bg-primary-500 text-foreground-950' : 'bg-primary-500/80 text-foreground-950'}`}>{item.tag}</span>
+      <div className="absolute top-3 left-3 z-10">
+        <span className={`text-[8px] font-black uppercase tracking-[0.12em] px-2.5 py-1 transition-all duration-300 ${hov ? 'bg-primary-500 text-foreground-950' : 'bg-primary-500/80 text-foreground-950'}`}>{item.tag}</span>
       </div>
 
       {/* Expand icon */}
@@ -497,7 +497,6 @@ export default function KreationShowcase() {
                     <button
                       key={tab.id}
                       onClick={() => switchTab(tab.id as 'konzeption' | 'content' | 'cgi')}
-                      id={tab.sectionId}
                       className={`flex items-center gap-2 px-5 py-3 text-[10px] font-black uppercase tracking-[0.12em] transition-all duration-300 cursor-pointer whitespace-nowrap border-r last:border-r-0 border-foreground-950/10 ${
                         isActive
                           ? 'bg-foreground-950 text-primary-500'

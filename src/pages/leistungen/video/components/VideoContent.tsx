@@ -172,7 +172,7 @@ export default function VideoContent() {
       <WoodenDivider />
 
       {/* Solution */}
-      <section id="loesung" className="bg-white py-24 px-6 relative overflow-hidden">
+      <section id="loesung" className="bg-white py-12 md:py-20 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C8D400]/8 blur-[120px] pointer-events-none" />
         <div className="relative max-w-6xl mx-auto">
           <div className="mb-14 text-center">
@@ -192,7 +192,7 @@ export default function VideoContent() {
 
 
       {/* Advantages */}
-      <section id="vorteile" className="bg-[#111] py-24 px-6">
+      <section id="vorteile" className="bg-[#111] py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
@@ -207,7 +207,7 @@ export default function VideoContent() {
       </section>
 
       {/* Cost Calculator */}
-      <section id="kostenrechner" className="bg-white py-24 px-6">
+      <section id="kostenrechner" className="bg-white py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-[#111]/10 border border-[#111]/15 px-4 py-1.5 mb-5">
@@ -270,7 +270,7 @@ export default function VideoContent() {
       </section>
 
       {/* Phygital */}
-      <section id="phygital" className="bg-[#111] py-24 px-6">
+      <section id="phygital" className="bg-[#111] py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
@@ -283,30 +283,30 @@ export default function VideoContent() {
 
           <div className="border border-[#C8D400]/15 overflow-hidden">
             <div className="grid grid-cols-3 bg-white/5 border-b border-[#C8D400]/15">
-              <div className="p-2 sm:p-4 text-white/40 text-xs font-black uppercase tracking-wider"></div>
-              <div className="p-2 sm:p-4 text-center border-l border-[#C8D400]/15">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2">
+              <div className="p-4 text-white/40 text-xs font-black uppercase tracking-wider"></div>
+              <div className="p-4 text-center border-l border-[#C8D400]/15">
+                <div className="flex items-center justify-center gap-2">
                   <i className="ri-video-line text-[#C8D400] text-sm"></i>
-                  <span className="text-[#C8D400] text-[9px] sm:text-xs font-black uppercase tracking-wider">Video</span>
+                  <span className="text-[#C8D400] text-xs font-black uppercase tracking-wider">Video</span>
                 </div>
               </div>
-              <div className="p-2 sm:p-4 text-center border-l border-[#C8D400]/15">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2">
+              <div className="p-4 text-center border-l border-[#C8D400]/15">
+                <div className="flex items-center justify-center gap-2">
                   <i className="ri-user-line text-white/60 text-sm"></i>
-                  <span className="text-white/60 text-[9px] sm:text-xs font-black uppercase tracking-wider text-center">Field Force</span>
+                  <span className="text-white/60 text-xs font-black uppercase tracking-wider">Field Force</span>
                 </div>
               </div>
             </div>
             {PHYGITAL_COMPARE.map((row, i) => (
               <div key={i} className={`grid grid-cols-3 border-b border-white/5 ${i % 2 === 0 ? '' : 'bg-white/2'}`}>
-                <div className="p-2 sm:p-4 text-white/60 text-[11px] sm:text-xs font-semibold">{row.label}</div>
-                <div className="p-2 sm:p-4 flex items-center justify-center border-l border-white/5">
+                <div className="p-4 text-white/60 text-xs font-semibold">{row.label}</div>
+                <div className="p-4 flex items-center justify-center border-l border-white/5">
                   {row.video
                     ? <div className="w-5 h-5 flex items-center justify-center bg-[#C8D400]"><i className="ri-check-line text-[#111] text-xs"></i></div>
                     : <div className="w-5 h-5 flex items-center justify-center bg-white/5"><i className="ri-close-line text-white/20 text-xs"></i></div>
                   }
                 </div>
-                <div className="p-2 sm:p-4 flex items-center justify-center border-l border-white/5">
+                <div className="p-4 flex items-center justify-center border-l border-white/5">
                   {row.field
                     ? <div className="w-5 h-5 flex items-center justify-center bg-[#C8D400]"><i className="ri-check-line text-[#111] text-xs"></i></div>
                     : <div className="w-5 h-5 flex items-center justify-center bg-white/5"><i className="ri-close-line text-white/20 text-xs"></i></div>
@@ -319,7 +319,7 @@ export default function VideoContent() {
       </section>
 
       {/* Formats — dynamic with image backgrounds */}
-      <section id="formate" className="bg-white py-24 px-6">
+      <section id="formate" className="bg-white py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-[#111]/10 border border-[#111]/15 px-4 py-1.5 mb-5">
@@ -365,6 +365,7 @@ export default function VideoContent() {
                 src={resolvedFormats[activeFormat].img}
                 alt={FORMATS[activeFormat].title}
                 className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute top-4 left-4">

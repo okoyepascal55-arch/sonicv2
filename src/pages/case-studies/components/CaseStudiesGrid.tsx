@@ -186,6 +186,7 @@ export default function CaseStudiesGrid() {
                 src={study.images[0]}
                 alt={study.brand}
                 className={`absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ${hoveredCard === index ? 'scale-110' : 'scale-100'}`}
+                loading="lazy"
               />
 
               {/* Gradient overlay */}
@@ -199,10 +200,10 @@ export default function CaseStudiesGrid() {
               <div className={`absolute top-0 left-0 bottom-0 w-0.5 bg-[#C8D400] transition-all duration-500 ${hoveredCard === index ? 'opacity-100' : 'opacity-0'}`} />
 
               {/* Since badge */}
-              <div className="absolute top-4 right-4 z-10 max-w-[38%] sm:max-w-none">
-                <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-black/55 border border-white/[0.08] px-2 sm:px-3 py-1.5 rounded-sm max-w-full">
-                  <span className="text-[#C8D400] font-black text-sm font-sans tabular-nums shrink-0">{study.metric}</span>
-                  <span className="text-white/60 text-[10px] font-bold truncate max-w-[60px] sm:max-w-[120px]">{study.metricLabel}</span>
+              <div className="absolute top-4 right-4 z-10">
+                <div className="inline-flex items-center gap-2 bg-black/55 border border-white/[0.08] px-3 py-1.5 rounded-sm">
+                  <span className="text-[#C8D400] font-black text-sm font-sans tabular-nums">{study.metric}</span>
+                  <span className="text-white/60 text-[10px] font-bold truncate max-w-[120px]">{study.metricLabel}</span>
                 </div>
               </div>
 
@@ -214,8 +215,8 @@ export default function CaseStudiesGrid() {
               </div>
 
               {/* Logo + brand */}
-              <div className="absolute top-4 left-4 z-10 flex items-center gap-2 sm:gap-3 max-w-[58%] sm:max-w-none">
-                <div className="h-12 w-16 bg-white/12 flex items-center justify-center px-2 py-1.5 shrink-0" style={{ borderRadius: 0 }}>
+              <div className="absolute top-4 left-4 z-10 flex items-center gap-3">
+                <div className="h-12 w-16 bg-white/12 flex items-center justify-center px-2 py-1.5" style={{ borderRadius: 0 }}>
                   <img
                     src={study.id === 'garmin' ? 'https://cdn.brandfetch.io/garmin.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' :
                          study.id === 'groupe-seb' ? 'https://cdn.brandfetch.io/groupeseb.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' :
@@ -224,9 +225,10 @@ export default function CaseStudiesGrid() {
                     alt={study.brand}
                     className="w-full h-full object-contain"
                     style={{ filter: 'brightness(0) invert(1)' }}
+                    loading="lazy"
                   />
                 </div>
-                <span className="text-white font-black text-sm uppercase tracking-wide truncate">{study.brand}</span>
+                <span className="text-white font-black text-sm uppercase tracking-wide">{study.brand}</span>
               </div>
 
               {/* Bottom content */}

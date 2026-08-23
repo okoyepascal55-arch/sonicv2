@@ -19,7 +19,7 @@ export interface EraData {
   accent: string;
   filter: string;
   photo: string;
-  caption: string;
+  caption?: string;
   photos: EraPhoto[];
 }
 
@@ -30,7 +30,7 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     label: '2007–2015',
     years: '2007–2015',
     tagline: 'The Genesis',
-    accent: '#3e5600',
+    accent: '#c8d400',
     filter: 'sepia(0.5) hue-rotate(55deg) saturate(0.72) contrast(0.95) brightness(0.88)',
     photo: '/images/Über uns/Sonic Reels/2007-2015/DSC06048.webp',
     caption: '',
@@ -47,7 +47,7 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     label: '2015–2019',
     years: '2015–2019',
     tagline: 'The Momentum',
-    accent: '#547300',
+    accent: '#c8d400',
     filter: 'sepia(0.38) hue-rotate(46deg) saturate(1) contrast(1.05)',
     photo:
       'https://readdy.ai/api/search-image?query=dramatic%20wide%20angle%20view%20of%20a%20large%20modern%20German%20consumer%20electronics%20store%20Samsung%20brand%20zone%20with%20multiple%20promoters%20working%20simultaneously%20confident%20professional%20atmosphere%20clean%20premium%20retail%20environment%20cinematic%20photography%202016%20era%20high%20energy%20commercial%20photography&width=1920&height=1080&seq=sonic-reels-hero-2015&orientation=landscape',
@@ -79,7 +79,7 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     label: '2019–2022',
     years: '2019–2022',
     tagline: 'The Resilience',
-    accent: '#6a8c00',
+    accent: '#c8d400',
     filter: 'sepia(0.26) hue-rotate(38deg) saturate(1.05) contrast(1.08)',
     photo: '/images/Über uns/Sonic Reels/2019-2022/IMG_2662 Kopie.webp',
     caption: '',
@@ -97,7 +97,7 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     label: '2022–2023',
     years: '2022–2023',
     tagline: 'The Acceleration',
-    accent: '#81a400',
+    accent: '#c8d400',
     filter: 'sepia(0.16) hue-rotate(28deg) saturate(1.1) contrast(1.1)',
     photo: '/images/Über uns/Sonic Reels/2022-2023/IMG_8931 Kopie.webp',
     caption: '',
@@ -121,7 +121,7 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     label: '2024',
     years: '2024',
     tagline: 'The Edge',
-    accent: '#9fbe00',
+    accent: '#c8d400',
     filter: 'sepia(0.07) hue-rotate(16deg) saturate(1.15) contrast(1.12)',
     photo:
       'https://readdy.ai/api/search-image?query=sleek%20futuristic%20modern%20tech%20office%20with%20large%20curved%20monitors%20showing%20retail%20analytics%20dashboards%20glowing%20data%20visualisations%20warm%20accent%20lighting%20minimalist%20interior%20design%20Sonic%20brand%20team%20reviewing%20live%20campaign%20data%20editorial%20corporate%20tech%20photography%202024%20premium%20atmosphere&width=1920&height=1080&seq=sonic-reels-hero-2024&orientation=landscape',
@@ -185,7 +185,7 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     label: '2026',
     years: '2026',
     tagline: 'The Horizon',
-    accent: '#e4f050',
+    accent: '#c8d400',
     filter: 'sepia(0) saturate(1.2) contrast(1.15)',
     photo:
       'https://readdy.ai/api/search-image?query=bold%20visionary%20architectural%20concept%20photograph%20of%20futuristic%20retail%20experience%20zone%20with%20advanced%20holographic%20product%20display%20digital%20signage%20ambient%20lighting%20premium%20brand%20activation%20space%20ultramodern%20design%20aesthetic%20editorial%20photography%20aspirational%202026%20forward-looking%20technology%20and%20human%20connection&width=1920&height=1080&seq=sonic-reels-hero-2026&orientation=landscape',

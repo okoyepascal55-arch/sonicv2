@@ -19,7 +19,7 @@ export default function WoodenButton({
   type = 'button',
   className = '',
 }: WoodenButtonProps) {
-  const baseClasses = 'inline-flex items-center justify-center text-center font-black uppercase tracking-wider whitespace-normal sm:whitespace-nowrap relative overflow-hidden transition-all duration-moderate ease-sonic-spring';
+  const baseClasses = 'inline-flex items-center justify-center font-black uppercase tracking-wider whitespace-nowrap relative overflow-hidden transition-all duration-moderate ease-sonic-spring';
 
   const sizeClasses = {
     sm: 'px-4 py-2 text-sm',

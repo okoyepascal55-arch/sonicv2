@@ -170,7 +170,7 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
         {/* TOP: Logo + Brand Name */}
         <div className="flex items-center gap-3 mb-4 pb-4 border-b border-background-200/70">
           <div className="w-11 h-11 bg-white shadow-md flex items-center justify-center p-1.5 ring-2 ring-background-200/70 flex-shrink-0" style={{ borderRadius: 0 }}>
-            <img src={item.logo} alt={item.brand} className="w-full h-full object-contain" />
+            <img src={item.logo} alt={item.brand} className="w-full h-full object-contain" loading="lazy" />
           </div>
           <h3 className="text-sm font-black text-foreground-950 tracking-wide leading-tight">{item.brand}</h3>
         </div>
@@ -207,10 +207,11 @@ export default function ClientProof() {
   const autoScrollRaf = useRef<number>(0);
   const { images: logoImages } = useMediaStore('common_clientproof_logos');
 
-  // Positional override: dashboard logo at index i replaces testimonial i's logo.
-  // Falls back to the hardcoded CDN URL if no dashboard image at that position.
-  const getLogo = (index: number, brandFallback: string) => {
-    return logoImages[index]?.url || brandFallback;
+  // Merge dashboard logos with hardcoded testimonials — logo from dashboard if available
+  const getLogo = (brandFallback: string) => {
+    // Try to match by brand name
+    const match = logoImages.find((img) => img.caption?.toLowerCase().includes(brandFallback.toLowerCase()));
+    return match?.url || brandFallback;
   };
 
   useEffect(() => {
@@ -280,7 +281,7 @@ export default function ClientProof() {
           onMouseLeave={() => { autoScrollPaused.current = false; }}
         >
           {[...testimonials, ...testimonials].map((item, i) => (
-            <TestimonialCard key={`${i}-${item.brand}`} item={{ ...item, logo: getLogo(i % testimonials.length, item.logo) }} index={i % testimonials.length} />
+            <TestimonialCard key={`${i}-${item.brand}`} item={{ ...item, logo: getLogo(item.logo) }} index={i % testimonials.length} />
           ))}
         </div>
 

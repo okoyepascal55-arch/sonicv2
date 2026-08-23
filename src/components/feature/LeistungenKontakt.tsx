@@ -67,7 +67,7 @@ export default function LeistungenKontakt({
               <button
                 type="button"
                 onClick={() => openCalendly()}
-                className="inline-flex items-center gap-3 bg-foreground-950 text-white px-6 py-4 sm:px-10 sm:py-5 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-normal text-left sm:whitespace-nowrap cursor-pointer text-sm rounded-none"
+                className="inline-flex items-center gap-3 bg-foreground-950 text-white px-10 py-5 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm rounded-none"
               >
                 <i className={`${ctaIcon} text-base`}></i>
                 {ctaLabel}

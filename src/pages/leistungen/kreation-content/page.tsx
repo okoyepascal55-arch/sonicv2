@@ -31,8 +31,6 @@ const NAV_ITEMS = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'konzept', label: 'Konzept & Kreation', icon: 'ri-palette-line' },
-  { id: 'content-creation', label: 'Content Creation', icon: 'ri-camera-line' },
-  { id: 'cgi-3d', label: 'CGI & 3D', icon: 'ri-box-3-line' },
   { id: 'referenzen', label: 'Referenzen', icon: 'ri-chat-quote-line' },
   { id: 'kontakt', label: 'Kontakt', icon: 'ri-calendar-line' },
 ];
@@ -218,7 +216,7 @@ function WoodIconsStrip({ icons }: { icons: { img: string; label: string }[] }) 
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px) scale(1.06)'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0) scale(1)'; }}
               >
-                <img src={w.img} alt={w.label} className="w-full h-full object-cover" />
+                <img src={w.img} alt={w.label} className="w-full h-full object-cover" loading="lazy" />
               </div>
               {/* Label with animated underline */}
               <div className="flex flex-col items-center gap-1">
@@ -301,7 +299,7 @@ export default function KreationContentPage() {
 
       {/* ── HERO + CAROUSEL — one unified composition on warm background ── */}
       <div ref={heroRef}>
-        <section className="relative w-full overflow-hidden min-h-[480px] md:min-h-[520px] bg-white pt-20 pb-[60px]"
+        <section className="relative w-full overflow-hidden min-h-[360px] md:min-h-[520px] bg-white pt-20 pb-[60px]"
         >
           {/* Lime radial glow — very subtle, behind headline */}
           <div
@@ -328,7 +326,7 @@ export default function KreationContentPage() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-foreground-950 mb-6 leading-tight tracking-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-7xl font-black text-foreground-950 mb-6 leading-tight tracking-tight">
               {tHeroH1Line1}<br />
               <span className="text-primary-500">{tHeroH1Accent}</span>
             </h1>
@@ -404,7 +402,7 @@ export default function KreationContentPage() {
             <div>
               <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5" style={{ borderRadius: 0 }}>
                 <i className="ri-check-double-line text-foreground-950 text-sm" />
-                <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
+                <span className="text-xs font-black text-foreground-950 uppercase tracking-[0.2em]">Die Lösung</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-black text-foreground-950 mb-3 leading-tight uppercase">
                 {tSolutionHeading}
@@ -458,7 +456,7 @@ export default function KreationContentPage() {
                         transition: 'transform 0.5s ease',
                       }}
                     >
-                      <img src={getSolutionWoodIcon(i)} alt={s.title} className="w-full h-full object-cover" />
+                      <img src={getSolutionWoodIcon(i)} alt={s.title} className="w-full h-full object-cover" loading="lazy" />
                     </div>
                     <div className="flex items-center gap-2 mb-3">
                       <span className="font-mono font-black text-xs text-primary-500">{s.num}</span>
@@ -499,8 +497,6 @@ export default function KreationContentPage() {
       </section>
 
       {/* Bento Showcase */}
-      <div id="content-creation" />
-      <div id="cgi-3d" />
       <KreationShowcase />
 
       <WoodenDivider />

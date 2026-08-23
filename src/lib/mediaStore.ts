@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import manifestData from '@/mocks/imagesManifest.json';
-import { supabase, SUPABASE_URL } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 
 export interface MediaItem {
   url: string;
@@ -21,37 +21,22 @@ export type MediaSections = {
 ───────────────────────────────────────────── */
 export const STORAGE_PREFIX = '__storage__:';
 
-/* ─────────────────────────────────────────────
-   FRESH UPLOAD TRACKING
-   Paths uploaded in this browser session are
-   tracked here so resolveImageUrl can append a
-   cache-busting ?t= param, ensuring the browser
-   always fetches the newly uploaded image instead
-   of a stale cached 404 / loading response.
-───────────────────────────────────────────── */
-const _freshUploadTimestamps = new Map<string, number>();
-
-export function markStoragePathAsFresh(path: string): void {
-  _freshUploadTimestamps.set(path, Date.now());
-}
-
 export function resolveImageUrl(rawUrl: string): string {
   if (!rawUrl) return rawUrl;
 
   // New format: __storage__:path
   if (rawUrl.startsWith(STORAGE_PREFIX)) {
     const path = rawUrl.slice(STORAGE_PREFIX.length);
-    const base = `${SUPABASE_URL}/functions/v1/media-proxy?path=${encodeURIComponent(path)}`;
-    // Append cache-busting timestamp for freshly uploaded paths
-    const ts = _freshUploadTimestamps.get(path);
-    return ts ? `${base}&t=${ts}` : base;
+    const supabaseUrl = import.meta.env.VITE_PUBLIC_SUPABASE_URL;
+    return `${supabaseUrl}/functions/v1/media-proxy?path=${encodeURIComponent(path)}`;
   }
 
   // Legacy signed URLs — extract path and migrate to proxy
   const signMatch = rawUrl.match(/\/storage\/v1\/object\/sign\/media\/(.+?)(?:\?|$)/);
   if (signMatch) {
     const path = decodeURIComponent(signMatch[1]);
-    return `${SUPABASE_URL}/functions/v1/media-proxy?path=${encodeURIComponent(path)}`;
+    const supabaseUrl = import.meta.env.VITE_PUBLIC_SUPABASE_URL;
+    return `${supabaseUrl}/functions/v1/media-proxy?path=${encodeURIComponent(path)}`;
   }
 
   // External URLs (AI-generated, remote, etc.) — return as-is
@@ -1969,34 +1954,6 @@ async function pullOverridesFromSupabase(): Promise<MediaSections | null> {
   }
 }
 
-/* ─────────────────────────────────────────────
-   SYNC STATUS — surfaces publish failures to the UI.
-   A successful local write (localStorage) is not the
-   same as a successful publish (Supabase row upsert).
-   Without this, an upload can "succeed" in the admin's
-   own browser while silently never reaching visitors.
-───────────────────────────────────────────── */
-let _lastSyncError: string | null = null;
-
-export interface SyncStatus {
-  lastSyncTs: number | null;
-  lastError: string | null;
-  inFlight: boolean;
-}
-
-export function getSyncStatus(): SyncStatus {
-  const raw = localStorage.getItem(LAST_SYNC_TS_KEY);
-  return {
-    lastSyncTs: raw ? Number(raw) : null,
-    lastError: _lastSyncError,
-    inFlight: _supabaseSyncInFlight,
-  };
-}
-
-function emitSyncStatus() {
-  window.dispatchEvent(new CustomEvent<SyncStatus>('media-sync-status', { detail: getSyncStatus() }));
-}
-
 async function pushOverridesToSupabase(overrides: MediaSections): Promise<void> {
   if (_supabaseSyncInFlight) {
     _supabaseSyncNeeded = true;
@@ -2008,13 +1965,11 @@ async function pushOverridesToSupabase(overrides: MediaSections): Promise<void> 
     let currentOverrides = overrides;
     do {
       _supabaseSyncNeeded = false;
-      const { error } = await supabase
+      await supabase
         .from('media_store')
         .upsert({ id: SUPABASE_STORE_ID, data: currentOverrides, updated_at: new Date().toISOString() });
-      if (error) throw error;
       setSupabaseOverridesCache(currentOverrides);
       localStorage.setItem(LAST_SYNC_TS_KEY, String(Date.now()));
-      _lastSyncError = null;
 
       // If more changes came in while we were syncing, compute fresh overrides and sync again
       if (_supabaseSyncNeeded) {
@@ -2027,24 +1982,10 @@ async function pushOverridesToSupabase(overrides: MediaSections): Promise<void> 
         }
       }
     } while (_supabaseSyncNeeded);
-  } catch (e) {
-    // Publish failed — the change is safe in localStorage for this browser,
-    // but visitors and other browsers will NOT see it until this succeeds.
-    _lastSyncError = e instanceof Error ? e.message : 'Veröffentlichung fehlgeschlagen';
-  } finally {
+  } catch { /* network down — localStorage still works */ }
+  finally {
     _supabaseSyncInFlight = false;
-    emitSyncStatus();
   }
-}
-
-/** Re-attempts publishing the current store to Supabase after a failed sync. */
-export function retrySync(): void {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) return;
-  try {
-    const store = JSON.parse(raw) as MediaSections;
-    void syncOverridesToSupabase(store);
-  } catch { /* ignore parse errors */ }
 }
 
 function computeOverrides(store: MediaSections): MediaSections {

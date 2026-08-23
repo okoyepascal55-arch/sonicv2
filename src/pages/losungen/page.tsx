@@ -801,7 +801,7 @@ function WoodCard({
         {/* 1. Card header row */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-7">
           <div className="flex items-center gap-3 md:gap-4">
-            <div className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-primary-500/15 border border-primary-500/40 rounded-lg flex-shrink-0">
+            <div className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-primary-500/15 border border-primary-500/40 flex-shrink-0">
               <i className={`${s.icon} text-xl md:text-2xl text-primary-500`}></i>
             </div>
             <div className="min-w-0">
@@ -818,13 +818,13 @@ function WoodCard({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           {/* Left: big stat + label + description */}
           <div className="lg:col-span-5 flex flex-col justify-center">
-            <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-primary-500 font-sans tabular-nums leading-none drop-shadow-lg">{heroStat.value}</div>
+            <div className="text-5xl md:text-6xl lg:text-7xl font-black text-primary-500 font-sans tabular-nums leading-none drop-shadow-lg">{heroStat.value}</div>
             <p className="text-white/75 text-sm md:text-base font-bold uppercase tracking-wide mt-3">{heroStat.label}</p>
             <p className="text-white/60 text-sm leading-relaxed mt-4 max-w-md">{s.description}</p>
           </div>
 
           {/* Right: chart panel */}
-          <div className="lg:col-span-7 rounded-lg bg-black/30 border border-white/10 backdrop-blur-[2px] p-6 md:p-8 flex flex-col">
+          <div className="lg:col-span-7 bg-black/30 border border-white/10 backdrop-blur-[2px] p-6 md:p-8 flex flex-col">
             <div className="flex items-center justify-between mb-6">
               <span className="text-white/85 text-xs font-black uppercase tracking-wide">Performance-Trend</span>
               <span className="text-primary-500 text-xs font-sans tabular-nums font-black bg-white/10 rounded-none px-3 py-1">2021–2024</span>
@@ -832,7 +832,7 @@ function WoodCard({
             <div className="flex-1 flex items-end gap-1.5 md:gap-2 min-h-[120px]">
               {s.stats.map((_, i) => (
                 <div key={i} className="flex-1 flex flex-col justify-end h-full">
-                  <div className="w-full rounded-t-sm bg-gradient-to-t from-primary-500/60 to-primary-500 transition-all duration-700" style={{ height: `${barHeights[i]}%` }} />
+                  <div className="w-full bg-gradient-to-t from-primary-500/60 to-primary-500 transition-all duration-700" style={{ height: `${barHeights[i]}%` }} />
                 </div>
               ))}
             </div>
@@ -845,9 +845,9 @@ function WoodCard({
         </div>
 
         {/* 3. Fact row — 3 compact tiles */}
-        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 mt-6">
+        <div className="grid grid-cols-3 gap-3 md:gap-4 mt-6">
           {factStats.map((stat, i) => (
-            <div key={i} className="rounded-lg bg-black/25 border border-white/10 p-2.5 sm:p-4 md:p-5 text-center">
+            <div key={i} className="bg-black/25 border border-white/10 p-4 md:p-5 text-center">
               <div className="text-primary-500 font-sans tabular-nums font-black text-lg md:text-2xl mb-1">{stat.value}</div>
               <div className="text-white/60 text-[10px] md:text-xs font-bold uppercase tracking-wide">{stat.label}</div>
             </div>
@@ -1066,10 +1066,9 @@ export default function LosungenPage() {
         {/* Content — left-aligned, bottom-anchored */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 py-0">
           <div className="max-w-3xl">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-7">
-              <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" />
-              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Lösungen</span>
+            <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
+              <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
+              Lösungen
             </div>
 
             {/* Main headline — editorial split type */}
@@ -1093,26 +1092,7 @@ export default function LosungenPage() {
               </div>
             </div>
 
-            {/* Three solution nav buttons */}
-            <div className="flex flex-wrap gap-2 md:gap-3">
-              {KEYS.map((key) => (
-                <button
-                  key={key}
-                  onClick={() => {
-                    setActiveTab(key);
-                    setExpandedKey(null);
-                    setTimeout(() => {
-                      carouselRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
-                  }}
-                  className="inline-flex items-center gap-2 border border-white/25 text-white px-5 py-2.5 font-black text-xs uppercase tracking-wider hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer whitespace-nowrap group"
-                >
-                  <i className={`${SOLUTIONS[key].icon} text-sm`} />
-                  {SOLUTIONS[key].label}
-                  <i className="ri-arrow-right-line text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                </button>
-              ))}
-            </div>
+            {/* Three solution nav buttons — REMOVED, users scroll to carousel tabs */}
           </div>
         </div>
 
@@ -1193,20 +1173,13 @@ export default function LosungenPage() {
             ))}
           </div>
 
-          {/* Expanded panel — break out of max-w-7xl to be truly full-width */}
-          <div ref={expandedRef}>
-            {expandedKey && expandedKey === activeTab && (
-              <div
-                style={{
-                  marginLeft: 'calc(-50vw + 50%)',
-                  marginRight: 'calc(-50vw + 50%)',
-                  width: '100vw',
-                }}
-              >
-                <ExpandedPanel sKey={expandedKey} onClose={() => setExpandedKey(null)} carouselRef={carouselRef} heroBgImages={heroBgImages} woodTextures={woodTextures} deliverableImages={deliverableImages} stepImages={stepImages} testimonialImages={testimonialImages} iconImages={iconImages} />
-              </div>
-            )}
-          </div>
+        </div>
+
+        {/* Expanded panel — full-bleed, outside the max-w container (no 100vw hack) */}
+        <div ref={expandedRef} className="relative z-10">
+          {expandedKey && expandedKey === activeTab && (
+            <ExpandedPanel sKey={expandedKey} onClose={() => setExpandedKey(null)} carouselRef={carouselRef} heroBgImages={heroBgImages} woodTextures={woodTextures} deliverableImages={deliverableImages} stepImages={stepImages} testimonialImages={testimonialImages} iconImages={iconImages} />
+          )}
         </div>
       </section>
 
@@ -1245,8 +1218,8 @@ export default function LosungenPage() {
 
       <WoodenDivider />
 
-      {/* ── SURVEY ── */}
-      <section className="py-10 md:py-14 px-4 md:px-6 bg-background-50">
+      {/* ── SURVEY ── inline block, not a standalone section ── */}
+      <div className="py-10 md:py-14 px-4 md:px-6 bg-background-50">
         <div className="max-w-3xl mx-auto">
           {!surveyExpanded ? (
             /* ── Collapsed teaser ── */
@@ -1268,7 +1241,7 @@ export default function LosungenPage() {
                     <i className="ri-flashlight-line text-lg text-primary-500"></i>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs font-black text-primary-500 uppercase tracking-widest mb-0.5">Schnell-Check</p>
+                    <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-0.5">Schnell-Check</p>
                     <h3 className="text-sm md:text-base font-black text-foreground-950 leading-snug">Finde die passende Sonic-Lösung für dein Projekt</h3>
                     <p className="text-xs text-foreground-500 mt-0.5 hidden sm:block">5 Fragen · 60 Sekunden · Maßgeschneidertes Ergebnis</p>
                   </div>
@@ -1322,7 +1295,7 @@ export default function LosungenPage() {
                     <div className="mb-6">
                       <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-3 py-1 mb-3">
                         <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" />
-                        <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Schnell-Check</span>
+                        <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Schnell-Check</span>
                       </div>
                       <h2 className="text-xl md:text-2xl font-black text-white uppercase leading-tight">Finde deine Sonic-Lösung</h2>
                     </div>
@@ -1387,7 +1360,7 @@ export default function LosungenPage() {
                   <div>
                     <div className="mb-6">
                       <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-3 py-1 mb-3">
-                        <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Kontakt</span>
+                        <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Kontakt</span>
                       </div>
                       <h2 className="text-xl md:text-2xl font-black text-white uppercase leading-tight">Fast geschafft!</h2>
                       <p className="text-white/50 text-sm mt-1">Hinterlasse deine Daten — wir erstellen dein persönliches Ergebnis.</p>
@@ -1594,9 +1567,7 @@ export default function LosungenPage() {
             </div>
           )}
         </div>
-      </section>
-
-      <WoodenDivider />
+      </div>
 
       {/* ── CLIENT PROOF ── */}
       <ClientProof />
@@ -1609,7 +1580,7 @@ export default function LosungenPage() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-primary-500/20 border border-primary-500/40 px-5 py-2 mb-6" style={{ borderRadius: 0 }}>
               <i className="ri-question-line text-primary-500 text-sm"></i>
-              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">FAQ</span>
+              <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">FAQ</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-foreground-950 mb-4">Häufig gestellte Fragen</h2>
             <p className="text-foreground-500 text-base max-w-xl mx-auto leading-relaxed">Alles, was du über unsere Lösungen, unsere Arbeitsweise und den Start einer Zusammenarbeit wissen musst.</p>

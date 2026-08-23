@@ -42,6 +42,7 @@ function HubCard({ card, onClick }: { card: RatgeberHubCard; onClick: (slug: str
           src={card.imageUrl}
           alt={card.title + ' ' + card.accent}
           className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute top-3 right-3">
@@ -177,7 +178,7 @@ export default function RatgeberHubPage() {
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14 text-center">
             <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-6 mx-auto">
               <div className="w-1.5 h-1.5 bg-[#C8D400] animate-pulse" />
-              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">{tHeroBadge}</span>
+              <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">{tHeroBadge}</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 leading-tight drop-shadow-2xl">
               {tHeroH1_1}<br />

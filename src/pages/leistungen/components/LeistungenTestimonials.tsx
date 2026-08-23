@@ -123,7 +123,7 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
     <div
       ref={cardRef}
       className="relative bg-white p-6 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-visible flex flex-col rounded-none"
-      style={{ minWidth: 'min(420px, 85vw)', flex: '0 0 calc(50% - 12px)' }}
+      style={{ minWidth: '420px', flex: '0 0 calc(50% - 12px)' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -162,7 +162,7 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
           <div
             className="w-14 h-14 bg-white shadow-md flex items-center justify-center p-2 ring-2 ring-foreground-100 flex-shrink-0 rounded-none"
           >
-            <img src={item.logo} alt={item.brand} className="w-full h-full object-contain" />
+            <img src={item.logo} alt={item.brand} className="w-full h-full object-contain" loading="lazy" />
           </div>
           <h3 className="text-sm font-black text-foreground-950 tracking-wide leading-tight">{item.brand}</h3>
         </div>
@@ -230,9 +230,9 @@ export default function LeistungenTestimonials() {
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-4">
             <div className="w-1.5 h-1.5 bg-foreground-950 animate-pulse" />
-            <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Kundenstimmen</span>
+            <span className="text-xs font-black text-foreground-950 uppercase tracking-[0.2em]">Kundenstimmen</span>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 leading-tight tracking-tight mb-6 uppercase">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight mb-6 uppercase">
             WAS UNSERE PARTNER<br />ÜBER UNS SAGEN
           </h2>
           {/* Scroll controls — centered */}

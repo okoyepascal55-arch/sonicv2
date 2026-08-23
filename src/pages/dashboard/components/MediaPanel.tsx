@@ -12,12 +12,8 @@ import {
   reorderSectionImages,
   STORAGE_PREFIX,
   resolveImageUrl,
-  markStoragePathAsFresh,
-  getSyncStatus,
-  retrySync,
   type MediaItem,
   type DesignSpec,
-  type SyncStatus,
 } from '@/lib/mediaStore';
 import { supabase } from '@/lib/supabase';
 import { compressImage } from '@/lib/imageCompress';
@@ -139,10 +135,9 @@ const ImageCard = memo(function ImageCard({
     >
       <div className={`relative h-28 md:h-36 w-full ${previewClass}`}>
         <img
-          key={displayUrl}
           src={displayUrl}
           alt={item.caption || `Image ${idx + 1}`}
-          loading={item.url.startsWith('__storage__:') ? 'eager' : 'lazy'}
+          loading="lazy"
           className={`w-full h-full ${item.url.endsWith('.svg') ? 'object-contain p-3' : 'object-cover'}`}
           onError={() => setErrored(true)}
         />
@@ -431,12 +426,6 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
   // ── Store version trigger ──
   const [storeVersion, setStoreVersion] = useState(0);
 
-  // ── Publish (Supabase sync) status — separate from local save success ──
-  const [syncStatus, setSyncStatus] = useState<SyncStatus>(() => getSyncStatus());
-
-  // ── Local preview ObjectURL for single upload ──
-  const [uploadPreviewUrl, setUploadPreviewUrl] = useState<string | null>(null);
-
   const group = useMemo(() => PAGE_GROUPS.find((g) => g.id === activeGroup), [activeGroup]);
   const groupedCategories = useMemo(() => getCategoriesByPageGroup(), [storeVersion]);
   const categories = useMemo(() => groupedCategories[activeGroup] || [], [groupedCategories, activeGroup]);
@@ -462,12 +451,6 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
     const handler = () => setStoreVersion((v) => v + 1);
     window.addEventListener('media-store-update', handler);
     return () => window.removeEventListener('media-store-update', handler);
-  }, []);
-
-  useEffect(() => {
-    const handler = (e: Event) => setSyncStatus((e as CustomEvent<SyncStatus>).detail);
-    window.addEventListener('media-sync-status', handler);
-    return () => window.removeEventListener('media-sync-status', handler);
   }, []);
 
   useEffect(() => {
@@ -582,9 +565,6 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
 
       if (uploadErr) throw uploadErr;
 
-      // Mark as fresh for cache-busting
-      markStoragePathAsFresh(path);
-
       const storageUrl = `${STORAGE_PREFIX}${path}`;
 
       updateSectionImage(expandedSection, replaceTargetUrl, { url: storageUrl });
@@ -608,8 +588,6 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
     setAddCaption('');
     setAddWide(false);
     setUploadFile(null);
-    // Revoke any lingering ObjectURL from a previous session
-    setUploadPreviewUrl((prev) => { if (prev) URL.revokeObjectURL(prev); return null; });
     setUploadError('');
     setStoreError(null);
     setAddModalOpen(true);
@@ -765,9 +743,6 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
 
         if (uploadErr) throw uploadErr;
 
-        // Mark as fresh for cache-busting so image renders immediately
-        markStoragePathAsFresh(path);
-
         const storageUrl = `${STORAGE_PREFIX}${path}`;
         const num = bulkFiles.length > 1 ? ` ${i + 1}` : '';
         const caption = bulkCaptionPrefix.trim() ? `${bulkCaptionPrefix.trim()}${num}` : file.name.replace(/\.[^/.]+$/, '');
@@ -803,16 +778,12 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
       setUploadError(`Datei zu groß (${(file.size / 1024 / 1024).toFixed(1)} MB). Maximale Größe: 10 MB.`);
       return;
     }
-    // Revoke previous ObjectURL to avoid memory leaks
-    if (uploadPreviewUrl) URL.revokeObjectURL(uploadPreviewUrl);
-    const preview = URL.createObjectURL(file);
-    setUploadPreviewUrl(preview);
     setUploadFile(file);
     setUploadError('');
     if (!addCaption.trim()) {
       setAddCaption(file.name.replace(/\.[^/.]+$/, ''));
     }
-  }, [addCaption, uploadPreviewUrl]);
+  }, [addCaption]);
 
   const handleUploadAndAdd = useCallback(async () => {
     if (!uploadFile || !expandedSection) return;
@@ -839,9 +810,6 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
 
       if (uploadErr) throw uploadErr;
 
-      // Mark as fresh so resolveImageUrl appends a cache-busting timestamp
-      markStoragePathAsFresh(path);
-
       const storageUrl = `${STORAGE_PREFIX}${path}`;
 
       const added = addSectionImage(expandedSection, storageUrl, addCaption.trim(), addWide);
@@ -853,11 +821,6 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
 
       setAddModalOpen(false);
       setUploadFile(null);
-      // Revoke ObjectURL now that the real URL is in the store
-      if (uploadPreviewUrl) {
-        URL.revokeObjectURL(uploadPreviewUrl);
-        setUploadPreviewUrl(null);
-      }
       refreshSection(expandedSection);
     } catch (err: any) {
       const msg = err?.message || 'Upload failed';
@@ -868,7 +831,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
     } finally {
       setUploading(false);
     }
-  }, [uploadFile, expandedSection, addCaption, addWide, uploadPreviewUrl, refreshSection]);
+  }, [uploadFile, expandedSection, addCaption, addWide, refreshSection]);
 
   const handleAddUrl = useCallback(() => {
     if (!addUrl.trim() || !expandedSection) return;
@@ -1058,31 +1021,6 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
         )}
 
         <div className="max-w-5xl space-y-2">
-          {/* Publish (Supabase sync) error banner — local save succeeded but
-              visitors/other browsers won't see the change until this resolves */}
-          {syncStatus.lastError && (
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 md:p-4 mb-3 flex items-start gap-2">
-              <span className="w-5 h-5 flex items-center justify-center shrink-0 mt-0.5">
-                <i className="ri-cloud-off-line text-amber-500 text-sm"></i>
-              </span>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs md:text-sm font-semibold text-amber-800 mb-0.5">
-                  Nicht veröffentlicht
-                </p>
-                <p className="text-2xs md:text-xs text-amber-700 break-words">
-                  Änderungen sind in diesem Browser gespeichert, aber auf der Live-Seite noch nicht sichtbar: {syncStatus.lastError}
-                </p>
-              </div>
-              <button
-                onClick={() => retrySync()}
-                disabled={syncStatus.inFlight}
-                className="px-2.5 md:px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-white text-2xs md:text-xs font-bold rounded-md transition-colors cursor-pointer whitespace-nowrap disabled:opacity-50"
-              >
-                {syncStatus.inFlight ? 'Versuche…' : 'Erneut versuchen'}
-              </button>
-            </div>
-          )}
-
           {/* Storage error banner */}
           {storeError && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-3 md:p-4 mb-3 flex items-start gap-2">
@@ -1259,15 +1197,6 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
                 >
                   {uploadFile ? (
                     <div className="space-y-1">
-                      {uploadPreviewUrl && (
-                        <div className="mx-auto w-24 h-24 rounded-lg overflow-hidden mb-2 ring-2 ring-lime-400 shadow-md">
-                          <img
-                            src={uploadPreviewUrl}
-                            alt="Vorschau"
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      )}
                       <i className="ri-file-image-line text-2xl md:text-3xl text-lime-500 block"></i>
                       <p className="text-xs md:text-sm font-semibold text-gray-900 truncate">{uploadFile.name}</p>
                       <p className="text-2xs md:text-xs text-gray-400">
@@ -1278,7 +1207,6 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
                         onClick={(e) => {
                           e.stopPropagation();
                           setUploadFile(null);
-                          if (uploadPreviewUrl) { URL.revokeObjectURL(uploadPreviewUrl); setUploadPreviewUrl(null); }
                         }}
                         className="text-2xs md:text-xs text-red-500 hover:text-red-600 font-semibold cursor-pointer mt-1 whitespace-nowrap"
                       >
@@ -1384,6 +1312,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
                 src={resolveImageUrl(editTarget.url)}
                 alt={editTarget.caption || 'Preview'}
                 className="w-full h-full object-contain"
+                loading="lazy"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
@@ -1554,6 +1483,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
                               src={URL.createObjectURL(file)}
                               alt={file.name}
                               className="w-full h-full object-cover"
+                              loading="lazy"
                               onLoad={(e) => {
                                 const img = e.target as HTMLImageElement;
                                 URL.revokeObjectURL(img.src);

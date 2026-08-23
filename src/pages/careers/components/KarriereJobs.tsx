@@ -35,17 +35,13 @@ export default function KarriereJobs() {
   }, []);
 
   return (
-    <section id="stellenangebote" className="py-14 md:py-20 px-8 bg-white">
-      <div className="max-w-[1200px] mx-auto">
+    <section id="stellenangebote" className="py-10 md:py-20 px-4 md:px-6 bg-white">
+      <div className="max-w-6xl mx-auto">
         {/* ── Heading ── */}
-        <div className="max-w-[640px] mb-8 md:mb-10">
-          <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-xs font-bold uppercase tracking-[0.06em] px-3.5 py-[7px] pr-3.5 mb-5 ">
-            <span className="w-1.5 h-1.5 bg-[#0B0B0C] " />
-            {tBadge}
-          </div>
-          <h2 className="text-[clamp(28px,3.4vw,40px)] font-black text-[#0B0B0C] leading-[1.1] tracking-tight uppercase">
+        <div className="max-w-3xl mb-12 md:mb-16">
+          <h2 className="text-[clamp(28px,3.6vw,46px)] font-black text-[#0B0B0C] leading-[1.06] tracking-tight uppercase">
             {headingFirst}{' '}
-            <span className="text-[#C3D62A]">{headingRest}</span>
+            <span className="text-[#C8D400]">{headingRest}</span>
           </h2>
         </div>
 
@@ -54,11 +50,11 @@ export default function KarriereJobs() {
           onClick={() => setOpen(!open)}
           aria-expanded={open}
           aria-controls="stellenangebote-panel"
-          className="group w-full flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-[#0B0B0C]  p-6 md:p-8 text-left cursor-pointer"
+          className="group w-full flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-[#0B0B0C] p-6 md:p-8 text-left cursor-pointer"
         >
           <div>
             <div className="flex flex-wrap items-center gap-2.5 mb-3">
-              <span className="px-2.5 py-1 bg-[#DCE94D] text-[#0B0B0C] text-[11px] font-black uppercase tracking-widest ">
+              <span className="px-2.5 py-1 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-widest ">
                 Live
               </span>
               <span className="text-[11px] font-black uppercase tracking-[0.2em] text-white/50">
@@ -75,7 +71,7 @@ export default function KarriereJobs() {
             </p>
           </div>
 
-          <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center border-2 border-[#DCE94D] text-[#DCE94D] group-hover:bg-[#DCE94D] group-hover:text-[#0B0B0C] transition-all duration-300 self-start sm:self-center ">
+          <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center border-2 border-[#C8D400] text-[#C8D400] group-hover:bg-[#C8D400] group-hover:text-[#0B0B0C] transition-all duration-300 self-start sm:self-center ">
             <i className={`ri-arrow-down-s-line text-2xl transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
           </div>
         </button>
@@ -89,7 +85,7 @@ export default function KarriereJobs() {
             <div className="border border-t-0 border-[#E7E4D4] bg-white p-4 md:p-8 min-h-[400px] ">
               <div className="jobWrapper-block" data-bite-jobs-api-listing={BITE_LISTING_KEY}>
                 <div className="flex flex-col items-center justify-center gap-4 py-20">
-                  <div className="w-10 h-10 border-4 border-[#DCE94D]/30 border-t-[#DCE94D] animate-spin " />
+                  <div className="w-10 h-10 border-4 border-[#C8D400]/30 border-t-[#C8D400] animate-spin " />
                   <p className="text-xs font-black text-[#9A9A93] uppercase tracking-widest">
                     Stellenangebote werden geladen…
                   </p>
@@ -100,9 +96,9 @@ export default function KarriereJobs() {
         </div>
 
         {/* ── Tanja CTA bar ── */}
-        <div className="mt-4 bg-[#0B0B0C]  p-6 md:p-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+        <div className="mt-4 bg-[#0B0B0C] p-6 md:p-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
           <div className="flex items-start gap-4 flex-1">
-            <div className="w-12 h-12 flex-shrink-0 overflow-hidden  border-2 border-[#DCE94D]/30">
+            <div className="w-12 h-12 flex-shrink-0 overflow-hidden  border-2 border-[#C8D400]/30">
               <img
                 src={tanjaPortrait}
                 alt="Tanja — HR Team"
@@ -121,14 +117,14 @@ export default function KarriereJobs() {
               href="https://calendly.com/sonic-group/tanja-15min"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#DCE94D] text-[#0B0B0C] font-bold text-xs uppercase tracking-wider hover:bg-[#C3D62A] transition-all duration-200 whitespace-nowrap cursor-pointer "
+              className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#C8D400] text-[#0B0B0C] font-bold text-xs uppercase tracking-wider hover:bg-white transition-all duration-200 whitespace-nowrap cursor-pointer "
             >
               <i className="ri-calendar-line text-sm" />
               {tTanjaCta}
             </a>
             <a
               href="mailto:karriere@sonic-group.de?subject=Initiativbewerbung"
-              className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border-[1.5px] border-white/20 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/10 hover:border-[#DCE94D]/50 transition-all duration-200 whitespace-nowrap cursor-pointer "
+              className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border-[1.5px] border-white/20 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/10 hover:border-[#C8D400]/50 transition-all duration-200 whitespace-nowrap cursor-pointer "
             >
               <i className="ri-send-plane-line text-sm" />
               {tInitiativCta}

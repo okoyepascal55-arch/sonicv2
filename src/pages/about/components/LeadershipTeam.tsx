@@ -35,13 +35,13 @@ export default function LeadershipTeam() {
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
         {/* ── HEADER ── */}
         <div className="max-w-[640px] mb-10 md:mb-14">
-          <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-xs font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-5">
+          <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-xs font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-5">
             <span className="w-1.5 h-1.5 bg-[#0B0B0C] flex-shrink-0" />
             {tBadge}
           </div>
           <h2 className="text-[clamp(28px,3.4vw,42px)] font-black text-[#0B0B0C] leading-[1.08] tracking-tight uppercase">
             {headingMain}{' '}
-            <span className="text-[#C3D62A]">{headingAccent}</span>
+            <span className="text-[#C8D400]">{headingAccent}</span>
           </h2>
           <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[520px]">{tSub}</p>
         </div>
@@ -57,7 +57,7 @@ export default function LeadershipTeam() {
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C]/80 via-[#0B0B0C]/5 to-transparent" />
-            <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-[10px] font-black uppercase tracking-widest px-3 py-1">
+            <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[10px] font-black uppercase tracking-widest px-3 py-1">
               Das Sonic Team
             </div>
           </div>
@@ -67,13 +67,13 @@ export default function LeadershipTeam() {
             {/* Rotating stat */}
             <div className="flex-1 flex flex-col justify-center">
               <div key={activeStatIndex} className="animate-fadeSlideIn">
-                <div className="text-[#DCE94D] text-[10px] font-black uppercase tracking-[0.3em] mb-3">
+                <div className="text-[#C8D400] text-[10px] font-black uppercase tracking-[0.3em] mb-3">
                   {String(activeStatIndex + 1).padStart(2, '0')} / {String(TEAM_STATS.length).padStart(2, '0')}
                 </div>
                 <div className="text-4xl md:text-5xl font-black text-white leading-none">
                   {TEAM_STATS[activeStatIndex].value}
                   {TEAM_STATS[activeStatIndex].unit && (
-                    <span className="text-lg md:text-xl text-[#DCE94D] ml-2 font-black">{TEAM_STATS[activeStatIndex].unit}</span>
+                    <span className="text-lg md:text-xl text-[#C8D400] ml-2 font-black">{TEAM_STATS[activeStatIndex].unit}</span>
                   )}
                 </div>
                 <div className="text-[11px] text-white/40 font-bold uppercase tracking-wider mt-3">
@@ -90,8 +90,8 @@ export default function LeadershipTeam() {
                     onClick={() => setActiveStatIndex(i)}
                     aria-label={`Statistik ${i + 1} von ${TEAM_STATS.length}`}
                     aria-pressed={activeStatIndex === i}
-                    className={`transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCE94D] ${
-                      activeStatIndex === i ? 'w-7 h-1.5 bg-[#DCE94D]' : 'w-1.5 h-1.5 bg-white/20 hover:bg-white/40'
+                    className={`transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] ${
+                      activeStatIndex === i ? 'w-7 h-1.5 bg-[#C8D400]' : 'w-1.5 h-1.5 bg-white/20 hover:bg-white/40'
                     }`}
                   />
                 ))}
@@ -109,7 +109,7 @@ export default function LeadershipTeam() {
             <div className="pt-5 mt-2">
               <a
                 href="/karriere"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#DCE94D] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.06em] hover:bg-[#C3D62A] transition-colors whitespace-nowrap"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.06em] hover:bg-white transition-colors whitespace-nowrap"
               >
                 {tCta}
                 <i className="ri-arrow-right-line" />

@@ -18,7 +18,7 @@ export default function EventsHero() {
 
   return (
     <section
-      className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black"
+      className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black"
       style={{ paddingTop: '80px', paddingBottom: '60px' }}
     >
       <img

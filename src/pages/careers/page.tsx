@@ -19,7 +19,7 @@ function StickyCta() {
   return (
     <button
       onClick={scrollToJobs}
-      className="fixed bottom-6 right-6 z-[200] bg-[#DCE94D] text-[#0B0B0C] font-bold text-[13px] px-6 py-3.5 hover:bg-[#C3D62A] transition-all duration-200 cursor-pointer whitespace-nowrap "
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[200] bg-[#C8D400] text-[#0B0B0C] font-bold text-xs sm:text-[13px] px-4 sm:px-6 py-2.5 sm:py-3.5 hover:bg-white transition-all duration-200 cursor-pointer whitespace-nowrap"
       style={{ boxShadow: '0 8px 24px rgba(0,0,0,0.2)' }}
     >
       <span className="flex items-center gap-2">
@@ -55,13 +55,13 @@ export default function CareersGatewayPage() {
 
         <WoodenDivider />
 
-        {/* Stellenangebote — collapsible drop section */}
-        <KarriereJobs />
+        {/* Kultur & Werte */}
+        <KarriereCulture />
 
         <WoodenDivider />
 
-        {/* Kultur & Werte — Darum Sonic + Sonic DNA */}
-        <KarriereCulture />
+        {/* Stellenangebote */}
+        <KarriereJobs />
 
         <WoodenDivider />
 
@@ -75,12 +75,12 @@ export default function CareersGatewayPage() {
 
         <WoodenDivider />
 
-        {/* Leben bei Sonic — video showcase + campus */}
+        {/* Leben bei Sonic */}
         <SonicTeamEvents />
 
         <WoodenDivider />
 
-        {/* Ausgezeichnet — trust band */}
+        {/* Ausgezeichnet */}
         <KarriereAwards />
       </main>
 

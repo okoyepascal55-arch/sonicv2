@@ -10,7 +10,6 @@ const SERVICES = [
     category: 'Daten & Software',
     headline: 'Echtzeit-Intelligenz',
     sub: 'Vollständige Datentransparenz — von der ersten Stunde. Kein Blindflug, keine Silos. Entscheide auf Basis echter Zahlen.',
-    detail: 'Live-Daten aus 1.350.000+ Einsätzen. GPS-Tracking, Echtzeitreporting, prädiktive Forecasts.',
     cta: 'SRT entdecken',
     ctaLink: '/srt',
     secondaryCta: 'Forecasting ansehen',
@@ -23,7 +22,6 @@ const SERVICES = [
     category: 'Personal & Staffing',
     headline: 'Festangestellte Talente',
     sub: 'Über 2.000 geschulte Markenbotschafter. Sofort einsatzbereit, GPS-getrackt, persönlich gecoacht — deutschlandweit.',
-    detail: 'Vollzeit-Promoter, nicht Freelancer. Inhouse geschult, markenlos, sofort deploybar.',
     cta: 'Talentepool erkunden',
     ctaLink: '/leistungen/talentpool',
     secondaryCta: 'Staffing ansehen',
@@ -36,7 +34,6 @@ const SERVICES = [
     category: 'POS & Live Video',
     headline: 'Sichtbarkeit am POS',
     sub: 'Physische Präsenz trifft digitale Live-Beratung. Vom Regal bis zum QR-Code — nahtlose Customer Experience.',
-    detail: '50.000+ Live Video Calls. QR-Code auf Verpackung → sofortige Kaufberatung.',
     cta: 'POS Full Service',
     ctaLink: '/leistungen/pos-full-service',
     secondaryCta: 'Live Video Promotion',
@@ -49,7 +46,6 @@ const SERVICES = [
     category: 'Events & Logistik',
     headline: 'Erlebbare Markenpräsenz',
     sub: 'Von der Aktivierungsfläche bis zum Warenlager — aus einer Hand. Roadshows, Messen, Instore-Events, Konfektionierung.',
-    detail: 'Eigenlogistik. Kein Subunternehmer. Aufbau, Konfektionierung, Distribution — alles inhouse.',
     cta: 'Events & Messen',
     ctaLink: '/leistungen/events-messen',
     secondaryCta: 'Warehouse & Logistik',
@@ -58,11 +54,11 @@ const SERVICES = [
   },
 ];
 
-const FALLBACK_WOOD_ICONS: string[] = [
-  'https://readdy.ai/api/search-image?query=carved%20wooden%20rising%20bar%20chart%20analytics%20data%20growth%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20bar%20graph%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-servicegrid-data-01&orientation=squarish',
-  'https://readdy.ai/api/search-image?query=carved%20wooden%20team%20people%20group%20talent%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20human%20figures%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-servicegrid-staff-02&orientation=squarish',
-  'https://readdy.ai/api/search-image?query=carved%20wooden%20store%20shop%20retail%20building%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20storefront%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-servicegrid-pos-03&orientation=squarish',
-  'https://readdy.ai/api/search-image?query=carved%20wooden%20calendar%20event%20schedule%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20calendar%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-servicegrid-events-04&orientation=squarish',
+const FALLBACK_IMAGES: string[] = [
+  'https://readdy.ai/api/search-image?query=Modern%20data%20analytics%20command%20center%20with%20multiple%20large%20monitors%20displaying%20glowing%20real-time%20performance%20dashboards%20charts%20and%20KPI%20metrics%20in%20bright%20lime%20green%20and%20clean%20white%20on%20deep%20charcoal%20black%20background%2C%20futuristic%20technology%20control%20room%20aesthetic%2C%20cinematic%20editorial%20photography%2C%20subtle%20green%20ambient%20glow%2C%20high%20contrast%20moody%20atmosphere%2C%20professional%20corporate%20technology%20scene%2C%20sharp%20detail%2C%20wide%20composition&width=1200&height=800&seq=servicegrid-pictorial-01&orientation=landscape',
+  'https://readdy.ai/api/search-image?query=Diverse%20team%20of%20professional%20retail%20brand%20ambassadors%20and%20sales%20promoters%20standing%20confidently%20together%20in%20a%20modern%20industrial%20studio%20space%2C%20wearing%20smart%20casual%20clothing%2C%20dramatic%20editorial%20lighting%20with%20deep%20charcoal%20background%20and%20subtle%20bright%20lime%20green%20accent%20rim%20light%2C%20cinematic%20corporate%20team%20photography%2C%20authentic%20confident%20expressions%2C%20professional%20portrait%20composition%2C%20high%20detail&width=1200&height=800&seq=servicegrid-pictorial-02&orientation=landscape',
+  'https://readdy.ai/api/search-image?query=Premium%20consumer%20electronics%20product%20elegantly%20displayed%20on%20sleek%20modern%20retail%20shelving%20at%20point%20of%20sale%2C%20bright%20lime%20green%20accent%20lighting%20illuminating%20the%20product%20against%20dark%20charcoal%20store%20interior%2C%20editorial%20commercial%20photography%2C%20cinematic%20depth%20of%20field%2C%20clean%20minimal%20composition%2C%20high%20contrast%20product%20display%2C%20professional%20retail%20merchandising%20environment%2C%20sharp%20detail&width=1200&height=800&seq=servicegrid-pictorial-03&orientation=landscape',
+  'https://readdy.ai/api/search-image?query=Large%20scale%20trade%20show%20exhibition%20event%20hall%20with%20branded%20booth%20and%20crowd%20of%20engaged%20visitors%2C%20dramatic%20dark%20atmosphere%20with%20bright%20lime%20green%20accent%20lighting%20and%20spotlights%2C%20cinematic%20editorial%20event%20photography%2C%20wide%20angle%20corporate%20marketing%20scene%2C%20deep%20charcoal%20tones%2C%20energetic%20yet%20professional%20atmosphere%2C%20high%20detail%2C%20immersive%20composition&width=1200&height=800&seq=servicegrid-pictorial-04&orientation=landscape',
 ];
 
 interface Props {
@@ -71,15 +67,12 @@ interface Props {
 
 export default function ServiceGrid({ sectionRef }: Props) {
   const navigate = useNavigate();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const { images: woodIcons } = useMediaStore('leistungen_servicegrid_wood_icons');
+  const [active, setActive] = useState(0);
+  const { images: gridImages } = useMediaStore('leistungen_servicegrid_images');
 
-  const resolvedWoodIcons = SERVICES.map((_, i) => {
-    const item = woodIcons[i];
-    return item?.url || FALLBACK_WOOD_ICONS[i];
-  });
+  const resolvedImages = SERVICES.map((_, i) => gridImages[i]?.url || FALLBACK_IMAGES[i]);
 
-  const active = SERVICES[activeIndex];
+  const s = SERVICES[active];
 
   const handleNav = (link: string) => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -111,130 +104,115 @@ export default function ServiceGrid({ sectionRef }: Props) {
           </div>
         </div>
 
-        {/* Split screen: main card (3/4) + selector buttons (1/4) */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-5">
-          {/* Selector buttons — horizontal scroll on mobile, vertical column on desktop */}
-          <div
-            className="order-1 lg:order-2 flex lg:flex-col gap-2 lg:gap-3 overflow-x-auto lg:overflow-visible pb-1 lg:pb-0"
-            role="tablist"
-            aria-label="Leistungskategorien"
-          >
-            {SERVICES.map((s, i) => {
-              const isActive = i === activeIndex;
-              return (
-                <button
-                  key={s.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => setActiveIndex(i)}
-                  className={`group flex-shrink-0 lg:flex-shrink min-w-[220px] lg:min-w-0 items-center gap-3 px-4 py-3.5 lg:py-4 text-left border cursor-pointer whitespace-nowrap transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 ${
-                    isActive
-                      ? 'bg-primary-500 border-primary-500 text-white'
-                      : 'bg-white border-foreground-200 text-foreground-950 hover:border-primary-400'
-                  }`}
-                >
-                  <span
-                    className={`text-2xl font-black leading-none ${
-                      isActive ? 'text-white/70' : 'text-primary-500'
-                    }`}
-                    aria-hidden="true"
-                  >
-                    {s.number}
-                  </span>
-                  <span className="flex-1 min-w-0">
-                    <span className="block text-xs font-black uppercase tracking-wider leading-tight">
-                      {s.category}
-                    </span>
-                    <span
-                      className={`block text-[11px] font-medium leading-tight mt-0.5 ${
-                        isActive ? 'text-white/90' : 'text-foreground-500'
-                      }`}
-                    >
-                      {s.headline}
-                    </span>
-                  </span>
-                  <i
-                    className={`ri-arrow-right-line text-sm transition-transform duration-200 ${
-                      isActive ? 'text-white' : 'text-foreground-300 group-hover:text-primary-500'
-                    }`}
-                    aria-hidden="true"
-                  ></i>
-                </button>
-              );
-            })}
+        {/* Tabs — pills above the image, matching homepage */}
+        <div className="mb-4 md:mb-6 flex flex-wrap gap-2 md:gap-2.5" role="tablist" aria-label="Leistungskategorien">
+          {SERVICES.map((item, i) => {
+            const isActive = i === active;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActive(i)}
+                className={`whitespace-nowrap inline-flex items-center gap-2 text-xs md:text-sm font-black uppercase tracking-wide transition-all duration-200 cursor-pointer px-3 md:px-5 py-2.5 border ${
+                  isActive
+                    ? 'bg-primary-500 text-foreground-950 border-primary-500'
+                    : 'text-foreground-600 hover:text-foreground-900 border-background-300 hover:border-foreground-300 bg-white'
+                }`}
+              >
+                <span className={`tabular-nums ${isActive ? 'text-foreground-950' : 'text-primary-500'}`}>
+                  {item.number}
+                </span>
+                {item.category}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Full-bleed pictorial image */}
+        <div className="relative overflow-hidden bg-foreground-950">
+          <div className="relative aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/10] md:min-h-[520px] xl:min-h-[560px]">
+            <img
+              key={s.id}
+              src={resolvedImages[active]}
+              alt={`${s.category} — ${s.headline}`}
+              className="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+            <span className="absolute top-4 left-5 px-3 py-1 bg-primary-500 text-foreground-950 text-xs font-black tracking-widest">
+              {s.number}
+            </span>
           </div>
+        </div>
 
-          {/* Main card */}
-          <article
-            key={active.id}
-            className="order-2 lg:order-1 relative border border-foreground-200 bg-background-50 overflow-hidden animate-fadeSlideIn"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] h-full">
-              {/* Left lime panel */}
-              <div className="bg-primary-500 p-5 md:p-7 flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-4 md:gap-0 md:h-full">
-                <span
-                  className="text-7xl xl:text-8xl font-black leading-none tracking-tight text-primary-900/25 select-none"
-                  aria-hidden="true"
-                >
-                  {active.number}
-                </span>
-                <img
-                  src={resolvedWoodIcons[activeIndex]}
-                  alt={`${active.category} — Holz-Icon`}
-                  className="w-24 h-24 md:w-32 md:h-32 object-cover md:mt-auto"
-                />
-              </div>
+        {/* Bottom caption bar — attached to the image */}
+        <div className="bg-foreground-950 text-white">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 md:gap-6 px-5 md:px-8 py-6 md:py-8">
+            <div className="min-w-0">
+              <p className="text-[11px] md:text-xs font-black uppercase tracking-[0.18em] text-primary-500 mb-2">
+                {s.category}
+              </p>
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-black leading-tight mb-2">
+                {s.headline}
+              </h3>
+              <p className="text-sm text-white/75 leading-relaxed max-w-2xl">
+                {s.sub}
+              </p>
 
-              {/* Right content */}
-              <div className="p-6 md:p-9 flex flex-col">
-                <span className="text-xs font-black uppercase tracking-[0.3em] text-primary-500">
-                  {active.category}
-                </span>
-                <h3 className="text-3xl md:text-4xl xl:text-5xl font-black text-foreground-950 leading-[0.98] tracking-tight uppercase mt-3">
-                  {active.headline}
-                </h3>
-                <p className="text-sm md:text-base text-foreground-600 leading-relaxed max-w-2xl mt-4">
-                  {active.sub}
-                </p>
-
-                <p className="text-xs font-black text-foreground-900 uppercase tracking-wide flex items-center gap-2 mt-5">
-                  <span className="w-1.5 h-1.5 bg-primary-500 flex-shrink-0" aria-hidden="true"></span>
-                  {active.detail}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-5">
-                  {active.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 bg-primary-50 border border-primary-200 text-primary-700 whitespace-nowrap"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-auto pt-7">
-                  <button
-                    type="button"
-                    onClick={() => handleNav(active.ctaLink)}
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-500 text-white font-black text-xs uppercase tracking-widest cursor-pointer whitespace-nowrap transition-colors duration-300 hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2"
+              <div className="flex flex-wrap gap-2 mt-4">
+                {s.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 bg-white/10 border border-white/20 text-white/90 whitespace-nowrap"
                   >
-                    {active.cta}
-                    <i className="ri-arrow-right-line"></i>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleNav(active.secondaryLink)}
-                    className="inline-flex items-center justify-center gap-2 px-4 py-3 text-primary-500 font-black text-xs uppercase tracking-widest cursor-pointer whitespace-nowrap transition-colors duration-300 hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2"
-                  >
-                    {active.secondaryCta}
-                    <i className="ri-arrow-right-up-line text-sm"></i>
-                  </button>
-                </div>
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
-          </article>
+
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+              <button
+                type="button"
+                onClick={() => handleNav(s.ctaLink)}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary-500 text-foreground-950 font-black text-xs uppercase tracking-widest cursor-pointer whitespace-nowrap transition-colors duration-300 hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-950"
+              >
+                {s.cta}
+                <i className="ri-arrow-right-line"></i>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleNav(s.secondaryLink)}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 text-primary-500 font-black text-xs uppercase tracking-widest cursor-pointer whitespace-nowrap transition-colors duration-300 hover:text-white border border-white/15 hover:border-primary-500/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-950"
+              >
+                {s.secondaryCta}
+                <i className="ri-arrow-right-up-line text-sm"></i>
+              </button>
+            </div>
+          </div>
+
+          {/* Progress indicator */}
+          <div className="flex items-center gap-1.5 px-5 md:px-8 pb-5">
+            {SERVICES.map((item, i) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setActive(i)}
+                aria-label={item.category}
+                className="h-1 cursor-pointer transition-all duration-300"
+                style={{
+                  width: i === active ? 32 : 12,
+                  background: i === active ? '#C8D400' : 'rgba(255,255,255,0.15)',
+                }}
+              />
+            ))}
+            <span className="ml-3 text-[10px] font-black uppercase tracking-[0.2em] text-white/30 tabular-nums">
+              {String(active + 1).padStart(2, '0')} / {String(SERVICES.length).padStart(2, '0')}
+            </span>
+          </div>
         </div>
 
         {/* Bottom CTA strip */}
@@ -250,7 +228,7 @@ export default function ServiceGrid({ sectionRef }: Props) {
           </div>
           <a
             href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespräch%20buchen`}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white font-black text-xs uppercase tracking-widest cursor-pointer whitespace-nowrap transition-colors duration-300 hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 flex-shrink-0"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white font-black text-xs uppercase tracking-widest cursor-pointer whitespace-nowrap transition-colors duration-300 hover:bg-foreground-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 flex-shrink-0"
           >
             Beratungsgespräch buchen
             <i className="ri-arrow-right-line"></i>

@@ -8,7 +8,6 @@ import ServicesGrid from './components/ServicesGrid';
 import SRTTeaser from './components/SRTTeaser';
 import ClientProof from '../../components/feature/ClientProof';
 import Contact from './components/Contact';
-import ConsultationButton from './components/ConsultationButton';
 import WoodenDivider from '../../components/base/WoodenDivider';
 import { StackedSectionReveal } from '../../components/feature/SectionReveal';
 
@@ -23,7 +22,7 @@ export default function HomePage() {
   });
 
   // Total sections for stacked effect calculation
-  const totalSections = 9;
+  const totalSections = 8;
 
   return (
     <div className="min-h-[100dvh]">
@@ -77,23 +76,16 @@ export default function HomePage() {
         </section>
       </StackedSectionReveal>
 
-      {/* SRT Teaser — gentle tint separates it from ServicesGrid */}
+      {/* SRT Teaser — combined diagram + consultation nudge */}
       <StackedSectionReveal index={5} totalSections={totalSections}>
-        <section id="srt-teaser" className="relative z-10" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #FAFDF5 50%, #ffffff 100%)' }}>
+        <section id="srt-teaser" className="relative z-10">
           <SRTTeaser />
-        </section>
-      </StackedSectionReveal>
-
-      {/* Consultation Button */}
-      <StackedSectionReveal index={6} totalSections={totalSections}>
-        <section id="consultation-button" className="relative z-10 bg-white">
-          <ConsultationButton />
         </section>
       </StackedSectionReveal>
 
       <WoodenDivider />
 
-      <StackedSectionReveal index={7} totalSections={totalSections}>
+      <StackedSectionReveal index={6} totalSections={totalSections}>
         <section id="client-proof" className="relative z-10 bg-white">
           <ClientProof />
         </section>

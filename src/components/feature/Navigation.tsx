@@ -262,7 +262,7 @@ export default function Navigation() {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`lg:hidden p-2.5 transition-colors z-[60] relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${
-                isMobileMenuOpen ? 'text-foreground-950' : isScrolled ? 'text-foreground-950 hover:bg-[#FAFDF5]' : 'text-background-50 hover:bg-background-50/10'
+                isMobileMenuOpen ? 'text-foreground-950' : isScrolled ? 'text-foreground-950 hover:bg-[#FAFDF5]' : 'text-foreground-950 bg-white/70 backdrop-blur-sm hover:bg-white/90'
               }`}
               aria-label={isMobileMenuOpen ? 'Menü schließen' : 'Menü öffnen'}
               aria-expanded={isMobileMenuOpen}

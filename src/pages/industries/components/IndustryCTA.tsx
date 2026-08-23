@@ -7,7 +7,7 @@ export default function IndustryCTA() {
   const tSub = useText('industries_cta', 'industries-cta-sub', 'Produktlaunch, Markteintritt oder Optimierung — wir haben die Branchenexpertise.');
   const tBtn = useText('industries_cta', 'industries-cta-btn-1', 'Beratung anfragen');
   return (
-    <section id="contact" className="py-24 px-6 bg-white relative overflow-hidden">
+    <section id="contact" className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="max-w-5xl mx-auto relative z-10">
 
         {/* Main CTA block */}

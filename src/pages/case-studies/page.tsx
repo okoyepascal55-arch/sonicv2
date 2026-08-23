@@ -559,7 +559,7 @@ export default function CaseStudiesPage() {
               {/* 1. Card header row */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-7">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg overflow-hidden bg-white/10 border border-white/15 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 md:w-14 md:h-14 overflow-hidden bg-white/10 border border-white/15 flex items-center justify-center flex-shrink-0">
                     <img src={current.woodIcon} alt={`${current.brand} Logo`} className="w-full h-full object-contain p-1.5" loading="lazy" decoding="async" style={{ filter: 'brightness(0) invert(1)' }} />
                   </div>
                   <div className="min-w-0">
@@ -577,13 +577,13 @@ export default function CaseStudiesPage() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
                 {/* Left — hero stat + description */}
                 <div className="lg:col-span-5 flex flex-col justify-center">
-                  <div className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-primary-500 font-sans tabular-nums leading-none drop-shadow-lg">{current.metric}</div>
+                  <div className="text-6xl md:text-7xl lg:text-8xl font-black text-primary-500 font-sans tabular-nums leading-none drop-shadow-lg">{current.metric}</div>
                   <p className="text-white/75 text-sm md:text-base font-bold uppercase tracking-wide mt-3">{current.metricLabel}</p>
                   <p className="text-white/60 text-sm leading-relaxed mt-4 max-w-md">{current.overview}</p>
                 </div>
 
                 {/* Right — chart panel */}
-                <div className="lg:col-span-7 rounded-lg bg-black/30 border border-white/10 backdrop-blur-[2px] p-6 md:p-8 flex flex-col">
+                <div className="lg:col-span-7 bg-black/30 border border-white/10 backdrop-blur-[2px] p-6 md:p-8 flex flex-col">
                   <div className="flex items-center justify-between mb-6">
                     <span className="text-white/85 text-xs font-black uppercase tracking-wide">Performance-Trend</span>
                     <span className="text-primary-500 text-xs font-sans tabular-nums font-black bg-white/10 rounded-none px-3 py-1">{current.since}–{(current.metricLabel.match(/20\d{2}/g) || []).pop() || '2024'}</span>
@@ -591,7 +591,7 @@ export default function CaseStudiesPage() {
                   <div className="flex-1 flex items-end gap-1.5 md:gap-2 min-h-[130px]">
                     {current.monthlyTrend.map((h, i) => (
                       <div key={i} className="flex-1 flex flex-col justify-end h-full">
-                        <div className="w-full rounded-t-sm bg-gradient-to-t from-[#C8D400]/60 to-[#C8D400] transition-all duration-700" style={{ height: `${(h / 100) * 100}%` }} />
+                        <div className="w-full bg-gradient-to-t from-[#C8D400]/60 to-[#C8D400] transition-all duration-700" style={{ height: `${(h / 100) * 100}%` }} />
                       </div>
                     ))}
                   </div>
@@ -604,9 +604,9 @@ export default function CaseStudiesPage() {
               </div>
 
               {/* 3. Fact row — 3 compact tiles */}
-              <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-6">
+              <div className="grid grid-cols-3 gap-4 mt-6">
                 {current.woodPills.map((pill, idx) => (
-                  <div key={idx} className="rounded-lg bg-black/25 border border-white/10 p-2.5 sm:p-4 md:p-5 text-center">
+                  <div key={idx} className="bg-black/25 border border-white/10 p-4 md:p-5 text-center">
                     <div className="text-primary-500 font-sans tabular-nums font-black text-lg md:text-2xl mb-1">{pill.value}</div>
                     <div className="text-white/60 text-[10px] md:text-xs font-bold uppercase tracking-wide">{pill.label}</div>
                   </div>

@@ -5,7 +5,6 @@ export default function TrustStrip() {
   const { images: logoImages } = useMediaStore('home_truststrip_logos');
   const tTrustBadge = useText('home_truststrip', 'home-trust-badge', 'Industry Leaders');
 
-  // Exact 12 brands from ValuesVisual reference — split into 2 rows of 6
   const allBrands = [
     { name: 'Philips', logo: (logoImages[0] && logoImages[0].url) || 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887', scale: 1.45 },
     { name: 'Rowenta', logo: (logoImages[1] && logoImages[1].url) || 'https://cdn.brandfetch.io/rowenta.de/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
@@ -24,19 +23,21 @@ export default function TrustStrip() {
   const row1 = allBrands.slice(0, 6);
   const row2 = allBrands.slice(6, 12);
 
-  const LogoCard = ({ brand }: { brand: { name: string; logo: string; scale?: number } }) => (
+  const LogoCard = ({ brand, compact = false }: { brand: { name: string; logo: string; scale?: number }; compact?: boolean }) => (
     <div
-      className="flex items-center justify-center p-2.5 md:p-5 bg-white/85 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 grayscale hover:grayscale-0 cursor-pointer border border-foreground-100/60 hover:border-[#C8D400]/30 group"
-      style={{ borderRadius: 0, height: '56px', minHeight: '56px', maxHeight: '56px' }}
+      className={`flex items-center justify-center flex-shrink-0 bg-white/85 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 grayscale hover:grayscale-0 cursor-pointer border border-foreground-100/60 hover:border-primary-500/30 group ${
+        compact ? 'px-3 py-2' : 'p-2.5 md:p-5'
+      }`}
+      style={{ borderRadius: 0, height: compact ? '40px' : '56px', minHeight: compact ? '40px' : '56px', maxHeight: compact ? '40px' : '56px' }}
     >
       {brand.logo ? (
         <img
           src={brand.logo}
           alt={brand.name}
-          className="max-w-full h-5 md:h-7 object-contain group-hover:scale-105 transition-transform duration-300"
+          className={`max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ${compact ? 'h-4' : 'h-5 md:h-7'}`}
           loading="lazy"
           decoding="async"
-          style={brand.scale ? { height: '34px', maxHeight: '40px' } : undefined}
+          style={brand.scale ? { height: compact ? '22px' : '34px', maxHeight: compact ? '26px' : '40px' } : undefined}
           onError={(e) => {
             const target = e.currentTarget;
             target.style.display = 'none';
@@ -50,7 +51,7 @@ export default function TrustStrip() {
           }}
         />
       ) : (
-        <span className="text-sm font-black text-foreground-400 tracking-wide group-hover:text-[#1a1a1a] transition-colors duration-300">
+        <span className="text-sm font-black text-foreground-400 tracking-wide group-hover:text-foreground-950 transition-colors duration-300">
           {brand.name.toUpperCase()}
         </span>
       )}
@@ -58,31 +59,43 @@ export default function TrustStrip() {
   );
 
   return (
-    <section className="py-8 md:py-14 px-4 md:px-6 bg-transparent relative overflow-hidden">
+    <section className="py-5 sm:py-8 md:py-14 px-4 md:px-6 bg-transparent relative overflow-hidden">
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary-500/5 rounded-full blur-3xl pointer-events-none"
         aria-hidden="true"
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="border-t border-foreground-200 pt-8 md:pt-12">
-          <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-[#C8D400]/30 px-4 py-1.5 mb-3 md:mb-4">
-            <div className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-pulse"></div>
-            <span className="text-xs font-black text-primary-500 uppercase tracking-widest">{tTrustBadge}</span>
-          </div>
+        <div className="border-t border-foreground-200 pt-5 sm:pt-8 md:pt-12">
+          <p className="text-[10px] sm:text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-2 sm:mb-3 md:mb-4">
+            {tTrustBadge}
+          </p>
 
-          {/* Row 1 */}
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 md:gap-4 mb-2 md:mb-4">
-            {row1.map((brand, i) => (
-              <LogoCard key={i} brand={brand} />
+          {/* Mobile: single-row horizontal scroll strip */}
+          <div
+            className="flex sm:hidden gap-2 overflow-x-auto pb-1 -mx-4 px-4"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {allBrands.map((brand, i) => (
+              <LogoCard key={i} brand={brand} compact />
             ))}
           </div>
 
-          {/* Row 2 */}
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 md:gap-4">
-            {row2.map((brand, i) => (
-              <LogoCard key={i} brand={brand} />
-            ))}
+          {/* sm+: 2-row grid */}
+          <div className="hidden sm:block">
+            {/* Row 1 */}
+            <div className="grid grid-cols-6 gap-2 md:gap-4 mb-2 md:mb-4">
+              {row1.map((brand, i) => (
+                <LogoCard key={i} brand={brand} />
+              ))}
+            </div>
+
+            {/* Row 2 */}
+            <div className="grid grid-cols-6 gap-2 md:gap-4">
+              {row2.map((brand, i) => (
+                <LogoCard key={i} brand={brand} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

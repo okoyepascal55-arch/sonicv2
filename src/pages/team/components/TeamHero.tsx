@@ -6,7 +6,7 @@ export default function TeamHero() {
   const heroImage = teamHeroImages[0]?.url || 'https://readdy.ai/api/search-image?query=professional%20team%20collaboration%20in%20modern%20office%20workspace%20diverse%20group%20of%20sales%20consultants%20working%20together%20bright%20natural%20lighting%20contemporary%20interior%20design%20teamwork%20atmosphere%20business%20environment%20productive%20meeting%20space&width=1920&height=1080&seq=team-hero-dark-bg&orientation=landscape';
 
   return (
-    <section className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+    <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
       {/* Dark background image with overlay */}
       <div className="absolute inset-0 z-0">
         <img

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 
 const navItems = [
-  { id: 'stellen', label: 'Stellen' },
+  { id: 'stellenangebote', label: 'Stellen' },
   { id: 'darum', label: 'Kultur & DNA' },
   { id: 'pfade', label: 'Karrierepfade' },
   { id: 'spirit', label: 'Geschichten' },
@@ -112,7 +112,7 @@ export default function KarriereInPageNav({ heroRef }: Props) {
                   className={`
                     relative flex-shrink-0 px-4 py-[14px] text-[12px] font-bold uppercase tracking-[0.07em]
                     whitespace-nowrap cursor-pointer transition-all duration-200
-                    ${isActive ? 'text-[#DCE94D]' : 'text-[#9A9A93] hover:text-white'}
+                    ${isActive ? 'text-[#C8D400]' : 'text-[#9A9A93] hover:text-white'}
                   `}
                   style={{ borderRadius: 0, background: 'none', border: 'none' }}
                 >
@@ -124,14 +124,14 @@ export default function KarriereInPageNav({ heroRef }: Props) {
             {/* Sliding underline indicator */}
             <div
               ref={indicatorRef}
-              className="absolute bottom-0 h-[2px] bg-[#DCE94D] transition-all duration-300 ease-out pointer-events-none"
+              className="absolute bottom-0 h-[2px] bg-[#C8D400] transition-all duration-300 ease-out pointer-events-none"
               style={{ left: indicatorStyle.left, width: indicatorStyle.width }}
             />
           </div>
         </div>
       </div>
       {/* Bottom separator */}
-      <div className="h-[1px] bg-gradient-to-r from-transparent via-[#DCE94D]/40 to-transparent w-full" />
+      <div className="h-[1px] bg-gradient-to-r from-transparent via-[#C8D400]/40 to-transparent w-full" />
     </div>
   );
 }

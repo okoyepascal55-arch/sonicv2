@@ -76,6 +76,7 @@ export default function Footer() {
                 src="https://www.sonic-group.de/wp-content/uploads/elementor/thumbs/SONIC_GESAMTLOGO_LIME-q0lflz24exgoq4608jg9ggegh9pjfwmmc0m1jsee5i.png"
                 alt="Sonic Group"
                 className="h-9 md:h-11 w-auto"
+                loading="lazy"
               />
             </Link>
 

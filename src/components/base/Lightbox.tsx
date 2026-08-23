@@ -111,16 +111,17 @@ export default function Lightbox({
           src={current.image}
           alt={current.title}
           className="max-w-full max-h-[80vh] object-contain"
+          loading="lazy"
         />
 
         {/* Image Info Overlay — compact pill, image-first */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-full px-4 flex justify-center">
-          <div className="flex items-center flex-wrap justify-center gap-2 sm:gap-3 max-w-full bg-black/70 backdrop-blur-sm border border-primary-500/40 px-4 sm:px-5 py-2.5">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
+          <div className="flex items-center gap-3 bg-black/70 backdrop-blur-sm border border-primary-500/40 px-5 py-2.5">
             <span className="text-[10px] font-black uppercase tracking-widest text-primary-500 whitespace-nowrap">
               {current.category}
             </span>
-            <span className="text-white/50 text-[10px] hidden sm:inline">|</span>
-            <span className="text-white font-bold text-xs truncate max-w-[140px] sm:max-w-[200px]">{current.title}</span>
+            <span className="text-white/50 text-[10px]">|</span>
+            <span className="text-white font-bold text-xs truncate max-w-[200px]">{current.title}</span>
             <span className="text-white/30 text-xs tabular-nums ml-1">{activeIndex + 1}/{items.length}</span>
           </div>
         </div>

@@ -1,21 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 
-// Static company data - no random fluctuations
 const COMPANY_DATA = {
   productsSold: '>3,7 Mio.',
   revenueGenerated: '>2 Mrd. €',
-  talentPool: '>2.000',
   assignmentsCompleted: '>1,35 Mio.',
   promoters: '20,000+',
-  avgTenure: '5.15 yrs',
   coverage: 'DACH',
   implementations: '100K+',
   retailPartners: '500+',
   successRate: '98%',
-  liveSessions: '5,000+',
   conversion: '+340%',
-  reach: '2M+',
 };
 
 export default function LiveMetrics() {
@@ -36,98 +31,89 @@ export default function LiveMetrics() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.1 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  const metrics = [
-    { icon: 'ri-shopping-bag-line', value: COMPANY_DATA.productsSold, label: 'Produkte verkauft' },
-    { icon: 'ri-money-euro-circle-line', value: COMPANY_DATA.revenueGenerated, label: 'Umsatz generiert' },
-    { icon: 'ri-team-line', value: COMPANY_DATA.talentPool, label: 'Talente im Pool' },
-    { icon: 'ri-map-pin-line', value: COMPANY_DATA.assignmentsCompleted, label: 'Einsätze durchgeführt' },
-    { icon: 'ri-user-star-line', value: COMPANY_DATA.promoters, label: 'Trained Promoters' },
-    { icon: 'ri-store-2-line', value: COMPANY_DATA.implementations, label: 'POS Implementations' },
-    { icon: 'ri-video-line', value: COMPANY_DATA.liveSessions, label: 'Live Sessions' },
-    { icon: 'ri-line-chart-line', value: COMPANY_DATA.conversion, label: 'Conversion Boost' },
+  const desktopMetrics = [
+    { icon: 'ri-shopping-bag-line', value: COMPANY_DATA.productsSold, label: 'Produkte' },
+    { icon: 'ri-money-euro-circle-line', value: COMPANY_DATA.revenueGenerated, label: 'Umsatz' },
+    { icon: 'ri-map-pin-line', value: COMPANY_DATA.assignmentsCompleted, label: 'Einsätze' },
+    { icon: 'ri-user-star-line', value: COMPANY_DATA.promoters, label: 'Promoter' },
+    { icon: 'ri-store-2-line', value: COMPANY_DATA.implementations, label: 'POS' },
+    { icon: 'ri-line-chart-line', value: COMPANY_DATA.conversion, label: 'Conversion' },
   ];
 
+  const mobileMetrics = desktopMetrics.slice(0, 4);
+
+  const TickerItems = ({ items, prefix }: { items: typeof desktopMetrics; prefix: string }) => (
+    <>
+      <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-pulse-slow" />
+        <span className="text-[10px] sm:text-xs font-sans tabular-nums text-white uppercase tracking-wider font-black drop-shadow-md whitespace-nowrap">
+          LIVE
+        </span>
+      </div>
+      {items.map((metric, idx) => (
+        <div key={`${prefix}-m-${idx}`} className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+          <span className="text-primary-500 drop-shadow-md text-xs">•</span>
+          <i className={`${metric.icon} text-primary-500 drop-shadow-md text-xs sm:text-sm`} />
+          <span className="text-xs sm:text-sm font-sans tabular-nums font-black text-white drop-shadow-md whitespace-nowrap">
+            {metric.value}
+          </span>
+          <span className="text-[10px] sm:text-xs text-white/90 drop-shadow-md font-bold whitespace-nowrap">
+            {metric.label}
+          </span>
+        </div>
+      ))}
+      <div className="flex items-center gap-2 flex-shrink-0">
+        <span className="text-primary-500 drop-shadow-md text-xs">•</span>
+        <span className="text-[10px] sm:text-xs text-white/80 drop-shadow-md font-bold whitespace-nowrap">SRT</span>
+        <span className="text-primary-500 drop-shadow-md text-xs">•</span>
+      </div>
+    </>
+  );
+
   return (
-    <section ref={sectionRef} className="py-4 px-0 relative overflow-hidden border-y-2 border-[#8B5A2B]/30">
-      {/* Chestnut brown wood texture - exact match to DualCTA wooden icons */}
+    <section ref={sectionRef} className="py-2 sm:py-3 md:py-4 relative overflow-hidden border-y border-foreground-200/40">
+      {/* Chestnut brown wood texture */}
       <div className="absolute inset-0" aria-hidden="true">
-        <img
-          src={woodBgUrl}
-          alt=""
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-[#3B1F0A]/40"></div>
+        <img src={woodBgUrl} alt="" className="w-full h-full object-cover" loading="lazy" />
+        <div className="absolute inset-0 bg-foreground-950/50" />
       </div>
 
       <div className="relative z-10 overflow-hidden">
-        {/* Continuously scrolling metrics bar with GPU acceleration */}
+        {/* Mobile: leaner, fewer items */}
         <div
-          className={`flex items-center gap-8 animate-scroll-optimized whitespace-nowrap py-2 transition-opacity duration-700 ${
+          className={`flex items-center gap-5 sm:gap-6 md:gap-8 animate-scroll-optimized whitespace-nowrap py-1.5 sm:py-2 transition-opacity duration-700 md:hidden ${
             isVisible ? 'opacity-100' : 'opacity-0'
           }`}
           style={prefersReducedMotion ? { animation: 'none' } : undefined}
           aria-hidden="true"
         >
-          {/* Live indicator */}
-          <div className="flex items-center gap-2 px-4">
-            <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse-slow"></div>
-            <span className="text-xs font-sans tabular-nums text-white uppercase tracking-wider font-black drop-shadow-md">
-              LIVE
-            </span>
-          </div>
-
-          {metrics.map((metric, idx) => (
-            <div key={idx} className="flex items-center gap-2">
-              <span className="text-primary-500 drop-shadow-md">•</span>
-              <i className={`${metric.icon} text-primary-500 drop-shadow-md`}></i>
-              <span className="text-sm font-sans tabular-nums font-black text-white drop-shadow-md">{metric.value}</span>
-              <span className="text-xs text-white/90 drop-shadow-md font-bold">{metric.label}</span>
-            </div>
-          ))}
-
-          <span className="text-primary-500 drop-shadow-md">•</span>
-          <span className="text-xs text-white/80 drop-shadow-md font-bold">Powered by SRT</span>
-          <span className="text-primary-500 drop-shadow-md">•</span>
-
-          {/* Duplicate for seamless scroll */}
-          <div className="flex items-center gap-2 px-4">
-            <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse-slow"></div>
-            <span className="text-xs font-sans tabular-nums text-white uppercase tracking-wider font-black drop-shadow-md">
-              LIVE
-            </span>
-          </div>
-
-          {metrics.map((metric, idx) => (
-            <div key={`dup-${idx}`} className="flex items-center gap-2">
-              <span className="text-primary-500 drop-shadow-md">•</span>
-              <i className={`${metric.icon} text-primary-500 drop-shadow-md`}></i>
-              <span className="text-sm font-sans tabular-nums font-black text-white drop-shadow-md">{metric.value}</span>
-              <span className="text-xs text-white/90 drop-shadow-md font-bold">{metric.label}</span>
-            </div>
-          ))}
-
-          <span className="text-primary-500 drop-shadow-md">•</span>
-          <span className="text-xs text-white/80 drop-shadow-md font-bold">Powered by SRT</span>
-          <span className="text-primary-500 drop-shadow-md">•</span>
+          <TickerItems items={mobileMetrics} prefix="m" />
+          <TickerItems items={mobileMetrics} prefix="m-dup" />
         </div>
 
-        {/* Screen-reader accessible static list — same content, no animation */}
+        {/* Desktop: full strip */}
+        <div
+          className={`hidden md:flex items-center gap-8 animate-scroll-optimized whitespace-nowrap py-2 transition-opacity duration-700 ${
+            isVisible ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={prefersReducedMotion ? { animation: 'none' } : undefined}
+          aria-hidden="true"
+        >
+          <TickerItems items={desktopMetrics} prefix="d" />
+          <TickerItems items={desktopMetrics} prefix="d-dup" />
+        </div>
+
+        {/* Screen-reader accessible static list */}
         <div className="sr-only" role="list" aria-label="Sonic Group Unternehmenskennzahlen">
-          {metrics.map((metric, idx) => (
+          {desktopMetrics.map((metric, idx) => (
             <span key={idx} role="listitem">
               {metric.label}: {metric.value}
             </span>

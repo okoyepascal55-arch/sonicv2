@@ -144,7 +144,7 @@ export default function BlogDetailPage() {
         {/* Meta */}
         <div className="flex items-center gap-4 mb-10 pb-10 border-b border-black/10">
           {authorAvatar && (
-            <img src={authorAvatar} alt={author} className="w-10 h-10 rounded-full object-cover" />
+            <img src={authorAvatar} alt={author} className="w-10 h-10 rounded-full object-cover" loading="lazy" />
           )}
           <div>
             <div className="text-sm font-black text-foreground-950">{author}</div>

@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 
@@ -6,48 +7,34 @@ type PathId = 'sales' | 'staff';
 const PATHS: Array<{
   id: PathId;
   badge: string;
-  icon: string;
   title: string;
   headline: string;
   tagline: string;
   fallbackImage: string;
   stats: { value: string; label: string }[];
-  roles: string[];
-  perks: string[];
-  steps: { step: string; title: string; desc: string }[];
   email: string;
 }> = [
   {
     id: 'sales',
     badge: 'Internes Team',
-    icon: 'ri-building-4-line',
     title: 'Sonic Sales Family',
     headline: 'Bürobasierte Karriere in Krefeld',
-    tagline: 'Klare Aufstiegspfade, Mentoring, Hybridarbeit und eine echte Community.',
+    tagline: 'Klare Aufstiegspfade, Mentoring, Hybridarbeit und eine echte Community am Campus.',
     fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png',
     stats: [
       { value: 'Ø 5,15 J.', label: 'Zugehörigkeit' },
       { value: '98 %', label: 'Zufriedenheit' },
       { value: 'Krefeld', label: 'Campus' },
-      { value: 'Hybrid', label: 'Modell' },
-    ],
-    roles: ['Sales Representative', 'Account Manager', 'Team Lead', 'Business Development'],
-    perks: ['Karrierepfade', 'Hybrides Arbeiten', 'Quartalsboni', 'Mentoring', 'Training', 'Gemeinschaft'],
-    steps: [
-      { step: '01', title: 'Einstieg', desc: 'Onboarding & erste Projekte' },
-      { step: '02', title: 'Wachstum', desc: 'Eigenes Portfolio, Ziele übertreffen' },
-      { step: '03', title: 'Leadership', desc: 'Teamverantwortung, Coaching' },
-      { step: '04', title: 'Excellence', desc: 'Strategische Projekte, Management' },
+      { value: 'Hybrid', label: 'Arbeitsmodell' },
     ],
     email: 'karriere@sonic-group.de',
   },
   {
     id: 'staff',
     badge: 'Field Team',
-    icon: 'ri-store-2-line',
     title: 'Sonic Staff Family',
     headline: 'Flexibler Einsatz DACH-weit',
-    tagline: '150+ Premium-Brands, Top-Incentives und maximale Flexibilität.',
+    tagline: '150+ Premium-Brands, Top-Incentives und maximale Flexibilität bei deiner Planung.',
     fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg',
     stats: [
       { value: '150+', label: 'Brands' },
@@ -55,195 +42,215 @@ const PATHS: Array<{
       { value: 'DACH', label: 'Gebiet' },
       { value: 'Flex', label: 'Planung' },
     ],
-    roles: ['Brand Promoter', 'Produktdemonstrateur', 'Messe-Specialist', 'Retail Berater'],
-    perks: ['Flexible Zeiten', 'Incentive-Boni', 'Brand-Schulungen', 'DACH-weit', 'App-basiert', 'Top-Brands'],
-    steps: [
-      { step: '01', title: 'Registrierung', desc: 'SRT-App, Profil & Verfügbarkeiten' },
-      { step: '02', title: 'Erste Einsätze', desc: 'Schulungen & erste Aufträge' },
-      { step: '03', title: 'Top-Promoter', desc: 'Mehr Marken, bessere Konditionen' },
-      { step: '04', title: 'Spezialist', desc: 'Exklusive Partnerschaften & Trainings' },
-    ],
     email: 'staffjobs@sonic-group.de',
   },
 ];
 
 export default function KarrierepfadeSection() {
+  const [active, setActive] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
   const { images: pathImages } = useMediaStore('careers_path_images');
 
   const tBadge = useText('careers_paths', 'careers-paths-badge', 'Karrierepfade');
-  const tHeading = useText('careers_paths', 'careers-paths-heading', 'Zwei Wege. Ein Ziel.');
+  const tHeading = useText('careers_paths', 'careers-paths-heading', 'ZWEI WEGE. EIN ZIEL.');
   const tSub = useText('careers_paths', 'careers-paths-sub', 'Ob intern am Campus oder flexibel im Außendienst — bei Sonic gibt es einen Weg für dich.');
   const tSalesBadge = useText('careers_paths', 'careers-paths-sales-badge', 'Internes Team');
   const tSalesHeadline = useText('careers_paths', 'careers-paths-sales-headline', 'Bürobasierte Karriere in Krefeld');
-  const tSalesDesc = useText('careers_paths', 'careers-paths-sales-desc', 'Klare Aufstiegspfade, Mentoring, Hybridarbeit und eine echte Community.');
+  const tSalesDesc = useText('careers_paths', 'careers-paths-sales-desc', 'Klare Aufstiegspfade, Mentoring, Hybridarbeit und eine echte Community am Campus.');
   const tStaffBadge = useText('careers_paths', 'careers-paths-staff-badge', 'Field Team');
   const tStaffHeadline = useText('careers_paths', 'careers-paths-staff-headline', 'Flexibler Einsatz DACH-weit');
-  const tStaffDesc = useText('careers_paths', 'careers-paths-staff-desc', '150+ Premium-Brands, Top-Incentives und maximale Flexibilität.');
+  const tStaffDesc = useText('careers_paths', 'careers-paths-staff-desc', '150+ Premium-Brands, Top-Incentives und maximale Flexibilität bei deiner Planung.');
   const tCta = useText('careers_paths', 'careers-paths-cta', 'Alle Stellen ansehen');
+  const tApply = useText('careers_paths', 'careers-paths-apply', 'Initiativbewerbung senden');
 
-  const resolvedPaths = PATHS.map((path, i) => ({
+  const resolvedPaths = PATHS.map((path) => ({
     ...path,
     badge: path.id === 'sales' ? tSalesBadge : tStaffBadge,
     headline: path.id === 'sales' ? tSalesHeadline : tStaffHeadline,
     tagline: path.id === 'sales' ? tSalesDesc : tStaffDesc,
-    image: pathImages[i]?.url || path.fallbackImage,
   }));
+
+  const path = resolvedPaths[active];
+
+  const goTo = useCallback(
+    (i: number) => {
+      if (i === active) return;
+      setTransitioning(true);
+      setTimeout(() => {
+        setActive(i);
+        setTransitioning(false);
+      }, 240);
+    },
+    [active]
+  );
 
   const scrollToJobs = () => {
     const el = document.getElementById('stellenangebote');
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  // Split "ZWEI WEGE. EIN ZIEL." → main "ZWEI WEGE." / accent "EIN ZIEL."
+  const sentences = tHeading.split('. ').map((s) => (s.endsWith('.') ? s : `${s}.`));
+  const headingMain = sentences[0] ?? tHeading;
+  const headingAccent = sentences.length > 1 ? sentences.slice(1).join(' ') : '';
+
   return (
-    <section id="pfade" className="py-[88px] px-8 bg-white">
-      <div className="max-w-[1200px] mx-auto">
-        {/* Section head */}
-        <div className="max-w-[640px] mb-11">
-          <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-xs font-bold uppercase tracking-[0.06em] px-3.5 py-[7px] pr-3.5 mb-5 ">
-            <span className="w-1.5 h-1.5 bg-[#0B0B0C] " />
-            {tBadge}
+    <section id="pfade" className="relative bg-white overflow-hidden py-14 md:py-20">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+        {/* ── HEADER + SELECTOR ── */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10 md:mb-12">
+          <div className="max-w-xl">
+            <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-xs font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-5">
+              <span className="w-1.5 h-1.5 bg-[#0B0B0C] flex-shrink-0" />
+              {tBadge}
+            </div>
+            <h2 className="text-[clamp(28px,3.6vw,46px)] font-black text-[#0B0B0C] leading-[1.06] tracking-tight uppercase">
+              {headingMain}{' '}
+              {headingAccent && <span className="text-[#C8D400]">{headingAccent}</span>}
+            </h2>
+            <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[440px]">{tSub}</p>
           </div>
-          <h2 className="text-[clamp(28px,3.4vw,40px)] font-black text-[#0B0B0C] leading-[1.1] tracking-tight uppercase">
-            {tHeading.split('. ')[0]}.{' '}
-            <span className="text-[#C3D62A]">
-              {tHeading.includes('.') ? tHeading.split('. ').slice(1).join('. ') : 'Ein Ziel.'}
-            </span>
-          </h2>
-          <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[520px]">
-            {tSub}
-          </p>
-        </div>
 
-        {/* Path grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          {resolvedPaths.map((path) => (
-            <div key={path.id} className="flex flex-col border-[1.5px] border-[#0B0B0C]  overflow-hidden">
-              {/* Image */}
-              <div className="relative overflow-hidden aspect-[16/9] bg-[#0B0B0C]">
-                <img
-                  src={path.image}
-                  alt={`${path.title} — ${path.headline}`}
-                  className="h-full w-full object-cover object-top"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{ background: 'linear-gradient(to bottom, rgba(11,11,12,0) 40%, rgba(11,11,12,0.55) 100%)' }}
-                  aria-hidden="true"
-                />
-                <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#DCE94D] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.04em] ">
-                    <i className={`${path.icon} text-xs`} />
-                    {path.badge}
+          {/* Numbered selector tabs */}
+          <div className="flex items-stretch gap-0 flex-shrink-0 border border-black/10 overflow-hidden">
+            {resolvedPaths.map((p, i) => {
+              const isActive = active === i;
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => goTo(i)}
+                  aria-pressed={isActive}
+                  className={`flex items-center gap-2.5 px-4 md:px-5 py-3 text-left whitespace-nowrap cursor-pointer transition-colors duration-300 border-r last:border-r-0 border-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-inset ${
+                    isActive ? 'bg-[#0B0B0C]' : 'bg-white hover:bg-[#FAFDF5]'
+                  }`}
+                >
+                  <span
+                    className={`flex items-center justify-center w-6 h-6 text-[10px] font-black transition-colors duration-300 ${
+                      isActive ? 'bg-[#C8D400] text-[#0B0B0C]' : 'border border-black/15 text-black/40'
+                    }`}
+                  >
+                    {String(i + 1).padStart(2, '0')}
                   </span>
-                </div>
+                  <span
+                    className="text-sm font-black leading-none transition-colors duration-300"
+                    style={{ color: isActive ? '#FFFFFF' : 'rgba(0,0,0,0.6)' }}
+                  >
+                    {p.title}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ── SPLIT CARD (photo + dark panel) ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] bg-white border border-[#E7E4D4] overflow-hidden">
+          {/* Left — full-bleed image */}
+          <div className="relative min-h-[280px] sm:min-h-[380px] lg:min-h-[560px] bg-[#0B0B0C]">
+            <img
+              key={`path-${path.id}`}
+              src={pathImages[active]?.url || path.fallbackImage}
+              alt={`${path.title} — ${path.headline}`}
+              className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-300 ${
+                transitioning ? 'opacity-0' : 'opacity-100'
+              }`}
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C] via-[#0B0B0C]/20 to-transparent" />
+            <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[10px] font-black uppercase tracking-widest px-3 py-1">
+              {path.badge}
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-7">
+              <div className="text-[clamp(32px,4vw,52px)] font-black text-white leading-none tracking-tight">
+                {path.title}
+              </div>
+              <div className="mt-3 flex items-center gap-2">
+                <span className="w-1 h-1 bg-[#C8D400]" />
+                <span className="text-sm font-black text-white">{path.headline}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right — dark ink panel */}
+          <div className="bg-[#0B0B0C] p-8 md:p-12 flex flex-col justify-between">
+            <div>
+              <div className="text-[#C8D400] text-[10px] font-black uppercase tracking-[0.3em] mb-4">
+                {String(active + 1).padStart(2, '0')} / {String(resolvedPaths.length).padStart(2, '0')}
               </div>
 
-              {/* Body */}
-              <div className="flex flex-col flex-1 p-[26px]">
-                <h3 className="text-[19px] font-black uppercase tracking-tight mb-1 text-[#0B0B0C]">
-                  {path.title}
-                </h3>
-                <p className="text-[13px] font-bold text-[#0B0B0C]/70 mb-2">{path.headline}</p>
-                <p className="text-[13px] leading-[1.55] text-[#6E6E68]">{path.tagline}</p>
+              <h3
+                key={`headline-${active}`}
+                className="text-2xl md:text-3xl font-black text-white leading-tight tracking-tight"
+              >
+                {path.headline}
+              </h3>
 
-                {/* Stats */}
-                <div className="grid grid-cols-2 gap-px bg-[#E7E4D4] mt-5">
-                  {path.stats.map((stat, i) => (
-                    <div key={i} className="bg-white px-4 py-3">
-                      <div className="text-[16px] font-black text-[#0B0B0C] leading-none tabular-nums">
-                        {stat.value}
-                      </div>
-                      <div className="text-[10px] text-[#9A9A93] font-bold uppercase tracking-[0.04em] mt-1">
-                        {stat.label}
-                      </div>
+              <p key={`tagline-${active}`} className="text-sm leading-relaxed text-white/55 mt-4 max-w-md">
+                {path.tagline}
+              </p>
+
+              <div className="grid grid-cols-2 gap-3 mt-8">
+                {path.stats.map((m) => (
+                  <div key={m.label} className="border border-white/10 px-4 py-3.5">
+                    <div className="text-xl font-black text-[#C8D400] leading-none tabular-nums">{m.value}</div>
+                    <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5">
+                      {m.label}
                     </div>
-                  ))}
-                </div>
-
-                {/* Steps */}
-                <div className="mt-5 pt-5 border-t border-[#E7E4D4]">
-                  <div className="text-[10px] font-black text-[#9A9A93] uppercase tracking-[0.08em] mb-3">
-                    Dein Karrierepfad
                   </div>
-                  <div className="flex flex-col gap-2">
-                    {path.steps.map((step) => (
-                      <div key={step.step} className="flex items-start gap-3">
-                        <span className="inline-flex items-center justify-center w-6 h-6 flex-shrink-0 bg-[#0B0B0C] text-[#DCE94D] text-[10px] font-black ">
-                          {step.step}
-                        </span>
-                        <div>
-                          <span className="text-[12px] font-bold text-[#0B0B0C]">{step.title}</span>
-                          <span className="text-[11px] text-[#9A9A93]"> — {step.desc}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Roles + Perks */}
-                <div className="mt-auto pt-5">
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    {path.roles.map((role) => (
-                      <span
-                        key={role}
-                        className="px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.03em] bg-[#0B0B0C] text-white "
-                      >
-                        {role}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {path.perks.map((perk) => (
-                      <span
-                        key={perk}
-                        className="px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.03em] bg-[#FAFDF5] border border-[#E7E4D4] text-[#6E6E68] "
-                      >
-                        {perk}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Info panel */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5 pt-14">
-          <div className="bg-[#FAFDF5]  p-6 text-center">
-            <div className="text-[20px] font-black uppercase tracking-tight text-[#0B0B0C]">
-              Krefeld
-            </div>
-            <div className="text-[11px] text-[#9A9A93] uppercase tracking-[0.06em] mt-1 font-semibold">
-              Sonic Campus
+            {/* Footer nav + CTA */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-6 mt-8 border-t border-white/10">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => goTo((active - 1 + resolvedPaths.length) % resolvedPaths.length)}
+                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-[#C8D400] hover:text-[#0B0B0C] border border-white/15 text-white/60"
+                  aria-label="Vorheriger Karrierepfad"
+                >
+                  <i className="ri-arrow-left-line" />
+                </button>
+                <button
+                  onClick={() => goTo((active + 1) % resolvedPaths.length)}
+                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-[#C8D400] hover:text-[#0B0B0C] border border-white/15 text-white/60"
+                  aria-label="Nächster Karrierepfad"
+                >
+                  <i className="ri-arrow-right-line" />
+                </button>
+              </div>
+              <a
+                href={`mailto:${path.email}?subject=Initiativbewerbung`}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.06em] hover:bg-white transition-colors whitespace-nowrap cursor-pointer"
+              >
+                {tApply}
+                <i className="ri-arrow-right-line" />
+              </a>
             </div>
           </div>
-          <div className="bg-[#FAFDF5]  p-6 text-center">
-            <div className="text-[20px] font-black uppercase tracking-tight text-[#0B0B0C]">
-              Hybrid
-            </div>
-            <div className="text-[11px] text-[#9A9A93] uppercase tracking-[0.06em] mt-1 font-semibold">
-              Arbeitsmodell
-            </div>
-          </div>
         </div>
 
-        {/* CTA bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-[#0B0B0C]  p-[22px] md:px-7 mt-6 gap-4">
-          <a
-            href="mailto:karriere@sonic-group.de?subject=Initiativbewerbung"
-            className="text-white font-bold text-sm hover:text-[#DCE94D] transition-colors"
-          >
-            Initiativbewerbung senden →
-          </a>
-          <button
-            onClick={scrollToJobs}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#DCE94D] text-[#0B0B0C] font-bold text-sm hover:bg-[#C3D62A] transition-all duration-200 cursor-pointer whitespace-nowrap "
-          >
-            {tCta}
-          </button>
+        {/* ── Bottom CTA bar ── */}
+        <div className="max-w-5xl mx-auto mt-8 md:mt-10">
+          <div className="border border-[#E7E4D4] py-6 md:py-7 px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAFDF5]">
+            <div className="text-center sm:text-left">
+              <p className="text-sm md:text-[15px] font-black text-[#0B0B0C] leading-relaxed">
+                Noch unsicher, welcher Weg zu dir passt?{' '}
+                <span className="text-[#C8D400]">Wir finden ihn gemeinsam.</span>
+              </p>
+              <p className="text-xs text-[#6E6E68] mt-1 hidden sm:block">
+                Offene Stellen am Campus Krefeld und DACH-weit im Außendienst
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={scrollToJobs}
+              className="inline-flex items-center gap-2 bg-[#0B0B0C] text-white px-6 py-3 font-black hover:bg-[#C8D400] hover:text-[#0B0B0C] transition-colors duration-300 whitespace-nowrap cursor-pointer text-xs flex-shrink-0"
+            >
+              <i className="ri-briefcase-line text-sm" />
+              {tCta}
+            </button>
+          </div>
         </div>
       </div>
     </section>

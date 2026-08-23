@@ -78,6 +78,7 @@ function PhoneStudio() {
         src={STUDIO_IMG}
         alt="LVP Studio"
         className="absolute inset-0 w-full h-full object-cover opacity-80"
+        loading="lazy"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
       {/* LIVE badge */}

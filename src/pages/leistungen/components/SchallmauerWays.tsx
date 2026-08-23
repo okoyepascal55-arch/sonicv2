@@ -96,10 +96,10 @@ export default function SchallmauerWays() {
         {/* Header */}
         <div className="text-center mb-8 md:mb-10">
           <SectionBadge text="Die Retail-Schallmauer" variant="dark" className="mb-5" />
-          <h2 className="text-4xl lg:text-5xl font-black text-[#1a1a1a] leading-tight tracking-tight mb-4 uppercase">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight mb-4 uppercase">
             DEIN WEG ZUM RETAIL-ERFOLG
           </h2>
-          <p className="text-base text-foreground-600 max-w-xl mx-auto">
+          <p className="text-sm md:text-base text-foreground-600 max-w-xl mx-auto">
             Wähle deinen Pfad — oder kombiniere alle drei für maximale Marktdurchdringung.
           </p>
         </div>
@@ -159,7 +159,7 @@ export default function SchallmauerWays() {
                           : '0 2px 8px rgba(139,90,43,0.15)',
                       }}
                     >
-                      <img src={woodIcon} alt={w.title} className="w-full h-full object-cover" />
+                      <img src={woodIcon} alt={w.title} className="w-full h-full object-cover" loading="lazy" />
                     </div>
                   </div>
 

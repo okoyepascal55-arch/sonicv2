@@ -36,7 +36,7 @@ export default function SectionBadge({
         }}
       />
       <span
-        className="text-xs font-black uppercase tracking-widest whitespace-nowrap"
+        className="text-xs font-black uppercase tracking-[0.2em] whitespace-nowrap"
         style={{ color: isLight ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-950))' }}
       >
         {text}

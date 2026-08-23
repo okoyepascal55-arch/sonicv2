@@ -120,7 +120,7 @@ function StatCard({
             transform: hovered ? 'scale(1.06)' : 'scale(1)',
           }}
         >
-          <img src={woodIcon} alt={label} className="w-full h-full object-cover" />
+          <img src={woodIcon} alt={label} className="w-full h-full object-cover" loading="lazy" />
         </div>
 
         {/* Text stack */}

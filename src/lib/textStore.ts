@@ -953,39 +953,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
 
   /* ════════════════════════════════════════════ LÖSUNGEN — Additional Sections ════════════════════ */
-  {
-    key: 'losungen_always', label: 'AlwaysIncluded — Three Pillars',
-    pageGroupId: 'losungen', pagePath: '/losungen',
-    description: 'The three pillars: Festangestellte Talente, Datenbasierte Planung, Live-Reporting.',
-    entries: [
-      { id: 'losungen-always-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Immer dabei' },
-      { id: 'losungen-always-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'GANZ GLEICH WO DU STEHST' },
-      { id: 'losungen-always-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Du bekommst immer das vollständige Paket — ohne Extras, ohne Überraschungen.' },
-    ],
-  },
-  {
-    key: 'losungen_stories', label: 'SuccessStories — Client Testimonials',
-    pageGroupId: 'losungen', pagePath: '/losungen',
-    description: 'The success stories section with brand testimonials.',
-    entries: [
-      { id: 'losungen-stories-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Erfolgsgeschichten' },
-      { id: 'losungen-stories-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'SONIC PERFORMT.' },
-      { id: 'losungen-stories-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Was unsere Kunden über die Zusammenarbeit sagen.' },
-      { id: 'losungen-stories-link', label: 'Link Text', description: 'Case study link', type: 'cta', value: 'Fallstudie lesen' },
-    ],
-  },
-  {
-    key: 'losungen_cta', label: 'FinalCTA — Quick Start Form',
-    pageGroupId: 'losungen', pagePath: '/losungen',
-    description: 'The final CTA section with quick-start industry selector.',
-    entries: [
-      { id: 'losungen-cta-badge', label: 'CTA Badge', description: 'Section badge', type: 'badge', value: 'Jetzt starten' },
-      { id: 'losungen-cta-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'BEREIT FÜR MESSBAREN ERFOLG?' },
-      { id: 'losungen-cta-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Starte dein Projekt in 60 Sekunden — wähle deine Branche und wir melden uns.' },
-      { id: 'losungen-cta-consult', label: 'Consult CTA', description: 'Consult button', type: 'cta', value: '30-minütiges Beratungsgespräch buchen' },
-    ],
-  },
-
   /* ════════════════════════════════════════════ CASE STUDIES — Additional Sections ════════════════════ */
   {
     key: 'casestudies_intro', label: 'Case Studies Intro — Performance Section',

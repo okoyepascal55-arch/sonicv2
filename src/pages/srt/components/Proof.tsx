@@ -55,10 +55,6 @@ export default function Proof() {
 
     return (
       <div className="relative group flex flex-col items-center text-center p-6 md:p-8 bg-white border border-background-200/70 hover:border-primary-500/30 hover:bg-[#FAFDF5] transition-all duration-300">
-        <div className="w-12 h-12 md:w-14 md:h-14 overflow-hidden mb-4 flex-shrink-0 transition-all duration-300"
-          style={{ boxShadow: '0 2px 8px rgba(139,90,43,0.18)', transform: active ? 'scale(1)' : 'scale(0.85)' }}>
-          <img src={stat.woodIcon} alt={stat.label} className="w-full h-full object-cover" loading="lazy" />
-        </div>
         <div className="flex items-baseline justify-center gap-0.5 mb-1.5">
           <span className="text-primary-500 font-black text-xs">{'>'}</span>
           <span className="font-black text-foreground-950 leading-none tabular-nums" style={{ fontSize: 'clamp(28px,3vw,42px)', letterSpacing: '-0.03em' }}>{display}</span>

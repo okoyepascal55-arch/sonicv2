@@ -215,7 +215,7 @@ export default function FeaturedCases() {
   ];
 
   return (
-    <section className="py-24 px-6 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#C8D400]/6 blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -260,6 +260,7 @@ export default function FeaturedCases() {
                 src={cases[activeCase].images[0]}
                 alt={cases[activeCase].brand}
                 className={`w-full h-full object-cover object-top transition-transform duration-700 ${isHovered ? 'scale-105' : 'scale-100'}`}
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/20"></div>
 
@@ -278,6 +279,7 @@ export default function FeaturedCases() {
                       alt={cases[activeCase].brand}
                       className="w-full h-full object-contain"
                       style={{ filter: 'brightness(0) invert(1)' }}
+                      loading="lazy"
                     />
                   </div>
                   <h3 className="text-4xl font-black text-white">{cases[activeCase].brand}</h3>

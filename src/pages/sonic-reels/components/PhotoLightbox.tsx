@@ -67,6 +67,7 @@ export default function PhotoLightbox({
             className="max-w-full max-h-[60vh] object-contain"
             style={{ borderRadius: 4, filter: 'none', boxShadow: '0 30px 80px -20px rgba(0,0,0,0.8)' }}
             draggable={false}
+            loading="lazy"
           />
         </div>
 

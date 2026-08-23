@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuizModal from './QuizModal';
-import Tag from '@/components/base/Tag';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 
@@ -57,10 +56,10 @@ export default function ChallengeSection() {
   const tBadge = useText('home_challenge', 'home-challenge-badge', 'Deine Challenge');
   const tHeading = useText('home_challenge', 'home-challenge-heading', 'Drei Wege. Ein Partner.');
   const tPath1Title = useText('home_challenge', 'home-challenge-path-1', 'Markteintritt');
-  const tPath1Desc = useText('home_challenge', 'home-challenge-path-1-desc', '');
   const tPath2Title = useText('home_challenge', 'home-challenge-path-2', 'Absatz steigern');
-  const tPath2Desc = useText('home_challenge', 'home-challenge-path-2-desc', '');
   const tPath3Title = useText('home_challenge', 'home-challenge-path-3', 'Omnichannel');
+  const tPath1Desc = useText('home_challenge', 'home-challenge-path-1-desc', '');
+  const tPath2Desc = useText('home_challenge', 'home-challenge-path-2-desc', '');
   const tPath3Desc = useText('home_challenge', 'home-challenge-path-3-desc', '');
   const tPaths = [tPath1Title, tPath2Title, tPath3Title];
   const tDescs = [tPath1Desc, tPath2Desc, tPath3Desc];
@@ -73,7 +72,7 @@ export default function ChallengeSection() {
 
   return (
     <>
-      <section id="losungen" className="py-16 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
+      <section id="losungen" className="py-10 sm:py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
         {/* Subtle background texture */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-500/3 rounded-full blur-[120px]"></div>
@@ -82,21 +81,20 @@ export default function ChallengeSection() {
 
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Header */}
-          <div className="text-center mb-10 md:mb-14">
-            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-[#C8D400]/30 px-4 py-1.5 mb-4">
-              <div className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-pulse"></div>
-              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">{tBadge}</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight mb-5">
+          <div className="text-center mb-6 sm:mb-8 md:mb-14">
+            <p className="text-[10px] sm:text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-3 md:mb-4">
+              {tBadge}
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight mb-3 md:mb-5">
               {tHeading}
             </h2>
-            <p className="text-base text-foreground-600 max-w-xl mx-auto">
+            <p className="text-sm sm:text-base text-foreground-600 max-w-xl mx-auto">
               An welchem Punkt stehst du?
             </p>
           </div>
 
           {/* Challenge Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
             {challenges.map((challenge) => {
               const active = isActive(challenge.id);
 
@@ -111,7 +109,7 @@ export default function ChallengeSection() {
                       : '#ffffff',
                     boxShadow: active
                       ? '0 28px 60px rgba(0,0,0,0.22), 0 0 0 1px rgba(200,212,0,0.3)'
-                      : '0 2px 12px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.06)',
+                      : '0 1px 2px rgba(0,0,0,0.02), 0 10px 30px rgba(139,90,43,0.08), 0 0 0 1px rgba(0,0,0,0.05)',
                     borderRadius: 0,
                   }}
                   onMouseEnter={() => setHoveredCard(challenge.id)}
@@ -131,13 +129,12 @@ export default function ChallengeSection() {
                   />
 
                   {/* Card Content */}
-                  <div className="p-5 md:p-8 flex flex-col h-full min-h-[220px] md:min-h-[320px]">
+                  <div className="p-4 sm:p-5 md:p-8 flex flex-col h-full">
                     {/* Number + Icon row */}
-                    <div className="flex items-start justify-between mb-4 md:mb-7">
+                    <div className="flex items-start justify-between mb-3 md:mb-7">
                       <span
-                        className="font-black leading-none transition-all duration-500 select-none"
+                        className="font-black leading-none transition-all duration-500 select-none text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem]"
                         style={{
-                          fontSize: 'clamp(3rem, 12vw, 4rem)',
                           color: active ? 'rgba(200,212,0,0.15)' : 'rgba(0,0,0,0.06)',
                           letterSpacing: '-0.04em',
                           lineHeight: 1,
@@ -147,25 +144,27 @@ export default function ChallengeSection() {
                         {challenge.number}
                       </span>
                       <div
-                        className="w-14 h-14 overflow-hidden transition-all duration-500 flex-shrink-0"
+                        className="w-11 h-11 sm:w-12 sm:h-12 md:w-16 md:h-16 overflow-hidden transition-all duration-500 flex-shrink-0"
                         style={{
                           transform: active ? 'scale(1.1) rotate(-3deg)' : 'scale(1)',
+                          border: active ? '1px solid rgba(200,212,0,0.4)' : '1px solid rgba(139,90,43,0.18)',
                           boxShadow: active
                             ? '0 8px 24px rgba(139,90,43,0.35), 0 0 16px rgba(200,212,0,0.2)'
-                            : '0 2px 8px rgba(139,90,43,0.15)',
+                            : '0 3px 12px rgba(139,90,43,0.18)',
                         }}
                       >
                         <img
                           src={challenge.woodIcon}
                           alt={challenge.heading}
                           className="w-full h-full object-cover"
+                          loading="lazy"
                         />
                       </div>
                     </div>
 
                     {/* Heading */}
                     <h3
-                      className="text-xl font-black mb-3 leading-tight transition-colors duration-500"
+                      className="text-base sm:text-lg md:text-xl font-black mb-2 md:mb-3 leading-tight transition-colors duration-500"
                       style={{ color: active ? '#ffffff' : '#1a1a1a' }}
                     >
                       {challenge.heading}
@@ -173,7 +172,7 @@ export default function ChallengeSection() {
 
                     {/* Divider line */}
                     <div
-                      className="mb-4 transition-all duration-500"
+                      className="mb-3 md:mb-4 transition-all duration-500"
                       style={{
                         height: '1px',
                         background: active ? 'rgba(200,212,0,0.25)' : 'rgba(0,0,0,0.08)',
@@ -182,23 +181,16 @@ export default function ChallengeSection() {
                     />
 
                     <p
-                      className="text-sm leading-relaxed flex-1 mb-6 transition-colors duration-500"
+                      className="text-xs sm:text-sm leading-relaxed flex-1 mb-4 md:mb-6 transition-colors duration-500"
                       style={{ color: active ? 'rgba(255,255,255,0.7)' : '#6B7280' }}
                     >
                       {challenge.desc}
                     </p>
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-1.5 mb-6">
-                      {challenge.tags.map((tag) => (
-                        <Tag key={tag} variant={active ? 'lime' : 'subtle'}>{tag}</Tag>
-                      ))}
-                    </div>
-
                     {/* CTA — navigates to Lösungen and opens the matching solution */}
                     <button
                       onClick={() => handleMehrDazu(challenge.solutionKey)}
-                      className="inline-flex items-center gap-2 font-black text-xs uppercase tracking-widest px-5 py-3 transition-all duration-300 whitespace-nowrap w-fit cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                      className="inline-flex items-center gap-2 font-black text-[10px] sm:text-xs uppercase tracking-widest px-4 sm:px-5 py-2.5 sm:py-3 transition-all duration-300 whitespace-nowrap w-fit cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                       style={{
                         background: active ? '#C8D400' : 'rgba(0,0,0,0.07)',
                         color: active ? '#ffffff' : '#6B7280',

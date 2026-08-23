@@ -40,7 +40,7 @@ export default function CoreValues() {
   ];
 
   return (
-    <section id="values" className="py-24 px-6 bg-white relative overflow-hidden">
+    <section id="values" className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
@@ -62,10 +62,11 @@ export default function CoreValues() {
             >
               <div className={index % 2 === 1 ? 'md:order-2' : ''}>
                 <div className="aspect-[4/3] overflow-hidden border border-foreground-200" style={{ borderRadius: 0 }}>
-                  <img 
-                    src={value.image} 
+                  <img
+                    src={value.image}
                     alt={value.title}
                     className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                 </div>
               </div>

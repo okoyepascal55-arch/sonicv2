@@ -63,14 +63,14 @@ export default function IndustryGrid() {
   ];
 
   return (
-    <section id="industries" className="py-24 px-6 bg-white relative overflow-hidden">
+    <section id="industries" className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
-          <h2 className="text-4xl md:text-5xl font-black text-foreground-950 mb-4 leading-tight tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 mb-4 leading-tight tracking-tight">
             {tHeading}
           </h2>
-          <p className="text-base text-foreground-600 max-w-3xl mx-auto">
+          <p className="text-sm md:text-base text-foreground-600 max-w-3xl mx-auto">
             {tSub}
           </p>
         </div>
@@ -106,6 +106,7 @@ export default function IndustryGrid() {
                   src={industry.image}
                   alt={industry.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
 
@@ -116,6 +117,7 @@ export default function IndustryGrid() {
                       src={industry.woodIcon}
                       alt={industry.title}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
                 </div>

@@ -324,7 +324,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
               <button
                 onClick={handleContactSubmit}
                 disabled={submitting}
-                className="w-full flex items-center justify-center text-center gap-2 py-4 px-3 bg-[#111] text-white font-black text-sm uppercase tracking-widest hover:bg-primary-500 hover:text-white transition-all duration-300 cursor-pointer disabled:opacity-50 whitespace-normal sm:whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
+                className="w-full flex items-center justify-center gap-2 py-4 bg-[#111] text-white font-black text-sm uppercase tracking-widest hover:bg-primary-500 hover:text-white transition-all duration-300 cursor-pointer disabled:opacity-50 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
                 style={{ borderRadius: 0 }}
               >
                 {submitting ? <><i className="ri-loader-4-line animate-spin" /> Wird verarbeitet…</> : <><i className="ri-lightbulb-flash-line" /> Meine Empfehlung ansehen</>}
@@ -341,7 +341,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                 Unsere Empfehlung: <span className="text-primary-500">{getRecommendedService().title}</span>
               </h3>
               <div className="bg-white border border-foreground-200 p-5 mb-6 text-left">
-                <p className="text-xs font-black text-primary-500 uppercase tracking-widest mb-2">Ihre Empfohlene Lösung</p>
+                <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-2">Ihre Empfohlene Lösung</p>
                 <h4 className="text-lg font-black text-[#111] mb-2">{getRecommendedService().title}</h4>
                 <p className="text-foreground-500 text-sm leading-relaxed">{getRecommendedService().description}</p>
               </div>
@@ -354,7 +354,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleClose}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-3.5 bg-primary-500 text-white font-black text-sm transition-all duration-300 whitespace-normal sm:whitespace-nowrap cursor-pointer uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary-500 text-white font-black text-sm transition-all duration-300 whitespace-nowrap cursor-pointer uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-calendar-check-line text-base mr-1"></i>
@@ -363,7 +363,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                 </a>
                 <button
                   onClick={handleReset}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-3.5 bg-white text-[#111] font-black text-sm transition-all duration-300 whitespace-normal sm:whitespace-nowrap cursor-pointer border-2 border-foreground-200 hover:border-[#C8D400] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#111] font-black text-sm transition-all duration-300 whitespace-nowrap cursor-pointer border-2 border-foreground-200 hover:border-[#C8D400] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-refresh-line text-lg" /> Neu starten

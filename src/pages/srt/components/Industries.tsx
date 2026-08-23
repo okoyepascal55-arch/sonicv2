@@ -215,7 +215,7 @@ export default function Industries() {
               {submitted && (
                 <div className="text-center py-6">
                   <div className="w-16 h-16 flex items-center justify-center mx-auto mb-5"
-                    style={{ background: 'linear-gradient(135deg, #C8D400 0%, #a8b200 100%)', boxShadow: '0 8px 28px rgba(200,212,0,0.4)' }}>
+                    style={{ background: '#C8D400', boxShadow: '0 8px 28px rgba(200,212,0,0.4)' }}>
                     <i className="ri-check-double-line text-3xl text-foreground-950" />
                   </div>
                   <h3 className="text-xl font-black text-foreground-950 mb-2 uppercase">Anfrage erhalten!</h3>

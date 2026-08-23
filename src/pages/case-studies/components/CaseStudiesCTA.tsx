@@ -21,7 +21,7 @@ export default function CaseStudiesCTA() {
   ];
 
   return (
-    <section className="py-24 px-6 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C8D400]/8 rounded-none blur-3xl pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto relative z-10">
@@ -54,6 +54,7 @@ export default function CaseStudiesCTA() {
                 src="https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg"
                 alt="Partner with SONIC"
                 className={`w-full h-full object-cover object-top transition-transform duration-700 ${isHovered ? 'scale-105' : 'scale-100'}`}
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-foreground-950/60 via-transparent to-transparent pointer-events-none"></div>
               <div className={`absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-[#C8D400] transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>

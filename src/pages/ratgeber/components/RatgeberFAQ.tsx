@@ -59,7 +59,7 @@ export default function RatgeberFAQ({ faqs }: RatgeberFAQProps) {
                   <div
                     className="overflow-hidden transition-all duration-300"
                     style={{
-                      maxHeight: isOpen ? '2000px' : '0px',
+                      maxHeight: isOpen ? '600px' : '0px',
                       opacity: isOpen ? 1 : 0,
                     }}
                   >

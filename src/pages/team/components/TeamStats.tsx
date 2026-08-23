@@ -33,7 +33,7 @@ export default function TeamStats() {
   ];
 
   return (
-    <section className="py-24 px-6 bg-white">
+    <section className="py-12 md:py-20 px-4 md:px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />

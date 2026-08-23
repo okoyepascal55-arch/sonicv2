@@ -16,7 +16,7 @@ export default function VideoHero() {
   const tDesc = useText('leistungen_video', 'video-hero-description', 'Für Produktberatung, Sales und Service-Support. E-Commerce, Retail-Display, QR-Code — alles aus einer Hand.');
 
   return (
-    <section className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+    <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
       <img
         src={heroImage}
         alt="Live Video Produktion"

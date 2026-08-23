@@ -6,21 +6,25 @@ const DNA_DATA = [
     num: '01',
     title: 'Der Mensch',
     desc: 'Menschen, die Marken prägen. Promotions leben von den Menschen, die sie durchführen.',
+    image: 'https://readdy.ai/api/search-image?query=confident%20friendly%20retail%20promoter%20professional%20engaging%20warmly%20with%20a%20customer%20inside%20a%20bright%20modern%20retail%20store%20environment%20natural%20window%20light%20authentic%20candid%20editorial%20moment%20clean%20neutral%20warm%20background%20soft%20focus%20high%20detail%20harmonious%20composition&width=600&height=400&seq=dna-mensch-v1&orientation=landscape',
   },
   {
     num: '02',
     title: 'Der Antrieb',
     desc: 'Wettbewerbsfähige Bezahlung und Entwicklungsperspektiven motivieren unser Team.',
+    image: 'https://readdy.ai/api/search-image?query=energetic%20team%20of%20professionals%20high%20five%20celebrating%20a%20successful%20moment%20in%20a%20bright%20modern%20creative%20office%20space%20warm%20natural%20light%20authentic%20candid%20editorial%20photography%20clean%20neutral%20background%20sense%20of%20motion%20and%20drive%20high%20detail&width=600&height=400&seq=dna-antrieb-v1&orientation=landscape',
   },
   {
     num: '03',
     title: 'Die Daten',
     desc: 'Datenbasierte Entscheidungen verwandeln Intuition in messbare Erfolge.',
+    image: 'https://readdy.ai/api/search-image?query=sleek%20modern%20analytics%20dashboard%20with%20charts%20and%20performance%20metrics%20displayed%20on%20a%20laptop%20screen%20on%20a%20clean%20wooden%20desk%20in%20a%20bright%20workspace%20warm%20natural%20lighting%20editorial%20product%20photography%20minimal%20composition%20soft%20neutral%20background%20high%20detail&width=600&height=400&seq=dna-daten-v1&orientation=landscape',
   },
   {
     num: '04',
     title: 'Das Werkzeug',
     desc: 'Inhouse-IT und starke Partner lösen Herausforderungen mit den richtigen Tools.',
+    image: 'https://readdy.ai/api/search-image?query=organized%20modern%20creative%20studio%20tools%20and%20devices%20neatly%20arranged%20on%20a%20clean%20workbench%20in%20a%20bright%20industrial%20workspace%20warm%20natural%20light%20editorial%20still%20life%20photography%20minimal%20clean%20composition%20neutral%20background%20high%20detail&width=600&height=400&seq=dna-werkzeug-v1&orientation=landscape',
   },
 ];
 
@@ -47,100 +51,135 @@ export default function KarriereCulture() {
   };
 
   return (
-    <div>
-      {/* ── DARUM SONIC ── */}
-      <section id="darum" className="py-[88px] px-8 bg-white">
-        <div className="max-w-[1200px] mx-auto">
-          {/* Section head */}
-          <div className="max-w-[640px] mb-11">
-            <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-xs font-bold uppercase tracking-[0.06em] px-3.5 py-[7px] pr-3.5 mb-5 ">
-              <span className="w-1.5 h-1.5 bg-[#0B0B0C] " />
-              Darum Sonic
-            </div>
-            <h2 className="text-[clamp(28px,3.4vw,40px)] font-black text-[#0B0B0C] leading-[1.1] tracking-tight uppercase">
-              Starke Menschen für{' '}
-              <span className="text-[#C3D62A]">starke Marken</span>
-            </h2>
+    <section id="darum" className="py-10 md:py-20 px-4 md:px-6 bg-white">
+      <div className="max-w-6xl mx-auto">
+        {/* ── Headline ── */}
+        <div className="max-w-3xl mb-12 md:mb-16">
+          <h2 className="text-[clamp(28px,3.6vw,46px)] font-black text-[#0B0B0C] leading-[1.06] tracking-tight uppercase">
+            Starke Menschen für{' '}
+            <span className="text-[#C8D400]">starke Marken</span>
+          </h2>
+          <p className="mt-4 text-sm md:text-base font-bold text-[#6E6E68] tracking-wide max-w-xl leading-relaxed">
+            Wir lieben &amp; leben Marken. Energie, Sympathie, Teamgeist, Kreativität und der Wille anzupacken — das zeichnet uns aus.
+          </p>
+        </div>
+
+        {/* ── Statement card ── */}
+        <div className="relative overflow-hidden bg-[#0B0B0C] p-8 md:p-12 mb-10 md:mb-14">
+          <div className="max-w-2xl">
+            <h3 className="text-xl md:text-2xl font-black text-white leading-snug mb-4">
+              Wir lieben &amp; leben Marken.
+            </h3>
+            <p className="text-sm text-[#B5B5AF] leading-relaxed mb-3">
+              {tP1 || 'Am Point of Sale, bei Messen, Events, Roadshows und per Video aus unseren Studios am Campus in Krefeld.'}
+            </p>
+            <p className="text-sm text-[#B5B5AF] leading-relaxed">
+              {tP2 || 'Energiegeladen und sympathisch: Diese Beschreibung passt auf die Menschen, die bei Sonic arbeiten. Passt sie auch auf dich?'}
+            </p>
           </div>
 
-          {/* darum-grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-5">
-            {/* Dark quote card */}
-            <div className="bg-[#0B0B0C] text-white  p-10 flex flex-col justify-between min-h-[400px]">
-              <div>
-                {/* Eyebrow on dark */}
-                <div className="inline-flex items-center gap-2 bg-[#1A1A1B] text-[#DCE94D] text-xs font-bold uppercase tracking-[0.06em] px-3.5 py-[7px] pr-3.5 mb-6 ">
-                  <span className="w-1.5 h-1.5 bg-[#DCE94D] " />
-                  Darum Sonic
-                </div>
-                <h3 className="text-[26px] font-black leading-[1.25] mb-4">
-                  Wir lieben &amp; leben Marken.
-                </h3>
-                <p className="text-sm text-[#B5B5AF] leading-[1.6] mb-3">
-                  {tP1 || 'Am Point of Sale, bei Messen, Events, Roadshows und per Video aus unseren Studios am Campus in Krefeld.'}
-                </p>
-                <p className="text-sm text-[#B5B5AF] leading-[1.6] mb-5">
-                  {tP2 || 'Energiegeladen und sympathisch: Diese Beschreibung passt auf die Menschen, die bei Sonic arbeiten. Passt sie auch auf dich?'}
-                </p>
+          {/* Tags + CTA */}
+          <div className="flex flex-wrap items-center gap-3 mt-8 pt-6 border-t border-white/10">
+            {TAGS.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs font-bold text-[#C8D400] bg-[#C8D400]/10 px-3 py-1.5"
+              >
+                {tag}
+              </span>
+            ))}
+            <button
+              onClick={scrollToPaths}
+              className="ml-auto text-xs font-bold text-white hover:text-[#C8D400] transition-colors cursor-pointer"
+            >
+              Karrierepfade →
+            </button>
+          </div>
+        </div>
 
-                <div className="flex flex-wrap gap-2">
-                  {TAGS.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3.5 py-[7px] bg-[#1A1A1B] border border-[#2C2C2E] text-[#DCE94D] font-bold text-xs uppercase tracking-[0.03em] "
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between border-t border-[#2C2C2E] pt-[18px] mt-2">
-                <span className="text-[13px] font-semibold text-[#B5B5AF]">
-                  Sonic Campus Krefeld — Team &amp; Kultur
-                </span>
-                <button
-                  onClick={scrollToPaths}
-                  className="text-[13px] font-bold text-[#DCE94D] hover:text-white transition-colors cursor-pointer"
-                >
-                  Karrierepfade →
-                </button>
-              </div>
-            </div>
-
-            {/* 2x2 feature cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* ── DNA (pictorial) + Werte (bento) ── */}
+        <div className="space-y-12">
+          {/* DNA — pictorial cards */}
+          <div>
+            <h4 className="text-[11px] font-black uppercase tracking-[0.15em] text-[#9A9A93] mb-4">
+              Unsere DNA
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {DNA_DATA.map((item, i) => {
                 const active = hoveredDna === i;
                 return (
                   <div
                     key={item.num}
-                    className="bg-[#FAFDF5]  p-[26px] border border-[#E7E4D4] cursor-pointer transition-all duration-300"
+                    className="overflow-hidden border bg-white transition-all duration-300 cursor-pointer"
                     style={{
-                      background: active ? '#0B0B0C' : '#FAFDF5',
-                      borderColor: active ? '#C3D62A' : '#E7E4D4',
+                      borderColor: active ? 'rgba(200,212,0,0.55)' : '#E7E4D4',
+                      transform: active ? 'translateY(-3px)' : 'translateY(0)',
                     }}
                     onMouseEnter={() => setHoveredDna(i)}
                     onMouseLeave={() => setHoveredDna(null)}
                   >
+                    <div className="relative h-36 md:h-40 overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover object-top transition-transform duration-700"
+                        style={{ transform: active ? 'scale(1.06)' : 'scale(1)' }}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C]/45 to-transparent" aria-hidden="true" />
+                      <div
+                        className="absolute top-3 left-3 w-9 h-9 flex items-center justify-center text-xs font-black"
+                        style={{ background: 'rgba(11,11,12,0.72)', color: '#C8D400', border: '1px solid rgba(200,212,0,0.4)' }}
+                      >
+                        {item.num}
+                      </div>
+                    </div>
+                    <div className="p-5">
+                      <h5 className="text-sm font-bold text-[#0B0B0C] mb-1.5">
+                        {item.title}
+                      </h5>
+                      <p className="text-xs leading-relaxed text-[#6E6E68]">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Werte — bento numbered-card system (matches Über uns Timeline) */}
+          <div>
+            <h4 className="text-[11px] font-black uppercase tracking-[0.15em] text-[#9A9A93] mb-4">
+              Unsere Werte
+            </h4>
+            <div className="grid sm:grid-cols-3 gap-3">
+              {WERTE.map((val, i) => {
+                const isWide = i === 0 || i === 3 || i === 4;
+                return (
+                  <div
+                    key={val.num}
+                    className={`relative p-7 md:p-8 border border-black/8 bg-white ${
+                      isWide ? 'sm:col-span-2' : 'sm:col-span-1'
+                    }`}
+                  >
+                    {/* Watermark number */}
                     <div
-                      className="text-[26px] font-black leading-none mb-3"
-                      style={{ color: active ? 'rgba(220,233,77,0.18)' : '#C3D62A' }}
+                      className="absolute top-4 right-5 text-7xl font-black leading-none text-black/[0.04] select-none pointer-events-none"
                       aria-hidden="true"
                     >
-                      {item.num}
+                      {val.num}
                     </div>
-                    <h4
-                      className="text-base font-bold mb-1.5 transition-colors duration-300"
-                      style={{ color: active ? '#fff' : '#0B0B0C' }}
-                    >
-                      {item.title}
+
+                    <div className="w-9 h-9 bg-[#0B0B0C] text-[#C8D400] flex items-center justify-center text-[11px] font-black mb-4">
+                      {val.num}
+                    </div>
+                    <h4 className="text-lg md:text-xl font-black text-[#0B0B0C] mb-3 leading-tight tracking-tight">
+                      {val.title}
                     </h4>
-                    <p
-                      className="text-[13px] leading-[1.5] transition-colors duration-300"
-                      style={{ color: active ? 'rgba(255,255,255,0.72)' : '#6E6E68' }}
-                    >
-                      {item.desc}
+                    <p className="text-sm text-black/50 leading-relaxed">
+                      {val.desc}
                     </p>
                   </div>
                 );
@@ -148,45 +187,7 @@ export default function KarriereCulture() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* ── WERTE ── */}
-      <section className="py-[88px] px-8" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #FAFDF5 50%, #ffffff 100%)' }}>
-        <div className="max-w-[1200px] mx-auto">
-          <div className="max-w-[640px] mb-11">
-            <div className="inline-flex items-center gap-2 bg-[#DCE94D] text-[#0B0B0C] text-xs font-bold uppercase tracking-[0.06em] px-3.5 py-[7px] pr-3.5 mb-5 ">
-              <span className="w-1.5 h-1.5 bg-[#0B0B0C] " />
-              Sonic-Werte
-            </div>
-            <h2 className="text-[clamp(28px,3.4vw,40px)] font-black text-[#0B0B0C] leading-[1.1] tracking-tight uppercase">
-              Diese Werte{' '}
-              <span className="text-[#C3D62A]">leben wir</span>
-            </h2>
-            <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[520px]">
-              Wir stellen uns auf dich ein, wenn du dich auf unsere Werte einstellen kannst.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {WERTE.map((val) => (
-              <div
-                key={val.num}
-                className="bg-white  p-7 border border-[#E7E4D4]"
-              >
-                <div className="w-11 h-11  bg-[#0B0B0C] flex items-center justify-center mb-[18px] text-[#DCE94D] font-black text-sm">
-                  {val.num}
-                </div>
-                <h4 className="text-base font-bold uppercase tracking-wide mb-2 text-[#0B0B0C]">
-                  {val.title}
-                </h4>
-                <p className="text-[13px] leading-[1.55] text-[#6E6E68]">
-                  {val.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

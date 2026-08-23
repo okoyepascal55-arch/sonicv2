@@ -39,7 +39,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
   }, [cycleWord]);
 
   return (
-    <section className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-[#0B0B0C]" style={{ paddingTop: '80px' }}>
       {/* Background photo */}
       <img
         src={heroImage || 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png'}
@@ -49,27 +49,25 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
         decoding="async"
       />
 
-      {/* Dark veil */}
+      {/* Dark veil — bottom-heavy for anchored content */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.75) 100%)' }}
+        style={{ background: 'linear-gradient(to bottom, rgba(11,11,12,0.30) 0%, rgba(11,11,12,0.20) 45%, rgba(11,11,12,0.82) 100%)' }}
         aria-hidden="true"
       />
 
-      {/* Content */}
-      <div className="relative z-20 w-full max-w-6xl mx-auto px-4 md:px-6 text-center">
+      {/* Content — left-aligned, bottom-anchored */}
+      <div className="relative z-20 w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
+        <div className="max-w-[640px]">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 border border-[#C8D400]/35 px-4 py-1.5 mb-7"
-          style={{ background: 'rgba(200,212,0,0.1)' }}
-        >
-          <div className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-pulse" />
-          <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Leistungen</span>
+        <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
+          <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
+          Leistungen
         </div>
 
         {/* Main headline */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 leading-[1.0] tracking-tight">
-          MANPOWER<br />
-          TRIFFT{' '}
+        <h1 className="text-[clamp(32px,5vw,58px)] font-black text-white leading-[1.06] tracking-tight uppercase mb-5 md:mb-6">
+          MANPOWER TRIFFT{' '}
           <span
             className="text-[#C8D400] inline-block"
             style={{
@@ -82,41 +80,35 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
           </span>
         </h1>
 
-        <p className="text-base md:text-lg lg:text-xl text-white/80 mb-3 font-semibold max-w-2xl mx-auto">
+        <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-3">
           Full Service für deine Marken und Produkte im Retail
         </p>
-        <p className="text-sm md:text-base text-white/50 max-w-2xl mx-auto leading-relaxed mb-8 md:mb-10">
+        <p className="text-xs md:text-sm text-white/60 leading-relaxed max-w-[480px] mb-6 md:mb-8">
           Von Daten &amp; Software über Personal &amp; Staffing bis zu POS, Video und Events:{' '}
           Alles aus einer Hand — datenbasiert geplant, live reportet, messbar erfolgreich.
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 md:mb-14">
+        <div className="flex flex-wrap gap-3">
           <a
             href="https://calendly.com/sonic-group/beratungsgespraech"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-primary-500 text-[#111] px-8 py-4 font-black hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2"
+            className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 bg-[#C8D400] text-[#0B0B0C] font-bold text-xs md:text-sm hover:bg-white transition-all duration-200 whitespace-nowrap cursor-pointer"
           >
             <i className="ri-calendar-line text-base"></i>
             Beratungsgespräch buchen
           </a>
           <button
             onClick={onScrollToGrid}
-            className="inline-flex items-center gap-2 border-2 border-white/25 text-white px-8 py-4 font-black hover:border-[#C8D400] hover:text-[#C8D400] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2"
+            className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 border border-white/40 text-white font-bold text-xs md:text-sm hover:bg-white/10 transition-all duration-200 whitespace-nowrap cursor-pointer"
           >
             Alle Leistungen entdecken
             <i className="ri-arrow-down-line text-base"></i>
           </button>
         </div>
+        </div>
       </div>
-
-      {/* Bottom fade to black */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-28 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, #000 0%, transparent 100%)' }}
-        aria-hidden="true"
-      />
     </section>
   );
 }

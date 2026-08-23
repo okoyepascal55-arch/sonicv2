@@ -10,11 +10,10 @@ function hideBrokenImg(e: React.SyntheticEvent<HTMLImageElement>) {
 
 const services = [
   {
-    title: 'MENSCHEN FÜR EVENTS & MESSEN',
+    title: 'Menschen für Events & Messen',
     lead: 'Dediziert geschultes Personal für bestimmte Funktionen – Moderation, Musik, Catering, Logistik und Aufbau.',
     description: 'Wir präsentieren deine Marke da, wo deine Zielgruppe ist: Events, Messen, Roadshows und hybride Formate. Von Konzept über Personal bis Logistik — alles aus einer Hand.',
     tagline: 'Vor Ort. Auf Tour. Mit Wirkung.',
-    icon: 'https://readdy.ai/api/search-image?query=crowd%20silhouettes%20cheering%20at%20live%20event%20stage%20carved%20in%20high%20relief%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20sculptural%20minimalist%20icon%20warm%20rich%20brown%20grain%20artisan%20handcrafted%20clean%20white%20background%20top%20view%20studio%20lighting%20product%20photography&width=120&height=120&seq=wood-events-stage-crowd-v8&orientation=squarish',
     fallbackIcon: 'ri-calendar-event-line',
     images: [
       '/images/home/1. Menschen für Events & Messen/0af37f3a-0e8d-46be-a8f4-b658aadaa087.webp',
@@ -35,11 +34,10 @@ const services = [
     link: '/leistungen/events-messen',
   },
   {
-    title: 'MENSCHEN FÜR CONTENT',
+    title: 'Menschen für Content',
     lead: 'Ausdrucksstarkes Personal mit Fokus auf Content Produktion.',
     description: 'Videocontent und Live-Video-Kanäle mit unseren Markenbotschaftern — für Produktberatung, Sales und Service-Support. QR-Code auf der Verpackung, Widget im Online-Shop oder Display am POS: Fachberatung auf Knopfdruck.',
     tagline: 'Von Social Content bis Livestreams und Produktvideos — Content mit Retail-DNA.',
-    icon: 'https://readdy.ai/api/search-image?query=professional%20film%20clapperboard%20director%20slate%20with%20live%20dot%20carved%20in%20high%20relief%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20sculptural%20minimalist%20icon%20warm%20rich%20brown%20grain%20artisan%20handcrafted%20clean%20white%20background%20top%20view%20studio%20lighting%20product%20photography&width=120&height=120&seq=wood-clapperboard-live-v8&orientation=squarish',
     fallbackIcon: 'ri-movie-line',
     images: [
       '/images/home/2. Menschen für Content/3. Bild Kopie.webp',
@@ -48,11 +46,10 @@ const services = [
     link: '/leistungen/kreation-content',
   },
   {
-    title: 'MENSCHEN FÜR SCHULUNGEN',
+    title: 'Menschen für Schulungen',
     lead: 'Für Marken-, Produkt- und Verkaufs-Training.',
     description: 'Menschen, die Marken erklären. Trainings, die Wissen direkt in Performance verwandeln — offline, hybrid oder online. Mit Personal und Technik aus einem System.',
     tagline: 'Strategisch geplant. Praxisnah umgesetzt.',
-    icon: 'https://readdy.ai/api/search-image?query=open%20book%20with%20rising%20arrow%20growth%20lines%20training%20knowledge%20icon%20carved%20in%20high%20relief%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20sculptural%20minimalist%20symbol%20warm%20rich%20brown%20grain%20artisan%20handcrafted%20clean%20white%20background%20top%20view%20studio%20lighting%20product%20photography&width=120&height=120&seq=wood-book-arrow-training-v8&orientation=squarish',
     fallbackIcon: 'ri-graduation-cap-line',
     images: [
       '/images/home/3. Menschen für Schulungen/16.webp',
@@ -73,11 +70,10 @@ const services = [
     link: '/losungen',
   },
   {
-    title: 'MENSCHEN FÜR DEN POINT OF SALE',
+    title: 'Menschen für den Point of Sale',
     lead: 'Geschultes Personal mit Augenmerk auf Marken- und / oder Produkt-Inszenierung.',
     description: 'End-to-End-Partner für den Point of Sale: Design, Displays, Möbel, Collateral, Give-aways, Logistik und Montage. Wir gestalten und bestücken deine Fläche — datenbasiert geplant, live reportet und messbar erfolgreich.',
     tagline: 'Über 20.000 Stores. Über 1.300.000 Einsätze/Aufgaben. Über 2 Milliarden Umsatz €.',
-    icon: 'https://readdy.ai/api/search-image?query=retail%20display%20shelf%20with%20spotlit%20product%20podium%20and%20brand%20flag%20icon%20carved%20in%20high%20relief%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20sculptural%20minimalist%20symbol%20warm%20rich%20brown%20grain%20artisan%20handcrafted%20clean%20white%20background%20top%20view%20studio%20lighting%20product%20photography&width=120&height=120&seq=wood-pos-display-shelf-v8&orientation=squarish',
     fallbackIcon: 'ri-store-2-line',
     images: [
       'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
@@ -87,11 +83,10 @@ const services = [
     link: '/leistungen/pos-full-service',
   },
   {
-    title: 'MENSCHEN FÜR UNSERE STUDIOS',
+    title: 'Menschen für unsere Studios',
     lead: 'All In One: Regisseur, Moderator, Verkäufer.',
     description: 'Erlebbar werden: Produktberatung, Sales und Service-Support direkt aus unseren Studio-Setups. Für Livestreams, Video-Commerce, digitale Beratung und Content-Produktion.',
     tagline: 'Wir richten uns nach den Usern — kanalübergreifend, skalierbar und immer nah an der echten Customer Journey.',
-    icon: 'https://readdy.ai/api/search-image?query=broadcast%20studio%20camera%20on%20tripod%20with%20recording%20light%20and%20monitor%20screen%20icon%20carved%20in%20high%20relief%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20sculptural%20minimalist%20symbol%20warm%20rich%20brown%20grain%20artisan%20handcrafted%20clean%20white%20background%20top%20view%20studio%20lighting%20product%20photography&width=120&height=120&seq=wood-studio-camera-monitor-v8&orientation=squarish',
     fallbackIcon: 'ri-camera-line',
     images: [
       '/images/home/4. Menschen für unsere Studios/1.webp',
@@ -117,7 +112,6 @@ export default function ServicesGrid() {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [hoveredPanel, setHoveredPanel] = useState(false);
 
   // Dynamic media integration
   const { images: homeEvents } = useMediaStore('/images/home/1. Menschen für Events & Messen');
@@ -125,7 +119,6 @@ export default function ServicesGrid() {
   const { images: homeSchulungen } = useMediaStore('/images/home/3. Menschen für Schulungen');
   const { images: homePos } = useMediaStore('home_pos');
   const { images: homeStudios } = useMediaStore('/images/home/4. Menschen für unsere Studios');
-  const { images: serviceWoodIcons } = useMediaStore('home_services_wood_icons');
 
   const getSectionImagesMap = (idx: number) => {
     switch (idx) {
@@ -140,10 +133,10 @@ export default function ServicesGrid() {
 
   const currentMediaItems = getSectionImagesMap(selectedIndex);
   const currentImages = currentMediaItems.map(item => item.url);
+  const imageCount = currentImages.length || 1;
 
   const startRotation = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
-    const imageCount = currentImages.length || 1;
     intervalRef.current = setInterval(() => {
       setFade(false);
       setTimeout(() => {
@@ -160,12 +153,13 @@ export default function ServicesGrid() {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedIndex, currentImages.length]);
 
-  const handleDotClick = (idx: number) => {
+  const goTo = (idx: number) => {
     setFade(false);
     setTimeout(() => {
-      setImageIndex(idx);
+      setImageIndex(((idx % imageCount) + imageCount) % imageCount);
       setFade(true);
     }, 200);
     startRotation();
@@ -194,113 +188,60 @@ export default function ServicesGrid() {
   const currentService = services[selectedIndex];
 
   return (
-    <section id="services" className="py-16 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
-      {/* Background glows */}
-      <div className="absolute top-1/4 left-0 w-80 h-80 bg-primary-500/6 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-primary-500/8 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
-
+    <section id="services" className="py-12 md:py-20 lg:py-24 px-4 md:px-6 bg-background-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-7 md:mb-9 pt-4">
-          <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-4">
-            <div className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-pulse"></div>
-            <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Unsere Leistungen</span>
-          </div>
-          <h2 className="text-3xl lg:text-5xl font-black text-foreground-950 mb-5 leading-tight px-4">
-            MANPOWER TRIFFT{' '}
-            <span className="text-primary-500 relative inline-block">
-              ROI
+        {/* ── Section Header ── */}
+        <div className="text-center mb-8 md:mb-12 lg:mb-14">
+          <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-3 md:mb-4">
+            Unsere Leistungen
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 mb-3 md:mb-5 leading-[1.08] tracking-tight">
+            Manpower trifft{' '}
+            <span className="relative inline-block">
+              <span className="relative z-10">ROI</span>
               <span
-                className="absolute inset-0 -z-10 bg-primary-500/20"
-                style={{ transform: 'skewX(-9deg) scaleX(1.08)', borderRadius: '2px' }}
+                className="absolute inset-0 -z-0 bg-primary-500/20 rounded-md"
+                style={{ transform: 'scaleX(1.08) scaleY(1.2) translateY(-1px)' }}
                 aria-hidden="true"
               />
             </span>
           </h2>
-          <p className="text-sm md:text-base text-foreground-700 max-w-2xl mx-auto font-semibold px-4">
-            Die Full-Service-Leistungen von Sonic: <span className="text-primary-500">Vertriebsagentur</span>, <span className="text-primary-500">Personalagentur</span>, <span className="text-primary-500">Performanceagentur</span> und <span className="text-primary-500">Eventagentur</span> in einem.
+          <p className="text-sm md:text-base text-foreground-600 max-w-2xl mx-auto font-medium leading-relaxed">
+            Die Full-Service-Leistungen von Sonic:{' '}
+            <span className="text-primary-600 font-semibold">Vertriebsagentur</span>,{' '}
+            <span className="text-primary-600 font-semibold">Personalagentur</span>,{' '}
+            <span className="text-primary-600 font-semibold">Performanceagentur</span> und{' '}
+            <span className="text-primary-600 font-semibold">Eventagentur</span> in einem.
           </p>
         </div>
 
-        {/* Service Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-5 md:mb-7 px-2" role="tablist" aria-label="Leistungsbereiche">
+        {/* ── Tabs — top, above the image ── */}
+        <div className="mb-4 md:mb-6 flex flex-wrap justify-center gap-2 md:gap-2.5">
           {services.map((service, index) => (
             <button
               key={index}
               onClick={() => setSelectedIndex(index)}
-              role="tab"
-              aria-selected={selectedIndex === index}
-              aria-controls={`service-panel-${index}`}
-              id={`service-tab-${index}`}
-              className={`flex items-center gap-2 px-3 md:px-4 py-2 min-h-[44px] md:min-h-0 transition-all duration-400 cursor-pointer group relative text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
+              className={`whitespace-nowrap text-sm md:text-base font-semibold transition-all duration-200 cursor-pointer px-4 md:px-6 py-2.5 rounded-none border ${
                 selectedIndex === index
-                  ? 'bg-white ring-2 ring-primary-500'
-                  : 'bg-white/60 hover:bg-white ring-1 ring-foreground-200 hover:ring-primary-500/50'
+                  ? 'bg-primary-500 text-foreground-950 border-primary-500'
+                  : 'text-foreground-600 hover:text-foreground-900 border-background-300 hover:border-foreground-300 bg-white'
               }`}
-              style={{
-                borderRadius: 0,
-                boxShadow: selectedIndex === index
-                  ? 'inset 3px 3px 8px rgba(0,0,0,0.08), inset -1px -1px 4px rgba(255,255,255,0.7)'
-                  : '3px 3px 8px rgba(0,0,0,0.07), -2px -2px 6px rgba(255,255,255,0.85), inset 0 1px 0 rgba(255,255,255,0.8)',
-              }}
             >
-              {selectedIndex === index && (
-                <div className="absolute inset-0 bg-primary-500/8 pointer-events-none" style={{ borderRadius: 0 }} aria-hidden="true" />
-              )}
-              <div className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0 relative z-10 overflow-hidden">
-                {/* Fallback behind image */}
-                <div className="absolute inset-0 bg-primary-500 flex items-center justify-center z-0">
-                  <i className={`${service.fallbackIcon} text-2xs text-foreground-900`}></i>
-                </div>
-                <img
-                  src={serviceWoodIcons[index]?.url || service.icon}
-                  alt={service.title}
-                  className={`absolute inset-0 w-full h-full object-contain transition-all duration-300 z-10 ${
-                    selectedIndex === index ? 'opacity-100 scale-110' : 'opacity-70 group-hover:opacity-100 group-hover:scale-105'
-                  }`}
-                  style={{
-                    filter: selectedIndex === index
-                      ? 'drop-shadow(0 2px 4px rgba(200, 212, 0, 0.4))'
-                      : 'drop-shadow(0 1px 2px rgba(139, 90, 43, 0.3))',
-                  }}
-                  onError={hideBrokenImg}
-                />
-                {/* Fallback icon when image fails */}
-                <div className="w-full h-full bg-primary-500 flex items-center justify-center">
-                  <i className={`${service.fallbackIcon} text-xs text-foreground-900`}></i>
-                </div>
-              </div>
-              <span className={`text-xs font-black transition-colors duration-300 relative z-10 whitespace-normal sm:whitespace-nowrap tracking-wide ${
-                selectedIndex === index ? 'text-primary-500' : 'text-foreground-950 group-hover:text-primary-500'
-              }`}>
-                {service.title}
-              </span>
-              {selectedIndex === index && (
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-white ring-2 ring-primary-500 rotate-45 z-0 shadow-sm" aria-hidden="true"></div>
-              )}
+              {service.title}
             </button>
           ))}
         </div>
 
-        {/* Full Image Display Panel */}
-        <div
-          id={`service-panel-${selectedIndex}`}
-          role="tabpanel"
-          aria-labelledby={`service-tab-${selectedIndex}`}
-          className="relative shadow-2xl overflow-hidden cursor-pointer min-h-[320px] sm:min-h-[480px] md:min-h-[620px]"
-          style={{ borderRadius: 0 }}
-          onClick={() => openLightbox(imageIndex)}
-          onMouseEnter={() => setHoveredPanel(true)}
-          onMouseLeave={() => setHoveredPanel(false)}
-          aria-label="Bild vergrößern"
-        >
-          {/* Images with crossfade */}
-          <div className="absolute inset-0 w-full h-full bg-foreground-950 flex items-center justify-center">
+        {/* ── Full-bleed pictorial image ── */}
+        <div className="relative overflow-hidden bg-foreground-950">
+          <div className="relative aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/10] md:min-h-[520px] xl:min-h-[580px]">
             {currentImages.length === 0 ? (
-              <div className="text-white/40 text-center p-8">
-                <i className="ri-image-line text-4xl mb-2 block"></i>
-                <p className="text-sm font-bold uppercase tracking-wider">Keine Medien vorhanden</p>
-                <p className="text-xs">Fügen Sie im Dashboard Bilder zu dieser Sektion hinzu.</p>
+              <div className="absolute inset-0 flex items-center justify-center text-white/40">
+                <div className="text-center p-8">
+                  <i className="ri-image-line text-4xl mb-2 block" />
+                  <p className="text-sm font-bold uppercase tracking-wider">Keine Medien vorhanden</p>
+                  <p className="text-xs mt-1">Fügen Sie im Dashboard Bilder zu dieser Sektion hinzu.</p>
+                </div>
               </div>
             ) : (
               currentImages.map((img, idx) => (
@@ -308,112 +249,89 @@ export default function ServicesGrid() {
                   key={`${selectedIndex}-${idx}`}
                   src={img}
                   alt={`${currentService.title} — Impression ${idx + 1}`}
-                  className="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500"
+                  className="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 cursor-pointer"
                   style={{ opacity: imageIndex === idx && fade ? 1 : 0 }}
                   loading={idx === 0 && selectedIndex === 0 ? 'eager' : 'lazy'}
                   decoding="async"
+                  onClick={() => openLightbox(idx)}
+                  onError={hideBrokenImg}
                 />
               ))
             )}
-            {/* Gradient overlay — light touch, image-first */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/18 to-transparent pointer-events-none"></div>
-          </div>
 
-          {/* Expand hint — top right, compact pill */}
-          <div
-            className={`absolute top-3 right-3 z-20 flex items-center gap-1.5 bg-black/55 backdrop-blur-sm border border-white/20 px-2.5 py-1 transition-opacity duration-300 ${hoveredPanel ? 'opacity-100' : 'opacity-0'}`}
-          >
-            <i className="ri-zoom-in-line text-white text-xs"></i>
-            <span className="text-white text-2xs font-bold">Vollbild</span>
-          </div>
+            {/* Subtle readability lift at the bottom only */}
+            <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
 
-          {/* Overlaid Content — compact, image-first */}
-          <div
-            className="relative z-10 h-full flex flex-col justify-end p-3 md:p-6 min-h-[320px] sm:min-h-[480px] md:min-h-[620px]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Lead line */}
-            <p className="text-primary-500 text-2xs md:text-xs font-bold uppercase tracking-widest mb-1 drop-shadow-lg">
-              {currentService.lead}
-            </p>
+            {/* Prev / Next arrows */}
+            {currentImages.length > 1 && (
+              <>
+                <button
+                  onClick={() => goTo(imageIndex - 1)}
+                  className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm transition-colors cursor-pointer"
+                  aria-label="Vorheriges Bild"
+                >
+                  <i className="ri-arrow-left-line text-lg md:text-xl" />
+                </button>
+                <button
+                  onClick={() => goTo(imageIndex + 1)}
+                  className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm transition-colors cursor-pointer"
+                  aria-label="Nächstes Bild"
+                >
+                  <i className="ri-arrow-right-line text-lg md:text-xl" />
+                </button>
+              </>
+            )}
 
-            {/* Title Row */}
-            <div className="flex items-center gap-2 md:gap-3 mb-1.5 md:mb-2">
-              <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 relative overflow-hidden">
-                <div className="absolute inset-0 bg-primary-500 flex items-center justify-center">
-                  <i className={`${currentService.fallbackIcon} text-base md:text-lg text-foreground-900`}></i>
-                </div>
-                <img
-                  src={currentService.icon}
-                  alt={currentService.title}
-                  className="absolute inset-0 w-full h-full object-contain"
-                  style={{
-                    filter: 'drop-shadow(0 3px 6px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 10px rgba(200, 212, 0, 0.55))',
-                  }}
-                  onError={hideBrokenImg}
-                />
-              </div>
-              <h3 className="text-lg md:text-xl lg:text-2xl font-black text-white drop-shadow-2xl leading-tight">
-                {currentService.title}
-              </h3>
-            </div>
-
-            {/* Description + Tagline — compact row, truncated on mobile */}
-            <p className="text-white/80 leading-snug text-xs md:text-sm max-w-2xl mb-1 drop-shadow-lg hidden sm:block">
-              {currentService.description}
-            </p>
-            <p className="text-white/50 text-2xs md:text-xs italic mb-2 md:mb-3 drop-shadow-lg hidden sm:block">
-              {currentService.tagline}
-            </p>
-
-            {/* CTA + Dots Row */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-4">
-              <button
-                onClick={() => handleGetStarted(currentService.link)}
-                className="inline-flex items-center gap-1.5 md:gap-2 min-h-[44px] bg-primary-500 text-white px-4 md:px-5 py-2 md:py-2.5 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-xs md:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
-                style={{ borderRadius: 0 }}
-              >
-                <span>Mehr dazu</span>
-                <i className="ri-arrow-right-line text-sm"></i>
-              </button>
-
-              {/* Image Dots */}
-              <div className="flex items-center gap-1.5" role="tablist" aria-label="Bild-Navigation">
+            {/* Carousel dots — top right */}
+            {currentImages.length > 1 && (
+              <div className="absolute top-3 md:top-5 right-3 md:right-5 flex items-center gap-1.5 z-10">
                 {currentImages.map((_, idx) => (
                   <button
                     key={idx}
-                    onClick={(e) => { e.stopPropagation(); handleDotClick(idx); }}
-                    role="tab"
-                    aria-selected={imageIndex === idx}
-                    aria-label={`Bild ${idx + 1} von ${currentService.title}`}
-                    className="flex items-center justify-center w-11 h-11 md:w-auto md:h-auto cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    onClick={() => goTo(idx)}
+                    className="w-6 h-6 flex items-center justify-center cursor-pointer"
+                    aria-label={`Bild ${idx + 1}`}
                   >
-                    <span className={`rounded-full transition-all duration-300 ${
+                    <span className={`block rounded-full transition-all duration-300 ${
                       imageIndex === idx
-                        ? 'w-5 h-2 bg-primary-500'
-                        : 'w-2 h-2 bg-white/50 hover:bg-white/80'
+                        ? 'w-5 h-1.5 bg-primary-400'
+                        : 'w-1.5 h-1.5 bg-white/60 hover:bg-white/90'
                     }`} />
                   </button>
                 ))}
               </div>
+            )}
+          </div>
+        </div>
 
-              {/* Lightbox trigger */}
-              <button
-                onClick={(e) => { e.stopPropagation(); openLightbox(imageIndex); }}
-                className="ml-auto flex items-center gap-1 text-white/50 hover:text-white transition-colors duration-200 cursor-pointer focus-visible:outline-none"
-                aria-label="Bild im Vollbild öffnen"
-              >
-                <i className="ri-fullscreen-line text-sm"></i>
-                <span className="text-2xs font-bold hidden sm:inline">Vollbild</span>
-              </button>
+        {/* ── Bottom label — caption attached to the image ── */}
+        <div className="bg-foreground-950 text-white">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 md:gap-6 px-5 md:px-8 py-5 md:py-7">
+            <div className="min-w-0">
+              <p className="text-[11px] md:text-xs font-bold uppercase tracking-[0.18em] text-primary-400 mb-2">
+                {currentService.lead}
+              </p>
+              <h3 className="text-lg md:text-2xl font-black leading-tight mb-2">
+                {currentService.title}
+              </h3>
+              <p className="text-sm text-white/75 leading-relaxed max-w-2xl">
+                {currentService.description}
+              </p>
             </div>
+            <button
+              onClick={() => handleGetStarted(currentService.link)}
+              className="shrink-0 inline-flex items-center justify-center gap-2 bg-primary-500 text-foreground-950 px-5 py-2.5 md:px-6 md:py-3 font-bold text-sm md:text-base hover:bg-primary-600 transition-colors duration-200 cursor-pointer rounded-none whitespace-nowrap"
+            >
+              Mehr dazu
+              <i className="ri-arrow-right-line text-base md:text-lg" />
+            </button>
           </div>
         </div>
       </div>
 
       {/* Transition Bridge → SRT Section */}
       <div className="absolute bottom-0 left-0 right-0 pointer-events-none z-20" aria-hidden="true">
-        <div className="h-16 bg-gradient-to-b from-transparent via-white/60 to-[#111]"></div>
+        <div className="h-16 bg-gradient-to-b from-transparent via-background-50/60 to-foreground-950" />
         <div className="relative h-px bg-foreground-950">
           <div
             className="absolute left-1/2 -translate-x-1/2 -top-px h-[2px] w-32"

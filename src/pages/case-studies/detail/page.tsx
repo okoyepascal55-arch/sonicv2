@@ -100,7 +100,7 @@ export default function CaseStudyDetailPage() {
   return (
     <div className="min-h-[100dvh]">
       {/* Hero Section */}
-      <section className="relative min-h-[480px] md:min-h-[520px] overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+      <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
         <img
           src={caseStudy.heroImage}
           alt={caseStudy.brand}
@@ -122,10 +122,10 @@ export default function CaseStudyDetailPage() {
             <div className="bg-primary-500 text-[#111] px-4 py-2 inline-block font-black text-sm mb-4">
               {caseStudy.category}
             </div>
-            <h1 className="text-5xl lg:text-7xl font-black text-white mb-4">
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-white mb-4">
               {caseStudy.brand}
             </h1>
-            <p className="text-xl text-foreground-200 max-w-3xl">
+            <p className="text-sm sm:text-lg md:text-xl text-foreground-200 max-w-3xl">
               Wie Sonic die Retail-Performance durch strategische Markenaktivierung transformiert hat
             </p>
           </div>
@@ -171,7 +171,7 @@ export default function CaseStudyDetailPage() {
       <WoodenDivider variant="diagonal" />
 
       {/* Challenge Section */}
-      <section className="py-24 px-6 bg-gradient-to-br from-background-100 via-white to-background-100">
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-gradient-to-br from-background-100 via-white to-background-100">
         <div className="max-w-4xl mx-auto">
           <div className="mb-12">
             <div className="inline-flex items-center gap-3 mb-6">
@@ -223,7 +223,7 @@ export default function CaseStudyDetailPage() {
       <WoodenDivider variant="horizontal" />
 
       {/* Project Details */}
-      <section className="py-24 px-6 bg-white">
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 mb-12 text-center">
             Projektdetails
@@ -307,7 +307,7 @@ export default function CaseStudyDetailPage() {
       <WoodenDivider variant="diagonal" />
 
       {/* CTA Section */}
-      <section className="py-24 px-6 bg-gradient-to-br from-background-100 via-white to-background-100">
+      <section className="py-12 md:py-20 px-4 md:px-6 bg-gradient-to-br from-background-100 via-white to-background-100">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl lg:text-5xl font-black text-foreground-950 mb-6">
             Bereit, Ihre Retail-Performance zu transformieren?

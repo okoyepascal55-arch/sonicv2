@@ -37,7 +37,7 @@ export default function TheProblem() {
   }, []);
 
   return (
-    <section className="py-24 px-4 md:px-6 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
       {/* Large background watermark */}
       <div
         className="absolute right-[-4%] top-1/2 -translate-y-1/2 select-none pointer-events-none font-black leading-none"
@@ -137,7 +137,7 @@ export default function TheProblem() {
                       {/* Expandable reading content */}
                       <div
                         className="overflow-hidden transition-all duration-500"
-                        style={{ maxHeight: isExpanded ? '900px' : '0px', opacity: isExpanded ? 1 : 0 }}
+                        style={{ maxHeight: isExpanded ? '480px' : '0px', opacity: isExpanded ? 1 : 0 }}
                       >
                         <div className="pt-5">
                           <div className="grid md:grid-cols-[3fr_2fr] gap-6 md:gap-8">
@@ -147,7 +147,7 @@ export default function TheProblem() {
                                 className="w-12 h-12 flex-shrink-0 overflow-hidden hidden sm:block mt-1"
                                 style={{ boxShadow: '0 4px 16px rgba(139,90,43,0.3)' }}
                               >
-                                <img src={p.woodIcon} alt={p.title} className="w-full h-full object-cover" />
+                                <img src={p.woodIcon} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
                               </div>
                               <p className="text-sm text-foreground-700 leading-relaxed">{p.body}</p>
                             </div>

@@ -35,6 +35,7 @@ function PolaroidCard({
           className="w-full h-full object-cover object-top"
           draggable={false}
           style={{ filter, transition: 'filter 0.5s ease' }}
+          loading="lazy"
         />
         {/* Vignette */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, transparent 48%, rgba(0,0,0,0.4) 100%)' }} />
@@ -99,6 +100,7 @@ export default function CoverflowFilmstrip({
   const onPointerDown = (e: React.PointerEvent) => {
     dragState.current = { startX: e.clientX, startScroll: containerRef.current?.scrollLeft ?? 0, moved: false };
     setDragging(true);
+    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
   };
   const onPointerMove = (e: React.PointerEvent) => {
     if (!dragging || !containerRef.current) return;
@@ -106,7 +108,10 @@ export default function CoverflowFilmstrip({
     if (Math.abs(dx) > 4) dragState.current.moved = true;
     containerRef.current.scrollLeft = dragState.current.startScroll - dx;
   };
-  const onPointerUp = () => setDragging(false);
+  const onPointerUp = (e: React.PointerEvent) => {
+    setDragging(false);
+    (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
+  };
 
   const handleCardClick = (i: number) => {
     if (dragState.current.moved) {
@@ -128,7 +133,7 @@ export default function CoverflowFilmstrip({
         onPointerUp={onPointerUp}
         onPointerLeave={onPointerUp}
         className="overflow-x-auto overflow-y-hidden cursor-grab active:cursor-grabbing"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', touchAction: 'pan-y' }}
       >
         <div
           className="flex items-center px-[16%] sm:px-[15%] md:px-[13%]"

@@ -33,10 +33,9 @@ export default function RatgeberHero({ h1, h1Accent, heroSubtitle, heroSummary, 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-[#C8D400]/30 px-4 py-1.5 mb-6">
-                <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" />
-                <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">{category}</span>
-              </div>
+              <p className="text-xs font-black text-[#C8D400] uppercase tracking-widest mb-6">
+                {category}
+              </p>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 leading-tight drop-shadow-2xl">
                 {h1}<br /><span className="text-[#C8D400]">{h1Accent}</span>
               </h1>

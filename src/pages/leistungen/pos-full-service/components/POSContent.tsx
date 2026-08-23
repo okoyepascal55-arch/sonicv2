@@ -186,7 +186,7 @@ export default function POSContent() {
           <div className="mb-10 md:mb-12 text-center">
             <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
               <i className="ri-stack-line text-primary-500 text-sm"></i>
-              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Alle Assets</span>
+              <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Alle Assets</span>
             </div>
             <h2 className="text-4xl lg:text-5xl font-black text-white leading-tight uppercase">{tAssetsHeading}</h2>
             <p className="text-white/40 text-sm mt-3">{tAssetsSub}</p>
@@ -279,7 +279,7 @@ export default function POSContent() {
           <div className="text-center mb-12 md:mb-16">
             <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
               <i className="ri-route-line text-primary-500 text-sm" />
-              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Ablauf</span>
+              <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Ablauf</span>
             </div>
             <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">{tProcessHeading}</h2>
             <p className="text-white/40 text-sm mt-3">{tProcessSub}</p>
@@ -287,17 +287,29 @@ export default function POSContent() {
 
           {/* Connected Timeline */}
           <div className="relative mb-10 md:mb-14">
-            <div className="absolute top-[20px] md:top-[28px] left-[8.33%] right-[8.33%] h-px bg-white/10" />
-            <div className="absolute top-[20px] md:top-[28px] left-[8.33%] h-px bg-[#C8D400] transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
-
-            <div className="grid grid-cols-6 gap-2">
+            {/* Desktop: full circle timeline */}
+            <div className="hidden md:block">
+              <div className="absolute top-[28px] left-[8.33%] right-[8.33%] h-px bg-white/10" />
+              <div className="absolute top-[28px] left-[8.33%] h-px bg-[#C8D400] transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
+              <div className="grid grid-cols-6 gap-2">
+                {STEPS.map((step, i) => (
+                  <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
+                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111] shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-[#111] border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
+                      <i className={`${step.icon} text-xl`} />
+                    </div>
+                    <span className={`mt-3 text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeStep === i ? 'text-primary-500' : 'text-white/30'}`}>{step.num}</span>
+                    <span className={`text-[11px] font-bold text-center leading-tight mt-0.5 transition-all duration-300 ${activeStep === i ? 'text-white/70' : 'text-white/25'}`}>{step.title}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            {/* Mobile: horizontal scroll pill tabs */}
+            <div className="md:hidden flex gap-2 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
               {STEPS.map((step, i) => (
-                <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
-                  <div className={`w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111] shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-[#C8D400]/15 border-[#C8D400]/40 text-primary-500' : 'bg-[#111] border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
-                    <i className={`${step.icon} text-sm md:text-xl`} />
-                  </div>
-                  <span className={`mt-3 text-[10px] md:text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeStep === i ? 'text-primary-500' : 'text-white/30'}`}>{step.num}</span>
-                  <span className={`text-[9px] md:text-[11px] font-bold text-center leading-tight mt-0.5 transition-all duration-300 hidden md:block ${activeStep === i ? 'text-white/70' : 'text-white/25'}`}>{step.title}</span>
+                <button key={i} onClick={() => setActiveStep(i)}
+                  className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2.5 border transition-all duration-300 cursor-pointer ${activeStep === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111]' : 'bg-[#111] border-white/20 text-white/50'}`}>
+                  <i className={`${step.icon} text-base`} />
+                  <span className="text-[9px] font-black uppercase tracking-wide whitespace-nowrap">{step.num}</span>
                 </button>
               ))}
             </div>

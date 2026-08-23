@@ -96,6 +96,7 @@ export default function FunctionalityOverview() {
                 alt={mod.title}
                 className="w-full h-full object-cover object-top transition-all duration-500"
                 style={{ animation: 'fadeIn 0.35s ease-out' }}
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-foreground-950 via-foreground-950/30 to-transparent" />
               <div className="absolute top-3 left-3">
