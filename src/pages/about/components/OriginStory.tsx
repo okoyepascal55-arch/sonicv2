@@ -54,7 +54,7 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
             <LimeBadge text={tBadge} />
           </div>
 
-          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-start">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
             {/* Left: Image with stat overlay */}
             <div
               className={`relative transition-all duration-900 ${
@@ -62,7 +62,7 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
               }`}
               style={{ transitionDelay: '100ms' }}
             >
-              <div className="relative overflow-hidden aspect-[4/3] md:aspect-[4/5]">
+              <div className="relative overflow-hidden aspect-[4/3]">
                 {(focusImages && focusImages[0] && focusImages[0].url) ? (
                   <img
                     src={focusImages[0].url}

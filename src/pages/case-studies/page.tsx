@@ -30,7 +30,7 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
         <div className="w-1 h-8 bg-primary-500"></div>
         <div>
           <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Leistungen im Einsatz</p>
-          <h3 className="text-xl font-black text-[#1a1a1a] uppercase tracking-wide">{brand} — Was wir eingesetzt haben</h3>
+          <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">{brand} — Was wir eingesetzt haben</h3>
         </div>
       </div>
 
@@ -49,16 +49,16 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
             aria-selected={activeIdx === idx}
             aria-controls={`module-panel-${idx}`}
             id={`module-tab-${idx}`}
-            className={`flex items-center gap-2 px-4 md:px-5 py-3 transition-all duration-200 cursor-pointer text-xs md:text-sm font-bold whitespace-nowrap flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] border-r border-foreground-200 last:border-r-0 ${
+            className={`flex items-center gap-2 px-4 md:px-5 py-3 transition-all duration-200 cursor-pointer text-xs md:text-sm font-bold whitespace-nowrap flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 border-r border-foreground-200 last:border-r-0 ${
               activeIdx === idx
-                ? 'bg-[#1a1a1a] text-primary-500 border-b-2 border-b-[#C8D400]'
-                : 'bg-white text-foreground-500 hover:bg-[#FAFDF5] hover:text-[#1a1a1a]'
+                ? 'bg-foreground-950 text-primary-500 border-b-2 border-b-primary-500'
+                : 'bg-white text-foreground-500 hover:bg-background-50 hover:text-foreground-950'
             }`}
             style={{ borderRadius: 0 }}
           >
             <span
               className={`inline-flex items-center justify-center w-5 h-5 text-[10px] font-black flex-shrink-0 ${
-                activeIdx === idx ? 'bg-primary-500 text-[#1a1a1a]' : 'bg-foreground-200 text-foreground-500'
+                activeIdx === idx ? 'bg-primary-500 text-foreground-950' : 'bg-foreground-200 text-foreground-500'
               }`}
               style={{ borderRadius: 0 }}
             >
@@ -90,7 +90,7 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
             {mod.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 bg-[#1a1a1a]/75 border border-white/20 text-white"
+                className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 bg-foreground-950/75 border border-white/20 text-white"
                 style={{ borderRadius: 0 }}
               >
                 {tag}
@@ -100,7 +100,7 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
         </div>
 
         {/* RIGHT — content panel (2 cols) */}
-        <div className="lg:col-span-2 bg-[#1a1a1a] flex flex-col justify-between p-6 md:p-8">
+        <div className="lg:col-span-2 bg-foreground-950 flex flex-col justify-between p-6 md:p-8">
           <div>
             {/* Module number + title */}
             <div className="flex items-start gap-3 mb-5">
@@ -108,7 +108,7 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
                 className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-primary-500 mt-0.5"
                 style={{ borderRadius: 0 }}
               >
-                <span className="text-[#1a1a1a] font-black text-sm tabular-nums">{mod.num}</span>
+                <span className="text-foreground-950 font-black text-sm tabular-nums">{mod.num}</span>
               </div>
               <h4 className="text-lg md:text-xl font-black text-white uppercase tracking-wide leading-snug">
                 {mod.title}
@@ -134,7 +134,7 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
                   role="tab"
                   aria-selected={activeIdx === idx}
                   aria-label={`Modul ${m.num}: ${m.title}`}
-                  className={`transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C8D400] ${
+                  className={`transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 ${
                     activeIdx === idx
                       ? 'w-7 h-2 bg-primary-500'
                       : 'w-2 h-2 bg-white/25 hover:bg-white/50'
@@ -446,7 +446,7 @@ export default function CaseStudiesPage() {
       />
 
       {/* ── HERO BANNER ── */}
-      <section className="relative overflow-hidden -mt-20" style={{ minHeight: 'clamp(320px, 50vw, 440px)' }}>
+      <section className="relative overflow-hidden -mt-20" style={{ minHeight: 'clamp(360px, 52vw, 500px)' }}>
         <div className="absolute inset-0">
           <img
             src="https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg"
@@ -455,30 +455,32 @@ export default function CaseStudiesPage() {
             fetchPriority="high"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/55 to-black/75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/80" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center justify-center text-center h-full" style={{ minHeight: 'clamp(320px, 50vw, 440px)', paddingTop: '5rem', paddingBottom: '3rem' }}>
-          <div className="inline-flex items-center gap-3 mb-4 md:mb-6">
-            <div className="w-8 h-8 flex items-center justify-center bg-primary-500/20">
-              <i className="ri-trophy-line text-xl text-primary-500"></i>
-            </div>
-            <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Fallbeispiele</span>
+        {/* Lime ambient glow */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-primary-500/8 blur-3xl pointer-events-none" />
+        <div className="relative z-10 flex flex-col justify-end h-full sonic-container" style={{ minHeight: 'clamp(360px, 52vw, 500px)', paddingBottom: '3rem' }}>
+          <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
+            <span className="w-1.5 h-1.5 bg-primary-500" />
+            <span className="text-primary-500">Fallbeispiele</span>
           </div>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4 md:mb-5">
+          <h1 className="sonic-h1 text-white mb-4">
             ERFOLGS<span className="text-primary-500">GESCHICHTEN</span>
           </h1>
-          <p className="text-2xl md:text-3xl font-black text-white/90 mb-3">Sonic performt</p>
+          <p className="text-base md:text-lg font-bold text-white/70 max-w-lg">
+            Garmin +116% · Philips +54% · Groupe SEB +130% · Avoury +1.187%
+          </p>
         </div>
       </section>
 
 
-      {/* ── UNIFIED SECTION: Tabs + Intro + Balanced Blade Card ── */}
+      {/* ── BRAND SELECTOR + CARD ── */}
       <section id="case-studies-carousel" className="relative overflow-hidden bg-white">
 
         {/* Brand tabs — full-bleed dark bar */}
         <div className="bg-foreground-950 border-b border-primary-500/20">
-          <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10">
-            <div className="flex items-center justify-start md:justify-center gap-3 flex-nowrap md:flex-wrap overflow-x-auto py-5 md:py-8 scrollbar-hide" role="tablist" aria-label="Fallbeispiele nach Marke">
+          <div className="sonic-container">
+            <div className="flex items-center justify-start md:justify-center gap-2 flex-nowrap md:flex-wrap overflow-x-auto py-4 md:py-6 scrollbar-hide" role="tablist" aria-label="Fallbeispiele nach Marke">
               {caseStudies.map((study, index) => (
                 <button
                   key={study.brand}
@@ -486,151 +488,160 @@ export default function CaseStudiesPage() {
                   role="tab"
                   aria-selected={currentSlide === index}
                   aria-label={`${study.brand} — ${study.metric} ${study.metricLabel}`}
-                  className={`px-6 py-2.5 font-black uppercase tracking-wider text-xs md:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer flex-shrink-0 rounded-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
+                  className={`px-5 py-2 font-black uppercase tracking-wider text-xs transition-all duration-300 whitespace-nowrap cursor-pointer flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
                     currentSlide === index
-                      ? 'bg-primary-500 text-[#1a1a1a]'
+                      ? 'bg-primary-500 text-foreground-950'
                       : 'bg-transparent text-foreground-400 border border-white/20 hover:border-primary-500/60 hover:text-white'
                   }`}
-                  title={study.brand}
                 >
-                  {study.brand}
+                  <span className="flex items-center gap-2">
+                    {currentSlide === index && <span className="w-1.5 h-1.5 bg-foreground-950 inline-block" />}
+                    {study.brand}
+                    {currentSlide === index && <span className="text-foreground-950/70 font-bold">{study.metric}</span>}
+                  </span>
                 </button>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Intro block — eyebrow + copy left, 4 stats right */}
-        <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10 py-8 md:py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-4" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.30)' }}>
-                <span className="w-1.5 h-1.5" style={{ background: 'oklch(var(--primary-500))' }}></span>
-                <span className="text-xs font-black uppercase tracking-widest whitespace-nowrap text-foreground-950">Performance Marketing für Retail</span>
-              </div>
-              <p className="text-sm md:text-base text-foreground-700 leading-relaxed max-w-xl">
-                Das bedeutet für uns, gemeinsam mit und für unsere Kunden messbare Erfolge zu erzielen. Da unsere Arbeitsweise datengetrieben ist und dadurch Optimierungen ermöglicht, werden die Erfolge in jedem weiteren Jahr der Zusammenarbeit noch größer.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-5">
+        {/* Intro strip — compact, left-aligned, 2 columns on md+ */}
+        <div className="sonic-container py-6 md:py-8 border-b border-foreground-100">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+            <p className="text-sm text-foreground-600 leading-relaxed">
+              Gemeinsam mit unseren Kunden erzielen wir messbare Erfolge. Unsere datengetriebene Arbeitsweise ermöglicht laufende Optimierungen — die Ergebnisse wachsen mit jeder weiteren Zusammenarbeit.
+            </p>
+            <div className="grid grid-cols-4 gap-4">
               {[
                 { value: '>500', label: 'Projekte' },
                 { value: '>1,35 Mio.', label: 'Einsätze' },
                 { value: '>100.000', label: 'POS' },
                 { value: '2007', label: 'Seit' },
               ].map((stat, i) => (
-                <div key={i} className="pl-3 border-l-2 border-primary-500 min-w-0 overflow-hidden">
-                  <div className="text-lg md:text-xl font-black text-foreground-950 font-sans tabular-nums leading-none whitespace-nowrap">{stat.value}</div>
-                  <div className="text-xs text-foreground-600 font-bold uppercase tracking-wide mt-1">{stat.label}</div>
+                <div key={i} className="pl-3 border-l-2 border-primary-500 min-w-0">
+                  <div className="text-base md:text-lg font-black text-foreground-950 font-sans tabular-nums leading-none">{stat.value}</div>
+                  <div className="text-[10px] text-foreground-500 font-bold uppercase tracking-wide mt-1">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Balanced Blade card */}
-        <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10 pb-14 md:pb-20">
+        {/* ── ELEVATED BLADE CARD ── */}
+        <div className="sonic-container py-8 md:py-12">
           <div
-            className="relative overflow-hidden rounded-none"
-            style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.4), 0 0 100px rgba(200,212,0,0.06)' }}
+            className="relative overflow-hidden"
+            style={{ boxShadow: '0 24px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(200,212,0,0.12)' }}
           >
-            {/* Wood texture — actual image, matching the Lösungen card */}
+            {/* Wood texture bg */}
             <div className="absolute inset-0">
               {(woodTextures[0] && woodTextures[0].url) ? (
-                <img
-                  src={woodTextures[0].url}
-                  alt=""
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              ) : null}
-              <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/35 to-black/50" />
+                <img src={woodTextures[0].url} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+              ) : <div className="w-full h-full bg-foreground-950" />}
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.38) 50%, rgba(0,0,0,0.58) 100%)' }} />
             </div>
-
-            {/* Fine grain overlay */}
-            <div className="absolute inset-0 opacity-25" style={{ backgroundImage: 'repeating-linear-gradient(115deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 2px, transparent 4px)' }} />
-
-            {/* Signature blade — one wide diagonal light-blade (~18°) on the right */}
+            {/* Lime blade accent */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute -right-8 top-1/2 -translate-y-1/2 w-40 md:w-64 h-[120%]" style={{ background: 'linear-gradient(180deg, transparent 0%, rgba(200,212,0,0.20) 50%, transparent 100%)', transform: 'rotate(-18deg)', filter: 'blur(26px)' }} />
+              <div className="absolute -right-16 top-0 bottom-0 w-56 md:w-80" style={{ background: 'linear-gradient(180deg, transparent 0%, rgba(200,212,0,0.12) 50%, transparent 100%)', transform: 'rotate(-15deg) translateX(20%)', filter: 'blur(40px)' }} />
             </div>
+            {/* Top lime accent line */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-80" />
 
-            <div key={current.id} className="relative z-10 p-5 md:p-8 lg:p-9" style={{ animation: 'brandFadeIn 0.3s ease-out forwards' }}>
-              {/* 1. Card header row */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-7">
+            <div key={current.id} className="relative z-10 p-6 md:p-10" style={{ animation: 'brandFadeIn 0.3s ease-out forwards' }}>
+
+              {/* ── ROW 1: Brand identity + campaign badge ── */}
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8 pb-6 border-b border-white/10">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 md:w-14 md:h-14 overflow-hidden bg-white/10 border border-white/15 flex items-center justify-center flex-shrink-0">
-                    <img src={current.woodIcon} alt={`${current.brand} Logo`} className="w-full h-full object-contain p-1.5" loading="lazy" decoding="async" style={{ filter: 'brightness(0) invert(1)' }} />
+                  <div className="w-14 h-14 overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0 p-2">
+                    <img src={current.woodIcon} alt={`${current.brand}`} className="w-full h-full object-contain" loading="lazy" style={{ filter: 'brightness(0) invert(1)' }} />
                   </div>
-                  <div className="min-w-0">
+                  <div>
+                    <p className="text-primary-500 text-[10px] font-black uppercase tracking-[0.25em] mb-1">{current.campaignType}</p>
                     <h2 className="text-2xl md:text-3xl font-black text-white leading-none">{current.brand}</h2>
-                    <p className="text-primary-500 font-bold text-xs uppercase tracking-wide mt-1.5">{current.campaignType}</p>
+                    <p className="text-white/50 text-xs mt-1.5">{current.subline}</p>
                   </div>
                 </div>
-                <div className="inline-flex items-center gap-2 self-start sm:self-auto rounded-none border border-white/15 bg-white/5 px-4 py-2">
-                  <i className="ri-award-line text-primary-500 text-sm"></i>
-                  <span className="text-white/75 text-xs font-bold whitespace-nowrap">Partnerschaft seit {current.since} · {current.woodPills[1]?.value ?? ''}</span>
+                <div className="flex items-center gap-2 self-start border border-white/15 bg-white/5 px-3 py-1.5 flex-shrink-0">
+                  <i className="ri-calendar-line text-primary-500 text-xs" />
+                  <span className="text-white/60 text-xs font-bold whitespace-nowrap">Seit {current.since}</span>
                 </div>
               </div>
 
-              {/* 2. Two-column hero row */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-                {/* Left — hero stat + description */}
-                <div className="lg:col-span-5 flex flex-col justify-center">
-                  <div className="text-6xl md:text-7xl lg:text-8xl font-black text-primary-500 font-sans tabular-nums leading-none drop-shadow-lg">{current.metric}</div>
-                  <p className="text-white/75 text-sm md:text-base font-bold uppercase tracking-wide mt-3">{current.metricLabel}</p>
-                  <p className="text-white/60 text-sm leading-relaxed mt-4 max-w-md">{current.overview}</p>
+              {/* ── ROW 2: Hero metric + chart (2-col desktop, stacked mobile) ── */}
+              <div className="grid md:grid-cols-2 gap-6 md:gap-10 items-stretch mb-6">
+                {/* Left — metric + overview */}
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <div className="text-5xl sm:text-6xl md:text-7xl font-black text-primary-500 font-sans tabular-nums leading-none mb-2" style={{ textShadow: '0 0 40px rgba(200,212,0,0.25)' }}>{current.metric}</div>
+                    <p className="text-white/60 text-xs font-black uppercase tracking-wide mb-4">{current.metricLabel}</p>
+                    <p className="text-white/55 text-sm leading-relaxed">{current.overview}</p>
+                  </div>
+                  {/* Pull quote */}
+                  <div className="mt-6 pt-5 border-t border-white/10">
+                    <i className="ri-double-quotes-l text-2xl text-primary-500/40 block mb-2" />
+                    <p className="text-white/65 text-sm leading-relaxed italic line-clamp-3">{current.quote}</p>
+                    <p className="text-primary-500 text-[10px] font-black uppercase tracking-widest mt-2">{current.author} — {current.role}</p>
+                  </div>
                 </div>
 
-                {/* Right — chart panel */}
-                <div className="lg:col-span-7 bg-black/30 border border-white/10 backdrop-blur-[2px] p-6 md:p-8 flex flex-col">
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-white/85 text-xs font-black uppercase tracking-wide">Performance-Trend</span>
-                    <span className="text-primary-500 text-xs font-sans tabular-nums font-black bg-white/10 rounded-none px-3 py-1">{current.since}–{(current.metricLabel.match(/20\d{2}/g) || []).pop() || '2024'}</span>
+                {/* Right — performance chart */}
+                <div className="bg-black/30 border border-white/10 p-5 md:p-6 flex flex-col">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-white/70 text-xs font-black uppercase tracking-wide">Performance-Trend</span>
+                    <span className="text-primary-500 text-xs font-black bg-white/10 px-2.5 py-1">{current.since}–{(current.metricLabel.match(/20\d{2}/g) || []).pop() || '2024'}</span>
                   </div>
-                  <div className="flex-1 flex items-end gap-1.5 md:gap-2 min-h-[130px]">
+                  <div className="flex-1 flex items-end gap-1 min-h-[120px] md:min-h-[140px]">
                     {current.monthlyTrend.map((h, i) => (
                       <div key={i} className="flex-1 flex flex-col justify-end h-full">
-                        <div className="w-full bg-gradient-to-t from-[#C8D400]/60 to-[#C8D400] transition-all duration-700" style={{ height: `${(h / 100) * 100}%` }} />
+                        <div
+                          className="w-full transition-all duration-700"
+                          style={{
+                            height: `${(h / 100) * 100}%`,
+                            background: h > 80 ? 'oklch(var(--primary-500))' : h > 60 ? 'oklch(var(--primary-500) / 0.75)' : 'oklch(var(--primary-500) / 0.45)',
+                          }}
+                        />
                       </div>
                     ))}
                   </div>
-                  <div className="flex justify-between mt-3">
+                  <div className="flex justify-between mt-2">
                     {['J','F','M','A','M','J','J','A','S','O','N','D'].map((m, i) => (
-                      <span key={i} className="text-white/40 flex-1 text-center text-[10px] md:text-xs">{m}</span>
+                      <span key={i} className="text-white/30 flex-1 text-center text-[9px]">{m}</span>
                     ))}
                   </div>
                 </div>
               </div>
 
-              {/* 3. Fact row — 3 compact tiles */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+              {/* ── ROW 3: 3 fact pills ── */}
+              <div className="grid grid-cols-3 gap-3 mb-6">
                 {current.woodPills.map((pill, idx) => (
-                  <div key={idx} className="bg-black/25 border border-white/10 p-4 md:p-5 text-center">
-                    <div className="text-primary-500 font-sans tabular-nums font-black text-lg md:text-2xl mb-1">{pill.value}</div>
-                    <div className="text-white/60 text-[10px] md:text-xs font-bold uppercase tracking-wide">{pill.label}</div>
+                  <div key={idx} className="bg-black/25 border border-white/10 px-3 py-3 md:p-4 text-center">
+                    <div className="text-primary-500 font-sans tabular-nums font-black text-base md:text-xl mb-0.5">{pill.value}</div>
+                    <div className="text-white/50 text-[9px] md:text-[10px] font-bold uppercase tracking-wide">{pill.label}</div>
                   </div>
                 ))}
               </div>
 
-              {/* 4. CTA row */}
-              <div className="flex items-center justify-between mt-6 pt-5 border-t border-white/10">
+              {/* ── ROW 4: CTAs ── */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-5 border-t border-white/10">
                 <button
                   onClick={() => handleReadFullStory(current.slug)}
-                  className="inline-flex items-center gap-2 rounded-none bg-primary-500 text-[#1a1a1a] px-7 py-3 font-black uppercase tracking-wider hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer whitespace-nowrap text-xs md:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 px-6 py-3 font-black uppercase tracking-wider hover:bg-white transition-all duration-300 cursor-pointer whitespace-nowrap text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  Vollständige Story
-                  <i className="ri-arrow-down-line text-sm"></i>
+                  Vollständige Story lesen
+                  <i className="ri-arrow-down-line text-sm" />
                 </button>
-                <button
-                  onClick={handleNext}
-                  className="w-11 h-11 md:w-12 md:h-12 rounded-none flex items-center justify-center border border-white/25 text-white hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                  aria-label="Nächste Erfolgsgeschichte"
-                >
-                  <i className="ri-arrow-right-line text-lg"></i>
-                </button>
+                <div className="flex items-center gap-3">
+                  <span className="text-white/30 text-xs font-bold">{currentSlide + 1} / {caseStudies.length}</span>
+                  <button
+                    onClick={handleNext}
+                    className="w-10 h-10 flex items-center justify-center border border-white/20 text-white hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    aria-label="Nächste Erfolgsgeschichte"
+                  >
+                    <i className="ri-arrow-right-line text-base" />
+                  </button>
+                </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -643,37 +654,29 @@ export default function CaseStudiesPage() {
           className="bg-white"
           style={{ animation: 'expandIn 0.4s ease-out' }}
         >
-          {/* Dark hero */}
-          <div className="relative bg-[#1a1a1a] overflow-hidden">
-            <div className="absolute inset-0 opacity-15">
-              <img
-                src="https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg"
-                alt=""
-                className="w-full h-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
+          {/* Dark hero — tighter, better anchored */}
+          <div className="relative bg-foreground-950 overflow-hidden">
+            <div className="absolute inset-0 opacity-10">
+              <img src="https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg" alt="" className="w-full h-full object-cover" loading="lazy" />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a]" />
-            {/* Subtle lime ambient glow */}
-            <div className="absolute top-1/3 right-1/4 w-96 h-48 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="relative z-10 max-w-full max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-24 flex flex-col items-start">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-1.5 h-10 bg-primary-500"></div>
-                <h2 className="text-2xl sm:text-4xl md:text-6xl font-black text-white uppercase tracking-tight">
-                  {expanded.brand} <span className="text-primary-500">Fallstudie</span>
-                </h2>
-              </div>
-              <p className="text-xl md:text-2xl text-white/80 font-bold mb-6 max-w-2xl">{expanded.headline}</p>
-              <div className="max-w-3xl">
-                <div className="bg-white/[0.03] backdrop-blur-[2px] border border-white/[0.06] p-5 rounded-sm">
-                  <p className="text-white/65 leading-relaxed text-base">{expanded.overview}</p>
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 0%, rgba(11,11,12,0.9) 100%)' }} />
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary-500/60 to-transparent" />
+            <div className="relative z-10 sonic-container py-12 md:py-16">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-1.5 h-12 bg-primary-500 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-2">{expanded.metric} {expanded.metricLabel}</p>
+                  <h2 className="sonic-h2 text-white">
+                    {expanded.brand} <span className="text-primary-500">Fallstudie</span>
+                  </h2>
+                  <p className="text-white/60 text-base font-bold mt-2 max-w-xl">{expanded.headline} — {expanded.subline}</p>
                 </div>
               </div>
+              <p className="text-white/45 text-sm leading-relaxed max-w-2xl mt-5 pl-5 border-l border-white/10">{expanded.overview}</p>
             </div>
           </div>
 
-          <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-24">
+          <div className="sonic-container py-12 md:py-16">
 
             {/* ── LEISTUNGEN IM EINSATZ ── */}
             <LeistungenImEinsatz modules={expanded.modules} brand={expanded.brand} />
@@ -684,7 +687,7 @@ export default function CaseStudiesPage() {
                 <div className="w-1 h-8 bg-primary-500"></div>
                 <div>
                   <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Bildergalerie</p>
-                  <h3 className="text-xl font-black text-[#1a1a1a] uppercase tracking-wide">{expanded.brand} — Impressionen</h3>
+                  <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">{expanded.brand} — Impressionen</h3>
                 </div>
               </div>
             </div>
@@ -743,7 +746,7 @@ export default function CaseStudiesPage() {
             <div className="mb-10">
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-1 h-8 bg-primary-500"></div>
-                <h3 className="text-xl font-black text-[#1a1a1a] uppercase tracking-wide">Weitere Erfolgsgeschichten</h3>
+                <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">Weitere Erfolgsgeschichten</h3>
               </div>
               <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
                 {expanded.relatedStories.map((relSlug) => {
@@ -753,7 +756,7 @@ export default function CaseStudiesPage() {
                     <div
                       key={relSlug}
                       onClick={() => handleReadFullStory(relSlug)}
-                      className="flex items-start gap-5 p-6 border border-foreground-200 hover:border-primary-500 transition-all duration-300 cursor-pointer group bg-white hover:bg-[#FAFDF5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 overflow-hidden"
+                      className="flex items-start gap-5 p-6 border border-foreground-200 hover:border-primary-500 transition-all duration-300 cursor-pointer group bg-white hover:bg-background-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 overflow-hidden"
                       style={{ borderRadius: 0 }}
                       role="button"
                       tabIndex={0}
@@ -764,7 +767,7 @@ export default function CaseStudiesPage() {
                         <div className="text-[10px] text-foreground-500 font-bold mt-1.5 leading-snug">{rel.metricLabel}</div>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-black text-[#1a1a1a] group-hover:text-primary-500 transition-colors text-base mb-1">{rel.brand}</h4>
+                        <h4 className="font-black text-foreground-950 group-hover:text-primary-500 transition-colors text-base mb-1">{rel.brand}</h4>
                         <p className="text-[11px] text-foreground-500 font-bold uppercase tracking-wide mb-2">{rel.campaignType}</p>
                         <p className="text-sm text-foreground-500 leading-relaxed line-clamp-2">{rel.headline} — {rel.subline}</p>
                       </div>
@@ -778,11 +781,11 @@ export default function CaseStudiesPage() {
             </div>
 
             {/* Inline CTA — convert impressed readers */}
-            <div className="mb-10 bg-[#1a1a1a] border-2 border-primary-500/30 p-6 md:p-8">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="mb-10 bg-foreground-950 border border-primary-500/30 p-6 md:p-8">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div>
                   <p className="text-primary-500 text-xs font-black uppercase tracking-widest mb-2">{expanded.metric} {expanded.metricLabel}</p>
-                  <h3 className="text-xl md:text-2xl font-black text-white leading-tight">
+                  <h3 className="sonic-h3 text-white">
                     Auch für Ihre Marke möglich?
                   </h3>
                   <p className="text-foreground-400 text-sm mt-2">
@@ -793,17 +796,23 @@ export default function CaseStudiesPage() {
                   href="https://calendly.com/sonic-group/beratungsgespraech"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-shrink-0 inline-flex items-center gap-3 px-8 py-4 bg-primary-500 text-white font-black uppercase tracking-wider hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer whitespace-nowrap text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
-                  style={{ borderRadius: 0 }}
+                  className="flex-shrink-0 inline-flex items-center gap-3 px-7 py-3.5 bg-primary-500 text-foreground-950 font-black uppercase tracking-wider hover:bg-white hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
                 >
-                  <i className="ri-calendar-line text-base"></i>
+                  <i className="ri-calendar-line text-base" />
                   Beratungsgespräch buchen
                 </a>
               </div>
             </div>
 
             {/* Next story CTA */}
-            <div className="text-center pt-6 border-t border-foreground-100">
+            <div className="flex items-center justify-between pt-6 border-t border-foreground-100">
+              <button
+                onClick={handleCollapseStory}
+                className="inline-flex items-center gap-2 text-foreground-400 hover:text-foreground-950 transition-colors text-xs font-bold uppercase tracking-wide cursor-pointer"
+              >
+                <i className="ri-arrow-up-line" />
+                Zurück zur Übersicht
+              </button>
               <button
                 onClick={() => {
                   const nextIdx = (caseStudies.findIndex((s) => s.id === expanded.id) + 1) % caseStudies.length;
@@ -812,11 +821,10 @@ export default function CaseStudiesPage() {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                   setTimeout(() => setExpandedStory(caseStudies[nextIdx].slug), 500);
                 }}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#1a1a1a] text-white font-black uppercase tracking-wider hover:bg-primary-500 hover:text-white transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
-                style={{ borderRadius: 0 }}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-foreground-950 text-white font-black uppercase tracking-wider hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
               >
                 Nächste Story
-                <i className="ri-arrow-right-line text-lg"></i>
+                <i className="ri-arrow-right-line" />
               </button>
             </div>
           </div>
@@ -826,29 +834,28 @@ export default function CaseStudiesPage() {
       <WoodenDivider />
 
       {/* ── CTA ── */}
-      <section className="sonic-section-md md:bg-[#1a1a1a] relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/10 blur-3xl pointer-events-none"></div>
-        <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10 relative z-10">
+      <section className="sonic-section-md bg-foreground-950 relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/8 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary-500/40 to-transparent" />
+        <div className="sonic-container relative z-10">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
               <span className="text-primary-500 text-xs font-black uppercase tracking-widest mb-2 block">Lass uns sprechen</span>
-              <h2 className="text-xl md:text-2xl font-black text-white mb-1">Deine Marke. Unser Einsatz.</h2>
-              <p className="text-sm text-white/60 max-w-md">
+              <h2 className="sonic-h2 text-white mb-2">Deine Marke. Unser Einsatz.</h2>
+              <p className="text-sm text-white/50 max-w-md">
                 Wir bringen deine Marke dort zum Leuchten, wo die Kaufentscheidung fällt.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
               <button
                 onClick={() => { navigate('/'); setTimeout(() => { const el = document.getElementById('contact'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }, 300); }}
-                className="px-6 py-3 bg-primary-500 text-white font-black uppercase tracking-wider text-xs hover:bg-white hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
-                style={{ borderRadius: 0 }}
+                className="px-6 py-3 bg-primary-500 text-foreground-950 font-black uppercase tracking-wider text-xs hover:bg-white hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
               >
                 Gespräch buchen
               </button>
               <button
                 onClick={() => navigate('/leistungen')}
                 className="px-6 py-3 bg-transparent text-white font-black uppercase tracking-wider text-xs border border-white/30 hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
-                style={{ borderRadius: 0 }}
               >
                 Leistungen ansehen
               </button>
