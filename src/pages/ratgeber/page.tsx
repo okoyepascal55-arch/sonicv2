@@ -172,7 +172,7 @@ export default function RatgeberHubPage() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/65" />
           </div>
 
-          <div className="absolute top-0 left-1/4 w-[500px] h-[250px] bg-primary-500/6 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 left-1/4 w-full max-w-[500px] h-[250px] bg-primary-500/6 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14 text-center">
@@ -197,7 +197,7 @@ export default function RatgeberHubPage() {
       {/* Stats Strip */}
       <div style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }} className="border-y border-foreground-950/5">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-6">
             {STATS.map((stat, idx) => (
               <div key={idx} className="text-center">
                 <div className="text-3xl font-black text-primary-500 font-mono mb-1 leading-tight">{stat.value}</div>
@@ -211,7 +211,7 @@ export default function RatgeberHubPage() {
       <WoodenDivider />
 
       {/* Intro */}
-      <section className="py-12 md:py-16 bg-white">
+      <section className="sonic-section-md md:bg-white">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <SectionReveal>
             <SectionBadge text={tIntroBadge} variant="dark" />
@@ -228,9 +228,9 @@ export default function RatgeberHubPage() {
       <WoodenDivider />
 
       {/* Card Grid */}
-      <section className="py-16 md:py-24 bg-[#fafaf8]">
+      <section className="sonic-section-lg md:bg-[#fafaf8]">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {hubCards.map((card, index) => (
               <SectionReveal key={card.slug} delay={index * 50}>
                 <HubCard card={card} onClick={handleCardClick} />
@@ -243,7 +243,7 @@ export default function RatgeberHubPage() {
       <WoodenDivider />
 
       {/* Geo Context */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="sonic-section-lg md:bg-white">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <SectionReveal>
             <SectionBadge text={tGeoBadge} variant="dark" />
@@ -255,7 +255,7 @@ export default function RatgeberHubPage() {
             </p>
           </SectionReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 md:grid-cols-4 gap-5">
             {(['local', 'regional', 'national', 'international'] as GeoLevel[]).map((level, idx) => (
               <SectionReveal key={level} delay={idx * 80}>
                 <div className="border border-foreground-950/10 bg-[#fafaf8] p-6 text-center hover:border-primary-500/30 transition-all duration-300" style={{ borderRadius: 0 }}>
@@ -276,13 +276,13 @@ export default function RatgeberHubPage() {
       <WoodenDivider />
 
       {/* CTA */}
-      <section className="bg-white py-20 px-6">
+      <section className="sonic-section-lg bg-white px-6">
         <div className="max-w-4xl mx-auto">
           <div className="border border-foreground-950/15 bg-white p-10 md:p-14 relative overflow-hidden" style={{ borderRadius: 0 }}>
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 blur-3xl pointer-events-none translate-x-16 -translate-y-16" />
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C8D400]/60 via-[#C8D400]/20 to-transparent" />
 
-            <div className="relative grid md:grid-cols-2 gap-10 items-center">
+            <div className="relative grid md:grid-cols-1 md:grid-cols-2 gap-10 items-center">
               <div>
                 <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/12 px-3 py-1 mb-5" style={{ borderRadius: 0 }}>
                   <i className="ri-mail-send-line text-foreground-950/50 text-xs"></i>

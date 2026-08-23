@@ -172,9 +172,9 @@ export default function VideoContent() {
       <WoodenDivider />
 
       {/* Solution */}
-      <section id="loesung" className="bg-white py-12 md:py-20 px-4 md:px-6 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
-        <div className="relative max-w-6xl mx-auto">
+      <section id="loesung" className="sonic-section-lg bg-white px-4 md:px-6 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
+        <div className="relative sonic-container">
           <div className="mb-14 text-center">
             <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
               <i className="ri-check-double-line text-foreground-950 text-sm"></i>
@@ -192,8 +192,8 @@ export default function VideoContent() {
 
 
       {/* Advantages */}
-      <section id="vorteile" className="bg-foreground-950 py-12 md:py-20 px-4 md:px-6">
-        <div className="max-w-6xl mx-auto">
+      <section id="vorteile" className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
+        <div className="sonic-container">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
               <i className="ri-thumb-up-line text-primary-500 text-sm"></i>
@@ -207,7 +207,7 @@ export default function VideoContent() {
       </section>
 
       {/* Cost Calculator */}
-      <section id="kostenrechner" className="bg-white py-12 md:py-20 px-4 md:px-6">
+      <section id="kostenrechner" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-[#111]/15 px-4 py-1.5 mb-5">
@@ -218,7 +218,7 @@ export default function VideoContent() {
           </div>
 
           <div className="border border-[#111]/15 bg-white p-8 md:p-10">
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div className="grid md:grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               {[
                 { label: 'Tage pro Woche', value: daysPerWeek, min: 1, max: 7, setter: setDaysPerWeek },
                 { label: 'Stunden pro Tag', value: hoursPerDay, min: 1, max: 12, setter: setHoursPerDay },
@@ -247,7 +247,7 @@ export default function VideoContent() {
               ))}
             </div>
 
-            <div className="border-t border-[#111]/10 pt-8 grid md:grid-cols-3 gap-0 border border-[#111]/10">
+            <div className="border-t border-[#111]/10 pt-8 grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-[#111]/10">
               {[
                 { val: maxCalls.toLocaleString('de-DE'), label: 'Max. mögliche Calls' },
                 { val: `${avgCallMin} Min.`, label: 'Ø Beratungsdauer' },
@@ -270,8 +270,8 @@ export default function VideoContent() {
       </section>
 
       {/* Phygital */}
-      <section id="phygital" className="bg-foreground-950 py-12 md:py-20 px-4 md:px-6">
-        <div className="max-w-5xl mx-auto">
+      <section id="phygital" className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
+        <div className="sonic-container">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
               <i className="ri-links-line text-primary-500 text-sm"></i>
@@ -282,7 +282,7 @@ export default function VideoContent() {
           </div>
 
           <div className="border border-primary-500/15 overflow-hidden">
-            <div className="grid grid-cols-3 bg-white/5 border-b border-primary-500/15">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-white/5 border-b border-primary-500/15">
               <div className="p-4 text-white/40 text-xs font-black uppercase tracking-wider"></div>
               <div className="p-4 text-center border-l border-primary-500/15">
                 <div className="flex items-center justify-center gap-2">
@@ -298,7 +298,7 @@ export default function VideoContent() {
               </div>
             </div>
             {PHYGITAL_COMPARE.map((row, i) => (
-              <div key={i} className={`grid grid-cols-3 border-b border-white/5 ${i % 2 === 0 ? '' : 'bg-white/2'}`}>
+              <div key={i} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-b border-white/5 ${i % 2 === 0 ? '' : 'bg-white/2'}`}>
                 <div className="p-4 text-white/60 text-xs font-semibold">{row.label}</div>
                 <div className="p-4 flex items-center justify-center border-l border-white/5">
                   {row.video
@@ -319,7 +319,7 @@ export default function VideoContent() {
       </section>
 
       {/* Formats — dynamic with image backgrounds */}
-      <section id="formate" className="bg-white py-12 md:py-20 px-4 md:px-6">
+      <section id="formate" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-[#111]/15 px-4 py-1.5 mb-5">

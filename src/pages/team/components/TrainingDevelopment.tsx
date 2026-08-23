@@ -34,9 +34,9 @@ export default function TrainingDevelopment() {
   ];
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-6 bg-white">
+    <section className="sonic-section-lg md:px-4 md:px-6 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+        <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
           <div>
             <SectionBadge text={tBadge} variant="light" className="mb-6" />
             <h2 className="sonic-h2 text-foreground-950 mb-5">

@@ -38,7 +38,7 @@ export default function KarriereHero() {
         <svg
           viewBox="0 0 300 140"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-[70%] md:w-[50%] max-w-[700px]"
+          className="w-[70%] md:w-[50%] max-w-full max-w-[700px]"
         >
           <path
             d="M0 70 Q 25 20 50 70 T 100 70 T 150 70 T 200 70 T 250 70 T 300 70"
@@ -77,8 +77,8 @@ export default function KarriereHero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 md:px-8 py-16 md:py-20">
-        <div className="max-w-[640px]">
+      <div className="relative z-10 mx-auto w-full max-w-full max-w-[1200px] px-4 md:px-8 py-16 md:py-20">
+        <div className="max-w-full max-w-[640px]">
           {/* Eyebrow — cleaner, rounded */}
           <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
             <span className="w-1.5 h-1.5 bg-primary-500" />

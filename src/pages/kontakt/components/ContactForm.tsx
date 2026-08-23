@@ -89,7 +89,7 @@ export default function ContactForm() {
             className="space-y-5"
           >
             {/* Name + Firma */}
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
                   Name <span className="text-primary-500">*</span>
@@ -120,7 +120,7 @@ export default function ContactForm() {
             </div>
 
             {/* E-Mail + Telefon */}
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="email" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
                   E-Mail <span className="text-primary-500">*</span>

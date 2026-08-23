@@ -27,11 +27,11 @@ export default function RatgeberHero({ h1, h1Accent, heroSubtitle, heroSummary, 
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/60" />
         </div>
 
-        <div className="absolute top-0 left-1/4 w-[500px] h-[250px] bg-primary-500/6 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/4 w-full max-w-[500px] h-[250px] bg-primary-500/6 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
               <p className="text-xs font-black text-primary-500 uppercase tracking-widest mb-6">
                 {category}
@@ -47,7 +47,7 @@ export default function RatgeberHero({ h1, h1Accent, heroSubtitle, heroSummary, 
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 md:gap-4 mt-6 lg:mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mt-6 lg:mt-0">
               {stats.map((stat, idx) => (
                 <div key={idx} className="bg-black/40 backdrop-blur-sm p-5 border border-white/15 hover:border-primary-500/50 transition-all duration-300" style={{ borderRadius: 0 }}>
                   <div className="text-3xl font-black text-primary-500 tabular-nums mb-1 leading-tight">{stat.value}</div>

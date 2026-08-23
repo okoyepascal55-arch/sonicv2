@@ -41,8 +41,8 @@ export default function SRTHero({ onScrollToFeatures, heroIcons }: SRTHeroProps)
       <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary-500 via-primary-500/60 to-transparent" />
 
       {/* Main content */}
-      <div className="relative z-10 max-w-[1200px] mx-auto px-4 md:px-8 w-full pb-10 md:pb-14">
-        <div className="max-w-[640px]">
+      <div className="relative z-10 max-w-full max-w-[1200px] mx-auto px-4 md:px-8 w-full pb-10 md:pb-14">
+        <div className="max-w-full max-w-[640px]">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
           <span className="w-1.5 h-1.5 bg-primary-500" />

@@ -51,8 +51,8 @@ export default function KarriereCulture() {
   };
 
   return (
-    <section id="darum" className="py-10 md:py-20 px-4 md:px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
+    <section id="darum" className="sonic-section-lg px-4 md:px-6 bg-white">
+      <div className="sonic-container">
         {/* ── Headline ── */}
         <div className="max-w-3xl mb-12 md:mb-16">
           <h2 className="sonic-h2 text-foreground-950">
@@ -104,7 +104,7 @@ export default function KarriereCulture() {
             <h4 className="text-[11px] font-black uppercase tracking-[0.15em] text-foreground-400 mb-4">
               Unsere DNA
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 md:grid-cols-4 gap-4">
               {DNA_DATA.map((item, i) => {
                 const active = hoveredDna === i;
                 return (
@@ -154,7 +154,7 @@ export default function KarriereCulture() {
             <h4 className="text-[11px] font-black uppercase tracking-[0.15em] text-foreground-400 mb-4">
               Unsere Werte
             </h4>
-            <div className="grid sm:grid-cols-3 gap-3">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {WERTE.map((val, i) => {
                 const isWide = i === 0 || i === 3 || i === 4;
                 return (

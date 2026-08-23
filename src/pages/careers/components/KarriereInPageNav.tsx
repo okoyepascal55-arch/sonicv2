@@ -96,7 +96,7 @@ export default function KarriereInPageNav({ heroRef }: Props) {
       {/* Top accent line */}
       <div className="h-[2px] bg-foreground-950 w-full" />
       <div className="bg-foreground-950">
-        <div className="max-w-[1200px] mx-auto px-8">
+        <div className="max-w-full max-w-[1200px] mx-auto px-8">
           <div
             ref={navBarRef}
             className="relative flex items-center overflow-x-auto"

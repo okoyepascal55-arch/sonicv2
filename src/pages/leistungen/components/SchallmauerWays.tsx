@@ -85,10 +85,10 @@ export default function SchallmauerWays() {
   };
 
   return (
-    <section className="bg-white py-10 md:py-14 px-4 md:px-6 relative overflow-hidden">
+    <section className="sonic-section-md bg-white md:px-4 md:px-6 relative overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-500/3 blur-[120px]" />
+        <div className="absolute top-0 right-0 w-full max-w-[600px] h-[600px] bg-primary-500/3 blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-500/2 blur-[100px]" />
       </div>
 
@@ -105,7 +105,7 @@ export default function SchallmauerWays() {
         </div>
 
         {/* Challenge Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {WAYS.map((w, i) => {
             const isHovered = hoveredCard === w.key;
             const woodIcon = getWoodIcon(i);

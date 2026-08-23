@@ -175,12 +175,12 @@ export default function LeistungenStats() {
   return (
     <section
       id="zahlen"
-      className="py-6 md:py-8 px-6 bg-white border-b border-foreground-100 relative overflow-hidden"
+      className="sonic-section-sm px-6 bg-white border-b border-foreground-100 relative overflow-hidden"
     >
       {/* Subtle lime top edge */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8D400] to-transparent opacity-50" />
 
-      <div ref={sectionRef} className="relative z-10 max-w-6xl mx-auto">
+      <div ref={sectionRef} className="relative z-10 sonic-container">
         {/* Compact header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-5">
           <div className="flex items-center gap-3">
@@ -215,7 +215,7 @@ export default function LeistungenStats() {
         </div>
 
         {/* Stats grid — horizontal row of 4 */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
           {STAT_VALUES.map((val, i) => (
             <StatCard
               key={i}

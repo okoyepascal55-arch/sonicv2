@@ -33,7 +33,7 @@ export default function TeamStats() {
   ];
 
   return (
-    <section className="py-12 md:py-20 px-4 md:px-6 bg-white">
+    <section className="sonic-section-lg md:px-4 md:px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
@@ -45,7 +45,7 @@ export default function TeamStats() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Featured stat — full width on mobile, spans 1 col + taller on desktop */}
           <div 
             className="lg:col-span-1 lg:row-span-1 relative p-8 md:p-10 bg-white transition-all border border-foreground-100 cursor-pointer flex flex-col justify-center"

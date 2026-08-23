@@ -76,7 +76,7 @@ export default function ChallengeSection() {
       <section id="losungen" className="sonic-section-md px-4 md:px-6 bg-white relative overflow-hidden">
         {/* Subtle background texture */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-500/3 rounded-full blur-[120px]"></div>
+          <div className="absolute top-0 right-0 w-full max-w-[600px] h-[600px] bg-primary-500/3 rounded-full blur-[120px]"></div>
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-500/2 rounded-full blur-[100px]"></div>
         </div>
 
@@ -93,7 +93,7 @@ export default function ChallengeSection() {
           </div>
 
           {/* Challenge Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
             {challenges.map((challenge) => {
               const active = isActive(challenge.id);
 

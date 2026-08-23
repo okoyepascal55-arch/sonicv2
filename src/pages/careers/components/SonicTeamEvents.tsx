@@ -70,8 +70,8 @@ export default function SonicTeamEvents() {
   };
 
   return (
-    <section id="leben" className="py-14 md:py-20 px-4 md:px-6 bg-white">
-      <div className="max-w-6xl mx-auto space-y-14 md:space-y-20">
+    <section id="leben" className="sonic-section-lg px-4 md:px-6 bg-white">
+      <div className="sonic-container space-y-14 md:space-y-20">
         {/* ── Events Card ── */}
         <div
           className="relative overflow-hidden bg-white"

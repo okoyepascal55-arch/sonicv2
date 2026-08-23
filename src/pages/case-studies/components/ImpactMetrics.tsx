@@ -44,7 +44,7 @@ export default function ImpactMetrics() {
   ];
 
   return (
-    <section className="py-12 md:py-20 px-4 md:px-6 bg-foreground-950 text-white relative overflow-hidden">
+    <section className="sonic-section-lg md:px-4 md:px-6 bg-foreground-950 text-white relative overflow-hidden">
       <div className="absolute top-0 left-0 w-96 h-96 bg-primary-500/8 blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-500/8 blur-3xl pointer-events-none"></div>
 
@@ -59,7 +59,7 @@ export default function ImpactMetrics() {
         </div>
 
         {/* Metrics Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {metrics.map((metric, index) => (
             <div
               key={index}

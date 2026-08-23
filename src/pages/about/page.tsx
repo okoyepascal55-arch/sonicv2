@@ -69,12 +69,12 @@ export default function AboutPage() {
 
           {/* Subtle lime glow */}
           <div
-            className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none"
+            className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[400px] pointer-events-none"
             style={{ background: 'radial-gradient(ellipse at center, rgba(220,233,77,0.06) 0%, transparent 65%)' }}
           />
 
           {/* Hero content — bottom-anchored */}
-          <div className="relative z-10 max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14 w-full">
+          <div className="relative z-10 max-w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14 w-full">
             {/* Eyebrow badge — sharp corners */}
             <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
               <span className="w-1.5 h-1.5 bg-foreground-950" />
@@ -89,7 +89,7 @@ export default function AboutPage() {
               </span>
             </h1>
 
-            <p className="text-white/60 text-sm md:text-base max-w-[520px] leading-relaxed mb-8 md:mb-10">
+            <p className="text-white/60 text-sm md:text-base max-w-full max-w-[520px] leading-relaxed mb-8 md:mb-10">
               {tHeroSub}
             </p>
 

@@ -92,7 +92,7 @@ export default function JobDetailPage() {
     <div className="min-h-[100dvh] bg-white">
       {/* Hero bar */}
       <div className="bg-foreground-950 pt-20 pb-10 px-4 md:px-6">
-        <div className="max-w-5xl mx-auto">
+        <div className="sonic-container">
           <Link
             to="/jobs"
             className="inline-flex items-center gap-2 text-white/40 hover:text-primary-500 transition-colors text-xs font-bold uppercase tracking-wide mb-6"
@@ -131,7 +131,7 @@ export default function JobDetailPage() {
       </div>
 
       {/* Content + Sidebar */}
-      <div className="max-w-5xl mx-auto px-4 md:px-6 py-12">
+      <div className="sonic-container px-4 md:px-6 py-12">
         <div className="flex flex-col lg:flex-row gap-10">
 
           {/* Main content */}

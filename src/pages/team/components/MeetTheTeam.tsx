@@ -87,9 +87,9 @@ export default function MeetTheTeam() {
   const currentProfile = profiles[activeProfile];
 
   return (
-    <section className="py-16 md:py-24 px-4 md:px-6 bg-white relative overflow-hidden">
+    <section className="sonic-section-lg md:px-4 md:px-6 bg-white relative overflow-hidden">
       {/* Subtle highlight glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary-500/8 blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[400px] bg-primary-500/8 blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-primary-500/6 blur-3xl pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
@@ -218,7 +218,7 @@ export default function MeetTheTeam() {
         </div>
 
         {/* Key Highlights Below */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12">
           {[
             { icon: 'ri-heart-pulse-line', title: 'Human-First Culture', desc: '5.15 years average tenure—3x the industry standard', woodIcon: getWoodIcon(0) },
             { icon: 'ri-user-star-line', title: 'Growth Opportunities', desc: 'Clear career paths with mentorship and training programs', woodIcon: getWoodIcon(1) },

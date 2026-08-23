@@ -32,7 +32,7 @@ export default function JobsHero({ jobCount }: Props) {
         </Link>
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center w-full">
+      <div className="relative z-10 sonic-container px-6 text-center w-full">
         <SectionBadge text={jobCount > 0 ? `${jobCount} offene Stellen` : 'Stellenangebote'} variant="light" className="mb-5" />
         <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-5 leading-tight">
           DEINE KARRIERE<br />

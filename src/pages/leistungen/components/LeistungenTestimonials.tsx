@@ -219,9 +219,9 @@ export default function LeistungenTestimonials() {
   }, []);
 
   return (
-    <section className="py-16 px-6 bg-white relative overflow-hidden">
+    <section className="sonic-section-md px-6 bg-white relative overflow-hidden">
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-primary-500/4 blur-3xl pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[700px] h-[350px] bg-primary-500/4 blur-3xl pointer-events-none"
         aria-hidden="true"
       />
 

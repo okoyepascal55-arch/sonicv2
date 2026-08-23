@@ -459,10 +459,10 @@ export default function KreationShowcase() {
 
   return (
     <>
-    <section id="konzept" className="py-16 md:py-28 relative overflow-hidden bg-white">
+    <section id="konzept" className="sonic-section-lg relative overflow-hidden bg-white">
       {/* Background grid */}
       <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.02) 1px,transparent 1px)', backgroundSize: '72px 72px' }} />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none" style={{ background: 'radial-gradient(circle,rgba(200,212,0,0.07) 0%,transparent 70%)' }} />
+      <div className="absolute top-0 right-0 w-full max-w-[600px] h-[600px] pointer-events-none" style={{ background: 'radial-gradient(circle,rgba(200,212,0,0.07) 0%,transparent 70%)' }} />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
 

@@ -6,7 +6,7 @@ interface RatgeberAnswerFirstProps {
 
 export default function RatgeberAnswerFirst({ data }: RatgeberAnswerFirstProps) {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="sonic-section-lg md:bg-white">
       <div className="max-w-4xl mx-auto px-4 md:px-6">
         <h2 className="sonic-h2 text-foreground-950 mb-6">
           {data.question}

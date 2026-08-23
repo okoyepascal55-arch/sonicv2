@@ -213,7 +213,7 @@ export default function SonicReelsTimeline({ eras }: { eras: EraData[] }) {
 
       {/* ── Era spotlight + coverflow — crossfades on era change ── */}
       <div className="relative" style={{ opacity: fading ? 0 : 1, transition: `opacity ${CROSSFADE_MS}ms ease` }}>
-        <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-8 pt-12 md:pt-16 pb-6 md:pb-10 text-center">
+        <div className="relative z-10 sonic-container px-6 md:px-8 pt-12 md:pt-16 pb-6 md:pb-10 text-center">
           {/* Tagline eyebrow */}
           <div className="flex items-center justify-center gap-3 mb-5">
             <div className="h-px w-12" style={{ background: `linear-gradient(to left, ${era.accent}, transparent)` }} />

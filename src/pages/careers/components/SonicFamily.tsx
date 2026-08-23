@@ -103,10 +103,10 @@ export default function SonicFamily() {
   const headingAccent = headingParts.length > 1 ? `& ${headingParts.slice(1).join(' & ')}` : '';
 
   return (
-    <section id="spirit" className="relative bg-white overflow-hidden py-14 md:py-20">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+    <section id="spirit" className="sonic-section-lg relative bg-white overflow-hidden">
+      <div className="max-w-full max-w-[1280px] mx-auto px-6 md:px-10">
         {/* ── HEADER ── */}
-        <div className="max-w-[640px] mb-10 md:mb-12">
+        <div className="max-w-full max-w-[640px] mb-10 md:mb-12">
           <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-5">
             <span className="w-1.5 h-1.5 bg-foreground-950 flex-shrink-0" />
             {tBadge}
@@ -115,7 +115,7 @@ export default function SonicFamily() {
             {headingMain}{' '}
             {headingAccent && <span className="text-primary-500">{headingAccent}</span>}
           </h2>
-          <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[520px]">{tSub}</p>
+          <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-full max-w-[520px]">{tSub}</p>
         </div>
 
         {/* ── SPLIT CARD (portrait + dark panel) ── */}
@@ -194,7 +194,7 @@ export default function SonicFamily() {
 
         {/* ── Face selector ── */}
         <div className="mt-6 border border-[#E7E4D4] bg-white p-2 md:p-3">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
             {FACES.map((f, i) => {
               const isActive = i === idx;
               return (
@@ -233,7 +233,7 @@ export default function SonicFamily() {
         </div>
 
         {/* ── Bottom CTA bar ── */}
-        <div className="max-w-5xl mx-auto mt-8 md:mt-10">
+        <div className="sonic-container mt-8 md:mt-10">
           <div className="border border-[#E7E4D4] py-6 md:py-7 px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAFDF5]">
             <div className="text-center sm:text-left">
               <p className="text-sm md:text-[15px] font-black text-foreground-950 leading-relaxed">

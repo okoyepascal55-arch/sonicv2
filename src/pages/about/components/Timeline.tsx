@@ -118,7 +118,7 @@ export default function Timeline() {
   const current = sections.find((s) => s.key === activeSection)!;
 
   return (
-    <section ref={sectionRef} className="bg-white py-14 md:py-20">
+    <section className="sonic-section-lg bg-white md:">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Header */}
@@ -187,7 +187,7 @@ export default function Timeline() {
           </div>
 
           {/* Items grid — asymmetric magazine layout */}
-          <div className="grid sm:grid-cols-3 gap-3">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {current.items.map((item, i) => {
               const isFeature = i === 0;
               const isCloser = i === 3;

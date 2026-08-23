@@ -37,7 +37,7 @@ export default function TheProblem() {
   }, []);
 
   return (
-    <section className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
+    <section className="sonic-section-lg md:px-4 md:px-6 bg-white relative overflow-hidden">
       {/* Large background watermark */}
       <div
         className="absolute right-[-4%] top-1/2 -translate-y-1/2 select-none pointer-events-none font-black leading-none"
@@ -57,7 +57,7 @@ export default function TheProblem() {
             <SectionBadge text={tBadge} variant="dark" />
             <div className="h-px flex-1 bg-gradient-to-r from-primary-500/30 to-transparent" />
           </div>
-          <div className="grid lg:grid-cols-2 gap-10 items-end">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-10 items-end">
             <div>
               <h2
                 className="font-black text-foreground-950 leading-tight tracking-tight"

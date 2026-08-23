@@ -74,7 +74,7 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
         id={`module-panel-${activeIdx}`}
         role="tabpanel"
         aria-labelledby={`module-tab-${activeIdx}`}
-        className="grid grid-cols-1 lg:grid-cols-5 border border-foreground-200 overflow-hidden"
+        className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border border-foreground-200 overflow-hidden"
         style={{ borderRadius: 0, transition: 'opacity 0.2s ease', opacity: fade ? 1 : 0, minHeight: '380px' }}
       >
         {/* LEFT — image (3 cols) */}
@@ -476,7 +476,7 @@ export default function CaseStudiesPage() {
 
         {/* Brand tabs — full-bleed dark bar */}
         <div className="bg-foreground-950 border-b border-primary-500/20">
-          <div className="max-w-[1200px] mx-auto px-6 md:px-10">
+          <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10">
             <div className="flex items-center justify-start md:justify-center gap-3 flex-nowrap md:flex-wrap overflow-x-auto py-5 md:py-8 scrollbar-hide" role="tablist" aria-label="Fallbeispiele nach Marke">
               {caseStudies.map((study, index) => (
                 <button
@@ -500,8 +500,8 @@ export default function CaseStudiesPage() {
         </div>
 
         {/* Intro block — eyebrow + copy left, 4 stats right */}
-        <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-8 md:py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
+        <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10 py-8 md:py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
             <div>
               <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-4" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.30)' }}>
                 <span className="w-1.5 h-1.5" style={{ background: 'oklch(var(--primary-500))' }}></span>
@@ -511,7 +511,7 @@ export default function CaseStudiesPage() {
                 Das bedeutet für uns, gemeinsam mit und für unsere Kunden messbare Erfolge zu erzielen. Da unsere Arbeitsweise datengetrieben ist und dadurch Optimierungen ermöglicht, werden die Erfolge in jedem weiteren Jahr der Zusammenarbeit noch größer.
               </p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 lg:gap-5">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-5">
               {[
                 { value: '>500', label: 'Projekte' },
                 { value: '>1,35 Mio.', label: 'Einsätze' },
@@ -528,7 +528,7 @@ export default function CaseStudiesPage() {
         </div>
 
         {/* Balanced Blade card */}
-        <div className="max-w-[1200px] mx-auto px-6 md:px-10 pb-14 md:pb-20">
+        <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10 pb-14 md:pb-20">
           <div
             className="relative overflow-hidden rounded-none"
             style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.4), 0 0 100px rgba(200,212,0,0.06)' }}
@@ -604,7 +604,7 @@ export default function CaseStudiesPage() {
               </div>
 
               {/* 3. Fact row — 3 compact tiles */}
-              <div className="grid grid-cols-3 gap-4 mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
                 {current.woodPills.map((pill, idx) => (
                   <div key={idx} className="bg-black/25 border border-white/10 p-4 md:p-5 text-center">
                     <div className="text-primary-500 font-sans tabular-nums font-black text-lg md:text-2xl mb-1">{pill.value}</div>
@@ -656,7 +656,7 @@ export default function CaseStudiesPage() {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1a1a]" />
             {/* Subtle lime ambient glow */}
             <div className="absolute top-1/3 right-1/4 w-96 h-48 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-24 flex flex-col items-start">
+            <div className="relative z-10 max-w-full max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-24 flex flex-col items-start">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-1.5 h-10 bg-primary-500"></div>
                 <h2 className="text-2xl sm:text-4xl md:text-6xl font-black text-white uppercase tracking-tight">
@@ -672,7 +672,7 @@ export default function CaseStudiesPage() {
             </div>
           </div>
 
-          <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-24">
+          <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-24">
 
             {/* ── LEISTUNGEN IM EINSATZ ── */}
             <LeistungenImEinsatz modules={expanded.modules} brand={expanded.brand} />
@@ -744,7 +744,7 @@ export default function CaseStudiesPage() {
                 <div className="w-1 h-8 bg-primary-500"></div>
                 <h3 className="text-xl font-black text-[#1a1a1a] uppercase tracking-wide">Weitere Erfolgsgeschichten</h3>
               </div>
-              <div className="grid sm:grid-cols-2 gap-8">
+              <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
                 {expanded.relatedStories.map((relSlug) => {
                   const rel = caseStudies.find((s) => s.id === relSlug);
                   if (!rel) return null;
@@ -825,9 +825,9 @@ export default function CaseStudiesPage() {
       <WoodenDivider />
 
       {/* ── CTA ── */}
-      <section className="py-10 md:py-14 bg-[#1a1a1a] relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary-500/10 blur-3xl pointer-events-none"></div>
-        <div className="max-w-[1200px] mx-auto px-6 md:px-10 relative z-10">
+      <section className="sonic-section-md md:bg-[#1a1a1a] relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/10 blur-3xl pointer-events-none"></div>
+        <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10 relative z-10">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
               <span className="text-primary-500 text-xs font-black uppercase tracking-widest mb-2 block">Lass uns sprechen</span>

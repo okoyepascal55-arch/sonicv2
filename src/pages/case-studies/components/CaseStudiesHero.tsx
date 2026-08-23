@@ -26,8 +26,8 @@ export default function CaseStudiesHero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
-        <div className="max-w-[640px]">
+      <div className="relative z-10 w-full max-w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
+        <div className="max-w-full max-w-[640px]">
         <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
           <span className="w-1.5 h-1.5 bg-foreground-950" />
           Fallbeispiele

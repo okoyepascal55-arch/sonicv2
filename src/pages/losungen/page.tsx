@@ -292,7 +292,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
           </div>
 
           {/* Hero content */}
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <div className="w-10 h-10 flex items-center justify-center bg-primary-500/20" style={{ borderRadius: 0 }}>
@@ -311,7 +311,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
             </div>
 
             {/* Hero stats grid */}
-            <div className="grid grid-cols-2 gap-3 md:gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
               {s.stats.map((stat, idx) => (
                 <div key={idx} className="bg-white/[0.04] backdrop-blur-[2px] p-4 md:p-5 border border-white/[0.06] rounded-sm">
                   <div className="text-xl md:text-3xl font-black text-primary-500 font-sans tabular-nums mb-1">{stat.value}</div>
@@ -336,7 +336,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
                'Die Lücke, die kein Algorithmus schließt'}
             </h3>
           </div>
-          <div className="grid md:grid-cols-3 gap-4 md:gap-8">
+          <div className="grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {s.challenges.map((ch, i) => (
               <div key={i} className="bg-white p-6 md:p-10 border border-foreground-100 hover:border-primary-500/30 hover:-translate-y-1 transition-all duration-300 group" style={{ borderRadius: 0 }}>
                 <div className="w-10 h-10 md:w-14 md:h-14 flex items-center justify-center bg-primary-500/10 border border-primary-500/20 mb-4 md:mb-6 group-hover:bg-primary-500/20 transition-colors" style={{ borderRadius: 0 }}>
@@ -501,7 +501,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
                 return (
                   <div
                     key={i}
-                    className="group grid md:grid-cols-2 border-b border-foreground-200 last:border-b-0 hover:border-b-gray-200 transition-colors"
+                    className="group grid md:grid-cols-1 md:grid-cols-2 border-b border-foreground-200 last:border-b-0 hover:border-b-gray-200 transition-colors"
                     style={{ borderRadius: 0 }}
                   >
                     {/* Image panel */}
@@ -637,7 +637,7 @@ function ContactForm() {
       onSubmit={handleSubmit}
       className="space-y-5"
     >
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Vorname *</label>
           <input
@@ -845,7 +845,7 @@ function WoodCard({
         </div>
 
         {/* 3. Fact row — 3 compact tiles */}
-        <div className="grid grid-cols-3 gap-3 md:gap-4 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 mt-6">
           {factStats.map((stat, i) => (
             <div key={i} className="bg-black/25 border border-white/10 p-4 md:p-5 text-center">
               <div className="text-primary-500 font-sans tabular-nums font-black text-lg md:text-2xl mb-1">{stat.value}</div>
@@ -1061,7 +1061,7 @@ export default function LosungenPage() {
         </div>
 
         {/* Lime ambient glow */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-primary-500/6 blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-full max-w-[500px] h-[300px] bg-primary-500/6 blur-[100px] pointer-events-none" />
 
         {/* Content — left-aligned, bottom-anchored */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 py-0">
@@ -1101,7 +1101,7 @@ export default function LosungenPage() {
       </section>
 
       {/* ── WOODEN CAROUSEL ── */}
-      <section ref={carouselRef} id="losungen-carousel" className="relative py-16 bg-white overflow-visible">
+      <section ref={carouselRef} id="losungen-carousel" className="sonic-section-md relative bg-white overflow-visible">
         <div className="absolute top-1/3 left-0 w-72 h-72 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/3 right-0 w-80 h-80 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -1125,7 +1125,7 @@ export default function LosungenPage() {
 
           {/* Intro block — eyebrow + stats line */}
           <div className="mb-10 md:mb-14">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
               <div>
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-4" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.30)' }}>
                   <span className="w-1.5 h-1.5" style={{ background: 'oklch(var(--primary-500))' }}></span>
@@ -1135,7 +1135,7 @@ export default function LosungenPage() {
                   Ganz gleich ob du neu im Markt bist, deinen Absatz skalieren willst oder deine Omnichannel-Strategie zum Fliegen bringen musst: Wir haben die Menschen, die Daten und die Erfolgslösungen.
                 </p>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 lg:gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-5">
                 {[
                   { value: '>500', label: 'Projekte' },
                   { value: '>1,35 Mio.', label: 'Einsätze' },
@@ -1186,14 +1186,14 @@ export default function LosungenPage() {
       <WoodenDivider />
 
       {/* ── THREE PILLARS ── */}
-      <section className="py-14 md:py-20 px-4 md:px-6 bg-foreground-950">
+      <section className="sonic-section-lg md:px-4 md:px-6 bg-foreground-950">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10 md:mb-14">
             <p className="text-xs font-black text-primary-500/60 uppercase tracking-widest mb-3">Was immer gilt</p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-2 uppercase">Ganz gleich wo du stehst</h2>
             <p className="text-base md:text-xl text-white/50 font-semibold">Du bekommst immer</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               { icon: 'ri-team-line', title: 'Festangestellte Talente', desc: 'Aus unserem Pool von 2.000 Markenbotschaftern. Geschult, motiviert, zuverlässig.' },
               { icon: 'ri-bar-chart-box-line', title: 'Datenbasierte Planung', desc: 'Das Sonic Reporting Tool (SRT) liefert Forecasts, Standortanalysen und ROI-Prognosen.' },
@@ -1380,7 +1380,7 @@ export default function LosungenPage() {
                       />
 
                       {/* Name row */}
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
                           <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Vorname <span className="text-white/60">*</span></label>
                           <input
@@ -1408,7 +1408,7 @@ export default function LosungenPage() {
                       </div>
 
                       {/* Email + Phone */}
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
                           <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">E-Mail <span className="text-white/60">*</span></label>
                           <input
@@ -1435,7 +1435,7 @@ export default function LosungenPage() {
                       </div>
 
                       {/* Company + Role */}
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
                           <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Unternehmen</label>
                           <input
@@ -1575,8 +1575,8 @@ export default function LosungenPage() {
       <WoodenDivider />
 
       {/* ── FAQ ── */}
-      <section className="py-28 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
+      <section className="sonic-section-lg px-6 bg-white">
+        <div className="sonic-container">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-primary-500/20 border border-primary-500/40 px-5 py-2 mb-6" style={{ borderRadius: 0 }}>
               <i className="ri-question-line text-primary-500 text-sm"></i>

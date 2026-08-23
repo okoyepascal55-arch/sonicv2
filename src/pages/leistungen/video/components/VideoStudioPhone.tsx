@@ -129,9 +129,9 @@ export default function VideoStudioPhone() {
   const [activeOutcome, setActiveOutcome] = useState(0);
 
   return (
-    <section id="beispiele" className="bg-foreground-950 py-20 md:py-28 px-4 md:px-6 relative overflow-hidden">
+    <section id="beispiele" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
       {/* Ambient glow — single subtle one */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-primary-500/4 blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[700px] h-[500px] bg-primary-500/4 blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
 
@@ -151,7 +151,7 @@ export default function VideoStudioPhone() {
         </div>
 
         {/* Main layout */}
-        <div className="grid lg:grid-cols-2 gap-0 border border-white/10">
+        <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-0 border border-white/10">
 
           {/* LEFT: Phone only — clean, no distractions */}
           <div className="bg-[#1a1a1a] flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 relative min-h-[520px] lg:min-h-[600px]">

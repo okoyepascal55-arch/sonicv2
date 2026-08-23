@@ -93,7 +93,7 @@ export default function EventsShowcase() {
   };
 
   return (
-    <section id="events" className="bg-white py-20 px-6">
+    <section id="events" className="sonic-section-lg bg-white px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
@@ -202,7 +202,7 @@ export default function EventsShowcase() {
 
               {/* Image nav grid — each thumbnail opens lightbox */}
               <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-3">Beispiele</div>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {tab.images.map((img, i) => (
                   <button
                     key={i}

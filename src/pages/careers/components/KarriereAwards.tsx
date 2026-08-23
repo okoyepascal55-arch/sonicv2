@@ -17,8 +17,8 @@ export default function KarriereAwards() {
   ];
 
   return (
-    <section id="awards" className="py-14 md:py-16 px-4 md:px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
+    <section id="awards" className="sonic-section-md px-4 md:px-6 bg-white">
+      <div className="sonic-container">
         <div className="max-w-3xl mb-8 md:mb-10">
           <h2 className="sonic-h2 text-foreground-950">
             {tHeading}
@@ -28,7 +28,7 @@ export default function KarriereAwards() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 border border-[#E7E4D4] divide-y sm:divide-y-0 sm:divide-x divide-[#E7E4D4]">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-[#E7E4D4] divide-y sm:divide-y-0 sm:divide-x divide-[#E7E4D4]">
           {badges.map((b, i) => (
             <a
               key={i}

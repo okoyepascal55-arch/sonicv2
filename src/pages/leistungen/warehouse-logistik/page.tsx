@@ -154,8 +154,8 @@ export default function WarehouseLogistikPage() {
             decoding="async"
           />
           <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.85) 100%)' }} />
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary-500/7 blur-[100px] pointer-events-none z-10" />
-          <div className="relative z-20 w-full max-w-5xl mx-auto px-4 md:px-6 text-center">
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/7 blur-[100px] pointer-events-none z-10" />
+          <div className="relative z-20 w-full sonic-container px-4 md:px-6 text-center">
             <div className="flex items-center justify-center gap-2 mb-5 md:mb-6 opacity-60">
               <span className="text-white/50 text-xs font-bold">Leistungen</span>
               <i className="ri-arrow-right-s-line text-white/40 text-sm"></i>
@@ -196,9 +196,9 @@ export default function WarehouseLogistikPage() {
       <WoodenDivider />
 
       {/* Solution — light warm bg (directly after dark ChallengeSection), subtle tint matching homepage */}
-      <section id="loesung" className="py-14 md:py-20 px-4 md:px-6 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
-        <div className="relative max-w-6xl mx-auto">
+      <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
+        <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
+        <div className="relative sonic-container">
           <div className="mb-10 md:mb-12">
             <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
               <i className="ri-check-double-line text-foreground-950 text-sm"></i>
@@ -212,7 +212,7 @@ export default function WarehouseLogistikPage() {
       </section>
 
       {/* Was wir lagern */}
-      <section id="beispiele" className="bg-white py-14 md:py-20 px-4 md:px-6">
+      <section id="beispiele" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-8 md:mb-10">
             <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/12 px-4 py-1.5 mb-5">
@@ -293,10 +293,10 @@ export default function WarehouseLogistikPage() {
       <WoodenDivider />
 
       {/* Full Service */}
-      <section id="full-service" className="bg-foreground-950 py-14 md:py-20 px-4 md:px-6 relative overflow-hidden">
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
-        <div className="relative max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
+      <section id="full-service" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
+        <div className="relative sonic-container">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5 md:mb-6">
                 <i className="ri-shield-check-line text-primary-500 text-sm"></i>
@@ -309,7 +309,7 @@ export default function WarehouseLogistikPage() {
               <p className="text-white/65 text-sm md:text-base leading-relaxed mb-6 md:mb-8">
                 Für deine Ware, also Muster etc., ist es ebenfalls ideal, wenn wir ein Auge darauf haben. So stellen wir sicher, dass alle physischen Bausteine deines Projekts zur richtigen Zeit an den richtigen Ort gelangen können.
               </p>
-              <div className="grid grid-cols-3 gap-0 border border-primary-500/15">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-primary-500/15">
                 {STATS.map((s, i) => (
                   <div key={i} className={`p-4 md:p-5 text-center ${i < 2 ? 'border-r border-primary-500/15' : ''}`}>
                     <div className="text-base md:text-xl font-black text-primary-500">{s.val}</div>

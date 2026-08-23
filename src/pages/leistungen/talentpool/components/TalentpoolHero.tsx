@@ -30,9 +30,9 @@ export default function TalentpoolHero() {
             'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.85) 100%)',
         }}
       />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary-500/7 blur-[100px] pointer-events-none z-10" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/7 blur-[100px] pointer-events-none z-10" />
 
-      <div className="relative z-20 w-full max-w-5xl mx-auto px-6 text-center">
+      <div className="relative z-20 w-full sonic-container px-6 text-center">
         {/* Breadcrumb */}
         <div className="hidden sm:flex items-center justify-center gap-2 mb-6 opacity-60">
           <span className="text-white/50 text-xs font-bold">Leistungen</span>

@@ -29,7 +29,7 @@ export default function Zusammenarbeit() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="zusammenarbeit" className="py-20 px-4 md:px-6 bg-white relative overflow-hidden"
+    <section ref={sectionRef} id="zusammenarbeit" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden"
       style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.7s ease' }}
     >
       <div className="max-w-7xl mx-auto relative z-10">
@@ -38,7 +38,7 @@ export default function Zusammenarbeit() {
             <SectionBadge text={tBadge} variant="dark" />
             <span className="text-[10px] font-black text-foreground-300 uppercase tracking-widest hidden md:block">6 Schritte</span>
           </div>
-          <div className="grid lg:grid-cols-2 gap-6 items-end">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
             <h2 className="font-black text-foreground-950 leading-tight tracking-tight" style={{ fontSize: 'clamp(28px,4vw,44px)' }}>
               {tHeading}
             </h2>
@@ -95,7 +95,7 @@ export default function Zusammenarbeit() {
 
                 <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
                   <div className="bg-foreground-950 border-l-4 border-primary-500 px-6 pb-6 pt-2">
-                    <div className="ml-0 md:ml-[112px] grid md:grid-cols-2 gap-5">
+                    <div className="ml-0 md:ml-[112px] grid md:grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
                         <p className="text-background-50/70 text-xs leading-relaxed mb-4">{step.description}</p>
                         <div className="flex flex-wrap gap-1.5">

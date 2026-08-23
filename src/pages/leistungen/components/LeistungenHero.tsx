@@ -57,8 +57,8 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
       />
 
       {/* Content — left-aligned, bottom-anchored */}
-      <div className="relative z-20 w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
-        <div className="max-w-[640px]">
+      <div className="relative z-20 w-full max-w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
+        <div className="max-w-full max-w-[640px]">
         {/* Badge — unified SectionBadge pattern on dark bg */}
         <div className="inline-flex items-center gap-2 px-3.5 py-[7px] mb-5 md:mb-6" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
           <span className="w-1.5 h-1.5" style={{ background: 'oklch(var(--primary-500))' }} />

@@ -59,9 +59,9 @@ export default function TrustStrip() {
   );
 
   return (
-    <section className="py-5 sm:py-8 md:py-14 px-4 md:px-6 bg-transparent relative overflow-hidden">
+    <section className="sonic-section-sm sm:md:px-4 md:px-6 bg-transparent relative overflow-hidden">
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary-500/5 rounded-full blur-3xl pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/5 rounded-full blur-3xl pointer-events-none"
         aria-hidden="true"
       />
 
@@ -84,14 +84,14 @@ export default function TrustStrip() {
           {/* sm+: 2-row grid */}
           <div className="hidden sm:block">
             {/* Row 1 */}
-            <div className="grid grid-cols-6 gap-2 md:gap-4 mb-2 md:mb-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4 mb-2 md:mb-4">
               {row1.map((brand, i) => (
                 <LogoCard key={i} brand={brand} />
               ))}
             </div>
 
             {/* Row 2 */}
-            <div className="grid grid-cols-6 gap-2 md:gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4">
               {row2.map((brand, i) => (
                 <LogoCard key={i} brand={brand} />
               ))}

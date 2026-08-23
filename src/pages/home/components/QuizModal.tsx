@@ -215,7 +215,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
           {!showContactForm && !showResult ? (
             <div>
               <h3 className="text-xl font-black text-foreground-950 mb-6">{quizSteps[currentStep].question}</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3">
                 {quizSteps[currentStep].options.map((option, index) => (
                   <button
                     key={index}

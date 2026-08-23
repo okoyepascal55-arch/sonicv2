@@ -83,7 +83,7 @@ export default function SRTTeaser() {
     >
       {/* Ambient glow */}
       <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary-500/[0.07] rounded-full blur-[160px] pointer-events-none"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[700px] h-[700px] bg-primary-500/[0.07] rounded-full blur-[160px] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -114,7 +114,7 @@ export default function SRTTeaser() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {nodes.map((node) => {
               const isActive = activeNode === node.id;
               return (

@@ -7,8 +7,8 @@ export default function IndustryCTA() {
   const tSub = useText('industries_cta', 'industries-cta-sub', 'Produktlaunch, Markteintritt oder Optimierung — wir haben die Branchenexpertise.');
   const tBtn = useText('industries_cta', 'industries-cta-btn-1', 'Beratung anfragen');
   return (
-    <section id="contact" className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
-      <div className="max-w-5xl mx-auto relative z-10">
+    <section id="contact" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
+      <div className="sonic-container relative z-10">
 
         {/* Main CTA block */}
         <div className="bg-foreground-950 p-6 sm:p-10 md:p-16 text-center relative overflow-hidden" style={{ borderRadius: 0 }}>
@@ -52,7 +52,7 @@ export default function IndustryCTA() {
         </div>
 
         {/* Contact info cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-foreground-200 mt-px">
+        <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground-200 mt-px">
           {[
             { icon: 'ri-mail-line', title: 'E-Mail', content: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
             { icon: 'ri-phone-line', title: 'Telefon', content: '+49 2151 479 444 0', href: 'tel:+4921514794440' },

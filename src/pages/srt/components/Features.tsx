@@ -62,7 +62,7 @@ export default function Features({ featureIcons }: FeaturesProps) {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   return (
-    <section id="features" className="py-20 bg-white relative overflow-hidden">
+    <section id="features" className="sonic-section-lg bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Compact header */}
         <div className="mb-10">
@@ -72,7 +72,7 @@ export default function Features({ featureIcons }: FeaturesProps) {
               Seit 2008 · 15+ Versionen
             </span>
           </div>
-          <div className="grid lg:grid-cols-2 gap-6 items-end">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
             <h2 className="font-black text-foreground-950 leading-tight tracking-tight" style={{ fontSize: 'clamp(28px,4vw,44px)' }}>
               SRT: DIE <span className="text-primary-500">ALL-IN-ONE</span> SOFTWARE.
             </h2>
@@ -83,7 +83,7 @@ export default function Features({ featureIcons }: FeaturesProps) {
         </div>
 
         {/* Compact 3×2 grid — lighter cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="grid md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {FEATURES_BASE.map((feat, idx) => {
             const isHovered = hoveredIdx === idx;
             return (

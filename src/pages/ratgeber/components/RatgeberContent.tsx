@@ -6,7 +6,7 @@ interface RatgeberContentProps {
 
 export default function RatgeberContent({ sections }: RatgeberContentProps) {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="sonic-section-lg md:bg-white">
       <div className="max-w-4xl mx-auto px-4 md:px-6">
         {sections.map((section, index) => (
           <div key={index} className={`mb-14 ${index === sections.length - 1 ? 'mb-0' : ''}`}>

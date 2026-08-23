@@ -114,7 +114,7 @@ export default function Industries() {
   const currentList = step === 1 ? STEP1_INDUSTRIES : step === 2 ? STEP2_CHALLENGES : step === 3 ? STEP3_GOALS : [];
 
   return (
-    <section id="branchen" className="py-20 px-4 md:px-6 bg-white relative overflow-hidden">
+    <section id="branchen" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* ── Use Cases ── */}
         <div className="mb-16">
@@ -122,7 +122,7 @@ export default function Industries() {
             <div className="flex items-center gap-3 mb-5">
               <SectionBadge text={tBadge} variant="dark" />
             </div>
-            <div className="grid lg:grid-cols-2 gap-6 items-end mb-5">
+            <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end mb-5">
               <h2 className="font-black text-foreground-950 leading-tight tracking-tight" style={{ fontSize: 'clamp(26px,3.5vw,40px)' }}>
                 VON RETAIL EXECUTION BIS <span className="text-primary-500">HEALTHCARE.</span>
               </h2>
@@ -133,7 +133,7 @@ export default function Industries() {
           </div>
 
           {/* Use case cards — pure white bg, lime accents */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {USE_CASES.map((uc) => (
               <div key={uc.title} className="bg-white border-2 border-background-200/60 p-5 group hover:border-primary-500/40 transition-all duration-300">
                 <div className="flex items-center gap-3 mb-3">
@@ -279,7 +279,7 @@ export default function Industries() {
                   <p className="text-xs text-foreground-500 mb-5">Wir melden uns innerhalb von 24 Stunden.</p>
 
                   {/* Summary */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mb-6">
                     {[
                       { label: 'Branche', val: selected[1] || '—', icon: 'ri-building-line' },
                       { label: 'Herausforderung', val: selected[2] || '—', icon: 'ri-error-warning-line' },
@@ -305,7 +305,7 @@ export default function Industries() {
                     <input type="text" name="website_alt" tabIndex={-1} autoComplete="off" aria-hidden="true" readOnly
                       className="survey-hp-field" />
 
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid md:grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="srt-name" className="block text-[10px] font-black text-foreground-600 uppercase tracking-widest mb-1">Name *</label>
                         <input id="srt-name" type="text" name="name" required

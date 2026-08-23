@@ -84,7 +84,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
 
   return (
     <section id="management-voices" className="relative bg-white overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-14 md:py-20">
+      <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10 py-14 md:py-20">
         {/* ── HEADER + SELECTOR ── */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10 md:mb-12">
           <div className="max-w-xl">
@@ -174,7 +174,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                 {exec.bio}
               </p>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {exec.metrics.map((m) => (
                   <div key={m.label} className="border border-white/10 px-4 py-3.5">
                     <div className="text-xl font-black text-primary-500 leading-none">{m.value}</div>
@@ -216,7 +216,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
         </div>
 
         {/* ── CONTACT CTA ── */}
-        <div id="kontakt" className="max-w-5xl mx-auto mt-8 md:mt-10">
+        <div id="kontakt" className="sonic-container mt-8 md:mt-10">
           <div className="border border-[#E7E4D4] py-6 md:py-7 px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAFDF5]">
             <div className="text-center sm:text-left">
               <p className="text-sm md:text-[15px] font-black text-foreground-950 leading-relaxed">

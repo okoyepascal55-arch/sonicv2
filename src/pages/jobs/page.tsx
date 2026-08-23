@@ -90,8 +90,8 @@ export default function JobsPage() {
 
       <WoodenDivider />
 
-      <section className="py-12 px-4 md:px-6">
-        <div className="max-w-6xl mx-auto">
+      <section className="sonic-section-md px-4 md:px-6">
+        <div className="sonic-container">
           {/* Filter bar */}
           <JobsFilter
             search={search}
@@ -105,7 +105,7 @@ export default function JobsPage() {
           {/* States */}
           {loading && (
             <div className="mt-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {[...Array(6)].map((_, i) => (
                   <div key={i} className="bg-white border border-foreground-100 overflow-hidden" style={{ borderRadius: 0 }}>
                     <div className="h-[3px] w-full bg-foreground-100" />
@@ -184,7 +184,7 @@ export default function JobsPage() {
           )}
 
           {!loading && !error && filtered.length > 0 && (
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {filtered.map((job) => (
                 <JobCard key={job.hash} job={job} />
               ))}
@@ -194,7 +194,7 @@ export default function JobsPage() {
       </section>
 
       {/* CTA strip */}
-      <section className="py-12 px-4 md:px-6 bg-foreground-950 mt-8">
+      <section className="sonic-section-md px-4 md:px-6 bg-foreground-950 mt-8">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-1">Keine passende Stelle dabei?</p>

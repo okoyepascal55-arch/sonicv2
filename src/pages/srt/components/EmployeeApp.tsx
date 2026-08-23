@@ -172,7 +172,7 @@ export default function EmployeeApp() {
   }, [isPaused, nextStep]);
 
   return (
-    <section id="team-app" className="py-16 px-6 bg-white relative overflow-hidden"
+    <section id="team-app" className="sonic-section-md px-6 bg-white relative overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -181,7 +181,7 @@ export default function EmployeeApp() {
           <div className="flex items-center gap-3 mb-5">
             <SectionBadge text={tBadge} variant="dark" />
           </div>
-          <div className="grid lg:grid-cols-2 gap-6 items-end">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
             <h2 className="font-black text-foreground-950 leading-tight tracking-tight" style={{ fontSize: 'clamp(28px,4vw,42px)' }}>
               {tHeading}
             </h2>
@@ -191,7 +191,7 @@ export default function EmployeeApp() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Step buttons — compact */}
           <div className="space-y-2">
             {STEPS.map((step, i) => (

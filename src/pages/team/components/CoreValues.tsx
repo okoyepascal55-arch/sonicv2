@@ -40,7 +40,7 @@ export default function CoreValues() {
   ];
 
   return (
-    <section id="values" className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
+    <section id="values" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
@@ -56,7 +56,7 @@ export default function CoreValues() {
           {values.map((value, index) => (
             <div 
               key={index}
-              className={`grid md:grid-cols-2 gap-10 md:gap-16 items-center ${
+              className={`grid md:grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center ${
                 index % 2 === 1 ? 'md:flex-row-reverse' : ''
               }`}
             >

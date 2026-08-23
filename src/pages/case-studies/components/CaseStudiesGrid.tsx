@@ -149,7 +149,7 @@ export default function CaseStudiesGrid() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-6 bg-foreground-950 relative overflow-hidden">
+    <section className="sonic-section-lg md:px-4 md:px-6 bg-foreground-950 relative overflow-hidden">
       {/* Subtle grain texture */}
       <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #C8D400 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
@@ -167,7 +167,7 @@ export default function CaseStudiesGrid() {
         </div>
 
         {/* Grid — bento-style asymmetric */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {caseStudies.map((study, index) => {
             // Featured card (Garmin, index 0): spans 2 cols on lg
             const isFeature = index === 0;

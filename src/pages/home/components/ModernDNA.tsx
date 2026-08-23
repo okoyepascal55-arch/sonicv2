@@ -38,7 +38,7 @@ export default function ModernDNA() {
   const isActive = (index: number) => hoveredCard === index || focusedCard === index;
 
   return (
-    <section className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden bg-white">
+    <section className="sonic-section-lg relative md:px-4 md:px-6 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-6">
@@ -57,7 +57,7 @@ export default function ModernDNA() {
         </div>
 
         {/* Cards Grid — compact */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 md:grid-cols-4 gap-3">
           {principleData.map((principle, index) => {
             const active = isActive(index);
             return (

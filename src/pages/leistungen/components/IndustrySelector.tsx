@@ -140,7 +140,7 @@ export default function IndustrySelector() {
           : 'Wo dürfen wir dich erreichen?';
 
   return (
-    <section className="py-10 md:py-12 px-4 md:px-6 bg-white">
+    <section className="sonic-section-md md:px-4 md:px-6 bg-white">
       <div className="max-w-3xl mx-auto">
         {/* Compact CTA */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-5 border border-foreground-200 bg-background-50 px-6 md:px-8 py-6">
@@ -322,7 +322,7 @@ export default function IndustrySelector() {
 
                 {/* Step 3 — Kontakt */}
                 {step === 3 && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 mt-5">
                     <div>
                       <label
                         htmlFor="survey-name"

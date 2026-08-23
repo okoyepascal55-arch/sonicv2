@@ -20,10 +20,10 @@ export default function IndustriesHero() {
       </div>
 
       {/* Lime ambient glow */}
-      <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-primary-500/6 blur-[120px] pointer-events-none z-10" />
+      <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-full max-w-[700px] h-[400px] bg-primary-500/6 blur-[120px] pointer-events-none z-10" />
 
-      <div className="relative z-20 w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
-        <div className="max-w-[640px]">
+      <div className="relative z-20 w-full max-w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
+        <div className="max-w-full max-w-[640px]">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
           <span className="w-1.5 h-1.5 bg-foreground-950" />

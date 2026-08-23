@@ -99,9 +99,9 @@ export default function ForecastingContent() {
       <WoodenDivider />
 
       {/* ── Solution (horizontal scroll, light warm bg) ── */}
-      <section id="loesung" className="bg-white py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="loesung" className="sonic-section-lg bg-white px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.018] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
@@ -121,15 +121,15 @@ export default function ForecastingContent() {
       </section>
 
       {/* ── How it works — pictorial ── */}
-      <section id="wie-es-funktioniert" className="bg-white py-14 md:py-24 px-4 md:px-6">
-        <div className="max-w-6xl mx-auto">
+      <section id="wie-es-funktioniert" className="sonic-section-lg bg-white px-4 md:px-6">
+        <div className="sonic-container">
           <div className="text-center mb-10 md:mb-14">
             <LimeBadge text="So funktioniert es" className="mb-5" />
             <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 leading-tight uppercase">{tHowHeading}</h2>
             <p className="text-foreground-950/45 text-sm mt-3 max-w-xl mx-auto">{tHowSub}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-1 md:grid-cols-2 gap-6">
             {HOW_IT_WORKS.map((step, i) => (
               <div key={i} className="group relative overflow-hidden border border-[#111]/10 bg-white hover:border-primary-500/30 transition-all duration-300">
                 {/* Image */}
@@ -162,8 +162,8 @@ export default function ForecastingContent() {
       </section>
 
       {/* ── Stats ── */}
-      <section id="stats" className="bg-foreground-950 py-14 md:py-20 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-px bg-primary-500/15 border border-primary-500/15 overflow-hidden">
+      <section id="stats" className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-px bg-primary-500/15 border border-primary-500/15 overflow-hidden">
           {STATS.map((s, i) => (
             <div key={i} className="bg-foreground-950 p-5 md:p-8 text-center relative overflow-hidden group">
               <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/5 transition-colors duration-300" />

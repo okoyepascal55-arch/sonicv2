@@ -111,12 +111,12 @@ export default function KontaktPage() {
         />
         {/* Glow */}
         <div
-          className="absolute top-0 right-0 w-[600px] h-[400px] bg-primary-500/6 rounded-full blur-[120px] pointer-events-none"
+          className="absolute top-0 right-0 w-full max-w-[600px] h-[400px] bg-primary-500/6 rounded-full blur-[120px] pointer-events-none"
           aria-hidden="true"
         />
 
-        <div className="max-w-[1300px] mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
+        <div className="max-w-full max-w-[1300px] mx-auto relative z-10">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
             {/* Left: text */}
             <div>
@@ -136,7 +136,7 @@ export default function KontaktPage() {
               </p>
 
               {/* Contact detail cards */}
-              <div className="grid sm:grid-cols-2 gap-px bg-white/5">
+              <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-px bg-white/5">
                 {contactDetails.map((item, i) => (
                   <div
                     key={i}
@@ -190,7 +190,7 @@ export default function KontaktPage() {
                 <CalendlyInline />
               </div>
               {/* Quick stats */}
-              <div className="w-full grid grid-cols-3 gap-px bg-white/5">
+              <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5">
                 {[
                   { val: tStatResp, label: tStatRespLabel },
                   { val: tStatExp, label: tStatExpLabel },
@@ -210,8 +210,8 @@ export default function KontaktPage() {
 
       {/* ── Main Content: Form + Map ───────────────────────────────────── */}
       <WoodenDivider />
-      <section className="py-0 bg-white relative">
-        <div className="max-w-[1300px] mx-auto">
+      <section className="sonic-section-md bg-white relative">
+        <div className="max-w-full max-w-[1300px] mx-auto">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-px bg-foreground-200">
 
             {/* Contact Form — KEY ELEMENT */}

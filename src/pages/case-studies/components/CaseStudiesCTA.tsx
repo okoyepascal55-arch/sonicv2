@@ -21,10 +21,10 @@ export default function CaseStudiesCTA() {
   ];
 
   return (
-    <section className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-500/8 rounded-none blur-3xl pointer-events-none"></div>
+    <section className="sonic-section-lg md:px-4 md:px-6 bg-white relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[600px] bg-primary-500/8 rounded-none blur-3xl pointer-events-none"></div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
 
         {/* Header */}
         <div className="text-center mb-12">
@@ -47,7 +47,7 @@ export default function CaseStudiesCTA() {
         >
           <div className={`absolute inset-0 rounded-none border-4 transition-all duration-500 pointer-events-none z-20 ${isHovered ? 'border-primary-500' : 'border-foreground-100'}`} style={isHovered ? { boxShadow: '0 0 30px rgba(200,212,0,0.3)' } : {}}></div>
 
-          <div className="grid lg:grid-cols-2 gap-0">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-0">
             {/* Image */}
             <div className="relative h-[260px] lg:h-auto min-h-[260px]">
               <img
@@ -99,7 +99,7 @@ export default function CaseStudiesCTA() {
         </div>
 
         {/* Contact Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto">
           {[
             { icon: 'ri-mail-line', label: 'Email Us', value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
             { icon: 'ri-phone-line', label: 'Call Us', value: '+49 2151 479 444 0', href: 'tel:+4921514794440' },

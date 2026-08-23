@@ -2,7 +2,7 @@ export default function ImpressumSection() {
   return (
     <section
       id="impressum"
-      className="py-16 px-6 bg-white relative overflow-hidden"
+      className="sonic-section-md px-6 bg-white relative overflow-hidden"
       aria-labelledby="impressum-heading"
     >
       {/* Texture */}
@@ -15,7 +15,7 @@ export default function ImpressumSection() {
         }}
       />
 
-      <div className="max-w-[1300px] mx-auto relative z-10">
+      <div className="max-w-full max-w-[1300px] mx-auto relative z-10">
         {/* Section header */}
         <div className="mb-10 flex items-center gap-4">
           <div
@@ -35,7 +35,7 @@ export default function ImpressumSection() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-px bg-foreground-200">
+        <div className="grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground-200">
 
           {/* Angaben */}
           <div className="bg-white px-8 py-10">

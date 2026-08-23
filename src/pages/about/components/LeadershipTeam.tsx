@@ -31,10 +31,10 @@ export default function LeadershipTeam() {
   const headingAccent = words.length > 1 ? words[words.length - 1] : '';
 
   return (
-    <section className="bg-white py-14 md:py-20 overflow-hidden">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+    <section className="sonic-section-lg bg-white md:overflow-hidden">
+      <div className="max-w-full max-w-[1280px] mx-auto px-6 md:px-10">
         {/* ── HEADER ── */}
-        <div className="max-w-[640px] mb-10 md:mb-14">
+        <div className="max-w-full max-w-[640px] mb-10 md:mb-14">
           <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-5">
             <span className="w-1.5 h-1.5 bg-foreground-950 flex-shrink-0" />
             {tBadge}
@@ -43,7 +43,7 @@ export default function LeadershipTeam() {
             {headingMain}{' '}
             <span className="text-primary-500">{headingAccent}</span>
           </h2>
-          <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[520px]">{tSub}</p>
+          <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-full max-w-[520px]">{tSub}</p>
         </div>
 
         {/* ── BOLD SPLIT: TEAM PHOTO + DARK STAT PANEL ── */}

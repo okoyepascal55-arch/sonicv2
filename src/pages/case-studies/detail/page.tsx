@@ -135,9 +135,9 @@ export default function CaseStudyDetailPage() {
       <WoodenDivider variant="horizontal" />
 
       {/* Key Metrics */}
-      <section className="py-16 px-6 bg-white">
+      <section className="sonic-section-md px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-6">
             {caseStudy.results.map((result: any, idx: number) => (
               <div key={idx} className="text-center bg-foreground-50 p-6 relative overflow-hidden group border border-foreground-100">
                 {/* Wooden texture */}
@@ -171,7 +171,7 @@ export default function CaseStudyDetailPage() {
       <WoodenDivider variant="diagonal" />
 
       {/* Challenge Section */}
-      <section className="py-12 md:py-20 px-4 md:px-6 bg-gradient-to-br from-background-100 via-white to-background-100">
+      <section className="sonic-section-lg md:px-4 md:px-6 bg-gradient-to-br from-background-100 via-white to-background-100">
         <div className="max-w-4xl mx-auto">
           <div className="mb-12">
             <div className="inline-flex items-center gap-3 mb-6">
@@ -223,12 +223,12 @@ export default function CaseStudyDetailPage() {
       <WoodenDivider variant="horizontal" />
 
       {/* Project Details */}
-      <section className="py-12 md:py-20 px-4 md:px-6 bg-white">
+      <section className="sonic-section-lg md:px-4 md:px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 mb-12 text-center">
             Projektdetails
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="text-center bg-foreground-50 p-8 relative overflow-hidden group border border-foreground-100">
               <div 
                 className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500"
@@ -307,7 +307,7 @@ export default function CaseStudyDetailPage() {
       <WoodenDivider variant="diagonal" />
 
       {/* CTA Section */}
-      <section className="py-12 md:py-20 px-4 md:px-6 bg-gradient-to-br from-background-100 via-white to-background-100">
+      <section className="sonic-section-lg md:px-4 md:px-6 bg-gradient-to-br from-background-100 via-white to-background-100">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl lg:text-5xl font-black text-foreground-950 mb-6">
             Bereit, Ihre Retail-Performance zu transformieren?

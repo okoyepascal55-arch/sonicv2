@@ -7,8 +7,8 @@ export default function RecruitmentPhilosophy() {
   const tCard2 = useText('team_recruitment', 'team-recruit-card-2', 'Teamgeist');
   const tCard3 = useText('team_recruitment', 'team-recruit-card-3', 'Ambition');
   return (
-    <section className="py-20 md:py-28 px-4 md:px-6 bg-white" id="philosophy">
-      <div className="max-w-5xl mx-auto">
+    <section className="sonic-section-lg md:px-4 md:px-6 bg-white" id="philosophy">
+      <div className="sonic-container">
         <div className="text-center mb-14">
           <div className="w-12 h-0.5 bg-primary-500 mx-auto mb-6" />
           <h2 className="sonic-h2 text-foreground-950 mb-4">
@@ -36,7 +36,7 @@ export default function RecruitmentPhilosophy() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             { icon: 'ri-heart-3-line', title: tCard1, desc: 'Für die Marke brennen ist wichtiger als perfekte Zeugnisse' },
             { icon: 'ri-team-line', title: tCard2, desc: 'Gemeinsam anpacken und Herausforderungen meistern' },

@@ -9,9 +9,9 @@ export default function TeamCTA() {
   const tBtn1 = useText('team_cta', 'team-cta-btn-1', 'Offene Stellen ansehen');
   const tBtn2 = useText('team_cta', 'team-cta-btn-2', 'Initiativbewerbung');
   return (
-    <section className="py-20 md:py-28 bg-foreground-950 relative overflow-hidden">
+    <section className="sonic-section-lg md:bg-foreground-950 relative overflow-hidden">
       {/* Lime ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-primary-500/6 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[300px] bg-primary-500/6 blur-[120px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
         <SectionBadge text={tBadge} variant="light" className="mb-8" />

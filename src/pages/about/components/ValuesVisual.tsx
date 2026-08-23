@@ -67,7 +67,7 @@ export default function ValuesVisual() {
 
         {/* Client grid */}
         <div
-          className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-px bg-black/8 border border-black/8 overflow-hidden transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 md:grid-cols-4 gap-px bg-black/8 border border-black/8 overflow-hidden transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           style={{ transitionDelay: '120ms' }}
         >
           {clients.map((client, i) => {

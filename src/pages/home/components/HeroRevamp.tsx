@@ -308,7 +308,7 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
 
   return (
     <section className="relative pt-16 md:pt-20 pb-10 md:pb-16 px-4 md:px-6 overflow-hidden">
-      <div className="max-w-6xl mx-auto relative" style={{ zIndex: 10 }}>
+      <div className="sonic-container relative" style={{ zIndex: 10 }}>
         {/* Hero Headline */}
         <div className="text-center pt-6 md:pt-14 pb-5 md:pb-14 px-2">
           <style>{`
@@ -375,12 +375,12 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
         {/* Modern Dual CTA */}
         <div
           ref={ctaRef}
-          className="max-w-6xl mx-auto relative"
+          className="sonic-container relative"
           onMouseMove={handleMouseMove}
         >
           {/* Cursor-following glow */}
           <div
-            className="absolute w-[500px] h-[500px] rounded-full pointer-events-none opacity-20 blur-3xl transition-all duration-700 ease-out z-0"
+            className="absolute w-full max-w-[500px] h-[500px] rounded-full pointer-events-none opacity-20 blur-3xl transition-all duration-700 ease-out z-0"
             style={{
               background:
                 hoveredSide === 'left'

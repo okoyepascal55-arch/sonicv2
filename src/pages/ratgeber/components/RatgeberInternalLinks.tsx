@@ -8,7 +8,7 @@ export default function RatgeberInternalLinks({ links }: RatgeberInternalLinksPr
   if (links.length === 0) return null;
 
   return (
-    <section className="py-16 md:py-24" style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
+    <section className="sonic-section-lg md:" style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
       <div className="max-w-4xl mx-auto px-4 md:px-6">
         <h2 className="sonic-h2 text-foreground-950 mb-3">
           Sonic Group Services
@@ -17,7 +17,7 @@ export default function RatgeberInternalLinks({ links }: RatgeberInternalLinksPr
           Entdecken Sie, wie Sonic Group diese Strategien für Ihre Marke umsetzt:
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4">
           {links.map((link, index) => (
             <a
               key={index}

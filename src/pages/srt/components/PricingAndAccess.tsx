@@ -92,14 +92,14 @@ export default function PricingAndAccess() {
   };
 
   return (
-    <section id="preise-zugang" className="py-20 px-4 md:px-6 bg-white relative overflow-hidden">
+    <section id="preise-zugang" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* ── Section header ── */}
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5">
             <SectionBadge text={tBadge} variant="dark" />
           </div>
-          <div className="grid lg:grid-cols-2 gap-6 items-end">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
             <h2 className="font-black text-foreground-950 leading-tight tracking-tight" style={{ fontSize: 'clamp(28px,4vw,44px)' }}>
               {tHeading.split('. ')[0] || tHeading}.<br />
               <span className="text-primary-500">{tHeading.includes('. ') ? tHeading.split('. ').slice(1).join('. ') : 'DIREKTER ZUGANG.'}</span>
@@ -111,7 +111,7 @@ export default function PricingAndAccess() {
         </div>
 
         {/* ── Pricing cards — compact row ── */}
-        <div className="grid lg:grid-cols-3 gap-3 mb-12">
+        <div className="grid lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-12">
           {TIERS.map((tier, i) => (
             <div key={i}
               className={`bg-white border-2 transition-all duration-300 group ${
@@ -171,7 +171,7 @@ export default function PricingAndAccess() {
         </div>
 
         {/* ── Zugang form ── */}
-        <div className="grid lg:grid-cols-2 gap-0 border-2 border-background-200/60">
+        <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-0 border-2 border-background-200/60">
           {/* Left: pitch */}
           <div className="bg-foreground-950 p-8 md:p-10 flex flex-col justify-center relative overflow-hidden">
             <div className="absolute -bottom-6 -right-6 select-none pointer-events-none font-black leading-none"
@@ -241,7 +241,7 @@ export default function PricingAndAccess() {
             <form id="srt-access-form" data-readdy-form onSubmit={handleSubmit} className="space-y-4">
               <input type="text" name="phone_alt" tabIndex={-1} autoComplete="off" aria-hidden="true" readOnly className="survey-hp-field" />
 
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-2xs font-black text-foreground-600 uppercase tracking-widest mb-1">Name *</label>
                   <input type="text" name="name" required value={formData.name}
@@ -268,7 +268,7 @@ export default function PricingAndAccess() {
 
               <div>
                 <label className="block text-2xs font-black text-foreground-600 uppercase tracking-widest mb-2">Ich interessiere mich für *</label>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {interests.map((int) => (
                     <button key={int.value} type="button"
                       onClick={() => setFormData({ ...formData, interest: int.value })}

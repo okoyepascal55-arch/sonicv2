@@ -162,9 +162,9 @@ export default function POSContent() {
       <WoodenDivider />
 
       {/* Solution */}
-      <section id="loesung" className="bg-white py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[400px] bg-primary-500/6 blur-[120px] pointer-events-none" />
-        <div className="relative max-w-6xl mx-auto">
+      <section id="loesung" className="sonic-section-lg bg-white px-4 md:px-6 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-full max-w-[600px] h-[400px] bg-primary-500/6 blur-[120px] pointer-events-none" />
+        <div className="relative sonic-container">
           <div className="mb-10 md:mb-14 text-center">
             <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
               <i className="ri-check-double-line text-foreground-950 text-sm"></i>
@@ -178,9 +178,9 @@ export default function POSContent() {
       </section>
 
       {/* Assets with scrollable images */}
-      <section id="beispiele" className="bg-foreground-950 py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="beispiele" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto">
           <div className="mb-10 md:mb-12 text-center">
@@ -210,7 +210,7 @@ export default function POSContent() {
 
           <div key={activeAsset} className="border border-white/10 border-t-0" style={{ animation: 'fadeSlideIn 0.35s ease-out' }}>
             {/* Image strip — 2 cols on mobile, 4 on desktop */}
-            <div className="grid grid-cols-2 md:grid-cols-4 border-b border-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 border-b border-white/10">
               {resolvedAssetCategories[activeAsset].images.map((img, i) => (
                 <button
                   key={i}
@@ -270,11 +270,11 @@ export default function POSContent() {
       </section>
 
       {/* Process with images */}
-      <section id="arbeitsweise" className="bg-foreground-950 py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="arbeitsweise" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full max-w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
 
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative sonic-container">
           {/* Header */}
           <div className="text-center mb-12 md:mb-16">
             <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
@@ -291,7 +291,7 @@ export default function POSContent() {
             <div className="hidden md:block">
               <div className="absolute top-[28px] left-[8.33%] right-[8.33%] h-px bg-white/10" />
               <div className="absolute top-[28px] left-[8.33%] h-px bg-primary-500 transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
-              <div className="grid grid-cols-6 gap-2">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
                 {STEPS.map((step, i) => (
                   <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
                     <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950 shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>

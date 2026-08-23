@@ -193,9 +193,9 @@ function WoodIconsStrip({ icons }: { icons: { img: string; label: string }[] }) 
   }, []);
 
   return (
-    <section className="bg-white py-14 px-6 border-b border-foreground-950/8">
+    <section className="sonic-section-md bg-white px-6 border-b border-foreground-950/8">
       <div className="max-w-4xl mx-auto">
-        <div ref={ref} className="grid grid-cols-3 gap-8">
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {icons.map((w, i) => (
             <div
               key={i}
@@ -312,7 +312,7 @@ export default function KreationContentPage() {
           />
 
           {/* Hero copy */}
-          <div className="relative z-10 w-full max-w-5xl mx-auto px-6 text-center">
+          <div className="relative z-10 w-full sonic-container px-6 text-center">
             {/* Breadcrumb */}
             <div className="flex items-center justify-center gap-2 mb-8">
               <span className="text-foreground-950/30 text-xs font-bold uppercase tracking-widest">Leistungen</span>
@@ -387,8 +387,8 @@ export default function KreationContentPage() {
       <WoodenDivider />
 
       {/* ── SOLUTION — light warm bg (directly after dark ChallengeSection) ── */}
-      <section id="loesung" className="py-20 px-4 md:px-6 relative overflow-hidden bg-white">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
+      <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden bg-white">
+        <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div
           ref={solutionReveal.ref}
           className="relative max-w-7xl mx-auto"

@@ -32,7 +32,7 @@ export default function FunctionalityOverview() {
   const mod = MODULES[active];
 
   return (
-    <section id="funktionsumfang" className="bg-foreground-950 relative overflow-hidden py-20 px-4 md:px-6">
+    <section id="funktionsumfang" className="sonic-section-lg bg-foreground-950 relative overflow-hidden px-4 md:px-6">
       {/* Background texture */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{ backgroundImage: 'linear-gradient(oklch(var(--primary-500) / 0.8) 1px, transparent 1px), linear-gradient(90deg, oklch(var(--primary-500) / 0.8) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
@@ -44,7 +44,7 @@ export default function FunctionalityOverview() {
             <SectionBadge text={tBadge} variant="light" />
             <span className="text-background-50/20 text-[10px] font-black uppercase tracking-widest hidden md:block">{MODULES.length} Module</span>
           </div>
-          <div className="grid lg:grid-cols-2 gap-6 items-end">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
             <h2 className="font-black text-background-50 leading-tight tracking-tight" style={{ fontSize: 'clamp(28px, 4vw, 44px)' }}>
               {tHeading}
             </h2>
@@ -55,7 +55,7 @@ export default function FunctionalityOverview() {
         </div>
 
         {/* Split layout: list left, image preview right */}
-        <div className="grid lg:grid-cols-5 gap-0 border border-background-50/8">
+        <div className="grid lg:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0 border border-background-50/8">
           {/* Left: module list */}
           <div className="lg:col-span-2 flex flex-col">
             {MODULES.map((m, i) => (

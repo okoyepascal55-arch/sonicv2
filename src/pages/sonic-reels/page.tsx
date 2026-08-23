@@ -353,7 +353,7 @@ export default function SonicReelsPage() {
           }}
         />
         <div
-          className="relative z-10 max-w-6xl mx-auto px-6 text-center"
+          className="relative z-10 sonic-container px-6 text-center"
           style={{ opacity: splashVisible ? 1 : 0, transform: splashVisible ? 'none' : 'translateY(16px)', transition: 'all 0.8s ease' }}
         >
           <div className="inline-flex items-center gap-2.5 mb-3">

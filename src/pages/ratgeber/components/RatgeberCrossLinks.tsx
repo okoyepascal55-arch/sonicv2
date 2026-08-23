@@ -8,7 +8,7 @@ export default function RatgeberCrossLinks({ links }: RatgeberCrossLinksProps) {
   if (!links || links.length === 0) return null;
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="sonic-section-lg md:bg-white">
       <div className="max-w-4xl mx-auto px-4 md:px-6">
         <div className="inline-flex items-center gap-2 bg-primary-500/20 border border-primary-500/30 px-3 py-1 mb-5" style={{ borderRadius: 0 }}>
           <i className="ri-links-line text-foreground-950/60 text-xs"></i>
@@ -22,7 +22,7 @@ export default function RatgeberCrossLinks({ links }: RatgeberCrossLinksProps) {
           Vertiefen Sie Ihr Wissen mit diesen thematisch verwandten Ratgeber-Artikeln:
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {links.map((link, index) => (
             <a
               key={index}

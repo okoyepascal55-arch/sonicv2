@@ -5,7 +5,7 @@ export default function Contact() {
   const handleNav = (path: string) => navigate(path);
 
   return (
-    <section className="py-12 md:py-14 px-4 md:px-6 bg-white relative overflow-hidden">
+    <section className="sonic-section-md md:px-4 md:px-6 bg-white relative overflow-hidden">
       {/* Subtle texture lines */}
       <div
         className="absolute inset-0 opacity-[0.025] pointer-events-none"
@@ -17,7 +17,7 @@ export default function Contact() {
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid md:grid-cols-2 gap-px bg-foreground-200">
+        <div className="grid md:grid-cols-1 md:grid-cols-2 gap-px bg-foreground-200">
 
           {/* ── Box 1: ÜBER DIE SONIC GROUP — BLACK ──────────────────────── */}
           <div className="group bg-foreground-950 px-6 sm:px-9 md:px-12 py-9 md:py-11 flex flex-col justify-between transition-all duration-500 hover:bg-[#161600] relative overflow-hidden">

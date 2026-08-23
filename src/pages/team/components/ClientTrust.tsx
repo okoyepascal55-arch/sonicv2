@@ -9,7 +9,7 @@ export default function ClientTrust() {
   ];
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-6 bg-white">
+    <section className="sonic-section-lg md:px-4 md:px-6 bg-white">
       <div className="max-w-7xl mx-auto text-center">
         <div className="w-12 h-0.5 bg-primary-500 mx-auto mb-6" />
         <h2 className="sonic-h2 text-foreground-950 mb-4">

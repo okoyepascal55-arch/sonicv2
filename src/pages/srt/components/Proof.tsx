@@ -90,7 +90,7 @@ export default function Proof() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 border border-background-200/70">
+          <div className="grid grid-cols-2 lg:grid-cols-2 md:grid-cols-4 gap-0 border border-background-200/70">
             {STATS.map((stat, i) => (<AnimatedStat key={i} stat={stat} active={triggered} index={i} />))}
           </div>
 

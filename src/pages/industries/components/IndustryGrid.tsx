@@ -63,7 +63,7 @@ export default function IndustryGrid() {
   ];
 
   return (
-    <section id="industries" className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
+    <section id="industries" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
@@ -75,7 +75,7 @@ export default function IndustryGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 gap-5">
           {industries.map((industry, index) => (
             <div
               key={index}

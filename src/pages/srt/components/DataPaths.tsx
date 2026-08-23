@@ -134,7 +134,7 @@ export default function DataPaths() {
   };
 
   return (
-    <section ref={sectionRef} id="datenfluss" className="py-12 md:py-20 px-4 md:px-6 bg-foreground-950 relative overflow-hidden"
+    <section ref={sectionRef} id="datenfluss" className="sonic-section-lg px-4 md:px-6 bg-foreground-950 relative overflow-hidden"
       style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.8s ease' }}
     >
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
@@ -151,7 +151,7 @@ export default function DataPaths() {
             <div className="h-px flex-1 bg-gradient-to-r from-primary-500/20 to-transparent" />
             <span className="text-2xs font-black text-background-50/20 uppercase tracking-widest hidden md:block">Interaktiv — Klicken zum Erkunden</span>
           </div>
-          <div className="grid lg:grid-cols-2 gap-8 items-end">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-8 items-end">
             <h2 className="font-black text-background-50 leading-tight tracking-tight" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
               {tHeading}
             </h2>
@@ -164,7 +164,7 @@ export default function DataPaths() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-8 items-start">
+        <div className="grid lg:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-start">
           <div className="lg:col-span-2 space-y-4">
             {(activeNodeData || activeStreamData) ? (
               <div className="border border-primary-500/30 bg-primary-500/5 p-6 relative">
@@ -320,7 +320,7 @@ export default function DataPaths() {
               <button onClick={() => setActiveStream(activeStream === 'extern-srt' ? null : 'extern-srt')} className="absolute z-10 cursor-pointer" style={{ top: '44%', left: '20%', width: '18%', height: '12%', background: 'transparent' }} aria-label="Extern → SRT Verbindung" />
             </div>
 
-            <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2">
               {STREAMS.map((stream) => (
                 <button key={stream.id} onClick={() => setActiveStream(activeStream === stream.id ? null : stream.id)}
                   className={`flex items-center gap-2 px-3 py-2 border text-left transition-all duration-200 cursor-pointer group ${activeStream === stream.id ? 'border-primary-500 bg-primary-500/10' : 'border-background-50/10 bg-background-50/5 hover:border-primary-500/30 hover:bg-primary-500/5'}`}>
@@ -338,7 +338,7 @@ export default function DataPaths() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-background-50/8 pt-10 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="mt-14 border-t border-background-50/8 pt-10 grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { icon: 'ri-refresh-line', val: '<50 ms', label: 'Latenz', detail: 'Echtzeit ohne Batch-Verzögerung' },
             { icon: 'ri-shield-keyhole-line', val: 'AES-256', label: 'Verschlüsselung', detail: 'End-to-End, TLS 1.3, DSGVO-konform' },

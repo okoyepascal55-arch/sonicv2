@@ -130,9 +130,9 @@ export default function StaffContent() {
       <WoodenDivider />
 
       {/* ── Solution (horizontal scroll) ── */}
-      <section id="loesung" className="bg-white py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="loesung" className="sonic-section-lg bg-white px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.018] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
@@ -151,11 +151,11 @@ export default function StaffContent() {
       </section>
 
       {/* ── Process ── */}
-      <section id="ablauf" className="bg-foreground-950 py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="ablauf" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
 
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative sonic-container">
           {/* Header */}
           <div className="text-center mb-12 md:mb-16">
             <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
@@ -174,7 +174,7 @@ export default function StaffContent() {
             <div className="hidden md:block">
               <div className="absolute top-[28px] left-[8.33%] right-[8.33%] h-px bg-white/10" />
               <div className="absolute top-[28px] left-[8.33%] h-px bg-primary-500 transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
-              <div className="grid grid-cols-6 gap-2">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
                 {STEPS.map((step, i) => (
                   <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
                     <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950 shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
@@ -254,9 +254,9 @@ export default function StaffContent() {
       </section>
 
       {/* ── Specializations (horizontal scroll, dark bg) ── */}
-      <section id="aufgabenbereiche" className="bg-foreground-950 py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="aufgabenbereiche" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full max-w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
@@ -275,11 +275,11 @@ export default function StaffContent() {
       </section>
 
       {/* ── S.O.C.K.S. ── */}
-      <section id="socks" className="bg-foreground-950 py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="socks" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 left-0 w-full max-w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
 
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative sonic-container">
           {/* Header */}
           <div className="text-center mb-12 md:mb-16">
             <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
@@ -298,7 +298,7 @@ export default function StaffContent() {
             <div className="hidden md:block">
               <div className="absolute top-[28px] left-[10%] right-[10%] h-px bg-white/10" />
               <div className="absolute top-[28px] left-[10%] h-px bg-primary-500 transition-all duration-700 ease-out" style={{ width: `${(activeSocks / (SOCKS.length - 1)) * 80}%` }} />
-              <div className="grid grid-cols-5 gap-2">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
                 {SOCKS.map((s, i) => (
                   <button key={i} onClick={() => setActiveSocks(i)} className="flex flex-col items-center cursor-pointer group">
                     <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeSocks === i ? 'bg-primary-500 border-primary-500 text-foreground-950 shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeSocks > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>

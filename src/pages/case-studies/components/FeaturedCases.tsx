@@ -215,8 +215,8 @@ export default function FeaturedCases() {
   ];
 
   return (
-    <section className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary-500/6 blur-3xl pointer-events-none"></div>
+    <section className="sonic-section-lg md:px-4 md:px-6 bg-white relative overflow-hidden">
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[400px] bg-primary-500/6 blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -253,7 +253,7 @@ export default function FeaturedCases() {
         >
           <div className={`absolute inset-0 border-4 transition-all duration-500 pointer-events-none z-20 ${isHovered ? 'border-primary-500' : 'border-foreground-100'}`}></div>
 
-          <div className="grid lg:grid-cols-2 gap-0">
+          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-0">
             {/* Image Side */}
             <div className="relative h-[240px] sm:h-[340px] lg:h-[520px]">
               <img
@@ -306,7 +306,7 @@ export default function FeaturedCases() {
                 {/* Results */}
                 <div>
                   <h4 className="text-xs font-black text-primary-500 uppercase tracking-widest mb-3">Ergebnisse</h4>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {cases[activeCase].results.map((result, idx) => (
                       <div key={idx} className="bg-foreground-50 p-3 text-center border border-foreground-100" style={{ borderRadius: 0 }}>
                         <div className="text-lg font-black text-[#1a1a1a] leading-tight font-sans tabular-nums">{result.value}</div>
@@ -340,7 +340,7 @@ export default function FeaturedCases() {
         </div>
 
         {/* Key Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {highlights.map((item, index) => (
             <HighlightCard key={index} item={item} />
           ))}

@@ -167,7 +167,7 @@ export default function BlogPage() {
       <WoodenDivider />
 
       {/* ── BLOG CONTENT ── */}
-      <section className="py-16 md:py-24" ref={gridRef}>
+      <section className="sonic-section-lg md:" ref={gridRef}>
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="flex flex-col gap-6 mb-10 md:mb-16">
             <div className="flex justify-center md:justify-start">
@@ -207,7 +207,7 @@ export default function BlogPage() {
           </div>
 
           {loading ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <div className="grid md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="animate-pulse bg-white border border-black/5 flex flex-col min-h-[400px]">
                   <div className="h-56 bg-foreground-200"></div>
@@ -233,7 +233,7 @@ export default function BlogPage() {
           ) : (
             <>
               {/* Blog Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              <div className="grid md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                 {posts.map((post) => {
                   const imageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
                   const category = post._embedded?.['wp:term']?.[0]?.[0]?.name || 'News';

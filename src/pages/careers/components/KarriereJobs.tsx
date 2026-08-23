@@ -35,8 +35,8 @@ export default function KarriereJobs() {
   }, []);
 
   return (
-    <section id="stellenangebote" className="py-10 md:py-20 px-4 md:px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
+    <section id="stellenangebote" className="sonic-section-lg px-4 md:px-6 bg-white">
+      <div className="sonic-container">
         {/* ── Heading ── */}
         <div className="max-w-3xl mb-12 md:mb-16">
           <h2 className="sonic-h2 text-foreground-950">
