@@ -1,3 +1,4 @@
+import SectionBadge from '@/components/base/SectionBadge';
 import { useState, useCallback } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
@@ -101,10 +102,7 @@ export default function KarrierepfadeSection() {
         {/* ── HEADER + SELECTOR ── */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10 md:mb-12">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
-              <span className="w-1.5 h-1.5 bg-primary-500 flex-shrink-0" />
-              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary-500">{tBadge}</span>
-            </div>
+            <SectionBadge text={tBadge} variant="dark" className="mb-5" />
             <h2 className="sonic-h2 text-foreground-950">
               {headingMain}{' '}
               {headingAccent && <span className="text-primary-500">{headingAccent}</span>}
@@ -179,12 +177,12 @@ export default function KarrierepfadeSection() {
                 {String(active + 1).padStart(2, '0')} / {String(resolvedPaths.length).padStart(2, '0')}
               </div>
 
-              <h3
+              <h2
                 key={`headline-${active}`}
                 className="sonic-h2 text-white"
               >
                 {path.headline}
-              </h3>
+              </h2>
 
               <p key={`tagline-${active}`} className="text-sm leading-relaxed text-white/55 mt-4 max-w-md">
                 {path.tagline}

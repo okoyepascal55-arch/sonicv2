@@ -128,7 +128,7 @@ export default function Timeline() {
           <div className="flex items-center justify-center mb-5">
             <SectionBadge text={tBadge} variant="dark" />
           </div>
-          <h2 className="text-3xl font-black text-foreground-950 leading-tight tracking-tight text-center mb-3">
+          <h2 className="sonic-h2 text-foreground-950 text-center mb-3">
             {tHeading.split(' ').slice(0, 2).join(' ')}{' '}
             <span className="text-primary-500">{tHeading.split(' ').slice(2).join(' ')}</span>
           </h2>
@@ -181,7 +181,7 @@ export default function Timeline() {
           <div className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
               <div className="text-xs font-black uppercase tracking-[0.3em] text-primary-500 mb-2">{current.tag}</div>
-              <h3 className="sonic-h2 text-foreground-950">{current.title}</h3>
+              <h3 className="sonic-h3 text-foreground-950">{current.title}</h3>
             </div>
             <p className="text-sm text-black/50 max-w-md leading-relaxed">{current.subtitle}</p>
           </div>

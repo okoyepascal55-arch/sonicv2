@@ -6,6 +6,7 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const CALENDLY_URL = 'https://calendly.com/sonic-group-info/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=c8d300';
 
@@ -237,10 +238,8 @@ export default function KontaktPage() {
 
               {/* Office info */}
               <div className="px-5 py-8 sm:px-10 sm:py-10 border-t border-foreground-100">
-                <p className="text-xs font-black uppercase tracking-[0.28em] text-primary-500 mb-4">
-                  Unser Standort
-                </p>
-                <h3 className="text-xl font-black text-foreground-950 mb-1 uppercase">{tOfficeH3}</h3>
+                <SectionBadge text="Unser Standort" variant="dark" className="mb-4" />
+                <h3 className="sonic-h3 text-foreground-950 mb-1">{tOfficeH3}</h3>
                 <p className="text-sm text-foreground-500 leading-relaxed mb-5">
                   {tOfficeAddr.split('\n').map((line, i) => (<span key={i}>{line}<br /></span>))}
                 </p>

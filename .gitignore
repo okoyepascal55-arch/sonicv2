@@ -38,3 +38,8 @@ out
 
 # Project-specific
 image_check_report.txt
+-e 
+# Design backups (local only, never ship)
+/_design_backups/
+_design-backup/
+kontakt-prototype.html

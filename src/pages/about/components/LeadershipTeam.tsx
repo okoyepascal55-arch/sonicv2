@@ -1,3 +1,4 @@
+import SectionBadge from '@/components/base/SectionBadge';
 import { useEffect, useState } from 'react';
 import { useText } from '@/hooks/useText';
 import { useMediaStore } from '@/lib/mediaStore';
@@ -36,10 +37,7 @@ export default function LeadershipTeam() {
       <div className="max-w-full max-w-[1280px] mx-auto px-6 md:px-10">
         {/* ── HEADER ── */}
         <div className="max-w-full max-w-[640px] mb-10 md:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
-            <span className="w-1.5 h-1.5 bg-primary-500 flex-shrink-0" />
-            <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary-500">{tBadge}</span>
-          </div>
+          <SectionBadge text={tBadge} variant="dark" className="mb-5" />
           <h2 className="sonic-h2 text-foreground-950">
             {headingMain}{' '}
             <span className="text-primary-500">{headingAccent}</span>

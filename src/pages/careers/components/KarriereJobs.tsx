@@ -111,7 +111,7 @@ export default function KarriereJobs() {
               />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-white mb-1">{tTanjaHeading}</h3>
+              <h3 className="sonic-h3 text-white mb-1">{tTanjaHeading}</h3>
               <p className="text-xs text-white/50 max-w-lg leading-relaxed">{tTanjaDesc}</p>
             </div>
           </div>
