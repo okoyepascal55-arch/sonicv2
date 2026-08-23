@@ -1,5 +1,6 @@
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import SectionBadge from '@/components/base/SectionBadge';
 
 export default function TrustStrip() {
   const { images: logoImages } = useMediaStore('home_truststrip_logos');
@@ -67,9 +68,7 @@ export default function TrustStrip() {
 
       <div className="sonic-container relative z-10">
         <div className="border-t border-foreground-200 pt-5 sm:pt-8 md:pt-12">
-          <p className="text-[10px] sm:text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-2 sm:mb-3 md:mb-4">
-            {tTrustBadge}
-          </p>
+          <SectionBadge text="{tTrustBadge}" variant="dark" className="mb-4" />
 
           {/* Mobile: single-row horizontal scroll strip */}
           <div

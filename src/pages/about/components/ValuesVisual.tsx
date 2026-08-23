@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const clients = [
   { name: 'Philips', category: 'Unterhaltungselektronik', logo: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887' },

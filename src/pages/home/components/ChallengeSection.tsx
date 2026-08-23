@@ -104,7 +104,7 @@ export default function ChallengeSection() {
                   style={{
                     transform: active ? 'translateY(-6px)' : 'translateY(0)',
                     background: active
-                      ? 'linear-gradient(145deg, #1a1a1a 0%, #111 100%)'
+                      ? 'oklch(var(--foreground-950))'
                       : '#ffffff',
                     boxShadow: active
                       ? '0 28px 60px rgba(0,0,0,0.22), 0 0 0 1px rgba(200,212,0,0.3)'

@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import LimeBadge from '@/components/base/LimeBadge';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const FORECASTING_CHALLENGES: ChallengeItem[] = [
   {
@@ -105,10 +105,7 @@ export default function ForecastingContent() {
         <div className="sonic-container relative">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
-                <i className="ri-check-double-line text-foreground-950 text-sm" />
-                <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Sonic-Lösung</span>
-              </div>
+              <SectionBadge text="Die Sonic-Lösung" variant="dark" className="mb-5" />
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight uppercase">
                 {tSolutionHeading}
               </h2>
@@ -124,8 +121,8 @@ export default function ForecastingContent() {
       <section id="wie-es-funktioniert" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-10 md:mb-14">
-            <LimeBadge text="So funktioniert es" className="mb-5" />
-            <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 leading-tight uppercase">{tHowHeading}</h2>
+            <SectionBadge text="So funktioniert es" variant="dark" className="mb-5" />
+            <h2 className="sonic-h2 text-foreground-950">{tHowHeading}</h2>
             <p className="text-foreground-950/45 text-sm mt-3 max-w-xl mx-auto">{tHowSub}</p>
           </div>
 

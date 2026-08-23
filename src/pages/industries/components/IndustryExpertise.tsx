@@ -56,7 +56,7 @@ export default function IndustryExpertise() {
                   borderRadius: 0,
                   transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
                   background: isHovered
-                    ? 'linear-gradient(145deg, #1a1a1a 0%, #111 100%)'
+                    ? 'oklch(var(--foreground-950))'
                     : '#ffffff',
                   boxShadow: isHovered
                     ? '0 28px 60px rgba(0,0,0,0.22), 0 0 0 1px rgba(200,212,0,0.3)'

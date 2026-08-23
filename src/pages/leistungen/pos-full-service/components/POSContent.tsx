@@ -171,7 +171,7 @@ export default function POSContent() {
               <i className="ri-check-double-line text-foreground-950 text-sm"></i>
               <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-foreground-950 mb-3 leading-tight uppercase">{tSolutionHeading}</h2>
+            <h2 className="sonic-h2 text-foreground-950">{tSolutionHeading}</h2>
             <p className="text-foreground-950/55 text-sm md:text-base max-w-2xl mx-auto">{tSolutionSub}</p>
           </div>
           <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="wood" cardMinHeight="340px" />
@@ -189,7 +189,7 @@ export default function POSContent() {
               <i className="ri-stack-line text-primary-500 text-sm"></i>
               <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Alle Assets</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-white leading-tight uppercase">{tAssetsHeading}</h2>
+            <h2 className="sonic-h2 text-white">{tAssetsHeading}</h2>
             <p className="text-white/40 text-sm mt-3">{tAssetsSub}</p>
           </div>
 
@@ -282,7 +282,7 @@ export default function POSContent() {
               <i className="ri-route-line text-primary-500 text-sm" />
               <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Ablauf</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">{tProcessHeading}</h2>
+            <h2 className="sonic-h2 text-white">{tProcessHeading}</h2>
             <p className="text-white/40 text-sm mt-3">{tProcessSub}</p>
           </div>
 

@@ -83,7 +83,7 @@ export default function IndustryGrid() {
               style={{
                 borderRadius: 0,
                 transform: hoveredCard === index ? 'translateY(-6px)' : 'translateY(0)',
-                background: hoveredCard === index ? 'linear-gradient(145deg, #1a1a1a 0%, #111 100%)' : '#ffffff',
+                background: hoveredCard === index ? 'oklch(var(--foreground-950))' : '#ffffff',
                 boxShadow: hoveredCard === index
                   ? '0 28px 60px rgba(0,0,0,0.22), 0 0 0 1px rgba(200,212,0,0.3)'
                   : '0 2px 12px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.06)',

@@ -17,7 +17,7 @@ function HighlightCard({ item }: { item: typeof highlights[0] }) {
       style={{
         borderRadius: 0,
         transform: isHovered ? 'translateY(-5px)' : 'translateY(0)',
-        background: isHovered ? 'linear-gradient(145deg, #1a1a1a 0%, #111 100%)' : '#ffffff',
+        background: isHovered ? 'oklch(var(--foreground-950))' : '#ffffff',
         boxShadow: isHovered
           ? '0 24px 50px rgba(0,0,0,0.18), 0 0 0 1px rgba(200,212,0,0.3)'
           : '0 2px 12px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.06)',

@@ -181,7 +181,7 @@ export default function KarrierepfadeSection() {
 
               <h3
                 key={`headline-${active}`}
-                className="text-2xl md:text-3xl font-black text-white leading-tight tracking-tight"
+                className="sonic-h2 text-white"
               >
                 {path.headline}
               </h3>

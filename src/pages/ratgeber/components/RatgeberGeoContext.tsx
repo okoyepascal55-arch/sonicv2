@@ -13,7 +13,7 @@ const GEO_LABELS: Record<string, string> = {
 
 export default function RatgeberGeoContext({ data }: RatgeberGeoContextProps) {
   return (
-    <section className="sonic-section-lg md:" style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
+    <section className="sonic-section-lg md:" style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }}>
       <div className="max-w-4xl mx-auto px-4 md:px-6">
         <div className="inline-flex items-center gap-2 bg-primary-500/20 border border-primary-500/30 px-3 py-1 mb-5" style={{ borderRadius: 0 }}>
           <i className="ri-map-pin-line text-foreground-950/60 text-xs"></i>

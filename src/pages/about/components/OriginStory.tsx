@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import LimeBadge from '@/components/base/LimeBadge';
 import type { MediaItem } from '@/lib/mediaStore';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const tickerStats = [
   { icon: 'ri-briefcase-line', value: '>500', label: 'Projekte' },
@@ -51,7 +51,7 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
               visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            <LimeBadge text={tBadge} />
+            <SectionBadge text={tBadge} variant="dark" />
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">

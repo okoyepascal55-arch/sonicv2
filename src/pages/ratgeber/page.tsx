@@ -195,7 +195,7 @@ export default function RatgeberHubPage() {
       </section>
 
       {/* Stats Strip */}
-      <div style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }} className="border-y border-foreground-950/5">
+      <div style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }} className="border-y border-foreground-950/5">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-8">
           <div className="grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-6">
             {STATS.map((stat, idx) => (

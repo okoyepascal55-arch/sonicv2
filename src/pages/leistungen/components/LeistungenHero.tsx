@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useCallback, useEffect, useState } from 'react';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const CYCLING_WORDS = [
   'ROI',

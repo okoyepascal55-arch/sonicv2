@@ -52,7 +52,7 @@ export default function ImpactMetrics() {
         {/* Header */}
         <div className="text-center mb-16">
           <SectionBadge text="Our Impact" variant="light" className="mb-6" />
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 leading-tight">THE NUMBERS SPEAK</h2>
+          <h2 className="sonic-h2 text-white">THE NUMBERS SPEAK</h2>
           <p className="text-lg text-white/70 max-w-2xl mx-auto">
             Quantifiable impact across every dimension of retail excellence
           </p>

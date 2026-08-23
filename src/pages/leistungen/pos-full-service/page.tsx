@@ -38,7 +38,7 @@ export default function POSFullServicePage() {
 
       <WoodenDivider />
 
-      <div style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
+      <div style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }}>
         <POSContent />
       </div>
 

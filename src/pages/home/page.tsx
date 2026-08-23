@@ -43,7 +43,7 @@ export default function HomePage() {
 
       {/* LiveMetrics — subtle warm tint breaks the pure-white run */}
       <StackedSectionReveal index={1} totalSections={totalSections}>
-        <section id="metrics" className="relative z-10" style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
+        <section id="metrics" className="relative z-10" style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }}>
           <LiveMetrics />
         </section>
       </StackedSectionReveal>
@@ -96,7 +96,7 @@ export default function HomePage() {
 
       <WoodenDivider />
 
-      <div className="w-full h-8 pointer-events-none" style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }} aria-hidden="true" />
+      <div className="w-full h-8 pointer-events-none" style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }} aria-hidden="true" />
 
       <section id="contact" className="relative z-10 bg-white">
         <Contact />

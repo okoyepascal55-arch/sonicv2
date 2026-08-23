@@ -59,7 +59,7 @@ export default function ChallengeSection({
       ref={sectionRef}
       id={id}
       className="relative overflow-hidden py-16 md:py-28 px-4 md:px-6"
-      style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}
+      style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }}
     >
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary-500/3 blur-[130px] pointer-events-none rounded-full" />

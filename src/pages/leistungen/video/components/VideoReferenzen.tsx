@@ -261,7 +261,7 @@ export default function VideoReferenzen() {
                 <div className="text-xs text-primary-500 font-bold mt-0.5">{VIDEO_CLIENTS[activeCard].company}</div>
               </div>
               <div className="text-right flex-shrink-0">
-                <div className="text-4xl font-black text-foreground-950 leading-none">
+                <div className="sonic-h2 text-foreground-950">
                   {VIDEO_CLIENTS[activeCard].metric}
                 </div>
                 <div className="text-xs font-black text-foreground-950/40 uppercase tracking-widest mt-1">

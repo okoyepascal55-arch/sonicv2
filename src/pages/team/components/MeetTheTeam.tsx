@@ -127,7 +127,7 @@ export default function MeetTheTeam() {
               onMouseEnter={() => setHoveredPolaroid(true)}
               onMouseLeave={() => setHoveredPolaroid(false)}
               style={{
-                background: '#f5f2ec',
+                background: 'oklch(var(--background-100))',
                 padding: '8px 8px 40px 8px',
                 boxShadow: hoveredPolaroid
                   ? '0 32px 80px rgba(0,0,0,0.85), 0 8px 24px rgba(0,0,0,0.6)'
@@ -162,7 +162,7 @@ export default function MeetTheTeam() {
               </div>
 
               {/* Polaroid caption strip */}
-              <div className="flex flex-col items-center justify-center pt-2.5 pb-1 relative overflow-hidden" style={{ background: '#f5f2ec' }}>
+              <div className="flex flex-col items-center justify-center pt-2.5 pb-1 relative overflow-hidden" style={{ background: 'oklch(var(--background-100))' }}>
                 <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'grain\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3CfeColorMatrix type=\'saturate\' values=\'0\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23grain)\' opacity=\'0.12\'/%3E%3C/svg%3E")', backgroundSize: '120px 120px', opacity: 0.6, mixBlendMode: 'multiply' }} />
                 <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(180,160,120,0.04) 3px, rgba(180,160,120,0.04) 4px)', opacity: 0.8 }} />
                 <div className="relative z-10 text-[11px] font-black uppercase tracking-[0.14em] text-foreground-950/70 leading-none">{currentProfile.name}</div>

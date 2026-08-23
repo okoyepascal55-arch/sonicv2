@@ -10,7 +10,6 @@ import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import LimeBadge from '@/components/base/LimeBadge';
 import WoodenButton from '@/components/base/WoodenButton';
 
 const NAV_ITEMS = [
@@ -198,7 +197,7 @@ export default function WarehouseLogistikPage() {
       <WoodenDivider />
 
       {/* Solution — light warm bg (directly after dark ChallengeSection), subtle tint matching homepage */}
-      <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
+      <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }}>
         <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative sonic-container">
           <div className="mb-10 md:mb-12">

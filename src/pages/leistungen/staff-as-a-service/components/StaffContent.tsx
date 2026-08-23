@@ -137,11 +137,8 @@ export default function StaffContent() {
         <div className="sonic-container relative">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
-                <i className="ri-check-double-line text-foreground-950 text-sm" />
-                <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-none uppercase">
+              <SectionBadge text="Die Lösung" variant="dark" className="mb-5" />
+              <h2 className="sonic-h2 text-foreground-950">
                 {tSolutionHeading}
               </h2>
             </div>
@@ -163,7 +160,7 @@ export default function StaffContent() {
               <i className="ri-route-line text-primary-500 text-sm" />
               <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Ablauf</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">
+            <h2 className="sonic-h2 text-white">
               {tProcessHeading}
             </h2>
             <p className="text-white/40 text-sm mt-3">Volle Kostenkontrolle, volle Flexibilität, volle Performance, volle Entlastung.</p>
@@ -265,7 +262,7 @@ export default function StaffContent() {
                 <i className="ri-focus-3-line text-primary-500 text-sm" />
                 <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Unsere Spezialisierung</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-none">
+              <h2 className="sonic-h2 text-white">
                 {tSpecsHeading}
               </h2>
             </div>
@@ -287,7 +284,7 @@ export default function StaffContent() {
               <i className="ri-check-double-line text-primary-500 text-sm" />
               <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Sell-out mit System</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight">
+            <h2 className="sonic-h2 text-white">
               {tSocksHeading}
             </h2>
             <p className="text-white/40 text-sm mt-3 max-w-xl mx-auto">{tSocksSub}</p>

@@ -238,10 +238,7 @@ export default function TalentpoolContent() {
         <div className="sonic-container relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
-                <i className="ri-check-double-line text-foreground-950 text-sm" />
-                <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Sonic-Lösung</span>
-              </div>
+              <SectionBadge text="Die Sonic-Lösung" variant="dark" className="mb-5" />
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight uppercase">
                 {tSolutionHeading}
               </h2>
@@ -261,10 +258,7 @@ export default function TalentpoolContent() {
         <div className="sonic-container relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
-                <i className="ri-focus-3-line text-primary-500 text-sm" />
-                <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Talentprofile</span>
-              </div>
+              <SectionBadge text="Talentprofile" variant="dark" className="mb-5" />
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight uppercase">{tProfilesHeading}</h2>
             </div>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs lg:text-right">

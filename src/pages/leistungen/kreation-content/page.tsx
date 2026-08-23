@@ -7,13 +7,13 @@ import ClientProof from '@/components/feature/ClientProof';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import KreationShowcase from './components/KreationShowcase';
 import Carousel3D from './components/Carousel3D';
-import LimeBadge from '@/components/base/LimeBadge';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const FALLBACK_KREATION_SOLUTION_ICONS = [
   'https://readdy.ai/api/search-image?query=carved%20wooden%20lightbulb%20idea%20concept%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-bulb-01&orientation=squarish',
@@ -323,7 +323,7 @@ export default function KreationContentPage() {
 
             {/* Badge */}
             <div className="mb-10 flex justify-center">
-              <LimeBadge text={tHeroBadge} />
+              <SectionBadge text={tHeroBadge} variant="light" />
             </div>
 
             {/* Headline */}

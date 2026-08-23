@@ -32,7 +32,7 @@ export default function CaseStudiesCTA() {
           <div className="flex justify-center mb-6">
             <SectionBadge text={tBadge} variant="dark" />
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 mb-4 leading-tight">
+          <h2 className="sonic-h2 text-foreground-950">
             {tHeading}
           </h2>
           <p className="text-lg text-foreground-600 max-w-2xl mx-auto">

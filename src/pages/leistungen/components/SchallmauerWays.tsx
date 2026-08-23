@@ -116,7 +116,7 @@ export default function SchallmauerWays() {
                 style={{
                   transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
                   background: isHovered
-                    ? 'linear-gradient(145deg, #1a1a1a 0%, #111 100%)'
+                    ? 'oklch(var(--foreground-950))'
                     : '#ffffff',
                   boxShadow: isHovered
                     ? '0 28px 60px rgba(0,0,0,0.22), 0 0 0 1px rgba(200,212,0,0.3)'
@@ -209,7 +209,7 @@ export default function SchallmauerWays() {
                     className="inline-flex items-center gap-2 font-black text-xs uppercase tracking-widest px-5 py-3 transition-all duration-300 whitespace-nowrap w-fit cursor-pointer"
                     style={{
                       background: isHovered ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.07)',
-                      color: isHovered ? '#111111' : '#6b7280',
+                      color: isHovered ? 'oklch(var(--foreground-950))' : 'oklch(var(--foreground-500))',
                       boxShadow: isHovered ? '0 4px 20px rgba(200,212,0,0.4)' : 'none',
                     }}
                   >

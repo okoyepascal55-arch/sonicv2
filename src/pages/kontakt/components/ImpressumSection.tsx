@@ -28,7 +28,7 @@ export default function ImpressumSection() {
             </p>
             <h2
               id="impressum-heading"
-              className="text-3xl md:text-4xl font-black text-foreground-950 leading-tight"
+              className="sonic-h2 text-foreground-950"
             >
               IMPRESSUM
             </h2>

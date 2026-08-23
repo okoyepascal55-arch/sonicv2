@@ -7,6 +7,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const EVENTS_CHALLENGES: ChallengeItem[] = [
   {
@@ -104,11 +105,8 @@ export default function EventsContent() {
         <div className="sonic-container relative">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
-                <i className="ri-check-double-line text-foreground-950 text-sm" />
-                <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-none uppercase">
+              <SectionBadge text="Die Lösung" variant="dark" className="mb-5" />
+              <h2 className="sonic-h2 text-foreground-950">
                 {tSolutionHeading}
               </h2>
             </div>
@@ -127,11 +125,8 @@ export default function EventsContent() {
         <div className="relative sonic-container">
           {/* Header */}
           <div className="text-center mb-12 md:mb-16">
-            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
-              <i className="ri-route-line text-primary-500 text-sm" />
-              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Ablauf</span>
-            </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">{tProcessHeading}</h2>
+            <SectionBadge text="Ablauf" variant="dark" className="mb-5" />
+            <h2 className="sonic-h2 text-white">{tProcessHeading}</h2>
             <p className="text-white/40 text-sm mt-3">{tProcessSub}</p>
           </div>
 

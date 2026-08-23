@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import LimeBadge from '@/components/base/LimeBadge';
 import { useText } from '@/hooks/useText';
+import SectionBadge from '@/components/base/SectionBadge';
 
 type SectionKey = 'new' | 'better' | 'things';
 
@@ -126,7 +126,7 @@ export default function Timeline() {
           className={`mb-8 md:mb-12 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           <div className="flex items-center justify-center mb-5">
-            <LimeBadge text={tBadge} />
+            <SectionBadge text={tBadge} variant="dark" />
           </div>
           <h2 className="text-3xl font-black text-foreground-950 leading-tight tracking-tight text-center mb-3">
             {tHeading.split(' ').slice(0, 2).join(' ')}{' '}
@@ -181,7 +181,7 @@ export default function Timeline() {
           <div className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
               <div className="text-xs font-black uppercase tracking-[0.3em] text-primary-500 mb-2">{current.tag}</div>
-              <h3 className="text-2xl md:text-3xl font-black text-foreground-950 leading-tight tracking-tight">{current.title}</h3>
+              <h3 className="sonic-h2 text-foreground-950">{current.title}</h3>
             </div>
             <p className="text-sm text-black/50 max-w-md leading-relaxed">{current.subtitle}</p>
           </div>

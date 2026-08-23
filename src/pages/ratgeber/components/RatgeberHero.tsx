@@ -33,7 +33,7 @@ export default function RatgeberHero({ h1, h1Accent, heroSubtitle, heroSummary, 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
-              <p className="text-xs font-black text-primary-500 uppercase tracking-widest mb-6">
+              <p className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-xs font-black text-primary-500 uppercase tracking-[0.2em]" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.30)' }}>
                 {category}
               </p>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 leading-tight drop-shadow-2xl">

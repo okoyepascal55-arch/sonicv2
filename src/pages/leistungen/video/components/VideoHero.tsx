@@ -1,7 +1,6 @@
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import LimeBadge from '@/components/base/LimeBadge';
 
 export default function VideoHero() {
   const { images: videoHeroImages } = useMediaStore('leistungen_video_images');

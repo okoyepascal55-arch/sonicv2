@@ -181,7 +181,7 @@ export default function VideoContent() {
               <i className="ri-check-double-line text-foreground-950 text-sm"></i>
               <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-foreground-950 mb-3 leading-tight uppercase">{tSolutionHeading}</h2>
+            <h2 className="sonic-h2 text-foreground-950">{tSolutionHeading}</h2>
             <p className="text-foreground-950/55 text-base max-w-2xl mx-auto">{tSolutionSub}</p>
           </div>
           <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: solutionWoodIcons[i]?.url ? resolveImageUrl(solutionWoodIcons[i].url) : s.woodIcon || '' }))} label={`${SOLUTIONS.length} Kanäle — scrollen`} theme="light" variant="wood" cardWidth="clamp(280px, 32vw, 380px)" cardMinHeight="340px" />
@@ -200,7 +200,7 @@ export default function VideoContent() {
               <i className="ri-thumb-up-line text-primary-500 text-sm"></i>
               <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Vorteile</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">{tAdvantagesHeading}</h2>
+            <h2 className="sonic-h2 text-white">{tAdvantagesHeading}</h2>
             <p className="text-white/45 text-sm mt-3">Chancen auf mehr Verkäufe und weniger Retouren.</p>
           </div>
           <ScrollCardSection data={ADVANTAGES.map((a, i) => ({ ...a, woodIcon: advantagesWoodIcons[i]?.url ? resolveImageUrl(advantagesWoodIcons[i].url) : a.woodIcon || '' }))} label={`${ADVANTAGES.length} Vorteile — scrollen`} theme="dark" variant="wood" cardWidth="clamp(260px, 24vw, 320px)" cardMinHeight="300px" />
@@ -215,7 +215,7 @@ export default function VideoContent() {
               <i className="ri-calculator-line text-foreground-950 text-sm"></i>
               <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Kostenrechner</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 leading-tight uppercase">Live-Video: Kosten pro Jahr</h2>
+            <h2 className="sonic-h2 text-foreground-950">Live-Video: Kosten pro Jahr</h2>
           </div>
 
           <div className="border border-foreground-950/15 bg-white p-8 md:p-10">
@@ -278,7 +278,7 @@ export default function VideoContent() {
               <i className="ri-links-line text-primary-500 text-sm"></i>
               <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Ideale Kombination</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">{tPhygitalHeading}</h2>
+            <h2 className="sonic-h2 text-white">{tPhygitalHeading}</h2>
             <p className="text-white/45 text-sm mt-3 max-w-xl mx-auto">Video und Field Force ergänzen sich wunderbar. Clever eingesetzt wird der ROI beider Maßnahmen im Omnichannel erhöht.</p>
           </div>
 
@@ -327,7 +327,7 @@ export default function VideoContent() {
               <i className="ri-film-line text-foreground-950 text-sm"></i>
               <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Video-Formate</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 leading-tight uppercase">{tFormatsHeading}</h2>
+            <h2 className="sonic-h2 text-foreground-950">{tFormatsHeading}</h2>
           </div>
 
           {/* Format selector */}

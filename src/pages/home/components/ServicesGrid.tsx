@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { useMediaStore } from '@/lib/mediaStore';
+import SectionBadge from '@/components/base/SectionBadge';
 
 /* ── reusable image error helper ── */
 function hideBrokenImg(e: React.SyntheticEvent<HTMLImageElement>) {
@@ -192,9 +193,7 @@ export default function ServicesGrid() {
       <div className="sonic-container relative z-10">
         {/* ── Section Header ── */}
         <div className="text-center mb-8 md:mb-12 lg:mb-14">
-          <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-3 md:mb-4">
-            Unsere Leistungen
-          </p>
+          <SectionBadge text="Unsere Leistungen" variant="dark" className="mb-4" />
           <h2 className="sonic-h2 text-foreground-950">
             Manpower trifft{' '}
             <span className="relative inline-block">

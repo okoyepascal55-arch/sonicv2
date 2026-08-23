@@ -2,7 +2,6 @@ import React from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import LimeBadge from '@/components/base/LimeBadge';
 
 export default function EventsHero() {
   const { images: eventsHeroImages } = useMediaStore('leistungen_events_images');
