@@ -1,4 +1,3 @@
-import SectionBadge from '@/components/base/SectionBadge';
 export default function ImpressumSection() {
   return (
     <section
@@ -18,18 +17,29 @@ export default function ImpressumSection() {
 
       <div className="max-w-full max-w-[1300px] mx-auto relative z-10">
         {/* Section header */}
-        <div className="sonic-section-header">
-          <SectionBadge text="Rechtliches" variant="dark" />
-          <h2 id="impressum-heading" className="sonic-h2 text-foreground-950">
-            Impressum
-          </h2>
+        <div className="mb-10 flex items-center gap-4">
+          <div
+            className="w-1 self-stretch bg-primary-500 flex-shrink-0"
+            aria-hidden="true"
+          />
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.3em] text-primary-500 mb-1">
+              Rechtliches
+            </p>
+            <h2
+              id="impressum-heading"
+              className="sonic-h2 text-foreground-950"
+            >
+              Impressum
+            </h2>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground-200">
 
           {/* Angaben */}
           <div className="bg-white px-8 py-10">
-            <h3 className="sonic-label text-primary-500 mb-5">
+            <h3 className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-5">
               Angaben gemäß § 5 TMG
             </h3>
             <div className="space-y-1 text-sm text-foreground-600 leading-relaxed">
@@ -40,7 +50,7 @@ export default function ImpressumSection() {
             </div>
 
             <div className="mt-6">
-              <h4 className="sonic-label text-foreground-400 mb-3">
+              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-foreground-400 mb-3">
                 Vertreten durch
               </h4>
               <p className="text-sm text-foreground-600">Geschäftsführung der Sonic Group GmbH</p>
@@ -49,7 +59,7 @@ export default function ImpressumSection() {
 
           {/* Kontakt */}
           <div className="bg-white px-8 py-10">
-            <h3 className="sonic-label text-primary-500 mb-5">
+            <h3 className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-5">
               Kontakt
             </h3>
             <div className="space-y-3 text-sm text-foreground-600">
@@ -91,7 +101,7 @@ export default function ImpressumSection() {
             </div>
 
             <div className="mt-6">
-              <h4 className="sonic-label text-foreground-400 mb-3">
+              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-foreground-400 mb-3">
                 Registrierung
               </h4>
               <div className="space-y-1 text-sm text-foreground-600">
@@ -103,7 +113,7 @@ export default function ImpressumSection() {
 
           {/* Haftung + USt */}
           <div className="bg-white px-8 py-10">
-            <h3 className="sonic-label text-primary-500 mb-5">
+            <h3 className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-5">
               Umsatzsteuer-ID
             </h3>
             <p className="text-sm text-foreground-600 leading-relaxed mb-6">
@@ -112,7 +122,7 @@ export default function ImpressumSection() {
               <span className="font-bold text-foreground-950 mt-1 block">DE 815 258 744</span>
             </p>
 
-            <h3 className="sonic-label text-primary-500 mb-3">
+            <h3 className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-3">
               Haftung für Inhalte
             </h3>
             <p className="text-xs text-foreground-400 leading-relaxed mb-5">
@@ -122,7 +132,7 @@ export default function ImpressumSection() {
               gespeicherte fremde Informationen zu überwachen.
             </p>
 
-            <h3 className="sonic-label text-primary-500 mb-3">
+            <h3 className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-3">
               Urheberrecht
             </h3>
             <p className="text-xs text-foreground-400 leading-relaxed">

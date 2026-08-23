@@ -1,4 +1,3 @@
-import SectionBadge from '@/components/base/SectionBadge';
 import { useState, useCallback } from 'react';
 import type { MediaItem } from '@/lib/mediaStore';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
@@ -90,7 +89,10 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
         {/* ── HEADER + SELECTOR ── */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10 md:mb-12">
           <div className="max-w-xl">
-            <SectionBadge text={tBadge} variant="dark" className="mb-5" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.12)', border: '1px solid oklch(var(--primary-500) / 0.28)' }}>
+              <span className="w-1.5 h-1.5 flex-shrink-0" style={{ background: 'oklch(var(--primary-500))'}} />
+              <span className="text-[11px] font-black uppercase tracking-[0.2em]" style={{ color: 'oklch(var(--primary-500))'}}>{tBadge}</span>
+            </div>
             <h2 className="sonic-h2 text-foreground-950">
               {headingMain}{' '}
               <span className="text-primary-500">{headingAccent}</span>
