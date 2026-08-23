@@ -84,7 +84,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
   const headingAccent = headingWords.length > 1 ? headingWords[headingWords.length - 1] : '';
 
   return (
-    <section id="management-voices" className="relative bg-white overflow-hidden">
+    <section id="management-voices" className="relative bg-background-100 overflow-hidden">
       <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10 py-14 md:py-20">
         {/* ── HEADER + SELECTOR ── */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10 md:mb-12">

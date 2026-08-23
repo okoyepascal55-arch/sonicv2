@@ -40,11 +40,11 @@ export default function CoreValues() {
   ];
 
   return (
-    <section id="values" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
+    <section id="values" className="sonic-section-lg px-4 md:px-6 bg-background-100 relative overflow-hidden">
       <div className="sonic-container">
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
-          <h2 className="text-3xl lg:text-5xl font-black text-foreground-950 mb-6 leading-tight tracking-tight relative inline-block">
+          <h2 className="sonic-h2 text-foreground-950">
             {tHeading}
           </h2>
           <p className="text-xl text-foreground-600 max-w-3xl mx-auto mt-4">
@@ -79,7 +79,7 @@ export default function CoreValues() {
                   </div>
                 </div>
                 
-                <h3 className="text-3xl lg:text-4xl font-black text-foreground-950 mb-2 leading-tight tracking-tight">
+                <h3 className="sonic-h2 text-foreground-950">
                   {value.title}
                 </h3>
                 

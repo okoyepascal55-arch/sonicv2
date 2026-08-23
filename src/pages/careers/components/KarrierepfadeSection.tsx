@@ -96,7 +96,7 @@ export default function KarrierepfadeSection() {
   const headingAccent = sentences.length > 1 ? sentences.slice(1).join(' ') : '';
 
   return (
-    <section id="pfade" className="sonic-section-lg relative bg-white overflow-hidden">
+    <section id="pfade" className="sonic-section-lg relative bg-background-100 overflow-hidden">
       <div className="max-w-full max-w-[1280px] mx-auto px-6 md:px-10">
         {/* ── HEADER + SELECTOR ── */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10 md:mb-12">

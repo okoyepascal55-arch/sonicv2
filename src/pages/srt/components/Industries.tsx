@@ -115,7 +115,7 @@ export default function Industries() {
   const currentList = step === 1 ? STEP1_INDUSTRIES : step === 2 ? STEP2_CHALLENGES : step === 3 ? STEP3_GOALS : [];
 
   return (
-    <section id="branchen" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
+    <section id="branchen" className="sonic-section-lg px-4 md:px-6 bg-background-100 relative overflow-hidden">
       <div className="sonic-container relative z-10">
         {/* ── Use Cases ── */}
         <div className="mb-16">
@@ -124,7 +124,7 @@ export default function Industries() {
               <SectionBadge text={tBadge} variant="dark" />
             </div>
             <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end mb-5">
-              <h2 className="font-black text-foreground-950 leading-tight tracking-tight" style={{ fontSize: 'clamp(26px,3.5vw,40px)' }}>
+              <h2 className="sonic-h2 text-foreground-950" style={{ fontSize: 'clamp(26px,3.5vw,40px)' }}>
                 VON RETAIL EXECUTION BIS <span className="text-primary-500">HEALTHCARE.</span>
               </h2>
               <p className="text-sm text-foreground-600 leading-relaxed lg:pb-1">

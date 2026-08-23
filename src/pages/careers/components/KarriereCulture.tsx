@@ -51,7 +51,7 @@ export default function KarriereCulture() {
   };
 
   return (
-    <section id="darum" className="sonic-section-lg px-4 md:px-6 bg-white">
+    <section id="darum" className="sonic-section-lg px-4 md:px-6 bg-background-100">
       <div className="sonic-container">
         {/* ── Headline ── */}
         <div className="max-w-3xl mb-12 md:mb-16">

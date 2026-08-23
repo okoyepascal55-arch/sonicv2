@@ -216,14 +216,14 @@ export default function FeaturedCases() {
   ];
 
   return (
-    <section className="sonic-section-lg md:px-4 md:px-6 bg-white relative overflow-hidden">
+    <section className="sonic-section-lg px-4 md:px-6 bg-background-100 relative overflow-hidden">
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[400px] bg-primary-500/6 blur-3xl pointer-events-none"></div>
 
       <div className="sonic-container relative z-10">
         {/* Header */}
         <div className="text-center mb-14">
           <SectionBadge text="Deep Dive" variant="dark" className="mb-6" />
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#1a1a1a] mb-4 leading-tight">UNSERE 4 ERFOLGSPARTNERSCHAFTEN</h2>
+          <h2 className="sonic-h2 text-foreground-950 mb-4">UNSERE 4 ERFOLGSPARTNERSCHAFTEN</h2>
           <p className="text-base text-foreground-600 max-w-2xl mx-auto">Echte Zahlen, echte Zitate, echte Ergebnisse — aus laufenden Langzeitpartnerschaften im DACH-Raum</p>
         </div>
 

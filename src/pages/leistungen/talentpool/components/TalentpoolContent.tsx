@@ -325,7 +325,7 @@ export default function TalentpoolContent() {
       </section>
 
       {/* ── Stats ── */}
-      <section id="stats" className="sonic-section-lg bg-white px-4 md:px-6">
+      <section id="stats" className="sonic-section-lg bg-background-100 px-4 md:px-6">
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-px bg-foreground-950/10 border border-foreground-950/10 overflow-hidden">
           {STATS.map((s, i) => (
             <div key={i} className="bg-white p-6 md:p-8 text-center relative overflow-hidden group">

@@ -345,7 +345,7 @@ export default function POSContent() {
                   <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {STEPS[activeStep].num}</span>
                   <span className="px-3 py-1.5 bg-primary-500 text-foreground-950 text-xs font-black">{STEPS[activeStep].time}</span>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight">{STEPS[activeStep].title}</h3>
+                <h3 className="sonic-h3 text-white mb-4">{STEPS[activeStep].title}</h3>
                 <p className="text-white/55 text-sm md:text-base leading-relaxed">{STEPS[activeStep].desc}</p>
 
                 {/* Navigation */}

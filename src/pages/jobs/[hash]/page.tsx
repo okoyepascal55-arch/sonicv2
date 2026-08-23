@@ -113,7 +113,7 @@ export default function JobDetailPage() {
               </span>
             )}
           </div>
-          <h1 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight">{job.title}</h1>
+          <h1 className="sonic-page-h1 text-white mb-5">{job.title}</h1>
           <div className="flex flex-wrap items-center gap-5">
             {job.location && (
               <span className="flex items-center gap-2 text-sm text-white/60">

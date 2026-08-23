@@ -40,7 +40,7 @@ export default function LeistungenKontakt({
                 <span className="text-xs font-black text-foreground-950/50 uppercase tracking-widest">Jetzt starten</span>
               </div>
 
-              <h2 className="text-3xl font-black text-foreground-950 mb-4 leading-tight">
+              <h2 className="sonic-h2 text-foreground-950 mb-4">
                 {headline}<br />
                 <span className="text-primary-500">{headlineAccent}</span>
               </h2>

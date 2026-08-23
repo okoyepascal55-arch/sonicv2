@@ -100,7 +100,7 @@ export default function CaseStudyDetailPage() {
   return (
     <div className="min-h-[100dvh]">
       {/* Hero Section */}
-      <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+      <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] overflow-hidden bg-foreground-950" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
         <img
           src={caseStudy.heroImage}
           alt={caseStudy.brand}

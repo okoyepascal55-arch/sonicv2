@@ -219,7 +219,7 @@ export default function StaffContent() {
                   <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {STEPS[activeStep].num}</span>
                   <span className="px-3 py-1.5 bg-primary-500 text-foreground-950 text-xs font-black">{STEPS[activeStep].time}</span>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight">{STEPS[activeStep].title}</h3>
+                <h3 className="sonic-h3 text-white mb-4">{STEPS[activeStep].title}</h3>
                 <p className="text-white/55 text-sm md:text-base leading-relaxed">{STEPS[activeStep].desc}</p>
 
                 {/* Navigation */}
@@ -341,7 +341,7 @@ export default function StaffContent() {
                 {/* Giant decorative letter */}
                 <div className="text-[100px] md:text-[140px] font-black leading-none text-white/[0.04] select-none -mb-6 md:-mb-10">{SOCKS[activeSocks].letter}</div>
                 <div className="text-primary-500 text-xs font-black uppercase tracking-widest mb-3">{SOCKS[activeSocks].letter} — {SOCKS[activeSocks].title}</div>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight">{SOCKS[activeSocks].title}</h3>
+                <h3 className="sonic-h3 text-white mb-4">{SOCKS[activeSocks].title}</h3>
                 <p className="text-white/55 text-sm md:text-base leading-relaxed">{SOCKS[activeSocks].desc}</p>
 
                 {/* Navigation */}

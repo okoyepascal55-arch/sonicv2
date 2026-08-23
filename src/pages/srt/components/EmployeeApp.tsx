@@ -183,7 +183,7 @@ export default function EmployeeApp() {
             <SectionBadge text={tBadge} variant="dark" />
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="font-black text-foreground-950 leading-tight tracking-tight" style={{ fontSize: 'clamp(28px,4vw,42px)' }}>
+            <h2 className="sonic-h2 text-foreground-950" style={{ fontSize: 'clamp(28px,4vw,42px)' }}>
               {tHeading}
             </h2>
             <p className="text-foreground-600 text-sm leading-relaxed lg:pb-1">

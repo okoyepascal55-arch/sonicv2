@@ -101,7 +101,7 @@ export default function PricingAndAccess() {
             <SectionBadge text={tBadge} variant="dark" />
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="font-black text-foreground-950 leading-tight tracking-tight" style={{ fontSize: 'clamp(28px,4vw,44px)' }}>
+            <h2 className="sonic-h2 text-foreground-950" style={{ fontSize: 'clamp(28px,4vw,44px)' }}>
               {tHeading.split('. ')[0] || tHeading}.<br />
               <span className="text-primary-500">{tHeading.includes('. ') ? tHeading.split('. ').slice(1).join('. ') : 'DIREKTER ZUGANG.'}</span>
             </h2>

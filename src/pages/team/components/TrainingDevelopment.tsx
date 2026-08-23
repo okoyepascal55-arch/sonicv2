@@ -34,7 +34,7 @@ export default function TrainingDevelopment() {
   ];
 
   return (
-    <section className="sonic-section-lg md:px-4 md:px-6 bg-white">
+    <section className="sonic-section-lg md:px-4 md:px-6 bg-background-100">
       <div className="sonic-container">
         <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
           <div>

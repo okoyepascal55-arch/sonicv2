@@ -61,7 +61,7 @@ export default function TheProblem() {
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-10 items-end">
             <div>
               <h2
-                className="font-black text-foreground-950 leading-tight tracking-tight"
+                className="sonic-h2 text-foreground-950"
                 style={{ fontSize: 'clamp(28px,4vw,48px)' }}
               >
                 {tHeading}

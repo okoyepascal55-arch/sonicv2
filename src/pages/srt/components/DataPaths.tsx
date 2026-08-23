@@ -152,7 +152,7 @@ export default function DataPaths() {
             <span className="text-2xs font-black text-background-50/20 uppercase tracking-widest hidden md:block">Interaktiv — Klicken zum Erkunden</span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-8 items-end">
-            <h2 className="font-black text-background-50 leading-tight tracking-tight" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
+            <h2 className="sonic-h2 text-background-50" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
               {tHeading}
             </h2>
             <div className="lg:pb-2">

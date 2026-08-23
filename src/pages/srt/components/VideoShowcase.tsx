@@ -19,7 +19,7 @@ export default function VideoShowcase() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="srt-in-aktion" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
+    <section id="srt-in-aktion" className="sonic-section-lg px-4 md:px-6 bg-background-100 relative overflow-hidden">
       <div className="sonic-container">
         {/* Header */}
         <div className="mb-8">
@@ -27,7 +27,7 @@ export default function VideoShowcase() {
             <SectionBadge text={tBadge} variant="dark" />
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="font-black text-foreground-950 leading-none tracking-tight" style={{ fontSize: 'clamp(32px,5vw,60px)' }}>
+            <h2 className="sonic-h2 text-foreground-950" style={{ fontSize: 'clamp(32px,5vw,60px)' }}>
               {tHeading}
             </h2>
             <p className="text-foreground-600 text-sm leading-relaxed lg:pb-1">

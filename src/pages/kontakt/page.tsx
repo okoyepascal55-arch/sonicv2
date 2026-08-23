@@ -99,7 +99,7 @@ export default function KontaktPage() {
     <div className="min-h-[100dvh] bg-white">
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex items-center px-4 md:px-6 bg-black overflow-hidden" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+      <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex items-center px-4 md:px-6 bg-foreground-950 overflow-hidden" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
         {/* Grid texture */}
         <div
           className="absolute inset-0 opacity-[0.04] pointer-events-none"

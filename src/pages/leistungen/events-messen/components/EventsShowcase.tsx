@@ -94,7 +94,7 @@ export default function EventsShowcase() {
   };
 
   return (
-    <section id="events" className="sonic-section-lg bg-white px-6">
+    <section id="events" className="sonic-section-lg bg-background-100 px-6">
       <div className="sonic-container">
 
         {/* Header */}

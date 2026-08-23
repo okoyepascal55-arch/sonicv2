@@ -31,7 +31,7 @@ export default function IndustryExpertise() {
   ];
 
   return (
-    <section className="sonic-section-lg bg-white">
+    <section className="sonic-section-lg bg-background-100">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">

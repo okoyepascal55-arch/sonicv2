@@ -46,7 +46,7 @@ export default function Contact() {
               </p>
 
               {/* Headline */}
-              <h2 className="text-2xl sm:text-3xl xl:text-4xl font-black text-white leading-[1.05] mb-2 relative inline-block">
+              <h2 className="sonic-h2 text-white mb-2 relative inline-block">
                 ÜBER DIE
                 <br />
                 SONIC GROUP
@@ -145,7 +145,7 @@ export default function Contact() {
               </p>
 
               {/* Headline */}
-              <h2 className="text-2xl sm:text-3xl xl:text-4xl font-black text-foreground-950 leading-[1.05] mb-2 relative inline-block">
+              <h2 className="sonic-h2 text-foreground-950 mb-2 relative inline-block">
                 KARRIERE
                 <span
                   className="absolute left-0 bottom-[-4px] h-[5px] w-full"

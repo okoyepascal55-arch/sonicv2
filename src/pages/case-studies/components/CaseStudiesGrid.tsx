@@ -158,7 +158,7 @@ export default function CaseStudiesGrid() {
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
           <SectionBadge text="Alle Fallbeispiele" variant="light" className="mb-6" />
-          <h2 className="text-4xl lg:text-6xl font-black text-white leading-tight mb-4">
+          <h2 className="sonic-h2 text-white mb-4">
             ECHTE MARKEN.<br />
             <span className="text-primary-500">ECHTE ERGEBNISSE.</span>
           </h2>

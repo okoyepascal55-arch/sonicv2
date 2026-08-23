@@ -1083,3 +1083,113 @@ html {
   margin-right: auto;
   line-height: 1.65;
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SONIC DESIGN SYSTEM v2 — Refined type scale
+   Replaces earlier sonic-h1/h2/h3 with tighter, sleeker values
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── H1: hero headlines — dark fullbleed sections only, always uppercase ── */
+.sonic-h1 {
+  font-size: clamp(1.875rem, 4.5vw, 3.25rem); /* 30px → 52px */
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+/* ── Page H1: light-bg pages (blog, jobs, 404) — sentence case ── */
+.sonic-page-h1 {
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem); /* 24px → 40px */
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+/* ── H2: ALL section headings — sentence case, NEVER uppercase ── */
+.sonic-h2 {
+  font-size: clamp(1.375rem, 3vw, 2.25rem); /* 22px → 36px */
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ── H3: card/subsection headings — sentence case ── */
+.sonic-h3 {
+  font-size: clamp(1rem, 1.8vw, 1.1875rem); /* 16px → 19px */
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* ── Label: stats, metadata, eyebrows within cards — uppercase only here ── */
+.sonic-label {
+  font-size: 0.6875rem; /* 11px */
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ── Body text ── */
+.sonic-body {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: oklch(var(--foreground-600));
+}
+.sonic-body-lg {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: oklch(var(--foreground-600));
+}
+
+/* ── Section header block ── */
+.sonic-section-header {
+  margin-bottom: 2.5rem;
+}
+@media (min-width: 768px) {
+  .sonic-section-header { margin-bottom: 3rem; }
+}
+
+/* ── Button system ── */
+.btn-sonic-primary,
+.btn-sonic-dark,
+.btn-sonic-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.btn-sonic-primary {
+  background: oklch(var(--primary-500));
+  color: oklch(var(--foreground-950));
+}
+.btn-sonic-primary:hover {
+  background: white;
+  color: oklch(var(--foreground-950));
+}
+.btn-sonic-dark {
+  background: oklch(var(--foreground-950));
+  color: white;
+}
+.btn-sonic-dark:hover {
+  background: oklch(var(--primary-500));
+  color: oklch(var(--foreground-950));
+}
+.btn-sonic-ghost {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  color: white;
+}
+.btn-sonic-ghost:hover {
+  border-color: oklch(var(--primary-500));
+  color: oklch(var(--primary-500));
+}

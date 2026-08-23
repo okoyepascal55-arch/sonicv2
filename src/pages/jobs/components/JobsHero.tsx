@@ -11,7 +11,7 @@ export default function JobsHero({ jobCount }: Props) {
   const heroImage = jobsHeroImages[0]?.url || 'https://readdy.ai/api/search-image?query=modern%20corporate%20office%20interior%20with%20open%20floor%20plan%20collaborative%20workspace%20German%20company%20bright%20natural%20light%20employees%20working%20together%20contemporary%20professional%20environment%20career%20opportunity%20growth&width=1920&height=800&seq=jobs-hero-bg-sonic-v1&orientation=landscape';
 
   return (
-    <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+    <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-foreground-950" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
@@ -34,7 +34,7 @@ export default function JobsHero({ jobCount }: Props) {
 
       <div className="relative z-10 sonic-container px-6 text-center w-full">
         <SectionBadge text={jobCount > 0 ? `${jobCount} offene Stellen` : 'Stellenangebote'} variant="light" className="mb-5" />
-        <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-5 leading-tight">
+        <h1 className="sonic-page-h1 text-white mb-5">
           DEINE KARRIERE<br />
           <span className="text-primary-500">BEI SONIC GROUP</span>
         </h1>

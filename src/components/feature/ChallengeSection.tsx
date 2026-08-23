@@ -77,7 +77,7 @@ export default function ChallengeSection({
         >
           <div className="max-w-2xl">
             <p className="text-[11px] font-black text-primary-500 uppercase tracking-[0.2em] mb-6">{badge}</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground-950 leading-[1.05] mb-4">
+            <h2 className="sonic-h2 text-foreground-950 mb-4">
               {headline}
             </h2>
             {subline && (

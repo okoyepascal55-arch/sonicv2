@@ -35,7 +35,7 @@ export default function ValuesVisual() {
   };
 
   return (
-    <section ref={sectionRef} id="referenzen" className="bg-white pb-16 md:pb-20">
+    <section ref={sectionRef} id="referenzen" className="bg-background-100 pb-16 md:pb-20">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Compact header — no SectionBadge, flows from OriginStory transition strip */}
@@ -76,7 +76,7 @@ export default function ValuesVisual() {
             return (
               <div
                 key={i}
-                className="bg-white p-5 md:p-6 flex flex-col items-center justify-center text-center group hover:bg-[#FAFDF5] transition-colors duration-200 min-h-[120px]"
+                className="bg-background-100 p-5 md:p-6 flex flex-col items-center justify-center text-center group hover:bg-[#FAFDF5] transition-colors duration-200 min-h-[120px]"
                 role="button"
                 tabIndex={0}
                 aria-label={`${client.name} — ${client.category}`}
