@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const BITE_LISTING_KEY = 'sonic-sales-support-gmbh:main-listing';
 
@@ -40,6 +41,7 @@ export default function KarriereJobs() {
       <div className="sonic-container">
         {/* ── Heading ── */}
         <div className="max-w-3xl mb-12 md:mb-16">
+          <SectionBadge text={tBadge} variant="dark" className="mb-5" />
           <h2 className="sonic-h2 text-foreground-950">
             {headingFirst}{' '}
             <span className="text-primary-500">{headingRest}</span>

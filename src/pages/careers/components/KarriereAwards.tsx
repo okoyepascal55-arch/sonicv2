@@ -1,4 +1,5 @@
 import { useText } from '@/hooks/useText';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const REVIEW_LINKS = {
   kununu: 'https://www.kununu.com/de/sonic-sales-support1',
@@ -20,6 +21,7 @@ export default function KarriereAwards() {
     <section id="awards" className="sonic-section-md px-4 md:px-6 bg-white">
       <div className="sonic-container">
         <div className="max-w-3xl mb-8 md:mb-10">
+          <SectionBadge text="Auszeichnungen" variant="dark" className="mb-5" />
           <h2 className="sonic-h2 text-foreground-950">
             {tHeading}
           </h2>

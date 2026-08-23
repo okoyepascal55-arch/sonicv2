@@ -1,4 +1,5 @@
 import { useState, FormEvent } from 'react';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const FORM_URL = 'https://readdy.ai/api/form/d82bbfb29k3fss3u08ug';
 
@@ -60,11 +61,9 @@ export default function ContactForm() {
       <div className="px-5 py-10 sm:px-10 md:px-14 md:py-16">
         {/* Header */}
         <div className="mb-10">
-          <p className="text-xs font-black uppercase tracking-[0.3em] text-primary-500 mb-3">
-            Direkte Anfrage
-          </p>
+          <SectionBadge text="Direkte Anfrage" variant="dark" className="mb-4" />
           <h2 className="sonic-h2 text-foreground-950">
-            Schreib uns
+            Schreib <span className="text-primary-500">uns</span>
           </h2>
           <p className="text-sm text-foreground-500 leading-relaxed max-w-md">
             Kein Commitment. Nur ein gutes Gespräch. Wir melden uns innerhalb von 24 Stunden.
