@@ -17,7 +17,7 @@ export default function Contact() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         <div className="grid md:grid-cols-1 md:grid-cols-2 gap-px bg-foreground-200">
 
           {/* ── Box 1: ÜBER DIE SONIC GROUP — BLACK ──────────────────────── */}
@@ -29,13 +29,13 @@ export default function Contact() {
             />
             {/* Top lime bar */}
             <div
-              className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#C8D400] to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-500"
+              className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-500"
               aria-hidden="true"
             />
             {/* Left accent */}
             <div
               className="absolute top-0 left-0 bottom-0 w-[3px]"
-              style={{ background: 'linear-gradient(180deg, #C8D400 0%, rgba(200,212,0,0.2) 100%)' }}
+              style={{ background: 'linear-gradient(180deg, oklch(var(--primary-500)) 0%, oklch(var(--primary-500) / 0.2) 100%)' }}
               aria-hidden="true"
             />
 
@@ -52,7 +52,7 @@ export default function Contact() {
                 SONIC GROUP
                 <span
                   className="absolute left-0 bottom-[-4px] h-[5px] w-full"
-                  style={{ background: 'linear-gradient(90deg, #C8D400 0%, rgba(200,212,0,0.3) 100%)' }}
+                  style={{ background: 'linear-gradient(90deg, oklch(var(--primary-500)) 0%, oklch(var(--primary-500) / 0.3) 100%)' }}
                   aria-hidden="true"
                 />
               </h2>
@@ -128,13 +128,13 @@ export default function Contact() {
           <div className="group bg-white px-6 sm:px-9 md:px-12 py-9 md:py-11 flex flex-col justify-between transition-all duration-500 hover:bg-[#FAFDF5] relative overflow-hidden">
             {/* Top lime bar on hover */}
             <div
-              className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#C8D400] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               aria-hidden="true"
             />
             {/* Right accent */}
             <div
               className="absolute top-0 right-0 bottom-0 w-[3px]"
-              style={{ background: 'linear-gradient(180deg, #C8D400 0%, rgba(200,212,0,0.2) 100%)' }}
+              style={{ background: 'linear-gradient(180deg, oklch(var(--primary-500)) 0%, oklch(var(--primary-500) / 0.2) 100%)' }}
               aria-hidden="true"
             />
 
@@ -149,7 +149,7 @@ export default function Contact() {
                 KARRIERE
                 <span
                   className="absolute left-0 bottom-[-4px] h-[5px] w-full"
-                  style={{ background: 'linear-gradient(90deg, #C8D400 0%, rgba(200,212,0,0.3) 100%)' }}
+                  style={{ background: 'linear-gradient(90deg, oklch(var(--primary-500)) 0%, oklch(var(--primary-500) / 0.3) 100%)' }}
                   aria-hidden="true"
                 />
               </h2>

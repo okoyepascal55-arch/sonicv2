@@ -95,11 +95,11 @@ export default function EventsShowcase() {
 
   return (
     <section id="events" className="sonic-section-lg bg-white px-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="sonic-container">
 
         {/* Header */}
         <div className="mb-10">
-          <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/12 px-4 py-1.5 mb-5">
+          <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/12 px-4 py-1.5 mb-5">
             <i className="ri-apps-line text-foreground-950 text-sm"></i>
             <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Formate</span>
           </div>
@@ -131,7 +131,7 @@ export default function EventsShowcase() {
         {/* Main showcase */}
         <div
           key={activeTab}
-          className="grid lg:grid-cols-12 border border-[#111]/10"
+          className="grid lg:grid-cols-12 border border-foreground-950/10"
           style={{ animation: 'fadeSlideIn 0.4s ease-out' }}
         >
           {/* Large main image — clickable for lightbox */}
@@ -176,7 +176,7 @@ export default function EventsShowcase() {
           </div>
 
           {/* Right info panel */}
-          <div className="lg:col-span-4 bg-white border-l border-[#111]/10 flex flex-col lg:h-[500px] overflow-y-auto">
+          <div className="lg:col-span-4 bg-white border-l border-foreground-950/10 flex flex-col lg:h-[500px] overflow-y-auto">
             {/* Headline block */}
             <div className="bg-foreground-950 p-6">
               <div className="flex items-center gap-2 mb-3">
@@ -194,7 +194,7 @@ export default function EventsShowcase() {
                 {tab.pills.map((pill, i) => (
                   <span
                     key={i}
-                    className="bg-white border border-[#111]/10 text-foreground-950/70 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5"
+                    className="bg-white border border-foreground-950/10 text-foreground-950/70 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5"
                   >
                     {pill}
                   </span>
@@ -232,7 +232,7 @@ export default function EventsShowcase() {
             </div>
 
             {/* CTA */}
-            <div className="p-6 border-t border-[#111]/10">
+            <div className="p-6 border-t border-foreground-950/10">
               <a
                 href={`mailto:${CONTACT_EMAIL}?subject=Events%20Messen%20Beratung`}
                 className="flex items-center justify-center gap-2 bg-foreground-950 text-white px-5 py-3.5 font-black text-xs uppercase tracking-widest hover:bg-primary-500 hover:text-white transition-all duration-300 whitespace-nowrap cursor-pointer w-full"

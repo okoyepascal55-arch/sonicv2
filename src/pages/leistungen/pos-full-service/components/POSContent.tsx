@@ -167,7 +167,7 @@ export default function POSContent() {
         <div className="absolute top-0 right-0 w-full max-w-[600px] h-[400px] bg-primary-500/6 blur-[120px] pointer-events-none" />
         <div className="relative sonic-container">
           <div className="mb-10 md:mb-14 text-center">
-            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
               <i className="ri-check-double-line text-foreground-950 text-sm"></i>
               <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
             </div>

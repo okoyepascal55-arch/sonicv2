@@ -104,7 +104,7 @@ export default function EventsContent() {
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
                 <i className="ri-check-double-line text-foreground-950 text-sm" />
                 <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
               </div>

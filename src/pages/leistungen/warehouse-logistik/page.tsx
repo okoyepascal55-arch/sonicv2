@@ -146,7 +146,7 @@ export default function WarehouseLogistikPage() {
 
       {/* Hero */}
       <div ref={heroRef}>
-        <section className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+        <section className="relative min-h-[480px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
           <img
             src={heroImage}
             alt="Warehouse und Logistik"
@@ -156,21 +156,22 @@ export default function WarehouseLogistikPage() {
           />
           <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.85) 100%)' }} />
           <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/7 blur-[100px] pointer-events-none z-10" />
-          <div className="relative z-20 w-full sonic-container px-4 md:px-6 text-center">
+          <div className="relative z-20 w-full sonic-container px-4 md:px-8 pb-10 md:pb-14">
             <div className="flex items-center justify-center gap-2 mb-5 md:mb-6 opacity-60">
               <span className="text-white/50 text-xs font-bold">Leistungen</span>
               <i className="ri-arrow-right-s-line text-white/40 text-sm"></i>
               <span className="text-primary-500 text-xs font-bold">Warehouse & Logistik</span>
             </div>
-            <div className="mb-6 md:mb-8 flex justify-center">
-              <LimeBadge text={tHeroBadge} />
-            </div>
-            <h1 className="text-3xl md:text-5xl lg:text-7xl font-black text-white mb-4 md:mb-6 leading-tight">
+            <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
+            <span className="w-1.5 h-1.5 bg-primary-500" />
+            <span className="text-primary-500">{tHeroBadge}</span>
+          </div>
+            <h1 className="sonic-h1 text-white mb-5 md:mb-6">
               {tHeroH1Line1}<br /><span className="text-primary-500">{tHeroH1Accent}</span>
             </h1>
             <p className="text-base md:text-lg text-white/80 mb-3 md:mb-4 font-semibold">{tHeroSubtitle}</p>
             <p className="text-sm text-white/55 max-w-2xl mx-auto leading-relaxed mb-8 md:mb-10">{tHeroDesc}</p>
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 mb-8 md:mb-10">
+            <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-8 border-t border-white/15 pt-5">
               {STATS.map((s, i) => (
                 <div key={i} className="text-center">
                   <div className="text-xl md:text-2xl font-black text-primary-500">{s.val}</div>
@@ -201,11 +202,11 @@ export default function WarehouseLogistikPage() {
         <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative sonic-container">
           <div className="mb-10 md:mb-12">
-            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
               <i className="ri-check-double-line text-foreground-950 text-sm"></i>
               <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black text-foreground-950 mb-3 leading-tight uppercase">Warehousing und Logistik als<br /><span className="text-primary-500">integraler Baustein.</span></h2>
+            <h2 className="sonic-h2 text-foreground-950 mb-3">Warehousing und Logistik als<br /><span className="text-primary-500">integraler Baustein.</span></h2>
             <p className="text-foreground-950/50 text-sm md:text-base max-w-2xl">Einlagerung, Bereitstellung, Auslagerung, Anlieferung und Aufbau deiner Produkte, Werbematerialien, Messestände etc. Als Teil des Sonic Gesamtpakts.</p>
           </div>
           <ScrollCardSection data={SOLUTIONS} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="remix" cardMinHeight="320px" showWoodIcon={false} />
@@ -214,9 +215,9 @@ export default function WarehouseLogistikPage() {
 
       {/* Was wir lagern */}
       <section id="beispiele" className="sonic-section-lg bg-white px-4 md:px-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="sonic-container">
           <div className="mb-8 md:mb-10">
-            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/12 px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/12 px-4 py-1.5 mb-5">
               <i className="ri-image-line text-foreground-950 text-sm"></i>
               <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Was wir lagern</span>
             </div>
@@ -235,7 +236,7 @@ export default function WarehouseLogistikPage() {
                 className={`flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 font-bold text-xs md:text-sm transition-all whitespace-nowrap cursor-pointer ${
                   activeItem === i
                     ? 'bg-foreground-950 text-primary-500'
-                    : 'bg-white hover:bg-white text-foreground-950/60 border border-[#111]/10'
+                    : 'bg-white hover:bg-white text-foreground-950/60 border border-foreground-950/10'
                 }`}
                 style={{ borderRadius: 0 }}
               >
@@ -247,7 +248,7 @@ export default function WarehouseLogistikPage() {
           {/* Main image panel */}
           <div
             key={activeItem}
-            className="grid lg:grid-cols-12 border border-[#111]/10 border-t-0"
+            className="grid lg:grid-cols-12 border border-foreground-950/10 border-t-0"
             style={{ animation: 'fadeIn 0.4s ease-out' }}
           >
             <div className="lg:col-span-8 relative overflow-hidden lg:h-[380px] h-[280px]">
@@ -267,7 +268,7 @@ export default function WarehouseLogistikPage() {
                 <p className="text-white/65 text-sm">{WAREHOUSE_ITEMS[activeItem].desc}</p>
               </div>
             </div>
-            <div className="lg:col-span-4 bg-white border-t lg:border-t-0 lg:border-l border-[#111]/10 p-6 md:p-8 flex flex-col justify-center lg:h-[380px] overflow-y-auto">
+            <div className="lg:col-span-4 bg-white border-t lg:border-t-0 lg:border-l border-foreground-950/10 p-6 md:p-8 flex flex-col justify-center lg:h-[380px] overflow-y-auto">
               <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-4">Alle Kategorien</div>
               <div className="space-y-2">
                 {WAREHOUSE_ITEMS.map((item, i) => (
@@ -275,7 +276,7 @@ export default function WarehouseLogistikPage() {
                     key={i}
                     onClick={() => setActiveItem(i)}
                     className={`w-full flex items-center gap-3 p-3 text-left transition-all duration-200 cursor-pointer ${activeItem === i ? 'bg-foreground-950 text-white' : 'bg-white text-foreground-950/70 hover:bg-white'}`}
-                    style={{ borderRadius: 0, outline: activeItem === i ? 'none' : '1px solid rgba(0,0,0,0.08)' }}
+                    style={{ borderRadius: 0, outline: activeItem === i ? 'none' : '1px solid oklch(var(--foreground-200))' }}
                   >
                     {activeItem === i && (
                       <div className="w-4 h-4 flex items-center justify-center bg-primary-500 flex-shrink-0">
@@ -297,7 +298,7 @@ export default function WarehouseLogistikPage() {
       <section id="full-service" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
         <div className="relative sonic-container">
-          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5 md:mb-6">
                 <i className="ri-shield-check-line text-primary-500 text-sm"></i>

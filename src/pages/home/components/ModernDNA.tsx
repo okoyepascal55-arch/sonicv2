@@ -38,18 +38,16 @@ export default function ModernDNA() {
   const isActive = (index: number) => hoveredCard === index || focusedCard === index;
 
   return (
-    <section className="sonic-section-lg relative md:px-4 md:px-6 overflow-hidden bg-white">
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section className="sonic-section-lg px-4 md:px-6 relative overflow-hidden bg-white">
+      <div className="sonic-container relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 bg-primary-500/20 px-4 py-1.5 border-2 border-primary-500/40 mb-3">
-            <div className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full animate-pulse"></div>
-            <p className="text-xs font-semibold text-foreground-950 tracking-wide uppercase">
-              Sonic DNA
-            </p>
+        <div className="sonic-section-header">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-3" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
+            <div className="w-1.5 h-1.5 bg-primary-500"></div>
+            <p className="text-xs font-black text-foreground-950 tracking-[0.2em] uppercase">Sonic DNA</p>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 mb-5 leading-tight">
-            DIE SONIC DNA
+          <h2 className="sonic-h2 text-foreground-950">
+            Die Sonic DNA
           </h2>
           <p className="text-xs text-foreground-700 max-w-xl mx-auto">
             Was uns ausmacht und antreibt
@@ -57,7 +55,7 @@ export default function ModernDNA() {
         </div>
 
         {/* Cards Grid — compact */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {principleData.map((principle, index) => {
             const active = isActive(index);
             return (
@@ -67,10 +65,10 @@ export default function ModernDNA() {
                 style={{
                   transform: active ? 'translateY(-4px)' : 'translateY(0)',
                   background: active
-                    ? 'linear-gradient(145deg, #1a1a1a 0%, #111 100%)'
+                    ? 'oklch(var(--foreground-950))'
                     : 'rgba(255,255,255,0.92)',
                   boxShadow: active
-                    ? '0 20px 48px rgba(0,0,0,0.2), 0 0 0 1px rgba(200,212,0,0.3)'
+                    ? '0 20px 48px rgba(0,0,0,0.2), 0 0 0 1px oklch(var(--primary-500) / 0.3)'
                     : '0 4px 16px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.06)',
                   borderRadius: 0,
                 }}
@@ -85,7 +83,7 @@ export default function ModernDNA() {
                   className="absolute top-0 left-0 right-0 transition-all duration-500"
                   style={{
                     height: active ? '3px' : '2px',
-                    background: active ? '#C8D400' : 'rgba(200,212,0,0.2)',
+                    background: active ? 'oklch(var(--primary-500))' : 'oklch(var(--primary-500) / 0.2)',
                     boxShadow: active ? '0 0 16px rgba(200,212,0,0.6)' : 'none',
                   }}
                   aria-hidden="true"
@@ -97,7 +95,7 @@ export default function ModernDNA() {
                     <span
                       className="text-[40px] font-black leading-none transition-all duration-500"
                       style={{
-                        color: active ? 'rgba(200,212,0,0.15)' : 'rgba(0,0,0,0.06)',
+                        color: active ? 'oklch(var(--primary-500) / 0.15)' : 'rgba(0,0,0,0.06)',
                         letterSpacing: '-0.04em',
                       }}
                       aria-hidden="true"
@@ -125,7 +123,7 @@ export default function ModernDNA() {
                   {/* Heading */}
                   <h3
                     className="text-base font-black mb-1.5 leading-tight transition-colors duration-500"
-                    style={{ color: active ? '#ffffff' : '#1a1a1a' }}
+                    style={{ color: active ? '#ffffff' : 'oklch(var(--foreground-950))' }}
                   >
                     {principle.title}
                   </h3>
@@ -142,7 +140,7 @@ export default function ModernDNA() {
 
                   <p
                     className="text-xs leading-relaxed transition-colors duration-500"
-                    style={{ color: active ? 'rgba(255,255,255,0.7)' : '#6B7280' }}
+                    style={{ color: active ? 'rgba(255,255,255,0.7)' : 'oklch(var(--foreground-500))' }}
                   >
                     {principle.description}
                   </p>

@@ -177,7 +177,7 @@ export default function VideoContent() {
         <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative sonic-container">
           <div className="mb-14 text-center">
-            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
               <i className="ri-check-double-line text-foreground-950 text-sm"></i>
               <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
             </div>
@@ -211,14 +211,14 @@ export default function VideoContent() {
       <section id="kostenrechner" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-[#111]/15 px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-foreground-950/15 px-4 py-1.5 mb-5">
               <i className="ri-calculator-line text-foreground-950 text-sm"></i>
               <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Kostenrechner</span>
             </div>
             <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 leading-tight uppercase">Live-Video: Kosten pro Jahr</h2>
           </div>
 
-          <div className="border border-[#111]/15 bg-white p-8 md:p-10">
+          <div className="border border-foreground-950/15 bg-white p-8 md:p-10">
             <div className="grid md:grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               {[
                 { label: 'Tage pro Woche', value: daysPerWeek, min: 1, max: 7, setter: setDaysPerWeek },
@@ -248,13 +248,13 @@ export default function VideoContent() {
               ))}
             </div>
 
-            <div className="border-t border-[#111]/10 pt-8 grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-[#111]/10">
+            <div className="border-t border-foreground-950/10 pt-8 grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-foreground-950/10">
               {[
                 { val: maxCalls.toLocaleString('de-DE'), label: 'Max. mögliche Calls' },
                 { val: `${avgCallMin} Min.`, label: 'Ø Beratungsdauer' },
                 { val: `~${totalCost.toLocaleString('de-DE')} €`, label: 'Geschätzte Kosten' },
               ].map((stat, i) => (
-                <div key={i} className={`p-6 text-center ${i < 2 ? 'border-r border-[#111]/10' : ''}`}>
+                <div key={i} className={`p-6 text-center ${i < 2 ? 'border-r border-foreground-950/10' : ''}`}>
                   <div className="text-3xl font-black text-foreground-950 font-mono mb-1">{stat.val}</div>
                   <div className="text-foreground-950/45 text-xs font-bold uppercase tracking-wider">{stat.label}</div>
                 </div>
@@ -321,9 +321,9 @@ export default function VideoContent() {
 
       {/* Formats — dynamic with image backgrounds */}
       <section id="formate" className="sonic-section-lg bg-white px-4 md:px-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="sonic-container">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-[#111]/15 px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-foreground-950/15 px-4 py-1.5 mb-5">
               <i className="ri-film-line text-foreground-950 text-sm"></i>
               <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Video-Formate</span>
             </div>
@@ -331,12 +331,12 @@ export default function VideoContent() {
           </div>
 
           {/* Format selector */}
-          <div className="flex gap-0 border border-[#111]/15 mb-0 overflow-x-auto">
+          <div className="flex gap-0 border border-foreground-950/15 mb-0 overflow-x-auto">
             {FORMATS.map((f, i) => (
               <button
                 key={i}
                 onClick={() => setActiveFormat(i)}
-                className={`flex-1 flex flex-col items-center gap-1 px-4 py-3 text-[10px] font-black uppercase tracking-widest transition-all duration-300 cursor-pointer whitespace-nowrap border-r border-[#111]/15 last:border-r-0 ${
+                className={`flex-1 flex flex-col items-center gap-1 px-4 py-3 text-[10px] font-black uppercase tracking-widest transition-all duration-300 cursor-pointer whitespace-nowrap border-r border-foreground-950/15 last:border-r-0 ${
                   activeFormat === i ? 'bg-foreground-950 text-primary-500' : 'bg-white text-foreground-950/50 hover:text-foreground-950 hover:bg-white'
                 }`}
               >
@@ -348,7 +348,7 @@ export default function VideoContent() {
 
           <div
             key={activeFormat}
-            className="grid lg:grid-cols-12 border border-[#111]/15 border-t-0"
+            className="grid lg:grid-cols-12 border border-foreground-950/15 border-t-0"
             style={{ animation: 'fadeSlideIn 0.4s ease-out' }}
           >
             {/* Image — click to open fullscreen lightbox */}
@@ -381,7 +381,7 @@ export default function VideoContent() {
             </div>
 
             {/* Info */}
-            <div className="lg:col-span-5 bg-white p-8 flex flex-col justify-center border-l border-[#111]/15 lg:h-[480px] overflow-y-auto">
+            <div className="lg:col-span-5 bg-white p-8 flex flex-col justify-center border-l border-foreground-950/15 lg:h-[480px] overflow-y-auto">
               <div className="w-12 h-12 flex items-center justify-center bg-foreground-950 mb-5">
                 <i className={`${FORMATS[activeFormat].icon} text-xl text-primary-500`}></i>
               </div>
@@ -403,7 +403,7 @@ export default function VideoContent() {
                 key={i}
                 onClick={() => setActiveFormat(i)}
                 className={`flex items-center gap-2 px-4 py-2 text-xs font-black uppercase tracking-widest transition-all duration-300 cursor-pointer ${
-                  activeFormat === i ? 'bg-foreground-950 text-primary-500' : 'border border-[#111]/15 text-foreground-950/50 hover:border-[#111]/40 hover:text-foreground-950'
+                  activeFormat === i ? 'bg-foreground-950 text-primary-500' : 'border border-foreground-950/15 text-foreground-950/50 hover:border-[#111]/40 hover:text-foreground-950'
                 }`}
               >
                 <i className={`${f.icon} text-sm`}></i>

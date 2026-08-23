@@ -18,7 +18,7 @@ export default function EventsHero() {
 
   return (
     <section
-      className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black"
+      className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-black"
       style={{ paddingTop: '80px', paddingBottom: '60px' }}
     >
       <img
@@ -35,33 +35,26 @@ export default function EventsHero() {
       />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/7 blur-[100px] pointer-events-none z-10" />
 
-      <div className="relative z-20 w-full sonic-container px-6 text-center">
-        <div className="hidden sm:flex items-center justify-center gap-2 mb-6 opacity-60">
-          <span className="text-white/50 text-xs font-bold">Leistungen</span>
-          <i className="ri-arrow-right-s-line text-white/40 text-sm" />
-          <span className="text-white/50 text-xs font-bold">Events &amp; Logistik</span>
-          <i className="ri-arrow-right-s-line text-white/40 text-sm" />
-          <span className="text-primary-500 text-xs font-bold">Events &amp; Messen</span>
-        </div>
+      <div className="relative z-20 w-full sonic-container px-4 md:px-8 pb-10 md:pb-14">
+                <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
+              <span className="w-1.5 h-1.5 bg-primary-500" />
+              <span className="text-primary-500">{tBadge}</span>
+            </div>
 
-        <div className="mb-8 flex justify-center">
-          <LimeBadge text={tBadge} />
-        </div>
-
-        <h1 className="text-3xl md:text-5xl lg:text-7xl font-black text-white mb-6 leading-tight">
+        <h1 className="sonic-h1 text-white mb-5 md:mb-6">
           {tH1Line1}<br />
           <span className="text-primary-500">{tH1Accent}</span>
         </h1>
 
-        <p className="text-xl text-white/80 mb-4 font-semibold">
+        <p className="text-sm md:text-base text-white/75 mb-3 leading-relaxed max-w-[520px]">
           {tSubtitle}
         </p>
 
-        <p className="text-sm text-white/55 max-w-2xl mx-auto leading-relaxed mb-10">
+        <p className="text-xs md:text-sm text-white/55 max-w-[480px] leading-relaxed mb-8">
           {tDesc}
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-8 mb-12">
+        <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-8 border-t border-white/15 pt-5">
           {[
             { val: '>500', label: 'Großevents' },
             { val: '>30.000', label: 'Kontakte' },
@@ -76,7 +69,7 @@ export default function EventsHero() {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-wrap gap-3">
           <a
             href={`mailto:${CONTACT_EMAIL}?subject=Events%20Messen%20Beratung`}
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"

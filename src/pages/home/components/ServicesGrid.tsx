@@ -189,13 +189,13 @@ export default function ServicesGrid() {
 
   return (
     <section id="services" className="sonic-section-lg px-4 md:px-6 bg-background-50 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* ── Section Header ── */}
         <div className="text-center mb-8 md:mb-12 lg:mb-14">
           <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-3 md:mb-4">
             Unsere Leistungen
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 mb-3 md:mb-5 leading-[1.08] tracking-tight">
+          <h2 className="sonic-h2 text-foreground-950">
             Manpower trifft{' '}
             <span className="relative inline-block">
               <span className="relative z-10">ROI</span>

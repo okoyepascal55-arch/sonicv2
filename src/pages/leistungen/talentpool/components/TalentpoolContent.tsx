@@ -238,7 +238,7 @@ export default function TalentpoolContent() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
                 <i className="ri-check-double-line text-foreground-950 text-sm" />
                 <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Sonic-Lösung</span>
               </div>
@@ -332,7 +332,7 @@ export default function TalentpoolContent() {
 
       {/* ── Stats ── */}
       <section id="stats" className="sonic-section-lg bg-white px-4 md:px-6">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-px bg-foreground-950/10 border border-[#111]/10 overflow-hidden">
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-px bg-foreground-950/10 border border-foreground-950/10 overflow-hidden">
           {STATS.map((s, i) => (
             <div key={i} className="bg-white p-6 md:p-8 text-center relative overflow-hidden group">
               <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/5 transition-colors duration-300" />

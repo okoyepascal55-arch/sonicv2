@@ -117,7 +117,7 @@ export default function VideoReferenzen() {
 
         {/* Section header */}
         <div className="mb-16">
-          <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-[#111]/15 px-4 py-1.5 mb-5">
+          <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-foreground-950/15 px-4 py-1.5 mb-5">
             <i className="ri-chat-quote-line text-foreground-950 text-sm"></i>
             <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Referenzen</span>
           </div>
@@ -142,11 +142,11 @@ export default function VideoReferenzen() {
         </div>
 
         {/* Aggregate stats bar */}
-        <div className="grid grid-cols-2 lg:grid-cols-2 md:grid-cols-4 gap-0 border border-[#111]/12 bg-white mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-2 md:grid-cols-4 gap-0 border border-foreground-950/12 bg-white mb-12">
           {AGGREGATE_STATS.map((stat, i) => (
             <div
               key={i}
-              className={`p-6 flex items-center gap-4 ${i < 3 ? 'border-r border-[#111]/10' : ''} ${i >= 2 ? 'border-t lg:border-t-0 border-[#111]/10' : ''}`}
+              className={`p-6 flex items-center gap-4 ${i < 3 ? 'border-r border-foreground-950/10' : ''} ${i >= 2 ? 'border-t lg:border-t-0 border-foreground-950/10' : ''}`}
             >
               <div className="w-10 h-10 flex items-center justify-center bg-primary-500/15 border border-primary-500/25 flex-shrink-0">
                 <i className={`${stat.icon} text-base text-foreground-950`}></i>
@@ -160,10 +160,10 @@ export default function VideoReferenzen() {
         </div>
 
         {/* Main testimonial layout — split panel */}
-        <div className="grid lg:grid-cols-12 gap-0 border border-[#111]/12 bg-white mb-8">
+        <div className="grid lg:grid-cols-12 gap-0 border border-foreground-950/12 bg-white mb-8">
 
           {/* Left: client list */}
-          <div className="lg:col-span-4 border-r border-[#111]/10">
+          <div className="lg:col-span-4 border-r border-foreground-950/10">
             {VIDEO_CLIENTS.map((client, i) => (
               <button
                 key={i}
@@ -273,7 +273,7 @@ export default function VideoReferenzen() {
         </div>
 
         {/* Logo strip */}
-        <div className="border border-[#111]/10 bg-white">
+        <div className="border border-foreground-950/10 bg-white">
           <div className="px-8 py-3 border-b border-[#111]/8">
             <span className="text-xs font-black text-foreground-950/30 uppercase tracking-[0.25em]">
               Vertrauen von führenden Marken

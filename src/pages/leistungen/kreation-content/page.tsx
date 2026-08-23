@@ -405,7 +405,7 @@ export default function KreationContentPage() {
                 <i className="ri-check-double-line text-foreground-950 text-sm" />
                 <span className="text-xs font-black text-foreground-950 uppercase tracking-[0.2em]">Die Lösung</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-foreground-950 mb-3 leading-tight uppercase">
+              <h2 className="sonic-h2 text-foreground-950 mb-3">
                 {tSolutionHeading}
               </h2>
               <p className="text-foreground-950/50 text-base max-w-2xl">{tSolutionSub}</p>

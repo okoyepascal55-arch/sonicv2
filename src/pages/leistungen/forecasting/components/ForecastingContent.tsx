@@ -105,7 +105,7 @@ export default function ForecastingContent() {
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
                 <i className="ri-check-double-line text-foreground-950 text-sm" />
                 <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Sonic-Lösung</span>
               </div>
@@ -131,7 +131,7 @@ export default function ForecastingContent() {
 
           <div className="grid md:grid-cols-1 md:grid-cols-2 gap-6">
             {HOW_IT_WORKS.map((step, i) => (
-              <div key={i} className="group relative overflow-hidden border border-[#111]/10 bg-white hover:border-primary-500/30 transition-all duration-300">
+              <div key={i} className="group relative overflow-hidden border border-foreground-950/10 bg-white hover:border-primary-500/30 transition-all duration-300">
                 {/* Image */}
                 <div className="relative overflow-hidden" style={{ height: '220px' }}>
                   <img
