@@ -33,7 +33,12 @@ export default function CaseStudiesCTA() {
             <SectionBadge text={tBadge} variant="dark" />
           </div>
           <h2 className="sonic-h2 text-foreground-950">
-            {tHeading}
+            {tHeading.includes('. ') ? (
+              <>
+                {tHeading.split('. ')[0]}.{' '}
+                <span className="text-primary-500">{tHeading.split('. ').slice(1).join('. ')}</span>
+              </>
+            ) : tHeading}
           </h2>
           <p className="text-lg text-foreground-600 max-w-2xl mx-auto">
             {tSub}

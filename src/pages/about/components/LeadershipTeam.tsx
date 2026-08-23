@@ -11,7 +11,7 @@ const TEAM_STATS = [
 
 export default function LeadershipTeam() {
   const tBadge = useText('about_leadership', 'about-leadership-badge', 'Das Team');
-  const tHeading = useText('about_leadership', 'about-leadership-heading', 'FACHLICHE UND MENSCHLICHE VIELFALT.');
+  const tHeading = useText('about_leadership', 'about-leadership-heading', 'Fachliche und menschliche Vielfalt.');
   const tSub = useText('about_leadership', 'about-leadership-sub', 'Bei Sonic treffen Expertisen aufeinander, die sich perfekt ergänzen.');
   const tCta = useText('about_leadership', 'about-leadership-cta', 'Offene Stellen');
 
@@ -36,9 +36,9 @@ export default function LeadershipTeam() {
       <div className="max-w-full max-w-[1280px] mx-auto px-6 md:px-10">
         {/* ── HEADER ── */}
         <div className="max-w-full max-w-[640px] mb-10 md:mb-14">
-          <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-5">
-            <span className="w-1.5 h-1.5 bg-foreground-950 flex-shrink-0" />
-            {tBadge}
+          <div className="inline-flex items-center gap-2 px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
+            <span className="w-1.5 h-1.5 bg-primary-500 flex-shrink-0" />
+            <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary-500">{tBadge}</span>
           </div>
           <h2 className="sonic-h2 text-foreground-950">
             {headingMain}{' '}

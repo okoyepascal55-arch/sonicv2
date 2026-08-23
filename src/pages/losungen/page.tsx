@@ -1073,10 +1073,10 @@ export default function LosungenPage() {
             </div>
 
             {/* Main headline — editorial split type */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white leading-tight tracking-tight mb-5 md:mb-6">
-              DREI WEGE<br />
-              <span className="text-primary-500">DURCH DIE</span><br />
-              RETAIL-SCHALLMAUER.
+            <h1 className="sonic-h1 text-white mb-5 md:mb-6">
+              Drei Wege<br />
+              <span className="text-primary-500">durch die</span><br />
+              Retail-Schallmauer.
             </h1>
 
             {/* Divider + subtitle */}
@@ -1191,7 +1191,7 @@ export default function LosungenPage() {
         <div className="sonic-container">
           <div className="text-center mb-10 md:mb-14">
             <p className="text-xs font-black text-primary-500/60 uppercase tracking-widest mb-3">Was immer gilt</p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-2 uppercase">Ganz gleich wo du stehst</h2>
+            <h2 className="sonic-h2 text-white mb-2">Ganz gleich, wo du stehst</h2>
             <p className="text-base md:text-xl text-white/50 font-semibold">Du bekommst immer</p>
           </div>
           <div className="grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
@@ -1298,7 +1298,7 @@ export default function LosungenPage() {
                         <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" />
                         <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Schnell-Check</span>
                       </div>
-                      <h2 className="text-xl md:text-2xl font-black text-white uppercase leading-tight">Finde deine Sonic-Lösung</h2>
+                      <h2 className="sonic-h3 text-white leading-tight">Finde deine Sonic-Lösung</h2>
                     </div>
 
                     {/* Progress */}
@@ -1363,7 +1363,7 @@ export default function LosungenPage() {
                       <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-3 py-1 mb-3">
                         <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Kontakt</span>
                       </div>
-                      <h2 className="text-xl md:text-2xl font-black text-white uppercase leading-tight">Fast geschafft!</h2>
+                      <h2 className="sonic-h3 text-white leading-tight">Fast geschafft!</h2>
                       <p className="text-white/50 text-sm mt-1">Hinterlasse deine Daten — wir erstellen dein persönliches Ergebnis.</p>
                     </div>
 

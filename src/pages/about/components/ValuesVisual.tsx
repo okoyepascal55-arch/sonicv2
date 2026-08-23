@@ -42,14 +42,11 @@ export default function ValuesVisual() {
         <div
           className={`mb-10 md:mb-12 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
-          <div className="flex flex-wrap items-baseline gap-3 mb-2">
-            <h2 className="sonic-h2 text-foreground-950">
-              Wer mit Sonic erfolgreich ist
-            </h2>
-            <span className="sonic-label text-foreground-300">12 Markenpartner</span>
-          </div>
+          <h2 className="sonic-h2 text-foreground-950 mb-2">
+            Wer mit Sonic <span className="text-primary-500">erfolgreich</span> ist
+          </h2>
           <p className="text-sm text-foreground-500 max-w-lg leading-relaxed">
-            Seit 2007 vertrauen führende Marken auf unsere Expertise am POS, in Studios und auf Events.
+            12 Markenpartner vertrauen seit 2007 auf unsere Expertise am POS, in Studios und auf Events.
           </p>
         </div>
 

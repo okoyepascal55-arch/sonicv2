@@ -155,7 +155,7 @@ export default function BlogPage() {
             </div>
             <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Magazin & Insights</span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white leading-[0.9] mb-4 md:mb-6 tracking-tight">
+          <h1 className="sonic-h1 text-white mb-4 md:mb-6">
             SONIC<br />
             <span className="text-primary-500">BLOG</span>
           </h1>

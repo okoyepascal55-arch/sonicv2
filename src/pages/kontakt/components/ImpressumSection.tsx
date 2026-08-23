@@ -30,7 +30,7 @@ export default function ImpressumSection() {
               id="impressum-heading"
               className="sonic-h2 text-foreground-950"
             >
-              IMPRESSUM
+              Impressum
             </h2>
           </div>
         </div>

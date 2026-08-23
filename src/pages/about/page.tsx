@@ -84,9 +84,7 @@ export default function AboutPage() {
             {/* Large headline */}
             <h1 className="sonic-h1 text-white mb-4 md:mb-5">
               {tHeroH1}<br />
-              <span className="bg-primary-500 text-foreground-950 px-2.5 py-0.5 inline-block mt-1">
-                {tHeroH1Line2}
-              </span>
+              <span className="text-primary-500">{tHeroH1Line2}</span>
             </h1>
 
             <p className="text-white/60 text-sm md:text-base max-w-full max-w-[520px] leading-relaxed mb-8 md:mb-10">

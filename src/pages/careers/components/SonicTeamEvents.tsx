@@ -47,7 +47,7 @@ export default function SonicTeamEvents() {
   const tHeading = useText('careers_events', 'careers-events-heading', 'Wir arbeiten hart. Wir feiern noch mehr.');
 
   const tCampusBadge = useText('careers_campus', 'careers-campus-badge', 'Unser Campus');
-  const tCampusHeading = useText('careers_campus', 'careers-campus-heading', 'BÜRO ERKUNDEN');
+  const tCampusHeading = useText('careers_campus', 'careers-campus-heading', 'Büro erkunden');
   const tCampusSub = useText('careers_campus', 'careers-campus-sub', '360°-Rundgang durch unseren Hauptsitz in Krefeld — Campus Fichtenhain 46.');
   const tCampusAddress = useText('careers_campus', 'careers-campus-address', 'Campus Fichtenhain 46');
   const tCampusCity = useText('careers_campus', 'careers-campus-city', '47807 Krefeld, Deutschland');

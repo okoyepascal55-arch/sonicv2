@@ -223,7 +223,7 @@ export default function FeaturedCases() {
         {/* Header */}
         <div className="text-center mb-14">
           <SectionBadge text="Deep Dive" variant="dark" className="mb-6" />
-          <h2 className="sonic-h2 text-foreground-950 mb-4">UNSERE 4 ERFOLGSPARTNERSCHAFTEN</h2>
+          <h2 className="sonic-h2 text-foreground-950 mb-4">Unsere 4 <span className="text-primary-500">Erfolgspartnerschaften</span></h2>
           <p className="text-base text-foreground-600 max-w-2xl mx-auto">Echte Zahlen, echte Zitate, echte Ergebnisse — aus laufenden Langzeitpartnerschaften im DACH-Raum</p>
         </div>
 

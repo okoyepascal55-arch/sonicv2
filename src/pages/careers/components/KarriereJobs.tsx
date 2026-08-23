@@ -62,7 +62,7 @@ export default function KarriereJobs() {
                 Krefeld &amp; DACH-weit
               </span>
             </div>
-            <div className="text-2xl md:text-3xl lg:text-4xl font-black text-white uppercase leading-[1.1] tracking-tight">
+            <div className="sonic-h2 text-white">
               Jetzt durchstarten
             </div>
             <p className="text-sm text-white/50 mt-2 leading-relaxed">

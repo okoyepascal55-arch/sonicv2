@@ -97,7 +97,7 @@ export default function SchallmauerWays() {
         <div className="text-center mb-8 md:mb-10">
           <SectionBadge text="Die Retail-Schallmauer" variant="dark" className="mb-5" />
           <h2 className="sonic-h2 text-foreground-950">
-            Dein Weg zum Retail-Erfolg
+            Dein Weg zum <span className="text-primary-500">Retail-Erfolg</span>
           </h2>
           <p className="text-sm md:text-base text-foreground-600 max-w-xl mx-auto">
             Wähle deinen Pfad — oder kombiniere alle drei für maximale Marktdurchdringung.

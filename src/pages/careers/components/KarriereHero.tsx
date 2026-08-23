@@ -88,9 +88,7 @@ export default function KarriereHero() {
           {/* Headline */}
           <h1 className="sonic-h1 text-white mb-5 md:mb-6">
             Menschen mit{' '}
-            <span className="bg-primary-500 text-foreground-950 px-2 py-[3px] inline-block">
-              Energie
-            </span>{' '}
+            <span className="text-primary-500">Energie</span>{' '}
             gesucht
           </h1>
 

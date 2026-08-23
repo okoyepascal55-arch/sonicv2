@@ -841,7 +841,7 @@ export default function CaseStudiesPage() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
               <span className="text-primary-500 text-xs font-black uppercase tracking-widest mb-2 block">Lass uns sprechen</span>
-              <h2 className="sonic-h2 text-white mb-2">Deine Marke. Unser Einsatz.</h2>
+              <h2 className="sonic-h2 text-white mb-2">Deine Marke. <span className="text-primary-500">Unser Einsatz.</span></h2>
               <p className="text-sm text-white/50 max-w-md">
                 Wir bringen deine Marke dort zum Leuchten, wo die Kaufentscheidung fällt.
               </p>

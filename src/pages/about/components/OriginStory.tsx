@@ -22,7 +22,7 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
   const { images: woodTicker } = useMediaStore('about_origin_story_wood_bg');
 
   const tBadge = useText('about_origin_story', 'about-origin-badge', 'Über uns');
-  const tHeading = useText('about_origin_story', 'about-origin-heading', 'MARKEN IM HERZEN. ERFOLG IM FOKUS.');
+  const tHeading = useText('about_origin_story', 'about-origin-heading', 'Marken im Herzen. Erfolg im Fokus.');
   const tP1 = useText('about_origin_story', 'about-origin-p1', 'Wir sind eine unabhängige Marketing- und Sales-Agentur.');
   const tP2 = useText('about_origin_story', 'about-origin-p2', 'Seit 2007 leben wir Marken und machen sie erfolgreich.');
   const tP3 = useText('about_origin_story', 'about-origin-p3', 'Unsere Strategie: Ärmel hoch und anpacken!');

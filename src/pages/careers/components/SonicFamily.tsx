@@ -79,7 +79,7 @@ export default function SonicFamily() {
   const [transitioning, setTransitioning] = useState(false);
 
   const tBadge = useText('careers_family', 'careers-family-badge', 'Echte Menschen. Echte Geschichten.');
-  const tHeading = useText('careers_family', 'careers-family-heading', 'SONIC SPIRIT & FACES');
+  const tHeading = useText('careers_family', 'careers-family-heading', 'Sonic Spirit & Faces');
   const tSub = useText('careers_family', 'careers-family-sub', 'Persönliche Geschichten, ehrliche Interviews und die Werte, die unsere Kultur ausmachen.');
   const tCta = useText('careers_family', 'careers-family-cta', 'Jetzt mitmachen');
 

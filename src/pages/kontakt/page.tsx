@@ -121,12 +121,12 @@ export default function KontaktPage() {
 
             {/* Left: text */}
             <div>
-              <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
-                <span className="w-1.5 h-1.5 bg-foreground-950" />
-                {tHeroBadge}
+              <div className="inline-flex items-center gap-2 px-3.5 py-[7px] mb-5 md:mb-6" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
+                <span className="w-1.5 h-1.5 bg-primary-500 flex-shrink-0" />
+                <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary-500">{tHeroBadge}</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-black text-white leading-tight mb-6">
+              <h1 className="sonic-h1 text-white mb-6">
                 {tHeroH1}
                 <br />
                 <span className="text-primary-500">{tHeroH1Accent}</span>

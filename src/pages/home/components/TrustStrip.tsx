@@ -4,7 +4,7 @@ import SectionBadge from '@/components/base/SectionBadge';
 
 export default function TrustStrip() {
   const { images: logoImages } = useMediaStore('home_truststrip_logos');
-  const tTrustBadge = useText('home_truststrip', 'home-trust-badge', 'Industry Leaders');
+  const tTrustBadge = useText('home_truststrip', 'home-trust-badge', 'Marken, die uns vertrauen');
 
   const allBrands = [
     { name: 'Philips', logo: (logoImages[0] && logoImages[0].url) || 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887', scale: 1.45 },
@@ -68,7 +68,7 @@ export default function TrustStrip() {
 
       <div className="sonic-container relative z-10">
         <div className="border-t border-foreground-200 pt-5 sm:pt-8 md:pt-12">
-          <SectionBadge text="{tTrustBadge}" variant="dark" className="mb-4" />
+          <SectionBadge text={tTrustBadge} variant="dark" className="mb-4" />
 
           {/* Mobile: single-row horizontal scroll strip */}
           <div
