@@ -217,9 +217,8 @@ export default function ChallengeSection({
 
                   {/* Title */}
                   <h3
-                    className="font-black leading-tight mb-4 transition-colors duration-300"
+                    className="sonic-h3 leading-tight mb-4 transition-colors duration-300"
                     style={{
-                      fontSize: 'clamp(1.2rem, 1.9vw, 1.55rem)',
                       color: isActive ? 'oklch(var(--foreground-950))' : 'rgba(0,0,0,0.68)',
                     }}
                   >

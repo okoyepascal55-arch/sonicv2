@@ -222,7 +222,7 @@ export default function ServicesGrid() {
               onClick={() => setSelectedIndex(index)}
               className={`whitespace-nowrap text-sm md:text-base font-semibold transition-all duration-200 cursor-pointer px-4 md:px-6 py-2.5 rounded-none border ${
                 selectedIndex === index
-                  ? 'bg-primary-500 text-foreground-950 border-primary-500'
+                  ? 'bg-foreground-950 text-primary-500 border-foreground-950'
                   : 'text-foreground-600 hover:text-foreground-900 border-background-300 hover:border-foreground-300 bg-white'
               }`}
             >

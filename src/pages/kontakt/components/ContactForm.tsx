@@ -1,5 +1,4 @@
 import { useState, FormEvent } from 'react';
-import WoodenButton from '@/components/base/WoodenButton';
 
 const FORM_URL = 'https://readdy.ai/api/form/d82bbfb29k3fss3u08ug';
 
@@ -18,6 +17,7 @@ type Status = 'idle' | 'sending' | 'success' | 'error';
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
   const [charCount, setCharCount] = useState(0);
+  const [selectedInterest, setSelectedInterest] = useState('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -64,7 +64,7 @@ export default function ContactForm() {
             Direkte Anfrage
           </p>
           <h2 className="sonic-h2 text-foreground-950">
-            SCHREIB UNS
+            Schreib uns
           </h2>
           <p className="text-sm text-foreground-500 leading-relaxed max-w-md">
             Kein Commitment. Nur ein gutes Gespräch. Wir melden uns innerhalb von 24 Stunden.
@@ -76,7 +76,7 @@ export default function ContactForm() {
             <div className="w-14 h-14 mx-auto mb-5 flex items-center justify-center bg-primary-500/15 border border-primary-500/30">
               <i className="ri-check-double-line text-2xl text-primary-500" />
             </div>
-            <h3 className="text-xl font-black text-foreground-950 mb-2 uppercase">Nachricht erhalten!</h3>
+            <h3 className="sonic-h3 text-foreground-950 mb-2">Nachricht erhalten</h3>
             <p className="text-sm text-foreground-500">
               Wir melden uns innerhalb von 24 Stunden bei dir.
             </p>
@@ -151,22 +151,32 @@ export default function ContactForm() {
               </div>
             </div>
 
-            {/* Interesse */}
+            {/* Interesse — chip selector */}
             <div>
-              <label htmlFor="interesse" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
+              <label className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-3">
                 Interesse an
               </label>
-              <select
-                id="interesse"
-                name="interesse"
-                className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-foreground-950 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-200 cursor-pointer"
-                style={{ borderRadius: 0 }}
-              >
-                <option value="">Bitte auswählen…</option>
-                {interests.map((opt) => (
-                  <option key={opt} value={opt}>{opt}</option>
-                ))}
-              </select>
+              <input type="hidden" name="interesse" value={selectedInterest} />
+              <div className="flex flex-wrap gap-2">
+                {interests.map((opt) => {
+                  const active = selectedInterest === opt;
+                  return (
+                    <button
+                      key={opt}
+                      type="button"
+                      onClick={() => setSelectedInterest(active ? '' : opt)}
+                      className="text-[11px] font-black uppercase tracking-[0.1em] px-3.5 py-2 transition-all duration-150 cursor-pointer"
+                      style={{
+                        background: active ? 'oklch(var(--primary-500))' : 'transparent',
+                        color: active ? 'oklch(var(--foreground-950))' : 'oklch(var(--foreground-500))',
+                        border: active ? '1.5px solid oklch(var(--primary-500))' : '1.5px solid oklch(var(--foreground-200))',
+                      }}
+                    >
+                      {opt}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Nachricht */}
@@ -205,7 +215,7 @@ export default function ContactForm() {
             <button
               type="submit"
               disabled={status === 'sending' || charCount > 500}
-              className="inline-flex items-center gap-3 bg-primary-500 text-white px-7 py-3 font-black text-sm uppercase tracking-wider hover:bg-foreground-950 hover:text-primary-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+              className="inline-flex items-center gap-3 bg-primary-500 text-foreground-950 px-7 py-3 font-black text-sm uppercase tracking-wider hover:bg-foreground-950 hover:text-primary-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
               style={{ borderRadius: 0 }}
             >
               {status === 'sending' ? (

@@ -38,32 +38,19 @@ export default function ValuesVisual() {
     <section ref={sectionRef} id="referenzen" className="bg-background-100 pb-16 md:pb-20">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
-        {/* Compact header — no SectionBadge, flows from OriginStory transition strip */}
+        {/* Header */}
         <div
-          className={`mb-8 md:mb-10 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          className={`mb-10 md:mb-12 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
-          <h2 className="text-xl md:text-2xl font-black text-foreground-950 mb-2 leading-tight tracking-tight text-center">
-            WER MIT SONIC ERFOLGREICH IST
-          </h2>
-          <p className="text-black/40 text-xs md:text-sm max-w-lg mx-auto leading-relaxed text-center">
+          <div className="flex flex-wrap items-baseline gap-3 mb-2">
+            <h2 className="sonic-h2 text-foreground-950">
+              Wer mit Sonic erfolgreich ist
+            </h2>
+            <span className="sonic-label text-foreground-300">12 Markenpartner</span>
+          </div>
+          <p className="text-sm text-foreground-500 max-w-lg leading-relaxed">
             Seit 2007 vertrauen führende Marken auf unsere Expertise am POS, in Studios und auf Events.
           </p>
-        </div>
-
-        {/* Hashtag badges */}
-        <div
-          className={`flex flex-wrap justify-center gap-1.5 mb-10 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-          style={{ transitionDelay: '80ms' }}
-        >
-          {['#Doing new things', '#Doing things better', '#Doing things', 'Team'].map((tag) => (
-            <span
-              key={tag}
-              className="px-3 py-1.5 border border-black/10 text-[10px] font-black text-black/40 uppercase tracking-wider hover:border-primary-500/40 hover:text-black/70 transition-all duration-200 cursor-default"
-              tabIndex={0}
-            >
-              {tag}
-            </span>
-          ))}
         </div>
 
         {/* Client grid */}

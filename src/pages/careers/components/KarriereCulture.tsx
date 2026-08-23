@@ -1,30 +1,27 @@
 import { useState } from 'react';
 import { useText } from '@/hooks/useText';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const DNA_DATA = [
   {
     num: '01',
     title: 'Der Mensch',
     desc: 'Menschen, die Marken prägen. Promotions leben von den Menschen, die sie durchführen.',
-    image: 'https://readdy.ai/api/search-image?query=confident%20friendly%20retail%20promoter%20professional%20engaging%20warmly%20with%20a%20customer%20inside%20a%20bright%20modern%20retail%20store%20environment%20natural%20window%20light%20authentic%20candid%20editorial%20moment%20clean%20neutral%20warm%20background%20soft%20focus%20high%20detail%20harmonious%20composition&width=600&height=400&seq=dna-mensch-v1&orientation=landscape',
   },
   {
     num: '02',
     title: 'Der Antrieb',
     desc: 'Wettbewerbsfähige Bezahlung und Entwicklungsperspektiven motivieren unser Team.',
-    image: 'https://readdy.ai/api/search-image?query=energetic%20team%20of%20professionals%20high%20five%20celebrating%20a%20successful%20moment%20in%20a%20bright%20modern%20creative%20office%20space%20warm%20natural%20light%20authentic%20candid%20editorial%20photography%20clean%20neutral%20background%20sense%20of%20motion%20and%20drive%20high%20detail&width=600&height=400&seq=dna-antrieb-v1&orientation=landscape',
   },
   {
     num: '03',
     title: 'Die Daten',
     desc: 'Datenbasierte Entscheidungen verwandeln Intuition in messbare Erfolge.',
-    image: 'https://readdy.ai/api/search-image?query=sleek%20modern%20analytics%20dashboard%20with%20charts%20and%20performance%20metrics%20displayed%20on%20a%20laptop%20screen%20on%20a%20clean%20wooden%20desk%20in%20a%20bright%20workspace%20warm%20natural%20lighting%20editorial%20product%20photography%20minimal%20composition%20soft%20neutral%20background%20high%20detail&width=600&height=400&seq=dna-daten-v1&orientation=landscape',
   },
   {
     num: '04',
     title: 'Das Werkzeug',
     desc: 'Inhouse-IT und starke Partner lösen Herausforderungen mit den richtigen Tools.',
-    image: 'https://readdy.ai/api/search-image?query=organized%20modern%20creative%20studio%20tools%20and%20devices%20neatly%20arranged%20on%20a%20clean%20workbench%20in%20a%20bright%20industrial%20workspace%20warm%20natural%20light%20editorial%20still%20life%20photography%20minimal%20clean%20composition%20neutral%20background%20high%20detail&width=600&height=400&seq=dna-werkzeug-v1&orientation=landscape',
   },
 ];
 
@@ -41,6 +38,7 @@ const WERTE = [
 
 export default function KarriereCulture() {
   const [hoveredDna, setHoveredDna] = useState<number | null>(null);
+  const [hoveredWert, setHoveredWert] = useState<number | null>(null);
 
   const tP1 = useText('careers_culture', 'careers-culture-p1', '');
   const tP2 = useText('careers_culture', 'careers-culture-p2', '');
@@ -53,95 +51,90 @@ export default function KarriereCulture() {
   return (
     <section id="darum" className="sonic-section-lg px-4 md:px-6 bg-background-100">
       <div className="sonic-container">
-        {/* ── Headline ── */}
+
+        {/* ── Section header ── */}
         <div className="max-w-3xl mb-12 md:mb-16">
+          <SectionBadge text="Unsere Kultur" variant="dark" className="mb-5" />
           <h2 className="sonic-h2 text-foreground-950">
             Starke Menschen für{' '}
             <span className="text-primary-500">starke Marken</span>
           </h2>
-          <p className="mt-4 text-sm md:text-base font-bold text-[#6E6E68] tracking-wide max-w-xl leading-relaxed">
+          <p className="mt-4 text-sm md:text-base text-foreground-500 max-w-xl leading-relaxed">
             Wir lieben &amp; leben Marken. Energie, Sympathie, Teamgeist, Kreativität und der Wille anzupacken — das zeichnet uns aus.
           </p>
         </div>
 
         {/* ── Statement card ── */}
-        <div className="relative overflow-hidden bg-foreground-950 p-8 md:p-12 mb-10 md:mb-14">
-          <div className="max-w-2xl">
-            <h3 className="text-xl md:text-2xl font-black text-white leading-snug mb-4">
+        <div className="relative overflow-hidden bg-foreground-950 p-8 md:p-12 mb-12 md:mb-16">
+          {/* Lime left accent */}
+          <div className="absolute top-0 left-0 bottom-0 w-[3px] bg-primary-500" aria-hidden="true" />
+
+          <div className="max-w-2xl pl-2">
+            <h3 className="sonic-h3 text-white mb-4">
               Wir lieben &amp; leben Marken.
             </h3>
-            <p className="text-sm text-[#B5B5AF] leading-relaxed mb-3">
+            <p className="text-sm text-foreground-300 leading-relaxed mb-3">
               {tP1 || 'Am Point of Sale, bei Messen, Events, Roadshows und per Video aus unseren Studios am Campus in Krefeld.'}
             </p>
-            <p className="text-sm text-[#B5B5AF] leading-relaxed">
+            <p className="text-sm text-foreground-300 leading-relaxed">
               {tP2 || 'Energiegeladen und sympathisch: Diese Beschreibung passt auf die Menschen, die bei Sonic arbeiten. Passt sie auch auf dich?'}
             </p>
           </div>
 
           {/* Tags + CTA */}
-          <div className="flex flex-wrap items-center gap-3 mt-8 pt-6 border-t border-white/10">
+          <div className="flex flex-wrap items-center gap-2 mt-8 pt-6 border-t border-white/10 pl-2">
             {TAGS.map((tag) => (
               <span
                 key={tag}
-                className="text-xs font-bold text-primary-500 bg-primary-500/10 px-3 py-1.5"
+                className="text-[11px] font-black text-primary-500 border border-primary-500/25 px-3 py-1.5 uppercase tracking-[0.1em]"
               >
                 {tag}
               </span>
             ))}
             <button
               onClick={scrollToPaths}
-              className="ml-auto text-xs font-bold text-white hover:text-primary-500 transition-colors cursor-pointer"
+              className="ml-auto text-xs font-black text-white/60 hover:text-primary-500 transition-colors cursor-pointer uppercase tracking-[0.12em]"
             >
               Karrierepfade →
             </button>
           </div>
         </div>
 
-        {/* ── DNA (pictorial) + Werte (bento) ── */}
-        <div className="space-y-12">
-          {/* DNA — pictorial cards */}
+        {/* ── DNA + Werte ── */}
+        <div className="space-y-14">
+
+          {/* DNA — numbered editorial cards */}
           <div>
-            <h4 className="text-[11px] font-black uppercase tracking-[0.15em] text-foreground-400 mb-4">
-              Unsere DNA
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 md:grid-cols-4 gap-4">
+            <p className="sonic-label text-foreground-400 mb-6">Unsere DNA</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-foreground-200/60">
               {DNA_DATA.map((item, i) => {
                 const active = hoveredDna === i;
                 return (
                   <div
                     key={item.num}
-                    className="overflow-hidden border bg-white transition-all duration-300 cursor-pointer"
-                    style={{
-                      borderColor: active ? 'rgba(200,212,0,0.55)' : '#E7E4D4',
-                      transform: active ? 'translateY(-3px)' : 'translateY(0)',
-                    }}
+                    className="relative bg-white p-7 md:p-8 cursor-default transition-colors duration-200 overflow-hidden"
+                    style={{ background: active ? '#fafdf5' : '#ffffff' }}
                     onMouseEnter={() => setHoveredDna(i)}
                     onMouseLeave={() => setHoveredDna(null)}
                   >
-                    <div className="relative h-36 md:h-40 overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-full object-cover object-top transition-transform duration-700"
-                        style={{ transform: active ? 'scale(1.06)' : 'scale(1)' }}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C]/45 to-transparent" aria-hidden="true" />
-                      <div
-                        className="absolute top-3 left-3 w-9 h-9 flex items-center justify-center text-xs font-black"
-                        style={{ background: 'rgba(11,11,12,0.72)', color: 'oklch(var(--primary-500))', border: '1px solid rgba(200,212,0,0.4)' }}
-                      >
-                        {item.num}
-                      </div>
+                    {/* Lime left border on hover */}
+                    <div
+                      className="absolute top-0 left-0 bottom-0 transition-all duration-200"
+                      style={{ width: '3px', background: active ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.15)' }}
+                      aria-hidden="true"
+                    />
+                    {/* Ghost number */}
+                    <div
+                      className="absolute top-4 right-5 font-black leading-none select-none pointer-events-none transition-colors duration-200"
+                      style={{ fontSize: '5rem', color: active ? 'rgba(200,212,0,0.12)' : 'rgba(0,0,0,0.04)', letterSpacing: '-0.04em' }}
+                      aria-hidden="true"
+                    >
+                      {item.num}
                     </div>
-                    <div className="p-5">
-                      <h5 className="text-sm font-bold text-foreground-950 mb-1.5">
-                        {item.title}
-                      </h5>
-                      <p className="text-xs leading-relaxed text-[#6E6E68]">
-                        {item.desc}
-                      </p>
+                    <div className="relative">
+                      <p className="sonic-label text-primary-500 mb-4">{item.num}</p>
+                      <h4 className="sonic-h3 text-foreground-950 mb-2">{item.title}</h4>
+                      <p className="text-sm text-foreground-500 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 );
@@ -149,38 +142,29 @@ export default function KarriereCulture() {
             </div>
           </div>
 
-          {/* Werte — bento numbered-card system (matches Über uns Timeline) */}
+          {/* Werte — left-border card grid */}
           <div>
-            <h4 className="text-[11px] font-black uppercase tracking-[0.15em] text-foreground-400 mb-4">
-              Unsere Werte
-            </h4>
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <p className="sonic-label text-foreground-400 mb-6">Unsere Werte</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {WERTE.map((val, i) => {
-                const isWide = i === 0 || i === 3 || i === 4;
+                const active = hoveredWert === i;
                 return (
                   <div
                     key={val.num}
-                    className={`relative p-7 md:p-8 border border-black/8 bg-white ${
-                      isWide ? 'sm:col-span-2' : 'sm:col-span-1'
-                    }`}
+                    className="relative p-6 md:p-7 bg-white transition-all duration-200"
+                    style={{
+                      borderLeft: `3px solid ${active ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.2)'}`,
+                      borderTop: '0.5px solid rgba(0,0,0,0.07)',
+                      borderRight: '0.5px solid rgba(0,0,0,0.07)',
+                      borderBottom: '0.5px solid rgba(0,0,0,0.07)',
+                      background: active ? '#fafdf5' : '#ffffff',
+                    }}
+                    onMouseEnter={() => setHoveredWert(i)}
+                    onMouseLeave={() => setHoveredWert(null)}
                   >
-                    {/* Watermark number */}
-                    <div
-                      className="absolute top-4 right-5 text-7xl font-black leading-none text-black/[0.04] select-none pointer-events-none"
-                      aria-hidden="true"
-                    >
-                      {val.num}
-                    </div>
-
-                    <div className="w-9 h-9 bg-foreground-950 text-primary-500 flex items-center justify-center text-[11px] font-black mb-4">
-                      {val.num}
-                    </div>
-                    <h4 className="text-lg md:text-xl font-black text-foreground-950 mb-3 leading-tight tracking-tight">
-                      {val.title}
-                    </h4>
-                    <p className="text-sm text-black/50 leading-relaxed">
-                      {val.desc}
-                    </p>
+                    <p className="sonic-label text-primary-500 mb-3">{val.num}</p>
+                    <h4 className="sonic-h3 text-foreground-950 mb-2">{val.title}</h4>
+                    <p className="text-sm text-foreground-500 leading-relaxed">{val.desc}</p>
                   </div>
                 );
               })}

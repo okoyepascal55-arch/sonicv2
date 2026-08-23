@@ -89,11 +89,11 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
         {/* ── HEADER + SELECTOR ── */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10 md:mb-12">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-5">
-              <span className="w-1.5 h-1.5 bg-foreground-950 flex-shrink-0" />
-              {tBadge}
+            <div className="inline-flex items-center gap-2 px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.12)', border: '1px solid oklch(var(--primary-500) / 0.28)' }}>
+              <span className="w-1.5 h-1.5 flex-shrink-0" style={{ background: 'oklch(var(--primary-500))'}} />
+              <span className="text-[11px] font-black uppercase tracking-[0.2em]" style={{ color: 'oklch(var(--primary-500))'}}>{tBadge}</span>
             </div>
-            <h2 className="text-[clamp(28px,3.6vw,46px)] font-black text-foreground-950 leading-[1.06] tracking-tight uppercase">
+            <h2 className="sonic-h2 text-foreground-950">
               {headingMain}{' '}
               <span className="text-primary-500">{headingAccent}</span>
             </h2>

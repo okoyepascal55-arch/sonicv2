@@ -97,7 +97,7 @@ export default function SchallmauerWays() {
         <div className="text-center mb-8 md:mb-10">
           <SectionBadge text="Die Retail-Schallmauer" variant="dark" className="mb-5" />
           <h2 className="sonic-h2 text-foreground-950">
-            DEIN WEG ZUM RETAIL-ERFOLG
+            Dein Weg zum Retail-Erfolg
           </h2>
           <p className="text-sm md:text-base text-foreground-600 max-w-xl mx-auto">
             Wähle deinen Pfad — oder kombiniere alle drei für maximale Marktdurchdringung.
@@ -164,7 +164,7 @@ export default function SchallmauerWays() {
                   </div>
 
                   <h3
-                    className="text-lg font-black mb-2 leading-tight transition-colors duration-500 uppercase"
+                    className="sonic-h3 mb-2 leading-tight transition-colors duration-500"
                     style={{ color: isHovered ? '#ffffff' : 'oklch(var(--foreground-950))' }}
                   >
                     {w.title}

@@ -93,7 +93,7 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
               }`}
               style={{ transitionDelay: '250ms' }}
             >
-              <h2 className="text-xl md:text-3xl font-black text-foreground-950 mb-4 md:mb-6 leading-tight tracking-tight">
+              <h2 className="sonic-h2 text-foreground-950 mb-4 md:mb-6">
                 {tHeading.split('.')[0] || tHeading}<br />
                 <span className="text-primary-500">{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.') + '.' : ''}</span>
               </h2>
