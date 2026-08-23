@@ -130,7 +130,7 @@ function StatCard({
             style={{
               fontSize: 'clamp(1.25rem, 2vw, 1.6rem)',
               letterSpacing: '-0.02em',
-              color: isLime ? '#C8D400' : '#1a1a1a',
+              color: isLime ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-950))',
             }}
           >
             {display(count)}

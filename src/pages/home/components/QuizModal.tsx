@@ -226,7 +226,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                     className="group relative p-5 transition-all duration-300 cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
                     style={{
                       background: '#fff',
-                      border: hoveredOption === index ? '2px solid #C8D400' : '2px solid #f0f0f0',
+                      border: hoveredOption === index ? '2px solid oklch(var(--primary-500))' : '2px solid #f0f0f0',
                       borderRadius: 0,
                       boxShadow: hoveredOption === index
                         ? '0 10px 28px rgba(200,212,0,0.2), 0 4px 10px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9)'
@@ -237,13 +237,13 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                     {/* Left lime accent on hover */}
                     <div
                       className="absolute left-0 top-0 bottom-0 transition-all duration-300"
-                      style={{ width: hoveredOption === index ? '3px' : '0px', background: '#C8D400' }}
+                      style={{ width: hoveredOption === index ? '3px' : '0px', background: 'oklch(var(--primary-500))' }}
                     />
                     <div className="flex items-center gap-4">
                       <div
                         className="w-11 h-11 flex items-center justify-center flex-shrink-0 transition-all duration-300"
                         style={{
-                          background: hoveredOption === index ? '#C8D400' : '#f3f4f6',
+                          background: hoveredOption === index ? 'oklch(var(--primary-500))' : '#f3f4f6',
                           boxShadow: hoveredOption === index
                             ? '0 4px 12px rgba(200,212,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3)'
                             : '0 2px 4px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8)',

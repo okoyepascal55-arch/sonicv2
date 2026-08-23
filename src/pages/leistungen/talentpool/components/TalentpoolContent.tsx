@@ -179,7 +179,7 @@ function ScrollSection({
             style={{
               width: i === (activeIdx ?? 0) ? '22px' : '6px',
               height: '3px',
-              background: i === (activeIdx ?? 0) ? '#C8D400' : 'rgba(200,212,0,0.3)',
+              background: i === (activeIdx ?? 0) ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.3)',
               border: 'none',
               padding: 0,
             }}
@@ -235,7 +235,7 @@ export default function TalentpoolContent() {
         />
         <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="sonic-container relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
               <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
@@ -258,7 +258,7 @@ export default function TalentpoolContent() {
       {/* ── Talent Profiles (horizontal scroll, dark bg — intentional alternation) ── */}
       <section id="talentprofile" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/4 blur-3xl pointer-events-none" />
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="sonic-container relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
               <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
@@ -291,8 +291,8 @@ export default function TalentpoolContent() {
                   onMouseEnter={() => setProfActive(idx)}
                   onMouseLeave={() => setProfActive(null)}
                 >
-                  <div className="absolute top-0 left-0 right-0 z-20" style={{ height: isA ? '3px' : '2px', background: isA ? '#C8D400' : 'rgba(200,212,0,0.2)', boxShadow: isA ? '0 0 14px rgba(200,212,0,0.45)' : 'none', transition: 'all 0.3s ease' }} />
-                  <div className="absolute top-0 left-0 bottom-0 z-20 w-0.5" style={{ background: isA ? '#C8D400' : 'transparent', transition: 'background 0.3s ease' }} />
+                  <div className="absolute top-0 left-0 right-0 z-20" style={{ height: isA ? '3px' : '2px', background: isA ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.2)', boxShadow: isA ? '0 0 14px rgba(200,212,0,0.45)' : 'none', transition: 'all 0.3s ease' }} />
+                  <div className="absolute top-0 left-0 bottom-0 z-20 w-0.5" style={{ background: isA ? 'oklch(var(--primary-500))' : 'transparent', transition: 'background 0.3s ease' }} />
                   <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 z-30" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
                   <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 z-30" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
                   <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
@@ -303,22 +303,22 @@ export default function TalentpoolContent() {
                     <img src={getProfileImg(idx)} alt={p.type} className="w-full h-full object-cover object-top transition-transform duration-700" style={{ transform: isA ? 'scale(1.05)' : 'scale(1)' }} loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-3 left-3">
-                      <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1" style={{ background: '#C8D400', color: '#111' }}>{p.type}</span>
+                      <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1" style={{ background: 'oklch(var(--primary-500))', color: '#111' }}>{p.type}</span>
                     </div>
                   </div>
 
                   <div className="relative z-10 p-7 flex flex-col">
                     <div className="flex items-center gap-2 mb-5">
-                      <div className="w-1.5 h-1.5" style={{ background: isA ? '#C8D400' : 'rgba(200,212,0,0.4)', transition: 'background 0.3s ease' }} />
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? '#C8D400' : 'rgba(200,212,0,0.5)', transition: 'color 0.3s ease' }}>{p.accent}</span>
+                      <div className="w-1.5 h-1.5" style={{ background: isA ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.4)', transition: 'background 0.3s ease' }} />
+                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.5)', transition: 'color 0.3s ease' }}>{p.accent}</span>
                     </div>
                     <div className="w-[56px] h-[56px] flex items-center justify-center mb-5 flex-shrink-0" style={{ background: isA ? 'linear-gradient(145deg, #d4e100, #C8D400)' : 'linear-gradient(145deg, #1c1c1c, #111)', boxShadow: isA ? '0 10px 24px rgba(200,212,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4)' : '0 8px 20px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.08)', transition: 'all 0.35s ease' }}>
-                      <i className={`${p.icon} text-xl`} style={{ color: isA ? '#111' : '#C8D400', transition: 'color 0.35s ease' }} />
+                      <i className={`${p.icon} text-xl`} style={{ color: isA ? '#111' : 'oklch(var(--primary-500))', transition: 'color 0.35s ease' }} />
                     </div>
                     <p className="text-sm leading-relaxed mb-4 flex-grow" style={{ color: isA ? '#555' : 'rgba(255,255,255,0.55)', transition: 'color 0.3s ease' }}>{p.desc}</p>
                     <div className="flex items-center justify-between pt-4" style={{ borderTop: `1px solid ${isA ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.07)'}`, transition: 'border-color 0.3s ease' }}>
                       <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? '#999' : 'rgba(255,255,255,0.25)' }}>{p.number} / {String(PROFILES.length).padStart(2, '0')}</span>
-                      <div className="w-7 h-7 flex items-center justify-center" style={{ background: isA ? '#C8D400' : 'rgba(255,255,255,0.06)', transform: isA ? 'translateX(3px)' : 'translateX(0)', transition: 'all 0.25s ease' }}>
+                      <div className="w-7 h-7 flex items-center justify-center" style={{ background: isA ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.06)', transform: isA ? 'translateX(3px)' : 'translateX(0)', transition: 'all 0.25s ease' }}>
                         <i className="ri-arrow-right-line text-sm" style={{ color: isA ? '#111' : 'rgba(255,255,255,0.4)' }} />
                       </div>
                     </div>

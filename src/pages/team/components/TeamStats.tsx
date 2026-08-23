@@ -34,7 +34,7 @@ export default function TeamStats() {
 
   return (
     <section className="sonic-section-lg md:px-4 md:px-6 bg-white">
-      <div className="max-w-7xl mx-auto">
+      <div className="sonic-container">
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
           <h2 className="sonic-h2 text-foreground-950 mb-6">
@@ -62,18 +62,18 @@ export default function TeamStats() {
               className="absolute bottom-0 left-0 right-0 transition-all duration-300"
               style={{
                 height: hoveredIndex === 0 ? '3px' : '0px',
-                background: '#C8D400'
+                background: 'oklch(var(--primary-500))'
               }}
             />
             <div className="flex items-center gap-5">
               <div className="w-16 h-16 flex items-center justify-center transition-colors duration-300 flex-shrink-0"
                 style={{
                   borderRadius: 0,
-                  background: hoveredIndex === 0 ? '#C8D400' : 'rgba(200,212,0,0.12)'
+                  background: hoveredIndex === 0 ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.12)'
                 }}
               >
                 <i className={`${stats[0].icon} text-2xl transition-colors duration-300`}
-                  style={{ color: hoveredIndex === 0 ? '#111' : '#C8D400' }}
+                  style={{ color: hoveredIndex === 0 ? '#111' : 'oklch(var(--primary-500))' }}
                 ></i>
               </div>
               <div>
@@ -102,17 +102,17 @@ export default function TeamStats() {
                 className="absolute bottom-0 left-0 right-0 transition-all duration-300"
                 style={{
                   height: hoveredIndex === realIndex ? '3px' : '0px',
-                  background: '#C8D400'
+                  background: 'oklch(var(--primary-500))'
                 }}
               />
               <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 transition-colors duration-300"
                 style={{
                   borderRadius: 0,
-                  background: hoveredIndex === realIndex ? '#C8D400' : 'rgba(200,212,0,0.12)'
+                  background: hoveredIndex === realIndex ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.12)'
                 }}
               >
                 <i className={`${stat.icon} text-xl transition-colors duration-300`}
-                  style={{ color: hoveredIndex === realIndex ? '#111' : '#C8D400' }}
+                  style={{ color: hoveredIndex === realIndex ? '#111' : 'oklch(var(--primary-500))' }}
                 ></i>
               </div>
               <div>

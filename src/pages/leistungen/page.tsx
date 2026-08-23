@@ -6,7 +6,7 @@ import LeistungenStats from './components/LeistungenStats';
 import ServiceGrid from './components/ServiceGrid';
 import SchallmauerWays from './components/SchallmauerWays';
 import IndustrySelector from './components/IndustrySelector';
-import LeistungenTestimonials from './components/LeistungenTestimonials';
+import ClientProof from '@/components/feature/ClientProof';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { StackedSectionReveal } from '@/components/feature/SectionReveal';
@@ -90,7 +90,7 @@ export default function LeistungenPage() {
       {/* Testimonials */}
       <div id="kundenstimmen" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #FAFDF5 50%, #ffffff 100%)' }}>
         <StackedSectionReveal index={4} totalSections={5}>
-          <LeistungenTestimonials />
+          <ClientProof />
         </StackedSectionReveal>
       </div>
       </main>

@@ -102,7 +102,7 @@ export default function ChallengeSection({
                   style={{
                     width: revealed[i] ? '28px' : '8px',
                     height: '8px',
-                    background: revealed[i] ? '#C8D400' : 'rgba(0,0,0,0.1)',
+                    background: revealed[i] ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.1)',
                     boxShadow: revealed[i] ? '0 0 8px rgba(200,212,0,0.5)' : 'none',
                   }}
                 />
@@ -112,7 +112,7 @@ export default function ChallengeSection({
             <div
               className="text-[11px] font-black uppercase tracking-widest transition-all duration-500"
               style={{
-                color: allRevealed ? '#C8D400' : 'rgba(0,0,0,0.25)',
+                color: allRevealed ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.25)',
               }}
             >
               {counterLabel()}
@@ -158,7 +158,7 @@ export default function ChallengeSection({
                 <div
                   className="absolute top-0 left-0 bottom-0 w-[3px] transition-all duration-300"
                   style={{
-                    background: isActive ? '#C8D400' : isRevealed ? 'rgba(200,212,0,0.25)' : 'transparent',
+                    background: isActive ? 'oklch(var(--primary-500))' : isRevealed ? 'rgba(200,212,0,0.25)' : 'transparent',
                     boxShadow: isActive ? '0 0 14px rgba(200,212,0,0.45)' : 'none',
                   }}
                 />
@@ -188,13 +188,13 @@ export default function ChallengeSection({
                     <div
                       className="w-11 h-11 flex items-center justify-center flex-shrink-0 transition-all duration-300"
                       style={{
-                        background: isActive ? '#C8D400' : isRevealed ? 'rgba(200,212,0,0.12)' : 'rgba(0,0,0,0.06)',
+                        background: isActive ? 'oklch(var(--primary-500))' : isRevealed ? 'rgba(200,212,0,0.12)' : 'rgba(0,0,0,0.06)',
                         transform: isActive ? 'scale(1.1) rotate(-3deg)' : 'scale(1)',
                       }}
                     >
                       <i
                         className={`${c.icon} text-lg transition-colors duration-300`}
-                        style={{ color: isActive ? '#111' : isRevealed ? '#C8D400' : 'rgba(0,0,0,0.4)' }}
+                        style={{ color: isActive ? '#111' : isRevealed ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.4)' }}
                       />
                     </div>
                     {/* Revealed checkmark OR index */}
@@ -220,7 +220,7 @@ export default function ChallengeSection({
                     className="font-black leading-tight mb-4 transition-colors duration-300"
                     style={{
                       fontSize: 'clamp(1.2rem, 1.9vw, 1.55rem)',
-                      color: isActive ? '#1a1a1a' : 'rgba(0,0,0,0.68)',
+                      color: isActive ? 'oklch(var(--foreground-950))' : 'rgba(0,0,0,0.68)',
                     }}
                   >
                     {c.title}
@@ -276,14 +276,14 @@ export default function ChallengeSection({
                 className="absolute left-0 top-0 bottom-0 transition-all duration-700"
                 style={{
                   width: `${(revealedCount / total) * 100}%`,
-                  background: '#C8D400',
+                  background: 'oklch(var(--primary-500))',
                   boxShadow: revealedCount > 0 ? '0 0 8px rgba(200,212,0,0.5)' : 'none',
                 }}
               />
             </div>
             <span
               className="text-[10px] font-black uppercase tracking-[0.18em] transition-colors duration-500 whitespace-nowrap"
-              style={{ color: allRevealed ? '#C8D400' : 'rgba(0,0,0,0.2)' }}
+              style={{ color: allRevealed ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.2)' }}
             >
               {allRevealed
                 ? `${total}/${total} — Wir haben die Lösung.`

@@ -43,7 +43,7 @@ export default function KarriereHero() {
           <path
             d="M0 70 Q 25 20 50 70 T 100 70 T 150 70 T 200 70 T 250 70 T 300 70"
             fill="none"
-            stroke="#C8D400"
+            stroke="oklch(var(--primary-500))"
             strokeWidth="4"
             strokeLinecap="round"
           />

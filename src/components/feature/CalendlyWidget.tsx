@@ -37,7 +37,7 @@ export default function CalendlyWidget() {
           url: CALENDLY_URL,
           text: 'Kostenlose 30-Min Beratung',
           color: '#c8d300',
-          textColor: '#1a1a1a',
+          textColor: 'oklch(var(--foreground-950))',
           branding: false
         });
       }

@@ -174,11 +174,11 @@ export default function RotatingPhotoGrid() {
                 />
                 <div
                   className="absolute inset-0 pointer-events-none transition-opacity duration-300"
-                  style={{ boxShadow: 'inset 0 0 0 2px #C8D400', opacity: isHov ? 1 : 0 }}
+                  style={{ boxShadow: 'inset 0 0 0 2px oklch(var(--primary-500))', opacity: isHov ? 1 : 0 }}
                 />
                 <div
                   className="absolute top-3 left-3 px-2 py-1 text-[9px] font-black uppercase tracking-widest"
-                  style={{ background: isHov ? '#C8D400' : 'rgba(200,212,0,0.85)', color: '#111' }}
+                  style={{ background: isHov ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.85)', color: '#111' }}
                 >
                   {photo.tag}
                 </div>
@@ -191,9 +191,9 @@ export default function RotatingPhotoGrid() {
                 {isCenter && (
                   <div
                     className="absolute top-3 right-3 flex items-center gap-1.5 px-2 py-1 text-[8px] font-black uppercase tracking-wider"
-                    style={{ background: 'rgba(200,212,0,0.15)', border: '0.5px solid rgba(200,212,0,0.5)', color: '#C8D400' }}
+                    style={{ background: 'rgba(200,212,0,0.15)', border: '0.5px solid rgba(200,212,0,0.5)', color: 'oklch(var(--primary-500))' }}
                   >
-                    <div className="w-1.5 h-1.5 animate-pulse" style={{ background: '#C8D400' }} />
+                    <div className="w-1.5 h-1.5 animate-pulse" style={{ background: 'oklch(var(--primary-500))' }} />
                     LIVE
                   </div>
                 )}
@@ -228,11 +228,11 @@ export default function RotatingPhotoGrid() {
           >
             <div
               className="h-0.5 transition-all duration-300"
-              style={{ background: hovered === i ? '#C8D400' : 'rgba(0,0,0,0.15)', width: hovered === i ? '32px' : '20px' }}
+              style={{ background: hovered === i ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.15)', width: hovered === i ? '32px' : '20px' }}
             />
             <span
               className="text-[10px] font-black uppercase tracking-widest transition-colors duration-300"
-              style={{ color: hovered === i ? '#C8D400' : 'rgba(0,0,0,0.35)' }}
+              style={{ color: hovered === i ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.35)' }}
             >
               {photo.label}
             </span>

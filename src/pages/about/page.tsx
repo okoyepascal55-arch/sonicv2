@@ -14,7 +14,6 @@ import WoodenButton from '@/components/base/WoodenButton';
 
 const ABOUT_NAV_ITEMS = [
   { id: 'uber-uns', label: 'Über uns', icon: 'ri-home-heart-line' },
-  { id: 'innovation', label: 'Timeline', icon: 'ri-history-line' },
   { id: 'team', label: 'Team', icon: 'ri-group-line' },
   { id: 'management-voices', label: 'Management', icon: 'ri-mic-line' },
 ];
@@ -122,14 +121,6 @@ export default function AboutPage() {
         <StackedSectionReveal index={0} totalSections={4}>
           <OriginStory focusImages={focusImages} />
           <ValuesVisual />
-        </StackedSectionReveal>
-      </div>
-
-      <WoodenDivider />
-
-      <div id="innovation">
-        <StackedSectionReveal index={1} totalSections={4}>
-          <Timeline />
         </StackedSectionReveal>
       </div>
 

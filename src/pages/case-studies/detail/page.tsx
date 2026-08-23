@@ -136,7 +136,7 @@ export default function CaseStudyDetailPage() {
 
       {/* Key Metrics */}
       <section className="sonic-section-md px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="sonic-container">
           <div className="grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-6">
             {caseStudy.results.map((result: any, idx: number) => (
               <div key={idx} className="text-center bg-foreground-50 p-6 relative overflow-hidden group border border-foreground-100">
@@ -224,7 +224,7 @@ export default function CaseStudyDetailPage() {
 
       {/* Project Details */}
       <section className="sonic-section-lg md:px-4 md:px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="sonic-container">
           <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 mb-12 text-center">
             Projektdetails
           </h2>

@@ -9,7 +9,7 @@ export default function LimeWaveDivider() {
         <path
           d="M0 16 Q 100 0 200 16 T 400 16 T 600 16 T 800 16 T 1000 16 T 1200 16"
           fill="none"
-          stroke="#C8D400"
+          stroke="oklch(var(--primary-500))"
           strokeWidth="3"
         />
       </svg>

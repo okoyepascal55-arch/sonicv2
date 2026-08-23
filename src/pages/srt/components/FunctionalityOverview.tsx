@@ -38,7 +38,7 @@ export default function FunctionalityOverview() {
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{ backgroundImage: 'linear-gradient(oklch(var(--primary-500) / 0.8) 1px, transparent 1px), linear-gradient(90deg, oklch(var(--primary-500) / 0.8) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* Header */}
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5">

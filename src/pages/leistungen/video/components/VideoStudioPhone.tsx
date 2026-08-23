@@ -134,7 +134,7 @@ export default function VideoStudioPhone() {
       {/* Ambient glow — single subtle one */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[700px] h-[500px] bg-primary-500/4 blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
 
         {/* Header */}
         <div className="mb-14">

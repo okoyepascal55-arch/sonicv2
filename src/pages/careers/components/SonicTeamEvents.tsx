@@ -131,7 +131,7 @@ export default function SonicTeamEvents() {
                       <div
                         className="relative w-20 h-20 md:w-24 md:h-24 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-active:scale-95"
                         style={{
-                          backgroundColor: '#C8D400',
+                          backgroundColor: 'oklch(var(--primary-500))',
                           borderRadius: '50%',
                           boxShadow: '0 8px 32px rgba(200,212,0,0.35), 0 2px 8px rgba(0,0,0,0.15)',
                         }}
@@ -180,7 +180,7 @@ export default function SonicTeamEvents() {
                     style={{
                       width: 160,
                       height: 100,
-                      border: isActive ? '2px solid #C8D400' : '2px solid transparent',
+                      border: isActive ? '2px solid oklch(var(--primary-500))' : '2px solid transparent',
                       boxShadow: isActive ? '0 4px 12px rgba(200,212,0,0.2)' : '0 2px 8px rgba(0,0,0,0.08)',
                     }}
                   >

@@ -41,7 +41,7 @@ export default function CoreValues() {
 
   return (
     <section id="values" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <div className="sonic-container">
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
           <h2 className="text-3xl lg:text-5xl font-black text-foreground-950 mb-6 leading-tight tracking-tight relative inline-block">

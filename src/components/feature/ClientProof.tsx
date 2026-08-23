@@ -132,7 +132,11 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
     <div
       ref={cardRef}
       className="relative bg-white p-5 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-visible flex flex-col"
-      style={{ minWidth: '320px', flex: '0 0 calc(33.333% - 14px)', borderRadius: 0 }}
+      style={{
+        minWidth: 'clamp(280px, 80vw, 340px)',
+        flex: '0 0 clamp(280px, 80vw, 340px)',
+        borderRadius: 0,
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -260,22 +264,51 @@ export default function ClientProof() {
   }, []);
 
   return (
-    <section className="sonic-section-md px-6 bg-white relative overflow-hidden">
+    <section className="sonic-section-md px-4 md:px-6 bg-white relative overflow-hidden">
       {/* Subtle warm ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-primary-500/[0.03] rounded-full blur-3xl pointer-events-none" />
 
       <div className="sonic-container relative z-10">
-        {/* Header */}
-        <div className="sonic-section-header">
-          <h2 className="sonic-h2 text-foreground-950">
-            Industry Leaders<br />trust Sonic
-          </h2>
+        {/* Header — badge + heading + scroll controls in one row on desktop */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 md:mb-10">
+          <div>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-3" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.30)' }}>
+              <div className="w-1.5 h-1.5 bg-primary-500" />
+              <span className="text-xs font-black text-foreground-950 uppercase tracking-[0.2em]">Kundenstimmen</span>
+            </div>
+            <h2 className="sonic-h2 text-foreground-950">
+              Was unsere Partner<br className="hidden md:block" /> über uns sagen
+            </h2>
+          </div>
+          {/* Scroll arrows — desktop only */}
+          <div className="hidden md:flex items-center gap-2 flex-shrink-0 pb-1">
+            <button
+              onClick={() => {
+                if (!scrollRef.current) return;
+                scrollRef.current.scrollBy({ left: -scrollRef.current.clientWidth * 0.6, behavior: 'smooth' });
+              }}
+              aria-label="Vorheriges Testimonial"
+              className="w-10 h-10 flex items-center justify-center border border-foreground-200 hover:border-primary-500 hover:bg-primary-500/10 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            >
+              <i className="ri-arrow-left-line text-sm text-foreground-950" />
+            </button>
+            <button
+              onClick={() => {
+                if (!scrollRef.current) return;
+                scrollRef.current.scrollBy({ left: scrollRef.current.clientWidth * 0.6, behavior: 'smooth' });
+              }}
+              aria-label="Nächstes Testimonial"
+              className="w-10 h-10 flex items-center justify-center border border-foreground-200 hover:border-primary-500 hover:bg-primary-500/10 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            >
+              <i className="ri-arrow-right-line text-sm text-foreground-950" />
+            </button>
+          </div>
         </div>
 
         {/* Scrollable Cards Row */}
         <div
           ref={scrollRef}
-          className="flex gap-5 overflow-x-auto pb-4"
+          className="flex gap-4 md:gap-5 overflow-x-auto pb-4 -mx-4 md:mx-0 px-4 md:px-0"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           onMouseEnter={() => { autoScrollPaused.current = true; }}
           onMouseLeave={() => { autoScrollPaused.current = false; }}
@@ -286,7 +319,7 @@ export default function ClientProof() {
         </div>
 
         {/* Dot indicators */}
-        <div className="flex justify-center gap-2 mt-6">
+        <div className="flex justify-center gap-2 mt-5">
           {Array.from({ length: Math.ceil(testimonials.length / 3) }).map((_, i) => (
             <button
               key={i}
@@ -295,10 +328,10 @@ export default function ClientProof() {
                 const cardW = scrollRef.current.scrollWidth / (testimonials.length * 2);
                 scrollRef.current.scrollTo({ left: i * cardW * 3, behavior: 'smooth' });
               }}
-              className="group flex items-center justify-center w-11 h-11 md:w-5 md:h-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+              className="group flex items-center justify-center w-8 h-8 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               aria-label={`Zu Testimonials ${i + 1}`}
             >
-              <span className="block h-1.5 w-6 md:h-1 md:w-5 bg-foreground-500/60 group-hover:bg-primary-500 transition-colors duration-300" style={{ borderRadius: 0 }} />
+              <span className="block h-1 w-5 bg-foreground-300 group-hover:bg-primary-500 transition-colors duration-300" />
             </button>
           ))}
         </div>

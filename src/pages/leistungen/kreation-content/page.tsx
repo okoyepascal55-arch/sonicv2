@@ -226,7 +226,7 @@ function WoodIconsStrip({ icons }: { icons: { img: string; label: string }[] }) 
                 <div
                   style={{
                     height: '1px',
-                    background: '#C8D400',
+                    background: 'oklch(var(--primary-500))',
                     width: visible ? '24px' : '0px',
                     transition: `width 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 120 + 300}ms`,
                   }}
@@ -392,7 +392,7 @@ export default function KreationContentPage() {
         <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div
           ref={solutionReveal.ref}
-          className="relative max-w-7xl mx-auto"
+          className="sonic-container relative"
           style={{
             opacity: solutionReveal.visible ? 1 : 0,
             transform: solutionReveal.visible ? 'translateY(0)' : 'translateY(32px)',

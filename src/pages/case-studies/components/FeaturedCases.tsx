@@ -25,16 +25,16 @@ function HighlightCard({ item }: { item: typeof highlights[0] }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="absolute top-0 left-0 right-0 transition-all duration-500" style={{ height: isHovered ? '3px' : '2px', background: isHovered ? '#C8D400' : 'rgba(200,212,0,0.2)', boxShadow: isHovered ? '0 0 16px rgba(200,212,0,0.5)' : 'none' }} />
-      <div className="absolute left-0 top-3 bottom-3 w-0.5 transition-all duration-500" style={{ background: isHovered ? '#C8D400' : 'transparent' }} />
+      <div className="absolute top-0 left-0 right-0 transition-all duration-500" style={{ height: isHovered ? '3px' : '2px', background: isHovered ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.2)', boxShadow: isHovered ? '0 0 16px rgba(200,212,0,0.5)' : 'none' }} />
+      <div className="absolute left-0 top-3 bottom-3 w-0.5 transition-all duration-500" style={{ background: isHovered ? 'oklch(var(--primary-500))' : 'transparent' }} />
       <div className={`absolute top-3 left-3 w-4 h-4 border-t border-l transition-all duration-300 ${isHovered ? 'opacity-100 border-primary-500/50' : 'opacity-0 border-primary-500'}`} />
       <div className={`absolute top-3 right-3 w-4 h-4 border-t border-r transition-all duration-300 ${isHovered ? 'opacity-100 border-primary-500/50' : 'opacity-0 border-primary-500'}`} />
       <div className={`absolute bottom-3 left-3 w-4 h-4 border-b border-l transition-all duration-300 ${isHovered ? 'opacity-100 border-primary-500/50' : 'opacity-0 border-primary-500'}`} />
       <div className={`absolute bottom-3 right-3 w-4 h-4 border-b border-r transition-all duration-300 ${isHovered ? 'opacity-100 border-primary-500/50' : 'opacity-0 border-primary-500'}`} />
-      <div className="absolute bottom-4 right-5 font-black leading-none select-none pointer-events-none transition-all duration-500" style={{ fontSize: '4rem', opacity: 0.035, color: isHovered ? '#C8D400' : '#000', letterSpacing: '-0.04em' }}>{item.number}</div>
+      <div className="absolute bottom-4 right-5 font-black leading-none select-none pointer-events-none transition-all duration-500" style={{ fontSize: '4rem', opacity: 0.035, color: isHovered ? 'oklch(var(--primary-500))' : '#000', letterSpacing: '-0.04em' }}>{item.number}</div>
       <div className="p-8 relative z-10">
         <div className="w-13 h-13 flex items-center justify-center mb-5 transition-all duration-500" style={{ width: '52px', height: '52px', background: isHovered ? 'rgba(200,212,0,0.15)' : '#f5f5f0', boxShadow: isHovered ? '0 4px 16px rgba(200,212,0,0.2)' : 'inset 0 1px 0 rgba(255,255,255,0.8)' }}>
-          <i className={`${item.icon} text-xl transition-colors duration-500`} style={{ color: '#C8D400' }}></i>
+          <i className={`${item.icon} text-xl transition-colors duration-500`} style={{ color: 'oklch(var(--primary-500))' }}></i>
         </div>
         <h4 className="text-sm font-black mb-3 uppercase tracking-wide transition-colors duration-500" style={{ color: isHovered ? '#fff' : '#111' }}>{item.title}</h4>
         <div className="h-px mb-3 transition-all duration-500" style={{ background: isHovered ? 'rgba(200,212,0,0.15)' : 'rgba(0,0,0,0.07)' }} />
@@ -219,7 +219,7 @@ export default function FeaturedCases() {
     <section className="sonic-section-lg md:px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[400px] bg-primary-500/6 blur-3xl pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* Header */}
         <div className="text-center mb-14">
           <SectionBadge text="Deep Dive" variant="dark" className="mb-6" />

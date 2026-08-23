@@ -20,7 +20,7 @@ export default function VideoShowcase() {
 
   return (
     <section id="srt-in-aktion" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <div className="sonic-container">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-5">

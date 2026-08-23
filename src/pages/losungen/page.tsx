@@ -476,7 +476,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
 
         {/* ── Process Steps ── */}
         <div className="bg-white py-12 md:py-20 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
+          <div className="sonic-container">
             <div className="mb-8 md:mb-14">
               <p className="text-xs md:text-sm font-black text-foreground-400 uppercase tracking-widest mb-2">Der Weg zum Erfolg</p>
               <h3 className="text-2xl md:text-4xl font-black text-foreground-950">
@@ -1188,7 +1188,7 @@ export default function LosungenPage() {
 
       {/* ── THREE PILLARS ── */}
       <section className="sonic-section-lg md:px-4 md:px-6 bg-foreground-950">
-        <div className="max-w-7xl mx-auto">
+        <div className="sonic-container">
           <div className="text-center mb-10 md:mb-14">
             <p className="text-xs font-black text-primary-500/60 uppercase tracking-widest mb-3">Was immer gilt</p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-2 uppercase">Ganz gleich wo du stehst</h2>

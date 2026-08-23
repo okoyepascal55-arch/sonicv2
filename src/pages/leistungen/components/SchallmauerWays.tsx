@@ -92,7 +92,7 @@ export default function SchallmauerWays() {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-500/2 blur-[100px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* Header */}
         <div className="text-center mb-8 md:mb-10">
           <SectionBadge text="Die Retail-Schallmauer" variant="dark" className="mb-5" />
@@ -131,7 +131,7 @@ export default function SchallmauerWays() {
                   className="absolute top-0 left-0 right-0 transition-all duration-500"
                   style={{
                     height: isHovered ? '3px' : '2px',
-                    background: isHovered ? '#C8D400' : 'rgba(200,212,0,0.2)',
+                    background: isHovered ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.2)',
                     boxShadow: isHovered ? '0 0 20px rgba(200,212,0,0.6)' : 'none',
                   }}
                 />
@@ -165,7 +165,7 @@ export default function SchallmauerWays() {
 
                   <h3
                     className="text-lg font-black mb-2 leading-tight transition-colors duration-500 uppercase"
-                    style={{ color: isHovered ? '#ffffff' : '#1a1a1a' }}
+                    style={{ color: isHovered ? '#ffffff' : 'oklch(var(--foreground-950))' }}
                   >
                     {w.title}
                   </h3>
@@ -193,7 +193,7 @@ export default function SchallmauerWays() {
                         className="text-[10px] font-black px-2.5 py-1 uppercase tracking-wider transition-all duration-500"
                         style={{
                           background: isHovered ? 'rgba(200,212,0,0.12)' : 'rgba(0,0,0,0.05)',
-                          color: isHovered ? '#C8D400' : '#9ca3af',
+                          color: isHovered ? 'oklch(var(--primary-500))' : '#9ca3af',
                           border: isHovered
                             ? '1px solid rgba(200,212,0,0.25)'
                             : '1px solid transparent',
@@ -208,7 +208,7 @@ export default function SchallmauerWays() {
                     onClick={() => { window.scrollTo({ top: 0, behavior: 'instant' }); navigate(w.link); }}
                     className="inline-flex items-center gap-2 font-black text-xs uppercase tracking-widest px-5 py-3 transition-all duration-300 whitespace-nowrap w-fit cursor-pointer"
                     style={{
-                      background: isHovered ? '#C8D400' : 'rgba(0,0,0,0.07)',
+                      background: isHovered ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.07)',
                       color: isHovered ? '#111111' : '#6b7280',
                       boxShadow: isHovered ? '0 4px 20px rgba(200,212,0,0.4)' : 'none',
                     }}

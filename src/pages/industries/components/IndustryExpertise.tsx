@@ -70,7 +70,7 @@ export default function IndustryExpertise() {
                   className="absolute top-0 left-0 right-0 transition-all duration-500"
                   style={{
                     height: isHovered ? '3px' : '2px',
-                    background: isHovered ? '#C8D400' : 'rgba(200,212,0,0.2)',
+                    background: isHovered ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.2)',
                     boxShadow: isHovered ? '0 0 20px rgba(200,212,0,0.6)' : 'none',
                   }}
                 />
@@ -78,7 +78,7 @@ export default function IndustryExpertise() {
                 {/* Left edge-lit border */}
                 <div
                   className="absolute left-0 top-3 bottom-3 w-0.5 transition-all duration-500"
-                  style={{ background: isHovered ? '#C8D400' : 'transparent' }}
+                  style={{ background: isHovered ? 'oklch(var(--primary-500))' : 'transparent' }}
                 />
 
                 {/* Number watermark */}
@@ -87,7 +87,7 @@ export default function IndustryExpertise() {
                   style={{
                     fontSize: '5rem',
                     opacity: isHovered ? 0.06 : 0.032,
-                    color: isHovered ? '#C8D400' : '#000',
+                    color: isHovered ? 'oklch(var(--primary-500))' : '#000',
                     letterSpacing: '-0.04em',
                   }}
                 >
@@ -115,7 +115,7 @@ export default function IndustryExpertise() {
                       }}
                     >
                       <i className={`${item.icon} text-2xl transition-colors duration-500`}
-                        style={{ color: isHovered ? '#C8D400' : '#555' }}
+                        style={{ color: isHovered ? 'oklch(var(--primary-500))' : '#555' }}
                       />
                     </div>
                     <div
@@ -171,7 +171,7 @@ export default function IndustryExpertise() {
               <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/5 transition-colors duration-300" />
               <div
                 className="text-3xl lg:text-4xl font-black mb-2 relative z-10"
-                style={{ color: '#C8D400' }}
+                style={{ color: 'oklch(var(--primary-500))' }}
               >
                 {stat.value}
               </div>

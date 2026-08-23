@@ -79,7 +79,7 @@ export default function LiveMetrics() {
   );
 
   return (
-    <section className="sonic-section-sm sm:md:relative overflow-hidden border-y border-foreground-200/40">
+    <section ref={sectionRef} className="relative overflow-hidden border-y border-foreground-200/40" style={{ paddingTop: '10px', paddingBottom: '10px' }}>
       {/* Chestnut brown wood texture */}
       <div className="absolute inset-0" aria-hidden="true">
         <img src={woodBgUrl} alt="" className="w-full h-full object-cover" loading="lazy" />

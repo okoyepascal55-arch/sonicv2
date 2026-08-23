@@ -113,7 +113,7 @@ export default function VideoReferenzen() {
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8D400]/40 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8D400]/40 to-transparent" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
 
         {/* Section header */}
         <div className="mb-16">

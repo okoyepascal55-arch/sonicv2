@@ -103,7 +103,7 @@ export default function VideoShowcase() {
                       <div
                         className="relative w-20 h-20 md:w-24 md:h-24 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-active:scale-95"
                         style={{
-                          backgroundColor: '#C8D400',
+                          backgroundColor: 'oklch(var(--primary-500))',
                           borderRadius: '50%',
                           boxShadow: '0 8px 32px rgba(200,212,0,0.35), 0 2px 8px rgba(0,0,0,0.15)',
                         }}

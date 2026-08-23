@@ -238,7 +238,7 @@ export default function VideoContent() {
                     value={param.value}
                     onChange={(e) => param.setter(Number(e.target.value))}
                     className="w-full h-1.5 appearance-none cursor-pointer"
-                    style={{ accentColor: '#C8D400', background: `linear-gradient(to right, #C8D400 ${((param.value - param.min) / (param.max - param.min)) * 100}%, rgba(0,0,0,0.1) 0%)` }}
+                    style={{ accentColor: 'oklch(var(--primary-500))', background: `linear-gradient(to right, #C8D400 ${((param.value - param.min) / (param.max - param.min)) * 100}%, rgba(0,0,0,0.1) 0%)` }}
                   />
                   <div className="flex justify-between text-foreground-950/25 text-xs mt-1">
                     <span>{param.min}</span>

@@ -36,7 +36,7 @@ const PHONE = {
   speakerDotLime: 'rgba(200,212,0,0.25)',
   glassSheen: 'rgba(255,255,255,0.028)',
   glassSheenFaint: 'rgba(255,255,255,0.009)',
-  lime: '#C8D400',
+  lime: 'oklch(var(--primary-500))',
   limeGlow: 'rgba(200,212,0,0.75)',
   limeSpeakerGlow: 'rgba(200,212,0,0.3)',
 } as const;

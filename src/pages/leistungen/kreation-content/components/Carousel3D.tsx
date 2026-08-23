@@ -173,7 +173,7 @@ function PolaroidFrame({ isCenter, label, lockProgress }: { isCenter: boolean; l
               left: 0,
               height: '2px',
               width: `${Math.round(lockProgress * 100)}%`,
-              background: '#C8D400',
+              background: 'oklch(var(--primary-500))',
               transition: lockProgress > 0
                 ? 'width 0.38s cubic-bezier(0.16,1,0.3,1)'
                 : 'width 0.18s ease-in',

@@ -130,7 +130,7 @@ export default function KarriereCulture() {
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C]/45 to-transparent" aria-hidden="true" />
                       <div
                         className="absolute top-3 left-3 w-9 h-9 flex items-center justify-center text-xs font-black"
-                        style={{ background: 'rgba(11,11,12,0.72)', color: '#C8D400', border: '1px solid rgba(200,212,0,0.4)' }}
+                        style={{ background: 'rgba(11,11,12,0.72)', color: 'oklch(var(--primary-500))', border: '1px solid rgba(200,212,0,0.4)' }}
                       >
                         {item.num}
                       </div>

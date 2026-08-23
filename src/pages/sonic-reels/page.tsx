@@ -247,12 +247,12 @@ function FilmCountdown({ onDone }: { onDone: () => void }) {
           backgroundSize: '150px 150px',
         }}
       />
-      <div className="absolute left-0 top-0 bottom-0 w-10 flex flex-col justify-around items-center py-4" style={{ background: '#1a1a1a' }}>
+      <div className="absolute left-0 top-0 bottom-0 w-10 flex flex-col justify-around items-center py-4" style={{ background: 'oklch(var(--foreground-950))' }}>
         {Array.from({ length: 14 }).map((_, i) => (
           <div key={i} className="rounded-[1px] border border-white/20" style={{ width: 14, height: 10, background: 'rgba(0,0,0,0.7)' }} />
         ))}
       </div>
-      <div className="absolute right-0 top-0 bottom-0 w-10 flex flex-col justify-around items-center py-4" style={{ background: '#1a1a1a' }}>
+      <div className="absolute right-0 top-0 bottom-0 w-10 flex flex-col justify-around items-center py-4" style={{ background: 'oklch(var(--foreground-950))' }}>
         {Array.from({ length: 14 }).map((_, i) => (
           <div key={i} className="rounded-[1px] border border-white/20" style={{ width: 14, height: 10, background: 'rgba(0,0,0,0.7)' }} />
         ))}
@@ -275,7 +275,7 @@ function FilmCountdown({ onDone }: { onDone: () => void }) {
             <span
               key={count}
               className="font-black"
-              style={{ fontSize: '7rem', color: flicker ? '#C8D400' : 'rgba(255,255,255,0.9)', fontFamily: '"Bebas Neue", Impact, sans-serif', lineHeight: 1, animation: 'countPop 0.3s ease-out' }}
+              style={{ fontSize: '7rem', color: flicker ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.9)', fontFamily: '"Bebas Neue", Impact, sans-serif', lineHeight: 1, animation: 'countPop 0.3s ease-out' }}
             >
               {count}
             </span>
@@ -362,7 +362,7 @@ export default function SonicReelsPage() {
             <div className="h-px w-6 bg-primary-500/40" />
           </div>
           <h1 className="font-black text-white leading-none uppercase" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}>
-            {pageTitle} <span style={{ color: '#C8D400' }}>{pageTitleAccent}</span>
+            {pageTitle} <span style={{ color: 'oklch(var(--primary-500))' }}>{pageTitleAccent}</span>
           </h1>
           <p className="text-white/35 text-xs font-medium max-w-lg mx-auto mt-2 leading-relaxed">
             {pageSubtitle}
@@ -416,7 +416,7 @@ export default function SonicReelsPage() {
             className="inline-flex items-center gap-3 px-10 py-4 border font-black uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap"
             style={{
               borderColor: 'rgba(200,212,0,0.4)',
-              color: '#C8D400',
+              color: 'oklch(var(--primary-500))',
               background: 'transparent',
             }}
             onMouseEnter={(e) => {

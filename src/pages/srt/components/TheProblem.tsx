@@ -49,7 +49,7 @@ export default function TheProblem() {
 
       <div
         ref={sectionRef}
-        className="max-w-7xl mx-auto"
+        className="sonic-container"
         style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(28px)', transition: 'opacity 0.7s ease, transform 0.7s ease' }}
       >
         {/* Editorial header */}

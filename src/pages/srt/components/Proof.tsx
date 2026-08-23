@@ -79,7 +79,7 @@ export default function Proof() {
     <div className="bg-white">
       <ClientProof />
       <div ref={sectionRef} className="py-14 md:py-20 px-4 md:px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="sonic-container">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
             <div>
               <div className="mb-3"><SectionBadge text={tBadge} variant="dark" /></div>

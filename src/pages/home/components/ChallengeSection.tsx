@@ -121,7 +121,7 @@ export default function ChallengeSection() {
                     className="absolute top-0 left-0 right-0 transition-all duration-500"
                     style={{
                       height: active ? '3px' : '2px',
-                      background: active ? '#C8D400' : 'rgba(200,212,0,0.2)',
+                      background: active ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.2)',
                       boxShadow: active ? '0 0 20px rgba(200,212,0,0.6)' : 'none',
                     }}
                     aria-hidden="true"
@@ -164,7 +164,7 @@ export default function ChallengeSection() {
                     {/* Heading */}
                     <h3
                       className="text-base sm:text-lg md:text-xl font-black mb-2 md:mb-3 leading-tight transition-colors duration-500"
-                      style={{ color: active ? '#ffffff' : '#1a1a1a' }}
+                      style={{ color: active ? '#ffffff' : 'oklch(var(--foreground-950))' }}
                     >
                       {challenge.heading}
                     </h3>
@@ -191,7 +191,7 @@ export default function ChallengeSection() {
                       onClick={() => handleMehrDazu(challenge.solutionKey)}
                       className="inline-flex items-center gap-2 font-black text-[10px] sm:text-xs uppercase tracking-widest px-4 sm:px-5 py-2.5 sm:py-3 transition-all duration-300 whitespace-nowrap w-fit cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                       style={{
-                        background: active ? '#C8D400' : 'rgba(0,0,0,0.07)',
+                        background: active ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.07)',
                         color: active ? '#ffffff' : '#6B7280',
                         boxShadow: active ? '0 4px 20px rgba(200,212,0,0.4)' : 'none',
                       }}

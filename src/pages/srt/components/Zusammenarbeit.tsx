@@ -32,7 +32,7 @@ export default function Zusammenarbeit() {
     <section ref={sectionRef} id="zusammenarbeit" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden"
       style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.7s ease' }}
     >
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-5">
             <SectionBadge text={tBadge} variant="dark" />

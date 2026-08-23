@@ -115,8 +115,8 @@ export default function CaseStudiesCTA() {
               <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible rounded-none">
                 <defs>
                   <linearGradient id={`contact-grad-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#C8D400" stopOpacity={hoveredContact === index ? 0.8 : 0.15} />
-                    <stop offset="100%" stopColor="#C8D400" stopOpacity={hoveredContact === index ? 0.4 : 0.05} />
+                    <stop offset="0%" stopColor="oklch(var(--primary-500))" stopOpacity={hoveredContact === index ? 0.8 : 0.15} />
+                    <stop offset="100%" stopColor="oklch(var(--primary-500))" stopOpacity={hoveredContact === index ? 0.4 : 0.05} />
                   </linearGradient>
                 </defs>
                 <rect x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="0" ry="0" fill="none"

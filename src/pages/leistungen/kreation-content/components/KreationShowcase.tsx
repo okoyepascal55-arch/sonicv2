@@ -250,7 +250,7 @@ function Lightbox({ items, startIdx, onClose }: LightboxProps) {
                   key={ii}
                   onClick={(e) => { e.stopPropagation(); setImgIdx(ii); }}
                   className="cursor-pointer transition-all duration-200"
-                  style={{ width: ii === imgIdx ? '20px' : '6px', height: '3px', background: ii === imgIdx ? '#C8D400' : 'rgba(255,255,255,0.3)', borderRadius: 0 }}
+                  style={{ width: ii === imgIdx ? '20px' : '6px', height: '3px', background: ii === imgIdx ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.3)', borderRadius: 0 }}
                 />
               ))}
             </div>
@@ -280,7 +280,7 @@ function Lightbox({ items, startIdx, onClose }: LightboxProps) {
               key={it.id}
               onClick={() => goTo(i)}
               className="relative overflow-hidden cursor-pointer transition-all duration-200"
-              style={{ width: '52px', height: '36px', opacity: i === idx ? 1 : 0.4, border: i === idx ? '1px solid #C8D400' : '1px solid transparent', borderRadius: 0 }}
+              style={{ width: '52px', height: '36px', opacity: i === idx ? 1 : 0.4, border: i === idx ? '1px solid oklch(var(--primary-500))' : '1px solid transparent', borderRadius: 0 }}
             >
               <img src={it.images[0]} alt={it.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
             </button>
@@ -346,8 +346,8 @@ function ShowcaseCard({ item, colSpan, rowSpan, onOpen, titleSize, isWide = fals
 
       {/* Live badge */}
       {item.badge === 'LIVE' && (
-        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-2.5 py-1.5 text-[8px] font-black uppercase tracking-[0.1em]" style={{ background: 'rgba(200,212,0,0.2)', border: '0.5px solid rgba(200,212,0,0.5)', color: '#C8D400', backdropFilter: 'blur(8px)' }}>
-          <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#C8D400' }} />LIVE
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-2.5 py-1.5 text-[8px] font-black uppercase tracking-[0.1em]" style={{ background: 'rgba(200,212,0,0.2)', border: '0.5px solid rgba(200,212,0,0.5)', color: 'oklch(var(--primary-500))', backdropFilter: 'blur(8px)' }}>
+          <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'oklch(var(--primary-500))' }} />LIVE
         </div>
       )}
       {item.badge === 'AI' && (
@@ -365,7 +365,7 @@ function ShowcaseCard({ item, colSpan, rowSpan, onOpen, titleSize, isWide = fals
       </div>
 
       {/* Lime border */}
-      <div className="absolute inset-0 pointer-events-none z-10 transition-opacity duration-300" style={{ boxShadow: 'inset 0 0 0 1.5px #C8D400', opacity: hov ? 1 : 0 }} />
+      <div className="absolute inset-0 pointer-events-none z-10 transition-opacity duration-300" style={{ boxShadow: 'inset 0 0 0 1.5px oklch(var(--primary-500))', opacity: hov ? 1 : 0 }} />
       {/* Corner accents */}
       <div className="absolute top-0 right-0 w-6 h-6 pointer-events-none z-10 transition-all duration-300" style={{ borderTop: hov ? '2px solid rgba(200,212,0,0.7)' : '2px solid transparent', borderRight: hov ? '2px solid rgba(200,212,0,0.7)' : '2px solid transparent' }} />
       <div className="absolute bottom-0 left-0 w-6 h-6 pointer-events-none z-10 transition-all duration-300" style={{ borderBottom: hov ? '2px solid rgba(200,212,0,0.5)' : '2px solid transparent', borderLeft: hov ? '2px solid rgba(200,212,0,0.5)' : '2px solid transparent' }} />
@@ -374,7 +374,7 @@ function ShowcaseCard({ item, colSpan, rowSpan, onOpen, titleSize, isWide = fals
       {item.images.length > 1 && (
         <div className="absolute bottom-12 right-3 z-10 flex gap-1">
           {item.images.map((_, i) => (
-            <div key={i} className="transition-all duration-400" style={{ width: i === imgIdx ? '14px' : '4px', height: '2px', background: i === imgIdx ? '#C8D400' : 'rgba(255,255,255,0.4)' }} />
+            <div key={i} className="transition-all duration-400" style={{ width: i === imgIdx ? '14px' : '4px', height: '2px', background: i === imgIdx ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.4)' }} />
           ))}
         </div>
       )}

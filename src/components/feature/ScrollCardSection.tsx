@@ -31,20 +31,20 @@ function resolveThemeTokens(theme: 'dark' | 'light', isActive: boolean) {
       : (isActive ? '0 0 0 1px rgba(200,212,0,0.3), 0 24px 48px rgba(0,0,0,0.18)' : '0 2px 8px rgba(0,0,0,0.04)'),
     titleColor: d ? (isActive ? '#111' : '#fff') : (isActive ? '#fff' : '#111'),
     descColor: d ? (isActive ? '#555' : 'rgba(255,255,255,0.5)') : (isActive ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.55)'),
-    accentColor: d ? (isActive ? '#C8D400' : 'rgba(200,212,0,0.5)') : (isActive ? '#C8D400' : 'rgba(139,110,0,0.7)'),
+    accentColor: d ? (isActive ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.5)') : (isActive ? 'oklch(var(--primary-500))' : 'rgba(139,110,0,0.7)'),
     numWatermarkColor: d ? (isActive ? 'rgba(200,212,0,0.07)' : 'rgba(255,255,255,0.04)') : (isActive ? 'rgba(200,212,0,0.07)' : 'rgba(0,0,0,0.04)'),
-    topBarBg: d ? (isActive ? '#C8D400' : 'rgba(200,212,0,0.2)') : (isActive ? '#C8D400' : 'rgba(0,0,0,0.08)'),
+    topBarBg: d ? (isActive ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.2)') : (isActive ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.08)'),
     topBarGlow: isActive ? '0 0 14px rgba(200,212,0,0.5)' : 'none',
-    dotPipBg: d ? (isActive ? '#C8D400' : 'rgba(200,212,0,0.4)') : (isActive ? '#C8D400' : 'rgba(200,212,0,0.6)'),
+    dotPipBg: d ? (isActive ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.4)') : (isActive ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.6)'),
     cornerBorderColor: isActive ? 'rgba(200,212,0,0.5)' : 'transparent',
     labelColor: d ? 'rgba(255,255,255,0.2)' : 'rgba(17,17,17,0.3)',
     arrowBgDefault: d ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.07)',
     arrowColorDefault: d ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.45)',
-    arrowBgHover: d ? 'rgba(200,212,0,0.6)' : '#C8D400',
+    arrowBgHover: d ? 'rgba(200,212,0,0.6)' : 'oklch(var(--primary-500))',
     arrowColorHover: d ? '#111' : '#111',
     navBorderColor: d ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.2)',
     navTextColor: d ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)',
-    navHoverBorderColor: '#C8D400',
+    navHoverBorderColor: 'oklch(var(--primary-500))',
     dotInactiveBg: d ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)',
     countColor: d ? (isActive ? '#999' : 'rgba(255,255,255,0.25)') : (isActive ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)'),
     borderTopColor: d ? (isActive ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.06)') : (isActive ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'),
@@ -94,8 +94,8 @@ export default function ScrollCardSection({
           className="w-10 h-10 flex items-center justify-center border transition-all duration-200 cursor-pointer"
           style={{ borderColor: resolvedNavBorder, color: resolvedNavText }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = '#C8D400';
-            e.currentTarget.style.color = '#C8D400';
+            e.currentTarget.style.borderColor = 'oklch(var(--primary-500))';
+            e.currentTarget.style.color = 'oklch(var(--primary-500))';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.borderColor = resolvedNavBorder;
@@ -110,8 +110,8 @@ export default function ScrollCardSection({
           className="w-10 h-10 flex items-center justify-center border transition-all duration-200 cursor-pointer"
           style={{ borderColor: resolvedNavBorder, color: resolvedNavText }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = '#C8D400';
-            e.currentTarget.style.color = '#C8D400';
+            e.currentTarget.style.borderColor = 'oklch(var(--primary-500))';
+            e.currentTarget.style.color = 'oklch(var(--primary-500))';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.borderColor = resolvedNavBorder;
@@ -162,7 +162,7 @@ export default function ScrollCardSection({
               <div
                 className="absolute top-0 left-0 bottom-0 z-20 w-0.5"
                 style={{
-                  background: isA ? '#C8D400' : 'transparent',
+                  background: isA ? 'oklch(var(--primary-500))' : 'transparent',
                   transition: 'background 0.3s ease',
                 }}
               />
@@ -220,7 +220,7 @@ export default function ScrollCardSection({
                   >
                     <i
                       className={`${item.icon} text-xl`}
-                      style={{ color: isA ? '#111' : (theme === 'dark' ? '#C8D400' : 'rgba(0,0,0,0.5)'), transition: 'color 0.35s ease' }}
+                      style={{ color: isA ? '#111' : (theme === 'dark' ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.5)'), transition: 'color 0.35s ease' }}
                     />
                   </div>
                 )}
@@ -258,7 +258,7 @@ export default function ScrollCardSection({
                   <div
                     className="w-7 h-7 flex items-center justify-center"
                     style={{
-                      background: isA ? '#C8D400' : (theme === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.07)'),
+                      background: isA ? 'oklch(var(--primary-500))' : (theme === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.07)'),
                       transform: isA ? 'translateX(3px)' : 'translateX(0)',
                       transition: 'all 0.25s ease',
                     }}
@@ -287,7 +287,7 @@ export default function ScrollCardSection({
             style={{
               width: i === (activeIdx ?? 0) ? '22px' : '6px',
               height: '3px',
-              background: i === (activeIdx ?? 0) ? '#C8D400' : resolvedDotInactive,
+              background: i === (activeIdx ?? 0) ? 'oklch(var(--primary-500))' : resolvedDotInactive,
               border: 'none',
               padding: 0,
               transition: 'all 0.3s ease',

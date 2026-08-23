@@ -64,7 +64,7 @@ export default function IndustryGrid() {
 
   return (
     <section id="industries" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <div className="sonic-container">
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
           <h2 className="sonic-h2 text-foreground-950 mb-4">
@@ -96,7 +96,7 @@ export default function IndustryGrid() {
                 className="absolute top-0 left-0 right-0 z-10 transition-all duration-500"
                 style={{
                   height: hoveredCard === index ? '3px' : '2px',
-                  background: hoveredCard === index ? '#C8D400' : 'rgba(200,212,0,0.2)',
+                  background: hoveredCard === index ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.2)',
                   boxShadow: hoveredCard === index ? '0 0 20px rgba(200,212,0,0.6)' : 'none',
                 }}
               />
@@ -144,7 +144,7 @@ export default function IndustryGrid() {
                         style={{
                           borderRadius: 0,
                           background: hoveredCard === index ? 'rgba(200,212,0,0.12)' : 'rgba(0,0,0,0.05)',
-                          color: hoveredCard === index ? '#C8D400' : '#6B7280',
+                          color: hoveredCard === index ? 'oklch(var(--primary-500))' : '#6B7280',
                           border: hoveredCard === index ? '1px solid rgba(200,212,0,0.25)' : '1px solid transparent',
                         }}
                       >
@@ -162,7 +162,7 @@ export default function IndustryGrid() {
                       style={{
                         borderRadius: 0,
                         background: hoveredCard === index ? 'rgba(200,212,0,0.15)' : 'rgba(200,212,0,0.08)',
-                        color: hoveredCard === index ? '#C8D400' : '#6b7280',
+                        color: hoveredCard === index ? 'oklch(var(--primary-500))' : '#6b7280',
                         border: '1px solid rgba(200,212,0,0.2)',
                       }}
                     >

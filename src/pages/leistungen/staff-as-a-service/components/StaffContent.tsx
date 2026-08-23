@@ -134,7 +134,7 @@ export default function StaffContent() {
       <section id="loesung" className="sonic-section-lg bg-white px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.018] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto">
+        <div className="sonic-container relative">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
               <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
@@ -258,7 +258,7 @@ export default function StaffContent() {
       <section id="aufgabenbereiche" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="absolute bottom-0 left-0 w-full max-w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto">
+        <div className="sonic-container relative">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
               <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">

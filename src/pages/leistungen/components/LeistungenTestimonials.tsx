@@ -192,7 +192,7 @@ export default function LeistungenTestimonials() {
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* Header — centered, same pattern as ClientProof */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-4">

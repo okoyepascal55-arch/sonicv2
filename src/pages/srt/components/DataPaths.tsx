@@ -33,10 +33,10 @@ const NODES: NodeData[] = [
 ];
 
 const STREAMS: DataStream[] = [
-  { id: 'agentur-srt', from: 'agentur', to: 'srt', label: 'Planung → SRT', icon: 'ri-route-line', color: '#C8D400', direction: 'both', dataPoints: ['Einsatzplanung', 'Kampagnenziele', 'Briefings', 'Budgets'], description: 'Sonic überträgt Einsatzpläne, Kampagnenziele und Projektdaten ins SRT — und erhält aggregierte Performance-Daten zurück.' },
-  { id: 'srt-kunde', from: 'srt', to: 'kunde', label: 'SRT → Kunde', icon: 'ri-dashboard-line', color: '#C8D400', direction: 'out', dataPoints: ['Live-KPIs', 'Reports', 'Forecasts', 'Rankings'], description: 'Kunden erhalten maßgeschneiderte Dashboards mit Live-KPIs, automatisch generierten Reports und datenbasierten Prognosen.' },
-  { id: 'mitarbeiter-srt', from: 'mitarbeiter', to: 'srt', label: 'Field → SRT', icon: 'ri-map-pin-2-line', color: '#C8D400', direction: 'both', dataPoints: ['GPS-Check-in', 'Verkäufe', 'Fotos', 'Abrechnung'], description: 'Außendienstmitarbeiter erfassen Einsätze, Verkaufszahlen und Fotos in Echtzeit über die mobile App — GPS-verifiziert.' },
-  { id: 'extern-srt', from: 'extern', to: 'srt', label: 'Extern → SRT', icon: 'ri-database-2-line', color: '#C8D400', direction: 'in', dataPoints: ['ERP-Daten', 'Marktdaten', 'POS-Feed', 'WKZ'], description: 'Externe Systeme (ERP, WaWi, Hersteller-Apps) liefern Kontext-Daten, die das SRT mit Felddaten zusammenführt.' },
+  { id: 'agentur-srt', from: 'agentur', to: 'srt', label: 'Planung → SRT', icon: 'ri-route-line', color: 'oklch(var(--primary-500))', direction: 'both', dataPoints: ['Einsatzplanung', 'Kampagnenziele', 'Briefings', 'Budgets'], description: 'Sonic überträgt Einsatzpläne, Kampagnenziele und Projektdaten ins SRT — und erhält aggregierte Performance-Daten zurück.' },
+  { id: 'srt-kunde', from: 'srt', to: 'kunde', label: 'SRT → Kunde', icon: 'ri-dashboard-line', color: 'oklch(var(--primary-500))', direction: 'out', dataPoints: ['Live-KPIs', 'Reports', 'Forecasts', 'Rankings'], description: 'Kunden erhalten maßgeschneiderte Dashboards mit Live-KPIs, automatisch generierten Reports und datenbasierten Prognosen.' },
+  { id: 'mitarbeiter-srt', from: 'mitarbeiter', to: 'srt', label: 'Field → SRT', icon: 'ri-map-pin-2-line', color: 'oklch(var(--primary-500))', direction: 'both', dataPoints: ['GPS-Check-in', 'Verkäufe', 'Fotos', 'Abrechnung'], description: 'Außendienstmitarbeiter erfassen Einsätze, Verkaufszahlen und Fotos in Echtzeit über die mobile App — GPS-verifiziert.' },
+  { id: 'extern-srt', from: 'extern', to: 'srt', label: 'Extern → SRT', icon: 'ri-database-2-line', color: 'oklch(var(--primary-500))', direction: 'in', dataPoints: ['ERP-Daten', 'Marktdaten', 'POS-Feed', 'WKZ'], description: 'Externe Systeme (ERP, WaWi, Hersteller-Apps) liefern Kontext-Daten, die das SRT mit Felddaten zusammenführt.' },
 ];
 
 function AnimatedPath({ x1, y1, x2, y2, active, stream }: { x1: number; y1: number; x2: number; y2: number; active: boolean; stream: DataStream }) {
@@ -51,11 +51,11 @@ function AnimatedPath({ x1, y1, x2, y2, active, stream }: { x1: number; y1: numb
   return (
     <g>
       <path d={d} stroke="rgba(200,212,0,0.08)" strokeWidth="8" fill="none" />
-      <path d={d} stroke={active ? '#C8D400' : 'rgba(200,212,0,0.25)'} strokeWidth={active ? 2.5 : 1.5} fill="none"
+      <path d={d} stroke={active ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.25)'} strokeWidth={active ? 2.5 : 1.5} fill="none"
         strokeDasharray={active ? 'none' : '4 4'} style={{ transition: 'stroke 0.4s ease, stroke-width 0.4s ease' }} />
       {active && (
         <>
-          <circle r="4" fill="#C8D400"><animateMotion dur="1.8s" repeatCount="indefinite" path={d} /></circle>
+          <circle r="4" fill="oklch(var(--primary-500))"><animateMotion dur="1.8s" repeatCount="indefinite" path={d} /></circle>
           {stream.direction === 'both' && (
             <circle r="3" fill="#fff" opacity="0.7">
               <animateMotion dur="2.2s" repeatCount="indefinite" begin="1.1s" path={`M ${x2} ${y2} Q ${cpX} ${cpY} ${x1} ${y1}`} />
@@ -65,7 +65,7 @@ function AnimatedPath({ x1, y1, x2, y2, active, stream }: { x1: number; y1: numb
       )}
       {active && (
         <g transform={`translate(${cpX - 28} ${cpY - 11})`}>
-          <rect width="56" height="16" fill="#C8D400" rx="2" />
+          <rect width="56" height="16" fill="oklch(var(--primary-500))" rx="2" />
           <text x="28" y="11" textAnchor="middle" fill="#111" fontSize="7" fontWeight="900" fontFamily="sans-serif" letterSpacing="0.5">
             {stream.label.split('→')[0].trim()}
           </text>
@@ -144,7 +144,7 @@ export default function DataPaths() {
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary-500/5 blur-3xl pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary-500/40 to-transparent" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         <div className="mb-14">
           <div className="flex items-center gap-4 mb-8">
             <SectionBadge text={tBadge} variant="light" />
@@ -246,9 +246,9 @@ export default function DataPaths() {
               <p className="text-background-50/40 text-2xs font-black uppercase tracking-widest mb-3">Legende</p>
               <div className="space-y-2">
                 {[
-                  { line: 'solid', label: 'Aktiver Datenstrom', color: '#C8D400' },
+                  { line: 'solid', label: 'Aktiver Datenstrom', color: 'oklch(var(--primary-500))' },
                   { line: 'dashed', label: 'Inaktive Verbindung', color: 'rgba(200,212,0,0.25)' },
-                  { dot: true, label: 'Fließende Daten (animiert)', color: '#C8D400' },
+                  { dot: true, label: 'Fließende Daten (animiert)', color: 'oklch(var(--primary-500))' },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     {item.dot ? (
@@ -287,7 +287,7 @@ export default function DataPaths() {
                     {isCenter ? (
                       <div className={`flex flex-col items-center justify-center transition-all duration-300 w-14 h-14 sm:w-[88px] sm:h-[88px] ${isActive ? 'ring-4 ring-primary-500/50' : 'group-hover:ring-2 group-hover:ring-primary-500/30'}`}
                         style={{
-                          background: '#C8D400',
+                          background: 'oklch(var(--primary-500))',
                           boxShadow: isActive ? '0 0 40px rgba(200,212,0,0.6), 0 0 80px rgba(200,212,0,0.2)' : '0 0 20px rgba(200,212,0,0.3)',
                         }}>
                         <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center text-foreground-950"><i className={`${node.icon} text-lg sm:text-2xl`} /></div>
@@ -298,7 +298,7 @@ export default function DataPaths() {
                       <div className="flex flex-col items-center justify-center transition-all duration-300 w-12 h-12 sm:w-16 sm:h-16"
                         style={{
                           background: isActive ? 'rgba(200,212,0,0.15)' : 'rgba(26,26,26,0.95)',
-                          border: `2px solid ${isActive ? '#C8D400' : 'rgba(200,212,0,0.3)'}`,
+                          border: `2px solid ${isActive ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.3)'}`,
                           boxShadow: isActive ? '0 0 24px rgba(200,212,0,0.4)' : '0 4px 16px rgba(0,0,0,0.6)',
                         }}>
                         <div className={`w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center transition-colors duration-300 ${isActive ? 'text-primary-500' : 'text-primary-500/60'}`}>

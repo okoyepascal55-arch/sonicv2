@@ -56,14 +56,14 @@ export default function CaseStudiesHero() {
               <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible rounded-none">
                 <defs>
                   <linearGradient id={`hero-stat-outer-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#C8D400" stopOpacity={hoveredStat === index ? 1 : 0.3} />
+                    <stop offset="0%" stopColor="oklch(var(--primary-500))" stopOpacity={hoveredStat === index ? 1 : 0.3} />
                     <stop offset="50%" stopColor="#a8b300" stopOpacity={hoveredStat === index ? 1 : 0.2} />
-                    <stop offset="100%" stopColor="#C8D400" stopOpacity={hoveredStat === index ? 1 : 0.3} />
+                    <stop offset="100%" stopColor="oklch(var(--primary-500))" stopOpacity={hoveredStat === index ? 1 : 0.3} />
                   </linearGradient>
                   <linearGradient id={`hero-stat-inner-${index}`} x1="100%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#C8D400" stopOpacity={hoveredStat === index ? 0.7 : 0.12} />
+                    <stop offset="0%" stopColor="oklch(var(--primary-500))" stopOpacity={hoveredStat === index ? 0.7 : 0.12} />
                     <stop offset="50%" stopColor="#a8b300" stopOpacity={hoveredStat === index ? 0.7 : 0.08} />
-                    <stop offset="100%" stopColor="#C8D400" stopOpacity={hoveredStat === index ? 0.7 : 0.12} />
+                    <stop offset="100%" stopColor="oklch(var(--primary-500))" stopOpacity={hoveredStat === index ? 0.7 : 0.12} />
                   </linearGradient>
                 </defs>
                 

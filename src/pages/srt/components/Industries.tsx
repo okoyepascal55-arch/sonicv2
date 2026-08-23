@@ -116,7 +116,7 @@ export default function Industries() {
 
   return (
     <section id="branchen" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* ── Use Cases ── */}
         <div className="mb-16">
           <div className="mb-8">
@@ -216,7 +216,7 @@ export default function Industries() {
               {submitted && (
                 <div className="text-center py-6">
                   <div className="w-16 h-16 flex items-center justify-center mx-auto mb-5"
-                    style={{ background: '#C8D400', boxShadow: '0 8px 28px rgba(200,212,0,0.4)' }}>
+                    style={{ background: 'oklch(var(--primary-500))', boxShadow: '0 8px 28px rgba(200,212,0,0.4)' }}>
                     <i className="ri-check-double-line text-3xl text-foreground-950" />
                   </div>
                   <h3 className="text-xl font-black text-foreground-950 mb-2 uppercase">Anfrage erhalten!</h3>

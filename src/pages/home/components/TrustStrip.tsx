@@ -65,7 +65,7 @@ export default function TrustStrip() {
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         <div className="border-t border-foreground-200 pt-5 sm:pt-8 md:pt-12">
           <p className="text-[10px] sm:text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-2 sm:mb-3 md:mb-4">
             {tTrustBadge}

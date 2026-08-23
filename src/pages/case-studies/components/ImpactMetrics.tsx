@@ -48,7 +48,7 @@ export default function ImpactMetrics() {
       <div className="absolute top-0 left-0 w-96 h-96 bg-primary-500/8 blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-500/8 blur-3xl pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <SectionBadge text="Our Impact" variant="light" className="mb-6" />
@@ -81,8 +81,8 @@ export default function ImpactMetrics() {
               <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible rounded-none">
                 <defs>
                   <linearGradient id={`metric-grad-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#C8D400" stopOpacity={hoveredCard === index ? 0.9 : 0.2} />
-                    <stop offset="100%" stopColor="#C8D400" stopOpacity={hoveredCard === index ? 0.5 : 0.08} />
+                    <stop offset="0%" stopColor="oklch(var(--primary-500))" stopOpacity={hoveredCard === index ? 0.9 : 0.2} />
+                    <stop offset="100%" stopColor="oklch(var(--primary-500))" stopOpacity={hoveredCard === index ? 0.5 : 0.08} />
                   </linearGradient>
                 </defs>
                 <rect x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="0" ry="0" fill="none"

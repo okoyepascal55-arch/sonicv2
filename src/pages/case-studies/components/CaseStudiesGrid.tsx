@@ -154,7 +154,7 @@ export default function CaseStudiesGrid() {
       {/* Subtle grain texture */}
       <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #C8D400 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
           <SectionBadge text="Alle Fallbeispiele" variant="light" className="mb-6" />

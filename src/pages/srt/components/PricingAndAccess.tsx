@@ -94,7 +94,7 @@ export default function PricingAndAccess() {
 
   return (
     <section id="preise-zugang" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* ── Section header ── */}
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5">
