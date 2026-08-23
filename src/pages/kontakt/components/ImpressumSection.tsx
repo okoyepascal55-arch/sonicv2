@@ -1,3 +1,4 @@
+import SectionBadge from '@/components/base/SectionBadge';
 export default function ImpressumSection() {
   return (
     <section
