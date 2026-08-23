@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const BITE_LISTING_KEY = 'sonic-sales-support-gmbh:main-listing';
 

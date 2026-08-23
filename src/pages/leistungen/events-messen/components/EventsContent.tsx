@@ -6,6 +6,7 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const EVENTS_CHALLENGES: ChallengeItem[] = [
   {

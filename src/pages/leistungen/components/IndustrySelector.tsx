@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const FORM_SUBMIT_ADDR = 'https://readdy.ai/api/form/d9vgg8u859p3u981dq10';
 

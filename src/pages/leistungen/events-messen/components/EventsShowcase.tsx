@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const TAB_INFO = [
   {

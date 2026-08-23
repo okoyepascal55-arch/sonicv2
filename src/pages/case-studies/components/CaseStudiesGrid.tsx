@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const caseStudies = [
   {

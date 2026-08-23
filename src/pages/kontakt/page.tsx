@@ -5,6 +5,7 @@ import ImpressumSection from './components/ImpressumSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const CALENDLY_URL = 'https://calendly.com/sonic-group-info/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=c8d300';
 

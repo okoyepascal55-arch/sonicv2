@@ -1,6 +1,7 @@
 import SectionBadge from '@/components/base/SectionBadge';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 export default function TeamCTA() {
   const tBadge = useText('team_cta', 'team-cta-badge', 'Werde Teil des Teams');

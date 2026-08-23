@@ -1,5 +1,6 @@
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore } from '@/lib/mediaStore';
+import WoodenButton from '@/components/base/WoodenButton';
 
 export default function IndustriesHero() {
   const { images: industriesHeroImages } = useMediaStore('industries_hero_bg');

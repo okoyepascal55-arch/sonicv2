@@ -37,6 +37,8 @@ export default function ForecastingPage() {
         <ForecastingHero />
       </div>
 
+      <WoodenDivider />
+
       <div style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
         <ForecastingContent />
       </div>

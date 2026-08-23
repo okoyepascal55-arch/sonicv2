@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import type { MediaItem } from '@/lib/mediaStore';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const EXECUTIVES = [
   {

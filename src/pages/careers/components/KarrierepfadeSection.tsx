@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 type PathId = 'sales' | 'staff';
 

@@ -4,6 +4,7 @@ import { useSEO } from '@/hooks/useSEO';
 import SectionBadge from '@/components/base/SectionBadge';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import WoodenButton from '@/components/base/WoodenButton';
 
 interface WPPost {
   id: number;

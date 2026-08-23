@@ -37,6 +37,8 @@ export default function VideoPage() {
         <VideoHero />
       </div>
 
+      <WoodenDivider />
+
       <div style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
         <VideoContent />
       </div>

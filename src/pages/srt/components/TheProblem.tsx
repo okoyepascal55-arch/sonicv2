@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const PROBLEM_DATA = [
   { num: '01', icon: 'ri-database-2-line', title: 'Getrennte Datensilos', headline: 'Daten liegen überall — nur nicht zusammen.', body: 'Die Realität im Retail: WaWi-Daten hier, Kampagnendaten dort, Einsatzplanung in einem Drittanbieter-Tool. Jede Abteilung pflegt ihre eigene Wahrheit. Ein ganzheitliches Bild der Performance entsteht — wenn überhaupt — nur durch aufwendige manuelle Zusammenführung.', impact: 'Ergebnis: Wertvolle Zeit geht verloren. Entscheidungen basieren auf Datenschnipseln statt auf der vollständigen Realität.', tags: ['WaWi', 'Marketing', 'Silos', 'Manuell'], fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20separated%20fragmented%20database%20cylinder%20storage%20units%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20isolated%20data%20sources%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-db-srt-problem-1&orientation=squarish' },

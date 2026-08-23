@@ -2,6 +2,7 @@ import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const TIERS = [
   { name: 'Starter', price: 'Individuell', desc: 'Für Marken, die den Markt testen oder fokussierte Kampagnen fahren.', features: ['Live-Dashboard-Zugang', 'Bis zu 3 Custom Reports', 'Wöchentliche Performance-Zusammenfassung', 'E-Mail-Support', 'Datenexport (CSV)', '1 User-Lizenz'], highlight: false },

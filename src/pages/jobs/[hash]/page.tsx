@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
 import JobApplicationForm from '../components/JobApplicationForm';
 import { mockJobs } from '@/mocks/jobs';
+import WoodenButton from '@/components/base/WoodenButton';
 
 interface JobDetail {
   hash: string;

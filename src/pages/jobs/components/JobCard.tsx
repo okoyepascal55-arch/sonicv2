@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { JobPosting } from '../page';
+import WoodenButton from '@/components/base/WoodenButton';
 
 interface Props {
   job: JobPosting;

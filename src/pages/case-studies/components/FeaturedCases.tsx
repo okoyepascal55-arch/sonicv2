@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const highlights = [
   { icon: 'ri-bar-chart-2-line', number: '01', title: 'Datenbasierte Optimierung', desc: 'Jede Kampagne wird durch Echtzeit-KPI gesteuert — Tagesumsätze, Outlet-Matching, Personalwahl.' },

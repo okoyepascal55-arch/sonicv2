@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const USE_CASES = [
   { icon: 'ri-store-2-line', title: 'FMCG & Retail Execution', items: ['In-Store-Performance', 'Regal-Audits, Planogramm-Compliance', 'Koordination Merchandising-Teams', 'POS-Material-Bestand & Platzierungstracking'] },

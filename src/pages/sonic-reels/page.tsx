@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import WoodenDivider from '@/components/base/WoodenDivider';
 import SonicReelsTimeline from './components/SonicReelsTimeline';
 import { useTextSection } from '@/hooks/useText';
 import { useSEO } from '@/hooks/useSEO';
@@ -371,7 +371,9 @@ export default function SonicReelsPage() {
       </div>
 
       {/* ── UNIFIED TIMELINE ── */}
+      <WoodenDivider />
       <SonicReelsTimeline eras={eras} />
+      <WoodenDivider />
 
       {/* ── END CARD — dark cinematic, inline with new aesthetic ── */}
       <div className="relative overflow-hidden" style={{ background: '#161512' }}>

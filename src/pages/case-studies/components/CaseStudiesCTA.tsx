@@ -3,6 +3,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useText } from '@/hooks/useText';
 import SectionBadge from '@/components/base/SectionBadge';
+import WoodenButton from '@/components/base/WoodenButton';
 
 export default function CaseStudiesCTA() {
   const tBadge = useText('casestudies_cta', 'casestudies-cta-badge', 'Lass uns sprechen');

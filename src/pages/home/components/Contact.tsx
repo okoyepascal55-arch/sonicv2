@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import WoodenButton from '@/components/base/WoodenButton';
 
 export default function Contact() {
   const navigate = useNavigate();

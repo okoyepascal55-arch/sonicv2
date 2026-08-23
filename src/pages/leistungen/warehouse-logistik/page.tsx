@@ -11,6 +11,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import LimeBadge from '@/components/base/LimeBadge';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const NAV_ITEMS = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },

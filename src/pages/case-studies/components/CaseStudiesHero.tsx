@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
+import WoodenButton from '@/components/base/WoodenButton';
 
 export default function CaseStudiesHero() {
   const [hoveredStat, setHoveredStat] = useState<number | null>(null);

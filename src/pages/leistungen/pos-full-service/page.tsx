@@ -36,6 +36,8 @@ export default function POSFullServicePage() {
         <POSHero />
       </div>
 
+      <WoodenDivider />
+
       <div style={{ background: 'linear-gradient(180deg, #FAFDF5 0%, #ffffff 100%)' }}>
         <POSContent />
       </div>

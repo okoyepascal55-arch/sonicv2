@@ -3,6 +3,7 @@ import LimeBadge from '@/components/base/LimeBadge';
 import type { MediaItem } from '@/lib/mediaStore';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const tickerStats = [
   { icon: 'ri-briefcase-line', value: '>500', label: 'Projekte' },

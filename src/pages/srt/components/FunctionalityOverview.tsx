@@ -2,6 +2,7 @@ import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 interface Module {
   id: string;

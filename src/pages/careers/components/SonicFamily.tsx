@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
 import { useMediaStore } from '@/lib/mediaStore';
+import WoodenButton from '@/components/base/WoodenButton';
 
 type Face = {
   id: string;

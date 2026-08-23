@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PhoneFrame from '@/components/base/PhoneFrame';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const STUDIO_IMG = 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/f404951b-e9f8-4063-b803-e1145f43d540_DSC02106-Kopie.jpg';
 

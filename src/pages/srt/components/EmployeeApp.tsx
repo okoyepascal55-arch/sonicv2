@@ -3,6 +3,7 @@ import PhoneFrame from '@/components/base/PhoneFrame';
 import SectionBadge from '@/components/base/SectionBadge';
 import FloatingBadge from '@/components/base/FloatingBadge';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const STEPS = [
   { number: '01', tag: 'SCHICHT', icon: 'ri-calendar-check-line', title: 'Aufgaben einsehen', desc: 'Die Mitarbeiterin sieht auf den ersten Blick, wann und wo der nächste Einsatz eingeplant ist.', screen: 'shift' },

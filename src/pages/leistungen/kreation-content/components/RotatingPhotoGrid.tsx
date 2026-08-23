@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const PHOTOS = [
   {

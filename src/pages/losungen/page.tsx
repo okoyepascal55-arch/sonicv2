@@ -6,6 +6,7 @@ import { useMediaStore } from '@/lib/mediaStore';
 import ClientProof from '../../components/feature/ClientProof';
 import WoodenDivider from '../../components/base/WoodenDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const SURVEY_FORM_URL = 'https://readdy.ai/api/form/d9vdom6th95mubjtu6q0';
 

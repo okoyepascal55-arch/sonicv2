@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
+import WoodenCard from '@/components/base/WoodenCard';
 
 interface Testimonial {
   brand: string;
@@ -120,48 +121,14 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
   };
 
   return (
-    <div
-      ref={cardRef}
-      className="relative bg-white p-6 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-visible flex flex-col rounded-none"
-      style={{ minWidth: '420px', flex: '0 0 calc(50% - 12px)' }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <WoodenCard
+      className="flex flex-col"
+      style={{ minWidth: '420px', flex: '0 0 calc(50% - 12px)' } as React.CSSProperties}
     >
-      {/* Lime tint */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#C8D400]/3 via-transparent to-[#C8D400]/5 pointer-events-none" />
-
-      {/* Wavy SVG border — identical to ClientProof */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
-        viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
-      >
-        <defs>
-          <linearGradient id={`lt-wavy-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#C8D400" stopOpacity={isHovered ? 0.95 : 0.4} />
-            <stop offset="50%" stopColor="#a8b300" stopOpacity={isHovered ? 0.95 : 0.3} />
-            <stop offset="100%" stopColor="#C8D400" stopOpacity={isHovered ? 0.95 : 0.4} />
-          </linearGradient>
-        </defs>
-        <path
-          d={generateWavyBorderPath(3, isHovered ? 2.5 : 1.5, 0.6)}
-          fill="none"
-          stroke={`url(#lt-wavy-${index})`}
-          strokeWidth={isHovered ? 2 : 1.3}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          style={{
-            filter: isHovered ? 'drop-shadow(0 0 6px rgba(200,212,0,0.5))' : 'none',
-            transition: 'all 1.2s ease-out',
-          }}
-        />
-      </svg>
-
-      <div className="relative z-10 flex flex-col h-full">
+      <div className="flex flex-col h-full">
         {/* Logo + brand */}
         <div className="flex items-center gap-3 mb-5 pb-5 border-b border-foreground-100">
-          <div
-            className="w-14 h-14 bg-white shadow-md flex items-center justify-center p-2 ring-2 ring-foreground-100 flex-shrink-0 rounded-none"
-          >
+          <div className="w-14 h-14 bg-white shadow-md flex items-center justify-center p-2 ring-2 ring-foreground-100 flex-shrink-0">
             <img src={item.logo} alt={item.brand} className="w-full h-full object-contain" loading="lazy" />
           </div>
           <h3 className="text-sm font-black text-foreground-950 tracking-wide leading-tight">{item.brand}</h3>
@@ -182,13 +149,13 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
           </div>
           <a
             href="/fallbeispiele"
-            className="inline-block border-2 border-foreground-950 text-foreground-950 text-xs font-black tracking-widest px-5 py-2.5 hover:bg-primary-500 hover:border-primary-500 hover:text-white transition-all duration-300 whitespace-nowrap active:scale-95 rounded-none"
+            className="inline-block border-2 border-foreground-950 text-foreground-950 text-xs font-black tracking-widest px-5 py-2.5 hover:bg-primary-500 hover:border-primary-500 hover:text-white transition-all duration-300 whitespace-nowrap active:scale-95"
           >
             FALLSTUDIE LESEN
           </a>
         </div>
       </div>
-    </div>
+    </WoodenCard>
   );
 }
 

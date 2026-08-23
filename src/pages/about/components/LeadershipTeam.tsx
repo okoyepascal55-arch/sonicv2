@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useText } from '@/hooks/useText';
 import { useMediaStore } from '@/lib/mediaStore';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const TEAM_STATS = [
   { value: '5,15', unit: 'Jahre', label: 'Ø Betriebszugehörigkeit' },

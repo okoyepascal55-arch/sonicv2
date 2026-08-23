@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useId } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuizModal from './QuizModal';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const nodes = [
   { id: 'agentur', label: 'Sonic Agentur', icon: 'ri-user-star-line', desc: 'Einsatzplanung & Kampagnenstatus in Echtzeit' },

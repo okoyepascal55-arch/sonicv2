@@ -6,6 +6,7 @@ import JobsHero from './components/JobsHero';
 import JobsFilter from './components/JobsFilter';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { mockJobs } from '@/mocks/jobs';
+import WoodenButton from '@/components/base/WoodenButton';
 
 export interface JobPosting {
   hash: string;

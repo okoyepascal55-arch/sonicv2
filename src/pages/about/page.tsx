@@ -10,6 +10,7 @@ import LeadershipTeam from './components/LeadershipTeam';
 import ManagementVoices from './components/ManagementVoices';
 import { StackedSectionReveal } from '@/components/feature/SectionReveal';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const ABOUT_NAV_ITEMS = [
   { id: 'uber-uns', label: 'Über uns', icon: 'ri-home-heart-line' },

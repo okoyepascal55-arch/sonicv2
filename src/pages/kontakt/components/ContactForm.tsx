@@ -1,4 +1,5 @@
 import { useState, FormEvent } from 'react';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const FORM_URL = 'https://readdy.ai/api/form/d82bbfb29k3fss3u08ug';
 

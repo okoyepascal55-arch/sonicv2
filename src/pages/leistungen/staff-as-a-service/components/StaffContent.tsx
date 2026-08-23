@@ -6,6 +6,7 @@ import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import WoodenButton from '@/components/base/WoodenButton';
 
 const STAFF_CHALLENGES: ChallengeItem[] = [
   {

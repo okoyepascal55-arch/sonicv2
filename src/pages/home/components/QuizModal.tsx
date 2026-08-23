@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
+import WoodenButton from '@/components/base/WoodenButton';
 
 interface QuizModalProps {
   isOpen: boolean;
