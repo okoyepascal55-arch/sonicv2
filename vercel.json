@@ -1,0 +1,7 @@
+{
+  "buildCommand": "node generate_manifest.cjs && vite build",
+  "outputDirectory": "out",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
