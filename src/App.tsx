@@ -84,7 +84,7 @@ function AppLayout() {
       <CalendlyWidget />
       <SkipLink />
       <ScrollToHash />
-      <div className={isDashboard ? 'min-h-[100dvh] flex flex-col bg-foreground-950' : 'min-h-[100dvh] flex flex-col bg-gradient-to-b from-background-50 via-wood-light/5 to-background-50'}>
+      <div className={isDashboard ? 'min-h-[100dvh] flex flex-col bg-foreground-950' : 'min-h-[100dvh] flex flex-col bg-background-50'}>
         {!isDashboard && <Navigation />}
         <main id="main-content" className={isDashboard ? 'flex-1' : 'flex-1 pt-20'}>
           <AnimatedRoutes />
