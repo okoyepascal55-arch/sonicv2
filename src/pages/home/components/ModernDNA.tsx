@@ -42,7 +42,7 @@ export default function ModernDNA() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 bg-primary-500/20 px-4 py-1.5 border-2 border-[#C8D400]/40 mb-3">
+          <div className="inline-flex items-center gap-2 bg-primary-500/20 px-4 py-1.5 border-2 border-primary-500/40 mb-3">
             <div className="w-1.5 h-1.5 bg-[#1a1a1a] rounded-full animate-pulse"></div>
             <p className="text-xs font-semibold text-foreground-950 tracking-wide uppercase">
               Sonic DNA

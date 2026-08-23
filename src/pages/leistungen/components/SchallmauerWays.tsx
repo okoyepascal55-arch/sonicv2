@@ -88,15 +88,15 @@ export default function SchallmauerWays() {
     <section className="bg-white py-10 md:py-14 px-4 md:px-6 relative overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#C8D400]/3 blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C8D400]/2 blur-[100px]" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-500/3 blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-500/2 blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-8 md:mb-10">
           <SectionBadge text="Die Retail-Schallmauer" variant="dark" className="mb-5" />
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight mb-4 uppercase">
+          <h2 className="sonic-h2 text-foreground-950">
             DEIN WEG ZUM RETAIL-ERFOLG
           </h2>
           <p className="text-sm md:text-base text-foreground-600 max-w-xl mx-auto">

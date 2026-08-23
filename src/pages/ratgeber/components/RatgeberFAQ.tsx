@@ -31,7 +31,7 @@ export default function RatgeberFAQ({ faqs }: RatgeberFAQProps) {
       <SchemaOrg type="faq" data={buildFAQSchema(faqs)} />
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-foreground-950 leading-tight tracking-tight mb-10">
+          <h2 className="sonic-h2 text-foreground-950 mb-10">
             Häufig gestellte Fragen
           </h2>
 
@@ -52,7 +52,7 @@ export default function RatgeberFAQ({ faqs }: RatgeberFAQProps) {
                   >
                     <span className="text-base font-bold text-foreground-950 pr-4 leading-snug">{faq.question}</span>
                     <div className={`w-6 h-6 flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-                      <i className="ri-arrow-down-s-line text-[#C8D400] text-lg"></i>
+                      <i className="ri-arrow-down-s-line text-primary-500 text-lg"></i>
                     </div>
                   </button>
 

@@ -130,7 +130,7 @@ export default function Timeline() {
           </div>
           <h2 className="text-3xl font-black text-foreground-950 leading-tight tracking-tight text-center mb-3">
             {tHeading.split(' ').slice(0, 2).join(' ')}{' '}
-            <span className="text-[#C8D400]">{tHeading.split(' ').slice(2).join(' ')}</span>
+            <span className="text-primary-500">{tHeading.split(' ').slice(2).join(' ')}</span>
           </h2>
         </div>
 
@@ -162,7 +162,7 @@ export default function Timeline() {
             >
               {s.tag === '#Doing new things' ? tTab1 : s.tag === '#Doing things better' ? tTab2 : tTab3}
               {activeSection === s.key && (
-                <div className="block w-full h-0.5 bg-[#C8D400] mt-1.5 mx-auto" style={{ maxWidth: '40px' }} />
+                <div className="block w-full h-0.5 bg-primary-500 mt-1.5 mx-auto" style={{ maxWidth: '40px' }} />
               )}
             </button>
           ))}
@@ -220,7 +220,7 @@ export default function Timeline() {
                 </div>
 
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 bg-[#0B0B0C] text-[#C8D400] flex items-center justify-center text-[11px] font-black">{item.number}</div>
+                  <div className="w-9 h-9 bg-foreground-950 text-primary-500 flex items-center justify-center text-[11px] font-black">{item.number}</div>
                   {isFeature && (
                     <div className="hidden sm:block h-px flex-1 bg-black/10" />
                   )}
@@ -230,7 +230,7 @@ export default function Timeline() {
 
                 {/* Bottom accent — subtle black instead of lime */}
                 <div
-                  className="absolute bottom-0 left-0 h-0.5 bg-[#C8D400] transition-all duration-500"
+                  className="absolute bottom-0 left-0 h-0.5 bg-primary-500 transition-all duration-500"
                   style={{ width: hoveredItem === i ? '100%' : '0%', opacity: 0.5 }}
                 />
               </div>

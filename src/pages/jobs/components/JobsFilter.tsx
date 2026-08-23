@@ -18,7 +18,7 @@ export default function JobsFilter({ search, onSearch, locationFilter, onLocatio
           value={search}
           onChange={(e) => onSearch(e.target.value)}
           placeholder="Stelle oder Abteilung suchen…"
-          className="w-full pl-9 pr-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] font-medium placeholder-gray-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-[#C8D400] transition-colors"
+          className="w-full pl-9 pr-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] font-medium placeholder-gray-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-primary-500 transition-colors"
           style={{ borderRadius: 0 }}
         />
       </div>
@@ -30,7 +30,7 @@ export default function JobsFilter({ search, onSearch, locationFilter, onLocatio
           <select
             value={locationFilter}
             onChange={(e) => onLocationFilter(e.target.value)}
-            className="pl-9 pr-8 py-3 bg-white border border-foreground-100 text-sm font-medium text-[#1a1a1a] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-[#C8D400] transition-colors appearance-none cursor-pointer min-w-[160px]"
+            className="pl-9 pr-8 py-3 bg-white border border-foreground-100 text-sm font-medium text-[#1a1a1a] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-primary-500 transition-colors appearance-none cursor-pointer min-w-[160px]"
             style={{ borderRadius: 0 }}
           >
             <option value="">Alle Standorte</option>
@@ -43,7 +43,7 @@ export default function JobsFilter({ search, onSearch, locationFilter, onLocatio
       )}
 
       {/* Count badge */}
-      <div className="flex-shrink-0 px-4 py-3 bg-[#111] text-white text-xs font-black uppercase tracking-widest whitespace-nowrap">
+      <div className="flex-shrink-0 px-4 py-3 bg-foreground-950 text-white text-xs font-black uppercase tracking-widest whitespace-nowrap">
         {totalCount} {totalCount === 1 ? 'Stelle' : 'Stellen'}
       </div>
     </div>

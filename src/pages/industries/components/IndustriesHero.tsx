@@ -6,7 +6,7 @@ export default function IndustriesHero() {
   const heroImage = industriesHeroImages[0]?.url || 'https://readdy.ai/api/search-image?query=modern%20consumer%20electronics%20retail%20store%20interior%20premium%20product%20displays%20smartphones%20smartwatches%20home%20appliances%20professional%20brand%20activation%20team%20engaging%20customers%20dramatic%20overhead%20lighting%20cinematic%20dark%20moody%20atmosphere%20wide%20angle&width=1920&height=1080&seq=industries-hero-v2&orientation=landscape';
 
   return (
-    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-[#0B0B0C]" style={{ paddingTop: '80px' }}>
+    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: '80px' }}>
       {/* Background image with dark overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -25,14 +25,14 @@ export default function IndustriesHero() {
       <div className="relative z-20 w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
         <div className="max-w-[640px]">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
-          <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
+        <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
+          <span className="w-1.5 h-1.5 bg-foreground-950" />
           Unsere Branchen
         </div>
 
-        <h1 className="text-[clamp(32px,5vw,58px)] font-black text-white leading-[1.06] tracking-tight uppercase mb-5 md:mb-6">
+        <h1 className="sonic-h1 text-white mb-5 md:mb-6">
           TIEFE BRANCHEN-<br />
-          <span className="text-[#C8D400]">EXPERTISE.</span>
+          <span className="text-primary-500">EXPERTISE.</span>
         </h1>
 
         <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-3">
@@ -45,7 +45,7 @@ export default function IndustriesHero() {
         <div className="flex flex-wrap gap-3">
           <a
             href="#industries"
-            className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 bg-[#C8D400] text-[#0B0B0C] font-bold text-xs md:text-sm hover:bg-white transition-all duration-200 cursor-pointer whitespace-nowrap"
+            className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 bg-primary-500 text-foreground-950 font-bold text-xs md:text-sm hover:bg-white transition-all duration-200 cursor-pointer whitespace-nowrap"
           >
             <i className="ri-building-2-line"></i>
             Alle Branchen entdecken

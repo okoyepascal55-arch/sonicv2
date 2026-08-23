@@ -1066,8 +1066,8 @@ export default function LosungenPage() {
         {/* Content — left-aligned, bottom-anchored */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 py-0">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
-              <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
+            <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
+              <span className="w-1.5 h-1.5 bg-foreground-950" />
               Lösungen
             </div>
 

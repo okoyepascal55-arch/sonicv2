@@ -130,8 +130,8 @@ export default function JobsPage() {
 
           {!loading && error && (
             <div className="mt-12 text-center py-20 px-4 bg-[#fafaf8] border border-foreground-100">
-              <div className="w-20 h-20 flex items-center justify-center mx-auto mb-5 bg-white border-2 border-[#C8D400]/30">
-                <i className="ri-wifi-off-line text-3xl text-[#C8D400]" />
+              <div className="w-20 h-20 flex items-center justify-center mx-auto mb-5 bg-white border-2 border-primary-500/30">
+                <i className="ri-wifi-off-line text-3xl text-primary-500" />
               </div>
               <p className="text-base font-black text-[#1a1a1a] mb-2">Unser Stellenportal ist momentan nicht erreichbar.</p>
               <p className="text-sm text-foreground-500 mb-6 max-w-md mx-auto leading-relaxed">
@@ -140,14 +140,14 @@ export default function JobsPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <button
                   onClick={() => window.location.reload()}
-                  className="px-8 py-3 bg-[#111] text-white text-xs font-black uppercase tracking-widest hover:bg-primary-500 hover:text-[#111] transition-all duration-200 cursor-pointer"
+                  className="px-8 py-3 bg-foreground-950 text-white text-xs font-black uppercase tracking-widest hover:bg-primary-500 hover:text-foreground-950 transition-all duration-200 cursor-pointer"
                   style={{ borderRadius: 0 }}
                 >
                   Erneut versuchen
                 </button>
                 <a
                   href="mailto:bewerbung@sonic-group.de?subject=Initiativbewerbung"
-                  className="px-8 py-3 bg-white text-[#111] text-xs font-black uppercase tracking-widest border-2 border-[#111] hover:border-[#C8D400] hover:bg-primary-500/10 transition-all duration-200 cursor-pointer"
+                  className="px-8 py-3 bg-white text-foreground-950 text-xs font-black uppercase tracking-widest border-2 border-[#111] hover:border-primary-500 hover:bg-primary-500/10 transition-all duration-200 cursor-pointer"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-mail-send-line mr-1.5"></i>
@@ -159,21 +159,21 @@ export default function JobsPage() {
 
           {!loading && !error && filtered.length === 0 && (
             <div className="mt-12 text-center py-20 px-4 bg-[#fafaf8] border border-foreground-100">
-              <div className="w-20 h-20 flex items-center justify-center mx-auto mb-5 bg-white border-2 border-[#C8D400]/30">
-                <i className="ri-search-line text-3xl text-[#C8D400]" />
+              <div className="w-20 h-20 flex items-center justify-center mx-auto mb-5 bg-white border-2 border-primary-500/30">
+                <i className="ri-search-line text-3xl text-primary-500" />
               </div>
               <p className="text-base font-black text-[#1a1a1a] mb-2">Keine passenden Stellen gefunden</p>
               <p className="text-sm text-foreground-500 mb-6 max-w-md mx-auto leading-relaxed">
                 Versuche andere Suchbegriffe oder Filter. Wir haben ständig neue Positionen — schau später wieder vorbei.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <button onClick={() => { setSearch(''); setLocationFilter(''); }} className="px-8 py-3 bg-primary-500 text-white text-xs font-black uppercase tracking-widest hover:bg-[#111] transition-all duration-200 cursor-pointer" style={{ borderRadius: 0 }}>
+                <button onClick={() => { setSearch(''); setLocationFilter(''); }} className="px-8 py-3 bg-primary-500 text-white text-xs font-black uppercase tracking-widest hover:bg-foreground-950 transition-all duration-200 cursor-pointer" style={{ borderRadius: 0 }}>
                   <i className="ri-restart-line mr-1.5"></i>
                   Filter zurücksetzen
                 </button>
                 <a
                   href="mailto:bewerbung@sonic-group.de?subject=Initiativbewerbung"
-                  className="px-8 py-3 bg-white text-[#111] text-xs font-black uppercase tracking-widest border-2 border-[#111] hover:border-[#C8D400] hover:bg-primary-500/10 transition-all duration-200 cursor-pointer"
+                  className="px-8 py-3 bg-white text-foreground-950 text-xs font-black uppercase tracking-widest border-2 border-[#111] hover:border-primary-500 hover:bg-primary-500/10 transition-all duration-200 cursor-pointer"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-mail-send-line mr-1.5"></i>
@@ -194,15 +194,15 @@ export default function JobsPage() {
       </section>
 
       {/* CTA strip */}
-      <section className="py-12 px-4 md:px-6 bg-[#111] mt-8">
+      <section className="py-12 px-4 md:px-6 bg-foreground-950 mt-8">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.25em] text-[#C8D400] mb-1">Keine passende Stelle dabei?</p>
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-1">Keine passende Stelle dabei?</p>
             <h3 className="text-xl font-black text-white uppercase">Initiativbewerbung jederzeit willkommen.</h3>
           </div>
           <a
             href="mailto:bewerbung@sonic-group.de?subject=Initiativbewerbung"
-            className="flex-shrink-0 inline-flex items-center gap-3 px-8 py-3.5 bg-primary-500 text-white font-black text-xs uppercase tracking-widest hover:bg-white hover:text-[#111] transition-all duration-200 whitespace-nowrap cursor-pointer"
+            className="flex-shrink-0 inline-flex items-center gap-3 px-8 py-3.5 bg-primary-500 text-white font-black text-xs uppercase tracking-widest hover:bg-white hover:text-foreground-950 transition-all duration-200 whitespace-nowrap cursor-pointer"
             style={{ borderRadius: 0 }}
           >
             <i className="ri-mail-send-line" />

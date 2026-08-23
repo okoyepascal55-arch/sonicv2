@@ -208,7 +208,7 @@ export default function RotatingPhotoGrid() {
           <div key={i} className="flex-shrink-0 relative overflow-hidden" style={{ width: '160px', height: '220px' }}>
             <img src={getPhotoSrc(i)} alt={photo.label} className="w-full h-full object-cover object-top" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-            <div className="absolute top-2 left-2 px-1.5 py-0.5 bg-[#C8D400] text-[#111] text-[8px] font-black uppercase tracking-widest">{photo.tag}</div>
+            <div className="absolute top-2 left-2 px-1.5 py-0.5 bg-primary-500 text-foreground-950 text-[8px] font-black uppercase tracking-widest">{photo.tag}</div>
             <div className="absolute bottom-3 left-3">
               <span className="text-white text-[10px] font-black uppercase tracking-wide">{photo.label}</span>
             </div>

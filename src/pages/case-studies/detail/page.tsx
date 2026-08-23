@@ -119,7 +119,7 @@ export default function CaseStudyDetailPage() {
               <i className="ri-arrow-left-line mr-2"></i>
               Zurück zu den Fallbeispielen
             </Link>
-            <div className="bg-primary-500 text-[#111] px-4 py-2 inline-block font-black text-sm mb-4">
+            <div className="bg-primary-500 text-foreground-950 px-4 py-2 inline-block font-black text-sm mb-4">
               {caseStudy.category}
             </div>
             <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-white mb-4">
@@ -213,7 +213,7 @@ export default function CaseStudyDetailPage() {
             </p>
           </div>
 
-          <div className="bg-primary-500/5 p-8 border-l-4 border-[#C8D400]">
+          <div className="bg-primary-500/5 p-8 border-l-4 border-primary-500">
             <p className="text-xl text-foreground-700 italic mb-4">"{caseStudy.testimonial}"</p>
             <p className="text-sm font-bold text-foreground-950">— {caseStudy.author}</p>
           </div>
@@ -320,7 +320,7 @@ export default function CaseStudyDetailPage() {
               href="https://calendly.com/sonic-group/beratungsgespraech"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary-500 text-[#111] px-8 py-4 font-black hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap inline-flex items-center"
+              className="bg-primary-500 text-foreground-950 px-8 py-4 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap inline-flex items-center"
             >
               Beratungsgespräch buchen
               <i className="ri-arrow-right-line ml-2"></i>

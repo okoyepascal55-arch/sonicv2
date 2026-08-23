@@ -12,7 +12,7 @@ export default function CaseStudiesHero() {
   ];
 
   return (
-    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-[#0B0B0C]" style={{ paddingTop: '80px' }}>
+    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: '80px' }}>
       {/* Background Image */}
       <div className="absolute inset-0">
         {(heroBg[0] && heroBg[0].url) ? (
@@ -28,14 +28,14 @@ export default function CaseStudiesHero() {
       {/* Content */}
       <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
         <div className="max-w-[640px]">
-        <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
-          <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
+        <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
+          <span className="w-1.5 h-1.5 bg-foreground-950" />
           Fallbeispiele
         </div>
 
-        <h1 className="text-[clamp(32px,5vw,58px)] font-black text-white leading-[1.06] tracking-tight uppercase mb-5 md:mb-6">
+        <h1 className="sonic-h1 text-white mb-5 md:mb-6">
           BEWIESENE ERGEBNISSE.<br />
-          <span className="text-[#C8D400]">ECHTER IMPACT.</span>
+          <span className="text-primary-500">ECHTER IMPACT.</span>
         </h1>
 
         <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-6 md:mb-8">
@@ -110,7 +110,7 @@ export default function CaseStudiesHero() {
               </svg>
 
               <div className="relative z-10">
-                <div className="text-3xl font-black text-[#C8D400] mb-1">{stat.value}</div>
+                <div className="text-3xl font-black text-primary-500 mb-1">{stat.value}</div>
                 <div className="text-sm font-semibold">{stat.label}</div>
               </div>
             </div>

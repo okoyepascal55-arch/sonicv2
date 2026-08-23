@@ -120,15 +120,15 @@ export default function KontaktPage() {
 
             {/* Left: text */}
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
-                <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
+              <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
+                <span className="w-1.5 h-1.5 bg-foreground-950" />
                 {tHeroBadge}
               </div>
 
               <h1 className="text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-black text-white leading-tight mb-6">
                 {tHeroH1}
                 <br />
-                <span className="text-[#C8D400]">{tHeroH1Accent}</span>
+                <span className="text-primary-500">{tHeroH1Accent}</span>
               </h1>
 
               <p className="text-base text-foreground-400 leading-relaxed max-w-lg mb-10">
@@ -140,11 +140,11 @@ export default function KontaktPage() {
                 {contactDetails.map((item, i) => (
                   <div
                     key={i}
-                    className="bg-[#111] px-5 py-5 hover:bg-[#1e1e00] transition-all duration-300 group"
+                    className="bg-foreground-950 px-5 py-5 hover:bg-[#1e1e00] transition-all duration-300 group"
                   >
                     <div className="flex items-start gap-3">
-                      <div className="w-9 h-9 flex items-center justify-center bg-primary-500/10 border border-[#C8D400]/20 flex-shrink-0">
-                        <i className={`${item.icon} text-base text-[#C8D400]`} />
+                      <div className="w-9 h-9 flex items-center justify-center bg-primary-500/10 border border-primary-500/20 flex-shrink-0">
+                        <i className={`${item.icon} text-base text-primary-500`} />
                       </div>
                       <div className="min-w-0">
                         <p className="text-[9px] font-black uppercase tracking-[0.25em] text-foreground-500 mb-1">
@@ -155,7 +155,7 @@ export default function KontaktPage() {
                             href={item.href}
                             target={item.external ? '_blank' : undefined}
                             rel={item.external ? 'noopener noreferrer' : undefined}
-                            className="text-sm text-foreground-300 hover:text-[#C8D400] transition-colors whitespace-pre-line break-all leading-relaxed block"
+                            className="text-sm text-foreground-300 hover:text-primary-500 transition-colors whitespace-pre-line break-all leading-relaxed block"
                           >
                             {item.value}
                           </a>
@@ -175,8 +175,8 @@ export default function KontaktPage() {
             <div className="hidden lg:flex flex-col items-center justify-center gap-6">
               {/* Header label */}
               <div className="w-full flex items-center gap-3 px-1">
-                <div className="w-8 h-8 flex items-center justify-center bg-primary-500/15 border border-[#C8D400]/30">
-                  <i className="ri-calendar-check-line text-sm text-[#C8D400]" />
+                <div className="w-8 h-8 flex items-center justify-center bg-primary-500/15 border border-primary-500/30">
+                  <i className="ri-calendar-check-line text-sm text-primary-500" />
                 </div>
                 <div>
                   <p className="text-[9px] font-black uppercase tracking-[0.25em] text-foreground-500 mb-1">
@@ -186,7 +186,7 @@ export default function KontaktPage() {
                 </div>
               </div>
               {/* Inline calendar */}
-              <div className="w-full border border-[#C8D400]/20 overflow-hidden">
+              <div className="w-full border border-primary-500/20 overflow-hidden">
                 <CalendlyInline />
               </div>
               {/* Quick stats */}
@@ -196,8 +196,8 @@ export default function KontaktPage() {
                   { val: tStatExp, label: tStatExpLabel },
                   { val: tStatClients, label: tStatClientsLabel },
                 ].map((s, i) => (
-                  <div key={i} className="bg-[#111] px-4 py-4 text-center">
-                    <p className="text-xl font-black text-[#C8D400] leading-tight">{s.val}</p>
+                  <div key={i} className="bg-foreground-950 px-4 py-4 text-center">
+                    <p className="text-xl font-black text-primary-500 leading-tight">{s.val}</p>
                     <p className="text-[10px] text-foreground-500 uppercase tracking-wider mt-1">{s.label}</p>
                   </div>
                 ))}
@@ -236,10 +236,10 @@ export default function KontaktPage() {
 
               {/* Office info */}
               <div className="px-5 py-8 sm:px-10 sm:py-10 border-t border-foreground-100">
-                <p className="text-xs font-black uppercase tracking-[0.28em] text-[#C8D400] mb-4">
+                <p className="text-xs font-black uppercase tracking-[0.28em] text-primary-500 mb-4">
                   Unser Standort
                 </p>
-                <h3 className="text-xl font-black text-[#111] mb-1 uppercase">{tOfficeH3}</h3>
+                <h3 className="text-xl font-black text-foreground-950 mb-1 uppercase">{tOfficeH3}</h3>
                 <p className="text-sm text-foreground-500 leading-relaxed mb-5">
                   {tOfficeAddr.split('\n').map((line, i) => (<span key={i}>{line}<br /></span>))}
                 </p>
@@ -248,7 +248,7 @@ export default function KontaktPage() {
                     href="https://maps.google.com/?q=Campus+Fichtenhain+46+47807+Krefeld"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 border border-[#C8D400]/40 text-[#C8D400] px-5 py-2.5 font-black text-xs uppercase tracking-wider hover:bg-primary-500 hover:text-white transition-all duration-300 whitespace-nowrap"
+                    className="inline-flex items-center gap-2 border border-primary-500/40 text-primary-500 px-5 py-2.5 font-black text-xs uppercase tracking-wider hover:bg-primary-500 hover:text-white transition-all duration-300 whitespace-nowrap"
                     style={{ borderRadius: 0 }}
                   >
                     <i className="ri-map-pin-line" />
@@ -256,7 +256,7 @@ export default function KontaktPage() {
                   </a>
                   <a
                     href="tel:+4921514794440"
-                    className="inline-flex items-center gap-2 bg-[#111] text-white px-5 py-2.5 font-black text-xs uppercase tracking-wider hover:bg-primary-500 hover:text-white transition-all duration-300 whitespace-nowrap"
+                    className="inline-flex items-center gap-2 bg-foreground-950 text-white px-5 py-2.5 font-black text-xs uppercase tracking-wider hover:bg-primary-500 hover:text-white transition-all duration-300 whitespace-nowrap"
                     style={{ borderRadius: 0 }}
                   >
                     <i className="ri-phone-line" />

@@ -24,7 +24,7 @@ export default function TeamHero() {
           NUR WELTKLASSE-<wbr />PROFIS
           <br />
           FÜR{' '}
-          <span className="text-[#C8D400]">WELTKLASSE-<wbr />MARKEN</span>
+          <span className="text-primary-500">WELTKLASSE-<wbr />MARKEN</span>
         </h1>
         
         <p className="text-base md:text-xl text-white/90 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed">
@@ -35,7 +35,7 @@ export default function TeamHero() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
           <a 
             href="/karriere" 
-            className="w-full sm:w-auto px-6 py-3.5 bg-primary-500 text-[#111] font-black hover:bg-white hover:text-[#111] transition-all whitespace-nowrap cursor-pointer text-sm"
+            className="w-full sm:w-auto px-6 py-3.5 bg-primary-500 text-foreground-950 font-black hover:bg-white hover:text-foreground-950 transition-all whitespace-nowrap cursor-pointer text-sm"
             style={{ borderRadius: 0 }}
           >
             Offene Stellen ansehen
@@ -76,7 +76,7 @@ export default function TeamHero() {
       </div>
       
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <i className="ri-arrow-down-line text-3xl text-[#C8D400]"></i>
+        <i className="ri-arrow-down-line text-3xl text-primary-500"></i>
       </div>
     </section>
   );

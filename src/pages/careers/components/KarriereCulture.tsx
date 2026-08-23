@@ -55,9 +55,9 @@ export default function KarriereCulture() {
       <div className="max-w-6xl mx-auto">
         {/* ── Headline ── */}
         <div className="max-w-3xl mb-12 md:mb-16">
-          <h2 className="text-[clamp(28px,3.6vw,46px)] font-black text-[#0B0B0C] leading-[1.06] tracking-tight uppercase">
+          <h2 className="sonic-h2 text-foreground-950">
             Starke Menschen für{' '}
-            <span className="text-[#C8D400]">starke Marken</span>
+            <span className="text-primary-500">starke Marken</span>
           </h2>
           <p className="mt-4 text-sm md:text-base font-bold text-[#6E6E68] tracking-wide max-w-xl leading-relaxed">
             Wir lieben &amp; leben Marken. Energie, Sympathie, Teamgeist, Kreativität und der Wille anzupacken — das zeichnet uns aus.
@@ -65,7 +65,7 @@ export default function KarriereCulture() {
         </div>
 
         {/* ── Statement card ── */}
-        <div className="relative overflow-hidden bg-[#0B0B0C] p-8 md:p-12 mb-10 md:mb-14">
+        <div className="relative overflow-hidden bg-foreground-950 p-8 md:p-12 mb-10 md:mb-14">
           <div className="max-w-2xl">
             <h3 className="text-xl md:text-2xl font-black text-white leading-snug mb-4">
               Wir lieben &amp; leben Marken.
@@ -83,14 +83,14 @@ export default function KarriereCulture() {
             {TAGS.map((tag) => (
               <span
                 key={tag}
-                className="text-xs font-bold text-[#C8D400] bg-[#C8D400]/10 px-3 py-1.5"
+                className="text-xs font-bold text-primary-500 bg-primary-500/10 px-3 py-1.5"
               >
                 {tag}
               </span>
             ))}
             <button
               onClick={scrollToPaths}
-              className="ml-auto text-xs font-bold text-white hover:text-[#C8D400] transition-colors cursor-pointer"
+              className="ml-auto text-xs font-bold text-white hover:text-primary-500 transition-colors cursor-pointer"
             >
               Karrierepfade →
             </button>
@@ -101,7 +101,7 @@ export default function KarriereCulture() {
         <div className="space-y-12">
           {/* DNA — pictorial cards */}
           <div>
-            <h4 className="text-[11px] font-black uppercase tracking-[0.15em] text-[#9A9A93] mb-4">
+            <h4 className="text-[11px] font-black uppercase tracking-[0.15em] text-foreground-400 mb-4">
               Unsere DNA
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -136,7 +136,7 @@ export default function KarriereCulture() {
                       </div>
                     </div>
                     <div className="p-5">
-                      <h5 className="text-sm font-bold text-[#0B0B0C] mb-1.5">
+                      <h5 className="text-sm font-bold text-foreground-950 mb-1.5">
                         {item.title}
                       </h5>
                       <p className="text-xs leading-relaxed text-[#6E6E68]">
@@ -151,7 +151,7 @@ export default function KarriereCulture() {
 
           {/* Werte — bento numbered-card system (matches Über uns Timeline) */}
           <div>
-            <h4 className="text-[11px] font-black uppercase tracking-[0.15em] text-[#9A9A93] mb-4">
+            <h4 className="text-[11px] font-black uppercase tracking-[0.15em] text-foreground-400 mb-4">
               Unsere Werte
             </h4>
             <div className="grid sm:grid-cols-3 gap-3">
@@ -172,10 +172,10 @@ export default function KarriereCulture() {
                       {val.num}
                     </div>
 
-                    <div className="w-9 h-9 bg-[#0B0B0C] text-[#C8D400] flex items-center justify-center text-[11px] font-black mb-4">
+                    <div className="w-9 h-9 bg-foreground-950 text-primary-500 flex items-center justify-center text-[11px] font-black mb-4">
                       {val.num}
                     </div>
-                    <h4 className="text-lg md:text-xl font-black text-[#0B0B0C] mb-3 leading-tight tracking-tight">
+                    <h4 className="text-lg md:text-xl font-black text-foreground-950 mb-3 leading-tight tracking-tight">
                       {val.title}
                     </h4>
                     <p className="text-sm text-black/50 leading-relaxed">

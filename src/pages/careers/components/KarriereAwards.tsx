@@ -20,7 +20,7 @@ export default function KarriereAwards() {
     <section id="awards" className="py-14 md:py-16 px-4 md:px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="max-w-3xl mb-8 md:mb-10">
-          <h2 className="text-[clamp(28px,3.6vw,46px)] font-black text-[#0B0B0C] leading-[1.06] tracking-tight uppercase">
+          <h2 className="sonic-h2 text-foreground-950">
             {tHeading}
           </h2>
           <p className="text-sm text-[#6E6E68] leading-relaxed max-w-xl mt-3">
@@ -39,16 +39,16 @@ export default function KarriereAwards() {
             >
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-[#C8D400] text-sm">
+                  <span className="text-primary-500 text-sm">
                     <i className="ri-star-fill" />
                   </span>
-                  <span className="text-sm font-black text-[#0B0B0C] uppercase tracking-wide">
+                  <span className="text-sm font-black text-foreground-950 uppercase tracking-wide">
                     {b.label}
                   </span>
                 </div>
                 <div className="text-xs text-[#6E6E68] font-semibold">{b.sub}</div>
               </div>
-              <span className="text-[#C8D400] font-black text-sm whitespace-nowrap">{b.rating}</span>
+              <span className="text-primary-500 font-black text-sm whitespace-nowrap">{b.rating}</span>
             </a>
           ))}
         </div>

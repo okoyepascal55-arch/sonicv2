@@ -89,13 +89,13 @@ export default function MeetTheTeam() {
   return (
     <section className="py-16 md:py-24 px-4 md:px-6 bg-white relative overflow-hidden">
       {/* Subtle highlight glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#C8D400]/8 blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-[#C8D400]/6 blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary-500/8 blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-primary-500/6 blur-3xl pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-10 md:mb-12">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-foreground-950 mb-3 leading-tight tracking-tight">{tHeading}</h2>
+          <h2 className="sonic-h2 text-foreground-950 mb-3">{tHeading}</h2>
           <p className="text-base md:text-xl text-foreground-600 max-w-2xl mx-auto">{tSub}</p>
         </div>
 
@@ -115,7 +115,7 @@ export default function MeetTheTeam() {
 
           {/* Animated lime border on hover */}
           <div
-            className={`absolute inset-0 border-4 transition-all duration-500 pointer-events-none z-20 ${isVideoHovered ? 'border-[#C8D400]' : 'border-transparent'}`}
+            className={`absolute inset-0 border-4 transition-all duration-500 pointer-events-none z-20 ${isVideoHovered ? 'border-primary-500' : 'border-transparent'}`}
             style={{ borderRadius: 0 }}
           />
 
@@ -155,7 +155,7 @@ export default function MeetTheTeam() {
 
                 {/* Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <button className={`w-12 h-12 md:w-16 md:h-16 bg-[#C8D400] flex items-center justify-center shadow-2xl transform transition-all duration-500 cursor-pointer ${isVideoHovered ? 'scale-125 bg-[#b8c400]' : 'scale-100'}`} style={{ borderRadius: 0 }}>
+                  <button className={`w-12 h-12 md:w-16 md:h-16 bg-primary-500 flex items-center justify-center shadow-2xl transform transition-all duration-500 cursor-pointer ${isVideoHovered ? 'scale-125 bg-[#b8c400]' : 'scale-100'}`} style={{ borderRadius: 0 }}>
                     <i className={`ri-play-fill text-xl md:text-3xl text-white ml-0.5 md:ml-1 transition-transform duration-300 ${isVideoHovered ? 'scale-110' : 'scale-100'}`}></i>
                   </button>
                 </div>
@@ -165,18 +165,18 @@ export default function MeetTheTeam() {
               <div className="flex flex-col items-center justify-center pt-2.5 pb-1 relative overflow-hidden" style={{ background: '#f5f2ec' }}>
                 <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'grain\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3CfeColorMatrix type=\'saturate\' values=\'0\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23grain)\' opacity=\'0.12\'/%3E%3C/svg%3E")', backgroundSize: '120px 120px', opacity: 0.6, mixBlendMode: 'multiply' }} />
                 <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(180,160,120,0.04) 3px, rgba(180,160,120,0.04) 4px)', opacity: 0.8 }} />
-                <div className="relative z-10 text-[11px] font-black uppercase tracking-[0.14em] text-[#111]/70 leading-none">{currentProfile.name}</div>
-                <div className="relative z-10 text-[9px] font-medium uppercase tracking-[0.1em] text-[#111]/40 mt-0.5">{currentProfile.role}</div>
+                <div className="relative z-10 text-[11px] font-black uppercase tracking-[0.14em] text-foreground-950/70 leading-none">{currentProfile.name}</div>
+                <div className="relative z-10 text-[9px] font-medium uppercase tracking-[0.1em] text-foreground-950/40 mt-0.5">{currentProfile.role}</div>
               </div>
             </div>
 
             {/* ── PROFILE PANEL — right side ── */}
             <div className="flex-1 flex flex-col justify-center p-6 md:p-8 lg:p-10">
               <div className="flex items-center gap-2 md:gap-3 mb-3">
-                <div className="w-7 h-7 md:w-9 md:h-9 bg-[#C8D400] flex items-center justify-center" style={{ borderRadius: 0 }}>
+                <div className="w-7 h-7 md:w-9 md:h-9 bg-primary-500 flex items-center justify-center" style={{ borderRadius: 0 }}>
                   <i className={`${currentProfile.icon} text-sm md:text-lg text-white`}></i>
                 </div>
-                <span className="text-[#C8D400] font-bold text-xs md:text-sm">{currentProfile.role}</span>
+                <span className="text-primary-500 font-bold text-xs md:text-sm">{currentProfile.role}</span>
               </div>
               <h3 className="text-xl md:text-2xl lg:text-3xl font-black text-white mb-3">{currentProfile.name}&apos;s Story</h3>
               <p className="text-sm md:text-base text-white/70 mb-5 leading-relaxed max-w-lg">{currentProfile.story}</p>
@@ -189,7 +189,7 @@ export default function MeetTheTeam() {
                   <i className="ri-eye-line"></i>
                   <span>{currentProfile.views} views</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-[#C8D400] font-bold">
+                <div className="flex items-center gap-1.5 text-primary-500 font-bold">
                   <i className="ri-trophy-line"></i>
                   <span>{currentProfile.metric}</span>
                 </div>
@@ -206,8 +206,8 @@ export default function MeetTheTeam() {
               onClick={() => setActiveProfile(index)}
               className={`flex items-center gap-2 px-3 md:px-5 py-2 md:py-3 font-bold transition-all whitespace-nowrap cursor-pointer text-sm ${
                 activeProfile === index
-                  ? 'bg-[#C8D400] text-[#111] shadow-lg'
-                  : 'bg-white text-foreground-600 hover:bg-foreground-100 border-2 border-foreground-200 hover:border-[#C8D400]/50'
+                  ? 'bg-primary-500 text-foreground-950 shadow-lg'
+                  : 'bg-white text-foreground-600 hover:bg-foreground-100 border-2 border-foreground-200 hover:border-primary-500/50'
               }`}
               style={{ borderRadius: 0 }}
             >
@@ -226,7 +226,7 @@ export default function MeetTheTeam() {
           ].map((item, index) => (
             <div 
               key={index}
-              className="bg-white p-5 md:p-6 border border-foreground-100 hover:border-[#C8D400]/40 transition-all duration-500 relative overflow-visible cursor-pointer"
+              className="bg-white p-5 md:p-6 border border-foreground-100 hover:border-primary-500/40 transition-all duration-500 relative overflow-visible cursor-pointer"
               style={{ borderRadius: 0 }}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
@@ -275,7 +275,7 @@ export default function MeetTheTeam() {
               </svg>
               
               <div className="relative z-10">
-                <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mb-3 md:mb-4 overflow-hidden bg-[#C8D400]/15" style={{ borderRadius: 0 }}>
+                <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mb-3 md:mb-4 overflow-hidden bg-primary-500/15" style={{ borderRadius: 0 }}>
                   <img
                     src={item.woodIcon}
                     alt={item.title}

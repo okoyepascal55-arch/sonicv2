@@ -60,7 +60,7 @@ export default function JobDetailPage() {
     return (
       <div className="min-h-[100dvh] flex items-center justify-center bg-white">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-[#C8D400]/30 border-t-[#C8D400] rounded-full animate-spin" />
+          <div className="w-12 h-12 border-4 border-primary-500/30 border-t-[#C8D400] rounded-full animate-spin" />
           <p className="text-sm font-bold text-foreground-400 uppercase tracking-widest">Wird geladen…</p>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function JobDetailPage() {
           <p className="text-sm font-bold text-foreground-500 mb-4">{error || 'Stelle nicht gefunden.'}</p>
           <Link
             to="/jobs"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#111] text-white text-xs font-black uppercase tracking-widest hover:bg-primary-500 hover:text-[#111] transition-all duration-200"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-foreground-950 text-white text-xs font-black uppercase tracking-widest hover:bg-primary-500 hover:text-foreground-950 transition-all duration-200"
             style={{ borderRadius: 0 }}
           >
             <i className="ri-arrow-left-line" />
@@ -91,11 +91,11 @@ export default function JobDetailPage() {
   return (
     <div className="min-h-[100dvh] bg-white">
       {/* Hero bar */}
-      <div className="bg-[#111] pt-20 pb-10 px-4 md:px-6">
+      <div className="bg-foreground-950 pt-20 pb-10 px-4 md:px-6">
         <div className="max-w-5xl mx-auto">
           <Link
             to="/jobs"
-            className="inline-flex items-center gap-2 text-white/40 hover:text-[#C8D400] transition-colors text-xs font-bold uppercase tracking-wide mb-6"
+            className="inline-flex items-center gap-2 text-white/40 hover:text-primary-500 transition-colors text-xs font-bold uppercase tracking-wide mb-6"
           >
             <i className="ri-arrow-left-line" />
             Alle Stellen
@@ -107,7 +107,7 @@ export default function JobDetailPage() {
               </span>
             )}
             {job.employmentType && (
-              <span className="px-3 py-1 bg-primary-500/20 text-2xs font-black uppercase tracking-[0.2em] text-[#C8D400]">
+              <span className="px-3 py-1 bg-primary-500/20 text-2xs font-black uppercase tracking-[0.2em] text-primary-500">
                 {job.employmentType}
               </span>
             )}
@@ -116,7 +116,7 @@ export default function JobDetailPage() {
           <div className="flex flex-wrap items-center gap-5">
             {job.location && (
               <span className="flex items-center gap-2 text-sm text-white/60">
-                <i className="ri-map-pin-line text-[#C8D400]" />
+                <i className="ri-map-pin-line text-primary-500" />
                 {job.location}
               </span>
             )}
@@ -151,7 +151,7 @@ export default function JobDetailPage() {
               <div className="mb-8">
                 <h2 className="text-lg font-black text-[#1a1a1a] mb-4 flex items-center gap-3">
                   <span className="w-6 h-6 flex items-center justify-center bg-primary-500">
-                    <i className="ri-task-line text-[#111] text-sm" />
+                    <i className="ri-task-line text-foreground-950 text-sm" />
                   </span>
                   Deine Aufgaben
                 </h2>
@@ -167,7 +167,7 @@ export default function JobDetailPage() {
               <div className="mb-8">
                 <h2 className="text-lg font-black text-[#1a1a1a] mb-4 flex items-center gap-3">
                   <span className="w-6 h-6 flex items-center justify-center bg-primary-500">
-                    <i className="ri-shield-check-line text-[#111] text-sm" />
+                    <i className="ri-shield-check-line text-foreground-950 text-sm" />
                   </span>
                   Dein Profil
                 </h2>
@@ -183,7 +183,7 @@ export default function JobDetailPage() {
               <div className="mb-8">
                 <h2 className="text-lg font-black text-[#1a1a1a] mb-4 flex items-center gap-3">
                   <span className="w-6 h-6 flex items-center justify-center bg-primary-500">
-                    <i className="ri-gift-line text-[#111] text-sm" />
+                    <i className="ri-gift-line text-foreground-950 text-sm" />
                   </span>
                   Was wir bieten
                 </h2>
@@ -199,17 +199,17 @@ export default function JobDetailPage() {
           <div className="lg:w-80 flex-shrink-0">
             <div className="sticky top-[120px]">
               {/* Apply CTA card */}
-              <div className="bg-[#111] p-6 mb-4">
-                <p className="text-xs font-black uppercase tracking-[0.25em] text-[#C8D400] mb-2">
+              <div className="bg-foreground-950 p-6 mb-4">
+                <p className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-2">
                   Interessiert?
                 </p>
                 <h3 className="text-lg font-black text-white mb-4 leading-snug">
                   Jetzt bewerben als<br />
-                  <span className="text-[#C8D400]">{job.title}</span>
+                  <span className="text-primary-500">{job.title}</span>
                 </h3>
                 <button
                   onClick={() => setShowForm(!showForm)}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-primary-500 text-[#111] font-black text-xs uppercase tracking-widest hover:bg-white transition-all duration-200 cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-primary-500 text-foreground-950 font-black text-xs uppercase tracking-widest hover:bg-white transition-all duration-200 cursor-pointer"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-file-user-line" />
@@ -227,7 +227,7 @@ export default function JobDetailPage() {
                 <div className="flex flex-col gap-3">
                   {job.location && (
                     <div className="flex items-start gap-3">
-                      <i className="ri-map-pin-line text-[#C8D400] text-sm mt-0.5 flex-shrink-0" />
+                      <i className="ri-map-pin-line text-primary-500 text-sm mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="text-2xs uppercase tracking-wide text-foreground-400 font-bold">Standort</p>
                         <p className="text-sm font-black text-[#1a1a1a]">{job.location}</p>
@@ -236,7 +236,7 @@ export default function JobDetailPage() {
                   )}
                   {job.department && (
                     <div className="flex items-start gap-3">
-                      <i className="ri-building-line text-[#C8D400] text-sm mt-0.5 flex-shrink-0" />
+                      <i className="ri-building-line text-primary-500 text-sm mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="text-2xs uppercase tracking-wide text-foreground-400 font-bold">Abteilung</p>
                         <p className="text-sm font-black text-[#1a1a1a]">{job.department}</p>
@@ -245,7 +245,7 @@ export default function JobDetailPage() {
                   )}
                   {job.employmentType && (
                     <div className="flex items-start gap-3">
-                      <i className="ri-briefcase-line text-[#C8D400] text-sm mt-0.5 flex-shrink-0" />
+                      <i className="ri-briefcase-line text-primary-500 text-sm mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="text-2xs uppercase tracking-wide text-foreground-400 font-bold">Anstellungsart</p>
                         <p className="text-sm font-black text-[#1a1a1a]">{job.employmentType}</p>
@@ -259,7 +259,7 @@ export default function JobDetailPage() {
               <div className="mt-4 flex gap-2">
                 <button
                   onClick={() => navigator.clipboard.writeText(window.location.href)}
-                  className="flex items-center gap-2 px-4 py-2.5 border border-foreground-100 text-xs font-bold text-foreground-500 hover:border-[#C8D400] hover:text-[#1a1a1a] transition-all duration-200 cursor-pointer flex-1 justify-center"
+                  className="flex items-center gap-2 px-4 py-2.5 border border-foreground-100 text-xs font-bold text-foreground-500 hover:border-primary-500 hover:text-[#1a1a1a] transition-all duration-200 cursor-pointer flex-1 justify-center"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-link text-sm" />
@@ -269,7 +269,7 @@ export default function JobDetailPage() {
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2.5 border border-foreground-100 text-xs font-bold text-foreground-500 hover:border-[#C8D400] hover:text-[#1a1a1a] transition-all duration-200 cursor-pointer flex-1 justify-center"
+                  className="flex items-center gap-2 px-4 py-2.5 border border-foreground-100 text-xs font-bold text-foreground-500 hover:border-primary-500 hover:text-[#1a1a1a] transition-all duration-200 cursor-pointer flex-1 justify-center"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-linkedin-line text-sm" />

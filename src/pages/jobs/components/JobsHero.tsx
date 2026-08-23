@@ -25,7 +25,7 @@ export default function JobsHero({ jobCount }: Props) {
       <div className="absolute top-28 left-6 z-20">
         <Link
           to="/karriere"
-          className="inline-flex items-center gap-2 text-white/50 hover:text-[#C8D400] transition-colors text-xs font-bold uppercase tracking-wide"
+          className="inline-flex items-center gap-2 text-white/50 hover:text-primary-500 transition-colors text-xs font-bold uppercase tracking-wide"
         >
           <i className="ri-arrow-left-line" />
           Karriere
@@ -36,7 +36,7 @@ export default function JobsHero({ jobCount }: Props) {
         <SectionBadge text={jobCount > 0 ? `${jobCount} offene Stellen` : 'Stellenangebote'} variant="light" className="mb-5" />
         <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-5 leading-tight">
           DEINE KARRIERE<br />
-          <span className="text-[#C8D400]">BEI SONIC GROUP</span>
+          <span className="text-primary-500">BEI SONIC GROUP</span>
         </h1>
         <p className="text-base md:text-lg text-white/80 max-w-xl mx-auto">
           Interne Sales-Positionen in Krefeld oder flexible Field-Promotion-Jobs im DACH-Raum.

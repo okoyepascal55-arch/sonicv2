@@ -9,8 +9,8 @@ export default function VideoShowcase() {
   const youtubeUrl = videoMedia[1]?.url || 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&loop=1&playlist=2H1rFHQsG4g&rel=0&modestbranding=1';
 
   return (
-    <section className="py-14 md:py-20 px-4 md:px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
+    <section className="sonic-section-md px-4 md:px-6 bg-white">
+      <div className="sonic-container">
         {/* ── Unified Card ── */}
         <div
           className="relative overflow-hidden rounded-xl"
@@ -23,8 +23,8 @@ export default function VideoShowcase() {
           {/* Inner padding */}
           <div className="px-6 pt-10 pb-8 md:px-12 md:pt-14 md:pb-10">
             {/* ── Header: headline + subline, centered ── */}
-            <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight">
+            <div className="sonic-section-header" style={{ marginBottom: '2rem' }}>
+              <h2 className="sonic-h2 text-foreground-950">
                 Erlebe Sonic{' '}
                 <span className="relative inline-block">
                   <span
@@ -38,7 +38,7 @@ export default function VideoShowcase() {
                   </span>
                 </span>
               </h2>
-              <p className="mt-4 text-sm md:text-base font-bold text-foreground-600 tracking-wide max-w-xl mx-auto leading-relaxed">
+              <p className="sonic-subline mt-3">
                 Schau dir an, wie Sonic die Omnichannel-Lücke im echten Retail schließt — mit Menschen, die Marken erlebbar machen.
               </p>
             </div>

@@ -185,17 +185,17 @@ export default function LeistungenStats() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-5">
           <div className="flex items-center gap-3">
             <div
-              className="inline-flex items-center gap-1.5 border border-[#C8D400]/40 px-2.5 py-0.5"
+              className="inline-flex items-center gap-1.5 border border-primary-500/40 px-2.5 py-0.5"
               style={{ background: 'rgba(200,212,0,0.06)' }}
             >
               <span className="w-1 h-1 bg-primary-500 rounded-full animate-pulse" />
-              <span className="text-[9px] font-black text-[#C8D400] uppercase tracking-widest">
+              <span className="text-[9px] font-black text-primary-500 uppercase tracking-widest">
                 Unsere Zahlen
               </span>
             </div>
             <h2 className="text-base md:text-lg font-black text-[#1a1a1a] leading-none tracking-tight uppercase">
               TRACK RECORD&nbsp;
-              <span className="text-[#C8D400]">DER ÜBERZEUGT.</span>
+              <span className="text-primary-500">DER ÜBERZEUGT.</span>
             </h2>
           </div>
           {/* Accent bars */}

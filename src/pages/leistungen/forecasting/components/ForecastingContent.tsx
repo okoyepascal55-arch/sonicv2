@@ -101,19 +101,19 @@ export default function ForecastingContent() {
       {/* ── Solution (horizontal scroll, light warm bg) ── */}
       <section id="loesung" className="bg-white py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.018] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C8D400]/8 blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#111]/8 border border-[#111]/15 px-4 py-1.5 mb-5">
-                <i className="ri-check-double-line text-[#111] text-sm" />
-                <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Sonic-Lösung</span>
+              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+                <i className="ri-check-double-line text-foreground-950 text-sm" />
+                <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Sonic-Lösung</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#111] leading-tight tracking-tight uppercase">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight uppercase">
                 {tSolutionHeading}
               </h2>
             </div>
-            <p className="text-[#111]/45 text-sm leading-relaxed max-w-xs lg:text-right">{tSolutionSub}</p>
+            <p className="text-foreground-950/45 text-sm leading-relaxed max-w-xs lg:text-right">{tSolutionSub}</p>
           </div>
 
           <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Features — scrollen`} theme="light" variant="wood" />
@@ -125,13 +125,13 @@ export default function ForecastingContent() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10 md:mb-14">
             <LimeBadge text="So funktioniert es" className="mb-5" />
-            <h2 className="text-3xl lg:text-4xl font-black text-[#111] leading-tight uppercase">{tHowHeading}</h2>
-            <p className="text-[#111]/45 text-sm mt-3 max-w-xl mx-auto">{tHowSub}</p>
+            <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 leading-tight uppercase">{tHowHeading}</h2>
+            <p className="text-foreground-950/45 text-sm mt-3 max-w-xl mx-auto">{tHowSub}</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {HOW_IT_WORKS.map((step, i) => (
-              <div key={i} className="group relative overflow-hidden border border-[#111]/10 bg-white hover:border-[#C8D400]/30 transition-all duration-300">
+              <div key={i} className="group relative overflow-hidden border border-[#111]/10 bg-white hover:border-primary-500/30 transition-all duration-300">
                 {/* Image */}
                 <div className="relative overflow-hidden" style={{ height: '220px' }}>
                   <img
@@ -142,7 +142,7 @@ export default function ForecastingContent() {
                     style={{ minHeight: '220px' }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#111]/60 to-transparent" />
-                  <div className="absolute top-4 left-4 bg-[#C8D400] text-[#111] w-10 h-10 flex items-center justify-center font-black text-lg">
+                  <div className="absolute top-4 left-4 bg-primary-500 text-foreground-950 w-10 h-10 flex items-center justify-center font-black text-lg">
                     {step.num}
                   </div>
                 </div>
@@ -150,10 +150,10 @@ export default function ForecastingContent() {
                 {/* Content */}
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[10px] font-black text-[#111]/30 uppercase tracking-widest">Schritt {step.num}</span>
+                    <span className="text-[10px] font-black text-foreground-950/30 uppercase tracking-widest">Schritt {step.num}</span>
                   </div>
-                  <h3 className="text-lg font-black text-[#111] mb-3 uppercase">{step.title}</h3>
-                  <p className="text-[#111]/60 text-sm leading-relaxed">{step.desc}</p>
+                  <h3 className="text-lg font-black text-foreground-950 mb-3 uppercase">{step.title}</h3>
+                  <p className="text-foreground-950/60 text-sm leading-relaxed">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -162,13 +162,13 @@ export default function ForecastingContent() {
       </section>
 
       {/* ── Stats ── */}
-      <section id="stats" className="bg-[#111] py-14 md:py-20 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-px bg-[#C8D400]/15 border border-[#C8D400]/15 overflow-hidden">
+      <section id="stats" className="bg-foreground-950 py-14 md:py-20 px-4 md:px-6">
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-px bg-primary-500/15 border border-primary-500/15 overflow-hidden">
           {STATS.map((s, i) => (
-            <div key={i} className="bg-[#111] p-5 md:p-8 text-center relative overflow-hidden group">
-              <div className="absolute inset-0 bg-[#C8D400]/0 group-hover:bg-[#C8D400]/5 transition-colors duration-300" />
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#C8D400] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="text-3xl lg:text-4xl font-black text-[#C8D400] mb-2 relative z-10">{s.value}</div>
+            <div key={i} className="bg-foreground-950 p-5 md:p-8 text-center relative overflow-hidden group">
+              <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/5 transition-colors duration-300" />
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="text-3xl lg:text-4xl font-black text-primary-500 mb-2 relative z-10">{s.value}</div>
               <div className="text-white/50 text-[10px] md:text-xs font-bold uppercase tracking-wider leading-snug relative z-10">{s.label}</div>
             </div>
           ))}

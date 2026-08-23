@@ -475,7 +475,7 @@ export default function CaseStudiesPage() {
       <section id="case-studies-carousel" className="relative overflow-hidden bg-white">
 
         {/* Brand tabs — full-bleed dark bar */}
-        <div className="bg-[#111] border-b border-[#C8D400]/20">
+        <div className="bg-foreground-950 border-b border-primary-500/20">
           <div className="max-w-[1200px] mx-auto px-6 md:px-10">
             <div className="flex items-center justify-start md:justify-center gap-3 flex-nowrap md:flex-wrap overflow-x-auto py-5 md:py-8 scrollbar-hide" role="tablist" aria-label="Fallbeispiele nach Marke">
               {caseStudies.map((study, index) => (
@@ -488,7 +488,7 @@ export default function CaseStudiesPage() {
                   className={`px-6 py-2.5 font-black uppercase tracking-wider text-xs md:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer flex-shrink-0 rounded-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
                     currentSlide === index
                       ? 'bg-primary-500 text-[#1a1a1a]'
-                      : 'bg-transparent text-foreground-400 border border-white/20 hover:border-[#C8D400]/60 hover:text-white'
+                      : 'bg-transparent text-foreground-400 border border-white/20 hover:border-primary-500/60 hover:text-white'
                   }`}
                   title={study.brand}
                 >
@@ -624,7 +624,7 @@ export default function CaseStudiesPage() {
                 </button>
                 <button
                   onClick={handleNext}
-                  className="w-11 h-11 md:w-12 md:h-12 rounded-none flex items-center justify-center border border-white/25 text-white hover:border-[#C8D400] hover:text-primary-500 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                  className="w-11 h-11 md:w-12 md:h-12 rounded-none flex items-center justify-center border border-white/25 text-white hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                   aria-label="Nächste Erfolgsgeschichte"
                 >
                   <i className="ri-arrow-right-line text-lg"></i>
@@ -752,7 +752,7 @@ export default function CaseStudiesPage() {
                     <div
                       key={relSlug}
                       onClick={() => handleReadFullStory(relSlug)}
-                      className="flex items-start gap-5 p-6 border border-foreground-200 hover:border-[#C8D400] transition-all duration-300 cursor-pointer group bg-white hover:bg-[#FAFDF5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 overflow-hidden"
+                      className="flex items-start gap-5 p-6 border border-foreground-200 hover:border-primary-500 transition-all duration-300 cursor-pointer group bg-white hover:bg-[#FAFDF5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 overflow-hidden"
                       style={{ borderRadius: 0 }}
                       role="button"
                       tabIndex={0}
@@ -777,7 +777,7 @@ export default function CaseStudiesPage() {
             </div>
 
             {/* Inline CTA — convert impressed readers */}
-            <div className="mb-10 bg-[#1a1a1a] border-2 border-[#C8D400]/30 p-6 md:p-8">
+            <div className="mb-10 bg-[#1a1a1a] border-2 border-primary-500/30 p-6 md:p-8">
               <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
                   <p className="text-primary-500 text-xs font-black uppercase tracking-widest mb-2">{expanded.metric} {expanded.metricLabel}</p>
@@ -846,7 +846,7 @@ export default function CaseStudiesPage() {
               </button>
               <button
                 onClick={() => navigate('/leistungen')}
-                className="px-6 py-3 bg-transparent text-white font-black uppercase tracking-wider text-xs border border-white/30 hover:border-[#C8D400] hover:text-primary-500 transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
+                className="px-6 py-3 bg-transparent text-white font-black uppercase tracking-wider text-xs border border-white/30 hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
                 style={{ borderRadius: 0 }}
               >
                 Leistungen ansehen

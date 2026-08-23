@@ -39,7 +39,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
   }, [cycleWord]);
 
   return (
-    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-[#0B0B0C]" style={{ paddingTop: '80px' }}>
+    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: '80px' }}>
       {/* Background photo */}
       <img
         src={heroImage || 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png'}
@@ -59,17 +59,17 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
       {/* Content — left-aligned, bottom-anchored */}
       <div className="relative z-20 w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
         <div className="max-w-[640px]">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
-          <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
-          Leistungen
+        {/* Badge — unified SectionBadge pattern on dark bg */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-[7px] mb-5 md:mb-6" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
+          <span className="w-1.5 h-1.5" style={{ background: 'oklch(var(--primary-500))' }} />
+          <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary-500">Leistungen</span>
         </div>
 
         {/* Main headline */}
-        <h1 className="text-[clamp(32px,5vw,58px)] font-black text-white leading-[1.06] tracking-tight uppercase mb-5 md:mb-6">
+        <h1 className="sonic-h1 text-white mb-5 md:mb-6">
           MANPOWER TRIFFT{' '}
           <span
-            className="text-[#C8D400] inline-block"
+            className="text-primary-500 inline-block"
             style={{
               opacity: wordVisible ? 1 : 0,
               transform: wordVisible ? 'translateY(0)' : 'translateY(10px)',
@@ -94,7 +94,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
             href="https://calendly.com/sonic-group/beratungsgespraech"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 bg-[#C8D400] text-[#0B0B0C] font-bold text-xs md:text-sm hover:bg-white transition-all duration-200 whitespace-nowrap cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 bg-primary-500 text-foreground-950 font-bold text-xs md:text-sm hover:bg-white transition-all duration-200 whitespace-nowrap cursor-pointer"
           >
             <i className="ri-calendar-line text-base"></i>
             Beratungsgespräch buchen

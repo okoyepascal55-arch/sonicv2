@@ -98,14 +98,14 @@ export default function EventsShowcase() {
 
         {/* Header */}
         <div className="mb-10">
-          <div className="inline-flex items-center gap-2 bg-[#111]/8 border border-[#111]/12 px-4 py-1.5 mb-5">
-            <i className="ri-apps-line text-[#111] text-sm"></i>
-            <span className="text-xs font-black text-[#111] uppercase tracking-widest">Formate</span>
+          <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/12 px-4 py-1.5 mb-5">
+            <i className="ri-apps-line text-foreground-950 text-sm"></i>
+            <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Formate</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-[#111] leading-tight mb-2 uppercase">
+          <h2 className="text-4xl md:text-5xl font-black text-foreground-950 leading-tight mb-2 uppercase">
             Deine Marke. Unsere Bühne.
           </h2>
-          <p className="text-[#111]/50 text-base">Wähle ein Format und entdecke unsere Arbeit.</p>
+          <p className="text-foreground-950/50 text-base">Wähle ein Format und entdecke unsere Arbeit.</p>
         </div>
 
         {/* Pill tabs */}
@@ -116,7 +116,7 @@ export default function EventsShowcase() {
               onClick={() => handleTabChange(i)}
               className={`flex items-center gap-2 px-5 py-2.5 font-bold text-sm transition-all whitespace-nowrap cursor-pointer ${
                 activeTab === i
-                  ? 'bg-white shadow-lg ring-2 ring-[#C8D400] text-[#C8D400]'
+                  ? 'bg-white shadow-lg ring-2 ring-[#C8D400] text-primary-500'
                   : 'bg-white/60 hover:bg-white hover:shadow-md ring-1 ring-foreground-200 hover:ring-[#C8D400]/50 text-foreground-600'
               }`}
               style={{ borderRadius: 0 }}
@@ -150,7 +150,7 @@ export default function EventsShowcase() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
             <div className="absolute top-4 left-4">
-              <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-3 py-1">{tab.images[activeImg].tag}</span>
+              <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">{tab.images[activeImg].tag}</span>
             </div>
             {/* Zoom hint */}
             <div className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -177,10 +177,10 @@ export default function EventsShowcase() {
           {/* Right info panel */}
           <div className="lg:col-span-4 bg-white border-l border-[#111]/10 flex flex-col lg:h-[500px] overflow-y-auto">
             {/* Headline block */}
-            <div className="bg-[#111] p-6">
+            <div className="bg-foreground-950 p-6">
               <div className="flex items-center gap-2 mb-3">
-                <i className={`${tab.icon} text-[#C8D400] text-lg`}></i>
-                <span className="text-[#C8D400] text-xs font-black uppercase tracking-widest">{tab.label}</span>
+                <i className={`${tab.icon} text-primary-500 text-lg`}></i>
+                <span className="text-primary-500 text-xs font-black uppercase tracking-widest">{tab.label}</span>
               </div>
               <h3 className="text-base font-black text-white mb-2 uppercase">{tab.headline}</h3>
               <p className="text-white/55 text-xs leading-relaxed">{tab.sub}</p>
@@ -188,12 +188,12 @@ export default function EventsShowcase() {
 
             {/* Category pills */}
             <div className="p-6 flex-1">
-              <div className="text-[10px] font-black text-[#111]/40 uppercase tracking-widest mb-4">Kategorien</div>
+              <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-4">Kategorien</div>
               <div className="flex flex-wrap gap-2 mb-6">
                 {tab.pills.map((pill, i) => (
                   <span
                     key={i}
-                    className="bg-white border border-[#111]/10 text-[#111]/70 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5"
+                    className="bg-white border border-[#111]/10 text-foreground-950/70 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5"
                   >
                     {pill}
                   </span>
@@ -201,7 +201,7 @@ export default function EventsShowcase() {
               </div>
 
               {/* Image nav grid — each thumbnail opens lightbox */}
-              <div className="text-[10px] font-black text-[#111]/40 uppercase tracking-widest mb-3">Beispiele</div>
+              <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-3">Beispiele</div>
               <div className="grid grid-cols-2 gap-2">
                 {tab.images.map((img, i) => (
                   <button
@@ -221,8 +221,8 @@ export default function EventsShowcase() {
                       <span className="text-white text-[9px] font-black">{img.tag}</span>
                     </div>
                     {activeImg === i && (
-                      <div className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center bg-[#C8D400]">
-                        <i className="ri-check-line text-[#111] text-[9px]"></i>
+                      <div className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center bg-primary-500">
+                        <i className="ri-check-line text-foreground-950 text-[9px]"></i>
                       </div>
                     )}
                   </button>
@@ -234,7 +234,7 @@ export default function EventsShowcase() {
             <div className="p-6 border-t border-[#111]/10">
               <a
                 href={`mailto:${CONTACT_EMAIL}?subject=Events%20Messen%20Beratung`}
-                className="flex items-center justify-center gap-2 bg-[#111] text-white px-5 py-3.5 font-black text-xs uppercase tracking-widest hover:bg-[#C8D400] hover:text-white transition-all duration-300 whitespace-nowrap cursor-pointer w-full"
+                className="flex items-center justify-center gap-2 bg-foreground-950 text-white px-5 py-3.5 font-black text-xs uppercase tracking-widest hover:bg-primary-500 hover:text-white transition-all duration-300 whitespace-nowrap cursor-pointer w-full"
                 style={{ borderRadius: 0 }}
               >
                 <i className="ri-calendar-line"></i>

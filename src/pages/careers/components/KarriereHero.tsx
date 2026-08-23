@@ -80,15 +80,15 @@ export default function KarriereHero() {
       <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 md:px-8 py-16 md:py-20">
         <div className="max-w-[640px]">
           {/* Eyebrow — cleaner, rounded */}
-          <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5">
-            <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
-            Karriere bei Sonic
+          <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
+            <span className="w-1.5 h-1.5 bg-primary-500" />
+            <span className="text-primary-500">Karriere bei Sonic</span>
           </div>
 
-          {/* Headline — Naboo-style rounded lime highlight on key word */}
-          <h1 className="text-[clamp(26px,5vw,58px)] font-black text-white leading-[1.06] tracking-tight uppercase mb-5 md:mb-6">
+          {/* Headline */}
+          <h1 className="sonic-h1 text-white mb-5 md:mb-6">
             Menschen mit{' '}
-            <span className="bg-[#C8D400] text-[#0B0B0C] px-2 py-[3px] inline-block">
+            <span className="bg-primary-500 text-foreground-950 px-2 py-[3px] inline-block">
               Energie
             </span>{' '}
             gesucht
@@ -108,7 +108,7 @@ export default function KarriereHero() {
           <div className="flex flex-wrap gap-3 mb-8 md:mb-10">
             <button
               onClick={scrollToJobs}
-              className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 bg-[#C8D400] text-[#0B0B0C] font-bold text-xs md:text-sm hover:bg-white transition-all duration-200 cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 bg-primary-500 text-foreground-950 font-bold text-xs md:text-sm hover:bg-white transition-all duration-200 cursor-pointer whitespace-nowrap"
             >
               Alle Stellen ansehen
             </button>
@@ -131,7 +131,7 @@ export default function KarriereHero() {
             ].map((stat, i) => (
               <div key={i} className="flex items-center gap-2.5">
                 <div className="w-8 h-8 bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
-                  <i className={`${stat.icon} text-sm text-[#C8D400]`} />
+                  <i className={`${stat.icon} text-sm text-primary-500`} />
                 </div>
                 <div>
                   <div className="text-sm md:text-base font-black text-white leading-none tabular-nums">

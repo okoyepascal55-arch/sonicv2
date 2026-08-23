@@ -95,7 +95,7 @@ export default function ServiceGrid({ sectionRef }: Props) {
             <div className="w-10 h-px bg-primary-500/40" />
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground-950 leading-[0.95] tracking-tight uppercase">
+            <h2 className="sonic-h2 text-foreground-950">
               VIER KATEGORIEN.<br />EIN <span className="text-primary-500">SYSTEM</span>.
             </h2>
             <p className="text-foreground-500 text-sm leading-relaxed max-w-xs lg:text-right lg:pb-1">

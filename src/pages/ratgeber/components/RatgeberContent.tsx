@@ -10,7 +10,7 @@ export default function RatgeberContent({ sections }: RatgeberContentProps) {
       <div className="max-w-4xl mx-auto px-4 md:px-6">
         {sections.map((section, index) => (
           <div key={index} className={`mb-14 ${index === sections.length - 1 ? 'mb-0' : ''}`}>
-            <h2 className="text-2xl md:text-3xl font-black text-foreground-950 leading-tight tracking-tight mb-5">
+            <h2 className="sonic-h2 text-foreground-950 mb-5">
               {section.title}
             </h2>
             <p className="text-base text-foreground-950/70 leading-relaxed mb-5">

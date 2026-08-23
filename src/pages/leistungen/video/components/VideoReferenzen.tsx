@@ -117,23 +117,23 @@ export default function VideoReferenzen() {
 
         {/* Section header */}
         <div className="mb-16">
-          <div className="inline-flex items-center gap-2 bg-[#111]/10 border border-[#111]/15 px-4 py-1.5 mb-5">
-            <i className="ri-chat-quote-line text-[#111] text-sm"></i>
-            <span className="text-xs font-black text-[#111] uppercase tracking-widest">Referenzen</span>
+          <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-[#111]/15 px-4 py-1.5 mb-5">
+            <i className="ri-chat-quote-line text-foreground-950 text-sm"></i>
+            <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Referenzen</span>
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div>
-              <h2 className="text-4xl md:text-5xl font-black text-[#111] leading-tight mb-3 uppercase">
+              <h2 className="text-4xl md:text-5xl font-black text-foreground-950 leading-tight mb-3 uppercase">
                 Marken, die mit<br />
-                <span className="text-[#C8D400]">Live Video</span> wachsen.
+                <span className="text-primary-500">Live Video</span> wachsen.
               </h2>
-              <p className="text-[#111]/55 text-base max-w-xl">
+              <p className="text-foreground-950/55 text-base max-w-xl">
                 Echte Ergebnisse. Echte Kunden. Echte Zahlen aus laufenden Live-Video-Projekten.
               </p>
             </div>
             <a
               href="/fallbeispiele"
-              className="inline-flex items-center gap-2 border border-[#111]/20 text-[#111]/70 px-6 py-3 font-black text-xs uppercase tracking-widest hover:bg-[#111] hover:text-white transition-all duration-300 whitespace-nowrap cursor-pointer self-start lg:self-auto"
+              className="inline-flex items-center gap-2 border border-[#111]/20 text-foreground-950/70 px-6 py-3 font-black text-xs uppercase tracking-widest hover:bg-foreground-950 hover:text-white transition-all duration-300 whitespace-nowrap cursor-pointer self-start lg:self-auto"
             >
               Alle Case Studies
               <i className="ri-arrow-right-line"></i>
@@ -148,12 +148,12 @@ export default function VideoReferenzen() {
               key={i}
               className={`p-6 flex items-center gap-4 ${i < 3 ? 'border-r border-[#111]/10' : ''} ${i >= 2 ? 'border-t lg:border-t-0 border-[#111]/10' : ''}`}
             >
-              <div className="w-10 h-10 flex items-center justify-center bg-[#C8D400]/15 border border-[#C8D400]/25 flex-shrink-0">
-                <i className={`${stat.icon} text-base text-[#111]`}></i>
+              <div className="w-10 h-10 flex items-center justify-center bg-primary-500/15 border border-primary-500/25 flex-shrink-0">
+                <i className={`${stat.icon} text-base text-foreground-950`}></i>
               </div>
               <div>
-                <div className="text-2xl font-black text-[#111] leading-none">{stat.val}</div>
-                <div className="text-[#111]/45 text-xs font-bold uppercase tracking-wider mt-0.5">{stat.label}</div>
+                <div className="text-2xl font-black text-foreground-950 leading-none">{stat.val}</div>
+                <div className="text-foreground-950/45 text-xs font-bold uppercase tracking-wider mt-0.5">{stat.label}</div>
               </div>
             </div>
           ))}
@@ -170,14 +170,14 @@ export default function VideoReferenzen() {
                 onClick={() => setActiveCard(i)}
                 className={`w-full flex items-center gap-4 p-5 text-left transition-all duration-200 cursor-pointer border-b border-[#111]/8 last:border-b-0 group ${
                   activeCard === i
-                    ? 'bg-[#111]'
+                    ? 'bg-foreground-950'
                     : 'bg-white hover:bg-white'
                 }`}
               >
                 {/* Active indicator */}
                 <div
                   className={`w-1 h-10 flex-shrink-0 transition-all duration-200 ${
-                    activeCard === i ? 'bg-[#C8D400]' : 'bg-transparent group-hover:bg-[#111]/15'
+                    activeCard === i ? 'bg-primary-500' : 'bg-transparent group-hover:bg-foreground-950/15'
                   }`}
                 />
                 {/* Logo */}
@@ -194,16 +194,16 @@ export default function VideoReferenzen() {
                 </div>
                 {/* Info */}
                 <div className="flex-1 min-w-0">
-                  <div className={`text-xs font-black uppercase tracking-wider truncate transition-colors duration-200 ${activeCard === i ? 'text-white' : 'text-[#111]'}`}>
+                  <div className={`text-xs font-black uppercase tracking-wider truncate transition-colors duration-200 ${activeCard === i ? 'text-white' : 'text-foreground-950'}`}>
                     {client.brand}
                   </div>
-                  <div className={`text-xs font-semibold mt-0.5 truncate transition-colors duration-200 ${activeCard === i ? 'text-[#C8D400]' : 'text-[#111]/40'}`}>
+                  <div className={`text-xs font-semibold mt-0.5 truncate transition-colors duration-200 ${activeCard === i ? 'text-primary-500' : 'text-foreground-950/40'}`}>
                     {client.category}
                   </div>
                 </div>
                 {/* Metric pill */}
                 <div className={`flex-shrink-0 text-right transition-all duration-200 ${activeCard === i ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'}`}>
-                  <div className={`text-sm font-black ${activeCard === i ? 'text-[#C8D400]' : 'text-[#111]'}`}>
+                  <div className={`text-sm font-black ${activeCard === i ? 'text-primary-500' : 'text-foreground-950'}`}>
                     {client.metric}
                   </div>
                 </div>
@@ -230,16 +230,16 @@ export default function VideoReferenzen() {
                   />
                 </div>
                 <div>
-                  <div className="text-sm font-black text-[#111] uppercase tracking-wider">
+                  <div className="text-sm font-black text-foreground-950 uppercase tracking-wider">
                     {VIDEO_CLIENTS[activeCard].brand}
                   </div>
-                  <div className="text-xs text-[#111]/45 font-semibold mt-0.5">
+                  <div className="text-xs text-foreground-950/45 font-semibold mt-0.5">
                     {VIDEO_CLIENTS[activeCard].category}
                   </div>
                 </div>
               </div>
-              <div className="flex-shrink-0 bg-[#111] px-3 py-1.5">
-                <span className="text-[#C8D400] text-xs font-black uppercase tracking-widest whitespace-nowrap">
+              <div className="flex-shrink-0 bg-foreground-950 px-3 py-1.5">
+                <span className="text-primary-500 text-xs font-black uppercase tracking-widest whitespace-nowrap">
                   {VIDEO_CLIENTS[activeCard].channel}
                 </span>
               </div>
@@ -247,8 +247,8 @@ export default function VideoReferenzen() {
 
             {/* Quote */}
             <div className="flex-1 mb-8">
-              <i className="ri-double-quotes-l text-4xl text-[#C8D400]/30 block mb-3"></i>
-              <p className="text-[#111]/75 text-lg leading-relaxed font-medium italic">
+              <i className="ri-double-quotes-l text-4xl text-primary-500/30 block mb-3"></i>
+              <p className="text-foreground-950/75 text-lg leading-relaxed font-medium italic">
                 {VIDEO_CLIENTS[activeCard].quote}
               </p>
             </div>
@@ -256,15 +256,15 @@ export default function VideoReferenzen() {
             {/* Bottom: author + metric */}
             <div className="flex items-end justify-between gap-6 pt-6 border-t border-[#111]/8">
               <div>
-                <div className="font-black text-[#111] text-sm">{VIDEO_CLIENTS[activeCard].author}</div>
-                <div className="text-xs text-[#111]/50 mt-0.5">{VIDEO_CLIENTS[activeCard].role}</div>
-                <div className="text-xs text-[#C8D400] font-bold mt-0.5">{VIDEO_CLIENTS[activeCard].company}</div>
+                <div className="font-black text-foreground-950 text-sm">{VIDEO_CLIENTS[activeCard].author}</div>
+                <div className="text-xs text-foreground-950/50 mt-0.5">{VIDEO_CLIENTS[activeCard].role}</div>
+                <div className="text-xs text-primary-500 font-bold mt-0.5">{VIDEO_CLIENTS[activeCard].company}</div>
               </div>
               <div className="text-right flex-shrink-0">
-                <div className="text-4xl font-black text-[#111] leading-none">
+                <div className="text-4xl font-black text-foreground-950 leading-none">
                   {VIDEO_CLIENTS[activeCard].metric}
                 </div>
-                <div className="text-xs font-black text-[#111]/40 uppercase tracking-widest mt-1">
+                <div className="text-xs font-black text-foreground-950/40 uppercase tracking-widest mt-1">
                   {VIDEO_CLIENTS[activeCard].metricLabel}
                 </div>
               </div>
@@ -275,7 +275,7 @@ export default function VideoReferenzen() {
         {/* Logo strip */}
         <div className="border border-[#111]/10 bg-white">
           <div className="px-8 py-3 border-b border-[#111]/8">
-            <span className="text-xs font-black text-[#111]/30 uppercase tracking-[0.25em]">
+            <span className="text-xs font-black text-foreground-950/30 uppercase tracking-[0.25em]">
               Vertrauen von führenden Marken
             </span>
           </div>

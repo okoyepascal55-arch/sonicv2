@@ -44,13 +44,13 @@ export default function SRTHero({ onScrollToFeatures, heroIcons }: SRTHeroProps)
       <div className="relative z-10 max-w-[1200px] mx-auto px-4 md:px-8 w-full pb-10 md:pb-14">
         <div className="max-w-[640px]">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
-          <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
+        <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
+          <span className="w-1.5 h-1.5 bg-primary-500" />
           {tBadge}
         </div>
 
         {/* Mega headline */}
-        <h1 className="text-[clamp(32px,5vw,58px)] font-black leading-[1.06] tracking-tight uppercase mb-5 md:mb-6">
+        <h1 className="sonic-h1 mb-5 md:mb-6">
           <span className="text-background-50">{tH1_1}</span>{' '}
           <span className="text-primary-500">{tH1_2}</span>{' '}
           <span className="text-background-50">{tH1_3}</span>

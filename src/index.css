@@ -974,3 +974,112 @@ html {
   overflow: hidden;
   pointer-events: none;
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SONIC DESIGN SYSTEM — Unified utility classes
+   Every section, heading, container, and spacing block references these.
+   Do not use ad-hoc py-*, max-w-*, or heading sizes outside this system.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Containers ── */
+.sonic-container {
+  width: 100%;
+  max-width: 80rem; /* 1280px = max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 768px) {
+  .sonic-container { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+@media (min-width: 1024px) {
+  .sonic-container { padding-left: 2rem; padding-right: 2rem; }
+}
+
+/* ── Section spacing ── */
+/* sm: stat strips, trust bars, divider-adjacent compact sections */
+.sonic-section-sm {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+@media (min-width: 768px) {
+  .sonic-section-sm { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+}
+
+/* md: standard content sections — the default */
+.sonic-section-md {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+@media (min-width: 768px) {
+  .sonic-section-md { padding-top: 5rem; padding-bottom: 5rem; }
+}
+
+/* lg: hero areas, flagship features, CTA blocks */
+.sonic-section-lg {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+@media (min-width: 768px) {
+  .sonic-section-lg { padding-top: 7rem; padding-bottom: 7rem; }
+}
+
+/* ── Heading scale ── */
+/* H1: page/hero headlines only — always uppercase */
+.sonic-h1 {
+  font-size: clamp(2rem, 5vw, 3.625rem); /* 32px → 58px */
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* H2: section headings — sentence case, never uppercase */
+.sonic-h2 {
+  font-size: clamp(1.625rem, 3.5vw, 2.625rem); /* 26px → 42px */
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* H3: card headings, subsections — sentence case */
+.sonic-h3 {
+  font-size: clamp(1.0625rem, 2vw, 1.25rem); /* 17px → 20px */
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+/* ── Body text ── */
+.sonic-body {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.7;
+  color: oklch(var(--foreground-600));
+}
+.sonic-body-lg {
+  font-size: 1rem; /* 16px */
+  line-height: 1.7;
+  color: oklch(var(--foreground-600));
+}
+
+/* ── Section heading block — badge + h2 + optional subline, always centered ── */
+.sonic-section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+@media (min-width: 768px) {
+  .sonic-section-header { margin-bottom: 3.5rem; }
+}
+.sonic-section-header .sonic-h2 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.sonic-section-header .sonic-subline {
+  font-size: 0.9375rem;
+  color: oklch(var(--foreground-500));
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.65;
+}

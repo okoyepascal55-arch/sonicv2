@@ -181,7 +181,7 @@ export default function BlogPage() {
                   onClick={() => handleCategoryClick(null)}
                   className={`px-6 py-2.5 text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-300 border ${
                     activeCategory === null
-                      ? 'bg-primary-500 text-[#1a1a1a] border-[#C8D400] shadow-[0_4px_14px_rgba(200,212,0,0.4)]'
+                      ? 'bg-primary-500 text-[#1a1a1a] border-primary-500 shadow-[0_4px_14px_rgba(200,212,0,0.4)]'
                       : 'bg-transparent text-foreground-500 border-foreground-300 hover:bg-[#1a1a1a] hover:border-[#1a1a1a] hover:text-primary-500 hover:shadow-[0_4px_14px_rgba(26,26,26,0.3)]'
                   }`}
                   style={{ borderRadius: 0 }}
@@ -194,7 +194,7 @@ export default function BlogPage() {
                     onClick={() => handleCategoryClick(cat.id)}
                     className={`px-6 py-2.5 text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-300 border ${
                       activeCategory === cat.id
-                        ? 'bg-primary-500 text-[#1a1a1a] border-[#C8D400] shadow-[0_4px_14px_rgba(200,212,0,0.4)]'
+                        ? 'bg-primary-500 text-[#1a1a1a] border-primary-500 shadow-[0_4px_14px_rgba(200,212,0,0.4)]'
                         : 'bg-transparent text-foreground-500 border-foreground-300 hover:bg-[#1a1a1a] hover:border-[#1a1a1a] hover:text-primary-500 hover:shadow-[0_4px_14px_rgba(26,26,26,0.3)]'
                     }`}
                     style={{ borderRadius: 0 }}
@@ -330,7 +330,7 @@ export default function BlogPage() {
                             onClick={() => handlePageChange(pageNum)}
                             className={`w-12 h-12 flex items-center justify-center text-sm font-black transition-all duration-300 border ${
                               currentPage === pageNum
-                                ? 'bg-primary-500 text-[#1a1a1a] border-[#C8D400] shadow-[0_4px_14px_rgba(200,212,0,0.4)]'
+                                ? 'bg-primary-500 text-[#1a1a1a] border-primary-500 shadow-[0_4px_14px_rgba(200,212,0,0.4)]'
                                 : 'bg-white text-foreground-500 border-transparent hover:border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-primary-500 hover:shadow-[0_4px_14px_rgba(26,26,26,0.3)]'
                             }`}
                             style={{ borderRadius: 0 }}

@@ -19,7 +19,7 @@ export default function ImpressumSection() {
         {/* Section header */}
         <div className="mb-10 flex items-center gap-4">
           <div
-            className="w-1 self-stretch bg-[#C8D400] flex-shrink-0"
+            className="w-1 self-stretch bg-primary-500 flex-shrink-0"
             aria-hidden="true"
           />
           <div>
@@ -28,7 +28,7 @@ export default function ImpressumSection() {
             </p>
             <h2
               id="impressum-heading"
-              className="text-3xl md:text-4xl font-black text-[#111] leading-tight"
+              className="text-3xl md:text-4xl font-black text-foreground-950 leading-tight"
             >
               IMPRESSUM
             </h2>
@@ -43,7 +43,7 @@ export default function ImpressumSection() {
               Angaben gemäß § 5 TMG
             </h3>
             <div className="space-y-1 text-sm text-foreground-600 leading-relaxed">
-              <p className="font-black text-[#111]">Sonic Group GmbH</p>
+              <p className="font-black text-foreground-950">Sonic Group GmbH</p>
               <p>Campus Fichtenhain 46</p>
               <p>47807 Krefeld</p>
               <p>Deutschland</p>
@@ -119,7 +119,7 @@ export default function ImpressumSection() {
             <p className="text-sm text-foreground-600 leading-relaxed mb-6">
               Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:
               <br />
-              <span className="font-bold text-[#111] mt-1 block">DE 815 258 744</span>
+              <span className="font-bold text-foreground-950 mt-1 block">DE 815 258 744</span>
             </p>
 
             <h3 className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-3">

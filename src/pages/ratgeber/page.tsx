@@ -34,7 +34,7 @@ function HubCard({ card, onClick }: { card: RatgeberHubCard; onClick: (slug: str
   return (
     <article
       onClick={() => onClick(card.slug)}
-      className="group cursor-pointer border border-foreground-950/10 bg-white hover:border-[#C8D400]/40 transition-all duration-300 flex flex-col"
+      className="group cursor-pointer border border-foreground-950/10 bg-white hover:border-primary-500/40 transition-all duration-300 flex flex-col"
       style={{ borderRadius: 0 }}
     >
       <div className="relative overflow-hidden h-36 md:h-44">
@@ -172,12 +172,12 @@ export default function RatgeberHubPage() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/65" />
           </div>
 
-          <div className="absolute top-0 left-1/4 w-[500px] h-[250px] bg-[#C8D400]/6 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-[#C8D400]/5 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 left-1/4 w-[500px] h-[250px] bg-primary-500/6 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14 text-center">
-            <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-6 mx-auto">
-              <div className="w-1.5 h-1.5 bg-[#C8D400] animate-pulse" />
+            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-6 mx-auto">
+              <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" />
               <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">{tHeroBadge}</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 leading-tight drop-shadow-2xl">
@@ -215,7 +215,7 @@ export default function RatgeberHubPage() {
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <SectionReveal>
             <SectionBadge text={tIntroBadge} variant="dark" />
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-foreground-950 leading-tight tracking-tight mt-5 mb-5">
+            <h2 className="sonic-h2 text-foreground-950 mb-5">
               {tIntroHeading}
             </h2>
             <p className="text-base text-foreground-950/60 leading-relaxed max-w-3xl mx-auto">
@@ -247,7 +247,7 @@ export default function RatgeberHubPage() {
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <SectionReveal>
             <SectionBadge text={tGeoBadge} variant="dark" />
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-foreground-950 leading-tight tracking-tight mt-5 mb-5">
+            <h2 className="sonic-h2 text-foreground-950 mb-5">
               {tGeoHeading}
             </h2>
             <p className="text-base text-foreground-950/60 leading-relaxed max-w-3xl mx-auto mb-10">
@@ -258,7 +258,7 @@ export default function RatgeberHubPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {(['local', 'regional', 'national', 'international'] as GeoLevel[]).map((level, idx) => (
               <SectionReveal key={level} delay={idx * 80}>
-                <div className="border border-foreground-950/10 bg-[#fafaf8] p-6 text-center hover:border-[#C8D400]/30 transition-all duration-300" style={{ borderRadius: 0 }}>
+                <div className="border border-foreground-950/10 bg-[#fafaf8] p-6 text-center hover:border-primary-500/30 transition-all duration-300" style={{ borderRadius: 0 }}>
                   <div className={`w-12 h-12 mx-auto mb-4 flex items-center justify-center`} style={{ backgroundColor: 'rgba(200,212,0,0.08)' }}>
                     <i className={`${level === 'local' ? 'ri-map-pin-line' : level === 'regional' ? 'ri-road-map-line' : level === 'national' ? 'ri-flag-line' : 'ri-global-line'} text-primary-500 text-xl`}></i>
                   </div>
@@ -279,7 +279,7 @@ export default function RatgeberHubPage() {
       <section className="bg-white py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="border border-foreground-950/15 bg-white p-10 md:p-14 relative overflow-hidden" style={{ borderRadius: 0 }}>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#C8D400]/10 blur-3xl pointer-events-none translate-x-16 -translate-y-16" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 blur-3xl pointer-events-none translate-x-16 -translate-y-16" />
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C8D400]/60 via-[#C8D400]/20 to-transparent" />
 
             <div className="relative grid md:grid-cols-2 gap-10 items-center">
@@ -289,7 +289,7 @@ export default function RatgeberHubPage() {
                   <span className="text-xs font-black text-foreground-950/50 uppercase tracking-widest">{tCtaBadge}</span>
                 </div>
 
-                <h2 className="text-3xl font-black text-foreground-950 mb-4 leading-tight">
+                <h2 className="sonic-h2 text-foreground-950 mb-4">
                   {tCtaHeading.split('\n').map((line, i) => i === 1 ? <span key={i}><span className="text-primary-500">{line}</span></span> : <span key={i}>{line}<br /></span>)}
                 </h2>
 
@@ -301,7 +301,7 @@ export default function RatgeberHubPage() {
               <div className="text-center md:text-right">
                 <a
                   href="/kontakt"
-                  className="inline-flex items-center gap-3 bg-foreground-950 text-white px-10 py-5 font-black hover:bg-primary-500 hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
+                  className="inline-flex items-center gap-3 bg-foreground-950 text-white px-10 py-5 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-mail-line text-base"></i>

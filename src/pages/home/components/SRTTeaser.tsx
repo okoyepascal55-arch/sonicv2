@@ -78,7 +78,7 @@ export default function SRTTeaser() {
   return (
     <section
       ref={sectionRef}
-      className="py-10 md:py-14 lg:py-16 px-4 md:px-6 relative overflow-hidden"
+      className="sonic-section-md px-4 md:px-6 relative overflow-hidden"
       style={{ background: 'radial-gradient(ellipse at 50% 30%, #1a1a1a 0%, #111111 55%, #0B0B0C 100%)' }}
     >
       {/* Ambient glow */}
@@ -87,17 +87,18 @@ export default function SRTTeaser() {
         aria-hidden="true"
       />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* ── Header ── */}
-        <div className="text-center mb-6 md:mb-8">
-          <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-3">
-            Field-Force ERP
-          </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[1.1]">
+        <div className="sonic-section-header">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-2" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.30)' }}>
+            <div className="w-1.5 h-1.5" style={{ background: 'oklch(var(--primary-500))' }} />
+            <span className="text-xs font-black uppercase tracking-[0.2em] text-primary-500">Field-Force ERP</span>
+          </div>
+          <h2 className="sonic-h2 text-white">
             SRT: Sonic{' '}
             <span className="text-primary-500">Reporting Tool</span>
           </h2>
-          <p className="text-sm md:text-base text-foreground-300 max-w-xl mx-auto mt-3 md:mt-4 font-medium leading-relaxed">
+          <p className="sonic-subline" style={{ color: 'oklch(var(--foreground-300))' }}>
             Marktforschung, Forecasting, Einsatzplanung und Abrechnung — alles in einem Tool.
           </p>
         </div>

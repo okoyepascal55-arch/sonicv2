@@ -136,22 +136,22 @@ export default function StaffContent() {
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#111]/8 border border-[#111]/15 px-4 py-1.5 mb-5">
-                <i className="ri-check-double-line text-[#111] text-sm" />
-                <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Lösung</span>
+              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+                <i className="ri-check-double-line text-foreground-950 text-sm" />
+                <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#111] leading-none uppercase">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-none uppercase">
                 {tSolutionHeading}
               </h2>
             </div>
-            <p className="text-[#111]/45 text-sm leading-relaxed max-w-xs lg:text-right">{tSolutionSub}</p>
+            <p className="text-foreground-950/45 text-sm leading-relaxed max-w-xs lg:text-right">{tSolutionSub}</p>
           </div>
           <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="wood" />
         </div>
       </section>
 
       {/* ── Process ── */}
-      <section id="ablauf" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="ablauf" className="bg-foreground-950 py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
 
@@ -173,11 +173,11 @@ export default function StaffContent() {
             {/* Desktop: full circle timeline */}
             <div className="hidden md:block">
               <div className="absolute top-[28px] left-[8.33%] right-[8.33%] h-px bg-white/10" />
-              <div className="absolute top-[28px] left-[8.33%] h-px bg-[#C8D400] transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
+              <div className="absolute top-[28px] left-[8.33%] h-px bg-primary-500 transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
               <div className="grid grid-cols-6 gap-2">
                 {STEPS.map((step, i) => (
                   <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
-                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111] shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-[#111] border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
+                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950 shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
                       <i className={`${step.icon} text-xl`} />
                     </div>
                     <span className={`mt-3 text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeStep === i ? 'text-primary-500' : 'text-white/30'}`}>{step.num}</span>
@@ -190,7 +190,7 @@ export default function StaffContent() {
             <div className="md:hidden flex gap-2 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
               {STEPS.map((step, i) => (
                 <button key={i} onClick={() => setActiveStep(i)}
-                  className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2.5 border transition-all duration-300 cursor-pointer ${activeStep === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111]' : 'bg-[#111] border-white/20 text-white/50'}`}>
+                  className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2.5 border transition-all duration-300 cursor-pointer ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950' : 'bg-foreground-950 border-white/20 text-white/50'}`}>
                   <i className={`${step.icon} text-base`} />
                   <span className="text-[9px] font-black uppercase tracking-wide whitespace-nowrap">{step.num}</span>
                 </button>
@@ -202,13 +202,13 @@ export default function StaffContent() {
           <div key={activeStep} className="border border-white/10 bg-[#161616] overflow-hidden" style={{ animation: 'fadeSlideIn 0.4s ease-out' }}>
             <div className="grid md:grid-cols-12 gap-0">
               {/* Left: Visual */}
-              <div className="md:col-span-5 relative bg-[#111] p-8 md:p-12 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-white/10 min-h-[240px] md:min-h-[380px]">
+              <div className="md:col-span-5 relative bg-foreground-950 p-8 md:p-12 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-white/10 min-h-[240px] md:min-h-[380px]">
                 {/* Giant decorative number */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
                   <span className="text-[160px] md:text-[240px] font-black text-white/[0.04] leading-none select-none">{STEPS[activeStep].num}</span>
                 </div>
                 {/* Icon */}
-                <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#C8D400]/10 border border-primary-500/30 flex items-center justify-center mb-5">
+                <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary-500/10 border border-primary-500/30 flex items-center justify-center mb-5">
                   <i className={`${STEPS[activeStep].icon} text-primary-500 text-2xl md:text-3xl`} />
                 </div>
                 <div className="relative text-primary-500 text-xs font-black uppercase tracking-widest mb-1">Schritt {STEPS[activeStep].num}</div>
@@ -219,7 +219,7 @@ export default function StaffContent() {
               <div className="md:col-span-7 p-8 md:p-12 flex flex-col justify-center min-h-[240px] md:min-h-[380px]">
                 <div className="flex items-center gap-3 mb-5">
                   <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {STEPS[activeStep].num}</span>
-                  <span className="px-3 py-1.5 bg-[#C8D400] text-[#111] text-xs font-black">{STEPS[activeStep].time}</span>
+                  <span className="px-3 py-1.5 bg-primary-500 text-foreground-950 text-xs font-black">{STEPS[activeStep].time}</span>
                 </div>
                 <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight">{STEPS[activeStep].title}</h3>
                 <p className="text-white/55 text-sm md:text-base leading-relaxed">{STEPS[activeStep].desc}</p>
@@ -235,7 +235,7 @@ export default function StaffContent() {
                   </button>
                   <div className="flex gap-2">
                     {STEPS.map((_, i) => (
-                      <button key={i} onClick={() => setActiveStep(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-[#C8D400]' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
+                      <button key={i} onClick={() => setActiveStep(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-primary-500' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
                     ))}
                   </div>
                   <button
@@ -254,7 +254,7 @@ export default function StaffContent() {
       </section>
 
       {/* ── Specializations (horizontal scroll, dark bg) ── */}
-      <section id="aufgabenbereiche" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="aufgabenbereiche" className="bg-foreground-950 py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
         <div className="relative max-w-7xl mx-auto">
@@ -275,7 +275,7 @@ export default function StaffContent() {
       </section>
 
       {/* ── S.O.C.K.S. ── */}
-      <section id="socks" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="socks" className="bg-foreground-950 py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
 
@@ -297,11 +297,11 @@ export default function StaffContent() {
             {/* Desktop: full circle timeline */}
             <div className="hidden md:block">
               <div className="absolute top-[28px] left-[10%] right-[10%] h-px bg-white/10" />
-              <div className="absolute top-[28px] left-[10%] h-px bg-[#C8D400] transition-all duration-700 ease-out" style={{ width: `${(activeSocks / (SOCKS.length - 1)) * 80}%` }} />
+              <div className="absolute top-[28px] left-[10%] h-px bg-primary-500 transition-all duration-700 ease-out" style={{ width: `${(activeSocks / (SOCKS.length - 1)) * 80}%` }} />
               <div className="grid grid-cols-5 gap-2">
                 {SOCKS.map((s, i) => (
                   <button key={i} onClick={() => setActiveSocks(i)} className="flex flex-col items-center cursor-pointer group">
-                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeSocks === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111] shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeSocks > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-[#111] border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
+                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeSocks === i ? 'bg-primary-500 border-primary-500 text-foreground-950 shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeSocks > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
                       <span className="text-xl font-black">{s.letter}</span>
                     </div>
                     <span className={`mt-3 text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeSocks === i ? 'text-primary-500' : 'text-white/30'}`}>{s.letter} — {s.title}</span>
@@ -313,7 +313,7 @@ export default function StaffContent() {
             <div className="md:hidden flex gap-2 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
               {SOCKS.map((s, i) => (
                 <button key={i} onClick={() => setActiveSocks(i)}
-                  className={`flex-shrink-0 flex flex-col items-center gap-1 px-4 py-2.5 border transition-all duration-300 cursor-pointer ${activeSocks === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111]' : 'bg-[#111] border-white/20 text-white/50'}`}>
+                  className={`flex-shrink-0 flex flex-col items-center gap-1 px-4 py-2.5 border transition-all duration-300 cursor-pointer ${activeSocks === i ? 'bg-primary-500 border-primary-500 text-foreground-950' : 'bg-foreground-950 border-white/20 text-white/50'}`}>
                   <span className="text-lg font-black leading-none">{s.letter}</span>
                   <span className="text-[9px] font-black uppercase tracking-wide whitespace-nowrap">{s.title}</span>
                 </button>
@@ -329,11 +329,11 @@ export default function StaffContent() {
                 <img src={getSocksImg(activeSocks)} alt={SOCKS[activeSocks].title} className="w-full h-full object-cover object-top" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-3 py-1">{SOCKS[activeSocks].letter} — {SOCKS[activeSocks].title}</span>
+                  <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">{SOCKS[activeSocks].letter} — {SOCKS[activeSocks].title}</span>
                 </div>
                 <div className="absolute bottom-4 left-4 flex gap-1.5">
                   {SOCKS.map((_, i) => (
-                    <button key={i} onClick={() => setActiveSocks(i)} className={`h-1 transition-all duration-300 cursor-pointer ${activeSocks === i ? 'w-8 bg-[#C8D400]' : 'w-3 bg-white/40'}`} />
+                    <button key={i} onClick={() => setActiveSocks(i)} className={`h-1 transition-all duration-300 cursor-pointer ${activeSocks === i ? 'w-8 bg-primary-500' : 'w-3 bg-white/40'}`} />
                   ))}
                 </div>
               </div>
@@ -357,7 +357,7 @@ export default function StaffContent() {
                   </button>
                   <div className="flex gap-2">
                     {SOCKS.map((_, i) => (
-                      <button key={i} onClick={() => setActiveSocks(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeSocks === i ? 'w-8 bg-[#C8D400]' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
+                      <button key={i} onClick={() => setActiveSocks(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeSocks === i ? 'w-8 bg-primary-500' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
                     ))}
                   </div>
                   <button

@@ -89,7 +89,7 @@ function PhoneStudio() {
       {/* Signal quality */}
       <div className="absolute top-2.5 right-2.5 flex items-center gap-1">
         {[3, 5, 7, 9].map((h, i) => (
-          <div key={i} className="w-1 bg-[#C8D400]" style={{ height: `${h}px` }} />
+          <div key={i} className="w-1 bg-primary-500" style={{ height: `${h}px` }} />
         ))}
       </div>
       {/* Advisor info + chat */}
@@ -101,7 +101,7 @@ function PhoneStudio() {
       </div>
       {/* Outcome pills floating inside phone */}
       <div className="absolute top-12 right-2 flex flex-col gap-1">
-        <div className="bg-[#C8D400] text-[#111] text-[7px] font-black uppercase tracking-wider px-1.5 py-0.5">
+        <div className="bg-primary-500 text-foreground-950 text-[7px] font-black uppercase tracking-wider px-1.5 py-0.5">
           <i className="ri-ticket-2-line mr-0.5 text-3xs" />-15% Coupon
         </div>
         <div className="bg-white/20 backdrop-blur-sm text-white text-[7px] font-black uppercase tracking-wider px-1.5 py-0.5">
@@ -113,8 +113,8 @@ function PhoneStudio() {
         <div className="w-9 h-9 bg-[#333]/90 flex items-center justify-center cursor-pointer rounded-full">
           <i className="ri-mic-line text-white text-sm" />
         </div>
-        <div className="w-9 h-9 bg-[#C8D400] flex items-center justify-center cursor-pointer rounded-full">
-          <i className="ri-play-fill text-[#111] text-sm ml-0.5" />
+        <div className="w-9 h-9 bg-primary-500 flex items-center justify-center cursor-pointer rounded-full">
+          <i className="ri-play-fill text-foreground-950 text-sm ml-0.5" />
         </div>
         <div className="w-9 h-9 bg-red-500 flex items-center justify-center cursor-pointer rounded-full">
           <i className="ri-phone-line text-white text-sm" />
@@ -129,21 +129,21 @@ export default function VideoStudioPhone() {
   const [activeOutcome, setActiveOutcome] = useState(0);
 
   return (
-    <section id="beispiele" className="bg-[#111] py-20 md:py-28 px-4 md:px-6 relative overflow-hidden">
+    <section id="beispiele" className="bg-foreground-950 py-20 md:py-28 px-4 md:px-6 relative overflow-hidden">
       {/* Ambient glow — single subtle one */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#C8D400]/4 blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-primary-500/4 blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Header */}
         <div className="mb-14">
           <div className="flex items-center gap-3 mb-5">
-            <span className="w-1.5 h-1.5 bg-[#C8D400]" />
-            <span className="text-[#C8D400] text-xs font-black uppercase tracking-[0.25em]">LVP Ökosystem — Unendliche Möglichkeiten</span>
+            <span className="w-1.5 h-1.5 bg-primary-500" />
+            <span className="text-primary-500 text-xs font-black uppercase tracking-[0.25em]">LVP Ökosystem — Unendliche Möglichkeiten</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-white leading-tight mb-3 uppercase">
             Ein Scan. Unendlich viele
-            <span className="block text-[#C8D400]">Berührungspunkte.</span>
+            <span className="block text-primary-500">Berührungspunkte.</span>
           </h2>
           <p className="text-white/45 text-base max-w-2xl">
             Vom Website-Button über QR-Codes am POS bis zum Code auf der Verpackung — deine Marke ist überall nur einen Scan vom Live-Studio entfernt. Und dort passiert die Magie: Beratung, Coupons, Service, Daten.
@@ -157,14 +157,14 @@ export default function VideoStudioPhone() {
           <div className="bg-[#1a1a1a] flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 relative min-h-[520px] lg:min-h-[600px]">
             <div className="relative" style={{ width: '280px' }}>
               <PhoneFrame width={280}>
-                <div className="bg-[#111] relative" style={{ height: 474 }}>
+                <div className="bg-foreground-950 relative" style={{ height: 474 }}>
                   {/* Status bar */}
                   <div className="flex items-center justify-between px-3 pt-2 pb-1 bg-[#0d0d0d] relative z-10">
                     <span className="text-white text-3xs font-bold">9:41</span>
                     <div className="flex items-center gap-1 text-white">
                       <i className="ri-signal-tower-fill text-3xs" />
                       <i className="ri-wifi-fill text-3xs" />
-                      <i className="ri-battery-fill text-[#C8D400] text-3xs" />
+                      <i className="ri-battery-fill text-primary-500 text-3xs" />
                     </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0" style={{ top: '30px' }}>
@@ -184,7 +184,7 @@ export default function VideoStudioPhone() {
             {/* ── 1. Touchpoints ── */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-1.5 h-1.5 bg-[#C8D400]" />
+                <div className="w-1.5 h-1.5 bg-primary-500" />
                 <span className="text-white/30 text-2xs font-black uppercase tracking-[0.2em]">5 Einstiegspunkte</span>
               </div>
 
@@ -196,7 +196,7 @@ export default function VideoStudioPhone() {
                     onClick={() => setActiveTouchpoint(i)}
                     className={`flex items-center gap-1.5 px-3 py-1.5 text-2xs font-black uppercase tracking-wider cursor-pointer transition-all duration-200 ${
                       activeTouchpoint === i
-                        ? 'bg-[#C8D400] text-[#111]'
+                        ? 'bg-primary-500 text-foreground-950'
                         : 'bg-white/5 text-white/40 hover:bg-white/10 hover:text-white/70'
                     }`}
                   >
@@ -209,12 +209,12 @@ export default function VideoStudioPhone() {
               {/* Active touchpoint detail */}
               <div className="border border-white/10 p-4">
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 bg-[#C8D400]/10 flex items-center justify-center flex-shrink-0 border border-[#C8D400]/25">
-                    <i className={`${TOUCHPOINTS[activeTouchpoint].icon} text-base text-[#C8D400]`} />
+                  <div className="w-9 h-9 bg-primary-500/10 flex items-center justify-center flex-shrink-0 border border-primary-500/25">
+                    <i className={`${TOUCHPOINTS[activeTouchpoint].icon} text-base text-primary-500`} />
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-[#C8D400] text-3xs font-black uppercase tracking-widest">{TOUCHPOINTS[activeTouchpoint].tag}</span>
+                      <span className="text-primary-500 text-3xs font-black uppercase tracking-widest">{TOUCHPOINTS[activeTouchpoint].tag}</span>
                       <span className="text-white text-sm font-black">{TOUCHPOINTS[activeTouchpoint].label}</span>
                     </div>
                     <p className="text-white/50 text-xs leading-relaxed">{TOUCHPOINTS[activeTouchpoint].desc}</p>
@@ -224,7 +224,7 @@ export default function VideoStudioPhone() {
             </div>
 
             {/* ── 2. Studio Hub — compact stats card ── */}
-            <div className="border border-[#C8D400]/15 p-4">
+            <div className="border border-primary-500/15 p-4">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
@@ -237,7 +237,7 @@ export default function VideoStudioPhone() {
                     { val: '<2s', label: 'Connect' },
                   ].map((m, i) => (
                     <div key={i} className="text-center">
-                      <div className="text-[#C8D400] text-2xs font-black">{m.val}</div>
+                      <div className="text-primary-500 text-2xs font-black">{m.val}</div>
                       <div className="text-white/25 text-3xs uppercase tracking-wider">{m.label}</div>
                     </div>
                   ))}
@@ -251,7 +251,7 @@ export default function VideoStudioPhone() {
             {/* ── 3. Outcomes ── */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-1.5 h-1.5 bg-[#C8D400]" />
+                <div className="w-1.5 h-1.5 bg-primary-500" />
                 <span className="text-white/30 text-2xs font-black uppercase tracking-[0.2em]">3 Outcomes aus jedem Call</span>
               </div>
 
@@ -263,7 +263,7 @@ export default function VideoStudioPhone() {
                     onClick={() => setActiveOutcome(i)}
                     className={`flex items-center gap-1.5 px-3 py-1.5 text-2xs font-black uppercase tracking-wider cursor-pointer transition-all duration-200 ${
                       activeOutcome === i
-                        ? 'bg-[#C8D400] text-[#111]'
+                        ? 'bg-primary-500 text-foreground-950'
                         : 'bg-white/5 text-white/40 hover:bg-white/10 hover:text-white/70'
                     }`}
                   >
@@ -276,12 +276,12 @@ export default function VideoStudioPhone() {
               {/* Active outcome detail */}
               <div className="border border-white/10 p-4">
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 bg-[#C8D400]/10 flex items-center justify-center flex-shrink-0 border border-[#C8D400]/25">
-                    <i className={`${OUTCOMES[activeOutcome].icon} text-base text-[#C8D400]`} />
+                  <div className="w-9 h-9 bg-primary-500/10 flex items-center justify-center flex-shrink-0 border border-primary-500/25">
+                    <i className={`${OUTCOMES[activeOutcome].icon} text-base text-primary-500`} />
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-[#C8D400] text-3xs font-black uppercase tracking-widest">{OUTCOMES[activeOutcome].tag}</span>
+                      <span className="text-primary-500 text-3xs font-black uppercase tracking-widest">{OUTCOMES[activeOutcome].tag}</span>
                       <span className="text-white text-sm font-black">{OUTCOMES[activeOutcome].label}</span>
                     </div>
                     <p className="text-white/50 text-xs leading-relaxed">{OUTCOMES[activeOutcome].desc}</p>
@@ -294,14 +294,14 @@ export default function VideoStudioPhone() {
             <div className="flex flex-col sm:flex-row gap-3 mt-2">
               <a
                 href="mailto:info@sonic-promo.de?subject=Live-Demo anfragen"
-                className="flex-1 flex items-center justify-center gap-2 bg-[#C8D400] text-[#111] py-3 font-black text-xs uppercase tracking-wider hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer"
+                className="flex-1 flex items-center justify-center gap-2 bg-primary-500 text-foreground-950 py-3 font-black text-xs uppercase tracking-wider hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer"
               >
                 Live-Demo anfragen
                 <i className="ri-arrow-right-line" />
               </a>
               <a
                 href="/fallbeispiele"
-                className="px-6 py-3 border border-white/15 text-white font-black text-xs uppercase tracking-wider hover:border-[#C8D400] hover:text-[#C8D400] transition-all duration-300 whitespace-nowrap cursor-pointer"
+                className="px-6 py-3 border border-white/15 text-white font-black text-xs uppercase tracking-wider hover:border-primary-500 hover:text-primary-500 transition-all duration-300 whitespace-nowrap cursor-pointer"
               >
                 Case Studies
               </a>

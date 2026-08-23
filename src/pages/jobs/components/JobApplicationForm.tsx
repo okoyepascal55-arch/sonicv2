@@ -97,8 +97,8 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
   if (submitState === 'success') {
     return (
       <div className="max-w-2xl mx-auto text-center py-16">
-        <div className="w-16 h-16 flex items-center justify-center bg-[#C8D400] mx-auto mb-5">
-          <i className="ri-check-line text-3xl text-[#111]" />
+        <div className="w-16 h-16 flex items-center justify-center bg-primary-500 mx-auto mb-5">
+          <i className="ri-check-line text-3xl text-foreground-950" />
         </div>
         <h3 className="text-2xl font-black text-[#1a1a1a] mb-3 uppercase">Bewerbung gesendet!</h3>
         <p className="text-sm text-foreground-500 mb-6 max-w-md mx-auto">
@@ -106,7 +106,7 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
         </p>
         <button
           onClick={onClose}
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[#111] text-white text-xs font-black uppercase tracking-widest hover:bg-[#C8D400] hover:text-[#111] transition-all duration-200 cursor-pointer"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-foreground-950 text-white text-xs font-black uppercase tracking-widest hover:bg-primary-500 hover:text-foreground-950 transition-all duration-200 cursor-pointer"
           style={{ borderRadius: 0 }}
         >
           Schließen
@@ -120,19 +120,19 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
       <div className="mb-8">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.25em] text-[#C8D400] mb-1">Bewerbung</p>
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-1">Bewerbung</p>
             <h2 className="text-2xl font-black text-[#1a1a1a]">{jobTitle}</h2>
           </div>
           <button
             onClick={onClose}
-            className="w-9 h-9 flex items-center justify-center border border-foreground-200 hover:border-[#C8D400] text-foreground-400 hover:text-[#1a1a1a] transition-all cursor-pointer"
+            className="w-9 h-9 flex items-center justify-center border border-foreground-200 hover:border-primary-500 text-foreground-400 hover:text-[#1a1a1a] transition-all cursor-pointer"
             style={{ borderRadius: 0 }}
             aria-label="Formular schließen"
           >
             <i className="ri-close-line" />
           </button>
         </div>
-        <div className="h-[2px] bg-[#C8D400] w-12 mt-3" />
+        <div className="h-[2px] bg-primary-500 w-12 mt-3" />
       </div>
 
       <form ref={formRef} onSubmit={handleSubmit} encType="multipart/form-data" id={`job-apply-${hash}`} noValidate>
@@ -141,27 +141,27 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
               <label className="block text-2xs font-black uppercase tracking-[0.2em] text-foreground-500 mb-1.5">
-                Vollständiger Name <span className="text-[#C8D400]">*</span>
+                Vollständiger Name <span className="text-primary-500">*</span>
               </label>
               <input
                 name="name"
                 type="text"
                 required
                 placeholder="Max Mustermann"
-                className="w-full px-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] transition-colors"
+                className="w-full px-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors"
                 style={{ borderRadius: 0 }}
               />
             </div>
             <div className="flex-1">
               <label className="block text-2xs font-black uppercase tracking-[0.2em] text-foreground-500 mb-1.5">
-                E-Mail-Adresse <span className="text-[#C8D400]">*</span>
+                E-Mail-Adresse <span className="text-primary-500">*</span>
               </label>
               <input
                 name="email"
                 type="email"
                 required
                 placeholder="max@example.com"
-                className="w-full px-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] transition-colors"
+                className="w-full px-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors"
                 style={{ borderRadius: 0 }}
               />
             </div>
@@ -176,7 +176,7 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
               name="phone"
               type="tel"
               placeholder="+49 151 12345678"
-              className="w-full px-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] transition-colors"
+              className="w-full px-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors"
               style={{ borderRadius: 0 }}
             />
           </div>
@@ -191,7 +191,7 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
               rows={4}
               maxLength={500}
               placeholder="Warum möchtest du bei Sonic Group arbeiten?"
-              className="w-full px-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] transition-colors resize-none"
+              className="w-full px-4 py-3 bg-white border border-foreground-100 text-sm text-[#1a1a1a] placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors resize-none"
               style={{ borderRadius: 0 }}
             />
             <p className="text-2xs text-foreground-400 mt-1">Max. 500 Zeichen</p>
@@ -204,7 +204,7 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
             </label>
             <div
               className={`relative border-2 border-dashed transition-all duration-200 cursor-pointer ${
-                dragOver ? 'border-[#C8D400] bg-[#C8D400]/5' : 'border-foreground-200 bg-white hover:border-[#C8D400]/50'
+                dragOver ? 'border-primary-500 bg-primary-500/5' : 'border-foreground-200 bg-white hover:border-primary-500/50'
               }`}
               style={{ borderRadius: 0 }}
               onClick={() => fileInputRef.current?.click()}
@@ -232,7 +232,7 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
               />
               <div className="px-6 py-8 flex flex-col items-center justify-center gap-2 text-center pointer-events-none">
                 <div className="w-10 h-10 flex items-center justify-center bg-white border border-foreground-100">
-                  <i className={`text-xl ${cvFileName ? 'ri-file-check-line text-[#C8D400]' : 'ri-upload-cloud-line text-foreground-400'}`} />
+                  <i className={`text-xl ${cvFileName ? 'ri-file-check-line text-primary-500' : 'ri-upload-cloud-line text-foreground-400'}`} />
                 </div>
                 {cvFileName ? (
                   <p className="text-sm font-black text-[#1a1a1a]">{cvFileName}</p>
@@ -260,7 +260,7 @@ export default function JobApplicationForm({ hash, jobTitle, onClose }: Props) {
           <button
             type="submit"
             disabled={submitState === 'sending'}
-            className="w-full flex items-center justify-center gap-3 py-4 bg-[#111] text-white font-black text-xs uppercase tracking-widest hover:bg-[#C8D400] hover:text-[#111] transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-3 py-4 bg-foreground-950 text-white font-black text-xs uppercase tracking-widest hover:bg-primary-500 hover:text-foreground-950 transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             style={{ borderRadius: 0 }}
           >
             {submitState === 'sending' ? (

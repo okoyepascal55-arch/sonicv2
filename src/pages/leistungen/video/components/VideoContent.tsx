@@ -173,15 +173,15 @@ export default function VideoContent() {
 
       {/* Solution */}
       <section id="loesung" className="bg-white py-12 md:py-20 px-4 md:px-6 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C8D400]/8 blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative max-w-6xl mx-auto">
           <div className="mb-14 text-center">
-            <div className="inline-flex items-center gap-2 bg-[#111]/8 border border-[#111]/15 px-4 py-1.5 mb-5">
-              <i className="ri-check-double-line text-[#111] text-sm"></i>
-              <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Lösung</span>
+            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+              <i className="ri-check-double-line text-foreground-950 text-sm"></i>
+              <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#111] mb-3 leading-tight uppercase">{tSolutionHeading}</h2>
-            <p className="text-[#111]/55 text-base max-w-2xl mx-auto">{tSolutionSub}</p>
+            <h2 className="text-4xl lg:text-5xl font-black text-foreground-950 mb-3 leading-tight uppercase">{tSolutionHeading}</h2>
+            <p className="text-foreground-950/55 text-base max-w-2xl mx-auto">{tSolutionSub}</p>
           </div>
           <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: solutionWoodIcons[i]?.url ? resolveImageUrl(solutionWoodIcons[i].url) : s.woodIcon || '' }))} label={`${SOLUTIONS.length} Kanäle — scrollen`} theme="light" variant="wood" cardWidth="clamp(280px, 32vw, 380px)" cardMinHeight="340px" />
         </div>
@@ -192,12 +192,12 @@ export default function VideoContent() {
 
 
       {/* Advantages */}
-      <section id="vorteile" className="bg-[#111] py-12 md:py-20 px-4 md:px-6">
+      <section id="vorteile" className="bg-foreground-950 py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
-              <i className="ri-thumb-up-line text-[#C8D400] text-sm"></i>
-              <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Vorteile</span>
+            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
+              <i className="ri-thumb-up-line text-primary-500 text-sm"></i>
+              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Vorteile</span>
             </div>
             <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">{tAdvantagesHeading}</h2>
             <p className="text-white/45 text-sm mt-3">Chancen auf mehr Verkäufe und weniger Retouren.</p>
@@ -210,11 +210,11 @@ export default function VideoContent() {
       <section id="kostenrechner" className="bg-white py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-[#111]/10 border border-[#111]/15 px-4 py-1.5 mb-5">
-              <i className="ri-calculator-line text-[#111] text-sm"></i>
-              <span className="text-xs font-black text-[#111] uppercase tracking-widest">Kostenrechner</span>
+            <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-[#111]/15 px-4 py-1.5 mb-5">
+              <i className="ri-calculator-line text-foreground-950 text-sm"></i>
+              <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Kostenrechner</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-[#111] leading-tight uppercase">Live-Video: Kosten pro Jahr</h2>
+            <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 leading-tight uppercase">Live-Video: Kosten pro Jahr</h2>
           </div>
 
           <div className="border border-[#111]/15 bg-white p-8 md:p-10">
@@ -227,8 +227,8 @@ export default function VideoContent() {
               ].map((param, i) => (
                 <div key={i}>
                   <div className="flex items-center justify-between mb-3">
-                    <label className="text-[#111]/70 text-sm font-bold">{param.label}</label>
-                    <span className="text-[#111] font-black text-lg font-mono">{param.value}</span>
+                    <label className="text-foreground-950/70 text-sm font-bold">{param.label}</label>
+                    <span className="text-foreground-950 font-black text-lg font-mono">{param.value}</span>
                   </div>
                   <input
                     type="range"
@@ -239,7 +239,7 @@ export default function VideoContent() {
                     className="w-full h-1.5 appearance-none cursor-pointer"
                     style={{ accentColor: '#C8D400', background: `linear-gradient(to right, #C8D400 ${((param.value - param.min) / (param.max - param.min)) * 100}%, rgba(0,0,0,0.1) 0%)` }}
                   />
-                  <div className="flex justify-between text-[#111]/25 text-xs mt-1">
+                  <div className="flex justify-between text-foreground-950/25 text-xs mt-1">
                     <span>{param.min}</span>
                     <span>{param.max}</span>
                   </div>
@@ -254,14 +254,14 @@ export default function VideoContent() {
                 { val: `~${totalCost.toLocaleString('de-DE')} €`, label: 'Geschätzte Kosten' },
               ].map((stat, i) => (
                 <div key={i} className={`p-6 text-center ${i < 2 ? 'border-r border-[#111]/10' : ''}`}>
-                  <div className="text-3xl font-black text-[#111] font-mono mb-1">{stat.val}</div>
-                  <div className="text-[#111]/45 text-xs font-bold uppercase tracking-wider">{stat.label}</div>
+                  <div className="text-3xl font-black text-foreground-950 font-mono mb-1">{stat.val}</div>
+                  <div className="text-foreground-950/45 text-xs font-bold uppercase tracking-wider">{stat.label}</div>
                 </div>
               ))}
             </div>
 
             <div className="mt-8 text-center">
-              <a href={`mailto:${CONTACT_EMAIL}?subject=Video-Konzept%20anfragen`} className="inline-flex items-center gap-2 bg-[#111] text-white px-8 py-4 font-black hover:bg-[#C8D400] hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm">
+              <a href={`mailto:${CONTACT_EMAIL}?subject=Video-Konzept%20anfragen`} className="inline-flex items-center gap-2 bg-foreground-950 text-white px-8 py-4 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm">
                 <i className="ri-send-plane-line"></i>Video-Konzept anfragen
               </a>
             </div>
@@ -270,27 +270,27 @@ export default function VideoContent() {
       </section>
 
       {/* Phygital */}
-      <section id="phygital" className="bg-[#111] py-12 md:py-20 px-4 md:px-6">
+      <section id="phygital" className="bg-foreground-950 py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
-              <i className="ri-links-line text-[#C8D400] text-sm"></i>
-              <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Ideale Kombination</span>
+            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
+              <i className="ri-links-line text-primary-500 text-sm"></i>
+              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Ideale Kombination</span>
             </div>
             <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">{tPhygitalHeading}</h2>
             <p className="text-white/45 text-sm mt-3 max-w-xl mx-auto">Video und Field Force ergänzen sich wunderbar. Clever eingesetzt wird der ROI beider Maßnahmen im Omnichannel erhöht.</p>
           </div>
 
-          <div className="border border-[#C8D400]/15 overflow-hidden">
-            <div className="grid grid-cols-3 bg-white/5 border-b border-[#C8D400]/15">
+          <div className="border border-primary-500/15 overflow-hidden">
+            <div className="grid grid-cols-3 bg-white/5 border-b border-primary-500/15">
               <div className="p-4 text-white/40 text-xs font-black uppercase tracking-wider"></div>
-              <div className="p-4 text-center border-l border-[#C8D400]/15">
+              <div className="p-4 text-center border-l border-primary-500/15">
                 <div className="flex items-center justify-center gap-2">
-                  <i className="ri-video-line text-[#C8D400] text-sm"></i>
-                  <span className="text-[#C8D400] text-xs font-black uppercase tracking-wider">Video</span>
+                  <i className="ri-video-line text-primary-500 text-sm"></i>
+                  <span className="text-primary-500 text-xs font-black uppercase tracking-wider">Video</span>
                 </div>
               </div>
-              <div className="p-4 text-center border-l border-[#C8D400]/15">
+              <div className="p-4 text-center border-l border-primary-500/15">
                 <div className="flex items-center justify-center gap-2">
                   <i className="ri-user-line text-white/60 text-sm"></i>
                   <span className="text-white/60 text-xs font-black uppercase tracking-wider">Field Force</span>
@@ -302,13 +302,13 @@ export default function VideoContent() {
                 <div className="p-4 text-white/60 text-xs font-semibold">{row.label}</div>
                 <div className="p-4 flex items-center justify-center border-l border-white/5">
                   {row.video
-                    ? <div className="w-5 h-5 flex items-center justify-center bg-[#C8D400]"><i className="ri-check-line text-[#111] text-xs"></i></div>
+                    ? <div className="w-5 h-5 flex items-center justify-center bg-primary-500"><i className="ri-check-line text-foreground-950 text-xs"></i></div>
                     : <div className="w-5 h-5 flex items-center justify-center bg-white/5"><i className="ri-close-line text-white/20 text-xs"></i></div>
                   }
                 </div>
                 <div className="p-4 flex items-center justify-center border-l border-white/5">
                   {row.field
-                    ? <div className="w-5 h-5 flex items-center justify-center bg-[#C8D400]"><i className="ri-check-line text-[#111] text-xs"></i></div>
+                    ? <div className="w-5 h-5 flex items-center justify-center bg-primary-500"><i className="ri-check-line text-foreground-950 text-xs"></i></div>
                     : <div className="w-5 h-5 flex items-center justify-center bg-white/5"><i className="ri-close-line text-white/20 text-xs"></i></div>
                   }
                 </div>
@@ -322,11 +322,11 @@ export default function VideoContent() {
       <section id="formate" className="bg-white py-12 md:py-20 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-[#111]/10 border border-[#111]/15 px-4 py-1.5 mb-5">
-              <i className="ri-film-line text-[#111] text-sm"></i>
-              <span className="text-xs font-black text-[#111] uppercase tracking-widest">Video-Formate</span>
+            <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-[#111]/15 px-4 py-1.5 mb-5">
+              <i className="ri-film-line text-foreground-950 text-sm"></i>
+              <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Video-Formate</span>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-black text-[#111] leading-tight uppercase">{tFormatsHeading}</h2>
+            <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 leading-tight uppercase">{tFormatsHeading}</h2>
           </div>
 
           {/* Format selector */}
@@ -336,7 +336,7 @@ export default function VideoContent() {
                 key={i}
                 onClick={() => setActiveFormat(i)}
                 className={`flex-1 flex flex-col items-center gap-1 px-4 py-3 text-[10px] font-black uppercase tracking-widest transition-all duration-300 cursor-pointer whitespace-nowrap border-r border-[#111]/15 last:border-r-0 ${
-                  activeFormat === i ? 'bg-[#111] text-[#C8D400]' : 'bg-white text-[#111]/50 hover:text-[#111] hover:bg-white'
+                  activeFormat === i ? 'bg-foreground-950 text-primary-500' : 'bg-white text-foreground-950/50 hover:text-foreground-950 hover:bg-white'
                 }`}
               >
                 <i className={`${f.icon} text-base`}></i>
@@ -369,26 +369,26 @@ export default function VideoContent() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute top-4 left-4">
-                <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-3 py-1">{FORMATS[activeFormat].tag}</span>
+                <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">{FORMATS[activeFormat].tag}</span>
               </div>
               {/* Expand indicator */}
               <div className={`absolute top-4 right-4 flex items-center gap-2 bg-black/60 backdrop-blur-sm px-3 py-1.5 transition-opacity duration-300 ${formatHovered ? 'opacity-100' : 'opacity-0'}`}>
                 <i className="ri-fullscreen-line text-white text-sm"></i>
                 <span className="text-white text-xs font-black uppercase tracking-wider">Vollbild</span>
               </div>
-              <div className={`absolute inset-0 border-2 border-[#C8D400] transition-opacity duration-300 pointer-events-none ${formatHovered ? 'opacity-100' : 'opacity-0'}`} />
+              <div className={`absolute inset-0 border-2 border-primary-500 transition-opacity duration-300 pointer-events-none ${formatHovered ? 'opacity-100' : 'opacity-0'}`} />
             </div>
 
             {/* Info */}
             <div className="lg:col-span-5 bg-white p-8 flex flex-col justify-center border-l border-[#111]/15 lg:h-[480px] overflow-y-auto">
-              <div className="w-12 h-12 flex items-center justify-center bg-[#111] mb-5">
-                <i className={`${FORMATS[activeFormat].icon} text-xl text-[#C8D400]`}></i>
+              <div className="w-12 h-12 flex items-center justify-center bg-foreground-950 mb-5">
+                <i className={`${FORMATS[activeFormat].icon} text-xl text-primary-500`}></i>
               </div>
-              <h3 className="text-2xl font-black text-[#111] mb-4 uppercase">{FORMATS[activeFormat].title}</h3>
-              <p className="text-[#111]/65 text-base leading-relaxed mb-8">{FORMATS[activeFormat].desc}</p>
+              <h3 className="text-2xl font-black text-foreground-950 mb-4 uppercase">{FORMATS[activeFormat].title}</h3>
+              <p className="text-foreground-950/65 text-base leading-relaxed mb-8">{FORMATS[activeFormat].desc}</p>
               <a
                 href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(FORMATS[activeFormat].title + ' anfragen')}`}
-                className="inline-flex items-center gap-2 bg-[#111] text-white px-6 py-3 font-black text-xs uppercase tracking-widest hover:bg-[#C8D400] hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer self-start"
+                className="inline-flex items-center gap-2 bg-foreground-950 text-white px-6 py-3 font-black text-xs uppercase tracking-widest hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer self-start"
               >
                 Mehr erfahren <i className="ri-arrow-right-line"></i>
               </a>
@@ -402,7 +402,7 @@ export default function VideoContent() {
                 key={i}
                 onClick={() => setActiveFormat(i)}
                 className={`flex items-center gap-2 px-4 py-2 text-xs font-black uppercase tracking-widest transition-all duration-300 cursor-pointer ${
-                  activeFormat === i ? 'bg-[#111] text-[#C8D400]' : 'border border-[#111]/15 text-[#111]/50 hover:border-[#111]/40 hover:text-[#111]'
+                  activeFormat === i ? 'bg-foreground-950 text-primary-500' : 'border border-[#111]/15 text-foreground-950/50 hover:border-[#111]/40 hover:text-foreground-950'
                 }`}
               >
                 <i className={`${f.icon} text-sm`}></i>

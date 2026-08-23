@@ -37,7 +37,7 @@ export default function TeamStats() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
-          <h2 className="text-3xl lg:text-5xl font-black text-foreground-950 mb-6 leading-tight tracking-tight">
+          <h2 className="sonic-h2 text-foreground-950 mb-6">
             {tHeading}
           </h2>
           <p className="text-xl text-foreground-600 max-w-3xl mx-auto">
@@ -77,7 +77,7 @@ export default function TeamStats() {
                 ></i>
               </div>
               <div>
-                <div className="text-5xl md:text-6xl font-black mb-1 text-[#C8D400]">{stats[0].number}</div>
+                <div className="text-5xl md:text-6xl font-black mb-1 text-primary-500">{stats[0].number}</div>
                 <div className="text-sm text-foreground-500 uppercase tracking-wider font-semibold">{stats[0].label}</div>
               </div>
             </div>

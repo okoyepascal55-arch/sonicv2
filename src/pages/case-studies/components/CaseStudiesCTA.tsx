@@ -22,7 +22,7 @@ export default function CaseStudiesCTA() {
 
   return (
     <section className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C8D400]/8 rounded-none blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-500/8 rounded-none blur-3xl pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto relative z-10">
 
@@ -45,7 +45,7 @@ export default function CaseStudiesCTA() {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className={`absolute inset-0 rounded-none border-4 transition-all duration-500 pointer-events-none z-20 ${isHovered ? 'border-[#C8D400]' : 'border-foreground-100'}`} style={isHovered ? { boxShadow: '0 0 30px rgba(200,212,0,0.3)' } : {}}></div>
+          <div className={`absolute inset-0 rounded-none border-4 transition-all duration-500 pointer-events-none z-20 ${isHovered ? 'border-primary-500' : 'border-foreground-100'}`} style={isHovered ? { boxShadow: '0 0 30px rgba(200,212,0,0.3)' } : {}}></div>
 
           <div className="grid lg:grid-cols-2 gap-0">
             {/* Image */}
@@ -57,19 +57,19 @@ export default function CaseStudiesCTA() {
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-foreground-950/60 via-transparent to-transparent pointer-events-none"></div>
-              <div className={`absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-[#C8D400] transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
-              <div className={`absolute bottom-4 left-4 w-12 h-12 border-b-4 border-l-4 border-[#C8D400] transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-primary-500 transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`absolute bottom-4 left-4 w-12 h-12 border-b-4 border-l-4 border-primary-500 transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
             </div>
 
             {/* Content */}
             <div className="p-10 bg-white flex flex-col justify-center relative">
-              <div className={`absolute top-4 right-4 w-12 h-12 border-t-4 border-r-4 border-[#C8D400] transition-all duration-500 pointer-events-none hidden lg:block ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
-              <div className={`absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-[#C8D400] transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`absolute top-4 right-4 w-12 h-12 border-t-4 border-r-4 border-primary-500 transition-all duration-500 pointer-events-none hidden lg:block ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-primary-500 transition-all duration-500 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
 
               <div className="space-y-3 mb-8">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="w-5 h-5 bg-[#C8D400] rounded-none flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="w-5 h-5 bg-primary-500 rounded-none flex items-center justify-center flex-shrink-0 mt-0.5">
                       <i className="ri-check-line text-white text-xs"></i>
                     </div>
                     <p className="text-gray-700 text-sm leading-relaxed">{benefit}</p>
@@ -81,7 +81,7 @@ export default function CaseStudiesCTA() {
                 <button
                   type="button"
                   onClick={() => openCalendly()}
-                  className="bg-[#C8D400] text-[#111] px-7 py-4 font-black text-sm uppercase tracking-wider hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-center flex items-center justify-center gap-2"
+                  className="bg-primary-500 text-foreground-950 px-7 py-4 font-black text-sm uppercase tracking-wider hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-center flex items-center justify-center gap-2"
                 >
                   <i className="ri-calendar-line"></i>
                   {tBtn1}
@@ -107,7 +107,7 @@ export default function CaseStudiesCTA() {
             <a
               key={index}
               href={contact.href}
-              className="bg-white rounded-none p-5 transition-all duration-300 relative overflow-hidden cursor-pointer flex items-center gap-4 border border-foreground-100 hover:border-[#C8D400]/40 group"
+              className="bg-white rounded-none p-5 transition-all duration-300 relative overflow-hidden cursor-pointer flex items-center gap-4 border border-foreground-100 hover:border-primary-500/40 group"
               onMouseEnter={() => setHoveredContact(index)}
               onMouseLeave={() => setHoveredContact(null)}
             >
@@ -128,8 +128,8 @@ export default function CaseStudiesCTA() {
                   )}
                 </rect>
               </svg>
-              <div className="w-11 h-11 bg-[#C8D400]/15 flex items-center justify-center relative z-10 group-hover:bg-[#C8D400]/25 transition-colors duration-300 flex-shrink-0" style={{ borderRadius: 0 }}>
-                <i className={`${contact.icon} text-xl text-[#C8D400]`}></i>
+              <div className="w-11 h-11 bg-primary-500/15 flex items-center justify-center relative z-10 group-hover:bg-primary-500/25 transition-colors duration-300 flex-shrink-0" style={{ borderRadius: 0 }}>
+                <i className={`${contact.icon} text-xl text-primary-500`}></i>
               </div>
               <div className="relative z-10 min-w-0">
                 <p className="text-xs text-foreground-500 font-semibold uppercase tracking-wide">{contact.label}</p>

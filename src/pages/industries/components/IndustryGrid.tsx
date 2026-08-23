@@ -67,7 +67,7 @@ export default function IndustryGrid() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 mb-4 leading-tight tracking-tight">
+          <h2 className="sonic-h2 text-foreground-950 mb-4">
             {tHeading}
           </h2>
           <p className="text-sm md:text-base text-foreground-600 max-w-3xl mx-auto">

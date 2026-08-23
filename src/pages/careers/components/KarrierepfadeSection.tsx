@@ -100,13 +100,13 @@ export default function KarrierepfadeSection() {
         {/* ── HEADER + SELECTOR ── */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10 md:mb-12">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-xs font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-5">
-              <span className="w-1.5 h-1.5 bg-[#0B0B0C] flex-shrink-0" />
+            <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-5">
+              <span className="w-1.5 h-1.5 bg-foreground-950 flex-shrink-0" />
               {tBadge}
             </div>
-            <h2 className="text-[clamp(28px,3.6vw,46px)] font-black text-[#0B0B0C] leading-[1.06] tracking-tight uppercase">
+            <h2 className="sonic-h2 text-foreground-950">
               {headingMain}{' '}
-              {headingAccent && <span className="text-[#C8D400]">{headingAccent}</span>}
+              {headingAccent && <span className="text-primary-500">{headingAccent}</span>}
             </h2>
             <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[440px]">{tSub}</p>
           </div>
@@ -121,12 +121,12 @@ export default function KarrierepfadeSection() {
                   onClick={() => goTo(i)}
                   aria-pressed={isActive}
                   className={`flex items-center gap-2.5 px-4 md:px-5 py-3 text-left whitespace-nowrap cursor-pointer transition-colors duration-300 border-r last:border-r-0 border-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-inset ${
-                    isActive ? 'bg-[#0B0B0C]' : 'bg-white hover:bg-[#FAFDF5]'
+                    isActive ? 'bg-foreground-950' : 'bg-white hover:bg-[#FAFDF5]'
                   }`}
                 >
                   <span
                     className={`flex items-center justify-center w-6 h-6 text-[10px] font-black transition-colors duration-300 ${
-                      isActive ? 'bg-[#C8D400] text-[#0B0B0C]' : 'border border-black/15 text-black/40'
+                      isActive ? 'bg-primary-500 text-foreground-950' : 'border border-black/15 text-black/40'
                     }`}
                   >
                     {String(i + 1).padStart(2, '0')}
@@ -146,7 +146,7 @@ export default function KarrierepfadeSection() {
         {/* ── SPLIT CARD (photo + dark panel) ── */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] bg-white border border-[#E7E4D4] overflow-hidden">
           {/* Left — full-bleed image */}
-          <div className="relative min-h-[280px] sm:min-h-[380px] lg:min-h-[560px] bg-[#0B0B0C]">
+          <div className="relative min-h-[280px] sm:min-h-[380px] lg:min-h-[560px] bg-foreground-950">
             <img
               key={`path-${path.id}`}
               src={pathImages[active]?.url || path.fallbackImage}
@@ -157,7 +157,7 @@ export default function KarrierepfadeSection() {
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C] via-[#0B0B0C]/20 to-transparent" />
-            <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[10px] font-black uppercase tracking-widest px-3 py-1">
+            <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">
               {path.badge}
             </div>
             <div className="absolute bottom-0 left-0 right-0 p-7">
@@ -165,16 +165,16 @@ export default function KarrierepfadeSection() {
                 {path.title}
               </div>
               <div className="mt-3 flex items-center gap-2">
-                <span className="w-1 h-1 bg-[#C8D400]" />
+                <span className="w-1 h-1 bg-primary-500" />
                 <span className="text-sm font-black text-white">{path.headline}</span>
               </div>
             </div>
           </div>
 
           {/* Right — dark ink panel */}
-          <div className="bg-[#0B0B0C] p-8 md:p-12 flex flex-col justify-between">
+          <div className="bg-foreground-950 p-8 md:p-12 flex flex-col justify-between">
             <div>
-              <div className="text-[#C8D400] text-[10px] font-black uppercase tracking-[0.3em] mb-4">
+              <div className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-4">
                 {String(active + 1).padStart(2, '0')} / {String(resolvedPaths.length).padStart(2, '0')}
               </div>
 
@@ -192,7 +192,7 @@ export default function KarrierepfadeSection() {
               <div className="grid grid-cols-2 gap-3 mt-8">
                 {path.stats.map((m) => (
                   <div key={m.label} className="border border-white/10 px-4 py-3.5">
-                    <div className="text-xl font-black text-[#C8D400] leading-none tabular-nums">{m.value}</div>
+                    <div className="text-xl font-black text-primary-500 leading-none tabular-nums">{m.value}</div>
                     <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5">
                       {m.label}
                     </div>
@@ -206,14 +206,14 @@ export default function KarrierepfadeSection() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => goTo((active - 1 + resolvedPaths.length) % resolvedPaths.length)}
-                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-[#C8D400] hover:text-[#0B0B0C] border border-white/15 text-white/60"
+                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-primary-500 hover:text-foreground-950 border border-white/15 text-white/60"
                   aria-label="Vorheriger Karrierepfad"
                 >
                   <i className="ri-arrow-left-line" />
                 </button>
                 <button
                   onClick={() => goTo((active + 1) % resolvedPaths.length)}
-                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-[#C8D400] hover:text-[#0B0B0C] border border-white/15 text-white/60"
+                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-primary-500 hover:text-foreground-950 border border-white/15 text-white/60"
                   aria-label="Nächster Karrierepfad"
                 >
                   <i className="ri-arrow-right-line" />
@@ -221,7 +221,7 @@ export default function KarrierepfadeSection() {
               </div>
               <a
                 href={`mailto:${path.email}?subject=Initiativbewerbung`}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.06em] hover:bg-white transition-colors whitespace-nowrap cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.06em] hover:bg-white transition-colors whitespace-nowrap cursor-pointer"
               >
                 {tApply}
                 <i className="ri-arrow-right-line" />
@@ -234,9 +234,9 @@ export default function KarrierepfadeSection() {
         <div className="max-w-5xl mx-auto mt-8 md:mt-10">
           <div className="border border-[#E7E4D4] py-6 md:py-7 px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAFDF5]">
             <div className="text-center sm:text-left">
-              <p className="text-sm md:text-[15px] font-black text-[#0B0B0C] leading-relaxed">
+              <p className="text-sm md:text-[15px] font-black text-foreground-950 leading-relaxed">
                 Noch unsicher, welcher Weg zu dir passt?{' '}
-                <span className="text-[#C8D400]">Wir finden ihn gemeinsam.</span>
+                <span className="text-primary-500">Wir finden ihn gemeinsam.</span>
               </p>
               <p className="text-xs text-[#6E6E68] mt-1 hidden sm:block">
                 Offene Stellen am Campus Krefeld und DACH-weit im Außendienst
@@ -245,7 +245,7 @@ export default function KarrierepfadeSection() {
             <button
               type="button"
               onClick={scrollToJobs}
-              className="inline-flex items-center gap-2 bg-[#0B0B0C] text-white px-6 py-3 font-black hover:bg-[#C8D400] hover:text-[#0B0B0C] transition-colors duration-300 whitespace-nowrap cursor-pointer text-xs flex-shrink-0"
+              className="inline-flex items-center gap-2 bg-foreground-950 text-white px-6 py-3 font-black hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-300 whitespace-nowrap cursor-pointer text-xs flex-shrink-0"
             >
               <i className="ri-briefcase-line text-sm" />
               {tCta}

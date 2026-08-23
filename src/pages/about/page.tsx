@@ -52,7 +52,7 @@ export default function AboutPage() {
       {/* ── HERO — bottom-anchored, matching careers ── */}
       <div ref={heroRef}>
         <section
-          className="relative min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex flex-col justify-end overflow-hidden bg-[#0B0B0C]"
+          className="relative min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex flex-col justify-end overflow-hidden bg-foreground-950"
           style={{ paddingTop: '80px' }}
         >
           {/* Full-bleed background image */}
@@ -76,15 +76,15 @@ export default function AboutPage() {
           {/* Hero content — bottom-anchored */}
           <div className="relative z-10 max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14 w-full">
             {/* Eyebrow badge — sharp corners */}
-            <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
-              <span className="w-1.5 h-1.5 bg-[#0B0B0C]" />
+            <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
+              <span className="w-1.5 h-1.5 bg-foreground-950" />
               {tHeroBadge}
             </div>
 
             {/* Large headline — lime highlight on key line */}
             <h1 className="text-[clamp(34px,5.5vw,64px)] font-black text-white leading-[1.05] tracking-tight uppercase mb-4 md:mb-5">
               {tHeroH1}<br />
-              <span className="bg-[#C8D400] text-[#0B0B0C] px-2.5 py-0.5 inline-block mt-1">
+              <span className="bg-primary-500 text-foreground-950 px-2.5 py-0.5 inline-block mt-1">
                 {tHeroH1Line2}
               </span>
             </h1>
@@ -103,7 +103,7 @@ export default function AboutPage() {
               ].map((s) => (
                 <div key={s.label} className="flex items-center gap-2.5">
                   <div className="w-8 h-8 border border-white/20 flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.06)' }}>
-                    <i className="ri-arrow-right-up-line text-[#C8D400] text-sm" />
+                    <i className="ri-arrow-right-up-line text-primary-500 text-sm" />
                   </div>
                   <div>
                     <div className="text-sm md:text-base font-black text-white leading-none">{s.value}</div>

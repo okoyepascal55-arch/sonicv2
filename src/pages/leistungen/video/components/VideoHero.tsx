@@ -26,7 +26,7 @@ export default function VideoHero() {
         className="absolute inset-0 z-10 pointer-events-none"
         style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.85) 100%)' }}
       />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#C8D400]/6 blur-[100px] pointer-events-none z-10" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary-500/6 blur-[100px] pointer-events-none z-10" />
 
       <div className="relative z-20 w-full max-w-5xl mx-auto px-6 text-center">
         <div className="hidden sm:flex items-center justify-center gap-2 mb-6 opacity-60">
@@ -34,7 +34,7 @@ export default function VideoHero() {
           <i className="ri-arrow-right-s-line text-white/40 text-sm"></i>
           <span className="text-white/50 text-xs font-bold">POS & Live Video</span>
           <i className="ri-arrow-right-s-line text-white/40 text-sm"></i>
-          <span className="text-[#C8D400] text-xs font-bold">(Live) Video</span>
+          <span className="text-primary-500 text-xs font-bold">(Live) Video</span>
         </div>
 
         <div className="mb-8 flex justify-center">
@@ -43,7 +43,7 @@ export default function VideoHero() {
 
         <h1 className="text-3xl md:text-5xl lg:text-7xl font-black text-white mb-6 leading-tight">
           {tH1Line1}<br />
-          <span className="text-[#C8D400]">{tH1Accent}</span>
+          <span className="text-primary-500">{tH1Accent}</span>
         </h1>
         <p className="text-xl text-white/80 mb-4 font-semibold">
           {tSubtitle}
@@ -59,7 +59,7 @@ export default function VideoHero() {
             { val: '100 %', label: 'Managed Service' },
           ].map((s, i) => (
             <div key={i} className="text-center">
-              <div className="text-2xl font-black text-[#C8D400] tabular-nums">{s.val}</div>
+              <div className="text-2xl font-black text-primary-500 tabular-nums">{s.val}</div>
               <div className="text-white/45 text-xs font-bold uppercase tracking-wider mt-1">{s.label}</div>
             </div>
           ))}
@@ -68,7 +68,7 @@ export default function VideoHero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href={`mailto:${CONTACT_EMAIL}?subject=Live%20Video%20Beratung`}
-            className="inline-flex items-center gap-2 bg-[#C8D400] text-white font-black px-7 py-3 hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
+            className="inline-flex items-center gap-2 bg-primary-500 text-white font-black px-7 py-3 hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
             style={{ borderRadius: 0 }}
           >
             <i className="ri-calendar-line"></i>
@@ -77,7 +77,7 @@ export default function VideoHero() {
           <a
             href="/leistungen/pos-full-service"
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
-            className="inline-flex items-center gap-2 border-2 border-white/25 text-white px-6 py-3 font-black hover:border-[#C8D400] hover:text-[#C8D400] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
+            className="inline-flex items-center gap-2 border-2 border-white/25 text-white px-6 py-3 font-black hover:border-primary-500 hover:text-primary-500 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             POS Full Service
             <i className="ri-arrow-right-line"></i>

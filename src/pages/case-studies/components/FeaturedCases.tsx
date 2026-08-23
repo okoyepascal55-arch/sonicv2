@@ -26,10 +26,10 @@ function HighlightCard({ item }: { item: typeof highlights[0] }) {
     >
       <div className="absolute top-0 left-0 right-0 transition-all duration-500" style={{ height: isHovered ? '3px' : '2px', background: isHovered ? '#C8D400' : 'rgba(200,212,0,0.2)', boxShadow: isHovered ? '0 0 16px rgba(200,212,0,0.5)' : 'none' }} />
       <div className="absolute left-0 top-3 bottom-3 w-0.5 transition-all duration-500" style={{ background: isHovered ? '#C8D400' : 'transparent' }} />
-      <div className={`absolute top-3 left-3 w-4 h-4 border-t border-l transition-all duration-300 ${isHovered ? 'opacity-100 border-[#C8D400]/50' : 'opacity-0 border-[#C8D400]'}`} />
-      <div className={`absolute top-3 right-3 w-4 h-4 border-t border-r transition-all duration-300 ${isHovered ? 'opacity-100 border-[#C8D400]/50' : 'opacity-0 border-[#C8D400]'}`} />
-      <div className={`absolute bottom-3 left-3 w-4 h-4 border-b border-l transition-all duration-300 ${isHovered ? 'opacity-100 border-[#C8D400]/50' : 'opacity-0 border-[#C8D400]'}`} />
-      <div className={`absolute bottom-3 right-3 w-4 h-4 border-b border-r transition-all duration-300 ${isHovered ? 'opacity-100 border-[#C8D400]/50' : 'opacity-0 border-[#C8D400]'}`} />
+      <div className={`absolute top-3 left-3 w-4 h-4 border-t border-l transition-all duration-300 ${isHovered ? 'opacity-100 border-primary-500/50' : 'opacity-0 border-primary-500'}`} />
+      <div className={`absolute top-3 right-3 w-4 h-4 border-t border-r transition-all duration-300 ${isHovered ? 'opacity-100 border-primary-500/50' : 'opacity-0 border-primary-500'}`} />
+      <div className={`absolute bottom-3 left-3 w-4 h-4 border-b border-l transition-all duration-300 ${isHovered ? 'opacity-100 border-primary-500/50' : 'opacity-0 border-primary-500'}`} />
+      <div className={`absolute bottom-3 right-3 w-4 h-4 border-b border-r transition-all duration-300 ${isHovered ? 'opacity-100 border-primary-500/50' : 'opacity-0 border-primary-500'}`} />
       <div className="absolute bottom-4 right-5 font-black leading-none select-none pointer-events-none transition-all duration-500" style={{ fontSize: '4rem', opacity: 0.035, color: isHovered ? '#C8D400' : '#000', letterSpacing: '-0.04em' }}>{item.number}</div>
       <div className="p-8 relative z-10">
         <div className="w-13 h-13 flex items-center justify-center mb-5 transition-all duration-500" style={{ width: '52px', height: '52px', background: isHovered ? 'rgba(200,212,0,0.15)' : '#f5f5f0', boxShadow: isHovered ? '0 4px 16px rgba(200,212,0,0.2)' : 'inset 0 1px 0 rgba(255,255,255,0.8)' }}>
@@ -216,7 +216,7 @@ export default function FeaturedCases() {
 
   return (
     <section className="py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#C8D400]/6 blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary-500/6 blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -234,8 +234,8 @@ export default function FeaturedCases() {
               onClick={() => setActiveCase(index)}
               className={`px-6 py-3 font-black text-sm uppercase tracking-wider transition-all duration-300 whitespace-nowrap cursor-pointer ${
                 activeCase === index
-                  ? 'bg-[#C8D400] text-white scale-105'
-                  : 'bg-white text-foreground-700 hover:border-[#C8D400] hover:text-[#1a1a1a] border border-foreground-200'
+                  ? 'bg-primary-500 text-white scale-105'
+                  : 'bg-white text-foreground-700 hover:border-primary-500 hover:text-[#1a1a1a] border border-foreground-200'
               }`}
               style={{ borderRadius: 0 }}
             >
@@ -251,7 +251,7 @@ export default function FeaturedCases() {
           onMouseLeave={() => setIsHovered(false)}
           style={{ borderRadius: 0 }}
         >
-          <div className={`absolute inset-0 border-4 transition-all duration-500 pointer-events-none z-20 ${isHovered ? 'border-[#C8D400]' : 'border-foreground-100'}`}></div>
+          <div className={`absolute inset-0 border-4 transition-all duration-500 pointer-events-none z-20 ${isHovered ? 'border-primary-500' : 'border-foreground-100'}`}></div>
 
           <div className="grid lg:grid-cols-2 gap-0">
             {/* Image Side */}
@@ -265,11 +265,11 @@ export default function FeaturedCases() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/20"></div>
 
               {/* Corner accents */}
-              <div className={`absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-[#C8D400] transition-all duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
-              <div className={`absolute bottom-4 left-4 w-12 h-12 border-b-4 border-l-4 border-[#C8D400] transition-all duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-primary-500 transition-all duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`absolute bottom-4 left-4 w-12 h-12 border-b-4 border-l-4 border-primary-500 transition-all duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
 
               <div className="absolute bottom-6 left-6 right-6">
-                <div className="inline-block bg-[#C8D400] text-white px-4 py-1.5 font-black text-xs uppercase tracking-wider mb-3" style={{ borderRadius: 0 }}>
+                <div className="inline-block bg-primary-500 text-white px-4 py-1.5 font-black text-xs uppercase tracking-wider mb-3" style={{ borderRadius: 0 }}>
                   {cases[activeCase].category}
                 </div>
                 <div className="flex items-center gap-3">
@@ -290,22 +290,22 @@ export default function FeaturedCases() {
 
             {/* Content Side */}
             <div className="p-8 lg:p-10 bg-white flex flex-col justify-between relative">
-              <div className={`absolute top-4 right-4 w-12 h-12 border-t-4 border-r-4 border-[#C8D400] transition-all duration-500 hidden lg:block ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
-              <div className={`absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-[#C8D400] transition-all duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`absolute top-4 right-4 w-12 h-12 border-t-4 border-r-4 border-primary-500 transition-all duration-500 hidden lg:block ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-primary-500 transition-all duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}></div>
 
               <div className="space-y-5">
                 <div>
-                  <h4 className="text-xs font-black text-[#C8D400] uppercase tracking-widest mb-2">Die Herausforderung</h4>
+                  <h4 className="text-xs font-black text-primary-500 uppercase tracking-widest mb-2">Die Herausforderung</h4>
                   <p className="text-foreground-700 text-sm leading-relaxed">{cases[activeCase].challenge}</p>
                 </div>
                 <div>
-                  <h4 className="text-xs font-black text-[#C8D400] uppercase tracking-widest mb-2">Unsere Lösung</h4>
+                  <h4 className="text-xs font-black text-primary-500 uppercase tracking-widest mb-2">Unsere Lösung</h4>
                   <p className="text-foreground-700 text-sm leading-relaxed">{cases[activeCase].solution}</p>
                 </div>
 
                 {/* Results */}
                 <div>
-                  <h4 className="text-xs font-black text-[#C8D400] uppercase tracking-widest mb-3">Ergebnisse</h4>
+                  <h4 className="text-xs font-black text-primary-500 uppercase tracking-widest mb-3">Ergebnisse</h4>
                   <div className="grid grid-cols-3 gap-3">
                     {cases[activeCase].results.map((result, idx) => (
                       <div key={idx} className="bg-foreground-50 p-3 text-center border border-foreground-100" style={{ borderRadius: 0 }}>
@@ -317,7 +317,7 @@ export default function FeaturedCases() {
                 </div>
 
                 {/* Testimonial */}
-                <div className="bg-[#C8D400]/8 p-5 border-l-4 border-[#C8D400]" style={{ borderRadius: 0 }}>
+                <div className="bg-primary-500/8 p-5 border-l-4 border-primary-500" style={{ borderRadius: 0 }}>
                   <p className="text-foreground-700 italic text-sm leading-relaxed mb-3">"{cases[activeCase].testimonial}"</p>
                   <div>
                     <p className="text-xs font-black text-[#1a1a1a] uppercase tracking-wide">— {cases[activeCase].author}</p>
@@ -329,7 +329,7 @@ export default function FeaturedCases() {
               <a
                 href="#case-studies-carousel"
                 onClick={(e) => { e.preventDefault(); document.getElementById('case-studies-carousel')?.scrollIntoView({ behavior: 'smooth' }); }}
-                className="mt-6 w-full bg-[#C8D400] text-white px-8 py-4 font-black uppercase tracking-wider hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap flex items-center justify-center cursor-pointer text-sm border-2 border-[#C8D400] hover:border-[#1a1a1a]"
+                className="mt-6 w-full bg-primary-500 text-white px-8 py-4 font-black uppercase tracking-wider hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap flex items-center justify-center cursor-pointer text-sm border-2 border-primary-500 hover:border-[#1a1a1a]"
                 style={{ borderRadius: 0 }}
               >
                 Vollständige Story lesen

@@ -19,7 +19,7 @@ function StickyCta() {
   return (
     <button
       onClick={scrollToJobs}
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[200] bg-[#C8D400] text-[#0B0B0C] font-bold text-xs sm:text-[13px] px-4 sm:px-6 py-2.5 sm:py-3.5 hover:bg-white transition-all duration-200 cursor-pointer whitespace-nowrap"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[200] bg-primary-500 text-foreground-950 font-bold text-xs sm:text-[13px] px-4 sm:px-6 py-2.5 sm:py-3.5 hover:bg-white transition-all duration-200 cursor-pointer whitespace-nowrap"
       style={{ boxShadow: '0 8px 24px rgba(0,0,0,0.2)' }}
     >
       <span className="flex items-center gap-2">

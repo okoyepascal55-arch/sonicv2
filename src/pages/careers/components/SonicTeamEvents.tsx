@@ -83,9 +83,9 @@ export default function SonicTeamEvents() {
           <div className="px-6 pt-10 pb-8 md:px-12 md:pt-14 md:pb-10">
             {/* Header */}
             <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
-              <h2 className="text-[clamp(28px,3.6vw,46px)] font-black text-[#0B0B0C] leading-[1.06] tracking-tight uppercase">
+              <h2 className="sonic-h2 text-foreground-950">
                 {tHeading.split('. ')[0]}.{' '}
-                <span className="text-[#C8D400]">
+                <span className="text-primary-500">
                   {tHeading.includes('.') ? tHeading.split('. ').slice(1).join('. ') : 'Wir feiern noch mehr.'}
                 </span>
               </h2>
@@ -125,7 +125,7 @@ export default function SonicTeamEvents() {
                   <div className="absolute inset-0 flex items-center justify-center z-10">
                     <div className="relative">
                       <div
-                        className="absolute inset-0 w-20 h-20 md:w-24 md:h-24 border border-[#C8D400]/30 animate-ping opacity-60"
+                        className="absolute inset-0 w-20 h-20 md:w-24 md:h-24 border border-primary-500/30 animate-ping opacity-60"
                         style={{ borderRadius: '50%', animationDuration: '2.5s' }}
                       />
                       <div
@@ -197,8 +197,8 @@ export default function SonicTeamEvents() {
                       <p className="text-xs font-bold text-white truncate">{ev.title}</p>
                     </div>
                     {isActive && (
-                      <div className="absolute top-2 right-2 w-5 h-5 bg-[#C8D400] flex items-center justify-center">
-                        <i className="ri-check-line text-[10px] text-[#0B0B0C] font-bold" />
+                      <div className="absolute top-2 right-2 w-5 h-5 bg-primary-500 flex items-center justify-center">
+                        <i className="ri-check-line text-[10px] text-foreground-950 font-bold" />
                       </div>
                     )}
                   </button>
@@ -219,9 +219,9 @@ export default function SonicTeamEvents() {
           <div className="px-6 pt-10 pb-8 md:px-12 md:pt-14 md:pb-10">
             {/* Header */}
             <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
-              <h2 className="text-[clamp(28px,3.6vw,46px)] font-black text-[#0B0B0C] leading-[1.06] tracking-tight uppercase">
+              <h2 className="sonic-h2 text-foreground-950">
                 {tCampusHeading.split(' ').slice(0, -1).join(' ')}{' '}
-                <span className="text-[#C8D400]">
+                <span className="text-primary-500">
                   {tCampusHeading.split(' ').slice(-1)}
                 </span>
               </h2>
@@ -261,17 +261,17 @@ export default function SonicTeamEvents() {
                     key={i}
                     className="flex items-center gap-2 px-3 py-2 bg-[#FAFDF5] border border-[#E7E4D4]"
                   >
-                    <i className={`${item.icon} text-sm text-[#C8D400]`} />
-                    <span className="text-xs font-bold text-[#0B0B0C]">{item.label}</span>
+                    <i className={`${item.icon} text-sm text-primary-500`} />
+                    <span className="text-xs font-bold text-foreground-950">{item.label}</span>
                   </div>
                 ))}
               </div>
 
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
-                  <i className="ri-map-pin-line text-lg text-[#C8D400]" />
+                  <i className="ri-map-pin-line text-lg text-primary-500" />
                   <div>
-                    <p className="font-black text-sm text-[#0B0B0C]">{tCampusAddress}</p>
+                    <p className="font-black text-sm text-foreground-950">{tCampusAddress}</p>
                     <p className="text-xs text-[#6E6E68]">{tCampusCity}</p>
                   </div>
                 </div>
@@ -279,7 +279,7 @@ export default function SonicTeamEvents() {
                   href="https://maps.google.com/?q=Campus+Fichtenhain+46,+47807+Krefeld"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#C8D400] text-[#0B0B0C] font-bold text-xs hover:bg-white transition-all duration-200 cursor-pointer whitespace-nowrap"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-primary-500 text-foreground-950 font-bold text-xs hover:bg-white transition-all duration-200 cursor-pointer whitespace-nowrap"
                 >
                   <i className="ri-map-pin-line text-sm" />
                   {tCampusRoute}

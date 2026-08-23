@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import QuizModal from './QuizModal';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const challengeData = [
   {
@@ -72,23 +73,21 @@ export default function ChallengeSection() {
 
   return (
     <>
-      <section id="losungen" className="py-10 sm:py-12 md:py-20 px-4 md:px-6 bg-white relative overflow-hidden">
+      <section id="losungen" className="sonic-section-md px-4 md:px-6 bg-white relative overflow-hidden">
         {/* Subtle background texture */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-500/3 rounded-full blur-[120px]"></div>
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-500/2 rounded-full blur-[100px]"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="sonic-container relative z-10">
           {/* Header */}
-          <div className="text-center mb-6 sm:mb-8 md:mb-14">
-            <p className="text-[10px] sm:text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-3 md:mb-4">
-              {tBadge}
-            </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight mb-3 md:mb-5">
+          <div className="sonic-section-header">
+            <SectionBadge text={tBadge} variant="dark" />
+            <h2 className="sonic-h2 text-foreground-950">
               {tHeading}
             </h2>
-            <p className="text-sm sm:text-base text-foreground-600 max-w-xl mx-auto">
+            <p className="sonic-subline">
               An welchem Punkt stehst du?
             </p>
           </div>

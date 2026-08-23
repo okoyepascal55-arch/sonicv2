@@ -180,7 +180,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
         <button
           ref={closeButtonRef}
           onClick={handleClose}
-          className="absolute top-3 right-3 z-20 w-11 h-11 flex items-center justify-center bg-[#111] hover:bg-primary-500 text-white hover:text-[#111] transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95 shadow-lg"
+          className="absolute top-3 right-3 z-20 w-11 h-11 flex items-center justify-center bg-foreground-950 hover:bg-primary-500 text-white hover:text-foreground-950 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95 shadow-lg"
           style={{ borderRadius: 0 }}
           aria-label="Quiz schließen"
         >
@@ -191,7 +191,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
         <div className="px-8 pt-8 pb-4">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 flex items-center justify-center bg-primary-500/15" style={{ borderRadius: 0 }}>
-              <i className="ri-question-line text-xl text-[#111]" />
+              <i className="ri-question-line text-xl text-foreground-950" />
             </div>
             <div>
               <p className="text-xs font-bold text-primary-500 uppercase tracking-wider">Kurz-Check</p>
@@ -214,7 +214,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
         <div className="px-8 pb-8">
           {!showContactForm && !showResult ? (
             <div>
-              <h3 className="text-xl font-black text-[#111] mb-6">{quizSteps[currentStep].question}</h3>
+              <h3 className="text-xl font-black text-foreground-950 mb-6">{quizSteps[currentStep].question}</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {quizSteps[currentStep].options.map((option, index) => (
                   <button
@@ -248,9 +248,9 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                             : '0 2px 4px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8)',
                         }}
                       >
-                        <i className={`${option.icon} text-xl transition-colors duration-300 ${hoveredOption === index ? 'text-[#111]' : 'text-foreground-500'}`} />
+                        <i className={`${option.icon} text-xl transition-colors duration-300 ${hoveredOption === index ? 'text-foreground-950' : 'text-foreground-500'}`} />
                       </div>
-                      <p className="font-bold text-[#111] text-sm flex-1">{option.label}</p>
+                      <p className="font-bold text-foreground-950 text-sm flex-1">{option.label}</p>
                       <i className={`ri-arrow-right-line text-base transition-all duration-300 ${hoveredOption === index ? 'text-primary-500 translate-x-1' : 'text-foreground-300'}`} />
                     </div>
                   </button>
@@ -268,10 +268,10 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
             // Contact capture step
             <div>
               <div className="text-center mb-6">
-                <div className="w-14 h-14 bg-primary-500/15 border-2 border-[#C8D400]/30 flex items-center justify-center mx-auto mb-4" style={{ borderRadius: 0 }}>
+                <div className="w-14 h-14 bg-primary-500/15 border-2 border-primary-500/30 flex items-center justify-center mx-auto mb-4" style={{ borderRadius: 0 }}>
                   <i className="ri-user-line text-2xl text-primary-500" />
                 </div>
-                <h3 className="text-xl font-black text-[#111] mb-2 uppercase">Fast geschafft!</h3>
+                <h3 className="text-xl font-black text-foreground-950 mb-2 uppercase">Fast geschafft!</h3>
                 <p className="text-foreground-500 text-sm">Gib deine Kontaktdaten ein, um deine persönliche Empfehlung zu sehen.</p>
               </div>
 
@@ -287,7 +287,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                   className="survey-hp-field"
                 />
                 <div>
-                  <label className="block text-xs font-black text-[#111] uppercase tracking-widest mb-2">E-Mail-Adresse <span className="text-red-500">*</span></label>
+                  <label className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">E-Mail-Adresse <span className="text-red-500">*</span></label>
                   <div className="relative">
                     <i className="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-foreground-400 text-sm" />
                     <input
@@ -296,13 +296,13 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                       value={contactData.email}
                       onChange={(e) => setContactData({ ...contactData, email: e.target.value })}
                       placeholder="your@company.com"
-                      className="w-full pl-9 pr-4 py-3 border-2 border-foreground-200 text-sm text-[#111] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-[#C8D400] transition-colors"
+                      className="w-full pl-9 pr-4 py-3 border-2 border-foreground-200 text-sm text-foreground-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-primary-500 transition-colors"
                       style={{ borderRadius: 0 }}
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-black text-[#111] uppercase tracking-widest mb-2">Telefonnummer <span className="text-foreground-400 font-normal">(Optional)</span></label>
+                  <label className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">Telefonnummer <span className="text-foreground-400 font-normal">(Optional)</span></label>
                   <div className="relative">
                     <i className="ri-phone-line absolute left-3 top-1/2 -translate-y-1/2 text-foreground-400 text-sm" />
                     <input
@@ -311,7 +311,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                       value={contactData.phone}
                       onChange={(e) => setContactData({ ...contactData, phone: e.target.value })}
                       placeholder="+49 000 000 0000"
-                      className="w-full pl-9 pr-4 py-3 border-2 border-foreground-200 text-sm text-[#111] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-[#C8D400] transition-colors"
+                      className="w-full pl-9 pr-4 py-3 border-2 border-foreground-200 text-sm text-foreground-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-primary-500 transition-colors"
                       style={{ borderRadius: 0 }}
                     />
                   </div>
@@ -324,7 +324,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
               <button
                 onClick={handleContactSubmit}
                 disabled={submitting}
-                className="w-full flex items-center justify-center gap-2 py-4 bg-[#111] text-white font-black text-sm uppercase tracking-widest hover:bg-primary-500 hover:text-white transition-all duration-300 cursor-pointer disabled:opacity-50 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
+                className="w-full flex items-center justify-center gap-2 py-4 bg-foreground-950 text-white font-black text-sm uppercase tracking-widest hover:bg-primary-500 hover:text-white transition-all duration-300 cursor-pointer disabled:opacity-50 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
                 style={{ borderRadius: 0 }}
               >
                 {submitting ? <><i className="ri-loader-4-line animate-spin" /> Wird verarbeitet…</> : <><i className="ri-lightbulb-flash-line" /> Meine Empfehlung ansehen</>}
@@ -337,12 +337,12 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
               <div className="w-16 h-16 bg-primary-500/15 flex items-center justify-center mx-auto mb-5" style={{ borderRadius: 0 }}>
                 <i className="ri-lightbulb-flash-line text-3xl text-primary-500" />
               </div>
-              <h3 className="text-2xl font-black text-[#111] mb-3">
+              <h3 className="text-2xl font-black text-foreground-950 mb-3">
                 Unsere Empfehlung: <span className="text-primary-500">{getRecommendedService().title}</span>
               </h3>
               <div className="bg-white border border-foreground-200 p-5 mb-6 text-left">
                 <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-2">Ihre Empfohlene Lösung</p>
-                <h4 className="text-lg font-black text-[#111] mb-2">{getRecommendedService().title}</h4>
+                <h4 className="text-lg font-black text-foreground-950 mb-2">{getRecommendedService().title}</h4>
                 <p className="text-foreground-500 text-sm leading-relaxed">{getRecommendedService().description}</p>
               </div>
               <p className="text-foreground-500 text-sm leading-relaxed mb-6 max-w-md mx-auto">
@@ -363,7 +363,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                 </a>
                 <button
                   onClick={handleReset}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#111] font-black text-sm transition-all duration-300 whitespace-nowrap cursor-pointer border-2 border-foreground-200 hover:border-[#C8D400] uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-foreground-950 font-black text-sm transition-all duration-300 whitespace-nowrap cursor-pointer border-2 border-foreground-200 hover:border-primary-500 uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-refresh-line text-lg" /> Neu starten

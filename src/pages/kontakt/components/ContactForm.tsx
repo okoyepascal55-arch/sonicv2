@@ -59,10 +59,10 @@ export default function ContactForm() {
       <div className="px-5 py-10 sm:px-10 md:px-14 md:py-16">
         {/* Header */}
         <div className="mb-10">
-          <p className="text-xs font-black uppercase tracking-[0.3em] text-[#C8D400] mb-3">
+          <p className="text-xs font-black uppercase tracking-[0.3em] text-primary-500 mb-3">
             Direkte Anfrage
           </p>
-          <h2 className="text-3xl md:text-4xl font-black text-[#111] leading-tight mb-3">
+          <h2 className="sonic-h2 text-foreground-950">
             SCHREIB UNS
           </h2>
           <p className="text-sm text-foreground-500 leading-relaxed max-w-md">
@@ -71,11 +71,11 @@ export default function ContactForm() {
         </div>
 
         {status === 'success' ? (
-          <div className="border border-[#C8D400]/40 bg-[#C8D400]/8 px-8 py-10 text-center">
-            <div className="w-14 h-14 mx-auto mb-5 flex items-center justify-center bg-[#C8D400]/15 border border-[#C8D400]/30">
-              <i className="ri-check-double-line text-2xl text-[#C8D400]" />
+          <div className="border border-primary-500/40 bg-primary-500/8 px-8 py-10 text-center">
+            <div className="w-14 h-14 mx-auto mb-5 flex items-center justify-center bg-primary-500/15 border border-primary-500/30">
+              <i className="ri-check-double-line text-2xl text-primary-500" />
             </div>
-            <h3 className="text-xl font-black text-[#111] mb-2 uppercase">Nachricht erhalten!</h3>
+            <h3 className="text-xl font-black text-foreground-950 mb-2 uppercase">Nachricht erhalten!</h3>
             <p className="text-sm text-foreground-500">
               Wir melden uns innerhalb von 24 Stunden bei dir.
             </p>
@@ -92,7 +92,7 @@ export default function ContactForm() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
-                  Name <span className="text-[#C8D400]">*</span>
+                  Name <span className="text-primary-500">*</span>
                 </label>
                 <input
                   id="name"
@@ -100,7 +100,7 @@ export default function ContactForm() {
                   type="text"
                   required
                   placeholder="Max Mustermann"
-                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200"
+                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-foreground-950 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-200"
                   style={{ borderRadius: 0 }}
                 />
               </div>
@@ -113,7 +113,7 @@ export default function ContactForm() {
                   name="unternehmen"
                   type="text"
                   placeholder="Muster GmbH"
-                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200"
+                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-foreground-950 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-200"
                   style={{ borderRadius: 0 }}
                 />
               </div>
@@ -123,7 +123,7 @@ export default function ContactForm() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="email" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
-                  E-Mail <span className="text-[#C8D400]">*</span>
+                  E-Mail <span className="text-primary-500">*</span>
                 </label>
                 <input
                   id="email"
@@ -131,7 +131,7 @@ export default function ContactForm() {
                   type="email"
                   required
                   placeholder="max@muster.de"
-                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200"
+                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-foreground-950 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-200"
                   style={{ borderRadius: 0 }}
                 />
               </div>
@@ -144,7 +144,7 @@ export default function ContactForm() {
                   name="telefon"
                   type="tel"
                   placeholder="+49 0000 000000"
-                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200"
+                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-foreground-950 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-200"
                   style={{ borderRadius: 0 }}
                 />
               </div>
@@ -158,7 +158,7 @@ export default function ContactForm() {
               <select
                 id="interesse"
                 name="interesse"
-                className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-[#111] focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200 cursor-pointer"
+                className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-foreground-950 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-200 cursor-pointer"
                 style={{ borderRadius: 0 }}
               >
                 <option value="">Bitte auswählen…</option>
@@ -171,7 +171,7 @@ export default function ContactForm() {
             {/* Nachricht */}
             <div>
               <label htmlFor="nachricht" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
-                Nachricht <span className="text-[#C8D400]">*</span>
+                Nachricht <span className="text-primary-500">*</span>
               </label>
               <textarea
                 id="nachricht"
@@ -181,7 +181,7 @@ export default function ContactForm() {
                 maxLength={500}
                 placeholder="Erzähl uns kurz, worum es geht…"
                 onChange={(e) => setCharCount(e.target.value.length)}
-                className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-[#111] placeholder-gray-400 focus:outline-none focus:border-[#C8D400] focus:bg-white transition-all duration-200 resize-none"
+                className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-foreground-950 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-200 resize-none"
                 style={{ borderRadius: 0 }}
               />
               <div className="flex justify-between items-center mt-1">
@@ -204,7 +204,7 @@ export default function ContactForm() {
             <button
               type="submit"
               disabled={status === 'sending' || charCount > 500}
-              className="inline-flex items-center gap-3 bg-[#C8D400] text-white px-7 py-3 font-black text-sm uppercase tracking-wider hover:bg-[#111] hover:text-[#C8D400] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+              className="inline-flex items-center gap-3 bg-primary-500 text-white px-7 py-3 font-black text-sm uppercase tracking-wider hover:bg-foreground-950 hover:text-primary-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
               style={{ borderRadius: 0 }}
             >
               {status === 'sending' ? (

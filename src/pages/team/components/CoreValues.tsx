@@ -74,8 +74,8 @@ export default function CoreValues() {
               <div className={index % 2 === 1 ? 'md:order-1' : ''}>
                 {/* Icon */}
                 <div className="mb-6 inline-block relative">
-                  <div className="w-14 h-14 flex items-center justify-center bg-[#C8D400]/20 border-2 border-[#C8D400]/40" style={{ borderRadius: 0 }}>
-                    <i className={`${value.icon} text-2xl text-[#C8D400]`}></i>
+                  <div className="w-14 h-14 flex items-center justify-center bg-primary-500/20 border-2 border-primary-500/40" style={{ borderRadius: 0 }}>
+                    <i className={`${value.icon} text-2xl text-primary-500`}></i>
                   </div>
                 </div>
                 
@@ -83,7 +83,7 @@ export default function CoreValues() {
                   {value.title}
                 </h3>
                 
-                <p className="text-base text-[#C8D400] font-black mb-5 mt-2 uppercase tracking-wide">
+                <p className="text-base text-primary-500 font-black mb-5 mt-2 uppercase tracking-wide">
                   {value.subtitle}
                 </p>
                 

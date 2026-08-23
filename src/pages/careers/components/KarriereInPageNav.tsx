@@ -94,8 +94,8 @@ export default function KarriereInPageNav({ heroRef }: Props) {
       style={{ top: `${MAIN_NAV_H}px` }}
     >
       {/* Top accent line */}
-      <div className="h-[2px] bg-[#0B0B0C] w-full" />
-      <div className="bg-[#0B0B0C]">
+      <div className="h-[2px] bg-foreground-950 w-full" />
+      <div className="bg-foreground-950">
         <div className="max-w-[1200px] mx-auto px-8">
           <div
             ref={navBarRef}
@@ -112,7 +112,7 @@ export default function KarriereInPageNav({ heroRef }: Props) {
                   className={`
                     relative flex-shrink-0 px-4 py-[14px] text-[12px] font-bold uppercase tracking-[0.07em]
                     whitespace-nowrap cursor-pointer transition-all duration-200
-                    ${isActive ? 'text-[#C8D400]' : 'text-[#9A9A93] hover:text-white'}
+                    ${isActive ? 'text-primary-500' : 'text-foreground-400 hover:text-white'}
                   `}
                   style={{ borderRadius: 0, background: 'none', border: 'none' }}
                 >
@@ -124,7 +124,7 @@ export default function KarriereInPageNav({ heroRef }: Props) {
             {/* Sliding underline indicator */}
             <div
               ref={indicatorRef}
-              className="absolute bottom-0 h-[2px] bg-[#C8D400] transition-all duration-300 ease-out pointer-events-none"
+              className="absolute bottom-0 h-[2px] bg-primary-500 transition-all duration-300 ease-out pointer-events-none"
               style={{ left: indicatorStyle.left, width: indicatorStyle.width }}
             />
           </div>

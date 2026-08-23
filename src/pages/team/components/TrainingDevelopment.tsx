@@ -39,7 +39,7 @@ export default function TrainingDevelopment() {
         <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
           <div>
             <SectionBadge text={tBadge} variant="light" className="mb-6" />
-            <h2 className="text-3xl md:text-5xl font-black text-foreground-950 mb-5 leading-tight tracking-tight">
+            <h2 className="sonic-h2 text-foreground-950 mb-5">
               {tHeading}
             </h2>
             <p className="text-base md:text-lg text-foreground-600 mb-10 leading-relaxed">
@@ -50,11 +50,11 @@ export default function TrainingDevelopment() {
               {programs.map((program, index) => (
                 <div
                   key={index}
-                  className="flex gap-4 p-5 bg-white border border-foreground-100 hover:border-[#C8D400]/40 hover:bg-white transition-all duration-300"
+                  className="flex gap-4 p-5 bg-white border border-foreground-100 hover:border-primary-500/40 hover:bg-white transition-all duration-300"
                   style={{ borderRadius: 0 }}
                 >
-                  <div className="w-10 h-10 flex items-center justify-center bg-[#C8D400]/15 flex-shrink-0" style={{ borderRadius: 0 }}>
-                    <i className={`${program.icon} text-lg text-[#C8D400]`}></i>
+                  <div className="w-10 h-10 flex items-center justify-center bg-primary-500/15 flex-shrink-0" style={{ borderRadius: 0 }}>
+                    <i className={`${program.icon} text-lg text-primary-500`}></i>
                   </div>
                   <div>
                     <h3 className="text-sm font-black text-foreground-950 mb-1 uppercase tracking-wide leading-tight">{program.title}</h3>
@@ -75,7 +75,7 @@ export default function TrainingDevelopment() {
               />
             </div>
             {/* Lime accent corner */}
-            <div className="absolute -bottom-3 -right-3 w-24 h-24 bg-[#C8D400]/15 border-2 border-[#C8D400]/30 -z-10" style={{ borderRadius: 0 }} />
+            <div className="absolute -bottom-3 -right-3 w-24 h-24 bg-primary-500/15 border-2 border-primary-500/30 -z-10" style={{ borderRadius: 0 }} />
           </div>
         </div>
       </div>

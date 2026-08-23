@@ -280,7 +280,7 @@ function FilmCountdown({ onDone }: { onDone: () => void }) {
               {count}
             </span>
           ) : (
-            <i className="ri-film-line text-[#C8D400]" style={{ fontSize: '4rem' }} />
+            <i className="ri-film-line text-primary-500" style={{ fontSize: '4rem' }} />
           )}
         </div>
         <span className="font-black uppercase tracking-[0.5em]" style={{ fontSize: '0.6rem', color: 'rgba(200,212,0,0.5)', fontFamily: 'monospace' }}>
@@ -357,9 +357,9 @@ export default function SonicReelsPage() {
           style={{ opacity: splashVisible ? 1 : 0, transform: splashVisible ? 'none' : 'translateY(16px)', transition: 'all 0.8s ease' }}
         >
           <div className="inline-flex items-center gap-2.5 mb-3">
-            <div className="h-px w-6 bg-[#C8D400]/40" />
-            <span className="text-[#C8D400]/60 text-[10px] font-black uppercase tracking-[0.3em]">{splashSub}</span>
-            <div className="h-px w-6 bg-[#C8D400]/40" />
+            <div className="h-px w-6 bg-primary-500/40" />
+            <span className="text-primary-500/60 text-[10px] font-black uppercase tracking-[0.3em]">{splashSub}</span>
+            <div className="h-px w-6 bg-primary-500/40" />
           </div>
           <h1 className="font-black text-white leading-none uppercase" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}>
             {pageTitle} <span style={{ color: '#C8D400' }}>{pageTitleAccent}</span>
@@ -393,7 +393,7 @@ export default function SonicReelsPage() {
           {/* Label */}
           <div className="flex items-center justify-center gap-4 mb-10">
             <div className="h-px w-16" style={{ background: 'linear-gradient(to left, transparent, rgba(200,212,0,0.35))' }} />
-            <span className="text-[#C8D400] text-xs font-black uppercase tracking-[0.4em]">{endLabel}</span>
+            <span className="text-primary-500 text-xs font-black uppercase tracking-[0.4em]">{endLabel}</span>
             <div className="h-px w-16" style={{ background: 'linear-gradient(to right, transparent, rgba(200,212,0,0.35))' }} />
           </div>
 

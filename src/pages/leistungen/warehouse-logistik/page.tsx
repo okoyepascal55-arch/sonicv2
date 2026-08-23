@@ -159,25 +159,25 @@ export default function WarehouseLogistikPage() {
             <div className="flex items-center justify-center gap-2 mb-5 md:mb-6 opacity-60">
               <span className="text-white/50 text-xs font-bold">Leistungen</span>
               <i className="ri-arrow-right-s-line text-white/40 text-sm"></i>
-              <span className="text-[#C8D400] text-xs font-bold">Warehouse & Logistik</span>
+              <span className="text-primary-500 text-xs font-bold">Warehouse & Logistik</span>
             </div>
             <div className="mb-6 md:mb-8 flex justify-center">
               <LimeBadge text={tHeroBadge} />
             </div>
             <h1 className="text-3xl md:text-5xl lg:text-7xl font-black text-white mb-4 md:mb-6 leading-tight">
-              {tHeroH1Line1}<br /><span className="text-[#C8D400]">{tHeroH1Accent}</span>
+              {tHeroH1Line1}<br /><span className="text-primary-500">{tHeroH1Accent}</span>
             </h1>
             <p className="text-base md:text-lg text-white/80 mb-3 md:mb-4 font-semibold">{tHeroSubtitle}</p>
             <p className="text-sm text-white/55 max-w-2xl mx-auto leading-relaxed mb-8 md:mb-10">{tHeroDesc}</p>
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 mb-8 md:mb-10">
               {STATS.map((s, i) => (
                 <div key={i} className="text-center">
-                  <div className="text-xl md:text-2xl font-black text-[#C8D400]">{s.val}</div>
+                  <div className="text-xl md:text-2xl font-black text-primary-500">{s.val}</div>
                   <div className="text-white/45 text-xs font-bold uppercase tracking-wider mt-1">{s.label}</div>
                 </div>
               ))}
             </div>
-            <a href={`mailto:${CONTACT_EMAIL}?subject=Warehouse%20Logistik%20Beratung`} className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm" style={{ borderRadius: 0 }}>
+            <a href={`mailto:${CONTACT_EMAIL}?subject=Warehouse%20Logistik%20Beratung`} className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm" style={{ borderRadius: 0 }}>
               <i className="ri-calendar-line"></i>Termin finden
             </a>
           </div>
@@ -200,12 +200,12 @@ export default function WarehouseLogistikPage() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative max-w-6xl mx-auto">
           <div className="mb-10 md:mb-12">
-            <div className="inline-flex items-center gap-2 bg-[#111]/8 border border-[#111]/15 px-4 py-1.5 mb-5">
-              <i className="ri-check-double-line text-[#111] text-sm"></i>
-              <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Lösung</span>
+            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+              <i className="ri-check-double-line text-foreground-950 text-sm"></i>
+              <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black text-[#111] mb-3 leading-tight uppercase">Warehousing und Logistik als<br /><span className="text-[#C8D400]">integraler Baustein.</span></h2>
-            <p className="text-[#111]/50 text-sm md:text-base max-w-2xl">Einlagerung, Bereitstellung, Auslagerung, Anlieferung und Aufbau deiner Produkte, Werbematerialien, Messestände etc. Als Teil des Sonic Gesamtpakts.</p>
+            <h2 className="text-3xl md:text-5xl font-black text-foreground-950 mb-3 leading-tight uppercase">Warehousing und Logistik als<br /><span className="text-primary-500">integraler Baustein.</span></h2>
+            <p className="text-foreground-950/50 text-sm md:text-base max-w-2xl">Einlagerung, Bereitstellung, Auslagerung, Anlieferung und Aufbau deiner Produkte, Werbematerialien, Messestände etc. Als Teil des Sonic Gesamtpakts.</p>
           </div>
           <ScrollCardSection data={SOLUTIONS} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="remix" cardMinHeight="320px" showWoodIcon={false} />
         </div>
@@ -215,14 +215,14 @@ export default function WarehouseLogistikPage() {
       <section id="beispiele" className="bg-white py-14 md:py-20 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-8 md:mb-10">
-            <div className="inline-flex items-center gap-2 bg-[#111]/8 border border-[#111]/12 px-4 py-1.5 mb-5">
-              <i className="ri-image-line text-[#111] text-sm"></i>
-              <span className="text-xs font-black text-[#111] uppercase tracking-widest">Was wir lagern</span>
+            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/12 px-4 py-1.5 mb-5">
+              <i className="ri-image-line text-foreground-950 text-sm"></i>
+              <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Was wir lagern</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black text-[#111] leading-tight mb-2 uppercase">
+            <h2 className="text-3xl md:text-5xl font-black text-foreground-950 leading-tight mb-2 uppercase">
               Alles unter einem Dach.
             </h2>
-            <p className="text-[#111]/50 text-sm md:text-base">Jederzeit abrufbar. Europaweit lieferbar.</p>
+            <p className="text-foreground-950/50 text-sm md:text-base">Jederzeit abrufbar. Europaweit lieferbar.</p>
           </div>
 
           {/* Pill tabs */}
@@ -233,8 +233,8 @@ export default function WarehouseLogistikPage() {
                 onClick={() => setActiveItem(i)}
                 className={`flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 font-bold text-xs md:text-sm transition-all whitespace-nowrap cursor-pointer ${
                   activeItem === i
-                    ? 'bg-[#111] text-[#C8D400]'
-                    : 'bg-white hover:bg-white text-[#111]/60 border border-[#111]/10'
+                    ? 'bg-foreground-950 text-primary-500'
+                    : 'bg-white hover:bg-white text-foreground-950/60 border border-[#111]/10'
                 }`}
                 style={{ borderRadius: 0 }}
               >
@@ -259,7 +259,7 @@ export default function WarehouseLogistikPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute top-4 left-4">
-                <span className="bg-primary-500 text-[#111] text-[10px] font-black uppercase tracking-widest px-3 py-1">{WAREHOUSE_ITEMS[activeItem].tag}</span>
+                <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">{WAREHOUSE_ITEMS[activeItem].tag}</span>
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
                 <h3 className="text-lg md:text-xl font-black text-white mb-1 uppercase">{WAREHOUSE_ITEMS[activeItem].title}</h3>
@@ -267,18 +267,18 @@ export default function WarehouseLogistikPage() {
               </div>
             </div>
             <div className="lg:col-span-4 bg-white border-t lg:border-t-0 lg:border-l border-[#111]/10 p-6 md:p-8 flex flex-col justify-center lg:h-[380px] overflow-y-auto">
-              <div className="text-[10px] font-black text-[#111]/40 uppercase tracking-widest mb-4">Alle Kategorien</div>
+              <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-4">Alle Kategorien</div>
               <div className="space-y-2">
                 {WAREHOUSE_ITEMS.map((item, i) => (
                   <button
                     key={i}
                     onClick={() => setActiveItem(i)}
-                    className={`w-full flex items-center gap-3 p-3 text-left transition-all duration-200 cursor-pointer ${activeItem === i ? 'bg-[#111] text-white' : 'bg-white text-[#111]/70 hover:bg-white'}`}
+                    className={`w-full flex items-center gap-3 p-3 text-left transition-all duration-200 cursor-pointer ${activeItem === i ? 'bg-foreground-950 text-white' : 'bg-white text-foreground-950/70 hover:bg-white'}`}
                     style={{ borderRadius: 0, outline: activeItem === i ? 'none' : '1px solid rgba(0,0,0,0.08)' }}
                   >
                     {activeItem === i && (
                       <div className="w-4 h-4 flex items-center justify-center bg-primary-500 flex-shrink-0">
-                        <i className="ri-check-line text-[#111] text-[9px]"></i>
+                        <i className="ri-check-line text-foreground-950 text-[9px]"></i>
                       </div>
                     )}
                     <span className="text-xs font-bold">{item.title}</span>
@@ -293,26 +293,26 @@ export default function WarehouseLogistikPage() {
       <WoodenDivider />
 
       {/* Full Service */}
-      <section id="full-service" className="bg-[#111] py-14 md:py-20 px-4 md:px-6 relative overflow-hidden">
+      <section id="full-service" className="bg-foreground-950 py-14 md:py-20 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
         <div className="relative max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5 md:mb-6">
-                <i className="ri-shield-check-line text-[#C8D400] text-sm"></i>
-                <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Full Service</span>
+              <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5 md:mb-6">
+                <i className="ri-shield-check-line text-primary-500 text-sm"></i>
+                <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Full Service</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-4 md:mb-6 leading-tight uppercase">Darum Warehouse<br /><span className="text-[#C8D400]">bei Sonic.</span></h2>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-4 md:mb-6 leading-tight uppercase">Darum Warehouse<br /><span className="text-primary-500">bei Sonic.</span></h2>
               <p className="text-white/65 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
                 Unsere Lager- und Logistikleistungen dienen einem Zweck: Dein Projekt erfolgreich realisieren. POS-Material, Give-aways, Möbel und Equipment werden von uns produziert und unterliegen unserer Qualitätskontrolle. Diese gelingt effizient, wenn wir das Lager direkt nebenan haben.
               </p>
               <p className="text-white/65 text-sm md:text-base leading-relaxed mb-6 md:mb-8">
                 Für deine Ware, also Muster etc., ist es ebenfalls ideal, wenn wir ein Auge darauf haben. So stellen wir sicher, dass alle physischen Bausteine deines Projekts zur richtigen Zeit an den richtigen Ort gelangen können.
               </p>
-              <div className="grid grid-cols-3 gap-0 border border-[#C8D400]/15">
+              <div className="grid grid-cols-3 gap-0 border border-primary-500/15">
                 {STATS.map((s, i) => (
-                  <div key={i} className={`p-4 md:p-5 text-center ${i < 2 ? 'border-r border-[#C8D400]/15' : ''}`}>
-                    <div className="text-base md:text-xl font-black text-[#C8D400]">{s.val}</div>
+                  <div key={i} className={`p-4 md:p-5 text-center ${i < 2 ? 'border-r border-primary-500/15' : ''}`}>
+                    <div className="text-base md:text-xl font-black text-primary-500">{s.val}</div>
                     <div className="text-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-wider mt-1">{s.label}</div>
                   </div>
                 ))}
@@ -328,7 +328,7 @@ export default function WarehouseLogistikPage() {
                 style={{ minHeight: '300px' }}
               />
               <div className="absolute top-4 left-4 bg-primary-500 px-3 md:px-4 py-2">
-                <span className="text-[#111] text-xs font-black uppercase tracking-widest">~500 qm Lagerfläche</span>
+                <span className="text-foreground-950 text-xs font-black uppercase tracking-widest">~500 qm Lagerfläche</span>
               </div>
             </div>
           </div>

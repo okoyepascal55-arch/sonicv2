@@ -169,7 +169,7 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
 
         {/* Quote */}
         <div className="flex-1 mb-5">
-          <i className="ri-double-quotes-l text-3xl text-[#C8D400]/40 block mb-2" />
+          <i className="ri-double-quotes-l text-3xl text-primary-500/40 block mb-2" />
           <p className="text-foreground-700 leading-relaxed text-sm italic">{item.quote}</p>
         </div>
 
@@ -241,7 +241,7 @@ export default function LeistungenTestimonials() {
               onClick={() => scroll('left')}
               disabled={!canScrollLeft}
               aria-label="Vorheriges Testimonial"
-              className="w-10 h-10 flex items-center justify-center border-2 border-foreground-200 hover:border-[#C8D400] hover:bg-primary-500 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-none"
+              className="w-10 h-10 flex items-center justify-center border-2 border-foreground-200 hover:border-primary-500 hover:bg-primary-500 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-none"
             >
               <i className="ri-arrow-left-line text-base text-foreground-950" />
             </button>
@@ -249,7 +249,7 @@ export default function LeistungenTestimonials() {
               onClick={() => scroll('right')}
               disabled={!canScrollRight}
               aria-label="Nächstes Testimonial"
-              className="w-10 h-10 flex items-center justify-center border-2 border-foreground-200 hover:border-[#C8D400] hover:bg-primary-500 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-none"
+              className="w-10 h-10 flex items-center justify-center border-2 border-foreground-200 hover:border-primary-500 hover:bg-primary-500 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-none"
             >
               <i className="ri-arrow-right-line text-base text-foreground-950" />
             </button>

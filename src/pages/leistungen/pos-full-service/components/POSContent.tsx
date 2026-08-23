@@ -163,28 +163,28 @@ export default function POSContent() {
 
       {/* Solution */}
       <section id="loesung" className="bg-white py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[400px] bg-[#C8D400]/6 blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[600px] h-[400px] bg-primary-500/6 blur-[120px] pointer-events-none" />
         <div className="relative max-w-6xl mx-auto">
           <div className="mb-10 md:mb-14 text-center">
-            <div className="inline-flex items-center gap-2 bg-[#111]/8 border border-[#111]/15 px-4 py-1.5 mb-5">
-              <i className="ri-check-double-line text-[#111] text-sm"></i>
-              <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Lösung</span>
+            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+              <i className="ri-check-double-line text-foreground-950 text-sm"></i>
+              <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-[#111] mb-3 leading-tight uppercase">{tSolutionHeading}</h2>
-            <p className="text-[#111]/55 text-sm md:text-base max-w-2xl mx-auto">{tSolutionSub}</p>
+            <h2 className="text-4xl lg:text-5xl font-black text-foreground-950 mb-3 leading-tight uppercase">{tSolutionHeading}</h2>
+            <p className="text-foreground-950/55 text-sm md:text-base max-w-2xl mx-auto">{tSolutionSub}</p>
           </div>
           <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="wood" cardMinHeight="340px" />
         </div>
       </section>
 
       {/* Assets with scrollable images */}
-      <section id="beispiele" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="beispiele" className="bg-foreground-950 py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#C8D400]/4 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto">
           <div className="mb-10 md:mb-12 text-center">
-            <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
               <i className="ri-stack-line text-primary-500 text-sm"></i>
               <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Alle Assets</span>
             </div>
@@ -199,7 +199,7 @@ export default function POSContent() {
                 key={i}
                 onClick={() => handleAssetChange(i)}
                 className={`flex items-center gap-2 px-4 py-3 text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all duration-300 cursor-pointer border-r border-white/10 last:border-r-0 flex-shrink-0 ${
-                  activeAsset === i ? 'bg-[#C8D400] text-[#111]' : 'bg-transparent text-white/40 hover:text-white hover:bg-white/5'
+                  activeAsset === i ? 'bg-primary-500 text-foreground-950' : 'bg-transparent text-white/40 hover:text-white hover:bg-white/5'
                 }`}
               >
                 <i className={`${a.icon} text-sm`}></i>
@@ -221,8 +221,8 @@ export default function POSContent() {
                   <img src={img} alt="" className="w-full h-full object-cover object-top" loading="lazy" decoding="async" style={{ minHeight: '90px' }} />
                   <div className="absolute inset-0 bg-black/30" />
                   {activeAssetImg === i && (
-                    <div className="absolute bottom-2 right-2 w-4 h-4 flex items-center justify-center bg-[#C8D400]">
-                      <i className="ri-check-line text-[#111] text-xs"></i>
+                    <div className="absolute bottom-2 right-2 w-4 h-4 flex items-center justify-center bg-primary-500">
+                      <i className="ri-check-line text-foreground-950 text-xs"></i>
                     </div>
                   )}
                 </button>
@@ -243,12 +243,12 @@ export default function POSContent() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute top-3 left-3">
-                  <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-2 py-1">{resolvedAssetCategories[activeAsset].category}</span>
+                  <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-2 py-1">{resolvedAssetCategories[activeAsset].category}</span>
                 </div>
               </div>
               <div className="lg:col-span-5 bg-[#161616] p-5 md:p-8 border-t lg:border-t-0 lg:border-l border-white/10 lg:h-[300px] overflow-y-auto">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center bg-[#C8D400]/15 border border-[#C8D400]/30">
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center bg-primary-500/15 border border-primary-500/30">
                     <i className={`${resolvedAssetCategories[activeAsset].icon} text-base text-primary-500`}></i>
                   </div>
                   <h3 className="text-base font-black text-white uppercase">{resolvedAssetCategories[activeAsset].category}</h3>
@@ -256,8 +256,8 @@ export default function POSContent() {
                 <div className="space-y-2.5">
                   {resolvedAssetCategories[activeAsset].items.map((item, i) => (
                     <div key={i} className="flex items-start gap-2.5">
-                      <div className="w-4 h-4 flex items-center justify-center bg-[#C8D400] flex-shrink-0 mt-0.5 rounded-full">
-                        <i className="ri-check-line text-[#111] text-xs"></i>
+                      <div className="w-4 h-4 flex items-center justify-center bg-primary-500 flex-shrink-0 mt-0.5 rounded-full">
+                        <i className="ri-check-line text-foreground-950 text-xs"></i>
                       </div>
                       <span className="text-white/55 text-sm leading-relaxed">{item}</span>
                     </div>
@@ -270,14 +270,14 @@ export default function POSContent() {
       </section>
 
       {/* Process with images */}
-      <section id="arbeitsweise" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="arbeitsweise" className="bg-foreground-950 py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#C8D400]/4 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
 
         <div className="relative max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12 md:mb-16">
-            <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
               <i className="ri-route-line text-primary-500 text-sm" />
               <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Ablauf</span>
             </div>
@@ -290,11 +290,11 @@ export default function POSContent() {
             {/* Desktop: full circle timeline */}
             <div className="hidden md:block">
               <div className="absolute top-[28px] left-[8.33%] right-[8.33%] h-px bg-white/10" />
-              <div className="absolute top-[28px] left-[8.33%] h-px bg-[#C8D400] transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
+              <div className="absolute top-[28px] left-[8.33%] h-px bg-primary-500 transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
               <div className="grid grid-cols-6 gap-2">
                 {STEPS.map((step, i) => (
                   <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
-                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111] shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-[#111] border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
+                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950 shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
                       <i className={`${step.icon} text-xl`} />
                     </div>
                     <span className={`mt-3 text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeStep === i ? 'text-primary-500' : 'text-white/30'}`}>{step.num}</span>
@@ -307,7 +307,7 @@ export default function POSContent() {
             <div className="md:hidden flex gap-2 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
               {STEPS.map((step, i) => (
                 <button key={i} onClick={() => setActiveStep(i)}
-                  className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2.5 border transition-all duration-300 cursor-pointer ${activeStep === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111]' : 'bg-[#111] border-white/20 text-white/50'}`}>
+                  className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2.5 border transition-all duration-300 cursor-pointer ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950' : 'bg-foreground-950 border-white/20 text-white/50'}`}>
                   <i className={`${step.icon} text-base`} />
                   <span className="text-[9px] font-black uppercase tracking-wide whitespace-nowrap">{step.num}</span>
                 </button>
@@ -329,11 +329,11 @@ export default function POSContent() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/40" />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-3 py-1">Schritt {STEPS[activeStep].num}</span>
+                  <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">Schritt {STEPS[activeStep].num}</span>
                 </div>
                 <div className="absolute bottom-4 left-4 flex gap-1.5">
                   {STEPS.map((_, i) => (
-                    <button key={i} onClick={() => setActiveStep(i)} className={`h-1 transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-[#C8D400]' : 'w-3 bg-white/40'}`} />
+                    <button key={i} onClick={() => setActiveStep(i)} className={`h-1 transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-primary-500' : 'w-3 bg-white/40'}`} />
                   ))}
                 </div>
               </div>
@@ -342,7 +342,7 @@ export default function POSContent() {
               <div className="md:col-span-7 p-8 md:p-12 flex flex-col justify-center min-h-[240px] md:min-h-[380px]">
                 <div className="flex items-center gap-3 mb-5">
                   <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {STEPS[activeStep].num}</span>
-                  <span className="px-3 py-1.5 bg-[#C8D400] text-[#111] text-xs font-black">{STEPS[activeStep].time}</span>
+                  <span className="px-3 py-1.5 bg-primary-500 text-foreground-950 text-xs font-black">{STEPS[activeStep].time}</span>
                 </div>
                 <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight">{STEPS[activeStep].title}</h3>
                 <p className="text-white/55 text-sm md:text-base leading-relaxed">{STEPS[activeStep].desc}</p>
@@ -358,7 +358,7 @@ export default function POSContent() {
                   </button>
                   <div className="flex gap-2">
                     {STEPS.map((_, i) => (
-                      <button key={i} onClick={() => setActiveStep(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-[#C8D400]' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
+                      <button key={i} onClick={() => setActiveStep(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-primary-500' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
                     ))}
                   </div>
                   <button

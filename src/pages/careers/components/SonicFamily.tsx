@@ -107,13 +107,13 @@ export default function SonicFamily() {
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
         {/* ── HEADER ── */}
         <div className="max-w-[640px] mb-10 md:mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-xs font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-5">
-            <span className="w-1.5 h-1.5 bg-[#0B0B0C] flex-shrink-0" />
+          <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-[0.06em] px-3.5 py-[7px] mb-5">
+            <span className="w-1.5 h-1.5 bg-foreground-950 flex-shrink-0" />
             {tBadge}
           </div>
-          <h2 className="text-[clamp(28px,3.6vw,46px)] font-black text-[#0B0B0C] leading-[1.06] tracking-tight uppercase">
+          <h2 className="sonic-h2 text-foreground-950">
             {headingMain}{' '}
-            {headingAccent && <span className="text-[#C8D400]">{headingAccent}</span>}
+            {headingAccent && <span className="text-primary-500">{headingAccent}</span>}
           </h2>
           <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[520px]">{tSub}</p>
         </div>
@@ -121,7 +121,7 @@ export default function SonicFamily() {
         {/* ── SPLIT CARD (portrait + dark panel) ── */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] bg-white border border-[#E7E4D4] overflow-hidden">
           {/* Left — full-bleed portrait */}
-          <div className="relative min-h-[320px] sm:min-h-[420px] lg:min-h-[560px] bg-[#0B0B0C]">
+          <div className="relative min-h-[320px] sm:min-h-[420px] lg:min-h-[560px] bg-foreground-950">
             <img
               key={`face-${face.id}`}
               src={face.image}
@@ -131,7 +131,7 @@ export default function SonicFamily() {
               }`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C] via-[#0B0B0C]/20 to-transparent" />
-            <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-[#C8D400] text-[#0B0B0C] text-[10px] font-black uppercase tracking-widest px-3 py-1">
+            <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">
               {face.role}
             </div>
             <div className="absolute bottom-0 left-0 right-0 p-7">
@@ -139,18 +139,18 @@ export default function SonicFamily() {
                 {face.name}
               </div>
               <div className="mt-3 flex items-center gap-2">
-                <span className="w-1 h-1 bg-[#C8D400]" />
+                <span className="w-1 h-1 bg-primary-500" />
                 <span className="text-sm font-black text-white">{face.location}</span>
-                <span className="w-1 h-1 bg-[#C8D400]/50" />
+                <span className="w-1 h-1 bg-primary-500/50" />
                 <span className="text-xs text-white/50 font-bold uppercase tracking-wider">{face.since}</span>
               </div>
             </div>
           </div>
 
           {/* Right — dark ink panel */}
-          <div className="bg-[#0B0B0C] p-8 md:p-12 flex flex-col justify-between">
+          <div className="bg-foreground-950 p-8 md:p-12 flex flex-col justify-between">
             <div>
-              <div className="text-[#C8D400] text-[10px] font-black uppercase tracking-[0.3em] mb-5">
+              <div className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-5">
                 {String(idx + 1).padStart(2, '0')} / {String(FACES.length).padStart(2, '0')}
               </div>
 
@@ -162,7 +162,7 @@ export default function SonicFamily() {
               </blockquote>
 
               <div className="inline-flex items-baseline gap-3 border border-white/10 px-5 py-4">
-                <span className="text-3xl font-black text-[#C8D400] leading-none tabular-nums">{face.metric}</span>
+                <span className="text-3xl font-black text-primary-500 leading-none tabular-nums">{face.metric}</span>
                 <span className="text-[11px] text-white/45 font-bold uppercase tracking-wider">{face.metricLabel}</span>
               </div>
             </div>
@@ -172,14 +172,14 @@ export default function SonicFamily() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => goTo((idx - 1 + FACES.length) % FACES.length)}
-                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-[#C8D400] hover:text-[#0B0B0C] border border-white/15 text-white/60"
+                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-primary-500 hover:text-foreground-950 border border-white/15 text-white/60"
                   aria-label="Vorherige Geschichte"
                 >
                   <i className="ri-arrow-left-line" />
                 </button>
                 <button
                   onClick={() => goTo((idx + 1) % FACES.length)}
-                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-[#C8D400] hover:text-[#0B0B0C] border border-white/15 text-white/60"
+                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-primary-500 hover:text-foreground-950 border border-white/15 text-white/60"
                   aria-label="Nächste Geschichte"
                 >
                   <i className="ri-arrow-right-line" />
@@ -205,8 +205,8 @@ export default function SonicFamily() {
                   aria-pressed={isActive}
                   className={`flex items-center gap-2.5 p-2 text-left cursor-pointer transition-colors duration-200 border ${
                     isActive
-                      ? 'bg-[#0B0B0C] border-[#0B0B0C]'
-                      : 'bg-white border-transparent hover:border-[#C8D400]/50'
+                      ? 'bg-foreground-950 border-[#0B0B0C]'
+                      : 'bg-white border-transparent hover:border-primary-500/50'
                   }`}
                 >
                   <div className="w-9 h-9 overflow-hidden flex-shrink-0">
@@ -219,10 +219,10 @@ export default function SonicFamily() {
                     />
                   </div>
                   <div className="min-w-0">
-                    <div className={`text-xs font-black truncate ${isActive ? 'text-white' : 'text-[#0B0B0C]'}`}>
+                    <div className={`text-xs font-black truncate ${isActive ? 'text-white' : 'text-foreground-950'}`}>
                       {f.name}
                     </div>
-                    <div className={`text-[10px] uppercase tracking-wide truncate ${isActive ? 'text-[#C8D400]' : 'text-[#9A9A93]'}`}>
+                    <div className={`text-[10px] uppercase tracking-wide truncate ${isActive ? 'text-primary-500' : 'text-foreground-400'}`}>
                       {f.role}
                     </div>
                   </div>
@@ -236,8 +236,8 @@ export default function SonicFamily() {
         <div className="max-w-5xl mx-auto mt-8 md:mt-10">
           <div className="border border-[#E7E4D4] py-6 md:py-7 px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAFDF5]">
             <div className="text-center sm:text-left">
-              <p className="text-sm md:text-[15px] font-black text-[#0B0B0C] leading-relaxed">
-                Willst du auch Teil von <span className="text-[#C8D400]">Sonic Spirit &amp; Faces</span> werden?
+              <p className="text-sm md:text-[15px] font-black text-foreground-950 leading-relaxed">
+                Willst du auch Teil von <span className="text-primary-500">Sonic Spirit &amp; Faces</span> werden?
               </p>
               <p className="text-xs text-[#6E6E68] mt-1 hidden sm:block">
                 Wir suchen Menschen, die ihre Geschichte teilen — 15 Minuten, ehrliche Fragen, kein Drehbuch.
@@ -245,7 +245,7 @@ export default function SonicFamily() {
             </div>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-flex items-center gap-2 bg-[#0B0B0C] text-white px-6 py-3 font-black hover:bg-[#C8D400] hover:text-[#0B0B0C] transition-colors duration-300 whitespace-nowrap cursor-pointer text-xs flex-shrink-0"
+              className="inline-flex items-center gap-2 bg-foreground-950 text-white px-6 py-3 font-black hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-300 whitespace-nowrap cursor-pointer text-xs flex-shrink-0"
             >
               <i className="ri-user-add-line text-sm" />
               {tCta}

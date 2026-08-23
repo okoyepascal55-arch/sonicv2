@@ -21,9 +21,9 @@ export default function RatgeberCTA({ headline, headlineAccent, subline }: Ratge
                 <span className="text-xs font-black text-foreground-950/50 uppercase tracking-widest">Jetzt starten</span>
               </div>
 
-              <h2 className="text-3xl font-black text-foreground-950 mb-4 leading-tight">
+              <h2 className="sonic-h2 text-foreground-950 mb-4">
                 {headline}<br />
-                <span className="text-[#C8D400]">{headlineAccent}</span>
+                <span className="text-primary-500">{headlineAccent}</span>
               </h2>
 
               <p className="text-foreground-950/55 text-base leading-relaxed">{subline}</p>
@@ -33,7 +33,7 @@ export default function RatgeberCTA({ headline, headlineAccent, subline }: Ratge
               <button
                 type="button"
                 onClick={() => openCalendly()}
-                className="inline-flex items-center gap-3 bg-foreground-950 text-white px-10 py-5 font-black hover:bg-primary-500 hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
+                className="inline-flex items-center gap-3 bg-foreground-950 text-white px-10 py-5 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
                 style={{ borderRadius: 0 }}
               >
                 <i className="ri-calendar-line text-base"></i>

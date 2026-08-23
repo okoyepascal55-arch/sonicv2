@@ -45,8 +45,8 @@ export default function ImpactMetrics() {
 
   return (
     <section className="py-12 md:py-20 px-4 md:px-6 bg-foreground-950 text-white relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-96 h-96 bg-[#C8D400]/8 blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#C8D400]/8 blur-3xl pointer-events-none"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-primary-500/8 blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-500/8 blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -95,13 +95,13 @@ export default function ImpactMetrics() {
               </svg>
 
               {/* Hover glow bg */}
-              <div className={`absolute inset-0 bg-[#C8D400]/5 transition-opacity duration-500 pointer-events-none ${hoveredCard === index ? 'opacity-100' : 'opacity-0'}`}></div>
+              <div className={`absolute inset-0 bg-primary-500/5 transition-opacity duration-500 pointer-events-none ${hoveredCard === index ? 'opacity-100' : 'opacity-0'}`}></div>
 
               <div className="relative z-10">
-                <div className="w-12 h-12 flex items-center justify-center bg-[#C8D400]/15 mb-5 group-hover:bg-[#C8D400]/25 transition-colors duration-300" style={{ borderRadius: 0 }}>
-                  <i className={`${metric.icon} text-2xl text-[#C8D400]`}></i>
+                <div className="w-12 h-12 flex items-center justify-center bg-primary-500/15 mb-5 group-hover:bg-primary-500/25 transition-colors duration-300" style={{ borderRadius: 0 }}>
+                  <i className={`${metric.icon} text-2xl text-primary-500`}></i>
                 </div>
-                <div className="text-4xl font-black text-[#C8D400] mb-2 leading-none">{metric.value}</div>
+                <div className="text-4xl font-black text-primary-500 mb-2 leading-none">{metric.value}</div>
                 <div className="text-sm font-black text-white uppercase tracking-wide mb-2">{metric.label}</div>
                 <p className="text-xs text-white/60 leading-relaxed">{metric.description}</p>
               </div>

@@ -149,7 +149,7 @@ export default function CaseStudiesGrid() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
-    <section className="py-20 md:py-28 px-4 md:px-6 bg-[#111] relative overflow-hidden">
+    <section className="py-20 md:py-28 px-4 md:px-6 bg-foreground-950 relative overflow-hidden">
       {/* Subtle grain texture */}
       <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #C8D400 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
@@ -159,7 +159,7 @@ export default function CaseStudiesGrid() {
           <SectionBadge text="Alle Fallbeispiele" variant="light" className="mb-6" />
           <h2 className="text-4xl lg:text-6xl font-black text-white leading-tight mb-4">
             ECHTE MARKEN.<br />
-            <span className="text-[#C8D400]">ECHTE ERGEBNISSE.</span>
+            <span className="text-primary-500">ECHTE ERGEBNISSE.</span>
           </h2>
           <p className="text-white/60 text-base max-w-xl mx-auto">
             Vier Partnerschaften. Messbare Wachstumskurven. Datenbasierte Optimierung — Jahr für Jahr.
@@ -193,23 +193,23 @@ export default function CaseStudiesGrid() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/45 to-black/15" />
 
               {/* Hover overlay */}
-              <div className={`absolute inset-0 bg-[#C8D400]/8 transition-opacity duration-500 ${hoveredCard === index ? 'opacity-100' : 'opacity-0'}`} />
+              <div className={`absolute inset-0 bg-primary-500/8 transition-opacity duration-500 ${hoveredCard === index ? 'opacity-100' : 'opacity-0'}`} />
 
               {/* Bottom lime accent */}
-              <div className={`absolute bottom-0 left-0 right-0 h-1 bg-[#C8D400] transition-all duration-500 ${hoveredCard === index ? 'opacity-100' : 'opacity-0'}`} />
-              <div className={`absolute top-0 left-0 bottom-0 w-0.5 bg-[#C8D400] transition-all duration-500 ${hoveredCard === index ? 'opacity-100' : 'opacity-0'}`} />
+              <div className={`absolute bottom-0 left-0 right-0 h-1 bg-primary-500 transition-all duration-500 ${hoveredCard === index ? 'opacity-100' : 'opacity-0'}`} />
+              <div className={`absolute top-0 left-0 bottom-0 w-0.5 bg-primary-500 transition-all duration-500 ${hoveredCard === index ? 'opacity-100' : 'opacity-0'}`} />
 
               {/* Since badge */}
               <div className="absolute top-4 right-4 z-10">
                 <div className="inline-flex items-center gap-2 bg-black/55 border border-white/[0.08] px-3 py-1.5 rounded-sm">
-                  <span className="text-[#C8D400] font-black text-sm font-sans tabular-nums">{study.metric}</span>
+                  <span className="text-primary-500 font-black text-sm font-sans tabular-nums">{study.metric}</span>
                   <span className="text-white/60 text-[10px] font-bold truncate max-w-[120px]">{study.metricLabel}</span>
                 </div>
               </div>
 
               {/* Tag chip */}
               <div className="absolute top-16 right-4 z-10">
-                <span className="inline-block bg-[#C8D400] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1" style={{ borderRadius: 0 }}>
+                <span className="inline-block bg-primary-500 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1" style={{ borderRadius: 0 }}>
                   {study.tag}
                 </span>
               </div>
@@ -243,10 +243,10 @@ export default function CaseStudiesGrid() {
 
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2 bg-white/[0.04] backdrop-blur-[2px] border border-white/[0.06] px-4 py-2 rounded-sm">
-                    <span className="text-[#C8D400] font-black text-lg font-sans tabular-nums">{study.metric}</span>
+                    <span className="text-primary-500 font-black text-lg font-sans tabular-nums">{study.metric}</span>
                     <span className="text-white/50 text-[10px] font-bold">seit {study.since}</span>
                   </div>
-                  <div className={`w-8 h-8 flex items-center justify-center transition-all duration-300 ${hoveredCard === index ? 'bg-[#C8D400]' : 'bg-white/[0.04] border border-white/[0.06] rounded-sm'}`}>
+                  <div className={`w-8 h-8 flex items-center justify-center transition-all duration-300 ${hoveredCard === index ? 'bg-primary-500' : 'bg-white/[0.04] border border-white/[0.06] rounded-sm'}`}>
                     <i className="ri-arrow-right-line text-white text-sm"></i>
                   </div>
                 </div>

@@ -160,10 +160,10 @@ function ScrollSection({
         <span className={`text-[11px] font-black uppercase tracking-widest flex-grow ${isDark ? 'text-white/40' : 'text-black/40'}`}>
           {label}
         </span>
-        <button onClick={onLeft} className={`w-10 h-10 flex items-center justify-center border transition-all duration-200 cursor-pointer ${isDark ? 'border-white/15 text-white/40' : 'border-black/15 text-black/40'} hover:border-[#C8D400]/60 hover:text-[#C8D400]`} aria-label="links">
+        <button onClick={onLeft} className={`w-10 h-10 flex items-center justify-center border transition-all duration-200 cursor-pointer ${isDark ? 'border-white/15 text-white/40' : 'border-black/15 text-black/40'} hover:border-primary-500/60 hover:text-primary-500`} aria-label="links">
           <i className="ri-arrow-left-s-line text-xl" />
         </button>
-        <button onClick={onRight} className={`w-10 h-10 flex items-center justify-center border transition-all duration-200 cursor-pointer ${isDark ? 'border-white/15 text-white/40' : 'border-black/15 text-black/40'} hover:border-[#C8D400]/60 hover:text-[#C8D400]`} aria-label="rechts">
+        <button onClick={onRight} className={`w-10 h-10 flex items-center justify-center border transition-all duration-200 cursor-pointer ${isDark ? 'border-white/15 text-white/40' : 'border-black/15 text-black/40'} hover:border-primary-500/60 hover:text-primary-500`} aria-label="rechts">
           <i className="ri-arrow-right-s-line text-xl" />
         </button>
       </div>
@@ -233,20 +233,20 @@ export default function TalentpoolContent() {
           className="absolute inset-0 opacity-[0.018] pointer-events-none"
           style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }}
         />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C8D400]/8 blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#111]/8 border border-[#111]/15 px-4 py-1.5 mb-5">
-                <i className="ri-check-double-line text-[#111] text-sm" />
-                <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Sonic-Lösung</span>
+              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+                <i className="ri-check-double-line text-foreground-950 text-sm" />
+                <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Sonic-Lösung</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#111] leading-tight tracking-tight uppercase">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight uppercase">
                 {tSolutionHeading}
               </h2>
             </div>
-            <p className="text-[#111]/40 text-sm leading-relaxed max-w-xs lg:text-right">
+            <p className="text-foreground-950/40 text-sm leading-relaxed max-w-xs lg:text-right">
               {tSolutionSub}
             </p>
           </div>
@@ -256,14 +256,14 @@ export default function TalentpoolContent() {
       </section>
 
       {/* ── Talent Profiles (horizontal scroll, dark bg — intentional alternation) ── */}
-      <section id="talentprofile" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#C8D400]/4 blur-3xl pointer-events-none" />
+      <section id="talentprofile" className="bg-foreground-950 py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary-500/4 blur-3xl pointer-events-none" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
-                <i className="ri-focus-3-line text-[#C8D400] text-sm" />
-                <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Talentprofile</span>
+              <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
+                <i className="ri-focus-3-line text-primary-500 text-sm" />
+                <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Talentprofile</span>
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight uppercase">{tProfilesHeading}</h2>
             </div>
@@ -332,13 +332,13 @@ export default function TalentpoolContent() {
 
       {/* ── Stats ── */}
       <section id="stats" className="bg-white py-14 md:py-20 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-px bg-[#111]/10 border border-[#111]/10 overflow-hidden">
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-px bg-foreground-950/10 border border-[#111]/10 overflow-hidden">
           {STATS.map((s, i) => (
             <div key={i} className="bg-white p-6 md:p-8 text-center relative overflow-hidden group">
-              <div className="absolute inset-0 bg-[#C8D400]/0 group-hover:bg-[#C8D400]/5 transition-colors duration-300" />
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#C8D400] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="text-2xl md:text-4xl font-black text-[#111] mb-1.5 relative z-10">{s.value}</div>
-              <div className="text-[#111]/40 text-xs font-bold uppercase tracking-wider leading-snug relative z-10">{s.label}</div>
+              <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/5 transition-colors duration-300" />
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="text-2xl md:text-4xl font-black text-foreground-950 mb-1.5 relative z-10">{s.value}</div>
+              <div className="text-foreground-950/40 text-xs font-bold uppercase tracking-wider leading-snug relative z-10">{s.label}</div>
             </div>
           ))}
         </div>

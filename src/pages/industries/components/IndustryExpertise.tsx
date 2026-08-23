@@ -36,7 +36,7 @@ export default function IndustryExpertise() {
         {/* Header */}
         <div className="text-center mb-16">
           <SectionBadge text={tBadge} variant="dark" className="mb-6" />
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 mb-4 leading-tight tracking-tight">
+          <h2 className="sonic-h2 text-foreground-950 mb-4">
             {tHeading}
           </h2>
           <p className="text-sm md:text-base text-foreground-600 max-w-2xl mx-auto">
@@ -95,10 +95,10 @@ export default function IndustryExpertise() {
                 </div>
 
                 {/* Corner brackets */}
-                <div className={`absolute top-3 left-3 w-4 h-4 border-t border-l transition-all duration-300 ${isHovered ? 'opacity-100 border-[#C8D400]/50' : 'opacity-0 border-[#C8D400]'}`} />
-                <div className={`absolute top-3 right-3 w-4 h-4 border-t border-r transition-all duration-300 ${isHovered ? 'opacity-100 border-[#C8D400]/50' : 'opacity-0 border-[#C8D400]'}`} />
-                <div className={`absolute bottom-3 left-3 w-4 h-4 border-b border-l transition-all duration-300 ${isHovered ? 'opacity-100 border-[#C8D400]/50' : 'opacity-0 border-[#C8D400]'}`} />
-                <div className={`absolute bottom-3 right-3 w-4 h-4 border-b border-r transition-all duration-300 ${isHovered ? 'opacity-100 border-[#C8D400]/50' : 'opacity-0 border-[#C8D400]'}`} />
+                <div className={`absolute top-3 left-3 w-4 h-4 border-t border-l transition-all duration-300 ${isHovered ? 'opacity-100 border-primary-500/50' : 'opacity-0 border-primary-500'}`} />
+                <div className={`absolute top-3 right-3 w-4 h-4 border-t border-r transition-all duration-300 ${isHovered ? 'opacity-100 border-primary-500/50' : 'opacity-0 border-primary-500'}`} />
+                <div className={`absolute bottom-3 left-3 w-4 h-4 border-b border-l transition-all duration-300 ${isHovered ? 'opacity-100 border-primary-500/50' : 'opacity-0 border-primary-500'}`} />
+                <div className={`absolute bottom-3 right-3 w-4 h-4 border-b border-r transition-all duration-300 ${isHovered ? 'opacity-100 border-primary-500/50' : 'opacity-0 border-primary-500'}`} />
 
                 <div className="p-8 flex flex-col min-h-[240px] relative z-10">
                   {/* Icon box + wooden icon */}
@@ -157,18 +157,18 @@ export default function IndustryExpertise() {
         </div>
 
         {/* Stats strip */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[#111] border border-[#111] overflow-hidden">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-foreground-950 border border-[#111] overflow-hidden">
           {stats.map((stat, i) => (
             <div
               key={i}
-              className="bg-[#111] px-8 py-10 text-center relative overflow-hidden group"
+              className="bg-foreground-950 px-8 py-10 text-center relative overflow-hidden group"
             >
               {/* Lime top bar on hover */}
               <div
-                className="absolute top-0 left-0 right-0 h-0.5 bg-[#C8D400] transition-all duration-300"
+                className="absolute top-0 left-0 right-0 h-0.5 bg-primary-500 transition-all duration-300"
                 style={{ opacity: 0 }}
               />
-              <div className="absolute inset-0 bg-[#C8D400]/0 group-hover:bg-[#C8D400]/5 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/5 transition-colors duration-300" />
               <div
                 className="text-3xl lg:text-4xl font-black mb-2 relative z-10"
                 style={{ color: '#C8D400' }}

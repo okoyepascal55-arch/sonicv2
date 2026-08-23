@@ -99,19 +99,19 @@ export default function EventsContent() {
       {/* ── Solution (horizontal scroll, light warm bg) ── */}
       <section id="loesung" className="bg-white py-14 md:py-20 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.018] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C8D400]/8 blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <div className="inline-flex items-center gap-2 bg-[#111]/8 border border-[#111]/15 px-4 py-1.5 mb-5">
-                <i className="ri-check-double-line text-[#111] text-sm" />
-                <span className="text-xs font-black text-[#111] uppercase tracking-widest">Die Lösung</span>
+              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-[#111]/15 px-4 py-1.5 mb-5">
+                <i className="ri-check-double-line text-foreground-950 text-sm" />
+                <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#111] leading-none uppercase">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-none uppercase">
                 {tSolutionHeading}
               </h2>
             </div>
-            <p className="text-[#111]/45 text-sm leading-relaxed max-w-xs">{tSolutionSub}</p>
+            <p className="text-foreground-950/45 text-sm leading-relaxed max-w-xs">{tSolutionSub}</p>
           </div>
 
           <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="wood" />
@@ -119,16 +119,16 @@ export default function EventsContent() {
       </section>
 
       {/* ── Process ── */}
-      <section id="arbeitsweise" className="bg-[#111] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
+      <section id="arbeitsweise" className="bg-foreground-950 py-14 md:py-24 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#C8D400]/4 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
 
         <div className="relative max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12 md:mb-16">
-            <div className="inline-flex items-center gap-2 bg-[#C8D400]/15 border border-[#C8D400]/30 px-4 py-1.5 mb-5">
-              <i className="ri-route-line text-[#C8D400] text-sm" />
-              <span className="text-xs font-black text-[#C8D400] uppercase tracking-widest">Ablauf</span>
+            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
+              <i className="ri-route-line text-primary-500 text-sm" />
+              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Ablauf</span>
             </div>
             <h2 className="text-3xl lg:text-4xl font-black text-white leading-tight uppercase">{tProcessHeading}</h2>
             <p className="text-white/40 text-sm mt-3">{tProcessSub}</p>
@@ -139,14 +139,14 @@ export default function EventsContent() {
             {/* Desktop: full circle timeline */}
             <div className="hidden md:block">
               <div className="absolute top-[28px] left-[8.33%] right-[8.33%] h-px bg-white/10" />
-              <div className="absolute top-[28px] left-[8.33%] h-px bg-[#C8D400] transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
+              <div className="absolute top-[28px] left-[8.33%] h-px bg-primary-500 transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
               <div className="grid grid-cols-6 gap-2">
                 {STEPS.map((step, i) => (
                   <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
-                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111] shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-[#111] border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
+                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950 shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
                       <i className={`${step.icon} text-xl`} />
                     </div>
-                    <span className={`mt-3 text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeStep === i ? 'text-[#C8D400]' : 'text-white/30'}`}>{step.num}</span>
+                    <span className={`mt-3 text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeStep === i ? 'text-primary-500' : 'text-white/30'}`}>{step.num}</span>
                     <span className={`text-[11px] font-bold text-center leading-tight mt-0.5 transition-all duration-300 ${activeStep === i ? 'text-white/70' : 'text-white/25'}`}>{step.title}</span>
                   </button>
                 ))}
@@ -156,7 +156,7 @@ export default function EventsContent() {
             <div className="md:hidden flex gap-2 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
               {STEPS.map((step, i) => (
                 <button key={i} onClick={() => setActiveStep(i)}
-                  className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2.5 border transition-all duration-300 cursor-pointer ${activeStep === i ? 'bg-[#C8D400] border-[#C8D400] text-[#111]' : 'bg-[#111] border-white/20 text-white/50'}`}>
+                  className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2.5 border transition-all duration-300 cursor-pointer ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950' : 'bg-foreground-950 border-white/20 text-white/50'}`}>
                   <i className={`${step.icon} text-base`} />
                   <span className="text-[9px] font-black uppercase tracking-wide whitespace-nowrap">{step.num}</span>
                 </button>
@@ -177,11 +177,11 @@ export default function EventsContent() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/40" />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-[#C8D400] text-[#111] text-[10px] font-black uppercase tracking-widest px-3 py-1">Schritt {STEPS[activeStep].num}</span>
+                  <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">Schritt {STEPS[activeStep].num}</span>
                 </div>
                 <div className="absolute bottom-4 left-4 flex gap-1.5">
                   {STEPS.map((_, i) => (
-                    <button key={i} onClick={() => setActiveStep(i)} className={`h-1 transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-[#C8D400]' : 'w-3 bg-white/40'}`} />
+                    <button key={i} onClick={() => setActiveStep(i)} className={`h-1 transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-primary-500' : 'w-3 bg-white/40'}`} />
                   ))}
                 </div>
               </div>
@@ -189,8 +189,8 @@ export default function EventsContent() {
               {/* Right: Content */}
               <div className="md:col-span-7 p-8 md:p-12 flex flex-col justify-center min-h-[240px] md:min-h-[380px]">
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="text-[#C8D400] text-xs font-black uppercase tracking-widest">Schritt {STEPS[activeStep].num}</span>
-                  <span className="px-3 py-1.5 bg-[#C8D400] text-[#111] text-xs font-black">{STEPS[activeStep].time}</span>
+                  <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {STEPS[activeStep].num}</span>
+                  <span className="px-3 py-1.5 bg-primary-500 text-foreground-950 text-xs font-black">{STEPS[activeStep].time}</span>
                 </div>
                 <h3 className="text-2xl md:text-3xl font-black text-white mb-4 uppercase tracking-tight">{STEPS[activeStep].title}</h3>
                 <p className="text-white/55 text-sm md:text-base leading-relaxed">{STEPS[activeStep].desc}</p>
@@ -206,7 +206,7 @@ export default function EventsContent() {
                   </button>
                   <div className="flex gap-2">
                     {STEPS.map((_, i) => (
-                      <button key={i} onClick={() => setActiveStep(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-[#C8D400]' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
+                      <button key={i} onClick={() => setActiveStep(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-primary-500' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
                     ))}
                   </div>
                   <button
@@ -225,14 +225,14 @@ export default function EventsContent() {
           {/* Timeline bottom CTA */}
           <div className="mt-10 text-center">
             <div className="inline-flex items-center gap-3 text-white/25 text-xs font-black uppercase tracking-widest mb-5">
-              <div className="h-px w-10 bg-[#C8D400]/20" />
+              <div className="h-px w-10 bg-primary-500/20" />
               <span>Bereit für dein Event?</span>
-              <div className="h-px w-10 bg-[#C8D400]/20" />
+              <div className="h-px w-10 bg-primary-500/20" />
             </div>
             <br />
             <a
               href={`mailto:${CONTACT_EMAIL}?subject=Events%20Messen%20Beratung`}
-              className="inline-flex items-center gap-2 bg-[#C8D400] text-[#111] px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-white transition-all duration-300 whitespace-nowrap cursor-pointer group"
+              className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-white transition-all duration-300 whitespace-nowrap cursor-pointer group"
             >
               {tCtaBtn}
               <i className="ri-arrow-right-line transition-transform duration-300 group-hover:translate-x-1" />

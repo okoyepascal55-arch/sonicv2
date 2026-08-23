@@ -99,7 +99,7 @@ export default function Contact() {
                     {['Forecasting', 'Marktdaten', 'Performance'].map((tag) => (
                       <span
                         key={tag}
-                        className="text-[9px] font-bold text-primary-500/40 border border-[#C8D400]/15 px-2 py-0.5 transition-all duration-300 group-hover:text-primary-500/70 group-hover:border-[#C8D400]/35"
+                        className="text-[9px] font-bold text-primary-500/40 border border-primary-500/15 px-2 py-0.5 transition-all duration-300 group-hover:text-primary-500/70 group-hover:border-primary-500/35"
                         style={{ borderRadius: 0 }}
                       >
                         {tag}
@@ -114,7 +114,7 @@ export default function Contact() {
             <div className="mt-6">
               <button
                 onClick={() => handleNav('/ueber-uns')}
-                className="inline-flex items-center gap-3 border-2 border-[#C8D400] text-primary-500 px-7 py-3 font-black text-[13px] uppercase tracking-wider hover:bg-primary-500 hover:text-[#111] transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 active:scale-95"
+                className="inline-flex items-center gap-3 border-2 border-primary-500 text-primary-500 px-7 py-3 font-black text-[13px] uppercase tracking-wider hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 active:scale-95"
                 style={{ borderRadius: 0 }}
               >
                 Mehr über Sonic
@@ -144,7 +144,7 @@ export default function Contact() {
               </p>
 
               {/* Headline */}
-              <h2 className="text-2xl sm:text-3xl xl:text-4xl font-black text-[#111] leading-[1.05] mb-2 relative inline-block">
+              <h2 className="text-2xl sm:text-3xl xl:text-4xl font-black text-foreground-950 leading-[1.05] mb-2 relative inline-block">
                 KARRIERE
                 <span
                   className="absolute left-0 bottom-[-4px] h-[5px] w-full"
@@ -192,7 +192,7 @@ export default function Contact() {
                   <p className="text-[10px] font-black uppercase tracking-[0.28em] text-primary-500 whitespace-nowrap">
                     Mensch. Der Unterschied.
                   </p>
-                  <p className="text-sm font-black text-[#111] whitespace-nowrap">
+                  <p className="text-sm font-black text-foreground-950 whitespace-nowrap">
                     2.000 Talente im Pool
                   </p>
                   <span className="text-xs text-foreground-400 leading-relaxed">
@@ -203,7 +203,7 @@ export default function Contact() {
                     {['Festangestellt', 'Live-Einblick', 'Motivation'].map((tag) => (
                       <span
                         key={tag}
-                        className="text-[9px] font-bold text-primary-500/60 border border-[#C8D400]/20 px-2 py-0.5 transition-all duration-300 group-hover:text-primary-500 group-hover:border-[#C8D400]/40"
+                        className="text-[9px] font-bold text-primary-500/60 border border-primary-500/20 px-2 py-0.5 transition-all duration-300 group-hover:text-primary-500 group-hover:border-primary-500/40"
                         style={{ borderRadius: 0 }}
                       >
                         {tag}

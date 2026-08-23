@@ -260,15 +260,15 @@ export default function ClientProof() {
   }, []);
 
   return (
-    <section className="py-16 px-6 bg-white relative overflow-hidden">
+    <section className="sonic-section-md px-6 bg-white relative overflow-hidden">
       {/* Subtle warm ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-primary-500/[0.03] rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-3xl lg:text-4xl font-black text-foreground-950 mb-6">
-            INDUSTRY LEADERS<br />TRUST SONIC
+        <div className="sonic-section-header">
+          <h2 className="sonic-h2 text-foreground-950">
+            Industry Leaders<br />trust Sonic
           </h2>
         </div>
 

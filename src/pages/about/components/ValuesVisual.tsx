@@ -57,7 +57,7 @@ export default function ValuesVisual() {
           {['#Doing new things', '#Doing things better', '#Doing things', 'Team'].map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1.5 border border-black/10 text-[10px] font-black text-black/40 uppercase tracking-wider hover:border-[#C8D400]/40 hover:text-black/70 transition-all duration-200 cursor-default"
+              className="px-3 py-1.5 border border-black/10 text-[10px] font-black text-black/40 uppercase tracking-wider hover:border-primary-500/40 hover:text-black/70 transition-all duration-200 cursor-default"
               tabIndex={0}
             >
               {tag}
