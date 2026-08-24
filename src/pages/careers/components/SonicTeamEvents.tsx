@@ -44,6 +44,7 @@ export default function SonicTeamEvents() {
   const { images: eventImages } = useMediaStore('careers_events_images');
   const { images: eventVideos } = useMediaStore('careers_events_videos');
 
+  const tBadge = useText('careers_events', 'careers-events-badge', 'Leben bei Sonic');
   const tHeading = useText('careers_events', 'careers-events-heading', 'Wir arbeiten hart. Wir feiern noch mehr.');
   const tSub = useText('careers_events', 'careers-events-sub', 'Von Content-Shootings bis Team-Events — bei Sonic ist jeder Moment eine Chance, zusammen etwas zu erleben.');
 
@@ -79,7 +80,7 @@ export default function SonicTeamEvents() {
       <div className="sonic-container">
         <ChapterHeader
           n="05"
-          eyebrow="Leben bei Sonic"
+          eyebrow={tBadge}
           heading={<>{headingMain} {headingAccent && <Marker>{headingAccent}</Marker>}</>}
           sub={tSub}
           headingMax="max-w-[660px]"

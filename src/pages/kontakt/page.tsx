@@ -38,11 +38,17 @@ export default function KontaktPage() {
   });
 
   // ── Text Store hooks ──
+  const tHeroBadge = useText('kontakt_page', 'kontakt-hero-badge', 'Kein Commitment. Nur ein gutes Gespräch.');
   const tHeroH1 = useText('kontakt_page', 'kontakt-hero-h1', 'Lass uns');
   const tHeroH1Accent = useText('kontakt_page', 'kontakt-hero-h1-accent', 'reden');
+  const tHeroSub = useText('kontakt_page', 'kontakt-hero-sub', '');
+  const tAddrLabel = useText('kontakt_page', 'kontakt-detail-address-label', 'Adresse');
   const tAddr = useText('kontakt_page', 'kontakt-detail-address', 'Campus Fichtenhain 46\n47807 Krefeld, Deutschland');
+  const tPhoneLabel = useText('kontakt_page', 'kontakt-detail-phone-label', 'Telefon');
   const tPhone = useText('kontakt_page', 'kontakt-detail-phone', '+49 2151 479 444 0');
+  const tEmailLabel = useText('kontakt_page', 'kontakt-detail-email-label', 'E-Mail');
   const tEmail = useText('kontakt_page', 'kontakt-detail-email', CONTACT_EMAIL);
+  const tHoursLabel = useText('kontakt_page', 'kontakt-detail-hours-label', 'Erreichbarkeit');
   const tHours = useText('kontakt_page', 'kontakt-detail-hours', 'Mo–Fr: 09:00–17:00 Uhr');
   const tCalLabel = useText('kontakt_page', 'kontakt-calendly-label', 'Direkt Termin wählen');
   const tCalSub = useText('kontakt_page', 'kontakt-calendly-sub', 'Kostenlos · Unverbindlich · 30 Minuten');
@@ -58,10 +64,10 @@ export default function KontaktPage() {
   const tOfficeCall = useText('kontakt_page', 'kontakt-office-call', 'Anrufen');
 
   const contactDetails = [
-    { label: 'Adresse', value: tAddr, href: 'https://maps.google.com/?q=Campus+Fichtenhain+46+47807+Krefeld', external: true },
-    { label: 'Telefon', value: tPhone, href: 'tel:+4921514794440', external: false },
-    { label: 'E-Mail', value: tEmail, href: `mailto:${tEmail}`, external: false },
-    { label: 'Erreichbarkeit', value: tHours, href: undefined, external: false },
+    { label: tAddrLabel, value: tAddr, href: 'https://maps.google.com/?q=Campus+Fichtenhain+46+47807+Krefeld', external: true },
+    { label: tPhoneLabel, value: tPhone, href: 'tel:+4921514794440', external: false },
+    { label: tEmailLabel, value: tEmail, href: `mailto:${tEmail}`, external: false },
+    { label: tHoursLabel, value: tHours, href: undefined, external: false },
   ];
 
   return (
@@ -84,7 +90,7 @@ export default function KontaktPage() {
             <div className="flex flex-wrap items-center gap-3 mb-7 md:mb-8">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Kontakt</span>
-              <span className="text-[11px] font-black uppercase tracking-[0.12em] text-white/35">Kein Commitment. Nur ein gutes Gespräch.</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.12em] text-white/35">{tHeroBadge}</span>
             </div>
 
             <h1
@@ -96,6 +102,10 @@ export default function KontaktPage() {
               {tHeroH1Accent}
               <span className="text-primary-500">.</span>
             </h1>
+
+            {tHeroSub && (
+              <p className="text-[15px] leading-relaxed text-white/60 max-w-[440px] -mt-5 mb-9">{tHeroSub}</p>
+            )}
 
             <div className="mb-14">
               <a
@@ -110,7 +120,7 @@ export default function KontaktPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2" style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
               {contactDetails.map((item, i) => (
                 <div
-                  key={item.label}
+                  key={i}
                   className="py-6"
                   style={{
                     paddingRight: i % 2 === 0 ? '32px' : 0,

@@ -14,6 +14,12 @@ export default function KarriereHero() {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  const scrollToPfade = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.getElementById('pfade');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <section
       className="relative flex min-h-[560px] sm:min-h-[640px] md:min-h-[720px] items-end overflow-hidden"
@@ -85,7 +91,8 @@ export default function KarriereHero() {
               <i className="ri-arrow-right-line text-[15px]" />
             </button>
             <a
-              href="mailto:karriere@sonic-group.de?subject=Initiativbewerbung"
+              href="#pfade"
+              onClick={scrollToPfade}
               className="inline-flex items-center gap-2.5 px-6 md:px-8 py-4 md:py-[18px] text-white text-[12px] font-black uppercase tracking-[0.14em] whitespace-nowrap cursor-pointer"
               style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,0.26)' }}
             >

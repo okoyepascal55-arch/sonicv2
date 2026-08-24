@@ -8,6 +8,7 @@ const BITE_LISTING_KEY = 'sonic-sales-support-gmbh:main-listing';
 export default function KarriereJobs() {
   const { images: stellenImages } = useMediaStore('careers_stellenangebote_image');
 
+  const tBadge = useText('careers_jobs', 'careers-jobs-badge', 'Aktuelle Stellenangebote');
   const tHeading = useText('careers_jobs', 'careers-jobs-heading', 'Dein nächster Karriereschritt');
   const tTanjaHeading = useText('careers_jobs', 'careers-jobs-tanja-heading', 'Unsicher, welche Stelle zu dir passt?');
   const tTanjaDesc = useText('careers_jobs', 'careers-jobs-tanja-desc', 'Tanja aus unserem HR-Team nimmt sich gerne Zeit für ein unverbindliches Gespräch.');
@@ -39,7 +40,7 @@ export default function KarriereJobs() {
         <div className="flex items-start gap-8 md:gap-16 mb-12 md:mb-14">
           <ChapterNumeral n="06" dark />
           <div className="flex-1 max-w-[700px]">
-            <ChapterEyebrow dark>Aktuelle Stellenangebote</ChapterEyebrow>
+            <ChapterEyebrow dark>{tBadge}</ChapterEyebrow>
             <h2 className="font-black text-white mb-4" style={{ fontSize: 'clamp(1.875rem, 3.4vw, 3.5rem)', lineHeight: 1.02, letterSpacing: '-0.035em' }}>
               {headingFirst} <span className="text-primary-500">{headingRest}</span>
             </h2>
