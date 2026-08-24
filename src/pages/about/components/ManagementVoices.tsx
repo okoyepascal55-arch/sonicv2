@@ -3,9 +3,6 @@ import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useText } from '@/hooks/useText';
 import SectionBadge from '@/components/base/SectionBadge';
 
-/* ─────────────────────────────────────────────────────────────────────────
-   Real executive data — unchanged, all three real names / quotes / metrics
-───────────────────────────────────────────────────────────────────────── */
 const EXECUTIVES = [
   {
     id: 'bjorn',
@@ -57,20 +54,69 @@ const EXECUTIVES = [
   },
 ];
 
-/* ─────────────────────────────────────────────────────────────────────────
-   Staggered rows layout per brief:
-   - Row 0: image LEFT (0.86fr), text RIGHT (1.14fr), inset margin-right 96px
-   - Row 1: text LEFT (1.14fr), image RIGHT (0.86fr), inset margin-left 96px
-   - Row 2: image LEFT again
-   - Ghost numeral bleeds off the row's outer edge
-   - All data / useText / useMediaStore preserved
-───────────────────────────────────────────────────────────────────────── */
+function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
+  return (
+    <div className="border border-[oklch(0.885_0.004_110)] overflow-hidden">
+      {/* Portrait */}
+      <div className="relative bg-foreground-950" style={{ minHeight: '340px' }}>
+        <img
+          src={exec.image}
+          alt={exec.name}
+          className="absolute inset-0 w-full h-full object-cover object-top"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <div className="absolute top-5 left-5 bg-primary-500 text-foreground-950 px-3 py-1 text-[10px] font-black uppercase tracking-widest">
+          {exec.eyebrow}
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 p-6">
+          <div className="text-[clamp(24px,4vw,36px)] font-black text-white leading-none tracking-tight">{exec.name}</div>
+          <div className="flex items-center gap-2 mt-2">
+            <span className="text-sm font-black text-white">{exec.title}</span>
+            <span className="w-1 h-1 bg-primary-500 flex-shrink-0" />
+            <span className="text-xs text-white/50 font-bold uppercase tracking-wider">{exec.tenure}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Text panel */}
+      <div className="bg-foreground-950 p-7 md:p-10">
+        <div className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-4">
+          {String(idx + 1).padStart(2, '0')} / {String(EXECUTIVES.length).padStart(2, '0')}
+        </div>
+        <blockquote className="text-white font-black leading-[1.3] mb-5" style={{ fontSize: 'clamp(18px,2vw,24px)', letterSpacing: '-0.015em' }}>
+          {exec.pullQuote}
+        </blockquote>
+        <p className="text-sm text-white/55 leading-relaxed mb-7">{exec.bio}</p>
+        <div className="grid grid-cols-2 gap-3 mb-7">
+          {exec.metrics.map((m) => (
+            <div key={m.label} className="border border-white/10 px-4 py-3.5">
+              <div className="text-xl font-black text-primary-500 leading-none">{m.value}</div>
+              <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5">{m.label}</div>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-end">
+          <a
+            href={exec.linkedin}
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.06em] text-primary-500 hover:text-white transition-colors"
+          >
+            <i className="ri-linkedin-fill text-base" />
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ManagementVoices({ leadershipImages }: { leadershipImages?: MediaItem[] }) {
   const tBadge   = useText('about_management_voices', 'about-voices-badge',   'Führungsperspektiven');
   const tHeading = useText('about_management_voices', 'about-voices-heading', 'Die Stimmen hinter Sonic.');
   const tSub     = useText('about_management_voices', 'about-voices-sub',     'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.');
 
-  // Merge dashboard-managed images over the hardcoded fallbacks (same as before)
   const execs = EXECUTIVES.map((exec, idx) => ({
     ...exec,
     image: (leadershipImages && leadershipImages[idx]?.url) || exec.image,
@@ -78,19 +124,26 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
 
   return (
     <section id="management-voices" className="bg-white overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-14 md:py-20">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 py-14 md:py-20">
 
         {/* Section header */}
-        <div className="mb-14">
+        <div className="mb-10 md:mb-14">
           <SectionBadge text={tBadge} variant="dark" className="mb-5" />
           <h2 className="sonic-h2 text-foreground-950 mb-3">{tHeading}</h2>
           <p className="text-[15px] text-foreground-500 max-w-[480px] leading-relaxed">{tSub}</p>
         </div>
 
-        {/* Staggered rows — all three shown simultaneously, no carousel */}
-        <div className="flex flex-col gap-10">
+        {/* ── MOBILE / TABLET: simple 1-col stack ── */}
+        <div className="flex flex-col gap-8 lg:hidden">
+          {execs.map((exec, i) => (
+            <ExecCard key={exec.id} exec={exec} idx={i} />
+          ))}
+        </div>
+
+        {/* ── DESKTOP (lg+): staggered rows with ghost numerals ── */}
+        <div className="hidden lg:flex flex-col gap-10">
           {execs.map((exec, i) => {
-            const imageLeft = i % 2 === 0; // Row 0 & 2: image left. Row 1: image right.
+            const imageLeft = i % 2 === 0;
             return (
               <div
                 key={exec.id}
@@ -100,7 +153,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                   marginLeft:  imageLeft ? undefined : '96px',
                 }}
               >
-                {/* Ghost numeral — bleeds off the row's outer edge */}
+                {/* Ghost numeral */}
                 <div
                   aria-hidden="true"
                   style={{
@@ -120,20 +173,15 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                   0{i + 1}
                 </div>
 
-                {/* Row card */}
+                {/* Two-col card */}
                 <div
                   className="relative z-10 grid border border-[oklch(0.885_0.004_110)] overflow-hidden"
-                  style={{
-                    gridTemplateColumns: imageLeft ? '0.86fr 1.14fr' : '1.14fr 0.86fr',
-                  }}
+                  style={{ gridTemplateColumns: imageLeft ? '0.86fr 1.14fr' : '1.14fr 0.86fr' }}
                 >
-                  {/* Image panel */}
+                  {/* Portrait */}
                   <div
-                    className="relative overflow-hidden bg-foreground-950"
-                    style={{
-                      minHeight: '520px',
-                      order: imageLeft ? 1 : 2,
-                    }}
+                    className="relative bg-foreground-950"
+                    style={{ minHeight: '520px', order: imageLeft ? 1 : 2 }}
                   >
                     <img
                       src={exec.image}
@@ -142,15 +190,11 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                    {/* Eyebrow chip */}
                     <div className="absolute top-5 left-5 bg-primary-500 text-foreground-950 px-3 py-1 text-[10px] font-black uppercase tracking-widest">
                       {exec.eyebrow}
                     </div>
-                    {/* Name at bottom */}
                     <div className="absolute bottom-0 left-0 right-0 p-8">
-                      <div className="text-[clamp(28px,3.5vw,44px)] font-black text-white leading-none tracking-tight">
-                        {exec.name}
-                      </div>
+                      <div className="text-[clamp(28px,3.5vw,44px)] font-black text-white leading-none tracking-tight">{exec.name}</div>
                       <div className="flex items-center gap-2 mt-2">
                         <span className="text-sm font-black text-white">{exec.title}</span>
                         <span className="w-1 h-1 bg-primary-500 flex-shrink-0" />
@@ -162,28 +206,19 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                   {/* Text panel */}
                   <div
                     className="bg-foreground-950 flex flex-col justify-between"
-                    style={{
-                      padding: '64px 56px',
-                      order: imageLeft ? 2 : 1,
-                    }}
+                    style={{ padding: '64px 56px', order: imageLeft ? 2 : 1 }}
                   >
                     <div>
-                      {/* Counter */}
                       <div className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-6">
                         {String(i + 1).padStart(2, '0')} / {String(execs.length).padStart(2, '0')}
                       </div>
-
-                      {/* Pull-quote — 31px per brief */}
                       <blockquote
                         className="text-white font-black leading-[1.28] mb-7"
                         style={{ fontSize: '31px', letterSpacing: '-0.02em' }}
                       >
                         {exec.pullQuote}
                       </blockquote>
-
                       <p className="text-sm text-white/55 leading-relaxed mb-8">{exec.bio}</p>
-
-                      {/* Metrics */}
                       <div className="grid grid-cols-2 gap-3">
                         {exec.metrics.map((m) => (
                           <div key={m.label} className="border border-white/10 px-4 py-3.5">
@@ -193,8 +228,6 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                         ))}
                       </div>
                     </div>
-
-                    {/* LinkedIn */}
                     <div className="flex items-center justify-end pt-6 mt-6 border-t border-white/10">
                       <a
                         href={exec.linkedin}
@@ -214,7 +247,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
         </div>
 
         {/* Contact CTA — identical to original */}
-        <div id="kontakt" className="sonic-container mt-10">
+        <div id="kontakt" className="sonic-container mt-8 md:mt-10">
           <div className="border border-[#E7E4D4] py-6 md:py-7 px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAFDF5]">
             <div className="text-center sm:text-left">
               <p className="text-sm md:text-[15px] font-black text-foreground-950 leading-relaxed">
