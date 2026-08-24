@@ -1,9 +1,11 @@
-import { useState, useCallback } from 'react';
 import type { MediaItem } from '@/lib/mediaStore';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
+import SectionBadge from '@/components/base/SectionBadge';
 
+/* ─────────────────────────────────────────────────────────────────────────
+   Real executive data — unchanged, all three real names / quotes / metrics
+───────────────────────────────────────────────────────────────────────── */
 const EXECUTIVES = [
   {
     id: 'bjorn',
@@ -55,173 +57,169 @@ const EXECUTIVES = [
   },
 ];
 
+/* ─────────────────────────────────────────────────────────────────────────
+   Staggered rows layout per brief:
+   - Row 0: image LEFT (0.86fr), text RIGHT (1.14fr), inset margin-right 96px
+   - Row 1: text LEFT (1.14fr), image RIGHT (0.86fr), inset margin-left 96px
+   - Row 2: image LEFT again
+   - Ghost numeral bleeds off the row's outer edge
+   - All data / useText / useMediaStore preserved
+───────────────────────────────────────────────────────────────────────── */
 export default function ManagementVoices({ leadershipImages }: { leadershipImages?: MediaItem[] }) {
-  const tBadge = useText('about_management_voices', 'about-voices-badge', 'Führungsperspektiven');
+  const tBadge   = useText('about_management_voices', 'about-voices-badge',   'Führungsperspektiven');
   const tHeading = useText('about_management_voices', 'about-voices-heading', 'Die Stimmen hinter Sonic.');
-  const tSub = useText('about_management_voices', 'about-voices-sub', 'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.');
+  const tSub     = useText('about_management_voices', 'about-voices-sub',     'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.');
 
+  // Merge dashboard-managed images over the hardcoded fallbacks (same as before)
   const execs = EXECUTIVES.map((exec, idx) => ({
     ...exec,
-    image: (leadershipImages && leadershipImages[idx] && leadershipImages[idx].url) || exec.image,
+    image: (leadershipImages && leadershipImages[idx]?.url) || exec.image,
   }));
 
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [transitioning, setTransitioning] = useState(false);
-
-  const exec = execs[activeIdx];
-
-  const goTo = useCallback((i: number) => {
-    if (i === activeIdx) return;
-    setTransitioning(true);
-    setTimeout(() => {
-      setActiveIdx(i);
-      setTransitioning(false);
-    }, 240);
-  }, [activeIdx]);
-
-  const headingWords = tHeading.trim().split(/\s+/);
-  const headingMain = headingWords.length > 1 ? headingWords.slice(0, -1).join(' ') : tHeading;
-  const headingAccent = headingWords.length > 1 ? headingWords[headingWords.length - 1] : '';
-
   return (
-    <section id="management-voices" className="relative bg-background-100 overflow-hidden">
-      <div className="max-w-full max-w-[1200px] mx-auto px-6 md:px-10 py-14 md:py-20">
-        {/* ── HEADER + SELECTOR ── */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10 md:mb-12">
-          <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.12)', border: '1px solid oklch(var(--primary-500) / 0.28)' }}>
-              <span className="w-1.5 h-1.5 flex-shrink-0" style={{ background: 'oklch(var(--primary-500))'}} />
-              <span className="text-[11px] font-black uppercase tracking-[0.2em]" style={{ color: 'oklch(var(--primary-500))'}}>{tBadge}</span>
-            </div>
-            <h2 className="sonic-h2 text-foreground-950">
-              {headingMain}{' '}
-              <span className="text-primary-500">{headingAccent}</span>
-            </h2>
-            <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[440px]">{tSub}</p>
-          </div>
+    <section id="management-voices" className="bg-white overflow-hidden">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-14 md:py-20">
 
-          {/* Selector — numbered tabs */}
-          <div className="flex items-stretch gap-0 flex-shrink-0 border border-black/10 overflow-hidden">
-            {execs.map((e, i) => {
-              const isActive = activeIdx === i;
-              return (
-                <button
-                  key={e.id}
-                  onClick={() => goTo(i)}
-                  aria-pressed={isActive}
-                  className={`flex items-center gap-2.5 px-4 md:px-5 py-3 text-left whitespace-nowrap cursor-pointer transition-colors duration-300 border-r last:border-r-0 border-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-inset ${
-                    isActive ? 'bg-foreground-950' : 'bg-white hover:bg-[#FAFDF5]'
-                  }`}
-                >
-                  <span
-                    className={`flex items-center justify-center w-6 h-6 text-[10px] font-black transition-colors duration-300 ${
-                      isActive ? 'bg-primary-500 text-foreground-950' : 'border border-black/15 text-black/40'
-                    }`}
-                  >
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span
-                    className="text-sm font-black leading-none transition-colors duration-300"
-                    style={{ color: isActive ? '#FFFFFF' : 'rgba(0,0,0,0.6)' }}
-                  >
-                    {e.name.split(' ')[0]}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+        {/* Section header */}
+        <div className="mb-14">
+          <SectionBadge text={tBadge} variant="dark" className="mb-5" />
+          <h2 className="sonic-h2 text-foreground-950 mb-3">{tHeading}</h2>
+          <p className="text-[15px] text-foreground-500 max-w-[480px] leading-relaxed">{tSub}</p>
         </div>
 
-        {/* ── SPLIT CARD (photo + dark panel, matches Team) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] bg-white border border-[#E7E4D4] overflow-hidden">
-          {/* Left — full-bleed portrait */}
-          <div className="relative min-h-[280px] sm:min-h-[380px] lg:min-h-[560px] bg-foreground-950">
-            <img
-              key={`portrait-${exec.id}`}
-              src={exec.image}
-              alt={exec.name}
-              className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-300 ${transitioning ? 'opacity-0' : 'opacity-100'}`}
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C] via-[#0B0B0C]/20 to-transparent" />
-            <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">
-              {exec.eyebrow}
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 p-7">
-              <div className="text-[clamp(32px,4vw,52px)] font-black text-white leading-none tracking-tight">{exec.name}</div>
-              <div className="flex items-center gap-2 mt-3">
-                <span className="text-sm font-black text-white">{exec.title}</span>
-                <span className="w-1 h-1 bg-primary-500" />
-                <span className="text-xs text-white/50 font-bold uppercase tracking-wider">{exec.tenure}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right — dark ink panel */}
-          <div className="bg-foreground-950 p-8 md:p-12 flex flex-col justify-between">
-            <div>
-              <div className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-4">
-                {String(activeIdx + 1).padStart(2, '0')} / {String(execs.length).padStart(2, '0')}
-              </div>
-
-              <blockquote
-                key={`quote-${activeIdx}`}
-                className="text-xl md:text-2xl font-black text-white leading-[1.35] mb-6"
+        {/* Staggered rows — all three shown simultaneously, no carousel */}
+        <div className="flex flex-col gap-10">
+          {execs.map((exec, i) => {
+            const imageLeft = i % 2 === 0; // Row 0 & 2: image left. Row 1: image right.
+            return (
+              <div
+                key={exec.id}
+                className="relative"
+                style={{
+                  marginRight: imageLeft ? '96px' : undefined,
+                  marginLeft:  imageLeft ? undefined : '96px',
+                }}
               >
-                {exec.pullQuote}
-              </blockquote>
+                {/* Ghost numeral — bleeds off the row's outer edge */}
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute',
+                    top: '-46px',
+                    [imageLeft ? 'right' : 'left']: '-96px',
+                    fontSize: '168px',
+                    fontWeight: 900,
+                    lineHeight: 0.7,
+                    letterSpacing: '-0.06em',
+                    color: 'oklch(0.16 0.006 118 / 0.05)',
+                    pointerEvents: 'none',
+                    userSelect: 'none',
+                    zIndex: 0,
+                  }}
+                >
+                  0{i + 1}
+                </div>
 
-              <p key={`bio-${activeIdx}`} className="text-sm leading-relaxed text-white/55 mb-7">
-                {exec.bio}
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {exec.metrics.map((m) => (
-                  <div key={m.label} className="border border-white/10 px-4 py-3.5">
-                    <div className="text-xl font-black text-primary-500 leading-none">{m.value}</div>
-                    <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5">{m.label}</div>
+                {/* Row card */}
+                <div
+                  className="relative z-10 grid border border-[oklch(0.885_0.004_110)] overflow-hidden"
+                  style={{
+                    gridTemplateColumns: imageLeft ? '0.86fr 1.14fr' : '1.14fr 0.86fr',
+                  }}
+                >
+                  {/* Image panel */}
+                  <div
+                    className="relative overflow-hidden bg-foreground-950"
+                    style={{
+                      minHeight: '520px',
+                      order: imageLeft ? 1 : 2,
+                    }}
+                  >
+                    <img
+                      src={exec.image}
+                      alt={exec.name}
+                      className="absolute inset-0 w-full h-full object-cover object-top"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                    {/* Eyebrow chip */}
+                    <div className="absolute top-5 left-5 bg-primary-500 text-foreground-950 px-3 py-1 text-[10px] font-black uppercase tracking-widest">
+                      {exec.eyebrow}
+                    </div>
+                    {/* Name at bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 p-8">
+                      <div className="text-[clamp(28px,3.5vw,44px)] font-black text-white leading-none tracking-tight">
+                        {exec.name}
+                      </div>
+                      <div className="flex items-center gap-2 mt-2">
+                        <span className="text-sm font-black text-white">{exec.title}</span>
+                        <span className="w-1 h-1 bg-primary-500 flex-shrink-0" />
+                        <span className="text-xs text-white/50 font-bold uppercase tracking-wider">{exec.tenure}</span>
+                      </div>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Footer nav + social */}
-            <div className="flex items-center justify-between pt-6 mt-6 border-t border-white/10">
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => goTo((activeIdx - 1 + execs.length) % execs.length)}
-                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-primary-500 hover:text-foreground-950 border border-white/15 text-white/60"
-                  aria-label="Vorherige Person"
-                >
-                  <i className="ri-arrow-left-line" />
-                </button>
-                <button
-                  onClick={() => goTo((activeIdx + 1) % execs.length)}
-                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-primary-500 hover:text-foreground-950 border border-white/15 text-white/60"
-                  aria-label="Nächste Person"
-                >
-                  <i className="ri-arrow-right-line" />
-                </button>
+                  {/* Text panel */}
+                  <div
+                    className="bg-foreground-950 flex flex-col justify-between"
+                    style={{
+                      padding: '64px 56px',
+                      order: imageLeft ? 2 : 1,
+                    }}
+                  >
+                    <div>
+                      {/* Counter */}
+                      <div className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-6">
+                        {String(i + 1).padStart(2, '0')} / {String(execs.length).padStart(2, '0')}
+                      </div>
+
+                      {/* Pull-quote — 31px per brief */}
+                      <blockquote
+                        className="text-white font-black leading-[1.28] mb-7"
+                        style={{ fontSize: '31px', letterSpacing: '-0.02em' }}
+                      >
+                        {exec.pullQuote}
+                      </blockquote>
+
+                      <p className="text-sm text-white/55 leading-relaxed mb-8">{exec.bio}</p>
+
+                      {/* Metrics */}
+                      <div className="grid grid-cols-2 gap-3">
+                        {exec.metrics.map((m) => (
+                          <div key={m.label} className="border border-white/10 px-4 py-3.5">
+                            <div className="text-xl font-black text-primary-500 leading-none">{m.value}</div>
+                            <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5">{m.label}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* LinkedIn */}
+                    <div className="flex items-center justify-end pt-6 mt-6 border-t border-white/10">
+                      <a
+                        href={exec.linkedin}
+                        target="_blank"
+                        rel="nofollow noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.06em] text-primary-500 hover:text-white transition-colors"
+                      >
+                        <i className="ri-linkedin-fill text-base" />
+                        LinkedIn
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <a
-                href={exec.linkedin}
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.06em] text-primary-500 hover:text-white transition-colors"
-              >
-                <i className="ri-linkedin-fill text-base" />
-                LinkedIn
-              </a>
-            </div>
-          </div>
+            );
+          })}
         </div>
 
-        {/* ── CONTACT CTA ── */}
-        <div id="kontakt" className="sonic-container mt-8 md:mt-10">
+        {/* Contact CTA — identical to original */}
+        <div id="kontakt" className="sonic-container mt-10">
           <div className="border border-[#E7E4D4] py-6 md:py-7 px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAFDF5]">
             <div className="text-center sm:text-left">
               <p className="text-sm md:text-[15px] font-black text-foreground-950 leading-relaxed">
-                Lass uns besprechen, wie Sonic deine <span className="text-primary-500">Marke unterstützen kann.</span>
+                Lass uns besprechen, wie Sonic deine{' '}
+                <span className="text-primary-500">Marke unterstützen kann.</span>
               </p>
               <p className="text-xs text-[#6E6E68] mt-1 hidden sm:block">
                 Unabhängige Agentur — über 500 Projekte — B2B, B2B2C &amp; D2C

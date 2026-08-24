@@ -21,7 +21,6 @@ export default function HomePage() {
     ogDescription: 'Über 1,35 Mio. Einsätze. €2 Mrd. Umsatz. 20.000+ Talente. Ihr Full-Service-Partner für Retail Activation im DACH-Raum.',
   });
 
-  // Total sections for stacked effect calculation
   const totalSections = 8;
 
   return (
@@ -29,11 +28,9 @@ export default function HomePage() {
 
       {/* ── Hero wrapper ── */}
       <div className="relative bg-gradient-to-b from-white via-[#FFF9F0]/40 to-white overflow-hidden">
-
         <section id="hero" className="relative z-10">
           <HeroRevamp />
         </section>
-
         <StackedSectionReveal index={0} totalSections={totalSections}>
           <section id="trust" className="relative z-10 bg-white">
             <TrustStrip />
@@ -41,7 +38,7 @@ export default function HomePage() {
         </StackedSectionReveal>
       </div>
 
-      {/* LiveMetrics — subtle warm tint breaks the pure-white run */}
+      {/* LiveMetrics */}
       <StackedSectionReveal index={1} totalSections={totalSections}>
         <section id="metrics" className="relative z-10" style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }}>
           <LiveMetrics />
@@ -56,13 +53,17 @@ export default function HomePage() {
         </section>
       </StackedSectionReveal>
 
+      <WoodenDivider />
+
       <StackedSectionReveal index={3} totalSections={totalSections}>
         <section id="challenge" className="relative z-10 bg-white">
           <ChallengeSection />
         </section>
       </StackedSectionReveal>
 
-      {/* losungen anchor sits just above the services section */}
+      <WoodenDivider />
+
+      {/* losungen anchor */}
       <div id="losungen" style={{ scrollMarginTop: '80px' }} />
 
       <StackedSectionReveal index={4} totalSections={totalSections}>
@@ -71,12 +72,15 @@ export default function HomePage() {
         </section>
       </StackedSectionReveal>
 
-      {/* SRT Teaser — combined diagram + consultation nudge */}
+      <WoodenDivider />
+
       <StackedSectionReveal index={5} totalSections={totalSections}>
         <section id="srt-teaser" className="relative z-10">
           <SRTTeaser />
         </section>
       </StackedSectionReveal>
+
+      <WoodenDivider />
 
       <StackedSectionReveal index={6} totalSections={totalSections}>
         <section id="client-proof" className="relative z-10 bg-white">
@@ -84,7 +88,7 @@ export default function HomePage() {
         </section>
       </StackedSectionReveal>
 
-      {/* Gradient bridge into Contact — smooth color handoff */}
+      {/* Gradient bridge into Contact */}
       <div className="w-full h-8 pointer-events-none" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #FAFDF5 100%)' }} aria-hidden="true" />
 
       <WoodenDivider />

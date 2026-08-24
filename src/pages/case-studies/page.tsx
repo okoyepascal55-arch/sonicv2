@@ -531,7 +531,7 @@ export default function CaseStudiesPage() {
         <div className="sonic-container py-8 md:py-12">
           <div
             className="relative overflow-hidden"
-            style={{ boxShadow: '0 24px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(200,212,0,0.12)' }}
+            style={{ border: '1px solid oklch(0.885 0.004 110)' }}
           >
             {/* Wood texture bg */}
             <div className="absolute inset-0">
@@ -540,12 +540,8 @@ export default function CaseStudiesPage() {
               ) : <div className="w-full h-full bg-foreground-950" />}
               <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.38) 50%, rgba(0,0,0,0.58) 100%)' }} />
             </div>
-            {/* Lime blade accent */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute -right-16 top-0 bottom-0 w-56 md:w-80" style={{ background: 'linear-gradient(180deg, transparent 0%, rgba(200,212,0,0.12) 50%, transparent 100%)', transform: 'rotate(-15deg) translateX(20%)', filter: 'blur(40px)' }} />
-            </div>
-            {/* Top lime accent line */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-80" />
+
+
 
             <div key={current.id} className="relative z-10 p-6 md:p-10" style={{ animation: 'brandFadeIn 0.3s ease-out forwards' }}>
 
@@ -691,7 +687,7 @@ export default function CaseStudiesPage() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[180px] gap-4 mb-14">
+            <div className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[220px] mb-14" style={{ gap: '3px', background: 'oklch(0.16 0.006 118)' }}>
               {expanded.bentoImages.map((item, i) => {
                   const bentoLightboxItems: LightboxItem[] = expanded.bentoImages.map((b) => ({
                     image: b.src,
@@ -735,8 +731,8 @@ export default function CaseStudiesPage() {
                         <span className="inline-block bg-primary-500 text-white text-xs font-black px-3 py-1 uppercase tracking-wide">{item.label}</span>
                       </div>
                       {/* Lime corner accent */}
-                      <div className="absolute top-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-12 transition-all duration-500"></div>
-                      <div className="absolute top-0 left-0 w-0.5 h-0 bg-primary-500 group-hover:h-12 transition-all duration-500"></div>
+                      <div className="absolute top-3 left-3" style={{ width: '22px', height: '2px', background: 'oklch(0.81 0.19 115)' }}></div>
+                      
                     </div>
                   );
                 })}
