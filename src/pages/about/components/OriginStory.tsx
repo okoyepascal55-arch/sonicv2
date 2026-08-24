@@ -95,7 +95,7 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
             >
               <h2 className="sonic-h2 text-foreground-950 mb-4 md:mb-6">
                 {tHeading.split('.')[0] || tHeading}<br />
-                <span className="text-primary-500">{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.') + '.' : ''}</span>
+                <span className="v3-marker">{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.').trim() : ''}</span>
               </h2>
 
               <div className="space-y-3 md:space-y-4 text-sm md:text-[15px] leading-relaxed text-foreground-600 mb-5 md:mb-8">

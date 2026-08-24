@@ -43,7 +43,7 @@ export default function ValuesVisual() {
           className={`mb-10 md:mb-12 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           <h2 className="sonic-h2 text-foreground-950 mb-2">
-            Wer mit Sonic <span className="text-primary-500">erfolgreich</span> ist
+            Wer mit Sonic <span className="v3-marker">erfolgreich</span> ist
           </h2>
           <p className="text-sm text-foreground-500 max-w-lg leading-relaxed">
             12 Markenpartner vertrauen seit 2007 auf unsere Expertise am POS, in Studios und auf Events.
@@ -52,7 +52,8 @@ export default function ValuesVisual() {
 
         {/* Client grid */}
         <div
-          className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 md:grid-cols-4 gap-px bg-black/8 border border-black/8 overflow-hidden transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 overflow-hidden transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          style={{ borderTop: '1px solid oklch(0.885 0.004 110)', borderLeft: '1px solid oklch(0.885 0.004 110)', transitionDelay: '120ms' }}
           style={{ transitionDelay: '120ms' }}
         >
           {clients.map((client, i) => {
@@ -60,7 +61,7 @@ export default function ValuesVisual() {
             return (
               <div
                 key={i}
-                className="bg-background-100 p-5 md:p-6 flex flex-col items-center justify-center text-center group hover:bg-[#FAFDF5] transition-colors duration-200 min-h-[120px]"
+                className="bg-white p-5 md:p-6 flex flex-col items-center justify-center text-center group hover:bg-[#FAFDF5] transition-colors duration-200 min-h-[140px]" style={{ borderRight: "1px solid oklch(0.885 0.004 110)", borderBottom: "1px solid oklch(0.885 0.004 110)" }}
                 role="button"
                 tabIndex={0}
                 aria-label={`${client.name} — ${client.category}`}
