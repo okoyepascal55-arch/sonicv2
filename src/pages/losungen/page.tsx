@@ -554,36 +554,6 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
           </div>
         </div>
 
-        <WoodenDivider />
-
-        {/* ── Testimonial ── */}
-        <div className="bg-white py-12 md:py-20 px-4 md:px-8">
-          <div className="sonic-container">
-            <div className="grid md:grid-cols-[0.9fr_1.1fr]" style={{ border: '1px solid oklch(0.885 0.004 110)' }}>
-              <div className="relative overflow-hidden" style={{ minHeight: '280px', backgroundColor: 'oklch(0.13 0.005 118)' }}>
-                {testimonialImg ? (
-                  <img
-                    src={testimonialImg}
-                    alt={s.testimonial.brand}
-                    className="absolute inset-0 w-full h-full object-cover object-top"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : null}
-              </div>
-              <div className="flex flex-col justify-center p-8 md:p-12">
-                <span className="text-primary-500 text-3xl font-black leading-none mb-3" aria-hidden="true">&ldquo;</span>
-                <blockquote className="font-black text-foreground-950 leading-snug mb-6" style={{ fontSize: '22px' }}>
-                  {s.testimonial.quote}
-                </blockquote>
-                <p className="text-xs font-black uppercase tracking-widest" style={{ color: 'oklch(0.81 0.19 115)' }}>
-                  {s.testimonial.author} — {s.testimonial.role}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* ── Compact bottom bar ── */}
         <div className="border-t border-foreground-100 py-5 md:py-7 px-4 md:px-8">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
