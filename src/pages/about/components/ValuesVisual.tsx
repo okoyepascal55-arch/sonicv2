@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import SectionBadge from '@/components/base/SectionBadge';
 
 const clients = [
   { name: 'Philips', category: 'Unterhaltungselektronik', logo: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887' },
@@ -54,7 +53,6 @@ export default function ValuesVisual() {
         <div
           className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 overflow-hidden transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           style={{ borderTop: '1px solid oklch(0.885 0.004 110)', borderLeft: '1px solid oklch(0.885 0.004 110)', transitionDelay: '120ms' }}
-          style={{ transitionDelay: '120ms' }}
         >
           {clients.map((client, i) => {
             const hasLogoError = logoErrors.has(i);

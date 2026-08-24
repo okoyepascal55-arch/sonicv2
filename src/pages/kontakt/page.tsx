@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSEO } from '@/hooks/useSEO';
 import ContactForm from './components/ContactForm';
 import ImpressumSection from './components/ImpressumSection';
-import LimeWaveDivider from '@/components/base/LimeWaveDivider';
+import WoodenDivider from '@/components/base/WoodenDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
 
@@ -177,7 +177,7 @@ export default function KontaktPage() {
         </div>
       </section>
 
-      <LimeWaveDivider />
+      <WoodenDivider />
 
       {/* ── Main Content: Form + Map ───────────────────────────────────── */}
       <section className="bg-white py-16 md:py-[112px] px-5 md:px-10" style={{ background: 'oklch(var(--background-50))' }}>

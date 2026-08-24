@@ -1,12 +1,11 @@
 import { lazy } from 'react';
-import { Navigate, RouteObject, useParams } from 'react-router-dom';
+import { Navigate, RouteObject } from 'react-router-dom';
 
 // Lazy load pages
 const HomePage = lazy(() => import('../pages/home/page'));
 const AboutPage = lazy(() => import('../pages/about/page'));
 const CareersPage = lazy(() => import('../pages/careers/page'));
 const CaseStudiesPage = lazy(() => import('../pages/case-studies/page'));
-const CaseStudyDetailPage = lazy(() => import('../pages/case-studies/detail/page'));
 const IndustriesPage = lazy(() => import('../pages/industries/page'));
 const SRTPage = lazy(() => import('../pages/srt/page'));
 const TeamPage = lazy(() => import('../pages/team/page'));
@@ -57,11 +56,6 @@ const SegmentierteAnsprachePage = lazy(() => import('../pages/ratgeber/segmentie
 const RatgeberHubPage = lazy(() => import('../pages/ratgeber/page'));
 const DashboardPage = lazy(() => import('../pages/dashboard/page'));
 
-function CaseStudySlugRedirect() {
-  const { slug } = useParams();
-  return <Navigate to={slug ? `/fallbeispiele/${slug}` : '/fallbeispiele'} replace />;
-}
-
 const routes: RouteObject[] = [
   {
     path: '/',
@@ -97,7 +91,7 @@ const routes: RouteObject[] = [
   },
   {
     path: '/case-studies/:slug',
-    element: <CaseStudySlugRedirect />,
+    element: <Navigate to="/fallbeispiele" replace />,
   },
   {
     path: '/ueber-uns',
@@ -110,10 +104,6 @@ const routes: RouteObject[] = [
   {
     path: '/fallbeispiele',
     element: <CaseStudiesPage />,
-  },
-  {
-    path: '/fallbeispiele/:slug',
-    element: <CaseStudyDetailPage />,
   },
   {
     path: '/industries',

@@ -286,7 +286,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
             </button>
             <button
               onClick={onClose}
-              className="w-10 h-10 flex items-center justify-center bg-white/[0.06] border border-white/[0.10] hover:bg-white/[0.12] hover:scale-110 transition-all cursor-pointer rounded-sm"
+              className="w-10 h-10 flex items-center justify-center bg-white/[0.06] border border-white/[0.10] hover:bg-white/[0.12] hover:scale-110 transition-all cursor-pointer"
             >
               <i className="ri-close-line text-xl text-white"></i>
             </button>
@@ -314,7 +314,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
             {/* Hero stats grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
               {s.stats.map((stat, idx) => (
-                <div key={idx} className="bg-white/[0.04] backdrop-blur-[2px] p-4 md:p-5 border border-white/[0.06] rounded-sm">
+                <div key={idx} className="bg-white/[0.04] backdrop-blur-[2px] p-4 md:p-5 border border-white/[0.06]">
                   <div className="text-xl md:text-3xl font-black text-primary-500 font-sans tabular-nums mb-1">{stat.value}</div>
                   <div className="text-white/70 text-2xs md:text-xs font-bold uppercase tracking-wide leading-snug">{stat.label}</div>
                 </div>
@@ -554,11 +554,41 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
           </div>
         </div>
 
+        <WoodenDivider />
+
+        {/* ── Testimonial ── */}
+        <div className="bg-white py-12 md:py-20 px-4 md:px-8">
+          <div className="sonic-container">
+            <div className="grid md:grid-cols-[0.9fr_1.1fr]" style={{ border: '1px solid oklch(0.885 0.004 110)' }}>
+              <div className="relative overflow-hidden" style={{ minHeight: '280px', backgroundColor: 'oklch(0.13 0.005 118)' }}>
+                {testimonialImg ? (
+                  <img
+                    src={testimonialImg}
+                    alt={s.testimonial.brand}
+                    className="absolute inset-0 w-full h-full object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : null}
+              </div>
+              <div className="flex flex-col justify-center p-8 md:p-12">
+                <span className="text-primary-500 text-3xl font-black leading-none mb-3" aria-hidden="true">&ldquo;</span>
+                <blockquote className="font-black text-foreground-950 leading-snug mb-6" style={{ fontSize: '22px' }}>
+                  {s.testimonial.quote}
+                </blockquote>
+                <p className="text-xs font-black uppercase tracking-widest" style={{ color: 'oklch(0.81 0.19 115)' }}>
+                  {s.testimonial.author} — {s.testimonial.role}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* ── Compact bottom bar ── */}
         <div className="border-t border-foreground-100 py-5 md:py-7 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs md:text-sm text-foreground-500 text-center sm:text-left max-w-lg leading-relaxed">{s.finalCta}</p>
-            <div className="flex items-center gap-3 flex-shrink-0">
+            <div className="flex items-center gap-4 flex-shrink-0">
               <button
                 onClick={scrollToCarousel}
                 className="text-xs font-bold text-foreground-400 hover:text-foreground-950 transition-colors cursor-pointer whitespace-nowrap"
@@ -567,7 +597,8 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
               </button>
               <a
                 href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch%20anfragen`}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-primary-500 hover:text-primary-500 transition-colors cursor-pointer whitespace-nowrap"
+                className="inline-flex items-center gap-2 bg-foreground-950 text-white px-5 py-2.5 font-black text-xs uppercase tracking-wider hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap"
+                style={{ borderRadius: 0 }}
               >
                 <i className="ri-calendar-line text-sm"></i>Beratungsgespräch
               </a>
@@ -614,7 +645,7 @@ function ContactForm() {
   if (formStatus === 'success') {
     return (
       <div className="text-center py-12">
-        <div className="w-16 h-16 flex items-center justify-center bg-primary-500/20 rounded-md mx-auto mb-5">
+        <div className="w-16 h-16 flex items-center justify-center bg-primary-500/20 mx-auto mb-5">
           <i className="ri-check-double-line text-3xl text-primary-500"></i>
         </div>
         <h3 className="text-2xl font-black text-foreground-950 mb-2 uppercase">Nachricht gesendet!</h3>
@@ -646,7 +677,7 @@ function ContactForm() {
             name="vorname"
             required
             placeholder="Max"
-            className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
+            className="w-full px-4 py-3 border-2 border-foreground-200 text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
           />
         </div>
         <div>
@@ -656,7 +687,7 @@ function ContactForm() {
             name="nachname"
             required
             placeholder="Mustermann"
-            className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
+            className="w-full px-4 py-3 border-2 border-foreground-200 text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
           />
         </div>
       </div>
@@ -668,7 +699,7 @@ function ContactForm() {
           name="email"
           required
           placeholder="max@unternehmen.de"
-          className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
+          className="w-full px-4 py-3 border-2 border-foreground-200 text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
         />
       </div>
 
@@ -678,7 +709,7 @@ function ContactForm() {
           type="text"
           name="unternehmen"
           placeholder="Dein Unternehmen GmbH"
-          className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
+          className="w-full px-4 py-3 border-2 border-foreground-200 text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
         />
       </div>
 
@@ -688,7 +719,7 @@ function ContactForm() {
           type="tel"
           name="telefon"
           placeholder="+49 2151 479 444 0"
-          className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
+          className="w-full px-4 py-3 border-2 border-foreground-200 text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors"
         />
       </div>
 
@@ -696,7 +727,7 @@ function ContactForm() {
         <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Ich interessiere mich für</label>
         <select
           name="interesse"
-          className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors bg-white cursor-pointer"
+          className="w-full px-4 py-3 border-2 border-foreground-200 text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors bg-white cursor-pointer"
         >
           <option value="">Bitte wählen...</option>
           <option value="Markteintritt">Markteintritt</option>
@@ -720,7 +751,7 @@ function ContactForm() {
           maxLength={500}
           placeholder="Beschreibe kurz dein Projekt oder deine Frage..."
           onChange={(e) => setCharCount(e.target.value.length)}
-          className="w-full px-4 py-3 border-2 border-foreground-200 rounded-md text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors resize-none"
+          className="w-full px-4 py-3 border-2 border-foreground-200 text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors resize-none"
         />
       </div>
 
@@ -775,8 +806,8 @@ function WoodCard({
   const barHeights = [42, 58, 72, 88];
 
   return (
-    <div className="w-full relative overflow-hidden rounded-none" style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.4), 0 0 100px rgba(200,212,0,0.06)' }}>
-      {/* Wood texture — actual image, not a dark gradient */}
+    <div className="w-full relative overflow-hidden" style={{ borderRadius: 0, border: '1px solid oklch(0.885 0.004 110)' }}>
+      {/* Wood texture — actual image, dark diagonal overlay, no shadow/glow */}
       <div className="absolute inset-0">
         {(woodTextures[0] && woodTextures[0].url) ? (
           <img
@@ -787,18 +818,13 @@ function WoodCard({
             decoding="async"
           />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/35 to-black/50" />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(10,11,9,0.86), rgba(10,11,9,0.78), rgba(10,11,9,0.88))' }} />
       </div>
 
       {/* Fine grain overlay */}
       <div className="absolute inset-0 opacity-25" style={{ backgroundImage: 'repeating-linear-gradient(115deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 2px, transparent 4px)' }} />
 
-      {/* Signature blade — one wide diagonal light-blade at ~18° */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -right-8 top-1/2 -translate-y-1/2 w-40 md:w-64 h-[120%]" style={{ background: 'linear-gradient(180deg, transparent 0%, rgba(200,212,0,0.20) 50%, transparent 100%)', transform: 'rotate(-18deg)', filter: 'blur(26px)' }} />
-      </div>
-
-      <div className="relative z-10 px-5 py-5 md:px-12 md:py-7">
+      <div className="relative z-10 p-6 md:p-12">
         {/* 1. Card header row */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-7">
           <div className="flex items-center gap-3 md:gap-4">
@@ -1107,49 +1133,37 @@ export default function LosungenPage() {
         <div className="absolute bottom-1/3 right-0 w-80 h-80 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 px-6 max-w-7xl mx-auto">
-          {/* Tab switcher */}
-          <div className="flex items-center justify-center gap-2 md:gap-3 mb-6 md:mb-8 flex-wrap">
+          {/* Intro — unified eyebrow + paragraph (redundant stat-grid removed: the wood card below already carries these stats) */}
+          <div className="mb-8 md:mb-10 max-w-2xl">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Lösungen für den DACH-Markt</span>
+            </div>
+            <p className="text-sm md:text-base text-foreground-700 leading-relaxed">
+              Ganz gleich ob du neu im Markt bist, deinen Absatz skalieren willst oder deine Omnichannel-Strategie zum Fliegen bringen musst: Wir haben die Menschen, die Daten und die Erfolgslösungen.
+            </p>
+          </div>
+
+          {/* Tab switcher — framed hairline row, joins directly into the wood card below.
+              Mobile: natural width + horizontal scroll (labels don't get crushed).
+              md+: equal-width flex-1, there's room. */}
+          <div
+            className="flex overflow-x-auto md:overflow-visible [&::-webkit-scrollbar]:hidden"
+            style={{ border: '1px solid oklch(0.885 0.004 110)', borderBottom: 'none', scrollbarWidth: 'none' }}
+          >
             {KEYS.map((key) => (
               <button
                 key={key}
                 onClick={() => handleTabClick(key)}
-                className={`px-5 md:px-8 py-2 md:py-2.5 font-black uppercase tracking-wider text-xs md:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer ${
+                className={`flex-shrink-0 md:flex-1 px-4 md:px-8 py-3 md:py-3.5 font-black uppercase tracking-wider text-xs md:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer ${
                   activeTab === key
                     ? 'bg-foreground-950 text-primary-500'
-                    : 'bg-white text-foreground-600 border border-foreground-200 hover:border-primary-500/60 hover:text-foreground-950'
+                    : 'bg-white text-foreground-500 hover:text-foreground-950'
                 }`}
               >
                 {SOLUTIONS[key].label}
               </button>
             ))}
-          </div>
-
-          {/* Intro block — eyebrow + stats line */}
-          <div className="mb-10 md:mb-14">
-            <div className="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 lg:items-start">
-              <div>
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-4" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.30)' }}>
-                  <span className="w-1.5 h-1.5" style={{ background: 'oklch(var(--primary-500))' }}></span>
-                  <span className="text-xs font-black uppercase tracking-widest whitespace-nowrap text-foreground-950">Lösungen für den DACH-Markt</span>
-                </div>
-                <p className="text-sm md:text-base text-foreground-700 leading-relaxed max-w-xl">
-                  Ganz gleich ob du neu im Markt bist, deinen Absatz skalieren willst oder deine Omnichannel-Strategie zum Fliegen bringen musst: Wir haben die Menschen, die Daten und die Erfolgslösungen.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-5">
-                {[
-                  { value: '>500', label: 'Projekte' },
-                  { value: '>1,35 Mio.', label: 'Einsätze' },
-                  { value: '>100.000', label: 'POS' },
-                  { value: '2007', label: 'Seit' },
-                ].map((stat, i) => (
-                  <div key={i} className="pl-3 border-l-2 border-primary-500 min-w-0 overflow-hidden">
-                    <div className="text-lg md:text-xl font-black text-foreground-950 font-sans tabular-nums leading-none whitespace-nowrap">{stat.value}</div>
-                    <div className="text-xs text-foreground-600 font-bold uppercase tracking-wide mt-1">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Wood card */}
@@ -1190,7 +1204,11 @@ export default function LosungenPage() {
       <section className="sonic-section-lg md:px-4 md:px-6 bg-foreground-950">
         <div className="sonic-container">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-black text-primary-500/60 uppercase tracking-widest mb-3">Was immer gilt</p>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Was immer gilt</span>
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            </div>
             <h2 className="sonic-h2 text-white mb-2">Ganz gleich, wo du stehst</h2>
             <p className="text-base md:text-xl text-white/50 font-semibold">Du bekommst immer</p>
           </div>
@@ -1200,12 +1218,12 @@ export default function LosungenPage() {
               { icon: 'ri-bar-chart-box-line', title: 'Datenbasierte Planung', desc: 'Das Sonic Reporting Tool (SRT) liefert Forecasts, Standortanalysen und ROI-Prognosen.' },
               { icon: 'ri-dashboard-line', title: 'Live-Reporting via SRT', desc: 'Echtzeit-Dashboards, angedockt an deine Software. Volle Transparenz.' },
             ].map((item, i) => (
-              <div key={i} className="relative bg-white/[0.03] backdrop-blur-[2px] border border-white/[0.06] hover:border-primary-500/50 hover:bg-white/[0.06] hover:-translate-y-1 transition-all duration-300 group overflow-hidden rounded-sm">
+              <div key={i} className="relative bg-white/[0.03] backdrop-blur-[2px] border border-white/[0.06] hover:border-primary-500/50 hover:bg-white/[0.06] hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
                 {/* lime corner accent */}
                 <div className="absolute top-0 left-0 w-16 h-[2px] bg-gradient-to-r from-primary-500 to-transparent" />
                 <div className="absolute top-0 left-0 w-[2px] h-16 bg-gradient-to-b from-primary-500 to-transparent" />
                 <div className="pt-10 pb-8 px-8 text-center">
-                  <div className="w-14 h-14 flex items-center justify-center bg-primary-500/15 border border-primary-500/30 mx-auto mb-5 group-hover:bg-primary-500/25 transition-colors rounded-sm">
+                  <div className="w-14 h-14 flex items-center justify-center bg-primary-500/15 border border-primary-500/30 mx-auto mb-5 group-hover:bg-primary-500/25 transition-colors">
                     <i className={`${item.icon} text-2xl text-primary-500`}></i>
                   </div>
                   <h3 className="text-lg font-black text-white mb-3">{item.title}</h3>
@@ -1331,7 +1349,7 @@ export default function LosungenPage() {
                         <button
                           key={oi}
                           onClick={() => handleAnswer(opt)}
-                          className="w-full flex items-center gap-3 px-4 py-3 bg-white/[0.03] backdrop-blur-[2px] border border-white/[0.06] text-left font-semibold text-white/80 hover:bg-primary-500/15 hover:border-primary-500/50 hover:text-white transition-all duration-200 cursor-pointer text-sm group rounded-sm"
+                          className="w-full flex items-center gap-3 px-4 py-3 bg-white/[0.03] backdrop-blur-[2px] border border-white/[0.06] text-left font-semibold text-white/80 hover:bg-primary-500/15 hover:border-primary-500/50 hover:text-white transition-all duration-200 cursor-pointer text-sm group"
                         >
                           <span className="w-6 h-6 flex-shrink-0 flex items-center justify-center border border-white/20 group-hover:border-primary-500/60 group-hover:bg-primary-500/15 transition-all text-2xs font-black text-white/40 group-hover:text-primary-500">
                             {String.fromCharCode(65 + oi)}
@@ -1391,7 +1409,7 @@ export default function LosungenPage() {
                             value={surveyName}
                             onChange={(e) => setSurveyName(e.target.value)}
                             placeholder="Max"
-                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors rounded-sm"
+                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors"
                           />
                         </div>
                         <div>
@@ -1403,7 +1421,7 @@ export default function LosungenPage() {
                             value={surveyLastName}
                             onChange={(e) => setSurveyLastName(e.target.value)}
                             placeholder="Mustermann"
-                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors rounded-sm"
+                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors"
                           />
                         </div>
                       </div>
@@ -1419,7 +1437,7 @@ export default function LosungenPage() {
                             value={surveyEmail}
                             onChange={(e) => setSurveyEmail(e.target.value)}
                             placeholder="max@unternehmen.de"
-                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors rounded-sm"
+                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors"
                           />
                         </div>
                         <div>
@@ -1430,7 +1448,7 @@ export default function LosungenPage() {
                             value={surveyPhone}
                             onChange={(e) => setSurveyPhone(e.target.value)}
                             placeholder="+49 000 000000"
-                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors rounded-sm"
+                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors"
                           />
                         </div>
                       </div>
@@ -1445,7 +1463,7 @@ export default function LosungenPage() {
                             value={surveyCompany}
                             onChange={(e) => setSurveyCompany(e.target.value)}
                             placeholder="Dein Unternehmen GmbH"
-                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors rounded-sm"
+                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors"
                           />
                         </div>
                         <div>
@@ -1456,7 +1474,7 @@ export default function LosungenPage() {
                             value={surveyRole}
                             onChange={(e) => setSurveyRole(e.target.value)}
                             placeholder="z. B. Marketing Manager"
-                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors rounded-sm"
+                            className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors"
                           />
                         </div>
                       </div>
@@ -1468,7 +1486,7 @@ export default function LosungenPage() {
                           name="budget"
                           value={surveyBudget}
                           onChange={(e) => setSurveyBudget(e.target.value)}
-                          className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white focus:outline-none focus:border-primary-500 transition-colors rounded-sm cursor-pointer"
+                          className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white focus:outline-none focus:border-primary-500 transition-colors cursor-pointer"
                         >
                           <option value="" className="bg-foreground-950 text-white">Bitte wählen...</option>
                           <option value="< 10.000 €" className="bg-foreground-950 text-white">&lt; 10.000 €</option>
@@ -1495,7 +1513,7 @@ export default function LosungenPage() {
                           value={surveyNotes}
                           onChange={(e) => setSurveyNotes(e.target.value)}
                           placeholder="Erzähle uns kurz von deinem Projekt, deinen Zielen oder offenen Fragen..."
-                          className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors resize-none rounded-sm"
+                          className="w-full px-3 py-2.5 bg-white/[0.06] border border-white/[0.08] text-sm text-white placeholder-white/30 focus:outline-none focus:border-primary-500 transition-colors resize-none"
                         />
                       </div>
 
@@ -1579,11 +1597,12 @@ export default function LosungenPage() {
       <section className="sonic-section-lg px-6 bg-white">
         <div className="sonic-container">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-primary-500/20 border border-primary-500/40 px-5 py-2 mb-6" style={{ borderRadius: 0 }}>
-              <i className="ri-question-line text-primary-500 text-sm"></i>
-              <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">FAQ</span>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>FAQ</span>
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-foreground-950 mb-4">Häufig gestellte Fragen</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-foreground-950 mb-4">Häufig gestellte <span className="v3-marker">Fragen</span></h2>
             <p className="text-foreground-500 text-base max-w-xl mx-auto leading-relaxed">Alles, was du über unsere Lösungen, unsere Arbeitsweise und den Start einer Zusammenarbeit wissen musst.</p>
           </div>
           <div className="space-y-4">
@@ -1603,7 +1622,7 @@ export default function LosungenPage() {
                 >
                   <span className="text-lg font-black text-foreground-950 pr-6">{item.question}</span>
                   <div className={`w-9 h-9 flex-shrink-0 flex items-center justify-center transition-all duration-300 ${openFaq === index ? 'bg-primary-500' : 'bg-foreground-100'}`} style={{ borderRadius: 0 }}>
-                    <i className={`ri-arrow-down-s-line text-xl transition-transform duration-300 ${openFaq === index ? 'rotate-180 text-foreground-950' : 'text-foreground-500'}`} />
+                    <i className={`${openFaq === index ? 'ri-subtract-line text-foreground-950' : 'ri-add-line text-foreground-500'} text-xl`} />
                   </div>
                 </button>
                 <div
