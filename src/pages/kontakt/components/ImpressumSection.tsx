@@ -2,109 +2,57 @@ export default function ImpressumSection() {
   return (
     <section
       id="impressum"
-      className="sonic-section-md px-6 bg-white relative overflow-hidden"
+      className="bg-white py-16 md:py-24 px-5 md:px-10 border-t"
+      style={{ borderColor: 'oklch(var(--foreground-950) / 0.08)' }}
       aria-labelledby="impressum-heading"
     >
-      {/* Texture */}
-      <div
-        className="absolute inset-0 opacity-[0.025] pointer-events-none"
-        aria-hidden="true"
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(0deg, #000 0px, #000 1px, transparent 1px, transparent 64px)',
-        }}
-      />
-
-      <div className="max-w-full max-w-[1300px] mx-auto relative z-10">
+      <div className="sonic-container">
         {/* Section header */}
-        <div className="mb-10 flex items-center gap-4">
-          <div
-            className="w-1 self-stretch bg-primary-500 flex-shrink-0"
-            aria-hidden="true"
-          />
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.3em] text-primary-500 mb-1">
-              Rechtliches
-            </p>
-            <h2
-              id="impressum-heading"
-              className="sonic-h2 text-foreground-950"
-            >
-              Impressum
-            </h2>
-          </div>
+        <div className="flex items-center gap-3 mb-12">
+          <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+          <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Rechtliches</span>
+          <h2 id="impressum-heading" className="font-black text-foreground-950 ml-4" style={{ fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', letterSpacing: '-0.02em' }}>
+            Impressum
+          </h2>
         </div>
 
-        <div className="grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground-200">
-
+        <div className="grid md:grid-cols-3" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
           {/* Angaben */}
-          <div className="bg-white px-8 py-10">
-            <h3 className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-5">
+          <div className="py-10 pr-12" style={{ borderRight: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
+            <p className="text-[10px] font-black uppercase tracking-[0.26em] mb-5" style={{ color: 'oklch(var(--foreground-500))' }}>
               Angaben gemäß § 5 TMG
-            </h3>
-            <div className="space-y-1 text-sm text-foreground-600 leading-relaxed">
+            </p>
+            <div className="space-y-1 text-sm leading-relaxed" style={{ color: 'oklch(var(--foreground-600))' }}>
               <p className="font-black text-foreground-950">Sonic Group GmbH</p>
               <p>Campus Fichtenhain 46</p>
               <p>47807 Krefeld</p>
               <p>Deutschland</p>
             </div>
 
-            <div className="mt-6">
-              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-foreground-400 mb-3">
+            <div className="mt-7">
+              <p className="text-[10px] font-black uppercase tracking-[0.26em] mb-2" style={{ color: 'oklch(var(--foreground-500))' }}>
                 Vertreten durch
-              </h4>
-              <p className="text-sm text-foreground-600">Geschäftsführung der Sonic Group GmbH</p>
+              </p>
+              <p className="text-sm" style={{ color: 'oklch(var(--foreground-600))' }}>Geschäftsführung der Sonic Group GmbH</p>
             </div>
           </div>
 
           {/* Kontakt */}
-          <div className="bg-white px-8 py-10">
-            <h3 className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-5">
+          <div className="py-10 px-12" style={{ borderRight: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
+            <p className="text-[10px] font-black uppercase tracking-[0.26em] mb-5" style={{ color: 'oklch(var(--foreground-500))' }}>
               Kontakt
-            </h3>
-            <div className="space-y-3 text-sm text-foreground-600">
-              <div className="flex items-start gap-3">
-                <div className="w-5 h-5 flex items-center justify-center text-primary-500 flex-shrink-0 mt-0.5">
-                  <i className="ri-phone-line text-sm" />
-                </div>
-                <a
-                  href="tel:+4921514794440"
-                  className="hover:text-primary-500 transition-colors"
-                >
-                  +49 2151 479 444 0
-                </a>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-5 h-5 flex items-center justify-center text-primary-500 flex-shrink-0 mt-0.5">
-                  <i className="ri-mail-line text-sm" />
-                </div>
-                <a
-                  href="mailto:info@sonic-group.de"
-                  className="hover:text-primary-500 transition-colors break-all"
-                >
-                  info@sonic-group.de
-                </a>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-5 h-5 flex items-center justify-center text-primary-500 flex-shrink-0 mt-0.5">
-                  <i className="ri-global-line text-sm" />
-                </div>
-                <a
-                  href="https://www.sonic-group.de"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-primary-500 transition-colors"
-                >
-                  www.sonic-group.de
-                </a>
-              </div>
+            </p>
+            <div className="space-y-2 text-sm" style={{ color: 'oklch(var(--foreground-600))' }}>
+              <p><a href="tel:+4921514794440" className="hover:text-primary-500 transition-colors">+49 2151 479 444 0</a></p>
+              <p><a href="mailto:info@sonic-group.de" className="hover:text-primary-500 transition-colors break-all">info@sonic-group.de</a></p>
+              <p><a href="https://www.sonic-group.de" target="_blank" rel="noopener noreferrer" className="hover:text-primary-500 transition-colors">www.sonic-group.de</a></p>
             </div>
 
-            <div className="mt-6">
-              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-foreground-400 mb-3">
+            <div className="mt-7">
+              <p className="text-[10px] font-black uppercase tracking-[0.26em] mb-2" style={{ color: 'oklch(var(--foreground-500))' }}>
                 Registrierung
-              </h4>
-              <div className="space-y-1 text-sm text-foreground-600">
+              </p>
+              <div className="space-y-1 text-sm leading-relaxed" style={{ color: 'oklch(var(--foreground-600))' }}>
                 <p>Registergericht: Amtsgericht Krefeld</p>
                 <p>Registernummer: HRB 15784</p>
               </div>
@@ -112,37 +60,36 @@ export default function ImpressumSection() {
           </div>
 
           {/* Haftung + USt */}
-          <div className="bg-white px-8 py-10">
-            <h3 className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-5">
+          <div className="py-10 pl-12">
+            <p className="text-[10px] font-black uppercase tracking-[0.26em] mb-5" style={{ color: 'oklch(var(--foreground-500))' }}>
               Umsatzsteuer-ID
-            </h3>
-            <p className="text-sm text-foreground-600 leading-relaxed mb-6">
+            </p>
+            <p className="text-sm leading-relaxed mb-7" style={{ color: 'oklch(var(--foreground-600))' }}>
               Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:
               <br />
-              <span className="font-bold text-foreground-950 mt-1 block">DE 815 258 744</span>
+              <span className="font-black text-foreground-950">DE 815 258 744</span>
             </p>
 
-            <h3 className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-3">
+            <p className="text-[10px] font-black uppercase tracking-[0.26em] mb-2" style={{ color: 'oklch(var(--foreground-500))' }}>
               Haftung für Inhalte
-            </h3>
-            <p className="text-xs text-foreground-400 leading-relaxed mb-5">
+            </p>
+            <p className="text-[13px] leading-relaxed mb-6" style={{ color: 'oklch(var(--foreground-400))' }}>
               Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf
               diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10
               TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder
               gespeicherte fremde Informationen zu überwachen.
             </p>
 
-            <h3 className="text-xs font-black uppercase tracking-[0.25em] text-primary-500 mb-3">
+            <p className="text-[10px] font-black uppercase tracking-[0.26em] mb-2" style={{ color: 'oklch(var(--foreground-500))' }}>
               Urheberrecht
-            </h3>
-            <p className="text-xs text-foreground-400 leading-relaxed">
+            </p>
+            <p className="text-[13px] leading-relaxed" style={{ color: 'oklch(var(--foreground-400))' }}>
               Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
               unterliegen dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung,
               Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
               Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors.
             </p>
           </div>
-
         </div>
       </div>
     </section>

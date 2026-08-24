@@ -1,5 +1,4 @@
 import { useState, FormEvent } from 'react';
-import SectionBadge from '@/components/base/SectionBadge';
 
 const FORM_URL = 'https://readdy.ai/api/form/d82bbfb29k3fss3u08ug';
 
@@ -15,10 +14,14 @@ const interests = [
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
+const fieldClass =
+  'w-full py-3 border-0 border-b bg-transparent text-[15px] text-foreground-950 placeholder-foreground-300 focus:outline-none transition-colors duration-200';
+
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
   const [charCount, setCharCount] = useState(0);
   const [selectedInterest, setSelectedInterest] = useState('');
+  const [focused, setFocused] = useState<string | null>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,178 +47,153 @@ export default function ContactForm() {
       setStatus('success');
       form.reset();
       setCharCount(0);
+      setSelectedInterest('');
     } catch {
       setStatus('error');
     }
   };
 
+  const underlineStyle = (name: string) => ({
+    borderBottomColor: focused === name ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-950) / 0.16)',
+  });
+
   return (
-    <div className="bg-white relative overflow-hidden" style={{ borderRadius: 0 }}>
-      {/* Lime top bar */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[4px]"
-        style={{ background: 'linear-gradient(90deg, #C8D400 0%, rgba(200,212,0,0.4) 100%)' }}
-        aria-hidden="true"
-      />
+    <div className="p-8 md:p-16">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-5">
+        <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+        <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Direkte Anfrage</span>
+      </div>
+      <h2 className="font-black text-foreground-950 mb-3" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+        Schreib{' '}
+        <span style={{ background: 'oklch(var(--primary-500) / 0.9)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>
+          uns
+        </span>
+      </h2>
+      <p className="text-[15px] leading-[1.7] max-w-md mb-12" style={{ color: 'oklch(var(--foreground-500))' }}>
+        Kein Commitment. Nur ein gutes Gespräch. Wir melden uns innerhalb von 24 Stunden.
+      </p>
 
-      <div className="px-5 py-10 sm:px-10 md:px-14 md:py-16">
-        {/* Header */}
-        <div className="mb-10">
-          <SectionBadge text="Direkte Anfrage" variant="dark" className="mb-4" />
-          <h2 className="sonic-h2 text-foreground-950">
-            Schreib <span className="text-primary-500">uns</span>
-          </h2>
-          <p className="text-sm text-foreground-500 leading-relaxed max-w-md">
-            Kein Commitment. Nur ein gutes Gespräch. Wir melden uns innerhalb von 24 Stunden.
-          </p>
-        </div>
-
-        {status === 'success' ? (
-          <div className="border border-primary-500/40 bg-primary-500/8 px-8 py-10 text-center">
-            <div className="w-14 h-14 mx-auto mb-5 flex items-center justify-center bg-primary-500/15 border border-primary-500/30">
-              <i className="ri-check-double-line text-2xl text-primary-500" />
-            </div>
-            <h3 className="sonic-h3 text-foreground-950 mb-2">Nachricht erhalten</h3>
-            <p className="text-sm text-foreground-500">
-              Wir melden uns innerhalb von 24 Stunden bei dir.
-            </p>
+      {status === 'success' ? (
+        <div className="border px-8 py-10 text-center" style={{ borderColor: 'oklch(var(--primary-500) / 0.4)', background: 'oklch(var(--primary-500) / 0.08)' }}>
+          <div className="w-14 h-14 mx-auto mb-5 flex items-center justify-center" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.3)' }}>
+            <i className="ri-check-double-line text-2xl text-primary-500" />
           </div>
-        ) : (
-          <form
-            data-readdy-form
-            id="kontakt-sonic-group"
-            onSubmit={handleSubmit}
-            noValidate
-            className="space-y-5"
-          >
-            {/* Name + Firma */}
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="name" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
-                  Name <span className="text-primary-500">*</span>
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  placeholder="Max Mustermann"
-                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-foreground-950 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-200"
-                  style={{ borderRadius: 0 }}
-                />
-              </div>
-              <div>
-                <label htmlFor="unternehmen" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
-                  Unternehmen
-                </label>
-                <input
-                  id="unternehmen"
-                  name="unternehmen"
-                  type="text"
-                  placeholder="Muster GmbH"
-                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-foreground-950 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-200"
-                  style={{ borderRadius: 0 }}
-                />
-              </div>
-            </div>
-
-            {/* E-Mail + Telefon */}
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="email" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
-                  E-Mail <span className="text-primary-500">*</span>
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="max@muster.de"
-                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-foreground-950 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-200"
-                  style={{ borderRadius: 0 }}
-                />
-              </div>
-              <div>
-                <label htmlFor="telefon" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
-                  Telefon
-                </label>
-                <input
-                  id="telefon"
-                  name="telefon"
-                  type="tel"
-                  placeholder="+49 0000 000000"
-                  className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-foreground-950 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-200"
-                  style={{ borderRadius: 0 }}
-                />
-              </div>
-            </div>
-
-            {/* Interesse — chip selector */}
+          <h3 className="text-xl font-black text-foreground-950 mb-2">Nachricht erhalten</h3>
+          <p className="text-sm" style={{ color: 'oklch(var(--foreground-500))' }}>Wir melden uns innerhalb von 24 Stunden bei dir.</p>
+        </div>
+      ) : (
+        <form data-readdy-form id="kontakt-sonic-group" onSubmit={handleSubmit} noValidate>
+          {/* Name + Firma */}
+          <div className="grid sm:grid-cols-2 gap-8 mb-8">
             <div>
-              <label className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-3">
-                Interesse an
+              <label htmlFor="name" className="block text-[11px] font-black uppercase tracking-[0.2em] mb-2.5" style={{ color: 'oklch(var(--foreground-600))' }}>
+                Name <span className="text-primary-500">*</span>
               </label>
-              <input type="hidden" name="interesse" value={selectedInterest} />
-              <div className="flex flex-wrap gap-2">
-                {interests.map((opt) => {
-                  const active = selectedInterest === opt;
-                  return (
-                    <button
-                      key={opt}
-                      type="button"
-                      onClick={() => setSelectedInterest(active ? '' : opt)}
-                      className="text-[11px] font-black uppercase tracking-[0.1em] px-3.5 py-2 transition-all duration-150 cursor-pointer"
-                      style={{
-                        background: active ? 'oklch(var(--primary-500))' : 'transparent',
-                        color: active ? 'oklch(var(--foreground-950))' : 'oklch(var(--foreground-500))',
-                        border: active ? '1.5px solid oklch(var(--primary-500))' : '1.5px solid oklch(var(--foreground-200))',
-                      }}
-                    >
-                      {opt}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Nachricht */}
-            <div>
-              <label htmlFor="nachricht" className="block text-xs font-black uppercase tracking-[0.18em] text-foreground-500 mb-1.5">
-                Nachricht <span className="text-primary-500">*</span>
-              </label>
-              <textarea
-                id="nachricht"
-                name="nachricht"
-                required
-                rows={5}
-                maxLength={500}
-                placeholder="Erzähl uns kurz, worum es geht…"
-                onChange={(e) => setCharCount(e.target.value.length)}
-                className="w-full px-4 py-3 bg-[#f8f8f6] border border-foreground-200 text-sm text-foreground-950 placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-200 resize-none"
-                style={{ borderRadius: 0 }}
+              <input
+                id="name" name="name" type="text" required placeholder="Max Mustermann"
+                onFocus={() => setFocused('name')} onBlur={() => setFocused(null)}
+                className={fieldClass} style={underlineStyle('name')}
               />
-              <div className="flex justify-between items-center mt-1">
-                {charCount > 500 && (
-                  <p className="text-xs text-red-500 font-semibold">Maximal 500 Zeichen</p>
-                )}
-                <span className="ml-auto text-xs text-foreground-400 tabular-nums">{charCount} / 500</span>
-              </div>
             </div>
+            <div>
+              <label htmlFor="unternehmen" className="block text-[11px] font-black uppercase tracking-[0.2em] mb-2.5" style={{ color: 'oklch(var(--foreground-600))' }}>
+                Unternehmen
+              </label>
+              <input
+                id="unternehmen" name="unternehmen" type="text" placeholder="Muster GmbH"
+                onFocus={() => setFocused('unternehmen')} onBlur={() => setFocused(null)}
+                className={fieldClass} style={underlineStyle('unternehmen')}
+              />
+            </div>
+          </div>
 
-            {/* Error message */}
-            {status === 'error' && (
-              <div className="flex items-center gap-3 bg-red-50 border border-red-200 px-4 py-3">
-                <i className="ri-error-warning-line text-red-500 text-base" />
-                <p className="text-sm text-red-600">Fehler beim Senden. Bitte versuche es erneut.</p>
-              </div>
-            )}
+          {/* E-Mail + Telefon */}
+          <div className="grid sm:grid-cols-2 gap-8 mb-8">
+            <div>
+              <label htmlFor="email" className="block text-[11px] font-black uppercase tracking-[0.2em] mb-2.5" style={{ color: 'oklch(var(--foreground-600))' }}>
+                E-Mail <span className="text-primary-500">*</span>
+              </label>
+              <input
+                id="email" name="email" type="email" required placeholder="max@muster.de"
+                onFocus={() => setFocused('email')} onBlur={() => setFocused(null)}
+                className={fieldClass} style={underlineStyle('email')}
+              />
+            </div>
+            <div>
+              <label htmlFor="telefon" className="block text-[11px] font-black uppercase tracking-[0.2em] mb-2.5" style={{ color: 'oklch(var(--foreground-600))' }}>
+                Telefon
+              </label>
+              <input
+                id="telefon" name="telefon" type="tel" placeholder="+49 0000 000000"
+                onFocus={() => setFocused('telefon')} onBlur={() => setFocused(null)}
+                className={fieldClass} style={underlineStyle('telefon')}
+              />
+            </div>
+          </div>
 
-            {/* Submit */}
+          {/* Interesse — chip selector */}
+          <div className="mb-8">
+            <label className="block text-[11px] font-black uppercase tracking-[0.2em] mb-4" style={{ color: 'oklch(var(--foreground-600))' }}>
+              Interesse an
+            </label>
+            <input type="hidden" name="interesse" value={selectedInterest} />
+            <div className="flex flex-wrap gap-2">
+              {interests.map((opt) => {
+                const active = selectedInterest === opt;
+                return (
+                  <button
+                    key={opt}
+                    type="button"
+                    onClick={() => setSelectedInterest(active ? '' : opt)}
+                    className="text-[11px] font-black uppercase tracking-[0.1em] px-3.5 py-2.5 transition-all duration-150 cursor-pointer"
+                    style={{
+                      background: active ? 'oklch(var(--foreground-950))' : 'transparent',
+                      color: active ? '#fff' : 'oklch(var(--foreground-500))',
+                      border: active ? '1px solid oklch(var(--foreground-950))' : '1px solid oklch(var(--foreground-950) / 0.14)',
+                    }}
+                  >
+                    {opt}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Nachricht */}
+          <div className="mb-10">
+            <label htmlFor="nachricht" className="block text-[11px] font-black uppercase tracking-[0.2em] mb-2.5" style={{ color: 'oklch(var(--foreground-600))' }}>
+              Nachricht <span className="text-primary-500">*</span>
+            </label>
+            <textarea
+              id="nachricht" name="nachricht" required rows={4} maxLength={500}
+              placeholder="Erzähl uns kurz, worum es geht…"
+              onChange={(e) => setCharCount(e.target.value.length)}
+              onFocus={() => setFocused('nachricht')} onBlur={() => setFocused(null)}
+              className="w-full px-4 py-4 text-[15px] leading-relaxed text-foreground-950 placeholder-foreground-300 focus:outline-none resize-none transition-colors duration-200"
+              style={{
+                border: `1px solid ${focused === 'nachricht' ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-950) / 0.14)'}`,
+                background: focused === 'nachricht' ? '#fff' : 'oklch(var(--background-100))',
+              }}
+            />
+            <div className="flex justify-between items-center mt-2">
+              {charCount > 500 && <p className="text-xs text-red-500 font-semibold">Maximal 500 Zeichen</p>}
+              <span className="ml-auto text-xs tabular-nums" style={{ color: 'oklch(var(--foreground-400))' }}>{charCount} / 500</span>
+            </div>
+          </div>
+
+          {status === 'error' && (
+            <div className="flex items-center gap-3 bg-red-50 border border-red-200 px-4 py-3 mb-6">
+              <i className="ri-error-warning-line text-red-500 text-base" />
+              <p className="text-sm text-red-600">Fehler beim Senden. Bitte versuche es erneut.</p>
+            </div>
+          )}
+
+          <div className="flex items-center gap-6 flex-wrap">
             <button
               type="submit"
               disabled={status === 'sending' || charCount > 500}
-              className="inline-flex items-center gap-3 bg-primary-500 text-foreground-950 px-7 py-3 font-black text-sm uppercase tracking-wider hover:bg-foreground-950 hover:text-primary-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-              style={{ borderRadius: 0 }}
+              className="inline-flex items-center gap-2.5 bg-foreground-950 text-white px-8 py-[17px] font-black text-xs uppercase tracking-[0.14em] hover:bg-primary-500 hover:text-foreground-950 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 whitespace-nowrap cursor-pointer"
             >
               {status === 'sending' ? (
                 <>
@@ -225,18 +203,14 @@ export default function ContactForm() {
               ) : (
                 <>
                   Nachricht senden
-                  <i className="ri-send-plane-line text-base" />
+                  <i className="ri-arrow-right-line text-base" />
                 </>
               )}
             </button>
-
-            {/* Trust */}
-            <p className="text-xs text-foreground-400 mt-2">
-              Kein Spam. Keine Weitergabe. Nur echter Kontakt. ✓
-            </p>
-          </form>
-        )}
-      </div>
+            <p className="text-xs" style={{ color: 'oklch(var(--foreground-400))' }}>Kein Spam. Keine Weitergabe. Nur echter Kontakt.</p>
+          </div>
+        </form>
+      )}
     </div>
   );
 }
