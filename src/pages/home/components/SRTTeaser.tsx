@@ -104,57 +104,10 @@ export default function SRTTeaser() {
           </p>
         </div>
 
-        {/* ── Diagram (priority) ── */}
-        {/* Mobile: center node + 2×2 grid */}
-        <div className="md:hidden">
-          {/* Center node */}
-          <div className="flex justify-center mb-4">
-            <div className="flex items-center gap-3 bg-primary-500 text-foreground-950 px-5 py-3">
-              <i className="ri-cpu-line text-xl" />
-              <span className="font-black uppercase tracking-wide text-sm">SRT Zentrale</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {nodes.map((node) => {
-              const isActive = activeNode === node.id;
-              return (
-                <button
-                  key={node.id}
-                  onClick={() => toggleNode(node.id)}
-                  className={`flex flex-col items-center gap-2 p-4 border transition-all duration-300 cursor-pointer text-center ${
-                    isActive
-                      ? 'bg-primary-500/15 border-primary-500/60'
-                      : 'bg-white/[0.08] border-white/25 active:bg-white/[0.14]'
-                  }`}
-                  aria-label={node.label}
-                  aria-pressed={isActive}
-                >
-                  <div className={`w-10 h-10 flex items-center justify-center ${isActive ? 'text-primary-500' : 'text-white/80'}`}>
-                    <i className={`${node.icon} text-xl`} />
-                  </div>
-                  <span className={`text-xs font-bold uppercase tracking-wide ${isActive ? 'text-primary-500' : 'text-white'}`}>
-                    {node.label}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Caption */}
-          <div className="text-center mt-4 min-h-[20px]">
-            {activeNodeData ? (
-              <p className="text-xs sm:text-sm text-foreground-300">{activeNodeData.desc}</p>
-            ) : (
-              <p className="text-xs text-foreground-500">Modul antippen für Details</p>
-            )}
-          </div>
-        </div>
-
-        {/* Desktop: radial diagram */}
+        {/* ── Diagram — one radial node-map at every breakpoint ── */}
         <div
-          className="hidden md:flex relative items-center justify-center"
-          style={{ height: 'clamp(300px, 38vw, 460px)' }}
+          className="flex relative items-center justify-center"
+          style={{ height: 'clamp(280px, 60vw, 460px)' }}
         >
           <svg
             className="absolute inset-0 w-full h-full"
@@ -216,7 +169,7 @@ export default function SRTTeaser() {
             onMouseEnter={() => setActiveNode('center')}
             onMouseLeave={() => setActiveNode((prev) => (prev === 'center' ? null : prev))}
             className={`absolute z-20 flex flex-col items-center justify-center transition-all duration-500 cursor-pointer
-              w-[104px] h-[104px] lg:w-[124px] lg:h-[124px]
+              w-16 h-16 sm:w-24 sm:h-24 md:w-[104px] md:h-[104px] lg:w-[124px] lg:h-[124px]
               ${pulse ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}
               ${activeNode === 'center' ? 'ring-2 ring-primary-500/60' : 'hover:ring-1 hover:ring-primary-500/40'}`}
             style={{
@@ -228,10 +181,10 @@ export default function SRTTeaser() {
             }}
             aria-label="Sonic Reporting Tool — Zentrales ERP-System"
           >
-            <div className="w-7 h-7 lg:w-8 lg:h-8 flex items-center justify-center text-foreground-950">
-              <i className="ri-cpu-line text-xl lg:text-2xl" />
+            <div className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 flex items-center justify-center text-foreground-950">
+              <i className="ri-cpu-line text-base sm:text-xl lg:text-2xl" />
             </div>
-            <span className="text-foreground-950 text-xs font-bold uppercase tracking-wider text-center leading-tight mt-1">
+            <span className="hidden sm:block text-foreground-950 text-xs font-bold uppercase tracking-wider text-center leading-tight mt-1">
               SRT
             </span>
           </button>
@@ -254,12 +207,12 @@ export default function SRTTeaser() {
           ))}
         </div>
 
-        {/* Desktop caption */}
-        <div className="hidden md:block text-center mt-2 min-h-[24px]">
+        {/* Caption */}
+        <div className="text-center mt-4 md:mt-2 min-h-[20px] md:min-h-[24px]">
           {activeNodeData ? (
-            <p className="text-sm text-foreground-300">{activeNodeData.desc}</p>
+            <p className="text-xs sm:text-sm text-foreground-300">{activeNodeData.desc}</p>
           ) : (
-            <p className="text-sm text-foreground-500">Modul anklicken für Details</p>
+            <p className="text-xs sm:text-sm text-foreground-500">Modul antippen für Details</p>
           )}
         </div>
 
@@ -306,16 +259,16 @@ function NodeButton({ node, active, onClick, leftPct, topPct }: NodeButtonProps)
       aria-pressed={active}
     >
       <div
-        className={`w-14 h-14 lg:w-16 lg:h-16 flex items-center justify-center border transition-all duration-300 backdrop-blur-lg ${
+        className={`w-9 h-9 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center border transition-all duration-300 backdrop-blur-lg ${
           active
             ? 'bg-primary-500/15 border-primary-500/70 text-primary-500'
             : 'bg-white/[0.08] border-white/25 text-white/85 hover:border-white/40 hover:text-primary-500'
         }`}
       >
-        <i className={`${node.icon} text-xl lg:text-2xl`} />
+        <i className={`${node.icon} text-sm sm:text-xl lg:text-2xl`} />
       </div>
       <span
-        className={`text-xs sm:text-sm font-semibold uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
+        className={`text-[9px] sm:text-sm font-semibold uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${
           active ? 'text-primary-500' : 'text-white/85'
         }`}
       >
