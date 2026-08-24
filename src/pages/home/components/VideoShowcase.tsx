@@ -13,11 +13,10 @@ export default function VideoShowcase() {
       <div className="sonic-container">
         {/* ── Unified Card ── */}
         <div
-          className="relative overflow-hidden rounded-xl"
+          className="relative overflow-hidden"
           style={{
             background: '#ffffff',
-            boxShadow: '0 1px 3px rgba(15,23,42,0.04), 0 8px 32px rgba(15,23,42,0.05)',
-            border: '1px solid rgba(15,23,42,0.05)',
+            border: '1px solid oklch(var(--foreground-950) / 0.1)',
           }}
         >
           {/* Inner padding */}
@@ -26,16 +25,16 @@ export default function VideoShowcase() {
             <div className="sonic-section-header" style={{ marginBottom: '2rem' }}>
               <h2 className="sonic-h2 text-foreground-950">
                 Erlebe Sonic{' '}
-                <span className="relative inline-block">
-                  <span
-                    className="relative z-10 px-2 py-0.5"
-                    style={{
-                      background: 'linear-gradient(180deg, rgba(200,212,0,0.35) 0%, rgba(200,212,0,0.15) 100%)',
-                      borderRadius: 4,
-                    }}
-                  >
-                    in 2 Minuten.
-                  </span>
+                <span
+                  style={{
+                    background: 'oklch(var(--primary-500) / 0.9)',
+                    color: 'oklch(var(--foreground-950))',
+                    padding: '0.02em 0.16em',
+                    boxDecorationBreak: 'clone',
+                    WebkitBoxDecorationBreak: 'clone',
+                  }}
+                >
+                  in 2 Minuten.
                 </span>
               </h2>
               <p className="sonic-subline mt-3">
@@ -48,21 +47,11 @@ export default function VideoShowcase() {
               className="relative mx-auto overflow-hidden"
               style={{
                 maxWidth: 960,
-                borderRadius: 12,
-                boxShadow: '0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08)',
+                border: '1px solid oklch(var(--foreground-950) / 0.1)',
               }}
               role="region"
               aria-label="Sonic Retail Activation Video"
             >
-              {/* Subtle inner frame line */}
-              <div
-                className="absolute inset-0 z-10 pointer-events-none"
-                style={{
-                  border: '1px solid rgba(15,23,42,0.08)',
-                  borderRadius: 12,
-                }}
-                aria-hidden="true"
-              />
 
               {!playing ? (
                 <div
@@ -136,7 +125,6 @@ export default function VideoShowcase() {
                     title="Sonic Retail Activation Excellence"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    style={{ borderRadius: 12 }}
                   />
                 </div>
               )}

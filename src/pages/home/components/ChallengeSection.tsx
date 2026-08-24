@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import QuizModal from './QuizModal';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import SectionBadge from '@/components/base/SectionBadge';
 
 const challengeData = [
   {
@@ -83,9 +82,34 @@ export default function ChallengeSection() {
         <div className="sonic-container relative z-10">
           {/* Header */}
           <div className="sonic-section-header">
-            <SectionBadge text={tBadge} variant="dark" />
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
+            </div>
             <h2 className="sonic-h2 text-foreground-950">
-              {tHeading}
+              {(() => {
+                const sentences = tHeading.split('. ').map((s) => (s.endsWith('.') ? s : `${s}.`));
+                const main = sentences[0] ?? tHeading;
+                const accent = sentences.length > 1 ? sentences.slice(1).join(' ') : '';
+                return (
+                  <>
+                    {main}{' '}
+                    {accent && (
+                      <span
+                        style={{
+                          background: 'oklch(var(--primary-500) / 0.9)',
+                          color: 'oklch(var(--foreground-950))',
+                          padding: '0.02em 0.16em',
+                          boxDecorationBreak: 'clone',
+                          WebkitBoxDecorationBreak: 'clone',
+                        }}
+                      >
+                        {accent}
+                      </span>
+                    )}
+                  </>
+                );
+              })()}
             </h2>
             <p className="sonic-subline">
               An welchem Punkt stehst du?
@@ -102,13 +126,12 @@ export default function ChallengeSection() {
                   key={challenge.id}
                   className="relative overflow-hidden cursor-pointer transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                   style={{
-                    transform: active ? 'translateY(-6px)' : 'translateY(0)',
                     background: active
                       ? 'oklch(var(--foreground-950))'
                       : '#ffffff',
-                    boxShadow: active
-                      ? '0 28px 60px rgba(0,0,0,0.22), 0 0 0 1px rgba(200,212,0,0.3)'
-                      : '0 1px 2px rgba(0,0,0,0.02), 0 10px 30px rgba(139,90,43,0.08), 0 0 0 1px rgba(0,0,0,0.05)',
+                    border: active
+                      ? '1px solid oklch(var(--primary-500) / 0.4)'
+                      : '1px solid oklch(var(--foreground-950) / 0.1)',
                     borderRadius: 0,
                   }}
                   onMouseEnter={() => setHoveredCard(challenge.id)}
@@ -145,11 +168,7 @@ export default function ChallengeSection() {
                       <div
                         className="w-11 h-11 sm:w-12 sm:h-12 md:w-16 md:h-16 overflow-hidden transition-all duration-500 flex-shrink-0"
                         style={{
-                          transform: active ? 'scale(1.1) rotate(-3deg)' : 'scale(1)',
-                          border: active ? '1px solid rgba(200,212,0,0.4)' : '1px solid rgba(139,90,43,0.18)',
-                          boxShadow: active
-                            ? '0 8px 24px rgba(139,90,43,0.35), 0 0 16px rgba(200,212,0,0.2)'
-                            : '0 3px 12px rgba(139,90,43,0.18)',
+                          border: active ? '1px solid oklch(var(--primary-500) / 0.4)' : '1px solid oklch(var(--primary-500) / 0.3)',
                         }}
                       >
                         <img
@@ -192,8 +211,7 @@ export default function ChallengeSection() {
                       className="inline-flex items-center gap-2 font-black text-[10px] sm:text-xs uppercase tracking-widest px-4 sm:px-5 py-2.5 sm:py-3 transition-all duration-300 whitespace-nowrap w-fit cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                       style={{
                         background: active ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.07)',
-                        color: active ? '#ffffff' : '#6B7280',
-                        boxShadow: active ? '0 4px 20px rgba(200,212,0,0.4)' : 'none',
+                        color: active ? 'oklch(var(--foreground-950))' : '#6B7280',
                       }}
                     >
                       {challenge.cta}

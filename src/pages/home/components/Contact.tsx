@@ -46,15 +46,18 @@ export default function Contact() {
               </p>
 
               {/* Headline */}
-              <h2 className="sonic-h2 text-white mb-2 relative inline-block">
-                ÜBER DIE
-                <br />
-                SONIC GROUP
+              <h2 className="sonic-h2 mb-2">
                 <span
-                  className="absolute left-0 bottom-[-4px] h-[5px] w-full"
-                  style={{ background: 'linear-gradient(90deg, oklch(var(--primary-500)) 0%, oklch(var(--primary-500) / 0.3) 100%)' }}
-                  aria-hidden="true"
-                />
+                  style={{
+                    background: 'oklch(var(--primary-500) / 0.9)',
+                    color: 'oklch(var(--foreground-950))',
+                    padding: '0.02em 0.16em',
+                    boxDecorationBreak: 'clone',
+                    WebkitBoxDecorationBreak: 'clone',
+                  }}
+                >
+                  Sonic Group
+                </span>
               </h2>
 
               {/* Divider */}
@@ -145,13 +148,18 @@ export default function Contact() {
               </p>
 
               {/* Headline */}
-              <h2 className="sonic-h2 text-foreground-950 mb-2 relative inline-block">
-                KARRIERE
+              <h2 className="sonic-h2 mb-2">
                 <span
-                  className="absolute left-0 bottom-[-4px] h-[5px] w-full"
-                  style={{ background: 'linear-gradient(90deg, oklch(var(--primary-500)) 0%, oklch(var(--primary-500) / 0.3) 100%)' }}
-                  aria-hidden="true"
-                />
+                  style={{
+                    background: 'oklch(var(--primary-500) / 0.9)',
+                    color: 'oklch(var(--foreground-950))',
+                    padding: '0.02em 0.16em',
+                    boxDecorationBreak: 'clone',
+                    WebkitBoxDecorationBreak: 'clone',
+                  }}
+                >
+                  Karriere
+                </span>
               </h2>
 
               {/* Divider */}

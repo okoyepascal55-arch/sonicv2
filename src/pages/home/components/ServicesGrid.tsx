@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { useMediaStore } from '@/lib/mediaStore';
-import SectionBadge from '@/components/base/SectionBadge';
 
 /* ── reusable image error helper ── */
 function hideBrokenImg(e: React.SyntheticEvent<HTMLImageElement>) {
@@ -193,16 +192,22 @@ export default function ServicesGrid() {
       <div className="sonic-container relative z-10">
         {/* ── Section Header ── */}
         <div className="text-center mb-8 md:mb-12 lg:mb-14">
-          <SectionBadge text="Unsere Leistungen" variant="dark" className="mb-4" />
+          <div className="inline-flex items-center gap-3 mb-4">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Unsere Leistungen</span>
+          </div>
           <h2 className="sonic-h2 text-foreground-950">
             Manpower trifft{' '}
-            <span className="relative inline-block">
-              <span className="relative z-10">ROI</span>
-              <span
-                className="absolute inset-0 -z-0 bg-primary-500/20 rounded-md"
-                style={{ transform: 'scaleX(1.08) scaleY(1.2) translateY(-1px)' }}
-                aria-hidden="true"
-              />
+            <span
+              style={{
+                background: 'oklch(var(--primary-500) / 0.9)',
+                color: 'oklch(var(--foreground-950))',
+                padding: '0.02em 0.16em',
+                boxDecorationBreak: 'clone',
+                WebkitBoxDecorationBreak: 'clone',
+              }}
+            >
+              ROI
             </span>
           </h2>
           <p className="text-sm md:text-base text-foreground-600 max-w-2xl mx-auto font-medium leading-relaxed">
@@ -215,16 +220,17 @@ export default function ServicesGrid() {
         </div>
 
         {/* ── Tabs — top, above the image ── */}
-        <div className="mb-4 md:mb-6 flex flex-wrap justify-center gap-2 md:gap-2.5">
+        <div className="mb-6 md:mb-8 flex flex-wrap justify-center gap-x-6 gap-y-2 md:gap-x-8" style={{ borderBottom: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
           {services.map((service, index) => (
             <button
               key={index}
               onClick={() => setSelectedIndex(index)}
-              className={`whitespace-nowrap text-sm md:text-base font-semibold transition-all duration-200 cursor-pointer px-4 md:px-6 py-2.5 rounded-none border ${
+              className={`whitespace-nowrap text-[13px] md:text-sm font-black uppercase tracking-wide transition-colors duration-200 cursor-pointer pb-4 -mb-px ${
                 selectedIndex === index
-                  ? 'bg-foreground-950 text-primary-500 border-foreground-950'
-                  : 'text-foreground-600 hover:text-foreground-900 border-background-300 hover:border-foreground-300 bg-white'
+                  ? 'text-foreground-950'
+                  : 'text-foreground-400 hover:text-foreground-700'
               }`}
+              style={{ borderBottom: selectedIndex === index ? '2px solid oklch(var(--primary-500))' : '2px solid transparent' }}
             >
               {service.title}
             </button>
@@ -266,14 +272,14 @@ export default function ServicesGrid() {
               <>
                 <button
                   onClick={() => goTo(imageIndex - 1)}
-                  className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm transition-colors cursor-pointer"
+                  className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 w-10 h-10 md:w-11 md:h-11 flex items-center justify-center bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm transition-colors cursor-pointer"
                   aria-label="Vorheriges Bild"
                 >
                   <i className="ri-arrow-left-line text-lg md:text-xl" />
                 </button>
                 <button
                   onClick={() => goTo(imageIndex + 1)}
-                  className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm transition-colors cursor-pointer"
+                  className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 w-10 h-10 md:w-11 md:h-11 flex items-center justify-center bg-black/30 text-white hover:bg-black/50 backdrop-blur-sm transition-colors cursor-pointer"
                   aria-label="Nächstes Bild"
                 >
                   <i className="ri-arrow-right-line text-lg md:text-xl" />
@@ -291,7 +297,7 @@ export default function ServicesGrid() {
                     className="w-6 h-6 flex items-center justify-center cursor-pointer"
                     aria-label={`Bild ${idx + 1}`}
                   >
-                    <span className={`block rounded-full transition-all duration-300 ${
+                    <span className={`block transition-all duration-300 ${
                       imageIndex === idx
                         ? 'w-5 h-1.5 bg-primary-400'
                         : 'w-1.5 h-1.5 bg-white/60 hover:bg-white/90'

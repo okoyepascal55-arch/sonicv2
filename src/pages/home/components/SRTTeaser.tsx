@@ -91,9 +91,9 @@ export default function SRTTeaser() {
       <div className="sonic-container relative z-10">
         {/* ── Header ── */}
         <div className="sonic-section-header">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-2" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.30)' }}>
-            <div className="w-1.5 h-1.5" style={{ background: 'oklch(var(--primary-500))' }} />
-            <span className="text-xs font-black uppercase tracking-[0.2em] text-primary-500">Field-Force ERP</span>
+          <div className="flex items-center gap-3 mb-2">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Field-Force ERP</span>
           </div>
           <h2 className="sonic-h2 text-white">
             SRT: Sonic{' '}

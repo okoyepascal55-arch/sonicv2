@@ -56,16 +56,11 @@ export default function HomePage() {
         </section>
       </StackedSectionReveal>
 
-      <WoodenDivider />
-
       <StackedSectionReveal index={3} totalSections={totalSections}>
         <section id="challenge" className="relative z-10 bg-white">
           <ChallengeSection />
         </section>
       </StackedSectionReveal>
-
-      {/* Divider bridges ChallengeSection → ServicesGrid */}
-      <WoodenDivider />
 
       {/* losungen anchor sits just above the services section */}
       <div id="losungen" style={{ scrollMarginTop: '80px' }} />
@@ -82,8 +77,6 @@ export default function HomePage() {
           <SRTTeaser />
         </section>
       </StackedSectionReveal>
-
-      <WoodenDivider />
 
       <StackedSectionReveal index={6} totalSections={totalSections}>
         <section id="client-proof" className="relative z-10 bg-white">

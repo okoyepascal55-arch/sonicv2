@@ -1,6 +1,5 @@
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import SectionBadge from '@/components/base/SectionBadge';
 
 export default function TrustStrip() {
   const { images: logoImages } = useMediaStore('home_truststrip_logos');
@@ -26,10 +25,10 @@ export default function TrustStrip() {
 
   const LogoCard = ({ brand, compact = false }: { brand: { name: string; logo: string; scale?: number }; compact?: boolean }) => (
     <div
-      className={`flex items-center justify-center flex-shrink-0 bg-white/85 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 grayscale hover:grayscale-0 cursor-pointer border border-foreground-100/60 hover:border-primary-500/30 group ${
+      className={`flex items-center justify-center flex-shrink-0 bg-white transition-all duration-300 grayscale hover:grayscale-0 cursor-pointer border hover:border-primary-500/40 group ${
         compact ? 'px-3 py-2' : 'p-2.5 md:p-5'
       }`}
-      style={{ borderRadius: 0, height: compact ? '40px' : '56px', minHeight: compact ? '40px' : '56px', maxHeight: compact ? '40px' : '56px' }}
+      style={{ borderRadius: 0, borderColor: 'oklch(var(--foreground-950) / 0.1)', height: compact ? '40px' : '56px', minHeight: compact ? '40px' : '56px', maxHeight: compact ? '40px' : '56px' }}
     >
       {brand.logo ? (
         <img
@@ -68,7 +67,10 @@ export default function TrustStrip() {
 
       <div className="sonic-container relative z-10">
         <div className="border-t border-foreground-200 pt-5 sm:pt-8 md:pt-12">
-          <SectionBadge text={tTrustBadge} variant="dark" className="mb-4" />
+          <div className="flex items-center gap-3 mb-4">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tTrustBadge}</span>
+          </div>
 
           {/* Mobile: single-row horizontal scroll strip */}
           <div
