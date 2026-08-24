@@ -688,42 +688,6 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://readdy.ai/api/search-image?query=modern%20creative%20office%20space%20with%20team%20members%20collaborating%20in%20bright%20open%20workspace%20with%20coffee%20area%20and%20welcoming%20atmosphere%20professional%20business%20environment&width=800&height=1000&seq=office-visit-main&orientation=portrait', caption: 'Office Visit — Main Image' },
   ],
 
-  /* ── CASE STUDIES: Hero Background ── */
-  casestudies_hero_background: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/image002Sonic-Hp.png', caption: 'Case Studies — Hero Background', wide: true },
-  ],
-
-  /* ── CASE STUDIES: Detail Page Heroes ── */
-  casestudies_detail_heroes: [
-    { url: 'https://readdy.ai/api/search-image?query=modern%20retail%20store%20display%20featuring%20premium%20smartwatches%20and%20fitness%20trackers%20on%20elegant%20display%20stands%20with%20professional%20brand%20promoter%20demonstrating%20product%20features%20to%20interested%20customer%20contemporary%20retail%20environment%20bright%20lighting%20clean%20minimalist%20design&width=1600&height=900&seq=garmin-hero&orientation=landscape', caption: 'Garmin — Hero', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=premium%20smartphone%20retail%20display%20with%20latest%20mobile%20devices%20on%20modern%20display%20tables%20professional%20brand%20ambassador%20showing%20features%20to%20customers%20in%20contemporary%20electronics%20store%20with%20bright%20lighting%20sleek%20design%20interactive%20demonstration%20area&width=1600&height=900&seq=samsung-hero&orientation=landscape', caption: 'Samsung — Hero', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=luxury%20home%20appliance%20retail%20display%20featuring%20premium%20vacuum%20cleaners%20and%20air%20purifiers%20on%20sophisticated%20display%20stands%20with%20professional%20demonstrator%20showing%20product%20capabilities%20to%20engaged%20customers%20in%20upscale%20retail%20environment%20modern%20lighting%20elegant%20design&width=1600&height=900&seq=dyson-hero&orientation=landscape', caption: 'Dyson — Hero', wide: true },
-  ],
-
-  /* ── CASE STUDIES: Groupe SEB Images ── */
-  casestudies_groupeseb_images: [
-    { url: 'https://readdy.ai/api/search-image?query=modern%20retail%20store%20display%20with%20premium%20kitchen%20appliances%20Tefal%20Krups%20Rowenta%20WMF%20brands%20professional%20merchandising%20clean%20organized%20shelves%20bright%20lighting%20contemporary%20interior%20design%20high-end%20cookware%20and%20small%20appliances%20showcase%20elegant%20product%20presentation&width=800&height=600&seq=groupeseb001&orientation=landscape', caption: 'Groupe SEB — Hero', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=professional%20retail%20staff%20demonstrating%20Tefal%20cookware%20products%20to%20customers%20in%20modern%20electronics%20store%20bright%20lighting%20engaged%20conversation%20product%20knowledge%20training%20premium%20brand%20experience&width=800&height=600&seq=groupeseb002&orientation=landscape', caption: 'Groupe SEB — Tefal Brand Experience' },
-    { url: 'https://readdy.ai/api/search-image?query=elegant%20Krups%20coffee%20machine%20display%20in%20premium%20retail%20environment%20sophisticated%20merchandising%20professional%20product%20presentation%20modern%20store%20interior%20luxury%20appliances%20showcase&width=800&height=600&seq=groupeseb003&orientation=landscape', caption: 'Groupe SEB — Krups Premium Display' },
-    { url: 'https://readdy.ai/api/search-image?query=Rowenta%20vacuum%20cleaners%20and%20home%20appliances%20retail%20demonstration%20trained%20specialist%20showing%20product%20features%20to%20interested%20customers%20clean%20organized%20store%20layout%20professional%20merchandising&width=800&height=600&seq=groupeseb004&orientation=landscape', caption: 'Groupe SEB — Rowenta Product Demo' },
-    { url: 'https://readdy.ai/api/search-image?query=WMF%20premium%20kitchenware%20and%20cookware%20display%20high-end%20retail%20environment%20elegant%20product%20arrangement%20professional%20merchandising%20luxury%20brand%20positioning%20modern%20store%20design&width=800&height=600&seq=groupeseb005&orientation=landscape', caption: 'Groupe SEB — WMF Luxury Positioning' },
-    { url: 'https://readdy.ai/api/search-image?query=modern%20Samsung%20smartphone%20retail%20display%20interactive%20product%20demonstration%20professional%20brand%20ambassadors%20engaged%20customers%20contemporary%20electronics%20store%20premium%20mobile%20experience&width=600&height=400&seq=samsung101&orientation=landscape', caption: 'Groupe SEB — Related: Samsung' },
-    { url: 'https://readdy.ai/api/search-image?query=premium%20Dyson%20vacuum%20cleaner%20and%20air%20purifier%20retail%20display%20modern%20technology%20showcase%20professional%20product%20demonstration%20sleek%20store%20environment%20innovative%20home%20appliances&width=600&height=400&seq=dyson101&orientation=landscape', caption: 'Groupe SEB — Related: Dyson' },
-    { url: 'https://readdy.ai/api/search-image?query=Philips%20personal%20care%20and%20grooming%20products%20retail%20display%20modern%20health%20technology%20showcase%20professional%20merchandising%20clean%20contemporary%20store%20layout%20premium%20wellness%20brand&width=600&height=400&seq=philips101&orientation=landscape', caption: 'Groupe SEB — Related: Philips' },
-  ],
-
-  /* ── CASE STUDIES: Samsung Images ── */
-  casestudies_samsung_images: [
-    { url: 'https://readdy.ai/api/search-image?query=modern%20samsung%20smartphone%20galaxy%20retail%20display%20with%20sleek%20product%20showcase%20interactive%20demo%20stations%20premium%20technology%20store%20environment%20clean%20minimalist%20design%20professional%20lighting%20contemporary%20retail%20space%20mobile%20devices%20on%20elegant%20display%20stands&width=800&height=600&seq=samsung-hero-retail&orientation=landscape', caption: 'Samsung — Hero Image', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=samsung%20galaxy%20smartphone%20retail%20display%20with%20interactive%20demo%20station%20modern%20technology%20store%20professional%20product%20showcase%20clean%20minimalist%20design%20premium%20mobile%20devices%20on%20sleek%20stands%20bright%20lighting%20contemporary%20retail%20environment&width=800&height=600&seq=samsung-gallery-1&orientation=landscape', caption: 'Samsung — Galaxy Experience Zones' },
-    { url: 'https://readdy.ai/api/search-image?query=samsung%20brand%20ambassador%20demonstrating%20smartphone%20camera%20features%20to%20customer%20in%20modern%20electronics%20store%20professional%20retail%20specialist%20showing%20mobile%20device%20technology%20friendly%20customer%20service%20interaction%20clean%20store%20environment&width=800&height=600&seq=samsung-gallery-2&orientation=landscape', caption: 'Samsung — Expert Product Specialists' },
-    { url: 'https://readdy.ai/api/search-image?query=samsung%20galaxy%20smartphone%20camera%20photography%20demonstration%20with%20professional%20sample%20photos%20displayed%20on%20screens%20retail%20technology%20showcase%20high%20quality%20mobile%20photography%20examples%20modern%20product%20display%20clean%20presentation&width=800&height=600&seq=samsung-gallery-3&orientation=landscape', caption: 'Samsung — Camera Innovation Showcase' },
-    { url: 'https://readdy.ai/api/search-image?query=samsung%20galaxy%20smartphone%20with%20wireless%20earbuds%20smartwatch%20and%20accessories%20displayed%20together%20on%20premium%20retail%20display%20modern%20technology%20ecosystem%20showcase%20clean%20product%20arrangement%20professional%20store%20presentation%20minimalist%20design&width=800&height=600&seq=samsung-gallery-4&orientation=landscape', caption: 'Samsung — Ecosystem Integration' },
-    { url: 'https://readdy.ai/api/search-image?query=premium%20kitchen%20appliances%20tefal%20krups%20rowenta%20wmf%20brands%20displayed%20in%20modern%20retail%20store%20professional%20product%20showcase%20clean%20organized%20display%20contemporary%20home%20appliance%20section%20bright%20lighting%20elegant%20presentation&width=600&height=450&seq=seb-related&orientation=landscape', caption: 'Samsung — Related: Groupe SEB' },
-    { url: 'https://readdy.ai/api/search-image?query=dyson%20vacuum%20cleaner%20and%20air%20purifier%20products%20displayed%20in%20premium%20retail%20store%20modern%20technology%20showcase%20sleek%20product%20design%20professional%20store%20display%20clean%20minimalist%20presentation%20contemporary%20retail%20environment&width=600&height=450&seq=dyson-related&orientation=landscape', caption: 'Samsung — Related: Dyson' },
-    { url: 'https://readdy.ai/api/search-image?query=philips%20consumer%20electronics%20and%20personal%20care%20products%20displayed%20in%20modern%20retail%20store%20professional%20product%20showcase%20clean%20organized%20display%20contemporary%20electronics%20section%20bright%20lighting%20premium%20presentation&width=600&height=450&seq=philips-related&orientation=landscape', caption: 'Samsung — Related: Philips' },
-  ],
-
   /* ── TEAM: Hero Images ── */
   team_hero_images: [
     { url: 'https://readdy.ai/api/search-image?query=professional%20team%20collaboration%20in%20modern%20office%20workspace%20diverse%20group%20of%20sales%20consultants%20working%20together%20bright%20natural%20lighting%20contemporary%20interior%20design%20teamwork%20atmosphere%20business%20environment%20productive%20meeting%20space&width=1920&height=1080&seq=team-hero-dark-bg&orientation=landscape', caption: 'Team — Hero Background', wide: true },
@@ -1472,10 +1436,6 @@ const HUMAN_LABELS: Record<string, string> = {
   'home_dualcta_backgrounds': 'DualCTA — Backgrounds',
   'home_sonicdna_background': 'SonicDNA — Office Background',
   'home_officevisit_image': 'OfficeVisit — Image',
-  'casestudies_hero_background': 'Hero — Background',
-  'casestudies_detail_heroes': 'Detail Pages — Hero Images',
-  'casestudies_groupeseb_images': 'Groupe SEB — All Images',
-  'casestudies_samsung_images': 'Samsung — All Images',
   'team_hero_images': 'Hero — Background & Photos',
   'team_corevalues_images': 'Core Values — Images',
   'about_sonicreels_hero_accent': 'SonicReels — Hero & Accent Images',
@@ -1534,11 +1494,6 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'losungen_testimonial_images': 3,   // Garmin, Samsung, Avoury testimonials
   'losungen_wood_textures': 3,        // Main card + Expanded overlay + Survey card
 
-  /* ── CASE STUDIES: Fixed Design Slots ── */
-  'casestudies_hero_background': 1,   // 1 list-page hero bg
-  'casestudies_detail_heroes': 3,     // Garmin, Samsung, Dyson detail heroes
-  'casestudies_groupeseb_images': 8,  // Hero + 4 brand images + 3 related cases
-  'casestudies_samsung_images': 8,    // Hero + 4 gallery + 3 related cases
   // Case study brand folders are flexible galleries — curator's count from DEFAULT_MEDIA is the guide
 
   /* ── ABOUT: Fixed Design Slots ── */
@@ -1757,10 +1712,6 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   '/images/Case Studies -Fallbsp/Garmin': { aspectRatio: '3:2 or 2:3', dimensions: '~800×600 / 600×800', orientation: 'flexible', tip: 'Gallery — retail displays, staff, stores' },
   '/images/Case Studies -Fallbsp/Philips': { aspectRatio: '3:2 or 2:3', dimensions: '~800×600 / 600×800', orientation: 'flexible', tip: 'Gallery — retail, promotions, team' },
   '/images/Case Studies -Fallbsp/SEB':  { aspectRatio: '3:2 or 2:3', dimensions: '~800×600 / 600×800', orientation: 'flexible', tip: 'Gallery — kitchen appliances, retail, team' },
-  'casestudies_hero_background': { aspectRatio: '16:9', dimensions: '~1920×1080', orientation: 'landscape', tip: 'Hero background — retail environment, wide' },
-  'casestudies_detail_heroes':   { aspectRatio: '16:9', dimensions: '1600×900', orientation: 'landscape', tip: 'Detail page heroes — brand-specific retail scenes' },
-  'casestudies_groupeseb_images': { aspectRatio: '4:3', dimensions: '800×600 (main) / 600×400 (related)', orientation: 'landscape', tip: 'Mixed — main images 4:3, related smaller 3:2' },
-  'casestudies_samsung_images':  { aspectRatio: '4:3', dimensions: '800×600 (main) / 600×450 (related)', orientation: 'landscape', tip: 'Mixed — main images 4:3, related smaller 4:3' },
 
   /* ═══ CAREERS ═══ */
   '/images/Karriere':              { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Hero & gallery — team, office, events' },
