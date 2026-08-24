@@ -186,10 +186,6 @@ export const PAGE_GROUPS: PageGroup[] = [
       '/images/Case Studies -Fallbsp/Garmin',
       '/images/Case Studies -Fallbsp/Philips',
       '/images/Case Studies -Fallbsp/SEB',
-      'casestudies_hero_background',
-      'casestudies_detail_heroes',
-      'casestudies_groupeseb_images',
-      'casestudies_samsung_images',
     ],
   },
   {

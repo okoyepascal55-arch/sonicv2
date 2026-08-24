@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import LimeWaveDivider from '@/components/base/LimeWaveDivider';
+import WoodenDivider from '@/components/base/WoodenDivider';
 import KarriereHero from './components/KarriereHero';
 import KarriereInPageNav from './components/KarriereInPageNav';
 import KarrierepfadeSection from './components/KarrierepfadeSection';
@@ -63,7 +63,7 @@ export default function CareersGatewayPage() {
         {/* 01 — Zwei Wege */}
         <KarrierepfadeSection />
 
-        <LimeWaveDivider />
+        <WoodenDivider />
 
         {/* 02 — Kultur & DNA */}
         <KarriereCulture />
@@ -74,7 +74,7 @@ export default function CareersGatewayPage() {
         {/* 04 — Geschichten */}
         <SonicFamily />
 
-        <LimeWaveDivider />
+        <WoodenDivider />
 
         {/* 05 — Leben bei Sonic */}
         <SonicTeamEvents />
