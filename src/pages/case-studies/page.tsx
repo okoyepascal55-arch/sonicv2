@@ -230,22 +230,22 @@ export default function CaseStudiesPage() {
       monthlyTrend: [42, 48, 50, 55, 60, 62, 68, 72, 70, 78, 82, 88],
       overview: 'Seit 2021 unterstützen wir mit unseren Team Garmin im Retail dabei, Endkunden für Wearables zu begeistern und Verkäufe zu steigern: als erfolgreiche Partnerschaft mit gebündeltem Know-how, klarer Kommunikation und einem gemeinsamen Fokus auf Qualität und Innovation. Start: Promotions in Deutschland. Heute zusätzlich: Promotions Österreich und Sport, POS OneWorld, POS Service, Lager.',
       modules: [
-        { num: '01', title: 'Promotions', desc: 'Beispiel: Aktivierung am POS per Rabatt-Aktion. Full-Service-Umsetzung durch unsere Field Force.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', tags: ['POS', 'Field Force', 'DACH'] },
-        { num: '02', title: 'Aktionen', desc: 'Beispiel: Smoothie-Verkostungsaktion am POS als niederschwelliger Gesprächseinstieg.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', tags: ['Live-Aktion', 'Verkostung', 'POS'] },
-        { num: '03', title: 'POS-Möbel', desc: 'Eigens entwickeltes, modulares Präsentationsmöbel mit digitalen Elementen.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg', tags: ['Design', 'Modular', 'Digital'] },
-        { num: '04', title: 'Training', desc: 'Wir schulen die Sales-Teams, bei uns in Krefeld und mobil in ganz Deutschland.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', tags: ['Schulung', 'Krefeld', 'Zertifizierung'] },
-        { num: '05', title: 'Lager & Logistik', desc: 'POS-Ausstattung wird bei Sonic produziert, gelagert und versendet.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', tags: ['Lager', 'Logistik', 'Versand'] },
+        { num: '01', title: 'Promotions', desc: 'Beispiel: Aktivierung am POS per Rabatt-Aktion. Full-Service-Umsetzung durch unsere Field Force.', img: '/images/Case Studies -Fallbsp/Garmin/5243_190035993.webp', tags: ['POS', 'Field Force', 'DACH'] },
+        { num: '02', title: 'Aktionen', desc: 'Beispiel: Smoothie-Verkostungsaktion am POS als niederschwelliger Gesprächseinstieg.', img: '/images/Case Studies -Fallbsp/Garmin/5243_190036664.webp', tags: ['Live-Aktion', 'Verkostung', 'POS'] },
+        { num: '03', title: 'POS-Möbel', desc: 'Eigens entwickeltes, modulares Präsentationsmöbel mit digitalen Elementen.', img: '/images/Case Studies -Fallbsp/Garmin/5279_10060291.webp', tags: ['Design', 'Modular', 'Digital'] },
+        { num: '04', title: 'Training', desc: 'Wir schulen die Sales-Teams, bei uns in Krefeld und mobil in ganz Deutschland.', img: '/images/Case Studies -Fallbsp/Garmin/5315_195525779.webp', tags: ['Schulung', 'Krefeld', 'Zertifizierung'] },
+        { num: '05', title: 'Lager & Logistik', desc: 'POS-Ausstattung wird bei Sonic produziert, gelagert und versendet.', img: '/images/Case Studies -Fallbsp/Garmin/5431_162510371.webp', tags: ['Lager', 'Logistik', 'Versand'] },
       ],
       gallery: [
-        'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png',
-        'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg',
-        'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg',
+        '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_600_A26_Front.webp',
+        '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_Unterschrank-Light_600_A26_Front.webp',
+        '/images/Case Studies -Fallbsp/Garmin/MM Hückelhoven_Chris L.webp',
       ],
       bentoImages: [
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg', span: 'md:col-span-2 md:row-span-2', label: 'POS Activation' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', span: 'md:col-span-1 md:row-span-1', label: 'POS-Möbel 2024' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', span: 'md:col-span-1 md:row-span-1', label: 'Training Krefeld' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', span: 'md:col-span-2 md:row-span-1', label: 'Lager & Logistik' },
+        { src: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_1000_A26_Front.webp', span: 'md:col-span-2 md:row-span-2', label: 'POS Activation' },
+        { src: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_Unterschrank-Light_1000_A26_Front.webp', span: 'md:col-span-1 md:row-span-1', label: 'POS-Möbel 2024' },
+        { src: '/images/Case Studies -Fallbsp/Garmin/MM Chemnitz_Rene G.webp', span: 'md:col-span-1 md:row-span-1', label: 'Training Krefeld' },
+        { src: '/images/Case Studies -Fallbsp/Garmin/Saturn Frankfurt_Redouan B.webp', span: 'md:col-span-2 md:row-span-1', label: 'Lager & Logistik' },
       ],
       relatedStories: ['philips', 'groupe-seb'],
     },
@@ -276,23 +276,23 @@ export default function CaseStudiesPage() {
       monthlyTrend: [38, 44, 48, 52, 58, 62, 66, 70, 74, 78, 84, 90],
       overview: 'Die Zusammenarbeit zwischen Sonic und Groupe SEB ist ein echtes Erfolgsmodell, seit 2019: Mit Vertrauen, Effizienz sowie Leidenschaft für starke Marken und zufriedene Kunden begeistern wir Kunden für Top-Marken wie Tefal, Rowenta, Krups und WMF. Ausdauer lohnt sich: Dank laufender Optimierung ist der Tagesumsatz der Promoter massiv gestiegen.',
       modules: [
-        { num: '01', title: 'Live-Video-Beratung', desc: 'Aus den Sonic-Studios. Digital am POS und im Online-Shop. Für Rowenta, Tefal, Krups und WMF.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', tags: ['Live-Video', 'Studio', 'Digital'] },
-        { num: '02', title: 'Aktionen', desc: 'Beispiel: verkaufsstarkes Live-Cooking am POS, betreut von unseren Foodies in der Field Force.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', tags: ['Live-Cooking', 'POS', 'Field Force'] },
-        { num: '03', title: 'Roadshow', desc: 'Die rollende mehrmarkenfähige Trainings-Roadshow mit Foodtruck-Funktion: Airstream-Trailer als Showmobil.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg', tags: ['Roadshow', 'Airstream', 'Mobile'] },
-        { num: '04', title: 'Verkauf, POS-Pflege, Warenpräsentation', desc: 'Unsere Sales-Activation-Fachleute als Markenbotschafter, Verkäufer und Servicekräfte am POS.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', tags: ['POS-Pflege', 'Präsentation', 'Verkauf'] },
-        { num: '05', title: 'Sales-Training', desc: 'Wir schulen Verkäufer der Handelsketten und unsere Field Force an unserem Campus in Krefeld sowie per Video-Webinar.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', tags: ['Training', 'Krefeld', 'Zertifizierung'] },
-        { num: '06', title: 'Reporting', desc: 'Tägliche Einsatzkosten und generierte Umsätze sind tag- und standortgenau auswertbar.', img: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', tags: ['SRT', 'Analytics', 'KPI'] },
+        { num: '01', title: 'Live-Video-Beratung', desc: 'Aus den Sonic-Studios. Digital am POS und im Online-Shop. Für Rowenta, Tefal, Krups und WMF.', img: '/images/Case Studies -Fallbsp/SEB/20250604_205405_187.webp', tags: ['Live-Video', 'Studio', 'Digital'] },
+        { num: '02', title: 'Aktionen', desc: 'Beispiel: verkaufsstarkes Live-Cooking am POS, betreut von unseren Foodies in der Field Force.', img: '/images/Case Studies -Fallbsp/SEB/Bild_NecafeDolceGusto.webp', tags: ['Live-Cooking', 'POS', 'Field Force'] },
+        { num: '03', title: 'Roadshow', desc: 'Die rollende mehrmarkenfähige Trainings-Roadshow mit Foodtruck-Funktion: Airstream-Trailer als Showmobil.', img: '/images/Case Studies -Fallbsp/SEB/Gruppe Braun (37).webp', tags: ['Roadshow', 'Airstream', 'Mobile'] },
+        { num: '04', title: 'Verkauf, POS-Pflege, Warenpräsentation', desc: 'Unsere Sales-Activation-Fachleute als Markenbotschafter, Verkäufer und Servicekräfte am POS.', img: '/images/Case Studies -Fallbsp/SEB/Gruppe Gold (5).webp', tags: ['POS-Pflege', 'Präsentation', 'Verkauf'] },
+        { num: '05', title: 'Sales-Training', desc: 'Wir schulen Verkäufer der Handelsketten und unsere Field Force an unserem Campus in Krefeld sowie per Video-Webinar.', img: '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (13).webp', tags: ['Training', 'Krefeld', 'Zertifizierung'] },
+        { num: '06', title: 'Reporting', desc: 'Tägliche Einsatzkosten und generierte Umsätze sind tag- und standortgenau auswertbar.', img: '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (26).webp', tags: ['SRT', 'Analytics', 'KPI'] },
       ],
       gallery: [
-        'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg',
-        'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg',
-        'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg',
+        '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (34).webp',
+        '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (37).webp',
+        '/images/Case Studies -Fallbsp/SEB/image16.webp',
       ],
       bentoImages: [
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', span: 'md:col-span-2 md:row-span-2', label: 'Live-Video Studio' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', span: 'md:col-span-1 md:row-span-1', label: 'Airstream Roadshow' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', span: 'md:col-span-1 md:row-span-1', label: 'Live-Cooking' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', span: 'md:col-span-2 md:row-span-1', label: 'Tägliches Reporting' },
+        { src: '/images/Case Studies -Fallbsp/SEB/Optigrill Tisch.webp', span: 'md:col-span-2 md:row-span-2', label: 'Live-Video Studio' },
+        { src: '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam.webp', span: 'md:col-span-1 md:row-span-1', label: 'Airstream Roadshow' },
+        { src: '/images/Case Studies -Fallbsp/SEB/image10.webp', span: 'md:col-span-1 md:row-span-1', label: 'Live-Cooking' },
+        { src: '/images/Case Studies -Fallbsp/SEB/image12.webp', span: 'md:col-span-2 md:row-span-1', label: 'Tägliches Reporting' },
       ],
       relatedStories: ['garmin', 'avoury'],
     },
@@ -323,23 +323,23 @@ export default function CaseStudiesPage() {
       monthlyTrend: [48, 52, 55, 58, 60, 63, 65, 68, 70, 73, 76, 82],
       overview: 'Seit 2021 unterstützen wir Philips TV & Sound beim Verkaufserfolg, End-to-End von der Schulung von Handelsmitarbeitern über den Einsatz von Field Force bis zu digitalen Projekten und Saleskampagnen. Mittels ständig optimierter Strategien stieg der Geräteabsatz je Promotiontag deutlich an, für ein spürbares Absatzplus.',
       modules: [
-        { num: '01', title: 'Kampagnen', desc: '(Online-)Gewinnspiele, Zugabe-Promotions, Cashback-Aktionen: komplett umgesetzt durch Sonic.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', tags: ['Online', 'Cashback', 'Promotion'] },
-        { num: '02', title: 'Promotion', desc: 'Beispiel: Saisonale Abverkaufspromotion am POS im Rahmen großer Fußballereignisse.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg', tags: ['POS', 'Seasonal', 'Football'] },
-        { num: '03', title: '(Sales) Content Creation', desc: 'Beispiel: TVundSound.Academy, das ist (Live) Premium-Video-Schulungs-Infotainment für Mitarbeiter des Handels.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', tags: ['Academy', 'Video', 'Retail-Training'] },
-        { num: '04', title: 'Messen', desc: 'Messestände, durch uns konzipiert, gebaut, geliefert und bespielt. Im Full Service, eingebunden in die Markenwelt.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', tags: ['Messe', 'Full Service', 'Stand-Bau'] },
-        { num: '05', title: 'Sales-Training', desc: 'Schulungen für Verkäufer der Handelsketten und unsere Field Force, bei uns und regional.', img: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', tags: ['Training', 'Regional', 'Zertifizierung'] },
-        { num: '06', title: 'Digitaler Homeplaner', desc: 'Durch Sonic erstellt: Ein digitaler Online-3D-Raumplaner für ein Preview, wie das TV-Gerät zuhause aussehen wird.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', tags: ['Digital', '3D', 'UX'] },
+        { num: '01', title: 'Kampagnen', desc: '(Online-)Gewinnspiele, Zugabe-Promotions, Cashback-Aktionen: komplett umgesetzt durch Sonic.', img: '/images/Case Studies -Fallbsp/Philips/5589_23290336.webp', tags: ['Online', 'Cashback', 'Promotion'] },
+        { num: '02', title: 'Promotion', desc: 'Beispiel: Saisonale Abverkaufspromotion am POS im Rahmen großer Fußballereignisse.', img: '/images/Case Studies -Fallbsp/Philips/ALW4_SA_Möncke_2.webp', tags: ['POS', 'Seasonal', 'Football'] },
+        { num: '03', title: '(Sales) Content Creation', desc: 'Beispiel: TVundSound.Academy, das ist (Live) Premium-Video-Schulungs-Infotainment für Mitarbeiter des Handels.', img: '/images/Case Studies -Fallbsp/Philips/ALW6_MM_Dornbirn_AT.webp', tags: ['Academy', 'Video', 'Retail-Training'] },
+        { num: '04', title: 'Messen', desc: 'Messestände, durch uns konzipiert, gebaut, geliefert und bespielt. Im Full Service, eingebunden in die Markenwelt.', img: '/images/Case Studies -Fallbsp/Philips/ALW6_Media Markt Ingolstadt - Eriagstr. 28 - 85046 Ingolstadt1.webp', tags: ['Messe', 'Full Service', 'Stand-Bau'] },
+        { num: '05', title: 'Sales-Training', desc: 'Schulungen für Verkäufer der Handelsketten und unsere Field Force, bei uns und regional.', img: '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-30 at 15.11.27.webp', tags: ['Training', 'Regional', 'Zertifizierung'] },
+        { num: '06', title: 'Digitaler Homeplaner', desc: 'Durch Sonic erstellt: Ein digitaler Online-3D-Raumplaner für ein Preview, wie das TV-Gerät zuhause aussehen wird.', img: '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.37 (2).webp', tags: ['Digital', '3D', 'UX'] },
       ],
       gallery: [
-        'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg',
-        'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg',
-        'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
+        '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-30 at 15.11.27 (1).webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW6_MM_Dornbirn_AT (2).webp',
+        '/images/Case Studies -Fallbsp/Philips/ALW6_Media Markt Ingolstadt - Eriagstr. 28 - 85046 Ingolstadt1 (2).webp',
       ],
       bentoImages: [
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', span: 'md:col-span-2 md:row-span-2', label: 'POS Promotion' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', span: 'md:col-span-1 md:row-span-1', label: 'TVundSound Academy' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', span: 'md:col-span-1 md:row-span-1', label: 'Messen' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', span: 'md:col-span-2 md:row-span-1', label: 'Digitaler Homeplaner' },
+        { src: '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39.webp', span: 'md:col-span-2 md:row-span-2', label: 'POS Promotion' },
+        { src: '/images/Case Studies -Fallbsp/Philips/ALW4_SA_Möncke_2 (1).webp', span: 'md:col-span-1 md:row-span-1', label: 'TVundSound Academy' },
+        { src: '/images/Case Studies -Fallbsp/Philips/ALW6_MM_Dornbirn_AT (1).webp', span: 'md:col-span-1 md:row-span-1', label: 'Messen' },
+        { src: '/images/Case Studies -Fallbsp/Philips/ALW6_Media Markt Ingolstadt - Eriagstr. 28 - 85046 Ingolstadt1 (1).webp', span: 'md:col-span-2 md:row-span-1', label: 'Digitaler Homeplaner' },
       ],
       relatedStories: ['garmin', 'avoury'],
     },
@@ -370,22 +370,22 @@ export default function CaseStudiesPage() {
       monthlyTrend: [20, 30, 42, 55, 65, 72, 78, 84, 88, 92, 96, 99],
       overview: 'Seit der Einführung der Avoury One, einer Teemaschine von Melitta Single Portions, konnten erhebliche Wachstumsimpulse gesetzt werden. Die Schlüssel zum Erfolg: Das gewinnbringende Matching von Verkäufern, Einsatzorten und Einsatztagen, plus Cross-Selling. Dank datengestützter Optimierungen konnten Geräteabsatz und Gesamtumsatz massiv gesteigert werden.',
       modules: [
-        { num: '01', title: 'Recruiting', desc: 'Zum Start: Zusammenstellung Field Force Team aus eigenem Pool plus aus Recruiting.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg', tags: ['Recruiting', 'Talentpool', 'Matching'] },
-        { num: '02', title: 'Schulungen', desc: 'Vor den Einsätzen: Schulungen der Fachberater an unserem Campus in Krefeld.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', tags: ['Campus Krefeld', 'Schulung', 'Zertifizierung'] },
-        { num: '03', title: 'Sales Promotions', desc: 'Umsetzung des Field-Force-Einsatzes mit unseren Fachberatern.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', tags: ['POS', 'Fachberater', 'Sales'] },
-        { num: '04', title: 'Reporting', desc: 'Dank Tracking und Logging aller Einsätze und Umsätze im Sonic Reporting Tool werden Erfolge und Potenziale sichtbar.', img: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', tags: ['SRT', 'Daten', 'KPI'] },
-        { num: '05', title: 'Laufende Optimierungen', desc: 'Personalauswahl, Outlet- und Tagesauswahl, Einsatzplanung etc. wurden erfolgreich datenbasiert optimiert.', img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', tags: ['Optimierung', 'Datenbasiert', 'Matching'] },
+        { num: '01', title: 'Recruiting', desc: 'Zum Start: Zusammenstellung Field Force Team aus eigenem Pool plus aus Recruiting.', img: '/images/Case Studies -Fallbsp/Avoury/IMG-20230928-WA0000.webp', tags: ['Recruiting', 'Talentpool', 'Matching'] },
+        { num: '02', title: 'Schulungen', desc: 'Vor den Einsätzen: Schulungen der Fachberater an unserem Campus in Krefeld.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_01.webp', tags: ['Campus Krefeld', 'Schulung', 'Zertifizierung'] },
+        { num: '03', title: 'Sales Promotions', desc: 'Umsetzung des Field-Force-Einsatzes mit unseren Fachberatern.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_05.webp', tags: ['POS', 'Fachberater', 'Sales'] },
+        { num: '04', title: 'Reporting', desc: 'Dank Tracking und Logging aller Einsätze und Umsätze im Sonic Reporting Tool werden Erfolge und Potenziale sichtbar.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_07.webp', tags: ['SRT', 'Daten', 'KPI'] },
+        { num: '05', title: 'Laufende Optimierungen', desc: 'Personalauswahl, Outlet- und Tagesauswahl, Einsatzplanung etc. wurden erfolgreich datenbasiert optimiert.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_08.webp', tags: ['Optimierung', 'Datenbasiert', 'Matching'] },
       ],
       gallery: [
-        'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg',
-        'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg',
-        'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
+        '/images/Case Studies -Fallbsp/Avoury/b111db44-a0cf-4eea-b5b7-5a0fd48e1762.webp',
+        '/images/Case Studies -Fallbsp/Avoury/ce8dc1a9-9db2-48e8-bc91-de257f9c7da7.webp',
+        '/images/Case Studies -Fallbsp/Avoury/d131a95d-592d-41a8-beb7-a893c1b2faa6.webp',
       ],
       bentoImages: [
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg', span: 'md:col-span-2 md:row-span-2', label: 'POS Demo' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', span: 'md:col-span-1 md:row-span-1', label: 'Schulungen Krefeld' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', span: 'md:col-span-1 md:row-span-1', label: 'Reporting & Daten' },
-        { src: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', span: 'md:col-span-2 md:row-span-1', label: 'Avoury One — Melitta' },
+        { src: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_V4_02.webp', span: 'md:col-span-2 md:row-span-2', label: 'POS Demo' },
+        { src: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_V4_06.webp', span: 'md:col-span-1 md:row-span-1', label: 'Schulungen Krefeld' },
+        { src: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_V4_MASSE_THEKE.webp', span: 'md:col-span-1 md:row-span-1', label: 'Reporting & Daten' },
+        { src: '/images/Case Studies -Fallbsp/Avoury/2.webp', span: 'md:col-span-2 md:row-span-1', label: 'Avoury One — Melitta' },
       ],
       relatedStories: ['groupe-seb', 'philips'],
     },
@@ -449,7 +449,7 @@ export default function CaseStudiesPage() {
       <section className="relative overflow-hidden -mt-20" style={{ minHeight: 'clamp(360px, 52vw, 500px)' }}>
         <div className="absolute inset-0">
           <img
-            src="https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg"
+            src="/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp"
             alt="Erfolgsgeschichten"
             className="w-full h-full object-cover object-center"
             fetchPriority="high"
@@ -457,8 +457,6 @@ export default function CaseStudiesPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/80" />
         </div>
-        {/* Lime ambient glow */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-primary-500/8 blur-3xl pointer-events-none" />
         <div className="relative z-10 flex flex-col justify-end h-full sonic-container" style={{ minHeight: 'clamp(360px, 52vw, 500px)', paddingBottom: '3rem' }}>
           <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
             <span className="w-1.5 h-1.5 bg-primary-500" />
@@ -477,58 +475,37 @@ export default function CaseStudiesPage() {
       {/* ── BRAND SELECTOR + CARD ── */}
       <section id="case-studies-carousel" className="relative overflow-hidden bg-white">
 
-        {/* Brand tabs — full-bleed dark bar */}
-        <div className="bg-foreground-950 border-b border-primary-500/20">
-          <div className="sonic-container">
-            <div className="flex items-center justify-start md:justify-center gap-2 flex-nowrap md:flex-wrap overflow-x-auto py-4 md:py-6 scrollbar-hide" role="tablist" aria-label="Fallbeispiele nach Marke">
-              {caseStudies.map((study, index) => (
-                <button
-                  key={study.brand}
-                  onClick={() => handleBrandClick(index)}
-                  role="tab"
-                  aria-selected={currentSlide === index}
-                  aria-label={`${study.brand} — ${study.metric} ${study.metricLabel}`}
-                  className={`px-5 py-2 font-black uppercase tracking-wider text-xs transition-all duration-300 whitespace-nowrap cursor-pointer flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
-                    currentSlide === index
-                      ? 'bg-primary-500 text-foreground-950'
-                      : 'bg-transparent text-foreground-400 border border-white/20 hover:border-primary-500/60 hover:text-white'
-                  }`}
-                >
-                  <span className="flex items-center gap-2">
-                    {currentSlide === index && <span className="w-1.5 h-1.5 bg-foreground-950 inline-block" />}
-                    {study.brand}
-                    {currentSlide === index && <span className="text-foreground-950/70 font-bold">{study.metric}</span>}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Intro strip — compact, left-aligned, 2 columns on md+ */}
+        {/* Intro — single-column paragraph only (the wood card below already carries the stats) */}
         <div className="sonic-container py-6 md:py-8 border-b border-foreground-100">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
-            <p className="text-sm text-foreground-600 leading-relaxed">
-              Gemeinsam mit unseren Kunden erzielen wir messbare Erfolge. Unsere datengetriebene Arbeitsweise ermöglicht laufende Optimierungen — die Ergebnisse wachsen mit jeder weiteren Zusammenarbeit.
-            </p>
-            <div className="grid grid-cols-4 gap-4">
-              {[
-                { value: '>500', label: 'Projekte' },
-                { value: '>1,35 Mio.', label: 'Einsätze' },
-                { value: '>100.000', label: 'POS' },
-                { value: '2007', label: 'Seit' },
-              ].map((stat, i) => (
-                <div key={i} className="pl-3 border-l-2 border-primary-500 min-w-0">
-                  <div className="text-base md:text-lg font-black text-foreground-950 font-sans tabular-nums leading-none">{stat.value}</div>
-                  <div className="text-[10px] text-foreground-500 font-bold uppercase tracking-wide mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <p className="text-foreground-600 max-w-2xl" style={{ fontSize: '19px', lineHeight: '1.7' }}>
+            Gemeinsam mit unseren Kunden erzielen wir messbare Erfolge. Unsere datengetriebene Arbeitsweise ermöglicht laufende Optimierungen — die Ergebnisse wachsen mit jeder weiteren Zusammenarbeit.
+          </p>
         </div>
 
         {/* ── ELEVATED BLADE CARD ── */}
         <div className="sonic-container py-8 md:py-12">
+          {/* Brand tabs — framed hairline row, joins directly into the wood card below */}
+          <div className="flex" style={{ border: '1px solid oklch(0.885 0.004 110)', borderBottom: 'none' }} role="tablist" aria-label="Fallbeispiele nach Marke">
+            {caseStudies.map((study, index) => (
+              <button
+                key={study.brand}
+                onClick={() => handleBrandClick(index)}
+                role="tab"
+                aria-selected={currentSlide === index}
+                aria-label={`${study.brand} — ${study.metric} ${study.metricLabel}`}
+                className={`flex-1 px-4 md:px-5 py-3 font-black uppercase tracking-wider text-xs transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
+                  currentSlide === index
+                    ? 'bg-foreground-950 text-white'
+                    : 'bg-white text-foreground-500 hover:text-foreground-950'
+                }`}
+              >
+                <span className="flex items-center justify-center gap-2">
+                  {study.brand}
+                  {currentSlide === index && <span className="text-primary-500 font-bold">{study.metric}</span>}
+                </span>
+              </button>
+            ))}
+          </div>
           <div
             className="relative overflow-hidden"
             style={{ border: '1px solid oklch(0.885 0.004 110)' }}
@@ -543,12 +520,12 @@ export default function CaseStudiesPage() {
 
 
 
-            <div key={current.id} className="relative z-10 p-6 md:p-10" style={{ animation: 'brandFadeIn 0.3s ease-out forwards' }}>
+            <div key={current.id} className="relative z-10 p-6 md:p-12" style={{ animation: 'brandFadeIn 0.3s ease-out forwards' }}>
 
               {/* ── ROW 1: Brand identity + campaign badge ── */}
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8 pb-6 border-b border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8 pb-6" style={{ borderBottom: '1px solid rgba(255,255,255,0.14)' }}>
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0 p-2">
+                  <div className="overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0 p-2" style={{ width: '52px', height: '52px' }}>
                     <img src={current.woodIcon} alt={`${current.brand}`} className="w-full h-full object-contain" loading="lazy" style={{ filter: 'brightness(0) invert(1)' }} />
                   </div>
                   <div>
@@ -563,20 +540,14 @@ export default function CaseStudiesPage() {
                 </div>
               </div>
 
-              {/* ── ROW 2: Hero metric + chart (2-col desktop, stacked mobile) ── */}
-              <div className="grid md:grid-cols-2 gap-6 md:gap-10 items-stretch mb-6">
+              {/* ── ROW 2: Hero metric + chart (5fr/7fr desktop, stacked mobile) ── */}
+              <div className="grid md:grid-cols-[5fr_7fr] gap-6 md:gap-10 items-stretch mb-6">
                 {/* Left — metric + overview */}
                 <div className="flex flex-col justify-between">
                   <div>
-                    <div className="text-5xl sm:text-6xl md:text-7xl font-black text-primary-500 font-sans tabular-nums leading-none mb-2" style={{ textShadow: '0 0 40px rgba(200,212,0,0.25)' }}>{current.metric}</div>
-                    <p className="text-white/60 text-xs font-black uppercase tracking-wide mb-4">{current.metricLabel}</p>
+                    <div className="text-5xl sm:text-6xl md:text-7xl font-black text-primary-500 font-sans tabular-nums" style={{ lineHeight: 0.9, letterSpacing: '-0.04em' }}>{current.metric}</div>
+                    <p className="text-white/60 text-xs font-black uppercase tracking-wide mb-4 mt-2">{current.metricLabel}</p>
                     <p className="text-white/55 text-sm leading-relaxed">{current.overview}</p>
-                  </div>
-                  {/* Pull quote */}
-                  <div className="mt-6 pt-5 border-t border-white/10">
-                    <i className="ri-double-quotes-l text-2xl text-primary-500/40 block mb-2" />
-                    <p className="text-white/65 text-sm leading-relaxed italic line-clamp-3">{current.quote}</p>
-                    <p className="text-primary-500 text-[10px] font-black uppercase tracking-widest mt-2">{current.author} — {current.role}</p>
                   </div>
                 </div>
 
@@ -608,7 +579,7 @@ export default function CaseStudiesPage() {
               </div>
 
               {/* ── ROW 3: 3 fact pills ── */}
-              <div className="grid grid-cols-3 gap-3 mb-6">
+              <div className="grid grid-cols-3 mb-6" style={{ gap: '2px' }}>
                 {current.woodPills.map((pill, idx) => (
                   <div key={idx} className="bg-black/25 border border-white/10 px-3 py-3 md:p-4 text-center">
                     <div className="text-primary-500 font-sans tabular-nums font-black text-base md:text-xl mb-0.5">{pill.value}</div>
@@ -617,16 +588,21 @@ export default function CaseStudiesPage() {
                 ))}
               </div>
 
-              {/* ── ROW 4: CTAs ── */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-5 border-t border-white/10">
-                <button
-                  onClick={() => handleReadFullStory(current.slug)}
-                  className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 px-6 py-3 font-black uppercase tracking-wider hover:bg-white transition-all duration-300 cursor-pointer whitespace-nowrap text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                >
-                  Vollständige Story lesen
-                  <i className="ri-arrow-down-line text-sm" />
-                </button>
-                <div className="flex items-center gap-3">
+              {/* ── ROW 4: Quote + CTA, combined in one row ── */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 pt-5" style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}>
+                <div className="min-w-0">
+                  <i className="ri-double-quotes-l text-2xl text-primary-500/40 block mb-2" />
+                  <p className="text-white/65 text-sm leading-relaxed italic line-clamp-2 max-w-xl">{current.quote}</p>
+                  <p className="text-primary-500 text-[10px] font-black uppercase tracking-widest mt-2">{current.author} — {current.role}</p>
+                </div>
+                <div className="flex items-center gap-3 flex-shrink-0">
+                  <button
+                    onClick={() => handleReadFullStory(current.slug)}
+                    className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 px-6 py-3 font-black uppercase tracking-wider hover:bg-white transition-all duration-300 cursor-pointer whitespace-nowrap text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  >
+                    Vollständige Story lesen
+                    <i className="ri-arrow-down-line text-sm" />
+                  </button>
                   <span className="text-white/30 text-xs font-bold">{currentSlide + 1} / {caseStudies.length}</span>
                   <button
                     onClick={handleNext}
@@ -653,7 +629,7 @@ export default function CaseStudiesPage() {
           {/* Dark hero — tighter, better anchored */}
           <div className="relative bg-foreground-950 overflow-hidden">
             <div className="absolute inset-0 opacity-10">
-              <img src="https://www.sonic-group.de/wp-content/uploads/2023/02/NEXARO01.jpg" alt="" className="w-full h-full object-cover" loading="lazy" />
+              <img src="/images/Case Studies -Fallbsp/Garmin/Tacx_Neu.webp" alt="" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 0%, rgba(11,11,12,0.9) 100%)' }} />
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary-500/60 to-transparent" />
@@ -679,12 +655,15 @@ export default function CaseStudiesPage() {
 
             {/* Bento Grid */}
             <div className="mb-12">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1 h-8 bg-primary-500"></div>
-                <div>
-                  <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Bildergalerie</p>
-                  <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">{expanded.brand} — Impressionen</h3>
+              <div className="flex items-center justify-between gap-4 mb-6 flex-wrap">
+                <div className="flex items-center gap-3">
+                  <div className="w-1 h-8 bg-primary-500"></div>
+                  <div>
+                    <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Bildergalerie</p>
+                    <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">{expanded.brand} — <span className="v3-marker">Impressionen</span></h3>
+                  </div>
                 </div>
+                <span className="text-xs font-black text-foreground-400 uppercase tracking-widest">Vom Einsatz am POS</span>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[220px] mb-14" style={{ gap: '3px', background: 'oklch(0.16 0.006 118)' }}>
@@ -714,7 +693,7 @@ export default function CaseStudiesPage() {
                       <img
                         src={item.src}
                         alt={`${item.label} — ${expanded.brand} Fallbeispiel`}
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-500"
                         loading="lazy"
                         decoding="async"
                       />
