@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 
 const navItems = [
-  { id: 'stellenangebote', label: 'Stellen' },
-  { id: 'darum', label: 'Kultur & DNA' },
-  { id: 'pfade', label: 'Karrierepfade' },
-  { id: 'spirit', label: 'Geschichten' },
-  { id: 'leben', label: 'Leben bei Sonic' },
-  { id: 'awards', label: 'Ausgezeichnet' },
+  { id: 'pfade', n: '01', label: 'Zwei Wege' },
+  { id: 'darum', n: '02', label: 'Kultur & DNA' },
+  { id: 'awards', n: '03', label: 'Ausgezeichnet' },
+  { id: 'spirit', n: '04', label: 'Geschichten' },
+  { id: 'leben', n: '05', label: 'Leben bei Sonic' },
+  { id: 'stellenangebote', n: '06', label: 'Stellen' },
 ];
 
 const MAIN_NAV_H = 64;
@@ -20,12 +20,7 @@ export default function KarriereInPageNav({ heroRef }: Props) {
   const [activeId, setActiveId] = useState('');
   const [visible, setVisible] = useState(false);
   const heroThresholdRef = useRef<number | null>(null);
-  const indicatorRef = useRef<HTMLDivElement>(null);
-  const navBarRef = useRef<HTMLDivElement>(null);
-  const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
-  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
 
-  // Measure hero bottom
   useEffect(() => {
     const measure = () => {
       if (heroRef?.current) {
@@ -67,17 +62,6 @@ export default function KarriereInPageNav({ heroRef }: Props) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Sliding indicator
-  useEffect(() => {
-    const btn = buttonRefs.current[activeId];
-    const nav = navBarRef.current;
-    if (btn && nav) {
-      const navRect = nav.getBoundingClientRect();
-      const btnRect = btn.getBoundingClientRect();
-      setIndicatorStyle({ left: btnRect.left - navRect.left, width: btnRect.width });
-    }
-  }, [activeId, visible]);
-
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -91,47 +75,48 @@ export default function KarriereInPageNav({ heroRef }: Props) {
       className={`fixed left-0 right-0 z-[45] transition-all duration-300 ${
         visible ? 'translate-y-0 opacity-100' : '-translate-y-1 opacity-0 pointer-events-none'
       }`}
-      style={{ top: `${MAIN_NAV_H}px` }}
+      style={{ top: `${MAIN_NAV_H}px`, background: 'oklch(0.13 0.005 118)', borderBottom: '1px solid oklch(var(--primary-500) / 0.3)' }}
     >
-      {/* Top accent line */}
-      <div className="h-[2px] bg-foreground-950 w-full" />
-      <div className="bg-foreground-950">
-        <div className="max-w-full max-w-[1200px] mx-auto px-8">
-          <div
-            ref={navBarRef}
-            className="relative flex items-center overflow-x-auto"
-            style={{ scrollbarWidth: 'none' }}
-          >
-            {navItems.map((item) => {
-              const isActive = activeId === item.id;
-              return (
-                <button
-                  key={item.id}
-                  ref={(el) => { buttonRefs.current[item.id] = el; }}
-                  onClick={() => scrollTo(item.id)}
-                  className={`
-                    relative flex-shrink-0 px-4 py-[14px] text-[12px] font-bold uppercase tracking-[0.07em]
-                    whitespace-nowrap cursor-pointer transition-all duration-200
-                    ${isActive ? 'text-primary-500' : 'text-foreground-400 hover:text-white'}
-                  `}
-                  style={{ borderRadius: 0, background: 'none', border: 'none' }}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
+      <div className="max-w-[1280px] mx-auto px-5 md:px-10 flex items-stretch overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+        {navItems.map((item) => {
+          const isActive = activeId === item.id;
+          return (
+            <button
+              key={item.id}
+              onClick={() => scrollTo(item.id)}
+              className="relative flex-shrink-0 flex items-baseline gap-2 pl-4 pr-4 md:pl-0 md:pr-[22px] md:mr-[22px] py-[15px] cursor-pointer whitespace-nowrap transition-colors duration-200"
+              style={{
+                borderBottom: isActive ? '2px solid oklch(var(--primary-500))' : '2px solid transparent',
+                background: 'none',
+                border: 'none',
+                borderBottomWidth: '2px',
+                borderBottomColor: isActive ? 'oklch(var(--primary-500))' : 'transparent',
+              }}
+            >
+              <span
+                className="text-[10px] font-black tracking-[0.2em]"
+                style={{ color: isActive ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.3)' }}
+              >
+                {item.n}
+              </span>
+              <span
+                className="text-[12px] font-black uppercase tracking-[0.12em]"
+                style={{ color: isActive ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.45)' }}
+              >
+                {item.label}
+              </span>
+            </button>
+          );
+        })}
 
-            {/* Sliding underline indicator */}
-            <div
-              ref={indicatorRef}
-              className="absolute bottom-0 h-[2px] bg-primary-500 transition-all duration-300 ease-out pointer-events-none"
-              style={{ left: indicatorStyle.left, width: indicatorStyle.width }}
-            />
-          </div>
-        </div>
+        <button
+          onClick={() => scrollTo('stellenangebote')}
+          className="hidden md:inline-flex ml-auto items-center gap-2 self-center px-5 py-[11px] bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.12em] whitespace-nowrap cursor-pointer flex-shrink-0"
+        >
+          <i className="ri-briefcase-line text-sm" />
+          Bewerben
+        </button>
       </div>
-      {/* Bottom separator */}
-      <div className="h-[1px] bg-gradient-to-r from-transparent via-[#C8D400]/40 to-transparent w-full" />
     </div>
   );
 }

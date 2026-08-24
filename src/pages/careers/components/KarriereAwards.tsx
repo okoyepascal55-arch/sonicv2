@@ -1,5 +1,5 @@
 import { useText } from '@/hooks/useText';
-import SectionBadge from '@/components/base/SectionBadge';
+import { ChapterHeader } from './ChapterKit';
 
 const REVIEW_LINKS = {
   kununu: 'https://www.kununu.com/de/sonic-sales-support1',
@@ -9,7 +9,11 @@ const REVIEW_LINKS = {
 
 export default function KarriereAwards() {
   const tHeading = useText('careers_culture', 'careers-culture-award-heading', 'Kultur? Leben wir.');
-  const tAwardText = useText('careers_culture', 'careers-culture-award-text', '');
+  const tAwardText = useText(
+    'careers_culture',
+    'careers-culture-award-text',
+    'Wir geben jeden Tag unser Bestes, damit unsere Agentur ein erstklassiger Ort zum Arbeiten ist. Die Auszeichnung zur "Kununu Top Company" haben wir 2022, 2023, 2024, 2025 und 2026 erhalten.'
+  );
 
   const badges = [
     { label: 'Kununu', sub: 'Top Company 2022–2026', rating: '★★★★★', href: REVIEW_LINKS.kununu },
@@ -18,39 +22,39 @@ export default function KarriereAwards() {
   ];
 
   return (
-    <section id="awards" className="sonic-section-md px-4 md:px-6 bg-white">
+    <section id="awards" className="py-16 md:py-[88px] px-5 md:px-10" style={{ background: 'oklch(0.13 0.005 118)' }}>
       <div className="sonic-container">
-        <div className="max-w-3xl mb-8 md:mb-10">
-          <SectionBadge text="Auszeichnungen" variant="dark" className="mb-5" />
-          <h2 className="sonic-h2 text-foreground-950">
-            {tHeading}
-          </h2>
-          <p className="text-sm text-[#6E6E68] leading-relaxed max-w-xl mt-3">
-            {tAwardText || 'Wir geben jeden Tag unser Bestes, damit unsere Agentur ein erstklassiger Ort zum Arbeiten ist. Die Auszeichnung zur "Kununu Top Company" haben wir 2022, 2023, 2024, 2025 und 2026 erhalten.'}
-          </p>
-        </div>
+        <ChapterHeader
+          n="03"
+          eyebrow="Auszeichnungen"
+          heading={tHeading}
+          sub={tAwardText}
+          dark
+          headingSize="clamp(1.75rem, 2.8vw, 2.75rem)"
+          headingMax="max-w-[620px]"
+        />
 
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-[#E7E4D4] divide-y sm:divide-y-0 sm:divide-x divide-[#E7E4D4]">
+        <div className="grid grid-cols-1 sm:grid-cols-3" style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}>
           {badges.map((b, i) => (
             <a
               key={i}
               href={b.href}
               target="_blank"
               rel="nofollow noopener noreferrer"
-              className="flex items-center justify-between gap-4 p-6 hover:bg-[#FAFDF5] transition-colors group"
+              className="flex items-center justify-between gap-6 px-0 py-8 sm:px-8 hover:opacity-80 transition-opacity"
+              style={{
+                borderRight: i < badges.length - 1 ? '1px solid rgba(255,255,255,0.14)' : undefined,
+                paddingLeft: i === 0 ? 0 : undefined,
+              }}
             >
               <div>
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-primary-500 text-sm">
-                    <i className="ri-star-fill" />
-                  </span>
-                  <span className="text-sm font-black text-foreground-950 uppercase tracking-wide">
-                    {b.label}
-                  </span>
+                <div className="flex items-center gap-2.5 mb-2">
+                  <i className="ri-star-fill text-[15px] text-primary-500" />
+                  <span className="text-[15px] font-black uppercase tracking-[0.06em] text-white">{b.label}</span>
                 </div>
-                <div className="text-xs text-[#6E6E68] font-semibold">{b.sub}</div>
+                <span className="text-[13px] font-semibold text-white/45">{b.sub}</span>
               </div>
-              <span className="text-primary-500 font-black text-sm whitespace-nowrap">{b.rating}</span>
+              <span className="text-[15px] font-black text-primary-500 whitespace-nowrap tabular-nums">{b.rating}</span>
             </a>
           ))}
         </div>

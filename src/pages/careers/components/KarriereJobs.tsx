@@ -1,16 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
-import SectionBadge from '@/components/base/SectionBadge';
+import { ChapterNumeral, ChapterEyebrow } from './ChapterKit';
 
 const BITE_LISTING_KEY = 'sonic-sales-support-gmbh:main-listing';
 
 export default function KarriereJobs() {
-  const [open, setOpen] = useState(false);
   const { images: stellenImages } = useMediaStore('careers_stellenangebote_image');
 
-  const tBadge = useText('careers_jobs', 'careers-jobs-badge', 'Aktuelle Stellenangebote');
   const tHeading = useText('careers_jobs', 'careers-jobs-heading', 'Dein nächster Karriereschritt');
   const tTanjaHeading = useText('careers_jobs', 'careers-jobs-tanja-heading', 'Unsicher, welche Stelle zu dir passt?');
   const tTanjaDesc = useText('careers_jobs', 'careers-jobs-tanja-desc', 'Tanja aus unserem HR-Team nimmt sich gerne Zeit für ein unverbindliches Gespräch.');
@@ -37,101 +34,63 @@ export default function KarriereJobs() {
   }, []);
 
   return (
-    <section id="stellenangebote" className="sonic-section-lg px-4 md:px-6 bg-white">
+    <section id="stellenangebote" className="py-20 md:py-[104px] px-5 md:px-10" style={{ background: 'oklch(0.13 0.005 118)' }}>
       <div className="sonic-container">
-        {/* ── Heading ── */}
-        <div className="max-w-3xl mb-12 md:mb-16">
-          <SectionBadge text={tBadge} variant="dark" className="mb-5" />
-          <h2 className="sonic-h2 text-foreground-950">
-            {headingFirst}{' '}
-            <span className="text-primary-500">{headingRest}</span>
-          </h2>
+        <div className="flex items-start gap-8 md:gap-16 mb-12 md:mb-14">
+          <ChapterNumeral n="06" dark />
+          <div className="flex-1 max-w-[700px]">
+            <ChapterEyebrow dark>Aktuelle Stellenangebote</ChapterEyebrow>
+            <h2 className="font-black text-white mb-4" style={{ fontSize: 'clamp(1.875rem, 3.4vw, 3.5rem)', lineHeight: 1.02, letterSpacing: '-0.035em' }}>
+              {headingFirst} <span className="text-primary-500">{headingRest}</span>
+            </h2>
+            <div className="flex items-center gap-3">
+              <span className="px-2.5 py-1 bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-[0.2em]">Live</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">Krefeld &amp; DACH-weit</span>
+            </div>
+          </div>
         </div>
 
-        {/* ── Drop toggle ── */}
-        <button
-          onClick={() => setOpen(!open)}
-          aria-expanded={open}
-          aria-controls="stellenangebote-panel"
-          className="group w-full flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-foreground-950 p-6 md:p-8 text-left cursor-pointer"
-        >
-          <div>
-            <div className="flex flex-wrap items-center gap-2.5 mb-3">
-              <span className="px-2.5 py-1 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-widest ">
-                Live
-              </span>
-              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-white/50">
-                Krefeld &amp; DACH-weit
-              </span>
-            </div>
-            <div className="sonic-h2 text-white">
-              Jetzt durchstarten
-            </div>
-            <p className="text-sm text-white/50 mt-2 leading-relaxed">
-              {open
-                ? 'Alle offenen Positionen auf einen Blick — klick auf eine Stelle für Details.'
-                : 'Aufklappen, um alle offenen Stellen zu sehen.'}
-            </p>
-          </div>
-
-          <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 flex items-center justify-center border-2 border-primary-500 text-primary-500 group-hover:bg-primary-500 group-hover:text-foreground-950 transition-all duration-300 self-start sm:self-center ">
-            <i className={`ri-arrow-down-s-line text-2xl transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
-          </div>
-        </button>
-
-        {/* ── Expandable B-ite widget ── */}
-        <div
-          id="stellenangebote-panel"
-          className={`grid transition-all duration-500 ease-out ${open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
-        >
-          <div className="overflow-hidden min-h-0">
-            <div className="border border-t-0 border-[#E7E4D4] bg-white p-4 md:p-8 min-h-[400px] ">
-              <div className="jobWrapper-block" data-bite-jobs-api-listing={BITE_LISTING_KEY}>
-                <div className="flex flex-col items-center justify-center gap-4 py-20">
-                  <div className="w-10 h-10 border-4 border-primary-500/30 border-t-[#C8D400] animate-spin " />
-                  <p className="text-xs font-black text-foreground-400 uppercase tracking-widest">
-                    Stellenangebote werden geladen…
-                  </p>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px]" style={{ border: '1px solid rgba(255,255,255,0.14)' }}>
+          {/* Jobs widget — permanently open */}
+          <div className="p-8 md:p-12" style={{ borderRight: '1px solid rgba(255,255,255,0.14)' }}>
+            <p className="text-2xl md:text-[34px] font-black leading-[1.06] tracking-[-0.03em] text-white mb-3">Jetzt durchstarten</p>
+            <p className="text-[15px] leading-[1.7] text-white/50 mb-10">Alle offenen Positionen auf einen Blick — klick auf eine Stelle für Details.</p>
+            <div className="jobWrapper-block" data-bite-jobs-api-listing={BITE_LISTING_KEY}>
+              <div className="flex flex-col items-center justify-center gap-3.5 py-16 border-t border-white/10">
+                <span className="w-9 h-9 rounded-full border-[3px] border-primary-500/30 animate-spin" style={{ borderTopColor: 'oklch(var(--primary-500))' }} />
+                <p className="text-[11px] font-black uppercase tracking-[0.22em] text-white/40">Stellenangebote werden geladen…</p>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* ── Tanja CTA bar ── */}
-        <div className="mt-4 bg-foreground-950 p-6 md:p-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
-          <div className="flex items-start gap-4 flex-1">
-            <div className="w-12 h-12 flex-shrink-0 overflow-hidden  border-2 border-primary-500/30">
-              <img
-                src={tanjaPortrait}
-                alt="Tanja — HR Team"
-                className="w-full h-full object-cover object-top"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
+          {/* Tanja panel */}
+          <div className="p-8 md:p-10 flex flex-col justify-between" style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)' }}>
             <div>
-              <h3 className="text-sm font-bold text-white mb-1">{tTanjaHeading}</h3>
-              <p className="text-xs text-white/50 max-w-lg leading-relaxed">{tTanjaDesc}</p>
+              <div className="w-16 h-16 overflow-hidden mb-6" style={{ border: '2px solid oklch(var(--primary-500) / 0.45)' }}>
+                <img src={tanjaPortrait} alt="Tanja — HR Team" className="w-full h-full object-cover object-top" loading="lazy" decoding="async" />
+              </div>
+              <p className="text-[22px] font-black leading-[1.2] tracking-[-0.02em] text-white mb-3">{tTanjaHeading}</p>
+              <p className="text-[15px] leading-[1.7] text-white/55">{tTanjaDesc}</p>
             </div>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-2 flex-shrink-0">
-            <a
-              href="https://calendly.com/sonic-group/tanja-15min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-primary-500 text-foreground-950 font-bold text-xs uppercase tracking-wider hover:bg-white transition-all duration-200 whitespace-nowrap cursor-pointer "
-            >
-              <i className="ri-calendar-line text-sm" />
-              {tTanjaCta}
-            </a>
-            <a
-              href="mailto:karriere@sonic-group.de?subject=Initiativbewerbung"
-              className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 border-[1.5px] border-white/20 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/10 hover:border-primary-500/50 transition-all duration-200 whitespace-nowrap cursor-pointer "
-            >
-              <i className="ri-send-plane-line text-sm" />
-              {tInitiativCta}
-            </a>
+            <div className="flex flex-col gap-2.5 mt-10">
+              <a
+                href="https://calendly.com/sonic-group/tanja-15min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2.5 px-6 py-4 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.14em] hover:bg-white transition-colors duration-200 cursor-pointer"
+              >
+                <i className="ri-calendar-line text-[15px]" />
+                {tTanjaCta}
+              </a>
+              <a
+                href="mailto:karriere@sonic-group.de?subject=Initiativbewerbung"
+                className="flex items-center justify-center gap-2.5 px-6 py-4 text-white text-[11px] font-black uppercase tracking-[0.14em] hover:bg-white/10 transition-colors duration-200 cursor-pointer"
+                style={{ border: '1px solid rgba(255,255,255,0.28)' }}
+              >
+                <i className="ri-send-plane-line text-[15px]" />
+                {tInitiativCta}
+              </a>
+            </div>
           </div>
         </div>
       </div>

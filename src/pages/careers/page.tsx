@@ -1,32 +1,39 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import WoodenDivider from '@/components/base/WoodenDivider';
+import LimeWaveDivider from '@/components/base/LimeWaveDivider';
 import KarriereHero from './components/KarriereHero';
-import KarriereJobs from './components/KarriereJobs';
-import KarriereCulture from './components/KarriereCulture';
+import KarriereInPageNav from './components/KarriereInPageNav';
 import KarrierepfadeSection from './components/KarrierepfadeSection';
+import KarriereCulture from './components/KarriereCulture';
+import KarriereAwards from './components/KarriereAwards';
 import SonicFamily from './components/SonicFamily';
 import SonicTeamEvents from './components/SonicTeamEvents';
-import KarriereAwards from './components/KarriereAwards';
-import KarriereInPageNav from './components/KarriereInPageNav';
+import KarriereJobs from './components/KarriereJobs';
 
-function StickyCta() {
+function MobileStickyCta() {
   const scrollToJobs = () => {
     const el = document.getElementById('stellenangebote');
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
-    <button
-      onClick={scrollToJobs}
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[200] bg-primary-500 text-foreground-950 font-bold text-xs sm:text-[13px] px-4 sm:px-6 py-2.5 sm:py-3.5 hover:bg-white transition-all duration-200 cursor-pointer whitespace-nowrap"
-      style={{ boxShadow: '0 8px 24px rgba(0,0,0,0.2)' }}
+    <div
+      className="lg:hidden fixed bottom-0 left-0 right-0 z-[200] px-4 py-3"
+      style={{
+        background: 'rgba(255,255,255,0.72)',
+        backdropFilter: 'blur(22px) saturate(1.4)',
+        WebkitBackdropFilter: 'blur(22px) saturate(1.4)',
+        borderTop: '1px solid oklch(var(--foreground-950) / 0.1)',
+      }}
     >
-      <span className="flex items-center gap-2">
-        <i className="ri-briefcase-line text-sm" />
+      <button
+        onClick={scrollToJobs}
+        className="w-full h-[52px] flex items-center justify-center gap-2.5 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-[0.12em] cursor-pointer"
+      >
+        <i className="ri-briefcase-line text-base" />
         Stellenangebote
-      </span>
-    </button>
+      </button>
+    </div>
   );
 }
 
@@ -43,49 +50,41 @@ export default function CareersGatewayPage() {
   const heroRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="min-h-[100dvh] bg-white">
+    <div className="min-h-[100dvh] bg-white pb-[76px] lg:pb-0">
       <main id="main-content">
-        {/* In-Page Navigation */}
+        {/* In-Page chapter rail */}
         <KarriereInPageNav heroRef={heroRef} />
 
-        {/* Hero */}
+        {/* Hero (00) */}
         <div ref={heroRef}>
           <KarriereHero />
         </div>
 
-        <WoodenDivider />
-
-        {/* Kultur & Werte */}
-        <KarriereCulture />
-
-        <WoodenDivider />
-
-        {/* Stellenangebote */}
-        <KarriereJobs />
-
-        <WoodenDivider />
-
-        {/* Karrierepfade */}
+        {/* 01 — Zwei Wege */}
         <KarrierepfadeSection />
 
-        <WoodenDivider />
+        <LimeWaveDivider />
 
-        {/* Sonic Spirit & Faces */}
+        {/* 02 — Kultur & DNA */}
+        <KarriereCulture />
+
+        {/* 03 — Ausgezeichnet */}
+        <KarriereAwards />
+
+        {/* 04 — Geschichten */}
         <SonicFamily />
 
-        <WoodenDivider />
+        <LimeWaveDivider />
 
-        {/* Leben bei Sonic */}
+        {/* 05 — Leben bei Sonic */}
         <SonicTeamEvents />
 
-        <WoodenDivider />
-
-        {/* Ausgezeichnet */}
-        <KarriereAwards />
+        {/* 06 — Stellen */}
+        <KarriereJobs />
       </main>
 
-      {/* Sticky CTA */}
-      <StickyCta />
+      {/* Mobile sticky CTA */}
+      <MobileStickyCta />
     </div>
   );
 }

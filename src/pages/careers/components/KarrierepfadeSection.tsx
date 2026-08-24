@@ -1,7 +1,6 @@
-import { useState, useCallback } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
+import { ChapterHeader, Marker } from './ChapterKit';
 
 type PathId = 'sales' | 'staff';
 
@@ -48,8 +47,6 @@ const PATHS: Array<{
 ];
 
 export default function KarrierepfadeSection() {
-  const [active, setActive] = useState(0);
-  const [transitioning, setTransitioning] = useState(false);
   const { images: pathImages } = useMediaStore('careers_path_images');
 
   const tBadge = useText('careers_paths', 'careers-paths-badge', 'Karrierepfade');
@@ -61,197 +58,87 @@ export default function KarrierepfadeSection() {
   const tStaffBadge = useText('careers_paths', 'careers-paths-staff-badge', 'Field Team');
   const tStaffHeadline = useText('careers_paths', 'careers-paths-staff-headline', 'Flexibler Einsatz DACH-weit');
   const tStaffDesc = useText('careers_paths', 'careers-paths-staff-desc', '150+ Premium-Brands, Top-Incentives und maximale Flexibilität bei deiner Planung.');
-  const tCta = useText('careers_paths', 'careers-paths-cta', 'Alle Stellen ansehen');
   const tApply = useText('careers_paths', 'careers-paths-apply', 'Initiativbewerbung senden');
 
-  const resolvedPaths = PATHS.map((path) => ({
+  const resolvedPaths = PATHS.map((path, i) => ({
     ...path,
     badge: path.id === 'sales' ? tSalesBadge : tStaffBadge,
     headline: path.id === 'sales' ? tSalesHeadline : tStaffHeadline,
     tagline: path.id === 'sales' ? tSalesDesc : tStaffDesc,
+    image: pathImages[i]?.url || path.fallbackImage,
   }));
 
-  const path = resolvedPaths[active];
-
-  const goTo = useCallback(
-    (i: number) => {
-      if (i === active) return;
-      setTransitioning(true);
-      setTimeout(() => {
-        setActive(i);
-        setTransitioning(false);
-      }, 240);
-    },
-    [active]
-  );
-
-  const scrollToJobs = () => {
-    const el = document.getElementById('stellenangebote');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
-  // Split "ZWEI WEGE. EIN ZIEL." → main "ZWEI WEGE." / accent "EIN ZIEL."
+  // Split "Zwei Wege. Ein Ziel." → main "Zwei Wege." / marker "Ein Ziel."
   const sentences = tHeading.split('. ').map((s) => (s.endsWith('.') ? s : `${s}.`));
   const headingMain = sentences[0] ?? tHeading;
   const headingAccent = sentences.length > 1 ? sentences.slice(1).join(' ') : '';
 
   return (
-    <section id="pfade" className="sonic-section-lg relative bg-background-100 overflow-hidden">
-      <div className="max-w-full max-w-[1280px] mx-auto px-6 md:px-10">
-        {/* ── HEADER + SELECTOR ── */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10 md:mb-12">
-          <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
-              <span className="w-1.5 h-1.5 bg-primary-500 flex-shrink-0" />
-              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary-500">{tBadge}</span>
-            </div>
-            <h2 className="sonic-h2 text-foreground-950">
-              {headingMain}{' '}
-              {headingAccent && <span className="text-primary-500">{headingAccent}</span>}
-            </h2>
-            <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[440px]">{tSub}</p>
-          </div>
-
-          {/* Numbered selector tabs */}
-          <div className="flex items-stretch gap-0 flex-shrink-0 border border-black/10 overflow-hidden">
-            {resolvedPaths.map((p, i) => {
-              const isActive = active === i;
-              return (
-                <button
-                  key={p.id}
-                  onClick={() => goTo(i)}
-                  aria-pressed={isActive}
-                  className={`flex items-center gap-2.5 px-4 md:px-5 py-3 text-left whitespace-nowrap cursor-pointer transition-colors duration-300 border-r last:border-r-0 border-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-inset ${
-                    isActive ? 'bg-foreground-950' : 'bg-white hover:bg-[#FAFDF5]'
-                  }`}
-                >
-                  <span
-                    className={`flex items-center justify-center w-6 h-6 text-[10px] font-black transition-colors duration-300 ${
-                      isActive ? 'bg-primary-500 text-foreground-950' : 'border border-black/15 text-black/40'
-                    }`}
-                  >
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span
-                    className="text-sm font-black leading-none transition-colors duration-300"
-                    style={{ color: isActive ? '#FFFFFF' : 'rgba(0,0,0,0.6)' }}
-                  >
-                    {p.title}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* ── SPLIT CARD (photo + dark panel) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] bg-white border border-[#E7E4D4] overflow-hidden">
-          {/* Left — full-bleed image */}
-          <div className="relative min-h-[280px] sm:min-h-[380px] lg:min-h-[560px] bg-foreground-950">
-            <img
-              key={`path-${path.id}`}
-              src={pathImages[active]?.url || path.fallbackImage}
-              alt={`${path.title} — ${path.headline}`}
-              className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-300 ${
-                transitioning ? 'opacity-0' : 'opacity-100'
-              }`}
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C] via-[#0B0B0C]/20 to-transparent" />
-            <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">
-              {path.badge}
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 p-7">
-              <div className="text-[clamp(32px,4vw,52px)] font-black text-white leading-none tracking-tight">
-                {path.title}
-              </div>
-              <div className="mt-3 flex items-center gap-2">
-                <span className="w-1 h-1 bg-primary-500" />
-                <span className="text-sm font-black text-white">{path.headline}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right — dark ink panel */}
-          <div className="bg-foreground-950 p-8 md:p-12 flex flex-col justify-between">
-            <div>
-              <div className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-4">
-                {String(active + 1).padStart(2, '0')} / {String(resolvedPaths.length).padStart(2, '0')}
-              </div>
-
-              <h3
-                key={`headline-${active}`}
-                className="sonic-h2 text-white"
-              >
-                {path.headline}
-              </h3>
-
-              <p key={`tagline-${active}`} className="text-sm leading-relaxed text-white/55 mt-4 max-w-md">
-                {path.tagline}
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-8">
-                {path.stats.map((m) => (
-                  <div key={m.label} className="border border-white/10 px-4 py-3.5">
-                    <div className="text-xl font-black text-primary-500 leading-none tabular-nums">{m.value}</div>
-                    <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5">
-                      {m.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Footer nav + CTA */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-6 mt-8 border-t border-white/10">
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => goTo((active - 1 + resolvedPaths.length) % resolvedPaths.length)}
-                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-primary-500 hover:text-foreground-950 border border-white/15 text-white/60"
-                  aria-label="Vorheriger Karrierepfad"
-                >
-                  <i className="ri-arrow-left-line" />
-                </button>
-                <button
-                  onClick={() => goTo((active + 1) % resolvedPaths.length)}
-                  className="w-9 h-9 flex items-center justify-center text-base cursor-pointer transition-colors duration-200 hover:bg-primary-500 hover:text-foreground-950 border border-white/15 text-white/60"
-                  aria-label="Nächster Karrierepfad"
-                >
-                  <i className="ri-arrow-right-line" />
-                </button>
-              </div>
-              <a
-                href={`mailto:${path.email}?subject=Initiativbewerbung`}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.06em] hover:bg-white transition-colors whitespace-nowrap cursor-pointer"
-              >
-                {tApply}
-                <i className="ri-arrow-right-line" />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Bottom CTA bar ── */}
-        <div className="sonic-container mt-8 md:mt-10">
-          <div className="border border-[#E7E4D4] py-6 md:py-7 px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAFDF5]">
-            <div className="text-center sm:text-left">
-              <p className="text-sm md:text-[15px] font-black text-foreground-950 leading-relaxed">
-                Noch unsicher, welcher Weg zu dir passt?{' '}
-                <span className="text-primary-500">Wir finden ihn gemeinsam.</span>
-              </p>
-              <p className="text-xs text-[#6E6E68] mt-1 hidden sm:block">
-                Offene Stellen am Campus Krefeld und DACH-weit im Außendienst
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={scrollToJobs}
-              className="inline-flex items-center gap-2 bg-foreground-950 text-white px-6 py-3 font-black hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-300 whitespace-nowrap cursor-pointer text-xs flex-shrink-0"
+    <section id="pfade" className="bg-white py-20 md:py-[104px] px-5 md:px-10">
+      <div className="sonic-container">
+        <ChapterHeader
+          n="01"
+          eyebrow={tBadge}
+          heading={<>{headingMain} {headingAccent && <Marker>{headingAccent}</Marker>}</>}
+          sub={tSub}
+          headingMax="max-w-[620px]"
+          aside={
+            <p
+              className="text-[12px] font-bold leading-[1.7] tracking-[0.04em] uppercase pl-6"
+              style={{ borderLeft: '1px solid oklch(var(--foreground-950) / 0.12)', color: 'oklch(var(--foreground-500))' }}
             >
-              <i className="ri-briefcase-line text-sm" />
-              {tCta}
-            </button>
-          </div>
+              Erst orientieren, dann bewerben — beide Wege mit denselben Kennzahlen vergleichbar.
+            </p>
+          }
+        />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0.5">
+          {resolvedPaths.map((path) => (
+            <div key={path.id} className="flex flex-col" style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
+              {/* Image */}
+              <div className="relative h-[280px] md:h-[340px] overflow-hidden" style={{ background: 'oklch(0.13 0.005 118)' }}>
+                <img src={path.image} alt={`${path.title} — ${path.headline}`} className="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" />
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,11,9,0.92) 0%, rgba(10,11,9,0.2) 60%, transparent 100%)' }} />
+                <div
+                  className="absolute top-5 left-5 px-3.5 py-[7px] text-[10px] font-black uppercase tracking-[0.2em] text-primary-500"
+                  style={{ background: 'rgba(12,13,11,0.42)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', border: '1px solid rgba(255,255,255,0.2)' }}
+                >
+                  {path.badge}
+                </div>
+                <div className="absolute left-0 right-0 bottom-0 p-7">
+                  <p className="text-3xl md:text-[44px] font-black leading-none tracking-[-0.035em] text-white mb-2.5">{path.title}</p>
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-1 h-1 bg-primary-500" />
+                    <span className="text-[13px] font-black text-white">{path.headline}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Body */}
+              <div className="flex-1 p-7 md:p-10 flex flex-col justify-between">
+                <div>
+                  <p className="text-[15px] leading-[1.75] mb-8" style={{ color: 'oklch(var(--foreground-500))' }}>
+                    {path.tagline}
+                  </p>
+                  <div className="grid grid-cols-2" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.08)', borderLeft: '1px solid oklch(var(--foreground-950) / 0.08)' }}>
+                    {path.stats.map((s) => (
+                      <div key={s.label} className="px-5 py-[18px]" style={{ borderRight: '1px solid oklch(var(--foreground-950) / 0.08)', borderBottom: '1px solid oklch(var(--foreground-950) / 0.08)' }}>
+                        <p className="text-[22px] font-black leading-none tracking-[-0.03em] text-foreground-950 tabular-nums mb-1.5">{s.value}</p>
+                        <p className="text-[10px] font-black uppercase tracking-[0.2em]" style={{ color: 'oklch(var(--foreground-400))' }}>{s.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <a
+                  href={`mailto:${path.email}?subject=Initiativbewerbung`}
+                  className="mt-8 inline-flex items-center justify-center gap-2.5 px-6 py-4 bg-foreground-950 text-white text-[11px] font-black uppercase tracking-[0.14em] hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-200 cursor-pointer"
+                >
+                  {tApply}
+                  <i className="ri-arrow-right-line text-sm" />
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

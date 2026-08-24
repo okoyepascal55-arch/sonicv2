@@ -1,28 +1,12 @@
 import { useState } from 'react';
 import { useText } from '@/hooks/useText';
-import SectionBadge from '@/components/base/SectionBadge';
+import { ChapterHeader, Marker } from './ChapterKit';
 
 const DNA_DATA = [
-  {
-    num: '01',
-    title: 'Der Mensch',
-    desc: 'Menschen, die Marken prägen. Promotions leben von den Menschen, die sie durchführen.',
-  },
-  {
-    num: '02',
-    title: 'Der Antrieb',
-    desc: 'Wettbewerbsfähige Bezahlung und Entwicklungsperspektiven motivieren unser Team.',
-  },
-  {
-    num: '03',
-    title: 'Die Daten',
-    desc: 'Datenbasierte Entscheidungen verwandeln Intuition in messbare Erfolge.',
-  },
-  {
-    num: '04',
-    title: 'Das Werkzeug',
-    desc: 'Inhouse-IT und starke Partner lösen Herausforderungen mit den richtigen Tools.',
-  },
+  { num: '01', title: 'Der Mensch', desc: 'Menschen, die Marken prägen. Promotions leben von den Menschen, die sie durchführen.' },
+  { num: '02', title: 'Der Antrieb', desc: 'Wettbewerbsfähige Bezahlung und Entwicklungsperspektiven motivieren unser Team.' },
+  { num: '03', title: 'Die Daten', desc: 'Datenbasierte Entscheidungen verwandeln Intuition in messbare Erfolge.' },
+  { num: '04', title: 'Das Werkzeug', desc: 'Inhouse-IT und starke Partner lösen Herausforderungen mit den richtigen Tools.' },
 ];
 
 const TAGS = ['Energie', 'Sympathie', 'Anpacken', 'Teamgeist', 'Kreativität'];
@@ -40,135 +24,104 @@ export default function KarriereCulture() {
   const [hoveredDna, setHoveredDna] = useState<number | null>(null);
   const [hoveredWert, setHoveredWert] = useState<number | null>(null);
 
-  const tP1 = useText('careers_culture', 'careers-culture-p1', '');
-  const tP2 = useText('careers_culture', 'careers-culture-p2', '');
-
-  const scrollToPaths = () => {
-    const el = document.getElementById('pfade');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  const tP1 = useText('careers_culture', 'careers-culture-p1', 'Am Point of Sale, bei Messen, Events, Roadshows und per Video aus unseren Studios am Campus in Krefeld.');
+  const tP2 = useText('careers_culture', 'careers-culture-p2', 'Energiegeladen und sympathisch: Diese Beschreibung passt auf die Menschen, die bei Sonic arbeiten. Passt sie auch auf dich?');
 
   return (
-    <section id="darum" className="sonic-section-lg px-4 md:px-6 bg-background-100">
+    <section id="darum" className="py-20 md:py-[104px] px-5 md:px-10" style={{ background: 'oklch(var(--background-100))' }}>
       <div className="sonic-container">
+        <ChapterHeader
+          n="02"
+          eyebrow="Unsere Kultur"
+          heading={<>Starke Menschen für <Marker>starke Marken</Marker></>}
+          sub="Wir lieben & leben Marken. Energie, Sympathie, Teamgeist, Kreativität und der Wille anzupacken — das zeichnet uns aus."
+          headingMax="max-w-[700px]"
+        />
 
-        {/* ── Section header ── */}
-        <div className="max-w-3xl mb-12 md:mb-16">
-          <SectionBadge text="Unsere Kultur" variant="dark" className="mb-5" />
-          <h2 className="sonic-h2 text-foreground-950">
-            Starke Menschen für{' '}
-            <span className="text-primary-500">starke Marken</span>
-          </h2>
-          <p className="mt-4 text-sm md:text-base text-foreground-500 max-w-xl leading-relaxed">
-            Wir lieben &amp; leben Marken. Energie, Sympathie, Teamgeist, Kreativität und der Wille anzupacken — das zeichnet uns aus.
-          </p>
-        </div>
-
-        {/* ── Statement card ── */}
-        <div className="relative overflow-hidden bg-foreground-950 p-8 md:p-12 mb-12 md:mb-16">
-          {/* Lime left accent */}
+        {/* Statement card */}
+        <div className="relative bg-foreground-950 px-7 py-10 md:px-14 md:pt-14 md:pb-10 mb-14 overflow-hidden">
           <div className="absolute top-0 left-0 bottom-0 w-[3px] bg-primary-500" aria-hidden="true" />
-
-          <div className="max-w-2xl pl-2">
-            <h3 className="sonic-h3 text-white mb-4">
+          <div className="max-w-2xl">
+            <p className="text-[26px] md:text-[34px] font-black leading-[1.16] tracking-[-0.03em] text-white mb-5">
               Wir lieben &amp; leben Marken.
-            </h3>
-            <p className="text-sm text-foreground-300 leading-relaxed mb-3">
-              {tP1 || 'Am Point of Sale, bei Messen, Events, Roadshows und per Video aus unseren Studios am Campus in Krefeld.'}
             </p>
-            <p className="text-sm text-foreground-300 leading-relaxed">
-              {tP2 || 'Energiegeladen und sympathisch: Diese Beschreibung passt auf die Menschen, die bei Sonic arbeiten. Passt sie auch auf dich?'}
-            </p>
+            <p className="text-[15px] leading-[1.75] text-white/60 mb-3">{tP1}</p>
+            <p className="text-[15px] leading-[1.75] text-white/60">{tP2}</p>
           </div>
-
-          {/* Tags + CTA */}
-          <div className="flex flex-wrap items-center gap-2 mt-8 pt-6 border-t border-white/10 pl-2">
+          <div className="flex flex-wrap items-center gap-2 mt-10 pt-7 border-t border-white/10">
             {TAGS.map((tag) => (
-              <span
-                key={tag}
-                className="text-[11px] font-black text-primary-500 border border-primary-500/25 px-3 py-1.5 uppercase tracking-[0.1em]"
-              >
+              <span key={tag} className="px-3.5 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-primary-500" style={{ border: '1px solid oklch(var(--primary-500) / 0.3)' }}>
                 {tag}
               </span>
             ))}
-            <button
-              onClick={scrollToPaths}
-              className="ml-auto text-xs font-black text-white/60 hover:text-primary-500 transition-colors cursor-pointer uppercase tracking-[0.12em]"
-            >
-              Karrierepfade →
-            </button>
           </div>
         </div>
 
-        {/* ── DNA + Werte ── */}
-        <div className="space-y-14">
-
-          {/* DNA — numbered editorial cards */}
+        {/* DNA */}
+        <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-10 md:gap-14 mb-14">
           <div>
-            <p className="sonic-label text-foreground-400 mb-6">Unsere DNA</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-foreground-200/60">
-              {DNA_DATA.map((item, i) => {
-                const active = hoveredDna === i;
-                return (
-                  <div
-                    key={item.num}
-                    className="relative bg-white p-7 md:p-8 cursor-default transition-colors duration-200 overflow-hidden"
-                    style={{ background: active ? '#fafdf5' : '#ffffff' }}
-                    onMouseEnter={() => setHoveredDna(i)}
-                    onMouseLeave={() => setHoveredDna(null)}
-                  >
-                    {/* Lime left border on hover */}
-                    <div
-                      className="absolute top-0 left-0 bottom-0 transition-all duration-200"
-                      style={{ width: '3px', background: active ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.15)' }}
-                      aria-hidden="true"
-                    />
-                    {/* Ghost number */}
-                    <div
-                      className="absolute top-4 right-5 font-black leading-none select-none pointer-events-none transition-colors duration-200"
-                      style={{ fontSize: '5rem', color: active ? 'rgba(200,212,0,0.12)' : 'rgba(0,0,0,0.04)', letterSpacing: '-0.04em' }}
-                      aria-hidden="true"
-                    >
-                      {item.num}
-                    </div>
-                    <div className="relative">
-                      <p className="sonic-label text-primary-500 mb-4">{item.num}</p>
-                      <h4 className="sonic-h3 text-foreground-950 mb-2">{item.title}</h4>
-                      <p className="text-sm text-foreground-500 leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <p className="text-[11px] font-black uppercase tracking-[0.24em] mb-4" style={{ color: 'oklch(var(--foreground-500))' }}>Unsere DNA</p>
+            <p className="text-sm leading-[1.75]" style={{ color: 'oklch(var(--foreground-400))' }}>Vier Konstanten, die jede Entscheidung bei Sonic trägt.</p>
           </div>
-
-          {/* Werte — left-border card grid */}
-          <div>
-            <p className="sonic-label text-foreground-400 mb-6">Unsere Werte</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {WERTE.map((val, i) => {
-                const active = hoveredWert === i;
-                return (
-                  <div
-                    key={val.num}
-                    className="relative p-6 md:p-7 bg-white transition-all duration-200"
-                    style={{
-                      borderLeft: `3px solid ${active ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.2)'}`,
-                      borderTop: '0.5px solid rgba(0,0,0,0.07)',
-                      borderRight: '0.5px solid rgba(0,0,0,0.07)',
-                      borderBottom: '0.5px solid rgba(0,0,0,0.07)',
-                      background: active ? '#fafdf5' : '#ffffff',
-                    }}
-                    onMouseEnter={() => setHoveredWert(i)}
-                    onMouseLeave={() => setHoveredWert(null)}
+          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.1)', borderLeft: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
+            {DNA_DATA.map((item, i) => {
+              const active = hoveredDna === i;
+              return (
+                <div
+                  key={item.num}
+                  className="relative p-9 overflow-hidden transition-colors duration-200"
+                  style={{
+                    background: active ? '#fafdf5' : '#fff',
+                    borderRight: '1px solid oklch(var(--foreground-950) / 0.1)',
+                    borderBottom: '1px solid oklch(var(--foreground-950) / 0.1)',
+                  }}
+                  onMouseEnter={() => setHoveredDna(i)}
+                  onMouseLeave={() => setHoveredDna(null)}
+                >
+                  <span
+                    className="absolute top-2.5 right-3.5 font-black leading-[0.8] tracking-[-0.05em] select-none pointer-events-none transition-colors duration-200"
+                    style={{ fontSize: '76px', color: active ? 'oklch(var(--primary-500) / 0.12)' : 'oklch(var(--foreground-950) / 0.04)' }}
+                    aria-hidden="true"
                   >
-                    <p className="sonic-label text-primary-500 mb-3">{val.num}</p>
-                    <h4 className="sonic-h3 text-foreground-950 mb-2">{val.title}</h4>
-                    <p className="text-sm text-foreground-500 leading-relaxed">{val.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
+                    {item.num}
+                  </span>
+                  <p className="relative text-[22px] font-black tracking-[-0.02em] text-foreground-950 mb-3">{item.title}</p>
+                  <p className="relative text-sm leading-[1.7]" style={{ color: 'oklch(var(--foreground-500))' }}>{item.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Werte */}
+        <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-10 md:gap-14">
+          <div>
+            <p className="text-[11px] font-black uppercase tracking-[0.24em] mb-4" style={{ color: 'oklch(var(--foreground-500))' }}>Unsere Werte</p>
+            <p className="text-sm leading-[1.75]" style={{ color: 'oklch(var(--foreground-400))' }}>Sechs Werte, an denen wir uns im Alltag messen lassen.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0.5">
+            {WERTE.map((val, i) => {
+              const active = hoveredWert === i;
+              return (
+                <div
+                  key={val.num}
+                  className="p-7 bg-white transition-all duration-200"
+                  style={{
+                    borderLeft: `3px solid ${active ? 'oklch(var(--primary-500))' : 'oklch(var(--primary-500) / 0.25)'}`,
+                    borderTop: '1px solid oklch(var(--foreground-950) / 0.08)',
+                    borderRight: '1px solid oklch(var(--foreground-950) / 0.08)',
+                    borderBottom: '1px solid oklch(var(--foreground-950) / 0.08)',
+                    background: active ? '#fafdf5' : '#ffffff',
+                  }}
+                  onMouseEnter={() => setHoveredWert(i)}
+                  onMouseLeave={() => setHoveredWert(null)}
+                >
+                  <p className="text-[11px] font-black tracking-[0.24em] mb-3.5" style={{ color: 'oklch(0.6 0.1 115)' }}>{val.num}</p>
+                  <p className="text-[19px] font-black tracking-[-0.02em] text-foreground-950 mb-2.5">{val.title}</p>
+                  <p className="text-sm leading-[1.7]" style={{ color: 'oklch(var(--foreground-500))' }}>{val.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
