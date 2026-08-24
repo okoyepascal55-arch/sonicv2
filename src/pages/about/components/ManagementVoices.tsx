@@ -1,7 +1,6 @@
 import type { MediaItem } from '@/lib/mediaStore';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useText } from '@/hooks/useText';
-import SectionBadge from '@/components/base/SectionBadge';
 
 const EXECUTIVES = [
   {
@@ -128,7 +127,10 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
 
         {/* Section header */}
         <div className="mb-10 md:mb-14">
-          <SectionBadge text={tBadge} variant="dark" className="mb-5" />
+          <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
+          </div>
           <h2 className="sonic-h2 text-foreground-950 mb-3">{tHeading}</h2>
           <p className="text-[15px] text-foreground-500 max-w-[480px] leading-relaxed">{tSub}</p>
         </div>
@@ -180,8 +182,8 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                 >
                   {/* Portrait */}
                   <div
-                    className="relative bg-foreground-950"
-                    style={{ minHeight: '520px', order: imageLeft ? 1 : 2 }}
+                    className="relative"
+                    style={{ minHeight: '520px', order: imageLeft ? 1 : 2, backgroundColor: 'oklch(0.13 0.005 118)' }}
                   >
                     <img
                       src={exec.image}
@@ -205,35 +207,39 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
 
                   {/* Text panel */}
                   <div
-                    className="bg-foreground-950 flex flex-col justify-between"
-                    style={{ padding: '64px 56px', order: imageLeft ? 2 : 1 }}
+                    className="flex flex-col justify-between"
+                    style={{ padding: '64px 56px', order: imageLeft ? 2 : 1, backgroundColor: 'oklch(0.975 0.002 110)' }}
                   >
                     <div>
                       <div className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-6">
                         {String(i + 1).padStart(2, '0')} / {String(execs.length).padStart(2, '0')}
                       </div>
                       <blockquote
-                        className="text-white font-black leading-[1.28] mb-7"
-                        style={{ fontSize: '31px', letterSpacing: '-0.02em' }}
+                        className="font-black leading-[1.28] mb-7"
+                        style={{ fontSize: '31px', letterSpacing: '-0.02em', color: 'oklch(0.16 0.006 118)' }}
                       >
                         {exec.pullQuote}
                       </blockquote>
-                      <p className="text-sm text-white/55 leading-relaxed mb-8">{exec.bio}</p>
-                      <div className="grid grid-cols-2 gap-3">
-                        {exec.metrics.map((m) => (
-                          <div key={m.label} className="border border-white/10 px-4 py-3.5">
+                      <p className="text-sm leading-relaxed mb-8" style={{ color: 'oklch(0.48 0.006 260)' }}>{exec.bio}</p>
+                      <div className="grid grid-cols-2" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
+                        {exec.metrics.map((m, mi) => (
+                          <div
+                            key={m.label}
+                            className="px-4 py-3.5"
+                            style={mi === 0 ? { borderRight: '1px solid oklch(0.885 0.004 110)' } : undefined}
+                          >
                             <div className="text-xl font-black text-primary-500 leading-none">{m.value}</div>
-                            <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5">{m.label}</div>
+                            <div className="text-[10px] font-bold uppercase tracking-wider mt-1.5" style={{ color: 'oklch(0.62 0.006 260)' }}>{m.label}</div>
                           </div>
                         ))}
                       </div>
                     </div>
-                    <div className="flex items-center justify-end pt-6 mt-6 border-t border-white/10">
+                    <div className="flex items-center justify-end pt-6 mt-6" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
                       <a
                         href={exec.linkedin}
                         target="_blank"
                         rel="nofollow noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.06em] text-primary-500 hover:text-white transition-colors"
+                        className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.06em] text-primary-500 hover:text-foreground-950 transition-colors"
                       >
                         <i className="ri-linkedin-fill text-base" />
                         LinkedIn

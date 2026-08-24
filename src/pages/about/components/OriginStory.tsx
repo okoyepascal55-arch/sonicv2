@@ -3,7 +3,6 @@ import type { MediaItem } from '@/lib/mediaStore';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
-import SectionBadge from '@/components/base/SectionBadge';
 
 const tickerStats = [
   { icon: 'ri-briefcase-line', value: '>500', label: 'Projekte' },
@@ -47,11 +46,12 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
 
           {/* Section label */}
           <div
-            className={`flex items-center justify-center mb-6 md:mb-10 transition-all duration-700 ${
+            className={`flex items-center justify-center gap-3 mb-6 md:mb-10 transition-all duration-700 ${
               visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            <SectionBadge text={tBadge} variant="dark" />
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
