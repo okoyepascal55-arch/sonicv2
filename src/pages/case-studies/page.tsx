@@ -458,7 +458,7 @@ export default function CaseStudiesPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/80" />
         </div>
         <div className="relative z-10 flex flex-col justify-end h-full sonic-container" style={{ minHeight: 'clamp(360px, 52vw, 500px)', paddingBottom: '3rem' }}>
-          <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
+          <div className="inline-flex self-start items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
             <span className="w-1.5 h-1.5 bg-primary-500" />
             <span className="text-primary-500">Fallbeispiele</span>
           </div>

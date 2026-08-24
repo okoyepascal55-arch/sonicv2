@@ -73,12 +73,14 @@ export default function CoverflowFilmstrip({
   photos,
   activeIndex,
   onExpand,
+  onSelect,
   filter,
   accent,
 }: {
   photos: EraPhoto[];
   activeIndex: number;
   onExpand: (i: number) => void;
+  onSelect: (i: number) => void;
   filter: string;
   accent: string;
 }) {
@@ -118,7 +120,10 @@ export default function CoverflowFilmstrip({
       dragState.current.moved = false;
       return;
     }
-    onExpand(i);
+    // First click on a card brings it to the center (like a carousel);
+    // only clicking the already-centered card opens the fullscreen lightbox.
+    if (i === activeIndex) onExpand(i);
+    else onSelect(i);
   };
 
   const active = photos[activeIndex];
@@ -160,7 +165,7 @@ export default function CoverflowFilmstrip({
                 key={i}
                 ref={(el) => { cardRefs.current[i] = el; }}
                 onClick={() => handleCardClick(i)}
-                aria-label={`Expand photo: ${photo.caption}`}
+                aria-label={isActive ? `Expand photo: ${photo.caption}` : `Select photo: ${photo.caption}`}
                 className="shrink-0 cursor-pointer group"
                 style={{
                   width: 'clamp(260px, 36vw, 420px)',

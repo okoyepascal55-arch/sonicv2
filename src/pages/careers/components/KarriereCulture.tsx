@@ -28,7 +28,7 @@ export default function KarriereCulture() {
   const tP2 = useText('careers_culture', 'careers-culture-p2', 'Energiegeladen und sympathisch: Diese Beschreibung passt auf die Menschen, die bei Sonic arbeiten. Passt sie auch auf dich?');
 
   return (
-    <section id="darum" className="py-20 md:py-[104px] px-5 md:px-10" style={{ background: 'oklch(var(--background-100))' }}>
+    <section id="darum" className="py-20 md:py-[104px] px-5 md:px-10 bg-white">
       <div className="sonic-container">
         <ChapterHeader
           n="02"

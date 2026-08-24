@@ -264,6 +264,7 @@ export default function SonicReelsTimeline({ eras }: { eras: EraData[] }) {
             photos={era.photos}
             activeIndex={photoIndex}
             onExpand={handleExpand}
+            onSelect={handleSelectPhoto}
             filter={era.filter}
             accent={era.accent}
           />

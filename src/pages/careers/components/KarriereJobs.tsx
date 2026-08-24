@@ -52,14 +52,15 @@ export default function KarriereJobs() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px]" style={{ border: '1px solid rgba(255,255,255,0.14)' }}>
-          {/* Jobs widget — permanently open */}
-          <div className="p-8 md:p-12" style={{ borderRight: '1px solid rgba(255,255,255,0.14)' }}>
-            <p className="text-2xl md:text-[34px] font-black leading-[1.06] tracking-[-0.03em] text-white mb-3">Jetzt durchstarten</p>
-            <p className="text-[15px] leading-[1.7] text-white/50 mb-10">Alle offenen Positionen auf einen Blick — klick auf eine Stelle für Details.</p>
+          {/* Jobs widget — permanently open, light panel (the embedded B-ite widget
+              renders light-styled job cards, which need a light background to read correctly) */}
+          <div className="p-8 md:p-12 bg-white">
+            <p className="text-2xl md:text-[34px] font-black leading-[1.06] tracking-[-0.03em] text-foreground-950 mb-3">Jetzt durchstarten</p>
+            <p className="text-[15px] leading-[1.7] text-foreground-500 mb-10">Alle offenen Positionen auf einen Blick — klick auf eine Stelle für Details.</p>
             <div className="jobWrapper-block" data-bite-jobs-api-listing={BITE_LISTING_KEY}>
-              <div className="flex flex-col items-center justify-center gap-3.5 py-16 border-t border-white/10">
+              <div className="flex flex-col items-center justify-center gap-3.5 py-16 border-t border-foreground-100">
                 <span className="w-9 h-9 rounded-full border-[3px] border-primary-500/30 animate-spin" style={{ borderTopColor: 'oklch(var(--primary-500))' }} />
-                <p className="text-[11px] font-black uppercase tracking-[0.22em] text-white/40">Stellenangebote werden geladen…</p>
+                <p className="text-[11px] font-black uppercase tracking-[0.22em] text-foreground-400">Stellenangebote werden geladen…</p>
               </div>
             </div>
           </div>
