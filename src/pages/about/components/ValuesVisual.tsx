@@ -34,7 +34,7 @@ export default function ValuesVisual() {
   };
 
   return (
-    <section ref={sectionRef} id="referenzen" className="bg-background-100 pb-16 md:pb-20">
+    <section ref={sectionRef} id="referenzen" className="bg-white pb-16 md:pb-20">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Header */}

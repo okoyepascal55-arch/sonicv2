@@ -124,7 +124,7 @@ export default function SonicFamily() {
         </div>
 
         {/* Bottom CTA bar */}
-        <div className="mt-10 border py-7 px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-5" style={{ borderColor: 'oklch(var(--foreground-950) / 0.1)', background: 'oklch(var(--background-100))' }}>
+        <div className="mt-10 border bg-white py-7 px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-5" style={{ borderColor: 'oklch(var(--foreground-950) / 0.1)' }}>
           <div className="text-center sm:text-left">
             <p className="text-lg font-black text-foreground-950 leading-snug">
               Willst du auch Teil von <Marker>Sonic Spirit &amp; Faces</Marker> werden?

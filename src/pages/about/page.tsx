@@ -60,7 +60,7 @@ export default function AboutPage() {
             <img
               src={headerImages[0].url}
               alt="Sonic Group — Über uns"
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              className="absolute inset-0 w-full h-full object-cover object-bottom"
               fetchPriority="high"
             />
           )}
