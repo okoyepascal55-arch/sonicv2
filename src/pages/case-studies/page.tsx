@@ -484,8 +484,14 @@ export default function CaseStudiesPage() {
 
         {/* ── ELEVATED BLADE CARD ── */}
         <div className="sonic-container py-8 md:py-12">
-          {/* Brand tabs — framed hairline row, joins directly into the wood card below */}
-          <div className="flex" style={{ border: '1px solid oklch(0.885 0.004 110)', borderBottom: 'none' }} role="tablist" aria-label="Fallbeispiele nach Marke">
+          {/* Brand tabs — framed hairline row, joins directly into the wood card below.
+              Mobile: natural width + horizontal scroll so "Groupe SEB" doesn't get crushed. */}
+          <div
+            className="flex overflow-x-auto md:overflow-visible [&::-webkit-scrollbar]:hidden"
+            style={{ border: '1px solid oklch(0.885 0.004 110)', borderBottom: 'none', scrollbarWidth: 'none' }}
+            role="tablist"
+            aria-label="Fallbeispiele nach Marke"
+          >
             {caseStudies.map((study, index) => (
               <button
                 key={study.brand}
@@ -493,7 +499,7 @@ export default function CaseStudiesPage() {
                 role="tab"
                 aria-selected={currentSlide === index}
                 aria-label={`${study.brand} — ${study.metric} ${study.metricLabel}`}
-                className={`flex-1 px-4 md:px-5 py-3 font-black uppercase tracking-wider text-xs transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
+                className={`flex-shrink-0 md:flex-1 px-4 md:px-5 py-3 font-black uppercase tracking-wider text-xs transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
                   currentSlide === index
                     ? 'bg-foreground-950 text-white'
                     : 'bg-white text-foreground-500 hover:text-foreground-950'
@@ -595,10 +601,10 @@ export default function CaseStudiesPage() {
                   <p className="text-white/65 text-sm leading-relaxed italic line-clamp-2 max-w-xl">{current.quote}</p>
                   <p className="text-primary-500 text-[10px] font-black uppercase tracking-widest mt-2">{current.author} — {current.role}</p>
                 </div>
-                <div className="flex items-center gap-3 flex-shrink-0">
+                <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
                   <button
                     onClick={() => handleReadFullStory(current.slug)}
-                    className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 px-6 py-3 font-black uppercase tracking-wider hover:bg-white transition-all duration-300 cursor-pointer whitespace-nowrap text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    className="inline-flex items-center justify-center gap-2 bg-primary-500 text-foreground-950 px-6 py-3 font-black uppercase tracking-wider hover:bg-white transition-all duration-300 cursor-pointer whitespace-nowrap text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white w-full sm:w-auto"
                   >
                     Vollständige Story lesen
                     <i className="ri-arrow-down-line text-sm" />
@@ -606,7 +612,7 @@ export default function CaseStudiesPage() {
                   <span className="text-white/30 text-xs font-bold">{currentSlide + 1} / {caseStudies.length}</span>
                   <button
                     onClick={handleNext}
-                    className="w-10 h-10 flex items-center justify-center border border-white/20 text-white hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    className="w-10 h-10 flex items-center justify-center border border-white/20 text-white hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 flex-shrink-0"
                     aria-label="Nächste Erfolgsgeschichte"
                   >
                     <i className="ri-arrow-right-line text-base" />

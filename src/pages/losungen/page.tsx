@@ -1144,13 +1144,18 @@ export default function LosungenPage() {
             </p>
           </div>
 
-          {/* Tab switcher — framed hairline row, joins directly into the wood card below */}
-          <div className="flex" style={{ border: '1px solid oklch(0.885 0.004 110)', borderBottom: 'none' }}>
+          {/* Tab switcher — framed hairline row, joins directly into the wood card below.
+              Mobile: natural width + horizontal scroll (labels don't get crushed).
+              md+: equal-width flex-1, there's room. */}
+          <div
+            className="flex overflow-x-auto md:overflow-visible [&::-webkit-scrollbar]:hidden"
+            style={{ border: '1px solid oklch(0.885 0.004 110)', borderBottom: 'none', scrollbarWidth: 'none' }}
+          >
             {KEYS.map((key) => (
               <button
                 key={key}
                 onClick={() => handleTabClick(key)}
-                className={`flex-1 px-4 md:px-8 py-3 md:py-3.5 font-black uppercase tracking-wider text-xs md:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer ${
+                className={`flex-shrink-0 md:flex-1 px-4 md:px-8 py-3 md:py-3.5 font-black uppercase tracking-wider text-xs md:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer ${
                   activeTab === key
                     ? 'bg-foreground-950 text-primary-500'
                     : 'bg-white text-foreground-500 hover:text-foreground-950'

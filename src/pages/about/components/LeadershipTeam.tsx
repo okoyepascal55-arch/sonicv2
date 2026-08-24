@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useText } from '@/hooks/useText';
 import { useMediaStore } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
@@ -18,15 +17,6 @@ export default function LeadershipTeam() {
   const { images } = useMediaStore('/images/Über uns/Über uns/3. Das Sonic Team');
   const teamPhoto = images[0]?.url || '/images/Über uns/Über uns/3. Das Sonic Team/Gruppenfoto-00336 Kopie.webp';
 
-  const [activeStatIndex, setActiveStatIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveStatIndex((prev) => (prev + 1) % TEAM_STATS.length);
-    }, 2800);
-    return () => clearInterval(interval);
-  }, []);
-
   const words = tHeading.trim().split(/\s+/);
   const headingMain = words.length > 1 ? words.slice(0, -1).join(' ') : tHeading;
   const headingAccent = words.length > 1 ? words[words.length - 1] : '';
@@ -36,13 +26,13 @@ export default function LeadershipTeam() {
       <div className="max-w-full max-w-[1280px] mx-auto px-6 md:px-10">
         {/* ── HEADER ── */}
         <div className="max-w-full max-w-[640px] mb-10 md:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
-            <span className="w-1.5 h-1.5 bg-primary-500 flex-shrink-0" />
-            <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary-500">{tBadge}</span>
+          <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
           </div>
           <h2 className="sonic-h2 text-foreground-950">
             {headingMain}{' '}
-            <span className="text-primary-500">{headingAccent}</span>
+            <span className="v3-marker">{headingAccent}</span>
           </h2>
           <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-full max-w-[520px]">{tSub}</p>
         </div>
@@ -65,42 +55,21 @@ export default function LeadershipTeam() {
 
           {/* Dark ink panel */}
           <div className="bg-foreground-950 p-8 md:p-12 flex flex-col justify-between">
-            {/* Rotating stat */}
-            <div className="flex-1 flex flex-col justify-center">
-              <div key={activeStatIndex} className="animate-fadeSlideIn">
-                <div className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-3">
-                  {String(activeStatIndex + 1).padStart(2, '0')} / {String(TEAM_STATS.length).padStart(2, '0')}
+            {/* All 3 stats, always visible — stacked list, per brief */}
+            <div className="grid grid-cols-1" style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
+              {TEAM_STATS.map((stat, i) => (
+                <div key={i} className="py-5" style={{ borderBottom: '1px solid rgba(255,255,255,0.12)' }}>
+                  <p className="text-3xl md:text-4xl font-black text-white leading-none mb-1.5" style={{ letterSpacing: '-0.035em' }}>
+                    {stat.value}
+                    {stat.unit && <span className="text-base md:text-lg text-primary-500 ml-2 font-black">{stat.unit}</span>}
+                  </p>
+                  <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/40">{stat.label}</p>
                 </div>
-                <div className="text-4xl md:text-5xl font-black text-white leading-none">
-                  {TEAM_STATS[activeStatIndex].value}
-                  {TEAM_STATS[activeStatIndex].unit && (
-                    <span className="text-lg md:text-xl text-primary-500 ml-2 font-black">{TEAM_STATS[activeStatIndex].unit}</span>
-                  )}
-                </div>
-                <div className="text-[11px] text-white/40 font-bold uppercase tracking-wider mt-3">
-                  {TEAM_STATS[activeStatIndex].label}
-                </div>
-              </div>
-
-              {/* Stat dots */}
-              <div className="flex gap-2 mt-7">
-                {TEAM_STATS.map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => setActiveStatIndex(i)}
-                    aria-label={`Statistik ${i + 1} von ${TEAM_STATS.length}`}
-                    aria-pressed={activeStatIndex === i}
-                    className={`transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] ${
-                      activeStatIndex === i ? 'w-7 h-1.5 bg-primary-500' : 'w-1.5 h-1.5 bg-white/20 hover:bg-white/40'
-                    }`}
-                  />
-                ))}
-              </div>
+              ))}
             </div>
 
             {/* Description — original Vielfalt copy */}
-            <div className="border-t border-white/10 pt-5 mt-6">
+            <div className="pt-5 mt-6">
               <p className="text-white/55 text-[13px] leading-relaxed">
                 Vielfalt zeichnet uns aus: Ex-Europa-CMOs, Field-Force-Projektmanager, Kreative, Telco-Experten, Programmierer, Digitalprofis, Eventprofis, Messebauer und Logistikprofis. Wir verstehen deine Herausforderungen, weil wir sie aus Kunden- und Agenturseite kennen.
               </p>
