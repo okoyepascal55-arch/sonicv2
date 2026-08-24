@@ -1193,3 +1193,135 @@ html {
   border-color: oklch(var(--primary-500));
   color: oklch(var(--primary-500));
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SONIC SYSTEM v3 — design refresh utilities
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Eyebrow: 28px lime hairline + 11px/900 uppercase label ── */
+.v3-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.v3-eyebrow-line {
+  width: 28px;
+  height: 2px;
+  flex-shrink: 0;
+  background: oklch(0.81 0.19 115);
+}
+.v3-eyebrow-label {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: oklch(0.55 0.08 115);
+}
+.v3-eyebrow-label--light {
+  color: oklch(0.81 0.19 115);
+}
+
+/* ── Marker highlight: lime wash behind dark text on light sections ── */
+.v3-marker {
+  background: oklch(0.81 0.19 115 / 0.9);
+  color: oklch(0.16 0.006 118);
+  padding: 0.02em 0.16em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* ── Hairline border system ── */
+.v3-hairline { border: 1px solid oklch(0.885 0.004 110); }
+.v3-hairline-d { border: 1px solid rgba(255,255,255,0.14); }
+.v3-hairline-t { border-top: 1px solid oklch(0.885 0.004 110); }
+.v3-hairline-b { border-bottom: 1px solid oklch(0.885 0.004 110); }
+.v3-hairline-r { border-right: 1px solid oklch(0.885 0.004 110); }
+.v3-hairline-l { border-left: 1px solid oklch(0.885 0.004 110); }
+
+/* ── Section backgrounds ── */
+.v3-bg-off-white { background: oklch(0.975 0.002 110); }
+.v3-bg-dark      { background: oklch(0.13 0.005 118); }
+.v3-bg-ink       { background: oklch(0.16 0.006 118); }
+.v3-bg-white     { background: #fff; }
+
+/* ── H2 v3 scale (44–56px, tighter than v2) ── */
+.v3-h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: oklch(0.16 0.006 118);
+}
+.v3-h2--light { color: #fff; }
+
+/* ── Tab active state ── */
+.v3-tab-active {
+  background: oklch(0.16 0.006 118);
+  color: oklch(0.81 0.19 115);
+}
+.v3-tab-inactive {
+  background: #fff;
+  color: oklch(0.42 0.006 260);
+}
+
+/* ── Lime bar chart column ── */
+.v3-bar {
+  flex: 1;
+  background: linear-gradient(to top, oklch(0.81 0.19 115 / 0.6), oklch(0.81 0.19 115));
+}
+
+/* ── Wood card overlay ── */
+.v3-wood-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10,11,9,0.86) 0%, rgba(10,11,9,0.78) 50%, rgba(10,11,9,0.88) 100%);
+}
+
+/* ── Bento gallery hover ── */
+.v3-gallery-item {
+  overflow: hidden;
+  position: relative;
+}
+.v3-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.v3-gallery-item:hover img {
+  transform: scale(1.04);
+}
+.v3-gallery-corner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 3px;
+  background: oklch(0.81 0.19 115);
+}
+
+/* ── Management voices staggered rows ── */
+.v3-voice-row {
+  display: grid;
+  grid-template-columns: 80px 240px 1fr;
+  gap: 40px;
+  align-items: start;
+  padding: 48px 0;
+  border-bottom: 1px solid oklch(0.88 0.004 110);
+}
+.v3-voice-num {
+  font-size: 7rem;
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: oklch(0.92 0.004 110);
+}
+.v3-voice-quote {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  line-height: 1.6;
+  font-style: italic;
+  color: oklch(0.22 0.006 260);
+}
+
