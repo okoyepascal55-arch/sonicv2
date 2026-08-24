@@ -22,7 +22,7 @@ export default function LeadershipTeam() {
   const headingAccent = words.length > 1 ? words[words.length - 1] : '';
 
   return (
-    <section className="sonic-section-lg bg-white md:overflow-hidden">
+    <section className="bg-white md:overflow-hidden py-14 md:py-20">
       <div className="max-w-full max-w-[1280px] mx-auto px-6 md:px-10">
         {/* ── HEADER ── */}
         <div className="max-w-full max-w-[640px] mb-10 md:mb-14">
@@ -40,7 +40,7 @@ export default function LeadershipTeam() {
         {/* ── BOLD SPLIT: TEAM PHOTO + DARK STAT PANEL ── */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-0 bg-white border border-[#E7E4D4] overflow-hidden">
           {/* Team group photo */}
-          <div className="relative overflow-hidden min-h-[240px] sm:min-h-[360px] lg:min-h-[580px] bg-foreground-950">
+          <div className="relative overflow-hidden min-h-[240px] sm:min-h-[340px] lg:min-h-[520px] bg-foreground-950">
             <img
               src={teamPhoto}
               alt="Das Sonic Team — vielfältige Fachkräfte aus unterschiedlichen Branchen"
