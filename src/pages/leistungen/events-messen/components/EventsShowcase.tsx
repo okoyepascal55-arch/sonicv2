@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
-import WoodenButton from '@/components/base/WoodenButton';
 
 const TAB_INFO = [
   {
@@ -104,7 +103,17 @@ export default function EventsShowcase() {
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Formate</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-foreground-950 leading-tight mb-2 uppercase">
-            Deine Marke. Unsere Bühne.
+            Deine Marke.{' '}
+            <span
+              style={{
+                background: 'oklch(var(--primary-500) / 0.9)',
+                padding: '0.02em 0.16em',
+                boxDecorationBreak: 'clone',
+                WebkitBoxDecorationBreak: 'clone',
+              }}
+            >
+              Unsere Bühne.
+            </span>
           </h2>
           <p className="text-foreground-950/50 text-base">Wähle ein Format und entdecke unsere Arbeit.</p>
         </div>
@@ -117,10 +126,13 @@ export default function EventsShowcase() {
               onClick={() => handleTabChange(i)}
               className={`flex items-center gap-2 px-5 py-2.5 font-bold text-sm transition-all whitespace-nowrap cursor-pointer ${
                 activeTab === i
-                  ? 'bg-white shadow-lg ring-2 ring-[#C8D400] text-primary-500'
-                  : 'bg-white/60 hover:bg-white hover:shadow-md ring-1 ring-foreground-200 hover:ring-[#C8D400]/50 text-foreground-600'
+                  ? 'bg-white text-primary-500'
+                  : 'bg-white/60 hover:bg-white text-foreground-600'
               }`}
-              style={{ borderRadius: 0 }}
+              style={{
+                borderRadius: 0,
+                border: activeTab === i ? '1px solid oklch(var(--primary-500))' : '1px solid rgba(0,0,0,0.12)',
+              }}
             >
               <i className={`${t.icon} text-base`}></i>
               <span>{t.label}</span>
