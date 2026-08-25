@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PhoneFrame from '@/components/base/PhoneFrame';
-import WoodenButton from '@/components/base/WoodenButton';
+import SectionBadge from '@/components/base/SectionBadge';
 
 const STUDIO_IMG = 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/f404951b-e9f8-4063-b803-e1145f43d540_DSC02106-Kopie.jpg';
 
@@ -28,13 +28,7 @@ const TOUCHPOINTS: Touchpoint[] = [
     icon: 'ri-store-2-line',
     label: 'POS Material',
     tag: 'RETAIL',
-    desc: 'Wobbler, Regalstopper, Aufsteller, Thekendisplays — physische Touchpoints am Point of Sale, die Shopper per QR-Code ins Live-Studio holen. Direkt am Regal.',
-  },
-  {
-    icon: 'ri-layout-grid-line',
-    label: 'POS Möbel',
-    tag: 'FIXTURE',
-    desc: 'Regalschienen, Displays, Theken — fest installierte Touchpoints für dauerhafte Studio-Erreichbarkeit. Die Marke ist immer nur einen Scan entfernt.',
+    desc: 'Wobbler, Regalstopper, Aufsteller, Thekendisplays, Regalschienen und fest installierte Möbel — physische Touchpoints am Point of Sale, die Shopper per QR-Code ins Live-Studio holen. Direkt am Regal.',
   },
   {
     icon: 'ri-archive-line',
@@ -138,10 +132,7 @@ export default function VideoStudioPhone() {
 
         {/* Header */}
         <div className="mb-14">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="w-1.5 h-1.5 bg-primary-500" />
-            <span className="text-primary-500 text-xs font-black uppercase tracking-[0.25em]">LVP Ökosystem — Unendliche Möglichkeiten</span>
-          </div>
+          <SectionBadge text="LVP Ökosystem — Unendliche Möglichkeiten" variant="light" className="mb-5" />
           <h2 className="text-3xl md:text-5xl font-black text-white leading-tight mb-3 uppercase">
             Ein Scan. Unendlich viele
             <span className="block text-primary-500">Berührungspunkte.</span>
@@ -157,7 +148,7 @@ export default function VideoStudioPhone() {
           {/* LEFT: Phone only — clean, no distractions */}
           <div className="bg-[#1a1a1a] flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 relative min-h-[520px] lg:min-h-[600px]">
             <div className="relative" style={{ width: '280px' }}>
-              <PhoneFrame width={280}>
+              <PhoneFrame width={280} rounded>
                 <div className="bg-foreground-950 relative" style={{ height: 474 }}>
                   {/* Status bar */}
                   <div className="flex items-center justify-between px-3 pt-2 pb-1 bg-[#0d0d0d] relative z-10">
@@ -186,7 +177,7 @@ export default function VideoStudioPhone() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-1.5 h-1.5 bg-primary-500" />
-                <span className="text-white/30 text-2xs font-black uppercase tracking-[0.2em]">5 Einstiegspunkte</span>
+                <span className="text-white/30 text-2xs font-black uppercase tracking-[0.2em]">4 Einstiegspunkte</span>
               </div>
 
               {/* Touchpoint tabs */}

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 import VideoStudioPhone from './VideoStudioPhone';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
@@ -9,7 +9,6 @@ import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
 
 const VIDEO_CHALLENGES: ChallengeItem[] = [
   {
@@ -328,18 +327,24 @@ export default function VideoContent() {
             <h2 className="leist-h2 text-foreground-950">{tFormatsHeading}</h2>
           </div>
 
-          {/* Format selector */}
-          <div className="flex gap-0 border border-foreground-950/15 mb-0 overflow-x-auto">
-            {FORMATS.map((f, i) => (
+          {/* Format selector — thumbnail filmstrip */}
+          <div className="flex gap-2 overflow-x-auto pb-1">
+            {resolvedFormats.map((f, i) => (
               <button
                 key={i}
                 onClick={() => setActiveFormat(i)}
-                className={`flex-1 flex flex-col items-center gap-1 px-4 py-3 text-[10px] font-black uppercase tracking-widest transition-all duration-300 cursor-pointer whitespace-nowrap border-r border-foreground-950/15 last:border-r-0 ${
-                  activeFormat === i ? 'bg-foreground-950 text-primary-500' : 'bg-white text-foreground-950/50 hover:text-foreground-950 hover:bg-white'
-                }`}
+                className="relative flex-shrink-0 overflow-hidden cursor-pointer transition-all duration-300"
+                style={{
+                  width: '112px',
+                  height: '80px',
+                  border: activeFormat === i ? '2px solid oklch(var(--primary-500))' : '1px solid rgba(0,0,0,0.12)',
+                  opacity: activeFormat === i ? 1 : 0.55,
+                }}
               >
-                <i className={`${f.icon} text-base`}></i>
-                <span className="hidden sm:block">{f.tag}</span>
+                <img src={f.img} alt={f.title} className="w-full h-full object-cover object-top" loading="lazy" />
+                <div className="absolute inset-0 bg-black/35" />
+                <i className={`${f.icon} absolute top-1.5 left-1.5 text-white text-xs`}></i>
+                <span className="absolute bottom-1.5 left-1.5 text-white text-[9px] font-black uppercase tracking-wide">{f.tag}</span>
               </button>
             ))}
           </div>
@@ -392,22 +397,6 @@ export default function VideoContent() {
                 Mehr erfahren <i className="ri-arrow-right-line"></i>
               </a>
             </div>
-          </div>
-
-          {/* Format pills */}
-          <div className="mt-4 flex flex-wrap gap-2">
-            {FORMATS.map((f, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveFormat(i)}
-                className={`flex items-center gap-2 px-4 py-2 text-xs font-black uppercase tracking-widest transition-all duration-300 cursor-pointer ${
-                  activeFormat === i ? 'bg-foreground-950 text-primary-500' : 'border border-foreground-950/15 text-foreground-950/50 hover:border-[#111]/40 hover:text-foreground-950'
-                }`}
-              >
-                <i className={`${f.icon} text-sm`}></i>
-                {f.title}
-              </button>
-            ))}
           </div>
         </div>
       </section>
