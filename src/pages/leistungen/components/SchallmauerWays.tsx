@@ -100,7 +100,7 @@ export default function SchallmauerWays() {
           {/* Ghost numeral — 56px / 900 / 6% opacity per brief */}
           <div className="relative inline-block mb-2">
             <span aria-hidden="true" className="absolute pointer-events-none select-none font-black" style={{ fontSize: '56px', lineHeight: 0.8, letterSpacing: '-0.06em', color: 'oklch(0.16 0.006 118 / 0.06)', top: '-20px', left: '50%', transform: 'translateX(-50%)', zIndex: 0, whiteSpace: 'nowrap' }}>03</span>
-            <h2 className="sonic-h2 text-foreground-950 relative" style={{ zIndex: 1 }}>
+            <h2 className="leist-h2 text-foreground-950 relative" style={{ zIndex: 1 }}>
               Dein Weg zum{' '}
               <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' } as React.CSSProperties}>Retail-Erfolg</span>
             </h2>

@@ -173,7 +173,7 @@ export default function WarehouseLogistikPage() {
 
             </div>
 
-            <h1 className="sonic-h1 text-white mb-5 md:mb-6">
+            <h1 className="leist-h1-sub text-white mb-5 md:mb-6">
               {tHeroH1Line1}<br /><span className="text-primary-500">{tHeroH1Accent}</span>
             </h1>
             <p className="text-base md:text-lg text-white/80 mb-3 md:mb-4 font-semibold">{tHeroSubtitle}</p>
@@ -212,7 +212,7 @@ export default function WarehouseLogistikPage() {
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Lösung</span>
             </div>
-            <h2 className="sonic-h2 text-foreground-950 mb-3">Warehousing und Logistik als<br /><span className="text-primary-500">integraler Baustein.</span></h2>
+            <h2 className="leist-h2 text-foreground-950 mb-3">Warehousing und Logistik als<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>integraler Baustein.</span></h2>
             <p className="text-foreground-950/50 text-sm md:text-base max-w-2xl">Einlagerung, Bereitstellung, Auslagerung, Anlieferung und Aufbau deiner Produkte, Werbematerialien, Messestände etc. Als Teil des Sonic Gesamtpakts.</p>
           </div>
           <ScrollCardSection data={SOLUTIONS} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="remix" cardMinHeight="320px" showWoodIcon={false} />

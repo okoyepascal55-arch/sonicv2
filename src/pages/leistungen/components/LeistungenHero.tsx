@@ -66,7 +66,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
         </div>
 
         {/* Main headline */}
-        <h1 className="sonic-h1 text-white mb-5 md:mb-6">
+        <h1 className="leist-h1-hub text-white mb-5 md:mb-6">
           MANPOWER TRIFFT{' '}
           <span
             className="text-primary-500 inline-block"
@@ -89,7 +89,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3 mb-10 md:mb-14">
           <a
             href="https://calendly.com/sonic-group/beratungsgespraech"
             target="_blank"
@@ -107,6 +107,38 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
             <i className="ri-arrow-down-line text-base"></i>
           </button>
         </div>
+        </div>
+
+        {/* 4-stat hairline strip — per brief: 26px/900 numbers, full-width */}
+        <div
+          className="w-full grid grid-cols-2 md:grid-cols-4"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}
+        >
+          {[
+            { value: '>500', label: 'Projekte' },
+            { value: '>1,35 Mio.', label: 'Einsätze' },
+            { value: '>100K', label: 'POS-Standorte' },
+            { value: '2007', label: 'Gegründet' },
+          ].map((s, i) => (
+            <div
+              key={i}
+              className="px-6 md:px-8 py-6 flex flex-col gap-1"
+              style={{ borderRight: i < 3 ? '1px solid rgba(255,255,255,0.14)' : undefined }}
+            >
+              <span
+                className="font-black tabular-nums leading-none"
+                style={{ fontSize: '26px', letterSpacing: '-0.03em', color: i === 3 ? 'oklch(0.81 0.19 115)' : '#fff' }}
+              >
+                {s.value}
+              </span>
+              <span
+                className="font-black uppercase tracking-[0.18em]"
+                style={{ fontSize: '10px', color: 'rgba(255,255,255,0.45)' }}
+              >
+                {s.label}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

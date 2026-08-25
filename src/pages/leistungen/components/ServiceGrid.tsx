@@ -99,8 +99,8 @@ export default function ServiceGrid({ sectionRef }: Props) {
             <div className="w-10 h-px bg-primary-500/40" />
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-            <h2 className="sonic-h2 text-foreground-950">
-              VIER KATEGORIEN.<br />EIN <span className="text-primary-500">SYSTEM</span>.
+            <h2 className="leist-h2 text-foreground-950">
+              VIER KATEGORIEN.<br />EIN <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>SYSTEM</span>.
             </h2>
             <p className="text-foreground-500 text-sm leading-relaxed max-w-xs lg:text-right lg:pb-1">
               Jede Leistung einzeln buchbar — oder als integriertes Full-Service-Paket.

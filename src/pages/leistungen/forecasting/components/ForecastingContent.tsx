@@ -126,7 +126,7 @@ export default function ForecastingContent() {
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>So funktioniert es</span>
             </div>
-            <h2 className="sonic-h2 text-foreground-950">{tHowHeading}</h2>
+            <h2 className="leist-h2 text-foreground-950">{tHowHeading}</h2>
             <p className="text-foreground-950/45 text-sm mt-3 max-w-xl mx-auto">{tHowSub}</p>
           </div>
 

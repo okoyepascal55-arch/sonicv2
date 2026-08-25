@@ -45,7 +45,7 @@ export default function EventsHero() {
 
         </div>
 
-        <h1 className="sonic-h1 text-white mb-5 md:mb-6">
+        <h1 className="leist-h1-sub text-white mb-5 md:mb-6">
           {tH1Line1}<br />
           <span className="text-primary-500">{tH1Accent}</span>
         </h1>

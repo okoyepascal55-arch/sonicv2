@@ -180,7 +180,7 @@ export default function VideoContent() {
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Lösung</span>
             </div>
-            <h2 className="sonic-h2 text-foreground-950">{tSolutionHeading}</h2>
+            <h2 className="leist-h2 text-foreground-950">{tSolutionHeading}</h2>
             <p className="text-foreground-950/55 text-base max-w-2xl mx-auto">{tSolutionSub}</p>
           </div>
           <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: solutionWoodIcons[i]?.url ? resolveImageUrl(solutionWoodIcons[i].url) : s.woodIcon || '' }))} label={`${SOLUTIONS.length} Kanäle — scrollen`} theme="light" variant="wood" cardWidth="clamp(280px, 32vw, 380px)" cardMinHeight="340px" />
@@ -198,7 +198,7 @@ export default function VideoContent() {
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Vorteile</span>
             </div>
-            <h2 className="sonic-h2 text-white">{tAdvantagesHeading}</h2>
+            <h2 className="leist-h2 text-white">{tAdvantagesHeading}</h2>
             <p className="text-white/45 text-sm mt-3">Chancen auf mehr Verkäufe und weniger Retouren.</p>
           </div>
           <ScrollCardSection data={ADVANTAGES.map((a, i) => ({ ...a, woodIcon: advantagesWoodIcons[i]?.url ? resolveImageUrl(advantagesWoodIcons[i].url) : a.woodIcon || '' }))} label={`${ADVANTAGES.length} Vorteile — scrollen`} theme="dark" variant="wood" cardWidth="clamp(260px, 24vw, 320px)" cardMinHeight="300px" />
@@ -213,7 +213,7 @@ export default function VideoContent() {
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Kostenrechner</span>
             </div>
-            <h2 className="sonic-h2 text-foreground-950">Live-Video: Kosten pro Jahr</h2>
+            <h2 className="leist-h2 text-foreground-950">Live-Video: Kosten pro Jahr</h2>
           </div>
 
           <div className="border border-foreground-950/15 bg-white p-8 md:p-10">
@@ -276,7 +276,7 @@ export default function VideoContent() {
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Ideale Kombination</span>
             </div>
-            <h2 className="sonic-h2 text-white">{tPhygitalHeading}</h2>
+            <h2 className="leist-h2 text-white">{tPhygitalHeading}</h2>
             <p className="text-white/45 text-sm mt-3 max-w-xl mx-auto">Video und Field Force ergänzen sich wunderbar. Clever eingesetzt wird der ROI beider Maßnahmen im Omnichannel erhöht.</p>
           </div>
 
@@ -325,7 +325,7 @@ export default function VideoContent() {
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Video-Formate</span>
             </div>
-            <h2 className="sonic-h2 text-foreground-950">{tFormatsHeading}</h2>
+            <h2 className="leist-h2 text-foreground-950">{tFormatsHeading}</h2>
           </div>
 
           {/* Format selector */}
