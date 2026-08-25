@@ -389,7 +389,6 @@ export default function KreationContentPage() {
 
       {/* ── SOLUTION — light warm bg (directly after dark ChallengeSection) ── */}
       <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden bg-white">
-        <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div
           ref={solutionReveal.ref}
           className="sonic-container relative"

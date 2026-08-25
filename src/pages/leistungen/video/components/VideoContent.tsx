@@ -174,7 +174,6 @@ export default function VideoContent() {
 
       {/* Solution */}
       <section id="loesung" className="sonic-section-lg bg-white px-4 md:px-6 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative sonic-container">
           <div className="mb-14 text-center">
             <div className="flex items-center justify-center gap-3 mb-5">
@@ -190,7 +189,6 @@ export default function VideoContent() {
 
       {/* Live Studio Experience — Phone Mockup */}
       <VideoStudioPhone />
-
 
       {/* Advantages */}
       <section id="vorteile" className="sonic-section-lg bg-foreground-950 px-4 md:px-6">

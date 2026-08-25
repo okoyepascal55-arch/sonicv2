@@ -25,7 +25,6 @@ export default function VideoHero() {
         className="absolute inset-0 z-10 pointer-events-none"
         style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.85) 100%)' }}
       />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/6 blur-[100px] pointer-events-none z-10" />
 
       <div className="relative z-20 w-full sonic-container px-4 md:px-8 pb-10 md:pb-14">
 

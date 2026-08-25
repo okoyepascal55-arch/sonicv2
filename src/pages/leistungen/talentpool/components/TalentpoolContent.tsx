@@ -232,7 +232,6 @@ export default function TalentpoolContent() {
           className="absolute inset-0 opacity-[0.018] pointer-events-none"
           style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }}
         />
-        <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
 
         <div className="sonic-container relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">

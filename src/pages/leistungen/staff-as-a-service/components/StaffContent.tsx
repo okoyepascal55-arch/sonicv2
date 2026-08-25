@@ -132,7 +132,6 @@ export default function StaffContent() {
       {/* ── Solution (horizontal scroll) ── */}
       <section id="loesung" className="sonic-section-lg bg-white px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.018] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="sonic-container relative">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
@@ -153,7 +152,6 @@ export default function StaffContent() {
       {/* ── Process ── */}
       <section id="ablauf" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
 
         <div className="relative sonic-container">
           {/* Header */}
@@ -256,7 +254,6 @@ export default function StaffContent() {
       {/* ── Specializations (horizontal scroll, dark bg) ── */}
       <section id="aufgabenbereiche" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute bottom-0 left-0 w-full max-w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
         <div className="sonic-container relative">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
@@ -277,7 +274,6 @@ export default function StaffContent() {
       {/* ── S.O.C.K.S. ── */}
       <section id="socks" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="absolute top-0 left-0 w-full max-w-[500px] h-[500px] bg-primary-500/4 blur-[120px] pointer-events-none" />
 
         <div className="relative sonic-container">
           {/* Header */}
