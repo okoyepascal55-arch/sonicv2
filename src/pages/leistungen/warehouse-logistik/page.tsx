@@ -6,11 +6,9 @@ import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
-import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
 
 const NAV_ITEMS = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
@@ -160,17 +158,8 @@ export default function WarehouseLogistikPage() {
               <span className="text-primary-500 text-xs font-bold">Warehouse & Logistik</span>
             </div>
             <div className="flex items-center gap-3 mb-5 md:mb-6">
-            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-            <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tHeroBadge}</span>
-          </div>
-            {/* v3 eyebrow */}
-
-            <div className="flex items-center gap-3 mb-5 md:mb-6">
-
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-
-              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Warehouse &amp; Logistik</span>
-
+              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tHeroBadge}</span>
             </div>
 
             <h1 className="leist-h1-sub text-white mb-5 md:mb-6">
@@ -212,10 +201,33 @@ export default function WarehouseLogistikPage() {
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Lösung</span>
             </div>
-            <h2 className="leist-h2 text-foreground-950 mb-3">Warehousing und Logistik als<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>integraler Baustein.</span></h2>
-            <p className="text-foreground-950/50 text-sm md:text-base max-w-2xl">Einlagerung, Bereitstellung, Auslagerung, Anlieferung und Aufbau deiner Produkte, Werbematerialien, Messestände etc. Als Teil des Sonic Gesamtpakts.</p>
+            <h2 className="leist-h2 text-foreground-950 mb-3">{tContentHeading}</h2>
+            <p className="text-foreground-950/50 text-sm md:text-base max-w-2xl">{tContentSub}</p>
           </div>
-          <ScrollCardSection data={SOLUTIONS} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="remix" cardMinHeight="320px" showWoodIcon={false} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {SOLUTIONS.map((s) => (
+              <div
+                key={s.num}
+                className="relative overflow-hidden p-6"
+                style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.09)' }}
+              >
+                <div
+                  className="absolute bottom-3 right-4 font-black leading-none select-none pointer-events-none"
+                  style={{ fontSize: '4.5rem', color: 'rgba(0,0,0,0.04)', lineHeight: 1 }}
+                >
+                  {s.num}
+                </div>
+                <div className="relative z-10">
+                  <div className="w-12 h-12 flex items-center justify-center mb-4 flex-shrink-0" style={{ background: 'rgba(0,0,0,0.06)' }}>
+                    <i className={`${s.icon} text-lg`} style={{ color: 'oklch(var(--primary-500))' }} />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-primary-600">{s.accent}</span>
+                  <h3 className="text-base font-black text-foreground-950 uppercase mt-1 mb-2 leading-snug">{s.title}</h3>
+                  <p className="text-sm text-foreground-950/55 leading-relaxed">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -278,10 +290,9 @@ export default function WarehouseLogistikPage() {
               <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-4">Alle Kategorien</div>
               <div className="space-y-2">
                 {WAREHOUSE_ITEMS.map((item, i) => (
-                  <button
+                  <div
                     key={i}
-                    onClick={() => setActiveItem(i)}
-                    className={`w-full flex items-center gap-3 p-3 text-left transition-all duration-200 cursor-pointer ${activeItem === i ? 'bg-foreground-950 text-white' : 'bg-white text-foreground-950/70 hover:bg-white'}`}
+                    className={`w-full flex items-center gap-3 p-3 ${activeItem === i ? 'bg-foreground-950 text-white' : 'bg-white text-foreground-950/70'}`}
                     style={{ borderRadius: 0, outline: activeItem === i ? 'none' : '1px solid oklch(var(--foreground-200))' }}
                   >
                     {activeItem === i && (
@@ -290,7 +301,7 @@ export default function WarehouseLogistikPage() {
                       </div>
                     )}
                     <span className="text-xs font-bold">{item.title}</span>
-                  </button>
+                  </div>
                 ))}
               </div>
             </div>
