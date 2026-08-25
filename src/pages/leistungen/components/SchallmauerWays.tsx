@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import SectionBadge from '@/components/base/SectionBadge';
 import { useNavigate } from 'react-router-dom';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
@@ -85,20 +84,27 @@ export default function SchallmauerWays() {
   };
 
   return (
-    <section className="sonic-section-md bg-white md:px-4 md:px-6 relative overflow-hidden">
+    <section className="sonic-section-md bg-white md:px-4 md:px-6">
       {/* Subtle background texture */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-full max-w-[600px] h-[600px] bg-primary-500/3 blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-500/2 blur-[100px]" />
-      </div>
+
 
       <div className="sonic-container relative z-10">
         {/* Header */}
         <div className="text-center mb-8 md:mb-10">
-          <SectionBadge text="Die Retail-Schallmauer" variant="dark" className="mb-5" />
-          <h2 className="sonic-h2 text-foreground-950">
-            Dein Weg zum <span className="text-primary-500">Retail-Erfolg</span>
-          </h2>
+          {/* v3 eyebrow — 28px lime hairline flanking label */}
+          <div className="flex items-center justify-center gap-3 mb-5">
+            <span className="w-7 h-0.5 flex-shrink-0" style={{ background: 'oklch(0.81 0.19 115)' }} aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Retail-Schallmauer</span>
+            <span className="w-7 h-0.5 flex-shrink-0" style={{ background: 'oklch(0.81 0.19 115)' }} aria-hidden="true" />
+          </div>
+          {/* Ghost numeral — 56px / 900 / 6% opacity per brief */}
+          <div className="relative inline-block mb-2">
+            <span aria-hidden="true" className="absolute pointer-events-none select-none font-black" style={{ fontSize: '56px', lineHeight: 0.8, letterSpacing: '-0.06em', color: 'oklch(0.16 0.006 118 / 0.06)', top: '-20px', left: '50%', transform: 'translateX(-50%)', zIndex: 0, whiteSpace: 'nowrap' }}>03</span>
+            <h2 className="sonic-h2 text-foreground-950 relative" style={{ zIndex: 1 }}>
+              Dein Weg zum{' '}
+              <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' } as React.CSSProperties}>Retail-Erfolg</span>
+            </h2>
+          </div>
           <p className="text-sm md:text-base text-foreground-600 max-w-xl mx-auto">
             Wähle deinen Pfad — oder kombiniere alle drei für maximale Marktdurchdringung.
           </p>
@@ -112,7 +118,8 @@ export default function SchallmauerWays() {
             return (
               <div
                 key={w.key}
-                className="relative overflow-hidden cursor-pointer transition-all duration-500"
+                className="relative overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-1"
+                style={{ border: isHovered ? '1px solid oklch(0.81 0.19 115)' : '1px solid oklch(0.885 0.004 110)' }}
                 style={{
                   transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
                   background: isHovered
@@ -136,7 +143,7 @@ export default function SchallmauerWays() {
                   }}
                 />
 
-                <div className="p-6 flex flex-col h-full min-h-[260px]">
+                <div className="flex flex-col h-full min-h-[260px]" style={{ padding: '32px' }}>
                   {/* Number + Wood Icon */}
                   <div className="flex items-start justify-between mb-5">
                     <span

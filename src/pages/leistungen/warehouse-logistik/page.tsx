@@ -165,6 +165,16 @@ export default function WarehouseLogistikPage() {
             <span className="w-1.5 h-1.5 bg-primary-500" />
             <span className="text-primary-500">{tHeroBadge}</span>
           </div>
+            {/* v3 eyebrow */}
+
+            <div className="flex items-center gap-3 mb-5 md:mb-6">
+
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+
+              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Warehouse &amp; Logistik</span>
+
+            </div>
+
             <h1 className="sonic-h1 text-white mb-5 md:mb-6">
               {tHeroH1Line1}<br /><span className="text-primary-500">{tHeroH1Accent}</span>
             </h1>

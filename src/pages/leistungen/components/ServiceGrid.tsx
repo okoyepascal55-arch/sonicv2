@@ -92,7 +92,10 @@ export default function ServiceGrid({ sectionRef }: Props) {
         {/* Header */}
         <div className="mb-8 md:mb-12">
           <div className="inline-flex items-center gap-3 mb-4">
-            <span className="text-xs font-black tracking-[0.3em] uppercase text-primary-500">Leistungsspektrum</span>
+            <div className="flex items-center gap-3">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Leistungsspektrum</span>
+          </div>
             <div className="w-10 h-px bg-primary-500/40" />
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
@@ -105,8 +108,13 @@ export default function ServiceGrid({ sectionRef }: Props) {
           </div>
         </div>
 
-        {/* Tabs — pills above the image, matching homepage */}
-        <div className="mb-4 md:mb-6 flex flex-wrap gap-2 md:gap-2.5" role="tablist" aria-label="Leistungskategorien">
+        {/* Tab row — continuous hairline frame joining into content below (no gap, no border-bottom) */}
+        <div
+          className="flex flex-wrap overflow-hidden"
+          style={{ border: '1px solid oklch(0.885 0.004 110)', borderBottom: 'none' }}
+          role="tablist"
+          aria-label="Leistungskategorien"
+        >
           {SERVICES.map((item, i) => {
             const isActive = i === active;
             return (
@@ -116,13 +124,14 @@ export default function ServiceGrid({ sectionRef }: Props) {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActive(i)}
-                className={`whitespace-nowrap inline-flex items-center gap-2 text-xs md:text-sm font-black uppercase tracking-wide transition-all duration-200 cursor-pointer px-3 md:px-5 py-2.5 border ${
-                  isActive
-                    ? 'bg-primary-500 text-foreground-950 border-primary-500'
-                    : 'text-foreground-600 hover:text-foreground-900 border-background-300 hover:border-foreground-300 bg-white'
-                }`}
+                className="whitespace-nowrap inline-flex items-center gap-2 text-xs md:text-sm font-black uppercase tracking-wide transition-all duration-200 cursor-pointer px-4 md:px-6 py-3.5"
+                style={{
+                  background: isActive ? 'oklch(0.16 0.006 118)' : '#fff',
+                  color: isActive ? 'oklch(0.81 0.19 115)' : 'oklch(0.42 0.006 260)',
+                  borderRight: i < 3 ? '1px solid oklch(0.885 0.004 110)' : undefined,
+                }}
               >
-                <span className={`tabular-nums ${isActive ? 'text-foreground-950' : 'text-primary-500'}`}>
+                <span className="tabular-nums" style={{ color: isActive ? 'oklch(0.81 0.19 115)' : 'oklch(0.55 0.08 115)' }}>
                   {item.number}
                 </span>
                 {item.category}
@@ -131,7 +140,8 @@ export default function ServiceGrid({ sectionRef }: Props) {
           })}
         </div>
 
-        {/* Full-bleed pictorial image */}
+        {/* Image + caption — one continuous border joining the tab row above */}
+        <div style={{ border: '1px solid oklch(0.885 0.004 110)', borderTop: 'none' }}>
         <div className="relative overflow-hidden bg-foreground-950">
           <div className="relative aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/10] md:min-h-[520px] xl:min-h-[560px]">
             <img
@@ -215,6 +225,8 @@ export default function ServiceGrid({ sectionRef }: Props) {
             </span>
           </div>
         </div>
+
+        </div>{/* end continuous-border frame */}
 
         {/* Bottom CTA strip */}
         <div className="mt-6 px-6 md:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 bg-primary-50 border border-primary-200">

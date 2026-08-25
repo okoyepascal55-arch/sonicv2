@@ -60,10 +60,10 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
       {/* Content — left-aligned, bottom-anchored */}
       <div className="relative z-20 w-full max-w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
         <div className="max-w-full max-w-[640px]">
-        {/* Badge — unified SectionBadge pattern on dark bg */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-[7px] mb-5 md:mb-6" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
-          <span className="w-1.5 h-1.5" style={{ background: 'oklch(var(--primary-500))' }} />
-          <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary-500">Leistungen</span>
+        {/* v3 eyebrow — 28px lime hairline + label */}
+        <div className="flex items-center gap-3 mb-5 md:mb-6">
+          <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+          <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Leistungen</span>
         </div>
 
         {/* Main headline */}
