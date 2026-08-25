@@ -121,9 +121,9 @@ export default function RotatingPhotoGrid() {
 
       {/* Section label */}
       <div className="text-center mb-10 md:mb-12 relative z-10 px-4">
-        <div className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/25 px-4 py-1.5 mb-4">
-          <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" />
-          <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Unsere Arbeit</span>
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+          <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Unsere Arbeit</span>
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight">
           Kreation, die<br /><span className="text-primary-500">verkauft.</span>

@@ -211,9 +211,9 @@ export default function WarehouseLogistikPage() {
         <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative sonic-container">
           <div className="mb-10 md:mb-12">
-            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
-              <i className="ri-check-double-line text-foreground-950 text-sm"></i>
-              <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Lösung</span>
             </div>
             <h2 className="sonic-h2 text-foreground-950 mb-3">Warehousing und Logistik als<br /><span className="text-primary-500">integraler Baustein.</span></h2>
             <p className="text-foreground-950/50 text-sm md:text-base max-w-2xl">Einlagerung, Bereitstellung, Auslagerung, Anlieferung und Aufbau deiner Produkte, Werbematerialien, Messestände etc. Als Teil des Sonic Gesamtpakts.</p>
@@ -226,9 +226,9 @@ export default function WarehouseLogistikPage() {
       <section id="beispiele" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="sonic-container">
           <div className="mb-8 md:mb-10">
-            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/12 px-4 py-1.5 mb-5">
-              <i className="ri-image-line text-foreground-950 text-sm"></i>
-              <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Was wir lagern</span>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Was wir lagern</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-black text-foreground-950 leading-tight mb-2 uppercase">
               Alles unter einem Dach.
@@ -309,9 +309,9 @@ export default function WarehouseLogistikPage() {
         <div className="relative sonic-container">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5 md:mb-6">
-                <i className="ri-shield-check-line text-primary-500 text-sm"></i>
-                <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Full Service</span>
+              <div className="flex items-center gap-3 mb-5 md:mb-6">
+                <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+                <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Full Service</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-black text-white mb-4 md:mb-6 leading-tight uppercase">Darum Warehouse<br /><span className="text-primary-500">bei Sonic.</span></h2>
               <p className="text-white/65 text-sm md:text-base leading-relaxed mb-4 md:mb-6">

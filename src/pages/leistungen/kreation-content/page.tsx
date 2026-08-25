@@ -13,7 +13,6 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
-import SectionBadge from '@/components/base/SectionBadge';
 
 const FALLBACK_KREATION_SOLUTION_ICONS = [
   'https://readdy.ai/api/search-image?query=carved%20wooden%20lightbulb%20idea%20concept%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-bulb-01&orientation=squarish',
@@ -322,8 +321,9 @@ export default function KreationContentPage() {
             </div>
 
             {/* Badge */}
-            <div className="mb-10 flex justify-center">
-              <SectionBadge text={tHeroBadge} variant="light" />
+            <div className="mb-10 flex items-center justify-center gap-3">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tHeroBadge}</span>
             </div>
 
             {/* Headline */}
@@ -401,9 +401,9 @@ export default function KreationContentPage() {
         >
           <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5" style={{ borderRadius: 0 }}>
-                <i className="ri-check-double-line text-foreground-950 text-sm" />
-                <span className="text-xs font-black text-foreground-950 uppercase tracking-[0.2em]">Die Lösung</span>
+              <div className="flex items-center gap-3 mb-5">
+                <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+                <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Lösung</span>
               </div>
               <h2 className="sonic-h2 text-foreground-950 mb-3">
                 {tSolutionHeading}

@@ -5,7 +5,6 @@ import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import SectionBadge from '@/components/base/SectionBadge';
 
 const FORECASTING_CHALLENGES: ChallengeItem[] = [
   {
@@ -105,7 +104,10 @@ export default function ForecastingContent() {
         <div className="sonic-container relative">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
             <div>
-              <SectionBadge text="Die Sonic-Lösung" variant="dark" className="mb-5" />
+              <div className="flex items-center gap-3 mb-5">
+                <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+                <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Sonic-Lösung</span>
+              </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight uppercase">
                 {tSolutionHeading}
               </h2>
@@ -121,7 +123,10 @@ export default function ForecastingContent() {
       <section id="wie-es-funktioniert" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-10 md:mb-14">
-            <SectionBadge text="So funktioniert es" variant="dark" className="mb-5" />
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>So funktioniert es</span>
+            </div>
             <h2 className="sonic-h2 text-foreground-950">{tHowHeading}</h2>
             <p className="text-foreground-950/45 text-sm mt-3 max-w-xl mx-auto">{tHowSub}</p>
           </div>

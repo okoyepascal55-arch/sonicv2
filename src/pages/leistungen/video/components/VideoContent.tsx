@@ -177,9 +177,9 @@ export default function VideoContent() {
         <div className="absolute top-0 right-0 w-full max-w-[500px] h-[500px] bg-primary-500/8 blur-[120px] pointer-events-none" />
         <div className="relative sonic-container">
           <div className="mb-14 text-center">
-            <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/15 px-4 py-1.5 mb-5">
-              <i className="ri-check-double-line text-foreground-950 text-sm"></i>
-              <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Die Lösung</span>
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Lösung</span>
             </div>
             <h2 className="sonic-h2 text-foreground-950">{tSolutionHeading}</h2>
             <p className="text-foreground-950/55 text-base max-w-2xl mx-auto">{tSolutionSub}</p>
@@ -196,9 +196,9 @@ export default function VideoContent() {
       <section id="vorteile" className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
-              <i className="ri-thumb-up-line text-primary-500 text-sm"></i>
-              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Vorteile</span>
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Vorteile</span>
             </div>
             <h2 className="sonic-h2 text-white">{tAdvantagesHeading}</h2>
             <p className="text-white/45 text-sm mt-3">Chancen auf mehr Verkäufe und weniger Retouren.</p>
@@ -211,9 +211,9 @@ export default function VideoContent() {
       <section id="kostenrechner" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-foreground-950/15 px-4 py-1.5 mb-5">
-              <i className="ri-calculator-line text-foreground-950 text-sm"></i>
-              <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Kostenrechner</span>
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Kostenrechner</span>
             </div>
             <h2 className="sonic-h2 text-foreground-950">Live-Video: Kosten pro Jahr</h2>
           </div>
@@ -274,9 +274,9 @@ export default function VideoContent() {
       <section id="phygital" className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-5">
-              <i className="ri-links-line text-primary-500 text-sm"></i>
-              <span className="text-xs font-black text-primary-500 uppercase tracking-widest">Ideale Kombination</span>
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Ideale Kombination</span>
             </div>
             <h2 className="sonic-h2 text-white">{tPhygitalHeading}</h2>
             <p className="text-white/45 text-sm mt-3 max-w-xl mx-auto">Video und Field Force ergänzen sich wunderbar. Clever eingesetzt wird der ROI beider Maßnahmen im Omnichannel erhöht.</p>
@@ -323,9 +323,9 @@ export default function VideoContent() {
       <section id="formate" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-foreground-950/10 border border-foreground-950/15 px-4 py-1.5 mb-5">
-              <i className="ri-film-line text-foreground-950 text-sm"></i>
-              <span className="text-xs font-black text-foreground-950 uppercase tracking-widest">Video-Formate</span>
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Video-Formate</span>
             </div>
             <h2 className="sonic-h2 text-foreground-950">{tFormatsHeading}</h2>
           </div>
