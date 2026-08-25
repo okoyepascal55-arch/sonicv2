@@ -5,7 +5,6 @@ import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
 
 const STAFF_CHALLENGES: ChallengeItem[] = [
   {
@@ -175,7 +174,7 @@ export default function StaffContent() {
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
                 {STEPS.map((step, i) => (
                   <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
-                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950 shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
+                    <div className={`w-14 h-14 flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
                       <i className={`${step.icon} text-xl`} />
                     </div>
                     <span className={`mt-3 text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeStep === i ? 'text-primary-500' : 'text-white/30'}`}>{step.num}</span>
@@ -206,7 +205,7 @@ export default function StaffContent() {
                   <span className="text-[160px] md:text-[240px] font-black text-white/[0.04] leading-none select-none">{STEPS[activeStep].num}</span>
                 </div>
                 {/* Icon */}
-                <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary-500/10 border border-primary-500/30 flex items-center justify-center mb-5">
+                <div className="relative w-16 h-16 md:w-20 md:h-20 bg-primary-500/10 border border-primary-500/30 flex items-center justify-center mb-5">
                   <i className={`${STEPS[activeStep].icon} text-primary-500 text-2xl md:text-3xl`} />
                 </div>
                 <div className="relative text-primary-500 text-xs font-black uppercase tracking-widest mb-1">Schritt {STEPS[activeStep].num}</div>
@@ -297,7 +296,7 @@ export default function StaffContent() {
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
                 {SOCKS.map((s, i) => (
                   <button key={i} onClick={() => setActiveSocks(i)} className="flex flex-col items-center cursor-pointer group">
-                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeSocks === i ? 'bg-primary-500 border-primary-500 text-foreground-950 shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeSocks > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
+                    <div className={`w-14 h-14 flex items-center justify-center border-2 transition-all duration-300 ${activeSocks === i ? 'bg-primary-500 border-primary-500 text-foreground-950' : activeSocks > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
                       <span className="text-xl font-black">{s.letter}</span>
                     </div>
                     <span className={`mt-3 text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeSocks === i ? 'text-primary-500' : 'text-white/30'}`}>{s.letter} — {s.title}</span>
