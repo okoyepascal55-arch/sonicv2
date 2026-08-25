@@ -118,10 +118,10 @@ export default function SchallmauerWays() {
             return (
               <div
                 key={w.key}
-                className="relative overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-1"
-                style={{ border: isHovered ? '1px solid oklch(0.81 0.19 115)' : '1px solid oklch(0.885 0.004 110)' }}
+                className="relative overflow-hidden cursor-pointer transition-all duration-500"
                 style={{
-                  transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
+                  border: isHovered ? '1px solid oklch(0.81 0.19 115)' : '1px solid oklch(0.885 0.004 110)',
+                  transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
                   background: isHovered
                     ? 'oklch(var(--foreground-950))'
                     : '#ffffff',

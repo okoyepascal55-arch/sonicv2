@@ -121,9 +121,9 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
   };
 
   return (
+    <div style={{ minWidth: '420px', flex: '0 0 calc(50% - 12px)' }}>
     <WoodenCard
-      className="flex flex-col"
-      style={{ minWidth: '420px', flex: '0 0 calc(50% - 12px)' } as React.CSSProperties}
+      className="flex flex-col h-full"
     >
       <div className="flex flex-col h-full">
         {/* Logo + brand */}
@@ -156,6 +156,7 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
         </div>
       </div>
     </WoodenCard>
+    </div>
   );
 }
 
