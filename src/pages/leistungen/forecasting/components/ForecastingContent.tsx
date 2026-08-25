@@ -1,29 +1,28 @@
-import { useState } from 'react';
-import ChallengeSection from '@/components/feature/ChallengeSection';
-import type { ChallengeItem } from '@/components/feature/ChallengeSection';
-import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 
-const FORECASTING_CHALLENGES: ChallengeItem[] = [
+interface StaticChallenge {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+const FORECASTING_CHALLENGES: StaticChallenge[] = [
   {
     icon: 'ri-question-mark',
     title: 'ROI unsicher — Budget ins Unbekannte',
     desc: 'Budget fließt in Einsätze, ohne zu wissen was dabei rauskommt. Quartalsberichte kommen zu spät. Wer ohne Prognose startet, kennt seinen ROI erst rückwirkend.',
-    trigger: 'Kommt dir bekannt vor?',
   },
   {
     icon: 'ri-database-2-line',
     title: 'Datensilos machen Prognosen unmöglich',
     desc: 'Sell-out-Daten liegen in verschiedenen Systemen, Excel-Sheets und Handelspartnern. Eine übergreifende Prognose ist manuell kaum möglich — und fehleranfällig.',
-    trigger: 'Auch bei euch so?',
   },
   {
     icon: 'ri-pencil-line',
     title: 'Manuelle Planung auf Bauchgefühl',
     desc: 'Einsatzplanung auf Basis von Bauchgefühl und Erfahrung. Saisonalität, Standort-Performance und Wettbewerbsdynamik werden nicht systematisch berücksichtigt.',
-    trigger: 'Klingt vertraut?',
   },
 ];
 
@@ -88,12 +87,42 @@ export default function ForecastingContent() {
 
   return (
     <>
-      <ChallengeSection
-        badge="Das Problem"
-        headline={tChallengeHeading}
-        subline={tChallengeSub}
-        challenges={FORECASTING_CHALLENGES}
-      />
+      {/* ── Problem (static grid) ── */}
+      <section id="herausforderung" className="sonic-section-lg bg-white px-4 md:px-6">
+        <div className="sonic-container">
+          <div className="mb-10 md:mb-14 max-w-2xl">
+            <SectionBadge text="Das Problem" variant="dark" className="mb-5" />
+            <h2 className="sonic-h2 text-foreground-950 mb-4">{tChallengeHeading}</h2>
+            {tChallengeSub && (
+              <p className="text-foreground-950/50 text-base md:text-lg leading-relaxed">{tChallengeSub}</p>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-foreground-950/[0.08]">
+            {FORECASTING_CHALLENGES.map((c, i) => (
+              <div
+                key={i}
+                className={`relative overflow-hidden p-7 md:p-9 ${i < FORECASTING_CHALLENGES.length - 1 ? 'border-b md:border-b-0 md:border-r border-foreground-950/[0.08]' : ''}`}
+                style={{ background: 'rgba(0,0,0,0.015)' }}
+              >
+                <div
+                  className="absolute bottom-0 right-0 font-black select-none pointer-events-none leading-none"
+                  style={{ fontSize: 'clamp(80px, 10vw, 130px)', color: 'rgba(0,0,0,0.025)', lineHeight: 0.85 }}
+                >
+                  {String(i + 1).padStart(2, '0')}
+                </div>
+                <div className="relative z-10">
+                  <div className="w-11 h-11 flex items-center justify-center flex-shrink-0 mb-6" style={{ background: 'rgba(0,0,0,0.06)' }}>
+                    <i className={`${c.icon} text-lg`} style={{ color: 'rgba(0,0,0,0.4)' }} />
+                  </div>
+                  <h3 className="sonic-h3 leading-tight mb-4 text-foreground-950/70">{c.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(0,0,0,0.45)' }}>{c.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <WoodenDivider />
 
@@ -114,7 +143,30 @@ export default function ForecastingContent() {
             <p className="text-foreground-950/45 text-sm leading-relaxed max-w-xs lg:text-right">{tSolutionSub}</p>
           </div>
 
-          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Features — scrollen`} theme="light" variant="wood" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {SOLUTIONS.map((s, i) => (
+              <div
+                key={s.num}
+                className="relative overflow-hidden p-6"
+                style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.09)' }}
+              >
+                <div
+                  className="absolute bottom-3 right-4 font-black leading-none select-none pointer-events-none"
+                  style={{ fontSize: '4.5rem', color: 'rgba(0,0,0,0.04)', lineHeight: 1 }}
+                >
+                  {s.num}
+                </div>
+                <div className="relative z-10">
+                  <div className="w-12 h-12 overflow-hidden mb-4 flex-shrink-0" style={{ border: '1px solid rgba(0,0,0,0.09)' }}>
+                    <img src={getSolutionWoodIcon(i)} alt={s.title} className="w-full h-full object-cover" loading="lazy" />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-primary-600">{s.accent}</span>
+                  <h3 className="text-base font-black text-foreground-950 uppercase mt-1 mb-2 leading-snug">{s.title}</h3>
+                  <p className="text-sm text-foreground-950/55 leading-relaxed">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
