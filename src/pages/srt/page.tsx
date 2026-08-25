@@ -54,6 +54,8 @@ export default function SRTPage() {
         }} heroIcons={srtHeroIcons} />
       </div>
 
+      <WoodenDivider />
+
       {/* Problem */}
       <div id="das-problem"><TheProblem /></div>
 
@@ -61,6 +63,8 @@ export default function SRTPage() {
 
       {/* Features */}
       <div id="features"><Features featureIcons={srtFeatureIcons} /></div>
+
+      <WoodenDivider />
 
       {/* Video showcase */}
       <div id="srt-in-aktion"><VideoShowcase /></div>
@@ -70,8 +74,12 @@ export default function SRTPage() {
       {/* Function overview */}
       <div id="funktionsumfang"><FunctionalityOverview /></div>
 
+      <WoodenDivider />
+
       {/* Employee app */}
       <div id="team-app"><EmployeeApp /></div>
+
+      <WoodenDivider />
 
       {/* Collaboration process */}
       <div id="zusammenarbeit"><Zusammenarbeit /></div>
@@ -81,8 +89,12 @@ export default function SRTPage() {
       {/* Data flow */}
       <div id="datenfluss"><DataPaths /></div>
 
+      <WoodenDivider />
+
       {/* Industries + Config */}
       <div id="branchen"><Industries /></div>
+
+      <WoodenDivider />
 
       {/* Social proof */}
       <div id="kundenstimmen"><Proof /></div>

@@ -74,7 +74,18 @@ export default function Features({ featureIcons }: FeaturesProps) {
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
             <h2 className="sonic-h2 text-foreground-950">
-              SRT: Die <span className="text-primary-500">All-in-One</span> Software
+              SRT: Die{' '}
+              <span
+                style={{
+                  background: 'oklch(var(--primary-500) / 0.9)',
+                  padding: '0.02em 0.16em',
+                  boxDecorationBreak: 'clone',
+                  WebkitBoxDecorationBreak: 'clone',
+                }}
+              >
+                All-in-One
+              </span>{' '}
+              Software
             </h2>
             <p className="text-sm text-foreground-600 leading-relaxed lg:pb-1">
               Seit 2008 laufend weiterentwickelt, für maximalen Nutzwert. Seit 2024 mit KI-Features.
@@ -82,14 +93,17 @@ export default function Features({ featureIcons }: FeaturesProps) {
           </div>
         </div>
 
-        {/* Compact 3×2 grid — lighter cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        {/* Asymmetric bento — 2×2 hero cell + 5 smaller cells */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {FEATURES_BASE.map((feat, idx) => {
             const isHovered = hoveredIdx === idx;
+            const isHero = idx === 0;
             return (
               <div
                 key={idx}
-                className="group bg-white cursor-default relative overflow-hidden transition-all duration-300"
+                className={`group bg-white cursor-default relative overflow-hidden transition-all duration-300 ${
+                  isHero ? 'sm:col-span-2 lg:col-span-2 lg:row-span-2' : ''
+                }`}
                 style={{
                   border: isHovered ? '2px solid oklch(var(--primary-500) / 0.4)' : '2px solid oklch(var(--background-200) / 0.5)',
                 }}
@@ -100,10 +114,10 @@ export default function Features({ featureIcons }: FeaturesProps) {
                 <div className="absolute top-0 left-0 right-0 h-0.5 transition-all duration-300"
                   style={{ background: isHovered ? 'oklch(var(--primary-500))' : 'transparent' }} />
 
-                <div className="p-5">
+                <div className={isHero ? 'p-6 lg:p-8 flex flex-col h-full' : 'p-5'}>
                   {/* Icon + title row */}
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 overflow-hidden flex-shrink-0 border border-background-200/50">
+                  <div className={`flex items-center gap-3 ${isHero ? 'mb-4' : 'mb-3'}`}>
+                    <div className={`overflow-hidden flex-shrink-0 border border-background-200/50 ${isHero ? 'w-16 h-16' : 'w-10 h-10'}`}>
                       <img
                         src={(featureIcons && featureIcons[idx] && featureIcons[idx].url) || feat.woodIcon}
                         alt={feat.title}
@@ -112,12 +126,12 @@ export default function Features({ featureIcons }: FeaturesProps) {
                       />
                     </div>
                     <div>
-                      <h3 className="sonic-h3 text-foreground-950 leading-snug">{feat.title}</h3>
+                      <h3 className={isHero ? 'sonic-h2 text-foreground-950 leading-snug' : 'sonic-h3 text-foreground-950 leading-snug'}>{feat.title}</h3>
                       <span className="text-[9px] font-bold text-primary-500 uppercase tracking-widest">{feat.number} / 06</span>
                     </div>
                   </div>
-                  <p className="text-xs text-foreground-600 leading-relaxed mb-3">{feat.description}</p>
-                  <div className="flex flex-wrap gap-1">
+                  <p className={`text-foreground-600 leading-relaxed mb-3 ${isHero ? 'text-sm max-w-md' : 'text-xs'}`}>{feat.description}</p>
+                  <div className={`flex flex-wrap gap-1 ${isHero ? 'mt-auto' : ''}`}>
                     {feat.tags.map((tag, ti) => (
                       <span key={ti} className="text-[9px] font-bold px-2 py-0.5 uppercase tracking-wide text-primary-500 bg-primary-500/8 border border-primary-500/15">
                         {tag}

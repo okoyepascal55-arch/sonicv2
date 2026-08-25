@@ -3,7 +3,6 @@ import PhoneFrame from '@/components/base/PhoneFrame';
 import SectionBadge from '@/components/base/SectionBadge';
 import FloatingBadge from '@/components/base/FloatingBadge';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
 
 const STEPS = [
   { number: '01', tag: 'SCHICHT', icon: 'ri-calendar-check-line', title: 'Aufgaben einsehen', desc: 'Die Mitarbeiterin sieht auf den ersten Blick, wann und wo der nächste Einsatz eingeplant ist.', screen: 'shift' },
@@ -218,9 +217,9 @@ export default function EmployeeApp() {
             ))}
           </div>
 
-          {/* Phone — unchanged */}
+          {/* Phone */}
           <div className="relative flex justify-center">
-            <PhoneFrame width={260}>
+            <PhoneFrame width={288}>
               <div className="bg-foreground-950" style={{ height: 450 }}>
                 <div className="h-6 bg-foreground-950 flex items-center justify-between px-3">
                   <span className="text-[7px] text-foreground-600 font-bold">9:41</span>
