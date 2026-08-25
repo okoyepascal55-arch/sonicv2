@@ -1,11 +1,9 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
-import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
 
 const POS_CHALLENGES: ChallengeItem[] = [
   {
@@ -54,12 +52,6 @@ const ASSETS = [
     icon: 'ri-building-4-line',
     items: ['Architektur, Design, Technik und Warensicherung', 'Möbel, Regale, Shop-in-Shop-Systeme, Roadshow-Module', 'Interaktive Displaykonzepte', 'Produktion, Warehousing, Aufbau, Ausstattung, Pflege'],
     imageStartIndex: 8,
-  },
-  {
-    category: 'Retail-Video',
-    icon: 'ri-video-line',
-    items: ['Live-Video-Promotion / Beratung', 'Für E-Commerce und über Displays am POS'],
-    imageStartIndex: 12,
   },
   {
     category: 'Give-aways',
@@ -173,7 +165,30 @@ export default function POSContent() {
             <h2 className="leist-h2 text-foreground-950">{tSolutionHeading}</h2>
             <p className="text-foreground-950/55 text-sm md:text-base max-w-2xl mx-auto">{tSolutionSub}</p>
           </div>
-          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="wood" cardMinHeight="340px" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {SOLUTIONS.map((s, i) => (
+              <div
+                key={s.num}
+                className="relative overflow-hidden p-6"
+                style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.09)' }}
+              >
+                <div
+                  className="absolute bottom-3 right-4 font-black leading-none select-none pointer-events-none"
+                  style={{ fontSize: '4.5rem', color: 'rgba(0,0,0,0.04)', lineHeight: 1 }}
+                >
+                  {s.num}
+                </div>
+                <div className="relative z-10">
+                  <div className="w-12 h-12 overflow-hidden mb-4 flex-shrink-0" style={{ border: '1px solid rgba(0,0,0,0.09)' }}>
+                    <img src={getSolutionWoodIcon(i)} alt={s.title} className="w-full h-full object-cover" loading="lazy" />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-primary-600">{s.accent}</span>
+                  <h3 className="text-base font-black text-foreground-950 uppercase mt-1 mb-2 leading-snug">{s.title}</h3>
+                  <p className="text-sm text-foreground-950/55 leading-relaxed">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -247,7 +262,7 @@ export default function POSContent() {
               </div>
               <div className="lg:col-span-5 bg-[#161616] p-5 md:p-8 border-t lg:border-t-0 lg:border-l border-white/10 lg:h-[300px] overflow-y-auto">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center bg-primary-500/15 border border-primary-500/30">
+                  <div className="w-9 h-9 flex items-center justify-center bg-primary-500/15 border border-primary-500/30">
                     <i className={`${resolvedAssetCategories[activeAsset].icon} text-base text-primary-500`}></i>
                   </div>
                   <h3 className="text-base font-black text-white uppercase">{resolvedAssetCategories[activeAsset].category}</h3>
@@ -255,7 +270,7 @@ export default function POSContent() {
                 <div className="space-y-2.5">
                   {resolvedAssetCategories[activeAsset].items.map((item, i) => (
                     <div key={i} className="flex items-start gap-2.5">
-                      <div className="w-4 h-4 flex items-center justify-center bg-primary-500 flex-shrink-0 mt-0.5 rounded-full">
+                      <div className="w-4 h-4 flex items-center justify-center bg-primary-500 flex-shrink-0 mt-0.5">
                         <i className="ri-check-line text-foreground-950 text-xs"></i>
                       </div>
                       <span className="text-white/55 text-sm leading-relaxed">{item}</span>
@@ -292,7 +307,7 @@ export default function POSContent() {
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
                 {STEPS.map((step, i) => (
                   <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
-                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950 shadow-[0_0_20px_rgba(200,212,0,0.3)]' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
+                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
                       <i className={`${step.icon} text-xl`} />
                     </div>
                     <span className={`mt-3 text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeStep === i ? 'text-primary-500' : 'text-white/30'}`}>{step.num}</span>
