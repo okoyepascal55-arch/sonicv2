@@ -184,18 +184,22 @@ export default function LeistungenStats() {
         {/* Compact header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-5">
           <div className="flex items-center gap-3">
-            <div
-              className="inline-flex items-center gap-1.5 border border-primary-500/40 px-2.5 py-0.5"
-              style={{ background: 'rgba(200,212,0,0.06)' }}
-            >
-              <span className="w-1 h-1 bg-primary-500 rounded-full animate-pulse" />
-              <span className="text-[9px] font-black text-primary-500 uppercase tracking-widest">
-                Unsere Zahlen
-              </span>
-            </div>
+            <span className="w-7 h-0.5 flex-shrink-0" style={{ background: 'oklch(var(--primary-500))' }} aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>
+              Unsere Zahlen
+            </span>
             <h2 className="text-base md:text-lg font-black text-[#1a1a1a] leading-none tracking-tight uppercase">
-              TRACK RECORD&nbsp;
-              <span className="text-primary-500">DER ÜBERZEUGT.</span>
+              TRACK RECORD{' '}
+              <span
+                style={{
+                  background: 'oklch(var(--primary-500) / 0.9)',
+                  padding: '0.02em 0.16em',
+                  boxDecorationBreak: 'clone',
+                  WebkitBoxDecorationBreak: 'clone',
+                }}
+              >
+                DER ÜBERZEUGT.
+              </span>
             </h2>
           </div>
           {/* Accent bars */}
