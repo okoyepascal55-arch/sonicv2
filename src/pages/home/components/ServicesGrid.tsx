@@ -212,9 +212,64 @@ export default function ServicesGrid() {
             border: '1px solid oklch(var(--foreground-950) / 0.1)',
           }}
         >
-          {/* ── Image panel — 16/9, no tabs above ── */}
+          {/* ── Selector strip — top of card, 5 equal columns, always fits ── */}
+          <div
+            className="grid"
+            style={{
+              gridTemplateColumns: 'repeat(5, 1fr)',
+              borderBottom: '1px solid oklch(var(--foreground-950) / 0.1)',
+            }}
+            role="tablist"
+            aria-label="Leistungskategorien"
+          >
+            {services.map((service, index) => {
+              const isActive = selectedIndex === index;
+              return (
+                <button
+                  key={index}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setSelectedIndex(index)}
+                  className="flex flex-col items-center justify-center gap-1 py-3 px-1 cursor-pointer transition-all duration-200 focus:outline-none"
+                  style={{
+                    background: isActive ? 'oklch(var(--foreground-950))' : '#fff',
+                    borderRight: index < 4 ? '1px solid oklch(var(--foreground-950) / 0.08)' : undefined,
+                    borderBottom: isActive ? '2px solid oklch(var(--primary-500))' : '2px solid transparent',
+                    minHeight: '52px',
+                  }}
+                >
+                  {/* Number */}
+                  <span
+                    className="font-black leading-none tabular-nums"
+                    style={{
+                      fontSize: '14px',
+                      letterSpacing: '-0.03em',
+                      color: isActive ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-300))',
+                    }}
+                  >
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  {/* Short label — hidden on mobile, visible sm+ */}
+                  <span
+                    className="hidden sm:block text-center leading-none"
+                    style={{
+                      fontSize: '8px',
+                      fontWeight: 900,
+                      letterSpacing: '0.06em',
+                      textTransform: 'uppercase',
+                      color: isActive ? 'rgba(255,255,255,0.5)' : 'oklch(var(--foreground-400))',
+                    }}
+                  >
+                    {['Events','Content','Schulungen','POS','Studios'][index]}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* ── Image — maxWidth 960 matching VideoShowcase, 16/9 aspect ── */}
           <div className="relative overflow-hidden bg-foreground-950">
-            <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+            <div className="relative w-full mx-auto" style={{ aspectRatio: '16/9', maxWidth: 960 }}>
               {currentImages.length === 0 ? (
                 <div className="absolute inset-0 flex items-center justify-center text-white/40">
                   <div className="text-center p-8">
@@ -238,8 +293,22 @@ export default function ServicesGrid() {
                 ))
               )}
 
-              {/* Bottom gradient */}
-              <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
+              {/* Bottom gradient — deeper so overlay text reads cleanly */}
+              <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-gradient-to-t from-black/75 to-transparent pointer-events-none" />
+
+              {/* "Menschen für..." title burned onto image — key identity text */}
+              <div className="absolute bottom-0 left-0 right-0 px-5 pb-4 md:px-8 md:pb-5 pointer-events-none">
+                <p
+                  className="font-black text-white leading-none uppercase tracking-tight"
+                  style={{
+                    fontSize: 'clamp(18px, 3.5vw, 28px)',
+                    letterSpacing: '-0.025em',
+                    textShadow: '0 2px 12px rgba(0,0,0,0.5)',
+                  }}
+                >
+                  {svc.title}
+                </p>
+              </div>
 
               {/* Prev / Next */}
               {currentImages.length > 1 && (
@@ -312,59 +381,6 @@ export default function ServicesGrid() {
             </button>
           </div>
 
-          {/* ── Selector strip — numbers always visible, no scrolling needed ── */}
-          <div
-            className="grid"
-            style={{
-              gridTemplateColumns: 'repeat(5, 1fr)',
-              borderTop: '1px solid oklch(var(--foreground-950) / 0.08)',
-            }}
-            role="tablist"
-            aria-label="Leistungskategorien"
-          >
-            {services.map((service, index) => {
-              const isActive = selectedIndex === index;
-              return (
-                <button
-                  key={index}
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => setSelectedIndex(index)}
-                  className="flex flex-col items-center justify-center gap-1.5 py-3 px-2 cursor-pointer transition-all duration-200 focus:outline-none"
-                  style={{
-                    background: isActive ? 'oklch(var(--foreground-950))' : '#fff',
-                    borderRight: index < 4 ? '1px solid oklch(var(--foreground-950) / 0.08)' : undefined,
-                    borderTop: isActive ? '2px solid oklch(var(--primary-500))' : '2px solid transparent',
-                    minHeight: '56px',
-                  }}
-                >
-                  <span
-                    className="font-black leading-none tabular-nums"
-                    style={{
-                      fontSize: '15px',
-                      letterSpacing: '-0.03em',
-                      color: isActive ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-300))',
-                    }}
-                  >
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <span
-                    className="hidden sm:block text-center leading-tight"
-                    style={{
-                      fontSize: '9px',
-                      fontWeight: 900,
-                      letterSpacing: '0.08em',
-                      textTransform: 'uppercase',
-                      color: isActive ? 'rgba(255,255,255,0.55)' : 'oklch(var(--foreground-400))',
-                      maxWidth: '64px',
-                    }}
-                  >
-                    {['Events & Messen','Content','Schulungen','Point of Sale','Studios'][index]}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
         </div>
 
 
