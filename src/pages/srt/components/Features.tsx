@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import SectionBadge from '@/components/base/SectionBadge';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import type { MediaItem } from '@/lib/mediaStore';
 
@@ -67,13 +66,16 @@ export default function Features({ featureIcons }: FeaturesProps) {
         {/* Compact header */}
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5">
-            <SectionBadge text="Die Lösung" variant="dark" />
+            <div className="flex items-center gap-3 mb-5 md:mb-6">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{"Die Lösung"}</span>
+          </div>
             <span className="text-[10px] font-black text-foreground-300 uppercase tracking-widest">
               Seit 2008 · 15+ Versionen
             </span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="sonic-h2 text-foreground-950">
+            <h2 className="leist-h2 text-foreground-950">
               SRT: Die <span className="text-primary-500">All-in-One</span> Software
             </h2>
             <p className="text-sm text-foreground-600 leading-relaxed lg:pb-1">

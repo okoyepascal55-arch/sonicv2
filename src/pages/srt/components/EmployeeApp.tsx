@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import PhoneFrame from '@/components/base/PhoneFrame';
-import SectionBadge from '@/components/base/SectionBadge';
 import FloatingBadge from '@/components/base/FloatingBadge';
 import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
@@ -180,10 +179,13 @@ export default function EmployeeApp() {
       <div className="sonic-container relative z-10">
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5">
-            <SectionBadge text={tBadge} variant="dark" />
+            <div className="flex items-center gap-3 mb-5 md:mb-6">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
+          </div>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="sonic-h2 text-foreground-950">
+            <h2 className="leist-h2 text-foreground-950">
               {tHeading}
             </h2>
             <p className="text-foreground-600 text-sm leading-relaxed lg:pb-1">

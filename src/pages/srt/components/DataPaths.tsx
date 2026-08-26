@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import SectionBadge from '@/components/base/SectionBadge';
 import { useText } from '@/hooks/useText';
 
 interface DataStream {
@@ -147,12 +146,15 @@ export default function DataPaths() {
       <div className="sonic-container relative z-10">
         <div className="mb-14">
           <div className="flex items-center gap-4 mb-8">
-            <SectionBadge text={tBadge} variant="light" />
+            <div className="flex items-center gap-3 mb-5 md:mb-6">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
+          </div>
             <div className="h-px flex-1 bg-gradient-to-r from-primary-500/20 to-transparent" />
             <span className="text-2xs font-black text-background-50/20 uppercase tracking-widest hidden md:block">Interaktiv — Klicken zum Erkunden</span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-8 items-end">
-            <h2 className="sonic-h2 text-background-50">
+            <h2 className="leist-h2 text-background-50">
               {tHeading}
             </h2>
             <div className="lg:pb-2">

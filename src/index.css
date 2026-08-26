@@ -1352,3 +1352,12 @@ html {
   line-height: 1.04;
   letter-spacing: -0.035em;
 }
+
+/* Flagship hero H1 — SRT and Kreation & Content (92px desktop per brief) */
+.leist-h1-flagship {
+  font-size: clamp(2.5rem, 7vw, 5.75rem); /* 40px → 92px */
+  font-weight: 900;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}

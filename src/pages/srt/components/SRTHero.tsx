@@ -51,7 +51,7 @@ export default function SRTHero({ onScrollToFeatures, heroIcons }: SRTHeroProps)
         </div>
 
         {/* Mega headline */}
-        <h1 className="sonic-h1 mb-5 md:mb-6">
+        <h1 className="leist-h1-flagship mb-5 md:mb-6">
           <span className="text-background-50">{tH1_1}</span>{' '}
           <span className="text-primary-500">{tH1_2}</span>{' '}
           <span className="text-background-50">{tH1_3}</span>

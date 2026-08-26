@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import ClientProof from '@/components/feature/ClientProof';
-import SectionBadge from '@/components/base/SectionBadge';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 
@@ -82,8 +81,11 @@ export default function Proof() {
         <div className="sonic-container">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
             <div>
-              <div className="mb-3"><SectionBadge text={tBadge} variant="dark" /></div>
-              <h2 className="sonic-h2 text-foreground-950">{tHeading.split('.')[0] || tHeading}.<br />{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.').trim() : 'für sich.'}</h2>
+              <div className="mb-3"><div className="flex items-center gap-3 mb-5 md:mb-6">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
+          </div></div>
+              <h2 className="leist-h2 text-foreground-950">{tHeading.split('.')[0] || tHeading}.<br />{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.').trim() : 'für sich.'}</h2>
             </div>
             <p className="text-foreground-500 text-xs max-w-xs text-right leading-relaxed hidden md:block">
               {tSub || 'Tatsächlich gemessene Ergebnisse aus über 15 Jahren Retail-Aktivierungen.'}

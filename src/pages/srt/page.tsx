@@ -54,6 +54,9 @@ export default function SRTPage() {
         }} heroIcons={srtHeroIcons} />
       </div>
 
+      {/* Dark-bg WoodenDivider — dark section exit */}
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
+
       {/* Problem */}
       <div id="das-problem"><TheProblem /></div>
 
@@ -70,6 +73,9 @@ export default function SRTPage() {
       {/* Function overview */}
       <div id="funktionsumfang"><FunctionalityOverview /></div>
 
+      {/* Dark-bg WoodenDivider — dark section exit */}
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
+
       {/* Employee app */}
       <div id="team-app"><EmployeeApp /></div>
 
@@ -80,6 +86,9 @@ export default function SRTPage() {
 
       {/* Data flow */}
       <div id="datenfluss"><DataPaths /></div>
+
+      {/* Dark-bg WoodenDivider — dark section exit */}
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
       {/* Industries + Config */}
       <div id="branchen"><Industries /></div>
