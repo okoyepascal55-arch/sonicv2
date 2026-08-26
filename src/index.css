@@ -1333,21 +1333,21 @@ html {
    These classes are scoped to the Leistungen family only.
 ──────────────────────────────────────────────────────────────────────── */
 .leist-h1-hub {
-  font-size: clamp(2.375rem, 6.5vw, 5.5rem); /* 38px → 88px */
+  font-size: clamp(2rem, 6vw, 5.5rem); /* 32px → 88px */
   font-weight: 900;
   line-height: 0.95;
   letter-spacing: -0.038em;
   text-transform: uppercase;
 }
 .leist-h1-sub {
-  font-size: clamp(2.125rem, 5.5vw, 4.75rem); /* 34px → 76px */
+  font-size: clamp(1.875rem, 5.5vw, 4.75rem); /* 30px → 76px */
   font-weight: 900;
   line-height: 0.96;
   letter-spacing: -0.035em;
   text-transform: uppercase;
 }
 .leist-h2 {
-  font-size: clamp(1.75rem, 3.5vw, 3.25rem); /* 28px → 52px */
+  font-size: clamp(1.5rem, 4vw, 3.25rem); /* 24px → 52px */
   font-weight: 900;
   line-height: 1.04;
   letter-spacing: -0.035em;
@@ -1355,7 +1355,7 @@ html {
 
 /* Flagship hero H1 — SRT and Kreation & Content (92px desktop per brief) */
 .leist-h1-flagship {
-  font-size: clamp(2.5rem, 7vw, 5.75rem); /* 40px → 92px */
+  font-size: clamp(1.875rem, 6.5vw, 5.75rem); /* 30px → 92px */
   font-weight: 900;
   line-height: 0.94;
   letter-spacing: -0.04em;

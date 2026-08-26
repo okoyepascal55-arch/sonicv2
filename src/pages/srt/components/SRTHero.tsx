@@ -60,7 +60,7 @@ export default function SRTHero({ onScrollToFeatures, heroIcons }: SRTHeroProps)
         <p className="text-background-50/55 text-sm md:text-base leading-relaxed max-w-[480px] mb-2 font-normal">
           {tSub}
         </p>
-        <p className="text-background-50/20 text-[10px] uppercase tracking-[0.25em] font-black mb-6 md:mb-8">
+        <p className="text-background-50/20 text-[11px] uppercase tracking-[0.2em] font-black mb-6 md:mb-8">
           {tTagline}
         </p>
 
@@ -98,7 +98,7 @@ export default function SRTHero({ onScrollToFeatures, heroIcons }: SRTHeroProps)
             <button
               key={chip.id}
               onClick={() => scrollTo(chip.id)}
-              className="px-3 py-1.5 border border-background-50/20 bg-background-50/10 text-background-50/75 text-[10px] font-black hover:border-primary-500/60 hover:text-primary-500 hover:bg-primary-500/12 transition-all duration-200 cursor-pointer whitespace-nowrap uppercase tracking-wider"
+              className="px-3 py-2.5 min-h-[44px] border border-background-50/20 bg-background-50/10 text-background-50/75 text-[10px] font-black hover:border-primary-500/60 hover:text-primary-500 hover:bg-primary-500/12 transition-all duration-200 cursor-pointer whitespace-nowrap uppercase tracking-wider"
             >
               {chip.label}
             </button>

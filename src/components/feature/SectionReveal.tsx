@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 
+// ── Simple SectionReveal (used on non-home pages) ──────────────────────────
 interface SectionRevealProps {
   children: ReactNode;
   className?: string;
@@ -38,67 +39,45 @@ export default function SectionReveal({
           }, delay);
         }
       },
-      {
-        threshold: 0.06,
-        rootMargin: '0px 0px -40px 0px',
-      }
+      { threshold: 0.06, rootMargin: '0px 0px -40px 0px' }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, [delay, hasAnimated]);
 
-  const distance = intensity === 'subtle' ? 28 : intensity === 'medium' ? 48 : 72;
-
+  const distance = intensity === 'subtle' ? 20 : intensity === 'medium' ? 36 : 56;
   const getInitialTransform = () => {
     switch (direction) {
-      case 'up': return `translateY(${distance}px) scale(0.992)`;
-      case 'down': return `translateY(-${distance}px) scale(0.992)`;
-      case 'left': return `translateX(${distance}px) scale(0.992)`;
-      case 'right': return `translateX(-${distance}px) scale(0.992)`;
-      default: return `translateY(${distance}px) scale(0.992)`;
+      case 'up':    return `translateY(${distance}px)`;
+      case 'down':  return `translateY(-${distance}px)`;
+      case 'left':  return `translateX(${distance}px)`;
+      case 'right': return `translateX(-${distance}px)`;
+      default:      return `translateY(${distance}px)`;
     }
   };
-
-  // Reduced motion: no translate, instant fade.
-  // NOTE: no `filter: blur()` — blurring full-width sections caused visible
-  // scroll flicker and expensive repaints. Opacity + transform are GPU-cheap.
-  const transform = prefersReducedMotion
-    ? 'translateY(0) translateX(0) scale(1)'
-    : (isVisible ? 'translateY(0) translateX(0) scale(1)' : getInitialTransform());
-  const opacity = isVisible ? 1 : 0;
 
   return (
     <div
       ref={sectionRef}
       className={`relative ${className}`}
       style={{
-        transform,
-        opacity,
+        transform: prefersReducedMotion ? 'none' : (isVisible ? 'none' : getInitialTransform()),
+        opacity: isVisible ? 1 : 0,
         transition: isVisible
-          ? `transform ${prefersReducedMotion ? '0.2s' : '0.85s'} cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms,
-             opacity ${prefersReducedMotion ? '0.2s' : '0.65s'} cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`
+          ? `transform ${prefersReducedMotion ? '0.15s' : '0.7s'} cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms,
+             opacity ${prefersReducedMotion ? '0.15s' : '0.55s'} ease ${delay}ms`
           : 'none',
+        willChange: 'transform, opacity',
       }}
     >
-      {/* Lime top-edge shimmer — grows from center, then fades */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 h-[1px] pointer-events-none z-10"
-        style={{
-          width: isVisible ? '200px' : '0px',
-          background: 'linear-gradient(90deg, transparent, #C8D400, transparent)',
-          opacity: isVisible ? 0.5 : 0,
-          transition: `width ${prefersReducedMotion ? '0.2s' : '0.8s'} cubic-bezier(0.16, 1, 0.3, 1) ${delay + 80}ms,
-                       opacity ${prefersReducedMotion ? '0.2s' : '1s'} ease-out ${delay + 80}ms`,
-        }}
-      />
-
-      <div className="relative z-10">{children}</div>
+      {children}
     </div>
   );
 }
 
-// ── Stacked Card Reveal ────────────────────────────────────────────────────
+// ── StackedSectionReveal (homepage) ───────────────────────────────────────
+// Smoothed: lower translate distance, gentler easing, no shimmer line,
+// lower threshold so sections trigger earlier (less blank-screen time).
 interface StackedSectionRevealProps {
   children: ReactNode;
   className?: string;
@@ -110,7 +89,6 @@ export function StackedSectionReveal({
   children,
   className = '',
   index,
-  totalSections,
 }: StackedSectionRevealProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -126,63 +104,42 @@ export function StackedSectionReveal({
   }, []);
 
   useEffect(() => {
+    // Lower threshold (0.02) + negative rootMargin = sections trigger when
+    // just 2% is visible, earlier than before — reduces blank-screen time.
+    // No stagger delay — each section animates independently as it enters.
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
-          setTimeout(() => {
-            setIsVisible(true);
-            setHasAnimated(true);
-          }, index * (prefersReducedMotion ? 0 : 55));
+          setIsVisible(true);
+          setHasAnimated(true);
         }
       },
       {
-        threshold: 0.04,
-        rootMargin: '0px 0px -20px 0px',
+        threshold: 0.02,
+        rootMargin: '0px 0px 0px 0px', // no negative offset — trigger as soon as visible
       }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
-  }, [index, hasAnimated, prefersReducedMotion]);
-
-  // Depth offset — sections further down the stack start slightly lower.
-  // NOTE: no `zIndex` stacking — dynamic z-index (totalSections - index) made
-  // earlier sections paint over later ones, causing visible overlap/ghosting.
-  // Sections flow in normal document order instead.
-  const depthOffset = Math.min((totalSections - index - 1) * 1.5, 12);
-  const translateY = isVisible ? 0 : 36 + depthOffset;
-  const scale = isVisible ? 1 : 0.988 - depthOffset * 0.001;
-
-  const transform = prefersReducedMotion
-    ? 'translateY(0) scale(1)'
-    : (isVisible ? 'translateY(0) scale(1)' : `translateY(${translateY}px) scale(${scale})`);
-  const opacity = isVisible ? 1 : 0;
+  }, [hasAnimated]);
 
   return (
     <div
       ref={sectionRef}
       className={`relative ${className}`}
       style={{
-        transform,
-        opacity,
+        // Reduced translate (16px vs 36px before) — subtle, not jarring.
+        // No scale — scale on full-width sections causes layout shift & repaints.
+        // Faster duration (0.6s vs 0.85s) — feels snappier.
+        transform: prefersReducedMotion ? 'none' : (isVisible ? 'none' : 'translateY(16px)'),
+        opacity: isVisible ? 1 : 0,
         transition: isVisible
-          ? `transform ${prefersReducedMotion ? '0.2s' : '0.85s'} cubic-bezier(0.16, 1, 0.3, 1) ${index * (prefersReducedMotion ? 0 : 40)}ms,
-             opacity ${prefersReducedMotion ? '0.2s' : '0.6s'} cubic-bezier(0.16, 1, 0.3, 1) ${index * (prefersReducedMotion ? 0 : 40)}ms`
+          ? `transform ${prefersReducedMotion ? '0.15s' : '0.6s'} cubic-bezier(0.22, 1, 0.36, 1),
+             opacity ${prefersReducedMotion ? '0.15s' : '0.45s'} ease`
           : 'none',
+        willChange: 'transform, opacity',
       }}
     >
-      {/* Lime shimmer line — grows from center, then fades */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 h-[1px] pointer-events-none z-10"
-        style={{
-          width: isVisible ? '180px' : '0px',
-          background: 'linear-gradient(90deg, transparent, #C8D400, transparent)',
-          opacity: isVisible ? 0.45 : 0,
-          transition: `width ${prefersReducedMotion ? '0.2s' : '0.9s'} cubic-bezier(0.16, 1, 0.3, 1) ${index * (prefersReducedMotion ? 0 : 40) + 100}ms,
-                       opacity ${prefersReducedMotion ? '0.2s' : '1.2s'} ease-out ${index * (prefersReducedMotion ? 0 : 40) + 100}ms`,
-        }}
-      />
-
       {children}
     </div>
   );
