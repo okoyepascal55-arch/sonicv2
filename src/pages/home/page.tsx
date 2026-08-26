@@ -80,7 +80,8 @@ export default function HomePage() {
         </section>
       </StackedSectionReveal>
 
-      <WoodenDivider />
+      {/* Dark-bg WoodenDivider — SRTTeaser(dark) → ClientProof(light) */}
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
       <StackedSectionReveal index={6} totalSections={totalSections}>
         <section id="client-proof" className="relative z-10 bg-white">
