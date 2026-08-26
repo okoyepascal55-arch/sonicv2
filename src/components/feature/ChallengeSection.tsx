@@ -59,10 +59,9 @@ export default function ChallengeSection({
       ref={sectionRef}
       id={id}
       className="relative overflow-hidden py-16 md:py-28 px-4 md:px-6"
-      style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }}
+      style={{ background: 'oklch(0.13 0.005 118)' }}
     >
       {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary-500/3 blur-[130px] pointer-events-none rounded-full" />
 
       <div className="relative max-w-6xl mx-auto">
 
@@ -76,12 +75,15 @@ export default function ChallengeSection({
           }}
         >
           <div className="max-w-2xl">
-            <p className="text-[11px] font-black text-primary-500 uppercase tracking-[0.2em] mb-6">{badge}</p>
-            <h2 className="sonic-h2 text-foreground-950 mb-4">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{badge}</span>
+            </div>
+            <h2 className="leist-h2 text-white mb-4">
               {headline}
             </h2>
             {subline && (
-              <p className="text-foreground-950/50 text-base md:text-lg max-w-xl leading-relaxed">{subline}</p>
+              <p className="text-white/50 text-base md:text-lg max-w-xl leading-relaxed">{subline}</p>
             )}
           </div>
 
@@ -132,14 +134,14 @@ export default function ChallengeSection({
         </div>
 
         {/* Challenge cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-foreground-950/[0.08]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0" style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
           {challenges.map((c, i) => {
             const isActive = active === i;
             const isRevealed = revealed[i];
             return (
               <div
                 key={i}
-                className={`relative overflow-hidden cursor-pointer transition-all duration-500 ${i < challenges.length - 1 ? 'border-b md:border-b-0 md:border-r border-foreground-950/[0.08]' : ''}`}
+                className={`relative overflow-hidden cursor-pointer transition-all duration-500 ${i < challenges.length - 1 ? 'border-b md:border-b-0 md:border-r border-white/12' : ''}`}
                 style={{
                   background: isActive
                     ? 'rgba(200,212,0,0.06)'

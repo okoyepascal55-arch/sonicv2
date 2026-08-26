@@ -163,6 +163,13 @@ export default function WarehouseLogistikPage() {
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tHeroBadge}</span>
           </div>
+            {/* Breadcrumb — unique to Warehouse per brief */}
+            <div className="inline-flex items-center gap-2 mb-4" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em' }}>
+              <a href="/leistungen" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>Leistungen</a>
+              <span style={{ color: 'oklch(0.81 0.19 115)' }}>›</span>
+              <span style={{ color: 'rgba(255,255,255,0.8)' }}>Warehouse &amp; Logistik</span>
+            </div>
+
             {/* v3 eyebrow */}
 
             <div className="flex items-center gap-3 mb-5 md:mb-6">
