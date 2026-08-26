@@ -269,7 +269,7 @@ export default function ServicesGrid() {
 
           {/* ── Image — maxWidth 960 matching VideoShowcase, 16/9 aspect ── */}
           <div className="relative overflow-hidden bg-foreground-950">
-            <div className="relative w-full mx-auto" style={{ aspectRatio: '16/9', maxWidth: 960 }}>
+            <div className="relative w-full mx-auto" style={{ aspectRatio: '16/9' }}>
               {currentImages.length === 0 ? (
                 <div className="absolute inset-0 flex items-center justify-center text-white/40">
                   <div className="text-center p-8">
@@ -283,7 +283,7 @@ export default function ServicesGrid() {
                     key={`${selectedIndex}-${idx}`}
                     src={img}
                     alt={`${svc.title} — Impression ${idx + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500 cursor-pointer"
+                    className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 cursor-pointer"
                     style={{ opacity: imageIndex === idx && fade ? 1 : 0 }}
                     loading={idx === 0 && selectedIndex === 0 ? 'eager' : 'lazy'}
                     decoding="async"
@@ -356,20 +356,18 @@ export default function ServicesGrid() {
 
           {/* ── Caption bar — lighter, matches VideoShowcase micro-bar language ── */}
           <div
-            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-5 md:px-8 py-5 md:py-6"
+            className="px-5 md:px-8 py-5 md:py-6"
             style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.08)' }}
           >
-            <div className="min-w-0">
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-1.5" style={{ color: 'oklch(0.55 0.08 115)' }}>
-                {svc.lead}
-              </p>
-              <p className="text-sm text-foreground-600 leading-relaxed max-w-xl">
-                {svc.description}
-              </p>
-            </div>
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-2" style={{ color: 'oklch(0.55 0.08 115)' }}>
+              {svc.lead}
+            </p>
+            <p className="text-sm text-foreground-600 leading-relaxed mb-5">
+              {svc.description}
+            </p>
             <button
               onClick={() => handleGetStarted(svc.link)}
-              className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 font-black text-xs uppercase tracking-[0.14em] transition-all duration-200 cursor-pointer hover:bg-primary-500 hover:text-foreground-950"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 font-black text-xs uppercase tracking-[0.14em] transition-all duration-200 cursor-pointer hover:bg-primary-500 hover:text-foreground-950"
               style={{
                 background: 'oklch(var(--foreground-950))',
                 color: '#fff',
