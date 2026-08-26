@@ -479,8 +479,9 @@ export default function KreationShowcase() {
                 <span className="text-[10px] font-black uppercase tracking-[0.15em] text-foreground-950">Showcase</span>
               </div>
               
-              <h2 className="font-black leading-[0.9] tracking-tight mb-3 text-foreground-950" style={{ fontSize: 'clamp(36px,5.5vw,68px)' }}>
-                Unsere Arbeit.<br /><span className="text-primary-500">Deine Wirkung.</span>
+              <h2 className="leist-h2 text-foreground-950 mb-3">
+                Unsere Arbeit.<br />
+                <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Deine Wirkung.</span>
               </h2>
               <p className="text-sm max-w-sm leading-relaxed text-foreground-950/45">
                 {activeTab === 'konzeption' && 'Von der ersten Idee bis zum fertigen Konzept — Kreation die verkauft.'}
