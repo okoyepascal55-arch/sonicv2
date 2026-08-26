@@ -477,7 +477,7 @@ export default function CaseStudiesPage() {
 
         {/* Intro — single-column paragraph only (the wood card below already carries the stats) */}
         <div className="sonic-container py-6 md:py-8 border-b border-foreground-100">
-          <p className="text-foreground-600 max-w-2xl" style={{ fontSize: '19px', lineHeight: '1.7' }}>
+          <p className="text-foreground-600 w-full" style={{ fontSize: '19px', lineHeight: '1.7' }}>
             Gemeinsam mit unseren Kunden erzielen wir messbare Erfolge. Unsere datengetriebene Arbeitsweise ermöglicht laufende Optimierungen — die Ergebnisse wachsen mit jeder weiteren Zusammenarbeit.
           </p>
         </div>

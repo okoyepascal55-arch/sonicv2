@@ -60,24 +60,20 @@ export default function AboutPage() {
             <img
               src={headerImages[0].url}
               alt="Sonic Group — Über uns"
-              className="absolute inset-0 w-full h-full object-cover object-bottom"
+              className="absolute inset-0 w-full h-full object-cover object-center"
               fetchPriority="high"
             />
           )}
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
 
-          {/* Subtle lime glow */}
-          <div
-            className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[400px] pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse at center, rgba(220,233,77,0.06) 0%, transparent 65%)' }}
-          />
+
 
           {/* Hero content — bottom-anchored */}
           <div className="relative z-10 max-w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14 w-full">
             {/* Eyebrow badge — unified token pattern */}
-            <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
-              <span className="w-1.5 h-1.5 bg-primary-500" />
+            <div className="flex items-center gap-3 mb-5 md:mb-6">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
               <span className="text-primary-500">{tHeroBadge}</span>
             </div>
 

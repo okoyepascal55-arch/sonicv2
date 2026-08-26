@@ -68,7 +68,7 @@ export default function KarriereJobs() {
           {/* Tanja panel */}
           <div className="p-8 md:p-10 flex flex-col justify-between" style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)' }}>
             <div>
-              <div className="w-16 h-16 overflow-hidden mb-6" style={{ border: '2px solid oklch(var(--primary-500) / 0.45)' }}>
+              <div className="w-28 h-36 overflow-hidden mb-6" style={{ border: '2px solid oklch(var(--primary-500) / 0.45)' }}>
                 <img src={tanjaPortrait} alt="Tanja — HR Team" className="w-full h-full object-cover object-top" loading="lazy" decoding="async" />
               </div>
               <p className="text-[22px] font-black leading-[1.2] tracking-[-0.02em] text-white mb-3">{tTanjaHeading}</p>
