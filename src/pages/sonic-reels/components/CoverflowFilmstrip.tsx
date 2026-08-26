@@ -44,15 +44,15 @@ function PolaroidCard({
         {/* Grain — active card only */}
         {isActive && <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.06, backgroundImage: GRAIN, backgroundSize: '150px 150px', mixBlendMode: 'overlay' }} />}
 
-        {/* Expand hint */}
+        {/* Expand hint — always visible on active card, hover on others */}
         <div
-          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-          style={{ background: 'rgba(0,0,0,0.35)' }}
+          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+          style={{ background: isActive ? 'rgba(0,0,0,0.18)' : 'rgba(0,0,0,0.35)' }}
         >
           <div className="flex items-center gap-2 px-3 py-1.5" style={{ background: 'rgba(0,0,0,0.65)', borderRadius: 999 }}>
             <i className="ri-fullscreen-line text-white" style={{ fontSize: '0.95rem' }} />
             <span className="whitespace-nowrap" style={{ fontFamily: 'monospace', fontSize: '0.55rem', letterSpacing: '0.15em', color: '#fff', fontWeight: 900 }}>
-              VIEW
+              {isActive ? 'TAP TO EXPAND' : 'VIEW'}
             </span>
           </div>
         </div>
@@ -115,15 +115,23 @@ export default function CoverflowFilmstrip({
     (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
   };
 
+  const settling = useRef(false);
+
   const handleCardClick = (i: number) => {
     if (dragState.current.moved) {
       dragState.current.moved = false;
       return;
     }
-    // First click on a card brings it to the center (like a carousel);
-    // only clicking the already-centered card opens the fullscreen lightbox.
-    if (i === activeIndex) onExpand(i);
-    else onSelect(i);
+    if (i === activeIndex) {
+      // Already centred — expand on click
+      if (!settling.current) onExpand(i);
+    } else {
+      // Not centred — move to centre first, lock expand briefly so a fast
+      // double-tap can't accidentally open the lightbox before card settles
+      settling.current = true;
+      onSelect(i);
+      setTimeout(() => { settling.current = false; }, 350);
+    }
   };
 
   const active = photos[activeIndex];
