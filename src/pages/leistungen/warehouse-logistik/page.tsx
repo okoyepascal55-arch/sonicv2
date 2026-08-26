@@ -307,7 +307,7 @@ export default function WarehouseLogistikPage() {
  <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0"aria-hidden="true"/>
  <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Full Service</span>
  </div>
- <h2 className="text-3xl md:text-4xl font-black text-white mb-4 md:mb-6 leading-tight">Darum Warehouse<br /><span className="text-primary-500">bei Sonic.</span></h2>
+ <h2 className="leist-h2 text-white mb-4 md:mb-6">Darum Warehouse<br /><span className="text-primary-500">bei Sonic.</span></h2>
  <p className="text-white/65 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
  Unsere Lager- und Logistikleistungen dienen einem Zweck: Dein Projekt erfolgreich realisieren. POS-Material, Give-aways, Möbel und Equipment werden von uns produziert und unterliegen unserer Qualitätskontrolle. Diese gelingt effizient, wenn wir das Lager direkt nebenan haben.
  </p>

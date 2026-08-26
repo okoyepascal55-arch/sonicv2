@@ -137,7 +137,7 @@ function BeforeAfterSlider() {
       <div className="flex items-start justify-between gap-4 px-8 py-7 bg-foreground-950/5 border border-foreground-950/[0.08]">
         <div>
           <div className="text-[9px] font-black uppercase tracking-[0.18em] text-primary-500 mb-2">CGI → Reality Vergleich</div>
-          <h3 className="text-3xl md:text-4xl font-black text-foreground-950 leading-none tracking-tight mb-1.5">CGI-Render vs. gebauter Stand</h3>
+          <h3 className="leist-h2 text-foreground-950 mb-1">CGI-Render vs. gebauter Stand</h3>
           <p className="text-xs font-light text-foreground-950/40">Ziehe den Regler — Philips @ IFA Berlin</p>
         </div>
         <a href={`mailto:${CONTACT_EMAIL}?subject=CGI%20Portfolio%20anfragen`} className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest cursor-pointer transition-all duration-300 hover:bg-primary-500 hover:text-foreground-950 whitespace-nowrap bg-transparent text-foreground-950/40 border border-foreground-950/[0.12]" style={{ borderRadius: 0 }}>Portfolio anfragen <i className="ri-arrow-right-line" /></a>

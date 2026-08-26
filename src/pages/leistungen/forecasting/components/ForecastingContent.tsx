@@ -153,7 +153,7 @@ export default function ForecastingContent() {
  <div className="flex items-center gap-2 mb-3">
  <span className="text-[10px] font-black text-foreground-950/30 uppercase tracking-widest">Schritt {step.num}</span>
  </div>
- <h3 className="text-lg font-black text-foreground-950 mb-3">{step.title}</h3>
+ <h3 className="leist-h2 text-foreground-950">{step.title}</h3>
  <p className="text-foreground-950/60 text-sm leading-relaxed">{step.desc}</p>
  </div>
  </div>

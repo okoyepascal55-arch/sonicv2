@@ -68,7 +68,7 @@ const FALLBACK_EVENTS_SOLUTION_ICONS = [
 export default function EventsContent() {
   const tChallengeHeading = useText('leistungen_events_content', 'events-challenge-heading', 'Ein Moment, viele Baustellen.');
   const tChallengeSub = useText('leistungen_events_content', 'events-challenge-sub', 'Warum der Wow-Effekt bei Messen und Events nicht immer eintritt.');
-  const tSolutionHeading = useText('leistungen_events_content', 'events-solution-heading', 'MESSE- UND EVENT-FULL SERVICE.');
+  const tSolutionHeading = useText('leistungen_events_content', 'events-solution-heading', 'Messe- und Event-Full Service.');
   const tSolutionSub = useText('leistungen_events_content', 'events-solution-sub', 'Wir setzen alles daran, dass dein Messe- oder Event-Auftritt zur Erfolgsgeschichte wird.');
   const tProcessHeading = useText('leistungen_events_content', 'events-process-heading', 'So arbeiten wir');
   const tProcessSub = useText('leistungen_events_content', 'events-process-sub', 'Von der Planung bis zum Reporting: ideenreich, professionell und zuverlässig.');

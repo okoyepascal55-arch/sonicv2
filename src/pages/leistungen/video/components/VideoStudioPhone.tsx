@@ -142,7 +142,7 @@ export default function VideoStudioPhone() {
  <span className="w-1.5 h-1.5 bg-primary-500"/>
  <span className="text-primary-500 text-xs font-black uppercase tracking-[0.25em]">LVP Ökosystem — Unendliche Möglichkeiten</span>
  </div>
- <h2 className="text-3xl md:text-5xl font-black text-white leading-tight mb-3">
+ <h2 className="leist-h2 text-white mb-3">
  Ein Scan. Unendlich viele
  <span className="block text-primary-500">Berührungspunkte.</span>
  </h2>

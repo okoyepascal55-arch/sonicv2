@@ -92,7 +92,7 @@ const FALLBACK_SOCKS = [
 export default function StaffContent() {
   const tChallengeHeading = useText('leistungen_staff_content', 'staff-challenge-heading', 'Staffing flexibilisieren ist komplex.');
   const tChallengeSub = useText('leistungen_staff_content', 'staff-challenge-sub', 'Im Bereich Sales und Promotion kommt klassisches Recruiting ans Limit.');
-  const tSolutionHeading = useText('leistungen_staff_content', 'staff-solution-heading', 'PERSONALDIENSTLEISTUNG ALS DIGITALISIERTER SERVICE.');
+  const tSolutionHeading = useText('leistungen_staff_content', 'staff-solution-heading', 'Personaldienstleistung als digitalisierter Service.');
   const tSolutionSub = useText('leistungen_staff_content', 'staff-solution-sub', 'Recruiting Task Force — Auswahl, Betreuung und Abrechnung aus einer Hand.');
   const tProcessHeading = useText('leistungen_staff_content', 'staff-process-heading', 'So läuft die Personalbeschaffung mit Sonic');
   const tSpecsHeading = useText('leistungen_staff_content', 'staff-specs-heading', 'ARBEITNEHMERÜBERLASSUNG FÜR DEINE FIELD FORCE.');

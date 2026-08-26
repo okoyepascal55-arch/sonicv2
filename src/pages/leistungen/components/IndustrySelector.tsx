@@ -195,7 +195,7 @@ export default function IndustrySelector() {
                 <div className="w-12 h-12 flex items-center justify-center bg-primary-500 mx-auto mb-4">
                   <i className="ri-check-line text-2xl text-white"></i>
                 </div>
-                <h3 className="text-xl md:text-2xl font-black text-foreground-950 uppercase tracking-tight">
+                <h3 className="text-xl md:text-2xl font-black text-foreground-950 tracking-tight leading-snug">
                   Vielen Dank!
                 </h3>
                 <p className="text-sm text-foreground-600 leading-relaxed mt-2 max-w-md mx-auto">

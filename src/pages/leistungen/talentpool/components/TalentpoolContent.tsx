@@ -194,7 +194,7 @@ export default function TalentpoolContent() {
   const { images: profileImages } = useMediaStore('leistungen_talentpool_profiles_images');
   const tChallengeHeading = useText('leistungen_talentpool_content', 'talentpool-challenge-heading', 'Wechselnde Gesichter. Kein Markenwissen. Kein ROI.');
   const tChallengeSub = useText('leistungen_talentpool_content', 'talentpool-challenge-sub', 'Das Standardmodell in der Promotion-Branche ist kaputt. Freelancer-Netzwerke liefern keine echten Markenbotschafter.');
-  const tSolutionHeading = useText('leistungen_talentpool_content', 'talentpool-solution-heading', 'DER SONIC-TALENTEPOOL. KEIN VERGLEICH.');
+  const tSolutionHeading = useText('leistungen_talentpool_content', 'talentpool-solution-heading', 'Der Sonic-Talentepool. Kein Vergleich.');
   const tSolutionSub = useText('leistungen_talentpool_content', 'talentpool-solution-sub', 'Festangestellt, trainiert und live-getrackt — das ist der Unterschied.');
   const tProfilesHeading = useText('leistungen_talentpool_content', 'talentpool-profiles-heading', '4 ROLLEN. EIN ANSPRECHPARTNER.');
   const tProfilesSub = useText('leistungen_talentpool_content', 'talentpool-profiles-sub', 'Jeden Talent-Typ aus einer Hand — koordiniert, geschult und live getrackt.');
@@ -240,7 +240,7 @@ export default function TalentpoolContent() {
                 <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
                 <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Sonic-Lösung</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight uppercase">
+              <h2 className="leist-h2 text-foreground-950 mb-3">
                 {tSolutionHeading}
               </h2>
             </div>
@@ -263,7 +263,7 @@ export default function TalentpoolContent() {
                 <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
                 <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Talentprofile</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight uppercase">{tProfilesHeading}</h2>
+              <h2 className="leist-h2 text-white mb-3">{tProfilesHeading}</h2>
             </div>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs lg:text-right">
               {tProfilesSub}

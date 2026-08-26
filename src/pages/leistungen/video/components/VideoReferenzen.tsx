@@ -123,7 +123,7 @@ export default function VideoReferenzen() {
  </div>
  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
  <div>
- <h2 className="text-4xl md:text-5xl font-black text-foreground-950 leading-tight mb-3">
+ <h2 className="leist-h2 text-foreground-950 mb-3">
  Marken, die mit<br />
  <span className="text-primary-500">Live Video</span> wachsen.
  </h2>

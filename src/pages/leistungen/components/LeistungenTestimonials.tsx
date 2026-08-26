@@ -130,7 +130,7 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
           <div className="w-14 h-14 bg-white shadow-md flex items-center justify-center p-2 ring-2 ring-foreground-100 flex-shrink-0">
             <img src={item.logo} alt={item.brand} className="w-full h-full object-contain" loading="lazy" />
           </div>
-          <h3 className="text-sm font-black text-foreground-950 tracking-wide leading-tight">{item.brand}</h3>
+          <h3 className="leist-h2 text-foreground-950">{item.brand}</h3>
         </div>
 
         {/* Quote */}
