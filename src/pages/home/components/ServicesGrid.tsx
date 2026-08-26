@@ -9,8 +9,8 @@ function hideBrokenImg(e: React.SyntheticEvent<HTMLImageElement>) {
 
 const services = [
   {
-    title: 'Events & Messen',
-    lead: 'Live-Kommunikation, die begeistert.',
+    title: 'Menschen für Events & Messen',
+    lead: 'Dediziert geschultes Personal für bestimmte Funktionen – Moderation, Musik, Catering, Logistik und Aufbau.',
     description: 'Wir präsentieren deine Marke da, wo deine Zielgruppe ist: Events, Messen, Roadshows und hybride Formate. Von Konzept über Personal bis Logistik — alles aus einer Hand.',
     tagline: 'Vor Ort. Auf Tour. Mit Wirkung.',
     fallbackIcon: 'ri-calendar-event-line',
@@ -33,10 +33,10 @@ const services = [
     link: '/leistungen/events-messen',
   },
   {
-    title: 'Kreation & Content',
-    lead: 'Content mit Retail-DNA.',
-    description: 'Videocontent und Live-Video-Kanäle mit unseren Markenbotschaftern — für Produktberatung, Sales und Service-Support. Von Social Content bis Livestreams und Produktvideos.',
-    tagline: 'Von Social Content bis Livestreams und Produktvideos.',
+    title: 'Menschen für Content',
+    lead: 'Ausdrucksstarkes Personal mit Fokus auf Content Produktion.',
+    description: 'Videocontent und Live-Video-Kanäle mit unseren Markenbotschaftern — für Produktberatung, Sales und Service-Support. QR-Code auf der Verpackung, Widget im Online-Shop oder Display am POS: Fachberatung auf Knopfdruck.',
+    tagline: 'Von Social Content bis Livestreams und Produktvideos — Content mit Retail-DNA.',
     fallbackIcon: 'ri-movie-line',
     images: [
       '/images/home/2. Menschen für Content/3. Bild Kopie.webp',
@@ -45,8 +45,8 @@ const services = [
     link: '/leistungen/kreation-content',
   },
   {
-    title: 'Schulungen',
-    lead: 'Wissen, das direkt wirkt.',
+    title: 'Menschen für Schulungen',
+    lead: 'Für Marken-, Produkt- und Verkaufs-Training.',
     description: 'Menschen, die Marken erklären. Trainings, die Wissen direkt in Performance verwandeln — offline, hybrid oder online. Mit Personal und Technik aus einem System.',
     tagline: 'Strategisch geplant. Praxisnah umgesetzt.',
     fallbackIcon: 'ri-graduation-cap-line',
@@ -69,10 +69,10 @@ const services = [
     link: '/losungen',
   },
   {
-    title: 'Point of Sale',
-    lead: 'Über 1,35 Mio. Einsätze.',
-    description: 'End-to-End-Partner für den Point of Sale: Design, Displays, Möbel, Collateral, Give-aways, Logistik und Montage. Datenbasiert geplant, live reportet und messbar erfolgreich.',
-    tagline: 'Über 20.000 Stores. Über 2 Milliarden € Umsatz.',
+    title: 'Menschen für den Point of Sale',
+    lead: 'Geschultes Personal mit Augenmerk auf Marken- und / oder Produkt-Inszenierung.',
+    description: 'End-to-End-Partner für den Point of Sale: Design, Displays, Möbel, Collateral, Give-aways, Logistik und Montage. Wir gestalten und bestücken deine Fläche — datenbasiert geplant, live reportet und messbar erfolgreich.',
+    tagline: 'Über 20.000 Stores. Über 1.300.000 Einsätze/Aufgaben. Über 2 Milliarden Umsatz €.',
     fallbackIcon: 'ri-store-2-line',
     images: [
       'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
@@ -82,10 +82,10 @@ const services = [
     link: '/leistungen/pos-full-service',
   },
   {
-    title: 'Studios & Live Video',
+    title: 'Menschen für unsere Studios',
     lead: 'All In One: Regisseur, Moderator, Verkäufer.',
     description: 'Erlebbar werden: Produktberatung, Sales und Service-Support direkt aus unseren Studio-Setups. Für Livestreams, Video-Commerce, digitale Beratung und Content-Produktion.',
-    tagline: 'Kanalübergreifend, skalierbar, nah an der Customer Journey.',
+    tagline: 'Wir richten uns nach den Usern — kanalübergreifend, skalierbar und immer nah an der echten Customer Journey.',
     fallbackIcon: 'ri-camera-line',
     images: [
       '/images/home/4. Menschen für unsere Studios/1.webp',
@@ -195,8 +195,12 @@ export default function ServicesGrid() {
               ROI
             </span>
           </h2>
-          <p className="sonic-subline mt-3">
-            Vertriebsagentur, Personalagentur, Performanceagentur und Eventagentur in einem.
+          <p className="text-sm md:text-base text-foreground-600 max-w-2xl mx-auto font-medium leading-relaxed">
+            Die Full-Service-Leistungen von Sonic:{' '}
+            <span className="text-primary-600 font-semibold">Vertriebsagentur</span>,{' '}
+            <span className="text-primary-600 font-semibold">Personalagentur</span>,{' '}
+            <span className="text-primary-600 font-semibold">Performanceagentur</span> und{' '}
+            <span className="text-primary-600 font-semibold">Eventagentur</span> in einem.
           </p>
         </div>
 
@@ -342,22 +346,7 @@ export default function ServicesGrid() {
           </div>
         </div>
 
-        {/* ── Bottom micro-bar — matches VideoShowcase ── */}
-        <div className="flex items-center justify-center gap-5 mt-5 flex-wrap">
-          <span className="text-xs font-semibold text-foreground-400 uppercase tracking-wider">Markteintritt</span>
-          <span className="w-1 h-1 bg-foreground-200" style={{ borderRadius: '50%' }} />
-          <span className="text-xs font-semibold text-foreground-400 uppercase tracking-wider">Absatz steigern</span>
-          <span className="w-1 h-1 bg-foreground-200" style={{ borderRadius: '50%' }} />
-          <span className="text-xs font-semibold text-foreground-400 uppercase tracking-wider">Omnichannel</span>
-          <span className="w-1 h-1 bg-foreground-200" style={{ borderRadius: '50%' }} />
-          <a
-            href="/leistungen"
-            className="text-xs font-bold text-primary-600 hover:text-primary-700 transition-colors duration-200 flex items-center gap-1.5"
-          >
-            Alle Leistungen entdecken
-            <i className="ri-arrow-right-line text-xs" />
-          </a>
-        </div>
+
 
       </div>
 
