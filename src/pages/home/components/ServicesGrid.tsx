@@ -212,40 +212,7 @@ export default function ServicesGrid() {
             border: '1px solid oklch(var(--foreground-950) / 0.1)',
           }}
         >
-          {/* Tab row — continuous top border matching the card */}
-          <div
-            className="flex overflow-x-auto scrollbar-none"
-            style={{ borderBottom: '1px solid oklch(var(--foreground-950) / 0.1)' }}
-            role="tablist"
-            aria-label="Leistungskategorien"
-          >
-            {services.map((service, index) => {
-              const isActive = selectedIndex === index;
-              return (
-                <button
-                  key={index}
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => setSelectedIndex(index)}
-                  className="whitespace-nowrap flex-shrink-0 flex items-center gap-2 px-4 md:px-6 py-4 text-[11px] md:text-xs font-black uppercase tracking-[0.15em] transition-all duration-200 cursor-pointer"
-                  style={{
-                    background:   isActive ? 'oklch(var(--foreground-950))' : 'transparent',
-                    color:        isActive ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-400))',
-                    borderRight: '1px solid oklch(var(--foreground-950) / 0.08)',
-                    minHeight: '44px',
-                  }}
-                >
-                  <span
-                    className="w-1.5 h-1.5 flex-shrink-0 transition-colors duration-200"
-                    style={{ background: isActive ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-300))' }}
-                  />
-                  {service.title}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* ── Image panel — 16/9 mobile, wider desktop ── */}
+          {/* ── Image panel — 16/9, no tabs above ── */}
           <div className="relative overflow-hidden bg-foreground-950">
             <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
               {currentImages.length === 0 ? (
@@ -343,6 +310,60 @@ export default function ServicesGrid() {
               Mehr dazu
               <i className="ri-arrow-right-line text-sm" />
             </button>
+          </div>
+
+          {/* ── Selector strip — numbers always visible, no scrolling needed ── */}
+          <div
+            className="grid"
+            style={{
+              gridTemplateColumns: 'repeat(5, 1fr)',
+              borderTop: '1px solid oklch(var(--foreground-950) / 0.08)',
+            }}
+            role="tablist"
+            aria-label="Leistungskategorien"
+          >
+            {services.map((service, index) => {
+              const isActive = selectedIndex === index;
+              return (
+                <button
+                  key={index}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setSelectedIndex(index)}
+                  className="flex flex-col items-center justify-center gap-1.5 py-3 px-2 cursor-pointer transition-all duration-200 focus:outline-none"
+                  style={{
+                    background: isActive ? 'oklch(var(--foreground-950))' : '#fff',
+                    borderRight: index < 4 ? '1px solid oklch(var(--foreground-950) / 0.08)' : undefined,
+                    borderTop: isActive ? '2px solid oklch(var(--primary-500))' : '2px solid transparent',
+                    minHeight: '56px',
+                  }}
+                >
+                  <span
+                    className="font-black leading-none tabular-nums"
+                    style={{
+                      fontSize: '15px',
+                      letterSpacing: '-0.03em',
+                      color: isActive ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-300))',
+                    }}
+                  >
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span
+                    className="hidden sm:block text-center leading-tight"
+                    style={{
+                      fontSize: '9px',
+                      fontWeight: 900,
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
+                      color: isActive ? 'rgba(255,255,255,0.55)' : 'oklch(var(--foreground-400))',
+                      maxWidth: '64px',
+                    }}
+                  >
+                    {['Events & Messen','Content','Schulungen','Point of Sale','Studios'][index]}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
