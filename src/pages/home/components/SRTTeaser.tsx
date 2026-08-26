@@ -83,10 +83,6 @@ export default function SRTTeaser() {
       style={{ background: 'radial-gradient(ellipse at 50% 30%, #1a1a1a 0%, #111111 55%, #0B0B0C 100%)' }}
     >
       {/* Ambient glow */}
-      <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[700px] h-[700px] bg-primary-500/[0.07] rounded-full blur-[160px] pointer-events-none"
-        aria-hidden="true"
-      />
 
       <div className="sonic-container relative z-10">
         {/* ── Header ── */}

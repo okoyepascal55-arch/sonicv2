@@ -304,7 +304,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
                   <p className="text-white/60 text-xs font-medium">Sonic Lösung</p>
                 </div>
               </div>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-3 md:mb-4">
+              <h2 className="leist-h2 text-foreground-950">
                 {s.title}
               </h2>
               <p className="text-base md:text-xl text-white/75 font-bold leading-relaxed mb-3 md:mb-6">{s.subtitle}</p>
@@ -1069,7 +1069,7 @@ export default function LosungenPage() {
             </div>
 
             {/* Main headline — editorial split type */}
-            <h1 className="sonic-h1 text-white mb-5 md:mb-6">
+            <h1 className="leist-h1-hub text-white mb-5 md:mb-6">
               Drei Wege<br />
               <span className="text-primary-500">durch die</span><br />
               Retail-Schallmauer.
@@ -1179,7 +1179,7 @@ export default function LosungenPage() {
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Was immer gilt</span>
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             </div>
-            <h2 className="sonic-h2 text-white mb-2">Ganz gleich, wo du stehst</h2>
+            <h2 className="leist-h2 text-white mb-2">Ganz gleich, wo du stehst</h2>
             <p className="text-base md:text-xl text-white/50 font-semibold">Du bekommst immer</p>
           </div>
           <div className="grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
@@ -1572,7 +1572,7 @@ export default function LosungenPage() {
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>FAQ</span>
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-foreground-950 mb-4">Häufig gestellte <span className="v3-marker">Fragen</span></h2>
+            <h2 className="leist-h2 text-foreground-950">Häufig gestellte <span className="v3-marker">Fragen</span></h2>
             <p className="text-foreground-500 text-base max-w-xl mx-auto leading-relaxed">Alles, was du über unsere Lösungen, unsere Arbeitsweise und den Start einer Zusammenarbeit wissen musst.</p>
           </div>
           <div className="space-y-4">

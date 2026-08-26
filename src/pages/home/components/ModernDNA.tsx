@@ -42,9 +42,9 @@ export default function ModernDNA() {
       <div className="sonic-container relative z-10">
         {/* Section Header */}
         <div className="sonic-section-header">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-3" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
-            <div className="w-1.5 h-1.5 bg-primary-500"></div>
-            <p className="text-xs font-black text-foreground-950 tracking-[0.2em] uppercase">Sonic DNA</p>
+          <div className="flex items-center gap-3 mb-3">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Sonic DNA</span>
           </div>
           <h2 className="sonic-h2 text-foreground-950">
             Die Sonic DNA

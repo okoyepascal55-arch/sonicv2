@@ -458,11 +458,11 @@ export default function CaseStudiesPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/80" />
         </div>
         <div className="relative z-10 flex flex-col justify-end h-full sonic-container" style={{ minHeight: 'clamp(360px, 52vw, 500px)', paddingBottom: '3rem' }}>
-          <div className="inline-flex self-start items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5" style={{ background: 'oklch(var(--primary-500) / 0.18)', border: '1px solid oklch(var(--primary-500) / 0.35)' }}>
-            <span className="w-1.5 h-1.5 bg-primary-500" />
-            <span className="text-primary-500">Fallbeispiele</span>
-          </div>
-          <h1 className="sonic-h1 text-white mb-4">
+          <div className="flex items-center gap-3 mb-5">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Fallbeispiele</span>
+            </div>
+          <h1 className="leist-h1-hub text-white mb-4">
             ERFOLGS<span className="text-primary-500">GESCHICHTEN</span>
           </h1>
           <p className="text-base md:text-lg font-bold text-white/70 max-w-lg">
@@ -644,7 +644,7 @@ export default function CaseStudiesPage() {
                 <div className="w-1.5 h-12 bg-primary-500 flex-shrink-0 mt-1" />
                 <div>
                   <p className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-2">{expanded.metric} {expanded.metricLabel}</p>
-                  <h2 className="sonic-h2 text-white">
+                  <h2 className="leist-h2 text-white">
                     {expanded.brand} <span className="text-primary-500">Fallstudie</span>
                   </h2>
                   <p className="text-white/60 text-base font-bold mt-2 max-w-xl">{expanded.headline} — {expanded.subline}</p>
@@ -822,7 +822,7 @@ export default function CaseStudiesPage() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
               <span className="text-primary-500 text-xs font-black uppercase tracking-widest mb-2 block">Lass uns sprechen</span>
-              <h2 className="sonic-h2 text-white mb-2">Deine Marke. <span className="text-primary-500">Unser Einsatz.</span></h2>
+              <h2 className="leist-h2 text-white mb-2">Deine Marke. <span className="text-primary-500">Unser Einsatz.</span></h2>
               <p className="text-sm text-white/50 max-w-md">
                 Wir bringen deine Marke dort zum Leuchten, wo die Kaufentscheidung fällt.
               </p>

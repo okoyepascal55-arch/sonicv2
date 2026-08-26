@@ -132,7 +132,6 @@ export default function VideoStudioPhone() {
  return (
  <section id="beispiele"className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
  {/* Ambient glow — single subtle one */}
- <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[700px] h-[500px] bg-primary-500/4 blur-[140px] pointer-events-none"/>
 
  <div className="sonic-container relative z-10">
 

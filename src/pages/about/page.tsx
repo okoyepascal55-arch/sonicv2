@@ -78,7 +78,7 @@ export default function AboutPage() {
             </div>
 
             {/* Large headline */}
-            <h1 className="sonic-h1 text-white mb-4 md:mb-5">
+            <h1 className="leist-h1-hub text-white mb-4 md:mb-5">
               {tHeroH1}<br />
               <span className="text-primary-500">{tHeroH1Line2}</span>
             </h1>

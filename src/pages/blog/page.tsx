@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
-import SectionBadge from '@/components/base/SectionBadge';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
@@ -172,7 +171,10 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="flex flex-col gap-6 mb-10 md:mb-16">
             <div className="flex justify-center md:justify-start">
-              <SectionBadge text={activeCategory ? "Gefilterte Beiträge" : "Aktuelle Beiträge"} variant="dark" />
+              <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{activeCategory ? "Gefilterte Beiträge" : "Aktuelle Beiträge"}</span>
+          </div>
             </div>
             
             {/* Category Filters */}

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import SectionBadge from '@/components/base/SectionBadge';
 import { useMediaStore } from '@/lib/mediaStore';
 
 interface Props {
@@ -33,7 +32,10 @@ export default function JobsHero({ jobCount }: Props) {
       </div>
 
       <div className="relative z-10 sonic-container px-6 text-center w-full">
-        <SectionBadge text={jobCount > 0 ? `${jobCount} offene Stellen` : 'Stellenangebote'} variant="light" className="mb-5" />
+        <div className="flex items-center justify-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{jobCount > 0 ? `${jobCount} offene Stellen` : 'Stellenangebote'}</span>
+          </div>
         <h1 className="sonic-page-h1 text-white mb-5">
           DEINE KARRIERE<br />
           <span className="text-primary-500">BEI SONIC GROUP</span>

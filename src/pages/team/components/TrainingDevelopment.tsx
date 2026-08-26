@@ -1,4 +1,3 @@
-import SectionBadge from '@/components/base/SectionBadge';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 
@@ -34,11 +33,14 @@ export default function TrainingDevelopment() {
   ];
 
   return (
-    <section className="sonic-section-lg md:px-4 md:px-6 bg-background-100">
+    <section className="sonic-section-lg md:px-4 md:px-6 bg-white">
       <div className="sonic-container">
         <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
           <div>
-            <SectionBadge text={tBadge} variant="light" className="mb-6" />
+            <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
+          </div>
             <h2 className="sonic-h2 text-foreground-950 mb-5">
               {tHeading}
             </h2>

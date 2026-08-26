@@ -84,49 +84,90 @@ export default function Features({ featureIcons }: FeaturesProps) {
           </div>
         </div>
 
-        {/* Compact 3×2 grid — lighter cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        {/* Asymmetric bento — hero tile spans 3 cols × 2 rows, 5 smaller cards */}
+        <div
+          className="grid gap-0"
+          style={{
+            gridTemplateColumns: 'repeat(6, 1fr)',
+            gridTemplateRows: 'auto auto',
+            border: '1px solid oklch(0.885 0.004 110)',
+          }}
+        >
           {FEATURES_BASE.map((feat, idx) => {
+            const isHero  = idx === 0;
             const isHovered = hoveredIdx === idx;
             return (
               <div
                 key={idx}
-                className="group bg-white cursor-default relative overflow-hidden transition-all duration-300"
+                className="group relative overflow-hidden transition-all duration-300 cursor-default"
                 style={{
-                  border: isHovered ? '2px solid oklch(var(--primary-500) / 0.4)' : '2px solid oklch(var(--background-200) / 0.5)',
+                  gridColumn: isHero ? 'span 3' : 'span 3',
+                  gridRow:    isHero ? 'span 2' : 'span 1',
+                  border: isHero
+                    ? `2px solid ${isHovered ? 'oklch(0.81 0.19 115)' : 'oklch(0.81 0.19 115 / 0.35)'}`
+                    : `1px solid oklch(0.885 0.004 110)`,
+                  background: isHero ? 'oklch(0.13 0.005 118)' : '#fff',
+                  minHeight: isHero ? '280px' : '160px',
                 }}
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
               >
-                {/* Subtle lime top accent */}
-                <div className="absolute top-0 left-0 right-0 h-0.5 transition-all duration-300"
-                  style={{ background: isHovered ? 'oklch(var(--primary-500))' : 'transparent' }} />
-
-                <div className="p-5">
-                  {/* Icon + title row */}
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 overflow-hidden flex-shrink-0 border border-background-200/50">
-                      <img
-                        src={(featureIcons && featureIcons[idx] && featureIcons[idx].url) || feat.woodIcon}
-                        alt={feat.title}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
+                {/* Hero tile — large */}
+                {isHero ? (
+                  <div className="p-8 md:p-10 flex flex-col h-full justify-between">
                     <div>
-                      <h3 className="sonic-h3 text-foreground-950 leading-snug">{feat.title}</h3>
-                      <span className="text-[9px] font-bold text-primary-500 uppercase tracking-widest">{feat.number} / 06</span>
+                      <div className="w-12 h-12 overflow-hidden mb-6 border border-white/20">
+                        <img
+                          src={(featureIcons && featureIcons[idx]?.url) || feat.woodIcon}
+                          alt={feat.title}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <p className="text-[10px] font-black uppercase tracking-[0.24em] mb-3" style={{ color: 'oklch(0.81 0.19 115)' }}>
+                        {feat.number} / 06
+                      </p>
+                      <h3 className="leist-h2 text-white mb-4">{feat.title}</h3>
+                      <p className="text-sm text-white/55 leading-relaxed max-w-xs">{feat.description}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5 mt-6">
+                      {feat.tags.map((tag, ti) => (
+                        <span key={ti} className="text-[9px] font-bold px-2.5 py-1 uppercase tracking-wide"
+                          style={{ background: 'oklch(0.81 0.19 115 / 0.15)', color: 'oklch(0.81 0.19 115)', border: '1px solid oklch(0.81 0.19 115 / 0.3)' }}>
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                  <p className="text-xs text-foreground-600 leading-relaxed mb-3">{feat.description}</p>
-                  <div className="flex flex-wrap gap-1">
-                    {feat.tags.map((tag, ti) => (
-                      <span key={ti} className="text-[9px] font-bold px-2 py-0.5 uppercase tracking-wide text-primary-500 bg-primary-500/8 border border-primary-500/15">
-                        {tag}
-                      </span>
-                    ))}
+                ) : (
+                  /* Smaller tiles */
+                  <div className="p-5 flex flex-col h-full">
+                    <div className="absolute top-0 left-0 right-0 h-0.5 transition-all duration-300"
+                      style={{ background: isHovered ? 'oklch(0.81 0.19 115)' : 'transparent' }} />
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="w-9 h-9 overflow-hidden flex-shrink-0 border border-background-200/50">
+                        <img
+                          src={(featureIcons && featureIcons[idx]?.url) || feat.woodIcon}
+                          alt={feat.title}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-black text-foreground-950 leading-snug">{feat.title}</h3>
+                        <span className="text-[9px] font-bold text-primary-500 uppercase tracking-widest">{feat.number} / 06</span>
+                      </div>
+                    </div>
+                    <p className="text-[11px] text-foreground-600 leading-relaxed flex-1">{feat.description}</p>
+                    <div className="flex flex-wrap gap-1 mt-3">
+                      {feat.tags.map((tag, ti) => (
+                        <span key={ti} className="text-[9px] font-bold px-1.5 py-0.5 uppercase tracking-wide text-primary-500 bg-primary-500/8 border border-primary-500/15">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             );
           })}

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { useText } from '@/hooks/useText';
-import SectionBadge from '@/components/base/SectionBadge';
 
 type SectionKey = 'new' | 'better' | 'things';
 
@@ -126,7 +125,10 @@ export default function Timeline() {
           className={`mb-8 md:mb-12 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           <div className="flex items-center justify-center mb-5">
-            <SectionBadge text={tBadge} variant="dark" />
+            <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
+          </div>
           </div>
           <h2 className="text-3xl font-black text-foreground-950 leading-tight tracking-tight text-center mb-3">
             {tHeading.split(' ').slice(0, 2).join(' ')}{' '}

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import SectionBadge from '@/components/base/SectionBadge';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 
@@ -31,11 +30,14 @@ export default function IndustryExpertise() {
   ];
 
   return (
-    <section className="sonic-section-lg bg-background-100">
+    <section className="sonic-section-lg bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <SectionBadge text={tBadge} variant="dark" className="mb-6" />
+          <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
+          </div>
           <h2 className="sonic-h2 text-foreground-950 mb-4">
             {tHeading}
           </h2>

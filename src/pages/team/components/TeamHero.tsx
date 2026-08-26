@@ -1,4 +1,3 @@
-import SectionBadge from '@/components/base/SectionBadge';
 import { useMediaStore } from '@/lib/mediaStore';
 
 export default function TeamHero() {
@@ -18,7 +17,10 @@ export default function TeamHero() {
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 text-center">
-        <SectionBadge text="Our Team" variant="light" className="mb-5" />
+        <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{"Our Team"}</span>
+          </div>
         
         <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white mb-5 md:mb-8 leading-tight break-words">
           NUR WELTKLASSE-<wbr />PROFIS

@@ -114,7 +114,7 @@ export default function Industries() {
   const currentList = step === 1 ? STEP1_INDUSTRIES : step === 2 ? STEP2_CHALLENGES : step === 3 ? STEP3_GOALS : [];
 
   return (
-    <section id="branchen" className="sonic-section-lg px-4 md:px-6 bg-background-100 relative overflow-hidden">
+    <section id="branchen" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="sonic-container relative z-10">
         {/* ── Use Cases ── */}
         <div className="mb-16">

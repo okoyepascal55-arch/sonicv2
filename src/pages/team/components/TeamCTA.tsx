@@ -1,4 +1,3 @@
-import SectionBadge from '@/components/base/SectionBadge';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
@@ -12,10 +11,12 @@ export default function TeamCTA() {
   return (
     <section className="sonic-section-lg md:bg-foreground-950 relative overflow-hidden">
       {/* Lime ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[300px] bg-primary-500/6 blur-[120px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
-        <SectionBadge text={tBadge} variant="light" className="mb-8" />
+        <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
+          </div>
 
         <h2 className="sonic-h2 text-white mb-4">
           {tHeading}
