@@ -139,8 +139,6 @@ export default function DataPaths() {
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{ backgroundImage: 'linear-gradient(oklch(var(--primary-500)) 1px, transparent 1px), linear-gradient(90deg, oklch(var(--primary-500)) 1px, transparent 1px)', backgroundSize: '48px 48px' }}
       />
-      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary-500/5 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary-500/5 blur-3xl pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary-500/40 to-transparent" />
 
       <div className="sonic-container relative z-10">

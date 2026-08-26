@@ -21,7 +21,6 @@ export default function IndustriesHero() {
       </div>
 
       {/* Lime ambient glow */}
-      <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-full max-w-[700px] h-[400px] bg-primary-500/6 blur-[120px] pointer-events-none z-10" />
 
       <div className="relative z-20 w-full max-w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
         <div className="max-w-full max-w-[640px]">
@@ -31,7 +30,7 @@ export default function IndustriesHero() {
           <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Unsere Branchen</span>
         </div>
 
-        <h1 className="sonic-h1 text-white mb-5 md:mb-6">
+        <h1 className="leist-h1-hub text-white mb-5 md:mb-6">
           TIEFE BRANCHEN-<br />
           <span className="text-primary-500">EXPERTISE.</span>
         </h1>

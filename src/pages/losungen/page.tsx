@@ -271,7 +271,6 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
             />
           ) : null}
         </div>
-        <div className="absolute top-0 left-1/3 w-96 h-48 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-14">
           {/* Top nav */}
@@ -1058,7 +1057,6 @@ export default function LosungenPage() {
         </div>
 
         {/* Lime ambient glow */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-full max-w-[500px] h-[300px] bg-primary-500/6 blur-[100px] pointer-events-none" />
 
         {/* Content — left-aligned, bottom-anchored */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 py-0">
@@ -1099,8 +1097,6 @@ export default function LosungenPage() {
 
       {/* ── WOODEN CAROUSEL ── */}
       <section ref={carouselRef} id="losungen-carousel" className="sonic-section-md relative bg-white overflow-visible">
-        <div className="absolute top-1/3 left-0 w-72 h-72 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/3 right-0 w-80 h-80 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 px-6 max-w-7xl mx-auto">
           {/* Intro — unified eyebrow + paragraph (redundant stat-grid removed: the wood card below already carries these stats) */}
@@ -1190,7 +1186,6 @@ export default function LosungenPage() {
             ].map((item, i) => (
               <div key={i} className="relative bg-white/[0.03] backdrop-blur-[2px] border border-white/[0.06] hover:border-primary-500/50 hover:bg-white/[0.06] hover:-translate-y-1 transition-all duration-300 group overflow-hidden">
                 {/* lime corner accent */}
-                <div className="absolute top-0 left-0 w-16 h-[2px] bg-gradient-to-r from-primary-500 to-transparent" />
                 <div className="absolute top-0 left-0 w-[2px] h-16 bg-gradient-to-b from-primary-500 to-transparent" />
                 <div className="pt-10 pb-8 px-8 text-center">
                   <div className="w-14 h-14 flex items-center justify-center bg-primary-500/15 border border-primary-500/30 mx-auto mb-5 group-hover:bg-primary-500/25 transition-colors">
@@ -1221,7 +1216,6 @@ export default function LosungenPage() {
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSurveyExpanded(true); }}
             >
               {/* Subtle lime corner accent */}
-              <div className="absolute top-0 left-0 w-12 h-[2px] bg-gradient-to-r from-primary-500 to-transparent" />
               <div className="absolute top-0 left-0 w-[2px] h-12 bg-gradient-to-b from-primary-500 to-transparent" />
 
               <div className="relative z-10 p-5 md:p-6 flex items-center justify-between gap-4">
@@ -1248,9 +1242,7 @@ export default function LosungenPage() {
               style={{ borderRadius: 0, animation: 'expandIn 0.3s ease-out' }}
             >
               {/* Corner accents */}
-              <div className="absolute top-0 left-0 w-16 h-[2px] bg-gradient-to-r from-primary-500 to-transparent" />
               <div className="absolute top-0 left-0 w-[2px] h-16 bg-gradient-to-b from-primary-500 to-transparent" />
-              <div className="absolute bottom-0 right-0 w-16 h-[2px] bg-gradient-to-l from-primary-500 to-transparent" />
               <div className="absolute bottom-0 right-0 w-[2px] h-16 bg-gradient-to-t from-primary-500 to-transparent" />
 
               {/* Close button */}

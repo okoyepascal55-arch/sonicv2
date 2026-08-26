@@ -144,8 +144,6 @@ export default function BlogPage() {
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1a1a1a]/80 to-[#1a1a1a]" />
         
-        <div className="absolute top-1/3 left-0 w-80 h-80 bg-primary-500/10 blur-[100px] pointer-events-none"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-500/5 blur-[120px] pointer-events-none"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center justify-center text-center h-full">
           <div className="inline-flex items-center gap-3 mb-4 md:mb-6">
@@ -154,7 +152,7 @@ export default function BlogPage() {
             </div>
             <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Magazin & Insights</span>
           </div>
-          <h1 className="sonic-h1 text-white mb-4 md:mb-6">
+          <h1 className="leist-h1-hub text-white mb-4 md:mb-6">
             SONIC<br />
             <span className="text-primary-500">BLOG</span>
           </h1>

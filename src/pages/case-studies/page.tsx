@@ -471,7 +471,6 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
-
       {/* ── BRAND SELECTOR + CARD ── */}
       <section id="case-studies-carousel" className="relative overflow-hidden bg-white">
 
@@ -523,8 +522,6 @@ export default function CaseStudiesPage() {
               ) : <div className="w-full h-full bg-foreground-950" />}
               <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.38) 50%, rgba(0,0,0,0.58) 100%)' }} />
             </div>
-
-
 
             <div key={current.id} className="relative z-10 p-6 md:p-12" style={{ animation: 'brandFadeIn 0.3s ease-out forwards' }}>
 
@@ -638,7 +635,6 @@ export default function CaseStudiesPage() {
               <img src="/images/Case Studies -Fallbsp/Garmin/Tacx_Neu.webp" alt="" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 0%, rgba(11,11,12,0.9) 100%)' }} />
-            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary-500/60 to-transparent" />
             <div className="relative z-10 sonic-container py-12 md:py-16">
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-1.5 h-12 bg-primary-500 flex-shrink-0 mt-1" />
@@ -816,8 +812,6 @@ export default function CaseStudiesPage() {
 
       {/* ── CTA ── */}
       <section className="sonic-section-md bg-foreground-950 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/8 blur-3xl pointer-events-none" />
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary-500/40 to-transparent" />
         <div className="sonic-container relative z-10">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
