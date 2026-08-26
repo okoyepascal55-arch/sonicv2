@@ -50,7 +50,7 @@ export default function StaffHero() {
           {tDesc}
         </p>
 
-        <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-8 border-t border-white/15 pt-5">
+        <div className="grid grid-cols-3 gap-2 md:gap-8 mb-8 border-t border-white/15 pt-5">
           {[
             { val: '>2.000', label: 'Talente im Pool' },
             { val: '>1,35 Mio.', label: 'Einsätze' },

@@ -27,7 +27,7 @@ export default function ChallengeSection({
 }: ChallengeSectionProps) {
   const [active, setActive] = useState<number | null>(null);
   const [revealed, setRevealed] = useState<boolean[]>(Array(challenges.length).fill(false));
-  const [sectionVisible, setSectionVisible] = useState(false);
+  const [sectionVisible, setSectionVisible] = useState(true); // start visible, animate in on scroll
   const sectionRef = useRef<HTMLElement>(null);
 
   const revealedCount = revealed.filter(Boolean).length;
@@ -37,7 +37,7 @@ export default function ChallengeSection({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setSectionVisible(true); },
-      { threshold: 0.15 }
+      { threshold: 0.05, rootMargin: "0px 0px -50px 0px" }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -104,7 +104,7 @@ export default function ChallengeSection({
                   style={{
                     width: revealed[i] ? '28px' : '8px',
                     height: '8px',
-                    background: revealed[i] ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.1)',
+                    background: revealed[i] ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.12)',
                     boxShadow: revealed[i] ? '0 0 8px rgba(200,212,0,0.5)' : 'none',
                   }}
                 />
@@ -114,7 +114,7 @@ export default function ChallengeSection({
             <div
               className="text-[11px] font-black uppercase tracking-widest transition-all duration-500"
               style={{
-                color: allRevealed ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.25)',
+                color: allRevealed ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.3)',
               }}
             >
               {counterLabel()}
@@ -141,13 +141,13 @@ export default function ChallengeSection({
             return (
               <div
                 key={i}
-                className={`relative overflow-hidden cursor-pointer transition-all duration-500 ${i < challenges.length - 1 ? 'border-b md:border-b-0 md:border-r border-white/12' : ''}`}
+                className={`relative overflow-hidden cursor-pointer transition-all duration-500 ${i < challenges.length - 1 ? 'border-b md:border-b-0 md:border-r border-white/10' : ''}`}
                 style={{
                   background: isActive
                     ? 'rgba(200,212,0,0.06)'
                     : isRevealed
                     ? 'rgba(200,212,0,0.025)'
-                    : 'rgba(0,0,0,0.015)',
+                    : 'rgba(255,255,255,0.04)',
                   opacity: sectionVisible ? 1 : 0,
                   transform: sectionVisible ? 'translateY(0)' : 'translateY(30px)',
                   transition: `opacity 0.6s ease ${0.15 + i * 0.12}s, transform 0.6s ease ${0.15 + i * 0.12}s, background 0.4s ease`,
@@ -176,7 +176,7 @@ export default function ChallengeSection({
                   className="absolute bottom-0 right-0 font-black select-none pointer-events-none leading-none"
                   style={{
                     fontSize: 'clamp(80px, 10vw, 130px)',
-                    color: isActive ? 'rgba(200,212,0,0.06)' : 'rgba(0,0,0,0.025)',
+                    color: isActive ? 'rgba(200,212,0,0.06)' : 'rgba(255,255,255,0.06)',
                     lineHeight: 0.85,
                     transition: 'color 0.4s ease',
                   }}
@@ -190,13 +190,13 @@ export default function ChallengeSection({
                     <div
                       className="w-11 h-11 flex items-center justify-center flex-shrink-0 transition-all duration-300"
                       style={{
-                        background: isActive ? 'oklch(var(--primary-500))' : isRevealed ? 'rgba(200,212,0,0.12)' : 'rgba(0,0,0,0.06)',
+                        background: isActive ? 'oklch(var(--primary-500))' : isRevealed ? 'rgba(200,212,0,0.12)' : 'rgba(255,255,255,0.08)',
                         transform: isActive ? 'scale(1.1) rotate(-3deg)' : 'scale(1)',
                       }}
                     >
                       <i
                         className={`${c.icon} text-lg transition-colors duration-300`}
-                        style={{ color: isActive ? '#111' : isRevealed ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.4)' }}
+                        style={{ color: isActive ? 'oklch(0.16 0.006 118)' : isRevealed ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.35)' }}
                       />
                     </div>
                     {/* Revealed checkmark OR index */}
@@ -210,7 +210,7 @@ export default function ChallengeSection({
                     ) : (
                       <span
                         className="text-[11px] font-black tracking-widest"
-                        style={{ color: 'rgba(0,0,0,0.15)' }}
+                        style={{ color: 'rgba(255,255,255,0.2)' }}
                       >
                         {String(i + 1).padStart(2, '0')}
                       </span>
@@ -221,7 +221,7 @@ export default function ChallengeSection({
                   <h3
                     className="sonic-h3 leading-tight mb-4 transition-colors duration-300"
                     style={{
-                      color: isActive ? 'oklch(var(--foreground-950))' : 'rgba(0,0,0,0.68)',
+                      color: isActive ? '#fff' : 'rgba(255,255,255,0.75)',
                     }}
                   >
                     {c.title}
@@ -231,7 +231,7 @@ export default function ChallengeSection({
                   <p
                     className="text-sm leading-relaxed flex-grow transition-all duration-400"
                     style={{
-                      color: 'rgba(0,0,0,0.45)',
+                      color: 'rgba(255,255,255,0.5)',
                       opacity: isActive ? 1 : 0.65,
                       transform: isActive ? 'translateY(0)' : 'translateY(3px)',
                     }}
@@ -266,12 +266,12 @@ export default function ChallengeSection({
             transition: 'opacity 0.7s ease 0.5s',
           }}
         >
-          <div className="h-px flex-grow" style={{ background: 'rgba(0,0,0,0.07)' }} />
+          <div className="h-px flex-grow" style={{ background: 'rgba(255,255,255,0.08)' }} />
           <div className="flex items-center gap-3">
             {/* Mini progress bar */}
             <div
               className="relative overflow-hidden"
-              style={{ width: '80px', height: '2px', background: 'rgba(0,0,0,0.08)' }}
+              style={{ width: '80px', height: '2px', background: 'rgba(255,255,255,0.1)' }}
             >
               <div
                 className="absolute left-0 top-0 bottom-0 transition-all duration-700"
@@ -284,14 +284,14 @@ export default function ChallengeSection({
             </div>
             <span
               className="text-[10px] font-black uppercase tracking-[0.18em] transition-colors duration-500 whitespace-nowrap"
-              style={{ color: allRevealed ? 'oklch(var(--primary-500))' : 'rgba(0,0,0,0.2)' }}
+              style={{ color: allRevealed ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.4)' }}
             >
               {allRevealed
                 ? `${total}/${total} — Wir haben die Lösung.`
                 : `${revealedCount}/${total} erkannt`}
             </span>
           </div>
-          <div className="h-px flex-grow" style={{ background: 'rgba(0,0,0,0.07)' }} />
+          <div className="h-px flex-grow" style={{ background: 'rgba(255,255,255,0.08)' }} />
         </div>
       </div>
 

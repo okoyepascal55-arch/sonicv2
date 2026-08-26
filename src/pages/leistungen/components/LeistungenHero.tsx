@@ -122,12 +122,12 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
           ].map((s, i) => (
             <div
               key={i}
-              className="px-6 md:px-8 py-6 flex flex-col gap-1"
+              className="px-3 md:px-8 py-4 md:py-6 flex flex-col gap-1"
               style={{ borderRight: i < 3 ? '1px solid rgba(255,255,255,0.14)' : undefined }}
             >
               <span
                 className="font-black tabular-nums leading-none"
-                style={{ fontSize: '26px', letterSpacing: '-0.03em', color: i === 3 ? 'oklch(0.81 0.19 115)' : '#fff' }}
+                style={{ fontSize: 'clamp(16px,3.5vw,26px)', letterSpacing: '-0.03em', color: i === 3 ? 'oklch(0.81 0.19 115)' : '#fff', whiteSpace: 'nowrap' }}
               >
                 {s.value}
               </span>

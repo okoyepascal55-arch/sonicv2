@@ -154,20 +154,11 @@ export default function WarehouseLogistikPage() {
           />
           <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.85) 100%)' }} />
           <div className="relative z-20 w-full sonic-container px-4 md:px-8 pb-10 md:pb-14">
-            <div className="flex items-center justify-center gap-2 mb-5 md:mb-6 opacity-60">
-              <span className="text-white/50 text-xs font-bold">Leistungen</span>
-              <i className="ri-arrow-right-s-line text-white/40 text-sm"></i>
-              <span className="text-primary-500 text-xs font-bold">Warehouse & Logistik</span>
-            </div>
-            <div className="flex items-center gap-3 mb-5 md:mb-6">
-            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-            <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tHeroBadge}</span>
-          </div>
-            {/* Breadcrumb — unique to Warehouse per brief */}
-            <div className="inline-flex items-center gap-2 mb-4" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em' }}>
-              <a href="/leistungen" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>Leistungen</a>
-              <span style={{ color: 'oklch(0.81 0.19 115)' }}>›</span>
-              <span style={{ color: 'rgba(255,255,255,0.8)' }}>Warehouse &amp; Logistik</span>
+            {/* Breadcrumb chip — unique to Warehouse per brief */}
+            <div className="flex items-center gap-2 mb-5 md:mb-6" style={{ opacity: 0.7 }}>
+              <a href="/leistungen" className="text-white/60 text-xs font-bold" style={{ textDecoration: 'none' }}>Leistungen</a>
+              <span className="text-primary-500 text-xs">›</span>
+              <span className="text-white text-xs font-bold">Warehouse &amp; Logistik</span>
             </div>
 
             {/* v3 eyebrow */}
