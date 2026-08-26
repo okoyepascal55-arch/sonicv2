@@ -193,9 +193,9 @@ export default function LeistungenStats() {
                 Unsere Zahlen
               </span>
             </div>
-            <h2 className="text-base md:text-lg font-black text-[#1a1a1a] leading-none tracking-tight uppercase">
-              TRACK RECORD&nbsp;
-              <span className="text-primary-500">DER ÜBERZEUGT.</span>
+            <h2 className="text-base md:text-lg font-black text-[#1a1a1a] leading-none tracking-[-0.02em]">
+              Track Record&nbsp;
+              <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.1em', boxDecorationBreak: 'clone' }}>der überzeugt.</span>
             </h2>
           </div>
           {/* Accent bars */}
