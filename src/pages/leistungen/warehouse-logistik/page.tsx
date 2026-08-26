@@ -203,7 +203,7 @@ export default function WarehouseLogistikPage() {
       <WoodenDivider />
 
       {/* Solution — light warm bg (directly after dark ChallengeSection), subtle tint matching homepage */}
-      <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }}>
+      <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, oklch(0.975 0.002 110) 0%, #fff 100%)' }}>
         <div className="relative sonic-container">
           <div className="mb-10 md:mb-12">
             <div className="flex items-center gap-3 mb-5">

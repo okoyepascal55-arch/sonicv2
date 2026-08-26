@@ -37,7 +37,7 @@ export default function EventsMessenPage() {
         <EventsHero />
       </div>
 
-      <div style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }}>
+      <div style={{ background: 'linear-gradient(180deg, oklch(0.975 0.002 110) 0%, #fff 100%)' }}>
         <EventsContent />
       </div>
 

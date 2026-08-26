@@ -329,13 +329,13 @@ export default function TalentpoolContent() {
       </section>
 
       {/* ── Stats ── */}
-      <section id="stats" className="sonic-section-lg bg-background-100 px-4 md:px-6">
+      <section id="stats" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-px bg-foreground-950/10 border border-foreground-950/10 overflow-hidden">
           {STATS.map((s, i) => (
             <div key={i} className="bg-white p-6 md:p-8 text-center relative overflow-hidden group">
               <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/5 transition-colors duration-300" />
               <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="text-2xl md:text-4xl font-black text-foreground-950 mb-1.5 relative z-10">{s.value}</div>
+              <div className="leist-h2 text-foreground-950 mb-1.5 relative z-10">{s.value}</div>
               <div className="text-foreground-950/40 text-xs font-bold uppercase tracking-wider leading-snug relative z-10">{s.label}</div>
             </div>
           ))}

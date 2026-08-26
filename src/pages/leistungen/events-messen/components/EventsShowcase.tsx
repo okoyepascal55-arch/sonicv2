@@ -94,7 +94,7 @@ export default function EventsShowcase() {
   };
 
   return (
-    <section id="events" className="sonic-section-lg bg-background-100 px-6">
+    <section id="events" className="sonic-section-lg bg-white px-6">
       <div className="sonic-container">
 
         {/* Header */}
@@ -103,7 +103,7 @@ export default function EventsShowcase() {
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Formate</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-foreground-950 leading-tight mb-2 uppercase">
+          <h2 className="leist-h2 text-foreground-950 mb-2">
             Deine Marke. Unsere Bühne.
           </h2>
           <p className="text-foreground-950/50 text-base">Wähle ein Format und entdecke unsere Arbeit.</p>
