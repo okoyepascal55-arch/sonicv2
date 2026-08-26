@@ -283,7 +283,7 @@ export default function ServicesGrid() {
                     key={`${selectedIndex}-${idx}`}
                     src={img}
                     alt={`${svc.title} — Impression ${idx + 1}`}
-                    className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 cursor-pointer"
+                    className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 cursor-pointer"
                     style={{ opacity: imageIndex === idx && fade ? 1 : 0 }}
                     loading={idx === 0 && selectedIndex === 0 ? 'eager' : 'lazy'}
                     decoding="async"
