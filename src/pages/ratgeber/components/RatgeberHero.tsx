@@ -26,17 +26,14 @@ export default function RatgeberHero({ h1, h1Accent, heroSubtitle, heroSummary, 
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/60" />
         </div>
-
-        <div className="absolute top-0 left-1/4 w-full max-w-[500px] h-[250px] bg-primary-500/6 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
-
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
-              <p className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-xs font-black text-primary-500 uppercase tracking-[0.2em]" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.30)' }}>
-                {category}
-              </p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 leading-tight drop-shadow-2xl">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+                <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{category}</span>
+              </div>
+              <h1 className="leist-h1-sub text-white mb-4 drop-shadow-2xl">
                 {h1}<br /><span className="text-primary-500">{h1Accent}</span>
               </h1>
               <p className="text-lg text-primary-500 font-bold mb-3 drop-shadow-lg">
@@ -47,11 +44,11 @@ export default function RatgeberHero({ h1, h1Accent, heroSubtitle, heroSummary, 
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mt-6 lg:mt-0">
+            <div className="grid grid-cols-2 md:grid-cols-4 mt-8 lg:mt-12" style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}>
               {stats.map((stat, idx) => (
-                <div key={idx} className="bg-black/40 backdrop-blur-sm p-5 border border-white/15 hover:border-primary-500/50 transition-all duration-300" style={{ borderRadius: 0 }}>
-                  <div className="text-3xl font-black text-primary-500 tabular-nums mb-1 leading-tight">{stat.value}</div>
-                  <div className="text-white/65 text-xs font-bold uppercase tracking-wide leading-snug">{stat.label}</div>
+                <div key={idx} className="px-5 py-5" style={{ borderRight: idx < 3 ? '1px solid rgba(255,255,255,0.14)' : undefined }}>
+                  <div className="font-black text-white tabular-nums mb-1 leading-none" style={{ fontSize: '26px', letterSpacing: '-0.03em', color: idx === 3 ? 'oklch(0.81 0.19 115)' : '#fff' }}>{stat.value}</div>
+                  <div className="text-[10px] font-black uppercase tracking-[0.18em] mt-1" style={{ color: 'rgba(255,255,255,0.45)' }}>{stat.label}</div>
                 </div>
               ))}
             </div>

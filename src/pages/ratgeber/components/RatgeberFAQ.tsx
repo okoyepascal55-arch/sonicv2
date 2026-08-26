@@ -31,7 +31,7 @@ export default function RatgeberFAQ({ faqs }: RatgeberFAQProps) {
       <SchemaOrg type="faq" data={buildFAQSchema(faqs)} />
       <section className="sonic-section-lg md:bg-white">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <h2 className="sonic-h2 text-foreground-950 mb-10">
+          <h2 className="leist-h2 text-foreground-950 mb-10">
             Häufig gestellte Fragen
           </h2>
 

@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import hubCards from './data/hub-cards';
 import type { RatgeberHubCard, GeoLevel } from './data/types';
-import SectionBadge from '@/components/base/SectionBadge';
 import SectionReveal from '@/components/feature/SectionReveal';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import Breadcrumb from '@/components/base/Breadcrumb';
@@ -57,7 +56,7 @@ function HubCard({ card, onClick }: { card: RatgeberHubCard; onClick: (slug: str
         </div>
         <h3 className="text-base md:text-lg font-black text-foreground-950 group-hover:text-primary-500 transition-colors duration-200 leading-tight mb-2">
           {card.title}<br />
-          <span className="text-primary-500">{card.accent}</span>
+          <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone' }}>{card.accent}</span>
         </h3>
         <p className="text-foreground-950/55 text-xs md:text-sm leading-relaxed mb-3 md:mb-4 flex-1">
           {card.description}
@@ -171,18 +170,14 @@ export default function RatgeberHubPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/65" />
           </div>
-
-          <div className="absolute top-0 left-1/4 w-full max-w-[500px] h-[250px] bg-primary-500/6 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
-
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14 text-center">
             <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-6 mx-auto">
               <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" />
               <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">{tHeroBadge}</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 leading-tight drop-shadow-2xl">
+            <h1 className="leist-h1-hub text-white mb-4 drop-shadow-2xl">
               {tHeroH1_1}<br />
-              <span className="text-primary-500">{tHeroH1Accent}</span>
+              <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone' }}>{tHeroH1Accent}</span>
             </h1>
             <p className="text-lg text-primary-500 font-bold mb-3 drop-shadow-lg max-w-2xl mx-auto">
               {tHeroSub1}
@@ -200,7 +195,7 @@ export default function RatgeberHubPage() {
           <div className="grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-6">
             {STATS.map((stat, idx) => (
               <div key={idx} className="text-center">
-                <div className="text-3xl font-black text-primary-500 font-mono mb-1 leading-tight">{stat.value}</div>
+                <div className="font-black text-primary-500 tabular-nums mb-1 leading-none" style={{ fontSize: '26px', letterSpacing: '-0.03em' }}>{stat.value}</div>
                 <div className="text-foreground-950/45 text-xs font-bold uppercase tracking-wider leading-snug">{stat.label}</div>
               </div>
             ))}
@@ -214,8 +209,11 @@ export default function RatgeberHubPage() {
       <section className="sonic-section-md md:bg-white">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <SectionReveal>
-            <SectionBadge text={tIntroBadge} variant="dark" />
-            <h2 className="sonic-h2 text-foreground-950 mb-5">
+            <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tIntroBadge}</span>
+          </div>
+            <h2 className="leist-h2 text-foreground-950 mb-5">
               {tIntroHeading}
             </h2>
             <p className="text-base text-foreground-950/60 leading-relaxed max-w-3xl mx-auto">
@@ -246,8 +244,11 @@ export default function RatgeberHubPage() {
       <section className="sonic-section-lg md:bg-white">
         <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
           <SectionReveal>
-            <SectionBadge text={tGeoBadge} variant="dark" />
-            <h2 className="sonic-h2 text-foreground-950 mb-5">
+            <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tGeoBadge}</span>
+          </div>
+            <h2 className="leist-h2 text-foreground-950 mb-5">
               {tGeoHeading}
             </h2>
             <p className="text-base text-foreground-950/60 leading-relaxed max-w-3xl mx-auto mb-10">
@@ -278,9 +279,7 @@ export default function RatgeberHubPage() {
       {/* CTA */}
       <section className="sonic-section-lg bg-white px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="border border-foreground-950/15 bg-white p-10 md:p-14 relative overflow-hidden" style={{ borderRadius: 0 }}>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 blur-3xl pointer-events-none translate-x-16 -translate-y-16" />
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C8D400]/60 via-[#C8D400]/20 to-transparent" />
+          <div className="border border-foreground-950/15 bg-white p-10 md:p-14 relative overflow-hidden" style={{ borderRadius: 0 }}>            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C8D400]/60 via-[#C8D400]/20 to-transparent" />
 
             <div className="relative grid md:grid-cols-1 md:grid-cols-2 gap-10 items-center">
               <div>
@@ -289,8 +288,8 @@ export default function RatgeberHubPage() {
                   <span className="text-xs font-black text-foreground-950/50 uppercase tracking-widest">{tCtaBadge}</span>
                 </div>
 
-                <h2 className="sonic-h2 text-foreground-950 mb-4">
-                  {tCtaHeading.split('\n').map((line, i) => i === 1 ? <span key={i}><span className="text-primary-500">{line}</span></span> : <span key={i}>{line}<br /></span>)}
+                <h2 className="leist-h2 text-foreground-950 mb-4">
+                  {tCtaHeading.split('\n').map((line, i) => i === 1 ? <span key={i}><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone' }}>{line}</span></span> : <span key={i}>{line}<br /></span>)}
                 </h2>
 
                 <p className="text-foreground-950/55 text-base leading-relaxed">

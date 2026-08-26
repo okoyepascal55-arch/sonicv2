@@ -11,19 +11,16 @@ export default function RatgeberCTA({ headline, headlineAccent, subline }: Ratge
     <section className="sonic-section-lg bg-white px-6">
       <div className="max-w-4xl mx-auto">
         <div className="border border-foreground-950/15 bg-white p-10 md:p-14 relative overflow-hidden" style={{ borderRadius: 0 }}>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 blur-3xl pointer-events-none translate-x-16 -translate-y-16" />
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C8D400]/60 via-[#C8D400]/20 to-transparent" />
-
           <div className="relative grid md:grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/12 px-3 py-1 mb-5" style={{ borderRadius: 0 }}>
-                <i className="ri-calendar-check-line text-foreground-950/50 text-xs"></i>
-                <span className="text-xs font-black text-foreground-950/50 uppercase tracking-widest">Jetzt starten</span>
+              <div className="flex items-center gap-3 mb-5">
+                <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+                <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Jetzt starten</span>
               </div>
 
-              <h2 className="sonic-h2 text-foreground-950 mb-4">
+              <h2 className="leist-h2 text-foreground-950 mb-4">
                 {headline}<br />
-                <span className="text-primary-500">{headlineAccent}</span>
+                <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{headlineAccent}</span>
               </h2>
 
               <p className="text-foreground-950/55 text-base leading-relaxed">{subline}</p>

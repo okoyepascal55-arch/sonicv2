@@ -20,7 +20,7 @@ export default function RatgeberGeoContext({ data }: RatgeberGeoContextProps) {
           <span className="text-xs font-black text-foreground-950/60 uppercase tracking-widest">{GEO_LABELS[data.level] || 'Geografischer Kontext'}</span>
         </div>
 
-        <h2 className="sonic-h2 text-foreground-950 mb-6">
+        <h2 className="leist-h2 text-foreground-950 mb-6">
           {data.heading}
         </h2>
 

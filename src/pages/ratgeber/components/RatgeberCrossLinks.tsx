@@ -15,7 +15,7 @@ export default function RatgeberCrossLinks({ links }: RatgeberCrossLinksProps) {
           <span className="text-xs font-black text-foreground-950/60 uppercase tracking-widest">Weiterführende Ratgeber</span>
         </div>
 
-        <h2 className="sonic-h2 text-foreground-950 mb-3">
+        <h2 className="leist-h2 text-foreground-950 mb-3">
           Verwandte Themen
         </h2>
         <p className="text-foreground-950/55 text-base mb-8">
