@@ -1,0 +1,18 @@
+/* SRT final fidelity: keep the employee-app composition consistent with the shared two-column section rhythm. */
+#team-app > .sonic-container > .grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 2.5rem;
+}
+
+@media (max-width: 1023px) {
+  #team-app > .sonic-container > .grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  #team-app > .sonic-container > .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
