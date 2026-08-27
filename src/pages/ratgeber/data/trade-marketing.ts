@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const tradeMarketing: RatgeberPageContent = {
   slug: 'trade-marketing',
   seoTitle: 'Trade Marketing 2026 — Handelspartnerschaften gewinnen | Sonic Group',
-  metaDescription: 'Trade Marketing sichert Listungen, Platzierungen und Abverkauf im Handel. Erfahren Sie, wie Marken Handelspartner gewinnen, Konditionen verhandeln und gemeinsam mit dem Handel Umsatz steigern. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Trade Marketing sichert Listungen, Platzierungen und Abverkauf im Handel. Erfahre, wie Marken Handelspartner gewinnen, Konditionen verhandeln und gemeinsam mit dem Handel Umsatz steigern. Praxiswissen aus 19 Jahren Markenaktivierung.',
   h1: 'TRADE',
   h1Accent: 'MARKETING',
   heroSubtitle: 'Wie Marken Handelspartner gewinnen und gemeinsam Umsatz steigern',
@@ -88,7 +88,7 @@ const tradeMarketing: RatgeberPageContent = {
     {
       label: 'Forecasting — Abverkäufe datenbasiert prognostizieren',
       href: '/leistungen/forecasting',
-      description: 'KI-gestützte Prognosen stärken Ihre Handelsargumentation.',
+      description: 'KI-gestützte Prognosen stärken deine Handelsargumentation.',
     },
     {
       label: 'Kreation & Content — überzeugendes Verkaufsmaterial',
@@ -113,9 +113,9 @@ const tradeMarketing: RatgeberPageContent = {
       description: 'Wie Trade Marketing den Markteintritt in Deutschland und DACH unterstützt.',
     },
   ],
-  ctaHeadline: 'Stärken Sie Ihre',
+  ctaHeadline: 'Stärke deine',
   ctaAccent: 'Handelspartnerschaft.',
-  ctaSubline: 'Sprechen Sie mit uns über Ihre Trade-Marketing-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Trade-Marketing-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default tradeMarketing;

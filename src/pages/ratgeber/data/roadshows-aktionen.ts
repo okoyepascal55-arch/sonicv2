@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const roadshowsAktionen: RatgeberPageContent = {
   slug: 'roadshows-aktionen',
   seoTitle: 'Roadshows & Promotion-Aktionen 2026 — Mobile Brand Activation DACH | Sonic Group',
-  metaDescription: 'Roadshows und Promotion-Aktionen für maximale Markenpräsenz: Von Fahrzeug-Promotions über Shopping-Center-Aktivierungen bis zu Multi-City-Rollouts. Sonic Group plant, produziert und steuert Ihre mobile Brand Activation im gesamten DACH-Raum.',
+  metaDescription: 'Roadshows und Promotion-Aktionen für maximale Markenpräsenz: Von Fahrzeug-Promotions über Shopping-Center-Aktivierungen bis zu Multi-City-Rollouts. Sonic Group plant, produziert und steuert deine mobile Brand Activation im gesamten DACH-Raum.',
   h1: 'ROADSHOWS',
   h1Accent: '& AKTIONEN',
   heroSubtitle: 'Wie mobile Brand Activation, Promotion-Events und Roadshows Marken direkt zu den Menschen bringen',
@@ -85,19 +85,19 @@ const roadshowsAktionen: RatgeberPageContent = {
   ],
   internalLinks: [
     {
-      label: 'Events & Messen — die große Bühne für Ihre Brand Activation',
+      label: 'Events & Messen — die große Bühne für deine Brand Activation',
       href: '/leistungen/events-messen',
       description: 'Messen, Roadshows und Brand Events aus einer Hand — Full Service für den DACH-Raum.',
     },
     {
-      label: 'Warehouse & Logistik — die logistische Basis für Ihre Roadshow',
+      label: 'Warehouse & Logistik — die logistische Basis für deine Roadshow',
       href: '/leistungen/warehouse-logistik',
-      description: 'Lagerhaltung, Transport und Konfektionierung Ihres Roadshow-Equipments aus Krefeld.',
+      description: 'Lagerhaltung, Transport und Konfektionierung deines Roadshow-Equipments aus Krefeld.',
     },
     {
       label: 'Staff as a Service — Roadshow-erfahrenes Promotionspersonal',
       href: '/leistungen/staff-as-a-service',
-      description: 'Reisebereite, geschulte Promoter für alle Standorte Ihrer Roadshow im DACH-Raum.',
+      description: 'Reisebereite, geschulte Promoter für alle Standorte deiner Roadshow im DACH-Raum.',
     },
   ],
   crossLinks: [
@@ -117,9 +117,9 @@ const roadshowsAktionen: RatgeberPageContent = {
       description: 'Wie Roadshows den Markteintritt in den DACH-Raum dramaturgisch inszenieren.',
     },
   ],
-  ctaHeadline: 'Bringen Sie Ihre Marke',
+  ctaHeadline: 'Bring deine Marke',
   ctaAccent: 'auf die Straße',
-  ctaSubline: 'Entwickeln Sie mit uns Ihr Roadshow-Konzept — von der Idee bis zum ersten Standort. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Entwickle mit uns dein Roadshow-Konzept — von der Idee bis zum ersten Standort. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default roadshowsAktionen;

@@ -14,7 +14,7 @@ export default function RatgeberInternalLinks({ links }: RatgeberInternalLinksPr
           Sonic Group Services
         </h2>
         <p className="text-foreground-950/55 text-base mb-8">
-          Entdecken Sie, wie Sonic Group diese Strategien für Ihre Marke umsetzt:
+          Entdecke, wie Sonic Group diese Strategien für deine Marke umsetzt:
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4">

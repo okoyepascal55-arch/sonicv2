@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const liveShopping: RatgeberPageContent = {
   slug: 'live-shopping',
   seoTitle: 'Live Shopping 2026 — interaktiver E-Commerce mit persönlicher Beratung | Sonic Group',
-  metaDescription: 'Live Shopping verbindet die Reichweite des E-Commerce mit der Conversion-Kraft persönlicher Beratung. Erfahren Sie, wie Live Video Shopping funktioniert, welche Technologie Sie brauchen und wie Sie es für Ihre Marke in Deutschland und DACH einsetzen.',
+  metaDescription: 'Live Shopping verbindet die Reichweite des E-Commerce mit der Conversion-Kraft persönlicher Beratung. Erfahre, wie Live Video Shopping funktioniert, welche Technologie brauchst du und wie du es für deine Marke in Deutschland und DACH einsetzen.',
   h1: 'LIVE',
   h1Accent: 'SHOPPING',
   heroSubtitle: 'Wie interaktive Video-Beratung den E-Commerce revolutioniert und Conversion-Raten vervielfacht',
@@ -25,11 +25,11 @@ const liveShopping: RatgeberPageContent = {
       ],
     },
     {
-      title: 'Die technische Basis — was Sie für professionelles Live Shopping brauchen',
+      title: 'Die technische Basis — was du für professionelles Live Shopping brauchen',
       content: 'Professionelles Live Shopping erfordert eine durchdachte technische Infrastruktur. Das Studio-Setup umfasst mehrere Kameras, professionelle Beleuchtung und einen greenscreenfähigen Aufnahmeraum für flexible Hintergrundgestaltung. Die Übertragungstechnik sorgt für einen stabilen Stream mit minimaler Latenz auf allen Endgeräten. Der Chat- und Interaktions-Layer ermöglicht Echtzeit-Fragen und Antworten. Der Checkout-Layer integriert den Kaufprozess direkt in die Streaming-Oberfläche. Das Analytics-Backend erfasst Zuschauerzahlen, Verweildauer, Interaktionsraten und Conversion in Echtzeit. Entscheidend ist: Die Technik muss unsichtbar im Hintergrund funktionieren — der Zuschauer soll das Produkt erleben, nicht die Übertragungstechnik.',
     },
     {
-      title: 'Der Live-Shopping-Presenter — das Gesicht Ihres digitalen Verkaufserfolgs',
+      title: 'Der Live-Shopping-Presenter — das Gesicht deines digitalen Verkaufserfolgs',
       content: 'Der Presenter ist im Live Shopping noch wichtiger als der Markenbotschafter am POS. Denn er muss nicht nur Produktkenntnis und Verkaufsgeschick vereinen, sondern auch Kamera-Präsenz, Spontaneität und die Fähigkeit, parallel zum Produktgespräch den Chat zu moderieren und auf Zuschauerfragen zu reagieren. Das ist eine hochkomplexe Multitasking-Leistung, die spezifisches Training erfordert. Professionelle Live-Shopping-Studios setzen auf moderationserfahrene Presenter mit Branchenkenntnis und fundierter Produktschulung — idealerweise ergänzt durch einen zweiten Presenter, der den Chat betreut und das Gespräch strukturiert.',
     },
     {
@@ -90,14 +90,14 @@ const liveShopping: RatgeberPageContent = {
       description: 'Professionelles Live Video Shopping für Marken — inklusive Studio, Presenter und Technik aus einer Hand.',
     },
     {
-      label: 'Kreation & Content — die kreative Produktion für Ihren Stream',
+      label: 'Kreation & Content — die kreative Produktion für deinen Stream',
       href: '/leistungen/kreation-content',
       description: 'Content-Produktion, Set-Design und kreative Inszenierung für Live-Shopping-Formate.',
     },
     {
-      label: 'Staff as a Service — professionelle Presenter für Ihre Streams',
+      label: 'Staff as a Service — professionelle Presenter für deine Streams',
       href: '/leistungen/staff-as-a-service',
-      description: 'Moderationserfahrene Presenter mit Produktschulung für Ihre Live-Shopping-Formate.',
+      description: 'Moderationserfahrene Presenter mit Produktschulung für deine Live-Shopping-Formate.',
     },
   ],
   crossLinks: [
@@ -117,9 +117,9 @@ const liveShopping: RatgeberPageContent = {
       description: 'Live Shopping als nachhaltige Alternative zu reiseintensiven Produktvorstellungen.',
     },
   ],
-  ctaHeadline: 'Starten Sie Ihr erstes',
+  ctaHeadline: 'Starte dein erstes',
   ctaAccent: 'Live Shopping Event',
-  ctaSubline: 'Sprechen Sie mit uns über Ihre Live-Shopping-Strategie — vom Konzept bis zum ersten Stream. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Live-Shopping-Strategie — vom Konzept bis zum ersten Stream. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default liveShopping;

@@ -113,9 +113,9 @@ const socialCommerce: RatgeberPageContent = {
       description: 'Wie Social Commerce den Markteintritt in Deutschland ohne physische Infrastruktur ermöglicht.',
     },
   ],
-  ctaHeadline: 'Starten Sie Ihre',
+  ctaHeadline: 'Starte deine',
   ctaAccent: 'Social-Commerce-Strategie',
-  ctaSubline: 'Lassen Sie uns gemeinsam die richtigen Plattformen, Creator und Formate für Ihre Marke identifizieren. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Lass uns gemeinsam die richtigen Plattformen, Creator und Formate für deine Marke identifizieren. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default socialCommerce;

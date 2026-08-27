@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const fieldMarketingSampling: RatgeberPageContent = {
   slug: 'field-marketing-sampling',
   seoTitle: 'Field Marketing & Sampling — Marken direkt am Kunden erlebbar machen | Sonic Group',
-  metaDescription: 'Field Marketing und Produkt-Sampling als wirkungsvolle Strategie zur Neukundengewinnung. Erfahren Sie, wie geschulte Markenbotschafter Ihre Produkte an Hotspots in NRW, bundesweit und im DACH-Raum durch direkte Produktproben und persönliche Ansprache in den Markt bringen.',
+  metaDescription: 'Field Marketing und Produkt-Sampling als wirkungsvolle Strategie zur Neukundengewinnung. Erfahre, wie geschulte Markenbotschafter deine Produkte an Hotspots in NRW, bundesweit und im DACH-Raum durch direkte Produktproben und persönliche Ansprache in den Markt bringen.',
   h1: 'FIELD MARKETING',
   h1Accent: '& SAMPLING',
   heroSubtitle: 'Wie Produktproben und persönliche Ansprache Neukunden gewinnen und Markentreue aufbauen',
@@ -60,7 +60,7 @@ const fieldMarketingSampling: RatgeberPageContent = {
     },
     {
       question: 'Wie lange im Voraus muss eine Sampling-Kampagne geplant werden?',
-      answer: 'Für eine lokale Aktion an wenigen Standorten genügen 3 bis 4 Wochen Vorlauf. Bei bundesweiten Rollouts mit 20 oder mehr Standorten sollten Sie 6 bis 8 Wochen einplanen — insbesondere wenn Sondernutzungsgenehmigungen erforderlich sind oder spezifische Produktschulungen durchgeführt werden müssen. In der Weihnachtssaison und während großer Messen verlängern sich die Vorlaufzeiten erfahrungsgemäß um 1 bis 2 Wochen.',
+      answer: 'Für eine lokale Aktion an wenigen Standorten genügen 3 bis 4 Wochen Vorlauf. Bei bundesweiten Rollouts mit 20 oder mehr Standorten solltest du 6 bis 8 Wochen einplanen — insbesondere wenn Sondernutzungsgenehmigungen erforderlich sind oder spezifische Produktschulungen durchgeführt werden müssen. In der Weihnachtssaison und während großer Messen verlängern sich die Vorlaufzeiten erfahrungsgemäß um 1 bis 2 Wochen.',
     },
     {
       question: 'Welche Produkte eignen sich für Sampling?',
@@ -87,7 +87,7 @@ const fieldMarketingSampling: RatgeberPageContent = {
     {
       label: 'Staff as a Service — qualifiziertes Promotionspersonal',
       href: '/leistungen/staff-as-a-service',
-      description: 'Zugriff auf über 5.000 geschulte Markenbotschafter für Ihre Field-Marketing-Kampagne.',
+      description: 'Zugriff auf über 5.000 geschulte Markenbotschafter für deine Field-Marketing-Kampagne.',
     },
     {
       label: 'POS Full Service — Markenaktivierung am Point of Sale',
@@ -95,14 +95,14 @@ const fieldMarketingSampling: RatgeberPageContent = {
       description: 'Ganzheitliche POS-Aktivierung mit geschultem Personal, Displays und datenbasierter Steuerung.',
     },
     {
-      label: 'Events & Messen — Ihre Marke live erleben',
+      label: 'Events & Messen — deine Marke live erleben',
       href: '/leistungen/events-messen',
       description: 'Modulare Messestände, Roadshows und Brand Activation Events im gesamten DACH-Raum.',
     },
   ],
   crossLinks: [
     {
-      label: 'Promotionspersonal — die Gesichter Ihrer Sampling-Kampagne',
+      label: 'Promotionspersonal — die Gesichter deiner Sampling-Kampagne',
       href: '/ratgeber/promotionspersonal',
       description: 'Geschulte Markenbotschafter als erfolgsentscheidender Faktor im Field Marketing.',
     },
@@ -114,12 +114,12 @@ const fieldMarketingSampling: RatgeberPageContent = {
     {
       label: 'Guerilla Marketing — kreative Sampling-Inszenierungen',
       href: '/ratgeber/guerilla-marketing',
-      description: 'Wie Guerilla-Elemente Ihre Sampling-Aktion unvergesslich machen.',
+      description: 'Wie Guerilla-Elemente deine Sampling-Aktion unvergesslich machen.',
     },
   ],
-  ctaHeadline: 'Starten Sie Ihre nächste',
+  ctaHeadline: 'Starte deine nächste',
   ctaAccent: 'Sampling-Kampagne',
-  ctaSubline: 'Lassen Sie uns gemeinsam den optimalen Field-Marketing-Plan für Ihre Marke entwickeln. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Lass uns gemeinsam den optimalen Field-Marketing-Plan für deine Marke entwickeln. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default fieldMarketingSampling;

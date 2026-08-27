@@ -25,7 +25,7 @@ const liveVideoPromotion: RatgeberPageContent = {
       ],
     },
     {
-      title: 'Formate der Live Video Promotion — welches Modell passt zu Ihrer Marke?',
+      title: 'Formate der Live Video Promotion — welches Modell passt zu deiner Marke?',
       content: 'Live Video Promotion ist kein Einheitsformat, sondern ein Spektrum von Formaten für unterschiedliche Zielgruppen und Kaufsituationen. Das 1:1-Video-Consulting bringt Kunden direkt mit einem spezialisierten Berater zusammen — ideal für komplexe, hochpreisige Produkte wie TV-Geräte, Haushaltsgeräte oder Premium-Beauty-Produkte, bei denen individuelle Bedarfsanalyse entscheidend ist. Der Live-Shopping-Stream richtet sich an eine größere Gruppe und kombiniert Produktdemonstration mit Entertainment und direktem Kaufimpuls — bestens geeignet für neue Produkte und saisonale Aktionen. Das Produktvideo-On-Demand erweitert Live-Inhalte um einen On-Demand-Kanal: aufgezeichnete Demonstrationen, Q&A-Sessions und How-to-Videos, die Kunden jederzeit abrufen können. Und schließlich das Hybrid-Modell: Ein Live-Stream verbindet physisch im Laden anwesende Kunden mit digitalen Zuschauern — eine Lösung, die den stationären Handel ins digitale Zeitalter bringt.',
     },
     {
@@ -56,7 +56,7 @@ const liveVideoPromotion: RatgeberPageContent = {
   faqs: [
     {
       question: 'Welche Technologie brauche ich für Live Video Promotion?',
-      answer: 'Als Auftraggeber brauchen Sie zunächst weniger als Sie denken: eine Integration auf Ihrer Website (ein Button oder ein Widget) und eine Verbindung zu den Sonic-Group-Studios. Das gesamte technische Setup — Kameras, Lighting, Streaming-Software, Chat-Integration, Kauf-Overlays — liegt auf der Seite von Sonic Group. Für Marken, die ein eigenes Live-Video-Setup aufbauen wollen, sind die Mindestanforderungen: eine stabile Glasfaserverbindung, eine oder mehrere hochauflösende Webcams oder Kameras, professionelle LED-Studiobeleuchtung, ein leistungsfähiger Rechner mit Streaming-Software und eine Integration der Live-Shopping-Plattform in den bestehenden Webshop.',
+      answer: 'Als Auftraggeber brauchst du zunächst weniger als du denkst: eine Integration auf deiner Website (ein Button oder ein Widget) und eine Verbindung zu den Sonic-Group-Studios. Das gesamte technische Setup — Kameras, Lighting, Streaming-Software, Chat-Integration, Kauf-Overlays — liegt auf der Seite von Sonic Group. Für Marken, die ein eigenes Live-Video-Setup aufbauen wollen, sind die Mindestanforderungen: eine stabile Glasfaserverbindung, eine oder mehrere hochauflösende Webcams oder Kameras, professionelle LED-Studiobeleuchtung, ein leistungsfähiger Rechner mit Streaming-Software und eine Integration der Live-Shopping-Plattform in den bestehenden Webshop.',
     },
     {
       question: 'Wie schult Sonic Group die Video-Berater für mein Produkt?',
@@ -90,12 +90,12 @@ const liveVideoPromotion: RatgeberPageContent = {
       description: 'Technische Details, Studio-Infrastruktur und Referenzprojekte zu Sonic Groups LVP-Leistung.',
     },
     {
-      label: 'Kreation & Content — Content für Ihre Live-Video-Kampagnen',
+      label: 'Kreation & Content — Content für deine Live-Video-Kampagnen',
       href: '/leistungen/kreation-content',
       description: 'Set-Design, Produktvisualisierungen und Cross-Media-Content für professionelle Live-Video-Auftritte.',
     },
     {
-      label: 'SRT — datenbasiertes Reporting für Ihre Video-Promotion',
+      label: 'SRT — datenbasiertes Reporting für deine Video-Promotion',
       href: '/srt',
       description: 'Sonic Reporting Tool: Echtzeit-KPIs für alle Live-Video-Promotion-Aktivitäten.',
     },
@@ -117,9 +117,9 @@ const liveVideoPromotion: RatgeberPageContent = {
       description: 'Wie Live Video Promotion den Markteintritt in den DACH-Raum ohne physische Präsenz ermöglicht.',
     },
   ],
-  ctaHeadline: 'Starten Sie Ihre erste',
+  ctaHeadline: 'Starte deine erste',
   ctaAccent: 'Live Video Promotion',
-  ctaSubline: 'Sprechen Sie mit uns über Ihre Video-Promotion-Strategie — von der Technik bis zum ersten Live-Gespräch. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Video-Promotion-Strategie — von der Technik bis zum ersten Live-Gespräch. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default liveVideoPromotion;

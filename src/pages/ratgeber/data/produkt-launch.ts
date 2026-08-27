@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const produktLaunch: RatgeberPageContent = {
   slug: 'produkt-launch',
   seoTitle: 'Produkt-Launch 2026 — Neueinführungen erfolgreich machen | Sonic Group',
-  metaDescription: 'Produkt-Launch und Produkteinführung entscheiden über den Markterfolg. Erfahren Sie, wie Marken neue Produkte strategisch einführen, Hype erzeugen und Abverkauf vom ersten Tag sichern. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Produkt-Launch und Produkteinführung entscheiden über den Markterfolg. Erfahre, wie Marken neue Produkte strategisch einführen, Hype erzeugen und Abverkauf vom ersten Tag sichern. Praxiswissen aus 19 Jahren Markenaktivierung.',
   h1: 'PRODUKT-',
   h1Accent: 'LAUNCH',
   heroSubtitle: 'Wie neue Produkte vom ersten Tag an Aufmerksamkeit und Abverkauf erzielen',
@@ -113,9 +113,9 @@ const produktLaunch: RatgeberPageContent = {
       description: 'Vom Produkt-Launch zur Markterschließung im DACH-Raum.',
     },
   ],
-  ctaHeadline: 'Starten Sie Ihr nächstes Produkt',
+  ctaHeadline: 'Starte dein nächstes Produkt',
   ctaAccent: 'mit einem durchdachten Launch.',
-  ctaSubline: 'Sprechen Sie mit uns über Ihre Produkteinführung. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Produkteinführung. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default produktLaunch;

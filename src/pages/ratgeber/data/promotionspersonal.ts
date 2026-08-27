@@ -3,10 +3,10 @@ import type { RatgeberPageContent } from './types';
 const promotionspersonal: RatgeberPageContent = {
   slug: 'promotionspersonal',
   seoTitle: 'Promotionspersonal 2026 — die richtigen Markenbotschafter finden und einsetzen | Sonic Group',
-  metaDescription: 'Qualifiziertes Promotionspersonal für POS, Events und Field Marketing. Erfahren Sie, worauf es bei Auswahl, Schulung und Einsatz von Markenbotschaftern ankommt — von Krefeld über NRW bis in den gesamten DACH-Raum.',
+  metaDescription: 'Qualifiziertes Promotionspersonal für POS, Events und Field Marketing. Erfahre, worauf es bei Auswahl, Schulung und Einsatz von Markenbotschaftern ankommt — von Krefeld über NRW bis in den gesamten DACH-Raum.',
   h1: 'PROMOTIONS',
   h1Accent: 'PERSONAL',
-  heroSubtitle: 'Wie Sie die richtigen Markenbotschafter finden, schulen und erfolgreich einsetzen',
+  heroSubtitle: 'Wie du die richtigen Markenbotschafter finden, schulen und erfolgreich einsetzen',
   heroSummary: 'Promotionspersonal ist der kritischste Erfolgsfaktor jeder Markenaktivierung. Die beste Strategie, das durchdachteste Kampagnenkonzept und das schönste POS-Display nützen nichts, wenn die Menschen am Point of Sale nicht überzeugen. Doch was macht einen guten Markenbotschafter aus? Wie findet man die richtigen Profile für eine spezifische Kampagne? Und wie stellt man sicher, dass die Qualität über alle Standorte hinweg konstant hoch bleibt? Dieser Ratgeber liefert die Antworten.',
   heroImageUrl: 'https://readdy.ai/api/search-image?query=professional%20brand%20ambassadors%20and%20promotional%20staff%20in%20modern%20branded%20uniforms%20engaging%20with%20consumers%20at%20trade%20show%20booth%20bright%20natural%20lighting%20confident%20diverse%20team%20demonstrating%20products%20professional%20atmosphere%20clean%20composition%20warm%20welcoming%20expressions&width=1920&height=1080&seq=ratgeber-promotionspersonal-hero-v1&orientation=landscape',
   category: 'Promotionspersonal',
@@ -80,24 +80,24 @@ const promotionspersonal: RatgeberPageContent = {
     },
     {
       question: 'Welche formalen Anforderungen muss ich als Auftraggeber erfüllen?',
-      answer: 'Bei der Buchung über eine Agentur im Rahmen der Arbeitnehmerüberlassung trägt die Agentur die Arbeitgeberpflichten: Anmeldung zur Sozialversicherung, Lohnsteuerabzug, Unfallversicherung und Arbeitszeitdokumentation. Als Auftraggeber müssen Sie lediglich sicherstellen, dass der Einsatzort die arbeitsschutzrechtlichen Anforderungen erfüllt — etwa Zugang zu Sanitäranlagen und Pausenräumen. Die Agentur stellt die erforderliche Einsatzdokumentation für Ihre Unterlagen bereit.',
+      answer: 'Bei der Buchung über eine Agentur im Rahmen der Arbeitnehmerüberlassung trägt die Agentur die Arbeitgeberpflichten: Anmeldung zur Sozialversicherung, Lohnsteuerabzug, Unfallversicherung und Arbeitszeitdokumentation. Als Auftraggeber musst du lediglich sicherstellen, dass der Einsatzort die arbeitsschutzrechtlichen Anforderungen erfüllt — etwa Zugang zu Sanitäranlagen und Pausenräumen. Die Agentur stellt die erforderliche Einsatzdokumentation für deine Unterlagen bereit.',
     },
   ],
   internalLinks: [
     {
-      label: 'Staff as a Service — Ihr Zugang zu 5.000 geschulten Markenbotschaftern',
+      label: 'Staff as a Service — dein Zugang zu 5.000 geschulten Markenbotschaftern',
       href: '/leistungen/staff-as-a-service',
       description: 'Flexibel buchbar, deutschlandweit, inklusive Einsatzsteuerung und Qualitätssicherung.',
     },
     {
-      label: 'Talentpool — die besten Profile für Ihre nächste Kampagne',
+      label: 'Talentpool — die besten Profile für deine nächste Kampagne',
       href: '/leistungen/talentpool',
       description: 'Zugriff auf geprüfte Profile mit dokumentierten Leistungsnachweisen und Produktschulungen.',
     },
     {
       label: 'Events & Messen — professionelles Standpersonal für den Messeauftritt',
       href: '/leistungen/events-messen',
-      description: 'Erfahrene Messehostessen und -hosts für Ihren erfolgreichen Auftritt in Düsseldorf, Köln und bundesweit.',
+      description: 'Erfahrene Messehostessen und -hosts für deinen erfolgreichen Auftritt in Düsseldorf, Köln und bundesweit.',
     },
   ],
   crossLinks: [
@@ -117,9 +117,9 @@ const promotionspersonal: RatgeberPageContent = {
       description: 'Wie Mystery Shopping die Performance von Promotionspersonal objektiv bewertet.',
     },
   ],
-  ctaHeadline: 'Finden Sie die richtigen',
+  ctaHeadline: 'Finde die richtigen',
   ctaAccent: 'Markenbotschafter',
-  ctaSubline: 'Sprechen Sie mit uns über Ihr Personalprofil und Ihren Bedarf. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über dein Personalprofil und deinen Bedarf. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default promotionspersonal;

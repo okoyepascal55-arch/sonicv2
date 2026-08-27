@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const markenaktivierung: RatgeberPageContent = {
   slug: 'markenaktivierung',
   seoTitle: 'Markenaktivierung 2026 — Strategien für messbare Markenerlebnisse | Sonic Group',
-  metaDescription: 'Markenaktivierung als strategischer Prozess: von der Planung über die Inszenierung bis zur Erfolgsmessung. Erfahren Sie, wie Marken am POS, auf Events und digital zu emotionalen Erlebnissen werden — in NRW, Deutschland und DACH.',
+  metaDescription: 'Markenaktivierung als strategischer Prozess: von der Planung über die Inszenierung bis zur Erfolgsmessung. Erfahre, wie Marken am POS, auf Events und digital zu emotionalen Erlebnissen werden — in NRW, Deutschland und DACH.',
   h1: 'MARKEN',
   h1Accent: 'AKTIVIERUNG',
   heroSubtitle: 'Wie Marken vom Logo zum Erlebnis werden — der strategische Prozess der Aktivierung',
@@ -85,7 +85,7 @@ const markenaktivierung: RatgeberPageContent = {
   ],
   internalLinks: [
     {
-      label: 'Events & Messen — Ihre Marke live und in Farbe',
+      label: 'Events & Messen — deine Marke live und in Farbe',
       href: '/leistungen/events-messen',
       description: 'Modulare Messestände, Roadshows und Brand-Events für den gesamten DACH-Raum.',
     },
@@ -95,9 +95,9 @@ const markenaktivierung: RatgeberPageContent = {
       description: 'Ganzheitliche POS-Betreuung mit geschultem Personal und datenbasierter Steuerung.',
     },
     {
-      label: 'Kreation & Content — die kreative Seele Ihrer Aktivierung',
+      label: 'Kreation & Content — die kreative Seele deiner Aktivierung',
       href: '/leistungen/kreation-content',
-      description: 'Kreativkonzeption, Content-Produktion und digitale Inszenierung für Ihre Markenaktivierung.',
+      description: 'Kreativkonzeption, Content-Produktion und digitale Inszenierung für deine Markenaktivierung.',
     },
   ],
   crossLinks: [
@@ -114,12 +114,12 @@ const markenaktivierung: RatgeberPageContent = {
     {
       label: 'Guerilla Marketing — unkonventionelle Aktivierungsideen',
       href: '/ratgeber/guerilla-marketing',
-      description: 'Wie Guerilla-Elemente Ihre Markenaktivierung überraschend und teilbar machen.',
+      description: 'Wie Guerilla-Elemente deine Markenaktivierung überraschend und teilbar machen.',
     },
   ],
-  ctaHeadline: 'Aktivieren Sie das volle',
-  ctaAccent: 'Potenzial Ihrer Marke',
-  ctaSubline: 'Entwickeln Sie mit uns Ihre individuelle Markenaktivierungs-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaHeadline: 'Aktiviere das volle',
+  ctaAccent: 'Potenzial deiner Marke',
+  ctaSubline: 'Entwickle mit uns deine individuelle Markenaktivierungs-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default markenaktivierung;

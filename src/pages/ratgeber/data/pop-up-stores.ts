@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const popUpStores: RatgeberPageContent = {
   slug: 'pop-up-stores',
   seoTitle: 'Pop-up Stores 2026 — temporäre Retail-Erlebnisse | Sonic Group',
-  metaDescription: 'Pop-up Stores schaffen temporäre Markenerlebnisse mit Hype-Effekt. Erfahren Sie, wie Marken mit zeitlich begrenzten Retail-Konzepten Aufmerksamkeit erzeugen, Produkte testen und Community aufbauen. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Pop-up Stores schaffen temporäre Markenerlebnisse mit Hype-Effekt. Erfahre, wie Marken mit zeitlich begrenzten Retail-Konzepten Aufmerksamkeit erzeugen, Produkte testen und Community aufbauen. Praxiswissen aus 19 Jahren Markenaktivierung.',
   h1: 'POP-UP',
   h1Accent: 'STORES',
   heroSubtitle: 'Wie temporäre Retail-Konzepte Aufmerksamkeit und Abverkauf erzeugen',
@@ -93,7 +93,7 @@ const popUpStores: RatgeberPageContent = {
     {
       label: 'Kreation & Content — Store-Design und Inszenierung',
       href: '/leistungen/kreation-content',
-      description: 'Design und Content, die Ihren Pop-up Store unverwechselbar machen.',
+      description: 'Design und Content, die deinen Pop-up Store unverwechselbar machen.',
     },
   ],
   crossLinks: [
@@ -113,9 +113,9 @@ const popUpStores: RatgeberPageContent = {
       description: 'Die Erlebnisstrategie hinter erfolgreichen Pop-up Stores.',
     },
   ],
-  ctaHeadline: 'Bereit für Ihr nächstes',
+  ctaHeadline: 'Bereit für dein nächstes',
   ctaAccent: 'temporäres Markenerlebnis?',
-  ctaSubline: 'Sprechen Sie mit uns über Ihr Pop-up-Store-Konzept. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über dein Pop-up-Store-Konzept. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default popUpStores;

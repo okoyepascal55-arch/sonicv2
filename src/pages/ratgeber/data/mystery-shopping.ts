@@ -3,10 +3,10 @@ import type { RatgeberPageContent } from './types';
 const mysteryShopping: RatgeberPageContent = {
   slug: 'mystery-shopping',
   seoTitle: 'Mystery Shopping 2026 — Servicequalität messen und nachhaltig verbessern | Sonic Group',
-  metaDescription: 'Professionelles Mystery Shopping für Handel und Marken. Erfahren Sie, wie verdeckte Testkäufe und objektive Service-Analysen Ihre Kundenerfahrung am POS messbar optimieren — in NRW, bundesweit und in der DACH-Region.',
+  metaDescription: 'Professionelles Mystery Shopping für Handel und Marken. Erfahre, wie verdeckte Testkäufe und objektive Service-Analysen deine Kundenerfahrung am POS messbar optimieren — in NRW, bundesweit und in der DACH-Region.',
   h1: 'MYSTERY',
   h1Accent: 'SHOPPING',
-  heroSubtitle: 'Wie verdeckte Testkäufe und objektive Service-Messung Ihre Kundenerfahrung messbar verbessern',
+  heroSubtitle: 'Wie verdeckte Testkäufe und objektive Service-Messung deine Kundenerfahrung messbar verbessern',
   heroSummary: 'Mystery Shopping ist das präziseste Instrument zur Messung von Servicequalität, Markenstandards und Kundenerlebnis am Point of Sale. Geschulte Testkäufer bewerten nach standardisierten Kriterien Beratungsqualität, Warenpräsentation, Sauberkeit und die Umsetzung vereinbarter Standards — aus der Perspektive eines echten Kunden. Anders als Kundenbefragungen liefert Mystery Shopping objektive, vergleichbare Daten, die konkrete Verbesserungsmaßnahmen ermöglichen.',
   heroImageUrl: 'https://readdy.ai/api/search-image?query=mystery%20shopping%20concept%20sleek%20modern%20retail%20store%20interior%20with%20subtle%20professional%20shopper%20observing%20product%20displays%20clean%20minimalist%20composition%20abstract%20representation%20of%20quality%20assessment%20soft%20natural%20lighting%20sophisticated%20atmosphere%20subtle%20brand%20presence%20editorial%20photography%20style&width=1920&height=1080&seq=ratgeber-mystery-shopping-hero-v1&orientation=landscape',
   category: 'Mystery Shopping',
@@ -85,12 +85,12 @@ const mysteryShopping: RatgeberPageContent = {
   ],
   internalLinks: [
     {
-      label: 'Staff as a Service — qualifiziertes Personal für Ihren POS',
+      label: 'Staff as a Service — qualifiziertes Personal für deinen POS',
       href: '/leistungen/staff-as-a-service',
       description: 'Geschulte Markenbotschafter, die Service- und Beratungsstandards auf höchstem Niveau umsetzen.',
     },
     {
-      label: 'Talentpool — die besten Köpfe für Ihre Marke',
+      label: 'Talentpool — die besten Köpfe für deine Marke',
       href: '/leistungen/talentpool',
       description: 'Zugriff auf über 5.000 erprobte Markenbotschafter mit nachgewiesener Service- und Kommunikationskompetenz.',
     },
@@ -117,9 +117,9 @@ const mysteryShopping: RatgeberPageContent = {
       description: 'Mystery Shopping als Instrument zur Überprüfung von Nachhaltigkeitsversprechen.',
     },
   ],
-  ctaHeadline: 'Messen Sie Ihre',
+  ctaHeadline: 'Miss deine',
   ctaAccent: 'Service-Qualität',
-  ctaSubline: 'Entwickeln Sie mit uns ein Mystery-Shopping-Programm, das echte Verbesserungen liefert. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Entwickle mit uns ein Mystery-Shopping-Programm, das echte Verbesserungen liefert. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default mysteryShopping;

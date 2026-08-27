@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const messeEventmarketing: RatgeberPageContent = {
   slug: 'messe-eventmarketing',
   seoTitle: 'Messe- & Eventmarketing NRW — Messestand, Roadshow, Brand Activation | Sonic Group',
-  metaDescription: 'Messe- und Eventmarketing-Strategien für Düsseldorf, Köln und NRW. Von modularen Messeständen über Roadshows bis zur datengestützten Lead-Generierung. Ihr Partner für Messeerfolg im DACH-Raum.',
+  metaDescription: 'Messe- und Eventmarketing-Strategien für Düsseldorf, Köln und NRW. Von modularen Messeständen über Roadshows bis zur datengestützten Lead-Generierung. dein Partner für Messeerfolg im DACH-Raum.',
   h1: 'MESSE- &',
   h1Accent: 'EVENTMARKETING',
   heroSubtitle: 'Wie Marken auf Messen und Events maximale Sichtbarkeit und messbare Leads erzielen',
@@ -81,31 +81,31 @@ const messeEventmarketing: RatgeberPageContent = {
   ],
   internalLinks: [
     {
-      label: 'Events & Messen — Ihre Marke auf der großen Bühne',
+      label: 'Events & Messen — deine Marke auf der großen Bühne',
       href: '/leistungen/events-messen',
       description: 'Modulare Messestände, Roadshows und Brand Activation Events für den DACH-Raum.',
     },
     {
       label: 'Staff as a Service — qualifiziertes Messepersonal',
       href: '/leistungen/staff-as-a-service',
-      description: 'Geschulte Hostessen, Promoter und Fachpersonal für Ihren Messeauftritt.',
+      description: 'Geschulte Hostessen, Promoter und Fachpersonal für deinen Messeauftritt.',
     },
     {
       label: 'Kreation & Content — vom Messestand zum Content-Hub',
       href: '/leistungen/kreation-content',
-      description: 'Foto, Video und 3D-Design für Ihre Messe- und Eventkommunikation.',
+      description: 'Foto, Video und 3D-Design für deine Messe- und Eventkommunikation.',
     },
     {
-      label: 'Warehouse & Logistik — Materiallogistik für Ihre Messe',
+      label: 'Warehouse & Logistik — Materiallogistik für deine Messe',
       href: '/leistungen/warehouse-logistik',
-      description: 'Lagerung, Transport und Bereitstellung Ihres Messeequipments europaweit.',
+      description: 'Lagerung, Transport und Bereitstellung deines Messeequipments europaweit.',
     },
   ],
   crossLinks: [
     {
-      label: 'Promotionspersonal — das richtige Team für Ihren Messestand',
+      label: 'Promotionspersonal — das richtige Team für deinen Messestand',
       href: '/ratgeber/promotionspersonal',
-      description: 'Wie Sie das optimale Messepersonal finden, schulen und einsetzen.',
+      description: 'Wie du das optimale Messepersonal finden, schulen und einsetzen.',
     },
     {
       label: 'Markenaktivierung — die strategische Klammer für Messeauftritte',
@@ -115,12 +115,12 @@ const messeEventmarketing: RatgeberPageContent = {
     {
       label: 'Live Shopping — die digitale Verlängerung des Messestands',
       href: '/ratgeber/live-shopping',
-      description: 'Wie Live-Streaming die Reichweite Ihres Messeauftritts multipliziert.',
+      description: 'Wie Live-Streaming die Reichweite deines Messeauftritts multipliziert.',
     },
   ],
-  ctaHeadline: 'Ihr nächster Messeauftritt',
-  ctaAccent: 'wird Ihr erfolgreichster',
-  ctaSubline: 'Sprechen wir über Ihre Messe- und Eventstrategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaHeadline: 'Dein nächster Messeauftritt',
+  ctaAccent: 'wird dein erfolgreichster',
+  ctaSubline: 'Sprechen wir über deine Messe- und Eventstrategie. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default messeEventmarketing;

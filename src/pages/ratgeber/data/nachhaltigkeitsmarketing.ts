@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const nachhaltigkeitsmarketing: RatgeberPageContent = {
   slug: 'nachhaltigkeitsmarketing',
   seoTitle: 'Nachhaltigkeitsmarketing 2026 — grüne Markenstrategien für messbare Wirkung | Sonic Group',
-  metaDescription: 'Nachhaltigkeitsmarketing als strategischer Erfolgsfaktor. Erfahren Sie, wie Marken ökologische und soziale Verantwortung glaubwürdig kommunizieren, Greenwashing vermeiden und Nachhaltigkeit am POS, auf Events und digital erlebbar machen — in Deutschland und DACH.',
+  metaDescription: 'Nachhaltigkeitsmarketing als strategischer Erfolgsfaktor. Erfahre, wie Marken ökologische und soziale Verantwortung glaubwürdig kommunizieren, Greenwashing vermeiden und Nachhaltigkeit am POS, auf Events und digital erlebbar machen — in Deutschland und DACH.',
   h1: 'NACHHALTIGKEITS',
   h1Accent: 'MARKETING',
   heroSubtitle: 'Wie grüne Markenstrategien Glaubwürdigkeit aufbauen und messbare Wettbewerbsvorteile schaffen',
@@ -97,7 +97,7 @@ const nachhaltigkeitsmarketing: RatgeberPageContent = {
     {
       label: 'Kreation & Content — Nachhaltigkeitsgeschichten, die bewegen',
       href: '/leistungen/kreation-content',
-      description: 'Kreative Content-Produktion für Ihre Nachhaltigkeitskommunikation — emotional, authentisch, teilbar.',
+      description: 'Kreative Content-Produktion für deine Nachhaltigkeitskommunikation — emotional, authentisch, teilbar.',
     },
   ],
   crossLinks: [
@@ -117,9 +117,9 @@ const nachhaltigkeitsmarketing: RatgeberPageContent = {
       description: 'Nachhaltigkeitserlebnisse schaffen, die im Gedächtnis bleiben.',
     },
   ],
-  ctaHeadline: 'Machen Sie Nachhaltigkeit zum',
+  ctaHeadline: 'Mach Nachhaltigkeit zum',
   ctaAccent: 'Markenvorteil',
-  ctaSubline: 'Entwickeln Sie mit uns eine Nachhaltigkeitsstrategie, die wirkt und verkauft. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Entwickle mit uns eine Nachhaltigkeitsstrategie, die wirkt und verkauft. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default nachhaltigkeitsmarketing;

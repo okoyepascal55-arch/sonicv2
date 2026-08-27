@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const tiktokShopLive: RatgeberPageContent = {
   slug: 'tiktok-shop-live',
   seoTitle: 'TikTok Shop & TikTok Live Commerce 2026 — Agentur für DACH | Sonic Group',
-  metaDescription: 'TikTok Shop und TikTok Live Commerce in Deutschland, Österreich und der Schweiz strategisch einsetzen. Erfahren Sie, wie Marken mit Live Selling, Shoppable Videos und Creator-Partnerships den DACH-Markt erobern — mit Sonic Group als Full-Service-Partner.',
+  metaDescription: 'TikTok Shop und TikTok Live Commerce in Deutschland, Österreich und der Schweiz strategisch einsetzen. Erfahre, wie Marken mit Live Selling, Shoppable Videos und Creator-Partnerships den DACH-Markt erobern — mit Sonic Group als Full-Service-Partner.',
   h1: 'TIKTOK SHOP',
   h1Accent: '& LIVE COMMERCE',
   heroSubtitle: 'Wie Marken mit TikTok Shop, Live Selling und Creator-Partnerships den DACH-Markt erobern',
@@ -97,7 +97,7 @@ const tiktokShopLive: RatgeberPageContent = {
     {
       label: 'POS Full Service — TikTok Shop trifft stationären Handel',
       href: '/leistungen/pos-full-service',
-      description: 'Verbinden Sie TikTok-Commerce mit physischer Markenaktivierung am Point of Sale.',
+      description: 'Verbinde TikTok-Commerce mit physischer Markenaktivierung am Point of Sale.',
     },
   ],
   crossLinks: [
@@ -117,9 +117,9 @@ const tiktokShopLive: RatgeberPageContent = {
       description: 'TikTok Shop im Kontext der strategischen Markenaktivierung.',
     },
   ],
-  ctaHeadline: 'Erobern Sie den',
+  ctaHeadline: 'Erobere den',
   ctaAccent: 'TikTok-Shop-Markt',
-  ctaSubline: 'Lassen Sie uns gemeinsam Ihre TikTok-Commerce-Strategie für den DACH-Raum entwickeln. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Lass uns gemeinsam deine TikTok-Commerce-Strategie für den DACH-Raum entwickeln. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default tiktokShopLive;

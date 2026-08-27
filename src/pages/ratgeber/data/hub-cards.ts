@@ -51,7 +51,7 @@ const hubCards: RatgeberHubCard[] = [
     category: 'Mystery Shopping',
     title: 'MYSTERY',
     accent: 'SHOPPING',
-    description: 'Objektive Service-Messung durch geschulte Testkäufer — wie verdeckte Besuche Ihre Kundenerfahrung am POS messbar verbessern.',
+    description: 'Objektive Service-Messung durch geschulte Testkäufer — wie verdeckte Besuche deine Kundenerfahrung am POS messbar verbessern.',
     geoLevel: 'national',
     imageUrl: 'https://readdy.ai/api/search-image?query=mystery%20shopping%20concept%20sleek%20modern%20retail%20store%20interior%20with%20subtle%20professional%20shopper%20observing%20product%20displays%20clean%20minimalist%20composition%20abstract%20representation%20of%20quality%20assessment%20soft%20natural%20lighting%20sophisticated%20atmosphere&width=800&height=500&seq=ratgeber-hub-mystery-shopping-v1&orientation=landscape',
   },

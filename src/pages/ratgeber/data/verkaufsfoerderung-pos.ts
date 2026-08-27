@@ -6,8 +6,8 @@ const verkaufsfoerderungPos: RatgeberPageContent = {
   metaDescription: 'Verkaufsförderung am Point of Sale strategisch einsetzen: Von Regalplatzierung über Promotionspersonal bis zur datengestützten Erfolgsmessung. Praxisratgeber für stationären Handel und Markenverantwortliche.',
   h1: 'VERKAUFSFÖRDERUNG',
   h1Accent: 'AM POS',
-  heroSubtitle: 'Wie Sie aus Regalplatzierung und Markenaktivierung messbare Umsatzsteigerung machen',
-  heroSummary: 'Am Point of Sale entscheiden Sekunden über den Kauf. Verkaufsförderung setzt genau hier an: Mit geschulten Markenbotschaftern, durchdachter Warenplatzierung und datenbasierter Kampagnensteuerung wird aus dem schnellen Griff ins Regal eine bewusste Kaufentscheidung für Ihre Marke.',
+  heroSubtitle: 'Wie du aus Regalplatzierung und Markenaktivierung messbare Umsatzsteigerung machen',
+  heroSummary: 'Am Point of Sale entscheiden Sekunden über den Kauf. Verkaufsförderung setzt genau hier an: Mit geschulten Markenbotschaftern, durchdachter Warenplatzierung und datenbasierter Kampagnensteuerung wird aus dem schnellen Griff ins Regal eine bewusste Kaufentscheidung für deine Marke.',
   heroImageUrl: 'https://readdy.ai/api/search-image?query=professional%20retail%20merchandising%20and%20point%20of%20sale%20promotion%20display%20in%20modern%20supermarket%20aisle%20clean%20bright%20retail%20environment%20with%20brand%20ambassador%20demonstrating%20product%20to%20engaged%20customer%20organized%20promotional%20setup%20with%20product%20sampling%20station%20contemporary%20German%20retail%20store%20interior%20commercial%20photography%20with%20crisp%20natural%20lighting%20and%20warm%20tones&width=1920&height=1080&seq=ratgeber-verkaufsfoerderung-pos-hero-v1&orientation=landscape',
   category: 'Verkaufsförderung',
   answerFirst: {
@@ -81,7 +81,7 @@ const verkaufsfoerderungPos: RatgeberPageContent = {
   ],
   internalLinks: [
     {
-      label: 'POS Full Service — Ihre komplette POS-Strategie',
+      label: 'POS Full Service — deine komplette POS-Strategie',
       href: '/leistungen/pos-full-service',
       description: 'Markenbotschafter, Displays, Logistik und Echtzeit-Reporting für den gesamten DACH-Raum.',
     },
@@ -91,14 +91,14 @@ const verkaufsfoerderungPos: RatgeberPageContent = {
       description: 'Zugriff auf 20.000+ geschulte Markenbotschafter für jede Verkaufsförderungsaktion.',
     },
     {
-      label: 'Warehouse & Logistik — Materialversorgung für Ihre Promotion',
+      label: 'Warehouse & Logistik — Materialversorgung für deine Promotion',
       href: '/leistungen/warehouse-logistik',
-      description: 'Lagerung, Konfektionierung und europaweite Lieferung Ihrer POS-Materialien.',
+      description: 'Lagerung, Konfektionierung und europaweite Lieferung deiner POS-Materialien.',
     },
     {
       label: 'Live Video Promotion — digitale Verkaufsförderung',
       href: '/leistungen/live-video',
-      description: 'Persönliche Beratung per Live Video — die digitale Erweiterung Ihrer POS-Strategie.',
+      description: 'Persönliche Beratung per Live Video — die digitale Erweiterung deiner POS-Strategie.',
     },
   ],
   crossLinks: [
@@ -118,9 +118,9 @@ const verkaufsfoerderungPos: RatgeberPageContent = {
       description: 'Geschulte Markenbotschafter als Erfolgsfaktor jeder Verkaufsförderungsaktion.',
     },
   ],
-  ctaHeadline: 'Ihre POS-Verkaufsförderung auf',
+  ctaHeadline: 'Deine POS-Verkaufsförderung auf',
   ctaAccent: 'dem nächsten Level',
-  ctaSubline: 'Lassen Sie uns Ihre POS-Strategie besprechen. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Lass uns deine POS-Strategie besprechen. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default verkaufsfoerderungPos;

@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const influencerMarketing: RatgeberPageContent = {
   slug: 'influencer-marketing',
   seoTitle: 'Influencer Marketing 2026 — Creator-Kampagnen für Marken | Sonic Group',
-  metaDescription: 'Influencer Marketing verbindet Marken mit glaubwürdigen Creatorn. Erfahren Sie, wie Marken die richtigen Influencer finden, authentische Kampagnen entwickeln und Reichweite in messbaren Umsatz verwandeln. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Influencer Marketing verbindet Marken mit glaubwürdigen Creatorn. Erfahre, wie Marken die richtigen Influencer finden, authentische Kampagnen entwickeln und Reichweite in messbaren Umsatz verwandeln. Praxiswissen aus 19 Jahren Markenaktivierung.',
   h1: 'INFLUENCER',
   h1Accent: 'MARKETING',
   heroSubtitle: 'Wie Marken mit glaubwürdigen Creatorn Reichweite in Umsatz verwandeln',
@@ -113,9 +113,9 @@ const influencerMarketing: RatgeberPageContent = {
       description: 'Wie Influencer Marketing in die Markenaktivierungsstrategie eingebettet wird.',
     },
   ],
-  ctaHeadline: 'Machen Sie Creator zu Ihren',
+  ctaHeadline: 'Mach Creator zu deinen',
   ctaAccent: 'Markenbotschaftern.',
-  ctaSubline: 'Sprechen Sie mit uns über Ihre Influencer-Marketing-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Influencer-Marketing-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default influencerMarketing;

@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const retailMerchandising: RatgeberPageContent = {
   slug: 'retail-merchandising',
   seoTitle: 'Retail Merchandising 2026 — Umsatzsteigerung durch perfekte Warenpräsentation | Sonic Group',
-  metaDescription: 'Professionelles Retail Merchandising für messbare Abverkaufssteigerung. Erfahren Sie, wie strategische Warenplatzierung, Zweitplatzierungen und geschulte Merchandiser Ihre POS-Performance in Deutschland, NRW und im DACH-Raum optimieren.',
+  metaDescription: 'Professionelles Retail Merchandising für messbare Abverkaufssteigerung. Erfahre, wie strategische Warenplatzierung, Zweitplatzierungen und geschulte Merchandiser deine POS-Performance in Deutschland, NRW und im DACH-Raum optimieren.',
   h1: 'RETAIL',
   h1Accent: 'MERCHANDISING',
   heroSubtitle: 'Wie professionelle Warenpräsentation Abverkäufe messbar steigert und Regallücken verhindert',
@@ -90,7 +90,7 @@ const retailMerchandising: RatgeberPageContent = {
       description: 'Von der Regalpflege bis zur Promotionskampagne — alles aus einer Hand im gesamten DACH-Raum.',
     },
     {
-      label: 'Warehouse & Logistik — der logistische Rückhalt für Ihre Retail-Strategie',
+      label: 'Warehouse & Logistik — der logistische Rückhalt für deine Retail-Strategie',
       href: '/leistungen/warehouse-logistik',
       description: 'Zentrale Lagerhaltung und Filialbelieferung aus Krefeld für bundesweite Merchandising-Kampagnen.',
     },
@@ -114,12 +114,12 @@ const retailMerchandising: RatgeberPageContent = {
     {
       label: 'Mystery Shopping — Merchandising-Qualität objektiv messen',
       href: '/ratgeber/mystery-shopping',
-      description: 'Wie Testkäufe die Umsetzung Ihrer Merchandising-Standards überprüfen.',
+      description: 'Wie Testkäufe die Umsetzung deiner Merchandising-Standards überprüfen.',
     },
   ],
-  ctaHeadline: 'Maximieren Sie Ihre',
+  ctaHeadline: 'Maximiere deine',
   ctaAccent: 'Regal-Performance',
-  ctaSubline: 'Sprechen Sie mit uns über Ihre Merchandising-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Merchandising-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default retailMerchandising;

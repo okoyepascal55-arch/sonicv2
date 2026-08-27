@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const guerillaMarketing: RatgeberPageContent = {
   slug: 'guerilla-marketing',
   seoTitle: 'Guerilla Marketing 2026 — kreative Low-Budget-Strategien mit maximaler Wirkung | Sonic Group',
-  metaDescription: 'Guerilla Marketing als überraschende, kosteneffiziente Marketingstrategie. Erfahren Sie, wie unkonventionelle Aktionen im öffentlichen Raum, virale Stunts und kreative Inszenierungen Aufmerksamkeit generieren — von Krefeld über NRW bis bundesweit.',
+  metaDescription: 'Guerilla Marketing als überraschende, kosteneffiziente Marketingstrategie. Erfahre, wie unkonventionelle Aktionen im öffentlichen Raum, virale Stunts und kreative Inszenierungen Aufmerksamkeit generieren — von Krefeld über NRW bis bundesweit.',
   h1: 'GUERILLA',
   h1Accent: 'MARKETING',
   heroSubtitle: 'Wie unkonventionelle Ideen mit kleinem Budget maximale Aufmerksamkeit und virale Reichweite erzeugen',
@@ -92,10 +92,10 @@ const guerillaMarketing: RatgeberPageContent = {
     {
       label: 'Kreation & Content — die kreative Ideenschmiede',
       href: '/leistungen/kreation-content',
-      description: 'Kreativkonzeption und Content-Produktion für Ihre Guerilla-Marketing-Kampagne.',
+      description: 'Kreativkonzeption und Content-Produktion für deine Guerilla-Marketing-Kampagne.',
     },
     {
-      label: 'Staff as a Service — die richtigen Gesichter für Ihre Aktion',
+      label: 'Staff as a Service — die richtigen Gesichter für deine Aktion',
       href: '/leistungen/staff-as-a-service',
       description: 'Schauspielerische Talente und Markenbotschafter für inszenierte Guerilla-Aktionen.',
     },
@@ -117,9 +117,9 @@ const guerillaMarketing: RatgeberPageContent = {
       description: 'Guerilla Marketing als Werkzeug im Erlebnismarketing-Werkzeugkasten.',
     },
   ],
-  ctaHeadline: 'Ihre nächste Guerilla-Aktion',
+  ctaHeadline: 'Deine nächste Guerilla-Aktion',
   ctaAccent: 'wird legendär',
-  ctaSubline: 'Entwickeln Sie mit uns eine Guerilla-Strategie, die Ihre Marke ins Gespräch bringt. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Entwickle mit uns eine Guerilla-Strategie, die deine Marke ins Gespräch bringt. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default guerillaMarketing;

@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const markteintrittDach: RatgeberPageContent = {
   slug: 'markteintritt-dach',
   seoTitle: 'Markteintritt DACH 2026 — Deutschland, Österreich, Schweiz | Sonic Group',
-  metaDescription: 'Strategischer Markteintritt in Deutschland, Österreich und die Schweiz. Erfahren Sie, wie internationale Marken den DACH-Markt erfolgreich erobern — von regulatorischen Rahmenbedingungen über Vertriebsaufbau bis zur lokalen Markenaktivierung mit Sonic Group.',
+  metaDescription: 'Strategischer Markteintritt in Deutschland, Österreich und die Schweiz. Erfahre, wie internationale Marken den DACH-Markt erfolgreich erobern — von regulatorischen Rahmenbedingungen über Vertriebsaufbau bis zur lokalen Markenaktivierung mit Sonic Group.',
   h1: 'MARKTEINTRITT',
   h1Accent: 'DACH',
   heroSubtitle: 'Wie internationale Marken Deutschland, Österreich und die Schweiz strategisch, regulatorisch sicher und skalierbar erobern',
@@ -87,7 +87,7 @@ const markteintrittDach: RatgeberPageContent = {
     {
       label: 'POS Full Service — Markenaktivierung am deutschen Point of Sale',
       href: '/leistungen/pos-full-service',
-      description: 'Geschulte Markenbotschafter, Displays und datenbasierte Steuerung für Ihren DACH-Launch.',
+      description: 'Geschulte Markenbotschafter, Displays und datenbasierte Steuerung für deinen DACH-Launch.',
     },
     {
       label: 'Warehouse & Logistik — zentrale Lagerhaltung für DACH',
@@ -97,7 +97,7 @@ const markteintrittDach: RatgeberPageContent = {
     {
       label: 'Staff as a Service — lokale Markenbotschafter für den Markteintritt',
       href: '/leistungen/staff-as-a-service',
-      description: '20.000+ geschulte Promoter und Brand Ambassadors für Ihren Launch im DACH-Raum.',
+      description: '20.000+ geschulte Promoter und Brand Ambassadors für deinen Launch im DACH-Raum.',
     },
   ],
   crossLinks: [
@@ -117,9 +117,9 @@ const markteintrittDach: RatgeberPageContent = {
       description: 'Erlebnismarketing als Schlüsselinstrument für den erfolgreichen Markteintritt.',
     },
   ],
-  ctaHeadline: 'Starten Sie Ihren',
+  ctaHeadline: 'Starte deinen',
   ctaAccent: 'DACH-Markteintritt',
-  ctaSubline: 'Lassen Sie uns gemeinsam Ihre DACH-Strategie entwickeln — von der Planung bis zur operativen Umsetzung. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Lass uns gemeinsam deine DACH-Strategie entwickeln — von der Planung bis zur operativen Umsetzung. Kostenfrei, unverbindlich, 30 Minuten.',
 };
 
 export default markteintrittDach;

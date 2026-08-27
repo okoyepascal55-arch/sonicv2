@@ -19,7 +19,7 @@ export default function RatgeberCrossLinks({ links }: RatgeberCrossLinksProps) {
           Verwandte Themen
         </h2>
         <p className="text-foreground-950/55 text-base mb-8">
-          Vertiefen Sie Ihr Wissen mit diesen thematisch verwandten Ratgeber-Artikeln:
+          Vertiefe dein Wissen mit diesen thematisch verwandten Ratgeber-Artikeln:
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
