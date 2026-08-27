@@ -1,5 +1,6 @@
 import { useText } from '@/hooks/useText';
 import { CONTACT_EMAIL } from '@/lib/contact';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 const TIERS = [
   { name: 'Starter', price: 'Individuell', desc: 'Für Marken, die den Markt testen oder fokussierte Kampagnen fahren.', features: ['Live-Dashboard-Zugang', 'Bis zu 3 Custom Reports', '1 User-Lizenz'], highlight: false },
@@ -8,6 +9,7 @@ const TIERS = [
 ];
 
 export default function PricingAndAccess() {
+  const { images: tierImages } = useMediaStore('srt_pricing_images');
   const tBadge = useText('srt_pricing', 'srt-pricing-badge', 'Preise & Zugang');
   const tHeading = useText('srt_pricing', 'srt-pricing-heading', 'Transparente Preise. Direkter Zugang.');
   const tSub = useText('srt_pricing', 'srt-pricing-sub', 'Drei Stufen, klarer Mehrwert, keine versteckten Kosten.');
@@ -22,9 +24,13 @@ export default function PricingAndAccess() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-2.5 mb-8">
-          {TIERS.map((tier) => (
-            <article key={tier.name} className="relative border-2 border-foreground-950/[0.08] p-6 bg-white">
+          {TIERS.map((tier, i) => {
+            const img = tierImages[i]?.url ? resolveImageUrl(tierImages[i].url) : null;
+            return (
+            <article key={tier.name} className="relative border-2 border-foreground-950/[0.08] bg-white overflow-hidden">
               {tier.highlight && <div className="absolute -top-[2px] left-[-2px] right-[-2px] h-[3px] bg-primary-500" />}
+              {img && <div className="relative w-full h-28 overflow-hidden"><img src={img} alt="" aria-hidden="true" className="w-full h-full object-cover grayscale opacity-40" loading="lazy" /><div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" /></div>}
+              <div className="p-6">
               {tier.highlight && <p className="text-[10px] font-black uppercase text-primary-600 mb-1">Empfohlen</p>}
               <span className={`inline-block text-[11px] font-black uppercase px-2.5 py-1 ${tier.highlight ? 'bg-foreground-950 text-primary-500' : 'bg-foreground-950/5 text-foreground-950/55'}`}>{tier.name}</span>
               <div className="text-[22px] font-black text-primary-600 my-3">{tier.price}</div>
@@ -32,8 +38,10 @@ export default function PricingAndAccess() {
               <ul className="space-y-1.5 m-0 p-0 list-none">
                 {tier.features.map((feature) => <li key={feature} className="flex gap-2 text-xs text-foreground-950/55"><i className="ri-check-line text-primary-500 text-[13px]" />{feature}</li>)}
               </ul>
+              </div>
             </article>
-          ))}
+            );
+          })}
         </div>
 
         <div className="grid md:grid-cols-2 border-2 border-foreground-950/[0.08]">

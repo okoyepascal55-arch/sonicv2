@@ -122,11 +122,26 @@ function ShowcaseCard({ item, src, span, onOpen, titleSize }: { item: Item; src:
 export default function KreationShowcaseReference() {
   const [activeTab, setActiveTab] = useState<TabId>('konzeption');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  // Primary fallback images (all tabs)
   const { images: primaryImages } = useMediaStore('leistungen_kreation_showcase_images');
+  // Per-tab secondary sets — override primary when uploaded via dashboard
+  const { images: secKonz } = useMediaStore('leistungen_kreation_showcase_secondary_konzeption');
+  const { images: secContent } = useMediaStore('leistungen_kreation_showcase_secondary_content');
+  const { images: secCgi } = useMediaStore('leistungen_kreation_showcase_secondary_cgi');
   const { images: beforeAfter } = useMediaStore('leistungen_kreation_before_after');
 
+  const tabSecondary: Record<TabId, typeof primaryImages> = { konzeption: secKonz, content: secContent, cgi: secCgi };
+
   const items = ITEMS[activeTab];
-  const images = useMemo(() => items.map((_, i) => primaryImages[i]?.url ? resolveImageUrl(primaryImages[i].url) : FALLBACKS[activeTab][i]), [activeTab, primaryImages, items]);
+  const images = useMemo(() => {
+    const sec = tabSecondary[activeTab];
+    return items.map((_, i) => {
+      const tabImg = sec[i]?.url ? resolveImageUrl(sec[i].url) : null;
+      const primaryImg = primaryImages[i]?.url ? resolveImageUrl(primaryImages[i].url) : null;
+      return tabImg ?? primaryImg ?? FALLBACKS[activeTab][i];
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab, primaryImages, secKonz, secContent, secCgi, items]);
   const reality = beforeAfter[0]?.url ? resolveImageUrl(beforeAfter[0].url) : gradient(30, 0);
   const cgi = beforeAfter[1]?.url ? resolveImageUrl(beforeAfter[1].url) : gradient(280, 1);
 
