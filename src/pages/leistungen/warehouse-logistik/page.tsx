@@ -200,9 +200,8 @@ export default function WarehouseLogistikPage() {
  challenges={WAREHOUSE_CHALLENGES}
  />
 
- <WoodenDivider />
-
- {/* Solution — light warm bg (directly after dark ChallengeSection), subtle tint matching homepage */}
+ {/* Dark-bg WoodenDivider — Challenge(dark) exit into loesung(light) */}
+ <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
  <section id="loesung"className="sonic-section-lg px-4 md:px-6 relative overflow-hidden"style={{ background: 'linear-gradient(180deg, oklch(0.975 0.002 110) 0%, #fff 100%)' }}>
  <div className="relative sonic-container">
  <div className="mb-10 md:mb-12">
@@ -340,7 +339,8 @@ export default function WarehouseLogistikPage() {
  </div>
  </section>
 
- <WoodenDivider />
+ {/* Dark-bg WoodenDivider — full-service(dark) exit into kontakt(light) */}
+ <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
  <div id="kontakt">
  <LeistungenKontakt

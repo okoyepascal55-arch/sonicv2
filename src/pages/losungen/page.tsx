@@ -1185,7 +1185,8 @@ export default function LosungenPage() {
         </div>
       </section>
 
-      <WoodenDivider />
+      {/* Dark-bg WoodenDivider — dark section exit into survey block(light) */}
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
       {/* ── SURVEY ── inline block, not a standalone section ── */}
       <div className="py-10 md:py-14 px-4 md:px-6 bg-background-50">

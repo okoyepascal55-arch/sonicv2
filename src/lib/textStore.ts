@@ -850,7 +850,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The three core data problems: data silos, no dashboards, late insights.',
     entries: [
       { id: 'srt-problem-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Deine Herausforderung' },
-      { id: 'srt-problem-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'DATENQUELLEN ZUSAMMEN FÜHREN.' },
+      { id: 'srt-problem-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Datenquellen zusammenführen' },
       { id: 'srt-problem-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Für effizientes Performance-Marketing müssen Daten aus vielen Quellen in Echtzeit zusammenlaufen. Genau daran scheitern die meisten Unternehmen.' },
       { id: 'srt-problem-cta', label: 'CTA Text', description: 'CTA strip text', type: 'cta', value: 'Das SRT löst alle drei Probleme.' },
       { id: 'srt-problem-cta-sub', label: 'CTA Subtitle', description: 'CTA subtext', type: 'label', value: 'Eine Plattform. Alle Daten. Echtzeit.' },
@@ -863,7 +863,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The six core SRT modules: Planung, Talentpool, GPS, externe Daten, Document Intelligence, Routenplanung.',
     entries: [
       { id: 'srt-func-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Funktionsumfang' },
-      { id: 'srt-func-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'ALLES WAS FIELD-FORCE-MANAGEMENT BRAUCHT.' },
+      { id: 'srt-func-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Alles, was Field-Force-Management braucht.' },
       { id: 'srt-func-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Von der Einsatzplanung bis zur KI-gestützten Dokumentenverarbeitung — sechs Module, eine Plattform.' },
       { id: 'srt-func-demo-cta', label: 'Demo CTA', description: 'Demo CTA text', type: 'cta', value: 'Demo anfragen' },
     ],
@@ -874,7 +874,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The employee mobile app: Aufgaben, Check-in, Ziele, Abrechnung.',
     entries: [
       { id: 'srt-app-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'SRT aus Mitarbeitersicht' },
-      { id: 'srt-app-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'DIE EINSATZ-APP FÜR DIE FIELD FORCE.' },
+      { id: 'srt-app-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Die Einsatz-App für die Field Force' },
       { id: 'srt-app-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Alles was Außendienstmitarbeiter im Einsatz brauchen — direkt auf dem Smartphone. iOS & Android, offline-fähig.' },
     ],
   },
@@ -884,7 +884,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The interactive data flow diagram: Sonic, SRT, Kunde, Mitarbeiter, externe Daten.',
     entries: [
       { id: 'srt-data-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Datenfluss' },
-      { id: 'srt-data-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'SO FLIESSEN DIE DATEN DURCH DAS SRT.' },
+      { id: 'srt-data-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'So fließen die Daten durch das SRT.' },
       { id: 'srt-data-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Das SRT ist das zentrale Nervensystem — es verbindet Sonic, Kunden, Mitarbeiter und externe Systeme in einer einzigen, synchronen Datenbasis.' },
     ],
   },
@@ -905,7 +905,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The industries section with use cases across retail categories.',
     entries: [
       { id: 'srt-industries-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Branchen & Use Cases' },
-      { id: 'srt-industries-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'VON RETAIL EXECUTION BIS HEALTHCARE.' },
+      { id: 'srt-industries-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Von Retail Execution bis Healthcare.' },
       { id: 'srt-industries-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Das SRT ist bereit für jedes Projekt, bei dem Menschen zielorientiert und koordiniert eingesetzt werden.' },
       { id: 'srt-industries-cta', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Deine SRT-Konfiguration finden' },
     ],
@@ -916,12 +916,12 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The pricing tiers: Starter, Professional, Enterprise.',
     entries: [
       { id: 'srt-pricing-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Preise & Zugang' },
-      { id: 'srt-pricing-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'TRANSPARENTE PREISE. DIREKTER ZUGANG.' },
+      { id: 'srt-pricing-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Transparente Preise. Direkter Zugang.' },
       { id: 'srt-pricing-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Drei Stufen, klarer Mehrwert, keine versteckten Kosten.' },
       { id: 'srt-pricing-tier-1', label: 'Tier — Starter', description: 'Starter tier', type: 'heading', value: 'Starter' },
       { id: 'srt-pricing-tier-2', label: 'Tier — Professional', description: 'Professional tier', type: 'heading', value: 'Professional' },
       { id: 'srt-pricing-tier-3', label: 'Tier — Enterprise', description: 'Enterprise tier', type: 'heading', value: 'Enterprise' },
-      { id: 'srt-pricing-access-heading', label: 'Access Heading', description: 'Access heading', type: 'heading', value: 'BEREIT FÜR VOLLE TRANSPARENZ?' },
+      { id: 'srt-pricing-access-heading', label: 'Access Heading', description: 'Access heading', type: 'heading', value: 'Bereit für volle Transparenz?' },
       { id: 'srt-pricing-btn', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Beratungsgespräch buchen' },
     ],
   },
@@ -931,7 +931,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The six-step collaboration process: KPI, Datenintegration, Dashboard, Team, Abrechnung, Reportings.',
     entries: [
       { id: 'srt-collab-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Zusammenarbeit' },
-      { id: 'srt-collab-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'SO FUNKTIONIERT DAS SRT.' },
+      { id: 'srt-collab-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'So funktioniert das SRT' },
       { id: 'srt-collab-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Von der ersten KPI-Definition bis zum laufenden Reporting — in 6 strukturierten Schritten.' },
       { id: 'srt-collab-step-1', label: 'Step 1 — KPI', description: 'KPI definition', type: 'heading', value: 'KPI-Definition' },
       { id: 'srt-collab-step-2', label: 'Step 2 — Daten', description: 'Data integration', type: 'heading', value: 'Datenintegration' },
