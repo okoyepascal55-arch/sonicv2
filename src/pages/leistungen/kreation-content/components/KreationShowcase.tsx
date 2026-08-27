@@ -103,7 +103,7 @@ function BeforeAfterSlider() {
       <div className="flex items-start justify-between gap-4 px-8 py-7 bg-foreground-950/5 border border-foreground-950/[0.08]">
         <div>
           <div className="text-[9px] font-black uppercase tracking-[0.18em] text-primary-500 mb-2">CGI → Reality Vergleich</div>
-          <h3 className="leist-h2 text-foreground-950 mb-1">CGI-Render vs. gebauter Stand</h3>
+          <h3 className="leist-h2 text-foreground-950 mb-1 uppercase">CGI-Render vs. gebauter Stand</h3>
           <p className="text-xs font-light text-foreground-950/40">Ziehe den Regler — Philips @ IFA Berlin</p>
         </div>
         <a href={`mailto:${CONTACT_EMAIL}?subject=CGI%20Portfolio%20anfragen`} className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest cursor-pointer transition-all duration-300 hover:bg-primary-500 hover:text-foreground-950 whitespace-nowrap bg-transparent text-foreground-950/40 border border-foreground-950/[0.12]" style={{ borderRadius: 0 }}>Portfolio anfragen <i className="ri-arrow-right-line" /></a>
@@ -260,7 +260,7 @@ function Lightbox({ items, startIdx, onClose }: LightboxProps) {
       {/* Info bar */}
       <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-8 py-5 border-t border-background-50/[0.07]">
         <div>
-          <h3 className="text-xl font-black text-background-50 leading-none tracking-tight mb-1">{item.title}</h3>
+          <h3 className="text-xl font-black text-background-50 leading-none tracking-tight mb-1 uppercase">{item.title}</h3>
           <p className="text-xs font-light text-background-50/40">{item.sub}</p>
         </div>
         {/* Film strip */}
@@ -390,7 +390,7 @@ function ShowcaseCard({ item, colSpan, rowSpan, onOpen, titleSize, isWide = fals
       {/* Bottom content */}
       <div className="absolute bottom-0 left-0 right-0 z-10 px-4 py-4">
         <div className="transition-all duration-400" style={{ transform: hov ? 'translateY(0)' : 'translateY(3px)', opacity: hov ? 1 : 0.9 }}>
-          <h3 className="font-black text-background-50 leading-tight mb-1" style={{ fontSize: titleSize }}>{item.title}</h3>
+          <h3 className="font-black text-background-50 leading-tight mb-1 uppercase" style={{ fontSize: titleSize }}>{item.title}</h3>
           <p className="text-background-50/55 text-[10px] font-medium leading-relaxed transition-all duration-300" style={{ maxHeight: hov ? '40px' : '0', overflow: 'hidden', opacity: hov ? 1 : 0 }}>{item.sub}</p>
         </div>
       </div>
@@ -487,7 +487,7 @@ export default function KreationShowcase() {
                 <span className="text-[10px] font-black uppercase tracking-[0.15em] text-foreground-950">Showcase</span>
               </div>
               
-              <h2 className="leist-h2 text-foreground-950 mb-3">
+              <h2 className="leist-h2 text-foreground-950 mb-3 uppercase">
                 Unsere Arbeit.<br />
                 <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Deine Wirkung.</span>
               </h2>

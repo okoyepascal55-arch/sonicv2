@@ -77,7 +77,7 @@ export default function PricingAndAccess() {
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="leist-h2 text-foreground-950">
+            <h2 className="leist-h2 text-foreground-950 uppercase">
               {tHeading.split('. ')[0] || tHeading}.<br />
               <span className="text-primary-500">{tHeading.includes('. ') ? tHeading.split('. ').slice(1).join('. ') : 'Direkter Zugang.'}</span>
             </h2>
@@ -166,7 +166,7 @@ export default function PricingAndAccess() {
                 <div className="w-1 h-6 bg-primary-500" />
                 <span className="text-2xs font-black text-primary-500 uppercase tracking-[0.2em]">Zugang beantragen</span>
               </div>
-              <h3 className="font-black text-background-50 leading-tight tracking-tight mb-4" style={{ fontSize: 'clamp(22px,2.5vw,34px)' }}>
+              <h3 className="font-black text-background-50 leading-tight tracking-tight mb-4 uppercase" style={{ fontSize: 'clamp(22px,2.5vw,34px)' }}>
                 BEREIT FÜR <span className="text-primary-500">VOLLE</span> TRANSPARENZ?
               </h3>
               <p className="text-background-50/50 text-xs leading-relaxed mb-6 max-w-xs">

@@ -152,7 +152,7 @@ export default function DataPaths() {
             <span className="text-2xs font-black text-background-50/20 uppercase tracking-widest hidden md:block">Interaktiv — Klicken zum Erkunden</span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-8 items-end">
-            <h2 className="leist-h2 text-background-50">
+            <h2 className="leist-h2 text-background-50 uppercase">
               {tHeading}
             </h2>
             <div className="lg:pb-2">

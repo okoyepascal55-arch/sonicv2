@@ -67,7 +67,7 @@ export default function TheProblem() {
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-10 items-end">
             <div>
               <h2
-                className="leist-h2 text-foreground-950"
+                className="leist-h2 text-foreground-950 uppercase"
               >
                 {tHeading}
               </h2>
@@ -134,7 +134,7 @@ export default function TheProblem() {
                       </div>
 
                       <h3
-                        className="text-xl md:text-2xl font-black leading-tight tracking-tight mb-0 transition-colors duration-300"
+                        className="text-xl md:text-2xl font-black leading-tight tracking-tight mb-0 transition-colors duration-300 uppercase"
                         style={{ color: isExpanded ? 'oklch(var(--foreground-950))' : 'oklch(var(--foreground-900))' }}
                       >
                         {p.headline}

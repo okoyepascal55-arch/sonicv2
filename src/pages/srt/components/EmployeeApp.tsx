@@ -182,7 +182,7 @@ export default function EmployeeApp() {
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="leist-h2 text-foreground-950">
+            <h2 className="leist-h2 text-foreground-950 uppercase">
               {tHeading}
             </h2>
             <p className="text-foreground-600 text-sm leading-relaxed lg:pb-1">
@@ -209,7 +209,7 @@ export default function EmployeeApp() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
                     <span className={`text-2xs font-black uppercase tracking-widest transition-colors ${activeStep === i ? 'text-primary-500' : 'text-foreground-500'}`}>{step.number}</span>
-                    <h3 className={`text-sm font-black transition-colors ${activeStep === i ? 'text-foreground-950' : 'text-foreground-800'}`}>{step.title}</h3>
+                    <h3 className={`text-sm font-black uppercase transition-colors ${activeStep === i ? 'text-foreground-950' : 'text-foreground-800'}`}>{step.title}</h3>
                   </div>
                   {activeStep === i && <p className="text-xs text-foreground-600 leading-relaxed">{step.desc}</p>}
                 </div>

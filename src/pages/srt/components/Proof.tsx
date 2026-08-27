@@ -90,7 +90,7 @@ export default function Proof() {
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
           </div></div>
-              <h2 className="leist-h2 text-foreground-950">{tHeading.split('.')[0] || tHeading}.<br />{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.').trim() : 'für sich.'}</h2>
+              <h2 className="leist-h2 text-foreground-950 uppercase">{tHeading.split('.')[0] || tHeading}.<br />{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.').trim() : 'für sich.'}</h2>
             </div>
             <p className="text-foreground-500 text-xs max-w-xs text-right leading-relaxed hidden md:block">
               {tSub || 'Tatsächlich gemessene Ergebnisse aus über 15 Jahren Retail-Aktivierungen.'}

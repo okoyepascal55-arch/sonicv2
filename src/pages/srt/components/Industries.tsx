@@ -100,7 +100,7 @@ export default function Industries() {
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
             </div>
             <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end mb-5">
-              <h2 className="leist-h2 text-foreground-950">
+              <h2 className="leist-h2 text-foreground-950 uppercase">
                 Von Retail Execution bis{' '}
                 <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Healthcare.</span>
               </h2>
@@ -118,7 +118,7 @@ export default function Industries() {
                   <div className="w-9 h-9 flex items-center justify-center bg-primary-500/10 flex-shrink-0 group-hover:bg-primary-500/15 transition-colors duration-300">
                     <i className={`${uc.icon} text-primary-500 text-base`} />
                   </div>
-                  <h3 className="text-sm font-black text-foreground-950 leading-snug tracking-tight">{uc.title}</h3>
+                  <h3 className="text-sm font-black text-foreground-950 leading-snug tracking-tight uppercase">{uc.title}</h3>
                 </div>
                 <ul className="space-y-1.5">
                   {uc.items.map((item) => (

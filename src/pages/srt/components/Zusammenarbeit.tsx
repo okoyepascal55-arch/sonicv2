@@ -39,7 +39,7 @@ export default function Zusammenarbeit() {
             <span className="text-[10px] font-black text-foreground-300 uppercase tracking-widest hidden md:block ml-auto">6 Schritte</span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="leist-h2 text-foreground-950">
+            <h2 className="leist-h2 text-foreground-950 uppercase">
               {tHeading}
             </h2>
             <p className="text-foreground-600 text-sm leading-relaxed lg:pb-1">

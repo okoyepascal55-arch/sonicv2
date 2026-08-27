@@ -79,7 +79,7 @@ export default function Features({ featureIcons }: FeaturesProps) {
             </span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="leist-h2 text-foreground-950">
+            <h2 className="leist-h2 text-foreground-950 uppercase">
               SRT: Die <span className="text-primary-500">All-in-One</span> Software
             </h2>
             <p className="text-sm text-foreground-600 leading-relaxed lg:pb-1">
@@ -131,7 +131,7 @@ export default function Features({ featureIcons }: FeaturesProps) {
                       <p className="text-[10px] font-black uppercase tracking-[0.24em] mb-3" style={{ color: 'oklch(0.81 0.19 115)' }}>
                         {feat.number} / 06
                       </p>
-                      <h3 className="leist-h2 text-white mb-4">{feat.title}</h3>
+                      <h3 className="leist-h2 text-white mb-4 uppercase">{feat.title}</h3>
                       <p className="text-sm text-white/55 leading-relaxed max-w-xs">{feat.description}</p>
                     </div>
                     <div className="flex flex-wrap gap-1.5 mt-6">
@@ -158,7 +158,7 @@ export default function Features({ featureIcons }: FeaturesProps) {
                         />
                       </div>
                       <div>
-                        <h3 className="text-sm font-black text-foreground-950 leading-snug">{feat.title}</h3>
+                        <h3 className="text-sm font-black text-foreground-950 leading-snug uppercase">{feat.title}</h3>
                         <span className="text-[9px] font-bold text-primary-500 uppercase tracking-widest">{feat.number} / 06</span>
                       </div>
                     </div>

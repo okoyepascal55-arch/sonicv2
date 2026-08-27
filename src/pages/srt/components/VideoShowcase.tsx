@@ -27,7 +27,7 @@ export default function VideoShowcase() {
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="leist-h2 text-foreground-950">
+            <h2 className="leist-h2 text-foreground-950 uppercase">
               {tHeading}
             </h2>
             <p className="text-foreground-600 text-sm leading-relaxed lg:pb-1">
@@ -77,7 +77,7 @@ export default function VideoShowcase() {
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-base font-black text-background-50">{VIDEOS[active].title}</h3>
+                <h3 className="text-base font-black text-background-50 uppercase">{VIDEOS[active].title}</h3>
                 <span className="text-[10px] font-bold text-primary-500 bg-primary-500/10 border border-primary-500/20 px-2 py-0.5 uppercase tracking-wider whitespace-nowrap">
                   {VIDEOS[active].tag}
                 </span>
