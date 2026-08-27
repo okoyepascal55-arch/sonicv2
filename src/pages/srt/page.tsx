@@ -13,6 +13,7 @@ import Industries from './components/Industries';
 import PricingAndAccess from './components/PricingAndAccess';
 import SRTWavyDivider from './components/SRTWavyDivider';
 import LeistungenPageNav from '../../components/feature/LeistungenPageNav';
+import './srt-final-fidelity.css';
 
 const NAV_ITEMS = [
   { id: 'das-problem', label: 'Das Problem', icon: 'ri-error-warning-line' },
