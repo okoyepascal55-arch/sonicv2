@@ -18,7 +18,9 @@ export default function SRTHeroReference() {
     useText('srt_hero', 'srt-hero-chip-4', 'Branchen'),
     useText('srt_hero', 'srt-hero-chip-5', 'Kundenstimmen'),
   ];
-  const ids = ['features', 'funktionsumfang', 'team-app', 'branchen', 'kundenstimmen'];
+  // Keep the chip labels from the reference while routing them only to sections
+  // that actually exist on the React page. "Kundenstimmen" maps to the SRT proof block.
+  const ids = ['features', 'funktionsumfang', 'team-app', 'branchen', 'srt-proof'];
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -42,7 +44,7 @@ export default function SRTHeroReference() {
           <p className="text-white/20 text-[11px] font-black uppercase tracking-[0.25em] mb-8">{tagline}</p>
           <div className="flex flex-wrap gap-3.5 mb-8">
             <a href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch`} className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-primary-500 text-foreground-950 text-xs font-black uppercase cursor-pointer hover:bg-white transition-colors"><i className="ri-calendar-line" />{primary}<i className="ri-arrow-right-line" /></a>
-            <a href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch`} className="inline-flex items-center gap-2.5 px-6 py-3.5 border border-white/12 text-white/60 text-xs font-bold cursor-pointer hover:border-primary-500/60 hover:text-primary-500 transition-colors"><i className="ri-play-circle-line" />{secondary}</a>
+            <button type="button" onClick={() => scrollTo('features')} className="inline-flex items-center gap-2.5 px-6 py-3.5 border border-white/12 text-white/60 text-xs font-bold cursor-pointer hover:border-primary-500/60 hover:text-primary-500 transition-colors"><i className="ri-apps-line" />{secondary}<i className="ri-arrow-down-line" /></button>
           </div>
           <div className="flex flex-wrap gap-2 items-center">
             <span className="text-[11px] font-black uppercase tracking-[0.2em] text-white/40 mr-1">{navLabel}</span>

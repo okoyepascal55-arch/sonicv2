@@ -13,6 +13,7 @@ import Industries from './components/Industries';
 import PricingAndAccess from './components/PricingAndAccess';
 import SRTWavyDivider from './components/SRTWavyDivider';
 import LeistungenPageNav from '../../components/feature/LeistungenPageNav';
+import './srt-final-fidelity.css';
 
 const NAV_ITEMS = [
   { id: 'das-problem', label: 'Das Problem', icon: 'ri-error-warning-line' },
@@ -43,7 +44,7 @@ export default function SRTPage() {
     <div className="bg-white min-h-[100dvh] overflow-x-hidden">
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
       <div ref={heroRef} id="overview"><SRTHeroReference /></div>
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <TheProblemReference />
       <SRTWavyDivider />
       <FeaturesReference />
@@ -51,13 +52,13 @@ export default function SRTPage() {
       <VideoShowcase />
       <SRTWavyDivider />
       <FunctionalityOverview />
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <EmployeeApp />
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <Zusammenarbeit />
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <DataPaths />
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <Industries />
       <SRTWavyDivider />
       <Proof />
