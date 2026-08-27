@@ -1,6 +1,5 @@
 import { useState, FormEvent } from 'react';
-
-const FORM_URL = 'https://readdy.ai/api/form/d82bbfb29k3fss3u08ug';
+import { submitContactForm } from '@/lib/contact';
 
 const interests = [
   'POS Full Service',
@@ -31,19 +30,12 @@ export default function ContactForm() {
 
     setStatus('sending');
 
-    const body = new URLSearchParams();
-    Array.from(new FormData(form)).forEach(([k, v]) => body.append(k, String(v)));
+    const data: Record<string, string> = {};
+    Array.from(new FormData(form)).forEach(([k, v]) => { data[k] = String(v); });
+    data.subject = `Kontaktanfrage — ${data.interesse || 'Allgemein'}`;
 
     try {
-      const res = await fetch(FORM_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          Accept: 'application/json',
-        },
-        body: body.toString(),
-      });
-      if (!res.ok) throw new Error('Fehler beim Senden');
+      await submitContactForm(data);
       setStatus('success');
       form.reset();
       setCharCount(0);

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import WoodenButton from '@/components/base/WoodenButton';
-
-const FORM_SUBMIT_ADDR = 'https://readdy.ai/api/form/d9vgg8u859p3u981dq10';
+import { submitContactForm } from '@/lib/contact';
 
 const BRANCHES = [
   { label: 'Consumer Electronics', icon: 'ri-tv-line' },
@@ -87,44 +86,14 @@ export default function IndustrySelector() {
     setFormError('');
 
     try {
-      const params = new URLSearchParams();
+      const data: Record<string, string> = {};
       fd.forEach((value, key) => {
-        if (typeof value === 'string') params.append(key, value);
+        if (typeof value === 'string') data[key] = value;
       });
 
-      const res = await fetch(FORM_SUBMIT_ADDR, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          Accept: 'application/json',
-        },
-        body: params.toString(),
-      });
-
-      const responseText = await res.text();
-      let parsed: { code?: string; meta?: { message?: string; detail?: string }; message?: string } = {};
-      try {
-        parsed = JSON.parse(responseText);
-      } catch {
-        /* non-JSON response */
-      }
-
-      const code = parsed?.code;
-      const ok = res.ok && code === 'OK';
-      const serverMsg =
-        parsed?.meta?.message || parsed?.message || parsed?.meta?.detail || responseText;
-
-      if (ok) {
-        setStatus('success');
-        setFormError('');
-      } else {
-        setStatus('error');
-        setFormError(
-          typeof serverMsg === 'string' && serverMsg.trim()
-            ? serverMsg
-            : 'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
-        );
-      }
+      await submitContactForm(data);
+      setStatus('success');
+      setFormError('');
     } catch {
       setStatus('error');
       setFormError('Netzwerkfehler. Bitte prüfe deine Verbindung und versuche es erneut.');

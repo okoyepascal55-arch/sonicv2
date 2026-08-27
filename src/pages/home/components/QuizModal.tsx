@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import WoodenButton from '@/components/base/WoodenButton';
+import { submitContactForm } from '@/lib/contact';
 
 interface QuizModalProps {
   isOpen: boolean;
@@ -140,17 +141,13 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
     try {
       const honeypot = (document.getElementById('quiz-phone-alt') as HTMLInputElement)?.value?.trim();
       if (honeypot) { setShowResult(true); setSubmitting(false); return; }
-      const payload = new URLSearchParams();
-      payload.append('email', contactData.email);
-      if (contactData.phone.trim()) payload.append('phone', contactData.phone.trim());
-      payload.append('recommendation', selectedAnswers[0] || '');
-      payload.append('stage', selectedAnswers[1] || '');
-      payload.append('priority', selectedAnswers[2] || '');
-      payload.append('_subject', 'Quiz-Empfehlung: ' + (getRecommendedService().title));
-      await fetch('https://readdy.ai/api/form/d9fkh9kugrdi4rjg4umg', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: payload.toString(),
+      await submitContactForm({
+        email: contactData.email,
+        phone: contactData.phone.trim(),
+        recommendation: selectedAnswers[0] || '',
+        stage: selectedAnswers[1] || '',
+        priority: selectedAnswers[2] || '',
+        subject: 'Quiz-Empfehlung: ' + (getRecommendedService().title),
       });
     } catch { /* non-critical */ }
     setSubmitting(false);

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CONTACT_EMAIL } from '@/lib/contact';
+import { CONTACT_EMAIL, submitContactForm } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
 
@@ -48,42 +48,18 @@ export default function PricingAndAccess() {
     setFormError('');
 
     try {
-      const body = new URLSearchParams();
-      body.append('name', formData.name);
-      body.append('email', formData.email);
-      body.append('company', formData.company);
-      body.append('interest', formData.interest);
-      body.append('message', formData.message);
-      body.append('_subject', `SRT Anfrage von ${formData.name}`);
-
-      const res = await fetch('https://readdy.ai/api/form/d9n5kk68mbnljin59tvg', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString(),
+      await submitContactForm({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        interest: formData.interest,
+        message: formData.message,
+        subject: `SRT Anfrage von ${formData.name}`,
       });
-
-      const responseText = await res.text();
-      let parsed: Record<string, unknown> = {};
-      try { parsed = JSON.parse(responseText); } catch { /* raw */ }
-
-      if (res.ok && parsed?.code === 'OK') {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', company: '', interest: '', message: '' });
-        setCharCount(0);
-        setTimeout(() => setSubmitStatus('idle'), 5000);
-      } else {
-        const serverMsg = (parsed?.meta as Record<string, string>)?.message || (parsed?.message as string) || responseText || 'Fehler.';
-        if (typeof serverMsg === 'string' && (serverMsg.includes('spam') || serverMsg.includes('form data is spam'))) {
-          setSubmitStatus('success');
-          setFormData({ name: '', email: '', company: '', interest: '', message: '' });
-          setCharCount(0);
-          setTimeout(() => setSubmitStatus('idle'), 5000);
-        } else {
-          setSubmitStatus('error');
-          setFormError(typeof serverMsg === 'string' ? serverMsg : 'Ein Fehler ist aufgetreten.');
-          setTimeout(() => setSubmitStatus('idle'), 5000);
-        }
-      }
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', company: '', interest: '', message: '' });
+      setCharCount(0);
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch {
       setSubmitStatus('error');
       setFormError('Netzwerkfehler. Bitte versuche es erneut.');

@@ -8,8 +8,6 @@ import WoodenDivider from '../../components/base/WoodenDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import WoodenButton from '@/components/base/WoodenButton';
 
-const SURVEY_FORM_URL = 'https://readdy.ai/api/form/d9vdom6th95mubjtu6q0';
-
 /* ─────────────────────────────────────────
    SOLUTION DATA — exact content from brief
 ───────────────────────────────────────── */
@@ -969,31 +967,18 @@ export default function LosungenPage() {
     try {
       const form = document.getElementById('losungen-survey-form') as HTMLFormElement;
       const formData = new FormData(form);
-      // Add survey answers as hidden fields
-      formData.append('branche', answers[0] || '');
-      formData.append('ziel', answers[1] || '');
-      formData.append('standorte', answers[2] || '');
-      formData.append('start', answers[3] || '');
-      formData.append('erfahrung', answers[4] || '');
+      const data: Record<string, string> = {};
+      formData.forEach((val, key) => { data[key] = String(val); });
+      data.branche = answers[0] || '';
+      data.ziel = answers[1] || '';
+      data.standorte = answers[2] || '';
+      data.start = answers[3] || '';
+      data.erfahrung = answers[4] || '';
+      data.subject = 'Lösungen-Umfrage — neue Anfrage';
 
-      const response = await fetch(SURVEY_FORM_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(Array.from(formData.entries()) as [string, string][]).toString(),
-      });
-      const responseText = await response.text();
-      let parsed;
-      try { parsed = JSON.parse(responseText); } catch { /* ignore */ }
-
-      const serverMsg = parsed?.meta?.message || parsed?.meta?.detail || parsed?.message || responseText;
-      if (response.ok && parsed?.code === 'OK') {
-        setSurveyDone(true);
-        setShowSurveyContact(false);
-      } else if (serverMsg?.toLowerCase().includes('spam') || serverMsg?.toLowerCase().includes('form data is spam')) {
-        setSurveyError('Deine Anfrage konnte nicht verarbeitet werden. Bitte versuche es später erneut.');
-      } else {
-        setSurveyError(serverMsg || 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.');
-      }
+      await submitContactForm(data);
+      setSurveyDone(true);
+      setShowSurveyContact(false);
     } catch {
       setSurveyError('Ein Fehler ist aufgetreten. Bitte versuche es erneut.');
     } finally {

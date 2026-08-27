@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
+import { submitContactForm } from '@/lib/contact';
 
 const USE_CASES = [
   { icon: 'ri-store-2-line', title: 'FMCG & Retail Execution', items: ['In-Store-Performance', 'Regal-Audits, Planogramm-Compliance', 'Koordination Merchandising-Teams', 'POS-Material-Bestand & Platzierungstracking'] },
@@ -32,7 +33,6 @@ const STEP3_GOALS = [
 ];
 
 const stepLabels = ['Branche', 'Challenge', 'Ziel', 'Kontakt'];
-const FORM_URL = 'https://readdy.ai/api/form/d9n5kk68mbnljin59tvg';
 
 export default function Industries() {
   const tBadge = useText('srt_industries', 'srt-industries-badge', 'Branchen & Use Cases');
@@ -75,36 +75,12 @@ export default function Industries() {
       formData.append('ziel', selected[3] || '');
       formData.append('_subject', `SRT Beratung — ${selected[1] || 'Unbekannt'}`);
 
-      const body = new URLSearchParams();
-      formData.forEach((val, key) => { body.append(key, val as string); });
+      const data: Record<string, string> = {};
+      formData.forEach((val, key) => { data[key] = String(val); });
 
-      const res = await fetch(FORM_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString(),
-      });
-
-      const responseText = await res.text();
-      let parsed: Record<string, unknown> = {};
-      try { parsed = JSON.parse(responseText); } catch { /* raw */ }
-
-      if (res.ok && parsed?.code === 'OK') {
-        setFormStatus('success');
-        setSubmitted(true);
-      } else {
-        const serverMsg = (parsed?.meta as Record<string, string>)?.message
-          || (parsed?.message as string)
-          || (parsed?.meta as Record<string, string>)?.detail
-          || responseText
-          || 'Ein Fehler ist aufgetreten.';
-        if (typeof serverMsg === 'string' && (serverMsg.includes('spam') || serverMsg.includes('form data is spam'))) {
-          setFormStatus('success');
-          setSubmitted(true);
-        } else {
-          setFormStatus('error');
-          setFormError(typeof serverMsg === 'string' ? serverMsg : 'Ein Fehler ist aufgetreten.');
-        }
-      }
+      await submitContactForm(data);
+      setFormStatus('success');
+      setSubmitted(true);
     } catch {
       setFormStatus('error');
       setFormError('Netzwerkfehler. Bitte versuche es erneut.');
