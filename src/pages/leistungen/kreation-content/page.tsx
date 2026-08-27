@@ -9,6 +9,7 @@ import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import Carousel3DReference from './components/Carousel3DReference';
 import KreationShowcaseReference from './components/KreationShowcaseReference';
+import KreationHeroStats from './components/KreationHeroStats';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
@@ -92,6 +93,7 @@ export default function KreationContentPage() {
             <div className="mb-10 flex items-center justify-center gap-3"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tHeroBadge}</span></div>
             <h1 className="leist-h1-flagship text-foreground-950 mb-6">{tHeroH1Line1}<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{tHeroH1Accent}</span></h1>
             <p className="text-base md:text-lg text-foreground-950/50 max-w-2xl mx-auto leading-relaxed mb-10">{tHeroSubtitle}</p>
+            <KreationHeroStats />
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <a href={`mailto:${CONTACT_EMAIL}?subject=Kreation%20Content%20Beratung`} className="inline-flex items-center gap-2 bg-foreground-950 text-background-50 px-7 py-3 font-black text-sm hover:bg-primary-500 hover:text-foreground-950 transition-colors"><i className="ri-calendar-line" />{tCtaBtn}</a>
               <a href="/leistungen/video" className="inline-flex items-center gap-2 border-2 border-foreground-950/12 text-foreground-950/60 px-6 py-3 font-black text-sm hover:border-foreground-950 hover:text-foreground-950 transition-colors">Live Video<i className="ri-arrow-right-line" /></a>
@@ -103,7 +105,7 @@ export default function KreationContentPage() {
 
       <section className="sonic-section-md bg-white px-6 border-b border-foreground-950/8">
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3">
-          {resolvedDisciplines.map((item, i) => <div key={item.label} className="flex flex-col items-center gap-4 py-4"><img src={item.src} alt={item.label} className="w-16 h-16 object-cover" loading="lazy" /><span className="text-xs font-black text-foreground-950/55 uppercase tracking-widest">{item.label}</span><div className="h-px w-6 bg-primary-500" /></div>)}
+          {resolvedDisciplines.map(item => <div key={item.label} className="flex flex-col items-center gap-4 py-4"><img src={item.src} alt={item.label} className="w-16 h-16 object-cover" loading="lazy" /><span className="text-xs font-black text-foreground-950/55 uppercase tracking-widest">{item.label}</span><div className="h-px w-6 bg-primary-500" /></div>)}
         </div>
       </section>
 
