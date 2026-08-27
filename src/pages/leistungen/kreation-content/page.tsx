@@ -4,12 +4,12 @@ import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
 import ClientProof from '@/components/feature/ClientProof';
-import WoodenDivider from '@/components/base/WoodenDivider';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import Carousel3DReference from './components/Carousel3DReference';
 import KreationShowcaseReference from './components/KreationShowcaseReference';
 import KreationHeroStats from './components/KreationHeroStats';
+import KreationWavyDivider from './components/KreationWavyDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
@@ -110,7 +110,7 @@ export default function KreationContentPage() {
       </section>
 
       <ChallengeSection id="herausforderung" headline={tChallengeHeading} subline={tChallengeSub} challenges={CHALLENGES} />
-      <WoodenDivider />
+      <KreationWavyDivider />
 
       <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden bg-white">
         <div className="absolute top-0 right-0 pointer-events-none" style={{ width: 500, height: 500, background: 'oklch(0.81 0.19 115 / 0.08)', filter: 'blur(120px)' }} />
@@ -123,11 +123,12 @@ export default function KreationContentPage() {
           </div>
         </div>
       </section>
+      <KreationWavyDivider />
 
       <KreationShowcaseReference />
-      <WoodenDivider />
+      <KreationWavyDivider />
       <section id="referenzen"><ClientProof /></section>
-      <WoodenDivider />
+      <KreationWavyDivider />
       <div id="kontakt"><LeistungenKontakt headline="Content-Beratung" headlineAccent="buchen." subline="Wir zeigen dir in 30 Minuten, wie wir im Bereich Kreation und Content arbeiten — von Konzept bis Produktion." checkItems={[{ text: 'Strategische Herangehensweise' }, { text: 'Deine Ziele, unsere Beispiele' }, { text: 'Studio-Tour' }]} ctaLabel="Beratung buchen" ctaMailSubject="Kreation Content Beratung" ctaIcon="ri-calendar-line" /></div>
       <ScrollToTopButton />
     </div>
