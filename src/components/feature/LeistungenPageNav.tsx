@@ -14,8 +14,8 @@ interface LeistungenPageNavProps {
   heroRef?: React.RefObject<HTMLElement | HTMLDivElement>;
 }
 
-const MAIN_NAV_H = 64;     // px — fixed top nav height
-const INPAGE_NAV_H = 49;   // px — this bar's own height
+const MAIN_NAV_H = 64;
+const INPAGE_NAV_H = 49;
 const SCROLL_OFFSET = MAIN_NAV_H + INPAGE_NAV_H + 8;
 
 export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavProps) {
@@ -27,18 +27,14 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
-
-  // Store hero bottom scroll position
   const heroThresholdRef = useRef<number | null>(null);
 
-  // Measure the hero bottom once and on resize
   useEffect(() => {
     const measure = () => {
       if (heroRef?.current) {
         const rect = heroRef.current.getBoundingClientRect();
         heroThresholdRef.current = rect.bottom + window.scrollY - 60;
       } else {
-        // No heroRef supplied → show after 300px fallback
         heroThresholdRef.current = 300;
       }
     };
@@ -47,7 +43,6 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
     return () => { clearTimeout(timer); window.removeEventListener('resize', measure); };
   }, [heroRef]);
 
-  // Scroll handler: visibility + active section
   useEffect(() => {
     let ticking = false;
     const onScroll = () => {
@@ -56,27 +51,21 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
       requestAnimationFrame(() => {
         const threshold = heroThresholdRef.current ?? 300;
         setVisible(window.scrollY >= threshold);
-
-        // Active section tracking
         const offset = SCROLL_OFFSET + 16;
         let current = items[0]?.id || '';
         for (const item of items) {
           const el = document.getElementById(item.id);
-          if (el && el.getBoundingClientRect().top <= offset) {
-            current = item.id;
-          }
+          if (el && el.getBoundingClientRect().top <= offset) current = item.id;
         }
         setActiveId(current);
         ticking = false;
       });
     };
-
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, [items]);
 
-  // Sliding indicator update
   useEffect(() => {
     const btn = buttonRefs.current[activeId];
     const nav = navRef.current;
@@ -93,25 +82,15 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
       console.warn(`[LeistungenPageNav] Element with id "${id}" not found.`);
       return;
     }
-    
-    // Calculate position with offset
     const rect = el.getBoundingClientRect();
     const top = rect.top + window.scrollY - SCROLL_OFFSET;
-    
-    window.scrollTo({ 
-      top: Math.max(0, top), 
-      behavior: 'smooth' 
-    });
-    
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     setMobileOpen(false);
   }, []);
 
-  // Close mobile menu on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target as Node)) {
-        setMobileOpen(false);
-      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target as Node)) setMobileOpen(false);
     };
     if (mobileOpen) document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
@@ -122,32 +101,19 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
 
   return (
     <>
-      {/* Fixed bar — desktop only. Removed from mobile entirely: a sticky
-          in-page nav with a dropdown menu ate permanent screen space and
-          added a second layer of navigation on top of natural scroll. */}
       <div
         className={`fixed left-0 right-0 z-40 transition-all duration-300 hidden md:block ${
           visible ? 'translate-y-0 opacity-100' : '-translate-y-1 opacity-0 pointer-events-none'
         }`}
         style={{ top: `${MAIN_NAV_H}px` }}
       >
-        {/* Accent line */}
         <div className="h-[2px] bg-foreground-950 w-full" />
-
         <div className="w-full bg-foreground-950">
           <div className="w-full px-4 md:px-6">
-
-            {/* ── DESKTOP ── */}
-            <div
-              ref={navRef}
-              className="relative hidden md:flex items-stretch overflow-x-auto"
-              style={{ scrollbarWidth: 'none', justifyContent: 'center' }}
-            >
-              {/* Section counter */}
+            <div ref={navRef} className="relative hidden md:flex items-stretch overflow-x-auto" style={{ scrollbarWidth: 'none', justifyContent: 'center' }}>
               <div className="flex-shrink-0 flex items-center pr-5 mr-2 border-r border-white/10">
                 <span className="text-xs font-black uppercase tracking-[0.25em] text-white/30">
-                  {String(activeIndex + 1).padStart(2, '0')}
-                  <span className="opacity-40">/{String(items.length).padStart(2, '0')}</span>
+                  {String(activeIndex + 1).padStart(2, '0')}<span className="opacity-40">/{String(items.length).padStart(2, '0')}</span>
                 </span>
               </div>
 
@@ -158,134 +124,98 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
                   'whitespace-nowrap cursor-pointer transition-all duration-200 flex-shrink-0 group',
                   isActive ? 'text-[#C8D400]' : 'text-white/40 hover:text-white',
                 ].join(' ');
-
                 const inner = (
                   <>
-                    {item.icon && (
-                      <span className={`w-5 h-5 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${isActive ? 'text-[#C8D400]' : 'opacity-50 group-hover:opacity-80'}`}>
-                        <i className={`${item.icon} text-sm`} />
-                      </span>
-                    )}
+                    {item.icon && <span className={`w-5 h-5 flex items-center justify-center flex-shrink-0 transition-all duration-200 ${isActive ? 'text-[#C8D400]' : 'opacity-50 group-hover:opacity-80'}`}><i className={`${item.icon} text-sm`} /></span>}
                     <span>{item.label}</span>
                     {item.href && <i className="ri-external-link-line text-xs opacity-50 ml-0.5" />}
                   </>
                 );
-
-                if (item.href) {
-                  return (
-                    <Link key={item.id} to={item.href} className={cls} style={{ textDecoration: 'none' }}>
-                      {inner}
-                    </Link>
-                  );
-                }
-
-                return (
-                  <button
-                    key={item.id}
-                    ref={(el) => { buttonRefs.current[item.id] = el; }}
-                    onClick={() => scrollTo(item.id)}
-                    className={cls}
-                    style={{ background: 'transparent', border: 'none' }}
-                  >
-                    {inner}
-                  </button>
-                );
+                if (item.href) return <Link key={item.id} to={item.href} className={cls} style={{ textDecoration: 'none' }}>{inner}</Link>;
+                return <button key={item.id} ref={(el) => { buttonRefs.current[item.id] = el; }} onClick={() => scrollTo(item.id)} className={cls} style={{ background: 'transparent', border: 'none' }}>{inner}</button>;
               })}
 
-              {/* Sliding underline */}
-              <div
-                className="absolute bottom-0 h-[2px] bg-[#C8D400] transition-all duration-300 ease-out pointer-events-none"
-                style={{ left: indicatorStyle.left, width: indicatorStyle.width }}
-              />
+              <div className="absolute bottom-0 h-[2px] bg-[#C8D400] transition-all duration-300 ease-out pointer-events-none" style={{ left: indicatorStyle.left, width: indicatorStyle.width }} />
             </div>
 
-            {/* ── MOBILE ── */}
             <div ref={mobileMenuRef} className="md:hidden relative w-full">
               <div className="flex items-center justify-between py-3 gap-3">
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className="text-xs font-black uppercase tracking-[0.25em] flex-shrink-0 text-white/30">
-                    {String(activeIndex + 1).padStart(2, '0')}/{String(items.length).padStart(2, '0')}
-                  </span>
+                  <span className="text-xs font-black uppercase tracking-[0.25em] flex-shrink-0 text-white/30">{String(activeIndex + 1).padStart(2, '0')}/{String(items.length).padStart(2, '0')}</span>
                   <div className="w-[1px] h-4 flex-shrink-0 bg-white/15" />
                   {activeItem?.icon && <i className={`${activeItem.icon} text-sm text-[#C8D400] flex-shrink-0`} />}
-                  <span className="text-xs font-black uppercase tracking-[0.18em] truncate text-[#C8D400]">
-                    {activeItem?.label}
-                  </span>
+                  <span className="text-xs font-black uppercase tracking-[0.18em] truncate text-[#C8D400]">{activeItem?.label}</span>
                 </div>
-                <button
-                  onClick={() => setMobileOpen((v) => !v)}
-                  className="flex items-center gap-2 px-3 py-2 flex-shrink-0 bg-white/10 hover:bg-white/20 text-white cursor-pointer"
-                  aria-label="Navigation öffnen"
-                >
+                <button onClick={() => setMobileOpen((v) => !v)} className="flex items-center gap-2 px-3 py-2 flex-shrink-0 bg-white/10 hover:bg-white/20 text-white cursor-pointer" aria-label="Navigation öffnen">
                   <span className="text-xs font-black uppercase tracking-widest text-white/50">Menü</span>
                   <i className={`${mobileOpen ? 'ri-close-line' : 'ri-menu-3-line'} text-base`} />
                 </button>
               </div>
 
               {mobileOpen && (
-                <div
-                  className="absolute top-full left-0 right-0 z-50 bg-foreground-950 border-t border-white/10"
-                  style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.5)', animation: 'slideDown 0.2s ease-out' }}
-                >
+                <div className="absolute top-full left-0 right-0 z-50 bg-foreground-950 border-t border-white/10" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.5)', animation: 'slideDown 0.2s ease-out' }}>
                   {items.map((item, i) => {
                     const isActive = activeId === item.id;
-                    const cls = [
-                      'w-full flex items-center gap-3 px-5 py-3.5 text-left transition-all duration-150 cursor-pointer',
-                      'border-b border-white/5 last:border-b-0',
-                      isActive
-                        ? 'bg-[#C8D400]/15 text-[#C8D400]'
-                        : 'text-white/50 hover:text-white hover:bg-white/5',
-                    ].join(' ');
-
+                    const cls = ['w-full flex items-center gap-3 px-5 py-3.5 text-left transition-all duration-150 cursor-pointer','border-b border-white/5 last:border-b-0',isActive ? 'bg-[#C8D400]/15 text-[#C8D400]' : 'text-white/50 hover:text-white hover:bg-white/5'].join(' ');
                     const inner = (
                       <>
-                        <span className={`text-xs font-black w-5 flex-shrink-0 ${isActive ? 'text-[#C8D400]' : 'opacity-30'}`}>
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
-                        {item.icon && (
-                          <span className={`w-5 h-5 flex items-center justify-center flex-shrink-0 ${isActive ? 'text-[#C8D400]' : 'opacity-40'}`}>
-                            <i className={`${item.icon} text-sm`} />
-                          </span>
-                        )}
+                        <span className={`text-xs font-black w-5 flex-shrink-0 ${isActive ? 'text-[#C8D400]' : 'opacity-30'}`}>{String(i + 1).padStart(2, '0')}</span>
+                        {item.icon && <span className={`w-5 h-5 flex items-center justify-center flex-shrink-0 ${isActive ? 'text-[#C8D400]' : 'opacity-40'}`}><i className={`${item.icon} text-sm`} /></span>}
                         <span className="text-xs font-black uppercase tracking-[0.18em] flex-1">{item.label}</span>
                         {item.href && <i className="ri-external-link-line text-xs opacity-50" />}
-                        {isActive && !item.href && (
-                          <div className="w-4 h-4 flex items-center justify-center bg-[#C8D400] flex-shrink-0">
-                            <i className="ri-check-line text-foreground-950 text-xs" />
-                          </div>
-                        )}
+                        {isActive && !item.href && <div className="w-4 h-4 flex items-center justify-center bg-[#C8D400] flex-shrink-0"><i className="ri-check-line text-foreground-950 text-xs" /></div>}
                       </>
                     );
-
-                    if (item.href) {
-                      return (
-                        <Link key={item.id} to={item.href} className={cls} style={{ textDecoration: 'none' }} onClick={() => setMobileOpen(false)}>
-                          {inner}
-                        </Link>
-                      );
-                    }
-
-                    return (
-                      <button key={item.id} onClick={() => scrollTo(item.id)} className={cls}>
-                        {inner}
-                      </button>
-                    );
+                    if (item.href) return <Link key={item.id} to={item.href} className={cls} style={{ textDecoration: 'none' }} onClick={() => setMobileOpen(false)}>{inner}</Link>;
+                    return <button key={item.id} onClick={() => scrollTo(item.id)} className={cls}>{inner}</button>;
                   })}
                 </div>
               )}
             </div>
-
           </div>
         </div>
-
-        {/* Bottom gradient separator */}
         <div className="h-[1px] bg-gradient-to-r from-transparent via-[#C8D400]/40 to-transparent w-full" />
       </div>
 
       <style>{`
-        @keyframes slideDown {
-          from { opacity: 0; transform: translateY(-8px); }
-          to   { opacity: 1; transform: translateY(0); }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Leistungen DC alignment: desktop challenge is light; mobile remains dark. */
+        @media (min-width: 768px) {
+          section#herausforderung {
+            background: #fff !important;
+            border-bottom: 1px solid oklch(0.885 0.004 110) !important;
+          }
+
+          /* Scroll-card solution modules become the approved desktop grid.
+             Mobile keeps the existing horizontal interaction. */
+          section#loesung .flex.gap-4.overflow-x-auto {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+            overflow: visible !important;
+            padding-bottom: 0 !important;
+          }
+
+          section#loesung .flex.gap-4.overflow-x-auto > * {
+            width: auto !important;
+            min-width: 0 !important;
+            flex-shrink: 1 !important;
+          }
+
+          section#loesung .flex.items-center.mb-6.gap-3 > button {
+            display: none !important;
+          }
+        }
+
+        @media (max-width: 767px) {
+          section#herausforderung {
+            background: oklch(0.13 0.005 118) !important;
+          }
+        }
+
+        /* Dark section dividers must transition through black, never white. */
+        section#herausforderung + div {
+          background: #000 !important;
         }
       `}</style>
     </>
