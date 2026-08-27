@@ -14,7 +14,7 @@ const RADIUS = 480;
 
 export default function Carousel3DReference() {
   const { images } = useMediaStore('leistungen_kreation_carousel_images');
-  const tiles = useMemo(() => LABELS.map((label, i) => ({ alt: label, src: images[i]?.url ? resolveImageUrl(images[i].url) : FALLBACKS[i] })), [images]);
+  const tiles = useMemo(() => LABELS.map((label, i) => ({ alt: label, src: images[i]?.url ? resolveImageUrl(images[i].url) : FALLBACKS[i], isMedia: Boolean(images[i]?.url) })), [images]);
   const [angle, setAngle] = useState(0);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Carousel3DReference() {
           return (
             <div key={tile.alt} className="absolute" style={{ width: TILE_W, height: TILE_H, marginLeft: -TILE_W / 2, marginTop: -TILE_H / 2, top: '50%', left: '50%', transform: `translate(-50%,-50%) translateX(${x}px) translateZ(${z}px) rotateY(${rotateY}deg) scale(${scale})`, zIndex, opacity: isVisible ? 1 : 0, filter: `brightness(${brightness})`, transition: 'transform 0.15s ease', pointerEvents: isVisible ? 'auto' : 'none' }}>
               <div className="relative w-full h-full overflow-hidden bg-white" style={{ boxShadow: isCenter ? '0 32px 80px rgba(0,0,0,0.28), 0 8px 24px rgba(0,0,0,0.14)' : '0 10px 32px rgba(0,0,0,0.14)' }}>
-                <img src={tile.src} alt={tile.alt} className="absolute inset-0 w-full object-cover object-top" style={{ height: 'calc(100% - 30px)' }} draggable={false} />
+                {tile.isMedia ? <img src={tile.src} alt={tile.alt} className="absolute inset-0 w-full object-cover object-top" style={{ height: 'calc(100% - 30px)' }} draggable={false} /> : <div aria-hidden="true" className="absolute inset-0" style={{ height: 'calc(100% - 30px)', background: tile.src }} />}
                 <div className="absolute bottom-0 left-0 right-0 h-[30px] bg-white flex items-center justify-center"><span className="text-[9px] font-black tracking-[0.15em] uppercase text-black/40">{tile.alt}</span></div>
               </div>
             </div>
