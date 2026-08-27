@@ -7,11 +7,17 @@ interface FeaturesProps {
   featureIcons?: MediaItem[];
 }
 
+// Placeholder icon art — inline SVG gradient (works as <img src>) until a real wood icon is set via the dashboard.
+const svgGradient = (hexA: string, hexB: string, size = 120) =>
+  `data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${hexA}"/><stop offset="1" stop-color="${hexB}"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>`
+  )}`;
+
 const FEATURES_BASE = [
   {
     number: '01',
     icon: 'ri-dashboard-line',
-    woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20dashboard%20monitor%20screen%20display%20analytics%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-dashboard-v1&orientation=squarish',
+    woodIcon: svgGradient('#3a3320', '#17160f'),
     title: 'Echtzeit-Dashboard',
     description: 'Alle gewünschten Metriken auf einen Blick — live und übersichtlich dargestellt.',
     tags: ['Live-Daten', 'KPIs', 'Übersicht'],
@@ -19,7 +25,7 @@ const FEATURES_BASE = [
   {
     number: '02',
     icon: 'ri-bar-chart-grouped-line',
-    woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20bar%20chart%20performance%20analytics%20graph%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-chart-v1&orientation=squarish',
+    woodIcon: svgGradient('#20323a', '#0f1517'),
     title: 'Performance-Tracking',
     description: 'Detaillierte Auswertung von Verkaufszahlen, Kampagnen-Performance und Top-/Flop-Listen.',
     tags: ['Verkaufszahlen', 'Rankings', 'Analyse'],
@@ -27,7 +33,7 @@ const FEATURES_BASE = [
   {
     number: '03',
     icon: 'ri-team-line',
-    woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20team%20people%20group%20management%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-team-v1&orientation=squarish',
+    woodIcon: svgGradient('#2b3a20', '#12160e'),
     title: 'Team-Management',
     description: 'Zentrale Verwaltung von Recruiting, Einsätzen, Zielerreichung und Abrechnung. GPS-genau.',
     tags: ['HR App', 'Recruiting', 'GPS'],
@@ -35,7 +41,7 @@ const FEATURES_BASE = [
   {
     number: '04',
     icon: 'ri-file-chart-line',
-    woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20document%20file%20report%20paper%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-report-v1&orientation=squarish',
+    woodIcon: svgGradient('#302038', '#141118'),
     title: 'Reportings nach Wunsch',
     description: 'Automatisch generierte Berichte als Excel, PowerPoint oder SQL. Visualisiert und programmiert.',
     tags: ['Excel / PPT', 'SQL-Export', 'Custom'],
@@ -43,7 +49,7 @@ const FEATURES_BASE = [
   {
     number: '05',
     icon: 'ri-smartphone-line',
-    woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20smartphone%20mobile%20phone%20app%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-mobile-v1&orientation=squarish',
+    woodIcon: svgGradient('#3a2820', '#17110e'),
     title: 'Mobile App',
     description: 'Zugriff auf alle Daten mit angepassten Ansichten. iOS & Android, offline-fähig.',
     tags: ['Mobile', 'Offline', 'iOS & Android'],
@@ -51,7 +57,7 @@ const FEATURES_BASE = [
   {
     number: '06',
     icon: 'ri-shield-check-line',
-    woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20shield%20security%20protection%20lock%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-shield-v1&orientation=squarish',
+    woodIcon: svgGradient('#20383a', '#0e1617'),
     title: 'Datensicherheit',
     description: 'Höchste Sicherheitsstandards. End-to-End-Verschlüsselung, rollenbasierter Zugriff, Audit-Trails.',
     tags: ['Verschlüsselung', 'Rollenbasiert', 'DSGVO'],
@@ -93,17 +99,16 @@ export default function Features({ featureIcons }: FeaturesProps) {
           </div>
         </div>
 
-        {/* Asymmetric bento — 2×2 hero cell + 5 smaller cells */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {/* Asymmetric bento — 6-col grid, hero spans 3 cols × 2 rows */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
           {FEATURES_BASE.map((feat, idx) => {
             const isHovered = hoveredIdx === idx;
             const isHero = idx === 0;
+            const lgSpan = isHero ? 'lg:col-span-3 lg:row-span-2' : idx <= 2 ? 'lg:col-span-3' : 'lg:col-span-2';
             return (
               <div
                 key={idx}
-                className={`group bg-white cursor-default relative overflow-hidden transition-all duration-300 ${
-                  isHero ? 'sm:col-span-2 lg:col-span-2 lg:row-span-2' : ''
-                }`}
+                className={`group bg-white cursor-default relative overflow-hidden transition-all duration-300 sm:col-span-2 ${lgSpan}`}
                 style={{
                   border: isHovered ? '2px solid oklch(var(--primary-500) / 0.4)' : '2px solid oklch(var(--background-200) / 0.5)',
                 }}

@@ -39,7 +39,6 @@ export default function SRTPage() {
   });
 
   const heroRef = useRef<HTMLDivElement>(null);
-  const { images: srtHeroIcons } = useMediaStore('srt_hero_icons');
   const { images: srtFeatureIcons } = useMediaStore('srt_feature_icons');
 
   return (
@@ -51,7 +50,7 @@ export default function SRTPage() {
         <SRTHero onScrollToFeatures={() => {
           const el = document.getElementById('features');
           if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
-        }} heroIcons={srtHeroIcons} />
+        }} />
       </div>
 
       <WoodenDivider />

@@ -10,60 +10,24 @@ const TABS = [
   { id: 'cgi',        label: 'CGI & 3D-Design',         icon: 'ri-box-3-line',            sectionId: 'cgi-3d' },
 ];
 
-// ── HARDCODED FALLBACKS — Primary images only ──
+// ── PLACEHOLDER GRADIENTS — one hue per category (real photos load from the CMS/dashboard when configured) ──
+const GRADIENT_HUES: Record<string, number> = { konzeption: 115, content: 200, cgi: 280 };
+const gradientSet = (hue: number, count: number, baseAngle = 135) =>
+  Array.from({ length: count }, (_, i) =>
+    `linear-gradient(${baseAngle + i * 7}deg, oklch(0.24 0.05 ${hue}), oklch(0.13 0.005 118))`
+  );
+
 const FALLBACK_PRIMARY: Record<string, string[]> = {
-  konzeption: [
-    'https://readdy.ai/api/search-image?query=professional%20brand%20campaign%20visual%20design%20studio%20shower%20bathroom%20products%20elegant%20minimalist%20photography%20dark%20atmospheric%20background%20lime%20green%20accent%20lighting%20premium%20commercial%20photography%20dramatic%20contrast%20product%20showcase&width=800&height=600&seq=k1-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=product%20photography%20brand%20identity%20key%20visual%20consumer%20electronics%20packaging%20close%20up%20studio%20shot%20clean%20white%20background%20professional%20commercial%20photography%20sharp%20detail%20vibrant%20colors&width=400&height=300&seq=k2-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=brand%20identity%20visual%20design%20system%20logo%20typography%20color%20palette%20minimalist%20design%20studio%20creative%20agency%20branding%20materials%20flat%20lay%20professional%20elegant%20premium&width=400&height=300&seq=k3-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=social%20media%20content%20creation%20studio%20smartphone%20photography%20product%20shoot%20behind%20scenes%20creative%20team%20colorful%20vibrant%20social%20media%20assets%20creation%20agency%20lifestyle%20photography&width=600&height=300&seq=k4-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=e-commerce%20packaging%20design%20product%20shelf%20retail%20point%20of%20sale%20display%20premium%20consumer%20electronics%20packaging%20box%20beautiful%20product%20presentation%20lifestyle%20editorial%20photography%20high%20end%20commercial&width=1200&height=350&seq=k5-a&orientation=landscape',
-  ],
-  content: [
-    'https://readdy.ai/api/search-image?query=inhouse%20product%20photography%20studio%20professional%20camera%20setup%20consumer%20electronics%20product%20shooting%20dark%20moody%20atmospheric%20professional%20studio%20lighting%20equipment%20creative%20setup%20professional%20grade&width=800&height=600&seq=c1-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=video%20production%20social%20media%20reels%20short%20form%20content%20creation%20studio%20camera%20crew%20filming%20product%20commercial%20creative%20agency%20professional%20video%20production%20setup%20modern%20studio%20dark%20dramatic&width=400&height=300&seq=c2-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=live%20streaming%20studio%20setup%20professional%20lighting%20camera%20crew%20live%20video%20production%20product%20presentation%20host%20presenter%20modern%20clean%20studio%20lime%20green%20accent%20light%20broadcast%20quality&width=400&height=300&seq=c3-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=instructional%20how-to%20video%20production%20product%20demonstration%20hands%20product%20detail%20close%20up%20professional%20lighting%20studio%20tutorial%20content%20creation%20sharp%20detail%20commercial%20quality%20photography&width=600&height=300&seq=c4-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=trade%20show%20event%20documentation%20photography%20IFA%20Berlin%20consumer%20electronics%20fair%20professional%20event%20photography%20wide%20angle%20crowd%20exhibitors%20modern%20technology%20displays%20dramatic%20night%20event%20photography&width=1200&height=350&seq=c5-a&orientation=landscape',
-  ],
-  cgi: [
-    'https://readdy.ai/api/search-image?query=3D%20CGI%20architectural%20visualization%20luxury%20electric%20vehicle%20showroom%20interior%20photorealistic%20render%20modern%20minimalist%20design%20lime%20green%20accent%20lighting%20futuristic%20automotive%20showroom%20high%20quality%20visualization&width=800&height=600&seq=g1-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=trade%20show%20stand%203D%20visualization%20CGI%20render%20photorealistic%20exhibition%20booth%20design%20modern%20retail%20interior%20digital%20twin%20architecture%20render%20dramatic%20lighting%20professional%20commercial%20CGI%20quality&width=400&height=300&seq=g2-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=AI%20generated%20concept%20visualization%20product%20design%20futuristic%20technology%20creative%20concept%20art%20digital%20art%20abstract%20modern%20design%20generative%20AI%20product%20visualization%20lime%20green%20dark%20background%20atmospheric%20digital%20art&width=400&height=300&seq=g3-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=motion%20graphics%203D%20animation%20product%20visualization%20render%20digital%20cinematic%20dark%20dramatic%20lime%20green%20glow%20particle%20effects%20modern%20motion%20design%20brand%20animation%20premium%20quality%20CGI%20dramatic%20composition&width=600&height=300&seq=g4-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=photorealistic%20CGI%20product%20packaging%20visualization%20consumer%20electronics%20lifestyle%20render%20floating%20product%20box%20render%203D%20photorealistic%20dramatic%20studio%20lighting%20lime%20green%20accent%20commercial%20quality%20packaging%20visualization&width=1200&height=350&seq=g5-a&orientation=landscape',
-  ],
+  konzeption: gradientSet(GRADIENT_HUES.konzeption, 5),
+  content: gradientSet(GRADIENT_HUES.content, 5),
+  cgi: gradientSet(GRADIENT_HUES.cgi, 5),
 };
 
-const SECONDARY_SECTION_KEYS: Record<string, string> = {
-  konzeption: 'leistungen_kreation_showcase_secondary_konzeption',
-  content: 'leistungen_kreation_showcase_secondary_content',
-  cgi: 'leistungen_kreation_showcase_secondary_cgi',
-};
-
-// ── FALLBACK SECONDARY IMAGES ──
+// ── FALLBACK SECONDARY IMAGES (placeholder gradients — slightly rotated angle so the auto-rotate crossfade reads as a distinct frame) ──
 const FALLBACK_SECONDARY: Record<string, string[]> = {
-  konzeption: [
-    'https://readdy.ai/api/search-image?query=creative%20agency%20branding%20campaign%20shower%20product%20packaging%20premium%20editorial%20photography%20clean%20white%20studio%20dark%20shadows%20beautiful%20product%20art%20direction%20commercial%20quality&width=800&height=600&seq=k1-b&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=close%20up%20product%20key%20visual%20brand%20photography%20consumer%20goods%20clean%20elegant%20studio%20high%20end%20commercial%20sharp%20detail&width=400&height=300&seq=k2-b&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=brand%20guidelines%20design%20collateral%20typography%20system%20clean%20minimal%20premium%20agency%20design%20flat%20lay%20photography&width=400&height=300&seq=k3-b&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=multi%20channel%20digital%20assets%20design%20mockup%20social%20media%20instagram%20facebook%20phone%20screen%20modern%20creative%20studio&width=600&height=300&seq=k4-b&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=online%20shop%20product%20photography%20clean%20minimalist%20ecommerce%20beautiful%20lifestyle%20staging%20high%20end%20commercial%20product%20flat%20lay%20editorial%20photography&width=1200&height=350&seq=k5-b&orientation=landscape',
-  ],
-  content: [
-    'https://readdy.ai/api/search-image?query=product%20photography%20studio%20setup%20behind%20the%20scenes%20dark%20dramatic%20lighting%20professional%20camera%20rig%20consumer%20electronics&width=800&height=600&seq=c1-b&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=short%20form%20video%20reel%20production%20smartphone%20vertical%20format%20social%20media%20creative%20director%20studio%20lights&width=400&height=300&seq=c2-b&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=live%20video%20studio%20broadcasting%20shopping%20stream%20presenter%20product%20demonstration%20professional%20studio%20sharp%20detail%20clean&width=400&height=300&seq=c3-b&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=tutorial%20hands-on%20product%20explainer%20video%20close%20up%20detail%20studio%20lighting%20white%20background%20clean&width=600&height=300&seq=c4-b&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=trade%20show%20IFA%20Berlin%20exhibitor%20booth%20consumer%20electronics%20nighttime%20dramatic%20event%20photography%20wide%20exhibition%20hall%20professional&width=1200&height=350&seq=c5-b&orientation=landscape',
-  ],
-  cgi: [
-    'https://readdy.ai/api/search-image?query=photorealistic%20CGI%20automotive%20showroom%20interior%20visualization%20electric%20car%20luxury%20clean%20modern%20architecture%20render%20lime%20accent&width=800&height=600&seq=g1-b&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=exhibition%20booth%203D%20render%20photorealistic%20architecture%20visualization%20retail%20consumer%20electronics%20trade%20show%20stand%20design&width=400&height=300&seq=g2-b&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=generative%20AI%20artwork%20futuristic%20product%20concept%20digital%20abstract%20art%20lime%20green%20neon%20dark%20background%20high%20tech&width=400&height=300&seq=g3-b&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=3D%20motion%20animation%20render%20product%20brand%20dark%20atmospheric%20cinematic%20lime%20electric%20glow%20particles%20CGI%20quality&width=600&height=300&seq=g4-b&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=packaging%203D%20visualization%20CGI%20photorealistic%20render%20product%20floating%20clean%20studio%20background%20commercial%20premium%20quality&width=1200&height=350&seq=g5-b&orientation=landscape',
-  ],
+  konzeption: gradientSet(GRADIENT_HUES.konzeption, 5, 300),
+  content: gradientSet(GRADIENT_HUES.content, 5, 300),
+  cgi: gradientSet(GRADIENT_HUES.cgi, 5, 300),
 };
 
 // ── META DATA (non-image fields for each item) ──
@@ -98,6 +62,8 @@ interface ShowcaseItem {
   badge?: string | null;
 }
 
+const isGradient = (src: string) => src.startsWith('linear-gradient');
+
 // ── BEFORE/AFTER SLIDER ──────────────────────────────────────────────
 function BeforeAfterSlider() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -108,8 +74,8 @@ function BeforeAfterSlider() {
 
   // ── Dashboard images for Before/After ──
   const { images: baImages } = useMediaStore('leistungen_kreation_before_after');
-  const realityImg = baImages[0]?.url || 'https://readdy.ai/api/search-image?query=Philips%20brand%20trade%20show%20booth%20IFA%20Berlin%20real%20built%20exhibition%20stand%20professional%20retail%20display%20modern%20premium%20consumer%20electronics%20physical%20stand%20interior%20wide%20angle%20shot%20dramatic%20event%20photography&width=1200&height=680&seq=ba-reality&orientation=landscape';
-  const cgiImg = baImages[1]?.url || 'https://readdy.ai/api/search-image?query=Philips%20trade%20show%20booth%20photorealistic%20CGI%203D%20render%20architectural%20visualization%20exhibition%20stand%20design%20lime%20green%20accent%20lighting%20futuristic%20dark%20atmosphere%20high%20quality%20render%20IFA%20Berlin%20concept&width=1200&height=680&seq=ba-cgi&orientation=landscape';
+  const realityImg = baImages[0]?.url || 'linear-gradient(135deg, oklch(0.24 0.05 30), oklch(0.13 0.005 118))';
+  const cgiImg = baImages[1]?.url || 'linear-gradient(135deg, oklch(0.24 0.05 280), oklch(0.13 0.005 118))';
 
   useEffect(() => {
     const el = revealRef.current; if (!el) return;
@@ -147,12 +113,20 @@ function BeforeAfterSlider() {
         onTouchStart={(e) => { setDragging(true); updatePct(e.touches[0].clientX); }}
       >
         <div className="absolute inset-0">
-          <img src={realityImg} alt="Reality" className="w-full h-full object-cover object-center" loading="lazy" decoding="async" />
+          {isGradient(realityImg) ? (
+            <div aria-label="Reality" className="w-full h-full" style={{ background: realityImg }} />
+          ) : (
+            <img src={realityImg} alt="Reality" className="w-full h-full object-cover object-center" loading="lazy" decoding="async" />
+          )}
           <div className="absolute inset-0 bg-foreground-950/20" />
           <div className="absolute top-4 right-4 text-[9px] font-black uppercase tracking-[0.12em] px-3 py-1.5 bg-background-50/20 border border-background-50/30 text-background-50/80" style={{ backdropFilter: 'blur(8px)' }}>Gebauter Stand</div>
         </div>
         <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pct}% 0 0)` }}>
-          <img src={cgiImg} alt="CGI" className="w-full h-full object-cover object-center" loading="lazy" decoding="async" />
+          {isGradient(cgiImg) ? (
+            <div aria-label="CGI" className="w-full h-full" style={{ background: cgiImg }} />
+          ) : (
+            <img src={cgiImg} alt="CGI" className="w-full h-full object-cover object-center" loading="lazy" decoding="async" />
+          )}
           <div className="absolute inset-0 bg-primary-500/5" />
           <div className="absolute top-4 left-4 text-[9px] font-black uppercase tracking-[0.12em] px-3 py-1.5 bg-primary-500 text-foreground-950">CGI Render</div>
         </div>
@@ -228,17 +202,33 @@ function Lightbox({ items, startIdx, onClose }: LightboxProps) {
 
         {/* Image */}
         <div className="relative overflow-hidden w-full max-h-[60vh] flex items-center justify-center" style={{ maxWidth: '900px' }}>
-          <img
-            key={`${idx}-${imgIdx}`}
-            src={item.images[imgIdx]}
-            alt={item.title}
-            className="max-w-full max-h-[60vh] object-contain"
-            style={{
-              opacity: animating ? 0 : 1,
-              transform: animating ? 'scale(0.97)' : 'scale(1)',
-              transition: 'opacity 0.2s ease, transform 0.2s ease',
-            }}
-          />
+          {isGradient(item.images[imgIdx]) ? (
+            <div
+              key={`${idx}-${imgIdx}`}
+              aria-label={item.title}
+              className="w-full"
+              style={{
+                background: item.images[imgIdx],
+                aspectRatio: '16 / 10',
+                maxHeight: '60vh',
+                opacity: animating ? 0 : 1,
+                transform: animating ? 'scale(0.97)' : 'scale(1)',
+                transition: 'opacity 0.2s ease, transform 0.2s ease',
+              }}
+            />
+          ) : (
+            <img
+              key={`${idx}-${imgIdx}`}
+              src={item.images[imgIdx]}
+              alt={item.title}
+              className="max-w-full max-h-[60vh] object-contain"
+              style={{
+                opacity: animating ? 0 : 1,
+                transform: animating ? 'scale(0.97)' : 'scale(1)',
+                transition: 'opacity 0.2s ease, transform 0.2s ease',
+              }}
+            />
+          )}
           {/* Lime border accent */}
           <div className="absolute inset-0 pointer-events-none" style={{ boxShadow: 'inset 0 0 0 1px rgba(197,229,46,0.2)' }} />
 
@@ -282,7 +272,11 @@ function Lightbox({ items, startIdx, onClose }: LightboxProps) {
               className="relative overflow-hidden cursor-pointer transition-all duration-200"
               style={{ width: '52px', height: '36px', opacity: i === idx ? 1 : 0.4, border: i === idx ? '1px solid oklch(var(--primary-500))' : '1px solid transparent', borderRadius: 0 }}
             >
-              <img src={it.images[0]} alt={it.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+              {isGradient(it.images[0]) ? (
+                <div aria-label={it.title} className="w-full h-full" style={{ background: it.images[0] }} />
+              ) : (
+                <img src={it.images[0]} alt={it.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+              )}
             </button>
           ))}
         </div>
@@ -324,21 +318,35 @@ function ShowcaseCard({ item, colSpan, rowSpan, onOpen, titleSize, isWide = fals
       onClick={onOpen}
     >
       {/* Images with cross-fade */}
-      {item.images.map((src, i) => (
-        <img
-          key={i}
-          src={src}
-          alt={item.title}
-          className="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out"
-          loading="lazy"
-          decoding="async"
-          style={{
-            opacity: i === imgIdx ? (hov ? 0.88 : 1) : 0,
-            transform: hov ? 'scale(1.06)' : 'scale(1)',
-            transition: i === imgIdx ? 'opacity 0.9s ease, transform 0.7s ease-out' : 'opacity 0.7s ease',
-          }}
-        />
-      ))}
+      {item.images.map((src, i) =>
+        isGradient(src) ? (
+          <div
+            key={i}
+            aria-label={item.title}
+            className="absolute inset-0 w-full h-full transition-all duration-700 ease-out"
+            style={{
+              background: src,
+              opacity: i === imgIdx ? (hov ? 0.88 : 1) : 0,
+              transform: hov ? 'scale(1.06)' : 'scale(1)',
+              transition: i === imgIdx ? 'opacity 0.9s ease, transform 0.7s ease-out' : 'opacity 0.7s ease',
+            }}
+          />
+        ) : (
+          <img
+            key={i}
+            src={src}
+            alt={item.title}
+            className="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ease-out"
+            loading="lazy"
+            decoding="async"
+            style={{
+              opacity: i === imgIdx ? (hov ? 0.88 : 1) : 0,
+              transform: hov ? 'scale(1.06)' : 'scale(1)',
+              transition: i === imgIdx ? 'opacity 0.9s ease, transform 0.7s ease-out' : 'opacity 0.7s ease',
+            }}
+          />
+        )
+      )}
 
       {/* Living overlay */}
       <div className="absolute inset-0" style={{ background: 'linear-gradient(to top,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.12) 50%,transparent 100%)' }} />

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
 
 const TIERS = [
   { name: 'Starter', price: 'Individuell', desc: 'Für Marken, die den Markt testen oder fokussierte Kampagnen fahren.', features: ['Live-Dashboard-Zugang', 'Bis zu 3 Custom Reports', 'Wöchentliche Performance-Zusammenfassung', 'E-Mail-Support', 'Datenexport (CSV)', '1 User-Lizenz'], highlight: false },
@@ -25,71 +24,26 @@ export default function PricingAndAccess() {
   const tBtn = useText('srt_pricing', 'srt-pricing-btn', 'Beratungsgespräch buchen');
 
   const [formData, setFormData] = useState({ name: '', email: '', company: '', interest: '', message: '' });
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [formError, setFormError] = useState('');
-  const [charCount, setCharCount] = useState(0);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Non-functional mailto CTA — no third-party form endpoint (matches every other lead form on the site).
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.interest) return;
-    if (charCount > 500) return;
 
-    // Honeypot
-    const form = e.currentTarget;
-    const honeypot = (form.querySelector('[name="phone_alt"]') as HTMLInputElement)?.value?.trim();
-    if (honeypot) {
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', company: '', interest: '', message: '' });
-      setCharCount(0);
-      setTimeout(() => setSubmitStatus('idle'), 5000);
-      return;
-    }
+    const interestLabel = interests.find((i) => i.value === formData.interest)?.label || formData.interest;
+    const bodyLines = [
+      `Name: ${formData.name}`,
+      `E-Mail: ${formData.email}`,
+      formData.company ? `Unternehmen: ${formData.company}` : null,
+      `Interesse: ${interestLabel}`,
+      formData.message ? `Nachricht: ${formData.message}` : null,
+    ].filter(Boolean);
 
-    setSubmitStatus('submitting');
-    setFormError('');
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`SRT Anfrage von ${formData.name}`)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
 
-    try {
-      const body = new URLSearchParams();
-      body.append('name', formData.name);
-      body.append('email', formData.email);
-      body.append('company', formData.company);
-      body.append('interest', formData.interest);
-      body.append('message', formData.message);
-      body.append('_subject', `SRT Anfrage von ${formData.name}`);
-
-      const res = await fetch('https://readdy.ai/api/form/d9n5kk68mbnljin59tvg', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString(),
-      });
-
-      const responseText = await res.text();
-      let parsed: Record<string, unknown> = {};
-      try { parsed = JSON.parse(responseText); } catch { /* raw */ }
-
-      if (res.ok && parsed?.code === 'OK') {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', company: '', interest: '', message: '' });
-        setCharCount(0);
-        setTimeout(() => setSubmitStatus('idle'), 5000);
-      } else {
-        const serverMsg = (parsed?.meta as Record<string, string>)?.message || (parsed?.message as string) || responseText || 'Fehler.';
-        if (typeof serverMsg === 'string' && (serverMsg.includes('spam') || serverMsg.includes('form data is spam'))) {
-          setSubmitStatus('success');
-          setFormData({ name: '', email: '', company: '', interest: '', message: '' });
-          setCharCount(0);
-          setTimeout(() => setSubmitStatus('idle'), 5000);
-        } else {
-          setSubmitStatus('error');
-          setFormError(typeof serverMsg === 'string' ? serverMsg : 'Ein Fehler ist aufgetreten.');
-          setTimeout(() => setSubmitStatus('idle'), 5000);
-        }
-      }
-    } catch {
-      setSubmitStatus('error');
-      setFormError('Netzwerkfehler. Bitte versuche es erneut.');
-      setTimeout(() => setSubmitStatus('idle'), 5000);
-    }
+    setSubmitStatus('success');
+    setTimeout(() => setSubmitStatus('idle'), 5000);
   };
 
   return (
@@ -190,8 +144,12 @@ export default function PricingAndAccess() {
                 <div className="w-1 h-6 bg-primary-500" />
                 <span className="text-2xs font-black text-primary-500 uppercase tracking-[0.2em]">Zugang beantragen</span>
               </div>
-              <h3 className="font-black text-background-50 leading-tight tracking-tight mb-4" style={{ fontSize: 'clamp(22px,2.5vw,34px)' }}>
-                BEREIT FÜR <span className="text-primary-500">VOLLE</span> TRANSPARENZ?
+              <h3 className="font-black text-background-50 leading-tight tracking-tight mb-4 uppercase" style={{ fontSize: 'clamp(22px,2.5vw,34px)' }}>
+                {tAccessHeading.split(' ').map((word, i, arr) =>
+                  i === Math.floor((arr.length - 1) / 2)
+                    ? <span key={i} className="text-primary-500">{word} </span>
+                    : `${word} `
+                )}
               </h3>
               <p className="text-background-50/50 text-xs leading-relaxed mb-6 max-w-xs">
                 Kein Commitment. Nur ein Gespräch. Wir zeigen dir in 30 Minuten, wie das SRT für dein Projekt aussehen kann.
@@ -237,17 +195,9 @@ export default function PricingAndAccess() {
               </div>
             )}
 
-            {submitStatus === 'error' && (
-              <div className="mb-4 p-3 text-center text-red-600 text-sm font-semibold bg-red-50 border border-red-200">
-                {formError || 'Etwas ist schiefgelaufen.'}
-              </div>
-            )}
-
             <p className="text-2xs font-black text-foreground-500 uppercase tracking-widest mb-5">Anfrage stellen</p>
 
-            <form id="srt-access-form" data-readdy-form onSubmit={handleSubmit} className="space-y-4">
-              <input type="text" name="phone_alt" tabIndex={-1} autoComplete="off" aria-hidden="true" readOnly className="survey-hp-field" />
-
+            <form id="srt-access-form" onSubmit={handleSubmit} className="space-y-4">
               <div className="grid md:grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-2xs font-black text-foreground-600 uppercase tracking-widest mb-1">Name *</label>
@@ -292,23 +242,17 @@ export default function PricingAndAccess() {
               </div>
 
               <div>
-                <label className="block text-2xs font-black text-foreground-600 uppercase tracking-widest mb-1">
-                  Nachricht <span className={`font-normal normal-case ${charCount > 480 ? 'text-red-400' : 'text-foreground-500'}`}>{charCount}/500</span>
-                </label>
+                <label className="block text-2xs font-black text-foreground-600 uppercase tracking-widest mb-1">Nachricht</label>
                 <textarea name="message" rows={3} maxLength={500} value={formData.message}
-                  onChange={(e) => { setFormData({ ...formData, message: e.target.value }); setCharCount(e.target.value.length); }}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-3 py-2.5 bg-background-50 border-2 border-background-300/60 text-sm focus:outline-none focus:border-primary-500 transition-colors resize-none"
                   style={{ borderRadius: 0 }} placeholder="Beschreibe kurz dein Projekt..." />
               </div>
 
-              <button type="submit" disabled={submitStatus === 'submitting' || charCount > 500}
-                className="w-full flex items-center justify-center gap-2 bg-primary-500 text-foreground-950 py-3 font-black hover:bg-foreground-950 hover:text-primary-500 transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed text-xs uppercase tracking-widest whitespace-nowrap"
+              <button type="submit"
+                className="w-full flex items-center justify-center gap-2 bg-primary-500 text-foreground-950 py-3 font-black hover:bg-foreground-950 hover:text-primary-500 transition-all duration-300 cursor-pointer text-xs uppercase tracking-widest whitespace-nowrap"
                 style={{ borderRadius: 0 }}>
-                {submitStatus === 'submitting' ? (
-                  <><i className="ri-loader-4-line animate-spin" />Wird gesendet...</>
-                ) : (
-                  <><i className="ri-calendar-line" />Beratungsgespräch buchen</>
-                )}
+                <i className="ri-calendar-line" />{tBtn}
               </button>
             </form>
           </div>

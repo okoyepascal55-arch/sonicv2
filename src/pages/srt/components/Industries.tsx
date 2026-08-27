@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SectionBadge from '@/components/base/SectionBadge';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
+import { CONTACT_EMAIL } from '@/lib/contact';
 
 const USE_CASES = [
   { icon: 'ri-store-2-line', title: 'FMCG & Retail Execution', items: ['In-Store-Performance', 'Regal-Audits, Planogramm-Compliance', 'Koordination Merchandising-Teams', 'POS-Material-Bestand & Platzierungstracking'] },
@@ -33,7 +33,6 @@ const STEP3_GOALS = [
 ];
 
 const stepLabels = ['Branche', 'Challenge', 'Ziel', 'Kontakt'];
-const FORM_URL = 'https://readdy.ai/api/form/d9n5kk68mbnljin59tvg';
 
 export default function Industries() {
   const tBadge = useText('srt_industries', 'srt-industries-badge', 'Branchen & Use Cases');
@@ -45,71 +44,36 @@ export default function Industries() {
   const [step, setStep] = useState(1);
   const [selected, setSelected] = useState<Record<number, string>>({});
   const [submitted, setSubmitted] = useState(false);
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [formError, setFormError] = useState('');
-  const [charCount, setCharCount] = useState(0);
 
   const handleSelect = (val: string) => { setSelected((prev) => ({ ...prev, [step]: val })); };
   const handleNext = () => { if (step < 4) setStep((s) => s + 1); };
   const handleBack = () => { if (step > 1) setStep((s) => s - 1); };
 
-  const openModal = () => { setModalOpen(true); setStep(1); setSelected({}); setSubmitted(false); setFormStatus('idle'); setFormError(''); setCharCount(0); };
+  const openModal = () => { setModalOpen(true); setStep(1); setSelected({}); setSubmitted(false); };
   const closeModal = () => setModalOpen(false);
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  // Non-functional mailto CTA — no third-party form endpoint (matches every other lead form on the site).
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const honeypot = (form.querySelector('[name="website_alt"]') as HTMLInputElement)?.value?.trim();
-    if (honeypot) {
-      setFormStatus('success');
-      setSubmitted(true);
-      return;
-    }
-    if (charCount > 500) return;
+    const name = (form.elements.namedItem('name') as HTMLInputElement)?.value || '';
+    const email = (form.elements.namedItem('email') as HTMLInputElement)?.value || '';
+    const company = (form.elements.namedItem('company') as HTMLInputElement)?.value || '';
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement)?.value || '';
 
-    setFormStatus('submitting');
-    setFormError('');
-    try {
-      const formData = new FormData(form);
-      formData.append('branche', selected[1] || '');
-      formData.append('challenge', selected[2] || '');
-      formData.append('ziel', selected[3] || '');
-      formData.append('_subject', `SRT Beratung — ${selected[1] || 'Unbekannt'}`);
+    const bodyLines = [
+      `Name: ${name}`,
+      `E-Mail: ${email}`,
+      company ? `Unternehmen: ${company}` : null,
+      `Branche: ${selected[1] || '—'}`,
+      `Herausforderung: ${selected[2] || '—'}`,
+      `Ziel: ${selected[3] || '—'}`,
+      message ? `Nachricht: ${message}` : null,
+    ].filter(Boolean);
 
-      const body = new URLSearchParams();
-      formData.forEach((val, key) => { body.append(key, val as string); });
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`SRT Beratung — ${selected[1] || 'Unbekannt'}`)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
 
-      const res = await fetch(FORM_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString(),
-      });
-
-      const responseText = await res.text();
-      let parsed: Record<string, unknown> = {};
-      try { parsed = JSON.parse(responseText); } catch { /* raw */ }
-
-      if (res.ok && parsed?.code === 'OK') {
-        setFormStatus('success');
-        setSubmitted(true);
-      } else {
-        const serverMsg = (parsed?.meta as Record<string, string>)?.message
-          || (parsed?.message as string)
-          || (parsed?.meta as Record<string, string>)?.detail
-          || responseText
-          || 'Ein Fehler ist aufgetreten.';
-        if (typeof serverMsg === 'string' && (serverMsg.includes('spam') || serverMsg.includes('form data is spam'))) {
-          setFormStatus('success');
-          setSubmitted(true);
-        } else {
-          setFormStatus('error');
-          setFormError(typeof serverMsg === 'string' ? serverMsg : 'Ein Fehler ist aufgetreten.');
-        }
-      }
-    } catch {
-      setFormStatus('error');
-      setFormError('Netzwerkfehler. Bitte versuche es erneut.');
-    }
+    setSubmitted(true);
   };
 
   const currentList = step === 1 ? STEP1_INDUSTRIES : step === 2 ? STEP2_CHALLENGES : step === 3 ? STEP3_GOALS : [];
@@ -125,10 +89,11 @@ export default function Industries() {
             </div>
             <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end mb-5">
               <h2 className="sonic-h2 text-foreground-950">
-                VON RETAIL EXECUTION BIS <span className="text-primary-500">HEALTHCARE.</span>
+                {tHeading.split(' ').slice(0, -1).join(' ')}{' '}
+                <span className="text-primary-500">{tHeading.split(' ').slice(-1)}</span>
               </h2>
               <p className="text-sm text-foreground-600 leading-relaxed lg:pb-1">
-                Das SRT ist bereit für jedes Projekt, bei dem Menschen zielorientiert und koordiniert eingesetzt werden.
+                {tSub || 'Das SRT ist bereit für jedes Projekt, bei dem Menschen zielorientiert und koordiniert eingesetzt werden.'}
               </p>
             </div>
           </div>
@@ -296,16 +261,7 @@ export default function Industries() {
                     ))}
                   </div>
 
-                  {formStatus === 'error' && (
-                    <div className="mb-4 p-3 text-center text-red-600 text-sm font-semibold bg-red-50 border border-red-200">
-                      {formError || 'Etwas ist schiefgelaufen.'}
-                    </div>
-                  )}
-
-                  <form id="srt-survey-form" data-readdy-form onSubmit={handleFormSubmit} className="space-y-4">
-                    <input type="text" name="website_alt" tabIndex={-1} autoComplete="off" aria-hidden="true" readOnly
-                      className="survey-hp-field" />
-
+                  <form id="srt-survey-form" onSubmit={handleFormSubmit} className="space-y-4">
                     <div className="grid md:grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="srt-name" className="block text-[10px] font-black text-foreground-600 uppercase tracking-widest mb-1">Name *</label>
@@ -329,11 +285,8 @@ export default function Industries() {
                     </div>
 
                     <div>
-                      <label htmlFor="srt-message" className="block text-[10px] font-black text-foreground-600 uppercase tracking-widest mb-1">
-                        Nachricht <span className={`font-normal normal-case ${charCount > 480 ? 'text-red-400' : 'text-foreground-500'}`}>{charCount}/500</span>
-                      </label>
+                      <label htmlFor="srt-message" className="block text-[10px] font-black text-foreground-600 uppercase tracking-widest mb-1">Nachricht</label>
                       <textarea id="srt-message" name="message" rows={3} maxLength={500}
-                        onChange={(e) => setCharCount(e.target.value.length)}
                         className="w-full px-3 py-2.5 bg-background-50 border-2 border-background-300/60 text-sm focus:outline-none focus:border-primary-500 transition-colors resize-none"
                         style={{ borderRadius: 0 }} placeholder="Beschreibe kurz dein Projekt..." />
                     </div>
@@ -343,13 +296,9 @@ export default function Industries() {
                         className="px-4 py-2 border-2 border-background-300/60 font-bold text-xs text-foreground-600 hover:border-foreground-500 transition-colors cursor-pointer whitespace-nowrap">
                         &larr; Zurück
                       </button>
-                      <button type="submit" disabled={formStatus === 'submitting' || charCount > 500}
-                        className="flex items-center gap-2 bg-primary-500 text-foreground-950 px-6 py-2.5 font-black text-xs uppercase tracking-wider hover:bg-foreground-950 hover:text-primary-500 transition-all duration-300 cursor-pointer whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed">
-                        {formStatus === 'submitting' ? (
-                          <><i className="ri-loader-4-line animate-spin" /> Wird gesendet...</>
-                        ) : (
-                          <><i className="ri-calendar-line" /> Beratungsgespräch anfragen</>
-                        )}
+                      <button type="submit"
+                        className="flex items-center gap-2 bg-primary-500 text-foreground-950 px-6 py-2.5 font-black text-xs uppercase tracking-wider hover:bg-foreground-950 hover:text-primary-500 transition-all duration-300 cursor-pointer whitespace-nowrap">
+                        <i className="ri-calendar-line" /> Beratungsgespräch anfragen
                       </button>
                     </div>
                   </form>
