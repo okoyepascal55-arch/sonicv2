@@ -70,7 +70,7 @@ export default function KreationContentPage() {
   const resolvedDisciplines = DISCIPLINES.map((item, i) => ({ ...item, src: disciplineWoodIcons[i]?.url ? resolveImageUrl(disciplineWoodIcons[i].url) : item.fallback }));
 
   return (
-    <div className="min-h-[100dvh] overflow-x-hidden bg-white">
+    <div id="kreation-page" className="min-h-[100dvh] overflow-x-hidden bg-white">
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
       <div ref={heroRef}>
         <section className="relative w-full overflow-hidden bg-white pb-0" style={{ paddingTop: 'clamp(100px, 9vw, 130px)' }}>
@@ -87,12 +87,9 @@ export default function KreationContentPage() {
         </section>
       </div>
       <KreationWavyDivider />
-
       <section className="sonic-section-md bg-white px-6 border-b border-foreground-950/8"><div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3">{resolvedDisciplines.map(item => <div key={item.label} className="flex flex-col items-center gap-4 py-4"><img src={item.src} alt={item.label} className="w-16 h-16 object-cover" loading="lazy" /><span className="text-xs font-black text-foreground-950/55 uppercase tracking-widest">{item.label}</span><div className="h-px w-6 bg-primary-500" /></div>)}</div></section>
-
       <ChallengeSection id="herausforderung" headline={tChallengeHeading} subline={tChallengeSub} challenges={CHALLENGES} />
       <KreationWavyDivider />
-
       <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden bg-white">
         <div className="absolute top-0 right-0 pointer-events-none" style={{ width: 500, height: 500, background: 'oklch(0.81 0.19 115 / 0.08)', filter: 'blur(120px)' }} />
         <div ref={solutionRef} className="sonic-container relative" style={{ opacity: solutionVisible ? 1 : 0, transform: solutionVisible ? 'translateY(0)' : 'translateY(32px)', transition: 'opacity 0.7s ease, transform 0.7s ease' }}>
@@ -100,7 +97,6 @@ export default function KreationContentPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">{SOLUTIONS.map((item, i) => { const active = hoveredSolution === i; return <div key={item.num} className={`relative overflow-hidden group ${active ? 'bg-foreground-950 border-primary-500' : 'bg-white border-foreground-950/[0.09]'}`} style={{ minHeight: 280, borderWidth: 1, borderStyle: 'solid' }} onMouseEnter={() => setHoveredSolution(i)} onMouseLeave={() => setHoveredSolution(null)}><div className="relative z-10 p-7"><img src={getSolutionIcon(i)} alt="" className={`w-12 h-12 object-cover mb-6 transition-transform duration-300 ${active ? 'scale-110' : ''}`} /><div className="flex items-center gap-2 mb-3"><span className="font-mono font-black text-xs text-primary-500">{item.num}</span><div className={`flex-1 h-px ${active ? 'bg-primary-500/25' : 'bg-foreground-950/8'}`} /></div><h3 className={`font-black text-base uppercase tracking-wide mb-3 ${active ? 'text-background-50' : 'text-foreground-950'}`}>{item.title}</h3><p className={`text-sm leading-relaxed mb-4 ${active ? 'text-background-50/60' : 'text-foreground-950/55'}`}>{item.desc}</p><div className="flex flex-wrap gap-1.5">{item.tags.map(tag => <span key={tag} className={`text-[9px] font-black px-2 py-0.5 uppercase tracking-widest ${active ? 'text-background-50 bg-primary-500/[0.12] border-primary-500/30' : 'text-foreground-950 bg-primary-500/8 border-primary-500/20'} border`}>{tag}</span>)}</div></div></div>; })}</div>
         </div>
       </section>
-
       <KreationShowcaseReference />
       <KreationWavyDivider />
       <section id="referenzen"><ClientProof /></section>
