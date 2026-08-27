@@ -48,18 +48,34 @@ const TAB_DESC: Record<TabId, string> = {
   cgi: 'Fotorealistische 3D-Welten, AI-Konzepte und Motion Graphics in einer Produktion.',
 };
 
-const gradient = (hue: number, index: number) =>
-  `linear-gradient(${135 + index * 7}deg, oklch(0.24 0.05 ${hue}), oklch(0.13 0.005 118))`;
-
 const FALLBACKS: Record<TabId, string[]> = {
-  konzeption: Array.from({ length: 5 }, (_, i) => gradient(115, i)),
-  content: Array.from({ length: 5 }, (_, i) => gradient(200, i)),
-  cgi: Array.from({ length: 5 }, (_, i) => gradient(280, i)),
+  konzeption: [
+    'https://readdy.ai/api/search-image?query=professional%20brand%20campaign%20visual%20design%20studio%20shower%20bathroom%20products%20elegant%20minimalist%20photography%20dark%20atmospheric%20background%20lime%20green%20accent%20lighting%20premium%20commercial%20photography%20dramatic%20contrast%20product%20showcase&width=800&height=600&seq=k1-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=product%20photography%20brand%20identity%20key%20visual%20consumer%20electronics%20packaging%20close%20up%20studio%20shot%20clean%20white%20background%20professional%20commercial%20photography%20sharp%20detail%20vibrant%20colors&width=400&height=300&seq=k2-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=brand%20identity%20visual%20design%20system%20logo%20typography%20color%20palette%20minimalist%20design%20studio%20creative%20agency%20branding%20materials%20flat%20lay%20professional%20elegant%20premium&width=400&height=300&seq=k3-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=social%20media%20content%20creation%20studio%20smartphone%20photography%20product%20shoot%20behind%20scenes%20creative%20team%20colorful%20vibrant%20social%20media%20assets%20creation%20agency%20lifestyle%20photography&width=600&height=300&seq=k4-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=e-commerce%20packaging%20design%20product%20shelf%20retail%20point%20of%20sale%20display%20premium%20consumer%20electronics%20packaging%20box%20beautiful%20product%20presentation%20lifestyle%20editorial%20photography%20high%20end%20commercial&width=1200&height=350&seq=k5-a&orientation=landscape',
+  ],
+  content: [
+    'https://readdy.ai/api/search-image?query=inhouse%20product%20photography%20studio%20professional%20camera%20setup%20consumer%20electronics%20product%20shooting%20dark%20moody%20atmospheric%20professional%20studio%20lighting%20equipment%20creative%20setup%20professional%20grade&width=800&height=600&seq=c1-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=video%20production%20social%20media%20reels%20short%20form%20content%20creation%20studio%20camera%20crew%20filming%20product%20commercial%20creative%20agency%20professional%20video%20production%20setup%20modern%20studio%20dark%20dramatic&width=400&height=300&seq=c2-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=live%20streaming%20studio%20setup%20professional%20lighting%20camera%20crew%20live%20video%20production%20product%20presentation%20host%20presenter%20modern%20clean%20studio%20lime%20green%20accent%20light%20broadcast%20quality&width=400&height=300&seq=c3-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=instructional%20how-to%20video%20production%20product%20demonstration%20hands%20product%20detail%20close%20up%20professional%20lighting%20studio%20tutorial%20content%20creation%20sharp%20detail%20commercial%20quality%20photography&width=600&height=300&seq=c4-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=trade%20show%20event%20documentation%20photography%20IFA%20Berlin%20consumer%20electronics%20fair%20professional%20event%20photography%20wide%20angle%20crowd%20exhibitors%20modern%20technology%20displays%20dramatic%20night%20event%20photography&width=1200&height=350&seq=c5-a&orientation=landscape',
+  ],
+  cgi: [
+    'https://readdy.ai/api/search-image?query=3D%20CGI%20architectural%20visualization%20luxury%20electric%20vehicle%20showroom%20interior%20photorealistic%20render%20modern%20minimalist%20design%20lime%20green%20accent%20lighting%20futuristic%20automotive%20showroom%20high%20quality%20visualization&width=800&height=600&seq=g1-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=trade%20show%20stand%203D%20visualization%20CGI%20render%20photorealistic%20exhibition%20booth%20design%20modern%20retail%20interior%20digital%20twin%20architecture%20render%20dramatic%20lighting%20professional%20commercial%20CGI%20quality&width=400&height=300&seq=g2-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=AI%20generated%20concept%20visualization%20product%20design%20futuristic%20technology%20creative%20concept%20art%20digital%20art%20abstract%20modern%20design%20generative%20AI%20product%20visualization%20lime%20green%20dark%20background%20atmospheric%20digital%20art&width=400&height=300&seq=g3-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=motion%20graphics%203D%20animation%20product%20visualization%20render%20digital%20cinematic%20dark%20dramatic%20lime%20green%20glow%20particle%20effects%20modern%20motion%20design%20brand%20animation%20premium%20quality%20CGI%20dramatic%20composition&width=600&height=300&seq=g4-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=photorealistic%20CGI%20product%20packaging%20visualization%20consumer%20electronics%20lifestyle%20render%20floating%20product%20box%20render%203D%20photorealistic%20dramatic%20studio%20lighting%20lime%20green%20accent%20commercial%20quality%20packaging%20visualization&width=1200&height=350&seq=g5-a&orientation=landscape',
+  ],
 };
 
-function isGradient(src: string) {
-  return src.startsWith('linear-gradient');
-}
+const BEFORE_AFTER_FALLBACK = [
+  'https://readdy.ai/api/search-image?query=Philips%20brand%20trade%20show%20booth%20IFA%20Berlin%20real%20built%20exhibition%20stand%20professional%20retail%20display%20modern%20premium%20consumer%20electronics%20physical%20stand%20interior%20wide%20angle%20shot%20dramatic%20event%20photography&width=1200&height=680&seq=ba-reality&orientation=landscape',
+  'https://readdy.ai/api/search-image?query=Philips%20trade%20show%20booth%20photorealistic%20CGI%203D%20render%20architectural%20visualization%20exhibition%20stand%20design%20lime%20green%20accent%20lighting%20futuristic%20dark%20atmosphere%20high%20quality%20render%20IFA%20Berlin%20concept&width=1200&height=680&seq=ba-cgi&orientation=landscape',
+];
 
 function Lightbox({ items, images, startIndex, onClose }: { items: Item[]; images: string[]; startIndex: number; onClose: () => void }) {
   const [index, setIndex] = useState(startIndex);
@@ -92,14 +108,14 @@ function Lightbox({ items, images, startIndex, onClose }: { items: Item[]; image
       <div className="relative flex-1 flex items-center justify-center px-16 py-12">
         <button onClick={() => setIndex(value => (value - 1 + items.length) % items.length)} className="absolute left-4 w-12 h-12 border border-white/[0.12] text-white/60 hover:bg-primary-500 hover:text-foreground-950 flex items-center justify-center" aria-label="Vorheriges Bild"><i className="ri-arrow-left-line text-lg" /></button>
         <div className="relative max-w-[900px] max-h-[70vh] w-full flex items-center justify-center overflow-hidden">
-          {isGradient(src) ? <div className="w-full aspect-[16/10]" style={{ background: src }} /> : <img src={src} alt={item.title} className="max-w-full max-h-[70vh] object-contain" />}
+          <img src={src} alt={item.title} className="max-w-full max-h-[70vh] object-contain" />
         </div>
         <button onClick={() => setIndex(value => (value + 1) % items.length)} className="absolute right-4 w-12 h-12 border border-white/[0.12] text-white/60 hover:bg-primary-500 hover:text-foreground-950 flex items-center justify-center" aria-label="Nächstes Bild"><i className="ri-arrow-right-line text-lg" /></button>
       </div>
       <div className="px-6 md:px-8 py-5 border-t border-white/[0.07] flex items-center justify-between gap-6">
         <div><h3 className="text-xl font-black uppercase text-white mb-1">{item.title}</h3><p className="text-xs text-white/40">{item.sub}</p></div>
         <div className="hidden sm:flex gap-1">
-          {items.map((entry, i) => <button key={entry.id} onClick={() => setIndex(i)} className="relative overflow-hidden" style={{ width: 52, height: 36, opacity: i === index ? 1 : 0.4, border: i === index ? '1px solid oklch(0.81 0.19 115)' : '1px solid transparent' }}>{isGradient(images[i]) ? <div className="w-full h-full" style={{ background: images[i] }} /> : <img src={images[i]} alt="" className="w-full h-full object-cover" />}</button>)}
+          {items.map((entry, i) => <button key={entry.id} onClick={() => setIndex(i)} className="relative overflow-hidden" style={{ width: 52, height: 36, opacity: i === index ? 1 : 0.4, border: i === index ? '1px solid oklch(0.81 0.19 115)' : '1px solid transparent' }}><img src={images[i]} alt="" className="w-full h-full object-cover" /></button>)}
         </div>
       </div>
     </div>,
@@ -110,7 +126,7 @@ function Lightbox({ items, images, startIndex, onClose }: { items: Item[]; image
 function ShowcaseCard({ item, src, span, onOpen, titleSize }: { item: Item; src: string; span: string; onOpen: () => void; titleSize: string }) {
   return (
     <button type="button" onClick={onOpen} className="relative overflow-hidden text-left cursor-pointer group" style={{ gridColumn: span, minHeight: '300px' }}>
-      {isGradient(src) ? <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]" style={{ background: src }} /> : <img src={src} alt={item.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" />}
+      <img src={src} alt={item.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/10 to-transparent" />
       <span className="absolute top-3 left-3 bg-primary-500 text-foreground-950 text-[9px] font-black uppercase tracking-[0.06em] px-2.5 py-1">{item.tag}</span>
       <div className="absolute top-3 right-3 w-[34px] h-[34px] flex items-center justify-center bg-white/12 border border-white/25 text-white backdrop-blur-sm"><i className="ri-zoom-in-line text-sm" /></div>
@@ -142,8 +158,8 @@ export default function KreationShowcaseReference() {
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab, primaryImages, secKonz, secContent, secCgi, items]);
-  const reality = beforeAfter[0]?.url ? resolveImageUrl(beforeAfter[0].url) : gradient(30, 0);
-  const cgi = beforeAfter[1]?.url ? resolveImageUrl(beforeAfter[1].url) : gradient(280, 1);
+  const reality = beforeAfter[0]?.url ? resolveImageUrl(beforeAfter[0].url) : BEFORE_AFTER_FALLBACK[0];
+  const cgi = beforeAfter[1]?.url ? resolveImageUrl(beforeAfter[1].url) : BEFORE_AFTER_FALLBACK[1];
 
   return (
     <section id="konzept" className="sonic-section-lg relative overflow-hidden bg-white">
@@ -173,7 +189,7 @@ export default function KreationShowcaseReference() {
         <ShowcaseCard item={items[4]} src={images[4]} span="span 12" onOpen={() => setLightboxIndex(4)} titleSize="22px" />
 
         <div className="mt-1 grid grid-cols-5 gap-1">
-          {items.map((item, i) => <button key={item.id} type="button" onClick={() => setLightboxIndex(i)} className="relative overflow-hidden" style={{ height: 64, opacity: lightboxIndex === i ? 1 : 0.65, border: lightboxIndex === i ? '2px solid oklch(0.81 0.19 115)' : '2px solid transparent' }}>{isGradient(images[i]) ? <div className="absolute inset-0" style={{ background: images[i] }} /> : <img src={images[i]} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />}</button>)}
+          {items.map((item, i) => <button key={item.id} type="button" onClick={() => setLightboxIndex(i)} className="relative overflow-hidden" style={{ height: 64, opacity: lightboxIndex === i ? 1 : 0.65, border: lightboxIndex === i ? '2px solid oklch(0.81 0.19 115)' : '2px solid transparent' }}><img src={images[i]} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" /></button>)}
         </div>
 
         {activeTab === 'cgi' && (
@@ -183,10 +199,10 @@ export default function KreationShowcaseReference() {
               <a href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch`} className="flex-shrink-0 px-5 py-2.5 border border-foreground-950/[0.12] text-xs font-black uppercase tracking-widest text-foreground-950/40 hover:bg-primary-500 hover:text-foreground-950">Portfolio anfragen <i className="ri-arrow-right-line" /></a>
             </div>
             <div className="relative h-[340px] overflow-hidden">
-              {isGradient(reality) ? <div className="absolute inset-0" style={{ background: reality }} /> : <img src={reality} alt="Gebauter Stand" className="absolute inset-0 w-full h-full object-cover" />}
+              <img src={reality} alt="Gebauter Stand" className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/20" />
               <span className="absolute top-4 right-4 px-3 py-1.5 bg-white/15 border border-white/30 text-[9px] font-black uppercase tracking-[0.12em] text-white/80 backdrop-blur-sm">Gebauter Stand</span>
-              <div className="absolute inset-0" style={{ clipPath: 'inset(0 45% 0 0)' }}>{isGradient(cgi) ? <div className="w-full h-full" style={{ background: cgi }} /> : <img src={cgi} alt="CGI Render" className="w-full h-full object-cover" />}<span className="absolute top-4 left-4 px-3 py-1.5 bg-primary-500 text-foreground-950 text-[9px] font-black uppercase tracking-[0.12em]">CGI Render</span></div>
+              <div className="absolute inset-0" style={{ clipPath: 'inset(0 45% 0 0)' }}><img src={cgi} alt="CGI Render" className="w-full h-full object-cover" /><span className="absolute top-4 left-4 px-3 py-1.5 bg-primary-500 text-foreground-950 text-[9px] font-black uppercase tracking-[0.12em]">CGI Render</span></div>
               <div className="absolute top-0 bottom-0 left-[55%] w-0.5 bg-primary-500"><div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-primary-500 text-foreground-950 flex items-center justify-center font-black text-sm">↔</div></div>
             </div>
           </div>
