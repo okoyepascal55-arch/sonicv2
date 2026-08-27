@@ -2,7 +2,7 @@ import { useSEO } from '@/hooks/useSEO';
 import { useRef } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import SRTHeroReference from './components/SRTHeroReference';
-import TheProblem from './components/TheProblem';
+import TheProblemReference from './components/TheProblemReference';
 import Features from './components/Features';
 import VideoShowcase from './components/VideoShowcase';
 import FunctionalityOverview from './components/FunctionalityOverview';
@@ -46,7 +46,7 @@ export default function SRTPage() {
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
       <div ref={heroRef} id="overview"><SRTHeroReference /></div>
       <SRTWavyDivider />
-      <div id="das-problem"><TheProblem /></div>
+      <div id="das-problem"><TheProblemReference /></div>
       <SRTWavyDivider />
       <div id="features"><Features featureIcons={srtFeatureIcons} /></div>
       <SRTWavyDivider />
