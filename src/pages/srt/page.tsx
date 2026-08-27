@@ -1,7 +1,6 @@
 import { useSEO } from '@/hooks/useSEO';
 import { useRef } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
-import WoodenDivider from '@/components/base/WoodenDivider';
 import SRTHero from './components/SRTHero';
 import TheProblem from './components/TheProblem';
 import Features from './components/Features';
@@ -13,6 +12,7 @@ import Zusammenarbeit from './components/Zusammenarbeit';
 import Proof from './components/Proof';
 import Industries from './components/Industries';
 import PricingAndAccess from './components/PricingAndAccess';
+import SRTWavyDivider from './components/SRTWavyDivider';
 import LeistungenPageNav from '../../components/feature/LeistungenPageNav';
 
 const NAV_ITEMS = [
@@ -39,69 +39,47 @@ export default function SRTPage() {
   });
 
   const heroRef = useRef<HTMLDivElement>(null);
-  const { images: srtHeroIcons } = useMediaStore('srt_hero_icons');
   const { images: srtFeatureIcons } = useMediaStore('srt_feature_icons');
 
   return (
     <div className="bg-white">
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
 
-      {/* Hero */}
       <div ref={heroRef} id="overview">
         <SRTHero onScrollToFeatures={() => {
           const el = document.getElementById('features');
           if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
         }} />
       </div>
+      <SRTWavyDivider />
 
-      {/* Dark-bg WoodenDivider — dark section exit */}
-      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-
-      {/* Problem */}
       <div id="das-problem"><TheProblem /></div>
+      <SRTWavyDivider />
 
-      <WoodenDivider />
-
-      {/* Features */}
       <div id="features"><Features featureIcons={srtFeatureIcons} /></div>
+      <SRTWavyDivider />
 
-      {/* Video showcase */}
       <div id="srt-in-aktion"><VideoShowcase /></div>
+      <SRTWavyDivider />
 
-      <WoodenDivider />
-
-      {/* Function overview */}
       <div id="funktionsumfang"><FunctionalityOverview /></div>
+      <SRTWavyDivider />
 
-      {/* Dark-bg WoodenDivider — dark section exit */}
-      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-
-      {/* Employee app */}
       <div id="team-app"><EmployeeApp /></div>
+      <SRTWavyDivider />
 
-      {/* Dark-bg WoodenDivider — team-app(dark) exit into zusammenarbeit(light) */}
-      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-
-      {/* Collaboration process */}
       <div id="zusammenarbeit"><Zusammenarbeit /></div>
+      <SRTWavyDivider />
 
-      <WoodenDivider />
-
-      {/* Data flow */}
       <div id="datenfluss"><DataPaths /></div>
+      <SRTWavyDivider />
 
-      {/* Dark-bg WoodenDivider — dark section exit */}
-      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-
-      {/* Industries + Config */}
       <div id="branchen"><Industries /></div>
+      <SRTWavyDivider />
 
-      {/* Social proof */}
       <div id="kundenstimmen"><Proof /></div>
+      <SRTWavyDivider />
 
-      <WoodenDivider />
-
-      {/* Pricing + Access — combined */}
       <div id="preise-zugang"><PricingAndAccess /></div>
     </div>
   );
