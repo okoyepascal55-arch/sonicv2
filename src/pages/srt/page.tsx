@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import SRTHeroReference from './components/SRTHeroReference';
 import TheProblemReference from './components/TheProblemReference';
-import Features from './components/Features';
+import FeaturesReference from './components/FeaturesReference';
 import VideoShowcase from './components/VideoShowcase';
 import FunctionalityOverview from './components/FunctionalityOverview';
 import EmployeeApp from './components/EmployeeApp';
@@ -48,7 +48,7 @@ export default function SRTPage() {
       <SRTWavyDivider />
       <div id="das-problem"><TheProblemReference /></div>
       <SRTWavyDivider />
-      <div id="features"><Features featureIcons={srtFeatureIcons} /></div>
+      <div id="features"><FeaturesReference /></div>
       <SRTWavyDivider />
       <div id="srt-in-aktion"><VideoShowcase /></div>
       <SRTWavyDivider />
