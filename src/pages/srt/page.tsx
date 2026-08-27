@@ -1,6 +1,5 @@
 import { useSEO } from '@/hooks/useSEO';
 import { useRef } from 'react';
-import { useMediaStore } from '@/lib/mediaStore';
 import SRTHeroReference from './components/SRTHeroReference';
 import TheProblemReference from './components/TheProblemReference';
 import FeaturesReference from './components/FeaturesReference';
@@ -39,7 +38,6 @@ export default function SRTPage() {
   });
 
   const heroRef = useRef<HTMLDivElement>(null);
-  const { images: srtFeatureIcons } = useMediaStore('srt_feature_icons');
 
   return (
     <div className="bg-white">
