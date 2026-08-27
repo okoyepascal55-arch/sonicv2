@@ -23,7 +23,7 @@ const NAV_ITEMS = [
   { id: 'zusammenarbeit', label: 'Zusammenarbeit', icon: 'ri-git-merge-line' },
   { id: 'datenfluss', label: 'Datenfluss', icon: 'ri-flow-chart' },
   { id: 'branchen', label: 'Branchen', icon: 'ri-building-line' },
-  { id: 'kundenstimmen', label: 'Kundenstimmen', icon: 'ri-chat-quote-line' },
+  { id: 'srt-proof', label: 'SRT in Zahlen', icon: 'ri-bar-chart-2-line' },
   { id: 'preise-zugang', label: 'Preise & Zugang', icon: 'ri-price-tag-3-line' },
 ];
 
@@ -40,29 +40,28 @@ export default function SRTPage() {
   const heroRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white min-h-[100dvh] overflow-x-hidden">
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
       <div ref={heroRef} id="overview"><SRTHeroReference /></div>
       <SRTWavyDivider />
-      <div id="das-problem"><TheProblemReference /></div>
+      <TheProblemReference />
       <SRTWavyDivider />
-      <div id="features"><FeaturesReference /></div>
+      <FeaturesReference />
       <SRTWavyDivider />
-      <div id="srt-in-aktion"><VideoShowcase /></div>
+      <VideoShowcase />
       <SRTWavyDivider />
-      <div id="funktionsumfang"><FunctionalityOverview /></div>
+      <FunctionalityOverview />
       <SRTWavyDivider />
-      <div id="team-app"><EmployeeApp /></div>
+      <EmployeeApp />
       <SRTWavyDivider />
-      <div id="zusammenarbeit"><Zusammenarbeit /></div>
+      <Zusammenarbeit />
       <SRTWavyDivider />
-      <div id="datenfluss"><DataPaths /></div>
+      <DataPaths />
       <SRTWavyDivider />
-      <div id="branchen"><Industries /></div>
+      <Industries />
       <SRTWavyDivider />
-      <div id="kundenstimmen"><Proof /></div>
-      <SRTWavyDivider />
-      <div id="preise-zugang"><PricingAndAccess /></div>
+      <Proof />
+      <PricingAndAccess />
     </div>
   );
 }
