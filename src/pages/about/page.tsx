@@ -110,6 +110,9 @@ export default function AboutPage() {
         </section>
       </div>
 
+      {/* Dark-bg WoodenDivider — hero(dark) exit into uber-uns(light) */}
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
+
       {/* ── SECTIONS ── */}
       <div id="uber-uns">
         <StackedSectionReveal index={0} totalSections={4}>

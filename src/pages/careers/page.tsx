@@ -60,6 +60,9 @@ export default function CareersGatewayPage() {
           <KarriereHero />
         </div>
 
+        {/* Dark-bg WoodenDivider — hero(dark) exit into 01(light) */}
+        <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
+
         {/* 01 — Zwei Wege */}
         <KarrierepfadeSection />
 
@@ -68,8 +71,13 @@ export default function CareersGatewayPage() {
         {/* 02 — Kultur & DNA */}
         <KarriereCulture />
 
+        <WoodenDivider />
+
         {/* 03 — Ausgezeichnet */}
         <KarriereAwards />
+
+        {/* Dark-bg WoodenDivider — 03(dark) exit into 04(light) */}
+        <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
         {/* 04 — Geschichten */}
         <SonicFamily />
@@ -78,6 +86,8 @@ export default function CareersGatewayPage() {
 
         {/* 05 — Leben bei Sonic */}
         <SonicTeamEvents />
+
+        <WoodenDivider />
 
         {/* 06 — Stellen */}
         <KarriereJobs />

@@ -79,6 +79,9 @@ export default function SRTPage() {
       {/* Employee app */}
       <div id="team-app"><EmployeeApp /></div>
 
+      {/* Dark-bg WoodenDivider — team-app(dark) exit into zusammenarbeit(light) */}
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
+
       {/* Collaboration process */}
       <div id="zusammenarbeit"><Zusammenarbeit /></div>
 

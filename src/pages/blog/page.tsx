@@ -162,7 +162,8 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <WoodenDivider />
+      {/* Dark-bg WoodenDivider — hero(dark) exit into content(light) */}
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
       {/* ── BLOG CONTENT ── */}
       <section className="sonic-section-lg md:" ref={gridRef}>
