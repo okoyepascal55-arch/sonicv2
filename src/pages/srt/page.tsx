@@ -1,7 +1,7 @@
 import { useSEO } from '@/hooks/useSEO';
 import { useRef } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
-import SRTHero from './components/SRTHero';
+import SRTHeroReference from './components/SRTHeroReference';
 import TheProblem from './components/TheProblem';
 import Features from './components/Features';
 import VideoShowcase from './components/VideoShowcase';
@@ -44,42 +44,26 @@ export default function SRTPage() {
   return (
     <div className="bg-white">
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
-
-      <div ref={heroRef} id="overview">
-        <SRTHero onScrollToFeatures={() => {
-          const el = document.getElementById('features');
-          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
-        }} />
-      </div>
+      <div ref={heroRef} id="overview"><SRTHeroReference /></div>
       <SRTWavyDivider />
-
       <div id="das-problem"><TheProblem /></div>
       <SRTWavyDivider />
-
       <div id="features"><Features featureIcons={srtFeatureIcons} /></div>
       <SRTWavyDivider />
-
       <div id="srt-in-aktion"><VideoShowcase /></div>
       <SRTWavyDivider />
-
       <div id="funktionsumfang"><FunctionalityOverview /></div>
       <SRTWavyDivider />
-
       <div id="team-app"><EmployeeApp /></div>
       <SRTWavyDivider />
-
       <div id="zusammenarbeit"><Zusammenarbeit /></div>
       <SRTWavyDivider />
-
       <div id="datenfluss"><DataPaths /></div>
       <SRTWavyDivider />
-
       <div id="branchen"><Industries /></div>
       <SRTWavyDivider />
-
       <div id="kundenstimmen"><Proof /></div>
       <SRTWavyDivider />
-
       <div id="preise-zugang"><PricingAndAccess /></div>
     </div>
   );
