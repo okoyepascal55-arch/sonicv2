@@ -73,7 +73,7 @@ export default function KreationContentPage() {
     <div className="min-h-[100dvh] overflow-x-hidden bg-white">
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
       <div ref={heroRef}>
-        <section className="relative w-full overflow-hidden bg-white pb-[60px]" style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}>
+        <section className="relative w-full overflow-hidden bg-white pb-0" style={{ paddingTop: 'clamp(100px, 9vw, 130px)' }}>
           <div className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none" style={{ width: 1000, height: 600, background: 'radial-gradient(ellipse at 50% 0%, rgba(200,212,0,0.09) 0%, transparent 65%)' }} />
           <div className="relative z-10 w-full sonic-container px-6 text-center">
             <div className="flex items-center justify-center gap-2 mb-8"><span className="text-foreground-950/30 text-xs font-bold uppercase tracking-widest">Leistungen</span><i className="ri-arrow-right-s-line text-foreground-950/25 text-sm" /><span className="text-primary-500 text-xs font-black uppercase tracking-widest">Kreation &amp; Content</span></div>
