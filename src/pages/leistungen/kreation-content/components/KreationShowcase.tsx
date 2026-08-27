@@ -543,6 +543,29 @@ export default function KreationShowcase() {
           <div className="mt-[3px]">
             <ShowcaseCard item={items[4]} colSpan="span 12" rowSpan="auto" onOpen={() => openLightbox(4)} titleSize="1rem" isWide />
           </div>
+
+          {/* Film-strip index — all 5 items at a glance, quick-jump into lightbox */}
+          <div className="mt-[3px] grid grid-cols-5 gap-[3px]">
+            {items.slice(0, 5).map((item, i) => {
+              const isOpen = lightbox !== null && lightbox.idx === i;
+              return (
+                <button
+                  key={i}
+                  onClick={() => openLightbox(i)}
+                  className="relative overflow-hidden cursor-pointer transition-opacity duration-300"
+                  style={{ height: '64px', opacity: isOpen ? 1 : 0.65 }}
+                  aria-label={`${item.title} — im Lightbox öffnen`}
+                >
+                  {isGradient(item.images[0]) ? (
+                    <div className="absolute inset-0" style={{ background: item.images[0] }} />
+                  ) : (
+                    <img src={item.images[0]} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                  )}
+                  <div className="absolute inset-0" style={{ border: isOpen ? '2px solid oklch(0.81 0.19 115)' : '1px solid rgba(0,0,0,0.08)' }} />
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Before/After — CGI only */}
