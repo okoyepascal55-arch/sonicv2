@@ -134,7 +134,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-[100dvh] bg-white">
       {/* ── HERO BANNER ── */}
-      <section className="relative overflow-hidden bg-foreground-950 min-h-[480px] md:min-h-[520px]" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+      <section className="relative overflow-hidden bg-foreground-950 min-h-[480px] md:min-h-[520px]" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
         <div className="absolute inset-0 opacity-15">
           <img
             src={heroImage}

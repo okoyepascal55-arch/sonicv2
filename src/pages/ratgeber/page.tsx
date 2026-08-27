@@ -161,7 +161,7 @@ export default function RatgeberHubPage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+        <div className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden bg-black" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
           <div className="absolute inset-0">
             <img
               src={heroImage}

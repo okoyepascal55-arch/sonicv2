@@ -29,7 +29,7 @@ export default function SRTHero({ onScrollToFeatures }: SRTHeroProps) {
   }
 
   return (
-    <section className="relative flex flex-col overflow-hidden bg-foreground-950 min-h-[520px] md:min-h-[600px]" style={{ paddingTop: '80px', paddingBottom: '0' }}>
+    <section className="relative flex flex-col overflow-hidden bg-foreground-950 min-h-[520px] md:min-h-[600px]" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '0' }}>
 
       {/* Diagonal lime glow */}
       <div className="absolute top-0 right-0 w-[60%] h-full pointer-events-none"
@@ -82,8 +82,8 @@ export default function SRTHero({ onScrollToFeatures }: SRTHeroProps) {
 
         </div>
 
-        {/* Section nav chips */}
-        <div className="flex flex-wrap items-center gap-2 mt-6 md:mt-8">
+        {/* Section nav chips — desktop only, removed from mobile to reduce hero density */}
+        <div className="hidden md:flex flex-wrap items-center gap-2 mt-6 md:mt-8">
           <span className="text-[9px] font-black text-background-50/40 uppercase tracking-[0.2em] mr-1 hidden sm:inline">{tNavLabel}</span>
           {[
             { id: 'features', label: tChip1 },

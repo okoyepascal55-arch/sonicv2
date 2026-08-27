@@ -7,7 +7,7 @@ export default function IndustriesHero() {
   const heroImage = industriesHeroImages[0]?.url || 'https://readdy.ai/api/search-image?query=modern%20consumer%20electronics%20retail%20store%20interior%20premium%20product%20displays%20smartphones%20smartwatches%20home%20appliances%20professional%20brand%20activation%20team%20engaging%20customers%20dramatic%20overhead%20lighting%20cinematic%20dark%20moody%20atmosphere%20wide%20angle&width=1920&height=1080&seq=industries-hero-v2&orientation=landscape';
 
   return (
-    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: '80px' }}>
+    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}>
       {/* Background image with dark overlay */}
       <div className="absolute inset-0 z-0">
         <img

@@ -289,7 +289,8 @@ export default function KreationContentPage() {
 
       {/* ── HERO + CAROUSEL — one unified composition on warm background ── */}
       <div ref={heroRef}>
-        <section className="relative w-full overflow-hidden min-h-[360px] md:min-h-[520px] bg-white pt-20 pb-[60px]"
+        <section className="relative w-full overflow-hidden min-h-[360px] md:min-h-[520px] bg-white pb-[60px]"
+          style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}
         >
           {/* Lime radial glow — very subtle, behind headline */}
           <div

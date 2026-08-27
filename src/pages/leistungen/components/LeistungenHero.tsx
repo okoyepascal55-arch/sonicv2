@@ -39,7 +39,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
   }, [cycleWord]);
 
   return (
-    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: '80px' }}>
+    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}>
       {/* Background photo */}
       <img
         src={heroImage || 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png'}

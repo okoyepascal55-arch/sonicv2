@@ -122,9 +122,11 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
 
   return (
     <>
-      {/* Fixed bar — always in DOM so indicator position updates work, but invisible until past hero */}
+      {/* Fixed bar — desktop only. Removed from mobile entirely: a sticky
+          in-page nav with a dropdown menu ate permanent screen space and
+          added a second layer of navigation on top of natural scroll. */}
       <div
-        className={`fixed left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed left-0 right-0 z-40 transition-all duration-300 hidden md:block ${
           visible ? 'translate-y-0 opacity-100' : '-translate-y-1 opacity-0 pointer-events-none'
         }`}
         style={{ top: `${MAIN_NAV_H}px` }}

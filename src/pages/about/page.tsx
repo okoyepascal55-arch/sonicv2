@@ -53,7 +53,7 @@ export default function AboutPage() {
       <div ref={heroRef}>
         <section
           className="relative min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex flex-col justify-end overflow-hidden bg-foreground-950"
-          style={{ paddingTop: '80px' }}
+          style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}
         >
           {/* Full-bleed background image */}
           {headerImages[0]?.url && (

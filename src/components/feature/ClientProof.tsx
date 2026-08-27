@@ -272,9 +272,9 @@ export default function ClientProof() {
         {/* Header — badge + heading + scroll controls in one row on desktop */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 md:mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-3" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.30)' }}>
-              <div className="w-1.5 h-1.5 bg-primary-500" />
-              <span className="text-xs font-black text-foreground-950 uppercase tracking-[0.2em]">Kundenstimmen</span>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Kundenstimmen</span>
             </div>
             <h2 className="sonic-h2 text-foreground-950">
               Was unsere Partner<br className="hidden md:block" /> über uns sagen
@@ -312,6 +312,12 @@ export default function ClientProof() {
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           onMouseEnter={() => { autoScrollPaused.current = true; }}
           onMouseLeave={() => { autoScrollPaused.current = false; }}
+          onTouchStart={() => { autoScrollPaused.current = true; }}
+          onTouchEnd={() => {
+            // Resume drift 2.5s after the user lifts their finger — long enough
+            // that a swipe doesn't immediately get fought by the auto-scroll.
+            window.setTimeout(() => { autoScrollPaused.current = false; }, 2500);
+          }}
         >
           {[...testimonials, ...testimonials].map((item, i) => (
             <TestimonialCard key={`${i}-${item.brand}`} item={{ ...item, logo: getLogo(item.logo) }} index={i % testimonials.length} />
