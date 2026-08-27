@@ -82,7 +82,7 @@ function PhoneScreen({ screen }: { screen: string }) {
               </div>
             </div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="w-8 h-8 bg-primary-500/20 flex items-center justify-center border border-primary-500/40">
+              <div className="w-8 h-8 flex items-center justify-center border" style={{ borderColor: "oklch(0.81 0.19 115 / 0.4)" }}>
                 <i className="ri-map-pin-2-fill text-primary-500 text-sm" />
               </div>
             </div>

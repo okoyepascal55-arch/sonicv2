@@ -180,7 +180,7 @@ export default function PricingAndAccess() {
                   { icon: 'ri-user-star-line', text: 'Direkt mit deinem Account-Manager' },
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-2.5">
-                    <div className="w-6 h-6 bg-primary-500/10 border border-primary-500/20 flex items-center justify-center flex-shrink-0">
+                    <div className="w-6 h-6 flex items-center justify-center border flex-shrink-0" style={{ borderColor: "oklch(0.81 0.19 115 / 0.3)" }}>
                       <i className={`${item.icon} text-primary-500 text-xs`} />
                     </div>
                     <span className="text-background-50/35 text-xs font-semibold">{item.text}</span>
@@ -204,7 +204,7 @@ export default function PricingAndAccess() {
             {submitStatus === 'success' && (
               <div className="absolute inset-0 z-20 bg-white/95 flex items-center justify-center p-6">
                 <div className="text-center">
-                  <div className="w-14 h-14 bg-primary-500/15 border-2 border-primary-500/30 flex items-center justify-center mx-auto mb-4">
+                  <div className="w-14 h-14 border-2 flex items-center justify-center mx-auto mb-4" style={{ borderColor: "oklch(0.81 0.19 115 / 0.3)" }}>
                     <i className="ri-check-double-line text-2xl text-primary-500" />
                   </div>
                   <h3 className="text-xl font-black text-foreground-950 mb-1 uppercase">Anfrage erhalten!</h3>

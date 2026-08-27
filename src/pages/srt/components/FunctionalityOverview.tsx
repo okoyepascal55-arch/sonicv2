@@ -101,7 +101,7 @@ export default function FunctionalityOverview() {
                 <span className="bg-primary-500 text-foreground-950 text-[10px] font-black px-2.5 py-1 uppercase tracking-wider">{mod.number}</span>
               </div>
               <div className="absolute bottom-3 left-4 flex items-center gap-2">
-                <div className="w-7 h-7 flex items-center justify-center bg-primary-500/15 border border-primary-500/30">
+                <div className="w-7 h-7 flex items-center justify-center border" style={{ borderColor: "oklch(0.81 0.19 115 / 0.3)" }}>
                   <i className={`${mod.icon} text-primary-500 text-sm`} />
                 </div>
                 <span className="text-primary-500 text-xs font-black uppercase tracking-widest">{mod.subtitle}</span>

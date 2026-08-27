@@ -72,7 +72,7 @@ export default function VideoShowcase() {
 
           {/* Description bar below video */}
           <div className="px-6 py-4 flex items-start gap-4">
-            <div className="w-10 h-10 bg-primary-500/10 border border-primary-500/20 flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 flex items-center justify-center border flex-shrink-0" style={{ borderColor: "oklch(0.81 0.19 115 / 0.3)" }}>
               <i className={`${VIDEOS[active].icon} text-primary-500 text-lg`} />
             </div>
             <div>

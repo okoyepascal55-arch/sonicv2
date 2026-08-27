@@ -176,7 +176,7 @@ export default function DataPaths() {
                 {activeNodeData && (
                   <div>
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 bg-primary-500/15 border border-primary-500/30 flex items-center justify-center">
+                      <div className="w-10 h-10 border flex items-center justify-center" style={{ borderColor: "oklch(0.81 0.19 115 / 0.3)" }}>
                         <i className={`${NODES.find(n => n.id === activeNode)?.icon} text-primary-500 text-lg`} />
                       </div>
                       <div>
@@ -201,7 +201,7 @@ export default function DataPaths() {
                 {activeStreamData && !activeNodeData && (
                   <div>
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 bg-primary-500/15 border border-primary-500/30 flex items-center justify-center">
+                      <div className="w-10 h-10 border flex items-center justify-center" style={{ borderColor: "oklch(0.81 0.19 115 / 0.3)" }}>
                         <i className={`${activeStreamData.icon} text-primary-500 text-lg`} />
                       </div>
                       <div>
@@ -346,7 +346,7 @@ export default function DataPaths() {
             { icon: 'ri-server-line', val: '99,97%', label: 'Uptime SLA', detail: 'Redundant, Frankfurt RZ, ISO 27001' },
           ].map((stat, i) => (
             <div key={i} className="flex items-start gap-3 group">
-              <div className="w-9 h-9 bg-primary-500/10 border border-primary-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary-500/20 transition-colors">
+              <div className="w-9 h-9 border flex items-center justify-center flex-shrink-0 group-hover:border-primary-500/60 transition-colors" style={{ borderColor: "oklch(0.81 0.19 115 / 0.3)" }}>
                 <i className={`${stat.icon} text-primary-500 text-base`} />
               </div>
               <div>
