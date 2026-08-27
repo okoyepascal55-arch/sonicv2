@@ -4,21 +4,32 @@ import QuizModal from './QuizModal';
 import WoodenButton from '@/components/base/WoodenButton';
 
 const nodes = [
-  { id: 'agentur', label: 'Sonic Agentur', icon: 'ri-user-star-line', desc: 'Einsatzplanung & Kampagnenstatus in Echtzeit' },
+  { id: 'agentur', label: 'Sonic-Daten', icon: 'ri-user-star-line', desc: 'Einsatzplanung & Kampagnenstatus in Echtzeit' },
   { id: 'daten', label: 'Externe Daten', icon: 'ri-global-line', desc: 'Marktdaten, POS & API-Feeds' },
-  { id: 'kunde', label: 'Kunde', icon: 'ri-file-list-3-line', desc: 'Live-KPIs, Abverkauf & Forecasting' },
-  { id: 'mitarbeiter', label: 'Mitarbeiter', icon: 'ri-smartphone-line', desc: 'Einsatztracking, Ziele & Abrechnung' },
+  { id: 'kunde', label: 'Kunden-Daten', icon: 'ri-file-list-3-line', desc: 'Live-KPIs, Abverkauf & Forecasting' },
+  { id: 'mitarbeiter', label: 'Mitarbeiter-Daten', icon: 'ri-smartphone-line', desc: 'Einsatztracking, Ziele & Abrechnung' },
 ];
 
 const SVG_WIDTH = 600;
 const SVG_HEIGHT = 500;
-const CENTER_NODE = { cx: 300, cy: 250, r: 76 };
+// Nodes pulled closer to the center (was 182/215px radial distance) —
+// tighter, more cohesive diagram.
+const CENTER_NODE = { cx: 300, cy: 250, r: 78 };
 const OUTER_NODES = {
-  top: { cx: 300, cy: 68, r: 44 },
-  left: { cx: 85, cy: 250, r: 44 },
-  right: { cx: 515, cy: 250, r: 44 },
-  bottom: { cx: 300, cy: 432, r: 44 },
+  top: { cx: 300, cy: 115, r: 46 },
+  left: { cx: 155, cy: 250, r: 46 },
+  right: { cx: 445, cy: 250, r: 46 },
+  bottom: { cx: 300, cy: 385, r: 46 },
 };
+
+// Line-stop radius carries a safety margin above the nodes' true geometric
+// radius. The connecting lines live in an SVG that scales continuously via
+// clamp(), while the node buttons themselves are sized on fixed Tailwind
+// breakpoints (w-9 sm:w-14 lg:w-16) — the two responsive systems drift out
+// of sync at in-between viewport widths. A generous stop radius means the
+// line always terminates safely under the node's visual footprint instead
+// of occasionally falling short and leaving a visible gap.
+const LINE_STOP_MARGIN = 14;
 
 function getLineCoords(
   outer: { cx: number; cy: number; r: number },
@@ -30,10 +41,10 @@ function getLineCoords(
   const ux = dx / dist;
   const uy = dy / dist;
   return {
-    x1: outer.cx + ux * outer.r,
-    y1: outer.cy + uy * outer.r,
-    x2: center.cx - ux * center.r,
-    y2: center.cy - uy * center.r,
+    x1: outer.cx + ux * (outer.r + LINE_STOP_MARGIN),
+    y1: outer.cy + uy * (outer.r + LINE_STOP_MARGIN),
+    x2: center.cx - ux * (center.r + LINE_STOP_MARGIN),
+    y2: center.cy - uy * (center.r + LINE_STOP_MARGIN),
   };
 }
 
