@@ -57,7 +57,7 @@ export default function Lightbox({
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-label="Image lightbox"
+      aria-label="Bildgalerie"
     >
       {/* Close Button */}
       <button
@@ -66,7 +66,7 @@ export default function Lightbox({
           onClose();
         }}
         className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-sm border-2 border-primary-500 hover:bg-primary-500 transition-all duration-standard ease-sonic group z-10 cursor-pointer"
-        aria-label="Close lightbox"
+        aria-label="Galerie schließen"
       >
         <i className="ri-close-line text-2xl text-white group-hover:text-foreground-950" />
       </button>
@@ -85,7 +85,7 @@ export default function Lightbox({
           onPrev();
         }}
         className="absolute left-6 w-14 h-14 flex items-center justify-center bg-white/10 backdrop-blur-sm border-2 border-primary-500 hover:bg-primary-500 transition-all duration-standard ease-sonic group cursor-pointer"
-        aria-label="Previous image"
+        aria-label="Vorheriges Bild"
       >
         <i className="ri-arrow-left-line text-2xl text-white group-hover:text-foreground-950" />
       </button>
@@ -97,7 +97,7 @@ export default function Lightbox({
           onNext();
         }}
         className="absolute right-6 w-14 h-14 flex items-center justify-center bg-white/10 backdrop-blur-sm border-2 border-primary-500 hover:bg-primary-500 transition-all duration-standard ease-sonic group cursor-pointer"
-        aria-label="Next image"
+        aria-label="Nächstes Bild"
       >
         <i className="ri-arrow-right-line text-2xl text-white group-hover:text-foreground-950" />
       </button>

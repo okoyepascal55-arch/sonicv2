@@ -41,7 +41,7 @@ export default function IndustryGrid() {
       brands: ['Vorwerk', 'Melitta', 'Avoury'],
       woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20heart%20wellness%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=64&height=64&seq=wood-wellness-chestnut&orientation=squarish',
       image: (gridImages[3] && gridImages[3].url) || 'https://readdy.ai/api/search-image?query=wellness%20and%20lifestyle%20products%20including%20fitness%20equipment%20and%20premium%20lifestyle%20brands%20in%20modern%20retail%20space%20bright%20clean%20environment&width=800&height=600&seq=industry-lifestyle&orientation=landscape',
-      stats: ['1,987% Growth', 'Cross-Selling Success']
+      stats: ['1.987 % Wachstum', 'Cross-Selling-Erfolg']
     },
     {
       title: 'Automotive & Mobility',

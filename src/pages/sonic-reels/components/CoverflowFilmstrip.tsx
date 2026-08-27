@@ -52,7 +52,7 @@ function PolaroidCard({
           <div className="flex items-center gap-2 px-3 py-1.5" style={{ background: 'rgba(0,0,0,0.65)', borderRadius: 999 }}>
             <i className="ri-fullscreen-line text-white" style={{ fontSize: '0.95rem' }} />
             <span className="whitespace-nowrap" style={{ fontFamily: 'monospace', fontSize: '0.55rem', letterSpacing: '0.15em', color: '#fff', fontWeight: 900 }}>
-              {isActive ? 'TAP TO EXPAND' : 'VIEW'}
+              {isActive ? 'ZUM VERGRÖSSERN TIPPEN' : 'ANZEIGEN'}
             </span>
           </div>
         </div>

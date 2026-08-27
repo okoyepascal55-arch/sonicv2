@@ -29,24 +29,24 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     id: 'era-2007-2015',
     label: '2007–2015',
     years: '2007–2015',
-    tagline: 'The Genesis',
+    tagline: 'Der Anfang',
     accent: '#c8d400',
     filter: 'sepia(0.5) hue-rotate(55deg) saturate(0.72) contrast(0.95) brightness(0.88)',
     photo: '/images/Über uns/Sonic Reels/2007-2015/DSC06048.webp',
     caption: '',
     photos: [
-      { src: '/images/Über uns/Sonic Reels/2007-2015/DSC06048.webp', caption: 'First desk, first client — the backroom years.' },
-      { src: '/images/Über uns/Sonic Reels/2007-2015/10 Jahre Sonic (12 von 248).webp', caption: 'Ten years in — the team outgrew the backroom.' },
-      { src: '/images/Über uns/Sonic Reels/2007-2015/10 Jahre Sonic (17 von 248).webp', caption: 'Celebrating a decade of standing room only.' },
-      { src: '/images/Über uns/Sonic Reels/2007-2015/10 Jahre Sonic (93 von 248).webp', caption: 'The early crew, before the name meant anything.' },
-      { src: '/images/Über uns/Sonic Reels/2007-2015/DSC04386.webp', caption: 'Training the first wave by hand.' },
+      { src: '/images/Über uns/Sonic Reels/2007-2015/DSC06048.webp', caption: 'Erster Schreibtisch, erster Kunde — die Hinterzimmer-Jahre.' },
+      { src: '/images/Über uns/Sonic Reels/2007-2015/10 Jahre Sonic (12 von 248).webp', caption: 'Zehn Jahre später — das Team wuchs über das Hinterzimmer hinaus.' },
+      { src: '/images/Über uns/Sonic Reels/2007-2015/10 Jahre Sonic (17 von 248).webp', caption: 'Ein Jahrzehnt gefeiert — bis auf den letzten Platz.' },
+      { src: '/images/Über uns/Sonic Reels/2007-2015/10 Jahre Sonic (93 von 248).webp', caption: 'Das frühe Team, bevor der Name etwas bedeutete.' },
+      { src: '/images/Über uns/Sonic Reels/2007-2015/DSC04386.webp', caption: 'Die erste Welle von Hand geschult.' },
     ],
   },
   {
     id: 'era-2015-2019',
     label: '2015–2019',
     years: '2015–2019',
-    tagline: 'The Momentum',
+    tagline: 'Der Aufschwung',
     accent: '#c8d400',
     filter: 'sepia(0.38) hue-rotate(46deg) saturate(1) contrast(1.05)',
     photo:
@@ -54,23 +54,23 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     photos: [
       {
         src: 'https://readdy.ai/api/search-image?query=dramatic%20wide%20angle%20view%20of%20a%20large%20modern%20German%20consumer%20electronics%20store%20Samsung%20brand%20zone%20with%20multiple%20promoters%20working%20simultaneously%20confident%20professional%20atmosphere%20clean%20premium%20retail%20environment%20cinematic%20photography%202016%20era%20high%20energy%20commercial%20photography&width=1920&height=1080&seq=sonic-reels-hero-2015&orientation=landscape',
-        caption: 'Two hundred specialists. One rollout.',
+        caption: 'Zweihundert Spezialisten. Ein Rollout.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=brand%20ambassadors%20in%20Samsung%20retail%20training%20session%20learning%20product%20demonstration%20techniques%20in%20modern%20electronics%20store%20professional%20corporate%20atmosphere%20warm%20ambient%20lighting%202015%20commercial%20photography%20realistic%20detailed%20high%20resolution&width=1200&height=900&seq=sonic-reels-2015-01&orientation=landscape',
-        caption: 'Samsung training — every rep, every product.',
+        caption: 'Samsung-Schulung — jeder Promoter, jedes Produkt.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=professional%20brand%20promoter%20demonstrating%20Samsung%20smartphone%20to%20customer%20at%20retail%20electronics%20store%20point%20of%20sale%20display%20clean%20modern%20store%20interior%20warm%20ambient%20lighting%202015%20era%20commercial%20photography%20realistic%20marketing%20scene&width=1200&height=900&seq=sonic-reels-2015-02&orientation=landscape',
-        caption: 'One demo at a time, the floor came alive.',
+        caption: 'Eine Demo nach der anderen — die Fläche wurde lebendig.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=marketing%20team%20morning%20briefing%20huddle%20before%20Samsung%20product%20launch%20retail%20campaign%20group%20of%20brand%20ambassadors%20holding%20tablets%20and%20plans%20modern%20bright%20office%20natural%20light%202016%20era%20editorial%20corporate%20photography&width=1200&height=900&seq=sonic-reels-2015-03&orientation=landscape',
-        caption: 'Morning briefing before the doors opened.',
+        caption: 'Morgen-Briefing, bevor die Türen öffneten.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=busy%20consumer%20electronics%20retail%20floor%20with%20multiple%20promotional%20stands%20and%20Samsung%20brand%20zones%20customers%20browsing%20modern%20store%20layout%20bright%20clean%20atmosphere%202016%20era%20wide%20angle%20commercial%20photography&width=1200&height=900&seq=sonic-reels-2015-04&orientation=landscape',
-        caption: 'Two hundred specialists across the DACH.',
+        caption: 'Zweihundert Spezialisten im gesamten DACH-Raum.',
       },
     ],
   },
@@ -78,49 +78,49 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     id: 'era-2019-2022',
     label: '2019–2022',
     years: '2019–2022',
-    tagline: 'The Resilience',
+    tagline: 'Die Standhaftigkeit',
     accent: '#c8d400',
     filter: 'sepia(0.26) hue-rotate(38deg) saturate(1.05) contrast(1.08)',
     photo: '/images/Über uns/Sonic Reels/2019-2022/IMG_2662 Kopie.webp',
     caption: '',
     photos: [
-      { src: '/images/Über uns/Sonic Reels/2019-2022/IMG_2662 Kopie.webp', caption: 'Closed doors. Open playbook.' },
-      { src: '/images/Über uns/Sonic Reels/2019-2022/1VITAMIN RUN Kopie.webp', caption: 'Vitamin Run — keeping spirits up in lockdown.' },
-      { src: '/images/Über uns/Sonic Reels/2019-2022/2 Kopie.webp', caption: 'Rebuilding the playbook in seventy-two hours.' },
-      { src: '/images/Über uns/Sonic Reels/2019-2022/3 Kopie.webp', caption: 'Masks on, hands ready, brands first.' },
-      { src: '/images/Über uns/Sonic Reels/2019-2022/8bf219be-9a18-4894-aaf8-54ff1b946699 Kopie.webp', caption: 'The first store to reopen — we were inside.' },
-      { src: '/images/Über uns/Sonic Reels/2019-2022/IMG_2679 Kopie.webp', caption: 'Social distance, full engagement.' },
+      { src: '/images/Über uns/Sonic Reels/2019-2022/IMG_2662 Kopie.webp', caption: 'Geschlossene Türen. Offener Spielplan.' },
+      { src: '/images/Über uns/Sonic Reels/2019-2022/1VITAMIN RUN Kopie.webp', caption: 'Vitamin Run — die Stimmung im Lockdown hochgehalten.' },
+      { src: '/images/Über uns/Sonic Reels/2019-2022/2 Kopie.webp', caption: 'Der Spielplan in zweiundsiebzig Stunden neu gedacht.' },
+      { src: '/images/Über uns/Sonic Reels/2019-2022/3 Kopie.webp', caption: 'Masken auf, Hände bereit, Marken zuerst.' },
+      { src: '/images/Über uns/Sonic Reels/2019-2022/8bf219be-9a18-4894-aaf8-54ff1b946699 Kopie.webp', caption: 'Der erste Store, der wieder öffnete — wir waren dabei.' },
+      { src: '/images/Über uns/Sonic Reels/2019-2022/IMG_2679 Kopie.webp', caption: 'Abstand halten, volle Präsenz zeigen.' },
     ],
   },
   {
     id: 'era-2022-2023',
     label: '2022–2023',
     years: '2022–2023',
-    tagline: 'The Acceleration',
+    tagline: 'Die Beschleunigung',
     accent: '#c8d400',
     filter: 'sepia(0.16) hue-rotate(28deg) saturate(1.1) contrast(1.1)',
     photo: '/images/Über uns/Sonic Reels/2022-2023/IMG_8931 Kopie.webp',
     caption: '',
     photos: [
-      { src: '/images/Über uns/Sonic Reels/2022-2023/IMG_8931 Kopie.webp', caption: 'Five brands. Zero missed metrics.' },
-      { src: '/images/Über uns/Sonic Reels/2022-2023/1.RBA Canon Kopie.webp', caption: 'RBA launch — Canon front and center.' },
-      { src: '/images/Über uns/Sonic Reels/2022-2023/717c9fd9-fa26-41f9-9b0a-f38151a0c6d5 Kopie.webp', caption: 'A full retail floor, every corner activated.' },
-      { src: '/images/Über uns/Sonic Reels/2022-2023/BILD_2 Kopie.webp', caption: 'Merchandising at scale.' },
-      { src: '/images/Über uns/Sonic Reels/2022-2023/BILD_3 Kopie.webp', caption: 'The shelf, perfected.' },
-      { src: '/images/Über uns/Sonic Reels/2022-2023/DSC05528 Kopie.webp', caption: 'Training the next hundred specialists.' },
-      { src: '/images/Über uns/Sonic Reels/2022-2023/DSC05532 Kopie.webp', caption: 'Live on the floor, no rehearsal.' },
-      { src: '/images/Über uns/Sonic Reels/2022-2023/DSC05554 Kopie.webp', caption: 'A day in the field, five brands deep.' },
-      { src: '/images/Über uns/Sonic Reels/2022-2023/IMG_5398 Kopie.webp', caption: 'The crew that made two billion move.' },
-      { src: '/images/Über uns/Sonic Reels/2022-2023/KUNUNU_PIC Kopie.webp', caption: 'Kununu top-rated — the team said it best.' },
-      { src: '/images/Über uns/Sonic Reels/2022-2023/P1 Kopie.webp', caption: 'Priority one: the customer.' },
-      { src: '/images/Über uns/Sonic Reels/2022-2023/PHOTO-2023-09-28-22-26-22 Kopie.webp', caption: 'End of season, still standing.' },
+      { src: '/images/Über uns/Sonic Reels/2022-2023/IMG_8931 Kopie.webp', caption: 'Fünf Marken. Keine verpasste Kennzahl.' },
+      { src: '/images/Über uns/Sonic Reels/2022-2023/1.RBA Canon Kopie.webp', caption: 'RBA-Launch — Canon im Mittelpunkt.' },
+      { src: '/images/Über uns/Sonic Reels/2022-2023/717c9fd9-fa26-41f9-9b0a-f38151a0c6d5 Kopie.webp', caption: 'Eine ganze Verkaufsfläche, jede Ecke aktiviert.' },
+      { src: '/images/Über uns/Sonic Reels/2022-2023/BILD_2 Kopie.webp', caption: 'Merchandising im großen Maßstab.' },
+      { src: '/images/Über uns/Sonic Reels/2022-2023/BILD_3 Kopie.webp', caption: 'Das Regal, perfektioniert.' },
+      { src: '/images/Über uns/Sonic Reels/2022-2023/DSC05528 Kopie.webp', caption: 'Die nächsten hundert Spezialisten geschult.' },
+      { src: '/images/Über uns/Sonic Reels/2022-2023/DSC05532 Kopie.webp', caption: 'Live auf der Fläche, ohne Probe.' },
+      { src: '/images/Über uns/Sonic Reels/2022-2023/DSC05554 Kopie.webp', caption: 'Ein Tag im Feld, fünf Marken tief.' },
+      { src: '/images/Über uns/Sonic Reels/2022-2023/IMG_5398 Kopie.webp', caption: 'Das Team, das zwei Milliarden bewegte.' },
+      { src: '/images/Über uns/Sonic Reels/2022-2023/KUNUNU_PIC Kopie.webp', caption: 'Kununu Top-bewertet — das Team hat es am besten gesagt.' },
+      { src: '/images/Über uns/Sonic Reels/2022-2023/P1 Kopie.webp', caption: 'Priorität eins: der Kunde.' },
+      { src: '/images/Über uns/Sonic Reels/2022-2023/PHOTO-2023-09-28-22-26-22 Kopie.webp', caption: 'Saisonende, immer noch stark.' },
     ],
   },
   {
     id: 'era-2024',
     label: '2024',
     years: '2024',
-    tagline: 'The Edge',
+    tagline: 'Der Vorsprung',
     accent: '#c8d400',
     filter: 'sepia(0.07) hue-rotate(16deg) saturate(1.15) contrast(1.12)',
     photo:
@@ -128,23 +128,23 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     photos: [
       {
         src: 'https://readdy.ai/api/search-image?query=sleek%20futuristic%20modern%20tech%20office%20with%20large%20curved%20monitors%20showing%20retail%20analytics%20dashboards%20glowing%20data%20visualisations%20warm%20accent%20lighting%20minimalist%20interior%20design%20Sonic%20brand%20team%20reviewing%20live%20campaign%20data%20editorial%20corporate%20tech%20photography%202024%20premium%20atmosphere&width=1920&height=1080&seq=sonic-reels-hero-2024&orientation=landscape',
-        caption: 'The data finally saw what we saw.',
+        caption: 'Die Daten zeigten endlich, was wir sahen.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=premium%20Garmin%20smartwatch%20retail%20display%20with%20professional%20brand%20promoter%20explaining%20features%20to%20customer%20modern%20sports%20store%20clean%20merchandising%20warm%20accent%20lighting%202024%20commercial%20product%20photography&width=1200&height=900&seq=sonic-reels-2024-01&orientation=landscape',
-        caption: 'Garmin grew 130% — the proof was on screen.',
+        caption: 'Garmin wuchs um 130 % — der Beweis stand auf dem Bildschirm.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=closeup%20of%20large%20monitor%20displaying%20retail%20analytics%20dashboard%20with%20glowing%20charts%20and%20real%20time%20sales%20data%20visualization%20dark%20modern%20office%20warm%20accent%20lighting%202024%20technology%20photography&width=1200&height=900&seq=sonic-reels-2024-02&orientation=landscape',
-        caption: 'Live dashboards replaced gut feeling.',
+        caption: 'Live-Dashboards ersetzten das Bauchgefühl.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=team%20of%20analysts%20reviewing%20live%20campaign%20performance%20data%20on%20large%20curved%20screen%20modern%20tech%20office%20collaboration%20warm%20ambient%20light%202024%20editorial%20corporate%20photography&width=1200&height=900&seq=sonic-reels-2024-03&orientation=landscape',
-        caption: 'The team watching the investment work.',
+        caption: 'Das Team sah zu, wie sich die Investition auszahlte.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=Garmin%20point%20of%20sale%20merchandising%20display%20in%20sports%20retail%20store%20clean%20organized%20premium%20product%20presentation%20subtle%20lighting%20brand%20colors%202024%20retail%20photography&width=1200&height=900&seq=sonic-reels-2024-04&orientation=landscape',
-        caption: 'Every shelf, every display, every metric.',
+        caption: 'Jedes Regal, jedes Display, jede Kennzahl.',
       },
     ],
   },
@@ -152,7 +152,7 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     id: 'era-2025',
     label: '2025',
     years: '2025',
-    tagline: 'The Peak',
+    tagline: 'Der Höhepunkt',
     accent: '#c8d400',
     filter: 'sepia(0.02) hue-rotate(6deg) saturate(1.2) contrast(1.15)',
     photo:
@@ -160,23 +160,23 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     photos: [
       {
         src: 'https://readdy.ai/api/search-image?query=cinematic%20aerial%20drone%20photograph%20of%20Sonic%20Promotions%20largest%20ever%20team%20event%20outdoor%20arena%20Cologne%20summer%202025%20thousands%20of%20brand%20ambassadors%20on%20a%20large%20field%20branded%20shirts%20visible%20from%20above%20geometric%20patterns%20golden%20hour%20light%20epic%20scale%20commercial%20photography%20dramatic&width=1920&height=1080&seq=sonic-reels-hero-2025&orientation=landscape',
-        caption: '2,000 strong — the top of the mountain.',
+        caption: '2.000 stark — der Gipfel des Berges.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=aerial%20view%20of%20massive%20team%20event%20in%20large%20arena%20thousands%20of%20brand%20ambassadors%20seated%20in%20colorful%20branded%20shirts%20geometric%20patterns%20stage%20in%20center%20bright%20lights%202025%20event%20photography&width=1200&height=900&seq=sonic-reels-2025-01&orientation=landscape',
-        caption: 'The arena held every one of them.',
+        caption: 'Die Arena hielt sie alle.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=concert%20style%20stage%20with%20dramatic%20lighting%20and%20large%20screens%20at%20corporate%20team%20celebration%20event%20arena%20atmosphere%20beams%20of%20light%20confetti%202025%20event%20photography&width=1200&height=900&seq=sonic-reels-2025-02&orientation=landscape',
-        caption: 'One stage, two thousand voices.',
+        caption: 'Eine Bühne, zweitausend Stimmen.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=energetic%20crowd%20of%20brand%20ambassadors%20wearing%20matching%20branded%20shirts%20cheering%20at%20outdoor%20event%20golden%20hour%20warm%20sunlight%20festival%20atmosphere%202025%20photography&width=1200&height=900&seq=sonic-reels-2025-03&orientation=landscape',
-        caption: 'The shirts said it before we could.',
+        caption: 'Die Shirts sagten es, bevor wir es konnten.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=celebration%20moment%20team%20members%20raising%20hands%20cheering%20confetti%20falling%20golden%20hour%20outdoor%20corporate%20event%20joyful%20atmosphere%202025%20photography&width=1200&height=900&seq=sonic-reels-2025-04&orientation=landscape',
-        caption: 'One evening to celebrate the best year yet.',
+        caption: 'Ein Abend, um das bisher beste Jahr zu feiern.',
       },
     ],
   },
@@ -184,7 +184,7 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     id: 'era-2026',
     label: '2026',
     years: '2026',
-    tagline: 'The Horizon',
+    tagline: 'Der Horizont',
     accent: '#c8d400',
     filter: 'sepia(0) saturate(1.2) contrast(1.15)',
     photo:
@@ -192,23 +192,23 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
     photos: [
       {
         src: 'https://readdy.ai/api/search-image?query=bold%20visionary%20architectural%20concept%20photograph%20of%20futuristic%20retail%20experience%20zone%20with%20advanced%20holographic%20product%20display%20digital%20signage%20ambient%20lighting%20premium%20brand%20activation%20space%20ultramodern%20design%20aesthetic%20editorial%20photography%20aspirational%202026%20forward-looking%20technology%20and%20human%20connection&width=1920&height=1080&seq=sonic-reels-hero-2026&orientation=landscape',
-        caption: 'Next stop: Europe.',
+        caption: 'Nächster Halt: Europa.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=futuristic%20retail%20experience%20zone%20with%20holographic%20product%20display%20advanced%20digital%20signage%20ambient%20lighting%20premium%20brand%20activation%20space%20ultramodern%20design%202026%20concept%20photography&width=1200&height=900&seq=sonic-reels-2026-01&orientation=landscape',
-        caption: 'The retail floor of tomorrow, already here.',
+        caption: 'Die Verkaufsfläche von morgen — schon heute da.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=modern%20European%20city%20street%20with%20premium%20retail%20storefronts%20illuminated%20digital%20displays%20evening%20light%20architectural%20photography%20forward%20looking%202026%20urban%20retail&width=1200&height=900&seq=sonic-reels-2026-02&orientation=landscape',
-        caption: 'From Cologne to every capital.',
+        caption: 'Von Köln in jede Hauptstadt.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=large%20wall%20of%20digital%20signage%20screens%20in%20premium%20retail%20environment%20showing%20dynamic%20brand%20content%20ambient%20lighting%20modern%20minimal%20interior%20design%202026%20photography&width=1200&height=900&seq=sonic-reels-2026-03&orientation=landscape',
-        caption: 'Digital first, human always.',
+        caption: 'Digital zuerst, menschlich immer.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=premium%20brand%20activation%20space%20with%20interactive%20displays%20and%20elegant%20lighting%20design%20futuristic%20retail%20showroom%20warm%20ambient%20atmosphere%202026%20editorial%20photography&width=1200&height=900&seq=sonic-reels-2026-04&orientation=landscape',
-        caption: 'Defining what European retail looks like.',
+        caption: 'Wir definieren, wie europäischer Retail aussieht.',
       },
     ],
   },
@@ -326,15 +326,15 @@ export default function SonicReelsPage() {
     };
   });
 
-  const splashSub = texts['reels-splash-sub'] || '2007 — Present';
+  const splashSub = texts['reels-splash-sub'] || '2007 — heute';
   const pageTitle = texts['reels-page-title'] || 'Sonic';
   const pageTitleAccent = texts['reels-page-title-accent'] || 'Reels';
-  const pageSubtitle = texts['reels-page-subtitle'] || 'Nearly two decades of retail activation — told through the moments that defined us.';
+  const pageSubtitle = texts['reels-page-subtitle'] || 'Fast zwei Jahrzehnte Retail-Aktivierung — erzählt in den Momenten, die uns geprägt haben.';
 
-  const endLabel = texts['reels-end-label'] || 'The story continues';
-  const endLine1 = texts['reels-end-text-line1'] || 'Every era added a chapter. Every campaign wrote a sentence.';
-  const endLine2 = texts['reels-end-text-line2'] || 'The next line starts with you.';
-  const endCta = texts['reels-end-cta'] || 'Start the Next Chapter';
+  const endLabel = texts['reels-end-label'] || 'Die Geschichte geht weiter';
+  const endLine1 = texts['reels-end-text-line1'] || 'Jede Ära hat ein Kapitel geschrieben. Jede Kampagne einen Satz.';
+  const endLine2 = texts['reels-end-text-line2'] || 'Die nächste Zeile schreibst du.';
+  const endCta = texts['reels-end-cta'] || 'Starte das nächste Kapitel';
 
   return (
     <div className="bg-[#161512] overflow-x-hidden">

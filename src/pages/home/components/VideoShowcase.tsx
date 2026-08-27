@@ -50,7 +50,7 @@ export default function VideoShowcase() {
                 border: '1px solid oklch(var(--foreground-950) / 0.1)',
               }}
               role="region"
-              aria-label="Sonic Retail Activation Video"
+              aria-label="Sonic Retail Activation"
             >
 
               {!playing ? (
@@ -60,7 +60,7 @@ export default function VideoShowcase() {
                   onClick={() => setPlaying(true)}
                   role="button"
                   tabIndex={0}
-                  aria-label="Play Sonic video"
+                  aria-label="Sonic Video abspielen"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') setPlaying(true);
                   }}

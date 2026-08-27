@@ -59,7 +59,7 @@ export default function PhotoSelector({
             borderRight: '1px solid rgba(255,255,255,0.06)',
             color: playing ? '#161512' : 'rgba(255,255,255,0.6)',
           }}
-          aria-label={playing ? 'Pause reel' : 'Play reel'}
+          aria-label={playing ? 'Ablauf pausieren' : 'Ablauf abspielen'}
         >
           <i className={playing ? 'ri-pause-fill' : 'ri-play-fill'} style={{ fontSize: '1.4rem' }} />
         </button>

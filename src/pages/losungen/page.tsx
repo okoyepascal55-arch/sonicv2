@@ -179,7 +179,7 @@ const SOLUTIONS = {
       { value: '100 %', label: 'Managed Service – du brauchst nichts Eigenes' },
     ],
     testimonial: {
-      quote: 'Sonic transformed our live video advisory experience. Their team delivered measurable conversion uplift from day one — exactly what we needed.',
+      quote: 'Sonic hat unsere Live-Video-Beratung auf ein neues Level gebracht. Das Team lieferte von Tag eins messbare Conversion-Steigerungen — genau das, was wir gebraucht haben.',
       author: 'Head of E-Commerce',
       role: 'Avoury – Tea Experience Brand',
       brand: 'Avoury',
