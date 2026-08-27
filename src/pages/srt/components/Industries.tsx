@@ -36,7 +36,7 @@ const stepLabels = ['Branche', 'Challenge', 'Ziel', 'Kontakt'];
 
 export default function Industries() {
   const tBadge = useText('srt_industries', 'srt-industries-badge', 'Branchen & Use Cases');
-  const tHeading = useText('srt_industries', 'srt-industries-heading', 'VON RETAIL EXECUTION BIS HEALTHCARE.');
+  const tHeading = useText('srt_industries', 'srt-industries-heading', 'Von Retail Execution bis Healthcare.');
   const tSub = useText('srt_industries', 'srt-industries-sub', '');
   const tCta = useText('srt_industries', 'srt-industries-cta', 'Deine SRT-Konfiguration finden');
 
@@ -95,15 +95,14 @@ export default function Industries() {
         {/* ── Use Cases ── */}
         <div className="mb-16">
           <div className="mb-8">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="flex items-center gap-3 mb-5 md:mb-6">
-            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
-          </div>
+            <div className="flex items-center gap-3 mb-5 md:mb-6">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
             </div>
             <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end mb-5">
               <h2 className="leist-h2 text-foreground-950">
-                VON RETAIL EXECUTION BIS <span className="text-primary-500">HEALTHCARE.</span>
+                Von Retail Execution bis{' '}
+                <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Healthcare.</span>
               </h2>
               <p className="text-sm text-foreground-600 leading-relaxed lg:pb-1">
                 Das SRT ist bereit für jedes Projekt, bei dem Menschen zielorientiert und koordiniert eingesetzt werden.

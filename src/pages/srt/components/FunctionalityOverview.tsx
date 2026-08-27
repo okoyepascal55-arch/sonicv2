@@ -24,7 +24,7 @@ const MODULES: Module[] = [
 
 export default function FunctionalityOverview() {
   const tBadge = useText('srt_functionality', 'srt-func-badge', 'Funktionsumfang');
-  const tHeading = useText('srt_functionality', 'srt-func-heading', 'ALLES WAS FIELD-FORCE-MANAGEMENT BRAUCHT.');
+  const tHeading = useText('srt_functionality', 'srt-func-heading', 'Alles, was Field-Force-Management braucht.');
   const tSub = useText('srt_functionality', 'srt-func-sub', '');
   const tDemoCta = useText('srt_functionality', 'srt-func-demo-cta', 'Demo anfragen');
 
@@ -40,12 +40,10 @@ export default function FunctionalityOverview() {
       <div className="sonic-container relative z-10">
         {/* Header */}
         <div className="mb-10">
-          <div className="flex items-center gap-3 mb-5">
-            <div className="flex items-center gap-3 mb-5 md:mb-6">
+          <div className="flex items-center gap-3 mb-5 md:mb-6 flex-wrap">
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
-          </div>
-            <span className="text-background-50/20 text-[10px] font-black uppercase tracking-widest hidden md:block">{MODULES.length} Module</span>
+            <span className="text-background-50/20 text-[10px] font-black uppercase tracking-widest hidden md:block ml-auto">{MODULES.length} Module</span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
             <h2 className="leist-h2 text-background-50">

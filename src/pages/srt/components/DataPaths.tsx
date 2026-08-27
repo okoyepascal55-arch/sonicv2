@@ -77,7 +77,7 @@ function AnimatedPath({ x1, y1, x2, y2, active, stream }: { x1: number; y1: numb
 
 export default function DataPaths() {
   const tBadge = useText('srt_datapaths', 'srt-data-badge', 'Datenfluss');
-  const tHeading = useText('srt_datapaths', 'srt-data-heading', 'SO FLIESSEN DIE DATEN DURCH DAS SRT.');
+  const tHeading = useText('srt_datapaths', 'srt-data-heading', 'So fließen die Daten durch das SRT.');
   const tP1 = useText('srt_datapaths', 'srt-data-p1', '');
 
   const [activeNode, setActiveNode] = useState<string | null>(null);
