@@ -367,9 +367,6 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
               </span>
             </span>
           </h1>
-          <p className="text-base md:text-lg text-foreground-700 mb-0 leading-relaxed max-w-3xl mx-auto">
-            {tSubtitle}
-          </p>
         </div>
 
         {/* Modern Dual CTA */}

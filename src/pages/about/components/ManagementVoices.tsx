@@ -123,7 +123,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
 
   return (
     <section id="management-voices" className="bg-white overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-10 py-14 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10 py-14 md:py-20">
 
         {/* Section header */}
         <div className="mb-10 md:mb-14">

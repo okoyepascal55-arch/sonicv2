@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useId } from 'react';
+import { useState, useEffect, useRef, useId, useCallback, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuizModal from './QuizModal';
 import WoodenButton from '@/components/base/WoodenButton';
@@ -10,50 +10,33 @@ const nodes = [
   { id: 'mitarbeiter', label: 'Mitarbeiter-Daten', icon: 'ri-smartphone-line', desc: 'Einsatztracking, Ziele & Abrechnung' },
 ];
 
-const SVG_WIDTH = 600;
-const SVG_HEIGHT = 500;
-// Nodes pulled closer to the center (was 182/215px radial distance) —
-// tighter, more cohesive diagram.
-const CENTER_NODE = { cx: 300, cy: 250, r: 78 };
-const OUTER_NODES = {
-  top: { cx: 300, cy: 115, r: 46 },
-  left: { cx: 155, cy: 250, r: 46 },
-  right: { cx: 445, cy: 250, r: 46 },
-  bottom: { cx: 300, cy: 385, r: 46 },
+// Node placement — percentage of the diagram container, pulled in closer
+// to the center than the original spread for a tighter, more cohesive
+// diagram.
+const OUTER_POSITIONS: Record<string, { leftPct: number; topPct: number }> = {
+  agentur: { leftPct: 50, topPct: 20 },      // top
+  daten: { leftPct: 25, topPct: 50 },        // left
+  kunde: { leftPct: 75, topPct: 50 },        // right
+  mitarbeiter: { leftPct: 50, topPct: 80 },  // bottom
 };
 
-// Line-stop radius carries a safety margin above the nodes' true geometric
-// radius. The connecting lines live in an SVG that scales continuously via
-// clamp(), while the node buttons themselves are sized on fixed Tailwind
-// breakpoints (w-9 sm:w-14 lg:w-16) — the two responsive systems drift out
-// of sync at in-between viewport widths. A generous stop radius means the
-// line always terminates safely under the node's visual footprint instead
-// of occasionally falling short and leaving a visible gap.
-const LINE_STOP_MARGIN = 14;
+interface Point { x: number; y: number; r: number }
+interface Lines { agentur: [Point, Point]; daten: [Point, Point]; kunde: [Point, Point]; mitarbeiter: [Point, Point] }
 
-function getLineCoords(
-  outer: { cx: number; cy: number; r: number },
-  center: { cx: number; cy: number; r: number }
-) {
-  const dx = center.cx - outer.cx;
-  const dy = center.cy - outer.cy;
-  const dist = Math.sqrt(dx * dx + dy * dy);
+// Small overlap (px) so the line visually disappears a couple pixels under
+// each box's edge instead of stopping exactly on the mathematical boundary —
+// guarantees a solid-looking connection with no hairline gap from
+// antialiasing or border-width.
+const OVERLAP = 3;
+
+function shrinkToEdge(from: Point, to: Point): { x: number; y: number } {
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const dist = Math.sqrt(dx * dx + dy * dy) || 1;
   const ux = dx / dist;
   const uy = dy / dist;
-  return {
-    x1: outer.cx + ux * (outer.r + LINE_STOP_MARGIN),
-    y1: outer.cy + uy * (outer.r + LINE_STOP_MARGIN),
-    x2: center.cx - ux * (center.r + LINE_STOP_MARGIN),
-    y2: center.cy - uy * (center.r + LINE_STOP_MARGIN),
-  };
+  return { x: from.x + ux * (from.r - OVERLAP), y: from.y + uy * (from.r - OVERLAP) };
 }
-
-const LINES = {
-  agentur: getLineCoords(OUTER_NODES.top, CENTER_NODE),
-  daten: getLineCoords(OUTER_NODES.left, CENTER_NODE),
-  kunde: getLineCoords(OUTER_NODES.right, CENTER_NODE),
-  mitarbeiter: getLineCoords(OUTER_NODES.bottom, CENTER_NODE),
-};
 
 export default function SRTTeaser() {
   const [activeNode, setActiveNode] = useState<string | null>(null);
@@ -64,6 +47,67 @@ export default function SRTTeaser() {
   const navigate = useNavigate();
   const woodenId = useId();
 
+  // ── Measured geometry ──────────────────────────────────────────────
+  // The connecting lines are computed from the ACTUAL rendered position
+  // and size of every box (center + 4 outer), measured live via
+  // getBoundingClientRect. This removes any dependency on keeping a
+  // separate SVG-coordinate system in sync with the boxes' real CSS
+  // sizes across breakpoints — the lines simply always match reality.
+  const diagramRef = useRef<HTMLDivElement>(null);
+  const centerRef = useRef<HTMLButtonElement>(null);
+  const outerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [containerSize, setContainerSize] = useState({ w: 0, h: 0 });
+  const [lines, setLines] = useState<Lines | null>(null);
+
+  const measure = useCallback(() => {
+    const container = diagramRef.current;
+    const center = centerRef.current;
+    if (!container || !center) return;
+
+    const containerRect = container.getBoundingClientRect();
+    setContainerSize({ w: containerRect.width, h: containerRect.height });
+
+    const toPoint = (el: HTMLElement): Point => {
+      const r = el.getBoundingClientRect();
+      return {
+        x: r.left + r.width / 2 - containerRect.left,
+        y: r.top + r.height / 2 - containerRect.top,
+        r: Math.min(r.width, r.height) / 2,
+      };
+    };
+
+    const centerPoint = toPoint(center);
+    const next: Partial<Lines> = {};
+    (Object.keys(OUTER_POSITIONS) as Array<keyof Lines>).forEach((id) => {
+      const el = outerRefs.current[id];
+      if (!el) return;
+      const outerPoint = toPoint(el);
+      const start = shrinkToEdge(outerPoint, centerPoint);
+      const end = shrinkToEdge(centerPoint, outerPoint);
+      next[id] = [
+        { x: start.x, y: start.y, r: 0 },
+        { x: end.x, y: end.y, r: 0 },
+      ];
+    });
+    setLines(next as Lines);
+  }, []);
+
+  useLayoutEffect(() => {
+    measure();
+    const ro = new ResizeObserver(() => measure());
+    if (diagramRef.current) ro.observe(diagramRef.current);
+    window.addEventListener('resize', measure);
+    // A couple of delayed re-measures catch late web-font swaps / layout
+    // settling that a single mount-time measurement can miss.
+    const t1 = setTimeout(measure, 150);
+    const t2 = setTimeout(measure, 500);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [measure]);
 
   useEffect(() => {
     if (!('IntersectionObserver' in window)) {
@@ -76,13 +120,14 @@ export default function SRTTeaser() {
         if (e.isIntersecting) {
           setIsVisible(true);
           setTimeout(() => setPulse(true), 400);
+          setTimeout(measure, 450);
         }
       },
       { threshold: 0.15 }
     );
     if (sectionRef.current) obs.observe(sectionRef.current);
     return () => obs.disconnect();
-  }, []);
+  }, [measure]);
 
   const activeNodeData = nodes.find((n) => n.id === activeNode);
   const toggleNode = (id: string) => setActiveNode((prev) => (prev === id ? null : id));
@@ -93,8 +138,6 @@ export default function SRTTeaser() {
       className="sonic-section-md px-4 md:px-6 relative overflow-hidden"
       style={{ background: 'radial-gradient(ellipse at 50% 30%, #1a1a1a 0%, #111111 55%, #0B0B0C 100%)' }}
     >
-      {/* Ambient glow */}
-
       <div className="sonic-container relative z-10">
         {/* ── Header ── */}
         <div className="sonic-section-header">
@@ -111,15 +154,16 @@ export default function SRTTeaser() {
           </p>
         </div>
 
-        {/* ── Diagram — one radial node-map at every breakpoint ── */}
+        {/* ── Diagram ── */}
         <div
+          ref={diagramRef}
           className="flex relative items-center justify-center"
           style={{ height: 'clamp(280px, 60vw, 460px)' }}
         >
           <svg
             className="absolute inset-0 w-full h-full"
-            viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
-            preserveAspectRatio="xMidYMid meet"
+            viewBox={`0 0 ${containerSize.w || 1} ${containerSize.h || 1}`}
+            preserveAspectRatio="none"
             aria-hidden="true"
           >
             <defs>
@@ -132,38 +176,34 @@ export default function SRTTeaser() {
               </filter>
             </defs>
 
-            {/* Connection lines */}
-            {Object.entries(LINES).map(([id, line]) => (
-              <line
-                key={id}
-                x1={line.x1}
-                y1={line.y1}
-                x2={line.x2}
-                y2={line.y2}
-                stroke="oklch(var(--primary-500))"
-                strokeWidth="1.5"
-                strokeDasharray="5 5"
-                opacity={activeNode === id ? 1 : 0.45}
-                className="transition-all duration-300"
-                filter={activeNode === id ? `url(#srt-glow-${woodenId})` : undefined}
-              />
-            ))}
+            {/* Connection lines — drawn from measured box edges */}
+            {lines &&
+              (Object.entries(lines) as Array<[string, [Point, Point]]>).map(([id, [start, end]]) => (
+                <line
+                  key={id}
+                  x1={start.x}
+                  y1={start.y}
+                  x2={end.x}
+                  y2={end.y}
+                  stroke="oklch(var(--primary-500))"
+                  strokeWidth="1.5"
+                  strokeDasharray="5 5"
+                  opacity={activeNode === id ? 1 : 0.55}
+                  className="transition-all duration-300"
+                  filter={activeNode === id ? `url(#srt-glow-${woodenId})` : undefined}
+                />
+              ))}
 
             {/* Travelling data packets */}
-            {isVisible &&
-              [
-                { line: LINES.agentur, dur: '2s', delay: '0s' },
-                { line: LINES.daten, dur: '2.5s', delay: '0.6s' },
-                { line: LINES.kunde, dur: '2.2s', delay: '1.1s' },
-                { line: LINES.mitarbeiter, dur: '2.8s', delay: '0.3s' },
-              ].map(({ line, dur, delay }, i) => (
-                <g key={i}>
+            {isVisible && lines &&
+              Object.entries(lines).map(([id, [start, end]], i) => (
+                <g key={id}>
                   <circle r="2" fill="oklch(var(--primary-500))" opacity="0.6">
                     <animateMotion
-                      dur={dur}
-                      begin={delay}
+                      dur={`${2 + i * 0.3}s`}
+                      begin={`${i * 0.4}s`}
                       repeatCount="indefinite"
-                      path={`M${line.x1},${line.y1} L${line.x2},${line.y2}`}
+                      path={`M${start.x},${start.y} L${end.x},${end.y}`}
                     />
                   </circle>
                 </g>
@@ -172,6 +212,7 @@ export default function SRTTeaser() {
 
           {/* Center node */}
           <button
+            ref={centerRef}
             onClick={() => setActiveNode((prev) => (prev === 'center' ? null : 'center'))}
             onMouseEnter={() => setActiveNode('center')}
             onMouseLeave={() => setActiveNode((prev) => (prev === 'center' ? null : prev))}
@@ -197,19 +238,15 @@ export default function SRTTeaser() {
           </button>
 
           {/* Outer nodes */}
-          {[
-            { node: nodes[0], coords: OUTER_NODES.top },
-            { node: nodes[1], coords: OUTER_NODES.left },
-            { node: nodes[2], coords: OUTER_NODES.right },
-            { node: nodes[3], coords: OUTER_NODES.bottom },
-          ].map(({ node, coords }) => (
+          {nodes.map((node) => (
             <NodeButton
               key={node.id}
               node={node}
               active={activeNode === node.id}
               onClick={() => toggleNode(node.id)}
-              leftPct={(coords.cx / SVG_WIDTH) * 100}
-              topPct={(coords.cy / SVG_HEIGHT) * 100}
+              leftPct={OUTER_POSITIONS[node.id].leftPct}
+              topPct={OUTER_POSITIONS[node.id].topPct}
+              buttonRef={(el) => { outerRefs.current[node.id] = el; }}
             />
           ))}
         </div>
@@ -252,11 +289,13 @@ interface NodeButtonProps {
   onClick: () => void;
   leftPct: number;
   topPct: number;
+  buttonRef: (el: HTMLButtonElement | null) => void;
 }
 
-function NodeButton({ node, active, onClick, leftPct, topPct }: NodeButtonProps) {
+function NodeButton({ node, active, onClick, leftPct, topPct, buttonRef }: NodeButtonProps) {
   return (
     <button
+      ref={buttonRef}
       onClick={onClick}
       className={`absolute z-20 flex flex-col items-center gap-2 cursor-pointer transition-all duration-300 -translate-x-1/2 -translate-y-1/2 ${
         active ? 'scale-110' : 'hover:scale-105'
