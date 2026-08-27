@@ -88,7 +88,7 @@ export default function Features({ featureIcons }: FeaturesProps) {
           </div>
         </div>
 
-        {/* Asymmetric bento — hero tile spans 3 cols × 2 rows, 5 smaller cards */}
+        {/* Asymmetric bento — hero(3×2) + 2 medium(3×1, horizontal) + 3 small(2×1, compact) */}
         <div
           className="grid gap-0"
           style={{
@@ -98,35 +98,30 @@ export default function Features({ featureIcons }: FeaturesProps) {
           }}
         >
           {FEATURES_BASE.map((feat, idx) => {
-            const isHero  = idx === 0;
+            const isHero = idx === 0;
+            const isMedium = idx === 1 || idx === 2;
             const isHovered = hoveredIdx === idx;
-            return (
-              <div
-                key={idx}
-                className="group relative overflow-hidden transition-all duration-300 cursor-default"
-                style={{
-                  gridColumn: isHero ? 'span 3' : 'span 3',
-                  gridRow:    isHero ? 'span 2' : 'span 1',
-                  border: isHero
-                    ? `2px solid ${isHovered ? 'oklch(0.81 0.19 115)' : 'oklch(0.81 0.19 115 / 0.35)'}`
-                    : `1px solid oklch(0.885 0.004 110)`,
-                  background: isHero ? 'oklch(0.13 0.005 118)' : '#fff',
-                  minHeight: isHero ? '280px' : '160px',
-                }}
-                onMouseEnter={() => setHoveredIdx(idx)}
-                onMouseLeave={() => setHoveredIdx(null)}
-              >
-                {/* Hero tile — large */}
-                {isHero ? (
+            const iconSrc = (featureIcons && featureIcons[idx]?.url) || feat.woodIcon;
+
+            if (isHero) {
+              return (
+                <div
+                  key={idx}
+                  className="group relative overflow-hidden transition-all duration-300 cursor-default"
+                  style={{
+                    gridColumn: 'span 3',
+                    gridRow: 'span 2',
+                    border: `2px solid ${isHovered ? 'oklch(0.81 0.19 115)' : 'oklch(0.81 0.19 115 / 0.35)'}`,
+                    background: 'oklch(0.13 0.005 118)',
+                    minHeight: '280px',
+                  }}
+                  onMouseEnter={() => setHoveredIdx(idx)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                >
                   <div className="p-8 md:p-10 flex flex-col h-full justify-between">
                     <div>
                       <div className="w-12 h-12 overflow-hidden mb-6 border border-white/20">
-                        <img
-                          src={(featureIcons && featureIcons[idx]?.url) || feat.woodIcon}
-                          alt={feat.title}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
+                        <img src={iconSrc} alt={feat.title} className="w-full h-full object-cover" loading="lazy" />
                       </div>
                       <p className="text-[10px] font-black uppercase tracking-[0.24em] mb-3" style={{ color: 'oklch(0.81 0.19 115)' }}>
                         {feat.number} / 06
@@ -143,35 +138,51 @@ export default function Features({ featureIcons }: FeaturesProps) {
                       ))}
                     </div>
                   </div>
-                ) : (
-                  /* Smaller tiles */
-                  <div className="p-5 flex flex-col h-full">
-                    <div className="absolute top-0 left-0 right-0 h-0.5 transition-all duration-300"
-                      style={{ background: isHovered ? 'oklch(0.81 0.19 115)' : 'transparent' }} />
-                    <div className="flex items-start gap-3 mb-3">
-                      <div className="w-9 h-9 overflow-hidden flex-shrink-0 border border-background-200/50">
-                        <img
-                          src={(featureIcons && featureIcons[idx]?.url) || feat.woodIcon}
-                          alt={feat.title}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-black text-foreground-950 leading-snug uppercase">{feat.title}</h3>
-                        <span className="text-[9px] font-bold text-primary-500 uppercase tracking-widest">{feat.number} / 06</span>
-                      </div>
-                    </div>
-                    <p className="text-[11px] text-foreground-600 leading-relaxed flex-1">{feat.description}</p>
-                    <div className="flex flex-wrap gap-1 mt-3">
-                      {feat.tags.map((tag, ti) => (
-                        <span key={ti} className="text-[9px] font-bold px-1.5 py-0.5 uppercase tracking-wide text-primary-500 bg-primary-500/8 border border-primary-500/15">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                </div>
+              );
+            }
+
+            if (isMedium) {
+              // Medium tiles — 3×1, horizontal icon+text layout, no tags
+              return (
+                <div
+                  key={idx}
+                  className="relative flex items-center gap-4 p-5 transition-all duration-300 cursor-default"
+                  style={{
+                    gridColumn: 'span 3',
+                    gridRow: 'span 1',
+                    border: '1px solid oklch(0.885 0.004 110)',
+                  }}
+                  onMouseEnter={() => setHoveredIdx(idx)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                >
+                  <div className="w-10 h-10 overflow-hidden flex-shrink-0 border" style={{ borderColor: isHovered ? 'oklch(0.81 0.19 115 / 0.5)' : 'oklch(0.885 0.004 110)' }}>
+                    <img src={iconSrc} alt={feat.title} className="w-full h-full object-cover" loading="lazy" />
                   </div>
-                )}
+                  <div>
+                    <h3 className="text-sm font-black text-foreground-950 uppercase leading-snug">{feat.title}</h3>
+                    <p className="text-[11.5px] text-foreground-500">{feat.description.split('.')[0]}.</p>
+                  </div>
+                </div>
+              );
+            }
+
+            // Small tiles (4, 5, 6) — 2×1, compact icon-over-text, no tags
+            return (
+              <div
+                key={idx}
+                className="relative p-[18px] transition-all duration-300 cursor-default"
+                style={{
+                  gridColumn: 'span 2',
+                  gridRow: 'span 1',
+                  border: '1px solid oklch(0.885 0.004 110)',
+                }}
+                onMouseEnter={() => setHoveredIdx(idx)}
+                onMouseLeave={() => setHoveredIdx(null)}
+              >
+                <i className={`${feat.icon} text-lg mb-2.5 block`} style={{ color: 'oklch(0.55 0.1 115)' }} />
+                <h3 className="text-[13px] font-black text-foreground-950 uppercase mb-1">{feat.title}</h3>
+                <p className="text-[11px] text-foreground-500 leading-relaxed">{feat.description.split('.')[0]}.</p>
               </div>
             );
           })}

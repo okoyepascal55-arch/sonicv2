@@ -171,10 +171,13 @@ export default function EmployeeApp() {
   }, [isPaused, nextStep]);
 
   return (
-    <section id="team-app" className="sonic-section-md px-6 bg-white relative overflow-hidden"
+    <section id="team-app" className="sonic-section-md px-6 bg-foreground-950 relative overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
+      {/* Editorial dark backdrop — subtle grid pattern, per reference's 'elevated' signature treatment */}
+      <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.03, backgroundImage: 'linear-gradient(oklch(0.81 0.19 115) 1px, transparent 1px), linear-gradient(90deg, oklch(0.81 0.19 115) 1px, transparent 1px)', backgroundSize: '56px 56px' }} />
+
       <div className="sonic-container relative z-10">
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5 md:mb-6">
@@ -182,10 +185,10 @@ export default function EmployeeApp() {
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="leist-h2 text-foreground-950 uppercase">
+            <h2 className="leist-h2 text-white uppercase">
               {tHeading}
             </h2>
-            <p className="text-foreground-600 text-sm leading-relaxed lg:pb-1">
+            <p className="text-white/50 text-sm leading-relaxed lg:pb-1">
               {tSub || 'Alles was Außendienstmitarbeiter im Einsatz brauchen — direkt auf dem Smartphone. iOS & Android, offline-fähig.'}
             </p>
           </div>
@@ -198,20 +201,20 @@ export default function EmployeeApp() {
               <button key={i} onClick={() => setActiveStep(i)}
                 className={`w-full text-left flex items-center gap-4 p-4 transition-all duration-300 cursor-pointer group ${
                   activeStep === i
-                    ? 'border-l-4 border-primary-500 bg-primary-500/5'
-                    : 'border-l-4 border-transparent hover:bg-[#FAFDF5] hover:border-primary-500/30'
+                    ? 'border-l-4 border-primary-500 bg-primary-500/8'
+                    : 'border-l-4 border-transparent hover:bg-white/[0.03] hover:border-primary-500/30'
                 }`}>
                 <div className={`w-9 h-9 flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
-                  activeStep === i ? 'bg-primary-500 text-foreground-950' : 'bg-[#FAFDF5] text-foreground-500 group-hover:bg-[#F0F5DE]'
+                  activeStep === i ? 'bg-primary-500 text-foreground-950' : 'bg-white/6 text-white/30 group-hover:text-primary-500/70'
                 }`}>
                   <i className={`${step.icon} text-base`} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
-                    <span className={`text-2xs font-black uppercase tracking-widest transition-colors ${activeStep === i ? 'text-primary-500' : 'text-foreground-500'}`}>{step.number}</span>
-                    <h3 className={`text-sm font-black uppercase transition-colors ${activeStep === i ? 'text-foreground-950' : 'text-foreground-800'}`}>{step.title}</h3>
+                    <span className={`text-2xs font-black uppercase tracking-widest transition-colors ${activeStep === i ? 'text-primary-500' : 'text-white/30'}`}>{step.number}</span>
+                    <h3 className={`text-sm font-black uppercase transition-colors ${activeStep === i ? 'text-white' : 'text-white/70'}`}>{step.title}</h3>
                   </div>
-                  {activeStep === i && <p className="text-xs text-foreground-600 leading-relaxed">{step.desc}</p>}
+                  {activeStep === i && <p className="text-xs text-white/45 leading-relaxed">{step.desc}</p>}
                 </div>
               </button>
             ))}
@@ -244,7 +247,7 @@ export default function EmployeeApp() {
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
               {STEPS.map((_, i) => (
                 <button key={i} onClick={() => setActiveStep(i)} className={`transition-all duration-300 cursor-pointer ${
-                  activeStep === i ? 'w-6 h-1.5 bg-primary-500' : i < activeStep ? 'w-1.5 h-1.5 bg-primary-500/50' : 'w-1.5 h-1.5 bg-foreground-300'
+                  activeStep === i ? 'w-6 h-1.5 bg-primary-500' : i < activeStep ? 'w-1.5 h-1.5 bg-primary-500/50' : 'w-1.5 h-1.5 bg-white/15'
                 }`} />
               ))}
             </div>
