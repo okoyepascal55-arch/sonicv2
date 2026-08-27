@@ -4,7 +4,6 @@ import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { useMediaStore } from '@/lib/mediaStore';
-import WoodenButton from '@/components/base/WoodenButton';
 
 /* ─────────────────────────────────────────
    LEISTUNGEN IM EINSATZ — split image + content panel

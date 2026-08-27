@@ -18,43 +18,22 @@ const TILE_LABELS = [
   'Food & Lifestyle',
 ];
 
+// Placeholder tile art — inline SVG gradients (work as both <img src> and CSS url() backgrounds), one hue pair per category.
+const svgGradient = (hexA: string, hexB: string, w = 420, h = 600) =>
+  `data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${hexA}"/><stop offset="1" stop-color="${hexB}"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>`
+  )}`;
+
 const FALLBACK_TILES: MediaTile[] = [
-  {
-    src: 'https://readdy.ai/api/search-image?query=professional%20product%20photography%20studio%20shoot%20consumer%20electronics%20packaging%20premium%20bright%20clean%20white%20background%20soft%20natural%20lighting%20commercial%20quality%20editorial%20photography%20minimalist%20modern&width=420&height=600&seq=c4-tile-01&orientation=portrait',
-    alt: 'Produktfotografie',
-  },
-  {
-    src: 'https://readdy.ai/api/search-image?query=brand%20identity%20design%20creative%20agency%20visual%20design%20system%20typography%20color%20palette%20minimalist%20flat%20lay%20professional%20elegant%20premium%20studio%20photography%20clean%20white%20background%20modern%20editorial&width=420&height=600&seq=c4-tile-02&orientation=portrait',
-    alt: 'Brand Design',
-  },
-  {
-    src: 'https://readdy.ai/api/search-image?query=video%20production%20studio%20professional%20camera%20crew%20filming%20product%20commercial%20creative%20agency%20bright%20clean%20cinematic%20lighting%20behind%20the%20scenes%20premium%20quality%20modern%20white%20studio&width=420&height=600&seq=c4-tile-03&orientation=portrait',
-    alt: 'Video Produktion',
-  },
-  {
-    src: 'https://readdy.ai/api/search-image?query=3D%20CGI%20photorealistic%20product%20visualization%20render%20floating%20packaging%20consumer%20electronics%20bright%20studio%20lighting%20commercial%20quality%20clean%20white%20background%20premium%20editorial%20modern&width=420&height=600&seq=c4-tile-04&orientation=portrait',
-    alt: 'CGI & 3D',
-  },
-  {
-    src: 'https://readdy.ai/api/search-image?query=social%20media%20content%20creation%20lifestyle%20photography%20product%20shoot%20vibrant%20editorial%20fashion%20beauty%20consumer%20goods%20clean%20professional%20studio%20bright%20white%20background%20modern%20commercial&width=420&height=600&seq=c4-tile-05&orientation=portrait',
-    alt: 'Social Content',
-  },
-  {
-    src: 'https://readdy.ai/api/search-image?query=trade%20show%20exhibition%20booth%20design%20retail%20POS%20display%20premium%20brand%20activation%20event%20marketing%20professional%20bright%20clean%20lighting%20commercial%20quality%20modern%20white%20background&width=420&height=600&seq=c4-tile-06&orientation=portrait',
-    alt: 'POS & Events',
-  },
-  {
-    src: 'https://readdy.ai/api/search-image?query=packaging%20design%20print%20production%20premium%20consumer%20goods%20unboxing%20experience%20bright%20clean%20studio%20photography%20commercial%20quality%20editorial%20minimalist%20white%20background%20modern&width=420&height=600&seq=c4-tile-07&orientation=portrait',
-    alt: 'Print & Packaging',
-  },
-  {
-    src: 'https://readdy.ai/api/search-image?query=luxury%20cosmetics%20beauty%20product%20photography%20bright%20clean%20studio%20soft%20lighting%20premium%20brand%20editorial%20commercial%20quality%20minimalist%20white%20background%20modern%20elegant&width=420&height=600&seq=c4-tile-08&orientation=portrait',
-    alt: 'Beauty & Kosmetik',
-  },
-  {
-    src: 'https://readdy.ai/api/search-image?query=food%20photography%20gourmet%20restaurant%20dish%20professional%20studio%20bright%20clean%20lighting%20editorial%20commercial%20quality%20premium%20minimalist%20white%20background%20modern%20lifestyle&width=420&height=600&seq=c4-tile-09&orientation=portrait',
-    alt: 'Food & Lifestyle',
-  },
+  { src: svgGradient('#3a3320', '#17160f'), alt: 'Produktfotografie' },
+  { src: svgGradient('#20323a', '#0f1517'), alt: 'Brand Design' },
+  { src: svgGradient('#2b3a20', '#12160e'), alt: 'Video Produktion' },
+  { src: svgGradient('#302038', '#141118'), alt: 'CGI & 3D' },
+  { src: svgGradient('#3a2820', '#17110e'), alt: 'Social Content' },
+  { src: svgGradient('#20383a', '#0e1617'), alt: 'POS & Events' },
+  { src: svgGradient('#383a20', '#16170e'), alt: 'Print & Packaging' },
+  { src: svgGradient('#3a2030', '#170e14'), alt: 'Beauty & Kosmetik' },
+  { src: svgGradient('#233a20', '#0f170e'), alt: 'Food & Lifestyle' },
 ];
 
 const TILE_W = 280;

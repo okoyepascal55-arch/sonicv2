@@ -1,14 +1,11 @@
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
-import type { MediaItem } from '@/lib/mediaStore';
-import WoodenButton from '@/components/base/WoodenButton';
 
 interface SRTHeroProps {
   onScrollToFeatures: () => void;
-  heroIcons: MediaItem[];
 }
 
-export default function SRTHero({ onScrollToFeatures, heroIcons }: SRTHeroProps) {
+export default function SRTHero({ onScrollToFeatures }: SRTHeroProps) {
 
   // ── Text Store hooks ──
   const tBadge = useText('srt_hero', 'srt-hero-badge', 'Sonic-eigene Software');

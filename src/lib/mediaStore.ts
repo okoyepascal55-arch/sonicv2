@@ -418,15 +418,8 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20calendar%20time%20clock%20duration%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography&width=80&height=80&seq=wood-srt-hero-v4&orientation=squarish', caption: 'SRT Hero — In Betrieb Icon' },
   ],
 
-  /* ── SRT: Feature Wood Icons ── */
-  srt_feature_icons: [
-    { url: 'https://readdy.ai/api/search-image?query=wooden%20dashboard%20monitor%20screen%20display%20analytics%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-dashboard-v1&orientation=squarish', caption: 'Feature 01 — Dashboard Icon' },
-    { url: 'https://readdy.ai/api/search-image?query=wooden%20bar%20chart%20performance%20analytics%20graph%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-chart-v1&orientation=squarish', caption: 'Feature 02 — Chart Icon' },
-    { url: 'https://readdy.ai/api/search-image?query=wooden%20team%20people%20group%20management%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-team-v1&orientation=squarish', caption: 'Feature 03 — Team Icon' },
-    { url: 'https://readdy.ai/api/search-image?query=wooden%20document%20file%20report%20paper%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-report-v1&orientation=squarish', caption: 'Feature 04 — Report Icon' },
-    { url: 'https://readdy.ai/api/search-image?query=wooden%20smartphone%20mobile%20phone%20app%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-mobile-v1&orientation=squarish', caption: 'Feature 05 — Mobile Icon' },
-    { url: 'https://readdy.ai/api/search-image?query=wooden%20shield%20security%20protection%20lock%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-shield-v1&orientation=squarish', caption: 'Feature 06 — Security Icon' },
-  ],
+  /* ── SRT: Feature Wood Icons — none set via dashboard yet; component falls back to its own gradient placeholders ── */
+  srt_feature_icons: [],
 
   /* ── SRT: Section Images ── */
   srt_section_images: [
@@ -864,75 +857,19 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://readdy.ai/api/search-image?query=real%20time%20live%20data%20comparison%20dashboard%20tracking%20actual%20versus%20predicted%20results%20side%20by%20side%20charts%20glowing%20green%20positive%20indicators%20modern%20business%20intelligence%20interface%20warm%20ambient%20lighting&width=600&height=400&seq=forecast-how-04-v1&orientation=landscape', caption: 'Schritt 04 — Live abgleichen', wide: true },
   ],
 
-  /* ── LEISTUNGEN: Kreation & Content — Carousel Tiles ── */
-  leistungen_kreation_carousel_images: [
-    { url: 'https://readdy.ai/api/search-image?query=professional%20product%20photography%20studio%20shoot%20consumer%20electronics%20packaging%20premium%20bright%20clean%20white%20background%20soft%20natural%20lighting%20commercial%20quality%20editorial%20photography%20minimalist%20modern&width=420&height=600&seq=c4-tile-01&orientation=portrait', caption: 'Produktfotografie' },
-    { url: 'https://readdy.ai/api/search-image?query=brand%20identity%20design%20creative%20agency%20visual%20design%20system%20typography%20color%20palette%20minimalist%20flat%20lay%20professional%20elegant%20premium%20studio%20photography%20clean%20white%20background%20modern%20editorial&width=420&height=600&seq=c4-tile-02&orientation=portrait', caption: 'Brand Design' },
-    { url: 'https://readdy.ai/api/search-image?query=video%20production%20studio%20professional%20camera%20crew%20filming%20product%20commercial%20creative%20agency%20bright%20clean%20cinematic%20lighting%20behind%20the%20scenes%20premium%20quality%20modern%20white%20studio&width=420&height=600&seq=c4-tile-03&orientation=portrait', caption: 'Video Produktion' },
-    { url: 'https://readdy.ai/api/search-image?query=3D%20CGI%20photorealistic%20product%20visualization%20render%20floating%20packaging%20consumer%20electronics%20bright%20studio%20lighting%20commercial%20quality%20clean%20white%20background%20premium%20editorial%20modern&width=420&height=600&seq=c4-tile-04&orientation=portrait', caption: 'CGI & 3D' },
-    { url: 'https://readdy.ai/api/search-image?query=social%20media%20content%20creation%20lifestyle%20photography%20product%20shoot%20vibrant%20editorial%20fashion%20beauty%20consumer%20goods%20clean%20professional%20studio%20bright%20white%20background%20modern%20commercial&width=420&height=600&seq=c4-tile-05&orientation=portrait', caption: 'Social Content' },
-    { url: 'https://readdy.ai/api/search-image?query=trade%20show%20exhibition%20booth%20design%20retail%20POS%20display%20premium%20brand%20activation%20event%20marketing%20professional%20bright%20clean%20lighting%20commercial%20quality%20modern%20white%20background&width=420&height=600&seq=c4-tile-06&orientation=portrait', caption: 'POS & Events' },
-    { url: 'https://readdy.ai/api/search-image?query=packaging%20design%20print%20production%20premium%20consumer%20goods%20unboxing%20experience%20bright%20clean%20studio%20photography%20commercial%20quality%20editorial%20minimalist%20white%20background%20modern&width=420&height=600&seq=c4-tile-07&orientation=portrait', caption: 'Print & Packaging' },
-    { url: 'https://readdy.ai/api/search-image?query=luxury%20cosmetics%20beauty%20product%20photography%20bright%20clean%20studio%20soft%20lighting%20premium%20brand%20editorial%20commercial%20quality%20minimalist%20white%20background%20modern%20elegant&width=420&height=600&seq=c4-tile-08&orientation=portrait', caption: 'Beauty & Kosmetik' },
-    { url: 'https://readdy.ai/api/search-image?query=food%20photography%20gourmet%20restaurant%20dish%20professional%20studio%20bright%20clean%20lighting%20editorial%20commercial%20quality%20premium%20minimalist%20white%20background%20modern%20lifestyle&width=420&height=600&seq=c4-tile-09&orientation=portrait', caption: 'Food & Lifestyle' },
-  ],
+  /* ── LEISTUNGEN: Kreation & Content — Carousel Tiles — none set via dashboard yet; component falls back to its own gradient placeholders ── */
+  leistungen_kreation_carousel_images: [],
 
-  /* ── LEISTUNGEN: Kreation & Content — Showcase Grid ── */
-  leistungen_kreation_showcase_images: [
-    { url: 'https://readdy.ai/api/search-image?query=professional%20brand%20campaign%20visual%20design%20studio%20shower%20bathroom%20products%20elegant%20minimalist%20photography%20dark%20atmospheric%20background%20lime%20green%20accent%20lighting%20premium%20commercial%20photography%20dramatic%20contrast%20product%20showcase&width=800&height=600&seq=k1-a&orientation=landscape', caption: 'Konzeption — shower+ Kampagne', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=product%20photography%20brand%20identity%20key%20visual%20consumer%20electronics%20packaging%20close%20up%20studio%20shot%20clean%20white%20background%20professional%20commercial%20photography%20sharp%20detail%20vibrant%20colors&width=400&height=300&seq=k2-a&orientation=landscape', caption: 'Konzeption — Brand Photography' },
-    { url: 'https://readdy.ai/api/search-image?query=brand%20identity%20visual%20design%20system%20logo%20typography%20color%20palette%20minimalist%20design%20studio%20creative%20agency%20branding%20materials%20flat%20lay%20professional%20elegant%20premium&width=400&height=300&seq=k3-a&orientation=landscape', caption: 'Konzeption — Visual Design System' },
-    { url: 'https://readdy.ai/api/search-image?query=social%20media%20content%20creation%20studio%20smartphone%20photography%20product%20shoot%20behind%20scenes%20creative%20team%20colorful%20vibrant%20social%20media%20assets%20creation%20agency%20lifestyle%20photography&width=600&height=300&seq=k4-a&orientation=landscape', caption: 'Konzeption — Multi-Channel Assets', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=e-commerce%20packaging%20design%20product%20shelf%20retail%20point%20of%20sale%20display%20premium%20consumer%20electronics%20packaging%20box%20beautiful%20product%20presentation%20lifestyle%20editorial%20photography%20high%20end%20commercial&width=1200&height=350&seq=k5-a&orientation=landscape', caption: 'Konzeption — E-Commerce Design', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=inhouse%20product%20photography%20studio%20professional%20camera%20setup%20consumer%20electronics%20product%20shooting%20dark%20moody%20atmospheric%20professional%20studio%20lighting%20equipment%20creative%20setup%20professional%20grade&width=800&height=600&seq=c1-a&orientation=landscape', caption: 'Content — Inhouse Product Shoot', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=video%20production%20social%20media%20reels%20short%20form%20content%20creation%20studio%20camera%20crew%20filming%20product%20commercial%20creative%20agency%20professional%20video%20production%20setup%20modern%20studio%20dark%20dramatic&width=400&height=300&seq=c2-a&orientation=landscape', caption: 'Content — Social Reel Production' },
-    { url: 'https://readdy.ai/api/search-image?query=live%20streaming%20studio%20setup%20professional%20lighting%20camera%20crew%20live%20video%20production%20product%20presentation%20host%20presenter%20modern%20clean%20studio%20lime%20green%20accent%20light%20broadcast%20quality&width=400&height=300&seq=c3-a&orientation=landscape', caption: 'Content — Nexaro Live Studio' },
-    { url: 'https://readdy.ai/api/search-image?query=instructional%20how-to%20video%20production%20product%20demonstration%20hands%20product%20detail%20close%20up%20professional%20lighting%20studio%20tutorial%20content%20creation%20sharp%20detail%20commercial%20quality%20photography&width=600&height=300&seq=c4-a&orientation=landscape', caption: 'Content — Instructional Content', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=trade%20show%20event%20documentation%20photography%20IFA%20Berlin%20consumer%20electronics%20fair%20professional%20event%20photography%20wide%20angle%20crowd%20exhibitors%20modern%20technology%20displays%20dramatic%20night%20event%20photography&width=1200&height=350&seq=c5-a&orientation=landscape', caption: 'Content — Event-Dokumentation IFA', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=3D%20CGI%20architectural%20visualization%20luxury%20electric%20vehicle%20showroom%20interior%20photorealistic%20render%20modern%20minimalist%20design%20lime%20green%20accent%20lighting%20futuristic%20automotive%20showroom%20high%20quality%20visualization&width=800&height=600&seq=g1-a&orientation=landscape', caption: 'CGI — Lucid Motors EV Stand', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=trade%20show%20stand%203D%20visualization%20CGI%20render%20photorealistic%20exhibition%20booth%20design%20modern%20retail%20interior%20digital%20twin%20architecture%20render%20dramatic%20lighting%20professional%20commercial%20CGI%20quality&width=400&height=300&seq=g2-a&orientation=landscape', caption: 'CGI — Messe Stands & Shops' },
-    { url: 'https://readdy.ai/api/search-image?query=AI%20generated%20concept%20visualization%20product%20design%20futuristic%20technology%20creative%20concept%20art%20digital%20art%20abstract%20modern%20design%20generative%20AI%20product%20visualization%20lime%20green%20dark%20background%20atmospheric%20digital%20art&width=400&height=300&seq=g3-a&orientation=landscape', caption: 'CGI — AI-Generierung' },
-    { url: 'https://readdy.ai/api/search-image?query=motion%20graphics%203D%20animation%20product%20visualization%20render%20digital%20cinematic%20dark%20dramatic%20lime%20green%20glow%20particle%20effects%20modern%20motion%20design%20brand%20animation%20premium%20quality%20CGI%20dramatic%20composition&width=600&height=300&seq=g4-a&orientation=landscape', caption: 'CGI — Motion Graphics', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=photorealistic%20CGI%20product%20packaging%20visualization%20consumer%20electronics%20lifestyle%20render%20floating%20product%20box%20render%203D%20photorealistic%20dramatic%20studio%20lighting%20lime%20green%20accent%20commercial%20quality%20packaging%20visualization&width=1200&height=350&seq=g5-a&orientation=landscape', caption: 'CGI — Packaging-Viz', wide: true },
-  ],
+  /* ── LEISTUNGEN: Kreation & Content — Showcase Grid — none set via dashboard yet; component falls back to its own gradient placeholders ── */
+  leistungen_kreation_showcase_images: [],
 
-  /* ── LEISTUNGEN: Kreation Showcase — Secondary Auto-Rotate Images ── */
-  leistungen_kreation_showcase_secondary_konzeption: [
-    { url: 'https://readdy.ai/api/search-image?query=creative%20agency%20branding%20campaign%20shower%20product%20packaging%20premium%20editorial%20photography%20clean%20white%20studio%20dark%20shadows%20beautiful%20product%20art%20direction%20commercial%20quality&width=800&height=600&seq=k1-b&orientation=landscape', caption: 'Konzeption 01 — Alt Rotation', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=close%20up%20product%20key%20visual%20brand%20photography%20consumer%20goods%20clean%20elegant%20studio%20high%20end%20commercial%20sharp%20detail&width=400&height=300&seq=k2-b&orientation=landscape', caption: 'Konzeption 02 — Alt Rotation' },
-    { url: 'https://readdy.ai/api/search-image?query=brand%20guidelines%20design%20collateral%20typography%20system%20clean%20minimal%20premium%20agency%20design%20flat%20lay%20photography&width=400&height=300&seq=k3-b&orientation=landscape', caption: 'Konzeption 03 — Alt Rotation' },
-    { url: 'https://readdy.ai/api/search-image?query=multi%20channel%20digital%20assets%20design%20mockup%20social%20media%20instagram%20facebook%20phone%20screen%20modern%20creative%20studio&width=600&height=300&seq=k4-b&orientation=landscape', caption: 'Konzeption 04 — Alt Rotation', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=online%20shop%20product%20photography%20clean%20minimalist%20ecommerce%20beautiful%20lifestyle%20staging%20high%20end%20commercial%20product%20flat%20lay%20editorial%20photography&width=1200&height=350&seq=k5-b&orientation=landscape', caption: 'Konzeption 05 — Alt Rotation', wide: true },
-  ],
-  leistungen_kreation_showcase_secondary_content: [
-    { url: 'https://readdy.ai/api/search-image?query=product%20photography%20studio%20setup%20behind%20the%20scenes%20dark%20dramatic%20lighting%20professional%20camera%20rig%20consumer%20electronics&width=800&height=600&seq=c1-b&orientation=landscape', caption: 'Content 01 — Alt Rotation', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=short%20form%20video%20reel%20production%20smartphone%20vertical%20format%20social%20media%20creative%20director%20studio%20lights&width=400&height=300&seq=c2-b&orientation=landscape', caption: 'Content 02 — Alt Rotation' },
-    { url: 'https://readdy.ai/api/search-image?query=live%20video%20studio%20broadcasting%20shopping%20stream%20presenter%20product%20demonstration%20professional%20studio%20sharp%20detail%20clean&width=400&height=300&seq=c3-b&orientation=landscape', caption: 'Content 03 — Alt Rotation' },
-    { url: 'https://readdy.ai/api/search-image?query=tutorial%20hands-on%20product%20explainer%20video%20close%20up%20detail%20studio%20lighting%20white%20background%20clean&width=600&height=300&seq=c4-b&orientation=landscape', caption: 'Content 04 — Alt Rotation', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=trade%20show%20IFA%20Berlin%20exhibitor%20booth%20consumer%20electronics%20nighttime%20dramatic%20event%20photography%20wide%20exhibition%20hall%20professional&width=1200&height=350&seq=c5-b&orientation=landscape', caption: 'Content 05 — Alt Rotation', wide: true },
-  ],
-  leistungen_kreation_showcase_secondary_cgi: [
-    { url: 'https://readdy.ai/api/search-image?query=photorealistic%20CGI%20automotive%20showroom%20interior%20visualization%20electric%20car%20luxury%20clean%20modern%20architecture%20render%20lime%20accent&width=800&height=600&seq=g1-b&orientation=landscape', caption: 'CGI 01 — Alt Rotation', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=exhibition%20booth%203D%20render%20photorealistic%20architecture%20visualization%20retail%20consumer%20electronics%20trade%20show%20stand%20design&width=400&height=300&seq=g2-b&orientation=landscape', caption: 'CGI 02 — Alt Rotation' },
-    { url: 'https://readdy.ai/api/search-image?query=generative%20AI%20artwork%20futuristic%20product%20concept%20digital%20abstract%20art%20lime%20green%20neon%20dark%20background%20high%20tech&width=400&height=300&seq=g3-b&orientation=landscape', caption: 'CGI 03 — Alt Rotation' },
-    { url: 'https://readdy.ai/api/search-image?query=3D%20motion%20animation%20render%20product%20brand%20dark%20atmospheric%20cinematic%20lime%20electric%20glow%20particles%20CGI%20quality&width=600&height=300&seq=g4-b&orientation=landscape', caption: 'CGI 04 — Alt Rotation', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=packaging%203D%20visualization%20CGI%20photorealistic%20render%20product%20floating%20clean%20studio%20background%20commercial%20premium%20quality&width=1200&height=350&seq=g5-b&orientation=landscape', caption: 'CGI 05 — Alt Rotation', wide: true },
-  ],
+  /* ── LEISTUNGEN: Kreation Showcase — Secondary Auto-Rotate Images — none set via dashboard yet; component falls back to its own gradient placeholders ── */
+  leistungen_kreation_showcase_secondary_konzeption: [],
+  leistungen_kreation_showcase_secondary_content: [],
+  leistungen_kreation_showcase_secondary_cgi: [],
 
-  /* ── LEISTUNGEN: Kreation Showcase — Before/After Slider ── */
-  leistungen_kreation_before_after: [
-    { url: 'https://readdy.ai/api/search-image?query=Philips%20brand%20trade%20show%20booth%20IFA%20Berlin%20real%20built%20exhibition%20stand%20professional%20retail%20display%20modern%20premium%20consumer%20electronics%20physical%20stand%20interior%20wide%20angle%20shot%20dramatic%20event%20photography&width=1200&height=680&seq=ba-reality&orientation=landscape', caption: 'Reality — Gebauter Stand (Philips IFA)', wide: true },
-    { url: 'https://readdy.ai/api/search-image?query=Philips%20trade%20show%20booth%20photorealistic%20CGI%203D%20render%20architectural%20visualization%20exhibition%20stand%20design%20lime%20green%20accent%20lighting%20futuristic%20dark%20atmosphere%20high%20quality%20render%20IFA%20Berlin%20concept&width=1200&height=680&seq=ba-cgi&orientation=landscape', caption: 'CGI — Render (Philips IFA)', wide: true },
-  ],
-
-  /* ── LEISTUNGEN: Kreation — Rotating Photo Grid ── */
-  leistungen_kreation_photo_grid: [
-    { url: 'https://readdy.ai/api/search-image?query=professional%20product%20photography%20studio%20shoot%20consumer%20electronics%20packaging%20premium%20dark%20moody%20atmospheric%20lighting%20dramatic%20shadows%20commercial%20quality%20editorial%20photography&width=400&height=560&seq=rpg-kreation-01&orientation=portrait', caption: 'Rotating Grid — Produktfoto' },
-    { url: 'https://readdy.ai/api/search-image?query=brand%20identity%20design%20creative%20agency%20visual%20design%20system%20typography%20color%20palette%20minimalist%20flat%20lay%20professional%20elegant%20premium%20studio%20photography&width=400&height=560&seq=rpg-kreation-02&orientation=portrait', caption: 'Rotating Grid — Brand Design' },
-    { url: 'https://readdy.ai/api/search-image?query=video%20production%20studio%20professional%20camera%20crew%20filming%20product%20commercial%20creative%20agency%20dark%20dramatic%20lighting%20cinematic%20quality%20behind%20the%20scenes&width=400&height=560&seq=rpg-kreation-03&orientation=portrait', caption: 'Rotating Grid — Video' },
-    { url: 'https://readdy.ai/api/search-image?query=3D%20CGI%20photorealistic%20product%20visualization%20render%20floating%20packaging%20consumer%20electronics%20dramatic%20studio%20lighting%20lime%20green%20accent%20commercial%20quality&width=400&height=560&seq=rpg-kreation-04&orientation=portrait', caption: 'Rotating Grid — CGI & 3D' },
-    { url: 'https://readdy.ai/api/search-image?query=social%20media%20content%20creation%20lifestyle%20photography%20product%20shoot%20vibrant%20colorful%20editorial%20fashion%20beauty%20consumer%20goods%20clean%20white%20background%20professional&width=400&height=560&seq=rpg-kreation-05&orientation=portrait', caption: 'Rotating Grid — Social Content' },
-  ],
+  /* ── LEISTUNGEN: Kreation Showcase — Before/After Slider — none set via dashboard yet; component falls back to its own gradient placeholders ── */
+  leistungen_kreation_before_after: [],
 
   /* ── LEISTUNGEN: POS Full Service — Asset Categories ── */
   leistungen_pos_assets_images: [
@@ -1083,19 +1020,10 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   /* ── Kreation — Solution Wood Icons ── */
-  leistungen_kreation_solution_wood_icons: [
-    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20lightbulb%20idea%20concept%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-bulb-01&orientation=squarish', caption: 'Kreation — (Kampagnen-)Konzeption' },
-    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20paintbrush%20palette%20design%20creative%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-palette-02&orientation=squarish', caption: 'Kreation — Content Creation & Design' },
-    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20camera%20photography%20video%20production%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-camera-03&orientation=squarish', caption: 'Kreation — Foto- & Video-Produktion' },
-    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20document%20file%20copy%20asset%20production%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-file-04&orientation=squarish', caption: 'Kreation — Asset-Produktion' },
-  ],
+  leistungen_kreation_solution_wood_icons: [],
 
-  /* ── Kreation — Discipline Wood Icons ── */
-  leistungen_kreation_discipline_wood_icons: [
-    { url: 'https://readdy.ai/api/search-image?query=wooden%20paintbrush%20creative%20design%20palette%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-kreation-icon&orientation=squarish', caption: 'Kreation — Kreation' },
-    { url: 'https://readdy.ai/api/search-image?query=wooden%20tools%20production%20gear%20workshop%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-produktion-icon&orientation=squarish', caption: 'Kreation — Produktion' },
-    { url: 'https://readdy.ai/api/search-image?query=wooden%20cube%20box%203D%20geometric%20design%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-cgi-3d-icon&orientation=squarish', caption: 'Kreation — CGI & 3D' },
-  ],
+  /* ── Kreation — Discipline Wood Icons — none set via dashboard yet; component falls back to its own gradient placeholders ── */
+  leistungen_kreation_discipline_wood_icons: [],
 
   /* ── LEISTUNGEN: Overview Hero ── */
   leistungen_hero_images: [
@@ -1244,19 +1172,10 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   /* ── SRT: TheProblem — Wood Icons ── */
-  srt_problem_wood_icons: [
-    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20separated%20fragmented%20database%20cylinder%20storage%20units%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20isolated%20data%20sources%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-db-srt-problem-1&orientation=squarish', caption: 'Getrennte Datensilos' },
-    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20monitor%20computer%20screen%20dashboard%20display%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20empty%20screen%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-screen-srt-problem-2&orientation=squarish', caption: 'Keine Dashboards' },
-    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20clock%20hourglass%20time%20delay%20waiting%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20time%20passing%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-clock-srt-problem-3&orientation=squarish', caption: 'Verspätete Erkenntnisse' },
-  ],
+  srt_problem_wood_icons: [],
 
-  /* ── SRT: Proof — Wood Icons ── */
-  srt_proof_wood_icons: [
-    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20shopping%20bag%20retail%20product%20sold%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20bag%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-zahlen-bag&orientation=squarish', caption: 'Produkte verkauft' },
-    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20money%20euro%20coin%20revenue%20profit%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20coin%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-zahlen-coin&orientation=squarish', caption: 'Umsatz generiert' },
-    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20map%20pin%20location%20tracking%20assignments%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20pin%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-zahlen-pin&orientation=squarish', caption: 'Einsätze getrackt' },
-    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20team%20people%20group%20talent%20pool%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20people%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-zahlen-team&orientation=squarish', caption: 'Talente im Pool' },
-  ],
+  /* ── SRT: Proof — Wood Icons — none set via dashboard yet; component falls back to its own gradient placeholders ── */
+  srt_proof_wood_icons: [],
 
   /* ── SRT: Pricing — Card Images ── */
   srt_pricing_images: [
@@ -1968,7 +1887,6 @@ async function syncOverridesToSupabase(store: MediaSections): Promise<void> {
 const STORAGE_KEY = 'sonic_media_store';
 
 let _cachedStore: MediaSections | null = null;
-let _cacheStamp = 0;
 
 function invalidateCache() {
   _cachedStore = null;

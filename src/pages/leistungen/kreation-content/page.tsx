@@ -12,19 +12,18 @@ import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
+
+// Placeholder icon art — inline SVG gradient (works as <img src>) until a real wood icon is set via the dashboard.
+const svgGradient = (hexA: string, hexB: string, size = 112) =>
+  `data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${hexA}"/><stop offset="1" stop-color="${hexB}"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>`
+  )}`;
 
 const FALLBACK_KREATION_SOLUTION_ICONS = [
-  'https://readdy.ai/api/search-image?query=carved%20wooden%20lightbulb%20idea%20concept%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-bulb-01&orientation=squarish',
-  'https://readdy.ai/api/search-image?query=carved%20wooden%20paintbrush%20palette%20design%20creative%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-palette-02&orientation=squarish',
-  'https://readdy.ai/api/search-image?query=carved%20wooden%20camera%20photography%20video%20production%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-camera-03&orientation=squarish',
-  'https://readdy.ai/api/search-image?query=carved%20wooden%20document%20file%20copy%20asset%20production%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-file-04&orientation=squarish',
-];
-
-const FALLBACK_KREATION_DISCIPLINE_ICONS = [
-  'https://readdy.ai/api/search-image?query=wooden%20paintbrush%20creative%20design%20palette%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-kreation-icon&orientation=squarish',
-  'https://readdy.ai/api/search-image?query=wooden%20tools%20production%20gear%20workshop%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-produktion-icon&orientation=squarish',
-  'https://readdy.ai/api/search-image?query=wooden%20cube%20box%203D%20geometric%20design%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-cgi-3d-icon&orientation=squarish',
+  svgGradient('#3a3320', '#17160f'),
+  svgGradient('#20323a', '#0f1517'),
+  svgGradient('#2b3a20', '#12160e'),
+  svgGradient('#302038', '#141118'),
 ];
 
 const NAV_ITEMS = [
@@ -58,28 +57,28 @@ const KREATION_CHALLENGES: ChallengeItem[] = [
 
 const SOLUTIONS = [
   {
-    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20lightbulb%20idea%20concept%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-bulb-01&orientation=squarish',
+    woodIcon: svgGradient('#3a3320', '#17160f'),
     num: '01',
     title: '(Kampagnen-)Konzeption',
     desc: 'Wir arbeiten heraus, wofür deine Marke steht und wie begeisternder Content aussehen könnte. From scratch oder adaptiert von deiner globalen Strategie.',
     tags: ['Strategie', 'Konzept', 'Kampagne'],
   },
   {
-    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20paintbrush%20palette%20design%20creative%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-palette-02&orientation=squarish',
+    woodIcon: svgGradient('#20323a', '#0f1517'),
     num: '02',
     title: 'Content Creation & Design',
     desc: 'Wir erstellen die Vorlagen für die Realisierung: Gestaltung plus Briefings / Texte / Scripts. Für Print / Packaging / POS, Digital / Shop, Social / Video.',
     tags: ['Design', 'Print', 'Digital'],
   },
   {
-    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20camera%20photography%20video%20production%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-camera-03&orientation=squarish',
+    woodIcon: svgGradient('#2b3a20', '#12160e'),
     num: '03',
     title: 'Foto- & Video-Produktion',
     desc: 'Produktfotos und -filme, 3D / CGI / AI, Social Clips, Lifestyle-Shots, Event-Dokus, Imagefilme — in eigenen Studios und on Location.',
     tags: ['Foto', 'Video', 'CGI'],
   },
   {
-    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20document%20file%20copy%20asset%20production%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-file-04&orientation=squarish',
+    woodIcon: svgGradient('#302038', '#141118'),
     num: '04',
     title: 'Asset-Produktion',
     desc: 'Post Production, Reinzeichnungen, Druck, Möbel- und Messebau, Content einpflegen / ausspielen.',
@@ -146,18 +145,9 @@ function AnimatedStat({
 }
 
 const WOOD_ICONS = [
-  {
-    img: 'https://readdy.ai/api/search-image?query=wooden%20paintbrush%20creative%20design%20palette%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-kreation-icon&orientation=squarish',
-    label: 'Kreation',
-  },
-  {
-    img: 'https://readdy.ai/api/search-image?query=wooden%20tools%20production%20gear%20workshop%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-produktion-icon&orientation=squarish',
-    label: 'Produktion',
-  },
-  {
-    img: 'https://readdy.ai/api/search-image?query=wooden%20cube%20box%203D%20geometric%20design%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-cgi-3d-icon&orientation=squarish',
-    label: 'CGI & 3D',
-  },
+  { img: svgGradient('#3a3320', '#17160f', 120), label: 'Kreation' },
+  { img: svgGradient('#2b3a20', '#12160e', 120), label: 'Produktion' },
+  { img: svgGradient('#302038', '#141118', 120), label: 'CGI & 3D' },
 ];
 
 function useReveal() {

@@ -1,7 +1,5 @@
-import { useRef, useState } from 'react';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
-import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
@@ -131,66 +129,7 @@ const STATS = [
   { value: 'Ø 4,6/5', label: 'Kundenzufriedenheit' },
 ];
 
-function ScrollSection({
-  scrollRef,
-  onLeft,
-  onRight,
-  label,
-  children,
-  dots,
-  activeIdx,
-  onDot,
-  theme = 'light',
-}: {
-  scrollRef: React.RefObject<HTMLDivElement>;
-  onLeft: () => void;
-  onRight: () => void;
-  label: string;
-  children: React.ReactNode;
-  dots: number;
-  activeIdx: number | null;
-  onDot: (i: number) => void;
-  theme?: 'light' | 'dark';
-}) {
-  const isDark = theme === 'dark';
-  return (
-    <>
-      <div className="flex items-center mb-6 gap-3">
-        <span className={`text-[11px] font-black uppercase tracking-widest flex-grow ${isDark ? 'text-white/40' : 'text-black/40'}`}>
-          {label}
-        </span>
-        <button onClick={onLeft} className={`w-10 h-10 flex items-center justify-center border transition-all duration-200 cursor-pointer ${isDark ? 'border-white/15 text-white/40' : 'border-black/15 text-black/40'} hover:border-primary-500/60 hover:text-primary-500`} aria-label="links">
-          <i className="ri-arrow-left-s-line text-xl" />
-        </button>
-        <button onClick={onRight} className={`w-10 h-10 flex items-center justify-center border transition-all duration-200 cursor-pointer ${isDark ? 'border-white/15 text-white/40' : 'border-black/15 text-black/40'} hover:border-primary-500/60 hover:text-primary-500`} aria-label="rechts">
-          <i className="ri-arrow-right-s-line text-xl" />
-        </button>
-      </div>
-      <div ref={scrollRef} className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-        {children}
-      </div>
-      <div className="flex items-center justify-center gap-1.5 mt-6">
-        {Array.from({ length: dots }).map((_, i) => (
-          <button
-            key={i}
-            onClick={() => onDot(i)}
-            className="cursor-pointer transition-all duration-300"
-            style={{
-              width: i === (activeIdx ?? 0) ? '22px' : '6px',
-              height: '3px',
-              background: i === (activeIdx ?? 0) ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.3)',
-              border: 'none',
-              padding: 0,
-            }}
-          />
-        ))}
-      </div>
-    </>
-  );
-}
-
 export default function TalentpoolContent() {
-  const [challengeHover, setChallengeHover] = useState<number | null>(null);
   const { images: profileImages } = useMediaStore('leistungen_talentpool_profiles_images');
   const tChallengeHeading = useText('leistungen_talentpool_content', 'talentpool-challenge-heading', 'Wechselnde Gesichter. Kein Markenwissen. Kein ROI.');
   const tChallengeSub = useText('leistungen_talentpool_content', 'talentpool-challenge-sub', 'Das Standardmodell in der Promotion-Branche ist kaputt. Freelancer-Netzwerke liefern keine echten Markenbotschafter.');
@@ -202,16 +141,6 @@ export default function TalentpoolContent() {
   const getProfileImg = (index: number) => {
     const item = profileImages[index];
     return item?.url ? resolveImageUrl(item.url) : FALLBACK_PROFILES[index];
-  };
-
-  const profScrollRef = useRef<HTMLDivElement>(null);
-  const [profActive, setProfActive] = useState<number | null>(null);
-  const scrollProf = (dir: 'left' | 'right') => {
-    profScrollRef.current?.scrollBy({ left: dir === 'left' ? -380 : 380, behavior: 'smooth' });
-  };
-  const dotProf = (i: number) => {
-    setProfActive(i);
-    profScrollRef.current?.scrollTo({ left: i * 396, behavior: 'smooth' });
   };
 
   return (
@@ -249,7 +178,30 @@ export default function TalentpoolContent() {
             </p>
           </div>
 
-          <ScrollCardSection data={SOLUTIONS.map(s => ({ ...s, num: s.number, woodIcon: undefined, icon: s.icon }))} label={`${SOLUTIONS.length} Leistungsmerkmale — scrollen`} theme="light" variant="remix" cardWidth="clamp(300px, 28vw, 370px)" cardMinHeight="420px" showWoodIcon={false} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {SOLUTIONS.map((s) => (
+              <div
+                key={s.number}
+                className="relative overflow-hidden p-6"
+                style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.09)' }}
+              >
+                <div
+                  className="absolute bottom-3 right-4 font-black leading-none select-none pointer-events-none"
+                  style={{ fontSize: '4.5rem', color: 'rgba(0,0,0,0.04)', lineHeight: 1 }}
+                >
+                  {s.number}
+                </div>
+                <div className="relative z-10">
+                  <div className="w-12 h-12 flex items-center justify-center mb-4 flex-shrink-0" style={{ background: 'rgba(0,0,0,0.06)' }}>
+                    <i className={`${s.icon} text-lg`} style={{ color: 'oklch(var(--primary-500))' }} />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-primary-600">{s.accent}</span>
+                  <h3 className="text-base font-black text-foreground-950 uppercase mt-1 mb-2 leading-snug">{s.title}</h3>
+                  <p className="text-sm text-foreground-950/55 leading-relaxed">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -270,61 +222,38 @@ export default function TalentpoolContent() {
             </p>
           </div>
 
-          <ScrollSection theme="dark" scrollRef={profScrollRef} onLeft={() => scrollProf('left')} onRight={() => scrollProf('right')} label={`${PROFILES.length} Talentprofile — scrollen`} dots={PROFILES.length} activeIdx={profActive} onDot={dotProf}>
-            {PROFILES.map((p, idx) => {
-              const isA = profActive === idx;
-              return (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {PROFILES.map((p, idx) => (
+              <div
+                key={idx}
+                className="relative overflow-hidden"
+                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
+              >
                 <div
-                  key={idx}
-                  className="flex-shrink-0 snap-start relative overflow-hidden cursor-default"
-                  style={{
-                    width: 'clamp(300px, 28vw, 370px)',
-                    minHeight: '500px',
-                    background: isA ? '#ffffff' : 'rgba(255,255,255,0.05)',
-                    border: `1px solid ${isA ? 'rgba(200,212,0,0.5)' : 'rgba(255,255,255,0.08)'}`,
-                    transition: 'all 0.3s ease',
-                    transform: isA ? 'translateY(-6px)' : 'translateY(0)',
-                    boxShadow: isA ? '0 0 0 1px rgba(200,212,0,0.35), 0 24px 48px rgba(0,0,0,0.4)' : '0 2px 8px rgba(0,0,0,0.2)',
-                  }}
-                  onMouseEnter={() => setProfActive(idx)}
-                  onMouseLeave={() => setProfActive(null)}
+                  className="absolute bottom-2 right-3 font-black leading-none select-none pointer-events-none z-0"
+                  style={{ fontSize: '4.5rem', color: 'rgba(255,255,255,0.04)', lineHeight: 1 }}
                 >
-                  <div className="absolute top-0 left-0 right-0 z-20" style={{ height: isA ? '3px' : '2px', background: isA ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.2)', boxShadow: isA ? '0 0 14px rgba(200,212,0,0.45)' : 'none', transition: 'all 0.3s ease' }} />
-                  <div className="absolute top-0 left-0 bottom-0 z-20 w-0.5" style={{ background: isA ? 'oklch(var(--primary-500))' : 'transparent', transition: 'background 0.3s ease' }} />
-                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 z-30" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 z-30" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 z-10" style={{ borderColor: isA ? 'rgba(200,212,0,0.5)' : 'transparent', transition: 'border-color 0.3s ease' }} />
-                  <div className="absolute bottom-4 right-4 font-black leading-none select-none pointer-events-none z-0" style={{ fontSize: '6rem', color: isA ? 'rgba(200,212,0,0.07)' : 'rgba(255,255,255,0.04)', lineHeight: 1, transition: 'color 0.3s ease' }}>{p.number}</div>
+                  {p.number}
+                </div>
 
-                  <div className="relative overflow-hidden" style={{ height: '180px' }}>
-                    <img src={getProfileImg(idx)} alt={p.type} className="w-full h-full object-cover object-top transition-transform duration-700" style={{ transform: isA ? 'scale(1.05)' : 'scale(1)' }} loading="lazy" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-3 left-3">
-                      <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1" style={{ background: 'oklch(var(--primary-500))', color: '#111' }}>{p.type}</span>
-                    </div>
-                  </div>
-
-                  <div className="relative z-10 p-7 flex flex-col">
-                    <div className="flex items-center gap-2 mb-5">
-                      <div className="w-1.5 h-1.5" style={{ background: isA ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.4)', transition: 'background 0.3s ease' }} />
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? 'oklch(var(--primary-500))' : 'rgba(200,212,0,0.5)', transition: 'color 0.3s ease' }}>{p.accent}</span>
-                    </div>
-                    <div className="w-[56px] h-[56px] flex items-center justify-center mb-5 flex-shrink-0" style={{ background: isA ? 'linear-gradient(145deg, #d4e100, #C8D400)' : 'linear-gradient(145deg, #1c1c1c, #111)', boxShadow: isA ? '0 10px 24px rgba(200,212,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4)' : '0 8px 20px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.08)', transition: 'all 0.35s ease' }}>
-                      <i className={`${p.icon} text-xl`} style={{ color: isA ? '#111' : 'oklch(var(--primary-500))', transition: 'color 0.35s ease' }} />
-                    </div>
-                    <p className="text-sm leading-relaxed mb-4 flex-grow" style={{ color: isA ? '#555' : 'rgba(255,255,255,0.55)', transition: 'color 0.3s ease' }}>{p.desc}</p>
-                    <div className="flex items-center justify-between pt-4" style={{ borderTop: `1px solid ${isA ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.07)'}`, transition: 'border-color 0.3s ease' }}>
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: isA ? '#999' : 'rgba(255,255,255,0.25)' }}>{p.number} / {String(PROFILES.length).padStart(2, '0')}</span>
-                      <div className="w-7 h-7 flex items-center justify-center" style={{ background: isA ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.06)', transform: isA ? 'translateX(3px)' : 'translateX(0)', transition: 'all 0.25s ease' }}>
-                        <i className="ri-arrow-right-line text-sm" style={{ color: isA ? '#111' : 'rgba(255,255,255,0.4)' }} />
-                      </div>
-                    </div>
+                <div className="relative overflow-hidden" style={{ aspectRatio: '3 / 4' }}>
+                  <img src={getProfileImg(idx)} alt={p.type} className="w-full h-full object-cover object-top" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                  <div className="absolute bottom-3 left-3">
+                    <span className="text-[10px] font-black uppercase tracking-widest px-2 py-1" style={{ background: 'oklch(var(--primary-500))', color: '#111' }}>{p.type}</span>
                   </div>
                 </div>
-              );
-            })}
-          </ScrollSection>
+
+                <div className="relative z-10 p-5 flex flex-col">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-1.5 h-1.5" style={{ background: 'rgba(200,212,0,0.5)' }} />
+                    <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: 'rgba(200,212,0,0.6)' }}>{p.accent}</span>
+                  </div>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>{p.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

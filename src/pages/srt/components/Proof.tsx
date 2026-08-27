@@ -23,11 +23,16 @@ export default function Proof() {
 
   const getStatIcon = (idx: number): string => woodIcons[idx]?.url || STATS_DATA[idx].fallbackWoodIcon;
 
+  const svgGradient = (hexA: string, hexB: string, size = 80) =>
+    `data:image/svg+xml,${encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${hexA}"/><stop offset="1" stop-color="${hexB}"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>`
+    )}`;
+
   const STATS_DATA = [
-    { value: '>3,7', unit: 'Mio.', label: 'Produkte verkauft', sublabel: 'Seit Gründung 2008', fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20shopping%20bag%20retail%20product%20sold%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20bag%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-zahlen-bag&orientation=squarish' },
-    { value: '>2', unit: 'Mrd.', label: 'Umsatz generiert', sublabel: 'In Euro', fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20money%20euro%20coin%20revenue%20profit%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20coin%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-zahlen-coin&orientation=squarish' },
-    { value: '>1,35', unit: 'Mio.', label: 'Einsätze getrackt', sublabel: 'Durch das SRT', fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20map%20pin%20location%20tracking%20assignments%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20pin%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-zahlen-pin&orientation=squarish' },
-    { value: '>2000', unit: '', label: 'Talente im Pool', sublabel: 'Festangestellt', fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20team%20people%20group%20talent%20pool%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20people%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-zahlen-team&orientation=squarish' },
+    { value: '>3,7', unit: 'Mio.', label: 'Produkte verkauft', sublabel: 'Seit Gründung 2008', fallbackWoodIcon: svgGradient('#3a3320', '#17160f') },
+    { value: '>2', unit: 'Mrd.', label: 'Umsatz generiert', sublabel: 'In Euro', fallbackWoodIcon: svgGradient('#20323a', '#0f1517') },
+    { value: '>1,35', unit: 'Mio.', label: 'Einsätze getrackt', sublabel: 'Durch das SRT', fallbackWoodIcon: svgGradient('#2b3a20', '#12160e') },
+    { value: '>2000', unit: '', label: 'Talente im Pool', sublabel: 'Festangestellt', fallbackWoodIcon: svgGradient('#302038', '#141118') },
   ];
 
   const STATS: Stat[] = STATS_DATA.map((s, i) => ({ ...s, woodIcon: getStatIcon(i) }));

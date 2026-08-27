@@ -51,7 +51,7 @@ export default function SRTPage() {
         <SRTHero onScrollToFeatures={() => {
           const el = document.getElementById('features');
           if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
-        }} heroIcons={srtHeroIcons} />
+        }} />
       </div>
 
       {/* Dark-bg WoodenDivider — dark section exit */}

@@ -5,6 +5,8 @@ interface PhoneFrameProps {
   /** Total width of the phone including frame. Default 264px */
   width?: number;
   className?: string;
+  /** Rounded 28px bezel instead of the default sharp-corner CI frame. */
+  rounded?: boolean;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -51,7 +53,7 @@ const PHONE = {
  * Usage: wrap your screen content (status bar + app header + body) as children.
  * The frame adds ~72px of total vertical overhead (camera bar 22px + bottom 24px + padding 12px×2px).
  */
-export default function PhoneFrame({ children, width = 264, className = '' }: PhoneFrameProps) {
+export default function PhoneFrame({ children, width = 264, className = '', rounded = false }: PhoneFrameProps) {
   const pad = 11;
   const screenW = width - pad * 2;
 
@@ -111,6 +113,8 @@ export default function PhoneFrame({ children, width = 264, className = '' }: Ph
           background:
             `linear-gradient(160deg, ${PHONE.bezel} 0%, ${PHONE.bezelMid} 28%, ${PHONE.bezelDark} 55%, ${PHONE.bezelDeep} 80%, ${PHONE.bezelLight} 100%)`,
           padding: `${pad}px`,
+          borderRadius: rounded ? 28 : 0,
+          overflow: rounded ? 'hidden' : 'visible',
           boxShadow:
             '0 40px 90px rgba(0,0,0,0.70), 0 8px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.055), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(0,0,0,0.55)',
         }}
