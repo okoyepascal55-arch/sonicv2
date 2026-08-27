@@ -347,7 +347,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                 <p className="text-foreground-500 text-sm leading-relaxed">{getRecommendedService().description}</p>
               </div>
               <p className="text-foreground-500 text-sm leading-relaxed mb-6 max-w-md mx-auto">
-                Buchen Sie jetzt ein kostenloses Beratungsgespräch, um Ihre passende Lösung im Detail zu besprechen.
+                Buch jetzt ein kostenloses Beratungsgespräch, um deine passende Lösung im Detail zu besprechen.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <a

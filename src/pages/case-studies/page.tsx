@@ -766,7 +766,7 @@ export default function CaseStudiesPage() {
                     Auch für Ihre Marke möglich?
                   </h3>
                   <p className="text-foreground-400 text-sm mt-2">
-                    Lassen Sie uns besprechen, wie Sonic ähnliche Ergebnisse für Ihr Unternehmen erzielen kann.
+                    Lass uns besprechen, wie Sonic ähnliche Ergebnisse für dein Unternehmen erzielen kann.
                   </p>
                 </div>
                 <a

@@ -136,7 +136,7 @@ export default function JobsPage() {
               </div>
               <p className="text-base font-black text-[#1a1a1a] mb-2">Unser Stellenportal ist momentan nicht erreichbar.</p>
               <p className="text-sm text-foreground-500 mb-6 max-w-md mx-auto leading-relaxed">
-                Wir entschuldigen uns für die Unannehmlichkeiten. Sie können uns direkt eine Initiativbewerbung senden.
+                Wir entschuldigen uns für die Unannehmlichkeiten. Du kannst uns direkt eine Initiativbewerbung senden.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <button
