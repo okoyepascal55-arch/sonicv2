@@ -18,7 +18,7 @@ export default function DataPaths() {
       <div className="sonic-container relative z-10">
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tBadge}</span></div>
-          <h2 className="leist-h2 text-background-50 uppercase mb-3">{tHeading}</h2>
+          <h2 className="sonic-h2 text-background-50 uppercase mb-3">{tHeading}</h2>
           <p className="text-background-50/45 text-sm leading-relaxed max-w-2xl">{tSub}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-5 items-center mb-10">

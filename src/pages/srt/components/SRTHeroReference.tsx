@@ -37,7 +37,7 @@ export default function SRTHeroReference() {
             <span className="w-1.5 h-1.5 bg-primary-500" />
             <span className="text-[11px] font-black uppercase tracking-[0.2em] text-primary-500">{badge}</span>
           </div>
-          <h1 className="mb-6 font-black uppercase leading-[0.92] tracking-[-0.03em] text-[clamp(54px,6.4vw,92px)]">
+          <h1 className="sonic-h1 mb-6 uppercase">
             <span className="text-white">{h1_1}</span>{' '}<span className="text-primary-500">{h1_2}</span>{' '}<span className="text-white">{h1_3}</span>
           </h1>
           <p className="text-white/55 text-[15px] leading-[1.7] max-w-[480px] mb-2">{sub}</p>

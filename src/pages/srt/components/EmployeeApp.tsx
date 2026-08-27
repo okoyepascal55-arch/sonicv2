@@ -185,7 +185,7 @@ export default function EmployeeApp() {
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="leist-h2 text-white uppercase">
+            <h2 className="sonic-h2 text-white uppercase">
               {tHeading}
             </h2>
             <p className="text-white/50 text-sm leading-relaxed lg:pb-1">

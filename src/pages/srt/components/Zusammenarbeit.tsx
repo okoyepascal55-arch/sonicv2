@@ -21,7 +21,7 @@ export default function Zusammenarbeit() {
       <div className="sonic-container">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span><span className="text-[11px] font-black text-foreground-950/25 uppercase ml-2">6 Schritte</span></div>
-          <h2 className="leist-h2 text-foreground-950 uppercase mb-2">{tHeading}</h2>
+          <h2 className="sonic-h2 text-foreground-950 uppercase mb-2">{tHeading}</h2>
           {tSub && <p className="text-sm text-foreground-950/50">{tSub}</p>}
         </div>
         <div className="border border-foreground-950/[0.08] bg-white">

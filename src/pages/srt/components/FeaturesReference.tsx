@@ -3,12 +3,12 @@ import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 
 const FEATURES = [
-  { number: '01', icon: 'ri-dashboard-line', title: 'Echtzeit-Dashboard', description: 'Alle gewünschten Metriken auf einen Blick — live und übersichtlich dargestellt, für schnellere Entscheidungen.', tags: ['Live-Daten', 'KPIs'] },
-  { number: '02', icon: 'ri-bar-chart-grouped-line', title: 'Performance-Tracking', description: 'Verkaufszahlen, Top-/Flop-Listen.' },
-  { number: '03', icon: 'ri-team-line', title: 'Team-Management', description: 'Recruiting, Einsätze, GPS-genau.' },
-  { number: '04', icon: 'ri-file-chart-line', title: 'Reportings', description: 'Excel, PPT, SQL.' },
-  { number: '05', icon: 'ri-smartphone-line', title: 'Mobile App', description: 'iOS & Android, offline.' },
-  { number: '06', icon: 'ri-shield-check-line', title: 'Datensicherheit', description: 'AES-256, DSGVO.' },
+  { number: '01', icon: 'ri-dashboard-line', title: 'Echtzeit-Dashboard', description: 'Alle gewünschten Metriken auf einen Blick — live und übersichtlich dargestellt, für schnellere Entscheidungen.', tags: ['Live-Daten', 'KPIs'], woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20dashboard%20monitor%20screen%20display%20analytics%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-dashboard-v1&orientation=squarish' },
+  { number: '02', icon: 'ri-bar-chart-grouped-line', title: 'Performance-Tracking', description: 'Verkaufszahlen, Top-/Flop-Listen.', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20bar%20chart%20performance%20analytics%20graph%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-chart-v1&orientation=squarish' },
+  { number: '03', icon: 'ri-team-line', title: 'Team-Management', description: 'Recruiting, Einsätze, GPS-genau.', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20team%20people%20group%20management%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-team-v1&orientation=squarish' },
+  { number: '04', icon: 'ri-file-chart-line', title: 'Reportings', description: 'Excel, PPT, SQL.', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20document%20file%20report%20paper%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-report-v1&orientation=squarish' },
+  { number: '05', icon: 'ri-smartphone-line', title: 'Mobile App', description: 'iOS & Android, offline.', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20smartphone%20mobile%20phone%20app%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-mobile-v1&orientation=squarish' },
+  { number: '06', icon: 'ri-shield-check-line', title: 'Datensicherheit', description: 'AES-256, DSGVO.', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20shield%20security%20protection%20lock%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-shield-v1&orientation=squarish' },
 ];
 
 export default function FeaturesReference() {
@@ -26,7 +26,7 @@ export default function FeaturesReference() {
           <span className="text-[11px] font-black uppercase tracking-[0.1em] text-foreground-950/25 ml-auto">Seit 2008 · 15+ Versionen</span>
         </div>
         <div className="grid md:grid-cols-2 gap-8 items-end mb-8">
-          <h2 className="m-0 text-[clamp(36px,4vw,48px)] font-black leading-[1.04] tracking-[-0.035em] uppercase text-foreground-950">SRT: Die <span className="px-[0.16em] py-[0.02em] bg-primary-500/90 text-foreground-950" style={{ boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>All-in-One</span> Software</h2>
+          <h2 className="sonic-h2 text-foreground-950 uppercase">SRT: Die <span className="px-[0.16em] py-[0.02em] bg-primary-500/90 text-foreground-950" style={{ boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>All-in-One</span> Software</h2>
           <p className="m-0 text-sm text-foreground-950/50">{tSub}</p>
         </div>
 
@@ -34,7 +34,7 @@ export default function FeaturesReference() {
           <div className="col-span-6 md:col-span-3 row-span-2 border-2 border-primary-500/35 p-7 relative overflow-hidden bg-[#FAFDF5] min-h-[280px]">
             <span className="absolute top-3 right-4 text-[64px] font-black leading-none text-foreground-950/[0.04]">01</span>
             <div className="w-[46px] h-[46px] overflow-hidden flex items-center justify-center bg-primary-500 mb-[18px]">
-              {featureIcons[0]?.url ? <img src={featureIcons[0].url} alt={FEATURES[0].title} className="w-full h-full object-cover" loading="lazy" /> : <i className="ri-dashboard-line text-[21px] text-foreground-950" />}
+              {featureIcons[0]?.url ? <img src={featureIcons[0].url} alt={FEATURES[0].title} className="w-full h-full object-cover" loading="lazy" /> : <img src={FEATURES[0].woodIcon} alt={FEATURES[0].title} className="w-full h-full object-cover" loading="lazy" />}
             </div>
             <h3 className="m-0 mb-2 text-xl font-black text-foreground-950 uppercase">Echtzeit-Dashboard</h3>
             <p className="m-0 mb-4 text-[13px] leading-[1.6] text-foreground-950/50 max-w-[300px]">{FEATURES[0].description}</p>
@@ -46,7 +46,7 @@ export default function FeaturesReference() {
             return (
               <div key={feature.number} className="col-span-6 md:col-span-3 border-2 border-foreground-950/8 p-5 flex items-center gap-4">
                 <div className="w-10 h-10 overflow-hidden flex items-center justify-center bg-primary-500/10 flex-shrink-0">
-                  {media?.url ? <img src={media.url} alt={feature.title} className="w-full h-full object-cover" loading="lazy" /> : <i className={`${feature.icon} text-lg text-primary-600`} />}
+                  {media?.url ? <img src={media.url} alt={feature.title} className="w-full h-full object-cover" loading="lazy" /> : <img src={feature.woodIcon} alt={feature.title} className="w-full h-full object-cover" loading="lazy" />}
                 </div>
                 <div><h3 className="m-0 mb-1 text-sm font-black text-foreground-950 uppercase">{feature.title}</h3><p className="m-0 text-[11.5px] text-foreground-950/45">{feature.description}</p></div>
               </div>
@@ -58,7 +58,7 @@ export default function FeaturesReference() {
             return (
               <div key={feature.number} className="col-span-6 md:col-span-2 border-2 border-foreground-950/8 p-[18px]">
                 <div className="w-10 h-10 overflow-hidden flex items-center justify-center mb-2.5 bg-primary-500/10">
-                  {media?.url ? <img src={media.url} alt={feature.title} className="w-full h-full object-cover" loading="lazy" /> : <i className={`${feature.icon} text-xl text-primary-600`} />}
+                  {media?.url ? <img src={media.url} alt={feature.title} className="w-full h-full object-cover" loading="lazy" /> : <img src={feature.woodIcon} alt={feature.title} className="w-full h-full object-cover" loading="lazy" />}
                 </div>
                 <h3 className="m-0 mb-1 text-[13px] font-black text-foreground-950 uppercase">{feature.title}</h3>
                 <p className="m-0 text-[11px] leading-[1.5] text-foreground-950/45">{feature.description}</p>

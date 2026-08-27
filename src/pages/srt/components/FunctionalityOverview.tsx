@@ -45,7 +45,7 @@ export default function FunctionalityOverview() {
             <span className="text-background-50/20 text-[10px] font-black uppercase tracking-widest hidden md:block ml-auto">{MODULES.length} Module</span>
           </div>
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
-            <h2 className="leist-h2 text-background-50 uppercase">
+            <h2 className="sonic-h2 text-background-50 uppercase">
               {tHeading}
             </h2>
             <p className="text-background-50/50 text-sm leading-relaxed max-w-md lg:pb-1">

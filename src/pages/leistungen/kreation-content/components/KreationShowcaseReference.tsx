@@ -152,7 +152,7 @@ export default function KreationShowcaseReference() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div>
               <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-600">Showcase</span></div>
-              <h2 className="leist-h2 text-foreground-950 uppercase">Unsere Arbeit.<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Deine Wirkung.</span></h2>
+              <h2 className="sonic-h2 text-foreground-950 uppercase">Unsere Arbeit.<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Deine Wirkung.</span></h2>
               <p className="text-sm max-w-sm leading-relaxed text-foreground-950/45 mt-3">{TAB_DESC[activeTab]}</p>
             </div>
             <div>
@@ -179,7 +179,7 @@ export default function KreationShowcaseReference() {
         {activeTab === 'cgi' && (
           <div className="mt-1">
             <div className="flex items-start justify-between gap-4 px-8 py-7 bg-foreground-950/5 border border-foreground-950/[0.08]">
-              <div><p className="text-[9px] font-black uppercase tracking-[0.15em] text-primary-600 mb-2">CGI → Reality Vergleich</p><h3 className="leist-h2 text-foreground-950 uppercase mb-1">CGI-Render vs. gebauter Stand</h3><p className="text-xs text-foreground-950/40">Ziehe den Regler — Philips @ IFA Berlin</p></div>
+              <div><p className="text-[9px] font-black uppercase tracking-[0.15em] text-primary-600 mb-2">CGI → Reality Vergleich</p><h3 className="sonic-h2 text-foreground-950 uppercase mb-1">CGI-Render vs. gebauter Stand</h3><p className="text-xs text-foreground-950/40">Ziehe den Regler — Philips @ IFA Berlin</p></div>
               <a href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch`} className="flex-shrink-0 px-5 py-2.5 border border-foreground-950/[0.12] text-xs font-black uppercase tracking-widest text-foreground-950/40 hover:bg-primary-500 hover:text-foreground-950">Portfolio anfragen <i className="ri-arrow-right-line" /></a>
             </div>
             <div className="relative h-[340px] overflow-hidden">
