@@ -43,7 +43,7 @@ export default function SRTPage() {
     <div className="bg-white min-h-[100dvh] overflow-x-hidden">
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
       <div ref={heroRef} id="overview"><SRTHeroReference /></div>
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <TheProblemReference />
       <SRTWavyDivider />
       <FeaturesReference />
@@ -51,13 +51,13 @@ export default function SRTPage() {
       <VideoShowcase />
       <SRTWavyDivider />
       <FunctionalityOverview />
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <EmployeeApp />
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <Zusammenarbeit />
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <DataPaths />
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <Industries />
       <SRTWavyDivider />
       <Proof />
