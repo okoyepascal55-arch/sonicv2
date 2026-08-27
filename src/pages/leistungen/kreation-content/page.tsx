@@ -380,6 +380,14 @@ export default function KreationContentPage() {
 
       {/* ── SOLUTION — light warm bg (directly after dark ChallengeSection) ── */}
       <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden bg-white">
+        {/* Signature radial lime glow — top-right, per reference. Kreation keeps
+            this decorative element as its variant's signature (unlike the rest
+            of the site, which had all glow orbs removed). */}
+        <div
+          className="absolute top-0 right-0 pointer-events-none"
+          style={{ width: '500px', height: '500px', background: 'oklch(0.81 0.19 115 / 0.08)', filter: 'blur(120px)' }}
+          aria-hidden="true"
+        />
         <div
           ref={solutionReveal.ref}
           className="sonic-container relative"
@@ -400,30 +408,19 @@ export default function KreationContentPage() {
               </h2>
               <p className="text-foreground-950/50 text-base max-w-2xl">{tSolutionSub}</p>
             </div>
-            <div className="flex gap-2 flex-shrink-0">
-              <button onClick={() => scrollCards(solutionScroll, 'left')} className="w-10 h-10 flex items-center justify-center border border-foreground-950/15 text-foreground-950/50 hover:border-foreground-950 hover:text-foreground-950 transition-all duration-200 cursor-pointer" style={{ borderRadius: 0 }}>
-                <i className="ri-arrow-left-s-line text-xl" />
-              </button>
-              <button onClick={() => scrollCards(solutionScroll, 'right')} className="w-10 h-10 flex items-center justify-center border border-foreground-950/15 text-foreground-950/50 hover:border-foreground-950 hover:text-foreground-950 transition-all duration-200 cursor-pointer" style={{ borderRadius: 0 }}>
-                <i className="ri-arrow-right-s-line text-xl" />
-              </button>
-            </div>
           </div>
 
           <div
-            ref={solutionScroll}
-            className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
           >
             {SOLUTIONS.map((s, i) => {
               const isHov = hoveredSolution === i;
               return (
                 <div
                   key={i}
-                  className={`flex-shrink-0 snap-start relative overflow-hidden group cursor-default ${isHov ? 'bg-foreground-950 border border-primary-500/50' : 'bg-white border border-foreground-950/[0.09]'}`}
+                  className={`relative overflow-hidden group cursor-default ${isHov ? 'bg-foreground-950 border border-primary-500/50' : 'bg-white border border-foreground-950/[0.09]'}`}
                   style={{
-                    width: 'clamp(280px, 30vw, 360px)',
-                    minHeight: '300px',
+                    minHeight: '280px',
                     borderRadius: 0,
                     transition: 'background 0.35s ease, border-color 0.35s ease',
                   }}
