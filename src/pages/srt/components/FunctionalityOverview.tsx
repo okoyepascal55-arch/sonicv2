@@ -55,7 +55,7 @@ export default function FunctionalityOverview() {
         </div>
 
         {/* Split layout: list left, image preview right */}
-        <div className="grid lg:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-0 border border-background-50/8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-0 border border-background-50/8">
           {/* Left: module list */}
           <div className="lg:col-span-2 flex flex-col">
             {MODULES.map((m, i) => (

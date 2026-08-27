@@ -18,7 +18,7 @@ export default function Carousel3DReference() {
   const [angle, setAngle] = useState(0);
 
   useEffect(() => {
-    const timer = window.setInterval(() => setAngle(value => value + 4), 100);
+    const timer = window.setInterval(() => setAngle(value => value + 2), 150);
     return () => window.clearInterval(timer);
   }, []);
 

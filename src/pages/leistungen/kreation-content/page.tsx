@@ -89,7 +89,7 @@ export default function KreationContentPage() {
       <KreationWavyDivider />
       <section className="sonic-section-md bg-white px-6 border-b border-foreground-950/8"><div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3">{resolvedDisciplines.map(item => <div key={item.label} className="flex flex-col items-center gap-4 py-4"><img src={item.src} alt={item.label} className="w-16 h-16 object-cover" loading="lazy" /><span className="text-xs font-black text-foreground-950/55 uppercase tracking-widest">{item.label}</span><div className="h-px w-6 bg-primary-500" /></div>)}</div></section>
       <ChallengeSection id="herausforderung" headline={tChallengeHeading} subline={tChallengeSub} challenges={CHALLENGES} />
-      <KreationWavyDivider />
+      <KreationWavyDivider darkBackground />
       <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden bg-white">
         <div className="absolute top-0 right-0 pointer-events-none" style={{ width: 500, height: 500, background: 'oklch(0.81 0.19 115 / 0.08)', filter: 'blur(120px)' }} />
         <div ref={solutionRef} className="sonic-container relative" style={{ opacity: solutionVisible ? 1 : 0, transform: solutionVisible ? 'translateY(0)' : 'translateY(32px)', transition: 'opacity 0.7s ease, transform 0.7s ease' }}>

@@ -56,7 +56,7 @@ export default function SRTPage() {
       <EmployeeApp />
       <SRTWavyDivider darkBackground />
       <Zusammenarbeit />
-      <SRTWavyDivider darkBackground />
+      <SRTWavyDivider />
       <DataPaths />
       <SRTWavyDivider darkBackground />
       <Industries />
