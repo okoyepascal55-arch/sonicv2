@@ -126,7 +126,7 @@ export default function ForecastingContent() {
  <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0"aria-hidden="true"/>
  <span className="text-[11px] font-black uppercase tracking-[0.24em]"style={{ color: 'oklch(0.55 0.08 115)' }}>So funktioniert es</span>
  </div>
- <h2 className="leist-h2 text-foreground-950">{tHowHeading}</h2>
+ <h2 className="leist-h2 text-foreground-950 uppercase">{tHowHeading}</h2>
  <p className="text-foreground-950/45 text-sm mt-3 max-w-xl mx-auto">{tHowSub}</p>
  </div>
 
@@ -153,7 +153,7 @@ export default function ForecastingContent() {
  <div className="flex items-center gap-2 mb-3">
  <span className="text-[10px] font-black text-foreground-950/30 uppercase tracking-widest">Schritt {step.num}</span>
  </div>
- <h3 className="leist-h2 text-foreground-950">{step.title}</h3>
+ <h3 className="leist-h2 text-foreground-950 uppercase">{step.title}</h3>
  <p className="text-foreground-950/60 text-sm leading-relaxed">{step.desc}</p>
  </div>
  </div>

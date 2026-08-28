@@ -99,7 +99,7 @@ export default function ServiceGrid({ sectionRef }: Props) {
             <div className="w-10 h-px bg-primary-500/40" />
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-            <h2 className="leist-h2 text-foreground-950">
+            <h2 className="leist-h2 text-foreground-950 uppercase">
               VIER KATEGORIEN.<br />EIN <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>SYSTEM</span>.
             </h2>
             <p className="text-foreground-500 text-sm leading-relaxed max-w-xs lg:text-right lg:pb-1">

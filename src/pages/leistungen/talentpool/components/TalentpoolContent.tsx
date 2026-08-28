@@ -205,7 +205,22 @@ export default function TalentpoolContent() {
         </div>
       </section>
 
-      <WoodenDivider />
+      {/* ── Stats strip — dark, runs into talentprofile section visually ── */}
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
+      <section id="stats" className="bg-foreground-950 px-4 md:px-6 pb-0">
+        <div className="sonic-container">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-primary-500/10 border border-primary-500/10 overflow-hidden">
+            {STATS.map((s, i) => (
+              <div key={i} className="bg-foreground-950 p-6 md:p-8 text-center relative overflow-hidden group">
+                <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/5 transition-colors duration-300" />
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="leist-h2 text-primary-500 mb-1.5 relative z-10">{s.value}</div>
+                <div className="text-white/40 text-xs font-bold uppercase tracking-wider leading-snug relative z-10">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       {/* ── Talent Profiles (horizontal scroll, dark bg — intentional alternation) ── */}
       <section id="talentprofile" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/4 blur-3xl pointer-events-none" />
@@ -258,20 +273,6 @@ export default function TalentpoolContent() {
         </div>
       </section>
 
-      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-      {/* ── Stats ── */}
-      <section id="stats" className="sonic-section-lg bg-white px-4 md:px-6">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-px bg-foreground-950/10 border border-foreground-950/10 overflow-hidden">
-          {STATS.map((s, i) => (
-            <div key={i} className="bg-white p-6 md:p-8 text-center relative overflow-hidden group">
-              <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/5 transition-colors duration-300" />
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="leist-h2 text-foreground-950 mb-1.5 relative z-10">{s.value}</div>
-              <div className="text-foreground-950/40 text-xs font-bold uppercase tracking-wider leading-snug relative z-10">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
     </>
   );
 }
