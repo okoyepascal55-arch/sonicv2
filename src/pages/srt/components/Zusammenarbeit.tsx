@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useText } from '@/hooks/useText';
 
 const STEPS = [
@@ -14,31 +13,39 @@ export default function Zusammenarbeit() {
   const tBadge = useText('srt_zusammenarbeit', 'srt-collab-badge', 'Zusammenarbeit');
   const tHeading = useText('srt_zusammenarbeit', 'srt-collab-heading', 'So funktioniert das SRT');
   const tSub = useText('srt_zusammenarbeit', 'srt-collab-sub', '');
-  const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="zusammenarbeit" className="sonic-section-lg px-4 md:px-6 bg-[#FAFDF5]">
+    <section id="zusammenarbeit" className="sonic-section-md px-4 md:px-6 bg-[#FAFDF5]">
       <div className="sonic-container">
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span><span className="text-[11px] font-black text-foreground-950/25 uppercase ml-2">6 Schritte</span></div>
-          <h2 className="sonic-h2 text-foreground-950 uppercase mb-2">{tHeading}</h2>
-          {tSub && <p className="text-sm text-foreground-950/50">{tSub}</p>}
+          <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <h2 className="sonic-h2 text-foreground-950 uppercase m-0">{tHeading}</h2>
+            {tSub && <p className="text-sm text-foreground-950/50 max-w-sm">{tSub}</p>}
+          </div>
         </div>
-        <div className="border border-foreground-950/[0.08] bg-white">
-          {STEPS.map((step, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={step.number}>
-                <button onClick={() => setOpen(isOpen ? null : i)} className={`w-full flex items-center gap-4 px-5 md:px-[22px] py-[18px] text-left border-l-4 cursor-pointer transition-colors ${isOpen ? 'bg-foreground-950 border-primary-500' : 'bg-white border-transparent hover:border-primary-500/40'}`} style={{ borderBottom: i < STEPS.length - 1 ? '1px solid rgba(0,0,0,0.06)' : 'none' }}>
-                  <span className={`text-[22px] font-black w-8 flex-shrink-0 ${isOpen ? 'text-primary-500' : 'text-foreground-950/35'}`}>{step.number}</span>
-                  <div className={`w-[30px] h-[30px] flex items-center justify-center border flex-shrink-0 ${isOpen ? 'border-primary-500/30' : 'border-primary-500/20'}`}><i className={`${step.icon} text-[13px] ${isOpen ? 'text-primary-500' : 'text-primary-600'}`} /></div>
-                  <h3 className={`flex-1 text-sm font-black uppercase ${isOpen ? 'text-background-50' : 'text-foreground-950'}`}>{step.title} <span className="font-semibold normal-case opacity-60">— {step.short}</span></h3>
-                  <i className={`ri-arrow-down-s-line text-lg transition-transform ${isOpen ? 'text-primary-500 rotate-180' : 'text-foreground-400'}`} />
-                </button>
-                {isOpen && <div className="bg-foreground-950 border-l-4 border-primary-500 px-[22px] py-5 pl-[68px]"><p className="m-0 text-[13px] leading-[1.7] text-background-50/65">{step.description}</p></div>}
+
+        {/* Always-visible 2×3 grid — no accordion, no click required */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground-950/[0.07]">
+          {STEPS.map((step) => (
+            <div key={step.number} className="bg-[#FAFDF5] p-6 relative">
+              {/* Step number — large ghost */}
+              <span className="absolute top-4 right-5 text-[52px] font-black leading-none text-foreground-950/[0.05] select-none">{step.number}</span>
+              {/* Icon + number label */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 flex items-center justify-center border border-primary-500/25 bg-primary-500/8 flex-shrink-0">
+                  <i className={`${step.icon} text-primary-600 text-base`} />
+                </div>
+                <span className="text-[10px] font-black uppercase tracking-[0.18em] text-foreground-950/35">{step.number} / 06</span>
               </div>
-            );
-          })}
+              <h3 className="text-[13px] font-black uppercase text-foreground-950 mb-1 leading-snug">{step.title}</h3>
+              <p className="text-[11px] font-semibold text-primary-600 mb-3 uppercase tracking-wide">{step.short}</p>
+              <p className="text-xs text-foreground-950/50 leading-relaxed m-0">{step.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

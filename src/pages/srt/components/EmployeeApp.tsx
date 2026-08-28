@@ -184,7 +184,7 @@ export default function EmployeeApp() {
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
           </div>
-          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-6 items-end">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <h2 className="sonic-h2 text-white uppercase">
               {tHeading}
             </h2>
@@ -194,9 +194,9 @@ export default function EmployeeApp() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-8 lg:gap-16 items-center">
           {/* Step buttons — compact */}
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             {STEPS.map((step, i) => (
               <button key={i} onClick={() => setActiveStep(i)}
                 className={`w-full text-left flex items-center gap-4 p-4 transition-all duration-300 cursor-pointer group ${
@@ -220,10 +220,12 @@ export default function EmployeeApp() {
             ))}
           </div>
 
-          {/* Phone */}
-          <div className="relative flex justify-center">
-            <PhoneFrame width={288}>
-              <div className="bg-foreground-950" style={{ height: 450 }}>
+          {/* Phone — larger, with lime glow for depth */}
+          <div className="relative flex justify-center items-center">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-16 pointer-events-none" style={{ background: 'radial-gradient(ellipse, oklch(0.81 0.19 115 / 0.18) 0%, transparent 70%)', filter: 'blur(12px)' }} />
+            <div className="relative">
+            <PhoneFrame width={306}>
+              <div className="bg-foreground-950" style={{ height: 480 }}>
                 <div className="h-6 bg-foreground-950 flex items-center justify-between px-3">
                   <span className="text-[7px] text-foreground-600 font-bold">9:41</span>
                   <div className="flex items-center gap-1">
@@ -243,7 +245,8 @@ export default function EmployeeApp() {
                 </div>
               </div>
             </PhoneFrame>
-            <FloatingBadge icon="ri-smartphone-line" text="iOS & Android" className="-top-2 -right-4" />
+            <FloatingBadge icon="ri-smartphone-line" text="iOS & Android" className="-top-2 -right-6" />
+            </div>
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
               {STEPS.map((_, i) => (
                 <button key={i} onClick={() => setActiveStep(i)} className={`transition-all duration-300 cursor-pointer ${
