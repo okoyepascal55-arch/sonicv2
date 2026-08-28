@@ -59,11 +59,17 @@ export default function VideoShowcase() {
         {/* Video panel */}
         <div className="bg-foreground-950 overflow-hidden border-2 border-primary-500/20">
           <div className="relative aspect-video">
+            <img
+              src={`https://img.youtube.com/vi/${VIDEOS[active].videoId}/maxresdefault.jpg`}
+              alt={VIDEOS[active].title}
+              className="absolute inset-0 w-full h-full object-cover opacity-60"
+              loading="lazy"
+            />
             <iframe
               key={VIDEOS[active].videoId + active}
               src={`https://www.youtube.com/embed/${VIDEOS[active].videoId}?autoplay=1&mute=1&loop=1&playlist=${VIDEOS[active].videoId}`}
               title={VIDEOS[active].title}
-              className="w-full h-full"
+              className="absolute inset-0 w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />

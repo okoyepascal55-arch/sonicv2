@@ -74,8 +74,8 @@ function BeforeAfterSlider() {
 
   // ── Dashboard images for Before/After ──
   const { images: baImages } = useMediaStore('leistungen_kreation_before_after');
-  const realityImg = baImages[0]?.url || 'linear-gradient(135deg, oklch(0.24 0.05 30), oklch(0.13 0.005 118))';
-  const cgiImg = baImages[1]?.url || 'linear-gradient(135deg, oklch(0.24 0.05 280), oklch(0.13 0.005 118))';
+  const realityImg = baImages[0]?.url || 'https://readdy.ai/api/search-image?query=Philips%20brand%20trade%20show%20booth%20IFA%20Berlin%20real%20built%20exhibition%20stand%20professional%20retail%20display%20modern%20premium%20consumer%20electronics%20physical%20stand%20interior%20wide%20angle%20shot%20dramatic%20event%20photography&width=1200&height=680&seq=ba-reality&orientation=landscape';
+  const cgiImg = baImages[1]?.url || 'https://readdy.ai/api/search-image?query=Philips%20trade%20show%20booth%20photorealistic%20CGI%203D%20render%20architectural%20visualization%20exhibition%20stand%20design%20lime%20green%20accent%20lighting%20futuristic%20dark%20atmosphere%20high%20quality%20render%20IFA%20Berlin%20concept&width=1200&height=680&seq=ba-cgi&orientation=landscape';
 
   useEffect(() => {
     const el = revealRef.current; if (!el) return;

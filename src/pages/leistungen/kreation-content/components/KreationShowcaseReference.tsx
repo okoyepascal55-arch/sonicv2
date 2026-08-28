@@ -123,9 +123,9 @@ function Lightbox({ items, images, startIndex, onClose }: { items: Item[]; image
   );
 }
 
-function ShowcaseCard({ item, src, span, onOpen, titleSize }: { item: Item; src: string; span: string; onOpen: () => void; titleSize: string }) {
+function ShowcaseCard({ item, src, span, rowSpan = 'span 1', onOpen, titleSize, isWide = false }: { item: Item; src: string; span: string; rowSpan?: string; onOpen: () => void; titleSize: string; isWide?: boolean }) {
   return (
-    <button type="button" onClick={onOpen} className="relative overflow-hidden text-left cursor-pointer group" style={{ gridColumn: span, minHeight: '300px' }}>
+    <button type="button" onClick={onOpen} className="relative overflow-hidden text-left cursor-pointer group w-full" style={{ gridColumn: span, gridRow: rowSpan, minHeight: isWide ? '200px' : '280px', height: isWide ? '200px' : undefined }}>
       <img src={src} alt={item.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/10 to-transparent" />
       <span className="absolute top-3 left-3 bg-primary-500 text-foreground-950 text-[9px] font-black uppercase tracking-[0.06em] px-2.5 py-1">{item.tag}</span>
@@ -180,13 +180,16 @@ export default function KreationShowcaseReference() {
           </div>
         </div>
 
-        <div className="grid gap-1" style={{ gridTemplateColumns: 'repeat(12, 1fr)', gridTemplateRows: 'repeat(2, 300px)' }}>
-          <ShowcaseCard item={items[0]} src={images[0]} span="span 6" onOpen={() => setLightboxIndex(0)} titleSize="30px" />
-          <ShowcaseCard item={items[1]} src={images[1]} span="span 6" onOpen={() => setLightboxIndex(1)} titleSize="17px" />
-          <ShowcaseCard item={items[2]} src={images[2]} span="span 3" onOpen={() => setLightboxIndex(2)} titleSize="14px" />
-          <ShowcaseCard item={items[3]} src={images[3]} span="span 3" onOpen={() => setLightboxIndex(3)} titleSize="14px" />
+        <div className="grid gap-1" style={{ gridTemplateColumns: 'repeat(12, 1fr)', gridTemplateRows: 'repeat(2, 280px)' }}>
+          <ShowcaseCard item={items[0]} src={images[0]} span="span 5" rowSpan="span 2" onOpen={() => setLightboxIndex(0)} titleSize="clamp(1rem,2vw,1.5rem)" />
+          <ShowcaseCard item={items[1]} src={images[1]} span="span 4" rowSpan="span 1" onOpen={() => setLightboxIndex(1)} titleSize="14px" />
+          <ShowcaseCard item={items[2]} src={images[2]} span="span 3" rowSpan="span 1" onOpen={() => setLightboxIndex(2)} titleSize="13px" />
+          <ShowcaseCard item={items[3]} src={images[3]} span="span 4" rowSpan="span 1" onOpen={() => setLightboxIndex(3)} titleSize="13px" />
+          <ShowcaseCard item={items[4]} src={images[4]} span="span 3" rowSpan="span 1" onOpen={() => setLightboxIndex(4)} titleSize="12px" />
         </div>
-        <ShowcaseCard item={items[4]} src={images[4]} span="span 12" onOpen={() => setLightboxIndex(4)} titleSize="22px" />
+        <div className="mt-1">
+          <ShowcaseCard item={items[4]} src={images[4]} span="span 12" rowSpan="auto" onOpen={() => setLightboxIndex(4)} titleSize="20px" isWide />
+        </div>
 
         <div className="mt-1 grid grid-cols-5 gap-1">
           {items.map((item, i) => <button key={item.id} type="button" onClick={() => setLightboxIndex(i)} className="relative overflow-hidden" style={{ height: 64, opacity: lightboxIndex === i ? 1 : 0.65, border: lightboxIndex === i ? '2px solid oklch(0.81 0.19 115)' : '2px solid transparent' }}><img src={images[i]} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" /></button>)}
