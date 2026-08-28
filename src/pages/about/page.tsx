@@ -53,7 +53,6 @@ export default function AboutPage() {
       <div ref={heroRef}>
         <section
           className="relative min-h-[320px] sm:min-h-[400px] md:min-h-[560px] flex flex-col justify-end overflow-hidden bg-foreground-950"
-          style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}
         >
           {/* Full-bleed background image — always renders with fallback */}
           <img

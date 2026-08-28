@@ -2,6 +2,8 @@ import type { MediaItem } from '@/lib/mediaStore';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useText } from '@/hooks/useText';
 
+type DoingItem = { label: string; text: string; alt?: string };
+
 const EXECUTIVES = [
   {
     id: 'bjorn',
@@ -10,8 +12,13 @@ const EXECUTIVES = [
     tag: 'Strategie · Führung',
     tenure: 'Seit 2010',
     eyebrow: 'Vision. Strategie. Führung.',
-    pullQuote: '„Daten liefern die Fakten, Menschen den Unterschied. Alle \'Things\' die mit Daten oder mit Menschen zu tun haben und die Herausforderungen unserer Kunden lösen, sind unsere Spielwiese."',
-    bio: 'Nobody\'s perfect und auch wir müssen unser \'Doing\' täglich hinterfragen bzw. optimieren, damit wir in dem was wir tun, noch besser werden. Der \'Strategic Plan\' wird nur dann funktionieren, wenn wir bereit sind, Gewohntes zu verlassen, neue Chancen zu erkennen und mutig neue Wege zu gehen. Innovation ist kein Zufall, sondern eine Einstellung.',
+    pullQuote: '\u201eDaten liefern die Fakten, Menschen den Unterschied. Alle \u201eThings\u201c die mit Daten oder mit Menschen zu tun haben und die Herausforderungen unserer Kunden lösen, sind unsere Spielwiese.\u201c',
+    bio: '',
+    doing: [
+      { label: 'Doing Things', text: 'Daten liefern die Fakten, Menschen den Unterschied. Alle \u201eThings\u201c die mit Daten oder mit Menschen zu tun haben und die Herausforderungen unserer Kunden lösen, sind unsere Spielwiese.' },
+      { label: 'Doing Things Better', text: "Nobody's perfect und auch wir m\u00fcssen unser \u201eDoing\u201c t\u00e4glich hinterfragen bzw. optimieren, damit wir in dem was wir tun, noch besser werden." },
+      { label: 'Doing New Things', text: 'Der \u201eStrategic Plan\u201c wird nur dann funktionieren, wenn wir bereit sind, Gewohntes zu verlassen, neue Chancen zu erkennen und mutig neue Wege zu gehen. Innovation ist kein Zufall, sondern eine Einstellung.' },
+    ] as DoingItem[],
     metrics: [
       { value: '20.000+', label: 'Promoter:innen täglich' },
       { value: 'DACH', label: 'Marktabdeckung' },
@@ -26,8 +33,13 @@ const EXECUTIVES = [
     tag: 'Vertrieb · Wachstum',
     tenure: 'Seit 2007',
     eyebrow: 'Wachstum. Markt. Dynamik.',
-    pullQuote: '„Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten. Deshalb betrachten wir jede Herausforderung gleichzeitig aus Sicht von Endkunden, Handel, Mitarbeitern und Auftraggebern. Wir tun Dinge, um erfolgreich zu sein — nicht, um beschäftigt zu sein."',
-    bio: 'Neue Ideen allein schaffen keinen Mehrwert. Entscheidend ist, wie konsequent sie in bestehende Strukturen integriert und im Alltag wirksam werden. Automation durch Algorithmen, Analysen durch KI, Umsetzung über die SRT — Technologie erhöht Output, ersetzt aber keine Entscheidung. Wirkung entsteht durch Erfahrung.',
+    pullQuote: '„Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten. Deshalb betrachten wir jede Herausforderung gleichzeitig aus Sicht von Endkunden, Handel, Mitarbeitern und Auftraggebern. Wir tun Dinge, um erfolgreich zu sein – nicht, um beschäftigt zu sein."',
+    bio: '',
+    doing: [
+      { label: 'Doing Things', text: 'Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten. Deshalb betrachten wir jede Herausforderung gleichzeitig aus Sicht von Endkunden, Handel, Mitarbeitern und Auftraggebern. Wir tun Dinge, um erfolgreich zu sein – nicht, um beschäftigt zu sein.', alt: 'Ausführung schlägt Idee. Wir synchronisieren Perspektiven, damit Maßnahmen Wirkung erzeugen.' },
+      { label: 'Doing Things Better', text: 'Neue Ideen allein schaffen keinen Mehrwert. Entscheidend ist, wie konsequent sie in bestehende Strukturen integriert und im Alltag wirksam werden. Neue Dinge ergeben nur dann Sinn, wenn sie funktionieren und in Prozesse überführt werden.', alt: 'Integration schlägt Innovation. Nur skalierbare, prozessfähige Lösungen schaffen Mehrwert.' },
+      { label: 'Doing New Things', text: 'Automation durch Algorithmen, Analysen durch KI, Umsetzung über die SRT. Wir automatisieren nicht, um Menschen zu ersetzen, sondern um ihnen Zeit für Beratung und bessere Entscheidungen zu geben. Erfahrung bleibt entscheidend, um Ergebnisse einzuordnen und Fehler zu erkennen.', alt: 'Technologie erhöht Output, ersetzt aber keine Entscheidung. Wirkung entsteht durch Erfahrung.' },
+    ] as DoingItem[],
     metrics: [
       { value: '€2 Mrd.', label: 'Beeinflusster Umsatz' },
       { value: '18+', label: 'Jahre Vertrieb' },
@@ -44,6 +56,11 @@ const EXECUTIVES = [
     eyebrow: 'Zahlen. Struktur. Weitblick.',
     pullQuote: '„Finance ist heute die zentrale Steuerungsfunktion, die Entscheidungen vorbereitet, Prozesse gestaltet und Digitalisierung vorantreibt. Wir stehen dabei nicht neben dem operativen Geschäft — wir sind ein aktiver Teil davon."',
     bio: 'Lucas verantwortet seit 2019 die finanzielle Steuerung von Sonic. Unter seiner Führung hat sich das Finance Team von reiner Buchhaltung zu einer vollwertigen Finanzfunktion entwickelt. Strukturen, Prozesse und die Zusammenarbeit mit dem operativen Geschäft sind heute eng verzahnt. So ist Finance bei Sonic nicht nur Kontrollinstanz, sondern aktiver Gestalter unternehmerischer Entscheidungen.',
+    doing: [
+      { label: 'Doing Things', text: 'Alles beginnt mit klaren Rollen, klaren Abläufen, klaren Zahlen. Wir schaffen Transparenz über Ergebnisse, Prozesse und Zusammenhänge – als verlässliches Fundament, auf dem gute Entscheidungen und starke Teams überhaupt erst möglich werden.' },
+      { label: 'Doing Things Better', text: 'Erst auf diesem stabilen Fundament kann Qualität entstehen. Daher entwickeln wir Prozesse, Strukturen und Steuerungslogiken kontinuierlich weiter, um aus guter Arbeit exzellente Ergebnisse werden zu lassen – und aus einzelnen Verbesserungen ein System, das dauerhaft trägt.' },
+      { label: 'Doing New Things', text: 'Innovation beginnt dort, wo Mut auf Verantwortung trifft. Sonic ist ein Ort an dem neue Ideen nicht nur gedacht, sondern auch umgesetzt werden können.' },
+    ] as DoingItem[],
     metrics: [
       { value: '2019', label: 'Finance-Aufbau' },
       { value: 'aktiv', label: 'Gestalter' },
@@ -86,7 +103,17 @@ function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
         <blockquote className="text-white font-black leading-[1.3] mb-5" style={{ fontSize: 'clamp(18px,2vw,24px)', letterSpacing: '-0.015em' }}>
           {exec.pullQuote}
         </blockquote>
-        <p className="text-sm text-white/55 leading-relaxed mb-7">{exec.bio}</p>
+        {exec.bio && <p className="text-sm text-white/55 leading-relaxed mb-5">{exec.bio}</p>}
+        {exec.doing && exec.doing.length > 0 && (
+          <div className="mb-6 space-y-3" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '16px' }}>
+            {exec.doing.map((d) => (
+              <div key={d.label}>
+                <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-1" style={{ color: 'oklch(0.81 0.19 115 / 0.7)' }}>{d.label}</p>
+                <p className="text-xs text-white/50 leading-relaxed">{d.text}</p>
+              </div>
+            ))}
+          </div>
+        )}
         <div className="grid grid-cols-2 gap-3 mb-7">
           {exec.metrics.map((m) => (
             <div key={m.label} className="border border-white/10 px-4 py-3.5">
@@ -222,7 +249,17 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                       >
                         {exec.pullQuote}
                       </blockquote>
-                      <p className="text-sm leading-relaxed mb-8" style={{ color: 'oklch(0.48 0.006 260)' }}>{exec.bio}</p>
+                      {exec.bio && <p className="text-sm leading-relaxed mb-5" style={{ color: 'oklch(0.48 0.006 260)' }}>{exec.bio}</p>}
+                      {exec.doing && exec.doing.length > 0 && (
+                        <div className="mb-6 space-y-4" style={{ borderTop: '1px solid oklch(0.885 0.004 110)', paddingTop: '20px' }}>
+                          {exec.doing.map((d) => (
+                            <div key={d.label}>
+                              <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-1.5" style={{ color: 'oklch(0.55 0.08 115)' }}>{d.label}</p>
+                              <p className="text-[13px] leading-relaxed" style={{ color: 'oklch(0.48 0.006 260)' }}>{d.text}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                       <div className="grid grid-cols-2" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
                         {exec.metrics.map((m, mi) => (
                           <div
