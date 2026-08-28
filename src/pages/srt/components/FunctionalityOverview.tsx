@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
 
@@ -22,6 +23,9 @@ const MODULES: Module[] = [
 ];
 
 export default function FunctionalityOverview() {
+  const { images: moduleImages } = useMediaStore('srt_functionality_images');
+  const getModuleImg = (idx: number, fallback: string) =>
+    moduleImages[idx]?.url ? resolveImageUrl(moduleImages[idx].url) : fallback;
   const tBadge = useText('srt_functionality', 'srt-func-badge', 'Funktionsumfang');
   const tHeading = useText('srt_functionality', 'srt-func-heading', 'Alles, was Field-Force-Management braucht.');
   const tSub = useText('srt_functionality', 'srt-func-sub', '');
@@ -91,8 +95,8 @@ export default function FunctionalityOverview() {
           <div className="lg:col-span-3 bg-background-50/4 border-l border-background-50/8 flex flex-col">
             <div className="relative overflow-hidden" style={{ height: '260px' }}>
               <img
-                key={mod.img}
-                src={mod.img}
+                key={mod.id + active}
+                src={getModuleImg(active, mod.img)}
                 alt={mod.title}
                 className="w-full h-full object-cover transition-opacity duration-500"
                 loading="lazy"

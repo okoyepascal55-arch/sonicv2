@@ -267,6 +267,7 @@ export const PAGE_GROUPS: PageGroup[] = [
       // ── Used by live srt page components ──
       'srt_hero_icons',
       'srt_feature_icons',
+      'srt_functionality_images',
       'srt_problem_wood_icons',
       'srt_proof_wood_icons',
       // srt_section_images removed (not used in any component)
@@ -422,12 +423,29 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   /* ── SRT: Feature Wood Icons — none set via dashboard yet; component falls back to its own gradient placeholders ── */
-  srt_feature_icons: [],
+  srt_feature_icons: [
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20dashboard%20monitor%20screen%20display%20analytics%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-dashboard-v1&orientation=squarish', caption: 'Echtzeit-Dashboard — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20bar%20chart%20performance%20analytics%20graph%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-chart-v1&orientation=squarish', caption: 'Performance-Tracking — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20team%20people%20group%20management%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-team-v1&orientation=squarish', caption: 'Team-Management — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20document%20file%20report%20paper%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-report-v1&orientation=squarish', caption: 'Reportings — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20smartphone%20mobile%20phone%20app%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-mobile-v1&orientation=squarish', caption: 'Mobile App — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20shield%20security%20protection%20lock%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-shield-v1&orientation=squarish', caption: 'Datensicherheit — Wood Icon' },
+  ],
 
   /* ── SRT: Section Images ── */
   srt_section_images: [
     { url: 'https://readdy.ai/api/search-image?query=modern%20enterprise%20software%20dashboard%20showing%20real%20time%20retail%20analytics%20on%20large%20monitor%20screen%20clean%20dark%20UI%20design%20with%20charts%20metrics%20and%20KPIs%20professional%20business%20intelligence%20platform%20product%20photography&width=1200&height=800&seq=srt-dashboard-screen&orientation=landscape', caption: 'SRT — Dashboard Screenshot', wide: true },
     { url: 'https://readdy.ai/api/search-image?query=mobile%20app%20interface%20showing%20retail%20performance%20metrics%20on%20smartphone%20screen%20clean%20modern%20UI%20design%20with%20trackable%20KPIs%20field%20force%20management%20app%20product%20photography%20dark%20mode%20professional&width=600&height=800&seq=srt-mobile-screen&orientation=portrait', caption: 'SRT — Mobile App Screenshot' },
+  ],
+
+  /* ── SRT: FunctionalityOverview Module Dashboard Screenshots ── */
+  srt_functionality_images: [
+    { url: 'https://readdy.ai/api/search-image?query=modern%20software%20dashboard%20task%20scheduling%20calendar%20view%20drag%20drop%20dark%20UI%20lime%20green%20accent%20retail%20field%20force%20management%20professional%20enterprise%20SaaS%20interface%20data%20visualization%20clean%20minimal%20dark%20background&width=900&height=520&seq=srt-func-01-plan&orientation=landscape', caption: 'Planung — Dashboard' },
+    { url: 'https://readdy.ai/api/search-image?query=HR%20talent%20management%20dashboard%20employee%20profiles%20grid%20staff%20pool%20dark%20UI%20lime%20green%20accent%20enterprise%20software%20interface%20professional%20SaaS%20platform%20retail%20promoter%20database%20clean%20minimal&width=900&height=520&seq=srt-func-02-talent&orientation=landscape', caption: 'Talentpool — Dashboard' },
+    { url: 'https://readdy.ai/api/search-image?query=GPS%20location%20tracking%20map%20interface%20dark%20UI%20multiple%20pins%20retail%20store%20locations%20field%20force%20check-in%20software%20dashboard%20lime%20green%20accent%20enterprise%20SaaS%20professional%20clean%20minimal%20dark%20background&width=900&height=520&seq=srt-func-03-gps&orientation=landscape', caption: 'GPS Check-In — Dashboard' },
+    { url: 'https://readdy.ai/api/search-image?query=data%20integration%20platform%20API%20connections%20ERP%20WMS%20enterprise%20software%20dark%20UI%20lime%20green%20accent%20connected%20systems%20diagram%20SaaS%20dashboard%20professional%20clean%20minimal%20dark%20background%20data%20flow&width=900&height=520&seq=srt-func-04-ext&orientation=landscape', caption: 'Externe Daten — Dashboard' },
+    { url: 'https://readdy.ai/api/search-image?query=AI%20document%20processing%20intelligence%20software%20interface%20dark%20UI%20invoice%20receipt%20classification%20automation%20lime%20green%20accent%20machine%20learning%20enterprise%20SaaS%20professional%20clean%20minimal%20dashboard&width=900&height=520&seq=srt-func-05-doc&orientation=landscape', caption: 'Document Intelligence — Dashboard' },
+    { url: 'https://readdy.ai/api/search-image?query=route%20optimization%20software%20map%20interface%20dark%20UI%20field%20sales%20representative%20route%20planning%20multiple%20stops%20efficiency%20lime%20green%20accent%20enterprise%20SaaS%20dashboard%20professional%20clean%20minimal&width=900&height=520&seq=srt-func-06-route&orientation=landscape', caption: 'Routenplanung — Dashboard' },
   ],
 
   /* ── LVP: Hero Images ── */
@@ -1195,10 +1213,19 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   /* ── SRT: TheProblem — Wood Icons ── */
-  srt_problem_wood_icons: [],
+  srt_problem_wood_icons: [
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20broken%20chain%20disconnected%20link%20problem%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-prob-01&orientation=squarish', caption: 'Datensilos — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20hourglass%20time%20waiting%20delay%20problem%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-prob-02&orientation=squarish', caption: 'Zeitverlust — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20eye%20visibility%20blind%20no%20overview%20problem%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-prob-03&orientation=squarish', caption: 'Kein Überblick — Wood Icon' },
+  ],
 
   /* ── SRT: Proof — Wood Icons — none set via dashboard yet; component falls back to its own gradient placeholders ── */
-  srt_proof_wood_icons: [],
+  srt_proof_wood_icons: [
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20rising%20arrow%20growth%20performance%20success%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-proof-01&orientation=squarish', caption: 'Umsatzsteigerung — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20clock%20time%20speed%20efficiency%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-proof-02&orientation=squarish', caption: 'Zeitersparnis — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20star%20rating%20quality%20excellence%20award%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-proof-03&orientation=squarish', caption: 'Qualität — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=wooden%20shield%20checkmark%20verified%20trust%20security%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=80&height=80&seq=wood-srt-proof-04&orientation=squarish', caption: 'Vertrauen — Wood Icon' },
+  ],
 
   /* ── SRT: Pricing — Card Images ── */
   srt_pricing_images: [
@@ -1286,6 +1313,7 @@ const HUMAN_LABELS: Record<string, string> = {
   '/images/Case Studies -Fallbsp/SEB': 'SEB',
   'srt_hero_icons': 'SRT — Hero Stat Icons',
   'srt_feature_icons': 'SRT — Feature Wood Icons',
+  'srt_functionality_images': 'SRT — Funktionsumfang Module Screenshots',
   'srt_section_images': 'SRT — Section Images',
   'lvp_hero_images': 'Live Video — Hero Images',
   'lvp_studio_images': 'Live Video — Studio Images',
@@ -1570,6 +1598,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'industries_grid_wood_icons': 6,
   'about_values_visual_wood_icons': 4,
   'about_origin_story_wood_bg': 1,
+  'srt_functionality_images': 6,  // 6 module screenshots
   'srt_problem_wood_icons': 3,
   'srt_proof_wood_icons': 4,
   'srt_pricing_images': 3,

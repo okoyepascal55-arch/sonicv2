@@ -17,7 +17,7 @@ export default function RatgeberHero({ h1, h1Accent, heroSubtitle, heroSummary, 
 
   return (
     <section className="relative overflow-hidden">
-      <div className="relative min-h-[480px] md:min-h-[520px] flex items-center justify-center overflow-hidden">
+      <div className="relative min-h-[480px] md:min-h-[520px] flex items-end overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={heroImageUrl}
@@ -26,7 +26,7 @@ export default function RatgeberHero({ h1, h1Accent, heroSubtitle, heroSummary, 
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/60" />
         </div>
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
+        <div className="relative z-10 w-full max-w-[1280px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
               <div className="flex items-center gap-3 mb-6">

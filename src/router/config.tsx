@@ -8,7 +8,6 @@ const CareersPage = lazy(() => import('../pages/careers/page'));
 const CaseStudiesPage = lazy(() => import('../pages/case-studies/page'));
 const IndustriesPage = lazy(() => import('../pages/industries/page'));
 const SRTPage = lazy(() => import('../pages/srt/page'));
-const TeamPage = lazy(() => import('../pages/team/page'));
 const LosungenPage = lazy(() => import('../pages/losungen/page'));
 const SonicReelsPage = lazy(() => import('../pages/sonic-reels/page'));
 const BlogPage = lazy(() => import('../pages/blog/page'));
@@ -23,8 +22,6 @@ const EventsMessenPage = lazy(() => import('../pages/leistungen/events-messen/pa
 const KreationContentPage = lazy(() => import('../pages/leistungen/kreation-content/page'));
 const WarehouseLogistikPage = lazy(() => import('../pages/leistungen/warehouse-logistik/page'));
 const NotFoundPage = lazy(() => import('../pages/NotFound'));
-const JobsPage = lazy(() => import('../pages/jobs/page'));
-const JobDetailPage = lazy(() => import('../pages/jobs/[hash]/page'));
 const KontaktPage = lazy(() => import('../pages/kontakt/page'));
 const ErlebnismarketingPage = lazy(() => import('../pages/ratgeber/erlebnismarketing/page'));
 const VerkaufsfoerderungPOSPage = lazy(() => import('../pages/ratgeber/verkaufsfoerderung-pos/page'));
@@ -118,10 +115,6 @@ const routes: RouteObject[] = [
     element: <SRTPage />,
   },
   {
-    path: '/team',
-    element: <TeamPage />,
-  },
-  {
     path: '/losungen',
     element: <LosungenPage />,
   },
@@ -168,14 +161,6 @@ const routes: RouteObject[] = [
   {
     path: '/leistungen/warehouse-logistik',
     element: <WarehouseLogistikPage />,
-  },
-  {
-    path: '/jobs',
-    element: <JobsPage />,
-  },
-  {
-    path: '/jobs/:hash',
-    element: <JobDetailPage />,
   },
   {
     path: '/kontakt',
