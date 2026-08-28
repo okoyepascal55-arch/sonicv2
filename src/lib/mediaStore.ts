@@ -83,6 +83,8 @@ export const PAGE_GROUPS: PageGroup[] = [
       'home_services_wood_icons',
       // ── ConsultationButton ──
       'home_consultation_wood_icon',
+      // ── ModernDNA / Sonic DNA ──
+      'home_moderndna_wood_icons',
       // ── LiveMetrics ──
       'home_livemetrics_wood_bg',
     ],
@@ -151,6 +153,9 @@ export const PAGE_GROUPS: PageGroup[] = [
       'leistungen_kreation_solution_wood_icons',
       'leistungen_kreation_discipline_wood_icons',
       'leistungen_kreation_photo_grid',
+      // ── KreationFaces — team leads Robert H and Inga L ──
+      'kreation_faces_robert',
+      'kreation_faces_inga',
       'leistungen_warehouse_fullservice_photo',
       'leistungen_video_format_photos',
     ],
@@ -212,6 +217,8 @@ export const PAGE_GROUPS: PageGroup[] = [
       'careers_culture_wood_icons',
       'careers_hero_wood_icons',
       'careers_events_videos',
+      // ── Pictorial Showcase (under Team Events) ──
+      'careers_pictorial_showcase',
     ],
   },
   {
@@ -268,10 +275,10 @@ export const PAGE_GROUPS: PageGroup[] = [
       'srt_hero_icons',
       'srt_feature_icons',
       'srt_functionality_images',
+      'srt_section_images',
       'srt_problem_wood_icons',
       'srt_proof_wood_icons',
-      // srt_section_images removed (not used in any component)
-      // srt_pricing_images removed (not used in any component)
+      'srt_pricing_images',
     ],
   },
   // common group has no active mediaStore usage — components use hardcoded assets
