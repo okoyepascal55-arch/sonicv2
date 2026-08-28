@@ -31,23 +31,12 @@ export default function KarriereHero() {
         <img
           src={heroImage}
           alt=""
-          className="h-full w-full object-cover object-top"
+          className="absolute inset-0 w-full h-full object-cover object-center"
           fetchPriority="high"
           decoding="async"
         />
       </div>
 
-      {/* Decorative wave SVG background */}
-      <div
-        className="absolute inset-0 flex items-center justify-center opacity-[0.18] pointer-events-none"
-        aria-hidden="true"
-      >
-        <svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg" className="w-[70%] md:w-[52%] max-w-[720px]">
-          <path d="M0 70 Q 25 20 50 70 T 100 70 T 150 70 T 200 70 T 250 70 T 300 70" fill="none" stroke="oklch(var(--primary-500))" strokeWidth="4" strokeLinecap="round" />
-          <path d="M0 90 Q 25 60 50 90 T 100 90 T 150 90 T 200 90 T 250 90 T 300 90" fill="none" stroke="#3A3A3C" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
-          <path d="M0 50 Q 25 30 50 50 T 100 50 T 150 50 T 200 50 T 250 50 T 300 50" fill="none" stroke="#3A3A3C" strokeWidth="3" strokeLinecap="round" opacity="0.4" />
-        </svg>
-      </div>
 
       {/* Dark gradient overlay */}
       <div

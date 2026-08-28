@@ -52,25 +52,21 @@ export default function AboutPage() {
       {/* ── HERO — bottom-anchored, matching careers ── */}
       <div ref={heroRef}>
         <section
-          className="relative min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex flex-col justify-end overflow-hidden bg-foreground-950"
-          style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}
+          className="relative min-h-[320px] sm:min-h-[400px] md:min-h-[560px] flex flex-col justify-end overflow-hidden bg-foreground-950"
+          style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}
         >
-          {/* Full-bleed background image */}
-          {headerImages[0]?.url && (
-            <img
-              src={headerImages[0].url}
-              alt="Sonic Group — Über uns"
-              className="absolute inset-0 w-full h-full object-cover object-center"
-              fetchPriority="high"
-            />
-          )}
+          {/* Full-bleed background image — always renders with fallback */}
+          <img
+            src={headerImages[0]?.url || '/images/Über uns/Über uns/1. Header/Gruppenfoto-00351.webp'}
+            alt="Sonic Group — Über uns"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            fetchPriority="high"
+          />
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
 
-
-
-          {/* Hero content — bottom-anchored */}
-          <div className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-8 pb-10 md:pb-14 w-full">
+          {/* Hero content — bottom-anchored, sonic-container matches all other pages */}
+          <div className="relative z-10 sonic-container pb-10 md:pb-14">
             {/* Eyebrow badge — unified token pattern */}
             <div className="flex items-center gap-3 mb-5 md:mb-6">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />

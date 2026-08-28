@@ -8,75 +8,51 @@ type Face = {
   id: string;
   name: string;
   role: string;
-  location: string;
-  since: string;
   pullQuote: string;
   bio: string;
-  metric: string;
-  metricLabel: string;
   image: string;
 };
 
 const getFaces = (dbImages: { url: string }[]): Face[] => [
   {
-    id: 'hassibullah',
-    name: 'Hassibullah',
-    role: 'Sales Activator',
-    location: 'Bayern',
-    since: 'Seit 2016',
-    pullQuote: '„Ich kam 2016 ohne ein Wort Deutsch nach Deutschland. Mit viel Ehrgeiz habe ich die IHK-Ausbildung geschafft, bin dann mutig zu Sonic gewechselt — und hier hat man mir nicht nur einen Job gegeben, sondern gezeigt, was möglich ist, wenn Potenzial auf Perspektive trifft."',
-    bio: 'Hassibullah kam 2016 nach Deutschland und baute sich durch Einsatz und Ehrgeiz eine Karriere im Retail auf. Bei Sonic fand er ein Team, das auf ihn vertraut — nicht auf seinen Lebenslauf.',
-    metric: '127%',
-    metricLabel: 'Zielerreichung',
-    image: dbImages[0]?.url || 'https://readdy.ai/api/search-image?query=confident+young+man+professional+retail+agency+authentic+portrait+warm+smile+high+contrast&width=600&height=800&seq=sf-01&orientation=portrait',
+    id: 'sascha',
+    name: 'Sascha M.',
+    role: 'Senior IT Admin',
+    pullQuote: "„Gute IT ist unsichtbar — und genau das ist das Ziel. Wenn die Systeme laufen, läuft Sonic.“",
+    bio: 'Sascha verantwortet die IT-Infrastruktur bei Sonic. Er sorgt dafür, dass die technische Basis zuverlässig funktioniert — damit alle anderen ihre Arbeit machen können.',
+    image: dbImages[0]?.url || 'https://readdy.ai/api/search-image?query=professional+man+IT+administrator+confident+portrait+modern+office+editorial&width=600&height=800&seq=sf-sascha-01&orientation=portrait',
+  },
+  {
+    id: 'marcel',
+    name: 'Marcel W.',
+    role: 'Finance Controller',
+    pullQuote: "„Zahlen erzählen Geschichten — man muss nur wissen, wie man sie liest.“",
+    bio: 'Marcel bringt finanzielle Klarheit in ein schnellwachsendes Unternehmen. Als Finance Controller stellt er sicher, dass Entscheidungen auf verlässlichen Grundlagen getroffen werden.',
+    image: dbImages[1]?.url || 'https://readdy.ai/api/search-image?query=professional+man+finance+controller+confident+editorial+portrait+office+modern&width=600&height=800&seq=sf-marcel-02&orientation=portrait',
   },
   {
     id: 'andrew',
-    name: 'Andrew',
-    role: 'Field Promoter',
-    location: 'Bundesweit',
-    since: 'Seit 2019',
-    pullQuote: '„Nach meiner Auszeit war ich unsicher. Sonic hat mich nicht bewertet — sie haben mich einfach willkommen geheißen."',
-    bio: 'Andrew kehrte nach einer persönlichen Auszeit zurück in die Berufswelt. Sonic hat ihn ohne Vorbehalte aufgenommen. Heute ist er bundesweit im Einsatz und hat das Vertrauen zurückgewonnen, das er brauchte.',
-    metric: '22',
-    metricLabel: 'Städte im Einsatz',
-    image: dbImages[1]?.url || 'https://readdy.ai/api/search-image?query=professional+man+event+manager+confident+editorial+portrait+light+background&width=600&height=800&seq=sf-02&orientation=portrait',
+    name: 'Andrew W.',
+    role: 'Event and Logistics Manager',
+    pullQuote: "„Im Event-Geschäft gibt es kein 'Morgen'. Alles muss heute klappen — und das ist genau das, was mich antreibt.“",
+    bio: 'Andrew koordiniert Events und Logistik bei Sonic. Er bringt Struktur in komplexe Abläufe und sorgt dafür, dass jede Veranstaltung reibungslos über die Bühne geht.',
+    image: dbImages[2]?.url || 'https://readdy.ai/api/search-image?query=professional+man+event+logistics+manager+confident+editorial+portrait+modern+office&width=600&height=800&seq=sf-andrew-03&orientation=portrait',
   },
   {
-    id: 'peter',
-    name: 'Peter',
-    role: 'Regional Lead · Mentor',
-    location: 'NRW',
-    since: 'Seit 2018',
-    pullQuote: '„Nach meinem Rückschlag hat Sonic auf mich geschaut — nicht auf die Lücke im Lebenslauf. Heute bin ich Regional Lead und Mentor."',
-    bio: 'Peter weiß, wie es ist, neu anfangen zu müssen. Sonic gab ihm die Chance — und er hat sie genutzt. Als Regional Lead gibt er heute zurück, was ihm selbst den Neustart ermöglicht hat.',
-    metric: '5 J.',
-    metricLabel: 'Regional Lead',
-    image: dbImages[2]?.url || 'https://readdy.ai/api/search-image?query=mature+confident+man+regional+manager+leader+editorial+portrait+studio+lighting&width=600&height=800&seq=sf-03&orientation=portrait',
-  },
-  {
-    id: 'tanja',
-    name: 'Tanja',
-    role: 'Recruiting Lead',
-    location: 'Krefeld',
-    since: 'Seit 2020',
-    pullQuote: '„Ich habe Sonics Recruiting von Grund auf aufgebaut. Hier durfte ich vom ersten Tag an Verantwortung übernehmen."',
-    bio: 'Tanja baute das Recruiting-Team von null auf. Unter ihrer Führung wurde Sonic fünfmal als Kununu Top Company ausgezeichnet — ein Ergebnis, das für sich spricht.',
-    metric: '98%',
-    metricLabel: 'Bewerberzufriedenheit',
-    image: dbImages[3]?.url || 'https://readdy.ai/api/search-image?query=professional+woman+HR+recruiter+warm+smile+modern+office+editorial+portrait&width=600&height=800&seq=sf-04&orientation=portrait',
+    id: 'michelle',
+    name: 'Michelle G.',
+    role: 'Senior Project Manager',
+    pullQuote: "„Erfolgreiche Projekte entstehen nicht durch Zufall — sie entstehen durch konsequente Planung und echte Teamarbeit.“",
+    bio: 'Michelle leitet komplexe Kundenprojekte bei Sonic. Als Senior Project Manager hält sie alle Fäden zusammen und stellt sicher, dass Deadlines und Qualitätsansprüche eingehalten werden.',
+    image: dbImages[3]?.url || 'https://readdy.ai/api/search-image?query=professional+woman+senior+project+manager+confident+editorial+portrait+modern+office&width=600&height=800&seq=sf-michelle-04&orientation=portrait',
   },
   {
     id: 'janina',
-    name: 'Janina',
-    role: 'HR Director',
-    location: 'Krefeld',
-    since: 'Seit 2017',
-    pullQuote: '„Mein größter Erfolg ist keine Zahl — es sind die Menschen, die seit Jahren bleiben."',
-    bio: 'Janina verantwortet die Unternehmenskultur bei Sonic. Die Ø-Betriebszugehörigkeit von 5,15 Jahren — dreimal über dem Branchendurchschnitt — ist das beste Zeugnis ihrer Arbeit.',
-    metric: 'Ø 5,15 J.',
-    metricLabel: 'Betriebszugehörigkeit',
-    image: dbImages[4]?.url || 'https://readdy.ai/api/search-image?query=professional+woman+HR+director+executive+poised+elegant+editorial+portrait&width=600&height=800&seq=sf-05&orientation=portrait',
+    name: 'Janina B.',
+    role: 'HR Manager',
+    pullQuote: "„Menschen sind das Herzstück von Sonic. Meine Aufgabe ist es, die richtigen Menschen zu finden — und sicherzustellen, dass sie sich hier entfalten können.“",
+    bio: 'Janina verantwortet das Human Resources Management bei Sonic. Sie gestaltet Recruiting, Onboarding und Unternehmenskultur so, dass Talente langfristig bleiben.',
+    image: dbImages[4]?.url || 'https://readdy.ai/api/search-image?query=professional+woman+HR+manager+warm+authentic+smile+editorial+portrait+modern+office&width=600&height=800&seq=sf-janina-05&orientation=portrait',
   },
 ];
 
@@ -129,12 +105,7 @@ export default function SonicFamily() {
 
               {/* Name + role overlay */}
               <div className="absolute left-0 right-0 bottom-0 p-7 md:p-10">
-                <div
-                  className="inline-flex items-center gap-2 mb-4 px-3 py-1.5"
-                  style={{ background: 'oklch(0.81 0.19 115)', color: 'oklch(0.16 0.006 118)' }}
-                >
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em]">{active.metric} {active.metricLabel}</span>
-                </div>
+
                 <p
                   className="font-black text-white leading-none tracking-tight mb-1"
                   style={{ fontSize: 'clamp(32px,4vw,52px)', letterSpacing: '-0.03em' }}
@@ -143,8 +114,7 @@ export default function SonicFamily() {
                 </p>
                 <div className="flex items-center gap-2">
                   <span className="text-[11px] font-bold text-white">{active.role}</span>
-                  <span className="w-1 h-1 bg-primary-500 flex-shrink-0" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.14em] text-white/50">{active.since}</span>
+
                 </div>
               </div>
             </div>
@@ -156,7 +126,7 @@ export default function SonicFamily() {
             >
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.28em] mb-8" style={{ color: 'oklch(0.81 0.19 115)' }}>
-                  {active.location} · {active.since}
+                  {active.role}
                 </p>
                 <i className="ri-double-quotes-l text-3xl mb-5 block" style={{ color: 'oklch(0.81 0.19 115 / 0.35)' }} />
                 <blockquote
