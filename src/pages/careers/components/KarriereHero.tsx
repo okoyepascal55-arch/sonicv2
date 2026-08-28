@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 
 export default function KarriereHero() {
+  const [hovered, setHovered] = useState(false);
   const { images: heroBgImages } = useMediaStore('careers_hero_images');
   const { images: karriereImages } = useMediaStore('/images/Karriere');
 
@@ -22,16 +24,19 @@ export default function KarriereHero() {
 
   return (
     <section
-      className="relative flex min-h-[560px] sm:min-h-[640px] md:min-h-[720px] items-end overflow-hidden"
+      className="relative flex min-h-[560px] sm:min-h-[640px] md:min-h-[720px] items-end overflow-hidden group"
       style={{ background: 'oklch(0.13 0.005 118)' }}
       id="stellen"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       {/* Full-bleed background image */}
       <div className="absolute inset-0" aria-hidden="true">
         <img
           src={heroImage}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out"
+          style={{ transform: hovered ? 'scale(1.03)' : 'scale(1)' }}
           fetchPriority="high"
           decoding="async"
         />

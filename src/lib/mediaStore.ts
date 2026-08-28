@@ -473,6 +473,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&rel=0&modestbranding=1', caption: 'Content Creation — YouTube Embed URL (full URL with ?autoplay=1&mute=1&rel=0...)' },
     { url: 'https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1&rel=0&modestbranding=1', caption: 'Team Events — YouTube Embed URL (full URL with ?autoplay=1&mute=1&rel=0...)' },
     { url: 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&rel=0&modestbranding=1', caption: 'Promoter Events — YouTube Embed URL (full URL with ?autoplay=1&mute=1&rel=0...)' },
+    { url: 'https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1&rel=0&modestbranding=1', caption: 'Roadshows & Messen — YouTube Embed URL (full URL with ?autoplay=1&mute=1&rel=0...)' },
   ],
 
   /* ── CAREERS: Team Events Images ── */
@@ -480,6 +481,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Content Creation — Polaroid', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg', caption: 'Team Events — Polaroid', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg', caption: 'Promoter Events — Polaroid', wide: true },
+    { url: '/images/Karriere/IMG_0002.webp', caption: 'Roadshows & Messen — Polaroid', wide: true },
   ],
 
   /* ── CAREERS: DreamTeam Events Images ── */
