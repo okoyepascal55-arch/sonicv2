@@ -8,6 +8,7 @@ import KarriereCulture from './components/KarriereCulture';
 import KarriereAwards from './components/KarriereAwards';
 import SonicFamily from './components/SonicFamily';
 import SonicTeamEvents from './components/SonicTeamEvents';
+import CareerShowcase from './components/CareerShowcase';
 import KarriereJobs from './components/KarriereJobs';
 
 function MobileStickyCta() {
@@ -86,6 +87,7 @@ export default function CareersGatewayPage() {
 
         {/* 05 — Leben bei Sonic */}
         <SonicTeamEvents />
+        <CareerShowcase />
 
         <WoodenDivider />
 

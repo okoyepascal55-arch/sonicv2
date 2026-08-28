@@ -285,7 +285,9 @@ export default function ClientProof() {
             <button
               onClick={() => {
                 if (!scrollRef.current) return;
+                autoScrollPaused.current = true;
                 scrollRef.current.scrollBy({ left: -scrollRef.current.clientWidth * 0.6, behavior: 'smooth' });
+                setTimeout(() => { autoScrollPaused.current = false; }, 3000);
               }}
               aria-label="Vorheriges Testimonial"
               className="w-10 h-10 flex items-center justify-center border border-foreground-200 hover:border-primary-500 hover:bg-primary-500/10 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
@@ -295,7 +297,9 @@ export default function ClientProof() {
             <button
               onClick={() => {
                 if (!scrollRef.current) return;
+                autoScrollPaused.current = true;
                 scrollRef.current.scrollBy({ left: scrollRef.current.clientWidth * 0.6, behavior: 'smooth' });
+                setTimeout(() => { autoScrollPaused.current = false; }, 3000);
               }}
               aria-label="Nächstes Testimonial"
               className="w-10 h-10 flex items-center justify-center border border-foreground-200 hover:border-primary-500 hover:bg-primary-500/10 transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"

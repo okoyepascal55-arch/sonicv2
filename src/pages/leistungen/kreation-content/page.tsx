@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSEO } from '@/hooks/useSEO';
+import WoodenDivider from '@/components/base/WoodenDivider';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
 import ClientProof from '@/components/feature/ClientProof';
 import ChallengeSection from '@/components/feature/ChallengeSection';
+import KreationFaces from './components/KreationFaces';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import Carousel3DReference from './components/Carousel3DReference';
 import KreationShowcaseReference from './components/KreationShowcaseReference';
@@ -89,6 +91,9 @@ export default function KreationContentPage() {
       </div>
       <KreationWavyDivider />
       <section className="sonic-section-md bg-white px-6 border-b border-foreground-950/8"><div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3">{resolvedDisciplines.map(item => <div key={item.label} className="flex flex-col items-center gap-4 py-4"><img src={item.src} alt={item.label} className="w-16 h-16 object-cover" loading="lazy" /><span className="text-xs font-black text-foreground-950/55 uppercase tracking-widest">{item.label}</span><div className="h-px w-6 bg-primary-500" /></div>)}</div></section>
+      <WoodenDivider />
+      <KreationFaces />
+      <WoodenDivider />
       <ChallengeSection id="herausforderung" headline={tChallengeHeading} subline={tChallengeSub} challenges={CHALLENGES} />
       <KreationWavyDivider darkBackground />
       <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden bg-white">

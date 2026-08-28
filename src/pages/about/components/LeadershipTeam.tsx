@@ -39,12 +39,12 @@ export default function LeadershipTeam() {
 
         {/* ── BOLD SPLIT: TEAM PHOTO + DARK STAT PANEL ── */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-0 bg-white border border-[#E7E4D4] overflow-hidden">
-          {/* Team group photo */}
-          <div className="relative overflow-hidden min-h-[240px] sm:min-h-[340px] lg:min-h-[420px] bg-foreground-950">
+          {/* Team group photo — aspect-ratio drives height, not a fixed min-h */}
+          <div className="relative overflow-hidden bg-foreground-950" style={{ aspectRatio: '4/3', minHeight: '240px' }}>
             <img
               src={teamPhoto}
               alt="Das Sonic Team — vielfältige Fachkräfte aus unterschiedlichen Branchen"
-              className="w-full h-full object-cover object-top"
+              className="absolute inset-0 w-full h-full object-cover object-top"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-foreground-950/80 via-[#0B0B0C]/5 to-transparent" />

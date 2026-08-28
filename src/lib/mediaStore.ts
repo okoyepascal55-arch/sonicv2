@@ -531,6 +531,14 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://readdy.ai/api/search-image?query=professional%20woman%20HR%20manager%20warm%20authentic%20smile%20editorial%20portrait%20modern%20office%20dark%20background%20natural%20light%20professional%20approachable&width=600&height=800&seq=sf-janina-05&orientation=portrait', caption: 'Janina B. — HR Manager' },
   ],
 
+  /* ── KREATION: Team Faces ── */
+  kreation_faces_robert: [
+    { url: 'https://readdy.ai/api/search-image?query=professional%20man%20creative%20director%20confident%20editorial%20portrait%20dark%20background%20studio%20lighting%20artistic%20modern%20agency&width=600&height=800&seq=kf-robert-01&orientation=portrait', caption: 'Robert H. — Creative Director' },
+  ],
+  kreation_faces_inga: [
+    { url: 'https://readdy.ai/api/search-image?query=professional%20woman%20content%20head%20creative%20confident%20editorial%20portrait%20dark%20background%20studio%20lighting%20modern%20agency&width=600&height=800&seq=kf-inga-02&orientation=portrait', caption: 'Inga L. — Head of Content' },
+  ],
+
   /* ── CAREERS: RecruiterCTA Image ── */
   careers_recruitercta_image: [
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg', caption: 'Tanja — Recruiting Team', wide: true },
@@ -560,6 +568,16 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://readdy.ai/api/search-image?query=wooden%20star%20person%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-leader-chestnut&orientation=squarish', caption: 'Leadership-Gespräch — Star Person Icon' },
     { url: 'https://readdy.ai/api/search-image?query=wooden%20handshake%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-handshake-chestnut&orientation=squarish', caption: 'Angebot & Verhandlung — Handshake Icon' },
     { url: 'https://readdy.ai/api/search-image?query=wooden%20rocket%20launch%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-rocket-chestnut&orientation=squarish', caption: 'Willkommen — Rocket Icon' },
+  ],
+
+  /* ── CAREERS: Pictorial Showcase ── */
+  careers_pictorial_showcase: [
+    { url: 'https://readdy.ai/api/search-image?query=team%20office%20collaboration%20creative%20agency%20candid%20moment&width=300&height=400&seq=cs-01&orientation=portrait', caption: 'Team Moment 1' },
+    { url: 'https://readdy.ai/api/search-image?query=team%20event%20celebration%20creative%20agency%20authentic&width=300&height=400&seq=cs-02&orientation=portrait', caption: 'Team Moment 2' },
+    { url: 'https://readdy.ai/api/search-image?query=coworkers%20creative%20agency%20workplace%20authentic&width=300&height=400&seq=cs-03&orientation=portrait', caption: 'Team Moment 3' },
+    { url: 'https://readdy.ai/api/search-image?query=team%20meeting%20creative%20agency%20collaboration&width=300&height=400&seq=cs-04&orientation=portrait', caption: 'Team Moment 4' },
+    { url: 'https://readdy.ai/api/search-image?query=office%20break%20team%20creative%20agency%20casual&width=300&height=400&seq=cs-05&orientation=portrait', caption: 'Team Moment 5' },
+    { url: 'https://readdy.ai/api/search-image?query=team%20outdoor%20company%20event%20creative%20agency&width=300&height=400&seq=cs-06&orientation=portrait', caption: 'Team Moment 6' },
   ],
 
   /* ── CAREERS: KarriereCulture — Wood Icons ── */
@@ -1282,6 +1300,8 @@ const HUMAN_LABELS: Record<string, string> = {
   'careers_mitarbeiterstimmen_staff_images': 'Mitarbeiterstimmen — Staff',
   'careers_sonicfaces_images': 'SonicFaces — Portraits',
   'careers_sonicfamily_images': 'SonicFamily — AI Portraits',
+  'kreation_faces_robert': 'Kreation Team — Robert H.',
+  'kreation_faces_inga': 'Kreation Team — Inga L.',
   'careers_recruitercta_image': 'RecruiterCTA — Tanja Foto',
   'careers_stellenangebote_image': 'Stellenangebote — Tanja Portrait',
   'careers_sonic_sales_hero': 'Sonic Sales — Hero',
@@ -1289,6 +1309,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'careers_howwehire_wood_icons': 'HowWeHire — Wood Icons',
   'careers_culture_wood_icons': 'KarriereCulture — Wood Icons',
   'careers_hero_wood_icons': 'KarriereHero — Trust Stat Icons',
+  'careers_pictorial_showcase': 'Careers — Pictorial Showcase (under Team Events)',
   'careers_perks_wood_icons': 'Perks — Section Wood Icons',
   'leistungen_pos_images': 'POS Full Service',
   'leistungen_video_images': 'Live Video Promotion',
