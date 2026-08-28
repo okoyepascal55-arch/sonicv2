@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { ChapterHeader, Marker } from './ChapterKit';
 
@@ -13,6 +14,8 @@ const TAGS = ['Energie', 'Sympathie', 'Anpacken', 'Teamgeist', 'Kreativität'];
 
 export default function KarriereCulture() {
   const [hoveredDna, setHoveredDna] = useState<number | null>(null);
+  const { images: woodIcons } = useMediaStore('careers_dna_wood_icons');
+  const getDnaIcon = (idx: number) => woodIcons[idx]?.url ? resolveImageUrl(woodIcons[idx].url) : null;
 
   const tP1 = useText('careers_culture', 'careers-culture-p1', 'Am Point of Sale, bei Messen, Events, Roadshows und per Video aus unseren Studios am Campus in Krefeld.');
   const tP2 = useText('careers_culture', 'careers-culture-p2', 'Energiegeladen und sympathisch: Diese Beschreibung passt auf die Menschen, die bei Sonic arbeiten. Passt sie auch auf dich?');
@@ -75,6 +78,11 @@ export default function KarriereCulture() {
                   >
                     {item.num}
                   </span>
+{getDnaIcon(i) && (
+                    <div className="relative w-10 h-10 overflow-hidden mb-4 flex-shrink-0">
+                      <img src={getDnaIcon(i)!} alt="" aria-hidden="true" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                  )}
                   <p className="relative text-[22px] font-black tracking-[-0.02em] text-foreground-950 mb-3">{item.title}</p>
                   <p className="relative text-sm leading-[1.7]" style={{ color: 'oklch(var(--foreground-500))' }}>{item.desc}</p>
                 </div>

@@ -217,6 +217,8 @@ export const PAGE_GROUPS: PageGroup[] = [
       'careers_culture_wood_icons',
       'careers_hero_wood_icons',
       'careers_events_videos',
+      // ── DNA section wood icons ──
+      'careers_dna_wood_icons',
       // ── Pictorial Showcase (under Team Events) ──
       'careers_pictorial_showcase',
     ],
@@ -550,6 +552,14 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   /* ── CAREERS: SonicFamily AI Portrait Images ── */
+  /* ── CAREERS: DNA Section Wood Icons (4 items matching DNA_DATA order) ── */
+  careers_dna_wood_icons: [
+    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20human%20figure%20people%20team%20group%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20human%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-human-dna-01&orientation=squarish', caption: 'Der Mensch — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20lightning%20bolt%20energy%20power%20drive%20motivation%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20energy%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-energy-dna-02&orientation=squarish', caption: 'Der Antrieb — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20bar%20chart%20analytics%20data%20graph%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20data%20analytics%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-data-dna-03&orientation=squarish', caption: 'Die Daten — Wood Icon' },
+    { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20wrench%20tool%20gear%20settings%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20tool%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-tool-dna-04&orientation=squarish', caption: 'Das Werkzeug — Wood Icon' },
+  ],
+
   careers_sonicfamily_images: [
     { url: 'https://readdy.ai/api/search-image?query=professional%20man%20IT%20administrator%20confident%20portrait%20modern%20office%20editorial%20photography%20dark%20background%20natural%20light%20sharp%20commercial%20quality&width=600&height=800&seq=sf-sascha-01&orientation=portrait', caption: 'Sascha M. — Senior IT Admin' },
     { url: 'https://readdy.ai/api/search-image?query=professional%20man%20finance%20controller%20confident%20editorial%20portrait%20office%20modern%20dark%20background%20sharp%20detail%20authoritative%20professional&width=600&height=800&seq=sf-marcel-02&orientation=portrait', caption: 'Marcel W. — Finance Controller' },

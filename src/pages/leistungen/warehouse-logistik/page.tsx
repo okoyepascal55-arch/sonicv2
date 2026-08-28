@@ -144,7 +144,7 @@ export default function WarehouseLogistikPage() {
 
  {/* Hero */}
  <div ref={heroRef}>
- <section className="relative min-h-[480px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950"style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
+ <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950"style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
  <img
  src={heroImage}
  alt="Warehouse und Logistik"

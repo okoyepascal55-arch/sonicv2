@@ -24,7 +24,7 @@ export default function KarriereHero() {
 
   return (
     <section
-      className="relative flex min-h-[560px] sm:min-h-[640px] md:min-h-[720px] items-end overflow-hidden group"
+      className="relative flex min-h-[320px] sm:min-h-[400px] md:min-h-[560px] items-end overflow-hidden group"
       style={{ background: 'oklch(0.13 0.005 118)' }}
       id="stellen"
       onMouseEnter={() => setHovered(true)}
