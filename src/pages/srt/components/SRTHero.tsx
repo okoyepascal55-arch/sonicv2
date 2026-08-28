@@ -39,8 +39,8 @@ export default function SRTHero({ onScrollToFeatures }: SRTHeroProps) {
       <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary-500 via-primary-500/60 to-transparent" />
 
       {/* Main content */}
-      <div className="relative z-10 max-w-full max-w-[1200px] mx-auto px-4 md:px-8 w-full pb-10 md:pb-14">
-        <div className="max-w-full max-w-[640px]">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-8 w-full pb-10 md:pb-14">
+        <div className="max-w-[640px]">
         {/* v3 eyebrow */}
         <div className="flex items-center gap-3 mb-5 md:mb-6">
           <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />

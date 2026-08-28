@@ -23,9 +23,9 @@ export default function LeadershipTeam() {
 
   return (
     <section className="bg-white md:overflow-hidden py-14 md:py-20">
-      <div className="max-w-full max-w-[1280px] mx-auto px-6 md:px-10">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-10">
         {/* ── HEADER ── */}
-        <div className="max-w-full max-w-[640px] mb-10 md:mb-14">
+        <div className="max-w-[640px] mb-10 md:mb-14">
           <div className="flex items-center gap-3 mb-5">
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
@@ -34,7 +34,7 @@ export default function LeadershipTeam() {
             {headingMain}{' '}
             <span className="v3-marker">{headingAccent}</span>
           </h2>
-          <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-full max-w-[520px]">{tSub}</p>
+          <p className="text-[15px] text-[#6E6E68] mt-3 leading-[1.5] max-w-[520px]">{tSub}</p>
         </div>
 
         {/* ── BOLD SPLIT: TEAM PHOTO + DARK STAT PANEL ── */}

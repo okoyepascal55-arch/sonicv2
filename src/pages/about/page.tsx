@@ -79,7 +79,7 @@ export default function AboutPage() {
               <span className="text-primary-500">{tHeroH1Line2}</span>
             </h1>
 
-            <p className="text-white/60 text-sm md:text-base max-w-full max-w-[520px] leading-relaxed mb-8 md:mb-10">
+            <p className="text-white/60 text-sm md:text-base max-w-[520px] leading-relaxed mb-8 md:mb-10">
               {tHeroSub}
             </p>
 
