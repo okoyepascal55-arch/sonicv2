@@ -151,7 +151,7 @@ export default function VideoStudioPhone() {
  </div>
 
  {/* Main layout */}
- <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-0 border border-white/10">
+ <div className="grid md:grid-cols-2 gap-0 border border-white/10">
 
  {/* LEFT: Phone only — clean, no distractions */}
  <div className="bg-[#1a1a1a] flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 relative min-h-[520px] lg:min-h-[600px]">

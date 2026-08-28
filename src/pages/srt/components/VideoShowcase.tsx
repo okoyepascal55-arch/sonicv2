@@ -46,7 +46,7 @@ export default function VideoShowcase() {
         </div>
 
         {/* Fixed-height video — not full aspect-video bleed */}
-        <div className="bg-foreground-950 overflow-hidden border-2 border-primary-500/20" style={{ height: 420 }}>
+        <div className="bg-foreground-950 overflow-hidden border-2 border-primary-500/20 h-[240px] sm:h-[320px] md:h-[420px]">
           <div className="relative w-full h-full">
             <img
               src={`https://img.youtube.com/vi/${VIDEOS[active].videoId}/maxresdefault.jpg`}

@@ -28,7 +28,7 @@ export default function SRTHeroReference() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-foreground-950" style={{ padding: '130px 40px 60px' }}>
+    <section className="relative overflow-hidden bg-foreground-950 px-5 md:px-10 pt-20 md:pt-[130px] pb-12 md:pb-[60px]">
       <div className="absolute top-0 right-0 w-[60%] h-full pointer-events-none" style={{ background: 'linear-gradient(135deg, transparent 25%, oklch(0.81 0.19 115 / 0.06) 100%)', clipPath: 'polygon(15% 0,100% 0,100% 100%,0% 100%)' }} />
       <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary-500 via-primary-500/60 to-transparent" />
       <div className="relative z-10 max-w-[1280px] mx-auto">

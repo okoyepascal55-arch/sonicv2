@@ -290,7 +290,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
           </div>
 
           {/* Hero content */}
-          <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <div className="w-10 h-10 flex items-center justify-center bg-primary-500/20" style={{ borderRadius: 0 }}>

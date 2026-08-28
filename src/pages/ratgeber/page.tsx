@@ -228,7 +228,7 @@ export default function RatgeberHubPage() {
       {/* Card Grid */}
       <section className="sonic-section-lg md:bg-[#fafaf8]">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {hubCards.map((card, index) => (
               <SectionReveal key={card.slug} delay={index * 50}>
                 <HubCard card={card} onClick={handleCardClick} />
