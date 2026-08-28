@@ -135,6 +135,10 @@ export const PAGE_GROUPS: PageGroup[] = [
       'leistungen_kreation_showcase_secondary_konzeption',
       'leistungen_kreation_showcase_secondary_content',
       'leistungen_kreation_showcase_secondary_cgi',
+      'leistungen_kreation_showcase_secondary_innovation',
+      'leistungen_kreation_showcase_secondary_ci',
+      'leistungen_kreation_showcase_secondary_layout',
+      'leistungen_kreation_showcase_secondary_pos',
       'leistungen_kreation_before_after',
       'leistungen_pos_assets_images',
       'leistungen_pos_process_images',
@@ -925,6 +929,10 @@ export const VIRTUAL_MEDIA: MediaSections = {
   leistungen_kreation_showcase_secondary_konzeption: [],
   leistungen_kreation_showcase_secondary_content: [],
   leistungen_kreation_showcase_secondary_cgi: [],
+  leistungen_kreation_showcase_secondary_innovation: [],
+  leistungen_kreation_showcase_secondary_ci: [],
+  leistungen_kreation_showcase_secondary_layout: [],
+  leistungen_kreation_showcase_secondary_pos: [],
 
   /* ── LEISTUNGEN: Kreation Showcase — Before/After Slider — none set via dashboard yet; component falls back to its own gradient placeholders ── */
   leistungen_kreation_before_after: [],

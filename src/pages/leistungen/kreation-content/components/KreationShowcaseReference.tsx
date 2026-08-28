@@ -4,9 +4,11 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 const TABS = [
-  { id: 'konzeption', label: 'Konzeption & Kreation', icon: 'ri-lightbulb-flash-line' },
-  { id: 'content', label: 'Content Creation', icon: 'ri-camera-line' },
-  { id: 'cgi', label: 'CGI & 3D-Design', icon: 'ri-box-3-line' },
+  { id: 'konzeption', label: 'Konzeption', icon: 'ri-lightbulb-flash-line' },
+  { id: 'innovation', label: 'Innovation', icon: 'ri-rocket-2-line' },
+  { id: 'ci', label: 'CI', icon: 'ri-fingerprint-line' },
+  { id: 'layout', label: 'Layout', icon: 'ri-layout-grid-line' },
+  { id: 'pos', label: 'POS', icon: 'ri-store-2-line' },
 ] as const;
 
 type TabId = typeof TABS[number]['id'];
@@ -20,55 +22,85 @@ type Item = {
 
 const ITEMS: Record<TabId, Item[]> = {
   konzeption: [
-    { id: 'k1', tag: 'Kampagne', title: 'shower+ — Full Brand Campaign', sub: 'Konzept bis Rollout' },
-    { id: 'k2', tag: 'Key Visual', title: 'Brand Photography', sub: 'Konsistente Markenwelt' },
-    { id: 'k3', tag: 'Brand Identity', title: 'Visual Design System', sub: 'Marken konsequent gebaut' },
-    { id: 'k4', tag: 'Social Content', title: 'Multi-Channel Assets', sub: 'Alle Kanäle. Eine Linie.' },
-    { id: 'k5', tag: 'E-Commerce', title: 'E-Commerce Design & Content', sub: 'Online-Regal gestaltet wie ein Flagshipstore' },
+    { id: 'k1', tag: 'Kampagne', title: 'shower+ — Full Brand Campaign', sub: 'Von Strategie bis Rollout' },
+    { id: 'k2', tag: 'Markenarchitektur', title: 'Markenarchitektur & Positionierung', sub: 'Warum deine Marke, warum jetzt' },
+    { id: 'k3', tag: 'Kampagnenkonzept', title: 'Multi-Channel Kampagnenkonzept', sub: 'Eine Idee. Alle Kanäle.' },
+    { id: 'k4', tag: 'Retail-Strategie', title: 'Retail-Kommunikationsstrategie', sub: 'Was der Handel braucht. Was deine Marke sagt.' },
+    { id: 'k5', tag: 'Content-Strategie', title: 'Content-Strategie & Redaktionsplan', sub: 'Themenplanung mit Wirkung' },
   ],
-  content: [
-    { id: 'c1', tag: 'Fotoproduktion', title: 'Inhouse Product Shoot', sub: 'Professionelle Produktbilder' },
-    { id: 'c2', tag: 'Video', title: 'Social Reel Production', sub: 'Scroll-stopping content' },
-    { id: 'c3', tag: 'Live', title: 'Nexaro Live Studio', sub: 'Live Shopping & Streaming' },
-    { id: 'c4', tag: 'How-To', title: 'Instructional Content', sub: 'Produkte erklären. Vertrauen aufbauen.' },
-    { id: 'c5', tag: 'Event Doku', title: 'Event-Dokumentation — IFA Berlin', sub: 'Von der Messe direkt in alle Kanäle' },
+  innovation: [
+    { id: 'i1', tag: 'KI-Konzept', title: 'AI-gestützte Konzeptentwicklung', sub: 'Von der Idee zur Umsetzung in Stunden' },
+    { id: 'i2', tag: 'AR-POS', title: 'Augmented Reality am Point of Sale', sub: 'Physisch + digital in einem Erlebnis' },
+    { id: 'i3', tag: 'Interaktiv', title: 'Interaktive Formate & Experiences', sub: 'Marken, die man anfassen kann' },
+    { id: 'i4', tag: 'CGI & Viz', title: 'CGI-Visualisierungen & Motion', sub: 'Vor dem Bau schon erlebbar' },
+    { id: 'i5', tag: 'New Formats', title: 'Neue Kommunikationsformate', sub: 'Was morgen funktioniert. Heute entwickelt.' },
   ],
-  cgi: [
-    { id: 'g1', tag: '3D / CGI', title: 'Lucid Motors — EV Stand CGI', sub: 'Architekturgenaue Visualisierung' },
-    { id: 'g2', tag: 'Visualization', title: 'Messe Stands & Shops', sub: 'Vor dem Bau schon erlebbar' },
-    { id: 'g3', tag: 'AI', title: 'AI-Generierung', sub: 'Konzepte in Minuten' },
-    { id: 'g4', tag: 'Motion', title: 'Motion Graphics & 3D Animation', sub: 'Bewegte Markenwelten' },
-    { id: 'g5', tag: 'Packaging-Viz', title: 'Packaging zum Leben erwecken — Photorealistic CGI', sub: 'Fotorealistische Produktvisualisierungen für alle Kanäle' },
+  ci: [
+    { id: 'ci1', tag: 'CI-System', title: 'Corporate Identity Entwicklung', sub: 'Das vollständige Markensystem' },
+    { id: 'ci2', tag: 'Logo & Brand', title: 'Logo-Design & Markenzeichen', sub: 'Erkennbar. Konsistent. Unverwechselbar.' },
+    { id: 'ci3', tag: 'Typografie', title: 'Typografie & Farbsystem', sub: 'Die Stimme deiner Marke — visuell' },
+    { id: 'ci4', tag: 'Brand Manual', title: 'Corporate Design Manual', sub: 'Dein Regelwerk für alle Partner' },
+    { id: 'ci5', tag: 'Rollout', title: 'CI-Rollout auf alle Touchpoints', sub: 'Vom Briefpapier bis zum Messestand' },
+  ],
+  layout: [
+    { id: 'l1', tag: 'Print', title: 'Print-Konzeption & Reinzeichnung', sub: 'Druckfertige Dateien. Erstklassige Qualität.' },
+    { id: 'l2', tag: 'Packaging', title: 'Packaging Design', sub: 'Regalpräsenz, die verkauft' },
+    { id: 'l3', tag: 'Katalog', title: 'Katalog- & Prospektgestaltung', sub: 'Komplexes einfach und klar kommuniziert' },
+    { id: 'l4', tag: 'Digital', title: 'Digital Layout & Screendesign', sub: 'Web, App, Social — konsistentes Design' },
+    { id: 'l5', tag: 'POS-Layout', title: 'POS-Kommunikation & Werbemittel', sub: 'Preisschilder bis Schaufenstergestaltung' },
+  ],
+  pos: [
+    { id: 'p1', tag: 'Display', title: 'Displays & Aufsteller', sub: 'Auffällig. Markenkonform. Verkaufsaktiv.' },
+    { id: 'p2', tag: 'Ladenbau', title: 'Shopfitting & Ladenbaukonzepte', sub: 'Flächen, die Marken erlebbar machen' },
+    { id: 'p3', tag: 'Messe', title: 'Messestand-Design & -Bau', sub: 'Von der Skizze bis zum fertigen Stand' },
+    { id: 'p4', tag: 'Shop-in-Shop', title: 'Shop-in-Shop Konzepte', sub: 'Markenwelt im Handel' },
+    { id: 'p5', tag: 'Rollout', title: 'Bundesweiter POS-Rollout', sub: 'Einheitlich. Schnell. Skalierbar.' },
   ],
 };
 
 const TAB_DESC: Record<TabId, string> = {
-  konzeption: 'Von der ersten Idee bis zum fertigen Konzept — Kreation die verkauft.',
-  content: 'Foto, Video und Live-Produktion — komplett inhouse für alle Kanäle.',
-  cgi: 'Fotorealistische 3D-Welten, AI-Konzepte und Motion Graphics in einer Produktion.',
+  konzeption: 'Von der ersten Idee bis zur fertigen Kampagne — strategisch und verkaufsstark.',
+  innovation: 'KI, AR und neue Formate: Wir denken Kommunikation konsequent neu.',
+  ci: 'Markenidentitäten, die standhalten — vom Logo bis zum vollständigen CI-System.',
+  layout: 'Print, Digital, Packaging — Layout-Qualität, die deine Marke trägt.',
+  pos: 'Displays, Ladenbau, Messe: Markenauftritte am Point of Sale, die verkaufen.',
 };
 
 const FALLBACKS: Record<TabId, string[]> = {
   konzeption: [
-    'https://readdy.ai/api/search-image?query=professional%20brand%20campaign%20visual%20design%20studio%20shower%20bathroom%20products%20elegant%20minimalist%20photography%20dark%20atmospheric%20background%20lime%20green%20accent%20lighting%20premium%20commercial%20photography%20dramatic%20contrast%20product%20showcase&width=800&height=600&seq=k1-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=product%20photography%20brand%20identity%20key%20visual%20consumer%20electronics%20packaging%20close%20up%20studio%20shot%20clean%20white%20background%20professional%20commercial%20photography%20sharp%20detail%20vibrant%20colors&width=400&height=300&seq=k2-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=brand%20identity%20visual%20design%20system%20logo%20typography%20color%20palette%20minimalist%20design%20studio%20creative%20agency%20branding%20materials%20flat%20lay%20professional%20elegant%20premium&width=400&height=300&seq=k3-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=social%20media%20content%20creation%20studio%20smartphone%20photography%20product%20shoot%20behind%20scenes%20creative%20team%20colorful%20vibrant%20social%20media%20assets%20creation%20agency%20lifestyle%20photography&width=600&height=300&seq=k4-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=e-commerce%20packaging%20design%20product%20shelf%20retail%20point%20of%20sale%20display%20premium%20consumer%20electronics%20packaging%20box%20beautiful%20product%20presentation%20lifestyle%20editorial%20photography%20high%20end%20commercial&width=1200&height=350&seq=k5-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=professional%20brand%20campaign%20strategy%20creative%20agency%20whiteboard%20meeting%20concept%20development%20modern%20office%20team%20brainstorming%20premium%20commercial%20photography%20dramatic%20contrast&width=800&height=600&seq=k1-b&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=brand%20architecture%20positioning%20strategy%20design%20agency%20portfolio%20concept%20board%20professional%20flat%20lay%20premium%20modern%20workspace&width=400&height=300&seq=k2-b&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=multichannel%20campaign%20concept%20creative%20agency%20design%20boards%20assets%20layout%20professional%20editorial%20style&width=400&height=300&seq=k3-b&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=retail%20communication%20strategy%20brand%20point%20of%20sale%20premium%20campaign%20planning%20presentation%20board&width=600&height=300&seq=k4-b&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=content%20strategy%20editorial%20planning%20creative%20calendar%20digital%20marketing%20agency%20professional%20workspace&width=1200&height=350&seq=k5-b&orientation=landscape',
   ],
-  content: [
-    'https://readdy.ai/api/search-image?query=inhouse%20product%20photography%20studio%20professional%20camera%20setup%20consumer%20electronics%20product%20shooting%20dark%20moody%20atmospheric%20professional%20studio%20lighting%20equipment%20creative%20setup%20professional%20grade&width=800&height=600&seq=c1-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=video%20production%20social%20media%20reels%20short%20form%20content%20creation%20studio%20camera%20crew%20filming%20product%20commercial%20creative%20agency%20professional%20video%20production%20setup%20modern%20studio%20dark%20dramatic&width=400&height=300&seq=c2-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=live%20streaming%20studio%20setup%20professional%20lighting%20camera%20crew%20live%20video%20production%20product%20presentation%20host%20presenter%20modern%20clean%20studio%20lime%20green%20accent%20light%20broadcast%20quality&width=400&height=300&seq=c3-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=instructional%20how-to%20video%20production%20product%20demonstration%20hands%20product%20detail%20close%20up%20professional%20lighting%20studio%20tutorial%20content%20creation%20sharp%20detail%20commercial%20quality%20photography&width=600&height=300&seq=c4-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=trade%20show%20event%20documentation%20photography%20IFA%20Berlin%20consumer%20electronics%20fair%20professional%20event%20photography%20wide%20angle%20crowd%20exhibitors%20modern%20technology%20displays%20dramatic%20night%20event%20photography&width=1200&height=350&seq=c5-a&orientation=landscape',
+  innovation: [
+    'https://readdy.ai/api/search-image?query=AI%20artificial%20intelligence%20creative%20concept%20development%20futuristic%20design%20agency%20digital%20generative%20design%20modern%20technology%20lime%20green%20accent%20dark%20atmosphere&width=800&height=600&seq=i1-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=augmented%20reality%20retail%20point%20of%20sale%20interactive%20digital%20overlay%20product%20experience%20consumer%20electronics%20modern%20technology%20innovation&width=400&height=300&seq=i2-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=interactive%20brand%20experience%20digital%20installation%20retail%20environment%20touchscreen%20modern%20innovative%20consumer%20technology&width=400&height=300&seq=i3-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=3D%20CGI%20photorealistic%20product%20visualization%20render%20floating%20packaging%20consumer%20electronics%20bright%20studio%20lighting%20commercial%20quality%20clean%20background&width=600&height=300&seq=i4-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=new%20communication%20format%20digital%20brand%20storytelling%20creative%20agency%20innovative%20modern%20design%20concept%20future%20forward&width=1200&height=350&seq=i5-a&orientation=landscape',
   ],
-  cgi: [
-    'https://readdy.ai/api/search-image?query=3D%20CGI%20architectural%20visualization%20luxury%20electric%20vehicle%20showroom%20interior%20photorealistic%20render%20modern%20minimalist%20design%20lime%20green%20accent%20lighting%20futuristic%20automotive%20showroom%20high%20quality%20visualization&width=800&height=600&seq=g1-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=trade%20show%20stand%203D%20visualization%20CGI%20render%20photorealistic%20exhibition%20booth%20design%20modern%20retail%20interior%20digital%20twin%20architecture%20render%20dramatic%20lighting%20professional%20commercial%20CGI%20quality&width=400&height=300&seq=g2-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=AI%20generated%20concept%20visualization%20product%20design%20futuristic%20technology%20creative%20concept%20art%20digital%20art%20abstract%20modern%20design%20generative%20AI%20product%20visualization%20lime%20green%20dark%20background%20atmospheric%20digital%20art&width=400&height=300&seq=g3-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=motion%20graphics%203D%20animation%20product%20visualization%20render%20digital%20cinematic%20dark%20dramatic%20lime%20green%20glow%20particle%20effects%20modern%20motion%20design%20brand%20animation%20premium%20quality%20CGI%20dramatic%20composition&width=600&height=300&seq=g4-a&orientation=landscape',
-    'https://readdy.ai/api/search-image?query=photorealistic%20CGI%20product%20packaging%20visualization%20consumer%20electronics%20lifestyle%20render%20floating%20product%20box%20render%203D%20photorealistic%20dramatic%20studio%20lighting%20lime%20green%20accent%20commercial%20quality%20packaging%20visualization&width=1200&height=350&seq=g5-a&orientation=landscape',
+  ci: [
+    'https://readdy.ai/api/search-image?query=corporate%20identity%20design%20brand%20system%20complete%20visual%20identity%20manual%20professional%20creative%20agency%20premium%20branding%20portfolio%20flat%20lay&width=800&height=600&seq=ci1-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=logo%20design%20brand%20mark%20identity%20creative%20agency%20minimalist%20modern%20professional%20clean%20white%20background%20premium%20branding&width=400&height=300&seq=ci2-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=typography%20color%20system%20brand%20guidelines%20design%20agency%20visual%20identity%20premium%20editorial%20layout%20professional%20modern&width=400&height=300&seq=ci3-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=corporate%20design%20manual%20brand%20book%20guidelines%20flat%20lay%20premium%20creative%20agency%20print%20professional%20elegant&width=600&height=300&seq=ci4-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=brand%20rollout%20touchpoints%20corporate%20identity%20application%20stationery%20signage%20business%20cards%20premium%20professional%20editorial%20flat%20lay&width=1200&height=350&seq=ci5-a&orientation=landscape',
+  ],
+  layout: [
+    'https://readdy.ai/api/search-image?query=print%20design%20layout%20brochure%20editorial%20professional%20creative%20agency%20premium%20typography%20flat%20lay%20clean%20modern%20design&width=800&height=600&seq=l1-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=packaging%20design%20consumer%20product%20retail%20shelf%20premium%20brand%20identity%20clean%20studio%20photography%20commercial%20quality%20editorial&width=400&height=300&seq=l2-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=catalogue%20design%20print%20editorial%20layout%20premium%20brand%20creative%20agency%20professional%20modern%20clean%20typography%20commercial%20quality&width=400&height=300&seq=l3-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=digital%20screen%20design%20UI%20layout%20app%20interface%20brand%20identity%20modern%20clean%20professional%20creative%20agency%20digital%20design%20system&width=600&height=300&seq=l4-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=POS%20communication%20retail%20point%20of%20sale%20print%20promotional%20material%20brand%20identity%20store%20signage%20premium%20commercial%20design&width=1200&height=350&seq=l5-a&orientation=landscape',
+  ],
+  pos: [
+    'https://readdy.ai/api/search-image?query=retail%20display%20POS%20stand%20brand%20activation%20consumer%20electronics%20premium%20store%20environment%20professional%20commercial%20photography%20modern%20clean&width=800&height=600&seq=p1-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=shop%20fitting%20retail%20interior%20design%20premium%20brand%20experience%20modern%20store%20environment%20commercial%20photography%20professional&width=400&height=300&seq=p2-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=trade%20show%20exhibition%20booth%20stand%20premium%20brand%20activation%20professional%20event%20marketing%20modern%20commercial%20photography%20IFA%20Berlin&width=400&height=300&seq=p3-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=shop%20in%20shop%20retail%20concept%20brand%20world%20consumer%20electronics%20premium%20store%20environment%20professional%20commercial%20modern&width=600&height=300&seq=p4-a&orientation=landscape',
+    'https://readdy.ai/api/search-image?query=nationwide%20POS%20rollout%20retail%20display%20brand%20consistency%20consumer%20electronics%20stores%20professional%20commercial%20photography%20wide%20angle&width=1200&height=350&seq=p5-a&orientation=landscape',
   ],
 };
 
@@ -182,11 +214,13 @@ export default function KreationShowcaseReference() {
   const { images: primaryImages } = useMediaStore('leistungen_kreation_showcase_images');
   // Per-tab secondary sets — override primary when uploaded via dashboard
   const { images: secKonz } = useMediaStore('leistungen_kreation_showcase_secondary_konzeption');
-  const { images: secContent } = useMediaStore('leistungen_kreation_showcase_secondary_content');
-  const { images: secCgi } = useMediaStore('leistungen_kreation_showcase_secondary_cgi');
+  const { images: secInnovation } = useMediaStore('leistungen_kreation_showcase_secondary_innovation');
+  const { images: secCi } = useMediaStore('leistungen_kreation_showcase_secondary_ci');
+  const { images: secLayout } = useMediaStore('leistungen_kreation_showcase_secondary_layout');
+  const { images: secPos } = useMediaStore('leistungen_kreation_showcase_secondary_pos');
   const { images: beforeAfter } = useMediaStore('leistungen_kreation_before_after');
 
-  const tabSecondary: Record<TabId, typeof primaryImages> = { konzeption: secKonz, content: secContent, cgi: secCgi };
+  const tabSecondary: Record<TabId, typeof primaryImages> = { konzeption: secKonz, innovation: secInnovation, ci: secCi, layout: secLayout, pos: secPos };
 
   const items = ITEMS[activeTab];
   const images = useMemo(() => {
@@ -197,7 +231,7 @@ export default function KreationShowcaseReference() {
       return tabImg ?? primaryImg ?? FALLBACKS[activeTab][i];
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTab, primaryImages, secKonz, secContent, secCgi, items]);
+  }, [activeTab, primaryImages, secKonz, secInnovation, secCi, secLayout, secPos, items]);
   const reality = beforeAfter[0]?.url ? resolveImageUrl(beforeAfter[0].url) : BEFORE_AFTER_FALLBACK[0];
   const cgi = beforeAfter[1]?.url ? resolveImageUrl(beforeAfter[1].url) : BEFORE_AFTER_FALLBACK[1];
 
@@ -235,7 +269,7 @@ export default function KreationShowcaseReference() {
           {items.map((item, i) => <button key={item.id} type="button" onClick={() => setLightboxIndex(i)} className="relative overflow-hidden" style={{ height: 64, opacity: lightboxIndex === i ? 1 : 0.65, border: lightboxIndex === i ? '2px solid oklch(0.81 0.19 115)' : '2px solid transparent' }}><img src={images[i]} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" /></button>)}
         </div>
 
-        {activeTab === 'cgi' && (
+        {activeTab === 'pos' && (
           <BeforeAfter reality={reality} cgi={cgi} contactEmail={CONTACT_EMAIL} />
         )}
 
