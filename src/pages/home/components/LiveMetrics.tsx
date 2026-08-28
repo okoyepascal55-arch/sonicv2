@@ -5,7 +5,7 @@ const COMPANY_DATA = {
   productsSold: '>3,7 Mio.',
   revenueGenerated: '>2 Mrd. €',
   assignmentsCompleted: '>1,35 Mio.',
-  promoters: '20,000+',
+  promoters: '2.000+',
   coverage: 'DACH',
   implementations: '100K+',
   retailPartners: '500+',

@@ -20,7 +20,7 @@ export default function TheProblemReference() {
   const tCtaBtn = useText('srt_problem', 'srt-problem-cta-btn', 'Lösung ansehen');
 
   return (
-    <section className="relative overflow-hidden bg-white px-6" style={{ paddingTop: 88, paddingBottom: 88 }}>
+    <section id="das-problem" className="relative overflow-hidden bg-white px-6" style={{ paddingTop: 88, paddingBottom: 88 }}>
       <div className="absolute right-[-4%] top-1/2 -translate-y-1/2 font-black leading-none pointer-events-none select-none" style={{ fontSize: 'clamp(120px,18vw,220px)', color: 'transparent', WebkitTextStroke: '1px rgba(0,0,0,0.04)', letterSpacing: '-0.05em' }}>PROBLEM</div>
       <div className="max-w-[1280px] mx-auto relative">
         <div className="flex items-center gap-4 mb-8"><span className="flex items-center gap-3"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-700">{tBadge}</span></span><div className="flex-1 h-px bg-gradient-to-r from-primary-500/30 to-transparent" /></div>

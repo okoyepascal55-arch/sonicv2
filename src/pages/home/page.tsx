@@ -18,7 +18,7 @@ export default function HomePage() {
     keywords: 'DACH Market Activation, Retail Promotion Deutschland, POS Staffing, Live Video Beratung, Markteintritt DACH',
     canonical: 'https://sonic-group.de/',
     ogTitle: 'Sonic Group — Retail Activation Partner DACH',
-    ogDescription: 'Über 1,35 Mio. Einsätze. €2 Mrd. Umsatz. 20.000+ Talente. Ihr Full-Service-Partner für Retail Activation im DACH-Raum.',
+    ogDescription: 'Über 1,35 Mio. Einsätze. €2 Mrd. Umsatz. 2.000+ Talente. Ihr Full-Service-Partner für Retail Activation im DACH-Raum.',
   });
 
   const totalSections = 8;

@@ -17,8 +17,8 @@ const DYNAMIC_KEYWORDS = [
   'TRADE MARKETING',
 ];
 
-const CHAR_DELAY = 100; // ms per character reveal
-const HOLD_TIME = 2400; // ms to hold the completed word before advancing
+const CHAR_DELAY = 65; // ms per character reveal — refined for premium feel
+const HOLD_TIME = 1800; // ms to hold before advancing
 
 function useTextTypewriter(text: string, trigger: number, charDelay = CHAR_DELAY) {
   const [revealed, setRevealed] = useState(text.length);

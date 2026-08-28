@@ -133,7 +133,7 @@ export default function VideoShowcase() {
             {/* ── Bottom micro-bar ── */}
             <div className="flex items-center justify-center gap-6 mt-6 md:mt-8 flex-wrap">
               <span className="text-xs font-semibold text-foreground-400 uppercase tracking-wider">
-                20.000+ Promoter
+                2.000+ Promoter
               </span>
               <span className="w-1 h-1 bg-foreground-300" style={{ borderRadius: '50%' }} />
               <span className="text-xs font-semibold text-foreground-400 uppercase tracking-wider">

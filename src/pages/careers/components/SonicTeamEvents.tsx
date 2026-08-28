@@ -45,7 +45,7 @@ export default function SonicTeamEvents() {
   const { images: eventVideos } = useMediaStore('careers_events_videos');
 
   const tBadge = useText('careers_events', 'careers-events-badge', 'Leben bei Sonic');
-  const tHeading = useText('careers_events', 'careers-events-heading', 'Wir arbeiten hart. Wir feiern noch mehr.');
+  const tHeading = useText('careers_events', 'careers-events-heading', 'Gemeinsam. Über die Arbeit hinaus.');
   const tSub = useText('careers_events', 'careers-events-sub', 'Von Content-Shootings bis Team-Events — bei Sonic ist jeder Moment eine Chance, zusammen etwas zu erleben.');
 
   const tCampusBadge = useText('careers_campus', 'careers-campus-badge', 'Unser Campus');

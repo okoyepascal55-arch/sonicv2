@@ -12,7 +12,7 @@ const EXECUTIVES = [
     tag: 'Strategie · Führung',
     tenure: 'Seit 2010',
     eyebrow: 'Vision. Strategie. Führung.',
-    pullQuote: '\u201eDaten liefern die Fakten, Menschen den Unterschied. Alle \u201eThings\u201c die mit Daten oder mit Menschen zu tun haben und die Herausforderungen unserer Kunden lösen, sind unsere Spielwiese.\u201c',
+    pullQuote: '',
     bio: '',
     doing: [
       { label: 'Doing Things', text: 'Daten liefern die Fakten, Menschen den Unterschied. Alle \u201eThings\u201c die mit Daten oder mit Menschen zu tun haben und die Herausforderungen unserer Kunden lösen, sind unsere Spielwiese.' },

@@ -27,6 +27,7 @@ const TALENTPOOL_CHALLENGES: ChallengeItem[] = [
 
 const SOLUTIONS = [
   {
+    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20shield%20check%20protection%20trust%20employment%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-shield-talent-01&orientation=squarish',
     number: '01',
     icon: 'ri-shield-check-line',
     title: 'Handverlesen & festangestellt',
@@ -35,6 +36,7 @@ const SOLUTIONS = [
     tags: ['Festangestellt', 'Verlässlich'],
   },
   {
+    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20graduation%20cap%20training%20knowledge%20product%20education%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-grad-talent-02&orientation=squarish',
     number: '02',
     icon: 'ri-graduation-cap-line',
     title: 'Intensivtraining auf dein Produkt',
@@ -43,6 +45,7 @@ const SOLUTIONS = [
     tags: ['Produktwissen', 'Schulung'],
   },
   {
+    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20dashboard%20screen%20analytics%20reporting%20live%20data%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-dash-talent-03&orientation=squarish',
     number: '03',
     icon: 'ri-dashboard-line',
     title: 'Live-Zielerreichung im SRT',
@@ -51,6 +54,7 @@ const SOLUTIONS = [
     tags: ['Echtzeit', 'Motivation'],
   },
   {
+    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20map%20pin%20location%20nationwide%20reach%20germany%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-pin-talent-04&orientation=squarish',
     number: '04',
     icon: 'ri-map-pin-2-line',
     title: 'Deutschlandweit einsatzbereit',
@@ -59,6 +63,7 @@ const SOLUTIONS = [
     tags: ['Nationwide', '2.000+ Talente'],
   },
   {
+    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20star%20person%20specialized%20expert%20talent%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-star-talent-05&orientation=squarish',
     number: '05',
     icon: 'ri-user-star-line',
     title: 'Spezialisiert nach Kategorie',
@@ -67,6 +72,7 @@ const SOLUTIONS = [
     tags: ['Kategorie-Training', 'Expertise'],
   },
   {
+    woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20bar%20chart%20performance%20tracking%20analytics%20kpi%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-chart-talent-06&orientation=squarish',
     number: '06',
     icon: 'ri-bar-chart-2-line',
     title: 'Performance-getrackt',
@@ -192,8 +198,14 @@ export default function TalentpoolContent() {
                   {s.number}
                 </div>
                 <div className="relative z-10">
-                  <div className="w-12 h-12 flex items-center justify-center mb-4 flex-shrink-0" style={{ background: 'rgba(0,0,0,0.06)' }}>
-                    <i className={`${s.icon} text-lg`} style={{ color: 'oklch(var(--primary-500))' }} />
+                  <div className="w-12 h-12 overflow-hidden mb-4 flex-shrink-0 relative" style={{ background: 'rgba(0,0,0,0.06)' }}>
+                    {s.woodIcon ? (
+                      <img src={s.woodIcon} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <i className={`${s.icon} text-lg`} style={{ color: 'oklch(var(--primary-500))' }} />
+                      </div>
+                    )}
                   </div>
                   <span className="text-[10px] font-black uppercase tracking-widest text-primary-600">{s.accent}</span>
                   <h3 className="text-base font-black text-foreground-950 uppercase mt-1 mb-2 leading-snug">{s.title}</h3>

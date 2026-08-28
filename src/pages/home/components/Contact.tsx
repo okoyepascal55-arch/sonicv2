@@ -103,7 +103,7 @@ export default function Contact() {
                     {['Forecasting', 'Marktdaten', 'Performance'].map((tag) => (
                       <span
                         key={tag}
-                        className="text-[9px] font-bold text-primary-500/40 border border-primary-500/15 px-2 py-0.5 transition-all duration-300 group-hover:text-primary-500/70 group-hover:border-primary-500/35"
+                        className="text-[9px] font-bold text-primary-500/50 border border-primary-500/20 px-2 py-0.5"
                         style={{ borderRadius: 0 }}
                       >
                         {tag}
@@ -175,8 +175,8 @@ export default function Contact() {
               {/* Feature pills */}
               <div className="flex flex-col gap-2.5 mt-5">
                 {[
-                  { icon: 'ri-star-line', text: 'Work with world-class brands' },
-                  { icon: 'ri-rocket-2-line', text: 'Attitude over credentials' },
+                  { icon: 'ri-star-line', text: 'Führende Marken aus aller Welt' },
+                  { icon: 'ri-rocket-2-line', text: 'Einstellung schlägt Lebenslauf' },
                   { icon: 'ri-team-line', text: 'Ein Team, das wie Familie ist' },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
@@ -212,7 +212,7 @@ export default function Contact() {
                     {['Festangestellt', 'Live-Einblick', 'Motivation'].map((tag) => (
                       <span
                         key={tag}
-                        className="text-[9px] font-bold text-primary-500/60 border border-primary-500/20 px-2 py-0.5 transition-all duration-300 group-hover:text-primary-500 group-hover:border-primary-500/40"
+                        className="text-[9px] font-bold text-primary-500/50 border border-primary-500/20 px-2 py-0.5"
                         style={{ borderRadius: 0 }}
                       >
                         {tag}
