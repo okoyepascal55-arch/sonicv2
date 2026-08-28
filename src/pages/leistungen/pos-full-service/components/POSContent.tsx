@@ -286,6 +286,7 @@ export default function POSContent() {
       </section>
 
       {/* Process with images */}
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
       <section id="arbeitsweise" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 

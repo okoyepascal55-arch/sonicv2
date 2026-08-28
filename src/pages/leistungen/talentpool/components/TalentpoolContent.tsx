@@ -205,6 +205,7 @@ export default function TalentpoolContent() {
         </div>
       </section>
 
+      <WoodenDivider />
       {/* ── Talent Profiles (horizontal scroll, dark bg — intentional alternation) ── */}
       <section id="talentprofile" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/4 blur-3xl pointer-events-none" />
@@ -257,6 +258,7 @@ export default function TalentpoolContent() {
         </div>
       </section>
 
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
       {/* ── Stats ── */}
       <section id="stats" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-px bg-foreground-950/10 border border-foreground-950/10 overflow-hidden">

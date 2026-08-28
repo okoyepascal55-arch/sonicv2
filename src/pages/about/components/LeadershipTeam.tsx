@@ -40,7 +40,7 @@ export default function LeadershipTeam() {
         {/* ── BOLD SPLIT: TEAM PHOTO + DARK STAT PANEL ── */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-0 bg-white border border-[#E7E4D4] overflow-hidden">
           {/* Team group photo */}
-          <div className="relative overflow-hidden min-h-[240px] sm:min-h-[340px] lg:min-h-[520px] bg-foreground-950">
+          <div className="relative overflow-hidden min-h-[240px] sm:min-h-[340px] lg:min-h-[420px] bg-foreground-950">
             <img
               src={teamPhoto}
               alt="Das Sonic Team — vielfältige Fachkräfte aus unterschiedlichen Branchen"

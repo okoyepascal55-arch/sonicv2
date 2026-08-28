@@ -32,11 +32,11 @@ export default function FeaturesReference() {
 
         <div className="grid grid-cols-6 gap-[3px]">
           <div className="col-span-6 md:col-span-3 row-span-2 border-2 border-primary-500/35 relative overflow-hidden bg-[#FAFDF5] min-h-[280px]">
-            {/* Ghost dashboard bg — full card, very low opacity, fades to cream at top */}
+            {/* Dashboard bg — bottom half visible, cream gradient protects text area */}
             <img
               src="https://readdy.ai/api/search-image?query=modern%20enterprise%20SaaS%20dashboard%20interface%20dark%20theme%20lime%20green%20accent%20real-time%20analytics%20charts%20KPI%20widgets%20retail%20field%20force%20management%20software%20clean%20professional%20data%20visualization%20overview%20panel&width=900&height=520&seq=srt-f1-hero-bg&orientation=landscape"
               alt="" aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.09]"
+              className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.25]"
               loading="lazy"
             />
             {/* Gradient: solid cream at top (text area) → transparent at bottom */}

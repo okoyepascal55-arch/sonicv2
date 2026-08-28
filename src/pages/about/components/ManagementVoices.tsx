@@ -116,10 +116,12 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
   const tHeading = useText('about_management_voices', 'about-voices-heading', 'Die Stimmen hinter Sonic.');
   const tSub     = useText('about_management_voices', 'about-voices-sub',     'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.');
 
-  const execs = EXECUTIVES.map((exec, idx) => ({
-    ...exec,
-    image: (leadershipImages && leadershipImages[idx]?.url) || exec.image,
-  }));
+  const execs = EXECUTIVES.map((exec) => {
+    // Match by executive name in URL to handle multiple files per person correctly
+    const name = exec.name.split(' ')[0].toLowerCase(); // e.g. "björn", "jo", "lucas"
+    const matched = leadershipImages?.find(img => img.url.toLowerCase().includes(name) && img.url.match(/\d+\.webp$/i));
+    return { ...exec, image: (matched?.url) || exec.image };
+  });
 
   return (
     <section id="management-voices" className="bg-white overflow-hidden">

@@ -301,7 +301,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
                   <p className="text-white/60 text-xs font-medium">Sonic Lösung</p>
                 </div>
               </div>
-              <h2 className="leist-h2 text-foreground-950">
+              <h2 className="leist-h2 text-white">
                 {s.title}
               </h2>
               <p className="text-base md:text-xl text-white/75 font-bold leading-relaxed mb-3 md:mb-6">{s.subtitle}</p>

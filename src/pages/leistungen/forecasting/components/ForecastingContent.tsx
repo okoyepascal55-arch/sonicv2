@@ -163,6 +163,7 @@ export default function ForecastingContent() {
  </section>
 
  {/* ── Stats ── */}
+ <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
  <section id="stats"className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
  <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-px bg-primary-500/15 border border-primary-500/15 overflow-hidden">
  {STATS.map((s, i) => (
