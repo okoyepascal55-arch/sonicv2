@@ -31,7 +31,19 @@ export default function FeaturesReference() {
         </div>
 
         <div className="grid grid-cols-6 gap-[3px]">
-          <div className="col-span-6 md:col-span-3 row-span-2 border-2 border-primary-500/35 p-7 relative overflow-hidden bg-[#FAFDF5] min-h-[280px]">
+          <div className="col-span-6 md:col-span-3 row-span-2 border-2 border-primary-500/35 relative overflow-hidden bg-[#FAFDF5] min-h-[280px]">
+            {/* Dashboard screenshot background — bottom half of card */}
+            <div className="absolute inset-x-0 bottom-0 h-[55%] overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=modern%20enterprise%20SaaS%20dashboard%20interface%20dark%20theme%20lime%20green%20accent%20real-time%20analytics%20charts%20KPI%20widgets%20retail%20field%20force%20management%20software%20clean%20professional%20data%20visualization%20overview%20panel&width=900&height=520&seq=srt-f1-hero-bg&orientation=landscape"
+                alt=""
+                aria-hidden="true"
+                className="w-full h-full object-cover object-top opacity-30"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#FAFDF5] via-[#FAFDF5]/60 to-transparent" />
+            </div>
+            <div className="relative z-10 p-7">
             <span className="absolute top-3 right-4 text-[64px] font-black leading-none text-foreground-950/[0.04]">01</span>
             <div className="w-[46px] h-[46px] overflow-hidden flex items-center justify-center bg-primary-500 mb-[18px]">
               {featureIcons[0]?.url ? <img src={featureIcons[0].url} alt={FEATURES[0].title} className="w-full h-full object-cover" loading="lazy" /> : <img src={FEATURES[0].woodIcon} alt={FEATURES[0].title} className="w-full h-full object-cover" loading="lazy" />}
@@ -39,6 +51,7 @@ export default function FeaturesReference() {
             <h3 className="m-0 mb-2 text-xl font-black text-foreground-950 uppercase">Echtzeit-Dashboard</h3>
             <p className="m-0 mb-4 text-[13px] leading-[1.6] text-foreground-950/50 max-w-[300px]">{FEATURES[0].description}</p>
             <div className="flex flex-wrap gap-1.5">{FEATURES[0].tags?.map(tag => <span key={tag} className="text-[10px] font-extrabold px-2.5 py-1 bg-primary-500/12 border border-primary-500/25 text-foreground-950">{tag}</span>)}</div>
+            </div>
           </div>
 
           {FEATURES.slice(1, 3).map((feature, idx) => {

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
@@ -125,13 +125,53 @@ function Lightbox({ items, images, startIndex, onClose }: { items: Item[]; image
 
 function ShowcaseCard({ item, src, span, rowSpan = 'span 1', onOpen, titleSize, isWide = false }: { item: Item; src: string; span: string; rowSpan?: string; onOpen: () => void; titleSize: string; isWide?: boolean }) {
   return (
-    <button type="button" onClick={onOpen} className="relative overflow-hidden text-left cursor-pointer group w-full" style={{ gridColumn: span, gridRow: rowSpan, minHeight: isWide ? '200px' : '280px', height: isWide ? '200px' : undefined }}>
+    <button type="button" onClick={onOpen} className="relative overflow-hidden text-left cursor-pointer group w-full" style={{ gridColumn: span, gridRow: rowSpan, minHeight: isWide ? '280px' : '280px', height: isWide ? '280px' : undefined }}>
       <img src={src} alt={item.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/10 to-transparent" />
       <span className="absolute top-3 left-3 bg-primary-500 text-foreground-950 text-[9px] font-black uppercase tracking-[0.06em] px-2.5 py-1">{item.tag}</span>
       <div className="absolute top-3 right-3 w-[34px] h-[34px] flex items-center justify-center bg-white/12 border border-white/25 text-white backdrop-blur-sm"><i className="ri-zoom-in-line text-sm" /></div>
       <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6"><h3 className="font-black text-white leading-tight uppercase" style={{ fontSize: titleSize }}>{item.title}</h3><p className="text-xs text-white/60 mt-1">{item.sub}</p></div>
     </button>
+  );
+}
+
+function BeforeAfter({ reality, cgi, contactEmail }: { reality: string; cgi: string; contactEmail: string }) {
+  const [pos, setPos] = useState(55);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const move = useCallback((clientX: number) => {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const pct = Math.min(95, Math.max(5, ((clientX - rect.left) / rect.width) * 100));
+    setPos(pct);
+  }, []);
+
+  return (
+    <div className="mt-1">
+      <div className="flex items-start justify-between gap-4 px-8 py-7 bg-foreground-950/5 border border-foreground-950/[0.08]">
+        <div><p className="text-[9px] font-black uppercase tracking-[0.15em] text-primary-600 mb-2">CGI → Reality Vergleich</p><h3 className="sonic-h2 text-foreground-950 uppercase mb-1">CGI-Render vs. gebauter Stand</h3><p className="text-xs text-foreground-950/40">Ziehe den Regler — Philips @ IFA Berlin</p></div>
+        <a href={`mailto:${contactEmail}?subject=Beratungsgespr%C3%A4ch`} className="flex-shrink-0 px-5 py-2.5 border border-foreground-950/[0.12] text-xs font-black uppercase tracking-widest text-foreground-950/40 hover:bg-primary-500 hover:text-foreground-950">Portfolio anfragen <i className="ri-arrow-right-line" /></a>
+      </div>
+      <div
+        ref={containerRef}
+        className="relative h-[360px] overflow-hidden select-none cursor-col-resize"
+        onMouseMove={(e) => e.buttons === 1 && move(e.clientX)}
+        onMouseDown={(e) => move(e.clientX)}
+        onTouchMove={(e) => move(e.touches[0].clientX)}
+      >
+        <img src={reality} alt="Gebauter Stand" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+        <span className="absolute top-4 right-4 px-3 py-1.5 bg-white/15 border border-white/30 text-[9px] font-black uppercase tracking-[0.12em] text-white/80 backdrop-blur-sm">Gebauter Stand</span>
+        <div className="absolute inset-0 pointer-events-none" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
+          <img src={cgi} alt="CGI Render" className="w-full h-full object-cover" draggable={false} />
+          <span className="absolute top-4 left-4 px-3 py-1.5 bg-primary-500 text-foreground-950 text-[9px] font-black uppercase tracking-[0.12em]">CGI Render</span>
+        </div>
+        <div className="absolute top-0 bottom-0 pointer-events-none" style={{ left: `${pos}%` }}>
+          <div className="w-0.5 h-full bg-primary-500" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-primary-500 text-foreground-950 flex items-center justify-center font-black text-sm cursor-col-resize pointer-events-auto"
+            onMouseDown={(e) => { e.preventDefault(); move(e.clientX); }}>↔</div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -196,19 +236,7 @@ export default function KreationShowcaseReference() {
         </div>
 
         {activeTab === 'cgi' && (
-          <div className="mt-1">
-            <div className="flex items-start justify-between gap-4 px-8 py-7 bg-foreground-950/5 border border-foreground-950/[0.08]">
-              <div><p className="text-[9px] font-black uppercase tracking-[0.15em] text-primary-600 mb-2">CGI → Reality Vergleich</p><h3 className="sonic-h2 text-foreground-950 uppercase mb-1">CGI-Render vs. gebauter Stand</h3><p className="text-xs text-foreground-950/40">Ziehe den Regler — Philips @ IFA Berlin</p></div>
-              <a href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch`} className="flex-shrink-0 px-5 py-2.5 border border-foreground-950/[0.12] text-xs font-black uppercase tracking-widest text-foreground-950/40 hover:bg-primary-500 hover:text-foreground-950">Portfolio anfragen <i className="ri-arrow-right-line" /></a>
-            </div>
-            <div className="relative h-[340px] overflow-hidden">
-              <img src={reality} alt="Gebauter Stand" className="absolute inset-0 w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/20" />
-              <span className="absolute top-4 right-4 px-3 py-1.5 bg-white/15 border border-white/30 text-[9px] font-black uppercase tracking-[0.12em] text-white/80 backdrop-blur-sm">Gebauter Stand</span>
-              <div className="absolute inset-0" style={{ clipPath: 'inset(0 45% 0 0)' }}><img src={cgi} alt="CGI Render" className="w-full h-full object-cover" /><span className="absolute top-4 left-4 px-3 py-1.5 bg-primary-500 text-foreground-950 text-[9px] font-black uppercase tracking-[0.12em]">CGI Render</span></div>
-              <div className="absolute top-0 bottom-0 left-[55%] w-0.5 bg-primary-500"><div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-primary-500 text-foreground-950 flex items-center justify-center font-black text-sm">↔</div></div>
-            </div>
-          </div>
+          <BeforeAfter reality={reality} cgi={cgi} contactEmail={CONTACT_EMAIL} />
         )}
 
         <div className="mt-1 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 md:px-8 py-6 bg-foreground-950/5 border border-foreground-950/[0.08]">
