@@ -50,49 +50,74 @@ export default function KarriereCulture() {
           </div>
         </div>
 
-        {/* DNA */}
-        <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-10 md:gap-14 mb-14">
-          <div>
-            <p className="text-[11px] font-black uppercase tracking-[0.24em] mb-4" style={{ color: 'oklch(var(--foreground-500))' }}>Unsere DNA</p>
-            <p className="text-sm leading-[1.75]" style={{ color: 'oklch(var(--foreground-400))' }}>Vier Konstanten, die jede Entscheidung bei Sonic trägt.</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.1)', borderLeft: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
-            {DNA_DATA.map((item, i) => {
-              const active = hoveredDna === i;
-              return (
-                <div
-                  key={item.num}
-                  className="relative p-9 overflow-hidden transition-colors duration-200"
-                  style={{
-                    background: active ? '#fafdf5' : '#fff',
-                    borderRight: '1px solid oklch(var(--foreground-950) / 0.1)',
-                    borderBottom: '1px solid oklch(var(--foreground-950) / 0.1)',
-                  }}
-                  onMouseEnter={() => setHoveredDna(i)}
-                  onMouseLeave={() => setHoveredDna(null)}
-                >
-                  <span
-                    className="absolute top-2.5 right-3.5 font-black leading-[0.8] tracking-[-0.05em] select-none pointer-events-none transition-colors duration-200"
-                    style={{ fontSize: '76px', color: active ? 'oklch(var(--primary-500) / 0.12)' : 'oklch(var(--foreground-950) / 0.04)' }}
-                    aria-hidden="true"
-                  >
-                    {item.num}
-                  </span>
-{getDnaIcon(i) && (
-                    <div className="relative w-10 h-10 overflow-hidden mb-4 flex-shrink-0">
-                      <img src={getDnaIcon(i)!} alt="" aria-hidden="true" className="w-full h-full object-cover" loading="lazy" />
-                    </div>
-                  )}
-                  <p className="relative text-[22px] font-black tracking-[-0.02em] text-foreground-950 mb-3">{item.title}</p>
-                  <p className="relative text-sm leading-[1.7]" style={{ color: 'oklch(var(--foreground-500))' }}>{item.desc}</p>
-                </div>
-              );
-            })}
-          </div>
+        {/* DNA label row */}
+        <div className="flex items-center gap-4 mb-6">
+          <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+          <p className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(var(--foreground-500))' }}>Unsere DNA — Vier Konstanten, die jede Entscheidung bei Sonic trägt.</p>
         </div>
 
+        {/* Full-width bento: 4 cards on lg, 2×2 on md, 1-col on mobile */}
+      </div>{/* close sonic-container */}
 
+      {/* Bento grid bleeds to section edges */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-foreground-950/[0.08] mb-0" style={{ marginTop: 0 }}>
+        {DNA_DATA.map((item, i) => {
+          const active = hoveredDna === i;
+          const icon = getDnaIcon(i);
+          return (
+            <div
+              key={item.num}
+              className="relative overflow-hidden transition-all duration-300 cursor-default group"
+              style={{
+                background: active ? '#FAFDF5' : '#ffffff',
+                minHeight: '280px',
+              }}
+              onMouseEnter={() => setHoveredDna(i)}
+              onMouseLeave={() => setHoveredDna(null)}
+            >
+              {/* Ghost number — large, top-right */}
+              <span
+                className="absolute top-4 right-5 font-black leading-none select-none pointer-events-none transition-colors duration-300"
+                style={{ fontSize: '96px', color: active ? 'oklch(var(--primary-500) / 0.10)' : 'oklch(var(--foreground-950) / 0.035)' }}
+                aria-hidden="true"
+              >
+                {item.num}
+              </span>
+
+              {/* Active lime top border */}
+              <div
+                className="absolute top-0 left-0 right-0 h-[3px] transition-transform duration-300 origin-left"
+                style={{ background: 'oklch(var(--primary-500))', transform: active ? 'scaleX(1)' : 'scaleX(0)' }}
+              />
+
+              <div className="relative z-10 p-8 md:p-10 flex flex-col h-full">
+                {/* Wood icon */}
+                {icon && (
+                  <div className="w-12 h-12 overflow-hidden mb-6 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+                    <img src={icon} alt="" aria-hidden="true" className="w-full h-full object-cover" loading="lazy" />
+                  </div>
+                )}
+
+                {/* Number badge */}
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] mb-3 block" style={{ color: 'oklch(var(--primary-500) / 0.6)' }}>
+                  {item.num} / 04
+                </span>
+
+                {/* Title */}
+                <h3 className="text-[26px] md:text-[30px] font-black tracking-[-0.025em] text-foreground-950 leading-none mb-4">
+                  {item.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm leading-relaxed flex-1" style={{ color: 'oklch(var(--foreground-500))' }}>
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          );
+        })}
       </div>
+
     </section>
   );
 }
