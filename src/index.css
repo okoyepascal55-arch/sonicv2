@@ -1018,8 +1018,11 @@ html {
 
 /* lg: hero areas, flagship features, CTA blocks */
 .sonic-section-lg {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 3rem;   /* 48px mobile — reduced from 80px */
+  padding-bottom: 3rem;
+}
+@media (min-width: 640px) {
+  .sonic-section-lg { padding-top: 4rem; padding-bottom: 4rem; }
 }
 @media (min-width: 768px) {
   .sonic-section-lg { padding-top: 7rem; padding-bottom: 7rem; }

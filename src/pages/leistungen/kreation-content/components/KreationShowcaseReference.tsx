@@ -246,7 +246,8 @@ export default function KreationShowcaseReference() {
               <p className="text-sm max-w-sm leading-relaxed text-foreground-950/45 mt-3">{TAB_DESC[activeTab]}</p>
             </div>
             <div>
-              <div className="flex border border-foreground-950/[0.12] bg-white">
+              <div className="flex border border-foreground-950/[0.12] bg-white overflow-x-auto">
+                <style>{`.tab-scroll::-webkit-scrollbar{display:none}`}</style>
                 {TABS.map(tab => <button key={tab.id} type="button" onClick={() => { setActiveTab(tab.id); setLightboxIndex(null); }} className={`flex items-center gap-2 px-4 md:px-5 py-3 text-[10px] font-black uppercase tracking-[0.12em] border-r last:border-r-0 border-foreground-950/10 ${activeTab === tab.id ? 'bg-foreground-950 text-primary-500' : 'text-foreground-950/40'}`}><i className={tab.icon} /><span className="hidden sm:inline">{tab.label}</span></button>)}
               </div>
               <div className="flex justify-end gap-1 mt-2">{TABS.map(tab => <div key={tab.id} className={activeTab === tab.id ? 'w-7 bg-primary-500' : 'w-2 bg-foreground-950/15'} style={{ height: 2 }} />)}</div>
@@ -254,18 +255,31 @@ export default function KreationShowcaseReference() {
           </div>
         </div>
 
-        <div className="grid gap-1" style={{ gridTemplateColumns: 'repeat(12, 1fr)', gridTemplateRows: 'repeat(2, 280px)' }}>
+        {/* MOBILE: simple 2-col card grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:hidden">
+          {items.map((item, i) => (
+            <button key={item.id} type="button" onClick={() => setLightboxIndex(i)} className="relative overflow-hidden text-left" style={{ height: 180 }}>
+              <img src={images[i]} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+              <span className="absolute top-2 left-2 bg-primary-500 text-foreground-950 text-[9px] font-black px-2 py-0.5 uppercase">{item.tag}</span>
+              <div className="absolute bottom-0 left-0 right-0 p-3"><p className="text-white font-black text-xs uppercase leading-snug">{item.title}</p><p className="text-white/50 text-[10px] mt-0.5">{item.sub}</p></div>
+            </button>
+          ))}
+        </div>
+        {/* DESKTOP: original bento grid */}
+        <div className="hidden md:grid gap-1" style={{ gridTemplateColumns: 'repeat(12, 1fr)', gridTemplateRows: 'repeat(2, 280px)' }}>
           <ShowcaseCard item={items[0]} src={images[0]} span="span 5" rowSpan="span 2" onOpen={() => setLightboxIndex(0)} titleSize="clamp(1rem,2vw,1.5rem)" />
           <ShowcaseCard item={items[1]} src={images[1]} span="span 4" rowSpan="span 1" onOpen={() => setLightboxIndex(1)} titleSize="14px" />
           <ShowcaseCard item={items[2]} src={images[2]} span="span 3" rowSpan="span 1" onOpen={() => setLightboxIndex(2)} titleSize="13px" />
           <ShowcaseCard item={items[3]} src={images[3]} span="span 4" rowSpan="span 1" onOpen={() => setLightboxIndex(3)} titleSize="13px" />
           <ShowcaseCard item={items[4]} src={images[4]} span="span 3" rowSpan="span 1" onOpen={() => setLightboxIndex(4)} titleSize="12px" />
         </div>
-        <div className="mt-1">
+        {/* /desktop bento */}
+        <div className="mt-1 hidden md:block">
           <ShowcaseCard item={items[4]} src={images[4]} span="span 12" rowSpan="auto" onOpen={() => setLightboxIndex(4)} titleSize="20px" isWide />
         </div>
 
-        <div className="mt-1 grid grid-cols-5 gap-1">
+        <div className="mt-1 hidden md:grid grid-cols-5 gap-1">
           {items.map((item, i) => <button key={item.id} type="button" onClick={() => setLightboxIndex(i)} className="relative overflow-hidden" style={{ height: 64, opacity: lightboxIndex === i ? 1 : 0.65, border: lightboxIndex === i ? '2px solid oklch(0.81 0.19 115)' : '2px solid transparent' }}><img src={images[i]} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" /></button>)}
         </div>
 
