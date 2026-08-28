@@ -115,7 +115,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'home-showcase-tab-5-detail', label: 'Events Detail', description: 'Events detail text', type: 'paragraph', value: 'Wir verstehen das und setzen alles daran, dass dein Stand oder Event eine echte Erfolgsgeschichte wird.' },
       { id: 'home-showcase-learn-more', label: 'Learn More Button', description: 'Learn More CTA on each service', type: 'cta', value: 'Learn More' },
       { id: 'home-showcase-metric-1-title', label: 'Key Metric Card — Expert Talent', description: 'Expert Talent card heading', type: 'heading', value: 'Expert Talent Network' },
-      { id: 'home-showcase-metric-1-desc', label: 'Key Metric Card — Expert Talent Desc', description: 'Expert Talent card text', type: 'paragraph', value: '20,000+ trained promoters ready to represent your brand' },
+      { id: 'home-showcase-metric-1-desc', label: 'Key Metric Card — Expert Talent Desc', description: 'Expert Talent card text', type: 'paragraph', value: '2.000+ trained promoters ready to represent your brand' },
       { id: 'home-showcase-metric-2-title', label: 'Key Metric Card — Coverage', description: 'Coverage card heading', type: 'heading', value: 'Nationwide Coverage' },
       { id: 'home-showcase-metric-2-desc', label: 'Key Metric Card — Coverage Desc', description: 'Coverage card text', type: 'paragraph', value: 'Seamless execution across all major retail channels in DACH' },
       { id: 'home-showcase-metric-3-title', label: 'Key Metric Card — Results', description: 'Results card heading', type: 'heading', value: 'Proven Results' },

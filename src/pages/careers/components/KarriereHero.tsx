@@ -102,7 +102,7 @@ export default function KarriereHero() {
             {[
               { icon: 'ri-star-fill', value: '4.8/5', label: 'Kununu Score' },
               { icon: 'ri-time-line', value: 'Ø 5,15 J.', label: 'Betriebszugehörigkeit' },
-              { icon: 'ri-user-community-line', value: '20.000+', label: 'Talente im Netzwerk' },
+              { icon: 'ri-user-community-line', value: '2.000+', label: 'Talente im Netzwerk' },
             ].map((stat, i) => (
               <div
                 key={i}

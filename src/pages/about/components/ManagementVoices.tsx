@@ -20,7 +20,7 @@ const EXECUTIVES = [
       { label: 'Doing New Things', text: 'Der \u201eStrategic Plan\u201c wird nur dann funktionieren, wenn wir bereit sind, Gewohntes zu verlassen, neue Chancen zu erkennen und mutig neue Wege zu gehen. Innovation ist kein Zufall, sondern eine Einstellung.' },
     ] as DoingItem[],
     metrics: [
-      { value: '20.000+', label: 'Promoter:innen täglich' },
+      { value: '2.000+', label: 'Promoter:innen täglich' },
       { value: 'DACH', label: 'Marktabdeckung' },
     ],
     linkedin: 'https://www.linkedin.com/in/bj%C3%B6rn-bourdin-33100b3/',

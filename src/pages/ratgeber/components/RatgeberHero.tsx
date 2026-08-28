@@ -11,7 +11,7 @@ export default function RatgeberHero({ h1, h1Accent, heroSubtitle, heroSummary, 
   const stats = [
     { value: '60 %', label: 'Kaufentscheidungen am POS' },
     { value: '19+', label: 'Jahre Markenaktivierung' },
-    { value: '20.000+', label: 'Markenbotschafter' },
+    { value: '2.000+', label: 'Markenbotschafter' },
     { value: 'DACH', label: 'Region' },
   ];
 

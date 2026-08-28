@@ -17,7 +17,7 @@ export default function MeetTheTeam() {
   const highlightsData = [
     { icon: 'ri-heart-pulse-line', title: 'Human-First Culture', desc: '5.15 years average tenure—3x the industry standard', fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20heart%20pulse%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-heart-chestnut&orientation=squarish' },
     { icon: 'ri-user-star-line', title: 'Growth Opportunities', desc: 'Clear career paths with mentorship and training programs', fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20star%20person%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-star-chestnut&orientation=squarish' },
-    { icon: 'ri-team-line', title: 'Diverse Family', desc: '20,000+ professionals from all backgrounds united by purpose', fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20team%20group%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-group-chestnut&orientation=squarish' },
+    { icon: 'ri-team-line', title: 'Diverse Family', desc: '2.000+ professionals from all backgrounds united by purpose', fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=wooden%20team%20group%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=48&height=48&seq=wood-group-chestnut&orientation=squarish' },
   ];
 
   const profiles = [
@@ -224,7 +224,7 @@ export default function MeetTheTeam() {
           {[
             { icon: 'ri-heart-pulse-line', title: 'Human-First Culture', desc: '5.15 years average tenure—3x the industry standard', woodIcon: getWoodIcon(0) },
             { icon: 'ri-user-star-line', title: 'Growth Opportunities', desc: 'Clear career paths with mentorship and training programs', woodIcon: getWoodIcon(1) },
-            { icon: 'ri-team-line', title: 'Diverse Family', desc: '20,000+ professionals from all backgrounds united by purpose', woodIcon: getWoodIcon(2) },
+            { icon: 'ri-team-line', title: 'Diverse Family', desc: '2.000+ professionals from all backgrounds united by purpose', woodIcon: getWoodIcon(2) },
           ].map((item, index) => (
             <div 
               key={index}

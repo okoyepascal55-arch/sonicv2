@@ -19,12 +19,12 @@ const NAV_ITEMS = [
 
 export default function TalentpoolPage() {
   useSEO({
-    title: 'Talentpool | Sonic Group — 20.000+ Promoter & Brand Ambassadors DACH',
-    description: 'Der Sonic Talentpool: 20.000+ festangestellte Promoter, Brand Ambassadors und Retail-Experten für den DACH-Markt. Schnell verfügbar, intensiv geschult, messbar erfolgreich.',
+    title: 'Talentpool | Sonic Group — 2.000+ Promoter & Brand Ambassadors DACH',
+    description: 'Der Sonic Talentpool: 2.000+ festangestellte Promoter, Brand Ambassadors und Retail-Experten für den DACH-Markt. Schnell verfügbar, intensiv geschult, messbar erfolgreich.',
     keywords: 'Talentpool Promoter DACH, Brand Ambassador Deutschland, Retail Experten, Promoter Pool',
     canonical: 'https://sonic-group.de/leistungen/talentpool',
     ogTitle: 'Talentpool — Sonic Group DACH',
-    ogDescription: '20.000+ festangestellte Promoter & Brand Ambassadors für den DACH-Markt.',
+    ogDescription: '2.000+ festangestellte Promoter & Brand Ambassadors für den DACH-Markt.',
   });
 
   const heroRef = useRef<HTMLDivElement>(null);

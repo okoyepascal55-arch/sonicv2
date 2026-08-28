@@ -20,11 +20,11 @@ const NAV_ITEMS = [
 export default function StaffAsAServicePage() {
   useSEO({
     title: 'Staff as a Service | Sonic Group — Retail Staffing & Promoter DACH',
-    description: 'Staff as a Service von Sonic Group: 20.000+ festangestellte Promoter und Brand Ambassadors für Retail, Events und POS im DACH-Raum. Flexibel, skalierbar, datenbasiert.',
+    description: 'Staff as a Service von Sonic Group: 2.000+ festangestellte Promoter und Brand Ambassadors für Retail, Events und POS im DACH-Raum. Flexibel, skalierbar, datenbasiert.',
     keywords: 'Staff as a Service, Retail Staffing DACH, Promoter Deutschland, Brand Ambassador, Feldvertrieb',
     canonical: 'https://sonic-group.de/leistungen/staff-as-a-service',
     ogTitle: 'Staff as a Service — Sonic Group DACH',
-    ogDescription: '20.000+ Promoter & Brand Ambassadors für Retail und Events im DACH-Raum.',
+    ogDescription: '2.000+ Promoter & Brand Ambassadors für Retail und Events im DACH-Raum.',
   });
 
   const heroRef = useRef<HTMLDivElement>(null);

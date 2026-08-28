@@ -97,7 +97,7 @@ const markteintrittDach: RatgeberPageContent = {
     {
       label: 'Staff as a Service — lokale Markenbotschafter für den Markteintritt',
       href: '/leistungen/staff-as-a-service',
-      description: '20.000+ geschulte Promoter und Brand Ambassadors für deinen Launch im DACH-Raum.',
+      description: '2.000+ geschulte Promoter und Brand Ambassadors für deinen Launch im DACH-Raum.',
     },
   ],
   crossLinks: [
