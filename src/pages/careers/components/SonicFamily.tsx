@@ -86,7 +86,7 @@ export default function SonicFamily() {
   const tSub     = useText('careers_family', 'careers-family-sub', 'Fünf Geschichten. Eine Überzeugung: Potenzial schlägt Lebenslauf.');
   const tCta     = useText('careers_family', 'careers-family-cta', 'Teil der Geschichte werden');
 
-  const { images: dbImages } = useMediaStore('careers_sonic_spirit_faces');
+  const { images: dbImages } = useMediaStore('careers_sonicfamily_images');
   const FACES = getFaces(dbImages);
 
   // Active face — defaults to first one

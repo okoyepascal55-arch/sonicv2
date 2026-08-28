@@ -69,7 +69,7 @@ interface Props {
 export default function ServiceGrid({ sectionRef }: Props) {
   const navigate = useNavigate();
   const [active, setActive] = useState(0);
-  const { images: gridImages } = useMediaStore('leistungen_servicegrid_images');
+  const { images: gridImages } = useMediaStore('leistungen_servicegrid_bg');
 
   const resolvedImages = SERVICES.map((_, i) => gridImages[i]?.url || FALLBACK_IMAGES[i]);
 

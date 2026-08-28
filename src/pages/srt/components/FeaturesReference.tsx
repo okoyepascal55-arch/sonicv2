@@ -1,5 +1,5 @@
 import { CONTACT_EMAIL } from '@/lib/contact';
-import { useMediaStore } from '@/lib/mediaStore';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 
 const FEATURES = [
@@ -13,6 +13,10 @@ const FEATURES = [
 
 export default function FeaturesReference() {
   const { images: featureIcons } = useMediaStore('srt_feature_icons');
+  const { images: sectionImages } = useMediaStore('srt_section_images');
+  const f1BgSrc = sectionImages[0]?.url
+    ? resolveImageUrl(sectionImages[0].url)
+    : 'https://readdy.ai/api/search-image?query=modern%20enterprise%20SaaS%20dashboard%20interface%20dark%20theme%20lime%20green%20accent%20real-time%20analytics%20charts%20KPI%20widgets%20retail%20field%20force%20management%20software%20clean%20professional%20data%20visualization%20overview%20panel&width=900&height=520&seq=srt-f1-hero-bg&orientation=landscape';
   const tBadge = useText('srt_features', 'srt-features-badge', 'Die Lösung');
   const tHeading = useText('srt_features', 'srt-features-heading', 'SRT: Die All-in-One Software');
   const tSub = useText('srt_features', 'srt-features-sub', 'Seit 2008 laufend weiterentwickelt, für maximalen Nutzwert. Seit 2024 mit KI-Features.');
@@ -34,7 +38,7 @@ export default function FeaturesReference() {
           <div className="col-span-6 md:col-span-3 row-span-2 border-2 border-primary-500/35 relative overflow-hidden bg-[#FAFDF5] min-h-[280px]">
             {/* Dashboard bg — bottom half visible, cream gradient protects text area */}
             <img
-              src="https://readdy.ai/api/search-image?query=modern%20enterprise%20SaaS%20dashboard%20interface%20dark%20theme%20lime%20green%20accent%20real-time%20analytics%20charts%20KPI%20widgets%20retail%20field%20force%20management%20software%20clean%20professional%20data%20visualization%20overview%20panel&width=900&height=520&seq=srt-f1-hero-bg&orientation=landscape"
+              src={f1BgSrc}
               alt="" aria-hidden="true"
               className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.25]"
               loading="lazy"
