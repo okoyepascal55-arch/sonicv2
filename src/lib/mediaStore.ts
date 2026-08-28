@@ -287,6 +287,17 @@ export const PAGE_GROUPS: PageGroup[] = [
       'srt_pricing_images',
     ],
   },
+  // ═══ SITE SETTINGS ═══
+  {
+    id: 'site_settings',
+    label: 'Site-Einstellungen',
+    icon: 'ri-settings-3-line',
+    sections: [
+      'site_favicon',
+      'site_og_image',
+      'site_logo',
+    ],
+  },
   // common group has no active mediaStore usage — components use hardcoded assets
   // Keeping empty group so sidebar navigation still shows it
   {
@@ -553,6 +564,17 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg', caption: 'Hassibullah A. — Sales Professional' },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', caption: 'Peter S. — Regional Lead' },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', caption: 'Janina L. — HR Director' },
+  ],
+
+  /* ── GLOBAL: Site Branding & Settings ── */
+  site_favicon: [
+    { url: 'https://www.sonic-group.de/wp-content/uploads/elementor/thumbs/SONIC_GESAMTLOGO_LIME-q0lflz24exgoq4608jg9ggegh9pjfwmmc0m1jsee5i.png', caption: 'Favicon — 32x32 PNG empfohlen', wide: false },
+  ],
+  site_og_image: [
+    { url: 'https://www.sonic-group.de/wp-content/uploads/elementor/thumbs/SONIC_GESAMTLOGO_LIME-q0lflz24exgoq4608jg9ggegh9pjfwmmc0m1jsee5i.png', caption: 'OG:Image — 1200x630 PNG empfohlen', wide: true },
+  ],
+  site_logo: [
+    { url: 'https://readdy.ai/api/search-image?query=sonic+group+logo+lime+green+minimal&width=400&height=120&seq=sonic-logo&orientation=landscape', caption: 'Logo Light — SVG/PNG', wide: false },
   ],
 
   /* ── CAREERS: SonicFamily AI Portrait Images ── */

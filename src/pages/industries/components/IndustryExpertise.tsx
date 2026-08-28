@@ -47,7 +47,7 @@ export default function IndustryExpertise() {
         </div>
 
         {/* Expertise grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
           {expertise.map((item, index) => {
             const isHovered = hoveredCard === index;
             return (

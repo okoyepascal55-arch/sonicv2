@@ -7,6 +7,7 @@ import SchemaOrg from './components/feature/SchemaOrg';
 import CalendlyWidget from './components/feature/CalendlyWidget';
 import SkipLink from './components/base/SkipLink';
 import ScrollToHash from './components/base/ScrollToHash';
+import FaviconController from './components/base/FaviconController';
 
 function PageLoader() {
   const [width, setWidth] = useState(0);
@@ -80,6 +81,7 @@ function AppLayout() {
 
   return (
     <>
+      <FaviconController />
       <SchemaOrg type="organization" />
       <CalendlyWidget />
       <SkipLink />
