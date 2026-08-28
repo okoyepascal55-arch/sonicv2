@@ -43,3 +43,7 @@ image_check_report.txt
 /_design_backups/
 _design-backup/
 kontakt-prototype.html
+
+# Supabase CLI
+supabase/.temp
+supabase/.branches

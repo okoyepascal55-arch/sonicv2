@@ -27,7 +27,8 @@ export function resolveImageUrl(rawUrl: string): string {
   // New format: __storage__:path
   if (rawUrl.startsWith(STORAGE_PREFIX)) {
     const path = rawUrl.slice(STORAGE_PREFIX.length);
-    const supabaseUrl = import.meta.env.VITE_PUBLIC_SUPABASE_URL;
+    const supabaseUrl = (import.meta.env.VITE_PUBLIC_SUPABASE_URL ?? '').replace(/\/$/, '');
+    if (!supabaseUrl) return rawUrl; // env not configured — return raw token as fallback
     return `${supabaseUrl}/functions/v1/media-proxy?path=${encodeURIComponent(path)}`;
   }
 
@@ -35,13 +36,15 @@ export function resolveImageUrl(rawUrl: string): string {
   const signMatch = rawUrl.match(/\/storage\/v1\/object\/sign\/media\/(.+?)(?:\?|$)/);
   if (signMatch) {
     const path = decodeURIComponent(signMatch[1]);
-    const supabaseUrl = import.meta.env.VITE_PUBLIC_SUPABASE_URL;
+    const supabaseUrl = (import.meta.env.VITE_PUBLIC_SUPABASE_URL ?? '').replace(/\/$/, '');
+    if (!supabaseUrl) return rawUrl; // env not configured — return raw URL as fallback
     return `${supabaseUrl}/functions/v1/media-proxy?path=${encodeURIComponent(path)}`;
   }
 
   // External URLs (AI-generated, remote, etc.) — return as-is
   return rawUrl;
 }
+
 
 /* ─────────────────────────────────────────────
    PAGE GROUPING — organizes sections by page

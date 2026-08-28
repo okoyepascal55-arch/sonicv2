@@ -544,6 +544,14 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
       return;
     }
 
+    // Guard: Supabase must be configured for file uploads
+    if (!supabase) {
+      setStoreError('Upload nicht möglich: Supabase ist nicht konfiguriert. Bitte VITE_PUBLIC_SUPABASE_URL und VITE_PUBLIC_SUPABASE_ANON_KEY in der .env-Datei setzen.');
+      setReplaceTargetUrl(null);
+      if (replaceFileInputRef.current) replaceFileInputRef.current.value = '';
+      return;
+    }
+
     setReplacing(true);
     setStoreError(null);
 
@@ -572,7 +580,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
       setReplaceTargetUrl(null);
     } catch (err: any) {
       const msg = err?.message || 'Replace failed';
-      setStoreError(msg);
+      setStoreError(`Bild ersetzen fehlgeschlagen: ${msg}`);
       setReplaceTargetUrl(null);
     } finally {
       setReplacing(false);
@@ -718,6 +726,12 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
   const handleBulkUpload = useCallback(async () => {
     if (bulkFiles.length === 0 || !expandedSection) return;
 
+    // Guard: Supabase must be configured for file uploads
+    if (!supabase) {
+      setStoreError('Upload nicht möglich: Supabase ist nicht konfiguriert. Bitte VITE_PUBLIC_SUPABASE_URL und VITE_PUBLIC_SUPABASE_ANON_KEY in der .env-Datei setzen.');
+      return;
+    }
+
     setBulkUploading(true);
     setBulkProgress({ total: bulkFiles.length, done: 0, errors: [] });
     const errors: string[] = [];
@@ -788,6 +802,14 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
   const handleUploadAndAdd = useCallback(async () => {
     if (!uploadFile || !expandedSection) return;
 
+    // Guard: Supabase must be configured for file uploads
+    if (!supabase) {
+      const cfgMsg = 'Upload nicht möglich: Supabase ist nicht konfiguriert. Bitte VITE_PUBLIC_SUPABASE_URL und VITE_PUBLIC_SUPABASE_ANON_KEY in der .env-Datei setzen.';
+      setUploadError(cfgMsg);
+      setStoreError(cfgMsg);
+      return;
+    }
+
     setUploading(true);
     setUploadError('');
     setStoreError(null);
@@ -823,11 +845,10 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
       setUploadFile(null);
       refreshSection(expandedSection);
     } catch (err: any) {
-      const msg = err?.message || 'Upload failed';
+      // Surface ALL upload errors — not just storage/localStorage ones
+      const msg = err?.message || 'Upload fehlgeschlagen';
       setUploadError(msg);
-      if (msg.includes('storage') || msg.includes('localStorage')) {
-        setStoreError(msg);
-      }
+      setStoreError(`Upload fehlgeschlagen: ${msg}`);
     } finally {
       setUploading(false);
     }
