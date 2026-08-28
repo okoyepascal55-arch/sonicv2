@@ -1083,7 +1083,7 @@ export default function LosungenPage() {
       {/* ── WOODEN CAROUSEL ── */}
       <section ref={carouselRef} id="losungen-carousel" className="sonic-section-md relative bg-white overflow-visible">
 
-        <div className="relative z-10 px-6 max-w-7xl mx-auto">
+        <div className="relative z-10 px-4 md:px-8">
           {/* Intro — unified eyebrow + paragraph (redundant stat-grid removed: the wood card below already carries these stats) */}
           <div className="mb-8 md:mb-10 max-w-2xl">
             <div className="flex items-center gap-3 mb-4">

@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { useMediaStore } from '@/lib/mediaStore';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 export default function KarriereHero() {
   const [hovered, setHovered] = useState(false);
   const { images: heroBgImages } = useMediaStore('careers_hero_images');
   const { images: karriereImages } = useMediaStore('/images/Karriere');
+  const { images: woodBgImages } = useMediaStore('home_livemetrics_wood_bg');
+  const woodBgUrl = woodBgImages[0]?.url
+    ? resolveImageUrl(woodBgImages[0].url)
+    : 'https://readdy.ai/api/search-image?query=warm%20chestnut%20brown%20hardwood%20plank%20natural%20wood%20grain%20texture%20rich%20amber%20brown%20tone%20oak%20walnut%20surface%20close%20up%20macro%20photography%20dark%20rich%20finish&width=1920&height=100&seq=wood-ticker-karriere&orientation=landscape';
 
   const heroImage =
     heroBgImages[0]?.url ||
@@ -51,7 +55,7 @@ export default function KarriereHero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 sonic-container w-full pb-14 md:pb-[72px] pt-16">
+      <div className="relative z-10 sonic-container w-full pb-28 md:pb-32 pt-16">
         <div className="max-w-[820px]">
           {/* Chapter eyebrow — 00 */}
           <div className="flex items-center gap-3.5 mb-6 md:mb-7">
@@ -94,30 +98,33 @@ export default function KarriereHero() {
             </a>
           </div>
 
-          {/* Trust stat bar — glass, 3-col with dividers */}
+          {/* Wooden scrolling stats ticker — same design language as homepage LiveMetrics */}
+        </div>
+      </div>
+      {/* Wooden stats ticker — full-width, outside the padded container */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 overflow-hidden" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="absolute inset-0" aria-hidden="true">
+          <img src={woodBgUrl} alt="" className="w-full h-full object-cover" loading="lazy" />
+          <div className="absolute inset-0 bg-foreground-950/60" />
+        </div>
+        <div className="relative z-10 overflow-hidden py-3 md:py-3.5">
           <div
-            className="grid grid-cols-1 sm:grid-cols-3"
-            style={{ background: 'rgba(255,255,255,0.07)', backdropFilter: 'blur(20px) saturate(1.3)', WebkitBackdropFilter: 'blur(20px) saturate(1.3)', border: '1px solid rgba(255,255,255,0.14)' }}
+            className="flex items-center gap-6 md:gap-10 animate-scroll-optimized whitespace-nowrap"
+            aria-hidden="true"
           >
             {[
               { icon: 'ri-star-fill', value: '4.8/5', label: 'Kununu Score' },
               { icon: 'ri-time-line', value: 'Ø 5,15 J.', label: 'Betriebszugehörigkeit' },
               { icon: 'ri-user-community-line', value: '2.000+', label: 'Talente im Netzwerk' },
+              { icon: 'ri-award-line', value: '4.8/5', label: 'Kununu Score' },
+              { icon: 'ri-time-line', value: 'Ø 5,15 J.', label: 'Betriebszugehörigkeit' },
+              { icon: 'ri-user-community-line', value: '2.000+', label: 'Talente im Netzwerk' },
             ].map((stat, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3.5 px-6 md:px-[30px] py-5 md:py-[26px]"
-                style={i < 2 ? { borderRight: '1px solid rgba(255,255,255,0.12)' } : undefined}
-              >
-                <i className={`${stat.icon} text-[18px] text-primary-500 flex-shrink-0`} />
-                <div>
-                  <p className="text-2xl md:text-[32px] font-black leading-none tracking-[-0.035em] text-white tabular-nums mb-1">
-                    {stat.value}
-                  </p>
-                  <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.22em] text-white/45">
-                    {stat.label}
-                  </p>
-                </div>
+              <div key={i} className="flex items-center gap-2.5 flex-shrink-0">
+                {i === 0 || i === 3 ? <span className="text-primary-500 text-[10px]">●</span> : <span className="text-primary-500/30 text-[10px]">·</span>}
+                <i className={`${stat.icon} text-primary-500 text-sm drop-shadow`} />
+                <span className="text-sm font-black text-white tabular-nums drop-shadow">{stat.value}</span>
+                <span className="text-[10px] font-bold text-white/60 uppercase tracking-wider">{stat.label}</span>
               </div>
             ))}
           </div>
