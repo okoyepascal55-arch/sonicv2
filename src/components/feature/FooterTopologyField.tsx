@@ -92,8 +92,8 @@ function getDOFBodyWidth(depth: number, baseThickness: number): number {
 
 function scrollVelocityToMultiplier(velPxPerSec: number): number {
   const base = 1.0;
-  const max = 3.0;
-  const sensitivity = 0.0008;
+  const max = 1.6; /* reduced from 3.0 — scroll boosts waves but doesn't go crazy */
+  const sensitivity = 0.0005;
   return Math.min(max, base + velPxPerSec * sensitivity);
 }
 
@@ -484,8 +484,8 @@ export default function FooterTopologyField() {
 
       /* ── Idle calm factor: after 5s no mouse, waves settle ─ */
       const idleElapsed = realT - lastMouseActivityRef.current;
-      const targetCalm = idleElapsed > 5.0 ? 0.28 : 1.0;
-      const calmLerpSpeed = targetCalm < 0.5 ? 0.008 : 0.04;
+      const targetCalm = idleElapsed > 3.0 ? 0.10 : 1.0;
+      const calmLerpSpeed = targetCalm < 0.5 ? 0.005 : 0.06; /* slow settle → active, fast release */
       calmFactorRef.current += (targetCalm - calmFactorRef.current) * calmLerpSpeed;
       const calmFactor = calmFactorRef.current;
 
@@ -515,12 +515,12 @@ export default function FooterTopologyField() {
       ctx.clearRect(0, 0, W, H);
 
       /* ── Deep warm background ─────────────────────────────── */
-      ctx.fillStyle = '#181818';
+      ctx.fillStyle = '#0b0b0c'; /* matches site bg-foreground-950 */
       ctx.fillRect(0, 0, W, H);
       const warmGrad = ctx.createRadialGradient(W * 0.5, H * 0.55, 0, W * 0.5, H * 0.55, W * 0.7);
-      warmGrad.addColorStop(0, 'rgba(45,42,35,0.25)');
-      warmGrad.addColorStop(0.5, 'rgba(32,30,26,0.10)');
-      warmGrad.addColorStop(1, 'rgba(24,24,24,0)');
+      warmGrad.addColorStop(0, 'rgba(18,20,14,0.20)');
+      warmGrad.addColorStop(0.5, 'rgba(12,13,10,0.08)');
+      warmGrad.addColorStop(1, 'rgba(11,11,12,0)');
       ctx.fillStyle = warmGrad;
       ctx.fillRect(0, 0, W, H);
 
@@ -962,7 +962,7 @@ export default function FooterTopologyField() {
     <div
       ref={wrapperRef}
       className="relative w-full overflow-hidden cursor-crosshair"
-      style={{ zIndex: 0, background: '#181818', height: 'clamp(140px, 22vw, 300px)' }}
+      style={{ zIndex: 0, background: '#0b0b0c', height: 'clamp(140px, 22vw, 300px)' }}
     >
       <canvas
         ref={canvasRef}
