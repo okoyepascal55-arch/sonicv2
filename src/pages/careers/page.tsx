@@ -61,6 +61,7 @@ export default function CareersGatewayPage() {
         <div ref={heroRef}>
           <KarriereHero />
         </div>
+        <KarriereStatsTicker />
 
         {/* Dark-bg WoodenDivider — hero(dark) exit into 01(light) */}
         <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
