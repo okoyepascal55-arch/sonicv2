@@ -1083,17 +1083,19 @@ export default function LosungenPage() {
       {/* ── WOODEN CAROUSEL ── */}
       <section ref={carouselRef} id="losungen-carousel" className="sonic-section-md relative bg-white overflow-visible">
 
-        <div className="relative z-10 px-4 md:px-8">
-          {/* Intro — unified eyebrow + paragraph (redundant stat-grid removed: the wood card below already carries these stats) */}
-          <div className="mb-8 md:mb-10 max-w-2xl">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Lösungen für den DACH-Markt</span>
-            </div>
-            <p className="text-sm md:text-base text-foreground-700 leading-relaxed">
-              Ganz gleich ob du neu im Markt bist, deinen Absatz skalieren willst oder deine Omnichannel-Strategie zum Fliegen bringen musst: Wir haben die Menschen, die Daten und die Erfolgslösungen.
-            </p>
+        {/* Intro — full-width, no max-w constraint */}
+        <div className="relative z-10 px-4 md:px-8 mb-8 md:mb-10">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Lösungen für den DACH-Markt</span>
           </div>
+          <p className="text-sm md:text-base text-foreground-700 leading-relaxed max-w-3xl">
+            Ganz gleich ob du neu im Markt bist, deinen Absatz skalieren willst oder deine Omnichannel-Strategie zum Fliegen bringen musst: Wir haben die Menschen, die Daten und die Erfolgslösungen.
+          </p>
+        </div>
+
+        {/* Carousel — inside sonic-container so tabs + card + dots align with page */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
 
           {/* Tab switcher — framed hairline row, joins directly into the wood card below.
               Mobile: natural width + horizontal scroll (labels don't get crushed).
