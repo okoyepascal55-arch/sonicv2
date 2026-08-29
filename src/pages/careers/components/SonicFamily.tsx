@@ -54,6 +54,14 @@ const getFaces = (dbImages: { url: string }[]): Face[] => [
     bio: 'Janina verantwortet das Human Resources Management bei Sonic. Sie gestaltet Recruiting, Onboarding und Unternehmenskultur so, dass Talente langfristig bleiben.',
     image: dbImages[4]?.url || 'https://readdy.ai/api/search-image?query=professional+woman+HR+manager+warm+authentic+smile+editorial+portrait+modern+office&width=600&height=800&seq=sf-janina-05&orientation=portrait',
   },
+  {
+    id: 'inga',
+    name: 'Inga L.',
+    role: 'Jr. Art Direktorin',
+    pullQuote: '„Social Media lebt von echten Momenten — meine Aufgabe ist es, diese Momente sichtbar zu machen, bevor sie verblassen."',
+    bio: 'Inga gestaltet die visuelle Social-Media-Präsenz von Sonic. Als Junior Art Direktorin gibt sie der Marke eine konsistente Bild- und Tonsprache — von der Content-Idee bis zum finalen Post.',
+    image: dbImages[5]?.url || 'https://readdy.ai/api/search-image?query=professional+young+woman+creative+art+director+social+media+confident+editorial+portrait+modern+studio+dark+background&width=600&height=800&seq=sf-inga-06&orientation=portrait',
+  },
 ];
 
 export default function SonicFamily() {
