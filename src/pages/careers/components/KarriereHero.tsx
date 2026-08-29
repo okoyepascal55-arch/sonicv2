@@ -28,8 +28,8 @@ export default function KarriereHero() {
 
   return (
     <section
-      className="relative flex min-h-[320px] sm:min-h-[400px] md:min-h-[560px] items-end overflow-hidden group"
-      style={{ background: 'oklch(0.13 0.005 118)' }}
+      className="relative flex min-h-[320px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden group"
+      style={{ background: 'oklch(0.13 0.005 118)', paddingTop: 'clamp(56px, 14vw, 80px)' }}
       id="stellen"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -55,27 +55,23 @@ export default function KarriereHero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 sonic-container w-full pb-28 md:pb-32 pt-16">
-        <div className="max-w-[820px]">
-          {/* Chapter eyebrow — 00 */}
-          <div className="flex items-center gap-3.5 mb-6 md:mb-7">
-            <span className="text-[11px] font-black tracking-[0.24em] text-white/40">00</span>
-            <span className="w-7 h-0.5 bg-primary-500" aria-hidden="true" />
-            <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Karriere bei Sonic</span>
+      <div className="relative z-10 sonic-container w-full pb-14 md:pb-16">
+        <div className="max-w-[640px]">
+          {/* Eyebrow — lime dash + label, matches Leistungen reference */}
+          <div className="flex items-center gap-3 mb-5 md:mb-6">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Karriere bei Sonic</span>
           </div>
 
-          {/* Headline */}
-          <h1
-            className="font-black uppercase text-white mb-6 md:mb-7"
-            style={{ fontSize: 'clamp(2.25rem, 6vw, 5.75rem)', lineHeight: 0.96, letterSpacing: '-0.038em' }}
-          >
+          {/* Headline — leist-h1-hub matches Leistungen reference */}
+          <h1 className="leist-h1-hub text-white mb-5 md:mb-6">
             Menschen mit <span className="text-primary-500">Energie</span> gesucht
           </h1>
 
-          <p className="text-[15px] md:text-[17px] leading-relaxed text-white/80 max-w-[540px] mb-3">
+          <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-3">
             Zeige, was du kannst, und freue dich auf gemeinsame Erfolge. Wichtig ist uns deine Einstellung zum Job — nicht nur das, was du schon erreicht hast.
           </p>
-          <p className="text-[13px] md:text-[15px] leading-relaxed text-white/50 max-w-[540px] mb-9 md:mb-11">
+          <p className="text-xs md:text-sm text-white/60 leading-relaxed max-w-[480px] mb-6 md:mb-8">
             Aktuelle Stellen am Sonic-Campus in Krefeld und deutschlandweite Einsätze für unsere Kundenprojekte.
           </p>
 

@@ -1025,59 +1025,81 @@ export default function LosungenPage() {
     <div className="min-h-[100dvh] bg-white overflow-x-hidden">
 
       {/* ── HERO ── */}
-      <section className="relative flex items-center overflow-hidden" style={{ minHeight: '480px' }}>
+      <section
+        className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950"
+        style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}
+      >
         {/* Background image */}
-        <div className="absolute inset-0">
-          {(heroBgImages[0] && heroBgImages[0].url) && (
-            <img
-              src={heroBgImages[0].url}
-              alt="Lösungen Hero"
-              className="w-full h-full object-cover object-top"
-              fetchPriority="high"
-              decoding="async"
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/25" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
-        </div>
+        {(heroBgImages[0] && heroBgImages[0].url) && (
+          <img
+            src={heroBgImages[0].url}
+            alt="Lösungen Hero"
+            className="absolute inset-0 w-full h-full object-cover object-top"
+            fetchPriority="high"
+            decoding="async"
+          />
+        )}
 
-        {/* Lime ambient glow */}
+        {/* Dark veil — bottom-heavy, matches Leistungen reference */}
+        <div
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, rgba(11,11,12,0.30) 0%, rgba(11,11,12,0.20) 45%, rgba(11,11,12,0.82) 100%)' }}
+          aria-hidden="true"
+        />
 
         {/* Content — left-aligned, bottom-anchored */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6 py-0">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.2em] px-3.5 py-[7px] mb-5 md:mb-6">
-              <span className="w-1.5 h-1.5 bg-foreground-950" />
-              Lösungen
+        <div className="relative z-20 w-full max-w-[1280px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
+          <div className="max-w-[640px]">
+            {/* v3 eyebrow — lime hairline + label */}
+            <div className="flex items-center gap-3 mb-5 md:mb-6">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Lösungen</span>
             </div>
 
-            {/* Main headline — editorial split type */}
             <h1 className="leist-h1-hub text-white mb-5 md:mb-6">
               Drei Wege<br />
               <span className="text-primary-500">durch die</span><br />
               Retail-Schallmauer.
             </h1>
 
-            {/* Divider + subtitle */}
-            <div className="flex items-start gap-4 mb-8">
-              <div className="w-1 h-14 bg-primary-500 flex-shrink-0 mt-1" />
-              <div>
-                <p className="text-white font-black text-base md:text-lg mb-1">
-                  Die richtige Lösung für jede Phase deiner Retail-Strategie.
-                </p>
-                <p className="text-white/60 text-sm leading-relaxed">
-                  Markteintritt, Absatzsteigerung oder Omnichannel — Wir haben die Menschen, die Daten
-                  und die Erfolgslösungen für den DACH-Markt.
-                </p>
-              </div>
-            </div>
+            <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-3">
+              Die richtige Lösung für jede Phase deiner Retail-Strategie.
+            </p>
+            <p className="text-xs md:text-sm text-white/60 leading-relaxed max-w-[480px] mb-8 md:mb-10">
+              Markteintritt, Absatzsteigerung oder Omnichannel — Wir haben die Menschen, die Daten
+              und die Erfolgslösungen für den DACH-Markt.
+            </p>
+          </div>
 
-            {/* Three solution nav buttons — REMOVED, users scroll to carousel tabs */}
+          {/* Stats strip — same hairline format as Leistungen */}
+          <div
+            className="w-full max-w-[640px] grid grid-cols-2 md:grid-cols-4"
+            style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}
+          >
+            {[
+              { value: '>3 Mrd. €', label: 'Beeinflusster Umsatz' },
+              { value: '2.000+', label: 'Talente im Pool' },
+              { value: 'DACH', label: 'Marktabdeckung' },
+              { value: '2007', label: 'Gegründet' },
+            ].map((s, i) => (
+              <div
+                key={i}
+                className="px-3 md:px-5 py-4 md:py-5 flex flex-col gap-1"
+                style={{ borderRight: i < 3 ? '1px solid rgba(255,255,255,0.14)' : undefined }}
+              >
+                <span
+                  className="font-black tabular-nums leading-none"
+                  style={{ fontSize: 'clamp(13px,2.5vw,20px)', letterSpacing: '-0.03em', color: i === 2 ? 'oklch(0.81 0.19 115)' : '#fff', whiteSpace: 'nowrap' }}
+                >
+                  {s.value}
+                </span>
+                <span className="font-black uppercase tracking-[0.18em]" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.45)' }}>
+                  {s.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
-
-        {/* Bottom fade into next section */}
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent z-20 pointer-events-none" />
       </section>
 
       {/* ── WOODEN CAROUSEL ── */}
