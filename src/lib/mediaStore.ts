@@ -597,6 +597,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://readdy.ai/api/search-image?query=professional%20man%20event%20logistics%20manager%20confident%20editorial%20portrait%20modern%20office%20dark%20background%20natural%20light%20sharp%20detail&width=600&height=800&seq=sf-andrew-03&orientation=portrait', caption: 'Andrew W. — Event and Logistics Manager' },
     { url: 'https://readdy.ai/api/search-image?query=professional%20woman%20senior%20project%20manager%20confident%20editorial%20portrait%20modern%20office%20dark%20background%20natural%20light%20professional%20polished&width=600&height=800&seq=sf-michelle-04&orientation=portrait', caption: 'Michelle G. — Senior Project Manager' },
     { url: 'https://readdy.ai/api/search-image?query=professional%20woman%20HR%20manager%20warm%20authentic%20smile%20editorial%20portrait%20modern%20office%20dark%20background%20natural%20light%20professional%20approachable&width=600&height=800&seq=sf-janina-05&orientation=portrait', caption: 'Janina B. — HR Manager' },
+    { url: 'https://readdy.ai/api/search-image?query=professional%20young%20woman%20creative%20art%20director%20social%20media%20confident%20editorial%20portrait%20modern%20creative%20agency%20dark%20background%20studio%20lighting%20artistic%20sharp%20detail&width=600&height=800&seq=sf-inga-06&orientation=portrait', caption: 'Inga L. — Jr Art Direktor' },
   ],
 
   /* ── KREATION: Team Faces ── */
@@ -1556,7 +1557,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'careers_mitarbeiterstimmen_sales_images': 3,
   'careers_mitarbeiterstimmen_staff_images': 3,
   'careers_sonicfaces_images': 5,
-  'careers_sonicfamily_images': 5,
+  'careers_sonicfamily_images': 6,
   'careers_recruitercta_image': 1,
   'careers_stellenangebote_image': 1,
   'careers_sonic_sales_hero': 1,

@@ -16,13 +16,14 @@ function SRTPricingForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
+  const [interest, setInterest] = useState('');
   const [status, setStatus] = useState<'idle'|'sending'|'done'|'error'>('idle');
 
   const handleSubmit = async () => {
     if (!name.trim() || !email.trim()) return;
     setStatus('sending');
     try {
-      await submitContactForm({ name, email, message: `Unternehmen: ${company || '–'}\nSRT Demo-Anfrage`, subject: 'SRT Demo anfragen' });
+      await submitContactForm({ name, email, company, message: `Unternehmen: ${company || '–'}\nInteresse: ${interest || 'Allgemeine Demo'}`, subject: 'SRT Demo anfragen' });
       setStatus('done');
     } catch {
       setStatus('error');
@@ -43,6 +44,16 @@ function SRTPricingForm() {
         <input aria-label="E-Mail" type="email" placeholder="E-Mail" value={email} onChange={e => setEmail(e.target.value)} className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] font-inherit focus:outline-none focus:border-primary-500 bg-transparent text-background-50" />
       </div>
       <input aria-label="Unternehmen" type="text" placeholder="Unternehmen (optional)" value={company} onChange={e => setCompany(e.target.value)} className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] font-inherit focus:outline-none focus:border-primary-500 bg-transparent text-background-50" />
+      <select aria-label="Interesse" value={interest} onChange={e => setInterest(e.target.value)} className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] focus:outline-none focus:border-primary-500 bg-foreground-950 text-background-50/80 cursor-pointer">
+        <option value="">Was interessiert dich am meisten? (optional)</option>
+        <option value="Einsatzplanung">Einsatz- & Aufgabenplanung</option>
+        <option value="Talentpool">Talentpool-Verwaltung</option>
+        <option value="GPS-Tracking">GPS-Tracking & Check-in</option>
+        <option value="Datenintegration">ERP / Datenintegration</option>
+        <option value="KI-Dokumente">KI-Dokumentenverarbeitung</option>
+        <option value="Routenplanung">Routenplanung</option>
+        <option value="Vollständige Demo">Vollständige Demo</option>
+      </select>
       {status === 'error' && <p className="text-red-400 text-xs">Fehler beim Senden — bitte versuche es erneut.</p>}
       <button
         type="button"

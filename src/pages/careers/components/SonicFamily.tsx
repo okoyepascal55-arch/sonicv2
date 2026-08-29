@@ -59,7 +59,7 @@ const getFaces = (dbImages: { url: string }[]): Face[] => [
 export default function SonicFamily() {
   const tBadge   = useText('careers_family', 'careers-family-badge', 'Echte Menschen. Echte Geschichten.');
   const tHeading = useText('careers_family', 'careers-family-heading', 'Sonic Spirit & Faces');
-  const tSub     = useText('careers_family', 'careers-family-sub', 'Fünf Geschichten. Eine Überzeugung: Potenzial schlägt Lebenslauf.');
+  const tSub     = useText('careers_family', 'careers-family-sub', 'Sechs Geschichten. Eine Überzeugung: Potenzial schlägt Lebenslauf.');
   const tCta     = useText('careers_family', 'careers-family-cta', 'Teil der Geschichte werden');
 
   const { images: dbImages } = useMediaStore('careers_sonicfamily_images');

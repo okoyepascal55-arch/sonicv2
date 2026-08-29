@@ -61,7 +61,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
   const [showContactForm, setShowContactForm] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [hoveredOption, setHoveredOption] = useState<number | null>(null);
-  const [contactData, setContactData] = useState({ email: '', phone: '' });
+  const [contactData, setContactData] = useState({ name: '', company: '', email: '', phone: '' });
   const [contactError, setContactError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
@@ -83,7 +83,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
       setShowContactForm(false);
       setShowResult(false);
       setHoveredOption(null);
-      setContactData({ email: '', phone: '' });
+      setContactData({ name: '', company: '', email: '', phone: '' });
       setContactError('');
       // Auto-focus close button after modal animation
       const t = setTimeout(() => closeButtonRef.current?.focus(), 80);
@@ -142,12 +142,15 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
       const honeypot = (document.getElementById('quiz-phone-alt') as HTMLInputElement)?.value?.trim();
       if (honeypot) { setShowResult(true); setSubmitting(false); return; }
       await submitContactForm({
+        name: contactData.name.trim(),
         email: contactData.email,
         phone: contactData.phone.trim(),
+        company: contactData.company.trim(),
         recommendation: selectedAnswers[0] || '',
         stage: selectedAnswers[1] || '',
         priority: selectedAnswers[2] || '',
         subject: 'Quiz-Empfehlung: ' + (getRecommendedService().title),
+        message: `Empfohlene Lösung: ${getRecommendedService().title}\nHerausforderung: ${selectedAnswers[0]}\nPhase: ${selectedAnswers[1]}\nPriorität: ${selectedAnswers[2]}`,
       });
     } catch { /* non-critical */ }
     setSubmitting(false);
@@ -155,7 +158,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
     setShowResult(true);
   };
 
-  const handleReset = () => { setCurrentStep(0); setSelectedAnswers([]); setShowContactForm(false); setShowResult(false); setContactData({ email: '', phone: '' }); };
+  const handleReset = () => { setCurrentStep(0); setSelectedAnswers([]); setShowContactForm(false); setShowResult(false); setContactData({ name: '', company: '', email: '', phone: '' }); };
 
   const getRecommendedService = () => {
     const primaryChallenge = selectedAnswers[0];
@@ -284,6 +287,32 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                   readOnly
                   className="survey-hp-field"
                 />
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={contactData.name}
+                      onChange={(e) => setContactData({ ...contactData, name: e.target.value })}
+                      placeholder="Dein Name"
+                      className="w-full px-4 py-3 border-2 border-foreground-200 text-sm focus:outline-none focus:border-primary-500 transition-colors"
+                      style={{ borderRadius: 0 }}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">Unternehmen</label>
+                    <input
+                      type="text"
+                      name="company"
+                      value={contactData.company}
+                      onChange={(e) => setContactData({ ...contactData, company: e.target.value })}
+                      placeholder="Muster GmbH"
+                      className="w-full px-4 py-3 border-2 border-foreground-200 text-sm focus:outline-none focus:border-primary-500 transition-colors"
+                      style={{ borderRadius: 0 }}
+                    />
+                  </div>
+                </div>
                 <div>
                   <label className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">E-Mail-Adresse <span className="text-red-500">*</span></label>
                   <div className="relative">
@@ -293,7 +322,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                       name="email"
                       value={contactData.email}
                       onChange={(e) => setContactData({ ...contactData, email: e.target.value })}
-                      placeholder="your@company.com"
+                      placeholder="deine@firma.de"
                       className="w-full pl-9 pr-4 py-3 border-2 border-foreground-200 text-sm text-foreground-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8D400] focus-visible:ring-offset-2 focus:border-primary-500 transition-colors"
                       style={{ borderRadius: 0 }}
                     />

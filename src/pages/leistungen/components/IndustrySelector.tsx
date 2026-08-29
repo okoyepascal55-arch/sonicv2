@@ -7,8 +7,8 @@ const BRANCHES = [
   { label: 'Haushaltsgeräte', icon: 'ri-blaze-line' },
   { label: 'Beauty & Kosmetik', icon: 'ri-seedling-line' },
   { label: 'Sport & Outdoor', icon: 'ri-run-line' },
-  { label: 'Food & Beverages', icon: 'ri-restaurant-line' },
-  { label: 'Pharma & Health', icon: 'ri-heart-pulse-line' },
+  { label: 'Lebensmittel & Getränke', icon: 'ri-restaurant-line' },
+  { label: 'Pharma & Gesundheit', icon: 'ri-heart-pulse-line' },
 ];
 
 const TEAM_SIZES = ['1–10', '11–50', '51–200', '200+'];
@@ -33,6 +33,7 @@ export default function IndustrySelector() {
   const [teamSize, setTeamSize] = useState('');
   const [services, setServices] = useState<string[]>([]);
   const [name, setName] = useState('');
+  const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<Status>('idle');
   const [formError, setFormError] = useState('');
@@ -43,6 +44,7 @@ export default function IndustrySelector() {
     setTeamSize('');
     setServices([]);
     setName('');
+    setCompany('');
     setEmail('');
     setStatus('idle');
     setFormError('');
@@ -187,6 +189,7 @@ export default function IndustrySelector() {
               >
                 {/* Hidden answer carriers (also collected into FormData on submit) */}
                 <input type="hidden" name="branche" value={branch} />
+                <input type="hidden" name="unternehmen" value={company} />
                 <input type="hidden" name="team_groesse" value={teamSize} />
                 <input type="hidden" name="leistungen" value={services.join(', ')} />
                 {/* Anti-spam honeypot */}
@@ -298,7 +301,7 @@ export default function IndustrySelector() {
                         htmlFor="survey-name"
                         className="block text-[11px] font-black uppercase tracking-wider text-foreground-600 mb-1.5"
                       >
-                        Name
+                        Name *
                       </label>
                       <input
                         id="survey-name"
@@ -307,6 +310,24 @@ export default function IndustrySelector() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Dein Name"
+                        required
+                        className="w-full px-4 py-2.5 text-sm bg-white border border-foreground-200 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="survey-company"
+                        className="block text-[11px] font-black uppercase tracking-wider text-foreground-600 mb-1.5"
+                      >
+                        Unternehmen
+                      </label>
+                      <input
+                        id="survey-company"
+                        type="text"
+                        name="company_display"
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
+                        placeholder="Muster GmbH"
                         className="w-full px-4 py-2.5 text-sm bg-white border border-foreground-200 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 transition-colors"
                       />
                     </div>
