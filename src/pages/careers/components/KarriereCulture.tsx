@@ -50,74 +50,59 @@ export default function KarriereCulture() {
           </div>
         </div>
 
-        {/* DNA label row */}
+        {/* DNA eyebrow */}
         <div className="flex items-center gap-4 mb-6">
           <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
           <p className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(var(--foreground-500))' }}>Unsere DNA — Vier Konstanten, die jede Entscheidung bei Sonic trägt.</p>
         </div>
 
-        {/* Full-width bento: 4 cards on lg, 2×2 on md, 1-col on mobile */}
-      </div>{/* close sonic-container */}
-
-      {/* Bento grid bleeds to section edges */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-foreground-950/[0.08] mb-0" style={{ marginTop: 0 }}>
-        {DNA_DATA.map((item, i) => {
-          const active = hoveredDna === i;
-          const icon = getDnaIcon(i);
-          return (
-            <div
-              key={item.num}
-              className="relative overflow-hidden transition-all duration-300 cursor-default group"
-              style={{
-                background: active ? '#FAFDF5' : '#ffffff',
-                minHeight: '280px',
-              }}
-              onMouseEnter={() => setHoveredDna(i)}
-              onMouseLeave={() => setHoveredDna(null)}
-            >
-              {/* Ghost number — large, top-right */}
-              <span
-                className="absolute top-4 right-5 font-black leading-none select-none pointer-events-none transition-colors duration-300"
-                style={{ fontSize: '96px', color: active ? 'oklch(var(--primary-500) / 0.10)' : 'oklch(var(--foreground-950) / 0.035)' }}
-                aria-hidden="true"
-              >
-                {item.num}
-              </span>
-
-              {/* Active lime top border */}
+        {/* Bento grid — inside sonic-container, 2-row asymmetric layout */}
+        {/* Desktop (md+): 3-col grid — wide | narrow / narrow | wide */}
+        {/* Mobile: 1-col stacked */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-foreground-950/[0.08]">
+          {DNA_DATA.map((item, i) => {
+            const active = hoveredDna === i;
+            const icon = getDnaIcon(i);
+            // Cards 0 and 3 are wide (col-span-2); cards 1 and 2 are narrow (col-span-1)
+            const isWide = i === 0 || i === 3;
+            const minH = isWide ? '320px' : '260px';
+            return (
               <div
-                className="absolute top-0 left-0 right-0 h-[3px] transition-transform duration-300 origin-left"
-                style={{ background: 'oklch(var(--primary-500))', transform: active ? 'scaleX(1)' : 'scaleX(0)' }}
-              />
+                key={item.num}
+                className={`relative overflow-hidden transition-all duration-300 cursor-default group${isWide ? ' md:col-span-2' : ' md:col-span-1'}`}
+                style={{ background: active ? '#FAFDF5' : '#ffffff', minHeight: minH }}
+                onMouseEnter={() => setHoveredDna(i)}
+                onMouseLeave={() => setHoveredDna(null)}
+              >
+                {/* Ghost number */}
+                <span
+                  className="absolute top-3 right-4 font-black leading-none select-none pointer-events-none transition-colors duration-300"
+                  style={{ fontSize: isWide ? '104px' : '80px', color: active ? 'oklch(var(--primary-500) / 0.10)' : 'oklch(var(--foreground-950) / 0.035)' }}
+                  aria-hidden="true"
+                >{item.num}</span>
 
-              <div className="relative z-10 p-8 md:p-10 flex flex-col h-full">
-                {/* Wood icon */}
-                {icon && (
-                  <div className="w-12 h-12 overflow-hidden mb-6 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
-                    <img src={icon} alt="" aria-hidden="true" className="w-full h-full object-cover" loading="lazy" />
-                  </div>
-                )}
+                {/* Lime sweep border */}
+                <div className="absolute top-0 left-0 right-0 h-[3px] transition-transform duration-300 origin-left"
+                  style={{ background: 'oklch(var(--primary-500))', transform: active ? 'scaleX(1)' : 'scaleX(0)' }} />
 
-                {/* Number badge */}
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] mb-3 block" style={{ color: 'oklch(var(--primary-500) / 0.6)' }}>
-                  {item.num} / 04
-                </span>
-
-                {/* Title */}
-                <h3 className="text-[26px] md:text-[30px] font-black tracking-[-0.025em] text-foreground-950 leading-none mb-4">
-                  {item.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm leading-relaxed flex-1" style={{ color: 'oklch(var(--foreground-500))' }}>
-                  {item.desc}
-                </p>
+                <div className={`relative z-10 flex flex-col h-full ${isWide ? 'p-8 md:p-10' : 'p-7 md:p-9'}`}>
+                  {icon && (
+                    <div className="w-11 h-11 overflow-hidden mb-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+                      <img src={icon} alt="" aria-hidden="true" className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                  )}
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] mb-3 block" style={{ color: 'oklch(var(--primary-500) / 0.6)' }}>{item.num} / 04</span>
+                  <h3 className={`font-black tracking-[-0.025em] text-foreground-950 leading-none mb-3 ${isWide ? 'text-[28px] md:text-[34px]' : 'text-[22px] md:text-[26px]'}`}>
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed flex-1" style={{ color: 'oklch(var(--foreground-500))' }}>{item.desc}</p>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
 
+      </div>{/* /sonic-container */}
     </section>
   );
 }
