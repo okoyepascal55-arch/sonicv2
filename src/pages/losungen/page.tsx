@@ -1083,19 +1083,19 @@ export default function LosungenPage() {
       {/* ── WOODEN CAROUSEL ── */}
       <section ref={carouselRef} id="losungen-carousel" className="sonic-section-md relative bg-white overflow-visible">
 
-        {/* Intro — full-width, no max-w constraint */}
-        <div className="relative z-10 px-4 md:px-8 mb-8 md:mb-10">
-          <div className="flex items-center gap-3 mb-4">
+        {/* Intro text — sonic-container, full width, border-b — same as Case Studies */}
+        <div className="sonic-container py-6 md:py-8 border-b border-foreground-100">
+          <div className="flex items-center gap-3 mb-3">
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Lösungen für den DACH-Markt</span>
           </div>
-          <p className="text-sm md:text-base text-foreground-700 leading-relaxed max-w-3xl">
+          <p className="text-foreground-600 w-full" style={{ fontSize: '19px', lineHeight: '1.7' }}>
             Ganz gleich ob du neu im Markt bist, deinen Absatz skalieren willst oder deine Omnichannel-Strategie zum Fliegen bringen musst: Wir haben die Menschen, die Daten und die Erfolgslösungen.
           </p>
         </div>
 
-        {/* Carousel — inside sonic-container so tabs + card + dots align with page */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
+        {/* Carousel — same sonic-container, aligned with text above */}
+        <div className="sonic-container py-8 md:py-12">
 
           {/* Tab switcher — framed hairline row, joins directly into the wood card below.
               Mobile: natural width + horizontal scroll (labels don't get crushed).
