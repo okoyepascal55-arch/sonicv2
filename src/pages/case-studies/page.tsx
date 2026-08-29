@@ -445,26 +445,31 @@ export default function CaseStudiesPage() {
       />
 
       {/* ── HERO BANNER ── */}
-      <section className="relative overflow-hidden -mt-20" style={{ minHeight: 'clamp(360px, 52vw, 500px)' }}>
-        <div className="absolute inset-0">
-          <img
-            src="/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp"
-            alt="Erfolgsgeschichten"
-            className="w-full h-full object-cover object-center"
-            fetchPriority="high"
-            decoding="async"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/80" />
-        </div>
-        <div className="relative z-10 flex flex-col justify-end h-full sonic-container" style={{ minHeight: 'clamp(360px, 52vw, 500px)', paddingBottom: '3rem' }}>
-          <div className="flex items-center gap-3 mb-5">
-              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Fallbeispiele</span>
-            </div>
-          <h1 className="leist-h1-hub text-white mb-4">
+      <section
+        className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950"
+        style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}
+      >
+        <img
+          src="/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp"
+          alt="Erfolgsgeschichten"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          fetchPriority="high"
+          decoding="async"
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, rgba(11,11,12,0.30) 0%, rgba(11,11,12,0.20) 45%, rgba(11,11,12,0.82) 100%)' }}
+          aria-hidden="true"
+        />
+        <div className="relative z-10 sonic-container pb-10 md:pb-14">
+          <div className="flex items-center gap-3 mb-5 md:mb-6">
+            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Fallbeispiele</span>
+          </div>
+          <h1 className="leist-h1-hub text-white mb-4 md:mb-5">
             ERFOLGS<span className="text-primary-500">GESCHICHTEN</span>
           </h1>
-          <p className="text-base md:text-lg font-bold text-white/70 max-w-lg">
+          <p className="text-sm md:text-base text-white/70 leading-relaxed max-w-[480px]">
             Garmin +116% · Philips +54% · Groupe SEB +130% · Avoury +1.187%
           </p>
         </div>

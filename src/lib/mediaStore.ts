@@ -278,6 +278,7 @@ export const PAGE_GROUPS: PageGroup[] = [
     icon: 'ri-pie-chart-2-line',
     sections: [
       // ── Used by live srt page components ──
+      'srt_hero_images',
       'srt_hero_icons',
       'srt_feature_icons',
       'srt_functionality_images',
@@ -439,6 +440,10 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   /* ── SRT: Hero Wood Icons ── */
+  srt_hero_images: [
+    { url: 'https://readdy.ai/api/search-image?query=professional%20field%20force%20retail%20team%20meeting%20enterprise%20workspace%20modern%20office%20dark%20atmosphere%20screens%20dashboards%20data%20analytics%20lime%20green%20accent%20lighting%20premium%20corporate%20photography%20wide%20angle%20dramatic&width=1920&height=1080&seq=srt-hero-bg-01&orientation=landscape', caption: 'SRT Hero — Hintergrundfoto', wide: true },
+  ],
+
   srt_hero_icons: [
     { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20version%20number%20update%20iteration%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography&width=80&height=80&seq=wood-srt-hero-v1&orientation=squarish', caption: 'SRT Hero — Versionen Icon' },
     { url: 'https://readdy.ai/api/search-image?query=carved%20wooden%20checklist%20task%20completed%20checkmark%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography&width=80&height=80&seq=wood-srt-hero-v2&orientation=squarish', caption: 'SRT Hero — Tasks Icon' },
