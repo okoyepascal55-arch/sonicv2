@@ -56,7 +56,7 @@ export default function KreationContentPage() {
   const tCtaBtn = useText('leistungen_kreation_content', 'kreation-cta-btn', 'Content-Beratung buchen');
   const tHeroBadge = useText('leistungen_kreation', 'kreation-hero-badge', 'Inhouse Kreation & Content');
   const tHeroH1Line1 = useText('leistungen_kreation', 'kreation-hero-heading-line1', 'Kreation,');
-  const tHeroH1Accent = useText('leistungen_kreation', 'kreation-hero-heading-accent', 'die verkauft.');
+  const tHeroH1Accent = useText('leistungen_kreation', 'kreation-hero-heading-accent', 'die Marken formt.');
   const tHeroSubtitle = useText('leistungen_kreation', 'kreation-hero-subtitle', 'Von Konzeption und CI bis Layout, POS und innovativen Formaten — Kreation als strategischer Prozess.');
 
   useSEO({ title: 'Kreation | Sonic Group — Konzeption, CI, Layout & POS DACH', description: 'Kreation von Sonic Group: Konzeption, CI, Layout, POS-Design und Innovation für Marken im DACH-Raum — aus einer strategischen Kreativhand.', keywords: 'Content Produktion DACH, Inhouse Studio, CGI 3D Produktion, POS Design, Social Content Agentur', canonical: 'https://sonic-group.de/leistungen/kreation-content', ogTitle: 'Kreation & Content — Sonic Group DACH', ogDescription: 'Inhouse Foto, Video, CGI & POS-Design für Marken im DACH-Raum.' });

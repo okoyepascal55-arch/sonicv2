@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import KarriereHero from './components/KarriereHero';
+import KarriereStatsTicker from './components/KarriereStatsTicker';
 import KarriereInPageNav from './components/KarriereInPageNav';
 import KarrierepfadeSection from './components/KarrierepfadeSection';
 import KarriereCulture from './components/KarriereCulture';

@@ -492,7 +492,7 @@ export default function KreationShowcase() {
                 <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Deine Wirkung.</span>
               </h2>
               <p className="text-sm max-w-sm leading-relaxed text-foreground-950/45">
-                {activeTab === 'konzeption' && 'Von der ersten Idee bis zum fertigen Konzept — Kreation die verkauft.'}
+                {activeTab === 'konzeption' && 'Von der ersten Idee bis zum fertigen Konzept — Kreation mit System.'}
                 {activeTab === 'content' && 'Foto, Video und Live-Produktion — komplett inhouse für alle Kanäle.'}
                 {activeTab === 'cgi' && 'Fotorealistische 3D-Welten, AI-Konzepte und Motion Graphics in einer Produktion.'}
               </p>
