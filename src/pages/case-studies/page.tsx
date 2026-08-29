@@ -767,7 +767,7 @@ export default function CaseStudiesPage() {
                 <div>
                   <p className="text-primary-500 text-xs font-black uppercase tracking-widest mb-2">{expanded.metric} {expanded.metricLabel}</p>
                   <h3 className="sonic-h3 text-white">
-                    Auch für Ihre Marke möglich?
+                    Auch für deine Marke möglich?
                   </h3>
                   <p className="text-foreground-400 text-sm mt-2">
                     Lass uns besprechen, wie Sonic ähnliche Ergebnisse für dein Unternehmen erzielen kann.

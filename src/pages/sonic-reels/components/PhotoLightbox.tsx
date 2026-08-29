@@ -48,7 +48,7 @@ export default function PhotoLightbox({
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-label={`Photo: ${photo.caption}`}
+      aria-label={`Foto: ${photo.caption}`}
     >
       {/* Grain */}
       <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.05, backgroundImage: GRAIN, backgroundSize: '150px 150px' }} />
@@ -94,7 +94,7 @@ export default function PhotoLightbox({
         onClick={(e) => { e.stopPropagation(); onNavigate((index - 1 + total) % total); }}
         className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 cursor-pointer transition-colors duration-200"
         style={{ background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.85)' }}
-        aria-label="Previous photo"
+        aria-label="Vorheriges Foto"
         onMouseEnter={(e) => { e.currentTarget.style.background = `${accent}33`; e.currentTarget.style.borderColor = `${accent}`; }}
         onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(0,0,0,0.5)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}
       >
@@ -106,7 +106,7 @@ export default function PhotoLightbox({
         onClick={(e) => { e.stopPropagation(); onNavigate((index + 1) % total); }}
         className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 cursor-pointer transition-colors duration-200"
         style={{ background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.85)' }}
-        aria-label="Next photo"
+        aria-label="Nächstes Foto"
         onMouseEnter={(e) => { e.currentTarget.style.background = `${accent}33`; e.currentTarget.style.borderColor = `${accent}`; }}
         onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(0,0,0,0.5)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}
       >
@@ -118,7 +118,7 @@ export default function PhotoLightbox({
         onClick={(e) => { e.stopPropagation(); onClose(); }}
         className="absolute top-5 right-5 z-20 flex items-center justify-center w-11 h-11 cursor-pointer transition-colors duration-200"
         style={{ background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.85)' }}
-        aria-label="Close"
+        aria-label="Schließen"
         onMouseEnter={(e) => { e.currentTarget.style.background = `${accent}33`; e.currentTarget.style.borderColor = `${accent}`; }}
         onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(0,0,0,0.5)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}
       >

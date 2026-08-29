@@ -9,7 +9,7 @@ const AUTH_KEY = 'sonic_admin_auth';
 export default function DashboardPage() {
   useSEO({
     title: 'Sonic Group — Content Dashboard',
-    description: 'Verwalten Sie Medien und Texte der Website der Sonic Group.',
+    description: 'Medien und Texte der Sonic Group Website verwalten.',
   });
 
   const [authed, setAuthed] = useState(false);

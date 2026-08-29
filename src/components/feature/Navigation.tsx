@@ -294,7 +294,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between px-5 pt-[calc(env(safe-area-inset-top,0px)+1rem)] pb-4 border-b border-background-200/70 flex-shrink-0">
           <img
             src="https://www.sonic-group.de/wp-content/uploads/elementor/thumbs/SONIC_GESAMTLOGO_LIME-q0lflz24exgoq4608jg9ggegh9pjfwmmc0m1jsee5i.png"
-            alt="Sonic Logo"
+            alt="Sonic Group Logo"
             className="h-8 w-auto"
           />
           <button

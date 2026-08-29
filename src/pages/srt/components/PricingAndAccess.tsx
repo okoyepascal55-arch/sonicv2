@@ -1,5 +1,7 @@
 import { useText } from '@/hooks/useText';
+import { useState } from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
+import { submitContactForm } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 const TIERS = [
@@ -7,6 +9,53 @@ const TIERS = [
   { name: 'Professional', price: 'Individuell', desc: 'Für etablierte Marken, die ihre Retail-Präsenz skalieren.', features: ['Unbegrenzte Reports', 'API-Zugang, Forecasting', 'Bis zu 5 User-Lizenzen'], highlight: true },
   { name: 'Enterprise', price: 'Auf Anfrage', desc: 'Für Partner und Marken mit komplexen Multi-Market-Projekten.', features: ['Dedizierter Account-Manager', 'White-Label-Reporting', 'Inkludiert für Sonic-Partner'], highlight: false },
 ];
+
+
+// Simple inline contact form that submits via submitContactForm
+function SRTPricingForm() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
+  const [status, setStatus] = useState<'idle'|'sending'|'done'|'error'>('idle');
+
+  const handleSubmit = async () => {
+    if (!name.trim() || !email.trim()) return;
+    setStatus('sending');
+    try {
+      await submitContactForm({ name, email, message: `Unternehmen: ${company || '–'}\nSRT Demo-Anfrage`, subject: 'SRT Demo anfragen' });
+      setStatus('done');
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  if (status === 'done') return (
+    <div className="text-center py-6">
+      <i className="ri-check-line text-primary-500 text-3xl mb-3 block" />
+      <p className="text-background-50/80 font-black text-sm">Vielen Dank! Wir melden uns in Kürze.</p>
+    </div>
+  );
+
+  return (
+    <>
+      <div className="grid sm:grid-cols-2 gap-3">
+        <input aria-label="Name" type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)} className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] font-inherit focus:outline-none focus:border-primary-500 bg-transparent text-background-50" />
+        <input aria-label="E-Mail" type="email" placeholder="E-Mail" value={email} onChange={e => setEmail(e.target.value)} className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] font-inherit focus:outline-none focus:border-primary-500 bg-transparent text-background-50" />
+      </div>
+      <input aria-label="Unternehmen" type="text" placeholder="Unternehmen (optional)" value={company} onChange={e => setCompany(e.target.value)} className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] font-inherit focus:outline-none focus:border-primary-500 bg-transparent text-background-50" />
+      {status === 'error' && <p className="text-red-400 text-xs">Fehler beim Senden — bitte versuche es erneut.</p>}
+      <button
+        type="button"
+        onClick={handleSubmit}
+        disabled={status === 'sending'}
+        className="flex items-center justify-center gap-2 px-4 py-3.5 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-widest hover:bg-background-50 transition-all disabled:opacity-60"
+      >
+        <i className="ri-calendar-line" />
+        {status === 'sending' ? 'Wird gesendet …' : 'Beratungsgespräch buchen'}
+      </button>
+    </>
+  );
+}
 
 export default function PricingAndAccess() {
   const { images: tierImages } = useMediaStore('srt_pricing_images');
@@ -55,9 +104,7 @@ export default function PricingAndAccess() {
             </div>
           </div>
           <div className="p-8 md:p-11 flex flex-col justify-center gap-3">
-            <div className="grid sm:grid-cols-2 gap-3"><input aria-label="Name" type="text" placeholder="Name" className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] font-inherit focus:outline-none focus:border-primary-500" /><input aria-label="E-Mail" type="email" placeholder="E-Mail" className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] font-inherit focus:outline-none focus:border-primary-500" /></div>
-            <input aria-label="Unternehmen" type="text" placeholder="Unternehmen" className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] font-inherit focus:outline-none focus:border-primary-500" />
-            <a href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch`} className="flex items-center justify-center gap-2 px-4 py-3.5 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-widest hover:bg-foreground-950 hover:text-primary-500 transition-all"><i className="ri-calendar-line" />Beratungsgespräch buchen</a>
+            <SRTPricingForm />
           </div>
         </div>
       </div>
