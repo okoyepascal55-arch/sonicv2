@@ -65,8 +65,8 @@ export default function POSHero() {
             { val: '>5 Mio.', label: 'Produkte verkauft' },
           ].map((s, i) => (
             <div key={i} className="text-center">
-              <div className="text-2xl font-black text-primary-500 tabular-nums">{s.val}</div>
-              <div className="text-white/45 text-xs font-bold uppercase tracking-wider mt-1">
+              <div className="text-base sm:text-xl md:text-2xl font-black text-primary-500 tabular-nums leading-tight">{s.val}</div>
+              <div className="text-white/45 text-[10px] sm:text-xs font-bold uppercase tracking-wider mt-1 leading-snug">
                 {s.label}
               </div>
             </div>

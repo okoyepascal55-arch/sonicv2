@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo, useLayoutEffect } from 'react';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 interface MediaTile {
@@ -36,10 +36,37 @@ const FALLBACK_TILES: MediaTile[] = [
   { src: svgGradient('#233a20', '#0f170e'), alt: 'Food & Lifestyle' },
 ];
 
-const TILE_W = 280;
-const TILE_H = 420;
-const RADIUS = 820;
+const TILE_W_BASE = 280;
+const TILE_H_BASE = 420;
+const RADIUS_BASE = 820;
 const AUTO_SPEED = 8;
+
+/* ── Responsive tile dimensions based on container/window width ── */
+function useCarouselDimensions(containerRef: React.RefObject<HTMLDivElement | null>) {
+  const [dims, setDims] = useState({ tileW: TILE_W_BASE, tileH: TILE_H_BASE, radius: RADIUS_BASE });
+  useLayoutEffect(() => {
+    const update = () => {
+      const vw = containerRef.current?.offsetWidth ?? window.innerWidth;
+      if (vw < 480) {
+        // Mobile: single tile takes ~72% of viewport, scale everything down
+        const tileW = Math.min(TILE_W_BASE, Math.round(vw * 0.72));
+        const ratio = tileW / TILE_W_BASE;
+        setDims({ tileW, tileH: Math.round(TILE_H_BASE * ratio), radius: Math.round(RADIUS_BASE * ratio) });
+      } else if (vw < 768) {
+        const tileW = Math.min(TILE_W_BASE, Math.round(vw * 0.55));
+        const ratio = tileW / TILE_W_BASE;
+        setDims({ tileW, tileH: Math.round(TILE_H_BASE * ratio), radius: Math.round(RADIUS_BASE * ratio) });
+      } else {
+        setDims({ tileW: TILE_W_BASE, tileH: TILE_H_BASE, radius: RADIUS_BASE });
+      }
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    if (containerRef.current) ro.observe(containerRef.current);
+    return () => ro.disconnect();
+  }, [containerRef]);
+  return dims;
+}
 
 /* ── Film grain canvas — drawn once, reused as CSS background ── */
 function useFilmGrain(): string {
@@ -169,10 +196,14 @@ function GroundReflection({
   src,
   scale,
   brightness,
+  tileW,
+  tileH,
 }: {
   src: string;
   scale: number;
   brightness: number;
+  tileW: number;
+  tileH: number;
 }) {
   const reflectionOpacity = Math.max(0, (scale - 0.6) / 0.4) * 0.18;
   if (reflectionOpacity < 0.02) return null;
@@ -180,9 +211,9 @@ function GroundReflection({
     <div
       className="absolute pointer-events-none overflow-hidden"
       style={{
-        width: `${TILE_W}px`,
-        height: `${TILE_H * 0.22}px`,
-        top: `${TILE_H}px`,
+        width: `${tileW}px`,
+        height: `${tileH * 0.22}px`,
+        top: `${tileH}px`,
         left: 0,
         transform: 'scaleY(-1)',
         opacity: reflectionOpacity,
@@ -196,7 +227,7 @@ function GroundReflection({
         src={src}
         alt=""
         className="w-full object-cover object-top"
-        style={{ height: `${TILE_H * 0.22}px` }}
+        style={{ height: `${tileH * 0.22}px` }}
         draggable={false}
       />
     </div>
@@ -214,6 +245,10 @@ export default function Carousel3D() {
   const TOTAL = TILES.length;
   const ANGLE_STEP = 360 / TOTAL;
 
+  // Responsive container ref (used by both the section and the hook)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { tileW: TILE_W, tileH: TILE_H, radius: RADIUS } = useCarouselDimensions(containerRef);
+
   // Animation state
   const [displayIndex, setDisplayIndex] = useState(0);
   const currentIndexRef = useRef(0);
@@ -223,8 +258,7 @@ export default function Carousel3D() {
   const interactionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const animFrameRef = useRef<number | null>(null);
 
-  // Pop-in reveal
-  const sectionRef = useRef<HTMLDivElement>(null);
+  // Pop-in reveal (uses containerRef defined above)
   const [popScale, setPopScale] = useState(0.3);
   const [popOpacity, setPopOpacity] = useState(0);
   const [hasPopped, setHasPopped] = useState(false);
@@ -254,7 +288,7 @@ export default function Carousel3D() {
 
   /* ── Pop-in on scroll into view ── */
   useEffect(() => {
-    const el = sectionRef.current;
+    const el = containerRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
@@ -341,7 +375,7 @@ export default function Carousel3D() {
       },
       { rootMargin: '120px' }
     );
-    if (sectionRef.current) obs.observe(sectionRef.current);
+    if (containerRef.current) obs.observe(containerRef.current);
 
     startLoop();
     return () => {
@@ -460,7 +494,7 @@ export default function Carousel3D() {
   if (prefersReducedMotion) {
     return (
       <div
-        ref={sectionRef}
+        ref={containerRef}
         className="relative w-full"
         style={{ paddingTop: '80px', paddingBottom: '80px' }}
       >
@@ -509,7 +543,7 @@ export default function Carousel3D() {
   /* ── Full 3D circular carousel ── */
   return (
     <div
-      ref={sectionRef}
+      ref={containerRef}
       className="relative w-full select-none overflow-hidden"
       style={{
         /* No background — inherits hero's white seamlessly */
@@ -656,7 +690,7 @@ export default function Carousel3D() {
                     />
                   )}
                 </div>
-                <GroundReflection src={tile.src} scale={scale} brightness={brightness} />
+                <GroundReflection src={tile.src} scale={scale} brightness={brightness} tileW={TILE_W} tileH={TILE_H} />
               </div>
             );
           })}

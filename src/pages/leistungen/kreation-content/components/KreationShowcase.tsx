@@ -552,8 +552,8 @@ export default function KreationShowcase() {
                 <button
                   key={i}
                   onClick={() => openLightbox(i)}
-                  className="relative overflow-hidden cursor-pointer transition-opacity duration-300"
-                  style={{ height: '64px', opacity: isOpen ? 1 : 0.65 }}
+                  className="relative overflow-hidden cursor-pointer transition-opacity duration-300 aspect-[2/3]"
+                  style={{ opacity: isOpen ? 1 : 0.65 }}
                   aria-label={`${item.title} — im Lightbox öffnen`}
                 >
                   {isGradient(item.images[0]) ? (

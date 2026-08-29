@@ -167,9 +167,9 @@ export default function KontaktPage() {
                 { val: tStatExp, label: tStatExpLabel },
                 { val: tStatClients, label: tStatClientsLabel },
               ].map((s, i) => (
-                <div key={i} className="pt-6" style={{ paddingRight: i < 2 ? '16px' : 0, paddingLeft: i > 0 ? '16px' : 0, borderRight: i < 2 ? '1px solid rgba(255,255,255,0.12)' : undefined }}>
-                  <p className="text-[28px] md:text-[32px] font-black leading-none tracking-[-0.03em] text-white tabular-nums mb-1">{s.val}</p>
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/32">{s.label}</p>
+                <div key={i} className="pt-6" style={{ paddingRight: i < 2 ? '12px' : 0, paddingLeft: i > 0 ? '12px' : 0, borderRight: i < 2 ? '1px solid rgba(255,255,255,0.12)' : undefined }}>
+                  <p className="text-[18px] sm:text-[24px] md:text-[32px] font-black leading-none tracking-[-0.03em] text-white tabular-nums mb-1">{s.val}</p>
+                  <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white/32">{s.label}</p>
                 </div>
               ))}
             </div>

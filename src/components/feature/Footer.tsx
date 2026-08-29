@@ -88,21 +88,21 @@ export default function Footer() {
               </p>
             </div>
 
-            <div className="space-y-1 mb-3">
+            <div className="space-y-0.5 mb-3">
               <a
                 href="tel:+4921514794440"
-                className="flex items-center gap-2.5 text-background-50/60 hover:text-primary-500 transition-colors text-sm md:text-[12px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
+                className="flex items-center gap-2.5 min-h-[44px] md:min-h-0 py-1 text-background-50/60 hover:text-primary-500 transition-colors text-sm md:text-[12px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
               >
-                <span className="w-4 h-4 flex items-center justify-center">
+                <span className="w-6 h-6 md:w-4 md:h-4 flex items-center justify-center flex-shrink-0">
                   <i className="ri-phone-line text-primary-500 text-sm"></i>
                 </span>
                 {tPhone}
               </a>
               <a
                 href="mailto:info@sonic-group.de"
-                className="flex items-center gap-2.5 text-background-50/60 hover:text-primary-500 transition-colors text-sm md:text-[12px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
+                className="flex items-center gap-2.5 min-h-[44px] md:min-h-0 py-1 text-background-50/60 hover:text-primary-500 transition-colors text-sm md:text-[12px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
               >
-                <span className="w-4 h-4 flex items-center justify-center">
+                <span className="w-6 h-6 md:w-4 md:h-4 flex items-center justify-center flex-shrink-0">
                   <i className="ri-mail-line text-primary-500 text-sm"></i>
                 </span>
                 {tEmail}

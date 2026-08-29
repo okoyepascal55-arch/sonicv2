@@ -583,9 +583,9 @@ export default function CaseStudiesPage() {
               {/* ── ROW 3: 3 fact pills ── */}
               <div className="grid grid-cols-3 mb-6" style={{ gap: '2px' }}>
                 {current.woodPills.map((pill, idx) => (
-                  <div key={idx} className="bg-black/25 border border-white/10 px-3 py-3 md:p-4 text-center">
-                    <div className="text-primary-500 font-sans tabular-nums font-black text-base md:text-xl mb-0.5">{pill.value}</div>
-                    <div className="text-white/50 text-[9px] md:text-[10px] font-bold uppercase tracking-wide">{pill.label}</div>
+                  <div key={idx} className="bg-black/25 border border-white/10 px-2 py-2.5 sm:px-3 sm:py-3 md:p-4 text-center">
+                    <div className="text-primary-500 font-sans tabular-nums font-black text-sm sm:text-base md:text-xl mb-0.5 leading-tight">{pill.value}</div>
+                    <div className="text-white/50 text-[8px] sm:text-[9px] md:text-[10px] font-bold uppercase tracking-wide leading-snug">{pill.label}</div>
                   </div>
                 ))}
               </div>
