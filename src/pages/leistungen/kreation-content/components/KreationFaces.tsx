@@ -12,9 +12,9 @@ const PEOPLE = [
   {
     id: 'inga',
     name: 'Inga L.',
-    role: 'Head of Content',
-    pullQuote: '"Guter Content spricht nicht zur Zielgruppe — er spricht für sie. Das ist der Unterschied zwischen Werbung und echter Verbindung."',
-    bio: 'Inga verantwortet die Content-Strategie und -Produktion bei Sonic. Ihr Team schafft Inhalte, die Markenbotschaften in echte Erlebnisse übersetzen.',
+    role: 'Jr. Art Direktorin',
+    pullQuote: '"Design entscheidet in Sekunden. Wer das versteht, denkt nicht in Gestaltung — sondern in Wirkung."',
+    bio: 'Inga bringt Kreation auf die Fläche: von der Idee über das Layout bis zum finalen Asset. Als Jr. Art Direktorin gibt sie Kampagnen und Markenwelten ihre visuelle Identität.',
   },
 ];
 

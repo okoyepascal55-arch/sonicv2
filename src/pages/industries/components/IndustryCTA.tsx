@@ -52,7 +52,7 @@ export default function IndustryCTA() {
         </div>
 
         {/* Contact info cards */}
-        <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground-200 mt-px">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground-200 mt-px">
           {[
             { icon: 'ri-mail-line', title: 'E-Mail', content: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
             { icon: 'ri-phone-line', title: 'Telefon', content: '+49 2151 479 444 0', href: 'tel:+4921514794440' },

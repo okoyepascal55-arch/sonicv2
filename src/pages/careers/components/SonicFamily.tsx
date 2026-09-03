@@ -162,11 +162,8 @@ export default function SonicFamily() {
 
           {/* ── Name selector strip (bottom) — clicking reveals story above ── */}
           <div
-            className="grid"
-            style={{
-              gridTemplateColumns: `repeat(${FACES.length}, 1fr)`,
-              borderTop: '1px solid oklch(var(--foreground-950) / 0.1)',
-            }}
+            className="grid grid-cols-3 sm:grid-cols-6"
+            style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.1)' }}
           >
             {FACES.map((face, i) => {
               const isActive = face.id === activeId;
@@ -174,10 +171,11 @@ export default function SonicFamily() {
                 <button
                   key={face.id}
                   onClick={() => setActiveId(face.id)}
-                  className="flex flex-col items-center justify-center gap-2 py-5 px-3 cursor-pointer transition-all duration-200 focus:outline-none"
+                  className="flex flex-col items-center justify-center gap-2 py-4 px-2 sm:py-5 sm:px-3 cursor-pointer transition-all duration-200 focus:outline-none"
                   style={{
                     background: isActive ? 'oklch(0.13 0.005 118)' : '#fff',
-                    borderRight: i < FACES.length - 1 ? '1px solid oklch(var(--foreground-950) / 0.1)' : undefined,
+                    borderRight: (i + 1) % 3 !== 0 && i < FACES.length - 1 ? '1px solid oklch(var(--foreground-950) / 0.1)' : undefined,
+                    borderBottom: i < 3 ? '1px solid oklch(var(--foreground-950) / 0.1)' : undefined,
                     borderTop: isActive ? '2px solid oklch(0.81 0.19 115)' : '2px solid transparent',
                   }}
                   aria-pressed={isActive}
