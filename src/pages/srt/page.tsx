@@ -48,7 +48,7 @@ export default function SRTPage() {
       <TheProblemReference />
       <SRTWavyDivider />
       <FeaturesReference />
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <VideoShowcase />
       <SRTWavyDivider />
       <FunctionalityOverview />
@@ -60,8 +60,9 @@ export default function SRTPage() {
       <DataPaths />
       <SRTWavyDivider darkBackground />
       <Industries />
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <Proof />
+      <SRTWavyDivider darkBackground />
       <PricingAndAccess />
     </div>
   );

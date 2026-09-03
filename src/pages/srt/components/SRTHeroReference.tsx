@@ -46,15 +46,34 @@ export default function SRTHeroReference() {
         decoding="async"
       />
 
-      {/* Dark veil — bottom-heavy, same as Leistungen reference */}
+      {/* Dark veil — bottom-heavy */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, rgba(11,11,12,0.45) 0%, rgba(11,11,12,0.30) 40%, rgba(11,11,12,0.92) 100%)' }}
+        style={{ background: 'linear-gradient(to bottom, rgba(11,11,12,0.55) 0%, rgba(11,11,12,0.35) 40%, rgba(11,11,12,0.94) 100%)' }}
         aria-hidden="true"
       />
 
-      {/* Lime 3px top accent */}
+      {/* Technical data grid — very subtle, communicates infrastructure */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.04]"
+        aria-hidden="true"
+        style={{ backgroundImage: 'linear-gradient(oklch(0.81 0.19 115) 1px, transparent 1px), linear-gradient(90deg, oklch(0.81 0.19 115) 1px, transparent 1px)', backgroundSize: '60px 60px' }}
+      />
+
+      {/* Lime top accent */}
       <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-primary-500 via-primary-500/60 to-transparent z-20" />
+
+      {/* Corner system decoratives — top right */}
+      <div className="absolute top-8 right-8 hidden md:flex flex-col items-end gap-2 z-10 pointer-events-none" aria-hidden="true">
+        <div className="flex items-center gap-2">
+          <span className="text-[8px] font-black uppercase tracking-[0.3em] text-primary-500/40">System v3.2</span>
+          <div className="w-1.5 h-1.5 bg-primary-500/50 animate-pulse" />
+        </div>
+        <div className="flex items-center gap-1.5">
+          <div className="w-1.5 h-1.5 bg-green-400/60 animate-pulse" style={{ animationDelay: '0.3s' }} />
+          <span className="text-[8px] text-white/20">Live · DACH</span>
+        </div>
+      </div>
 
       {/* Content — bottom-anchored */}
       <div className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
