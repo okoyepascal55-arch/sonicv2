@@ -16,14 +16,32 @@ function SRTPricingForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
-  const [interest, setInterest] = useState('');
+  const [phone, setPhone] = useState('');
+  const [role, setRole] = useState('');
+  const [teamSize, setTeamSize] = useState('');
+  const [useCase, setUseCase] = useState('');
+  const [timeline, setTimeline] = useState('');
   const [status, setStatus] = useState<'idle'|'sending'|'done'|'error'>('idle');
+
+  const inputCls = "w-full px-3.5 py-3 border border-white/10 text-[13px] focus:outline-none focus:border-primary-500 bg-white/5 text-white placeholder-white/30 transition-colors";
+  const selectCls = "w-full px-3.5 py-3 border border-white/10 text-[13px] focus:outline-none focus:border-primary-500 bg-foreground-950 text-white/70 cursor-pointer";
 
   const handleSubmit = async () => {
     if (!name.trim() || !email.trim()) return;
     setStatus('sending');
     try {
-      await submitContactForm({ name, email, company, message: `Unternehmen: ${company || '–'}\nInteresse: ${interest || 'Allgemeine Demo'}`, subject: 'SRT Demo anfragen' });
+      await submitContactForm({
+        name, email, phone,
+        company,
+        message: [
+          `Unternehmen: ${company || '–'}`,
+          `Funktion: ${role || '–'}`,
+          `Teamgröße Außendienst: ${teamSize || '–'}`,
+          `Hauptinteresse: ${useCase || '–'}`,
+          `Start-Zeitpunkt: ${timeline || '–'}`,
+        ].join('\n'),
+        subject: 'SRT Zugang anfragen',
+      });
       setStatus('done');
     } catch {
       setStatus('error');
@@ -31,40 +49,105 @@ function SRTPricingForm() {
   };
 
   if (status === 'done') return (
-    <div className="text-center py-6">
-      <i className="ri-check-line text-primary-500 text-3xl mb-3 block" />
-      <p className="text-background-50/80 font-black text-sm">Vielen Dank! Wir melden uns in Kürze.</p>
+    <div className="text-center py-8">
+      <div className="w-12 h-12 bg-primary-500 flex items-center justify-center mx-auto mb-4">
+        <i className="ri-check-line text-foreground-950 text-2xl" />
+      </div>
+      <p className="text-white font-black text-base mb-1">Anfrage erhalten.</p>
+      <p className="text-white/45 text-sm">Wir melden uns innerhalb von 24 Stunden.</p>
     </div>
   );
 
   return (
-    <>
+    <div className="space-y-3">
+      {/* Row 1: Name + Email */}
       <div className="grid sm:grid-cols-2 gap-3">
-        <input aria-label="Name" type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)} className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] font-inherit focus:outline-none focus:border-primary-500 bg-transparent text-background-50" />
-        <input aria-label="E-Mail" type="email" placeholder="E-Mail" value={email} onChange={e => setEmail(e.target.value)} className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] font-inherit focus:outline-none focus:border-primary-500 bg-transparent text-background-50" />
+        <div>
+          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Name *</label>
+          <input aria-label="Name" type="text" placeholder="Vorname Nachname" value={name} onChange={e => setName(e.target.value)} className={inputCls} />
+        </div>
+        <div>
+          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">E-Mail *</label>
+          <input aria-label="E-Mail" type="email" placeholder="name@unternehmen.de" value={email} onChange={e => setEmail(e.target.value)} className={inputCls} />
+        </div>
       </div>
-      <input aria-label="Unternehmen" type="text" placeholder="Unternehmen (optional)" value={company} onChange={e => setCompany(e.target.value)} className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] font-inherit focus:outline-none focus:border-primary-500 bg-transparent text-background-50" />
-      <select aria-label="Interesse" value={interest} onChange={e => setInterest(e.target.value)} className="w-full px-3.5 py-3 border-2 border-foreground-950/[0.12] text-[13px] focus:outline-none focus:border-primary-500 bg-foreground-950 text-background-50/80 cursor-pointer">
-        <option value="">Was interessiert dich am meisten? (optional)</option>
-        <option value="Einsatzplanung">Einsatz- & Aufgabenplanung</option>
-        <option value="Talentpool">Talentpool-Verwaltung</option>
-        <option value="GPS-Tracking">GPS-Tracking & Check-in</option>
-        <option value="Datenintegration">ERP / Datenintegration</option>
-        <option value="KI-Dokumente">KI-Dokumentenverarbeitung</option>
-        <option value="Routenplanung">Routenplanung</option>
-        <option value="Vollständige Demo">Vollständige Demo</option>
-      </select>
-      {status === 'error' && <p className="text-red-400 text-xs">Fehler beim Senden — bitte versuche es erneut.</p>}
-      <button
-        type="button"
-        onClick={handleSubmit}
-        disabled={status === 'sending'}
-        className="flex items-center justify-center gap-2 px-4 py-3.5 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-widest hover:bg-background-50 transition-all disabled:opacity-60"
-      >
-        <i className="ri-calendar-line" />
-        {status === 'sending' ? 'Wird gesendet …' : 'Beratungsgespräch buchen'}
+
+      {/* Row 2: Company + Phone */}
+      <div className="grid sm:grid-cols-2 gap-3">
+        <div>
+          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Unternehmen</label>
+          <input aria-label="Unternehmen" type="text" placeholder="Marke / Unternehmen" value={company} onChange={e => setCompany(e.target.value)} className={inputCls} />
+        </div>
+        <div>
+          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Telefon</label>
+          <input aria-label="Telefon" type="tel" placeholder="+49 ..." value={phone} onChange={e => setPhone(e.target.value)} className={inputCls} />
+        </div>
+      </div>
+
+      {/* Row 3: Role + Team size */}
+      <div className="grid sm:grid-cols-2 gap-3">
+        <div>
+          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Deine Funktion</label>
+          <select aria-label="Funktion" value={role} onChange={e => setRole(e.target.value)} className={selectCls}>
+            <option value="">Bitte wählen …</option>
+            <option value="Marketing / Brand">Marketing / Brand Management</option>
+            <option value="Vertrieb / Sales">Vertrieb / Sales</option>
+            <option value="Category Management">Category Management</option>
+            <option value="Operations">Operations / Projektleitung</option>
+            <option value="Geschäftsführung">Geschäftsführung / Management</option>
+            <option value="Sonstiges">Sonstiges</option>
+          </select>
+        </div>
+        <div>
+          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Außendienst-Teamgröße</label>
+          <select aria-label="Teamgröße" value={teamSize} onChange={e => setTeamSize(e.target.value)} className={selectCls}>
+            <option value="">Bitte wählen …</option>
+            <option value="1–10">1–10 Mitarbeiter</option>
+            <option value="11–50">11–50 Mitarbeiter</option>
+            <option value="51–200">51–200 Mitarbeiter</option>
+            <option value="200+">200+ Mitarbeiter</option>
+            <option value="Variabel">Variabel / projektbasiert</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Row 4: Use case + Timeline */}
+      <div className="grid sm:grid-cols-2 gap-3">
+        <div>
+          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Hauptinteresse</label>
+          <select aria-label="Hauptinteresse" value={useCase} onChange={e => setUseCase(e.target.value)} className={selectCls}>
+            <option value="">Bitte wählen …</option>
+            <option value="Einsatzplanung">Einsatz- & Aufgabenplanung</option>
+            <option value="Live-Reporting">Live-Reporting & Dashboards</option>
+            <option value="Talentpool">Talentpool-Verwaltung</option>
+            <option value="GPS-Tracking">GPS-Check-in & Zeiterfassung</option>
+            <option value="Datenintegration">ERP / Datenintegration</option>
+            <option value="KI-Dokumente">KI-Dokumentenverarbeitung</option>
+            <option value="Vollständig">Gesamtlösung (alle Module)</option>
+          </select>
+        </div>
+        <div>
+          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Gewünschter Start</label>
+          <select aria-label="Start-Zeitpunkt" value={timeline} onChange={e => setTimeline(e.target.value)} className={selectCls}>
+            <option value="">Bitte wählen …</option>
+            <option value="Sofort">Sofort / so schnell wie möglich</option>
+            <option value="1-3 Monate">In 1–3 Monaten</option>
+            <option value="3-6 Monate">In 3–6 Monaten</option>
+            <option value="Evaluierung">Nur Evaluierung / kein fester Start</option>
+          </select>
+        </div>
+      </div>
+
+      {status === 'error' && <p className="text-red-400 text-xs pt-1">Senden fehlgeschlagen — bitte versuche es erneut.</p>}
+
+      <button type="button" onClick={handleSubmit} disabled={status === 'sending'}
+        className="w-full flex items-center justify-center gap-2 py-4 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-widest hover:bg-white transition-all disabled:opacity-60 mt-1">
+        <i className="ri-send-plane-line" />
+        {status === 'sending' ? 'Wird gesendet …' : 'Zugang beantragen'}
       </button>
-    </>
+
+      <p className="text-[10px] text-white/25 text-center">Kostenlos & unverbindlich · Antwort innerhalb von 24 Stunden</p>
+    </div>
   );
 }
 

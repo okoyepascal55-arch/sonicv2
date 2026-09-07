@@ -168,10 +168,7 @@ export default function VideoShowcase() {
           </div>
         </div>
 
-        {/* Dashboard note */}
-        <p className="text-[10px] text-foreground-950/25 text-center mt-3 font-bold uppercase tracking-widest">
-          YouTube-Link · Video-Datei · oder Bild — über das Dashboard steuerbar
-        </p>
+
       </div>
     </section>
   );
