@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import SRTHeroReference from './components/SRTHeroReference';
 import TheProblemReference from './components/TheProblemReference';
 import FeaturesReference from './components/FeaturesReference';
+import ProductShowcase from './components/ProductShowcase';
 import VideoShowcase from './components/VideoShowcase';
 import FunctionalityOverview from './components/FunctionalityOverview';
 import EmployeeApp from './components/EmployeeApp';
@@ -48,6 +49,8 @@ export default function SRTPage() {
       <TheProblemReference />
       <SRTWavyDivider />
       <FeaturesReference />
+      <SRTWavyDivider darkBackground />
+      <ProductShowcase />
       <SRTWavyDivider darkBackground />
       <VideoShowcase />
       <SRTWavyDivider />

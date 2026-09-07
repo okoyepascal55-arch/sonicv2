@@ -278,6 +278,8 @@ export const PAGE_GROUPS: PageGroup[] = [
     icon: 'ri-pie-chart-2-line',
     sections: [
       // ── Used by live srt page components ──
+      'srt_product_desktop',
+      'srt_product_mobile',
       'srt_hero_images',
       'srt_hero_icons',
       'srt_feature_icons',
@@ -440,6 +442,14 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   /* ── SRT: Hero Wood Icons ── */
+  /* ── SRT: Product Showcase (Desktop + Mobile renders) ── */
+  srt_product_desktop: [
+    { url: 'https://readdy.ai/api/search-image?query=modern%20enterprise%20SaaS%20analytics%20dashboard%20dark%20theme%20lime%20green%20accent%20retail%20field%20force%20KPI%20charts%20data%20tables%20sidebar%20navigation%20professional%20software%20interface%20ultra%20wide%20monitor%20screen%20clean%20precise&width=1600&height=900&seq=srt-desktop-showcase-01&orientation=landscape', caption: 'SRT Desktop — Dashboard Showcase', wide: true },
+  ],
+  srt_product_mobile: [
+    { url: 'https://readdy.ai/api/search-image?query=mobile%20app%20dark%20theme%20retail%20field%20sales%20scheduling%20GPS%20tracking%20interface%20smartphone%20screen%20lime%20green%20accent%20cards%20KPI%20professional%20clean%20minimal%20enterprise%20SaaS&width=390&height=844&seq=srt-mobile-showcase-01&orientation=portrait', caption: 'SRT Mobile — App Showcase', wide: false },
+  ],
+
   srt_hero_images: [
     { url: 'https://readdy.ai/api/search-image?query=professional%20field%20force%20retail%20team%20meeting%20enterprise%20workspace%20modern%20office%20dark%20atmosphere%20screens%20dashboards%20data%20analytics%20lime%20green%20accent%20lighting%20premium%20corporate%20photography%20wide%20angle%20dramatic&width=1920&height=1080&seq=srt-hero-bg-01&orientation=landscape', caption: 'SRT Hero — Hintergrundfoto', wide: true },
   ],
