@@ -179,9 +179,9 @@ function DesktopCarousel({ execs }: { execs: typeof EXECUTIVES }) {
 
       {/* Single card — fixed height, slide transition */}
       <div key={exec.id} className="relative grid border border-[oklch(0.885_0.004_110)] overflow-hidden"
-        style={{ gridTemplateColumns: imageLeft ? '0.86fr 1.14fr' : '1.14fr 0.86fr', minHeight: 480, maxHeight: 520 }}>
+        style={{ gridTemplateColumns: imageLeft ? '0.86fr 1.14fr' : '1.14fr 0.86fr' }}>
         {/* Portrait */}
-        <div className="relative overflow-hidden" style={{ order: imageLeft ? 1 : 2, backgroundColor: 'oklch(0.13 0.005 118)', minHeight: 480 }}>
+        <div className="relative overflow-hidden" style={{ order: imageLeft ? 1 : 2, backgroundColor: 'oklch(0.13 0.005 118)', minHeight: '460px' }}>
           <img src={imageRes} alt={exec.name} className="absolute inset-0 w-full h-full object-cover object-top" />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground-950/60 via-transparent to-transparent pointer-events-none" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -192,8 +192,8 @@ function DesktopCarousel({ execs }: { execs: typeof EXECUTIVES }) {
         </div>
 
         {/* Text panel */}
-        <div className="flex flex-col overflow-hidden bg-white" style={{ order: imageLeft ? 2 : 1 }}>
-          <div className="flex-1 overflow-y-auto p-8 md:p-10">
+        <div className="flex flex-col bg-white" style={{ order: imageLeft ? 2 : 1 }}>
+          <div className="p-8 md:p-10">
             {exec.pullQuote && (
               <blockquote className="text-lg md:text-xl font-bold leading-tight tracking-tight italic mb-5" style={{ color: 'oklch(var(--foreground-950))' }}>
                 {exec.pullQuote}

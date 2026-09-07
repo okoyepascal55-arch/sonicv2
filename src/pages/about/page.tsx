@@ -79,38 +79,11 @@ export default function AboutPage() {
               <span className="text-primary-500">{tHeroH1Line2}</span>
             </h1>
 
-            <p className="text-white/60 text-sm md:text-base max-w-[520px] leading-relaxed mb-8 md:mb-10">
+            <p className="text-white/60 text-sm md:text-base max-w-[520px] leading-relaxed mb-0">
               {tHeroSub}
             </p>
 
-            {/* Stats strip — hairline grid, matches Leistungen reference */}
-            <div
-              className="w-full grid grid-cols-2 md:grid-cols-4"
-              style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}
-            >
-              {[
-                { value: '500+', label: 'Projekte' },
-                { value: '1,35 Mio.', label: 'Einsätze' },
-                { value: '2.000+', label: 'Talente im Pool' },
-                { value: '2007', label: 'Gegründet' },
-              ].map((s, i) => (
-                <div
-                  key={i}
-                  className="px-3 md:px-6 py-4 md:py-5 flex flex-col gap-1"
-                  style={{ borderRight: i < 3 ? '1px solid rgba(255,255,255,0.14)' : undefined }}
-                >
-                  <span
-                    className="font-black tabular-nums leading-none"
-                    style={{ fontSize: 'clamp(14px,3vw,22px)', letterSpacing: '-0.03em', color: i === 3 ? 'oklch(0.81 0.19 115)' : '#fff', whiteSpace: 'nowrap' }}
-                  >
-                    {s.value}
-                  </span>
-                  <span className="font-black uppercase tracking-[0.18em]" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.45)' }}>
-                    {s.label}
-                  </span>
-                </div>
-              ))}
-            </div>
+
           </div>
         </section>
       </div>
