@@ -10,40 +10,59 @@ const STEPS = [
 ];
 
 export default function Zusammenarbeit() {
-  const tBadge = useText('srt_zusammenarbeit', 'srt-collab-badge', 'Zusammenarbeit');
+  const tBadge   = useText('srt_zusammenarbeit', 'srt-collab-badge',   'Zusammenarbeit');
   const tHeading = useText('srt_zusammenarbeit', 'srt-collab-heading', 'So funktioniert das SRT');
-  const tSub = useText('srt_zusammenarbeit', 'srt-collab-sub', '');
 
   return (
-    <section id="zusammenarbeit" className="sonic-section-md px-4 md:px-6 bg-[#FAFDF5]">
-      <div className="sonic-container">
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="w-7 h-0.5 bg-primary-500" />
-            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
+    <section id="zusammenarbeit" className="bg-white py-20 md:py-28 px-4 md:px-6 relative overflow-hidden">
+      {/* Subtle background grid */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.035]"
+        style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '48px 48px' }}
+        aria-hidden="true" />
+
+      <div className="sonic-container relative z-10">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-7 h-0.5 bg-primary-500" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
+            </div>
+            <h2 className="sonic-h2 text-foreground-950 uppercase">{tHeading}</h2>
           </div>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <h2 className="sonic-h2 text-foreground-950 uppercase m-0">{tHeading}</h2>
-            {tSub && <p className="text-sm text-foreground-950/50 max-w-sm">{tSub}</p>}
+          {/* Step count */}
+          <div className="text-right">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground-950/25">6 Schritte · End-to-End</p>
           </div>
         </div>
 
-        {/* Always-visible 2×3 grid — no accordion, no click required */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground-950/[0.07]">
-          {STEPS.map((step) => (
-            <div key={step.number} className="bg-[#FAFDF5] p-6 relative">
-              {/* Step number — large ghost */}
-              <span className="absolute top-4 right-5 text-[52px] font-black leading-none text-foreground-950/[0.05] select-none">{step.number}</span>
-              {/* Icon + number label */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-9 h-9 flex items-center justify-center border border-primary-500/25 bg-primary-500/8 flex-shrink-0">
-                  <i className={`${step.icon} text-primary-600 text-base`} />
+        {/* Steps — clean 2×3 grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px]" style={{ background: 'rgba(0,0,0,0.06)' }}>
+          {STEPS.map((step, i) => (
+            <div key={step.number} className="bg-white p-7 md:p-8 relative group hover:bg-[#FAFDF5] transition-colors duration-200">
+              {/* Step connector line — top for all except first row */}
+              <div className="absolute top-0 left-8 right-8 h-px bg-transparent" />
+
+              {/* Number + icon row */}
+              <div className="flex items-center justify-between mb-6">
+                {/* Step icon */}
+                <div className="w-10 h-10 flex items-center justify-center"
+                  style={{ border: '1px solid oklch(0.55 0.08 115 / 0.3)', background: 'oklch(0.55 0.08 115 / 0.06)' }}>
+                  <i className={`${step.icon} text-[16px]`} style={{ color: 'oklch(0.55 0.08 115)' }} />
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-[0.18em] text-foreground-950/35">{step.number} / 06</span>
+                {/* Ghost number */}
+                <span className="font-black leading-none select-none" style={{ fontSize: 44, color: 'rgba(0,0,0,0.06)', lineHeight: 1 }}>{step.number}</span>
               </div>
-              <h3 className="text-[13px] font-black uppercase text-foreground-950 mb-1 leading-snug">{step.title}</h3>
-              <p className="text-[11px] font-semibold text-primary-600 mb-3 uppercase tracking-wide">{step.short}</p>
-              <p className="text-xs text-foreground-950/50 leading-relaxed m-0">{step.description}</p>
+
+              {/* Content */}
+              <p className="text-[9px] font-black uppercase tracking-[0.25em] text-primary-500/60 mb-2">{step.number} / 06</p>
+              <h3 className="text-[15px] font-black text-foreground-950 uppercase mb-1 leading-snug">{step.title}</h3>
+              <p className="text-[11px] font-bold text-primary-600/70 mb-3 uppercase tracking-wide">{step.short}</p>
+              <p className="text-[12px] text-foreground-950/45 leading-relaxed">{step.description}</p>
+
+              {/* Progress indicator — bottom bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-[2px]"
+                style={{ background: `linear-gradient(90deg, oklch(0.55 0.08 115 / ${0.2 + i * 0.12}) 0%, transparent 100%)` }} />
             </div>
           ))}
         </div>

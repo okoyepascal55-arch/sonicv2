@@ -112,10 +112,10 @@ export default function FeaturesReference() {
   };
 
   return (
-    <section className="px-4 md:px-6 py-16 md:py-24 bg-foreground-950 relative overflow-hidden" id="features">
-      {/* Data grid backdrop */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{ backgroundImage: 'linear-gradient(oklch(0.81 0.19 115) 1px, transparent 1px), linear-gradient(90deg, oklch(0.81 0.19 115) 1px, transparent 1px)', backgroundSize: '56px 56px' }}
+    <section className="px-4 md:px-6 py-16 md:py-24 bg-white relative overflow-hidden" id="features">
+      {/* Subtle light grid */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
+        style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '56px 56px' }}
         aria-hidden="true" />
 
       <div className="max-w-[1280px] mx-auto relative z-10">
@@ -123,13 +123,13 @@ export default function FeaturesReference() {
         <div className="flex items-center gap-4 mb-5">
           <span className="w-7 h-0.5 bg-primary-500" />
           <span className="text-[11px] font-black tracking-[0.24em] uppercase" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
-          <span className="ml-auto text-[9px] font-black uppercase tracking-[0.2em] text-white/15 hidden md:block">Seit 2008 · 15+ Versionen</span>
+          <span className="ml-auto text-[9px] font-black uppercase tracking-[0.2em] text-foreground-950/20 hidden md:block">Seit 2008 · 15+ Versionen</span>
         </div>
         <div className="grid md:grid-cols-2 gap-8 items-end mb-8">
-          <h2 className="sonic-h2 text-white uppercase">
+          <h2 className="sonic-h2 text-foreground-950 uppercase">
             SRT: Die <span className="px-[0.16em] py-[0.02em] bg-primary-500 text-foreground-950" style={{ boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>All-in-One</span> Software
           </h2>
-          <p className="text-sm text-white/35 leading-relaxed">{tSub}</p>
+          <p className="text-sm text-foreground-950/45 leading-relaxed">{tSub}</p>
         </div>
 
         {/* Bento */}
@@ -207,10 +207,10 @@ export default function FeaturesReference() {
 
         {/* CTA */}
         <div className="mt-[2px] flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-[18px]"
-          style={{ background: 'oklch(0.81 0.19 115 / 0.07)', border: '1px solid oklch(0.81 0.19 115 / 0.2)' }}>
+          style={{ background: 'oklch(0.13 0.005 118)', border: 'none' }}>
           <div>
             <p className="text-white font-black text-[13px]">Noch Fragen zum Funktionsumfang?</p>
-            <p className="text-white/35 text-[11px]">Wir zeigen dir das SRT live — kostenlos und unverbindlich.</p>
+            <p className="text-white/50 text-[11px]">Wir zeigen dir das SRT live — kostenlos und unverbindlich.</p>
           </div>
           <a href={`mailto:${CONTACT_EMAIL}?subject=SRT%20Demo`}
             className="flex items-center gap-2 px-6 py-3 bg-primary-500 text-foreground-950 font-black text-xs uppercase tracking-widest whitespace-nowrap hover:bg-white transition-colors">
