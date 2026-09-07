@@ -278,6 +278,9 @@ export const PAGE_GROUPS: PageGroup[] = [
     icon: 'ri-pie-chart-2-line',
     sections: [
       // ── Used by live srt page components ──
+      'srt_video_media_1',
+      'srt_video_media_2',
+      'srt_video_media_3',
       'srt_product_desktop',
       'srt_product_mobile',
       'srt_hero_images',
@@ -303,6 +306,15 @@ export const PAGE_GROUPS: PageGroup[] = [
   },
   // common group has no active mediaStore usage — components use hardcoded assets
   // Keeping empty group so sidebar navigation still shows it
+  {
+    id: 'case_studies',
+    label: 'Fallbeispiele',
+    icon: 'ri-trophy-line',
+    sections: [
+      'case_studies_hero_images',
+      'case_studies_brand_logos',
+    ],
+  },
   {
     id: 'common',
     label: 'Common Components',
@@ -443,6 +455,23 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── SRT: Hero Wood Icons ── */
   /* ── SRT: Product Showcase (Desktop + Mobile renders) ── */
+  /* ── SRT: Video Showcase media (YouTube URL / video file / image — any type) ── */
+  srt_video_media_1: [
+    { url: 'https://www.youtube.com/watch?v=jfKfPfyJRdk', caption: 'Live Reporting — YouTube URL, Video-Datei oder Bild', wide: true },
+  ],
+  srt_video_media_2: [
+    { url: 'https://www.youtube.com/watch?v=jfKfPfyJRdk', caption: 'Einsatzplanung — YouTube URL, Video-Datei oder Bild', wide: true },
+  ],
+  srt_video_media_3: [
+    { url: 'https://www.youtube.com/watch?v=jfKfPfyJRdk', caption: 'Analytics — YouTube URL, Video-Datei oder Bild', wide: true },
+  ],
+
+  /* ── SRT: Case Studies dashboard control ── */
+  case_studies_hero_images: [
+    { url: '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp', caption: 'Case Studies Hero — Hintergrundfoto', wide: true },
+  ],
+  case_studies_brand_logos: [],
+
   srt_product_desktop: [
     { url: 'https://readdy.ai/api/search-image?query=modern%20enterprise%20SaaS%20analytics%20dashboard%20dark%20theme%20lime%20green%20accent%20retail%20field%20force%20KPI%20charts%20data%20tables%20sidebar%20navigation%20professional%20software%20interface%20ultra%20wide%20monitor%20screen%20clean%20precise&width=1600&height=900&seq=srt-desktop-showcase-01&orientation=landscape', caption: 'SRT Desktop — Dashboard Showcase', wide: true },
   ],

@@ -1,3 +1,4 @@
+import React from 'react';
 import type { MediaItem } from '@/lib/mediaStore';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useText } from '@/hooks/useText';
@@ -12,7 +13,7 @@ const EXECUTIVES = [
     tag: 'Strategie · Führung',
     tenure: 'Seit 2010',
     eyebrow: 'Vision. Strategie. Führung.',
-    pullQuote: '',
+    pullQuote: '„Wer die Fakten kennt und das Team versteht, trifft keine schlechten Entscheidungen — nur mutige."',
     bio: '',
     doing: [
       { label: 'Doing Things', text: 'Daten liefern die Fakten, Menschen den Unterschied. Alle \u201eThings\u201c die mit Daten oder mit Menschen zu tun haben und die Herausforderungen unserer Kunden lösen, sind unsere Spielwiese.' },
@@ -138,6 +139,93 @@ function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
   );
 }
 
+
+// Desktop carousel — one card at a time, prev/next navigation
+function DesktopCarousel({ execs }: { execs: typeof EXECUTIVES }) {
+  const [current, setCurrent] = React.useState(0);
+  const exec = execs[current];
+  const imageLeft = current % 2 === 0;
+  const imageRes = exec.image;
+
+  return (
+    <div className="hidden lg:block">
+      {/* Navigation + counter */}
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-3">
+          <span className="text-[11px] font-black uppercase tracking-[0.2em] text-foreground-950/30">
+            {String(current + 1).padStart(2, '0')} / {String(execs.length).padStart(2, '0')}
+          </span>
+          <div className="flex gap-1.5">
+            {execs.map((_, i) => (
+              <button key={i} type="button" onClick={() => setCurrent(i)}
+                className={`transition-all duration-200 cursor-pointer ${i === current ? 'w-6 h-1.5 bg-foreground-950' : 'w-1.5 h-1.5 bg-foreground-950/15 hover:bg-foreground-950/30'}`}
+                aria-label={execs[i].name} />
+            ))}
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <button type="button" onClick={() => setCurrent(p => (p - 1 + execs.length) % execs.length)}
+            className="w-10 h-10 flex items-center justify-center border border-foreground-950/15 hover:border-foreground-950 transition-colors cursor-pointer"
+            aria-label="Vorherige Person">
+            <i className="ri-arrow-left-line text-foreground-950/60" />
+          </button>
+          <button type="button" onClick={() => setCurrent(p => (p + 1) % execs.length)}
+            className="w-10 h-10 flex items-center justify-center border border-foreground-950/15 hover:border-primary-500 hover:bg-primary-500 hover:text-foreground-950 transition-all cursor-pointer"
+            aria-label="Nächste Person">
+            <i className="ri-arrow-right-line text-foreground-950/60 hover:text-foreground-950" />
+          </button>
+        </div>
+      </div>
+
+      {/* Single card — fixed height, slide transition */}
+      <div key={exec.id} className="relative grid border border-[oklch(0.885_0.004_110)] overflow-hidden"
+        style={{ gridTemplateColumns: imageLeft ? '0.86fr 1.14fr' : '1.14fr 0.86fr', minHeight: 480, maxHeight: 520 }}>
+        {/* Portrait */}
+        <div className="relative overflow-hidden" style={{ order: imageLeft ? 1 : 2, backgroundColor: 'oklch(0.13 0.005 118)', minHeight: 480 }}>
+          <img src={imageRes} alt={exec.name} className="absolute inset-0 w-full h-full object-cover object-top" />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground-950/60 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <p className="text-white font-black text-xl uppercase leading-tight mb-1">{exec.name}</p>
+            <p className="text-white/50 text-xs font-bold uppercase tracking-widest">{exec.title}</p>
+            <p className="text-primary-500 text-[10px] font-black uppercase tracking-widest mt-1">{exec.tenure}</p>
+          </div>
+        </div>
+
+        {/* Text panel */}
+        <div className="flex flex-col overflow-hidden bg-white" style={{ order: imageLeft ? 2 : 1 }}>
+          <div className="flex-1 overflow-y-auto p-8 md:p-10">
+            {exec.pullQuote && (
+              <blockquote className="text-lg md:text-xl font-bold leading-tight tracking-tight italic mb-5" style={{ color: 'oklch(var(--foreground-950))' }}>
+                {exec.pullQuote}
+              </blockquote>
+            )}
+            {exec.bio && <p className="text-sm leading-relaxed mb-5" style={{ color: 'oklch(0.48 0.006 260)' }}>{exec.bio}</p>}
+            {exec.doing && exec.doing.length > 0 && (
+              <div className="mb-5 space-y-4" style={{ borderTop: '1px solid oklch(0.885 0.004 110)', paddingTop: '20px' }}>
+                {exec.doing.map((d) => (
+                  <div key={d.label}>
+                    <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-1.5" style={{ color: 'oklch(0.55 0.08 115)' }}>{d.label}</p>
+                    <p className="text-[13px] leading-relaxed" style={{ color: 'oklch(0.48 0.006 260)' }}>{d.text}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          {/* Metrics footer */}
+          <div className="grid grid-cols-2 flex-shrink-0" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
+            {exec.metrics.map((m, i) => (
+              <div key={i} className="p-4 md:p-5" style={{ borderRight: i < exec.metrics.length - 1 ? '1px solid oklch(0.885 0.004 110)' : undefined }}>
+                <p className="text-lg md:text-2xl font-black tracking-[-0.03em] text-foreground-950">{m.value}</p>
+                <p className="text-[9px] font-black uppercase tracking-wider text-foreground-950/35 mt-0.5">{m.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ManagementVoices({ leadershipImages }: { leadershipImages?: MediaItem[] }) {
   const tBadge   = useText('about_management_voices', 'about-voices-badge',   'Führungsperspektiven');
   const tHeading = useText('about_management_voices', 'about-voices-heading', 'Die Stimmen hinter Sonic.');
@@ -171,8 +259,11 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
           ))}
         </div>
 
-        {/* ── DESKTOP (lg+): staggered rows with ghost numerals ── */}
-        <div className="hidden lg:flex flex-col gap-10">
+        {/* ── DESKTOP (lg+): carousel — one card at a time ── */}
+        <DesktopCarousel execs={execs} />
+
+        {/* hidden placeholder to keep old map — never rendered */}
+        <div className="hidden">
           {execs.map((exec, i) => {
             const imageLeft = i % 2 === 0;
             return (

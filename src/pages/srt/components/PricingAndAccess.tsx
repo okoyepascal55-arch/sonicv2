@@ -75,28 +75,31 @@ export default function PricingAndAccess() {
   const tSub = useText('srt_pricing', 'srt-pricing-sub', 'Drei Stufen, klarer Mehrwert, keine versteckten Kosten.');
 
   return (
-    <section id="preise-zugang" className="sonic-section-lg px-4 md:px-6 bg-white border-t border-foreground-950/[0.06]">
-      <div className="sonic-container">
+    <section id="preise-zugang" className="sonic-section-lg px-4 md:px-6 bg-foreground-950 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-[0.025]"
+        style={{ backgroundImage: 'linear-gradient(oklch(0.81 0.19 115) 1px, transparent 1px), linear-gradient(90deg, oklch(0.81 0.19 115) 1px, transparent 1px)', backgroundSize: '52px 52px' }}
+        aria-hidden="true" />
+      <div className="sonic-container relative z-10">
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span></div>
-          <h2 className="sonic-h2 text-foreground-950 uppercase">Transparente Preise.<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Direkter Zugang.</span></h2>
-          <p className="text-sm text-foreground-950/50 mt-2">{tSub}</p>
+          <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span></div>
+          <h2 className="sonic-h2 text-white uppercase">Transparente Preise.<br /><span className="text-primary-500">Direkter Zugang.</span></h2>
+          <p className="text-sm text-white/35 mt-2">{tSub}</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-2.5 mb-8">
           {TIERS.map((tier, i) => {
             const img = tierImages[i]?.url ? resolveImageUrl(tierImages[i].url) : null;
             return (
-            <article key={tier.name} className="relative border-2 border-foreground-950/[0.08] bg-white overflow-hidden">
+            <article key={tier.name} className="relative overflow-hidden" style={{ background: 'oklch(0.14 0.005 118)', border: tier.highlight ? '1px solid oklch(0.81 0.19 115 / 0.45)' : '1px solid rgba(255,255,255,0.08)' }}>
               {tier.highlight && <div className="absolute -top-[2px] left-[-2px] right-[-2px] h-[3px] bg-primary-500" />}
               {img && <div className="relative w-full h-28 overflow-hidden"><img src={img} alt="" aria-hidden="true" className="w-full h-full object-cover grayscale opacity-40" loading="lazy" /><div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" /></div>}
               <div className="p-6">
-              {tier.highlight && <p className="text-[10px] font-black uppercase text-primary-600 mb-1">Empfohlen</p>}
-              <span className={`inline-block text-[11px] font-black uppercase px-2.5 py-1 ${tier.highlight ? 'bg-foreground-950 text-primary-500' : 'bg-foreground-950/5 text-foreground-950/55'}`}>{tier.name}</span>
-              <div className="text-[22px] font-black text-primary-600 my-3">{tier.price}</div>
-              <p className="text-xs text-foreground-950/45 leading-relaxed mb-4">{tier.desc}</p>
+              {tier.highlight && <p className="text-[10px] font-black uppercase mb-1" style={{ color: 'oklch(0.81 0.19 115)' }}>Empfohlen</p>}
+              <span className={`inline-block text-[11px] font-black uppercase px-2.5 py-1 ${tier.highlight ? 'bg-primary-500 text-foreground-950' : 'bg-white/[0.08] text-white/50'}`}>{tier.name}</span>
+              <div className="text-[22px] font-black text-primary-500 my-3">{tier.price}</div>
+              <p className="text-xs text-white/40 leading-relaxed mb-4">{tier.desc}</p>
               <ul className="space-y-1.5 m-0 p-0 list-none">
-                {tier.features.map((feature) => <li key={feature} className="flex gap-2 text-xs text-foreground-950/55"><i className="ri-check-line text-primary-500 text-[13px]" />{feature}</li>)}
+                {tier.features.map((feature) => <li key={feature} className="flex gap-2 text-xs text-white/50"><i className="ri-check-line text-primary-500 text-[13px]" />{feature}</li>)}
               </ul>
               </div>
             </article>

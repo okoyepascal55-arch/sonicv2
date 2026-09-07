@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
-import { useMediaStore } from '@/lib/mediaStore';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 /* ─────────────────────────────────────────
    LEISTUNGEN IM EINSATZ — split image + content panel
@@ -197,6 +197,7 @@ export default function CaseStudiesPage() {
 
   const navigate = useNavigate();
   const { images: woodTextures } = useMediaStore('losungen_wood_textures');
+  const { images: heroImages } = useMediaStore('case_studies_hero_images');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [expandedStory, setExpandedStory] = useState<string | null>(null);
   const expandedRef = useRef<HTMLDivElement>(null);
@@ -450,7 +451,7 @@ export default function CaseStudiesPage() {
         style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}
       >
         <img
-          src="/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp"
+          src={heroImages[0]?.url ? resolveImageUrl(heroImages[0].url) : "/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp"}
           alt="Erfolgsgeschichten"
           className="absolute inset-0 w-full h-full object-cover object-center"
           fetchPriority="high"
