@@ -76,7 +76,7 @@ export default function SRTHeroReference() {
       </div>
 
       {/* Content — bottom-anchored */}
-      <div className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-8 pb-6 md:pb-10">
         <div className="max-w-[640px]">
           {/* Eyebrow — lime dash + label, matches site standard */}
           <div className="flex items-center gap-3 mb-5 md:mb-6">

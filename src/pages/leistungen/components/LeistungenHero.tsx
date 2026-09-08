@@ -57,7 +57,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
       />
 
       {/* Content — left-aligned, bottom-anchored */}
-      <div className="relative z-20 w-full max-w-[1280px] mx-auto px-4 md:px-8 pb-10 md:pb-14">
+      <div className="relative z-20 w-full max-w-[1280px] mx-auto px-4 md:px-8 pb-6 md:pb-10">
         <div className="max-w-[640px]">
         {/* v3 eyebrow — 28px lime hairline + label */}
         <div className="flex items-center gap-3 mb-5 md:mb-6">

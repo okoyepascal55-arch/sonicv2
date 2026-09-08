@@ -51,7 +51,7 @@ export default function KarriereHero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 sonic-container w-full pb-10 md:pb-14">
+      <div className="relative z-10 sonic-container w-full pb-6 md:pb-10">
         <div className="max-w-[640px]">
           {/* Eyebrow — lime dash + label, matches Leistungen reference */}
           <div className="flex items-center gap-3 mb-5 md:mb-6">

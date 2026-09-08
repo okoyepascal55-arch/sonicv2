@@ -85,7 +85,7 @@ export default function PhotoSelector({
                   transition: 'border-color 0.25s ease, transform 0.25s ease, background 0.25s ease',
                   transform: isActive ? 'translateY(-2px)' : 'none',
                 }}
-                aria-label={`Photo ${i + 1}: ${photo.caption}`}
+                aria-label={`Foto ${i + 1}: ${photo.caption}`}
                 aria-current={isActive}
               >
                 {/* Thumbnail */}

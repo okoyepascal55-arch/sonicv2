@@ -652,7 +652,7 @@ export default function CaseStudiesPage() {
           style={{ background: 'linear-gradient(to bottom, rgba(11,11,12,0.30) 0%, rgba(11,11,12,0.20) 45%, rgba(11,11,12,0.82) 100%)' }}
           aria-hidden="true"
         />
-        <div className="relative z-10 sonic-container pb-10 md:pb-14">
+        <div className="relative z-10 sonic-container pb-6 md:pb-10">
           <div className="flex items-center gap-3 mb-5 md:mb-6">
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Fallbeispiele</span>

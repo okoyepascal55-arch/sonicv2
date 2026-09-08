@@ -285,7 +285,7 @@ export default function SonicReelsTimeline({ eras }: { eras: EraData[] }) {
       {/* ── Bottom film edge ── */}
       <FilmEdge
         accent={era.accent}
-        code={`FRAME ${String(activeIndex + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`}
+        code={`AUFNAHME ${String(activeIndex + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`}
       />
 
       {/* ── Full-screen lightbox ── */}

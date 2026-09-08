@@ -67,7 +67,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
 
           {/* Hero content — bottom-anchored, sonic-container matches all other pages */}
-          <div className="relative z-10 sonic-container pb-7 md:pb-10">
+          <div className="relative z-10 sonic-container pb-5 md:pb-8">
             {/* Eyebrow badge */}
             <div className="flex items-center gap-3 mb-5 md:mb-6">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
