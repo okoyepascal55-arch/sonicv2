@@ -39,7 +39,7 @@ export default function PhotoSelector({
           className="whitespace-nowrap"
           style={{ fontFamily: 'monospace', fontSize: '0.58rem', color: `${accent}88`, fontWeight: 900, letterSpacing: '0.3em', textTransform: 'uppercase' }}
         >
-          {eraLabel} · Contact Sheet
+          {eraLabel} · Kontaktabzug
         </span>
         <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.05)' }} />
         <span className="whitespace-nowrap" style={{ fontFamily: 'monospace', fontSize: '0.58rem', color: 'rgba(255,255,255,0.28)', fontWeight: 900, letterSpacing: '0.15em' }}>
