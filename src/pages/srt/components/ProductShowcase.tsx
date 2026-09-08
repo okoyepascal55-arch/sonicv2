@@ -1,3 +1,50 @@
+
+// Detect what type of media a URL is so we render the right element
+function getMediaType(url: string | null): 'youtube' | 'video' | 'image' | null {
+  if (!url) return null;
+  const u = url.toLowerCase();
+  if (u.includes('youtube.com') || u.includes('youtu.be')) return 'youtube';
+  if (u.match(/\.(mp4|webm|mov|ogg)(\?|$)/)) return 'video';
+  return 'image';
+}
+
+function extractYouTubeId(url: string): string {
+  const m = url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+  return m?.[1] ?? '';
+}
+
+// Renders the right element for the screen content (image, video, or YouTube)
+function ScreenMedia({ src, alt, objectPosition = 'object-top' }: { src: string | null; alt: string; objectPosition?: string }) {
+  const type = getMediaType(src);
+  if (!src || !type) return null;
+  if (type === 'youtube') {
+    const id = extractYouTubeId(src);
+    return (
+      <iframe
+        src={`https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&showinfo=0&rel=0&modestbranding=1`}
+        title={alt}
+        className="absolute inset-0 w-full h-full border-0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        style={{ pointerEvents: 'none' }}
+      />
+    );
+  }
+  if (type === 'video') {
+    return (
+      <video
+        src={src}
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay muted loop playsInline
+      />
+    );
+  }
+  return (
+    <img src={src} alt={alt}
+      className={`absolute inset-0 w-full h-full object-cover ${objectPosition}`}
+      loading="lazy" />
+  );
+}
+
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 
@@ -32,7 +79,7 @@ function LaptopMockup({ src }: { src: string | null }) {
             {/* Screen content */}
             <div className="relative" style={{ height: 'calc(100% - 28px)', background: 'oklch(0.10 0.004 118)' }}>
               {src ? (
-                <img src={src} alt="SRT Desktop Dashboard" className="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" />
+                <ScreenMedia src={src} alt="SRT Desktop Dashboard" objectPosition="object-top" />
               ) : (
                 <DesktopPlaceholder />
               )}
@@ -163,7 +210,7 @@ function PhoneMockup({ src }: { src: string | null }) {
           {/* Screen */}
           <div className="absolute" style={{ top: 28, bottom: 8, left: 2, right: 2, overflow: 'hidden', background: 'oklch(0.10 0.004 118)' }}>
             {src ? (
-              <img src={src} alt="SRT Mobile App" className="w-full h-full object-cover object-top" loading="lazy" />
+              <ScreenMedia src={src} alt="SRT Mobile App" objectPosition="object-top" />
             ) : (
               <MobilePlaceholder />
             )}
