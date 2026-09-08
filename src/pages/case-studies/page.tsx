@@ -255,8 +255,8 @@ function GroupedImpressionenGallery({
   return (
     <div className="mb-14">
       {/* Section header */}
-      <div className="flex items-center gap-3 mb-8">
-        <div className="w-1 h-8 bg-primary-500" />
+      <div className="flex items-center gap-3 mb-10">
+        <div className="w-1 h-8 bg-primary-500 flex-shrink-0" />
         <div>
           <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Bildergalerie</p>
           <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">
@@ -265,79 +265,111 @@ function GroupedImpressionenGallery({
         </div>
       </div>
 
-      {/* Groups */}
-      <div className="flex flex-col gap-8">
+      {/* Groups — each with editorial layout */}
+      <div className="flex flex-col gap-12">
         {groups.map((group) => {
           const images = getGroupImages(group);
           if (!images.length) return null;
 
           const groupStartIdx = globalIdx;
           globalIdx += images.length;
+          const featured = images[0];
+          const rest = images.slice(1);
 
           return (
             <div key={group.mediaKey}>
-              {/* Group title */}
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-[10px] font-black uppercase tracking-[0.25em]"
+              {/* Category label — clean, minimal */}
+              <div className="flex items-center gap-4 mb-4">
+                <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em]"
                   style={{ color: 'oklch(0.55 0.08 115)' }}>
+                  <span className="w-3 h-0.5 bg-primary-500 flex-shrink-0" />
                   {group.title}
                 </span>
-                <div className="flex-1 h-px bg-foreground-950/10" />
-                <span className="text-[9px] text-foreground-950/30 font-bold">
-                  {images.length} {images.length === 1 ? 'Foto' : 'Fotos'}
-                </span>
+                <div className="flex-1 h-px" style={{ background: 'oklch(0.55 0.08 115 / 0.15)' }} />
               </div>
 
-              {/* Image row — horizontal scroll on mobile, grid on desktop */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[3px]"
-                style={{ background: 'oklch(0.16 0.006 118)' }}>
-                {images.map((src, imgIdx) => {
-                  const lightboxIdx = groupStartIdx + imgIdx;
-                  return (
-                    <div
-                      key={imgIdx}
-                      className="relative overflow-hidden group cursor-pointer"
-                      style={{ aspectRatio: '4/3' }}
-                      onClick={() => openLightbox(allItems, lightboxIdx)}
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`${group.title} — Foto ${imgIdx + 1} von ${images.length} vergrößern`}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          openLightbox(allItems, lightboxIdx);
-                        }
-                      }}
-                    >
-                      <img
-                        src={src}
-                        alt={`${group.title} — ${brand}`}
-                        className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-500"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300" />
-                      {/* Expand icon */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="w-10 h-10 flex items-center justify-center bg-primary-500/90">
-                          <i className="ri-zoom-in-line text-white text-base" />
-                        </div>
-                      </div>
-                      {/* Category chip */}
-                      <div className="absolute bottom-0 left-0 right-0 p-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <span className="inline-block bg-foreground-950/80 text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-widest backdrop-blur-sm">
-                          {group.title}
-                        </span>
-                      </div>
-                      {/* Lime corner */}
-                      <div className="absolute top-2 left-2 w-4 h-0.5 bg-primary-500" />
-                    </div>
-                  );
-                })}
-              </div>
+              {/* Editorial grid — featured + thumbnails */}
+              {rest.length === 0 ? (
+                /* Single image — full width, cinematic ratio */
+                <GalleryThumb src={featured} alt={`${group.title} — ${brand}`}
+                  lightboxIdx={groupStartIdx} allItems={allItems} openLightbox={openLightbox}
+                  className="w-full" style={{ aspectRatio: '16/7' }} />
+              ) : rest.length <= 2 ? (
+                /* 2–3 images — 2-col, featured slightly taller */
+                <div className="grid grid-cols-2 gap-[3px]" style={{ background: 'oklch(0.94 0.002 110)' }}>
+                  <GalleryThumb src={featured} alt={`${group.title} — ${brand}`}
+                    lightboxIdx={groupStartIdx} allItems={allItems} openLightbox={openLightbox}
+                    style={{ aspectRatio: '3/4', gridRow: `span ${rest.length}` }} />
+                  {rest.map((src, i) => (
+                    <GalleryThumb key={i} src={src} alt={`${group.title} — ${brand}`}
+                      lightboxIdx={groupStartIdx + 1 + i} allItems={allItems} openLightbox={openLightbox}
+                      style={{ aspectRatio: '4/3' }} />
+                  ))}
+                </div>
+              ) : (
+                /* 4+ images — featured hero (2-col-span) + grid of thumbnails */
+                <div className="grid grid-cols-3 gap-[3px]" style={{ background: 'oklch(0.94 0.002 110)' }}>
+                  {/* Featured — spans 2 cols, taller */}
+                  <div className="col-span-2">
+                    <GalleryThumb src={featured} alt={`${group.title} — ${brand}`}
+                      lightboxIdx={groupStartIdx} allItems={allItems} openLightbox={openLightbox}
+                      style={{ aspectRatio: '4/3', width: '100%' }} />
+                  </div>
+                  {/* Right column — 2 stacked thumbnails */}
+                  <div className="flex flex-col gap-[3px]">
+                    {rest.slice(0, 2).map((src, i) => (
+                      <GalleryThumb key={i} src={src} alt={`${group.title} — ${brand}`}
+                        lightboxIdx={groupStartIdx + 1 + i} allItems={allItems} openLightbox={openLightbox}
+                        style={{ aspectRatio: '3/2', flex: 1 }} />
+                    ))}
+                  </div>
+                  {/* Bottom row — remaining images */}
+                  {rest.slice(2).map((src, i) => (
+                    <GalleryThumb key={i} src={src} alt={`${group.title} — ${brand}`}
+                      lightboxIdx={groupStartIdx + 3 + i} allItems={allItems} openLightbox={openLightbox}
+                      style={{ aspectRatio: '4/3' }} />
+                  ))}
+                </div>
+              )}
             </div>
           );
         })}
       </div>
+    </div>
+  );
+}
+
+/** Reusable gallery thumbnail with consistent hover behaviour */
+function GalleryThumb({
+  src, alt, lightboxIdx, allItems, openLightbox, className = '', style = {},
+}: {
+  src: string; alt: string; lightboxIdx: number;
+  allItems: LightboxItem[];
+  openLightbox: (items: LightboxItem[], idx: number) => void;
+  className?: string; style?: React.CSSProperties;
+}) {
+  return (
+    <div
+      className={`relative overflow-hidden group cursor-pointer ${className}`}
+      style={style}
+      onClick={() => openLightbox(allItems, lightboxIdx)}
+      role="button" tabIndex={0}
+      aria-label={`${alt} — vergrößern`}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(allItems, lightboxIdx); } }}
+    >
+      <img src={src} alt={alt}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+        loading="lazy" />
+      {/* Hover overlay */}
+      <div className="absolute inset-0 bg-foreground-950/0 group-hover:bg-foreground-950/35 transition-colors duration-300" />
+      {/* Expand icon */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="w-11 h-11 flex items-center justify-center bg-primary-500">
+          <i className="ri-zoom-in-line text-foreground-950 text-lg font-bold" />
+        </div>
+      </div>
+      {/* Lime top accent */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary-500 translate-y-[-100%] group-hover:translate-y-0 transition-transform duration-300" />
     </div>
   );
 }
