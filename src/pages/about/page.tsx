@@ -52,7 +52,7 @@ export default function AboutPage() {
       {/* ── HERO — bottom-anchored, matching careers ── */}
       <div ref={heroRef}>
         <section
-          className="relative min-h-[320px] sm:min-h-[400px] md:min-h-[560px] flex flex-col justify-end overflow-hidden bg-foreground-950"
+          className="relative min-h-[360px] sm:min-h-[440px] md:min-h-[580px] flex flex-col justify-end overflow-hidden bg-foreground-950"
           style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}
         >
           {/* Full-bleed background image — always renders with fallback */}
@@ -66,22 +66,24 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
 
           {/* Hero content — bottom-anchored, sonic-container matches all other pages */}
-          <div className="relative z-10 sonic-container pb-10 md:pb-14">
-            {/* Eyebrow badge — unified token pattern */}
+          <div className="relative z-10 sonic-container pb-7 md:pb-10">
+            {/* Eyebrow badge */}
             <div className="flex items-center gap-3 mb-5 md:mb-6">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
               <span className="text-primary-500">{tHeroBadge}</span>
             </div>
 
-            {/* Large headline */}
-            <h1 className="leist-h1-hub text-white mb-4 md:mb-5">
-              {tHeroH1}<br />
-              <span className="text-primary-500">{tHeroH1Line2}</span>
-            </h1>
-
-            <p className="text-white/60 text-sm md:text-base max-w-[520px] leading-relaxed mb-0">
-              {tHeroSub}
-            </p>
+            {/* H1 + subtext in the same inline-block container
+                so the paragraph is constrained to the natural width of the H1 */}
+            <div className="inline-block">
+              <h1 className="leist-h1-hub text-white mb-4 md:mb-5">
+                {tHeroH1}<br />
+                <span className="text-primary-500">{tHeroH1Line2}</span>
+              </h1>
+              <p className="text-white/60 text-sm md:text-base leading-relaxed mb-0 w-full">
+                {tHeroSub}
+              </p>
+            </div>
 
 
           </div>

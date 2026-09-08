@@ -33,7 +33,7 @@ export default function Carousel3DReference() {
 
   return (
     <>
-      <div className="relative flex items-center justify-center overflow-hidden" style={{ height: '480px', perspective: '1800px', margin: '0 -40px' }} aria-label="Kreation Showcase Carousel">
+      <div className="relative flex items-center justify-center overflow-hidden" style={{ height: 'clamp(300px, 42vw, 480px)', perspective: '1800px', margin: '0 -40px' }} aria-label="Kreation Showcase Carousel">
         {tiles.map((tile, i) => {
           const angleStep = 360 / tiles.length;
           let angleDeg = i * angleStep - angle;
