@@ -313,6 +313,20 @@ export const PAGE_GROUPS: PageGroup[] = [
     sections: [
       'case_studies_hero_images',
       'case_studies_brand_logos',
+      // Garmin Impressionen
+      'case_garmin_gallery_1',
+      'case_garmin_gallery_2',
+      'case_garmin_gallery_3',
+      'case_garmin_gallery_4',
+      // Groupe SEB Impressionen
+      'case_seb_gallery_1',
+      'case_seb_gallery_2',
+      // Philips Impressionen
+      'case_philips_gallery_1',
+      'case_philips_gallery_2',
+      // Avoury Impressionen
+      'case_avoury_gallery_1',
+      'case_avoury_gallery_2',
     ],
   },
   {
@@ -454,6 +468,51 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   /* ── SRT: Hero Wood Icons ── */
+
+  /* ── CASE STUDIES: Impressionen Grouped Galleries ── */
+  /* Each key = one named category with multiple images uploadable */
+
+  /* Garmin */
+  case_garmin_gallery_1: [
+    { url: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_1000_A26_Front.webp', caption: 'POS Aktivierung — Garmin CDU', wide: true },
+    { url: '/images/Case Studies -Fallbsp/Garmin/5243_190035993.webp', caption: 'POS Aktivierung — Garmin Promotion', wide: false },
+    { url: '/images/Case Studies -Fallbsp/Garmin/Saturn Frankfurt_Redouan B.webp', caption: 'POS Aktivierung — Saturn Frankfurt', wide: false },
+  ],
+  case_garmin_gallery_2: [
+    { url: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_Unterschrank-Light_1000_A26_Front.webp', caption: 'POS-Möbel & Displays — Unterschrank Front', wide: true },
+    { url: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_600_A26_Front.webp', caption: 'POS-Möbel & Displays — CDU 600', wide: false },
+    { url: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_Unterschrank-Light_600_A26_Front.webp', caption: 'POS-Möbel & Displays — Unterschrank 600', wide: false },
+  ],
+  case_garmin_gallery_3: [
+    { url: '/images/Case Studies -Fallbsp/Garmin/MM Chemnitz_Rene G.webp', caption: 'Training & Team — MM Chemnitz', wide: false },
+    { url: '/images/Case Studies -Fallbsp/Garmin/5279_10060291.webp', caption: 'Training & Team — POS-Möbel Training', wide: false },
+    { url: '/images/Case Studies -Fallbsp/Garmin/5315_195525779.webp', caption: 'Training & Team — Schulung', wide: false },
+    { url: '/images/Case Studies -Fallbsp/Garmin/MM Hückelhoven_Chris L.webp', caption: 'Training & Team — MM Hückelhoven', wide: false },
+  ],
+  case_garmin_gallery_4: [
+    { url: '/images/Case Studies -Fallbsp/Garmin/5431_162510371.webp', caption: 'Lager & Logistik — Versand', wide: false },
+    { url: '/images/Case Studies -Fallbsp/Garmin/5243_190036664.webp', caption: 'Lager & Logistik — Aktion', wide: false },
+  ],
+
+  /* Groupe SEB */
+  case_seb_gallery_1: [
+    { url: '/images/Case Studies -Fallbsp/SEB/Optigrill Tisch.webp', caption: 'Live-Cooking — Optigrill Tisch', wide: true },
+    { url: '/images/Case Studies -Fallbsp/SEB/image10.webp', caption: 'Live-Cooking — Aktion', wide: false },
+  ],
+  case_seb_gallery_2: [
+    { url: '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam.webp', caption: 'Roadshow & Video — Airstream Shooting', wide: true },
+  ],
+
+  /* Philips */
+  case_philips_gallery_1: [
+    { url: '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp', caption: 'In-Store Promotion — Philips TV Sound', wide: true },
+  ],
+  case_philips_gallery_2: [],
+
+  /* Avoury */
+  case_avoury_gallery_1: [],
+  case_avoury_gallery_2: [],
+
   /* ── SRT: Product Showcase (Desktop + Mobile renders) ── */
   /* ── SRT: Video Showcase media (YouTube URL / video file / image — any type) ── */
   srt_video_media_1: [

@@ -182,7 +182,155 @@ interface CaseStudy {
   modules: ServiceModule[];
   gallery: string[];
   bentoImages: { src: string; span: string; label: string }[];
+  imageGroups: { title: string; mediaKey: string; fallbacks: string[] }[];
   relatedStories: string[];
+}
+
+
+// ── Grouped Impressionen Gallery ────────────────────────────────────────────
+function GroupedImpressionenGallery({
+  groups,
+  brand,
+  openLightbox,
+}: {
+  groups: { title: string; mediaKey: string; fallbacks: string[] }[];
+  brand: string;
+  openLightbox: (items: LightboxItem[], startIndex: number) => void;
+}) {
+  // Collect images from media store for each group
+  const allMediaKeys = [
+    'case_garmin_gallery_1','case_garmin_gallery_2','case_garmin_gallery_3','case_garmin_gallery_4',
+    'case_seb_gallery_1','case_seb_gallery_2',
+    'case_philips_gallery_1','case_philips_gallery_2',
+    'case_avoury_gallery_1','case_avoury_gallery_2',
+  ] as const;
+
+  // Fetch all possible store sections upfront (hooks cannot be conditional)
+  const g1 = useMediaStore('case_garmin_gallery_1');
+  const g2 = useMediaStore('case_garmin_gallery_2');
+  const g3 = useMediaStore('case_garmin_gallery_3');
+  const g4 = useMediaStore('case_garmin_gallery_4');
+  const s1 = useMediaStore('case_seb_gallery_1');
+  const s2 = useMediaStore('case_seb_gallery_2');
+  const p1 = useMediaStore('case_philips_gallery_1');
+  const p2 = useMediaStore('case_philips_gallery_2');
+  const a1 = useMediaStore('case_avoury_gallery_1');
+  const a2 = useMediaStore('case_avoury_gallery_2');
+
+  const storeMap: Record<string, ReturnType<typeof useMediaStore>> = {
+    'case_garmin_gallery_1': g1, 'case_garmin_gallery_2': g2,
+    'case_garmin_gallery_3': g3, 'case_garmin_gallery_4': g4,
+    'case_seb_gallery_1': s1, 'case_seb_gallery_2': s2,
+    'case_philips_gallery_1': p1, 'case_philips_gallery_2': p2,
+    'case_avoury_gallery_1': a1, 'case_avoury_gallery_2': a2,
+  };
+
+  const getGroupImages = (group: typeof groups[0]): string[] => {
+    const store = storeMap[group.mediaKey];
+    const storeUrls = store?.images?.filter(img => img.url).map(img => resolveImageUrl(img.url)) ?? [];
+    return storeUrls.length > 0 ? storeUrls : group.fallbacks;
+  };
+
+  // Build flat lightbox array across all groups for navigation
+  const allItems: LightboxItem[] = groups.flatMap(group =>
+    getGroupImages(group).map(src => ({
+      image: src,
+      title: group.title,
+      category: brand,
+      description: `${group.title} — ${brand} Fallbeispiel`,
+    }))
+  );
+
+  let globalIdx = 0;
+
+  return (
+    <div className="mb-14">
+      {/* Section header */}
+      <div className="flex items-center gap-3 mb-8">
+        <div className="w-1 h-8 bg-primary-500" />
+        <div>
+          <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Bildergalerie</p>
+          <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">
+            {brand} — <span className="v3-marker">Impressionen</span>
+          </h3>
+        </div>
+      </div>
+
+      {/* Groups */}
+      <div className="flex flex-col gap-8">
+        {groups.map((group) => {
+          const images = getGroupImages(group);
+          if (!images.length) return null;
+
+          const groupStartIdx = globalIdx;
+          globalIdx += images.length;
+
+          return (
+            <div key={group.mediaKey}>
+              {/* Group title */}
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-[10px] font-black uppercase tracking-[0.25em]"
+                  style={{ color: 'oklch(0.55 0.08 115)' }}>
+                  {group.title}
+                </span>
+                <div className="flex-1 h-px bg-foreground-950/10" />
+                <span className="text-[9px] text-foreground-950/30 font-bold">
+                  {images.length} {images.length === 1 ? 'Foto' : 'Fotos'}
+                </span>
+              </div>
+
+              {/* Image row — horizontal scroll on mobile, grid on desktop */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[3px]"
+                style={{ background: 'oklch(0.16 0.006 118)' }}>
+                {images.map((src, imgIdx) => {
+                  const lightboxIdx = groupStartIdx + imgIdx;
+                  return (
+                    <div
+                      key={imgIdx}
+                      className="relative overflow-hidden group cursor-pointer"
+                      style={{ aspectRatio: '4/3' }}
+                      onClick={() => openLightbox(allItems, lightboxIdx)}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`${group.title} — Foto ${imgIdx + 1} von ${images.length} vergrößern`}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          openLightbox(allItems, lightboxIdx);
+                        }
+                      }}
+                    >
+                      <img
+                        src={src}
+                        alt={`${group.title} — ${brand}`}
+                        className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300" />
+                      {/* Expand icon */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="w-10 h-10 flex items-center justify-center bg-primary-500/90">
+                          <i className="ri-zoom-in-line text-white text-base" />
+                        </div>
+                      </div>
+                      {/* Category chip */}
+                      <div className="absolute bottom-0 left-0 right-0 p-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <span className="inline-block bg-foreground-950/80 text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-widest backdrop-blur-sm">
+                          {group.title}
+                        </span>
+                      </div>
+                      {/* Lime corner */}
+                      <div className="absolute top-2 left-2 w-4 h-0.5 bg-primary-500" />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 export default function CaseStudiesPage() {
@@ -247,6 +395,13 @@ export default function CaseStudiesPage() {
         { src: '/images/Case Studies -Fallbsp/Garmin/MM Chemnitz_Rene G.webp', span: 'md:col-span-1 md:row-span-1', label: 'Training Krefeld' },
         { src: '/images/Case Studies -Fallbsp/Garmin/Saturn Frankfurt_Redouan B.webp', span: 'md:col-span-2 md:row-span-1', label: 'Lager & Logistik' },
       ],
+
+      imageGroups: [
+        { title: 'POS Aktivierung', mediaKey: 'case_garmin_gallery_1', fallbacks: ['/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_1000_A26_Front.webp', '/images/Case Studies -Fallbsp/Garmin/5243_190035993.webp', '/images/Case Studies -Fallbsp/Garmin/Saturn Frankfurt_Redouan B.webp'] },
+        { title: 'POS-Möbel & Displays', mediaKey: 'case_garmin_gallery_2', fallbacks: ['/images/Case Studies -Fallbsp/Garmin/Garmin_POS_Unterschrank-Light_1000_A26_Front.webp', '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_600_A26_Front.webp'] },
+        { title: 'Training & Team', mediaKey: 'case_garmin_gallery_3', fallbacks: ['/images/Case Studies -Fallbsp/Garmin/MM Chemnitz_Rene G.webp', '/images/Case Studies -Fallbsp/Garmin/5315_195525779.webp', '/images/Case Studies -Fallbsp/Garmin/MM Hückelhoven_Chris L.webp'] },
+        { title: 'Lager & Logistik', mediaKey: 'case_garmin_gallery_4', fallbacks: ['/images/Case Studies -Fallbsp/Garmin/5431_162510371.webp'] },
+      ],
       relatedStories: ['philips', 'groupe-seb'],
     },
     {
@@ -293,6 +448,11 @@ export default function CaseStudiesPage() {
         { src: '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam.webp', span: 'md:col-span-1 md:row-span-1', label: 'Airstream Roadshow' },
         { src: '/images/Case Studies -Fallbsp/SEB/image10.webp', span: 'md:col-span-1 md:row-span-1', label: 'Live-Cooking' },
         { src: '/images/Case Studies -Fallbsp/SEB/image12.webp', span: 'md:col-span-2 md:row-span-1', label: 'Tägliches Reporting' },
+      ],
+
+      imageGroups: [
+        { title: 'Live-Cooking & Verkostung', mediaKey: 'case_seb_gallery_1', fallbacks: ['/images/Case Studies -Fallbsp/SEB/Optigrill Tisch.webp', '/images/Case Studies -Fallbsp/SEB/image10.webp'] },
+        { title: 'Roadshow & Video-Studio', mediaKey: 'case_seb_gallery_2', fallbacks: ['/images/Case Studies -Fallbsp/SEB/Shooting_Miriam.webp'] },
       ],
       relatedStories: ['garmin', 'avoury'],
     },
@@ -341,6 +501,10 @@ export default function CaseStudiesPage() {
         { src: '/images/Case Studies -Fallbsp/Philips/ALW6_MM_Dornbirn_AT (1).webp', span: 'md:col-span-1 md:row-span-1', label: 'Messen' },
         { src: '/images/Case Studies -Fallbsp/Philips/ALW6_Media Markt Ingolstadt - Eriagstr. 28 - 85046 Ingolstadt1 (1).webp', span: 'md:col-span-2 md:row-span-1', label: 'Digitaler Homeplaner' },
       ],
+      imageGroups: [
+        { title: 'In-Store Promotion', mediaKey: 'case_philips_gallery_1', fallbacks: ['/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp'] },
+        { title: 'Weitere Impressionen', mediaKey: 'case_philips_gallery_2', fallbacks: [] },
+      ],
       relatedStories: ['garmin', 'avoury'],
     },
     {
@@ -386,6 +550,10 @@ export default function CaseStudiesPage() {
         { src: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_V4_06.webp', span: 'md:col-span-1 md:row-span-1', label: 'Schulungen Krefeld' },
         { src: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_V4_MASSE_THEKE.webp', span: 'md:col-span-1 md:row-span-1', label: 'Reporting & Daten' },
         { src: '/images/Case Studies -Fallbsp/Avoury/2.webp', span: 'md:col-span-2 md:row-span-1', label: 'Avoury One — Melitta' },
+      ],
+      imageGroups: [
+        { title: 'Kampagnen-Aktivierung', mediaKey: 'case_avoury_gallery_1', fallbacks: [] },
+        { title: 'Weitere Impressionen', mediaKey: 'case_avoury_gallery_2', fallbacks: [] },
       ],
       relatedStories: ['groupe-seb', 'philips'],
     },
@@ -660,69 +828,11 @@ export default function CaseStudiesPage() {
             {/* ── LEISTUNGEN IM EINSATZ ── */}
             <LeistungenImEinsatz modules={expanded.modules} brand={expanded.brand} />
 
-            {/* Bento Grid */}
-            <div className="mb-12">
-              <div className="flex items-center justify-between gap-4 mb-6 flex-wrap">
-                <div className="flex items-center gap-3">
-                  <div className="w-1 h-8 bg-primary-500"></div>
-                  <div>
-                    <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Bildergalerie</p>
-                    <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">{expanded.brand} — <span className="v3-marker">Impressionen</span></h3>
-                  </div>
-                </div>
-                <span className="text-xs font-black text-foreground-400 uppercase tracking-widest">Vom Einsatz am POS</span>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[220px] mb-14" style={{ gap: '3px', background: 'oklch(0.16 0.006 118)' }}>
-              {expanded.bentoImages.map((item, i) => {
-                  const bentoLightboxItems: LightboxItem[] = expanded.bentoImages.map((b) => ({
-                    image: b.src,
-                    title: b.label,
-                    category: expanded.brand,
-                    description: `${b.label} — ${expanded.brand} Fallbeispiel`,
-                  }));
-                  return (
-                    <div
-                      key={i}
-                      className={`relative overflow-hidden group cursor-pointer h-48 md:h-auto ${item.span}`}
-                      style={{ borderRadius: 0 }}
-                      onClick={() => openLightbox(bentoLightboxItems, i)}
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`${item.label} vergrößern — ${expanded.brand} Fallbeispiel`}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          openLightbox(bentoLightboxItems, i);
-                        }
-                      }}
-                    >
-                      <img
-                        src={item.src}
-                        alt={`${item.label} — ${expanded.brand} Fallbeispiel`}
-                        className="w-full h-full object-cover object-top group-hover:scale-[1.04] transition-transform duration-500"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/45 transition-all duration-400"></div>
-                      {/* Expand icon on hover */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="w-12 h-12 flex items-center justify-center bg-primary-500/85 backdrop-blur-[2px] rounded-sm">
-                          <i className="ri-zoom-in-line text-white text-lg"></i>
-                        </div>
-                      </div>
-                      {/* Label chip */}
-                      <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <span className="inline-block bg-primary-500 text-white text-xs font-black px-3 py-1 uppercase tracking-wide">{item.label}</span>
-                      </div>
-                      {/* Lime corner accent */}
-                      <div className="absolute top-3 left-3" style={{ width: '22px', height: '2px', background: 'oklch(0.81 0.19 115)' }}></div>
-                      
-                    </div>
-                  );
-                })}
-              </div>
+            <GroupedImpressionenGallery
+              groups={expanded.imageGroups}
+              brand={expanded.brand}
+              openLightbox={openLightbox}
+            />
 
             {/* Related stories */}
             <div className="mb-10">
