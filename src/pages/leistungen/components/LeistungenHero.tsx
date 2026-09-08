@@ -44,7 +44,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
       <img
         src={heroImage || 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png'}
         alt="Sonic Group Leistungen"
-        className="absolute inset-0 w-full h-full object-cover object-top"
+        className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 20%' }}
         fetchPriority="high"
         decoding="async"
       />

@@ -35,8 +35,8 @@ export default function KarriereHero() {
         <img
           src={heroImage}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out"
-          style={{ transform: hovered ? 'scale(1.03)' : 'scale(1)' }}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out"
+          style={{ objectPosition: 'center 20%', transform: hovered ? 'scale(1.03)' : 'scale(1)' }}
           fetchPriority="high"
           decoding="async"
         />

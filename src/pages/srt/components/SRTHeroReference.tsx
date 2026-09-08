@@ -41,7 +41,7 @@ export default function SRTHeroReference() {
       <img
         src={heroImageUrl}
         alt="SRT — Sonic Reporting Tool"
-        className="absolute inset-0 w-full h-full object-cover object-center"
+        className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 30%' }}
         fetchPriority="high"
         decoding="async"
       />

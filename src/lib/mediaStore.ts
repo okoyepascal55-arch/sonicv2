@@ -321,12 +321,18 @@ export const PAGE_GROUPS: PageGroup[] = [
       // Groupe SEB Impressionen
       'case_seb_gallery_1',
       'case_seb_gallery_2',
+      'case_seb_gallery_3',
+      'case_seb_gallery_4',
       // Philips Impressionen
       'case_philips_gallery_1',
       'case_philips_gallery_2',
+      'case_philips_gallery_3',
+      'case_philips_gallery_4',
       // Avoury Impressionen
       'case_avoury_gallery_1',
       'case_avoury_gallery_2',
+      'case_avoury_gallery_3',
+      'case_avoury_gallery_4',
     ],
   },
   {
@@ -509,9 +515,19 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
   case_philips_gallery_2: [],
 
-  /* Avoury */
+  /* Groupe SEB — 2 additional */
+  case_seb_gallery_3: [],
+  case_seb_gallery_4: [],
+
+  /* Philips — 2 additional */
+  case_philips_gallery_3: [],
+  case_philips_gallery_4: [],
+
+  /* Avoury — 2 additional */
   case_avoury_gallery_1: [],
   case_avoury_gallery_2: [],
+  case_avoury_gallery_3: [],
+  case_avoury_gallery_4: [],
 
   /* ── SRT: Product Showcase (Desktop + Mobile renders) ── */
   /* ── SRT: Video Showcase media (YouTube URL / video file / image — any type) ── */

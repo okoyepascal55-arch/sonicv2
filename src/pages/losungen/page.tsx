@@ -1034,7 +1034,8 @@ export default function LosungenPage() {
           <img
             src={heroBgImages[0].url}
             alt="Lösungen Hero"
-            className="absolute inset-0 w-full h-full object-cover object-top"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: 'center 20%' }}
             fetchPriority="high"
             decoding="async"
           />

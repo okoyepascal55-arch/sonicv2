@@ -82,7 +82,7 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
           <img
             src={mod.img}
             alt={`${mod.title} — ${brand}`}
-            className="absolute inset-0 w-full h-full object-cover object-top"
+            className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 20%' }}
           />
           {/* Tag chips bottom-left */}
           <div className="absolute bottom-4 left-4 flex flex-wrap gap-1.5 z-10">
@@ -216,6 +216,12 @@ function GroupedImpressionenGallery({
   const p2 = useMediaStore('case_philips_gallery_2');
   const a1 = useMediaStore('case_avoury_gallery_1');
   const a2 = useMediaStore('case_avoury_gallery_2');
+  const a3 = useMediaStore('case_avoury_gallery_3');
+  const a4 = useMediaStore('case_avoury_gallery_4');
+  const s3 = useMediaStore('case_seb_gallery_3');
+  const s4 = useMediaStore('case_seb_gallery_4');
+  const p3 = useMediaStore('case_philips_gallery_3');
+  const p4 = useMediaStore('case_philips_gallery_4');
 
   const storeMap: Record<string, ReturnType<typeof useMediaStore>> = {
     'case_garmin_gallery_1': g1, 'case_garmin_gallery_2': g2,
@@ -223,6 +229,9 @@ function GroupedImpressionenGallery({
     'case_seb_gallery_1': s1, 'case_seb_gallery_2': s2,
     'case_philips_gallery_1': p1, 'case_philips_gallery_2': p2,
     'case_avoury_gallery_1': a1, 'case_avoury_gallery_2': a2,
+    'case_avoury_gallery_3': a3, 'case_avoury_gallery_4': a4,
+    'case_seb_gallery_3': s3, 'case_seb_gallery_4': s4,
+    'case_philips_gallery_3': p3, 'case_philips_gallery_4': p4,
   };
 
   const getGroupImages = (group: typeof groups[0]): string[] => {
@@ -453,6 +462,8 @@ export default function CaseStudiesPage() {
       imageGroups: [
         { title: 'Live-Cooking & Verkostung', mediaKey: 'case_seb_gallery_1', fallbacks: ['/images/Case Studies -Fallbsp/SEB/Optigrill Tisch.webp', '/images/Case Studies -Fallbsp/SEB/image10.webp'] },
         { title: 'Roadshow & Video-Studio', mediaKey: 'case_seb_gallery_2', fallbacks: ['/images/Case Studies -Fallbsp/SEB/Shooting_Miriam.webp'] },
+        { title: 'POS & Retail', mediaKey: 'case_seb_gallery_3', fallbacks: [] },
+        { title: 'Events & Messen', mediaKey: 'case_seb_gallery_4', fallbacks: [] },
       ],
       relatedStories: ['garmin', 'avoury'],
     },
@@ -504,6 +515,8 @@ export default function CaseStudiesPage() {
       imageGroups: [
         { title: 'In-Store Promotion', mediaKey: 'case_philips_gallery_1', fallbacks: ['/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp'] },
         { title: 'Weitere Impressionen', mediaKey: 'case_philips_gallery_2', fallbacks: [] },
+        { title: 'TV Sound Produkte', mediaKey: 'case_philips_gallery_3', fallbacks: [] },
+        { title: 'Events & Showcase', mediaKey: 'case_philips_gallery_4', fallbacks: [] },
       ],
       relatedStories: ['garmin', 'avoury'],
     },
@@ -554,6 +567,8 @@ export default function CaseStudiesPage() {
       imageGroups: [
         { title: 'Kampagnen-Aktivierung', mediaKey: 'case_avoury_gallery_1', fallbacks: [] },
         { title: 'Weitere Impressionen', mediaKey: 'case_avoury_gallery_2', fallbacks: [] },
+        { title: 'Events & Erlebnisse', mediaKey: 'case_avoury_gallery_3', fallbacks: [] },
+        { title: 'POS & Retail', mediaKey: 'case_avoury_gallery_4', fallbacks: [] },
       ],
       relatedStories: ['groupe-seb', 'philips'],
     },
