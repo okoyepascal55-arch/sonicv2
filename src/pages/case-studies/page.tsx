@@ -273,14 +273,12 @@ function GroupedImpressionenGallery({
 
           const groupStartIdx = globalIdx;
           globalIdx += images.length;
-          const featured = images[0];
-          const rest = images.slice(1);
 
           return (
             <div key={group.mediaKey}>
-              {/* Category label — clean, minimal */}
-              <div className="flex items-center gap-4 mb-4">
-                <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em]"
+              {/* Category label */}
+              <div className="flex items-center gap-3 mb-3">
+                <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.28em]"
                   style={{ color: 'oklch(0.55 0.08 115)' }}>
                   <span className="w-3 h-0.5 bg-primary-500 flex-shrink-0" />
                   {group.title}
@@ -288,49 +286,27 @@ function GroupedImpressionenGallery({
                 <div className="flex-1 h-px" style={{ background: 'oklch(0.55 0.08 115 / 0.15)' }} />
               </div>
 
-              {/* Editorial grid — featured + thumbnails */}
-              {rest.length === 0 ? (
-                /* Single image — full width, cinematic ratio */
-                <GalleryThumb src={featured} alt={`${group.title} — ${brand}`}
-                  lightboxIdx={groupStartIdx} allItems={allItems} openLightbox={openLightbox}
-                  className="w-full" style={{ aspectRatio: '16/7' }} />
-              ) : rest.length <= 2 ? (
-                /* 2–3 images — 2-col, featured slightly taller */
-                <div className="grid grid-cols-2 gap-[3px]" style={{ background: 'oklch(0.94 0.002 110)' }}>
-                  <GalleryThumb src={featured} alt={`${group.title} — ${brand}`}
-                    lightboxIdx={groupStartIdx} allItems={allItems} openLightbox={openLightbox}
-                    style={{ aspectRatio: '3/4', gridRow: `span ${rest.length}` }} />
-                  {rest.map((src, i) => (
-                    <GalleryThumb key={i} src={src} alt={`${group.title} — ${brand}`}
-                      lightboxIdx={groupStartIdx + 1 + i} allItems={allItems} openLightbox={openLightbox}
-                      style={{ aspectRatio: '4/3' }} />
-                  ))}
-                </div>
-              ) : (
-                /* 4+ images — featured hero (2-col-span) + grid of thumbnails */
-                <div className="grid grid-cols-3 gap-[3px]" style={{ background: 'oklch(0.94 0.002 110)' }}>
-                  {/* Featured — spans 2 cols, taller */}
-                  <div className="col-span-2">
-                    <GalleryThumb src={featured} alt={`${group.title} — ${brand}`}
-                      lightboxIdx={groupStartIdx} allItems={allItems} openLightbox={openLightbox}
-                      style={{ aspectRatio: '4/3', width: '100%' }} />
-                  </div>
-                  {/* Right column — 2 stacked thumbnails */}
-                  <div className="flex flex-col gap-[3px]">
-                    {rest.slice(0, 2).map((src, i) => (
-                      <GalleryThumb key={i} src={src} alt={`${group.title} — ${brand}`}
-                        lightboxIdx={groupStartIdx + 1 + i} allItems={allItems} openLightbox={openLightbox}
-                        style={{ aspectRatio: '3/2', flex: 1 }} />
-                    ))}
-                  </div>
-                  {/* Bottom row — remaining images */}
-                  {rest.slice(2).map((src, i) => (
-                    <GalleryThumb key={i} src={src} alt={`${group.title} — ${brand}`}
-                      lightboxIdx={groupStartIdx + 3 + i} allItems={allItems} openLightbox={openLightbox}
-                      style={{ aspectRatio: '4/3' }} />
-                  ))}
-                </div>
-              )}
+              {/* Bento grid — 4-col base, featured col-span-2 row-span-2, rest fill */}
+              <div
+                className="grid grid-cols-2 sm:grid-cols-4 gap-[3px]"
+                style={{ background: 'oklch(0.90 0.003 110)', gridAutoRows: '140px' }}
+              >
+                {images.map((src, imgIdx) => {
+                  const isFeatured = imgIdx === 0 && images.length > 1;
+                  const lightboxIdx = groupStartIdx + imgIdx;
+                  return (
+                    <GalleryThumb
+                      key={imgIdx}
+                      src={src}
+                      alt={`${group.title} — ${brand}`}
+                      lightboxIdx={lightboxIdx}
+                      allItems={allItems}
+                      openLightbox={openLightbox}
+                      className={isFeatured ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1'}
+                    />
+                  );
+                })}
+              </div>
             </div>
           );
         })}
@@ -341,17 +317,16 @@ function GroupedImpressionenGallery({
 
 /** Reusable gallery thumbnail with consistent hover behaviour */
 function GalleryThumb({
-  src, alt, lightboxIdx, allItems, openLightbox, className = '', style = {},
+  src, alt, lightboxIdx, allItems, openLightbox, className = '',
 }: {
   src: string; alt: string; lightboxIdx: number;
   allItems: LightboxItem[];
   openLightbox: (items: LightboxItem[], idx: number) => void;
-  className?: string; style?: React.CSSProperties;
+  className?: string;
 }) {
   return (
     <div
       className={`relative overflow-hidden group cursor-pointer ${className}`}
-      style={style}
       onClick={() => openLightbox(allItems, lightboxIdx)}
       role="button" tabIndex={0}
       aria-label={`${alt} — vergrößern`}
