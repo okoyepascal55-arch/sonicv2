@@ -59,7 +59,8 @@ export default function AboutPage() {
           <img
             src={headerImages[0]?.url || '/images/Über uns/Über uns/1. Header/Gruppenfoto-00351.webp'}
             alt="Sonic Group — Über uns"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: 'center 25%' }}
             fetchPriority="high"
           />
           {/* Dark overlay */}
