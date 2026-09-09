@@ -52,15 +52,21 @@ const getFaces = (dbImages: { url: string }[]): Face[] => [
     name: 'Janina B.',
     role: 'HR Manager',
     pullQuote: "„Menschen sind das Herzstück von Sonic. Meine Aufgabe ist es, die richtigen Menschen zu finden — und sicherzustellen, dass sie sich hier entfalten können.“",
-    bio: 'Janina verantwortet das Human Resources Management bei Sonic. Sie gestaltet Recruiting, Onboarding und Unternehmenskultur so, dass Talente langfristig bleiben.',
-    image: dbImages[4]?.url || 'https://readdy.ai/api/search-image?query=professional+woman+HR+manager+warm+authentic+smile+editorial+portrait+modern+office&width=600&height=800&seq=sf-janina-05&orientation=portrait',
-  },
-  {
-    id: 'inga',
-    name: 'Inga L.',
-    role: 'Jr. Art Direktorin',
-    pullQuote: '„Eigentlich sollte es nur ein Praktikum werden. Am Ende wurde daraus mein Karriereweg."',
-    bio: 'Als Inga bei Sonic startete, stand zunächst das Studium im Vordergrund. Für ihr Marketing-Management-Studium war ein Pflichtpraktikum erforderlich. Was als Studienanforderung begann, entwickelte sich jedoch schnell zu mehr: Die Arbeit, das Team und die vielseitigen Projekte überzeugten sie so sehr, dass sie auch nach dem Praktikum neben ihrem Studium bei Sonic blieb. Dabei kennt Inga nicht nur die Agenturseite. Für den Kunden AVOURY war sie selbst als Promoterin im Einsatz, stand direkt mit Kundinnen und Kunden im Austausch und sammelte wertvolle Erfahrungen am Point of Sale. Für verschiedene Projekte führte ihr Weg sogar bis nach Wien. Diese Perspektive hilft ihr heute, Kampagnen nicht nur kreativ zu denken, sondern auch aus Sicht der Menschen zu betrachten, die sie später umsetzen. Heute ist Inga Teil des Creation Teams und begleitet Projekte von der ersten Idee bis zur Umsetzung — Design, Social-Media-Inhalte, kreative Konzepte und die Planung und Umsetzung von Events.',
+    bio: 'Als Janina zur Sonic kam, war sie noch Studentin. Den ersten Kontakt zur Agentur hatte sie allerdings schon deutlich früher. Ihr Bruder war bereits seit 2007 für Sonic im Promotionbereich tätig und entwickelte sich später zum Trainer. Über ihn erhielt auch sie die Möglichkeit, während ihres BWL-Studiums mit den Schwerpunkten Personalmanagement und Marketing erste Erfahrungen bei Sonic zu sammeln.
+
+Während des Studiums war sie regelmäßig für Sonic auf verschiedenen Projekten im Einsatz. Dazu gehörten Promotionjobs auf der IFA in Berlin für Sony, verschiedene Sony-Roadshows sowie Einsätze für Nespresso. Diese Zeit war für sie besonders spannend, da sie nicht nur praktische Erfahrungen sammeln konnte, sondern auch viele unterschiedliche Menschen und Arbeitsbereiche kennenlernte.
+
+Ein zufälliges Kennenlernen während einer Roadshow führte schließlich dazu, dass sie sich bei Sonic für das HR-Team bewarb. Was ihr dabei bis heute in Erinnerung geblieben ist: Ihr erstes Kennenlernen mit dem Geschäftsführer verlief alles andere als klassisch. Statt in einem Besprechungsraum fand das Treffen in einer Berliner Kneipe statt. In lockerer Runde mit mehreren Kolleginnen und Kollegen entstand schnell das Gefühl, nicht einfach nur ein Unternehmen kennenzulernen, sondern Menschen. Genau dieser persönliche und unkomplizierte Umgang prägt für sie die Sonic bis heute.
+
+Kurz darauf folgte das offizielle Vorstellungsgespräch und 2020 schließlich der Start mit einem Praktikum im Personalbereich. Was zunächst als Praktikum begann, entwickelte sich schnell zu mehr. Nach kurzer Zeit wurde Janina übernommen und erhielt die Möglichkeit, sich immer tiefer in die verschiedenen Themen des Personalmanagements einzuarbeiten.
+
+Eine besonders prägende Phase begann, als eine Kollegin über einen längeren Zeitraum ausfiel. Dadurch musste sie früh Verantwortung übernehmen und wurde im wahrsten Sinne des Wortes ins kalte Wasser geworfen. Rückblickend war genau diese Zeit eine der wertvollsten Erfahrungen ihrer bisherigen Laufbahn. Sie lernte in kurzer Zeit unglaublich viel, entwickelte sich fachlich weiter und gewann das Vertrauen, auch anspruchsvolle Themen eigenständig zu übernehmen.
+
+Dabei war sie nie auf sich allein gestellt. Durch ihre Kolleginnen und Kollegen, die Führungskräfte und die Geschäftsleitung erfuhr sie stets großes Vertrauen, Unterstützung und die Möglichkeit, sich kontinuierlich weiterzuentwickeln. Genau diese Kombination aus Herausforderung, Vertrauen und Zusammenhalt hat ihren Weg bei Sonic entscheidend geprägt.
+
+Heute ist Janina für das operative Personalmanagement verantwortlich. Dabei begleitet sie Mitarbeitende und Führungskräfte in allen personalrelevanten Themen und gestaltet aktiv Prozesse und Strukturen mit.
+
+Was ihre Geschichte zeigt? Manchmal beginnt der passende Karriereweg dort, wo man ursprünglich nur einen Studentenjob gesucht hat. Aus ersten Promotion-Einsätzen während des Studiums wurden neue Chancen, spannende Herausforderungen und Schritt für Schritt eine langfristige berufliche Heimat bei Sonic.',
     closingQuote: '„Die besten Karrierewege lassen sich nicht planen. Manchmal entwickelt sich aus einem Praktikum genau der Ort, an dem man wachsen möchte."',
     image: dbImages[5]?.url || 'https://readdy.ai/api/search-image?query=professional+young+woman+creative+art+director+social+media+confident+editorial+portrait+modern+studio+dark+background&width=600&height=800&seq=sf-inga-06&orientation=portrait',
   },
