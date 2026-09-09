@@ -128,7 +128,7 @@ function DesktopPlaceholder() {
         {/* Top bar */}
         <div className="flex items-center justify-between px-4 flex-shrink-0"
           style={{ height: 32, background: 'oklch(0.10 0.004 118)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-          <span style={{ color: 'rgba(255,255,255,0.5)', fontWeight: 700 }}>Performance Overview · KW 16</span>
+          <span style={{ color: 'rgba(255,255,255,0.5)', fontWeight: 700 }}>Leistungsübersicht · KW 16</span>
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
             <span style={{ color: 'rgba(255,255,255,0.3)' }}>Live · 14:32 Uhr</span>
@@ -139,7 +139,7 @@ function DesktopPlaceholder() {
           {/* KPI row */}
           <div className="grid grid-cols-4 gap-1.5">
             {[
-              { l: 'Umsatz heute', v: '€ 24.180', d: '+6.4%', up: true },
+              { l: 'Umsatz heute', v: '€ 24.180', d: '+6,4 %', up: true },
               { l: 'Aktive Einsätze', v: '147', d: '+12', up: true },
               { l: 'Ziel-Erreichung', v: '91,2 %', d: '−2.1%', up: false },
               { l: 'Offene Aufgaben', v: '23', d: '−5', up: true },
@@ -162,7 +162,7 @@ function DesktopPlaceholder() {
               </div>
             </div>
             <div className="p-2 flex flex-col" style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <div style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 4 }}>Top Stores</div>
+              <div style={{ color: 'rgba(255,255,255,0.3)', marginBottom: 4 }}>Top-Standorte</div>
               {['Berlin Mitte', 'Hamburg Alster', 'München Max'].map((s, i) => (
                 <div key={i} className="flex items-center justify-between py-1" style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <span style={{ color: 'rgba(255,255,255,0.4)' }}>{s}</span>
@@ -250,7 +250,7 @@ function MobilePlaceholder() {
           </div>
           <div className="flex gap-1 flex-wrap">
             <span className="px-1.5 py-0.5" style={{ background: 'oklch(0.81 0.19 115 / 0.15)', color: 'oklch(0.81 0.19 115)', fontWeight: 700 }}>Samsung S25</span>
-            <span className="px-1.5 py-0.5" style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.5)' }}>Brand Promoter</span>
+            <span className="px-1.5 py-0.5" style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.5)' }}>Brand-Promoter</span>
             <span className="px-1.5 py-0.5 ml-auto" style={{ background: 'rgba(74,222,128,0.15)', color: '#4ade80', fontWeight: 700 }}>Heute</span>
           </div>
         </div>
@@ -327,7 +327,7 @@ export default function ProductShowcase() {
             <LaptopMockup src={desktopSrc} />
             <div className="flex items-center gap-2 mt-4 justify-center">
               <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" style={{ borderRadius: '50%' }} />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Desktop · Web Browser</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Desktop · Web-Browser</span>
             </div>
           </div>
 
@@ -339,7 +339,7 @@ export default function ProductShowcase() {
             <PhoneMockup src={mobileSrc} />
             <div className="flex items-center gap-2 mt-4 justify-center">
               <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" style={{ borderRadius: '50%', animationDelay: '0.5s' }} />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Mobile · iOS & Android</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Mobil · iOS & Android</span>
             </div>
           </div>
         </div>

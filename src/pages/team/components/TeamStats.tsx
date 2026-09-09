@@ -16,7 +16,7 @@ export default function TeamStats() {
     },
     {
       number: '500+',
-      label: 'Successful Projects',
+      label: 'Erfolgreiche Projekte',
       icon: 'ri-trophy-line'
     },
     {

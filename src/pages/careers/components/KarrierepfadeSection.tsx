@@ -37,7 +37,7 @@ const PATHS: Array<{
     tagline: '150+ Premium-Brands, Top-Incentives und maximale Flexibilität bei deiner Planung.',
     fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg',
     stats: [
-      { value: '150+', label: 'Brands' },
+      { value: '150+', label: 'Marken' },
       { value: '2.000+', label: 'Promoter:innen' },
       { value: 'DACH', label: 'Gebiet' },
       { value: 'Flex', label: 'Planung' },

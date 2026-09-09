@@ -9,7 +9,7 @@ export default function NotFound() {
         404
       </h1>
       <div className="relative z-10">
-        <h1 className="text-xl md:text-2xl font-semibold mt-6">This page has not been generated</h1>
+        <h1 className="text-xl md:text-2xl font-semibold mt-6">Diese Seite wurde nicht gefunden</h1>
         <p className="mt-2 text-base text-foreground-500 font-mono">{location.pathname}</p>
         <p className="mt-4 text-lg md:text-xl text-foreground-600">Diese Seite existiert leider nicht.</p>
       </div>

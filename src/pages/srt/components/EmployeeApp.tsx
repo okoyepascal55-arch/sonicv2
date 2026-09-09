@@ -31,7 +31,7 @@ function PhoneScreen({ screen }: { screen: string }) {
               </div>
               <div className="flex gap-1.5 pl-1.5">
                 <span className="text-[7px] bg-primary-500/15 text-primary-500 px-1.5 py-0.5 font-bold">Samsung S25</span>
-                <span className="text-[7px] bg-background-50/5 text-foreground-500 px-1.5 py-0.5">Brand Promoter</span>
+                <span className="text-[7px] bg-background-50/5 text-foreground-500 px-1.5 py-0.5">Brand-Promoter</span>
                 <span className="text-[7px] bg-green-500/15 text-green-400 px-1.5 py-0.5 font-bold ml-auto">Heute</span>
               </div>
             </div>

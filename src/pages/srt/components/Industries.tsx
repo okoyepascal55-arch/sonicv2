@@ -11,7 +11,7 @@ const USE_CASES = [
 
 export default function Industries() {
   const tBadge = useText('srt_industries', 'srt-industries-badge', 'Branchen & Use Cases');
-  const tHeading = useText('srt_industries', 'srt-industries-heading', 'Von Retail Execution bis Healthcare.');
+  const tHeading = useText('srt_industries', 'srt-industries-heading', 'Von Retail Execution bis Gesundheit & Pharma.');
   const tSub = useText('srt_industries', 'srt-industries-sub', 'Das SRT ist bereit für jedes Projekt, bei dem Menschen zielorientiert und koordiniert eingesetzt werden.');
   const tCta = useText('srt_industries', 'srt-industries-cta', 'Deine SRT-Konfiguration finden');
 
@@ -26,7 +26,7 @@ export default function Industries() {
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tBadge}</span></div>
           <div className="grid md:grid-cols-2 gap-6 items-end">
-            <h2 className="sonic-h2 text-foreground-950 uppercase">Von Retail Execution bis <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Healthcare.</span></h2>
+            <h2 className="sonic-h2 text-foreground-950 uppercase">Von Retail Execution bis <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Gesundheit & Pharma.</span></h2>
             <p className="text-sm text-foreground-950/45 leading-relaxed">{tSub}</p>
           </div>
         </div>
