@@ -10,6 +10,7 @@ type Face = {
   role: string;
   pullQuote: string;
   bio: string;
+  closingQuote?: string;   // optional second quote shown at bottom of card
   image: string;
 };
 
@@ -58,8 +59,9 @@ const getFaces = (dbImages: { url: string }[]): Face[] => [
     id: 'inga',
     name: 'Inga L.',
     role: 'Jr. Art Direktorin',
-    pullQuote: '„Social Media lebt von echten Momenten — meine Aufgabe ist es, diese Momente sichtbar zu machen, bevor sie verblassen."',
-    bio: 'Inga gestaltet die visuelle Social-Media-Präsenz von Sonic. Als Junior Art Direktorin gibt sie der Marke eine konsistente Bild- und Tonsprache — von der Content-Idee bis zum finalen Post.',
+    pullQuote: '„Eigentlich sollte es nur ein Praktikum werden. Am Ende wurde daraus mein Karriereweg."',
+    bio: 'Für ihr Marketing-Management-Studium war ein Pflichtpraktikum erforderlich. Was als Studienanforderung bei Sonic begann, wurde schnell mehr: Projekte, Team und Vielseitigkeit überzeugten sie — und sie blieb. Für den Kunden AVOURY war sie selbst als Promoterin im Einsatz und reiste dafür bis nach Wien. Diese direkte Erfahrung am POS hilft ihr heute, Kampagnen nicht nur kreativ zu denken, sondern auch aus Sicht derer zu betrachten, die sie umsetzen. Heute ist Inga Teil des Creation Teams: Design, Social Media, kreative Konzepte, Events — von der ersten Idee bis zur finalen Umsetzung.',
+    closingQuote: '„Die besten Karrierewege lassen sich nicht planen. Manchmal entwickelt sich aus einem Praktikum genau der Ort, an dem man wachsen möchte."',
     image: dbImages[5]?.url || 'https://readdy.ai/api/search-image?query=professional+young+woman+creative+art+director+social+media+confident+editorial+portrait+modern+studio+dark+background&width=600&height=800&seq=sf-inga-06&orientation=portrait',
   },
 ];
@@ -146,6 +148,16 @@ export default function SonicFamily() {
                 <p className="text-[14px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>
                   {active.bio}
                 </p>
+
+                {/* Closing quote — only shown when the face has a second quote */}
+                {active.closingQuote && (
+                  <div className="mt-8 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                    <i className="ri-double-quotes-l text-xl mb-3 block" style={{ color: 'oklch(0.81 0.19 115 / 0.25)' }} />
+                    <p className="text-[13px] leading-relaxed italic" style={{ color: 'rgba(255,255,255,0.45)' }}>
+                      {active.closingQuote}
+                    </p>
+                  </div>
+                )}
               </div>
 
               <div
