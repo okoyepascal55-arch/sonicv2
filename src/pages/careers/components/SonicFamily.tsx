@@ -70,6 +70,21 @@ Manchmal beginnt der passende Karriereweg dort, wo man ursprünglich nur einen S
     closingQuote: '„Karrierewege lassen sich nicht immer planen. Manchmal entstehen sie genau dort, wo Menschen Potenziale erkennen, Vertrauen schenken und Entwicklung ermöglichen.“',
     image: dbImages[4]?.url || 'https://readdy.ai/api/search-image?query=professional+woman+HR+manager+warm+authentic+smile+editorial+portrait+modern+office&width=600&height=800&seq=sf-janina-05&orientation=portrait',
   },
+  {
+    id: 'inga',
+    name: 'Inga L.',
+    role: 'Jr. Art Direktorin',
+    pullQuote: '„Eigentlich sollte es nur ein Praktikum werden. Am Ende wurde daraus mein Karriereweg."',
+    bio: `Als Inga bei Sonic startete, stand zunächst das Studium im Vordergrund. Für ihr Marketing-Management-Studium war ein Pflichtpraktikum erforderlich. Was als Studienanforderung begann, entwickelte sich jedoch schnell zu mehr.
+
+Die Arbeit, das Team und die vielseitigen Projekte überzeugten sie so sehr, dass sie auch nach dem Praktikum neben ihrem Studium bei Sonic blieb. Nach ihrem erfolgreichen Abschluss war der nächste Schritt klar: der Einstieg in eine Vollzeitposition.
+
+Heute ist Inga Teil des Creation Teams und begleitet Projekte von der ersten Idee bis zur Umsetzung. Neben Design- und Marketingthemen verantwortet sie Social-Media-Inhalte, entwickelt kreative Konzepte und unterstützt bei der Planung und Umsetzung von Events.
+
+Dabei kennt Inga nicht nur die Agenturseite. Für den Kunden AVOURY war sie selbst als Promoterin im Einsatz, stand direkt mit Kundinnen und Kunden im Austausch und sammelte wertvolle Erfahrungen am Point of Sale. Für verschiedene Projekte führte ihr Weg sogar bis nach Wien. Diese Perspektive hilft ihr heute, Kampagnen nicht nur kreativ zu denken, sondern auch aus Sicht der Menschen zu betrachten, die sie später umsetzen.`,
+    closingQuote: '„Die besten Karrierewege lassen sich nicht planen. Manchmal entwickelt sich aus einem Praktikum genau der Ort, an dem man wachsen möchte."',
+    image: dbImages[5]?.url || 'https://readdy.ai/api/search-image?query=professional+young+woman+creative+art+director+social+media+confident+editorial+portrait+modern+studio+dark+background&width=600&height=800&seq=sf-inga-06&orientation=portrait',
+  },
 ];
 
 export default function SonicFamily() {
