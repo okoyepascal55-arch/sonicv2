@@ -51,8 +51,8 @@ const getFaces = (dbImages: { url: string }[]): Face[] => [
     id: 'janina',
     name: 'Janina B.',
     role: 'HR Manager',
-    pullQuote: "„Menschen sind das Herzstück von Sonic. Meine Aufgabe ist es, die richtigen Menschen zu finden — und sicherzustellen, dass sie sich hier entfalten können.“",
-    bio: 'Als Janina zur Sonic kam, war sie noch Studentin. Den ersten Kontakt zur Agentur hatte sie allerdings schon deutlich früher. Ihr Bruder war bereits seit 2007 für Sonic im Promotionbereich tätig und entwickelte sich später zum Trainer. Über ihn erhielt auch sie die Möglichkeit, während ihres BWL-Studiums mit den Schwerpunkten Personalmanagement und Marketing erste Erfahrungen bei Sonic zu sammeln.
+    pullQuote: '„Eigentlich sollte es nur ein Nebenjob während des Studiums sein. Am Ende wurde daraus mein Karriereweg.“',
+    bio: `Als Janina zur Sonic kam, war sie noch Studentin. Den ersten Kontakt zur Agentur hatte sie allerdings schon deutlich früher. Ihr Bruder war bereits seit 2007 für Sonic im Promotionbereich tätig und entwickelte sich später zum Trainer. Über ihn erhielt auch sie die Möglichkeit, während ihres BWL-Studiums mit den Schwerpunkten Personalmanagement und Marketing erste Erfahrungen bei Sonic zu sammeln.
 
 Während des Studiums war sie regelmäßig für Sonic auf verschiedenen Projekten im Einsatz. Dazu gehörten Promotionjobs auf der IFA in Berlin für Sony, verschiedene Sony-Roadshows sowie Einsätze für Nespresso. Diese Zeit war für sie besonders spannend, da sie nicht nur praktische Erfahrungen sammeln konnte, sondern auch viele unterschiedliche Menschen und Arbeitsbereiche kennenlernte.
 
@@ -66,9 +66,9 @@ Dabei war sie nie auf sich allein gestellt. Durch ihre Kolleginnen und Kollegen,
 
 Heute ist Janina für das operative Personalmanagement verantwortlich. Dabei begleitet sie Mitarbeitende und Führungskräfte in allen personalrelevanten Themen und gestaltet aktiv Prozesse und Strukturen mit.
 
-Was ihre Geschichte zeigt? Manchmal beginnt der passende Karriereweg dort, wo man ursprünglich nur einen Studentenjob gesucht hat. Aus ersten Promotion-Einsätzen während des Studiums wurden neue Chancen, spannende Herausforderungen und Schritt für Schritt eine langfristige berufliche Heimat bei Sonic.',
-    closingQuote: '„Die besten Karrierewege lassen sich nicht planen. Manchmal entwickelt sich aus einem Praktikum genau der Ort, an dem man wachsen möchte."',
-    image: dbImages[5]?.url || 'https://readdy.ai/api/search-image?query=professional+young+woman+creative+art+director+social+media+confident+editorial+portrait+modern+studio+dark+background&width=600&height=800&seq=sf-inga-06&orientation=portrait',
+Manchmal beginnt der passende Karriereweg dort, wo man ursprünglich nur einen Studentenjob gesucht hat. Aus ersten Promotion-Einsätzen während des Studiums wurden neue Chancen, spannende Herausforderungen und Schritt für Schritt eine langfristige berufliche Heimat bei Sonic.`,
+    closingQuote: '„Karrierewege lassen sich nicht immer planen. Manchmal entstehen sie genau dort, wo Menschen Potenziale erkennen, Vertrauen schenken und Entwicklung ermöglichen.“',
+    image: dbImages[4]?.url || 'https://readdy.ai/api/search-image?query=professional+woman+HR+manager+warm+authentic+smile+editorial+portrait+modern+office&width=600&height=800&seq=sf-janina-05&orientation=portrait',
   },
 ];
 
