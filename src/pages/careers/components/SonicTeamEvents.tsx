@@ -88,7 +88,7 @@ export default function SonicTeamEvents() {
 
         {/* Events block */}
         <div className="mb-16" style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
-          <div className="relative aspect-video overflow-hidden" style={{ background: 'oklch(0.13 0.005 118)' }}>
+          <div className="relative overflow-hidden" style={{ background: "oklch(0.13 0.005 118)", minHeight: "520px" }}>
             {!playing ? (
               <div
                 className="relative w-full h-full cursor-pointer group"
