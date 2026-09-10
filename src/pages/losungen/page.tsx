@@ -499,12 +499,12 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
                 return (
                   <div
                     key={i}
-                    className="group grid md:grid-cols-1 md:grid-cols-2 border-b border-foreground-200 last:border-b-0 hover:border-b-gray-200 transition-colors"
+                    className="group grid grid-cols-1 sm:grid-cols-2 border-b border-foreground-200 last:border-b-0 transition-colors"
                     style={{ borderRadius: 0 }}
                   >
                     {/* Image panel */}
                     <div className={`relative overflow-hidden ${isEven ? 'md:order-1' : 'md:order-2'}`}
-                      style={{ minHeight: 'clamp(200px, 25vw, 340px)' }}
+                      style={{ minHeight: 'clamp(140px, 28vw, 340px)' }}
                     >
                       <img
                         src={st.img}
@@ -527,7 +527,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
 
                     {/* Content panel */}
                     <div
-                      className={`flex flex-col justify-center px-7 py-8 md:px-10 md:py-12 bg-white group-hover:bg-foreground-950 transition-colors duration-300 ${
+                      className={`flex flex-col justify-center px-5 py-6 sm:px-7 sm:py-8 md:px-10 md:py-12 bg-white group-hover:bg-foreground-950 transition-colors duration-300 ${
                         isEven ? 'md:order-2' : 'md:order-1'
                       }`}
                     >

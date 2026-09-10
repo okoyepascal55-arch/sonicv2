@@ -74,11 +74,11 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
         id={`module-panel-${activeIdx}`}
         role="tabpanel"
         aria-labelledby={`module-tab-${activeIdx}`}
-        className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border border-foreground-200 overflow-hidden"
-        style={{ borderRadius: 0, transition: 'opacity 0.2s ease', opacity: fade ? 1 : 0, minHeight: '380px' }}
+        className="grid grid-cols-1 md:grid-cols-5 border border-foreground-200 overflow-hidden"
+        style={{ borderRadius: 0, transition: 'opacity 0.2s ease', opacity: fade ? 1 : 0, minHeight: 'clamp(200px, 45vw, 380px)' }}
       >
         {/* LEFT — image (3 cols) */}
-        <div className="lg:col-span-3 relative overflow-hidden" style={{ minHeight: '280px' }}>
+        <div className="lg:col-span-3 relative overflow-hidden" style={{ minHeight: 'clamp(160px, 36vw, 280px)' }}>
           <img
             src={mod.img}
             alt={`${mod.title} — ${brand}`}
