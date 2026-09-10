@@ -344,6 +344,41 @@ export default function ProductShowcase() {
           </div>
         </div>
 
+
+        {/* App capabilities strip — content from EmployeeApp, merged here */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-[2px] mt-6" style={{ background: 'rgba(255,255,255,0.05)' }}>
+          {[
+            { number: '01', icon: 'ri-calendar-check-line', title: 'Aufgaben einsehen',        desc: 'Einsätze, Zeiten und Standort — auf einen Blick im Smartphone.' },
+            { number: '02', icon: 'ri-map-pin-2-line',       title: 'GPS Check-in',             desc: 'Eincheckung nur vor Ort möglich. Zeiterfassung startet automatisch.' },
+            { number: '03', icon: 'ri-focus-3-line',          title: 'Zielerreichung tracken', desc: 'Ziele und Verkaufstaktiken live einsehen und direkt handeln.' },
+            { number: '04', icon: 'ri-money-euro-circle-line',title: 'Abrechnung erhalten',    desc: 'Transparente Gehaltsabrechnung mit Provisionen direkt in der App.' },
+          ].map((step) => (
+            <div key={step.number} className="p-5 flex flex-col gap-3" style={{ background: 'oklch(0.14 0.005 118)', border: '1px solid rgba(255,255,255,0.07)' }}>
+              <div className="flex items-center justify-between">
+                <div className="w-8 h-8 flex items-center justify-center" style={{ background: 'oklch(0.81 0.19 115 / 0.12)', border: '1px solid oklch(0.81 0.19 115 / 0.25)' }}>
+                  <i className={`${step.icon} text-sm text-primary-500`} />
+                </div>
+                <span className="text-[9px] font-black text-white/20">{step.number}</span>
+              </div>
+              <h4 className="text-[12px] font-black text-white uppercase leading-snug">{step.title}</h4>
+              <p className="text-[11px] text-white/35 leading-snug">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Platform badges */}
+        <div className="flex items-center gap-4 mt-4">
+          <div className="flex items-center gap-2 px-3 py-1.5" style={{ border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.04)' }}>
+            <i className="ri-apple-line text-white/60 text-sm" />
+            <span className="text-[10px] font-black text-white/50 uppercase tracking-wider">iOS</span>
+          </div>
+          <div className="flex items-center gap-2 px-3 py-1.5" style={{ border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.04)' }}>
+            <i className="ri-android-line text-white/60 text-sm" />
+            <span className="text-[10px] font-black text-white/50 uppercase tracking-wider">Android</span>
+          </div>
+          <span className="text-[10px] text-white/25 font-bold">· Offline-fähig</span>
+        </div>
+
         {/* CTA below devices */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
           <div className="text-center sm:text-left">

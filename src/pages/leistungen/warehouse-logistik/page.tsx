@@ -217,7 +217,8 @@ export default function WarehouseLogistikPage() {
  </section>
 
  {/* Was wir lagern */}
- <section id="beispiele"className="sonic-section-lg bg-white px-4 md:px-6">
+ <WoodenDivider />
+      <section id="beispiele" className="sonic-section-lg bg-white px-4 md:px-6">
  <div className="sonic-container">
  <div className="mb-8 md:mb-10">
  <div className="flex items-center gap-3 mb-5">
@@ -298,7 +299,7 @@ export default function WarehouseLogistikPage() {
  <WoodenDivider />
 
  {/* Full Service */}
- <section id="full-service"className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
+ <section id="full-service" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
  <div className="relative sonic-container">
  <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
  <div>

@@ -5,7 +5,6 @@ import TheProblemReference from './components/TheProblemReference';
 import FeaturesReference from './components/FeaturesReference';
 import ProductShowcase from './components/ProductShowcase';
 import FunctionalityOverview from './components/FunctionalityOverview';
-import EmployeeApp from './components/EmployeeApp';
 import DataPaths from './components/DataPaths';
 import Zusammenarbeit from './components/Zusammenarbeit';
 import Proof from './components/Proof';
@@ -51,8 +50,6 @@ export default function SRTPage() {
       <ProductShowcase />
 
       <FunctionalityOverview />
-      <SRTWavyDivider darkBackground />
-      <EmployeeApp />
       <SRTWavyDivider darkBackground />
       <Zusammenarbeit />
       <SRTWavyDivider />

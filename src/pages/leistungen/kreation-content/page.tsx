@@ -104,6 +104,8 @@ export default function KreationContentPage() {
         </div>
       </section>
       <KreationShowcaseReference />
+      <WoodenDivider />
+      <KreationFaces />
       <KreationWavyDivider />
       <section id="referenzen"><ClientProof /></section>
       <div id="kontakt"><LeistungenKontakt headline="Content-Beratung" headlineAccent="buchen." subline="Wir zeigen dir in 30 Minuten, wie wir im Bereich Kreation und Content arbeiten — von Konzept bis Produktion." checkItems={[{ text: 'Strategische Herangehensweise' }, { text: 'Deine Ziele, unsere Beispiele' }, { text: 'Studio-Tour' }]} ctaLabel="Beratung buchen" ctaMailSubject="Kreation Content Beratung" ctaIcon="ri-calendar-line" /></div>

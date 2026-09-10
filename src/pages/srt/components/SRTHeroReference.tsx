@@ -17,14 +17,6 @@ export default function SRTHeroReference() {
   const tagline   = useText('srt_hero', 'srt-hero-tagline',      'Field-Force-ERP-System · Seit 2008 · Seit 2024 mit KI');
   const primary   = useText('srt_hero', 'srt-hero-cta-primary',  'Beratungsgespräch buchen');
   const secondary = useText('srt_hero', 'srt-hero-cta-secondary','Features entdecken');
-  const navLabel  = useText('srt_hero', 'srt-hero-nav-label',    'Direkt zu:');
-  const chips = [
-    useText('srt_hero', 'srt-hero-chip-1', 'All-in-Software'),
-    useText('srt_hero', 'srt-hero-chip-2', 'Funktionsumfang'),
-    useText('srt_hero', 'srt-hero-chip-3', 'Team-App'),
-    useText('srt_hero', 'srt-hero-chip-4', 'Branchen'),
-    useText('srt_hero', 'srt-hero-chip-5', 'Kundenstimmen'),
-  ];
   const ids = ['features', 'funktionsumfang', 'team-app', 'branchen', 'srt-proof'];
 
   const scrollTo = (id: string) => {
@@ -111,20 +103,6 @@ export default function SRTHeroReference() {
             </button>
           </div>
 
-          {/* Quick-nav chips */}
-          <div className="flex flex-wrap gap-2 items-center">
-            <span className="text-[11px] font-black uppercase tracking-[0.2em] text-white/35 mr-1">{navLabel}</span>
-            {chips.map((label, i) => (
-              <button
-                key={label}
-                type="button"
-                onClick={() => scrollTo(ids[i])}
-                className="px-3 py-1.5 border border-white/15 bg-white/8 text-white/65 text-[11px] font-black uppercase cursor-pointer hover:border-primary-500/50 hover:text-primary-500 transition-colors"
-              >
-                {label}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
     </section>

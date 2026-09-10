@@ -37,9 +37,7 @@ export default function EventsMessenPage() {
         <EventsHero />
       </div>
 
-      <div style={{ background: 'linear-gradient(180deg, oklch(0.975 0.002 110) 0%, #fff 100%)' }}>
-        <EventsContent />
-      </div>
+      <EventsContent />
 
       <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 

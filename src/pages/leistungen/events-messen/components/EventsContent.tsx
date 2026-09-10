@@ -93,7 +93,7 @@ export default function EventsContent() {
         challenges={EVENTS_CHALLENGES}
       />
 
-      <WoodenDivider />
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
       {/* ── Solution (horizontal scroll, light warm bg) ── */}
       <section id="loesung" className="sonic-section-lg bg-white px-4 md:px-6 relative overflow-hidden">
