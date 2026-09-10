@@ -13,8 +13,8 @@ const PEOPLE = [
     id: 'inga',
     name: 'Inga L.',
     role: 'Jr. Art Direktorin',
-    pullQuote: '"Design entscheidet in Sekunden. Wer das versteht, denkt nicht in Gestaltung — sondern in Wirkung."',
-    bio: 'Inga bringt Kreation auf die Fläche: von der Idee über das Layout bis zum finalen Asset. Als Jr. Art Direktorin gibt sie Kampagnen und Markenwelten ihre visuelle Identität.',
+    pullQuote: '„Die besten Karrierewege lassen sich nicht planen. Manchmal entwickelt sich aus einem Praktikum genau der Ort, an dem man wachsen möchte."',
+    bio: 'Inga ist Teil des Creation Teams und begleitet Projekte von der ersten Idee bis zur Umsetzung. Von Design und Social Media bis zu kreativen Konzepten und Events — sie gibt Marken ihre visuelle Identität.',
   },
 ];
 

@@ -4,6 +4,7 @@ import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import { useText } from '@/hooks/useText';
 
 const EVENTS_CHALLENGES: ChallengeItem[] = [
