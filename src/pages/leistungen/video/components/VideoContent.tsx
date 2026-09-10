@@ -182,7 +182,7 @@ export default function VideoContent() {
             <h2 className="leist-h2 text-foreground-950">{tSolutionHeading}</h2>
             <p className="text-foreground-950/55 text-base max-w-2xl mx-auto">{tSolutionSub}</p>
           </div>
-          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: solutionWoodIcons[i]?.url ? resolveImageUrl(solutionWoodIcons[i].url) : s.woodIcon || '' }))} label={`${SOLUTIONS.length} Kanäle — scrollen`} theme="light" variant="wood" cardWidth="clamp(280px, 32vw, 380px)" cardMinHeight="340px" />
+          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: solutionWoodIcons[i]?.url ? resolveImageUrl(solutionWoodIcons[i].url) : s.woodIcon || '' }))} label={`${SOLUTIONS.length} Kanäle — scrollen`} theme="light" variant="wood" cardWidth="clamp(220px, 32vw, 380px)" cardMinHeight="340px" />
         </div>
       </section>
 
@@ -221,7 +221,7 @@ export default function VideoContent() {
           </div>
 
           <div className="border border-foreground-950/15 bg-white p-8 md:p-10">
-            <div className="grid md:grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
               {[
                 { label: 'Tage pro Woche', value: daysPerWeek, min: 1, max: 7, setter: setDaysPerWeek },
                 { label: 'Stunden pro Tag', value: hoursPerDay, min: 1, max: 12, setter: setHoursPerDay },
@@ -250,7 +250,7 @@ export default function VideoContent() {
               ))}
             </div>
 
-            <div className="border-t border-foreground-950/10 pt-8 grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-foreground-950/10">
+            <div className="border-t border-foreground-950/10 pt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-foreground-950/10">
               {[
                 { val: maxCalls.toLocaleString('de-DE'), label: 'Max. mögliche Calls' },
                 { val: `${avgCallMin} Min.`, label: 'Ø Beratungsdauer' },

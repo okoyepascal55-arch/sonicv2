@@ -334,7 +334,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
                'Die Lücke, die kein Algorithmus schließt'}
             </h3>
           </div>
-          <div className="grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {s.challenges.map((ch, i) => (
               <div key={i} className="bg-white p-6 md:p-10 border border-foreground-100 hover:border-primary-500/30 hover:-translate-y-1 transition-all duration-300 group" style={{ borderRadius: 0 }}>
                 <div className="w-10 h-10 md:w-14 md:h-14 flex items-center justify-center bg-primary-500/10 border border-primary-500/20 mb-4 md:mb-6 group-hover:bg-primary-500/20 transition-colors" style={{ borderRadius: 0 }}>
@@ -1188,7 +1188,7 @@ export default function LosungenPage() {
             <h2 className="leist-h2 text-white mb-2">Ganz gleich, wo du stehst</h2>
             <p className="text-base md:text-xl text-white/50 font-semibold">Du bekommst immer</p>
           </div>
-          <div className="grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               { icon: 'ri-team-line', title: 'Festangestellte Talente', desc: 'Aus unserem Pool von 2.000 Markenbotschaftern. Geschult, motiviert, zuverlässig.' },
               { icon: 'ri-bar-chart-box-line', title: 'Datenbasierte Planung', desc: 'Das Sonic Reporting Tool (SRT) liefert Forecasts, Standortanalysen und ROI-Prognosen.' },

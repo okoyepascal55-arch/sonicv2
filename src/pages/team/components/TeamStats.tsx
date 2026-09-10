@@ -53,7 +53,7 @@ export default function TeamStats() {
             className="lg:col-span-1 lg:row-span-1 relative p-8 md:p-10 bg-white transition-all border border-foreground-100 cursor-pointer flex flex-col justify-center"
             style={{
               borderRadius: 0,
-              minHeight: '200px',
+              minHeight: 'clamp(140px, 20vw, 200px)',
               transform: hoveredIndex === 0 ? 'translateY(-4px)' : 'translateY(0)',
               boxShadow: hoveredIndex === 0 ? '0 20px 40px rgba(0,0,0,0.1)' : '0 4px 6px rgba(0,0,0,0.05)'
             }}

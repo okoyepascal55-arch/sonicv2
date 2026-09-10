@@ -58,7 +58,7 @@ export default function CoreValues() {
           {values.map((value, index) => (
             <div 
               key={index}
-              className={`grid md:grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center ${
+              className={`grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-16 items-center ${
                 index % 2 === 1 ? 'md:flex-row-reverse' : ''
               }`}
             >

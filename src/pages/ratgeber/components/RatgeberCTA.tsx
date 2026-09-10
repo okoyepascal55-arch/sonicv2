@@ -11,7 +11,7 @@ export default function RatgeberCTA({ headline, headlineAccent, subline }: Ratge
     <section className="sonic-section-lg bg-white px-6">
       <div className="max-w-4xl mx-auto">
         <div className="border border-foreground-950/15 bg-white p-10 md:p-14 relative overflow-hidden" style={{ borderRadius: 0 }}>
-          <div className="relative grid md:grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-10 items-center">
             <div>
               <div className="flex items-center gap-3 mb-5">
                 <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />

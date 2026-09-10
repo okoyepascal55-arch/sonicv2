@@ -18,7 +18,7 @@ export default function Contact() {
       />
 
       <div className="sonic-container relative z-10">
-        <div className="grid md:grid-cols-1 md:grid-cols-2 gap-px bg-foreground-200">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-foreground-200">
 
           {/* ── Box 1: ÜBER DIE SONIC GROUP — BLACK ──────────────────────── */}
           <div className="group bg-foreground-950 px-6 sm:px-9 md:px-12 py-9 md:py-11 flex flex-col justify-between transition-all duration-500 hover:bg-[#161600] relative overflow-hidden">

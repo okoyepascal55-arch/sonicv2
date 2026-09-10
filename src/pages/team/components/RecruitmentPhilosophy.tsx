@@ -36,7 +36,7 @@ export default function RecruitmentPhilosophy() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             { icon: 'ri-heart-3-line', title: tCard1, desc: 'Für die Marke brennen ist wichtiger als perfekte Zeugnisse' },
             { icon: 'ri-team-line', title: tCard2, desc: 'Gemeinsam anpacken und Herausforderungen meistern' },

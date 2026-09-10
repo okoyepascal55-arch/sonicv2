@@ -1669,8 +1669,8 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'careers_hero_images': 1,   // 1 hero team photo
   'careers_team_images': 3,   // Office + Team event + Modern office
   'careers_path_images': 2,   // Sales Family + Staff Family polaroids
-  'careers_events_videos': 3, // 3 video embed URLs (Content Creation, Team Events, Promoter Events)
-  'careers_events_images': 3, // Content Creation + Team Events + Promoter Events
+  'careers_events_videos': 4, // Content Creation, Team Events, Promoter Events, Roadshows & Messen
+  'careers_events_images': 4, // Content Creation, Team Events, Promoter Events, Roadshows & Messen
   'careers_dreamteam_images': 6,
   'careers_geschichten_images': 3,
   'careers_mitarbeiterstimmen_sales_images': 3,

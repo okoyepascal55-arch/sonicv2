@@ -104,7 +104,7 @@ export default function MeetTheTeam() {
         {/* Video Showcase Area — side-by-side layout */}
         <div 
           className="relative overflow-visible group cursor-pointer"
-          style={{ borderRadius: 0, minHeight: '420px', background: 'oklch(var(--foreground-950))' }}
+          style={{ borderRadius: 0, minHeight: 'clamp(220px, 40vw, 420px)', background: 'oklch(var(--foreground-950))' }}
           onMouseEnter={() => setIsVideoHovered(true)}
           onMouseLeave={() => setIsVideoHovered(false)}
         >
@@ -138,7 +138,7 @@ export default function MeetTheTeam() {
                   ? 'rotate(0deg) scale(1.02) translateY(-8px)'
                   : 'rotate(-0.8deg) scale(1)',
                 transition: 'transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s cubic-bezier(0.16,1,0.3,1)',
-                width: 'clamp(280px, 44%, 420px)',
+                width: 'clamp(220px, 44%, 420px)',
                 cursor: 'pointer',
               }}
             >

@@ -75,7 +75,7 @@ function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
   return (
     <div className="border border-[oklch(0.885_0.004_110)] overflow-hidden">
       {/* Portrait */}
-      <div className="relative bg-foreground-950" style={{ minHeight: '340px' }}>
+      <div className="relative bg-foreground-950" style={{ minHeight: 'clamp(260px, 32vw, 340px)' }}>
         <img
           src={exec.image}
           alt={exec.name}
@@ -181,7 +181,7 @@ function DesktopCarousel({ execs }: { execs: typeof EXECUTIVES }) {
       <div key={exec.id} className="relative grid border border-[oklch(0.885_0.004_110)] overflow-hidden"
         style={{ gridTemplateColumns: imageLeft ? '0.86fr 1.14fr' : '1.14fr 0.86fr' }}>
         {/* Portrait */}
-        <div className="relative overflow-hidden" style={{ order: imageLeft ? 1 : 2, backgroundColor: 'oklch(0.13 0.005 118)', minHeight: '460px' }}>
+        <div className="relative overflow-hidden" style={{ order: imageLeft ? 1 : 2, backgroundColor: 'oklch(0.13 0.005 118)', minHeight: 'clamp(300px, 44vw, 460px)' }}>
           <img src={imageRes} alt={exec.name} className="absolute inset-0 w-full h-full object-cover object-top" />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground-950/60 via-transparent to-transparent pointer-events-none" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -303,7 +303,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                   {/* Portrait */}
                   <div
                     className="relative"
-                    style={{ minHeight: '520px', order: imageLeft ? 1 : 2, backgroundColor: 'oklch(0.13 0.005 118)' }}
+                    style={{ minHeight: 'clamp(320px, 48vw, 520px)', order: imageLeft ? 1 : 2, backgroundColor: 'oklch(0.13 0.005 118)' }}
                   >
                     <img
                       src={exec.image}

@@ -330,7 +330,7 @@ export default function WarehouseLogistikPage() {
  className="w-full object-cover object-top"
  loading="lazy"
  decoding="async"
- style={{ minHeight: '300px' }}
+ style={{ minHeight: 'clamp(200px, 28vw, 300px)' }}
  />
  <div className="absolute top-4 left-4 bg-primary-500 px-3 md:px-4 py-2">
  <span className="text-foreground-950 text-xs font-black uppercase tracking-widest">~500 qm Lagerfläche</span>

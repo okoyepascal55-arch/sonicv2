@@ -130,7 +130,7 @@ export default function ForecastingContent() {
  <p className="text-foreground-950/45 text-sm mt-3 max-w-xl mx-auto">{tHowSub}</p>
  </div>
 
- <div className="grid md:grid-cols-1 md:grid-cols-2 gap-6">
+ <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
  {HOW_IT_WORKS.map((step, i) => (
  <div key={i} className="group relative overflow-hidden border border-foreground-950/10 bg-white hover:border-primary-500/30 transition-all duration-300">
  {/* Image */}
@@ -140,7 +140,7 @@ export default function ForecastingContent() {
  alt={step.title}
  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
  loading="lazy"
- style={{ minHeight: '220px' }}
+ style={{ minHeight: 'clamp(160px, 22vw, 220px)' }}
  />
  <div className="absolute inset-0 bg-gradient-to-t from-[#111]/60 to-transparent"/>
  <div className="absolute top-4 left-4 bg-primary-500 text-foreground-950 w-10 h-10 flex items-center justify-center font-black text-lg">

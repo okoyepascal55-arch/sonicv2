@@ -28,7 +28,7 @@ export default function RatgeberGeoContext({ data }: RatgeberGeoContextProps) {
           {data.content}
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {data.cities.length > 0 && (
             <div className="border border-foreground-950/10 bg-white p-5" style={{ borderRadius: 0 }}>
               <h4 className="text-sm font-black text-foreground-950 uppercase tracking-wider mb-3">Städte</h4>

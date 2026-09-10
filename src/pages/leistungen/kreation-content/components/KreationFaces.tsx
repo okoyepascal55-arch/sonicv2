@@ -49,9 +49,9 @@ export default function KreationFaces() {
 
         <div className="flex flex-col gap-0" style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
           {/* Story panel */}
-          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: '460px' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: 'clamp(300px, 44vw, 460px)' }}>
             {/* Portrait */}
-            <div className="relative overflow-hidden" style={{ background: 'oklch(0.13 0.005 118)', minHeight: '300px' }}>
+            <div className="relative overflow-hidden" style={{ background: 'oklch(0.13 0.005 118)', minHeight: 'clamp(220px, 30vw, 300px)' }}>
               <img
                 key={active.id}
                 src={getImg(activeIdx)}
