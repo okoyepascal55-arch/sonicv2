@@ -189,7 +189,7 @@ export default function SRTTeaser() {
         <div
           ref={diagramRef}
           className="flex relative items-center justify-center"
-          style={{ height: 'clamp(300px, 55vw, 520px)' }}
+          style={{ height: 'clamp(240px, 55vw, 520px)' }}
         >
           <svg
             className="absolute inset-0 w-full h-full"

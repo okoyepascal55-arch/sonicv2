@@ -585,7 +585,7 @@ export default function Carousel3D() {
           top: '-80px',
           left: `${50 + Math.sin((lightAngle * Math.PI) / 180) * 8}%`,
           transform: 'translateX(-50%)',
-          width: '600px',
+          width: 'clamp(300px, 90vw, 600px)',
           height: '300px',
           background:
             'radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.45) 0%, transparent 70%)',

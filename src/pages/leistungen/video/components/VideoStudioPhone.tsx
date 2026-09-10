@@ -155,7 +155,7 @@ export default function VideoStudioPhone() {
 
  {/* LEFT: Phone only — clean, no distractions */}
  <div className="bg-[#1a1a1a] flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 relative min-h-[520px] lg:min-h-[600px]">
- <div className="relative"style={{ width: '280px' }}>
+ <div className="relative"style={{ width: 'min(280px, 88vw)' }}>
  <PhoneFrame width={280}>
  <div className="bg-foreground-950 relative"style={{ height: 474 }}>
  {/* Status bar */}

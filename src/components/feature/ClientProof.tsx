@@ -133,8 +133,8 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
       ref={cardRef}
       className="relative bg-white p-5 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-visible flex flex-col"
       style={{
-        minWidth: 'clamp(280px, 80vw, 340px)',
-        flex: '0 0 clamp(280px, 80vw, 340px)',
+        minWidth: 'clamp(260px, min(80vw, calc(28vw + 60px)), 360px)',
+        flex: '0 0 clamp(260px, min(80vw, calc(28vw + 60px)), 360px)',
         borderRadius: 0,
       }}
       onMouseEnter={() => setIsHovered(true)}

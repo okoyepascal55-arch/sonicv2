@@ -57,7 +57,7 @@ export default function ScrollCardSection({
   label,
   theme = 'light',
   variant = 'wood',
-  cardWidth = 'clamp(280px, 26vw, 340px)',
+  cardWidth = 'clamp(230px, 26vw, 340px)',
   cardMinHeight = '380px',
   showWoodIcon = true,
   className = '',

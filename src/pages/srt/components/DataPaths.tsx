@@ -112,7 +112,7 @@ export default function DataPaths() {
         </div>
 
         {/* Same node diagram as homepage SRTTeaser */}
-        <div ref={diagramRef} className="relative flex items-center justify-center" style={{ height: 'clamp(280px, 45vw, 460px)' }}>
+        <div ref={diagramRef} className="relative flex items-center justify-center" style={{ height: 'clamp(220px, 45vw, 460px)' }}>
           <svg className="absolute inset-0 w-full h-full" viewBox={`0 0 ${containerSize.w || 1} ${containerSize.h || 1}`} preserveAspectRatio="none" aria-hidden="true">
             <defs>
               <filter id={`dp-glow-${woodenId}`}>
