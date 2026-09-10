@@ -46,10 +46,10 @@ export default function FunctionalityOverview() {
   const mod = MODULES[active];
 
   return (
-    <section id="funktionsumfang" className="bg-foreground-950 relative overflow-hidden py-20 md:py-28">
+    <section id="funktionsumfang" className="bg-white relative overflow-hidden py-20 md:py-28">
       {/* data grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.025]"
-        style={{ backgroundImage: 'linear-gradient(oklch(0.81 0.19 115) 1px, transparent 1px), linear-gradient(90deg, oklch(0.81 0.19 115) 1px, transparent 1px)', backgroundSize: '52px 52px' }}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.035]"
+        style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.4) 1px, transparent 1px)', backgroundSize: '52px 52px' }}
         aria-hidden="true" />
 
       <div className="sonic-container px-4 md:px-6 relative z-10">
@@ -59,13 +59,13 @@ export default function FunctionalityOverview() {
             <div className="flex items-center gap-3 mb-4">
               <span className="w-7 h-0.5 bg-primary-500" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
-              <span className="text-[9px] text-white/15 font-black uppercase tracking-wider">— 6 Module</span>
+              <span className="text-[9px] font-black uppercase tracking-wider text-foreground-950/20">— 6 Module</span>
             </div>
-            <h2 className="sonic-h2 text-white uppercase">{tHeading}</h2>
+            <h2 className="sonic-h2 text-foreground-950 uppercase">{tHeading}</h2>
           </div>
           <a href={`mailto:${CONTACT_EMAIL}?subject=SRT%20Demo`}
-            className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest text-primary-500 hover:text-white transition-colors whitespace-nowrap self-start md:self-auto"
-            style={{ border: '1px solid oklch(0.81 0.19 115 / 0.35)' }}>
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest text-foreground-950 hover:text-primary-500 transition-colors whitespace-nowrap self-start md:self-auto"
+            style={{ border: '1px solid oklch(0.13 0.005 118 / 0.25)' }}>
             {tDemoCta} <i className="ri-arrow-right-line" />
           </a>
         </div>
@@ -117,25 +117,25 @@ export default function FunctionalityOverview() {
             {MODULES.map((m, i) => (
               <button key={m.id} type="button" onClick={() => select(i)}
                 className={`relative flex flex-col p-5 md:p-6 text-left transition-all duration-200 cursor-pointer group ${
-                  active === i ? 'bg-white/[0.07]' : 'bg-white/[0.02] hover:bg-white/[0.04]'
+                  active === i ? 'bg-foreground-950' : 'bg-white hover:bg-foreground-950/[0.03]'
                 }`}
-                style={{ border: active === i ? '1px solid oklch(0.81 0.19 115 / 0.35)' : '1px solid rgba(255,255,255,0.05)' }}>
+                style={{ border: active === i ? '1px solid oklch(0.81 0.19 115 / 0.35)' : '1px solid rgba(0,0,0,0.08)' }}>
                 {/* Active top accent */}
                 {active === i && <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary-500" />}
 
                 {/* Icon */}
-                <div className={`w-9 h-9 flex items-center justify-center mb-4 flex-shrink-0 transition-all duration-200 ${active === i ? 'bg-primary-500' : 'bg-white/[0.06]'}`}>
-                  <i className={`${m.icon} text-sm ${active === i ? 'text-foreground-950' : 'text-white/40 group-hover:text-white/60'}`} />
+                <div className={`w-9 h-9 flex items-center justify-center mb-4 flex-shrink-0 transition-all duration-200 ${active === i ? 'bg-foreground-950' : 'bg-foreground-950/[0.06]'}`}>
+                  <i className={`${m.icon} text-sm ${active === i ? 'text-primary-500' : 'text-foreground-950/40 group-hover:text-foreground-950/60'}`} />
                 </div>
 
                 {/* Text */}
-                <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-2" style={{ color: active === i ? 'oklch(0.81 0.19 115)' : 'rgba(255,255,255,0.25)' }}>
+                <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-2" style={{ color: active === i ? 'oklch(0.81 0.19 115)' : 'rgba(0,0,0,0.3)' }}>
                   {m.number}
                 </p>
-                <p className={`text-[12px] font-black uppercase leading-snug mb-1 ${active === i ? 'text-white' : 'text-white/60'}`}>
+                <p className={`text-[12px] font-black uppercase leading-snug mb-1 ${active === i ? 'text-white' : 'text-foreground-950/70'}`}>
                   {m.title}
                 </p>
-                <p className="text-[10px] leading-snug" style={{ color: active === i ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.20)' }}>
+                <p className="text-[10px] leading-snug" style={{ color: active === i ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.35)' }}>
                   {m.subtitle}
                 </p>
               </button>
