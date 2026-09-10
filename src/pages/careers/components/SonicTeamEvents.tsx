@@ -91,7 +91,7 @@ export default function SonicTeamEvents() {
           <div className="relative overflow-hidden" style={{ background: "oklch(0.13 0.005 118)", minHeight: "520px" }}>
             {!playing ? (
               <div
-                className="relative w-full h-full cursor-pointer group"
+                className="absolute inset-0 cursor-pointer group"
                 onClick={() => setPlaying(true)}
                 role="button"
                 tabIndex={0}

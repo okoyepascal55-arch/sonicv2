@@ -73,7 +73,7 @@ Manchmal beginnt der passende Karriereweg dort, wo man ursprünglich nur einen S
   {
     id: 'katharina',
     name: 'Katharina S.',
-    role: 'Brand & Content Manager',
+    role: 'Business Controller',
     pullQuote: '„Gute Markenarbeit entsteht, wenn Strategie und Kreativität gemeinsam an einem Tisch sitzen."',
     bio: 'Katharina verantwortet bei Sonic die Schnittstelle zwischen Marke und Inhalt. Sie entwickelt Content-Strategien, die Markenbotschaften erlebbar machen — kanalübergreifend, konsistent und immer mit dem Blick auf die Zielgruppe.',
     image: dbImages[5]?.url || 'https://readdy.ai/api/search-image?query=professional+young+woman+brand+content+manager+confident+editorial+portrait+modern+office+dark+background&width=600&height=800&seq=sf-katharina-06&orientation=portrait',
