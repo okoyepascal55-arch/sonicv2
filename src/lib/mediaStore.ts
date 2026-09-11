@@ -2141,6 +2141,20 @@ function getStoreSnapshot(): MediaSections {
       }
     }
 
+    // Pad: if any stored section has fewer items than DEFAULT_MEDIA,
+    // append the missing default items so newly-added slots always appear
+    for (const key of Object.keys(DEFAULT_MEDIA)) {
+      const defaultItems = DEFAULT_MEDIA[key];
+      const mergedItems = merged[key];
+      if (defaultItems && mergedItems && mergedItems.length < defaultItems.length) {
+        // User has real uploads for slots 0..N, plus N+1..end are defaults
+        merged[key] = [
+          ...mergedItems,
+          ...defaultItems.slice(mergedItems.length),
+        ];
+      }
+    }
+
     return merged;
   } catch {
     return { ...DEFAULT_MEDIA };
