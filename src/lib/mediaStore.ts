@@ -2141,13 +2141,16 @@ function getStoreSnapshot(): MediaSections {
       }
     }
 
-    // Pad: if any stored section has fewer items than DEFAULT_MEDIA,
-    // append the missing default items so newly-added slots always appear
+    // Pad: only fill slots for sections the user has NEVER touched (not in
+    // localStorage). If a section IS in localStorage, the user owns it —
+    // never re-append defaults, as that would restore deleted images.
+    const localSections = raw ? Object.keys(JSON.parse(raw) as MediaSections) : [];
+    const localSectionsSet = new Set(localSections);
     for (const key of Object.keys(DEFAULT_MEDIA)) {
+      if (localSectionsSet.has(key)) continue; // user owns this section — never pad it
       const defaultItems = DEFAULT_MEDIA[key];
       const mergedItems = merged[key];
       if (defaultItems && mergedItems && mergedItems.length < defaultItems.length) {
-        // User has real uploads for slots 0..N, plus N+1..end are defaults
         merged[key] = [
           ...mergedItems,
           ...defaultItems.slice(mergedItems.length),
