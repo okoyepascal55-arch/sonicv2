@@ -50,8 +50,8 @@ export default function CareerShowcase() {
     <div className="overflow-hidden -mx-5 md:-mx-10 mt-10">
       <div
         ref={trackRef}
-        className="flex gap-3 overflow-x-hidden"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        className="flex gap-3"
+        style={{ overflowX: 'scroll', scrollbarWidth: 'none', msOverflowStyle: 'none' } as React.CSSProperties}
         aria-hidden="true"
       >
         {displayed.map((src, i) => (

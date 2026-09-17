@@ -32,10 +32,10 @@ export default function KarriereCulture() {
         />
 
         {/* Statement card */}
-        <div className="relative bg-foreground-950 px-7 py-10 md:px-14 md:pt-14 md:pb-10 mb-14 overflow-hidden">
+        <div className="relative bg-foreground-950 px-7 py-8 md:px-10 md:py-10 mb-10 overflow-hidden">
           <div className="absolute top-0 left-0 bottom-0 w-[3px] bg-primary-500" aria-hidden="true" />
-          <div className="max-w-2xl">
-            <p className="text-[26px] md:text-[34px] font-black leading-[1.16] tracking-[-0.03em] text-white mb-5">
+          <div>
+            <p className="text-[22px] md:text-[26px] font-black leading-[1.2] tracking-[-0.02em] text-white mb-4">
               Wir lieben &amp; leben Marken.
             </p>
             <p className="text-[15px] leading-[1.75] text-white/60 mb-3">{tP1}</p>

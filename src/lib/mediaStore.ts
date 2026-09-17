@@ -189,17 +189,7 @@ export const PAGE_GROUPS: PageGroup[] = [
       'reels_2026',
     ],
   },
-  {
-    id: 'case_studies',
-    label: 'Fallbeispiele',
-    icon: 'ri-file-chart-line',
-    sections: [
-      '/images/Case Studies -Fallbsp/Avoury',
-      '/images/Case Studies -Fallbsp/Garmin',
-      '/images/Case Studies -Fallbsp/Philips',
-      '/images/Case Studies -Fallbsp/SEB',
-    ],
-  },
+
   {
     id: 'blog',
     label: 'Blog',

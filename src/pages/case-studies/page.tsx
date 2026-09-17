@@ -660,9 +660,7 @@ export default function CaseStudiesPage() {
           <h1 className="leist-h1-hub text-white mb-4 md:mb-5">
             ERFOLGS<span className="text-primary-500">GESCHICHTEN</span>
           </h1>
-          <p className="text-sm md:text-base text-white/70 leading-relaxed max-w-[480px]">
-            Garmin +116% · Philips +54% · Groupe SEB +130% · Avoury +1.187%
-          </p>
+
         </div>
       </section>
 
