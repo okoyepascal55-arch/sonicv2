@@ -76,12 +76,17 @@ export default function KarrierepfadeSection() {
   return (
     <section id="pfade" className="bg-white py-20 md:py-[104px] px-5 md:px-10">
       <div className="sonic-container">
+        {/*
+          absoluteNumeral — removes "01" from flex flow so heading/sub align
+          flush-left with the path cards below. Numeral floats top-right decoratively.
+        */}
         <ChapterHeader
           n="01"
           eyebrow={tBadge}
           heading={<>{headingMain} {headingAccent && <Marker>{headingAccent}</Marker>}</>}
           sub={tSub}
           headingMax="max-w-[620px]"
+          absoluteNumeral={true}
           aside={
             <p
               className="text-[12px] font-bold leading-[1.7] tracking-[0.04em] uppercase pl-6"
