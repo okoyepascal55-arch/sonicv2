@@ -67,6 +67,8 @@ export function ChapterHeader({
   aside,
   headingMax = 'max-w-[620px]',
   headingSize = 'clamp(1.75rem, 3.2vw, 3.25rem)',
+  absoluteNumeral = false,
+  mb,
 }: {
   n: string;
   eyebrow: string;
@@ -76,9 +78,60 @@ export function ChapterHeader({
   aside?: ReactNode;
   headingMax?: string;
   headingSize?: string;
+  /**
+   * When true, the chapter numeral is removed from the flex flow and placed
+   * absolutely at the top-right of the header — so eyebrow, heading, and sub
+   * all left-align with the content below rather than being indented by the numeral.
+   */
+  absoluteNumeral?: boolean;
+  /** Override the bottom margin class. Defaults to 'mb-12 md:mb-14' (flex) or 'mb-8 md:mb-10' (absolute). */
+  mb?: string;
 }) {
+  const marginBottom = mb ?? (absoluteNumeral ? 'mb-8 md:mb-10' : 'mb-12 md:mb-14');
+
+  if (absoluteNumeral) {
+    return (
+      <div className={`relative ${marginBottom}`}>
+        {/* Ghost numeral — out of flow, decorative top-right anchor */}
+        <span
+          className="hidden lg:block absolute top-0 right-0 font-black leading-[0.8] tracking-[-0.06em] select-none pointer-events-none"
+          style={{
+            fontSize: '120px',
+            color: dark ? 'rgba(255,255,255,0.07)' : 'oklch(var(--foreground-950) / 0.07)',
+          }}
+          aria-hidden="true"
+        >
+          {n}
+        </span>
+
+        {/* Content — full-width, left-aligned with section grid */}
+        <div className={`relative z-10 ${headingMax}`}>
+          <ChapterEyebrow dark={dark}>{eyebrow}</ChapterEyebrow>
+          <h2
+            className={`font-black mb-4 ${dark ? 'text-white' : 'text-foreground-950'}`}
+            style={{ fontSize: headingSize, lineHeight: 1.04, letterSpacing: '-0.035em' }}
+          >
+            {heading}
+          </h2>
+          {sub && (
+            <p
+              className="text-base md:text-[17px] leading-relaxed max-w-[560px]"
+              style={{ color: dark ? 'rgba(255,255,255,0.55)' : 'oklch(var(--foreground-500))' }}
+            >
+              {sub}
+            </p>
+          )}
+        </div>
+
+        {aside && (
+          <div className="hidden xl:flex mt-6 max-w-[480px]">{aside}</div>
+        )}
+      </div>
+    );
+  }
+
   return (
-    <div className="flex items-start gap-8 md:gap-16 mb-12 md:mb-14">
+    <div className={`flex items-start gap-8 md:gap-16 ${marginBottom}`}>
       <ChapterNumeral n={n} dark={dark} />
       <div className={`flex-1 ${headingMax}`}>
         <ChapterEyebrow dark={dark}>{eyebrow}</ChapterEyebrow>
