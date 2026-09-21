@@ -61,7 +61,7 @@ export default function FunctionalityOverview() {
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
               <span className="text-[9px] font-black uppercase tracking-wider text-foreground-950/20">— 6 Module</span>
             </div>
-            <h2 className="sonic-h2 text-foreground-950 uppercase">{tHeading}</h2>
+            <h2 className="sonic-h2 text-foreground-950 ">{tHeading}</h2>
           </div>
           <a href={`mailto:${CONTACT_EMAIL}?subject=SRT%20Demo`}
             className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest text-foreground-950 hover:text-primary-500 transition-colors whitespace-nowrap self-start md:self-auto"
@@ -94,7 +94,7 @@ export default function FunctionalityOverview() {
               <div className="flex items-end justify-between">
                 <div>
                   <p className="text-[9px] font-black uppercase tracking-[0.3em] text-primary-500 mb-1.5">{mod.number} / 06 — {mod.subtitle}</p>
-                  <h3 className="text-xl md:text-2xl font-black text-white uppercase mb-2">{mod.title}</h3>
+                  <h3 className="text-xl md:text-2xl font-black text-white mb-2">{mod.title}</h3>
                   <p className="text-sm text-white/50 leading-relaxed max-w-[560px]">{mod.detail}</p>
                 </div>
                 {/* Progress bar */}
