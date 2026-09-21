@@ -26,7 +26,7 @@ export default function Industries() {
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tBadge}</span></div>
           <div className="grid md:grid-cols-2 gap-6 items-end">
-            <h2 className="sonic-h2 text-foreground-950 uppercase">Von Retail Execution bis <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Gesundheit & Pharma.</span></h2>
+            <h2 className="sonic-h2 text-foreground-950">Von Retail Execution bis <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Gesundheit & Pharma.</span></h2>
             <p className="text-sm text-foreground-950/45 leading-relaxed">{tSub}</p>
           </div>
         </div>
@@ -41,7 +41,7 @@ export default function Industries() {
                     style={{ background: 'oklch(0.55 0.08 115 / 0.08)', border: '1px solid oklch(0.55 0.08 115 / 0.25)' }}>
                     <i className={`${uc.icon} text-[15px]`} style={{ color: 'oklch(0.55 0.08 115)' }} />
                   </div>
-                  <h3 className="text-[12.5px] font-black text-foreground-950 leading-snug uppercase">{uc.title}</h3>
+                  <h3 className="text-[12.5px] font-black text-foreground-950 leading-snug">{uc.title}</h3>
                 </div>
                 <ul className="space-y-2 m-0 p-0 list-none">
                   {uc.items.map((item) => (
