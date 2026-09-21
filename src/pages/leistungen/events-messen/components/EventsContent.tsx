@@ -106,7 +106,7 @@ export default function EventsContent() {
                 <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
                 <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Lösung</span>
               </div>
-              <h2 className="leist-h2 text-foreground-950 uppercase">
+              <h2 className="leist-h2 text-foreground-950 ">
                 {tSolutionHeading}
               </h2>
             </div>
@@ -131,7 +131,7 @@ export default function EventsContent() {
                     <img src={getSolutionWoodIcon(i)} alt={s.title} className="w-full h-full object-cover" loading="lazy" />
                   </div>
                   <span className="text-[10px] font-black uppercase tracking-widest text-primary-600">{s.accent}</span>
-                  <h3 className="text-base font-black text-foreground-950 uppercase mt-1 mb-2 leading-snug">{s.title}</h3>
+                  <h3 className="text-base font-black text-foreground-950 mt-1 mb-2 leading-snug">{s.title}</h3>
                   <p className="text-sm text-foreground-950/55 leading-relaxed">{s.desc}</p>
                 </div>
               </div>
