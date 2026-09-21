@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import { ChapterNumeral, ChapterEyebrow } from './ChapterKit';
+import { ChapterEyebrow, Marker } from './ChapterKit';
 
 const BITE_LISTING_KEY = 'sonic-sales-support-gmbh:main-listing';
 
@@ -15,8 +15,9 @@ export default function KarriereJobs() {
   const tTanjaCta = useText('careers_jobs', 'careers-jobs-tanja-cta', 'Mit Tanja sprechen');
   const tInitiativCta = useText('careers_jobs', 'careers-jobs-initiativ-cta', 'Initiativbewerbung');
 
-  const headingFirst = tHeading.split(' ').slice(0, 2).join(' ');
-  const headingRest = tHeading.split(' ').slice(2).join(' ');
+  const headingParts = tHeading.split('. ').map(s => s.endsWith('.') ? s : s + '.');
+  const headingMain = headingParts[0] ?? tHeading;
+  const headingAccent = headingParts.length > 1 ? headingParts.slice(1).join(' ') : '';
 
   const tanjaPortrait =
     stellenImages[0]?.url ||
@@ -37,12 +38,17 @@ export default function KarriereJobs() {
   return (
     <section id="stellenangebote" className="py-20 md:py-[104px] px-5 md:px-10" style={{ background: 'oklch(0.13 0.005 118)' }}>
       <div className="sonic-container">
-        <div className="flex items-start gap-8 md:gap-16 mb-12 md:mb-14">
-          <ChapterNumeral n="06" dark />
-          <div className="flex-1 max-w-[700px]">
+        {/* Section 06 header — matches absoluteNumeral pattern from ChapterKit */}
+        <div className="relative mb-12 md:mb-14">
+          <span
+            className="hidden lg:block absolute top-0 right-0 font-black leading-[0.8] tracking-[-0.06em] select-none pointer-events-none"
+            style={{ fontSize: '120px', color: 'rgba(255,255,255,0.07)' }}
+            aria-hidden="true"
+          >06</span>
+          <div className="relative z-10">
             <ChapterEyebrow dark>{tBadge}</ChapterEyebrow>
-            <h2 className="font-black text-white mb-4" style={{ fontSize: 'clamp(1.875rem, 3.4vw, 3.5rem)', lineHeight: 1.02, letterSpacing: '-0.035em' }}>
-              {headingFirst} <span className="text-primary-500">{headingRest}</span>
+            <h2 className="font-black text-white mb-4" style={{ fontSize: 'clamp(1.75rem, 3.2vw, 3.25rem)', lineHeight: 1.04, letterSpacing: '-0.035em' }}>
+              {headingMain} {headingAccent && <Marker>{headingAccent}</Marker>}
             </h2>
             <div className="flex items-center gap-3">
               <span className="px-2.5 py-1 bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-[0.2em]">Live</span>
