@@ -1340,7 +1340,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'forecasting-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Ohne Prognose fliegt ihr im Blindflug.' },
       { id: 'forecasting-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Zu viele Retail-Projekte starten ohne belastbare Planung.' },
-      { id: 'forecasting-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'FORECASTING. DATENBASIERT. BELASTBAR.' },
+      { id: 'forecasting-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Forecasting. Datenbasiert. Belastbar.' },
       { id: 'forecasting-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Prognosen auf echten Daten — nicht auf Excel-Tabellen und Bauchgefühl.' },
       { id: 'forecasting-how-heading', label: 'How Heading', description: 'How-it-works H2', type: 'heading', value: 'In 4 Schritten zur belastbaren Prognose' },
       { id: 'forecasting-how-sub', label: 'How Subline', description: 'How description', type: 'paragraph', value: 'Unser Forecasting-Prozess: datenbasiert, transparent und direkt in dein Dashboard integriert.' },
