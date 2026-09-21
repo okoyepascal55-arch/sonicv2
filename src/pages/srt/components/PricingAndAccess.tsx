@@ -158,14 +158,14 @@ export default function PricingAndAccess() {
   const tSub = useText('srt_pricing', 'srt-pricing-sub', 'Drei Stufen, klarer Mehrwert, keine versteckten Kosten.');
 
   return (
-    <section id="preise-zugang" className="sonic-section-lg px-4 md:px-6 bg-foreground-950 relative overflow-hidden">
+    <section id="preise-zugang" className="sonic-section-md px-4 md:px-6 bg-foreground-950 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{ backgroundImage: 'linear-gradient(oklch(0.81 0.19 115) 1px, transparent 1px), linear-gradient(90deg, oklch(0.81 0.19 115) 1px, transparent 1px)', backgroundSize: '52px 52px' }}
         aria-hidden="true" />
       <div className="sonic-container relative z-10">
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span></div>
-          <h2 className="sonic-h2 text-white uppercase">Transparente Preise.<br /><span className="text-primary-500">Direkter Zugang.</span></h2>
+          <h2 className="sonic-h2 text-white">Transparente Preise. <span className="text-primary-500">Direkter Zugang.</span></h2>
           <p className="text-sm text-white/35 mt-2">{tSub}</p>
         </div>
 
