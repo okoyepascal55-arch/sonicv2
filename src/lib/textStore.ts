@@ -823,7 +823,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The team events section: Content Creation, Team Events, Promoter Events.',
     entries: [
       { id: 'careers-events-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Sonic Team Events' },
-      { id: 'careers-events-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Wir arbeiten hart. Wir feiern noch mehr.' },
+      { id: 'careers-events-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Voller Einsatz. Echtes Team.' },
       { id: 'careers-events-tab-1', label: 'Tab — Content Creation', description: 'Content tab', type: 'label', value: 'Content Creation' },
       { id: 'careers-events-tab-2', label: 'Tab — Team Events', description: 'Team tab', type: 'label', value: 'Team Events' },
       { id: 'careers-events-tab-3', label: 'Tab — Promoter Events', description: 'Promoter tab', type: 'label', value: 'Promoter Events' },
@@ -1367,7 +1367,9 @@ const STORAGE_KEY = 'sonic_text_store';
 /* One-time in-memory normalization: replaces legacy English default copy with German. */
 const LEGACY_TEXT_FIXES = [
   { sectionKey: 'about_management_voices', entryId: 'about-voices-badge', from: 'Leadership Perspectives', to: 'Führungsperspektiven' },
-  { sectionKey: 'careers_events', entryId: 'careers-events-heading', from: 'WIR ARBEITEN HART. WIR FEIERN NOCH MEHR.', to: 'Wir arbeiten hart. Wir feiern noch mehr.' },
+  { sectionKey: 'careers_events', entryId: 'careers-events-heading', from: 'WIR ARBEITEN HART. WIR FEIERN NOCH MEHR.', to: 'Voller Einsatz. Echtes Team.' },
+  { sectionKey: 'careers_events', entryId: 'careers-events-heading', from: 'Wir arbeiten hart. Wir feiern noch mehr.', to: 'Voller Einsatz. Echtes Team.' },
+  { sectionKey: 'careers_jobs', entryId: 'careers-jobs-heading', from: 'Dein nächster Karriereschritt', to: 'Dein Job wartet. Jetzt bewerben.' },
   { sectionKey: 'careers_campus', entryId: 'careers-campus-heading', from: 'BÜRO ERKUNDEN', to: 'Büro erkunden' },
   { sectionKey: 'about_management_voices', entryId: 'about-voices-sub', from: 'Strategie, Kreation und Operations — drei Perspektiven, eine Überzeugung.', to: 'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.' },
   { sectionKey: 'about_leadership', entryId: 'about-leadership-sub', from: 'Bei Sonic treffen Backgrounds aufeinander, die sich perfekt ergänzen.', to: 'Bei Sonic treffen Expertisen aufeinander, die sich perfekt ergänzen.' },
