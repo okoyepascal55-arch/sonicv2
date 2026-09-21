@@ -22,6 +22,29 @@ export default function PhotoSelector({
 }) {
   const stripRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef<HTMLButtonElement>(null);
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+
+  // Drag-to-scroll handlers for the thumbnail filmstrip
+  const onDragStart = (e: React.MouseEvent) => {
+    if (!stripRef.current) return;
+    isDragging.current = true;
+    dragStartX.current = e.pageX - stripRef.current.offsetLeft;
+    dragScrollLeft.current = stripRef.current.scrollLeft;
+    stripRef.current.style.cursor = 'grabbing';
+  };
+  const onDragMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !stripRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - stripRef.current.offsetLeft;
+    const walk = (x - dragStartX.current) * 1.5;
+    stripRef.current.scrollLeft = dragScrollLeft.current - walk;
+  };
+  const onDragEnd = () => {
+    isDragging.current = false;
+    if (stripRef.current) stripRef.current.style.cursor = 'grab';
+  };
 
   useEffect(() => {
     if (!activeRef.current || !stripRef.current) return;
@@ -68,7 +91,11 @@ export default function PhotoSelector({
         <div
           ref={stripRef}
           className="flex items-center gap-2 overflow-x-auto py-2.5 px-3 flex-1"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', cursor: 'grab', userSelect: 'none' }}
+          onMouseDown={onDragStart}
+          onMouseMove={onDragMove}
+          onMouseUp={onDragEnd}
+          onMouseLeave={onDragEnd}
         >
           {photos.map((photo, i) => {
             const isActive = i === activeIndex;
