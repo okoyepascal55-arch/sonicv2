@@ -44,7 +44,7 @@ export default function KreationFaces() {
             <span className="w-7 h-0.5 bg-primary-500" aria-hidden="true" />
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Kreation Team</span>
           </div>
-          <h2 className="sonic-h2 text-foreground-950 uppercase">Die Köpfe hinter der Kreation.</h2>
+          <h2 className="sonic-h2 text-foreground-950">Die Köpfe hinter der Kreation.</h2>
         </div>
 
         <div className="flex flex-col gap-0" style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
