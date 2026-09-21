@@ -2197,7 +2197,7 @@ export function getCategoriesList(): CategoryInfo[] {
   const store = loadFromStorage();
   const allKeys = Object.keys(store);
   _cachedCategoriesList = allKeys.map((key) => {
-    const label = HUMAN_LABELS[key] || typedManifest[key]?.label || key;
+    const label = HUMAN_LABELS[key] || key;
     const pageGroupId = getPageGroupForSection(key);
     const items = store[key];
     const defaultItems = DEFAULT_MEDIA[key];
