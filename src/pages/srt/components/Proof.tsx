@@ -30,7 +30,7 @@ export default function Proof() {
               <span className="w-7 h-0.5 bg-primary-500" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
             </div>
-            <h2 className="sonic-h2 text-white uppercase">{tHeading}</h2>
+            <h2 className="sonic-h2 text-white">{tHeading}</h2>
           </div>
           <p className="text-xs text-white/30 max-w-[240px] leading-relaxed md:text-right">{tSub}</p>
         </div>
