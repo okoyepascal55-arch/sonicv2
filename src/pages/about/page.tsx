@@ -22,12 +22,12 @@ export default function AboutPage() {
   useSEO({
     title: 'Über uns | Sonic Group — Sales- & Marketing-Agentur seit 2007',
     description: 'Sonic Group: Unabhängige Marketing- und Sales-Agentur seit 2007. Über 500 Projekte, 1,35 Mio. Einsätze. Partner von Philips, Rowenta, Krups, Canon, Garmin & mehr. Jetzt kennenlernen.',
-    keywords: 'Sonic Group, Sales Promotion Agentur Deutschland, Marketing Agentur seit 2007, POS Agentur',
+    keywords: 'Sonic Group, Sales Promotion Agentur Deutschland, Marketing Agentur seit 2007, POS Agentur, retail activation agency Germany, Promotionagentur Krefeld, brand activation Europe, Sonic Sales Support GmbH',
     canonical: 'https://sonic-group.de/ueber-uns',
     ogTitle: 'Über Sonic Group — Marken im Herzen, Erfolg im Fokus',
     ogDescription: 'Seit 2007 unabhängig: Sonic Group vereint Konzeption, Kreation und Koordination unter einem Dach. 500+ Projekte, 1,35 Mio. Einsätze für Top-Marken wie Philips, Garmin, Canon und mehr.',
     ogType: 'website',
-    ogImage: 'https://readdy.ai/api/search-image?query=Professional%20team%20of%20diverse%20marketing%20and%20sales%20professionals%20standing%20together%20in%20a%20modern%20industrial%20studio%20space%20with%20warm%20lighting%2C%20collaborative%20atmosphere%2C%20brand%20logos%20subtly%20visible%20on%20screens%20in%20background%2C%20editorial%20corporate%20photography%2C%20authentic%20expressions%2C%20clean%20composition&width=1200&height=630&seq=about-og-2026&orientation=landscape',
+    ogImage: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png',
   });
 
   // ── Dashboard-managed media ──
