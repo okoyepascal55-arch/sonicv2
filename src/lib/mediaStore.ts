@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import manifestData from '@/mocks/imagesManifest.json';
 import { supabase } from '@/lib/supabase';
 
 export interface MediaItem {
@@ -469,40 +468,17 @@ export const VIRTUAL_MEDIA: MediaSections = {
   /* Each key = one named category with multiple images uploadable */
 
   /* Garmin */
-  case_garmin_gallery_1: [
-    { url: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_1000_A26_Front.webp', caption: 'POS Aktivierung — Garmin CDU', wide: true },
-    { url: '/images/Case Studies -Fallbsp/Garmin/5243_190035993.webp', caption: 'POS Aktivierung — Garmin Promotion', wide: false },
-    { url: '/images/Case Studies -Fallbsp/Garmin/Saturn Frankfurt_Redouan B.webp', caption: 'POS Aktivierung — Saturn Frankfurt', wide: false },
-  ],
-  case_garmin_gallery_2: [
-    { url: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_Unterschrank-Light_1000_A26_Front.webp', caption: 'POS-Möbel & Displays — Unterschrank Front', wide: true },
-    { url: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_600_A26_Front.webp', caption: 'POS-Möbel & Displays — CDU 600', wide: false },
-    { url: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_Unterschrank-Light_600_A26_Front.webp', caption: 'POS-Möbel & Displays — Unterschrank 600', wide: false },
-  ],
-  case_garmin_gallery_3: [
-    { url: '/images/Case Studies -Fallbsp/Garmin/MM Chemnitz_Rene G.webp', caption: 'Training & Team — MM Chemnitz', wide: false },
-    { url: '/images/Case Studies -Fallbsp/Garmin/5279_10060291.webp', caption: 'Training & Team — POS-Möbel Training', wide: false },
-    { url: '/images/Case Studies -Fallbsp/Garmin/5315_195525779.webp', caption: 'Training & Team — Schulung', wide: false },
-    { url: '/images/Case Studies -Fallbsp/Garmin/MM Hückelhoven_Chris L.webp', caption: 'Training & Team — MM Hückelhoven', wide: false },
-  ],
-  case_garmin_gallery_4: [
-    { url: '/images/Case Studies -Fallbsp/Garmin/5431_162510371.webp', caption: 'Lager & Logistik — Versand', wide: false },
-    { url: '/images/Case Studies -Fallbsp/Garmin/5243_190036664.webp', caption: 'Lager & Logistik — Aktion', wide: false },
-  ],
+  case_garmin_gallery_1: [],
+  case_garmin_gallery_2: [],
+  case_garmin_gallery_3: [],
+  case_garmin_gallery_4: [],
 
   /* Groupe SEB */
-  case_seb_gallery_1: [
-    { url: '/images/Case Studies -Fallbsp/SEB/Optigrill Tisch.webp', caption: 'Live-Cooking — Optigrill Tisch', wide: true },
-    { url: '/images/Case Studies -Fallbsp/SEB/image10.webp', caption: 'Live-Cooking — Aktion', wide: false },
-  ],
-  case_seb_gallery_2: [
-    { url: '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam.webp', caption: 'Roadshow & Video — Airstream Shooting', wide: true },
-  ],
+  case_seb_gallery_1: [],
+  case_seb_gallery_2: [],
 
   /* Philips */
-  case_philips_gallery_1: [
-    { url: '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp', caption: 'In-Store Promotion — Philips TV Sound', wide: true },
-  ],
+  case_philips_gallery_1: [],
   case_philips_gallery_2: [],
 
   /* Groupe SEB — 2 additional */
@@ -532,9 +508,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   /* ── SRT: Case Studies dashboard control ── */
-  case_studies_hero_images: [
-    { url: '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp', caption: 'Case Studies Hero — Hintergrundfoto', wide: true },
-  ],
+  case_studies_hero_images: [],
   case_studies_brand_logos: [],
 
   srt_product_desktop: [
@@ -632,7 +606,6 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Content Creation — Polaroid', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg', caption: 'Team Events — Polaroid', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg', caption: 'Promoter Events — Polaroid', wide: true },
-    { url: '/images/Karriere/IMG_0002.webp', caption: 'Roadshows & Messen — Polaroid', wide: true },
   ],
 
   /* ── CAREERS: DreamTeam Events Images ── */
@@ -1415,13 +1388,8 @@ export const VIRTUAL_MEDIA: MediaSections = {
 ───────────────────────────────────────────── */
 export const DEFAULT_MEDIA: MediaSections = {};
 
-// 1. Populate from JSON manifest
-const typedManifest = manifestData as Record<string, { key: string; label: string; images: MediaItem[] }>;
-Object.keys(typedManifest).forEach((dirPath) => {
-  DEFAULT_MEDIA[dirPath] = Object.freeze([...typedManifest[dirPath].images]) as unknown as MediaItem[];
-});
-
-// 2. Add virtual folders
+// Populate from virtual folders (manifest removed — all images managed via Supabase dashboard)
+// 1. Add virtual folders
 Object.keys(VIRTUAL_MEDIA).forEach((virtualKey) => {
   DEFAULT_MEDIA[virtualKey] = Object.freeze([...VIRTUAL_MEDIA[virtualKey]]) as unknown as MediaItem[];
 });
