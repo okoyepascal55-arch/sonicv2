@@ -67,7 +67,7 @@ export function ChapterHeader({
   aside,
   headingMax = 'max-w-[620px]',
   headingSize = 'clamp(1.75rem, 3.2vw, 3.25rem)',
-  absoluteNumeral = false,
+  absoluteNumeral = true,
   mb,
 }: {
   n: string;
