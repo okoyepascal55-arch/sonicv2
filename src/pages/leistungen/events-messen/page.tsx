@@ -37,6 +37,8 @@ export default function EventsMessenPage() {
         <EventsHero />
       </div>
 
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
+
       <EventsContent />
 
       <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
