@@ -20,8 +20,8 @@ const NAV_ITEMS = [
 export default function LeistungenPage() {
   useSEO({
     title: 'Leistungen | Sonic Group — POS, Live Video, Events, Staffing & Logistik',
-    description: 'Alle Leistungen von Sonic Group: POS Full Service, Live Video Promotion, Events & Messen, Staff as a Service, Talentpool, Kreation & Content, Forecasting, Warehouse & Logistik.',
-    keywords: 'POS Full Service, Live Video Promotion, Events Messen DACH, Staff as a Service, Retail Staffing, Kreation Content',
+    description: 'Sonic Group Leistungen: POS Full Service, Live Video Promotion, Events & Messen, Staff as a Service, Talentpool, Kreation & Content, Forecasting, Warehouse & Logistik — für Marken im DACH-Markt und internationale Unternehmen aus China & USA.',
+    keywords: 'POS Full Service Germany, Live Video Promotion DACH, Events Messen Agentur, Staff as a Service Germany, Retail Staffing Europe, Kreation Content Agentur, field marketing Germany, market entry services DACH, brand activation services Europe, Verkaufsförderung Deutschland, Promotionpersonal Agentur, retail partner China brand Germany, trade marketing services',
     canonical: 'https://sonic-group.de/leistungen',
     ogTitle: 'Leistungen — Sonic Group DACH',
     ogDescription: 'Von POS-Promotion bis Live Video: Alle Retail-Leistungen von Sonic Group für den DACH-Markt.',
