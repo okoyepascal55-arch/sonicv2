@@ -118,6 +118,8 @@ export default function ForecastingContent() {
  </div>
  </section>
 
+ <WoodenDivider />
+
  {/* ── How it works — pictorial ── */}
  <section id="wie-es-funktioniert"className="sonic-section-lg bg-white px-4 md:px-6">
  <div className="sonic-container">
