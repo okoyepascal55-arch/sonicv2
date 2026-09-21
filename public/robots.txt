@@ -1,8 +1,9 @@
 User-agent: *
 Allow: /
 
-# Disallow admin or private paths (none currently)
+# Disallow admin and private paths
 Disallow: /404
+Disallow: /dashboard
 
 # Sitemap location
 Sitemap: https://sonic-group.de/sitemap.xml
