@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import SonicReelsTimeline from './components/SonicReelsTimeline';
 import { useTextSection } from '@/hooks/useText';
 import { useSEO } from '@/hooks/useSEO';
