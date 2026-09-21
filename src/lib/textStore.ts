@@ -835,7 +835,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The jobs listing section with Tanja CTA.',
     entries: [
       { id: 'careers-jobs-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Aktuelle Stellenangebote' },
-      { id: 'careers-jobs-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'DEIN NÄCHSTER KARRIERESCHRITT' },
+      { id: 'careers-jobs-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Dein Job wartet. Jetzt bewerben.' },
       { id: 'careers-jobs-tanja-heading', label: 'Tanja Heading', description: 'Tanja question', type: 'heading', value: 'Unsicher, welche Stelle zu dir passt?' },
       { id: 'careers-jobs-tanja-desc', label: 'Tanja Description', description: 'Tanja description', type: 'paragraph', value: 'Tanja aus unserem HR-Team nimmt sich gerne Zeit für ein unverbindliches Gespräch.' },
       { id: 'careers-jobs-tanja-cta', label: 'Tanja CTA', description: 'Tanja CTA button', type: 'cta', value: 'Mit Tanja sprechen' },
@@ -1370,6 +1370,7 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'careers_events', entryId: 'careers-events-heading', from: 'WIR ARBEITEN HART. WIR FEIERN NOCH MEHR.', to: 'Voller Einsatz. Echtes Team.' },
   { sectionKey: 'careers_events', entryId: 'careers-events-heading', from: 'Wir arbeiten hart. Wir feiern noch mehr.', to: 'Voller Einsatz. Echtes Team.' },
   { sectionKey: 'careers_jobs', entryId: 'careers-jobs-heading', from: 'Dein nächster Karriereschritt', to: 'Dein Job wartet. Jetzt bewerben.' },
+  { sectionKey: 'careers_jobs', entryId: 'careers-jobs-heading', from: 'DEIN NÄCHSTER KARRIERESCHRITT', to: 'Dein Job wartet. Jetzt bewerben.' },
   { sectionKey: 'careers_campus', entryId: 'careers-campus-heading', from: 'BÜRO ERKUNDEN', to: 'Büro erkunden' },
   { sectionKey: 'about_management_voices', entryId: 'about-voices-sub', from: 'Strategie, Kreation und Operations — drei Perspektiven, eine Überzeugung.', to: 'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.' },
   { sectionKey: 'about_leadership', entryId: 'about-leadership-sub', from: 'Bei Sonic treffen Backgrounds aufeinander, die sich perfekt ergänzen.', to: 'Bei Sonic treffen Expertisen aufeinander, die sich perfekt ergänzen.' },
