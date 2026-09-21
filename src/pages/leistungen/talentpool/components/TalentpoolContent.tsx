@@ -208,7 +208,7 @@ export default function TalentpoolContent() {
                     )}
                   </div>
                   <span className="text-[10px] font-black uppercase tracking-widest text-primary-600">{s.accent}</span>
-                  <h3 className="text-base font-black text-foreground-950 uppercase mt-1 mb-2 leading-snug">{s.title}</h3>
+                  <h3 className="text-base font-black text-foreground-950 mt-1 mb-2 leading-snug">{s.title}</h3>
                   <p className="text-sm text-foreground-950/55 leading-relaxed">{s.desc}</p>
                 </div>
               </div>
