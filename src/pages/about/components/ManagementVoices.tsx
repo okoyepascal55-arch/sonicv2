@@ -25,7 +25,7 @@ const EXECUTIVES = [
       { value: 'DACH', label: 'Marktabdeckung' },
     ],
     linkedin: 'https://www.linkedin.com/in/bj%C3%B6rn-bourdin-33100b3/',
-    image: '/images/Über uns/Leadership Perspectives/Björn Bourdin3.webp',
+    image: '', // fallback removed — deleted images must stay deleted
   },
   {
     id: 'jo',
@@ -46,7 +46,7 @@ const EXECUTIVES = [
       { value: '18+', label: 'Jahre Vertrieb' },
     ],
     linkedin: 'https://www.linkedin.com/in/jo-heitk%C3%A4mper-81522260/',
-    image: '/images/Über uns/Leadership Perspectives/Jo Heitkämper2.webp',
+    image: '', // fallback removed — deleted images must stay deleted
   },
   {
     id: 'lucas',
@@ -67,7 +67,7 @@ const EXECUTIVES = [
       { value: 'aktiv', label: 'Gestalter' },
     ],
     linkedin: 'https://www.linkedin.com/in/lucas-kreiten/',
-    image: '/images/Über uns/Leadership Perspectives/Lucas Kreiten1.webp',
+    image: '', // fallback removed — deleted images must stay deleted
   },
 ];
 
