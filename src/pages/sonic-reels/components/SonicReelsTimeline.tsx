@@ -33,6 +33,25 @@ function EraPillNav({
 }) {
   const stripRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef<HTMLButtonElement>(null);
+  const eraStripDragging = useRef(false);
+  const eraStripDragStart = useRef({ x: 0, scroll: 0 });
+
+  const onEraStripPointerDown = (e: React.PointerEvent) => {
+    eraStripDragging.current = true;
+    eraStripDragStart.current = { x: e.clientX, scroll: stripRef.current?.scrollLeft ?? 0 };
+    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+    if (stripRef.current) stripRef.current.style.cursor = 'grabbing';
+  };
+  const onEraStripPointerMove = (e: React.PointerEvent) => {
+    if (!eraStripDragging.current || !stripRef.current) return;
+    const dx = e.clientX - eraStripDragStart.current.x;
+    stripRef.current.scrollLeft = eraStripDragStart.current.scroll - dx;
+  };
+  const onEraStripPointerUp = (e: React.PointerEvent) => {
+    eraStripDragging.current = false;
+    if (stripRef.current) stripRef.current.style.cursor = 'grab';
+    (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
+  };
 
   useEffect(() => {
     if (!activeRef.current || !stripRef.current) return;
@@ -47,7 +66,11 @@ function EraPillNav({
       <div
         ref={stripRef}
         className="relative overflow-x-auto py-4 px-4 md:px-6"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', cursor: 'grab', userSelect: 'none', touchAction: 'none' }}
+        onPointerDown={onEraStripPointerDown}
+        onPointerMove={onEraStripPointerMove}
+        onPointerUp={onEraStripPointerUp}
+        onPointerLeave={onEraStripPointerUp}
       >
         <div className="flex items-center gap-3 w-max mx-auto">
           {eras.map((era, i) => {
