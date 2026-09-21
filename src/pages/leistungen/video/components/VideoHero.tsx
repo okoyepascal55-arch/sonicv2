@@ -49,18 +49,6 @@ export default function VideoHero() {
           {tDesc}
         </p>
 
-        <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-8 border-t border-white/15 pt-5">
-          {[
-            { val: '>50.000', label: '1:1 Live Video Calls' },
-            { val: 'Ø 6 Min.', label: 'Beratungsdauer' },
-            { val: '100 %', label: 'Managed Service' },
-          ].map((s, i) => (
-            <div key={i} className="text-center">
-              <div className="text-2xl font-black text-primary-500 tabular-nums">{s.val}</div>
-              <div className="text-white/45 text-xs font-bold uppercase tracking-wider mt-1">{s.label}</div>
-            </div>
-          ))}
-        </div>
 
         <div className="flex flex-wrap gap-3">
           <a
