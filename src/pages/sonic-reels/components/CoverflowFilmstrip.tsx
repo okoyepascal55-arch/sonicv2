@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import type { EraPhoto } from '../page';
 
 // ── Film grain data URI (SVG feTurbulence, shared) ───────────────────────
@@ -86,7 +86,7 @@ export default function CoverflowFilmstrip({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const [dragging, setDragging] = useState(false);
+  const dragging = useRef(false); // useRef avoids stale-closure bug in onPointerMove
   const dragState = useRef({ startX: 0, startScroll: 0, moved: false });
 
   // Center the active card in the viewport
@@ -101,17 +101,17 @@ export default function CoverflowFilmstrip({
   // Mouse-drag horizontal scroll
   const onPointerDown = (e: React.PointerEvent) => {
     dragState.current = { startX: e.clientX, startScroll: containerRef.current?.scrollLeft ?? 0, moved: false };
-    setDragging(true);
+    dragging.current = true;
     (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
   };
   const onPointerMove = (e: React.PointerEvent) => {
-    if (!dragging || !containerRef.current) return;
+    if (!dragging.current || !containerRef.current) return;
     const dx = e.clientX - dragState.current.startX;
     if (Math.abs(dx) > 4) dragState.current.moved = true;
     containerRef.current.scrollLeft = dragState.current.startScroll - dx;
   };
   const onPointerUp = (e: React.PointerEvent) => {
-    setDragging(false);
+    dragging.current = false;
     (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
   };
 
@@ -146,7 +146,7 @@ export default function CoverflowFilmstrip({
         onPointerUp={onPointerUp}
         onPointerLeave={onPointerUp}
         className="overflow-x-auto overflow-y-hidden cursor-grab active:cursor-grabbing"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', touchAction: 'pan-y' }}
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', touchAction: 'none' }}
       >
         <div
           className="flex items-center px-[16%] sm:px-[15%] md:px-[13%]"
