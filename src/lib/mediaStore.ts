@@ -2046,9 +2046,10 @@ function computeOverrides(store: MediaSections): MediaSections {
     const defaultVal = DEFAULT_MEDIA[key];
 
     if (!current || current.length === 0) {
-      if (defaultVal && defaultVal.length > 0) {
-        overrides[key] = [];
-      }
+      // Always write explicit empty regardless of whether DEFAULT_MEDIA
+      // has an entry — prevents deleted sections being omitted from Supabase
+      // and falling back to component-level hardcoded defaults on next load.
+      overrides[key] = [];
       continue;
     }
 
