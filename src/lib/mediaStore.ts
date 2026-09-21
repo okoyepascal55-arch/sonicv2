@@ -2453,10 +2453,13 @@ if (typeof window !== 'undefined') {
           // No remote data for this key — local wins entirely
           merged[key] = localItems;
         } else {
-          // Merge: start with local, append any remote items not already in local
-          const localUrls = new Set(localItems.map((i) => i.url));
-          const remoteOnly = remoteItems.filter((i) => !localUrls.has(i.url));
-          merged[key] = [...localItems, ...remoteOnly];
+          // Remote-first merge: Supabase is source of truth.
+          // Remote items appear first (index 0 = current image in components).
+          // Local-only additions (not yet in Supabase) are appended after.
+          // This prevents stale localStorage from hiding fresher Supabase uploads.
+          const remoteUrls = new Set(remoteItems.map((i) => i.url));
+          const localOnly = localItems.filter((i) => !remoteUrls.has(i.url));
+          merged[key] = [...remoteItems, ...localOnly];
         }
       }
     }
