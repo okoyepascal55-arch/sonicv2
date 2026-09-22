@@ -54,7 +54,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'home-hero-left-h3-line3', label: 'Left Panel H3 Line 3', description: 'Brand CTA ending', type: 'heading', value: 'MIT POWER?' },
       { id: 'home-hero-left-desc', label: 'Left Panel Description', description: 'Brand CTA description', type: 'paragraph', value: 'Dein Full-Service-Partner für Performance Marketing, Retail-Aktivierung und nachhaltiges Markenwachstum.' },
       { id: 'home-hero-left-btn', label: 'Left Panel Button', description: 'Brand CTA button', type: 'cta', value: 'Starte deinen Markteintritt' },
-      { id: 'home-hero-right-badge', label: 'Right Panel Badge', description: 'Talent CTA badge', type: 'label', value: 'Mensch. Der Unterschied.' },
+      { id: 'home-hero-right-badge', label: 'Right Panel Badge', description: 'Talent CTA badge', type: 'label', value: 'Der Mensch. Der Unterschied.' },
       { id: 'home-hero-right-h3', label: 'Right Panel H3 Line 1', description: 'Talent CTA heading', type: 'heading', value: 'SUCHST DU EINEN' },
       { id: 'home-hero-right-h3-accent', label: 'Right Panel H3 Accent', description: 'Talent CTA accent word', type: 'heading', value: 'JOB' },
       { id: 'home-hero-right-h3-line3', label: 'Right Panel H3 Line 3', description: 'Talent CTA ending', type: 'heading', value: 'MIT ENERGIE?' },
@@ -719,7 +719,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The origin story and ticker stats section.',
     entries: [
       { id: 'about-origin-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Über uns' },
-      { id: 'about-origin-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'MARKEN IM HERZEN. ERFOLG IM FOKUS.' },
+      { id: 'about-origin-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Marken im Herzen. Erfolg im Fokus.' },
       { id: 'about-origin-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Wir sind eine unabhängige Marketing- und Sales-Agentur mit Schwerpunkten rund um die Konzeption, Kreation und Koordination von Kundenprojekten – ob am Point of Sale, im Studio, auf Messen oder Events in den Bereichen B2B, B2B2C und D2C.', multiline: true },
       { id: 'about-origin-p2', label: 'Paragraph 2', description: 'Second paragraph', type: 'paragraph', value: 'Seit 2007 leben wir Marken und machen sie erfolgreich – unabhängig von Größe, Branche und Zielgruppe. Dabei arbeiten wir stets geprägt von den Werten Mensch, Motivation, Daten und Werkzeug.', multiline: true },
       { id: 'about-origin-p3', label: 'Paragraph 3', description: 'Third paragraph', type: 'paragraph', value: 'Unsere Strategie: Ärmel hoch und anpacken! Echtes Handwerk – von Anfang bis Ende mit 100 % Leidenschaft und vollem Einsatz für die Ziele unserer Kunden.', multiline: true },
@@ -744,7 +744,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The leadership team diversity section with rotating stats.',
     entries: [
       { id: 'about-leadership-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Das Team' },
-      { id: 'about-leadership-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'FACHLICHE UND MENSCHLICHE VIELFALT.' },
+      { id: 'about-leadership-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Fachliche und menschliche Vielfalt.' },
       { id: 'about-leadership-sub', label: 'Subtitle', description: 'Section subtitle', type: 'paragraph', value: 'Bei Sonic treffen Expertisen aufeinander, die sich perfekt ergänzen.' },
       { id: 'about-leadership-cta', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Offene Stellen' },
     ],
@@ -768,7 +768,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The unified culture section with Darum Sonic, Ausgezeichnet, and Sonic-Werte.',
     entries: [
       { id: 'careers-culture-badge', label: 'Culture Badge', description: 'Darum Sonic badge', type: 'badge', value: 'Darum Sonic' },
-      { id: 'careers-culture-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'STARKE MENSCHEN FÜR STARKE MARKEN' },
+      { id: 'careers-culture-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Starke Menschen für starke Marken' },
       { id: 'careers-culture-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Wir lieben und leben Marken, insbesondere am Point of Sale, auf Messen, bei Events, auf Roadshows und per Video aus unseren Studios an unserem Campus in Krefeld.', multiline: true },
       { id: 'careers-culture-p2', label: 'Paragraph 2', description: 'Second paragraph', type: 'paragraph', value: 'Energiegeladen und sympathisch: Diese Beschreibung passt auf die Menschen, die bei Sonic arbeiten. Passt sie auch auf dich?', multiline: true },
       { id: 'careers-culture-award-heading', label: 'Award Heading', description: 'Ausgezeichnet heading', type: 'heading', value: 'Kultur? Leben wir.' },
@@ -1327,9 +1327,9 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'talentpool-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Wechselnde Gesichter. Kein Markenwissen. Kein ROI.' },
       { id: 'talentpool-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Das Standardmodell in der Promotion-Branche ist kaputt.' },
-      { id: 'talentpool-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'DER SONIC-TALENTEPOOL. KEIN VERGLEICH.' },
+      { id: 'talentpool-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Der Sonic-Talentepool. Kein Vergleich.' },
       { id: 'talentpool-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Festangestellt, trainiert und live-getrackt — das ist der Unterschied.' },
-      { id: 'talentpool-profiles-heading', label: 'Profiles Heading', description: 'Profiles H2', type: 'heading', value: '4 ROLLEN. EIN ANSPRECHPARTNER.' },
+      { id: 'talentpool-profiles-heading', label: 'Profiles Heading', description: 'Profiles H2', type: 'heading', value: '4 Rollen. Ein Ansprechpartner.' },
       { id: 'talentpool-profiles-sub', label: 'Profiles Subline', description: 'Profiles description', type: 'paragraph', value: 'Jeden Talent-Typ aus einer Hand — koordiniert, geschult und live getrackt.' },
     ],
   },
@@ -1374,6 +1374,20 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'careers_campus', entryId: 'careers-campus-heading', from: 'BÜRO ERKUNDEN', to: 'Büro erkunden' },
   { sectionKey: 'about_management_voices', entryId: 'about-voices-sub', from: 'Strategie, Kreation und Operations — drei Perspektiven, eine Überzeugung.', to: 'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.' },
   { sectionKey: 'about_leadership', entryId: 'about-leadership-sub', from: 'Bei Sonic treffen Backgrounds aufeinander, die sich perfekt ergänzen.', to: 'Bei Sonic treffen Expertisen aufeinander, die sich perfekt ergänzen.' },
+  // ── Heading casing normalization ──
+  { sectionKey: 'about_origin_story', entryId: 'about-origin-heading', from: 'MARKEN IM HERZEN. ERFOLG IM FOKUS.', to: 'Marken im Herzen. Erfolg im Fokus.' },
+  { sectionKey: 'about_leadership', entryId: 'about-leadership-heading', from: 'FACHLICHE UND MENSCHLICHE VIELFALT.', to: 'Fachliche und menschliche Vielfalt.' },
+  { sectionKey: 'careers_culture', entryId: 'careers-culture-heading', from: 'STARKE MENSCHEN FÜR STARKE MARKEN', to: 'Starke Menschen für starke Marken' },
+  { sectionKey: 'leistungen_talentpool_content', entryId: 'talentpool-solution-heading', from: 'DER SONIC-TALENTEPOOL. KEIN VERGLEICH.', to: 'Der Sonic-Talentepool. Kein Vergleich.' },
+  { sectionKey: 'leistungen_talentpool_content', entryId: 'talentpool-profiles-heading', from: '4 ROLLEN. EIN ANSPRECHPARTNER.', to: '4 Rollen. Ein Ansprechpartner.' },
+  { sectionKey: 'home_hero', entryId: 'home-hero-right-badge', from: 'Mensch. Der Unterschied.', to: 'Der Mensch. Der Unterschied.' },
+  // ── Placeholder / Sie-form text cleanup (startsWith / contains matching) ──
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-subtitle', from: 'Wähle 1 Partnerin', to: 'Keine Freelancer. Keine Zeitarbeit. Echte Markenbotschafter.', matchType: 'startsWith' as const },
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-description', from: 'Nacht-Performance', to: 'Unser Talentepool umfasst über 2.000 handverlesene, festangestellte Markenbotschafter deutschlandweit — trainiert, motiviert und live in ihrer eigenen Zielerreichung getrackt.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff', entryId: 'staff-hero-subtitle', from: 'Markenhilfe antworten', to: 'Markenfans anheuern: Für Sell-out, Sell-in, Schulungen, Brand Activation und mehr.', matchType: 'startsWith' as const },
+  { sectionKey: 'leistungen_staff', entryId: 'staff-hero-description', from: 'Ihnen', to: 'Wir übernehmen Recruiting, Payroll und Steuerung, bspw. via Arbeitnehmerüberlassung.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_pos', entryId: 'pos-hero-description', from: 'Ihren', to: 'Durchgetaktet. Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_forecasting', entryId: 'forecasting-hero-description', from: 'Scorpin', to: 'Auf Basis von historischen Sell-out-Daten, Standort-Performance und Marktintelligenz prognostizieren wir deine Ergebnisse — datenbasiert, nachvollziehbar, belastbar.', matchType: 'contains' as const },
 ];
 
 function loadFromStorage(): TextSection[] {
@@ -1393,9 +1407,12 @@ function loadFromStorage(): TextSection[] {
       const section = sections.find((s) => s.key === fix.sectionKey);
       if (!section) continue;
       const entry = section.entries.find((e) => e.id === fix.entryId);
-      if (entry && entry.value === fix.from) {
-        entry.value = fix.to;
-      }
+      if (!entry) continue;
+      const matches =
+        fix.matchType === 'startsWith' ? entry.value.startsWith(fix.from) :
+        fix.matchType === 'contains'   ? entry.value.includes(fix.from) :
+                                         entry.value === fix.from;
+      if (matches) entry.value = fix.to;
     }
     return sections;
   } catch {
