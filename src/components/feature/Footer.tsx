@@ -20,6 +20,8 @@ export default function Footer() {
   const tLinkWarehouse = useText('common_footer', 'footer-link-warehouse', 'Warehouse & Logistik');
   const tLinkSrt = useText('common_footer', 'footer-link-srt', 'SRT Technologie');
   const tLinkLvp = useText('common_footer', 'footer-link-lvp', 'Live Video Promotion');
+  const tLinkForecasting = useText('common_footer', 'footer-link-forecasting', 'Forecasting');
+  const tLinkTalentpool = useText('common_footer', 'footer-link-talentpool', 'Talentpool');
   const tColCompany = useText('common_footer', 'footer-col-company', '— Unternehmen');
   const tLinkAbout = useText('common_footer', 'footer-link-about', 'Über uns');
   const tLinkCareers = useText('common_footer', 'footer-link-careers', 'Karriere');
@@ -45,6 +47,8 @@ export default function Footer() {
       { label: tLinkWarehouse, href: '/leistungen/warehouse-logistik' },
       { label: tLinkSrt, href: '/srt' },
       { label: tLinkLvp, href: '/leistungen/live-video' },
+      { label: tLinkForecasting, href: '/leistungen/forecasting' },
+      { label: tLinkTalentpool, href: '/leistungen/talentpool' },
     ],
     company: [
       { label: tLinkAbout, href: '/ueber-uns' },
