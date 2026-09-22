@@ -7,6 +7,9 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  /* Prevent Safari from auto-adjusting font sizes — fixes Chrome vs Safari rendering delta */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 :root {
@@ -1338,7 +1341,7 @@ html {
 .leist-h1-hub {
   font-size: clamp(2rem, 6vw, 5.5rem); /* 32px → 88px */
   font-weight: 900;
-  line-height: 0.95;
+  line-height: 1.0; /* was 0.95 — Safari clips ascenders below 1.0 */
   letter-spacing: -0.038em;
   text-transform: uppercase;
 }

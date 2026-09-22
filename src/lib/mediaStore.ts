@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import manifestData from '@/mocks/imagesManifest.json';
 import { supabase } from '@/lib/supabase';
 
 export interface MediaItem {
@@ -179,6 +178,7 @@ export const PAGE_GROUPS: PageGroup[] = [
       '/images/Über uns/Leadership Perspectives',
       'about_sonicreels_hero_accent',
       'about_origin_story_wood_bg',
+      'about_client_logos',
       // ── Sonic Reels page (/sonic-reels) ──
       '/images/Über uns/Sonic Reels/2007-2015',
       'reels_2015_2019',
@@ -189,17 +189,7 @@ export const PAGE_GROUPS: PageGroup[] = [
       'reels_2026',
     ],
   },
-  {
-    id: 'case_studies',
-    label: 'Fallbeispiele',
-    icon: 'ri-file-chart-line',
-    sections: [
-      '/images/Case Studies -Fallbsp/Avoury',
-      '/images/Case Studies -Fallbsp/Garmin',
-      '/images/Case Studies -Fallbsp/Philips',
-      '/images/Case Studies -Fallbsp/SEB',
-    ],
-  },
+
   {
     id: 'blog',
     label: 'Blog',
@@ -479,40 +469,17 @@ export const VIRTUAL_MEDIA: MediaSections = {
   /* Each key = one named category with multiple images uploadable */
 
   /* Garmin */
-  case_garmin_gallery_1: [
-    { url: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_1000_A26_Front.webp', caption: 'POS Aktivierung — Garmin CDU', wide: true },
-    { url: '/images/Case Studies -Fallbsp/Garmin/5243_190035993.webp', caption: 'POS Aktivierung — Garmin Promotion', wide: false },
-    { url: '/images/Case Studies -Fallbsp/Garmin/Saturn Frankfurt_Redouan B.webp', caption: 'POS Aktivierung — Saturn Frankfurt', wide: false },
-  ],
-  case_garmin_gallery_2: [
-    { url: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_Unterschrank-Light_1000_A26_Front.webp', caption: 'POS-Möbel & Displays — Unterschrank Front', wide: true },
-    { url: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_600_A26_Front.webp', caption: 'POS-Möbel & Displays — CDU 600', wide: false },
-    { url: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_Unterschrank-Light_600_A26_Front.webp', caption: 'POS-Möbel & Displays — Unterschrank 600', wide: false },
-  ],
-  case_garmin_gallery_3: [
-    { url: '/images/Case Studies -Fallbsp/Garmin/MM Chemnitz_Rene G.webp', caption: 'Training & Team — MM Chemnitz', wide: false },
-    { url: '/images/Case Studies -Fallbsp/Garmin/5279_10060291.webp', caption: 'Training & Team — POS-Möbel Training', wide: false },
-    { url: '/images/Case Studies -Fallbsp/Garmin/5315_195525779.webp', caption: 'Training & Team — Schulung', wide: false },
-    { url: '/images/Case Studies -Fallbsp/Garmin/MM Hückelhoven_Chris L.webp', caption: 'Training & Team — MM Hückelhoven', wide: false },
-  ],
-  case_garmin_gallery_4: [
-    { url: '/images/Case Studies -Fallbsp/Garmin/5431_162510371.webp', caption: 'Lager & Logistik — Versand', wide: false },
-    { url: '/images/Case Studies -Fallbsp/Garmin/5243_190036664.webp', caption: 'Lager & Logistik — Aktion', wide: false },
-  ],
+  case_garmin_gallery_1: [],
+  case_garmin_gallery_2: [],
+  case_garmin_gallery_3: [],
+  case_garmin_gallery_4: [],
 
   /* Groupe SEB */
-  case_seb_gallery_1: [
-    { url: '/images/Case Studies -Fallbsp/SEB/Optigrill Tisch.webp', caption: 'Live-Cooking — Optigrill Tisch', wide: true },
-    { url: '/images/Case Studies -Fallbsp/SEB/image10.webp', caption: 'Live-Cooking — Aktion', wide: false },
-  ],
-  case_seb_gallery_2: [
-    { url: '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam.webp', caption: 'Roadshow & Video — Airstream Shooting', wide: true },
-  ],
+  case_seb_gallery_1: [],
+  case_seb_gallery_2: [],
 
   /* Philips */
-  case_philips_gallery_1: [
-    { url: '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp', caption: 'In-Store Promotion — Philips TV Sound', wide: true },
-  ],
+  case_philips_gallery_1: [],
   case_philips_gallery_2: [],
 
   /* Groupe SEB — 2 additional */
@@ -542,9 +509,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   /* ── SRT: Case Studies dashboard control ── */
-  case_studies_hero_images: [
-    { url: '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp', caption: 'Case Studies Hero — Hintergrundfoto', wide: true },
-  ],
+  case_studies_hero_images: [],
   case_studies_brand_logos: [],
 
   srt_product_desktop: [
@@ -642,7 +607,6 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Content Creation — Polaroid', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg', caption: 'Team Events — Polaroid', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg', caption: 'Promoter Events — Polaroid', wide: true },
-    { url: '/images/Karriere/IMG_0002.webp', caption: 'Roadshows & Messen — Polaroid', wide: true },
   ],
 
   /* ── CAREERS: DreamTeam Events Images ── */
@@ -1425,13 +1389,8 @@ export const VIRTUAL_MEDIA: MediaSections = {
 ───────────────────────────────────────────── */
 export const DEFAULT_MEDIA: MediaSections = {};
 
-// 1. Populate from JSON manifest
-const typedManifest = manifestData as Record<string, { key: string; label: string; images: MediaItem[] }>;
-Object.keys(typedManifest).forEach((dirPath) => {
-  DEFAULT_MEDIA[dirPath] = Object.freeze([...typedManifest[dirPath].images]) as unknown as MediaItem[];
-});
-
-// 2. Add virtual folders
+// Populate from virtual folders (manifest removed — all images managed via Supabase dashboard)
+// 1. Add virtual folders
 Object.keys(VIRTUAL_MEDIA).forEach((virtualKey) => {
   DEFAULT_MEDIA[virtualKey] = Object.freeze([...VIRTUAL_MEDIA[virtualKey]]) as unknown as MediaItem[];
 });
@@ -2088,9 +2047,10 @@ function computeOverrides(store: MediaSections): MediaSections {
     const defaultVal = DEFAULT_MEDIA[key];
 
     if (!current || current.length === 0) {
-      if (defaultVal && defaultVal.length > 0) {
-        overrides[key] = [];
-      }
+      // Always write explicit empty regardless of whether DEFAULT_MEDIA
+      // has an entry — prevents deleted sections being omitted from Supabase
+      // and falling back to component-level hardcoded defaults on next load.
+      overrides[key] = [];
       continue;
     }
 
@@ -2141,13 +2101,16 @@ function getStoreSnapshot(): MediaSections {
       }
     }
 
-    // Pad: if any stored section has fewer items than DEFAULT_MEDIA,
-    // append the missing default items so newly-added slots always appear
+    // Pad: only fill slots for sections the user has NEVER touched (not in
+    // localStorage). If a section IS in localStorage, the user owns it —
+    // never re-append defaults, as that would restore deleted images.
+    const localSections = raw ? Object.keys(JSON.parse(raw) as MediaSections) : [];
+    const localSectionsSet = new Set(localSections);
     for (const key of Object.keys(DEFAULT_MEDIA)) {
+      if (localSectionsSet.has(key)) continue; // user owns this section — never pad it
       const defaultItems = DEFAULT_MEDIA[key];
       const mergedItems = merged[key];
       if (defaultItems && mergedItems && mergedItems.length < defaultItems.length) {
-        // User has real uploads for slots 0..N, plus N+1..end are defaults
         merged[key] = [
           ...mergedItems,
           ...defaultItems.slice(mergedItems.length),
@@ -2236,7 +2199,7 @@ export function getCategoriesList(): CategoryInfo[] {
   const store = loadFromStorage();
   const allKeys = Object.keys(store);
   _cachedCategoriesList = allKeys.map((key) => {
-    const label = HUMAN_LABELS[key] || typedManifest[key]?.label || key;
+    const label = HUMAN_LABELS[key] || key;
     const pageGroupId = getPageGroupForSection(key);
     const items = store[key];
     const defaultItems = DEFAULT_MEDIA[key];
@@ -2460,10 +2423,13 @@ if (typeof window !== 'undefined') {
           // No remote data for this key — local wins entirely
           merged[key] = localItems;
         } else {
-          // Merge: start with local, append any remote items not already in local
-          const localUrls = new Set(localItems.map((i) => i.url));
-          const remoteOnly = remoteItems.filter((i) => !localUrls.has(i.url));
-          merged[key] = [...localItems, ...remoteOnly];
+          // Remote-first merge: Supabase is source of truth.
+          // Remote items appear first (index 0 = current image in components).
+          // Local-only additions (not yet in Supabase) are appended after.
+          // This prevents stale localStorage from hiding fresher Supabase uploads.
+          const remoteUrls = new Set(remoteItems.map((i) => i.url));
+          const localOnly = localItems.filter((i) => !remoteUrls.has(i.url));
+          merged[key] = [...remoteItems, ...localOnly];
         }
       }
     }

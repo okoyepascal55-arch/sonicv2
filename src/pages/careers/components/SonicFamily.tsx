@@ -105,7 +105,7 @@ export default function SonicFamily() {
           eyebrow={tBadge}
           heading={<>{headingMain} {headingAccent && <Marker>{headingAccent}</Marker>}</>}
           sub={tSub}
-          headingMax="max-w-[620px]"
+          headingMax="max-w-full"
         />
 
         {/* ── Main layout: story panel (top) + name selector (bottom) ── */}

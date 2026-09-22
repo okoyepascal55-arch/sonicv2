@@ -28,7 +28,7 @@ export default function Zusammenarbeit() {
               <span className="w-7 h-0.5 bg-primary-500" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
             </div>
-            <h2 className="sonic-h2 text-foreground-950 uppercase">{tHeading}</h2>
+            <h2 className="sonic-h2 text-foreground-950 ">{tHeading}</h2>
           </div>
           {/* Step count */}
           <div className="text-right">
@@ -56,7 +56,7 @@ export default function Zusammenarbeit() {
 
               {/* Content */}
               <p className="text-[9px] font-black uppercase tracking-[0.25em] text-primary-500/60 mb-2">{step.number} / 06</p>
-              <h3 className="text-[15px] font-black text-foreground-950 uppercase mb-1 leading-snug">{step.title}</h3>
+              <h3 className="text-[15px] font-black text-foreground-950 mb-1 leading-snug">{step.title}</h3>
               <p className="text-[11px] font-bold text-primary-600/70 mb-3 uppercase tracking-wide">{step.short}</p>
               <p className="text-[12px] text-foreground-950/45 leading-relaxed">{step.description}</p>
 

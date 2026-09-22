@@ -106,7 +106,7 @@ export default function DataPaths() {
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tBadge}</span></div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <h2 className="sonic-h2 text-background-50 uppercase">{tHeading}</h2>
+            <h2 className="sonic-h2 text-background-50 ">{tHeading}</h2>
             <p className="text-background-50/45 text-sm leading-relaxed max-w-md">{tSub}</p>
           </div>
         </div>

@@ -5,7 +5,7 @@ export default function VideoShowcase() {
   const [playing, setPlaying] = useState(false);
   const { images: videoMedia } = useMediaStore('home_video');
 
-  const coverImage = videoMedia[0]?.url || 'https://readdy.ai/api/search-image?query=cinematic%20retail%20activation%20event%20scene%20with%20brand%20promoters%20engaging%20customers%20at%20modern%20trade%20show%20booth%20warm%20ambient%20lighting%20dynamic%20crowd%20interaction%20professional%20product%20demonstration%20sleek%20contemporary%20exhibition%20design%20with%20digital%20screens%20and%20branded%20displays%20high%20end%20commercial%20photography%20shallow%20depth%20of%20field%20editorial%20quality&width=1600&height=900&seq=video-cover-sonic-2026-v2&orientation=landscape';
+  const coverImage = videoMedia[0]?.url || 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png';
   const youtubeUrl = videoMedia[1]?.url || 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&loop=1&playlist=2H1rFHQsG4g&rel=0&modestbranding=1';
 
   return (
@@ -71,6 +71,7 @@ export default function VideoShowcase() {
                     alt="Sonic Retail Activation"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     loading="lazy"
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   />
 
                   {/* Gentle dark overlay */}

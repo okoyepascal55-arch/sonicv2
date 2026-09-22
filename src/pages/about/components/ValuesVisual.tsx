@@ -1,3 +1,4 @@
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useEffect, useRef, useState } from 'react';
 
 const clients = [
@@ -16,6 +17,7 @@ const clients = [
 ];
 
 export default function ValuesVisual() {
+  const { images: logoImages } = useMediaStore('about_client_logos');
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [logoErrors, setLogoErrors] = useState<Set<number>>(new Set());

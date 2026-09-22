@@ -59,7 +59,7 @@ export default function TrustStrip() {
   );
 
   return (
-    <section className="sonic-section-sm sm:md:px-4 md:px-6 bg-transparent relative overflow-hidden">
+    <section className="sonic-section-sm sm:px-4 md:px-6 bg-transparent relative">
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/5 rounded-full blur-3xl pointer-events-none"
         aria-hidden="true"

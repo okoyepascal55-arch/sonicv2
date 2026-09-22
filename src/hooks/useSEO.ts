@@ -9,6 +9,9 @@ interface SEOProps {
   ogDescription?: string;
   ogType?: string;
   ogImage?: string;
+  /** Structured data (JSON-LD). Pass an object or array of objects.
+   *  Injected as <script type="application/ld+json"> for Google, Bing & AI crawlers. */
+  jsonLd?: object | object[];
 }
 
 export function useSEO({
@@ -20,6 +23,7 @@ export function useSEO({
   ogDescription,
   ogType = 'website',
   ogImage,
+  jsonLd,
 }: SEOProps) {
   useEffect(() => {
     // Title
@@ -71,9 +75,25 @@ export function useSEO({
     // Last modified
     setMeta('meta[name="last-modified"]', 'name=last-modified', new Date().toISOString().split('T')[0]);
 
+    // JSON-LD structured data — for Google, Bing, AI crawlers (AEO/GEO)
+    const existingLd = document.querySelectorAll('script[data-seo-ld]');
+    existingLd.forEach(el => el.remove());
+    if (jsonLd) {
+      const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+      schemas.forEach((schema, i) => {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.setAttribute('data-seo-ld', String(i));
+        script.textContent = JSON.stringify(schema);
+        document.head.appendChild(script);
+      });
+    }
+
     return () => {
       // Restore base title on unmount
       document.title = 'Sonic Group | DACH Market Activation & Retail Excellence';
+      // Clean up JSON-LD on unmount
+      document.querySelectorAll('script[data-seo-ld]').forEach(el => el.remove());
     };
-  }, [title, description, keywords, canonical, ogTitle, ogDescription, ogType, ogImage]);
+  }, [title, description, keywords, canonical, ogTitle, ogDescription, ogType, ogImage, jsonLd]);
 }

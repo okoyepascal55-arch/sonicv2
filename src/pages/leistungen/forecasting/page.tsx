@@ -11,7 +11,6 @@ import ForecastingContent from './components/ForecastingContent';
 const NAV_ITEMS = [
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'wie-es-funktioniert', label: 'So funktioniert es', icon: 'ri-route-line' },
-  { id: 'stats', label: 'Zahlen', icon: 'ri-bar-chart-line' },
   { id: 'referenzen', label: 'Referenzen', icon: 'ri-chat-quote-line' },
   { id: 'kontakt', label: 'Kontakt', icon: 'ri-calendar-line' },
 ];

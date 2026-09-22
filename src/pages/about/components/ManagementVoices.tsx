@@ -25,7 +25,7 @@ const EXECUTIVES = [
       { value: 'DACH', label: 'Marktabdeckung' },
     ],
     linkedin: 'https://www.linkedin.com/in/bj%C3%B6rn-bourdin-33100b3/',
-    image: '/images/Über uns/Leadership Perspectives/Björn Bourdin3.webp',
+    image: '', // fallback removed — deleted images must stay deleted
   },
   {
     id: 'jo',
@@ -46,7 +46,7 @@ const EXECUTIVES = [
       { value: '18+', label: 'Jahre Vertrieb' },
     ],
     linkedin: 'https://www.linkedin.com/in/jo-heitk%C3%A4mper-81522260/',
-    image: '/images/Über uns/Leadership Perspectives/Jo Heitkämper2.webp',
+    image: '', // fallback removed — deleted images must stay deleted
   },
   {
     id: 'lucas',
@@ -67,7 +67,7 @@ const EXECUTIVES = [
       { value: 'aktiv', label: 'Gestalter' },
     ],
     linkedin: 'https://www.linkedin.com/in/lucas-kreiten/',
-    image: '/images/Über uns/Leadership Perspectives/Lucas Kreiten1.webp',
+    image: '', // fallback removed — deleted images must stay deleted
   },
 ];
 
@@ -231,11 +231,22 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
   const tHeading = useText('about_management_voices', 'about-voices-heading', 'Die Stimmen hinter Sonic.');
   const tSub     = useText('about_management_voices', 'about-voices-sub',     'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.');
 
-  const execs = EXECUTIVES.map((exec) => {
-    // Match by executive name in URL to handle multiple files per person correctly
-    const name = exec.name.split(' ')[0].toLowerCase(); // e.g. "björn", "jo", "lucas"
-    const matched = leadershipImages?.find(img => img.url.toLowerCase().includes(name) && img.url.match(/\d+\.webp$/i));
-    return { ...exec, image: (matched?.url) || exec.image };
+  const execs = EXECUTIVES.map((exec, i) => {
+    // Match by executive first name found in either URL or caption.
+    // Checking both fields handles: static manifest images (name in URL path),
+    // user-uploaded Supabase images (name may only appear in the caption field),
+    // and any filename the user chose via the dashboard Replace flow.
+    // The old regex (/\d+\.webp$/i) was too narrow — Supabase storage URLs
+    // like __storage__:dashboard/1234-bjorn.webp don't end in digit+.webp.
+    const name = exec.name.split(' ')[0].toLowerCase(); // "björn" | "jo" | "lucas"
+    const matched = leadershipImages?.find(img => {
+      const searchTarget = (img.url + ' ' + (img.caption || '')).toLowerCase();
+      return searchTarget.includes(name);
+    });
+    // Index-based fallback: if no name match (e.g. user uploaded without exec
+    // name in filename or caption), assign by position (0=Björn, 1=Jo, 2=Lucas).
+    const fallback = leadershipImages?.[i];
+    return { ...exec, image: matched?.url ?? fallback?.url ?? exec.image };
   });
 
   return (

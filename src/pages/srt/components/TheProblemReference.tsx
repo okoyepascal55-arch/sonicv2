@@ -52,7 +52,7 @@ export default function TheProblemReference() {
               <span className="w-7 h-0.5 bg-primary-500" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
             </div>
-            <h2 className="sonic-h2 text-white uppercase">{tHeading}</h2>
+            <h2 className="sonic-h2 text-white ">{tHeading}</h2>
           </div>
           <div className="md:border-l md:border-white/10 md:pl-10">
             <p className="text-sm text-white/45 leading-relaxed mb-6">{tSub}</p>
@@ -86,7 +86,7 @@ export default function TheProblemReference() {
 
               {/* Content */}
               <p className="text-[10px] font-black uppercase tracking-[0.18em] text-primary-500/60 mb-2">{p.title}</p>
-              <h3 className="text-[17px] md:text-[20px] font-black text-white leading-snug mb-4 uppercase">{p.headline}</h3>
+              <h3 className="text-[17px] md:text-[20px] font-black text-white leading-snug mb-4 ">{p.headline}</h3>
               <p className="text-[12px] text-white/40 leading-relaxed flex-1">{p.body}</p>
 
               {/* Impact — bottom chip */}

@@ -13,12 +13,22 @@ import { StackedSectionReveal } from '../../components/feature/SectionReveal';
 
 export default function HomePage() {
   useSEO({
-    title: 'Sonic Group | DACH Market Activation & Retail Excellence',
-    description: 'Sonic Group ist Ihr Full-Service-Partner für Market Activation im DACH-Raum. POS-Promotion, Live Video, Events, Staffing & Forecasting — über 1,35 Mio. Einsätze, €2 Mrd. Umsatz generiert.',
-    keywords: 'DACH Market Activation, Retail Promotion Deutschland, POS Staffing, Live Video Beratung, Markteintritt DACH',
+    title: 'Sonic Group | Retail Activation Agency for DACH & Europe — Market Entry Partner',
+    description: 'Sonic Group: Retail activation partner for Chinese and US manufacturers entering Germany, Austria, Switzerland. POS promotion, field staffing, live video, brand ambassador programs. 1.35M+ assignments. €2B+ sell-out.',
+    keywords: 'retail activation agency Germany, DACH market entry, POS promotion Germany, field marketing DACH, brand ambassador agency Europe, market entry Germany China brand, US brand launch Germany, Markteinführung Deutschland, Promotionagentur DACH, Sonic Group Krefeld, retail staffing Europe, live video promotion, trade marketing Germany',
     canonical: 'https://sonic-group.de/',
-    ogTitle: 'Sonic Group — Retail Activation Partner DACH',
-    ogDescription: 'Über 1,35 Mio. Einsätze. €2 Mrd. Umsatz. 2.000+ Talente. Ihr Full-Service-Partner für Retail Activation im DACH-Raum.',
+    ogTitle: 'Sonic Group — Retail Activation Agency | DACH & Europe',
+    ogDescription: 'From POS to live video: Full-service retail activation for Chinese & US brands entering DACH. 1.35M+ assignments. €2B+ sell-out. 2,000+ field staff.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': 'https://sonic-group.de/',
+      'name': 'Sonic Group — Retail Activation Agency DACH & Europe',
+      'description': 'Full-service retail activation and market entry agency for brands launching in Germany, Austria, Switzerland.',
+      'url': 'https://sonic-group.de',
+      'isPartOf': { '@id': 'https://sonic-group.de/#website' },
+      'about': { '@id': 'https://sonic-group.de/#organization' },
+    },
   });
 
   const totalSections = 8;

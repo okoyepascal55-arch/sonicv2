@@ -58,22 +58,8 @@ export default function EventsHero() {
           {tDesc}
         </p>
 
-        <div className="grid grid-cols-3 gap-2 md:gap-8 mb-8 border-t border-white/15 pt-5">
-          {[
-            { val: '>500', label: 'Großevents' },
-            { val: '>30.000', label: 'Kontakte' },
-            { val: '100 %', label: 'Full Service' },
-          ].map((s, i) => (
-            <div key={i} className="text-center">
-              <div className="text-base sm:text-xl md:text-2xl font-black text-primary-500 tabular-nums leading-tight">{s.val}</div>
-              <div className="text-white/45 text-[10px] sm:text-xs font-bold uppercase tracking-wider mt-1 leading-snug">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3 mt-6">
           <a
             href={`mailto:${CONTACT_EMAIL}?subject=Events%20Messen%20Beratung`}
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"

@@ -126,7 +126,7 @@ export default function FeaturesReference() {
           <span className="ml-auto text-[9px] font-black uppercase tracking-[0.2em] text-foreground-950/20 hidden md:block">Seit 2008 · 15+ Versionen</span>
         </div>
         <div className="grid md:grid-cols-2 gap-8 items-end mb-8">
-          <h2 className="sonic-h2 text-foreground-950 uppercase">
+          <h2 className="sonic-h2 text-foreground-950 ">
             SRT: Die <span className="px-[0.16em] py-[0.02em] bg-primary-500 text-foreground-950" style={{ boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>All-in-One</span> Software
           </h2>
           <p className="text-sm text-foreground-950/45 leading-relaxed">{tSub}</p>
@@ -159,7 +159,7 @@ export default function FeaturesReference() {
                 {getIcon(0, FEATURES[0].woodIcon, FEATURES[0].title)}
               </div>
               <span className="text-[9px] font-black uppercase tracking-[0.25em] block mb-2" style={{ color: 'oklch(0.81 0.19 115 / 0.7)' }}>Modul 01 / 06</span>
-              <h3 className="text-[22px] md:text-[26px] font-black text-white uppercase mb-3 leading-tight">{FEATURES[0].title}</h3>
+              <h3 className="text-[22px] md:text-[26px] font-black text-white mb-3 leading-tight">{FEATURES[0].title}</h3>
               <p className="text-[13px] leading-relaxed text-white/45 max-w-[280px]">{FEATURES[0].description}</p>
               <div className="flex flex-wrap gap-1.5 mt-5">
                 {FEATURES[0].tags?.map(tag => (
@@ -179,7 +179,7 @@ export default function FeaturesReference() {
               </div>
               <div>
                 <span className="text-[9px] font-black uppercase tracking-[0.2em] text-white/20 block mb-0.5">{f.number} / 06</span>
-                <h3 className="text-[13px] font-black text-white uppercase mb-1">{f.title}</h3>
+                <h3 className="text-[13px] font-black text-white mb-1">{f.title}</h3>
                 <p className="text-[11px] text-white/35 leading-snug">{f.description}</p>
               </div>
               <div className="ml-auto pl-4">
@@ -199,7 +199,7 @@ export default function FeaturesReference() {
                 </div>
                 <span className="text-[9px] font-black text-white/15">{f.number}</span>
               </div>
-              <h3 className="text-[12px] font-black text-white uppercase mb-2 leading-snug">{f.title}</h3>
+              <h3 className="text-[12px] font-black text-white mb-2 leading-snug">{f.title}</h3>
               <p className="text-[10.5px] text-white/30 leading-snug flex-1">{f.description}</p>
             </div>
           ))}

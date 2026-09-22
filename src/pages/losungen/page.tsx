@@ -1060,7 +1060,7 @@ export default function LosungenPage() {
             <h1 className="leist-h1-hub text-white mb-5 md:mb-6">
               Drei Wege<br />
               <span className="text-primary-500">durch die</span><br />
-              Retail-Schallmauer.
+              <span className="whitespace-nowrap">Retail-Schallmauer.</span>
             </h1>
 
             <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-3">
@@ -1072,34 +1072,6 @@ export default function LosungenPage() {
             </p>
           </div>
 
-          {/* Stats strip — same hairline format as Leistungen */}
-          <div
-            className="w-full max-w-[640px] grid grid-cols-2 md:grid-cols-4"
-            style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}
-          >
-            {[
-              { value: '>3 Mrd. €', label: 'Beeinflusster Umsatz' },
-              { value: '2.000+', label: 'Talente im Pool' },
-              { value: 'DACH', label: 'Marktabdeckung' },
-              { value: '2007', label: 'Gegründet' },
-            ].map((s, i) => (
-              <div
-                key={i}
-                className="px-3 md:px-5 py-4 md:py-5 flex flex-col gap-1"
-                style={{ borderRight: i < 3 ? '1px solid rgba(255,255,255,0.14)' : undefined }}
-              >
-                <span
-                  className="font-black tabular-nums leading-none"
-                  style={{ fontSize: 'clamp(13px,2.5vw,20px)', letterSpacing: '-0.03em', color: i === 2 ? 'oklch(0.81 0.19 115)' : '#fff', whiteSpace: 'nowrap' }}
-                >
-                  {s.value}
-                </span>
-                <span className="font-black uppercase tracking-[0.18em]" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.45)' }}>
-                  {s.label}
-                </span>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

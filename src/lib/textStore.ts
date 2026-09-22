@@ -54,7 +54,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'home-hero-left-h3-line3', label: 'Left Panel H3 Line 3', description: 'Brand CTA ending', type: 'heading', value: 'MIT POWER?' },
       { id: 'home-hero-left-desc', label: 'Left Panel Description', description: 'Brand CTA description', type: 'paragraph', value: 'Dein Full-Service-Partner für Performance Marketing, Retail-Aktivierung und nachhaltiges Markenwachstum.' },
       { id: 'home-hero-left-btn', label: 'Left Panel Button', description: 'Brand CTA button', type: 'cta', value: 'Starte deinen Markteintritt' },
-      { id: 'home-hero-right-badge', label: 'Right Panel Badge', description: 'Talent CTA badge', type: 'label', value: 'Mensch. Der Unterschied.' },
+      { id: 'home-hero-right-badge', label: 'Right Panel Badge', description: 'Talent CTA badge', type: 'label', value: 'Der Mensch. Der Unterschied.' },
       { id: 'home-hero-right-h3', label: 'Right Panel H3 Line 1', description: 'Talent CTA heading', type: 'heading', value: 'SUCHST DU EINEN' },
       { id: 'home-hero-right-h3-accent', label: 'Right Panel H3 Accent', description: 'Talent CTA accent word', type: 'heading', value: 'JOB' },
       { id: 'home-hero-right-h3-line3', label: 'Right Panel H3 Line 3', description: 'Talent CTA ending', type: 'heading', value: 'MIT ENERGIE?' },
@@ -530,7 +530,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The office tour section. Verified from careers/page.tsx.',
     entries: [
       { id: 'careers-campus-badge', label: 'Campus Badge', description: 'Section badge', type: 'badge', value: 'Unser Campus' },
-      { id: 'careers-campus-heading', label: 'Campus Heading', description: 'Section heading', type: 'heading', value: 'BÜRO ERKUNDEN' },
+      { id: 'careers-campus-heading', label: 'Campus Heading', description: 'Section heading', type: 'heading', value: 'Büro erkunden' },
       { id: 'careers-campus-sub', label: 'Campus Subtitle', description: 'Section subtitle', type: 'paragraph', value: '360°-Rundgang durch unseren Hauptsitz in Krefeld — Campus Fichtenhain 46.' },
       { id: 'careers-campus-address', label: 'Campus Address', description: 'Address line', type: 'label', value: 'Campus Fichtenhain 46' },
       { id: 'careers-campus-city', label: 'Campus City', description: 'City line', type: 'label', value: '47807 Krefeld, Deutschland' },
@@ -719,7 +719,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The origin story and ticker stats section.',
     entries: [
       { id: 'about-origin-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Über uns' },
-      { id: 'about-origin-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'MARKEN IM HERZEN. ERFOLG IM FOKUS.' },
+      { id: 'about-origin-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Marken im Herzen. Erfolg im Fokus.' },
       { id: 'about-origin-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Wir sind eine unabhängige Marketing- und Sales-Agentur mit Schwerpunkten rund um die Konzeption, Kreation und Koordination von Kundenprojekten – ob am Point of Sale, im Studio, auf Messen oder Events in den Bereichen B2B, B2B2C und D2C.', multiline: true },
       { id: 'about-origin-p2', label: 'Paragraph 2', description: 'Second paragraph', type: 'paragraph', value: 'Seit 2007 leben wir Marken und machen sie erfolgreich – unabhängig von Größe, Branche und Zielgruppe. Dabei arbeiten wir stets geprägt von den Werten Mensch, Motivation, Daten und Werkzeug.', multiline: true },
       { id: 'about-origin-p3', label: 'Paragraph 3', description: 'Third paragraph', type: 'paragraph', value: 'Unsere Strategie: Ärmel hoch und anpacken! Echtes Handwerk – von Anfang bis Ende mit 100 % Leidenschaft und vollem Einsatz für die Ziele unserer Kunden.', multiline: true },
@@ -744,7 +744,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The leadership team diversity section with rotating stats.',
     entries: [
       { id: 'about-leadership-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Das Team' },
-      { id: 'about-leadership-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'FACHLICHE UND MENSCHLICHE VIELFALT.' },
+      { id: 'about-leadership-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Fachliche und menschliche Vielfalt.' },
       { id: 'about-leadership-sub', label: 'Subtitle', description: 'Section subtitle', type: 'paragraph', value: 'Bei Sonic treffen Expertisen aufeinander, die sich perfekt ergänzen.' },
       { id: 'about-leadership-cta', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Offene Stellen' },
     ],
@@ -768,7 +768,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The unified culture section with Darum Sonic, Ausgezeichnet, and Sonic-Werte.',
     entries: [
       { id: 'careers-culture-badge', label: 'Culture Badge', description: 'Darum Sonic badge', type: 'badge', value: 'Darum Sonic' },
-      { id: 'careers-culture-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'STARKE MENSCHEN FÜR STARKE MARKEN' },
+      { id: 'careers-culture-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Starke Menschen für starke Marken' },
       { id: 'careers-culture-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Wir lieben und leben Marken, insbesondere am Point of Sale, auf Messen, bei Events, auf Roadshows und per Video aus unseren Studios an unserem Campus in Krefeld.', multiline: true },
       { id: 'careers-culture-p2', label: 'Paragraph 2', description: 'Second paragraph', type: 'paragraph', value: 'Energiegeladen und sympathisch: Diese Beschreibung passt auf die Menschen, die bei Sonic arbeiten. Passt sie auch auf dich?', multiline: true },
       { id: 'careers-culture-award-heading', label: 'Award Heading', description: 'Ausgezeichnet heading', type: 'heading', value: 'Kultur? Leben wir.' },
@@ -823,7 +823,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The team events section: Content Creation, Team Events, Promoter Events.',
     entries: [
       { id: 'careers-events-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Sonic Team Events' },
-      { id: 'careers-events-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'WIR ARBEITEN HART. WIR FEIERN NOCH MEHR.' },
+      { id: 'careers-events-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Voller Einsatz. Echtes Team.' },
       { id: 'careers-events-tab-1', label: 'Tab — Content Creation', description: 'Content tab', type: 'label', value: 'Content Creation' },
       { id: 'careers-events-tab-2', label: 'Tab — Team Events', description: 'Team tab', type: 'label', value: 'Team Events' },
       { id: 'careers-events-tab-3', label: 'Tab — Promoter Events', description: 'Promoter tab', type: 'label', value: 'Promoter Events' },
@@ -835,7 +835,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The jobs listing section with Tanja CTA.',
     entries: [
       { id: 'careers-jobs-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Aktuelle Stellenangebote' },
-      { id: 'careers-jobs-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'DEIN NÄCHSTER KARRIERESCHRITT' },
+      { id: 'careers-jobs-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Dein Job wartet. Jetzt bewerben.' },
       { id: 'careers-jobs-tanja-heading', label: 'Tanja Heading', description: 'Tanja question', type: 'heading', value: 'Unsicher, welche Stelle zu dir passt?' },
       { id: 'careers-jobs-tanja-desc', label: 'Tanja Description', description: 'Tanja description', type: 'paragraph', value: 'Tanja aus unserem HR-Team nimmt sich gerne Zeit für ein unverbindliches Gespräch.' },
       { id: 'careers-jobs-tanja-cta', label: 'Tanja CTA', description: 'Tanja CTA button', type: 'cta', value: 'Mit Tanja sprechen' },
@@ -1327,9 +1327,9 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'talentpool-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Wechselnde Gesichter. Kein Markenwissen. Kein ROI.' },
       { id: 'talentpool-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Das Standardmodell in der Promotion-Branche ist kaputt.' },
-      { id: 'talentpool-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'DER SONIC-TALENTEPOOL. KEIN VERGLEICH.' },
+      { id: 'talentpool-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Der Sonic-Talentepool. Kein Vergleich.' },
       { id: 'talentpool-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Festangestellt, trainiert und live-getrackt — das ist der Unterschied.' },
-      { id: 'talentpool-profiles-heading', label: 'Profiles Heading', description: 'Profiles H2', type: 'heading', value: '4 ROLLEN. EIN ANSPRECHPARTNER.' },
+      { id: 'talentpool-profiles-heading', label: 'Profiles Heading', description: 'Profiles H2', type: 'heading', value: '4 Rollen. Ein Ansprechpartner.' },
       { id: 'talentpool-profiles-sub', label: 'Profiles Subline', description: 'Profiles description', type: 'paragraph', value: 'Jeden Talent-Typ aus einer Hand — koordiniert, geschult und live getrackt.' },
     ],
   },
@@ -1340,7 +1340,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'forecasting-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Ohne Prognose fliegt ihr im Blindflug.' },
       { id: 'forecasting-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Zu viele Retail-Projekte starten ohne belastbare Planung.' },
-      { id: 'forecasting-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'FORECASTING. DATENBASIERT. BELASTBAR.' },
+      { id: 'forecasting-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Forecasting. Datenbasiert. Belastbar.' },
       { id: 'forecasting-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Prognosen auf echten Daten — nicht auf Excel-Tabellen und Bauchgefühl.' },
       { id: 'forecasting-how-heading', label: 'How Heading', description: 'How-it-works H2', type: 'heading', value: 'In 4 Schritten zur belastbaren Prognose' },
       { id: 'forecasting-how-sub', label: 'How Subline', description: 'How description', type: 'paragraph', value: 'Unser Forecasting-Prozess: datenbasiert, transparent und direkt in dein Dashboard integriert.' },
@@ -1367,8 +1367,27 @@ const STORAGE_KEY = 'sonic_text_store';
 /* One-time in-memory normalization: replaces legacy English default copy with German. */
 const LEGACY_TEXT_FIXES = [
   { sectionKey: 'about_management_voices', entryId: 'about-voices-badge', from: 'Leadership Perspectives', to: 'Führungsperspektiven' },
+  { sectionKey: 'careers_events', entryId: 'careers-events-heading', from: 'WIR ARBEITEN HART. WIR FEIERN NOCH MEHR.', to: 'Voller Einsatz. Echtes Team.' },
+  { sectionKey: 'careers_events', entryId: 'careers-events-heading', from: 'Wir arbeiten hart. Wir feiern noch mehr.', to: 'Voller Einsatz. Echtes Team.' },
+  { sectionKey: 'careers_jobs', entryId: 'careers-jobs-heading', from: 'Dein nächster Karriereschritt', to: 'Dein Job wartet. Jetzt bewerben.' },
+  { sectionKey: 'careers_jobs', entryId: 'careers-jobs-heading', from: 'DEIN NÄCHSTER KARRIERESCHRITT', to: 'Dein Job wartet. Jetzt bewerben.' },
+  { sectionKey: 'careers_campus', entryId: 'careers-campus-heading', from: 'BÜRO ERKUNDEN', to: 'Büro erkunden' },
   { sectionKey: 'about_management_voices', entryId: 'about-voices-sub', from: 'Strategie, Kreation und Operations — drei Perspektiven, eine Überzeugung.', to: 'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.' },
   { sectionKey: 'about_leadership', entryId: 'about-leadership-sub', from: 'Bei Sonic treffen Backgrounds aufeinander, die sich perfekt ergänzen.', to: 'Bei Sonic treffen Expertisen aufeinander, die sich perfekt ergänzen.' },
+  // ── Heading casing normalization ──
+  { sectionKey: 'about_origin_story', entryId: 'about-origin-heading', from: 'MARKEN IM HERZEN. ERFOLG IM FOKUS.', to: 'Marken im Herzen. Erfolg im Fokus.' },
+  { sectionKey: 'about_leadership', entryId: 'about-leadership-heading', from: 'FACHLICHE UND MENSCHLICHE VIELFALT.', to: 'Fachliche und menschliche Vielfalt.' },
+  { sectionKey: 'careers_culture', entryId: 'careers-culture-heading', from: 'STARKE MENSCHEN FÜR STARKE MARKEN', to: 'Starke Menschen für starke Marken' },
+  { sectionKey: 'leistungen_talentpool_content', entryId: 'talentpool-solution-heading', from: 'DER SONIC-TALENTEPOOL. KEIN VERGLEICH.', to: 'Der Sonic-Talentepool. Kein Vergleich.' },
+  { sectionKey: 'leistungen_talentpool_content', entryId: 'talentpool-profiles-heading', from: '4 ROLLEN. EIN ANSPRECHPARTNER.', to: '4 Rollen. Ein Ansprechpartner.' },
+  { sectionKey: 'home_hero', entryId: 'home-hero-right-badge', from: 'Mensch. Der Unterschied.', to: 'Der Mensch. Der Unterschied.' },
+  // ── Placeholder / Sie-form text cleanup (startsWith / contains matching) ──
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-subtitle', from: 'Wähle 1 Partnerin', to: 'Keine Freelancer. Keine Zeitarbeit. Echte Markenbotschafter.', matchType: 'startsWith' as const },
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-description', from: 'Nacht-Performance', to: 'Unser Talentepool umfasst über 2.000 handverlesene, festangestellte Markenbotschafter deutschlandweit — trainiert, motiviert und live in ihrer eigenen Zielerreichung getrackt.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff', entryId: 'staff-hero-subtitle', from: 'Markenhilfe antworten', to: 'Markenfans anheuern: Für Sell-out, Sell-in, Schulungen, Brand Activation und mehr.', matchType: 'startsWith' as const },
+  { sectionKey: 'leistungen_staff', entryId: 'staff-hero-description', from: 'Ihnen', to: 'Wir übernehmen Recruiting, Payroll und Steuerung, bspw. via Arbeitnehmerüberlassung.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_pos', entryId: 'pos-hero-description', from: 'Ihren', to: 'Durchgetaktet. Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_forecasting', entryId: 'forecasting-hero-description', from: 'Scorpin', to: 'Auf Basis von historischen Sell-out-Daten, Standort-Performance und Marktintelligenz prognostizieren wir deine Ergebnisse — datenbasiert, nachvollziehbar, belastbar.', matchType: 'contains' as const },
 ];
 
 function loadFromStorage(): TextSection[] {
@@ -1388,9 +1407,12 @@ function loadFromStorage(): TextSection[] {
       const section = sections.find((s) => s.key === fix.sectionKey);
       if (!section) continue;
       const entry = section.entries.find((e) => e.id === fix.entryId);
-      if (entry && entry.value === fix.from) {
-        entry.value = fix.to;
-      }
+      if (!entry) continue;
+      const matches =
+        fix.matchType === 'startsWith' ? entry.value.startsWith(fix.from) :
+        fix.matchType === 'contains'   ? entry.value.includes(fix.from) :
+                                         entry.value === fix.from;
+      if (matches) entry.value = fix.to;
     }
     return sections;
   } catch {

@@ -22,17 +22,14 @@ export default function KarriereAwards() {
   ];
 
   return (
-    <section id="awards" className="py-16 md:py-[88px] px-5 md:px-10" style={{ background: 'oklch(0.13 0.005 118)' }}>
+    <section id="awards" className="py-8 md:py-12 px-5 md:px-10" style={{ background: 'oklch(0.13 0.005 118)' }}>
       <div className="sonic-container">
-        <ChapterHeader
-          n="03"
-          eyebrow="Auszeichnungen"
-          heading={tHeading}
-          sub={tAwardText}
-          dark
-          headingSize="clamp(1.75rem, 2.8vw, 2.75rem)"
-          headingMax="max-w-[620px]"
-        />
+        {/* Compact header */}
+        <div className="flex items-center gap-3 mb-6">
+          <span className="w-7 h-0.5 bg-primary-500" />
+          <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Auszeichnungen</span>
+          <span className="text-white font-black text-lg ml-auto">{tHeading}</span>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3" style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}>
           {badges.map((b, i) => (
@@ -41,7 +38,7 @@ export default function KarriereAwards() {
               href={b.href}
               target="_blank"
               rel="nofollow noopener noreferrer"
-              className="flex items-center justify-between gap-6 px-0 py-8 sm:px-8 hover:opacity-80 transition-opacity"
+              className="flex items-center justify-between gap-4 px-0 py-5 sm:px-6 hover:opacity-80 transition-opacity"
               style={{
                 borderRight: i < badges.length - 1 ? '1px solid rgba(255,255,255,0.14)' : undefined,
                 paddingLeft: i === 0 ? 0 : undefined,

@@ -118,6 +118,8 @@ export default function ForecastingContent() {
  </div>
  </section>
 
+ <WoodenDivider />
+
  {/* ── How it works — pictorial ── */}
  <section id="wie-es-funktioniert"className="sonic-section-lg bg-white px-4 md:px-6">
  <div className="sonic-container">
@@ -126,7 +128,7 @@ export default function ForecastingContent() {
  <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0"aria-hidden="true"/>
  <span className="text-[11px] font-black uppercase tracking-[0.24em]"style={{ color: 'oklch(0.55 0.08 115)' }}>So funktioniert es</span>
  </div>
- <h2 className="leist-h2 text-foreground-950 uppercase">{tHowHeading}</h2>
+ <h2 className="leist-h2 text-foreground-950">{tHowHeading}</h2>
  <p className="text-foreground-950/45 text-sm mt-3 max-w-xl mx-auto">{tHowSub}</p>
  </div>
 
@@ -153,7 +155,7 @@ export default function ForecastingContent() {
  <div className="flex items-center gap-2 mb-3">
  <span className="text-[10px] font-black text-foreground-950/30 uppercase tracking-widest">Schritt {step.num}</span>
  </div>
- <h3 className="leist-h2 text-foreground-950 uppercase">{step.title}</h3>
+ <h3 className="text-lg font-black text-foreground-950 leading-snug tracking-tight">{step.title}</h3>
  <p className="text-foreground-950/60 text-sm leading-relaxed">{step.desc}</p>
  </div>
  </div>
@@ -162,21 +164,7 @@ export default function ForecastingContent() {
  </div>
  </section>
 
- {/* ── Stats ── */}
- <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
- <section id="stats"className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
- <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-2 md:grid-cols-4 gap-px bg-primary-500/15 border border-primary-500/15 overflow-hidden">
- {STATS.map((s, i) => (
- <div key={i} className="bg-foreground-950 p-5 md:p-8 text-center relative overflow-hidden group">
- <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/5 transition-colors duration-300"/>
- <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
- <div className="text-3xl lg:text-4xl font-black text-primary-500 mb-2 relative z-10">{s.value}</div>
- <div className="text-white/50 text-[10px] md:text-xs font-bold uppercase tracking-wider leading-snug relative z-10">{s.label}</div>
- </div>
- ))}
- </div>
- </section>
 
- </>
+  </>
  );
 }

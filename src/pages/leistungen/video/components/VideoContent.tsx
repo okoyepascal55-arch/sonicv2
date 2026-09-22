@@ -192,6 +192,7 @@ export default function VideoContent() {
       {/* Advantages */}
       
       <WoodenDivider />
+<WoodenDivider />
 <section id="vorteile" className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">
@@ -210,6 +211,7 @@ export default function VideoContent() {
       
       {/* Dark-bg WoodenDivider */}
       <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
+<div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 <section id="kostenrechner" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
@@ -275,6 +277,7 @@ export default function VideoContent() {
       {/* Phygital */}
       
       <WoodenDivider />
+<WoodenDivider />
 <section id="phygital" className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">
@@ -327,6 +330,7 @@ export default function VideoContent() {
       
       {/* Dark-bg WoodenDivider */}
       <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
+<div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 <section id="formate" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">
@@ -398,7 +402,7 @@ export default function VideoContent() {
               <div className="w-12 h-12 flex items-center justify-center bg-foreground-950 mb-5">
                 <i className={`${FORMATS[activeFormat].icon} text-xl text-primary-500`}></i>
               </div>
-              <h3 className="text-2xl font-black text-foreground-950 mb-4 uppercase">{FORMATS[activeFormat].title}</h3>
+              <h3 className="text-2xl font-black text-foreground-950 mb-4 ">{FORMATS[activeFormat].title}</h3>
               <p className="text-foreground-950/65 text-base leading-relaxed mb-8">{FORMATS[activeFormat].desc}</p>
               <a
                 href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(FORMATS[activeFormat].title + ' anfragen')}`}

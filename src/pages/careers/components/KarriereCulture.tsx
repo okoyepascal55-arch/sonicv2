@@ -23,22 +23,35 @@ export default function KarriereCulture() {
   return (
     <section id="darum" className="py-20 md:py-[104px] px-5 md:px-10 bg-white">
       <div className="sonic-container">
+
+        {/*
+          Section header — absoluteNumeral keeps "02" out of flex flow so heading
+          left-aligns with the dark card and DNA grid below. mb="mb-6" pulls the
+          dark card tight so headline → statement → DNA read as one unified block.
+          sub is removed — the dark card carries that content directly.
+        */}
         <ChapterHeader
           n="02"
           eyebrow="Unsere Kultur"
           heading={<>Starke Menschen für <Marker>starke Marken</Marker></>}
-          sub="Wir lieben & leben Marken. Energie, Sympathie, Teamgeist, Kreativität und der Wille anzupacken — das zeichnet uns aus."
           headingMax="max-w-[700px]"
+          absoluteNumeral={true}
+          mb="mb-6"
         />
 
-        {/* Statement card */}
-        <div className="relative bg-foreground-950 px-7 py-10 md:px-14 md:pt-14 md:pb-10 mb-14 overflow-hidden">
+        {/*
+          Statement card — sits directly under the heading with no gap, making
+          the headline + this card feel like a single opening statement.
+          The redundant internal headline ("Wir lieben & leben Marken." at 22–26px)
+          has been removed; the opening paragraph now carries that weight inline,
+          so the card stays lean and doesn't compete with the DNA grid below.
+        */}
+        <div className="relative bg-foreground-950 px-7 py-8 md:px-10 md:py-10 mb-10 overflow-hidden">
           <div className="absolute top-0 left-0 bottom-0 w-[3px] bg-primary-500" aria-hidden="true" />
-          <div className="max-w-2xl">
-            <p className="text-[26px] md:text-[34px] font-black leading-[1.16] tracking-[-0.03em] text-white mb-5">
-              Wir lieben &amp; leben Marken.
+          <div>
+            <p className="text-[15px] leading-[1.75] text-white/80 mb-3">
+              Wir lieben &amp; leben Marken — {tP1}
             </p>
-            <p className="text-[15px] leading-[1.75] text-white/60 mb-3">{tP1}</p>
             <p className="text-[15px] leading-[1.75] text-white/60">{tP2}</p>
           </div>
           <div className="flex flex-wrap items-center gap-2 mt-10 pt-7 border-t border-white/10">
