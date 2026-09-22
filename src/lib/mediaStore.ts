@@ -178,6 +178,7 @@ export const PAGE_GROUPS: PageGroup[] = [
       '/images/Über uns/Leadership Perspectives',
       'about_sonicreels_hero_accent',
       'about_origin_story_wood_bg',
+      'about_client_logos',
       // ── Sonic Reels page (/sonic-reels) ──
       '/images/Über uns/Sonic Reels/2007-2015',
       'reels_2015_2019',
