@@ -1060,7 +1060,7 @@ export default function LosungenPage() {
             <h1 className="leist-h1-hub text-white mb-5 md:mb-6">
               Drei Wege<br />
               <span className="text-primary-500">durch die</span><br />
-              Retail-Schallmauer.
+              <span className="whitespace-nowrap">Retail-Schallmauer.</span>
             </h1>
 
             <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-3">
