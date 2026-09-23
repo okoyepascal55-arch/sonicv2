@@ -2099,13 +2099,21 @@ function stripReaddy(sections: MediaSections): MediaSections {
   return out;
 }
 
-// Strip readdy.ai placeholder URLs from any data — never render or cache them.
+// Strip readdy.ai placeholder URLs from cached data (Supabase cache / localStorage).
+// If stripping leaves a section with ONLY empty URLs, omit that key entirely so
+// DEFAULT_MEDIA (which may have a real fallback) can still provide the value.
+// Sections with at least one real non-readdy URL are kept as-is.
 function stripReddy(sections: MediaSections): MediaSections {
   const out: MediaSections = {};
   for (const key of Object.keys(sections)) {
-    out[key] = (sections[key] || []).map((item) =>
+    const cleaned = (sections[key] || []).map((item) =>
       item.url && item.url.includes('readdy.ai') ? { ...item, url: '' } : item
     );
+    // Keep the section only if at least one item has a real URL
+    if (cleaned.some((item) => item.url !== '')) {
+      out[key] = cleaned;
+    }
+    // Otherwise: omit this key → DEFAULT_MEDIA / Supabase provides the fallback
   }
   return out;
 }
