@@ -4,6 +4,115 @@ import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useText } from '@/lib/textStore';
+
+
+/* ─────────────────────────────────────────────
+   TV & SOUND — Three-mandate visual comparison
+───────────────────────────────────────────── */
+interface Mandate {
+  num: string;
+  period: string;
+  label: string;
+  headlineValue: string;
+  headlineLabel: string;
+  stats: { value: string; label: string }[];
+  services: string[];
+  isActive?: boolean;
+  timelineStart: number;
+  timelineEnd: number;
+}
+
+const TL_START = 2009;
+const TL_END   = 2026;
+const TL_SPAN  = TL_END - TL_START;
+
+function MandateComparison({ mandates }: { mandates: Mandate[] }) {
+  const yearFrac = (y: number) => (y - TL_START) / TL_SPAN;
+  return (
+    <div className="mb-14">
+      <div className="flex items-center gap-3 mb-8">
+        <div className="w-1 h-8 bg-primary-500 flex-shrink-0" />
+        <div>
+          <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Drei Mandate</p>
+          <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">TV &amp; Sound — Ein roter Faden seit 2009</h3>
+        </div>
+      </div>
+
+      {/* Timeline */}
+      <div className="mb-8">
+        <div className="flex justify-between mb-1">
+          <span className="text-[10px] font-black text-foreground-400 uppercase tracking-widest">2009</span>
+          <span className="text-[10px] font-black text-foreground-400 uppercase tracking-widest">2026</span>
+        </div>
+        <div className="relative h-9 bg-foreground-100 overflow-hidden">
+          {mandates.map((m, i) => (
+            <div key={i} className="absolute top-0 bottom-0 flex items-center overflow-hidden"
+              style={{
+                left: `${m.timelineStart * 100}%`,
+                width: `${(m.timelineEnd - m.timelineStart) * 100}%`,
+                background: m.isActive ? 'oklch(var(--primary-500))' : i === 0 ? 'oklch(var(--primary-500) / 0.85)' : 'oklch(var(--primary-500) / 0.6)',
+                borderRight: i < mandates.length - 1 ? '2px solid white' : 'none',
+              }}>
+              <span className="text-[9px] font-black uppercase tracking-widest text-foreground-950 px-2 truncate hidden sm:block">{m.period}</span>
+            </div>
+          ))}
+        </div>
+        <div className="relative h-5 mt-px" style={{ background: 'oklch(0.13 0.005 118)' }}>
+          {[2009, 2012, 2015, 2018, 2021, 2024].map(yr => (
+            <div key={yr} className="absolute top-0 flex flex-col items-center"
+              style={{ left: `${yearFrac(yr) * 100}%`, transform: 'translateX(-50%)' }}>
+              <div className="w-px h-1.5 bg-white/20" />
+              <span className="text-[9px] text-white/30 font-bold tabular-nums">{yr}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Three panels */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-[2px]" style={{ background: 'rgba(255,255,255,0.08)' }}>
+        {mandates.map((m, i) => (
+          <div key={i} className="relative flex flex-col"
+            style={{ background: m.isActive ? 'oklch(0.16 0.006 118)' : 'oklch(0.13 0.005 118)', padding: 'clamp(20px,3vw,32px) clamp(18px,2.5vw,28px)' }}>
+            <div className="absolute top-0 left-0 right-0"
+              style={{ height: '3px', background: m.isActive ? 'oklch(var(--primary-500))' : 'oklch(var(--primary-500) / 0.35)' }} />
+            <div className="flex items-start justify-between mb-4">
+              <span className="text-[10px] font-black uppercase tracking-[0.25em]" style={{ color: 'oklch(var(--primary-500) / 0.7)' }}>{m.num}</span>
+              {m.isActive && <span className="text-[9px] font-black uppercase tracking-[0.18em] bg-primary-500 text-foreground-950 px-2 py-0.5">Aktiv</span>}
+            </div>
+            <p className="text-[11px] font-black text-white/40 uppercase tracking-[0.2em] mb-2">{m.period}</p>
+            <h4 className="font-black text-white leading-snug mb-6" style={{ fontSize: 'clamp(14px,1.5vw,17px)' }}>{m.label}</h4>
+            <div className="mb-6 pb-6" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+              <div className="font-black text-primary-500 tabular-nums leading-none mb-1.5"
+                style={{ fontSize: 'clamp(26px,3.5vw,42px)', letterSpacing: '-0.04em' }}>{m.headlineValue}</div>
+              <div className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-snug">{m.headlineLabel}</div>
+            </div>
+            {/* Stats — value-hero cards */}
+            <div className="grid grid-cols-2 gap-[2px] mb-6" style={{ background: 'rgba(255,255,255,0.05)' }}>
+              {m.stats.map((stat, si) => (
+                <div key={si} className="flex flex-col p-3" style={{ background: 'oklch(0.12 0.004 118)' }}>
+                  <span className="font-black text-primary-500 tabular-nums leading-none mb-1.5"
+                    style={{ fontSize: 'clamp(15px,2vw,20px)', letterSpacing: '-0.03em' }}>{stat.value}</span>
+                  <span className="text-[9px] font-bold text-white/35 uppercase tracking-[0.18em] leading-snug">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-1.5 mt-auto">
+              {m.services.map(s => (
+                <span key={s} className="text-[9px] font-black uppercase tracking-[0.12em] text-primary-500 px-2 py-1"
+                  style={{ border: '1px solid oklch(var(--primary-500) / 0.28)' }}>{s}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <p className="text-[11px] text-foreground-400 mt-4 italic leading-relaxed">
+        Alle Markennamen auf Kundenwunsch anonymisiert. Werte aus internem Reporting Sonic Group.
+        Mandat 3 (ab 2025): laufendes Projekt — Kennzahlen beziehen sich auf das erste Projektjahr.
+      </p>
+    </div>
+  );
+}
 
 /* ─────────────────────────────────────────
    LEISTUNGEN IM EINSATZ — split image + content panel
@@ -184,6 +293,7 @@ interface CaseStudy {
   bentoImages: { src: string; span: string; label: string }[];
   imageGroups: { title: string; mediaKey: string; fallbacks: string[] }[];
   relatedStories: string[];
+  comparisonMandates?: Mandate[];
 }
 
 
@@ -362,6 +472,16 @@ export default function CaseStudiesPage() {
   const navigate = useNavigate();
   const { images: woodTextures } = useMediaStore('losungen_wood_textures');
   const { images: heroImages } = useMediaStore('case_studies_hero_images');
+  // Dashboard-editable metrics via textStore
+  const tGarminMetric  = useText('case_garmin',   'case-garmin-metric',         '+116%');
+  const tGarminLabel   = useText('case_garmin',   'case-garmin-metric-label',   'Umsatzwachstum 2021–2024');
+  const tSebMetric     = useText('case_seb',      'case-seb-metric',            '+130%');
+  const tSebLabel      = useText('case_seb',      'case-seb-metric-label',      'Umsatz je Einsatztag 2019–2024');
+  const tAvouryMetric  = useText('case_avoury',   'case-avoury-metric',         '+1.187%');
+  const tAvouryLabel   = useText('case_avoury',   'case-avoury-metric-label',   'Abverkauf pro Einsatztag 2021–2023');
+  const tTvMetric      = useText('case_tvsound',  'case-tvsound-metric',        '1,72 Mrd. €');
+  const tTvLabel       = useText('case_tvsound',  'case-tvsound-metric-label',  'Kumulierter Umsatz, längstes Mandat');
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [expandedStory, setExpandedStory] = useState<string | null>(null);
   const expandedRef = useRef<HTMLDivElement>(null);
@@ -372,8 +492,8 @@ export default function CaseStudiesPage() {
       slug: 'garmin',
       brand: 'Garmin',
       woodIcon: 'https://cdn.brandfetch.io/garmin.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-      metric: '+116%',
-      metricLabel: 'Umsatzwachstum 2021–2024',
+      metric: tGarminMetric,
+      metricLabel: tGarminLabel,
       headline: 'Sportlich nach vorn',
       subline: '#beatyesterday: Seit 2021 — Retail-Partnerschaft mit Garmin im DACH-Raum',
       campaignType: 'Retail Activation & POS Full-Service',
@@ -389,10 +509,10 @@ export default function CaseStudiesPage() {
       woodPills: [
         { label: 'Start', value: '2021' },
         { label: 'Märkte', value: 'DE + AT' },
-        { label: 'Module', value: '5' },
+        { label: 'Module', value: '7' },
       ],
-      monthlyTrend: [42, 48, 50, 55, 60, 62, 68, 72, 70, 78, 82, 88],
-      overview: 'Seit 2021 unterstützen wir mit unseren Team Garmin im Retail dabei, Endkunden für Wearables zu begeistern und Verkäufe zu steigern: als erfolgreiche Partnerschaft mit gebündeltem Know-how, klarer Kommunikation und einem gemeinsamen Fokus auf Qualität und Innovation. Start: Promotions in Deutschland. Heute zusätzlich: Promotions Österreich und Sport, POS OneWorld, POS Service, Lager.',
+      monthlyTrend: [38, 41, 44, 47, 54, 61, 67, 72, 77, 82, 90, 99], // 2021→2025 cumulative growth index
+      overview: 'Vertrauen wächst, wenn Ergebnisse folgen. Mit Garmin starteten wir 2021 mit einem klaren Auftrag: Promotion in Deutschland. Jedes Jahr hat Garmin den Leistungsumfang ausgebaut — weil die Ergebnisse stimmten. Heute verantworten wir sieben Bereiche: Promotion DE, Promotion AT, Promotion Sport, POS One World, POS-Service, Lager und Möbelbau & Logistik. Die Partnerschaft zeigt, was passiert, wenn Qualität Konsequenzen hat.',
       modules: [
         { num: '01', title: 'Promotions', desc: 'Beispiel: Aktivierung am POS per Rabatt-Aktion. Full-Service-Umsetzung durch unsere Field Force.', img: '/images/Case Studies -Fallbsp/Garmin/5243_190035993.webp', tags: ['POS', 'Field Force', 'DACH'] },
         { num: '02', title: 'Aktionen', desc: 'Beispiel: Smoothie-Verkostungsaktion am POS als niederschwelliger Gesprächseinstieg.', img: '/images/Case Studies -Fallbsp/Garmin/5243_190036664.webp', tags: ['Live-Aktion', 'Verkostung', 'POS'] },
@@ -418,15 +538,15 @@ export default function CaseStudiesPage() {
         { title: 'Training & Team', mediaKey: 'case_garmin_gallery_3', fallbacks: ['/images/Case Studies -Fallbsp/Garmin/MM Chemnitz_Rene G.webp', '/images/Case Studies -Fallbsp/Garmin/5315_195525779.webp', '/images/Case Studies -Fallbsp/Garmin/MM Hückelhoven_Chris L.webp'] },
         { title: 'Lager & Logistik', mediaKey: 'case_garmin_gallery_4', fallbacks: ['/images/Case Studies -Fallbsp/Garmin/5431_162510371.webp'] },
       ],
-      relatedStories: ['philips', 'groupe-seb'],
+      relatedStories: ['groupe-seb', 'avoury'],
     },
     {
       id: 'groupe-seb',
       slug: 'groupe-seb',
       brand: 'Groupe SEB',
       woodIcon: 'https://cdn.brandfetch.io/groupeseb.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-      metric: '+130%',
-      metricLabel: 'Umsatzwachstum pro Einsatztag 2019–2024',
+      metric: tSebMetric,
+      metricLabel: tSebLabel,
       headline: 'Partnerschaft mit Performance',
       subline: 'Tefal, Rowenta, Krups, WMF — Multi-Brand-Aktivierung seit 2019',
       campaignType: 'Multi-Brand Field Force & Live-Video',
@@ -444,8 +564,8 @@ export default function CaseStudiesPage() {
         { label: 'Marken', value: '4' },
         { label: 'Module', value: '6' },
       ],
-      monthlyTrend: [38, 44, 48, 52, 58, 62, 66, 70, 74, 78, 84, 90],
-      overview: 'Die Zusammenarbeit zwischen Sonic und Groupe SEB ist ein echtes Erfolgsmodell, seit 2019: Mit Vertrauen, Effizienz sowie Leidenschaft für starke Marken und zufriedene Kunden begeistern wir Kunden für Top-Marken wie Tefal, Rowenta, Krups und WMF. Ausdauer lohnt sich: Dank laufender Optimierung ist der Tagesumsatz der Promoter massiv gestiegen.',
+      monthlyTrend: [40, 42, 45, 55, 66, 70, 80, 92, 91, 91, 95, 99], // 2019→2025 €/Einsatztag (947→2363)
+      overview: 'Derselbe Markt. Dieselben Stores. Vier Marken. Und der Umsatz pro Einsatztag wächst von Jahr zu Jahr. Seit 2019 begleiten wir die Groupe SEB mit Tefal, Rowenta, Krups und WMF. Der Tagesumsatz hat sich von 947 € (2019) auf 2.178 € (2024) mehr als verdoppelt — nicht durch mehr Personal, sondern durch bessere Methode. Roadshows, Live-Cooking, Video-Beratung aus unseren Studios, POS-Aktivierung, Trainings und tagesgenauer Reporting-Loop: alles aus einer Hand, alles messbar.',
       modules: [
         { num: '01', title: 'Live-Video-Beratung', desc: 'Aus den Sonic-Studios. Digital am POS und im Online-Shop. Für Rowenta, Tefal, Krups und WMF.', img: '/images/Case Studies -Fallbsp/SEB/20250604_205405_187.webp', tags: ['Live-Video', 'Studio', 'Digital'] },
         { num: '02', title: 'Aktionen', desc: 'Beispiel: verkaufsstarkes Live-Cooking am POS, betreut von unseren Foodies in der Field Force.', img: '/images/Case Studies -Fallbsp/SEB/Bild_NecafeDolceGusto.webp', tags: ['Live-Cooking', 'POS', 'Field Force'] },
@@ -475,75 +595,22 @@ export default function CaseStudiesPage() {
       relatedStories: ['garmin', 'avoury'],
     },
     {
-      id: 'philips',
-      slug: 'philips',
-      brand: 'Philips',
-      woodIcon: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887',
-      metric: '+54%',
-      metricLabel: 'Absatzwachstum pro Einsatztag 2021–2024',
-      headline: 'Erfolgreichster europäischer Markt',
-      subline: 'End-to-End von Schulung über Field Force bis Digital — seit 2021',
-      campaignType: 'Field Force, Training & Digital',
-      since: '2021',
-      quote: 'Durch das SRT können wir live in unsere Projekte mit Sonic reinschauen und jederzeit sehen, wie unsere Erwartungen erfüllt werden.',
-      author: 'Murat Yatkin',
-      role: 'Managing Director DACH, Philips TV & Sound @TP Vision',
-      woodStats: [
-        { label: 'Absatzwachstum pro Einsatztag 2021–2024', value: '+54%', progress: 82 },
-        { label: 'Marktposition Europa', value: '#1', progress: 95 },
-        { label: 'Aktivierungsmodule', value: '6', progress: 90 },
-      ],
-      woodPills: [
-        { label: 'Start', value: '2021' },
-        { label: 'Markt', value: '#1 EU' },
-        { label: 'Module', value: '6' },
-      ],
-      monthlyTrend: [48, 52, 55, 58, 60, 63, 65, 68, 70, 73, 76, 82],
-      overview: 'Seit 2021 unterstützen wir Philips TV & Sound beim Verkaufserfolg, End-to-End von der Schulung von Handelsmitarbeitern über den Einsatz von Field Force bis zu digitalen Projekten und Saleskampagnen. Mittels ständig optimierter Strategien stieg der Geräteabsatz je Promotiontag deutlich an, für ein spürbares Absatzplus.',
-      modules: [
-        { num: '01', title: 'Kampagnen', desc: '(Online-)Gewinnspiele, Zugabe-Promotions, Cashback-Aktionen: komplett umgesetzt durch Sonic.', img: '/images/Case Studies -Fallbsp/Philips/5589_23290336.webp', tags: ['Online', 'Cashback', 'Promotion'] },
-        { num: '02', title: 'Promotion', desc: 'Beispiel: Saisonale Abverkaufspromotion am POS im Rahmen großer Fußballereignisse.', img: '/images/Case Studies -Fallbsp/Philips/ALW4_SA_Möncke_2.webp', tags: ['POS', 'Seasonal', 'Football'] },
-        { num: '03', title: '(Sales) Content Creation', desc: 'Beispiel: TVundSound.Academy, das ist (Live) Premium-Video-Schulungs-Infotainment für Mitarbeiter des Handels.', img: '/images/Case Studies -Fallbsp/Philips/ALW6_MM_Dornbirn_AT.webp', tags: ['Academy', 'Video', 'Retail-Training'] },
-        { num: '04', title: 'Messen', desc: 'Messestände, durch uns konzipiert, gebaut, geliefert und bespielt. Im Full Service, eingebunden in die Markenwelt.', img: '/images/Case Studies -Fallbsp/Philips/ALW6_Media Markt Ingolstadt - Eriagstr. 28 - 85046 Ingolstadt1.webp', tags: ['Messe', 'Full Service', 'Stand-Bau'] },
-        { num: '05', title: 'Sales-Training', desc: 'Schulungen für Verkäufer der Handelsketten und unsere Field Force, bei uns und regional.', img: '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-30 at 15.11.27.webp', tags: ['Training', 'Regional', 'Zertifizierung'] },
-        { num: '06', title: 'Digitaler Homeplaner', desc: 'Durch Sonic erstellt: Ein digitaler Online-3D-Raumplaner für ein Preview, wie das TV-Gerät zuhause aussehen wird.', img: '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.37 (2).webp', tags: ['Digital', '3D', 'UX'] },
-      ],
-      gallery: [
-        '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-30 at 15.11.27 (1).webp',
-        '/images/Case Studies -Fallbsp/Philips/ALW6_MM_Dornbirn_AT (2).webp',
-        '/images/Case Studies -Fallbsp/Philips/ALW6_Media Markt Ingolstadt - Eriagstr. 28 - 85046 Ingolstadt1 (2).webp',
-      ],
-      bentoImages: [
-        { src: '/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39.webp', span: 'md:col-span-2 md:row-span-2', label: 'POS Promotion' },
-        { src: '/images/Case Studies -Fallbsp/Philips/ALW4_SA_Möncke_2 (1).webp', span: 'md:col-span-1 md:row-span-1', label: 'TVundSound Academy' },
-        { src: '/images/Case Studies -Fallbsp/Philips/ALW6_MM_Dornbirn_AT (1).webp', span: 'md:col-span-1 md:row-span-1', label: 'Messen' },
-        { src: '/images/Case Studies -Fallbsp/Philips/ALW6_Media Markt Ingolstadt - Eriagstr. 28 - 85046 Ingolstadt1 (1).webp', span: 'md:col-span-2 md:row-span-1', label: 'Digitaler Homeplaner' },
-      ],
-      imageGroups: [
-        { title: 'In-Store Promotion', mediaKey: 'case_philips_gallery_1', fallbacks: ['/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp'] },
-        { title: 'Weitere Impressionen', mediaKey: 'case_philips_gallery_2', fallbacks: [] },
-        { title: 'TV Sound Produkte', mediaKey: 'case_philips_gallery_3', fallbacks: [] },
-        { title: 'Events & Showcase', mediaKey: 'case_philips_gallery_4', fallbacks: [] },
-      ],
-      relatedStories: ['garmin', 'avoury'],
-    },
-    {
       id: 'avoury',
       slug: 'avoury',
       brand: 'Avoury',
       woodIcon: 'https://cdn.brandfetch.io/melitta.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-      metric: '+1.187%',
-      metricLabel: 'Umsatzwachstum pro Einsatztag 2021–2023',
-      headline: 'Heißes Wachstum mit Tee',
-      subline: 'Avoury One by Melitta — datenbasiertes Matching für maximalen Absatz',
+      metric: tAvouryMetric,
+      metricLabel: tAvouryLabel,
+      headline: 'Wenn Cross-Selling zum System wird',
+      subline: 'Avoury One by Melitta — die Form der Kurve ändert sich, wenn die Methode stimmt.',
       campaignType: 'Field Force, Recruiting & Datenoptimierung',
       since: '2021',
       quote: 'Dank datenbasierter Optimierungen und dem Sonic SRT konnten wir Geräteabsatz und Gesamtumsatz massiv steigern. Die Ergebnisse haben unsere Erwartungen weit übertroffen.',
       author: 'Projektteam Avoury by Melitta',
       role: 'In Zusammenarbeit mit der Sonic Group',
       woodStats: [
-        { label: 'Umsatzwachstum pro Einsatztag 2021–2023', value: '+1.187%', progress: 99 },
-        { label: 'Optimierungsmodule', value: '5', progress: 85 },
+        { label: 'Abverkauf/Einsatztag 2021–2023', value: '+1.187%', progress: 99 },
+        { label: 'Schlüssel zum Erfolg', value: 'Cross-Selling', progress: 85 },
         { label: 'Partnerschaft seit', value: '2021', progress: 70 },
       ],
       woodPills: [
@@ -551,14 +618,14 @@ export default function CaseStudiesPage() {
         { label: 'Marke', value: 'Melitta' },
         { label: 'Module', value: '5' },
       ],
-      monthlyTrend: [20, 30, 42, 55, 65, 72, 78, 84, 88, 92, 96, 99],
-      overview: 'Seit der Einführung der Avoury One, einer Teemaschine von Melitta Single Portions, konnten erhebliche Wachstumsimpulse gesetzt werden. Die Schlüssel zum Erfolg: Das gewinnbringende Matching von Verkäufern, Einsatzorten und Einsatztagen, plus Cross-Selling. Dank datengestützter Optimierungen konnten Geräteabsatz und Gesamtumsatz massiv gesteigert werden.',
+      monthlyTrend: [3, 3, 4, 4, 13, 22, 25, 48, 72, 83, 92, 99], // 2021→2025 cumulative Abverkauf/Tag (hockey-stick)
+      overview: 'Nicht jede Wachstumskurve sieht gleich aus. Die von Avoury sieht aus wie ein Aufstieg — und dann wie eine senkrechte Wand. Seit 2021 unterstützen wir Melitta Single Portions am POS der Avoury One. Das zweite Jahr (+13 %) war solide. Das dritte Jahr war der Beweis: Wenn Gerätedemonstration, Personalauswahl und Cross-Selling auf Kapseln und Zubehör zum System werden, verändert sich die Dynamik grundlegend. Nicht weil mehr Promoter eingesetzt wurden — sondern weil die richtigen, am richtigen Ort, mit der richtigen Methode eingesetzt werden. Daten machen den Unterschied.',
       modules: [
-        { num: '01', title: 'Recruiting', desc: 'Zum Start: Zusammenstellung Field Force Team aus eigenem Pool plus aus Recruiting.', img: '/images/Case Studies -Fallbsp/Avoury/IMG-20230928-WA0000.webp', tags: ['Recruiting', 'Talentpool', 'Matching'] },
-        { num: '02', title: 'Schulungen', desc: 'Vor den Einsätzen: Schulungen der Fachberater an unserem Campus in Krefeld.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_01.webp', tags: ['Campus Krefeld', 'Schulung', 'Zertifizierung'] },
-        { num: '03', title: 'Sales Promotions', desc: 'Umsetzung des Field-Force-Einsatzes mit unseren Fachberatern.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_05.webp', tags: ['POS', 'Fachberater', 'Sales'] },
-        { num: '04', title: 'Reporting', desc: 'Dank Tracking und Logging aller Einsätze und Umsätze im Sonic Reporting Tool werden Erfolge und Potenziale sichtbar.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_07.webp', tags: ['SRT', 'Daten', 'KPI'] },
-        { num: '05', title: 'Laufende Optimierungen', desc: 'Personalauswahl, Outlet- und Tagesauswahl, Einsatzplanung etc. wurden erfolgreich datenbasiert optimiert.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_08.webp', tags: ['Optimierung', 'Datenbasiert', 'Matching'] },
+        { num: '01', title: 'Recruiting', desc: 'Zum Start: Zusammenstellung Field Force Team aus eigenem Pool plus aus Recruiting. Gezieltes Matching auf Profil, Standort und Verkaufsstärke.', img: '/images/Case Studies -Fallbsp/Avoury/IMG-20230928-WA0000.webp', tags: ['Recruiting', 'Talentpool', 'Matching'] },
+        { num: '02', title: 'Schulungen', desc: 'Vor den Einsätzen: Schulungen der Fachberater an unserem Campus in Krefeld — Produktwissen, Gesprächsführung, Cross-Selling-Methode.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_01.webp', tags: ['Campus Krefeld', 'Schulung', 'Zertifizierung'] },
+        { num: '03', title: 'Sales Promotions', desc: 'Nicht Verkauf per Zufall — Verkauf per System. Gerätedemonstration, gezieltes Cross-Selling auf Kapseln und Zubehör, nach unserer Methode.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_05.webp', tags: ['POS', 'Cross-Selling', 'Methode'] },
+        { num: '04', title: 'Reporting', desc: 'Was gemessen wird, wird besser. Das SRT zeigt tages- und standortgenau: wer verkauft, wo, wie viel — und warum. Das ist der Motor hinter der Kurve.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_07.webp', tags: ['SRT', 'Daten', 'Analyse'] },
+        { num: '05', title: 'Laufende Optimierungen', desc: 'Personalauswahl, Outlet-Auswahl, Einsatztage — alles datenbasiert optimiert. Das Ergebnis gibt jedes Jahr recht.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_08.webp', tags: ['Optimierung', 'Datenbasiert', 'Matching'] },
       ],
       gallery: [
         '/images/Case Studies -Fallbsp/Avoury/b111db44-a0cf-4eea-b5b7-5a0fd48e1762.webp',
@@ -573,11 +640,92 @@ export default function CaseStudiesPage() {
       ],
       imageGroups: [
         { title: 'Kampagnen-Aktivierung', mediaKey: 'case_avoury_gallery_1', fallbacks: [] },
-        { title: 'Weitere Impressionen', mediaKey: 'case_avoury_gallery_2', fallbacks: [] },
-        { title: 'Events & Erlebnisse', mediaKey: 'case_avoury_gallery_3', fallbacks: [] },
-        { title: 'POS & Retail', mediaKey: 'case_avoury_gallery_4', fallbacks: [] },
+        { title: 'Weitere Impressionen',  mediaKey: 'case_avoury_gallery_2', fallbacks: [] },
+        { title: 'Events & Erlebnisse',   mediaKey: 'case_avoury_gallery_3', fallbacks: [] },
+        { title: 'POS & Retail',          mediaKey: 'case_avoury_gallery_4', fallbacks: [] },
       ],
-      relatedStories: ['groupe-seb', 'philips'],
+      relatedStories: ['garmin', 'groupe-seb'],
+    },
+    {
+      id: 'tv-sound',
+      slug: 'tv-sound',
+      brand: 'TV & Sound',
+      woodIcon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 2H3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h8v2H8v2h8v-2h-3v-2h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zm-1 14H4V4h16v12z'/%3E%3C/svg%3E",
+      metric: tTvMetric,
+      metricLabel: tTvLabel,
+      headline: 'Vom Launch zur Marktführerschaft',
+      subline: 'Drei Mandate · Drei Unternehmen · Ein roter Faden — seit 2009.',
+      campaignType: 'Field Force, POS-Möbel, Training, Digital & Messen',
+      since: '2009',
+      quote: 'Im TV-Segment sind wir seit 2009. Was wir dabei gelernt haben: Der Markt belohnt nicht den Lautesten — er belohnt den Zuverlässigsten. Drei Mandate. Drei Unternehmen. Derselbe Anspruch.',
+      author: 'Sonic Group',
+      role: 'TV & Sound — Projektüberblick DACH',
+      woodStats: [
+        { label: 'Kumulierter Umsatz Mandat 1 (2009–2019)', value: '1,72 Mrd. €', progress: 99 },
+        { label: 'Kumulierter Umsatz Mandat 2 (2020–2024)', value: '239,8 Mio. €', progress: 72 },
+        { label: 'Umsatzwachstum Mandat 3 · Jahr 1',        value: '+75 %',        progress: 88 },
+      ],
+      woodPills: [
+        { label: 'Seit',    value: '2009' },
+        { label: 'Mandate', value: '3' },
+        { label: 'Markt',   value: 'DE' },
+      ],
+      monthlyTrend: [8, 18, 40, 60, 82, 99, 92, 72, 28, 48, 65, 88], // 2009→2026 drei Mandate arc
+      overview: 'Drei Unternehmen. Drei völlig unterschiedliche Ausgangssituationen. Eines gemeinsam: Sie haben uns ihren wichtigsten Vertriebskanal anvertraut — den deutschen Handel. Für einen globalen Konzern wurden wir über zehn Jahre zum unverzichtbaren POS-Partner. Für einen europäischen Hersteller haben wir Deutschland zu seinem erfolgreichsten Markt auf dem Kontinent gemacht. Für einen internationalen Herausforderer gingen wir binnen sechs Wochen von null auf Vollbetrieb. Drei Mandate, drei Definitionen von Erfolg — und Sonic hat alle drei geliefert. Markennamen auf Kundenwunsch anonymisiert.',
+      modules: [
+        { num: '01', title: 'Gründungskunde · 2009–2019',        desc: '10 Jahre Partnerschaft: von der Markteinführung zum Peak. 1,72 Mrd. € kumulierter Umsatz. Im Spitzenjahr 2018: 45.380 Einsatztage. Im Projektverlauf übernimmt Sonic sukzessive weitere Produktkategorien.', img: '', tags: ['Promotion', 'POS-Möbel', 'Trainings', 'Roadshows', 'Lager'] },
+        { num: '02', title: 'Europäischer Hersteller · 2020–2024', desc: 'Deutschland war nicht Plan A. Vier Jahre später war es der erfolgreichste europäische Markt des Kunden. +61 % Umsatzwachstum 2021→2024. +40 % Absatz 2020→2024. Sonic lieferte Field Force, 3D-Raumplaner-Konzept und laufendes Kampagnenmanagement.', img: '', tags: ['Field Force', '3D-Raumplaner', 'Digital', 'Kampagnen', 'Training'] },
+        { num: '03', title: 'Laufendes Mandat · Ab 2025',         desc: 'Von null auf Vollbetrieb in sechs Wochen. Im ersten Projektjahr: +75 % Umsatz, +66 % Absatz, 10 % ISS. Mandat läuft.', img: '', tags: ['Launch', 'Rapid Scale', 'POS', 'Messen', 'Digital'] },
+      ],
+      gallery: ['', '', ''],
+      bentoImages: [
+        { src: '', span: 'md:col-span-2 md:row-span-2', label: 'POS Activation' },
+        { src: '', span: 'md:col-span-1 md:row-span-1', label: 'Messe & Roadshow' },
+        { src: '', span: 'md:col-span-1 md:row-span-1', label: 'Training' },
+        { src: '', span: 'md:col-span-2 md:row-span-1', label: '3D-Raumplaner' },
+      ],
+      imageGroups: [
+        { title: 'POS & Retail',       mediaKey: 'case_tvsound_gallery_1', fallbacks: [] },
+        { title: 'Messen & Roadshows', mediaKey: 'case_tvsound_gallery_2', fallbacks: [] },
+        { title: 'Training & Team',    mediaKey: 'case_tvsound_gallery_3', fallbacks: [] },
+        { title: 'Digital & Kampagnen',mediaKey: 'case_tvsound_gallery_4', fallbacks: [] },
+      ],
+      comparisonMandates: [
+        {
+          num: '01 / 03', period: '2009–2019', label: 'Gründungskunde — 10 Jahre, ein Markt, ein Partner.',
+          headlineValue: '1,72 Mrd. €', headlineLabel: 'Kumulierter Umsatz',
+          stats: [
+            { value: '45.380',  label: 'Einsatztage im Spitzenjahr 2018' },
+            { value: '10 Jahre',label: 'Laufzeit der Partnerschaft' },
+            { value: '+Multi',  label: 'Produktkategorien im Projektverlauf übernommen' },
+          ],
+          services: ['Promotion', 'POS-Möbel', 'Trainings', 'Roadshows', 'Lager'],
+          isActive: false, timelineStart: 0, timelineEnd: 10 / 17,
+        },
+        {
+          num: '02 / 03', period: '2020–2024', label: 'Deutschland war nicht Plan A — bis wir kamen.',
+          headlineValue: '239,8 Mio. €', headlineLabel: 'Kumulierter Umsatz',
+          stats: [
+            { value: '+61 %',  label: 'Umsatzwachstum 2021 → 2024' },
+            { value: '+40 %',  label: 'Absatzwachstum 2020 → 2024' },
+            { value: '# 1',    label: 'Erfolgreichster europ. Markt des Kunden' },
+          ],
+          services: ['Field Force', '3D-Raumplaner', 'Digital', 'Kampagnen', 'Training'],
+          isActive: false, timelineStart: 11 / 17, timelineEnd: 15 / 17,
+        },
+        {
+          num: '03 / 03', period: 'Ab 2025', label: 'Von null auf Vollbetrieb in sechs Wochen.',
+          headlineValue: '+75 %', headlineLabel: 'Umsatzwachstum · Jahr 1',
+          stats: [
+            { value: '+66 %',    label: 'Absatzwachstum Jahr 1' },
+            { value: '10 %',     label: 'ISS binnen eines Jahres' },
+            { value: '6 Wochen', label: 'Von Briefing bis Vollbetrieb' },
+          ],
+          services: ['Launch', 'Rapid Scale', 'POS', 'Messen', 'Digital'],
+          isActive: true, timelineStart: 16 / 17, timelineEnd: 1,
+        },
+      ],
+      relatedStories: ['garmin', 'avoury'],
     },
   ];
 
@@ -845,8 +993,12 @@ export default function CaseStudiesPage() {
 
           <div className="sonic-container py-12 md:py-16">
 
-            {/* ── LEISTUNGEN IM EINSATZ ── */}
-            <LeistungenImEinsatz modules={expanded.modules} brand={expanded.brand} />
+            {/* ── MODULES or MANDATE COMPARISON ── */}
+            {expanded.comparisonMandates ? (
+              <MandateComparison mandates={expanded.comparisonMandates} />
+            ) : (
+              <LeistungenImEinsatz modules={expanded.modules} brand={expanded.brand} />
+            )}
 
             <GroupedImpressionenGallery
               groups={expanded.imageGroups}
