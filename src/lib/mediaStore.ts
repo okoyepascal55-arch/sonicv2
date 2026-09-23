@@ -2099,6 +2099,17 @@ function stripReaddy(sections: MediaSections): MediaSections {
   return out;
 }
 
+// Strip readdy.ai placeholder URLs from any data — never render or cache them.
+function stripReddy(sections: MediaSections): MediaSections {
+  const out: MediaSections = {};
+  for (const key of Object.keys(sections)) {
+    out[key] = (sections[key] || []).map((item) =>
+      item.url && item.url.includes('readdy.ai') ? { ...item, url: '' } : item
+    );
+  }
+  return out;
+}
+
 function getStoreSnapshot(): MediaSections {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
