@@ -1357,6 +1357,42 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'warehouse-content-sub', label: 'Content Subline', description: 'Content description', type: 'paragraph', value: 'Full-Service-Logistik mit eigenem Warehouse in Krefeld — für den gesamten DACH-Raum.' },
     ],
   },
+  // ── Case study headline metrics — editable from Dashboard → Text ──
+  {
+    key: 'case_garmin',
+    label: 'Fallbeispiel Garmin — Kennzahlen',
+    entries: [
+      { id: 'case-garmin-metric',       label: 'Headline-Kennzahl',     value: '+116%',                           type: 'text' as const },
+      { id: 'case-garmin-metric-label', label: 'Kennzahl-Beschriftung', value: 'Umsatzwachstum 2021–2024',        type: 'text' as const },
+    ],
+  },
+  {
+    key: 'case_seb',
+    label: 'Fallbeispiel Groupe SEB — Kennzahlen',
+    entries: [
+      { id: 'case-seb-metric',          label: 'Headline-Kennzahl',     value: '+130%',                           type: 'text' as const },
+      { id: 'case-seb-metric-label',    label: 'Kennzahl-Beschriftung', value: 'Umsatz je Einsatztag 2019–2024', type: 'text' as const },
+    ],
+  },
+  {
+    key: 'case_avoury',
+    label: 'Fallbeispiel Avoury — Kennzahlen',
+    entries: [
+      { id: 'case-avoury-metric',       label: 'Headline-Kennzahl',     value: '+1.187%',                              type: 'text' as const },
+      { id: 'case-avoury-metric-label', label: 'Kennzahl-Beschriftung', value: 'Abverkauf pro Einsatztag 2021–2023',   type: 'text' as const },
+    ],
+  },
+  {
+    key: 'case_tvsound',
+    label: 'Fallbeispiel TV & Sound — Kennzahlen',
+    entries: [
+      { id: 'case-tvsound-metric',       label: 'Headline-Kennzahl',        value: '1,72 Mrd. €',                          type: 'text' as const },
+      { id: 'case-tvsound-metric-label', label: 'Kennzahl-Beschriftung',    value: 'Kumulierter Umsatz, längstes Mandat',   type: 'text' as const },
+      { id: 'case-tvsound-m1-stat',      label: 'Mandat 1 — Einsatztage',   value: '45.380',                               type: 'text' as const },
+      { id: 'case-tvsound-m2-metric',    label: 'Mandat 2 — Kennzahl',      value: '239,8 Mio. €',                         type: 'text' as const },
+      { id: 'case-tvsound-m3-metric',    label: 'Mandat 3 — Wachstum J.1',  value: '+75 %',                                type: 'text' as const },
+    ],
+  },
 ];
 
 /* ─────────────────────────────────────────────
