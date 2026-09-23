@@ -1,26 +1,37 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
 
-interface WPPost {
-  id: number;
-  title: { rendered: string };
-  excerpt: { rendered: string };
-  date: string;
-  link: string;
-  _embedded?: {
-    'wp:featuredmedia'?: Array<{ source_url: string }>;
-    'wp:term'?: Array<Array<{ name: string }>>;
-  };
+// Publii publishes a standard JSON Feed (https://www.jsonfeed.org) when
+// "Enable JSON feed" is turned on in Website Settings → RSS/JSON feed.
+interface PubliiFeedItem {
+  id: string;
+  url: string;
+  title: string;
+  summary?: string;
+  content_html: string;
+  image?: string;
+  banner_image?: string;
+  date_published: string;
+  tags?: string[];
+  authors?: Array<{ name: string; avatar?: string }>;
 }
 
-interface WPCategory {
-  id: number;
-  name: string;
-  count: number;
+interface PubliiFeed {
+  title: string;
+  items: PubliiFeedItem[];
+}
+
+const POSTS_PER_PAGE = 9;
+
+export function getPostSlug(item: PubliiFeedItem): string {
+  const source = item.id || item.url || '';
+  const trimmed = source.replace(/\/+$/, '');
+  const segments = trimmed.split('/');
+  return segments[segments.length - 1] || item.id;
 }
 
 export default function BlogPage() {
@@ -38,68 +49,29 @@ export default function BlogPage() {
     ? resolveImageUrl(blogHeroImages[0].url)
     : 'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg';
 
-  const [posts, setPosts] = useState<WPPost[]>([]);
-  const [categories, setCategories] = useState<WPCategory[]>([]);
-  const [activeCategory, setActiveCategory] = useState<number | null>(null);
-  
+  const [allPosts, setAllPosts] = useState<PubliiFeedItem[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
+
   const gridRef = useRef<HTMLDivElement>(null);
 
-  // Fetch Categories once on mount
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const envUrl = import.meta.env.VITE_WP_API_URL || 'https://hotpink-walrus-949035.hostingersite.com/wp-json/wp/v2';
-        const apiUrl = envUrl.endsWith('/') ? envUrl.slice(0, -1) : envUrl;
-        
-        // Fetch categories with posts (hide_empty=true)
-        const response = await fetch(`${apiUrl}/categories?hide_empty=true&per_page=15`);
-        if (response.ok) {
-          const data = await response.json();
-          // Filter out "Uncategorized" if you want, or just sort by count
-          const sorted = data.sort((a: WPCategory, b: WPCategory) => b.count - a.count);
-          setCategories(sorted);
-        }
-      } catch (err) {
-        console.error('Failed to fetch categories', err);
-      }
-    };
-    fetchCategories();
-  }, []);
-
-  // Fetch Posts whenever page or category changes
-  useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchFeed = async () => {
       setLoading(true);
       setError(null);
       try {
-        const envUrl = import.meta.env.VITE_WP_API_URL || 'https://hotpink-walrus-949035.hostingersite.com/wp-json/wp/v2';
-        const apiUrl = envUrl.endsWith('/') ? envUrl.slice(0, -1) : envUrl;
-        
-        let url = `${apiUrl}/posts?_embed&per_page=9&page=${currentPage}`;
-        if (activeCategory) {
-          url += `&categories=${activeCategory}`;
-        }
+        const feedUrl = import.meta.env.VITE_PUBLII_FEED_URL;
+        if (!feedUrl) throw new Error('VITE_PUBLII_FEED_URL ist nicht gesetzt');
 
-        const response = await fetch(url);
+        const response = await fetch(feedUrl);
         if (!response.ok) {
-          throw new Error(`Failed to fetch posts: ${response.status} ${response.statusText}`);
-        }
-        
-        // Extract total pages from headers
-        const totalPagesHeader = response.headers.get('X-WP-TotalPages');
-        if (totalPagesHeader) {
-          setTotalPages(parseInt(totalPagesHeader, 10));
-        } else {
-          setTotalPages(1);
+          throw new Error(`Failed to fetch feed: ${response.status} ${response.statusText}`);
         }
 
-        const data = await response.json();
-        setPosts(data);
+        const data: PubliiFeed = await response.json();
+        setAllPosts(data.items || []);
       } catch (err) {
         console.error(err);
         setError('Blogbeiträge konnten nicht geladen werden. Bitte versuche es später noch einmal.');
@@ -108,19 +80,42 @@ export default function BlogPage() {
       }
     };
 
-    fetchPosts();
-  }, [currentPage, activeCategory]);
+    fetchFeed();
+  }, []);
 
-  const handleCategoryClick = (categoryId: number | null) => {
-    setActiveCategory(categoryId);
-    setCurrentPage(1); // Reset to first page
+  // Publii's feed has no categories endpoint — derive them from post tags.
+  const categories = useMemo(() => {
+    const counts = new Map<string, number>();
+    allPosts.forEach((post) => {
+      (post.tags || []).forEach((tag) => {
+        counts.set(tag, (counts.get(tag) || 0) + 1);
+      });
+    });
+    return Array.from(counts.entries())
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count);
+  }, [allPosts]);
+
+  const filteredPosts = useMemo(() => {
+    if (!activeCategory) return allPosts;
+    return allPosts.filter((post) => post.tags?.includes(activeCategory));
+  }, [allPosts, activeCategory]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
+  const posts = filteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
+
+  const handleCategoryClick = (category: string | null) => {
+    setActiveCategory(category);
+    setCurrentPage(1);
   };
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
-    // Smooth scroll back to grid top
     if (gridRef.current) {
-      const yOffset = -100; // offset for fixed header
+      const yOffset = -100;
       const y = gridRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
@@ -143,7 +138,7 @@ export default function BlogPage() {
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1a1a1a]/80 to-[#1a1a1a]" />
-        
+
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center justify-center text-center h-full">
           <div className="inline-flex items-center gap-3 mb-4 md:mb-6">
@@ -175,7 +170,7 @@ export default function BlogPage() {
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{activeCategory ? "Gefilterte Beiträge" : "Aktuelle Beiträge"}</span>
           </div>
             </div>
-            
+
             {/* Category Filters */}
             {categories.length > 0 && (
               <div className="flex flex-wrap items-center justify-center gap-3 w-full border-y border-black/5 py-8 mt-4">
@@ -192,10 +187,10 @@ export default function BlogPage() {
                 </button>
                 {categories.map((cat) => (
                   <button
-                    key={cat.id}
-                    onClick={() => handleCategoryClick(cat.id)}
+                    key={cat.name}
+                    onClick={() => handleCategoryClick(cat.name)}
                     className={`px-6 py-2.5 text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-300 border ${
-                      activeCategory === cat.id
+                      activeCategory === cat.name
                         ? 'bg-primary-500 text-[#1a1a1a] border-primary-500 shadow-[0_4px_14px_rgba(200,212,0,0.4)]'
                         : 'bg-transparent text-foreground-500 border-foreground-300 hover:bg-[#1a1a1a] hover:border-[#1a1a1a] hover:text-primary-500 hover:shadow-[0_4px_14px_rgba(26,26,26,0.3)]'
                     }`}
@@ -237,20 +232,21 @@ export default function BlogPage() {
               {/* Blog Grid */}
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                 {posts.map((post) => {
-                  const imageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
-                  const category = post._embedded?.['wp:term']?.[0]?.[0]?.name || 'News';
-                  
+                  const imageUrl = post.image || post.banner_image;
+                  const category = post.tags?.[0] || 'News';
+                  const slug = getPostSlug(post);
+
                   return (
                     <Link
                       key={post.id}
-                      to={`/blog/${post.id}`}
+                      to={`/blog/${slug}`}
                       className="group bg-white border border-black/5 flex flex-col overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
                     >
                       <div className="relative h-56 md:h-64 overflow-hidden bg-[#1a1a1a]">
                         {imageUrl ? (
                           <img
                             src={imageUrl}
-                            alt={post.title.rendered}
+                            alt={post.title}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                             loading="lazy"
                           />
@@ -263,20 +259,20 @@ export default function BlogPage() {
                           {category}
                         </div>
                       </div>
-                      
+
                       <div className="p-6 md:p-8 flex-1 flex flex-col">
                         <div className="text-black/40 text-xs font-bold uppercase tracking-wider mb-3">
-                          {formatDate(post.date)}
+                          {formatDate(post.date_published)}
                         </div>
-                        <h2 
-                          className="text-xl md:text-2xl font-black text-foreground-950 mb-4 leading-tight tracking-tight group-hover:text-primary-500 transition-colors line-clamp-3"
-                          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                        />
-                        <div 
-                          className="text-sm text-foreground-600 leading-relaxed mb-8 line-clamp-3"
-                          dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-                        />
-                        
+                        <h2 className="text-xl md:text-2xl font-black text-foreground-950 mb-4 leading-tight tracking-tight group-hover:text-primary-500 transition-colors line-clamp-3">
+                          {post.title}
+                        </h2>
+                        {post.summary && (
+                          <div className="text-sm text-foreground-600 leading-relaxed mb-8 line-clamp-3">
+                            {post.summary}
+                          </div>
+                        )}
+
                         <div className="mt-auto">
                           <span className="inline-flex items-center gap-2 text-sm font-black text-[#1a1a1a] uppercase tracking-wider group-hover:text-primary-500 transition-colors">
                             Weiterlesen
@@ -296,8 +292,8 @@ export default function BlogPage() {
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
                     className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center transition-all duration-300 border ${
-                      currentPage === 1 
-                        ? 'border-foreground-200 text-foreground-300 cursor-not-allowed bg-white' 
+                      currentPage === 1
+                        ? 'border-foreground-200 text-foreground-300 cursor-not-allowed bg-white'
                         : 'border-black/20 text-[#1a1a1a] bg-white hover:border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-primary-500 hover:shadow-[0_4px_14px_rgba(26,26,26,0.3)]'
                     }`}
                     style={{ borderRadius: 0 }}
@@ -310,7 +306,7 @@ export default function BlogPage() {
                   <span className="sm:hidden text-sm font-black text-foreground-500 px-3 tabular-nums">
                     {currentPage} / {totalPages}
                   </span>
-                  
+
                   <div className="hidden sm:flex items-center gap-2 mx-4">
                     {(() => {
                       const getPaginationGroup = () => {
@@ -319,12 +315,12 @@ export default function BlogPage() {
                         if (currentPage >= totalPages - 3) return [1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
                         return [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
                       };
-                      
+
                       return getPaginationGroup().map((item, index) => {
                         if (item === '...') {
                           return <span key={`ellipsis-${index}`} className="w-12 text-center text-foreground-400">...</span>;
                         }
-                        
+
                         const pageNum = item as number;
                         return (
                           <button
@@ -349,8 +345,8 @@ export default function BlogPage() {
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
                     className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center transition-all duration-300 border ${
-                      currentPage === totalPages 
-                        ? 'border-foreground-200 text-foreground-300 cursor-not-allowed bg-white' 
+                      currentPage === totalPages
+                        ? 'border-foreground-200 text-foreground-300 cursor-not-allowed bg-white'
                         : 'border-black/20 text-[#1a1a1a] bg-white hover:border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-primary-500 hover:shadow-[0_4px_14px_rgba(26,26,26,0.3)]'
                     }`}
                     style={{ borderRadius: 0 }}

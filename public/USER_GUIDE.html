@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonic Group — User Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    :root {
+      --accent: #c8d400;
+      --accent-light: #e6f000;
+      --bg: #fafbf5;
+      --white: #ffffff;
+      --surface: #f2f4ec;
+      --border: #e2e5d8;
+      --text: #1a1d12;
+      --muted: #6b7160;
+      --dark-bg: #14160f;
+      --dark-surface: #1e2218;
+      --step-bg: #f7f9f0;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.75; font-size: 16px; }
+
+    /* ── Layout ── */
+    .wrapper { display: flex; min-height: 100vh; }
+
+    nav {
+      width: 280px;
+      min-width: 280px;
+      background: var(--dark-bg);
+      padding: 2rem 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    nav .logo {
+      padding: 0 1.5rem 2rem;
+      border-bottom: 1px solid #2a2d22;
+      margin-bottom: 1.5rem;
+    }
+    nav .logo .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #000;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    nav .logo h1 { font-size: 1rem; font-weight: 700; color: #fff; }
+    nav .logo p { font-size: 11px; color: #6b7160; margin-top: 2px; }
+
+    nav .section-label {
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: #4a5040;
+      padding: .75rem 1.5rem .25rem;
+    }
+    nav a {
+      display: block;
+      padding: .4rem 1.5rem;
+      font-size: 13px;
+      color: #9aa090;
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: all .15s;
+    }
+    nav a:hover, nav a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(200,212,0,.06);
+    }
+
+    main {
+      flex: 1;
+      max-width: 820px;
+      padding: 3rem 4rem;
+    }
+
+    /* ── Hero header ── */
+    .hero-header {
+      background: var(--dark-bg);
+      border-radius: 16px;
+      padding: 3rem 3rem 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: .07;
+    }
+    .hero-header .pre-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(200,212,0,.12);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .hero-header .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
+    .hero-header h1 { font-size: 2.2rem; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: .75rem; }
+    .hero-header p { color: #9aa090; font-size: 1rem; max-width: 500px; }
+
+    /* ── Typography ── */
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 3rem 0 .75rem;
+      scroll-margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    h2 .emoji { font-size: 1.4rem; }
+    h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 2rem 0 .5rem; }
+    h4 { font-size: .9rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin: 1.5rem 0 .5rem; }
+    p { color: #3d4030; margin-bottom: 1rem; }
+    strong { color: var(--text); }
+
+    /* ── Divider ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* ── Tip / Note boxes ── */
+    .tip {
+      border-left: 4px solid var(--accent);
+      background: rgba(200,212,0,.06);
+      padding: .75rem 1rem .75rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0 1.5rem;
+      font-size: 14px;
+      color: #3d4030;
+    }
+    .tip strong { color: var(--text); }
+    .note {
+      border-left: 4px solid #4a9eff;
+      background: rgba(74,158,255,.06);
+      padding: .75rem 1rem .75rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0 1.5rem;
+      font-size: 14px;
+      color: #3d4030;
+    }
+    .warn {
+      border-left: 4px solid #f4a400;
+      background: rgba(244,164,0,.06);
+      padding: .75rem 1rem .75rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0 1.5rem;
+      font-size: 14px;
+      color: #3d4030;
+    }
+
+    /* ── Steps ── */
+    .steps { margin: 1rem 0 1.5rem; display: flex; flex-direction: column; gap: .75rem; }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--step-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .9rem 1.1rem;
+    }
+    .step .num {
+      min-width: 28px;
+      height: 28px;
+      background: var(--dark-bg);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .step .content { flex: 1; }
+    .step .content strong { display: block; font-size: 14px; margin-bottom: 2px; }
+    .step .content p { font-size: 13px; color: var(--muted); margin: 0; }
+
+    /* ── Page cards ── */
+    .page-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1rem; margin: 1rem 0 1.5rem; }
+    .page-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .page-card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(200,212,0,.12); }
+    .page-card .icon { font-size: 1.5rem; margin-bottom: .5rem; }
+    .page-card h5 { font-size: .85rem; font-weight: 700; margin-bottom: .25rem; }
+    .page-card p { font-size: 12px; color: var(--muted); margin: 0; }
+
+    /* ── Screenshot placeholder ── */
+    .screen-placeholder {
+      background: var(--dark-surface);
+      border: 1px solid #2a2d22;
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      margin: 1rem 0 1.5rem;
+      color: #4a5040;
+      font-size: 13px;
+    }
+    .screen-placeholder .icon { font-size: 2rem; margin-bottom: .5rem; display: block; }
+
+    /* ── Badge inline ── */
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      vertical-align: middle;
+    }
+    .badge.green { background: #e8f5e9; color: #2e7d32; }
+    .badge.yellow { background: rgba(200,212,0,.15); color: #6b7100; }
+    .badge.blue { background: #e3f2fd; color: #1565c0; }
+
+    /* ── Key shortcut ── */
+    kbd {
+      font-family: monospace;
+      font-size: .8em;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-bottom-width: 2px;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    /* ── Table ── */
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 14px; }
+    th { text-align: left; padding: .6rem 1rem; background: var(--surface); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); border-bottom: 1px solid var(--border); }
+    td { padding: .6rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; color: #3d4030; }
+    tr:last-child td { border-bottom: none; }
+
+    ul.body-list { margin: 0 0 1rem 1.5rem; color: #3d4030; font-size: 15px; line-height: 2; }
+    ol.body-list { margin: 0 0 1rem 1.5rem; color: #3d4030; font-size: 15px; line-height: 2; }
+
+    section { scroll-margin-top: 1rem; }
+
+    @media (max-width: 900px) {
+      nav { display: none; }
+      main { padding: 2rem 1.5rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <nav>
+    <div class="logo">
+      <div class="tag">User Guide</div>
+      <h1>Sonic Group</h1>
+      <p>Website Guide — Simple &amp; Clear</p>
+    </div>
+
+    <div class="section-label">Getting Started</div>
+    <a href="#intro">What is this website?</a>
+    <a href="#navigate">How to navigate</a>
+
+    <div class="section-label">The Pages</div>
+    <a href="#home">🏠 Home Page</a>
+    <a href="#services">⚙️ Services (Leistungen)</a>
+    <a href="#solutions">💡 Solutions (Lösungen)</a>
+    <a href="#about">🏢 About Us</a>
+    <a href="#careers">💼 Careers</a>
+    <a href="#blog">📝 Blog</a>
+    <a href="#contact">📬 Contact</a>
+    <a href="#srt">📊 SRT Tool</a>
+    <a href="#sonic-reels">🎬 Sonic Reels</a>
+
+    <div class="section-label">Features</div>
+    <a href="#booking">Booking a Meeting</a>
+    <a href="#applying">Applying for a Job</a>
+
+    <div class="section-label">Admin Dashboard</div>
+    <a href="#dashboard-intro">What is the Dashboard?</a>
+    <a href="#dashboard-login">Logging In</a>
+    <a href="#dashboard-images">Updating Images</a>
+    <a href="#dashboard-text">Updating Text</a>
+    <a href="#dashboard-upload">Uploading Photos</a>
+    <a href="#dashboard-tips">Tips &amp; Tricks</a>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <div class="hero-header">
+      <div class="pre-label"><span class="dot"></span> Sonic Group Website</div>
+      <h1>User Guide</h1>
+      <p>Everything you need to know about using and managing the Sonic Group website — no technical knowledge required.</p>
+    </div>
+
+    <!-- INTRO -->
+    <section id="intro">
+      <h2><span class="emoji">👋</span>What is this website?</h2>
+      <p>
+        The <strong>Sonic Group website</strong> (<code>sonic-group.de</code>) is the official online home of Sonic Group —
+        a professional agency that helps brands enter and grow in the German, Austrian, and Swiss (DACH) markets.
+      </p>
+      <p>
+        The website has two main purposes:
+      </p>
+      <ul class="body-list">
+        <li><strong>Public website</strong> — tells brands and job seekers who Sonic Group is, what services are offered, and how to get in touch.</li>
+        <li><strong>Content Dashboard</strong> — a behind-the-scenes tool where the team can update photos and text on the website without needing a developer.</li>
+      </ul>
+      <div class="tip"><strong>💡 Good to know:</strong> The website is written in German (Deutsch) and targets a German-speaking audience in the DACH region.</div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- NAVIGATE -->
+    <section id="navigate">
+      <h2><span class="emoji">🧭</span>How to Navigate</h2>
+      <p>At the top of every page you'll find the <strong>navigation bar</strong> — the horizontal menu that runs across the screen.</p>
+
+      <h3>Desktop navigation</h3>
+      <p>On a computer, hovering over a menu item reveals a dropdown with sub-pages. The main menu items are:</p>
+      <table>
+        <thead><tr><th>Menu item</th><th>What it is</th></tr></thead>
+        <tbody>
+          <tr><td>Leistungen</td><td>Services — what Sonic Group offers</td></tr>
+          <tr><td>Lösungen</td><td>Solutions — how Sonic Group solves problems</td></tr>
+          <tr><td>SRT</td><td>A special tool/product Sonic Group provides</td></tr>
+          <tr><td>Sonic Reels</td><td>A media / video showcase page</td></tr>
+          <tr><td>Über uns</td><td>About Us — the company story and team</td></tr>
+          <tr><td>Karriere</td><td>Careers — job openings and working at Sonic</td></tr>
+          <tr><td>Kontakt</td><td>Contact — get in touch</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Mobile navigation</h3>
+      <p>On a phone or tablet, tap the <strong>hamburger icon</strong> (☰) in the top-right corner to open the menu.</p>
+
+      <h3>Footer links</h3>
+      <p>At the bottom of every page there is a <strong>footer</strong> with additional links to all sections of the site.</p>
+
+      <div class="tip"><strong>💡 Tip:</strong> Click the <strong>Sonic Group logo</strong> in the top-left corner at any time to go back to the home page.</div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- HOME -->
+    <section id="home">
+      <h2><span class="emoji">🏠</span>Home Page</h2>
+      <p>
+        The home page (<code>sonic-group.de</code>) gives visitors a complete overview of Sonic Group at a glance.
+        It is made up of several sections that you can scroll through:
+      </p>
+      <div class="page-grid">
+        <div class="page-card"><div class="icon">🎯</div><h5>Hero Banner</h5><p>The big opening section with the main headline and two call-to-action buttons — one for brands, one for job seekers.</p></div>
+        <div class="page-card"><div class="icon">🤝</div><h5>Trust Strip</h5><p>Logos of brands and partners that Sonic Group has worked with.</p></div>
+        <div class="page-card"><div class="icon">📈</div><h5>Live Metrics</h5><p>Key numbers — assignments completed, revenue generated, staff deployed, etc.</p></div>
+        <div class="page-card"><div class="icon">🎥</div><h5>Video Showcase</h5><p>A highlight video showing Sonic Group in action.</p></div>
+        <div class="page-card"><div class="icon">🔍</div><h5>Challenge Section</h5><p>Explains the problems brands face when entering a new market and how Sonic solves them.</p></div>
+        <div class="page-card"><div class="icon">🛠️</div><h5>Services Grid</h5><p>A visual overview of all the services Sonic Group offers.</p></div>
+        <div class="page-card"><div class="icon">⭐</div><h5>Client Proof</h5><p>Logos and quotes from satisfied clients.</p></div>
+        <div class="page-card"><div class="icon">📬</div><h5>Contact Form</h5><p>A quick way to send a message directly from the home page.</p></div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h2><span class="emoji">⚙️</span>Services (Leistungen)</h2>
+      <p>
+        The <strong>Leistungen</strong> section covers all the specific services that Sonic Group offers.
+        There is a main overview page, and then each service has its own detailed page:
+      </p>
+      <table>
+        <thead><tr><th>Service</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td>Forecasting</td><td>Data-driven predictions and planning for retail performance</td></tr>
+          <tr><td>Talentpool</td><td>A pool of skilled promotional staff ready to deploy</td></tr>
+          <tr><td>Staff-as-a-Service</td><td>Flexible staffing solutions — hire trained people as you need them</td></tr>
+          <tr><td>Live Video</td><td>Live streaming and video production for product promotion</td></tr>
+          <tr><td>POS Full Service</td><td>Point-of-Sale management — everything at the shop floor level</td></tr>
+          <tr><td>Events &amp; Messen</td><td>Trade fair and event management &amp; staffing</td></tr>
+          <tr><td>Kreation &amp; Content</td><td>Creative content production — photos, videos, design</td></tr>
+          <tr><td>Warehouse &amp; Logistik</td><td>Storage and logistics support for promotional materials</td></tr>
+        </tbody>
+      </table>
+      <p>Click on any service card to go to its full dedicated page with detailed information.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- SOLUTIONS -->
+    <section id="solutions">
+      <h2><span class="emoji">💡</span>Solutions (Lösungen)</h2>
+      <p>
+        The <strong>Lösungen</strong> page explains how Sonic Group approaches challenges from a strategic perspective.
+        Rather than listing individual services, it shows the <em>overall journey</em> a brand goes through when entering
+        the DACH market with Sonic's help.
+      </p>
+      <p>The page includes:</p>
+      <ul class="body-list">
+        <li>A <strong>hero section</strong> explaining the main promise</li>
+        <li><strong>Step-by-step process</strong> showing how Sonic works with a client</li>
+        <li><strong>Deliverables</strong> — what the client gets at each stage</li>
+        <li><strong>Testimonials</strong> — feedback from past clients</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2><span class="emoji">🏢</span>About Us (Über uns)</h2>
+      <p>
+        The <strong>Über uns</strong> page tells the story of Sonic Group — the company's history, values, and the people behind it.
+      </p>
+      <ul class="body-list">
+        <li><strong>Management Voices</strong> — quotes and messages from leadership</li>
+        <li><strong>Company Values</strong> — the core principles that guide the team</li>
+        <li><strong>Team section</strong> — photos and names of key team members</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- CAREERS -->
+    <section id="careers">
+      <h2><span class="emoji">💼</span>Careers (Karriere)</h2>
+      <p>
+        The <strong>Karriere</strong> page is for people who want to work at Sonic Group.
+        It showcases the company culture and current job openings.
+      </p>
+      <h3>What's on the page</h3>
+      <ul class="body-list">
+        <li><strong>Career Showcase</strong> — a visual overview of what working at Sonic looks like</li>
+        <li><strong>Chapter Kit</strong> — different "chapters" of the employee journey</li>
+        <li><strong>Awards</strong> — recognition and accolades Sonic has received as an employer</li>
+        <li><strong>Culture</strong> — what the workplace environment is like</li>
+        <li><strong>Open Jobs</strong> — current vacancies you can apply for</li>
+        <li><strong>Sonic Family</strong> — team photos and community feel</li>
+        <li><strong>Team Events</strong> — photos and videos of company events</li>
+        <li><strong>Career Paths</strong> — how you can grow within Sonic Group</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- BLOG -->
+    <section id="blog">
+      <h2><span class="emoji">📝</span>Blog</h2>
+      <p>
+        The <strong>Blog</strong> section at <code>/blog</code> contains articles written by the Sonic Group team.
+        Topics include retail marketing, market entry strategies, promotional trends, and more.
+      </p>
+      <p>
+        Click on any article card to open the full article. Use the browser <strong>Back button</strong>
+        to return to the blog listing.
+      </p>
+      <div class="note"><strong>ℹ️ Note:</strong> Blog articles are managed through a separate publishing tool called <strong>Publii</strong>. New articles appear here automatically once published in Publii.</div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2><span class="emoji">📬</span>Contact (Kontakt)</h2>
+      <p>
+        The <strong>Kontakt</strong> page is the main way for visitors to get in touch with Sonic Group.
+      </p>
+      <h3>How to send a message</h3>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="content"><strong>Fill in your name</strong><p>Enter your full name in the Name field.</p></div></div>
+        <div class="step"><div class="num">2</div><div class="content"><strong>Enter your email address</strong><p>This is where Sonic Group will reply to you.</p></div></div>
+        <div class="step"><div class="num">3</div><div class="content"><strong>Write your message</strong><p>Describe what you are looking for or what you need help with.</p></div></div>
+        <div class="step"><div class="num">4</div><div class="content"><strong>Click Send</strong><p>Your message is delivered directly to info@sonic-group.de.</p></div></div>
+      </div>
+      <div class="tip"><strong>💡 Tip:</strong> You can also email Sonic Group directly at <strong>info@sonic-group.de</strong> or use the booking widget to schedule a meeting (see below).</div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- SRT -->
+    <section id="srt">
+      <h2><span class="emoji">📊</span>SRT Tool</h2>
+      <p>
+        The <strong>SRT</strong> page introduces a specialised data and reporting product developed by Sonic Group.
+        SRT stands for Sonic Retail Tracker — a tool that gives brands real-time insights into their
+        retail performance across stores.
+      </p>
+      <p>The page covers:</p>
+      <ul class="body-list">
+        <li>What problem SRT solves</li>
+        <li>The key features and how it works</li>
+        <li>Which industries benefit most</li>
+        <li>Pricing and how to get access</li>
+        <li>Proof of results from existing clients</li>
+        <li>How to start working with Sonic to set it up</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- SONIC REELS -->
+    <section id="sonic-reels">
+      <h2><span class="emoji">🎬</span>Sonic Reels</h2>
+      <p>
+        <strong>Sonic Reels</strong> is a visual media showcase. It features a collection of photos
+        and videos from past Sonic Group campaigns, events, and promotions.
+      </p>
+      <ul class="body-list">
+        <li><strong>Coverflow Filmstrip</strong> — scroll through highlight images in a cinematic carousel</li>
+        <li><strong>Photo Selector</strong> — browse and view specific campaign photos</li>
+        <li><strong>Timeline</strong> — a chronological look at Sonic Group's work over the years</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- BOOKING -->
+    <section id="booking">
+      <h2><span class="emoji">📅</span>Booking a Meeting</h2>
+      <p>
+        On several pages across the website you'll see a <strong>"Book a Meeting"</strong> or
+        <strong>"Termin buchen"</strong> button. Clicking this opens a calendar booking widget
+        powered by <strong>Calendly</strong>.
+      </p>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="content"><strong>Click the booking button</strong><p>A popup will appear with a calendar.</p></div></div>
+        <div class="step"><div class="num">2</div><div class="content"><strong>Choose a date and time</strong><p>Select an available slot that works for you. Available times are shown in your local timezone.</p></div></div>
+        <div class="step"><div class="num">3</div><div class="content"><strong>Fill in your details</strong><p>Enter your name and email address so Sonic Group can confirm the appointment.</p></div></div>
+        <div class="step"><div class="num">4</div><div class="content"><strong>Confirm the booking</strong><p>You'll receive a confirmation email with a calendar invite.</p></div></div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- APPLYING -->
+    <section id="applying">
+      <h2><span class="emoji">📋</span>Applying for a Job</h2>
+      <p>
+        If you are interested in working at Sonic Group, go to the <strong>Karriere</strong> page
+        and scroll to the <strong>Jobs</strong> section.
+      </p>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="content"><strong>Browse open positions</strong><p>Scroll through the list of available roles. Each card shows the job title, location, and type.</p></div></div>
+        <div class="step"><div class="num">2</div><div class="content"><strong>Click on a position</strong><p>Read the full job description and requirements.</p></div></div>
+        <div class="step"><div class="num">3</div><div class="content"><strong>Apply</strong><p>Click the Apply button and fill in the application form. Your application is sent directly to the HR team.</p></div></div>
+      </div>
+      <div class="tip"><strong>💡 Tip:</strong> Can't find the right role? You can also send a speculative application via the <strong>Kontakt</strong> page.</div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- DASHBOARD INTRO -->
+    <section id="dashboard-intro">
+      <h2><span class="emoji">🖥️</span>What is the Content Dashboard?</h2>
+      <p>
+        The <strong>Content Dashboard</strong> is a private admin area accessible at
+        <code>sonic-group.de/dashboard</code>. It is <strong>only for the Sonic Group team</strong>
+        and is not visible to normal website visitors.
+      </p>
+      <p>
+        It allows authorised team members to:
+      </p>
+      <ul class="body-list">
+        <li>✅ Change photos on any page of the website</li>
+        <li>✅ Edit text, headings, and copy on any page</li>
+        <li>✅ Upload new images from your computer</li>
+        <li>✅ Reorganise the order of images</li>
+        <li>✅ Reset any section back to its default content</li>
+      </ul>
+      <p>Changes made in the Dashboard appear on the live website <strong>immediately</strong> — no waiting, no developer needed.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- DASHBOARD LOGIN -->
+    <section id="dashboard-login">
+      <h2><span class="emoji">🔑</span>Logging Into the Dashboard</h2>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="content"><strong>Go to the Dashboard URL</strong><p>Open your browser and go to: <strong>sonic-group.de/dashboard</strong></p></div></div>
+        <div class="step"><div class="num">2</div><div class="content"><strong>Enter your credentials</strong><p>Type your username and password in the login form.</p></div></div>
+        <div class="step"><div class="num">3</div><div class="content"><strong>Click "Anmelden"</strong><p>This means "Log In". If your credentials are correct, the dashboard opens immediately.</p></div></div>
+      </div>
+
+      <h3>Login Credentials</h3>
+      <table>
+        <thead><tr><th>Username</th><th>Password</th></tr></thead>
+        <tbody>
+          <tr><td><code>admin</code></td><td><code>admin</code></td></tr>
+          <tr><td><code>sonic</code></td><td><code>sonic2026</code></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Logging Out</h3>
+      <p>Click the <strong>"Abmelden"</strong> button in the top-right corner of the dashboard to log out. Your session lasts only as long as you have the browser tab open — closing the tab automatically logs you out.</p>
+      <div class="warn"><strong>⚠️ Important:</strong> Do not share these credentials with people outside the team.</div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- DASHBOARD IMAGES -->
+    <section id="dashboard-images">
+      <h2><span class="emoji">🖼️</span>Updating Images</h2>
+      <p>
+        Once logged in, you will see the dashboard with a <strong>sidebar on the left</strong> listing
+        all the pages (Home, Lösungen, Leistungen, Über uns, etc.) and a <strong>tab bar at the top</strong>
+        switching between <strong>Medien</strong> (images) and <strong>Text</strong>.
+      </p>
+
+      <h3>Finding the right section</h3>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="content"><strong>Click the page in the sidebar</strong><p>For example, click "Home" to manage Home page images.</p></div></div>
+        <div class="step"><div class="num">2</div><div class="content"><strong>Make sure "Medien" is selected</strong><p>Click the "Medien" tab in the top bar if it's not already active (it will have a lime-green background when selected).</p></div></div>
+        <div class="step"><div class="num">3</div><div class="content"><strong>Click on a section to expand it</strong><p>You will see a list of image sections (e.g. "Hero — Stats", "Trust Strip Logos"). Click on one to open it and see the images inside.</p></div></div>
+      </div>
+
+      <h3>Adding an image by URL</h3>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="content"><strong>Open the section</strong><p>Click the section name to expand it.</p></div></div>
+        <div class="step"><div class="num">2</div><div class="content"><strong>Click the "URL" button</strong><p>A small form will appear.</p></div></div>
+        <div class="step"><div class="num">3</div><div class="content"><strong>Paste the image link</strong><p>Copy an image URL from the web and paste it in.</p></div></div>
+        <div class="step"><div class="num">4</div><div class="content"><strong>Add a caption (optional)</strong><p>Give the image a name or description. This is used for accessibility.</p></div></div>
+        <div class="step"><div class="num">5</div><div class="content"><strong>Click Add / Hinzufügen</strong><p>The image appears in the section immediately.</p></div></div>
+      </div>
+
+      <h3>Deleting an image</h3>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="content"><strong>Hover over the image card</strong><p>A set of small buttons will appear in the top-left corner of the image.</p></div></div>
+        <div class="step"><div class="num">2</div><div class="content"><strong>Click the red bin icon 🗑️</strong><p>A confirmation popup will ask "Are you sure?"</p></div></div>
+        <div class="step"><div class="num">3</div><div class="content"><strong>Confirm deletion</strong><p>Click Yes / Ja to permanently remove the image from that section.</p></div></div>
+      </div>
+
+      <h3>Reordering images</h3>
+      <p>You can change the order of images by dragging and dropping them:</p>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="content"><strong>Hover over an image</strong><p>You will see a drag handle icon (⠿) in the top-left corner.</p></div></div>
+        <div class="step"><div class="num">2</div><div class="content"><strong>Click and hold the handle</strong><p>The image will slightly shrink to show it's being dragged.</p></div></div>
+        <div class="step"><div class="num">3</div><div class="content"><strong>Drag it to the new position</strong><p>Release it over another image to swap positions. The order is saved automatically.</p></div></div>
+      </div>
+
+      <h3>Resetting a section</h3>
+      <p>If you want to undo all changes to a section and go back to the original images:</p>
+      <ol class="body-list">
+        <li>Open the section by clicking on it</li>
+        <li>Click the <strong>"Zurücksetzen"</strong> (Reset) button</li>
+        <li>The section reverts to its default images</li>
+      </ol>
+      <div class="warn"><strong>⚠️ Warning:</strong> Resetting a section is <strong>permanent</strong>. All custom images you added will be removed and you cannot undo this action.</div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- DASHBOARD UPLOAD -->
+    <section id="dashboard-upload">
+      <h2><span class="emoji">📤</span>Uploading Photos from Your Computer</h2>
+      <p>
+        You can upload photos directly from your computer to appear on the website.
+        The system automatically compresses large photos so the website stays fast.
+      </p>
+
+      <h3>Single photo upload</h3>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="content"><strong>Open the image section</strong><p>Click on the section where you want to add the photo.</p></div></div>
+        <div class="step"><div class="num">2</div><div class="content"><strong>Click the "Upload" button</strong><p>This opens a file picker on your computer.</p></div></div>
+        <div class="step"><div class="num">3</div><div class="content"><strong>Select your photo</strong><p>Choose the file from your computer. Maximum file size is 10 MB.</p></div></div>
+        <div class="step"><div class="num">4</div><div class="content"><strong>Add a caption (optional)</strong><p>Give the photo a name. The filename is automatically used if you leave this blank.</p></div></div>
+        <div class="step"><div class="num">5</div><div class="content"><strong>Click Add / Hinzufügen</strong><p>The photo uploads to the website and appears in the section.</p></div></div>
+      </div>
+
+      <h3>Bulk upload (multiple photos at once)</h3>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="content"><strong>Open the section and click "Bulk"</strong><p>The Bulk Upload panel opens.</p></div></div>
+        <div class="step"><div class="num">2</div><div class="content"><strong>Select multiple photos</strong><p>Either click to browse or drag-and-drop multiple images into the upload area.</p></div></div>
+        <div class="step"><div class="num">3</div><div class="content"><strong>Set a caption prefix (optional)</strong><p>This adds a shared label to all photos, e.g. "Team Event" → "Team Event 1", "Team Event 2", etc.</p></div></div>
+        <div class="step"><div class="num">4</div><div class="content"><strong>Click Upload</strong><p>A progress bar shows how many photos have been uploaded. Any failures are listed so you can retry.</p></div></div>
+      </div>
+
+      <h3>Replacing an existing photo</h3>
+      <p>You can swap out an existing image with a new one while keeping its position in the section:</p>
+      <ol class="body-list">
+        <li>Hover over the image you want to replace</li>
+        <li>Click the <strong>image edit icon</strong> (📝 with a picture) — it looks like a photo with a pencil</li>
+        <li>Select your new photo from your computer</li>
+        <li>The old photo is replaced automatically</li>
+      </ol>
+
+      <div class="tip">
+        <strong>💡 Good to know about photo sizes:</strong> The system automatically resizes large photos
+        to a maximum width of 1920 pixels and converts them to the efficient WebP format. You don't
+        need to resize photos before uploading — just upload the original and the system handles the rest.
+        The maximum upload size is <strong>10 MB per photo</strong>.
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- DASHBOARD TEXT -->
+    <section id="dashboard-text">
+      <h2><span class="emoji">✏️</span>Updating Text &amp; Copy</h2>
+      <p>
+        You can edit headings, descriptions, button labels, statistics, and other text across the website
+        directly in the dashboard.
+      </p>
+
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="content"><strong>Select the page from the sidebar</strong><p>Click on the page whose text you want to edit (e.g. Home).</p></div></div>
+        <div class="step"><div class="num">2</div><div class="content"><strong>Click the "Text" tab</strong><p>In the top bar, click "Text" (with the document icon) to switch to the text editor.</p></div></div>
+        <div class="step"><div class="num">3</div><div class="content"><strong>Open the section you want to edit</strong><p>Click on the section name (e.g. "Hero — HeroRevamp Section") to expand it.</p></div></div>
+        <div class="step"><div class="num">4</div><div class="content"><strong>Find the text entry you want to change</strong><p>Each entry has a label (like "H1 Line 1" or "Subtitle") to help you identify what it controls.</p></div></div>
+        <div class="step"><div class="num">5</div><div class="content"><strong>Type your new text</strong><p>Click into the text box and edit the content. Longer texts have a bigger text area.</p></div></div>
+        <div class="step"><div class="num">6</div><div class="content"><strong>Click Save / Speichern</strong><p>The new text is saved and appears on the live website immediately.</p></div></div>
+      </div>
+
+      <h3>Resetting text to defaults</h3>
+      <p>If you accidentally change something and want the original text back, click the <strong>reset button</strong> next to the entry or use the <strong>"Zurücksetzen"</strong> button for the whole section.</p>
+
+      <div class="note"><strong>ℹ️ Note:</strong> Each text entry has a small label showing what type it is — for example <span class="badge blue">Heading</span>, <span class="badge green">CTA</span>, <span class="badge yellow">Stat</span>. This helps you understand what part of the page you are editing.</div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- TIPS -->
+    <section id="dashboard-tips">
+      <h2><span class="emoji">💡</span>Tips &amp; Best Practices</h2>
+
+      <h3>Image quality tips</h3>
+      <ul class="body-list">
+        <li>Use <strong>high-quality photos</strong> (at least 1000px wide) — the system handles compression automatically</li>
+        <li>For <strong>logos and icons</strong>, use SVG files when possible — they stay crisp at any size</li>
+        <li>For <strong>hero banners and backgrounds</strong>, use wide landscape images (wider than they are tall)</li>
+        <li>For <strong>team photos and portraits</strong>, portrait or square images work best</li>
+        <li>The dashboard shows a recommended size hint (e.g. "Ideal: 1920×1080") next to each section — use this as a guide</li>
+      </ul>
+
+      <h3>Text editing tips</h3>
+      <ul class="body-list">
+        <li>Keep headings <strong>short and impactful</strong> — the design is built around concise text</li>
+        <li>Statistics and numbers (e.g. "1.35M+") are often separate fields so they can be styled differently</li>
+        <li>Button labels (CTA) should be <strong>action words</strong> — e.g. "Jetzt starten", "Mehr erfahren"</li>
+      </ul>
+
+      <h3>General tips</h3>
+      <ul class="body-list">
+        <li>Changes take effect <strong>immediately</strong> on the live website — always check the live site after making changes</li>
+        <li>The Dashboard works best on a <strong>desktop computer or laptop</strong> — it can be used on a tablet but is not designed for phones</li>
+        <li>You can have the <strong>live website open in another tab</strong> while making changes in the dashboard — refresh the live tab to see updates</li>
+        <li>If you see a broken image icon (⚠️) in the dashboard, it means the image URL is no longer valid. Use the Replace button to swap it with a new one</li>
+      </ul>
+
+      <h3>What to do if something goes wrong</h3>
+      <ul class="body-list">
+        <li>If you accidentally delete an image, use the <strong>Reset section</strong> button to restore all defaults</li>
+        <li>If text looks wrong on the live site, go back to the Text panel and restore the original wording</li>
+        <li>If the upload fails, check that your photo is under 10 MB and try again</li>
+        <li>If you are locked out of the dashboard, contact your team administrator for the correct credentials</li>
+      </ul>
+    </section>
+
+    <hr class="divider" />
+
+    <div style="text-align:center; padding: 2rem 0; color: var(--muted); font-size: 13px;">
+      <strong style="color:var(--accent)">Sonic Group</strong> — Website User Guide · Version 2.0 · September 2026<br>
+      For technical questions, contact your website administrator.
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

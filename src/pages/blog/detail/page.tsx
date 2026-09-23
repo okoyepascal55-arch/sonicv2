@@ -3,46 +3,60 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import WoodenButton from '@/components/base/WoodenButton';
+import { getPostSlug } from '../page';
 
-interface WPPostDetail {
-  id: number;
-  title: { rendered: string };
-  content: { rendered: string };
-  excerpt: { rendered: string };
-  date: string;
-  link: string;
-  _embedded?: {
-    'wp:featuredmedia'?: Array<{ source_url: string; alt_text: string }>;
-    'wp:term'?: Array<Array<{ name: string; id: number }>>;
-    author?: Array<{ name: string; avatar_urls?: { '96': string } }>;
-  };
+// Publii publishes a standard JSON Feed (https://www.jsonfeed.org) when
+// "Enable JSON feed" is turned on in Website Settings → RSS/JSON feed.
+interface PubliiFeedItem {
+  id: string;
+  url: string;
+  title: string;
+  summary?: string;
+  content_html: string;
+  image?: string;
+  banner_image?: string;
+  date_published: string;
+  date_modified?: string;
+  tags?: string[];
+  authors?: Array<{ name: string; avatar?: string }>;
+}
+
+interface PubliiFeed {
+  title: string;
+  items: PubliiFeedItem[];
 }
 
 export default function BlogDetailPage() {
-  const { id } = useParams<{ id: string }>();
+  const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const [post, setPost] = useState<WPPostDetail | null>(null);
+  const [post, setPost] = useState<PubliiFeedItem | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useSEO({
-    title: post ? `${post.title.rendered.replace(/<[^>]+>/g, '')} | Sonic Group Blog` : 'Blog | Sonic Group',
-    description: post ? post.excerpt.rendered.replace(/<[^>]+>/g, '').slice(0, 160) : '',
-    ogTitle: post ? post.title.rendered.replace(/<[^>]+>/g, '') : 'Blog | Sonic Group',
+    title: post ? `${post.title} | Sonic Group Blog` : 'Blog | Sonic Group',
+    description: post?.summary ? post.summary.slice(0, 160) : '',
+    ogTitle: post ? post.title : 'Blog | Sonic Group',
   });
 
   useEffect(() => {
-    if (!id) return;
+    if (!slug) return;
     const fetchPost = async () => {
       setLoading(true);
       setError(null);
       try {
-        const envUrl = import.meta.env.VITE_WP_API_URL || 'https://hotpink-walrus-949035.hostingersite.com/wp-json/wp/v2';
-        const apiUrl = envUrl.endsWith('/') ? envUrl.slice(0, -1) : envUrl;
-        const response = await fetch(`${apiUrl}/posts/${id}?_embed`);
-        if (!response.ok) throw new Error(`Post not found: ${response.status}`);
-        const data = await response.json();
-        setPost(data);
+        const feedUrl = import.meta.env.VITE_PUBLII_FEED_URL;
+        if (!feedUrl) throw new Error('VITE_PUBLII_FEED_URL ist nicht gesetzt');
+
+        const response = await fetch(feedUrl);
+        if (!response.ok) throw new Error(`Failed to fetch feed: ${response.status}`);
+
+        const data: PubliiFeed = await response.json();
+        const found = (data.items || []).find(
+          (item) => getPostSlug(item) === slug || item.id === slug
+        );
+        if (!found) throw new Error('Post not found');
+        setPost(found);
       } catch (err) {
         console.error(err);
         setError('Dieser Artikel konnte nicht geladen werden.');
@@ -51,7 +65,7 @@ export default function BlogDetailPage() {
       }
     };
     fetchPost();
-  }, [id]);
+  }, [slug]);
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -92,10 +106,10 @@ export default function BlogDetailPage() {
     );
   }
 
-  const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
-  const category = post._embedded?.['wp:term']?.[0]?.[0]?.name || 'News';
-  const author = post._embedded?.author?.[0]?.name || 'Sonic Group';
-  const authorAvatar = post._embedded?.author?.[0]?.avatar_urls?.['96'];
+  const featuredImage = post.image || post.banner_image;
+  const category = post.tags?.[0] || 'News';
+  const author = post.authors?.[0]?.name || 'Sonic Group';
+  const authorAvatar = post.authors?.[0]?.avatar;
 
   return (
     <div className="min-h-[100dvh] bg-white">
@@ -104,7 +118,7 @@ export default function BlogDetailPage() {
         {featuredImage ? (
           <img
             src={featuredImage}
-            alt={post.title.rendered}
+            alt={post.title}
             className="w-full h-full object-cover opacity-60"
           />
         ) : (
@@ -137,10 +151,9 @@ export default function BlogDetailPage() {
       {/* ── ARTICLE BODY ── */}
       <article className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-20">
         {/* Title */}
-        <h1
-          className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight mb-8"
-          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-        />
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground-950 leading-tight tracking-tight mb-8">
+          {post.title}
+        </h1>
 
         {/* Meta */}
         <div className="flex items-center gap-4 mb-10 pb-10 border-b border-black/10">
@@ -149,14 +162,14 @@ export default function BlogDetailPage() {
           )}
           <div>
             <div className="text-sm font-black text-foreground-950">{author}</div>
-            <div className="text-xs text-foreground-400 font-bold uppercase tracking-wider">{formatDate(post.date)}</div>
+            <div className="text-xs text-foreground-400 font-bold uppercase tracking-wider">{formatDate(post.date_published)}</div>
           </div>
         </div>
 
         {/* Content */}
         <div
           className="wp-content text-foreground-700 leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+          dangerouslySetInnerHTML={{ __html: post.content_html }}
         />
 
         {/* Footer nav */}
@@ -170,7 +183,7 @@ export default function BlogDetailPage() {
             Zurück zum Blog
           </button>
           <a
-            href={post.link}
+            href={post.url}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-black text-foreground-400 uppercase tracking-widest hover:text-primary-500 transition-colors"

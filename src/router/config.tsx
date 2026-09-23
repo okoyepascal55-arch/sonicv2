@@ -127,7 +127,7 @@ const routes: RouteObject[] = [
     element: <BlogPage />,
   },
   {
-    path: '/blog/:id',
+    path: '/blog/:slug',
     element: <BlogDetailPage />,
   },
   {

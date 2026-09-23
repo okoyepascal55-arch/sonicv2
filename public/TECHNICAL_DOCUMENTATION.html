@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonic Group — Technical Documentation</title>
+  <style>
+    :root {
+      --accent: #c8d400;
+      --bg: #0f1011;
+      --surface: #1a1c1e;
+      --surface2: #232528;
+      --border: #2e3035;
+      --text: #e8eaed;
+      --muted: #9aa0a6;
+      --danger: #f28b82;
+      --warn: #fdd663;
+      --success: #81c995;
+      --code-bg: #161b22;
+      --font-mono: 'JetBrains Mono','Fira Code',monospace;
+      --font-sans: 'Inter',system-ui,-apple-system,sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; }
+    .wrapper { display: flex; min-height: 100vh; }
+    nav { width: 270px; min-width: 270px; background: var(--surface); border-right: 1px solid var(--border); padding: 2rem 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    nav .logo { padding: 0 1.5rem 2rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+    nav .logo .badge { display: inline-block; background: var(--accent); color: #000; font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; }
+    nav .logo h1 { font-size: 1rem; font-weight: 700; }
+    nav .logo p { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    nav .nav-group-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); padding: .75rem 1.5rem .25rem; }
+    nav a { display: block; padding: .35rem 1.5rem; font-size: 13px; color: #bdc1c6; text-decoration: none; border-left: 2px solid transparent; transition: all .15s; }
+    nav a:hover { color: var(--accent); border-left-color: var(--accent); background: rgba(200,212,0,.05); }
+    main { flex: 1; padding: 3rem 4rem; max-width: 900px; }
+    h1.page-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .5rem; }
+    .page-subtitle { color: var(--muted); font-size: 1rem; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h2 { font-size: 1.4rem; font-weight: 700; margin: 3rem 0 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1rem; }
+    h2 .anc { color: var(--accent); margin-right: .5rem; }
+    h3 { font-size: 1.05rem; font-weight: 600; margin: 2rem 0 .75rem; }
+    h4 { font-size: .9rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; margin: 1.5rem 0 .5rem; }
+    p { margin-bottom: 1rem; color: #c8cbd0; }
+    code { font-family: var(--font-mono); font-size: .82em; background: var(--code-bg); border: 1px solid var(--border); padding: 1px 6px; border-radius: 4px; color: #ce9178; }
+    pre { font-family: var(--font-mono); font-size: .82rem; background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1rem 0 1.5rem; line-height: 1.6; color: #d4d4d4; }
+    pre .kw { color: #569cd6; } pre .str { color: #ce9178; } pre .cmt { color: #6a9955; } pre .fn { color: #dcdcaa; } pre .num { color: #b5cea8; } pre .type { color: #4ec9b0; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 13px; }
+    th { text-align: left; padding: .6rem 1rem; background: var(--surface2); color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; border-bottom: 1px solid var(--border); }
+    td { padding: .6rem 1rem; border-bottom: 1px solid var(--border); color: #c8cbd0; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,.02); }
+    .callout { border-left: 3px solid; padding: .75rem 1rem .75rem 1.25rem; border-radius: 0 6px 6px 0; margin: 1rem 0 1.5rem; font-size: 13px; }
+    .callout.info { border-color: #4a9eff; background: rgba(74,158,255,.07); }
+    .callout.warn { border-color: var(--warn); background: rgba(253,214,99,.07); color: #fdd663; }
+    .callout.danger { border-color: var(--danger); background: rgba(242,139,130,.07); color: #f28b82; }
+    .callout.success { border-color: var(--success); background: rgba(129,201,149,.07); color: #81c995; }
+    .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: .06em; margin-left: 6px; vertical-align: middle; }
+    .badge.green { background: rgba(129,201,149,.2); color: var(--success); }
+    .badge.yellow { background: rgba(253,214,99,.2); color: var(--warn); }
+    .badge.blue { background: rgba(74,158,255,.2); color: #4a9eff; }
+    .badge.red { background: rgba(242,139,130,.2); color: var(--danger); }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 1rem; margin: 1rem 0 1.5rem; }
+    .card { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; }
+    .card h5 { font-size: .8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .4rem; }
+    .card p { font-size: 12px; color: var(--muted); margin: 0; }
+    .diagram { background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; font-family: var(--font-mono); font-size: 12px; color: #9aa0a6; line-height: 1.8; overflow-x: auto; margin: 1rem 0 1.5rem; }
+    .diagram .box { color: var(--accent); } .diagram .arr { color: #4a9eff; } .diagram .lbl { color: #ce9178; }
+    .route-list { list-style: none; margin: .5rem 0 1.5rem; }
+    .route-list li { display: flex; align-items: baseline; gap: 1rem; padding: .4rem 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .route-list li:last-child { border-bottom: none; }
+    .route-list .path { font-family: var(--font-mono); color: var(--accent); font-size: 12px; min-width: 250px; }
+    .route-list .desc { color: var(--muted); }
+    ul.body-list { margin: 0 0 1rem 1.5rem; color: #c8cbd0; font-size: 14px; line-height: 2; }
+    ol.body-list { margin: 0 0 1rem 1.5rem; color: #c8cbd0; font-size: 14px; line-height: 2; }
+    section { scroll-margin-top: 1rem; }
+    @media (max-width: 900px) { nav { display: none; } main { padding: 2rem 1.5rem; } }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+<nav>
+  <div class="logo">
+    <div class="badge">v2.0</div>
+    <h1>Sonic Group</h1>
+    <p>Technical Documentation</p>
+  </div>
+  <div class="nav-group-label">Overview</div>
+  <a href="#overview">System Overview</a>
+  <a href="#stack">Technology Stack</a>
+  <a href="#architecture">Architecture</a>
+  <div class="nav-group-label">Frontend</div>
+  <a href="#routing">Routing</a>
+  <a href="#pages">Pages &amp; Sections</a>
+  <a href="#components">Component System</a>
+  <a href="#state">State Management</a>
+  <a href="#seo">SEO System</a>
+  <a href="#i18n">Internationalisation</a>
+  <div class="nav-group-label">Data Layer</div>
+  <a href="#mediastore">Media Store</a>
+  <a href="#textstore">Text Store</a>
+  <a href="#imagecompress">Image Pipeline</a>
+  <div class="nav-group-label">Backend / Cloud</div>
+  <a href="#supabase">Supabase</a>
+  <a href="#edgefns">Edge Functions</a>
+  <a href="#contact">Contact / Forms</a>
+  <div class="nav-group-label">Dashboard</div>
+  <a href="#dashboard">Content Dashboard</a>
+  <a href="#mediaPanel">Media Panel</a>
+  <a href="#textPanel">Text Panel</a>
+  <div class="nav-group-label">Infrastructure</div>
+  <a href="#env">Environment Variables</a>
+  <a href="#build">Build &amp; Bundling</a>
+  <a href="#deployment">Deployment (Vercel)</a>
+  <a href="#db">Database Schema</a>
+  <div class="nav-group-label">Reference</div>
+  <a href="#routemap">Full Route Map</a>
+  <a href="#deps">Dependency Reference</a>
+  <a href="#security">Security Notes</a>
+</nav>
+
+<main>
+  <h1 class="page-title">Technical Documentation</h1>
+  <p class="page-subtitle">
+    Sonic Group Website &middot; Repository: <code>okoyepascal55-arch/sonicv2</code> &middot;
+    Last updated: September 2026
+  </p>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2><span class="anc">#</span>System Overview</h2>
+    <p>The Sonic Group website is a <strong>React 19 single-page application (SPA)</strong> built with Vite 7. It serves as the public marketing site for Sonic Group — a full-service retail activation agency for the DACH market — and includes an integrated <strong>Content Management Dashboard</strong> that lets administrators update images and copy across every page without touching source code.</p>
+    <div class="card-grid">
+      <div class="card"><h5>Frontend</h5><p>React 19 SPA, TypeScript 5.8, Tailwind CSS 3, Vite 7</p></div>
+      <div class="card"><h5>Backend</h5><p>Supabase — PostgreSQL, Storage, Edge Functions (Deno)</p></div>
+      <div class="card"><h5>Hosting</h5><p>Vercel — auto-deploys from main branch, global CDN</p></div>
+      <div class="card"><h5>Forms</h5><p>Web3Forms API delivering to info@sonic-group.de</p></div>
+    </div>
+    <div class="callout info"><strong>SPA note:</strong> All routing is client-side. Vercel rewrites all paths to <code>/index.html</code> so direct URL access and page refresh work correctly.</div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack">
+    <h2><span class="anc">#</span>Technology Stack</h2>
+    <h3>Core Runtime</h3>
+    <table>
+      <thead><tr><th>Package</th><th>Version</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><code>react</code></td><td>19.1.0</td><td>UI rendering framework</td></tr>
+        <tr><td><code>react-dom</code></td><td>19.1.0</td><td>DOM reconciler</td></tr>
+        <tr><td><code>react-router-dom</code></td><td>7.6.3</td><td>Client-side routing (BrowserRouter)</td></tr>
+        <tr><td><code>vite</code></td><td>7.0.3</td><td>Dev server &amp; production bundler</td></tr>
+        <tr><td><code>typescript</code></td><td>5.8.3</td><td>Static typing</td></tr>
+      </tbody>
+    </table>
+    <h3>UI &amp; Styling</h3>
+    <table>
+      <thead><tr><th>Package</th><th>Version</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><code>tailwindcss</code></td><td>3.4.17</td><td>Utility-first CSS (dev dependency)</td></tr>
+        <tr><td><code>lucide-react</code></td><td>0.539.0</td><td>SVG icon library</td></tr>
+        <tr><td>Remix Icons (CDN)</td><td>—</td><td>Additional icon set via &lt;link&gt; in index.html</td></tr>
+        <tr><td><code>three</code> / <code>@react-three/fiber</code></td><td>0.179 / 9.3</td><td>WebGL 3D rendering</td></tr>
+        <tr><td><code>@react-three/drei</code></td><td>10.6.1</td><td>Three.js helpers</td></tr>
+        <tr><td><code>recharts</code></td><td>3.2.0</td><td>Chart components</td></tr>
+      </tbody>
+    </table>
+    <h3>Backend / Data</h3>
+    <table>
+      <thead><tr><th>Package</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><code>@supabase/supabase-js 2.57.4</code></td><td>Supabase client — DB reads/writes, Storage uploads</td></tr>
+        <tr><td><code>firebase 12.0.0</code></td><td>Present (reserved for future use)</td></tr>
+        <tr><td><code>@stripe/react-stripe-js 4.0.2</code></td><td>Present (reserved for future payments)</td></tr>
+      </tbody>
+    </table>
+    <h3>i18n</h3>
+    <table>
+      <thead><tr><th>Package</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><code>i18next 25.4.1</code></td><td>i18n core engine</td></tr>
+        <tr><td><code>react-i18next 15.6</code></td><td>React hooks &amp; components</td></tr>
+        <tr><td><code>i18next-browser-languagedetector</code></td><td>Auto-detects browser language</td></tr>
+      </tbody>
+    </table>
+    <h3>Toolchain</h3>
+    <table>
+      <thead><tr><th>Tool</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><code>@vitejs/plugin-react-swc</code></td><td>Rust-based SWC transpiler (fast HMR)</td></tr>
+        <tr><td><code>unplugin-auto-import</code></td><td>Auto-imports React hooks, Router APIs without explicit imports</td></tr>
+        <tr><td><code>eslint</code> + TypeScript ESLint</td><td>Linting with zero-warning policy</td></tr>
+        <tr><td><code>autoprefixer / postcss</code></td><td>CSS vendor prefix pipeline</td></tr>
+        <tr><td><code>source-map</code></td><td>Source map generation for production debugging</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section id="architecture">
+    <h2><span class="anc">#</span>Architecture</h2>
+    <div class="diagram">
+<span class="box">┌─────────────────────────────────────────────────────┐</span>
+<span class="box">│              BROWSER  (React 19 SPA)                │</span>
+<span class="box">│                                                     │</span>
+<span class="box">│  ┌──────────┐  ┌─────────────┐  ┌───────────────┐  │</span>
+<span class="box">│  │Navigation│  │ Page routes │  │  /dashboard   │  │</span>
+<span class="box">│  │  Footer  │  │  (lazy)     │  │  (CMS admin)  │  │</span>
+<span class="box">│  └──────────┘  └──────┬──────┘  └──────┬────────┘  │</span>
+<span class="box">│                       │                │           │</span>
+<span class="box">│  ┌────────────────────▼────────────────▼─────────┐  │</span>
+<span class="box">│  │        mediaStore.ts  /  textStore.ts          │  │</span>
+<span class="box">│  │      localStorage  +  Supabase DB sync         │  │</span>
+<span class="box">│  └──────────────────────┬─────────────────────────┘  │</span>
+<span class="box">└─────────────────────────┼───────────────────────────┘</span>
+<span class="arr">                          │  HTTPS</span>
+<span class="box">┌─────────────────────────▼───────────────────────────┐</span>
+<span class="box">│                  SUPABASE (Backend)                 │</span>
+<span class="box">│                                                     │</span>
+<span class="box">│  ┌─────────────┐  ┌────────────┐  ┌─────────────┐  │</span>
+<span class="box">│  │  PostgreSQL │  │  Storage   │  │  Edge Fn    │  │</span>
+<span class="box">│  │ media_store │  │  bucket:   │  │ media-proxy │  │</span>
+<span class="box">│  │  (JSON blob)│  │   media/   │  │  (Deno)     │  │</span>
+<span class="box">│  └─────────────┘  └────────────┘  └──────┬──────┘  │</span>
+<span class="box">└──────────────────────────────────────────┼──────────┘</span>
+<span class="arr">                                           │  302 redirect</span>
+<span class="arr">                                           ▼</span>
+<span class="lbl">                                  Signed Storage URL</span>
+<span class="lbl">                                  (7-day expiry, 1h browser cache)</span>
+    </div>
+    <h4>Key Architectural Decisions</h4>
+    <h3>1. Client-first, serverless</h3>
+    <p>No custom backend server. All business logic runs in the browser or in Supabase Edge Functions (Deno). Vercel's CDN handles global delivery.</p>
+    <h3>2. Optimistic localStorage + Supabase sync</h3>
+    <p>Media and text overrides are stored in <code>localStorage</code> for instant reads, and asynchronously synced to Supabase's <code>media_store</code> PostgreSQL table. The site renders immediately even without network access.</p>
+    <h3>3. Private image bucket + Edge Function proxy</h3>
+    <p>Uploaded images are stored in a <strong>private</strong> Supabase Storage bucket. The <code>media-proxy</code> Edge Function mints 7-day signed URLs per request. Image references use the <code>__storage__:path</code> token; <code>resolveImageUrl()</code> converts this at render time.</p>
+    <h3>4. Code-split pages via React.lazy()</h3>
+    <p>Every page is wrapped in <code>React.lazy()</code>. Vite splits each page into its own JS chunk, minimising the initial bundle.</p>
+  </section>
+
+  <!-- ROUTING -->
+  <section id="routing">
+    <h2><span class="anc">#</span>Routing</h2>
+    <p>Routing is handled by <strong>React Router 7</strong> using <code>BrowserRouter</code> with a configurable <code>basename</code> (injected via the <code>__BASE_PATH__</code> Vite define constant, default <code>/</code>). Route definitions live in <code>src/router/config.tsx</code>.</p>
+    <p>The root <code>App.tsx</code> wraps all routes with: <code>FaviconController</code>, <code>SchemaOrg</code>, <code>CalendlyWidget</code>, <code>SkipLink</code>, <code>ScrollToHash</code>, and conditionally hides <code>Navigation</code> / <code>Footer</code> on <code>/dashboard</code>.</p>
+    <h3>Page Transition</h3>
+    <p><code>AnimatedRoutes</code> performs a 150ms opacity fade-out → content swap → fade-in on route change, plus an instant <code>window.scrollTo({top:0})</code> with a 10ms safety timeout to override browser scroll restoration.</p>
+    <h3>Redirect Aliases</h3>
+    <table>
+      <thead><tr><th>From</th><th>To</th></tr></thead>
+      <tbody>
+        <tr><td><code>/about</code></td><td><code>/ueber-uns</code></td></tr>
+        <tr><td><code>/careers</code></td><td><code>/karriere</code></td></tr>
+        <tr><td><code>/case-studies</code></td><td><code>/fallbeispiele</code></td></tr>
+        <tr><td><code>/login</code>, <code>/auth</code>, <code>/media-dashboard</code></td><td><code>/dashboard</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PAGES -->
+  <section id="pages">
+    <h2><span class="anc">#</span>Pages &amp; Sections</h2>
+    <table>
+      <thead><tr><th>Page</th><th>Route</th><th>Key Sections</th></tr></thead>
+      <tbody>
+        <tr><td>Home</td><td><code>/</code></td><td>HeroRevamp, TrustStrip, LiveMetrics, VideoShowcase, ChallengeSection, ServicesGrid, SRTTeaser, ClientProof, Contact</td></tr>
+        <tr><td>Lösungen</td><td><code>/losungen</code></td><td>Hero, deliverables, testimonials, process steps</td></tr>
+        <tr><td>Leistungen hub</td><td><code>/leistungen</code></td><td>Services overview + 8 sub-pages</td></tr>
+        <tr><td>Über uns</td><td><code>/ueber-uns</code></td><td>ManagementVoices, ValuesVisual, team grid</td></tr>
+        <tr><td>Karriere</td><td><code>/karriere</code></td><td>CareerShowcase, ChapterKit, Awards, Culture, Jobs, SonicFamily, TeamEvents, KarrierepfadeSection</td></tr>
+        <tr><td>Fallbeispiele</td><td><code>/fallbeispiele</code></td><td>Case study grid</td></tr>
+        <tr><td>Blog</td><td><code>/blog</code>, <code>/blog/:slug</code></td><td>Fetches Publii JSON feed, paginates client-side</td></tr>
+        <tr><td>SRT</td><td><code>/srt</code></td><td>DataPaths, Features, Functionality, Industries, Pricing, Proof, Problem, Zusammenarbeit</td></tr>
+        <tr><td>Sonic Reels</td><td><code>/sonic-reels</code></td><td>CoverflowFilmstrip, PhotoSelector, Timeline</td></tr>
+        <tr><td>Kontakt</td><td><code>/kontakt</code></td><td>Contact form (Web3Forms)</td></tr>
+        <tr><td>Ratgeber Hub</td><td><code>/ratgeber</code></td><td>22 editorial guide pages (SEO content)</td></tr>
+        <tr><td>Dashboard</td><td><code>/dashboard</code></td><td>Admin CMS — Media Panel + Text Panel</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section id="components">
+    <h2><span class="anc">#</span>Component System</h2>
+    <h3>Directory Structure</h3>
+    <pre>src/
+  components/
+    base/
+      WoodenDivider.tsx      Decorative wooden texture divider
+      SkipLink.tsx           Accessibility skip-nav
+      ScrollToHash.tsx       Anchor scroll helper
+      FaviconController.tsx  Dynamic favicon logic
+    feature/
+      Navigation.tsx         Responsive top nav (mega-menu + mobile drawer)
+      Footer.tsx             Site footer
+      CalendlyWidget.tsx     Calendly booking popup
+      ClientProof.tsx        Logos + social proof
+      SchemaOrg.tsx          JSON-LD structured data injection
+      SectionReveal.tsx      Scroll-triggered reveal animation
+      FooterTopologyField.tsx  3D WebGL topology background</pre>
+    <h3>SectionReveal Animation</h3>
+    <p><code>StackedSectionReveal</code> uses <code>IntersectionObserver</code> to trigger translate + opacity transitions when sections enter the viewport, with staggered delays based on the <code>index</code> prop.</p>
+    <h3>Navigation</h3>
+    <p>Fully responsive: desktop multi-column mega-menu and a mobile slide-in drawer. Reads from <code>textStore</code> for editable nav labels. Active route detection uses <code>useLocation</code>.</p>
+  </section>
+
+  <!-- STATE -->
+  <section id="state">
+    <h2><span class="anc">#</span>State Management</h2>
+    <p>No global state library is used. State is managed through:</p>
+    <ul class="body-list">
+      <li><strong>React <code>useState</code> / <code>useCallback</code> / <code>useMemo</code></strong> — local UI state within components</li>
+      <li><strong><code>localStorage</code></strong> — persistent store for media and text overrides (written by CMS, read by all pages)</li>
+      <li><strong>Custom window events</strong> — <code>media-store-update</code> notifies listening components when the store changes</li>
+      <li><strong>Supabase DB</strong> — cloud source of truth, synced to/from localStorage</li>
+      <li><strong><code>sessionStorage</code></strong> — dashboard auth flag (<code>sonic_admin_auth</code>)</li>
+    </ul>
+  </section>
+
+  <!-- SEO -->
+  <section id="seo">
+    <h2><span class="anc">#</span>SEO System</h2>
+    <p>Each page calls <code>useSEO()</code> (<code>src/hooks/useSEO.ts</code>), which imperatively sets/updates on every route change:</p>
+    <table>
+      <thead><tr><th>Tag</th><th>What is set</th></tr></thead>
+      <tbody>
+        <tr><td><code>&lt;title&gt;</code></td><td>Full page title</td></tr>
+        <tr><td><code>meta[name="description"]</code></td><td>Page description</td></tr>
+        <tr><td><code>meta[name="keywords"]</code></td><td>Keyword list (optional)</td></tr>
+        <tr><td><code>link[rel="canonical"]</code></td><td>Canonical URL (optional)</td></tr>
+        <tr><td><code>og:title/description/type/url/image</code></td><td>Open Graph metadata</td></tr>
+        <tr><td><code>twitter:card/title/description/image</code></td><td>Twitter Card metadata</td></tr>
+        <tr><td><code>meta[name="last-modified"]</code></td><td>ISO date (today)</td></tr>
+        <tr><td><code>&lt;script type="application/ld+json"&gt;</code></td><td>JSON-LD structured data (cleaned on unmount)</td></tr>
+      </tbody>
+    </table>
+    <p>The global <code>SchemaOrg</code> component injects a persistent Organization + WebSite JSON-LD schema on every page. On unmount, <code>useSEO</code> restores the base title.</p>
+    <table>
+      <thead><tr><th>Static SEO File</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>public/sitemap.xml</code></td><td>XML sitemap of all public routes</td></tr>
+        <tr><td><code>public/robots.txt</code></td><td>Crawler directives</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- i18n -->
+  <section id="i18n">
+    <h2><span class="anc">#</span>Internationalisation</h2>
+    <p>Configured in <code>src/i18n/index.ts</code>:</p>
+    <table>
+      <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Default / fallback language</td><td><code>de</code> (German)</td></tr>
+        <tr><td>Supported languages</td><td><code>['de']</code> — German only</td></tr>
+        <tr><td>Detection order</td><td>querystring → navigator → htmlTag</td></tr>
+        <tr><td>Caching</td><td>Disabled</td></tr>
+      </tbody>
+    </table>
+    <p>Translation strings are bundled at build time from <code>src/i18n/local/</code>. Components use the auto-imported <code>useTranslation</code> hook and <code>Trans</code> component.</p>
+  </section>
+
+  <!-- MEDIA STORE -->
+  <section id="mediastore">
+    <h2><span class="anc">#</span>Media Store</h2>
+    <p><code>src/lib/mediaStore.ts</code> (~2,449 lines) is the core image content engine. It manages all image data across every page section.</p>
+    <h3>Data Model</h3>
+    <pre><span class="kw">interface</span> <span class="type">MediaItem</span> {
+  url:     <span class="type">string</span>;   <span class="cmt">// "__storage__:path"  or external URL</span>
+  caption: <span class="type">string</span>;   <span class="cmt">// alt text / label</span>
+  wide?:   <span class="type">boolean</span>;  <span class="cmt">// span full-width layout</span>
+}
+
+<span class="kw">type</span> <span class="type">MediaSections</span> = { [sectionKey: <span class="type">string</span>]: <span class="type">MediaItem</span>[] };</pre>
+    <h3>Storage Architecture (layered overrides)</h3>
+    <ol class="body-list">
+      <li><strong>Default images</strong> — hardcoded in mediaStore.ts (fallback)</li>
+      <li><strong>localStorage overrides</strong> — written by dashboard, read instantly on every page load</li>
+      <li><strong>Supabase DB sync</strong> — full overrides object written as a single JSONB row (id=1) in <code>media_store</code></li>
+    </ol>
+    <h3>Image URL Resolution</h3>
+    <pre><span class="fn">resolveImageUrl</span>(<span class="str">"__storage__:dashboard/123-photo.webp"</span>)
+  <span class="cmt">// → https://&lt;project&gt;.supabase.co/functions/v1/media-proxy?path=dashboard%2F123-photo.webp</span>
+
+<span class="fn">resolveImageUrl</span>(<span class="str">"https://external.com/image.jpg"</span>)
+  <span class="cmt">// → "https://external.com/image.jpg"  (pass-through)</span></pre>
+    <h3>API Functions</h3>
+    <table>
+      <thead><tr><th>Function</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>getSectionImages(key)</code></td><td>Returns current image array for a section (merged with defaults)</td></tr>
+        <tr><td><code>addSectionImage(key, item)</code></td><td>Appends one image and persists</td></tr>
+        <tr><td><code>addSectionImagesBulk(key, items[])</code></td><td>Batch append multiple images</td></tr>
+        <tr><td><code>updateSectionImage(key, url, patch)</code></td><td>Updates caption / url / wide of an existing image</td></tr>
+        <tr><td><code>deleteSectionImage(key, url)</code></td><td>Removes one image by URL</td></tr>
+        <tr><td><code>deleteSectionImagesBulk(key, urls[])</code></td><td>Batch delete selected images</td></tr>
+        <tr><td><code>reorderSectionImages(key, from, to)</code></td><td>Moves image from index to index</td></tr>
+        <tr><td><code>resetSection(key)</code></td><td>Removes overrides, reverts to defaults</td></tr>
+        <tr><td><code>getCategoriesByPageGroup()</code></td><td>Returns sections grouped by page with image counts and design specs</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn"><strong>Supabase sync:</strong> All write operations trigger an async Supabase upsert. Changes fire a <code>media-store-update</code> window event so all listening components re-render immediately.</div>
+  </section>
+
+  <!-- TEXT STORE -->
+  <section id="textstore">
+    <h2><span class="anc">#</span>Text Store</h2>
+    <p><code>src/lib/textStore.ts</code> (~1,485 lines) follows the same layered override pattern as the media store but manages editable <strong>text content</strong>.</p>
+    <h3>Data Model</h3>
+    <pre><span class="kw">interface</span> <span class="type">TextEntry</span> {
+  id:          <span class="type">string</span>;
+  label:       <span class="type">string</span>;   <span class="cmt">// human-readable name in dashboard</span>
+  description: <span class="type">string</span>;   <span class="cmt">// tooltip/context for editor</span>
+  type: <span class="str">'heading'</span> | <span class="str">'paragraph'</span> | <span class="str">'cta'</span> | <span class="str">'badge'</span> | <span class="str">'stat'</span>
+      | <span class="str">'label'</span> | <span class="str">'link'</span> | <span class="str">'list-item'</span> | <span class="str">'quote'</span> | ...;
+  value:     <span class="type">string</span>;
+  multiline?: <span class="type">boolean</span>;   <span class="cmt">// renders textarea instead of input</span>
+}</pre>
+    <p>Text page groups cover: Home, Lösungen, Leistungen, Über uns, Fallbeispiele, Blog, Karriere, Kontakt, Team, Industries, Jobs, Ratgeber, SRT, Common Components.</p>
+  </section>
+
+  <!-- IMAGE PIPELINE -->
+  <section id="imagecompress">
+    <h2><span class="anc">#</span>Image Pipeline</h2>
+    <p>Before any upload to Supabase Storage, images pass through <code>src/lib/imageCompress.ts</code>:</p>
+    <table>
+      <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Max dimension (longest edge)</td><td>1920 px</td></tr>
+        <tr><td>Output format</td><td>WebP</td></tr>
+        <tr><td>WebP quality</td><td>0.80</td></tr>
+        <tr><td>Minimum size to compress</td><td>200 KB (smaller files pass through)</td></tr>
+        <tr><td>SVG handling</td><td>Pass-through (never rasterised)</td></tr>
+        <tr><td>Max upload size</td><td>10 MB (enforced client-side before compression)</td></tr>
+      </tbody>
+    </table>
+    <p>The compressed WebP is only kept if it is actually smaller than the original. Canvas decode failures fall back to the original file transparently.</p>
+  </section>
+
+  <!-- SUPABASE -->
+  <section id="supabase">
+    <h2><span class="anc">#</span>Supabase</h2>
+    <p>Client initialised in <code>src/lib/supabase.ts</code> using <code>VITE_PUBLIC_SUPABASE_URL</code> + <code>VITE_PUBLIC_SUPABASE_ANON_KEY</code>. If either is missing, the client is <code>null</code> — the app works via localStorage only, uploads disabled.</p>
+    <h3>PostgreSQL Table: <code>media_store</code></h3>
+    <table>
+      <thead><tr><th>Column</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>id</code></td><td><code>int</code> PK</td><td>Always 1 — singleton row</td></tr>
+        <tr><td><code>data</code></td><td><code>jsonb</code></td><td>Entire media overrides as JSON</td></tr>
+        <tr><td><code>updated_at</code></td><td><code>timestamptz</code></td><td>Last modification timestamp</td></tr>
+      </tbody>
+    </table>
+    <h3>Row Level Security</h3>
+    <ul class="body-list">
+      <li><strong>anon can read media_store</strong> — SELECT allowed to anon role</li>
+      <li><strong>anon can upsert media_store</strong> — ALL operations allowed to anon role</li>
+    </ul>
+    <div class="callout warn"><strong>Security note:</strong> The anon key has write access. Authentication is enforced at the application layer (dashboard login). The dashboard password protects write access in practice.</div>
+    <h3>Storage Bucket: <code>media</code></h3>
+    <table>
+      <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Visibility</td><td>Private</td></tr>
+        <tr><td>Upload prefix</td><td><code>dashboard/</code></td></tr>
+        <tr><td>Upload policy</td><td>anon can INSERT to <code>dashboard/</code></td></tr>
+        <tr><td>Read policy</td><td>anon can SELECT from <code>dashboard/</code></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- EDGE FUNCTIONS -->
+  <section id="edgefns">
+    <h2><span class="anc">#</span>Edge Functions</h2>
+    <h3>media-proxy</h3>
+    <p>Located at <code>supabase/functions/media-proxy/index.ts</code>. Deno runtime. Converts a storage file path into a signed URL, keeping the bucket private.</p>
+    <h4>Request</h4>
+    <pre>GET /functions/v1/media-proxy?path=dashboard%2F1234-photo.webp</pre>
+    <h4>Responses</h4>
+    <table>
+      <thead><tr><th>Condition</th><th>Response</th></tr></thead>
+      <tbody>
+        <tr><td>Success</td><td><code>302 Location: &lt;signed-url&gt;</code> — Cache-Control: 1h browser / 24h CDN</td></tr>
+        <tr><td>Missing <code>path</code> param</td><td><code>400</code> JSON error</td></tr>
+        <tr><td>Missing env secrets</td><td><code>500</code> misconfiguration error</td></tr>
+        <tr><td>Storage failure</td><td><code>500</code> with storage error message</td></tr>
+      </tbody>
+    </table>
+    <p>Signed URLs are valid for <strong>7 days</strong> (604,800 s). Deploy command:</p>
+    <pre>supabase functions deploy media-proxy --no-verify-jwt</pre>
+    <p>Required secrets (set in Supabase Dashboard → Edge Functions → Secrets):</p>
+    <ul class="body-list">
+      <li><code>SUPABASE_SERVICE_ROLE_KEY</code> — never exposed to client</li>
+      <li><code>SUPABASE_URL</code> — injected automatically by Supabase</li>
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2><span class="anc">#</span>Contact / Forms</h2>
+    <p>All forms submit to <code>info@sonic-group.de</code> via the Web3Forms API (<code>https://api.web3forms.com/submit</code>). Managed in <code>src/lib/contact.ts</code>.</p>
+    <ol class="body-list">
+      <li>User submits a form</li>
+      <li><code>submitContactForm(data)</code> is called</li>
+      <li>If <code>VITE_WEB3FORMS_KEY</code> is set: POST to Web3Forms → email delivered to inbox</li>
+      <li>If key is missing: fallback opens a <code>mailto:</code> link with pre-filled subject &amp; body</li>
+    </ol>
+    <div class="callout success"><strong>Privacy:</strong> Web3Forms retains no form data beyond delivery. No Formspree or third-party routing involved.</div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard">
+    <h2><span class="anc">#</span>Content Dashboard</h2>
+    <p>Accessible at <code>/dashboard</code>. Auth state stored in <code>sessionStorage</code> under <code>sonic_admin_auth</code>.</p>
+    <h3>Credentials</h3>
+    <table>
+      <thead><tr><th>Username</th><th>Password</th></tr></thead>
+      <tbody>
+        <tr><td><code>admin</code></td><td><code>admin</code></td></tr>
+        <tr><td><code>sonic</code></td><td><code>sonic2026</code></td></tr>
+      </tbody>
+    </table>
+    <div class="callout danger"><strong>Security:</strong> Credentials are hardcoded in the client bundle. Appropriate for an internal tool. Consider Supabase Auth for production hardening.</div>
+    <h3>Layout</h3>
+    <ul class="body-list">
+      <li><strong>Sidebar</strong> — page group navigation (Home, Lösungen, Leistungen, etc.)</li>
+      <li><strong>Top bar</strong> — Media / Text tab switcher + Logout button</li>
+      <li><strong>Media Panel</strong> — image management for the active page group</li>
+      <li><strong>Text Panel</strong> — copy management for the active page group</li>
+    </ul>
+  </section>
+
+  <!-- MEDIA PANEL -->
+  <section id="mediaPanel">
+    <h2><span class="anc">#</span>Media Panel</h2>
+    <p><code>src/pages/dashboard/components/MediaPanel.tsx</code></p>
+    <table>
+      <thead><tr><th>Feature</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td>Section accordion</td><td>Each section collapses/expands; active has lime border</td></tr>
+        <tr><td>Add by URL</td><td>Paste external image URL with caption and wide flag</td></tr>
+        <tr><td>Single upload</td><td>Upload one file (≤ 10 MB); compressed to WebP, stored to Supabase</td></tr>
+        <tr><td>Bulk upload</td><td>Upload multiple files with shared caption prefix; sequential with progress bar</td></tr>
+        <tr><td>Replace</td><td>Swap an image without losing its position</td></tr>
+        <tr><td>Edit metadata</td><td>Edit caption, URL, wide flag in a modal</td></tr>
+        <tr><td>Delete / bulk delete</td><td>Single or multi-select delete with confirm dialog</td></tr>
+        <tr><td>Drag &amp; drop reorder</td><td>Native HTML5 drag-and-drop within sections</td></tr>
+        <tr><td>Design spec hints</td><td>Recommended dimensions, orientation, image count per section</td></tr>
+        <tr><td>Reset section</td><td>Reverts section to default images</td></tr>
+      </tbody>
+    </table>
+    <p>Upload path pattern: <code>dashboard/{timestamp}-{i}-{safe-filename}.webp</code></p>
+  </section>
+
+  <!-- TEXT PANEL -->
+  <section id="textPanel">
+    <h2><span class="anc">#</span>Text Panel</h2>
+    <p><code>src/pages/dashboard/components/TextPanel.tsx</code></p>
+    <ul class="body-list">
+      <li>Section accordion listing all editable text entries per page</li>
+      <li>Single-line <code>&lt;input&gt;</code> for short text; <code>&lt;textarea&gt;</code> for <code>multiline: true</code></li>
+      <li>Live character count + type badge per entry</li>
+      <li>Inline save (persists to localStorage + Supabase)</li>
+      <li>Reset individual entries or full sections to defaults</li>
+      <li>Unsaved changes highlighted</li>
+    </ul>
+  </section>
+
+  <!-- ENV -->
+  <section id="env">
+    <h2><span class="anc">#</span>Environment Variables</h2>
+    <p>All browser variables are prefixed <code>VITE_</code>. Set in <code>.env</code> locally; Vercel Project Settings → Environment Variables for production.</p>
+    <table>
+      <thead><tr><th>Variable</th><th>Required</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>VITE_PUBLIC_SUPABASE_URL</code></td><td><span class="badge yellow">Optional</span></td><td>Supabase project URL. Without this, uploads and DB sync are disabled.</td></tr>
+        <tr><td><code>VITE_PUBLIC_SUPABASE_ANON_KEY</code></td><td><span class="badge yellow">Optional</span></td><td>Supabase anon (public) key. Pair with URL above.</td></tr>
+        <tr><td><code>VITE_PUBLII_FEED_URL</code></td><td><span class="badge yellow">Optional</span></td><td>Full URL to Publii JSON feed for <code>/blog</code>.</td></tr>
+        <tr><td><code>VITE_WEB3FORMS_KEY</code></td><td><span class="badge yellow">Optional</span></td><td>Web3Forms access key. Without this, forms fall back to mailto:</td></tr>
+        <tr><td><code>BASE_PATH</code></td><td><span class="badge blue">Build-time</span></td><td>Vite build base path. Default <code>/</code>.</td></tr>
+        <tr><td><code>IS_PREVIEW</code></td><td><span class="badge blue">Build-time</span></td><td>Set <code>true</code> on preview deployments.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- BUILD -->
+  <section id="build">
+    <h2><span class="anc">#</span>Build &amp; Bundling</h2>
+    <table>
+      <thead><tr><th>Script</th><th>Command</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>dev</code></td><td><code>vite</code></td><td>Dev server on port 3000 with HMR</td></tr>
+        <tr><td><code>build</code></td><td><code>vite build</code></td><td>Production build to <code>out/</code></td></tr>
+        <tr><td><code>prebuild</code></td><td><code>node generate_manifest.cjs</code></td><td>Generates image manifest before each build</td></tr>
+        <tr><td><code>preview</code></td><td><code>vite preview</code></td><td>Serve production build locally</td></tr>
+        <tr><td><code>lint</code></td><td><code>eslint src --ext ts,tsx</code></td><td>Lint with zero-warning policy</td></tr>
+        <tr><td><code>type-check</code></td><td><code>tsc --noEmit</code></td><td>TypeScript type-check only</td></tr>
+      </tbody>
+    </table>
+    <h3>Vite Configuration Highlights</h3>
+    <table>
+      <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Output directory</td><td><code>out/</code></td></tr>
+        <tr><td>Source maps</td><td>Enabled in production</td></tr>
+        <tr><td>Path alias</td><td><code>@</code> → <code>src/</code></td></tr>
+        <tr><td>Dev host</td><td><code>0.0.0.0</code> (LAN accessible)</td></tr>
+        <tr><td>Dev port</td><td>3000</td></tr>
+        <tr><td>Auto-imports</td><td>React hooks + Router APIs + i18n hooks</td></tr>
+        <tr><td>Transpiler</td><td>SWC via @vitejs/plugin-react-swc</td></tr>
+      </tbody>
+    </table>
+    <h3>Image Manifest</h3>
+    <p><code>generate_manifest.cjs</code> scans <code>public/images/</code> and emits <code>src/mocks/imagesManifest.json</code> — a static index of all bundled image paths used by <code>mediaStore.ts</code> to populate default section images.</p>
+  </section>
+
+  <!-- DEPLOYMENT -->
+  <section id="deployment">
+    <h2><span class="anc">#</span>Deployment (Vercel)</h2>
+    <pre>{
+  <span class="str">"buildCommand"</span>: <span class="str">"node generate_manifest.cjs &amp;&amp; vite build"</span>,
+  <span class="str">"outputDirectory"</span>: <span class="str">"out"</span>,
+  <span class="str">"rewrites"</span>: [{ <span class="str">"source"</span>: <span class="str">"/(.*)"</span>, <span class="str">"destination"</span>: <span class="str">"/index.html"</span> }]
+}</pre>
+    <p>All URL paths rewrite to <code>/index.html</code> enabling client-side routing. Static assets served from Vercel's global CDN.</p>
+    <ol class="body-list">
+      <li>Push to <code>main</code> on GitHub (<code>okoyepascal55-arch/sonicv2</code>)</li>
+      <li>Vercel detects push, triggers build</li>
+      <li><code>generate_manifest.cjs</code> runs, then <code>vite build</code></li>
+      <li>Output in <code>out/</code> deployed to Vercel's edge network</li>
+      <li>DNS for <code>sonic-group.de</code> points to Vercel</li>
+    </ol>
+  </section>
+
+  <!-- DB SCHEMA -->
+  <section id="db">
+    <h2><span class="anc">#</span>Database Schema</h2>
+    <p>Full migration: <code>supabase/migrations/setup.sql</code> — idempotent, safe to re-run.</p>
+    <pre><span class="cmt">-- Singleton row stores the entire media overrides JSON</span>
+<span class="kw">CREATE TABLE IF NOT EXISTS</span> public.media_store (
+  id         <span class="type">int</span>         <span class="kw">PRIMARY KEY</span>,
+  data       <span class="type">jsonb</span>       <span class="kw">NOT NULL DEFAULT</span> <span class="str">'{}'</span>,
+  updated_at <span class="type">timestamptz</span> <span class="kw">NOT NULL DEFAULT</span> now()
+);
+<span class="kw">INSERT INTO</span> public.media_store (id, data, updated_at)
+<span class="kw">VALUES</span> (<span class="num">1</span>, <span class="str">'{}'</span>, now())
+<span class="kw">ON CONFLICT</span> (id) <span class="kw">DO NOTHING</span>;</pre>
+  </section>
+
+  <!-- ROUTE MAP -->
+  <section id="routemap">
+    <h2><span class="anc">#</span>Full Route Map</h2>
+    <ul class="route-list">
+      <li><span class="path">/</span><span class="desc">Home page</span></li>
+      <li><span class="path">/ueber-uns</span><span class="desc">About / Über uns</span></li>
+      <li><span class="path">/karriere</span><span class="desc">Careers</span></li>
+      <li><span class="path">/fallbeispiele</span><span class="desc">Case Studies</span></li>
+      <li><span class="path">/losungen</span><span class="desc">Solutions</span></li>
+      <li><span class="path">/leistungen</span><span class="desc">Services hub</span></li>
+      <li><span class="path">/leistungen/forecasting</span><span class="desc">Forecasting</span></li>
+      <li><span class="path">/leistungen/talentpool</span><span class="desc">Talent Pool</span></li>
+      <li><span class="path">/leistungen/staff-as-a-service</span><span class="desc">Staff-as-a-Service</span></li>
+      <li><span class="path">/leistungen/live-video</span><span class="desc">Live Video</span></li>
+      <li><span class="path">/leistungen/pos-full-service</span><span class="desc">POS Full Service</span></li>
+      <li><span class="path">/leistungen/events-messen</span><span class="desc">Events &amp; Trade Fairs</span></li>
+      <li><span class="path">/leistungen/kreation-content</span><span class="desc">Creative Content</span></li>
+      <li><span class="path">/leistungen/warehouse-logistik</span><span class="desc">Warehouse &amp; Logistics</span></li>
+      <li><span class="path">/srt</span><span class="desc">SRT product page</span></li>
+      <li><span class="path">/sonic-reels</span><span class="desc">Sonic Reels</span></li>
+      <li><span class="path">/blog</span><span class="desc">Blog listing (Publii feed)</span></li>
+      <li><span class="path">/blog/:slug</span><span class="desc">Blog article detail</span></li>
+      <li><span class="path">/kontakt</span><span class="desc">Contact page</span></li>
+      <li><span class="path">/ratgeber</span><span class="desc">Editorial guides hub (22+ articles)</span></li>
+      <li><span class="path">/industries</span><span class="desc">Industries</span></li>
+      <li><span class="path">/dashboard</span><span class="desc">Admin CMS (login-gated)</span></li>
+      <li><span class="path">/login, /auth, /media-dashboard</span><span class="desc">→ Redirect to /dashboard</span></li>
+      <li><span class="path">/about, /careers, /case-studies</span><span class="desc">→ German URL redirects</span></li>
+      <li><span class="path">*</span><span class="desc">404 Not Found</span></li>
+    </ul>
+  </section>
+
+  <!-- DEPS -->
+  <section id="deps">
+    <h2><span class="anc">#</span>Dependency Reference</h2>
+    <pre>react                          19.1.0
+react-dom                      19.1.0
+react-router-dom                7.6.3
+@supabase/supabase-js          2.57.4
+@react-three/fiber              9.3.0
+@react-three/drei              10.6.1
+three                          0.179.1
+i18next                        25.4.1
+react-i18next                  15.6.0
+i18next-browser-languagedetector  8.2.0
+lucide-react                   0.539.0
+recharts                        3.2.0
+firebase                       12.0.0
+@stripe/react-stripe-js         4.0.2</pre>
+  </section>
+
+  <!-- SECURITY -->
+  <section id="security">
+    <h2><span class="anc">#</span>Security Notes</h2>
+    <h3>Exposed client-side (by design)</h3>
+    <ul class="body-list">
+      <li>Supabase anon key — designed to be public; access controlled by RLS</li>
+      <li>Supabase project URL</li>
+      <li>Web3Forms access key (rate-limited per key by Web3Forms)</li>
+      <li>Dashboard credentials (<code>admin/admin</code>, <code>sonic/sonic2026</code>) — in the JS bundle</li>
+    </ul>
+    <h3>Never exposed client-side</h3>
+    <ul class="body-list">
+      <li>Supabase <strong>service role key</strong> — only in Edge Function secrets</li>
+      <li>Any database tables beyond <code>media_store</code> and <code>dashboard/</code> prefix storage</li>
+    </ul>
+    <div class="callout danger"><strong>Dashboard credentials are in the JS bundle.</strong> For production hardening, migrate to Supabase Auth (email/password or magic link) to move credential validation server-side.</div>
+  </section>
+
+</main>
+</div>
+</body>
+</html>
