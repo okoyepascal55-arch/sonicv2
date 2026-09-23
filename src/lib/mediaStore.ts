@@ -1096,12 +1096,12 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── LEISTUNGEN: Video — Format Images ── */
   leistungen_video_format_photos: [
-    { url: 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/9aba7e4f-1f00-4f96-b6fc-90fc615b11b3_1-Kopie.jpg', caption: 'Live-Video-Beratung — 1:1 Calls' },
-    { url: 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/a1484e91-882b-498d-b849-e6655b3952c0_2-Kopie.jpg', caption: 'Sales Broadcast' },
-    { url: 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/ec769083-996f-4f19-a1aa-f82558ce1c27_3-Kopie.jpg', caption: 'Live-Streaming' },
-    { url: 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/21a65c0f-e370-4202-875f-8b9858903d15_4-Kopie.jpg', caption: 'Social Commerce' },
-    { url: 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/6d9e8360-acc8-4646-9d6a-ae6ab41d65e1_5-Kopie.jpg', caption: 'Group Buying' },
-    { url: 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/25ab2718-26bf-4db4-b304-22c7d310a3e6_6-Kopie.jpg', caption: 'After Sales Support' },
+    { url: '', caption: 'Live-Video-Beratung — 1:1 Calls' },
+    { url: '', caption: 'Sales Broadcast' },
+    { url: '', caption: 'Live-Streaming' },
+    { url: '', caption: 'Social Commerce' },
+    { url: '', caption: 'Group Buying' },
+    { url: '', caption: 'After Sales Support' },
   ],
 
   /* ── LEISTUNGEN: Warehouse & Logistik — Items ── */
@@ -2047,10 +2047,11 @@ function computeOverrides(store: MediaSections): MediaSections {
     const defaultVal = DEFAULT_MEDIA[key];
 
     if (!current || current.length === 0) {
-      // Always write explicit empty regardless of whether DEFAULT_MEDIA
-      // has an entry — prevents deleted sections being omitted from Supabase
-      // and falling back to component-level hardcoded defaults on next load.
-      overrides[key] = [];
+      // Only write [] to Supabase when user explicitly cleared it OR section has DEFAULT_MEDIA.
+      // Never write [] because a browser never synced this section — that wipes Supabase uploads.
+      if ((defaultVal && defaultVal.length > 0) || _explicitlyDeletedKeys.has(key)) {
+        overrides[key] = [];
+      }
       continue;
     }
 
@@ -2079,6 +2080,17 @@ function invalidateCache() {
   _cachedStore = null;
 }
 
+// Strip readdy.ai placeholder URLs from any data — never render or cache them.
+function stripReaddy(sections: MediaSections): MediaSections {
+  const out: MediaSections = {};
+  for (const key of Object.keys(sections)) {
+    out[key] = (sections[key] || []).map((item) =>
+      item.url && item.url.includes('readdy.ai') ? { ...item, url: '' } : item
+    );
+  }
+  return out;
+}
+
 function getStoreSnapshot(): MediaSections {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -2087,15 +2099,16 @@ function getStoreSnapshot(): MediaSections {
     // Layer 1: Supabase overrides (cross-browser base data)
     const supabaseOverrides = getSupabaseOverridesCache();
     if (supabaseOverrides) {
-      for (const key of Object.keys(supabaseOverrides)) {
-        merged[key] = supabaseOverrides[key];
+      const cleanedOverrides = stripReaddy(supabaseOverrides);
+      for (const key of Object.keys(cleanedOverrides)) {
+        merged[key] = cleanedOverrides[key];
       }
     }
 
     // Layer 2: localStorage (local edits ALWAYS win — prevents stale
     // Supabase overrides from undoing fresh local changes)
     if (raw) {
-      const parsed = JSON.parse(raw) as MediaSections;
+      const parsed = stripReaddy(JSON.parse(raw) as MediaSections);
       for (const key of Object.keys(parsed)) {
         merged[key] = parsed[key];
       }
@@ -2160,6 +2173,10 @@ function saveToStorage(store: MediaSections): void {
    CATEGORIES — with lightweight memoization
 ───────────────────────────────────────────────────────── */
 let _cachedCategoriesList: CategoryInfo[] | null = null;
+
+// Tracks section keys the user explicitly cleared this session.
+// Only these write [] to Supabase — prevents passive-empty browsers from wiping uploads.
+const _explicitlyDeletedKeys = new Set<string>();
 let _cachedCategoriesByGroup: Record<string, CategoryInfo[]> | null = null;
 
 export function invalidateCategoryCache() {
@@ -2261,6 +2278,7 @@ export function deleteSectionImage(sectionKey: string, url: string): void {
   if (!store[sectionKey]) return;
 
   store[sectionKey] = store[sectionKey].filter((item) => item.url !== url);
+  if (store[sectionKey].length === 0) _explicitlyDeletedKeys.add(sectionKey);
   saveToStorage(store);
 }
 
@@ -2289,6 +2307,7 @@ export function deleteSectionImagesBulk(sectionKey: string, urls: string[]): num
   const urlSet = new Set(urls);
   const beforeCount = store[sectionKey].length;
   store[sectionKey] = store[sectionKey].filter((item) => !urlSet.has(item.url));
+  if (store[sectionKey].length === 0) _explicitlyDeletedKeys.add(sectionKey);
   saveToStorage(store);
   return beforeCount - store[sectionKey].length;
 }
@@ -2301,7 +2320,9 @@ export function resetMediaStore(): void {
 export function resetSection(sectionKey: string): void {
   invalidateCategoryCache();
   const store = loadFromStorage();
-  store[sectionKey] = [...(DEFAULT_MEDIA[sectionKey] || [])];
+  const resetVal = [...(DEFAULT_MEDIA[sectionKey] || [])];
+  store[sectionKey] = resetVal;
+  if (resetVal.length === 0) _explicitlyDeletedKeys.add(sectionKey);
   saveToStorage(store);
 }
 
