@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 export interface TextEntry {
   id: string;
   label: string;
@@ -1518,4 +1519,25 @@ export function getTotalTextCount(): number {
 
 export function getTotalSectionCount(): number {
   return loadFromStorage().length;
+}
+
+// React hook — read a single text entry, re-renders on text-store-update events.
+// Usage: const value = useText('section_key', 'entry-id', 'fallback');
+export function useText(sectionKey: string, entryId: string, fallback: string): string {
+  const read = () => {
+    const section = getTextSection(sectionKey);
+    const entry = section?.entries.find((e) => e.id === entryId);
+    return entry?.value ?? fallback;
+  };
+
+  const [value, setValue] = useState<string>(read);
+
+  useEffect(() => {
+    const handler = () => setValue(read());
+    window.addEventListener('text-store-update', handler);
+    return () => window.removeEventListener('text-store-update', handler);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sectionKey, entryId]);
+
+  return value;
 }
