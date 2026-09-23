@@ -495,6 +495,10 @@ export const VIRTUAL_MEDIA: MediaSections = {
   case_avoury_gallery_2: [],
   case_avoury_gallery_3: [],
   case_avoury_gallery_4: [],
+  case_tvsound_gallery_1: [],
+  case_tvsound_gallery_2: [],
+  case_tvsound_gallery_3: [],
+  case_tvsound_gallery_4: [],
 
   /* ── SRT: Product Showcase (Desktop + Mobile renders) ── */
   /* ── SRT: Video Showcase media (YouTube URL / video file / image — any type) ── */
@@ -2403,6 +2407,17 @@ export function useMediaStore(sectionKey: string) {
     deleteImage: (url: string) =>
       deleteSectionImage(sectionKey, url),
     reset: () => resetSection(sectionKey),
+  about_client_logos: [],
+  case_studies: [],
+  leistungen_kreation_photo_grid: [],
+  ratgeber: [],
+  home_srt_wood_icons: [],
+  '/images/Über uns/Leadership Perspectives': [],
+  '/images/Über uns/Über uns/1. Header': [],
+  '/images/Über uns/Sonic Reels/2007-2015': [],
+  '/images/Karriere': [],
+  '/images/home/1. Menschen für Events & Messen': [],
+  '/images/home/2. Menschen für Content': [],
   };
 }
 
