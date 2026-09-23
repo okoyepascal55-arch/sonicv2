@@ -1559,6 +1559,10 @@ const HUMAN_LABELS: Record<string, string> = {
   'blog_images': 'Blog — Hero & Featured',
   'ratgeber_hero': 'Ratgeber — Hero Background',
   'jobs_hero': 'Jobs — Hero Background',
+  'case_tvsound_gallery_1': 'TV & Sound | POS & Retail',
+  'case_tvsound_gallery_2': 'TV & Sound | Messen & Roadshows',
+  'case_tvsound_gallery_3': 'TV & Sound | Training & Team',
+  'case_tvsound_gallery_4': 'TV & Sound | Digital & Kampagnen',
   'kontakt_hero': 'Hero — Background',
 };
 
