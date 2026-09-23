@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import VideoStudioPhone from './VideoStudioPhone';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import ScrollCardSection from '@/components/feature/ScrollCardSection';
@@ -51,42 +50,42 @@ const FORMATS = [
     icon: 'ri-user-voice-line',
     title: 'Live-Video-Beratung',
     desc: '1:1-Calls zwischen Kunde und Produktexperte. Persönlich, als echter Dialog, mit dem Ziel Kaufabschluss bzw. Cross-/Upselling.',
-    img: 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/9aba7e4f-1f00-4f96-b6fc-90fc615b11b3_1-Kopie.jpg',
+    img: '',
     tag: '1:1',
   },
   {
     icon: 'ri-broadcast-line',
     title: 'Sales Broadcast',
     desc: 'Video-Produktpräsentation in Kombination mit Online-Shop. Reichweite trifft Kaufimpuls. Live und/oder Recorded.',
-    img: 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/a1484e91-882b-498d-b849-e6655b3952c0_2-Kopie.jpg',
+    img: '',
     tag: 'Broadcast',
   },
   {
     icon: 'ri-live-line',
     title: 'Live-Streaming',
     desc: 'Besondere, exklusive Shopping-Events als Livestream. Für Product Launches, Limited Editions, VIP-Aktionen, Deep Dives.',
-    img: 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/ec769083-996f-4f19-a1aa-f82558ce1c27_3-Kopie.jpg',
+    img: '',
     tag: 'Live',
   },
   {
     icon: 'ri-instagram-line',
     title: 'Social Commerce',
     desc: 'Angebote auf Social Channels mit direkter Kaufoption. Reichweite und Conversion in einem Kanal.',
-    img: 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/21a65c0f-e370-4202-875f-8b9858903d15_4-Kopie.jpg',
+    img: '',
     tag: 'Social',
   },
   {
     icon: 'ri-group-line',
     title: 'Group Buying',
     desc: 'Gemeinsam, früher, günstiger, exklusiver einkaufen. Interaktive Kauferlebnisse für Gruppen.',
-    img: 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/6d9e8360-acc8-4646-9d6a-ae6ab41d65e1_5-Kopie.jpg',
+    img: '',
     tag: 'Group',
   },
   {
     icon: 'ri-customer-service-2-line',
     title: 'After Sales',
     desc: 'Dienstleistung nach dem Kauf: Troubleshooting, Setup-Hilfe, Produktsupport per Video. Kann die Retourenquote senken.',
-    img: 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/25ab2718-26bf-4db4-b304-22c7d310a3e6_6-Kopie.jpg',
+    img: '',
     tag: 'Support',
   },
 ];
@@ -103,12 +102,12 @@ const PHYGITAL_COMPARE = [
 ];
 
 const FALLBACK_FORMATS = [
-  'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/9aba7e4f-1f00-4f96-b6fc-90fc615b11b3_1-Kopie.jpg',
-  'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/a1484e91-882b-498d-b849-e6655b3952c0_2-Kopie.jpg',
-  'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/ec769083-996f-4f19-a1aa-f82558ce1c27_3-Kopie.jpg',
-  'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/21a65c0f-e370-4202-875f-8b9858903d15_4-Kopie.jpg',
-  'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/6d9e8360-acc8-4646-9d6a-ae6ab41d65e1_5-Kopie.jpg',
-  'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/25ab2718-26bf-4db4-b304-22c7d310a3e6_6-Kopie.jpg',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
 ];
 
 export default function VideoContent() {
@@ -185,9 +184,6 @@ export default function VideoContent() {
           <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: solutionWoodIcons[i]?.url ? resolveImageUrl(solutionWoodIcons[i].url) : s.woodIcon || '' }))} label={`${SOLUTIONS.length} Kanäle — scrollen`} theme="light" variant="wood" cardWidth="clamp(220px, 32vw, 380px)" cardMinHeight="340px" />
         </div>
       </section>
-
-      {/* Live Studio Experience — Phone Mockup */}
-      <VideoStudioPhone />
 
       {/* Advantages */}
       
