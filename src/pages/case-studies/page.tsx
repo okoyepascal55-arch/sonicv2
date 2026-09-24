@@ -333,41 +333,6 @@ function GroupedImpressionenGallery({
   const tv3 = useMediaStore('case_tvsound_gallery_3');
   const tv4 = useMediaStore('case_tvsound_gallery_4');
 
-  // ── Module image hooks — dashboard-controllable (Dashboard → Images → Fallbeispiele) ──
-  const { images: gMod1 } = useMediaStore('case_garmin_module_1');
-  const { images: gMod2 } = useMediaStore('case_garmin_module_2');
-  const { images: gMod3 } = useMediaStore('case_garmin_module_3');
-  const { images: gMod4 } = useMediaStore('case_garmin_module_4');
-  const { images: gMod5 } = useMediaStore('case_garmin_module_5');
-  const { images: sMod1 } = useMediaStore('case_seb_module_1');
-  const { images: sMod2 } = useMediaStore('case_seb_module_2');
-  const { images: sMod3 } = useMediaStore('case_seb_module_3');
-  const { images: sMod4 } = useMediaStore('case_seb_module_4');
-  const { images: sMod5 } = useMediaStore('case_seb_module_5');
-  const { images: sMod6 } = useMediaStore('case_seb_module_6');
-  const { images: aMod1 } = useMediaStore('case_avoury_module_1');
-  const { images: aMod2 } = useMediaStore('case_avoury_module_2');
-  const { images: aMod3 } = useMediaStore('case_avoury_module_3');
-  const { images: aMod4 } = useMediaStore('case_avoury_module_4');
-  const { images: aMod5 } = useMediaStore('case_avoury_module_5');
-  const { images: tvMod1 } = useMediaStore('case_tvsound_module_1');
-  const { images: tvMod2 } = useMediaStore('case_tvsound_module_2');
-  const { images: tvMod3 } = useMediaStore('case_tvsound_module_3');
-
-  // Map: case study id + module index → dashboard images
-  const moduleImgMap: Record<string, ReturnType<typeof useMediaStore>['images'][]> = {
-    'garmin':     [gMod1, gMod2, gMod3, gMod4, gMod5],
-    'groupe-seb': [sMod1, sMod2, sMod3, sMod4, sMod5, sMod6],
-    'avoury':     [aMod1, aMod2, aMod3, aMod4, aMod5],
-    'tv-sound':   [tvMod1, tvMod2, tvMod3],
-  };
-
-  // Returns dashboard image URL if uploaded, otherwise falls back to static path
-  const getModuleImg = (caseId: string, modIdx: number, fallback: string): string => {
-    const dashImg = moduleImgMap[caseId]?.[modIdx]?.[0];
-    return dashImg?.url ? resolveImageUrl(dashImg.url) : fallback;
-  };
-
   const storeMap: Record<string, ReturnType<typeof useMediaStore>> = {
     'case_garmin_gallery_1': g1, 'case_garmin_gallery_2': g2,
     'case_garmin_gallery_3': g3, 'case_garmin_gallery_4': g4,
@@ -507,6 +472,39 @@ export default function CaseStudiesPage() {
   const navigate = useNavigate();
   const { images: woodTextures } = useMediaStore('losungen_wood_textures');
   const { images: heroImages } = useMediaStore('case_studies_hero_images');
+
+  // ── Module image hooks — dashboard-controllable ──
+  const { images: gMod1 } = useMediaStore('case_garmin_module_1');
+  const { images: gMod2 } = useMediaStore('case_garmin_module_2');
+  const { images: gMod3 } = useMediaStore('case_garmin_module_3');
+  const { images: gMod4 } = useMediaStore('case_garmin_module_4');
+  const { images: gMod5 } = useMediaStore('case_garmin_module_5');
+  const { images: sMod1 } = useMediaStore('case_seb_module_1');
+  const { images: sMod2 } = useMediaStore('case_seb_module_2');
+  const { images: sMod3 } = useMediaStore('case_seb_module_3');
+  const { images: sMod4 } = useMediaStore('case_seb_module_4');
+  const { images: sMod5 } = useMediaStore('case_seb_module_5');
+  const { images: sMod6 } = useMediaStore('case_seb_module_6');
+  const { images: aMod1 } = useMediaStore('case_avoury_module_1');
+  const { images: aMod2 } = useMediaStore('case_avoury_module_2');
+  const { images: aMod3 } = useMediaStore('case_avoury_module_3');
+  const { images: aMod4 } = useMediaStore('case_avoury_module_4');
+  const { images: aMod5 } = useMediaStore('case_avoury_module_5');
+  const { images: tvMod1 } = useMediaStore('case_tvsound_module_1');
+  const { images: tvMod2 } = useMediaStore('case_tvsound_module_2');
+  const { images: tvMod3 } = useMediaStore('case_tvsound_module_3');
+
+  const moduleImgMap: Record<string, ReturnType<typeof useMediaStore>['images'][]> = {
+    'garmin':     [gMod1, gMod2, gMod3, gMod4, gMod5],
+    'groupe-seb': [sMod1, sMod2, sMod3, sMod4, sMod5, sMod6],
+    'avoury':     [aMod1, aMod2, aMod3, aMod4, aMod5],
+    'tv-sound':   [tvMod1, tvMod2, tvMod3],
+  };
+
+  const getModuleImg = (caseId: string, modIdx: number, fallback: string): string => {
+    const dashImg = moduleImgMap[caseId]?.[modIdx]?.[0];
+    return dashImg?.url ? resolveImageUrl(dashImg.url) : fallback;
+  };
   // Dashboard-editable metrics via textStore
   const tGarminMetric  = useText('case_garmin',   'case-garmin-metric',         '+116%');
   const tGarminLabel   = useText('case_garmin',   'case-garmin-metric-label',   'Umsatzwachstum 2021–2024');
