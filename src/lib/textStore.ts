@@ -1394,6 +1394,16 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'case-tvsound-m3-metric',    label: 'Mandat 3 — Wachstum J.1',  value: '+75 %',                                type: 'text' as const },
     ],
   },
+  {
+    key: 'karriere_dna',
+    label: 'Karriere DNA — Kartentexte',
+    entries: [
+      { id: 'dna-mensch-desc',   label: 'Der Mensch — Beschreibung',   value: 'Menschen, die Marken prägen. Promotions leben von den Menschen, die sie durchführen.',      type: 'text' as const },
+      { id: 'dna-antrieb-desc',  label: 'Der Antrieb — Beschreibung',  value: 'Wettbewerbsfähige Bezahlung und Entwicklungsperspektiven motivieren unser Team.',           type: 'text' as const },
+      { id: 'dna-daten-desc',    label: 'Die Daten — Beschreibung',    value: 'Datenbasierte Entscheidungen verwandeln Intuition in messbare Erfolge.',                     type: 'text' as const },
+      { id: 'dna-werkzeug-desc', label: 'Das Werkzeug — Beschreibung', value: 'Inhouse-IT und starke Partner lösen Herausforderungen mit den richtigen Tools.',             type: 'text' as const },
+    ],
+  },
 ];
 
 /* ─────────────────────────────────────────────
