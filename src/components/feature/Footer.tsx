@@ -1,77 +1,153 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import FooterTopologyField from './FooterTopologyField';
 import { useText } from '@/hooks/useText';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [openGroups, setOpenGroups] = useState<Set<string>>(new Set());
+
+  const toggleGroup = (key: string) => {
+    setOpenGroups(prev => {
+      const next = new Set(prev);
+      if (next.has(key)) { next.delete(key); } else { next.add(key); }
+      return next;
+    });
+  };
 
   // ── Text Store hooks ──
-  const tCompany = useText('common_footer', 'footer-company', 'Sonic Sales Support GmbH');
-  const tAddress = useText('common_footer', 'footer-address', 'Campus Fichtenhain 46');
-  const tCity = useText('common_footer', 'footer-city', '47807 Krefeld, Germany');
-  const tPhone = useText('common_footer', 'footer-phone', '+49 2151 479 444 0');
-  const tEmail = useText('common_footer', 'footer-email', 'info@sonic-group.de');
-  const tSalesBadge = useText('common_footer', 'footer-sales-badge', 'Part of €2B+ in influenced sales');
-  const tColLeistungen = useText('common_footer', 'footer-col-leistungen', '— Leistungen');
-  const tLinkStaff = useText('common_footer', 'footer-link-staff', 'Staff as a Service');
-  const tLinkPos = useText('common_footer', 'footer-link-pos', 'POS Full Service');
-  const tLinkEvents = useText('common_footer', 'footer-link-events', 'Events & Messen');
-  const tLinkKreation = useText('common_footer', 'footer-link-kreation', 'Kreation & Content');
-  const tLinkWarehouse = useText('common_footer', 'footer-link-warehouse', 'Warehouse & Logistik');
-  const tLinkSrt = useText('common_footer', 'footer-link-srt', 'SRT Technologie');
-  const tLinkLvp = useText('common_footer', 'footer-link-lvp', 'Live Video Promotion');
+  const tCompany      = useText('common_footer', 'footer-company',      'Sonic Sales Support GmbH');
+  const tAddress      = useText('common_footer', 'footer-address',      'Campus Fichtenhain 46');
+  const tCity         = useText('common_footer', 'footer-city',         '47807 Krefeld, Germany');
+  const tPhone        = useText('common_footer', 'footer-phone',        '+49 2151 479 444 0');
+  const tEmail        = useText('common_footer', 'footer-email',        'info@sonic-group.de');
+  const tSalesBadge   = useText('common_footer', 'footer-sales-badge',  'Part of €2B+ in influenced sales');
+  const tColLeistungen= useText('common_footer', 'footer-col-leistungen','— Leistungen');
+  const tLinkStaff    = useText('common_footer', 'footer-link-staff',   'Staff as a Service');
+  const tLinkPos      = useText('common_footer', 'footer-link-pos',     'POS Full Service');
+  const tLinkEvents   = useText('common_footer', 'footer-link-events',  'Events & Messen');
+  const tLinkKreation = useText('common_footer', 'footer-link-kreation','Kreation & Content');
+  const tLinkWarehouse= useText('common_footer', 'footer-link-warehouse','Warehouse & Logistik');
+  const tLinkSrt      = useText('common_footer', 'footer-link-srt',     'SRT Technologie');
+  const tLinkLvp      = useText('common_footer', 'footer-link-lvp',     'Live Video Promotion');
   const tLinkForecasting = useText('common_footer', 'footer-link-forecasting', 'Forecasting');
-  const tLinkTalentpool = useText('common_footer', 'footer-link-talentpool', 'Talentpool');
-  const tColCompany = useText('common_footer', 'footer-col-company', '— Unternehmen');
-  const tLinkAbout = useText('common_footer', 'footer-link-about', 'Über uns');
-  const tLinkCareers = useText('common_footer', 'footer-link-careers', 'Karriere');
-  const tLinkCases = useText('common_footer', 'footer-link-cases', 'Fallbeispiele');
-  const tLinkReels = useText('common_footer', 'footer-link-reels', 'Sonic Reels');
-  const tLinkRatgeber = useText('common_footer', 'footer-link-ratgeber', 'Ratgeber');
-  const tColLegal = useText('common_footer', 'footer-col-legal', '— Rechtliches');
-  const tLinkKontakt = useText('common_footer', 'footer-link-kontakt', 'Kontakt');
-  const tLinkImpressum = useText('common_footer', 'footer-link-impressum', 'Impressum');
-  const tLinkDatenschutz = useText('common_footer', 'footer-link-datenschutz', 'Datenschutz');
-  const tLinkAdmin = useText('common_footer', 'footer-link-admin', 'Admin');
-  const tCopyright = useText('common_footer', 'footer-copyright', '© {year} Sonic Sales Support GmbH. Alle Rechte vorbehalten.');
-  const tBuiltBy = useText('common_footer', 'footer-builtby', 'Built by Reezan Digital');
-  const tIso = useText('common_footer', 'footer-iso', 'ISO Certified');
-  const tGdpr = useText('common_footer', 'footer-gdpr', 'GDPR Compliant');
+  const tLinkTalentpool  = useText('common_footer', 'footer-link-talentpool',  'Talentpool');
+  const tColCompany   = useText('common_footer', 'footer-col-company',  '— Unternehmen');
+  const tLinkAbout    = useText('common_footer', 'footer-link-about',   'Über uns');
+  const tLinkCareers  = useText('common_footer', 'footer-link-careers', 'Karriere');
+  const tLinkCases    = useText('common_footer', 'footer-link-cases',   'Fallbeispiele');
+  const tLinkReels    = useText('common_footer', 'footer-link-reels',   'Sonic Reels');
+  const tLinkRatgeber = useText('common_footer', 'footer-link-ratgeber','Ratgeber');
+  const tColLegal     = useText('common_footer', 'footer-col-legal',    '— Rechtliches');
+  const tLinkKontakt  = useText('common_footer', 'footer-link-kontakt', 'Kontakt');
+  const tLinkImpressum    = useText('common_footer', 'footer-link-impressum',   'Impressum');
+  const tLinkDatenschutz  = useText('common_footer', 'footer-link-datenschutz', 'Datenschutz');
+  const tLinkAdmin    = useText('common_footer', 'footer-link-admin',   'Admin');
+  const tCopyright    = useText('common_footer', 'footer-copyright',    '© {year} Sonic Sales Support GmbH. Alle Rechte vorbehalten.');
+  const tBuiltBy      = useText('common_footer', 'footer-builtby',      'Built by Reezan Digital');
+  const tIso          = useText('common_footer', 'footer-iso',          'ISO Certified');
+  const tGdpr         = useText('common_footer', 'footer-gdpr',         'GDPR Compliant');
 
   const footerLinks = {
     solutions: [
-      { label: tLinkStaff, href: '/leistungen/staff-as-a-service' },
-      { label: tLinkPos, href: '/leistungen/pos-full-service' },
-      { label: tLinkEvents, href: '/leistungen/events-messen' },
-      { label: tLinkKreation, href: '/leistungen/kreation-content' },
-      { label: tLinkWarehouse, href: '/leistungen/warehouse-logistik' },
-      { label: tLinkSrt, href: '/srt' },
-      { label: tLinkLvp, href: '/leistungen/live-video' },
+      { label: tLinkStaff,       href: '/leistungen/staff-as-a-service' },
+      { label: tLinkPos,         href: '/leistungen/pos-full-service' },
+      { label: tLinkEvents,      href: '/leistungen/events-messen' },
+      { label: tLinkKreation,    href: '/leistungen/kreation-content' },
+      { label: tLinkWarehouse,   href: '/leistungen/warehouse-logistik' },
+      { label: tLinkSrt,         href: '/srt' },
+      { label: tLinkLvp,         href: '/leistungen/live-video' },
       { label: tLinkForecasting, href: '/leistungen/forecasting' },
-      { label: tLinkTalentpool, href: '/leistungen/talentpool' },
+      { label: tLinkTalentpool,  href: '/leistungen/talentpool' },
     ],
     company: [
-      { label: tLinkAbout, href: '/ueber-uns' },
-      { label: tLinkCareers, href: '/karriere' },
-      { label: tLinkCases, href: '/fallbeispiele' },
-      { label: tLinkReels, href: '/sonic-reels' },
+      { label: tLinkAbout,    href: '/ueber-uns' },
+      { label: tLinkCareers,  href: '/karriere' },
+      { label: tLinkCases,    href: '/fallbeispiele' },
+      { label: tLinkReels,    href: '/sonic-reels' },
       { label: tLinkRatgeber, href: '/ratgeber' },
     ],
     legal: [
-      { label: tLinkKontakt, href: '/#contact' },
-      { label: tLinkImpressum, href: 'https://www.sonic-group.de/impressum/' },
+      { label: tLinkKontakt,     href: '/#contact' },
+      { label: tLinkImpressum,   href: 'https://www.sonic-group.de/impressum/' },
       { label: tLinkDatenschutz, href: 'https://www.sonic-group.de/datenschutz/' },
-      { label: tLinkAdmin, href: '/dashboard' },
+      { label: tLinkAdmin,       href: '/dashboard' },
     ],
   };
+
+  // ── Accordion menu group — mobile only ──
+  function FooterAccordion({
+    groupKey, label, links,
+  }: {
+    groupKey: string;
+    label: string;
+    links: { label: string; href: string }[];
+  }) {
+    const isOpen = openGroups.has(groupKey);
+    return (
+      <div className="border-t border-background-50/8 md:border-t-0 md:pt-0">
+        {/* Mobile: collapsible header */}
+        <button
+          className="w-full flex items-center justify-between min-h-[48px] py-3 md:hidden cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset"
+          onClick={() => toggleGroup(groupKey)}
+          aria-expanded={isOpen}
+        >
+          <span className="text-background-50 text-sm font-semibold uppercase tracking-[0.10em]">
+            {label}
+          </span>
+          <i
+            className={`ri-arrow-down-s-line text-primary-500 text-lg transition-transform duration-300 ${
+              isOpen ? 'rotate-180' : ''
+            }`}
+          />
+        </button>
+
+        {/* Desktop: always-visible heading */}
+        <h4 className="hidden md:block text-background-50 mb-3 text-[12px] font-semibold uppercase tracking-[0.10em]">
+          {label}
+        </h4>
+
+        {/* Links: on mobile collapse/expand, on desktop always visible */}
+        <div
+          className={`overflow-hidden transition-all duration-300 ease-in-out md:overflow-visible md:max-h-none md:pb-0 ${
+            isOpen ? 'max-h-[600px] pb-3' : 'max-h-0 md:max-h-none'
+          }`}
+        >
+          <ul className="space-y-3 md:space-y-1.5 pt-1 md:pt-0">
+            {links.map((link, idx) => (
+              <li key={idx}>
+                {link.href.startsWith('http') ? (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    className="text-background-50/50 hover:text-primary-500 transition-colors text-sm md:text-[12px] whitespace-nowrap cursor-pointer block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900 min-h-[36px] md:min-h-0 flex items-center md:block"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    to={link.href}
+                    className="text-background-50/50 hover:text-primary-500 transition-colors text-sm md:text-[12px] whitespace-nowrap cursor-pointer block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900 min-h-[36px] md:min-h-0 flex items-center md:block"
+                  >
+                    {link.label}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <footer className="relative bg-foreground-900">
       <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 py-6 md:py-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5 mb-4 md:mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-0 md:gap-4 lg:gap-5 mb-4 md:mb-6">
 
           {/* Brand Column */}
-          <div className="md:col-span-3 lg:col-span-2">
+          <div className="md:col-span-3 lg:col-span-2 mb-2 md:mb-0">
             <Link
               to="/"
               className="flex items-center gap-3 mb-4 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
@@ -114,112 +190,51 @@ export default function Footer() {
             </div>
 
             <div className="flex items-center gap-1.5 mb-3">
-              <a
-                href="https://www.linkedin.com/company/sonic-sales-support/"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
+              <a href="https://www.linkedin.com/company/sonic-sales-support/" target="_blank" rel="nofollow noopener noreferrer"
                 className="w-11 h-11 md:w-7 md:h-7 bg-foreground-800 border border-foreground-700 flex items-center justify-center hover:bg-foreground-700 hover:border-foreground-600 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
-                aria-label="Sonic Group on LinkedIn"
-              >
+                aria-label="Sonic Group on LinkedIn">
                 <i className="ri-linkedin-fill text-background-50/70 text-xs"></i>
               </a>
-              <a
-                href="https://www.instagram.com/sonic_group/"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
+              <a href="https://www.instagram.com/sonic_group/" target="_blank" rel="nofollow noopener noreferrer"
                 className="w-11 h-11 md:w-7 md:h-7 bg-foreground-800 border border-foreground-700 flex items-center justify-center hover:bg-foreground-700 hover:border-foreground-600 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
-                aria-label="Sonic Group on Instagram"
-              >
+                aria-label="Sonic Group on Instagram">
                 <i className="ri-instagram-line text-background-50/70 text-xs"></i>
               </a>
-              <a
-                href="https://www.facebook.com/SonicSalesSupport/"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
+              <a href="https://www.facebook.com/SonicSalesSupport/" target="_blank" rel="nofollow noopener noreferrer"
                 className="w-11 h-11 md:w-7 md:h-7 bg-foreground-800 border border-foreground-700 flex items-center justify-center hover:bg-foreground-700 hover:border-foreground-600 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
-                aria-label="Sonic Group on Facebook"
-              >
+                aria-label="Sonic Group on Facebook">
                 <i className="ri-facebook-fill text-background-50/70 text-xs"></i>
               </a>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 mb-2 md:mb-0">
               <div className="w-6 h-6 bg-primary-500/10 border border-primary-500/25 flex items-center justify-center flex-shrink-0">
                 <i className="ri-trophy-line text-primary-500 text-xs"></i>
               </div>
-              <p className="text-sm md:text-[12px] text-background-50/60">
-                {tSalesBadge}
-              </p>
+              <p className="text-sm md:text-[12px] text-background-50/60">{tSalesBadge}</p>
             </div>
           </div>
 
           {/* Leistungen */}
-          <div className="pt-3 md:pt-0 border-t border-background-50/6 md:border-t-0">
-            <h4 className="text-background-50 mb-2 md:mb-3 text-sm md:text-[12px] font-semibold uppercase tracking-[0.10em]">
-              {tColLeistungen}
-            </h4>
-            <ul className="space-y-1.5">
-              {footerLinks.solutions.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    to={link.href}
-                    className="text-background-50/50 hover:text-primary-500 transition-colors text-sm md:text-[12px] whitespace-nowrap cursor-pointer block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <FooterAccordion
+            groupKey="solutions"
+            label={tColLeistungen}
+            links={footerLinks.solutions}
+          />
 
           {/* Unternehmen */}
-          <div className="pt-3 md:pt-0 border-t border-background-50/6 md:border-t-0">
-            <h4 className="text-background-50 mb-2 md:mb-3 text-sm md:text-[12px] font-semibold uppercase tracking-[0.10em]">
-              {tColCompany}
-            </h4>
-            <ul className="space-y-1.5">
-              {footerLinks.company.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    to={link.href}
-                    className="text-background-50/50 hover:text-primary-500 transition-colors text-sm md:text-[12px] whitespace-nowrap cursor-pointer block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <FooterAccordion
+            groupKey="company"
+            label={tColCompany}
+            links={footerLinks.company}
+          />
 
           {/* Rechtliches */}
-          <div className="pt-3 md:pt-0 border-t border-background-50/6 md:border-t-0">
-            <h4 className="text-background-50 mb-2 md:mb-3 text-sm md:text-[12px] font-semibold uppercase tracking-[0.10em]">
-              {tColLegal}
-            </h4>
-            <ul className="space-y-1.5">
-              {footerLinks.legal.map((link, index) => (
-                <li key={index}>
-                  {link.href.startsWith('http') ? (
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="nofollow noopener noreferrer"
-                      className="text-background-50/50 hover:text-primary-500 transition-colors text-sm md:text-[12px] whitespace-nowrap cursor-pointer block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link
-                      to={link.href}
-                      className="text-background-50/50 hover:text-primary-500 transition-colors text-sm md:text-[12px] whitespace-nowrap cursor-pointer block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
-                    >
-                      {link.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <FooterAccordion
+            groupKey="legal"
+            label={tColLegal}
+            links={footerLinks.legal}
+          />
         </div>
       </div>
 
