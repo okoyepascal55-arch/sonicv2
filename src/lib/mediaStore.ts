@@ -314,10 +314,10 @@ export const PAGE_GROUPS: PageGroup[] = [
       'case_seb_gallery_3',
       'case_seb_gallery_4',
       // Philips Impressionen
-      'case_philips_gallery_1',
-      'case_philips_gallery_2',
-      'case_philips_gallery_3',
-      'case_philips_gallery_4',
+      'case_tvsound_gallery_1',
+      'case_tvsound_gallery_2',
+      'case_tvsound_gallery_3',
+      'case_tvsound_gallery_4',
       // Avoury Impressionen
       'case_avoury_gallery_1',
       'case_avoury_gallery_2',
@@ -479,16 +479,16 @@ export const VIRTUAL_MEDIA: MediaSections = {
   case_seb_gallery_2: [],
 
   /* Philips */
-  case_philips_gallery_1: [],
-  case_philips_gallery_2: [],
+  case_tvsound_gallery_1: [],
+  case_tvsound_gallery_2: [],
 
   /* Groupe SEB — 2 additional */
   case_seb_gallery_3: [],
   case_seb_gallery_4: [],
 
   /* Philips — 2 additional */
-  case_philips_gallery_3: [],
-  case_philips_gallery_4: [],
+  case_tvsound_gallery_3: [],
+  case_tvsound_gallery_4: [],
 
   /* Avoury — 2 additional */
   case_avoury_gallery_1: [],
