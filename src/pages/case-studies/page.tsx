@@ -311,7 +311,7 @@ function GroupedImpressionenGallery({
   const allMediaKeys = [
     'case_garmin_gallery_1','case_garmin_gallery_2','case_garmin_gallery_3','case_garmin_gallery_4',
     'case_seb_gallery_1','case_seb_gallery_2',
-    'case_philips_gallery_1','case_philips_gallery_2',
+    'case_tvsound_gallery_1','case_tvsound_gallery_2',
     'case_avoury_gallery_1','case_avoury_gallery_2',
   ] as const;
 
@@ -322,26 +322,26 @@ function GroupedImpressionenGallery({
   const g4 = useMediaStore('case_garmin_gallery_4');
   const s1 = useMediaStore('case_seb_gallery_1');
   const s2 = useMediaStore('case_seb_gallery_2');
-  const p1 = useMediaStore('case_philips_gallery_1');
-  const p2 = useMediaStore('case_philips_gallery_2');
+  const tv1 = useMediaStore('case_tvsound_gallery_1');
+  const tv2 = useMediaStore('case_tvsound_gallery_2');
   const a1 = useMediaStore('case_avoury_gallery_1');
   const a2 = useMediaStore('case_avoury_gallery_2');
   const a3 = useMediaStore('case_avoury_gallery_3');
   const a4 = useMediaStore('case_avoury_gallery_4');
   const s3 = useMediaStore('case_seb_gallery_3');
   const s4 = useMediaStore('case_seb_gallery_4');
-  const p3 = useMediaStore('case_philips_gallery_3');
-  const p4 = useMediaStore('case_philips_gallery_4');
+  const tv3 = useMediaStore('case_tvsound_gallery_3');
+  const tv4 = useMediaStore('case_tvsound_gallery_4');
 
   const storeMap: Record<string, ReturnType<typeof useMediaStore>> = {
     'case_garmin_gallery_1': g1, 'case_garmin_gallery_2': g2,
     'case_garmin_gallery_3': g3, 'case_garmin_gallery_4': g4,
     'case_seb_gallery_1': s1, 'case_seb_gallery_2': s2,
-    'case_philips_gallery_1': p1, 'case_philips_gallery_2': p2,
+    'case_tvsound_gallery_1': tv1, 'case_tvsound_gallery_2': tv2,
     'case_avoury_gallery_1': a1, 'case_avoury_gallery_2': a2,
     'case_avoury_gallery_3': a3, 'case_avoury_gallery_4': a4,
     'case_seb_gallery_3': s3, 'case_seb_gallery_4': s4,
-    'case_philips_gallery_3': p3, 'case_philips_gallery_4': p4,
+    'case_tvsound_gallery_3': tv3, 'case_tvsound_gallery_4': tv4,
   };
 
   const getGroupImages = (group: typeof groups[0]): string[] => {
@@ -461,12 +461,12 @@ function GalleryThumb({
 
 export default function CaseStudiesPage() {
   useSEO({
-    title: 'Fallbeispiele | Sonic Group — Garmin, Philips, Groupe SEB, Avoury',
-    description: 'Bewiesene Ergebnisse: Sonic Group Fallbeispiele — Garmin +116%, Philips +54%, Groupe SEB +130%, Avoury +1.187% Umsatzwachstum im DACH-Raum.',
-    keywords: 'Sonic Group Fallbeispiele, Garmin Retail Activation, Philips TV Sound, Groupe SEB, Avoury, DACH Retail Ergebnisse',
+    title: 'Fallbeispiele | Sonic Group — Garmin, Groupe SEB, Avoury, TV & Sound',
+    description: 'Bewiesene Ergebnisse: Sonic Group Fallbeispiele — Garmin +116%, Groupe SEB +130%, Avoury +1.187%, TV & Sound 1,72 Mrd. €. 187% Umsatzwachstum im DACH-Raum.',
+    keywords: 'Sonic Group Fallbeispiele, Garmin Retail Activation, TV & Sound, Groupe SEB, Avoury, DACH Retail Ergebnisse',
     canonical: 'https://sonic-group.de/fallbeispiele',
     ogTitle: 'Fallbeispiele — Sonic Group DACH',
-    ogDescription: 'Garmin +116%, Philips +54%, Groupe SEB +130%, Avoury +1.187% — echte Markenerfolge mit Sonic Group.',
+    ogDescription: 'Garmin +116%, Groupe SEB +130%, Avoury +1.187%, TV & Sound 1,72 Mrd. € — echte Markenerfolge mit Sonic Group.',
   });
 
   const navigate = useNavigate();
@@ -789,7 +789,7 @@ export default function CaseStudiesPage() {
         style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}
       >
         <img
-          src={heroImages[0]?.url ? resolveImageUrl(heroImages[0].url) : "/images/Case Studies -Fallbsp/Philips/WhatsApp Image 2020-07-31 at 12.12.39 (1).webp"}
+          src={heroImages[0]?.url ? resolveImageUrl(heroImages[0].url) : "/images/Case Studies -Fallbsp/Avoury/TEAGLOO_V4_02.webp0-07-31 at 12.12.39 (1).webp"}
           alt="Erfolgsgeschichten"
           className="absolute inset-0 w-full h-full object-cover object-center"
           fetchPriority="high"
