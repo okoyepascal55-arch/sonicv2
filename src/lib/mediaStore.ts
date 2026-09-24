@@ -313,7 +313,7 @@ export const PAGE_GROUPS: PageGroup[] = [
       'case_seb_gallery_2',
       'case_seb_gallery_3',
       'case_seb_gallery_4',
-      // Philips Impressionen
+      // TV & Sound Impressionen
       'case_tvsound_gallery_1',
       'case_tvsound_gallery_2',
       'case_tvsound_gallery_3',
@@ -478,7 +478,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
   case_seb_gallery_1: [],
   case_seb_gallery_2: [],
 
-  /* Philips */
+  /* TV & Sound */
   case_tvsound_gallery_1: [],
   case_tvsound_gallery_2: [],
 
@@ -486,7 +486,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
   case_seb_gallery_3: [],
   case_seb_gallery_4: [],
 
-  /* Philips — 2 additional */
+  /* TV & Sound — 2 additional */
   case_tvsound_gallery_3: [],
   case_tvsound_gallery_4: [],
 
@@ -784,7 +784,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
   reels_2015_2019: [
     { url: '', caption: 'Samsung Galaxy S7 launch activation, 2016', wide: true },
     { url: '', caption: 'Sonic Training Academy launch, 2017' },
-    { url: '', caption: 'Philips DACH rollout — Vienna, 2017' },
+    { url: '', caption: 'TV & Sound — POS Aktivierung' },
     { url: '', caption: 'IFA Berlin — largest activation to date, 2018', wide: true },
     { url: '', caption: 'Dyson luxury retail — Zurich, 2018' },
     { url: '', caption: '500 ambassadors milestone dinner, 2019' },
@@ -792,7 +792,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
   reels_2024: [
     { url: '', caption: 'SRT platform commercial launch event, 2024', wide: true },
     { url: '', caption: 'Garmin 122-location network launch, 2024' },
-    { url: '', caption: 'Philips secures #1 in Germany, 2024' },
+    { url: '', caption: 'TV & Sound — Messe & Roadshow' },
     { url: '', caption: 'IFA Berlin — SRT-tracked activation, 2024', wide: true },
     { url: '', caption: '€2B+ lifetime sales milestone, 2024' },
     { url: '', caption: 'SRT live performance map — DACH coverage' },
@@ -800,7 +800,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
   reels_2025: [
     { url: '', caption: 'Sonic team — 2,000+ active ambassadors, 2025', wide: true },
     { url: '', caption: 'Samsung Galaxy flagship launch, 2025' },
-    { url: '', caption: 'Philips luxury activation — Galeria, 2025' },
+    { url: '', caption: 'TV & Sound — Training & Team' },
     { url: '', caption: 'Sonic wins POPAI Best Agency — Germany, 2025', wide: true },
     { url: '', caption: 'New HQ — Cologne, 2025' },
     { url: '', caption: 'Year-end celebration, December 2025' },
@@ -816,7 +816,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── HOME: TrustStrip Brand Logos ── */
   home_truststrip_logos: [
-    { url: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887', caption: 'Philips' },
+    { url: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887', caption: 'TV & Sound' },
     { url: 'https://cdn.brandfetch.io/rowenta.de/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX', caption: 'Rowenta' },
     { url: 'https://cdn.brandfetch.io/krups.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX', caption: 'Krups' },
     { url: 'https://cdn.brandfetch.io/id2dYOZ6uf/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1773621883167', caption: 'Nexaro' },
@@ -891,7 +891,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
   common_clientproof_logos: [
     { url: 'https://cdn.brandfetch.io/garmin.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX', caption: 'Garmin' },
     { url: 'https://cdn.brandfetch.io/groupeseb.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX', caption: 'Groupe SEB' },
-    { url: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887', caption: 'Philips' },
+    { url: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887', caption: 'TV & Sound' },
     { url: 'https://cdn.brandfetch.io/idaYSyWs1H/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1668078167864', caption: 'Samsung' },
     { url: 'https://cdn.brandfetch.io/loreal.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX', caption: "L'Oréal" },
     { url: 'https://cdn.brandfetch.io/wmf.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX', caption: 'WMF' },
@@ -1232,7 +1232,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
   /* ── HOME: ClientSuccess — Wood Icons ── */
   home_clientsuccess_wood_icons: [
     { url: '', caption: 'Garmin' },
-    { url: '', caption: 'Philips' },
+    { url: '', caption: 'TV & Sound' },
     { url: '', caption: 'Groupe SEB' },
     { url: '', caption: 'Samsung' },
     { url: '', caption: 'Bosch' },
@@ -1439,7 +1439,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'losungen_wood_textures': 'Wood Textures',
   '/images/Case Studies -Fallbsp/Avoury': 'Avoury',
   '/images/Case Studies -Fallbsp/Garmin': 'Garmin',
-  '/images/Case Studies -Fallbsp/Philips': 'Philips',
+  '/images/Case Studies -Fallbsp/Philips': 'TV & Sound (Archiv)',  // renamed from Philips
   '/images/Case Studies -Fallbsp/SEB': 'SEB',
   'srt_hero_icons': 'SRT — Hero Stat Icons',
 
