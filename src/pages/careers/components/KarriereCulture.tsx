@@ -20,6 +20,13 @@ export default function KarriereCulture() {
   const tP1 = useText('careers_culture', 'careers-culture-p1', 'Am Point of Sale, bei Messen, Events, Roadshows und per Video aus unseren Studios am Campus in Krefeld.');
   const tP2 = useText('careers_culture', 'careers-culture-p2', 'Energiegeladen und sympathisch: Diese Beschreibung passt auf die Menschen, die bei Sonic arbeiten. Passt sie auch auf dich?');
 
+  // DNA card descriptions — editable from Dashboard → Text → Karriere DNA
+  const tDna1 = useText('karriere_dna', 'dna-mensch-desc',   'Menschen, die Marken prägen. Promotions leben von den Menschen, die sie durchführen.');
+  const tDna2 = useText('karriere_dna', 'dna-antrieb-desc',  'Wettbewerbsfähige Bezahlung und Entwicklungsperspektiven motivieren unser Team.');
+  const tDna3 = useText('karriere_dna', 'dna-daten-desc',    'Datenbasierte Entscheidungen verwandeln Intuition in messbare Erfolge.');
+  const tDna4 = useText('karriere_dna', 'dna-werkzeug-desc', 'Inhouse-IT und starke Partner lösen Herausforderungen mit den richtigen Tools.');
+  const dnaDescs = [tDna1, tDna2, tDna3, tDna4];
+
   return (
     <section id="darum" className="py-20 md:py-[104px] px-5 md:px-10 bg-white">
       <div className="sonic-container">
@@ -108,7 +115,7 @@ export default function KarriereCulture() {
                   <h3 className={`font-black tracking-[-0.025em] text-foreground-950 leading-none mb-3 ${isWide ? 'text-[28px] md:text-[34px]' : 'text-[22px] md:text-[26px]'}`}>
                     {item.title}
                   </h3>
-                  <p className="text-sm leading-relaxed flex-1" style={{ color: 'oklch(var(--foreground-500))' }}>{item.desc}</p>
+                  <p className="text-sm leading-relaxed flex-1" style={{ color: 'oklch(var(--foreground-500))' }}>{dnaDescs[i]}</p>
                 </div>
               </div>
             );
