@@ -1984,21 +1984,36 @@ async function pullOverridesFromSupabase(): Promise<MediaSections | null> {
       })();
 
       if (localRaw) {
-        let localHasAllRemote = true;
+        // Staleness check: if every key in the remote override is either:
+        //   a) absent from localStorage (never touched by this browser), OR
+        //   b) present in localStorage with the same or newer items
+        // … then local is at least as fresh and we skip the merge.
+        // We also skip if local has [] for a key (explicit deletion beats remote).
+        let localIsAtLeastAsFresh = true;
         for (const key of Object.keys(overrides)) {
           const remoteItems = overrides[key] || [];
-          const localItems = localRaw[key] || [];
+          if (!(key in localRaw)) {
+            // This browser never touched this section — remote may have newer data.
+            localIsAtLeastAsFresh = false;
+            break;
+          }
+          const localItems: MediaItem[] = localRaw[key] || [];
+          if (localItems.length === 0) {
+            // Local explicitly emptied this section (deletion) — local wins, no merge.
+            continue;
+          }
           const localUrls = new Set(localItems.map((item: MediaItem) => item.url));
           for (const item of remoteItems) {
             if (!localUrls.has(item.url)) {
-              localHasAllRemote = false;
+              // Remote has an item local doesn't — but this could be stale (replaced/deleted).
+              // We handle it in the merge: local wins per-key, so skip staleness check here.
+              localIsAtLeastAsFresh = false;
               break;
             }
           }
-          if (!localHasAllRemote) break;
+          if (!localIsAtLeastAsFresh) break;
         }
-        if (localHasAllRemote) {
-          // Local has everything remote has — update the cache but skip the merge
+        if (localIsAtLeastAsFresh) {
           setSupabaseOverridesCache(overrides);
           return null;
         }
@@ -2470,26 +2485,14 @@ if (typeof window !== 'undefined') {
       merged[key] = remoteOverrides[key];
     }
 
-    // Layer 2 — overlay local data. For any key where local exists, do a
-    // URL-based union so images added locally are never lost even if remote
-    // has different items for that key.
+    // Layer 2 — local state ALWAYS wins for any section this browser has touched.
+    // An empty local array = explicit deletion: do NOT restore from Supabase.
+    // A populated local array = current user state: do NOT add stale remote items.
+    // Supabase only fills in sections that are completely absent from localStorage
+    // (i.e. sections this browser has never interacted with).
     if (localRaw) {
       for (const key of Object.keys(localRaw)) {
-        const localItems: MediaItem[] = localRaw[key] || [];
-        const remoteItems: MediaItem[] = remoteOverrides[key] || [];
-
-        if (remoteItems.length === 0) {
-          // No remote data for this key — local wins entirely
-          merged[key] = localItems;
-        } else {
-          // Remote-first merge: Supabase is source of truth.
-          // Remote items appear first (index 0 = current image in components).
-          // Local-only additions (not yet in Supabase) are appended after.
-          // This prevents stale localStorage from hiding fresher Supabase uploads.
-          const remoteUrls = new Set(remoteItems.map((i) => i.url));
-          const localOnly = localItems.filter((i) => !remoteUrls.has(i.url));
-          merged[key] = [...remoteItems, ...localOnly];
-        }
+        merged[key] = localRaw[key] || [];
       }
     }
 
