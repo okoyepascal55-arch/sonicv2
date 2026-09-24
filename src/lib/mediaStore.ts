@@ -323,6 +323,14 @@ export const PAGE_GROUPS: PageGroup[] = [
       'case_avoury_gallery_2',
       'case_avoury_gallery_3',
       'case_avoury_gallery_4',
+      // Module images — controllable from dashboard
+      'case_garmin_module_1','case_garmin_module_2','case_garmin_module_3',
+      'case_garmin_module_4','case_garmin_module_5',
+      'case_seb_module_1','case_seb_module_2','case_seb_module_3',
+      'case_seb_module_4','case_seb_module_5','case_seb_module_6',
+      'case_avoury_module_1','case_avoury_module_2','case_avoury_module_3',
+      'case_avoury_module_4','case_avoury_module_5',
+      'case_tvsound_module_1','case_tvsound_module_2','case_tvsound_module_3',
     ],
   },
   {
