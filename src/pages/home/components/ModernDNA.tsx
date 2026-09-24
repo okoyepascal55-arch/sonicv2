@@ -4,25 +4,25 @@ import { useMediaStore } from '@/lib/mediaStore';
 const principleData = [
   {
     number: '01',
-    fallbackIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20human%20figure%20people%20team%20group%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20human%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-human-dna-01&orientation=squarish',
+    fallbackIcon: '',
     title: 'Der Mensch',
     description: 'Menschen, die Marken prägen. Promotions leben von den Menschen, die sie durchführen.',
   },
   {
     number: '02',
-    fallbackIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20lightning%20bolt%20energy%20power%20drive%20motivation%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20energy%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-energy-dna-02&orientation=squarish',
+    fallbackIcon: '',
     title: 'Der Antrieb',
     description: 'Wettbewerbsfähige Bezahlung und Entwicklungsperspektiven motivieren unser Team.',
   },
   {
     number: '03',
-    fallbackIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20bar%20chart%20analytics%20data%20graph%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20data%20analytics%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-data-dna-03&orientation=squarish',
+    fallbackIcon: '',
     title: 'Die Daten',
     description: 'Datenbasierte Entscheidungen verwandeln Intuition in messbare Erfolge.',
   },
   {
     number: '04',
-    fallbackIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20wrench%20tool%20gear%20settings%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20tool%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-tool-dna-04&orientation=squarish',
+    fallbackIcon: '',
     title: 'Das Werkzeug',
     description: 'Inhouse-IT und starke Partner lösen Herausforderungen mit den richtigen Tools.',
   },
