@@ -346,10 +346,10 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ────────────────────────────────────────────────────── */
   /* ── HOME: Hero Stats Wood Icons (HeroRevamp) ── */
   home_hero_stats: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Produkte verkauft — Laurel Wreath Icon' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Umsatz generiert — Balance Scale Icon' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Einsätze — Compass Rose Icon' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Live Video Calls — Antenna Icon' },
+    { url: '', caption: 'Produkte verkauft — Laurel Wreath Icon' },
+    { url: '', caption: 'Umsatz generiert — Balance Scale Icon' },
+    { url: '', caption: 'Einsätze — Compass Rose Icon' },
+    { url: '', caption: 'Live Video Calls — Antenna Icon' },
   ],
 
   /* ── HOME: Hero CTA Wood Icons ── */
@@ -360,18 +360,18 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── HOME: Hero Wood Textures ── */
   home_hero_wood_textures: [
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Left CTA Button — Wood Texture' },
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Right CTA Button — Wood Texture' },
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Vertical Divider — Wood Texture' },
+    { url: '', caption: 'Left CTA Button — Wood Texture' },
+    { url: '', caption: 'Right CTA Button — Wood Texture' },
+    { url: '', caption: 'Vertical Divider — Wood Texture' },
   ],
 
   /* ── HOME: Showcase Service Images ── */
   home_showcase_service_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Staff Service — Brand Ambassador Team', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Point of Sale — Retail Display', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'SRT — Analytics Dashboard', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Live Video — Studio Setup', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Messe & Event — Trade Show Booth', wide: true },
+    { url: '', caption: 'Staff Service — Brand Ambassador Team', wide: true },
+    { url: '', caption: 'Point of Sale — Retail Display', wide: true },
+    { url: '', caption: 'SRT — Analytics Dashboard', wide: true },
+    { url: '', caption: 'Live Video — Studio Setup', wide: true },
+    { url: '', caption: 'Messe & Event — Trade Show Booth', wide: true },
   ],
 
   /* ── HOME: Showcase Wood Icons ── */
@@ -392,75 +392,75 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── LÖSUNGEN: Hero Backgrounds ── */
   losungen_hero_backgrounds: [
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Lösungen — Main Hero Background', wide: true },
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Markteintritt — Expanded Hero', wide: true },
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Absatz steigern — Expanded Hero', wide: true },
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Omnichannel — Expanded Hero', wide: true },
+    { url: '', caption: 'Lösungen — Main Hero Background', wide: true },
+    { url: '', caption: 'Markteintritt — Expanded Hero', wide: true },
+    { url: '', caption: 'Absatz steigern — Expanded Hero', wide: true },
+    { url: '', caption: 'Omnichannel — Expanded Hero', wide: true },
   ],
 
   /* ── LÖSUNGEN: Deliverable Images ── */
   /* Order follows dBase mapping: indices 0-6 Markteintritt (7), 7-14 Absatz (8), 15-22 Omnichannel (8) = 23 total */
   losungen_deliverable_images: [
     /* ── Markteintritt (indices 0–6) ── */
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Markteintritt — Brand Ambassadors am POS' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Markteintritt — Verkäuferschulungen' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Markteintritt — Launch-Events' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Markteintritt — Videocontent & Live-Beratung' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Markteintritt — POS-Design' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Markteintritt — Datenbasierte Planung' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Markteintritt — Live-Reporting' },
+    { url: '', caption: 'Markteintritt — Brand Ambassadors am POS' },
+    { url: '', caption: 'Markteintritt — Verkäuferschulungen' },
+    { url: '', caption: 'Markteintritt — Launch-Events' },
+    { url: '', caption: 'Markteintritt — Videocontent & Live-Beratung' },
+    { url: '', caption: 'Markteintritt — POS-Design' },
+    { url: '', caption: 'Markteintritt — Datenbasierte Planung' },
+    { url: '', caption: 'Markteintritt — Live-Reporting' },
 
     /* ── Absatz steigern (indices 7–14) ── */
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — Menschen auf der Fläche' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — Daten in der Planung' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — GPS Dashboard' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — Forecasting' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — Einsatzplanung' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — Performance-Tracking' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — Sell-in-Support' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — Kontinuierliche Optimierung' },
+    { url: '', caption: 'Absatz — Menschen auf der Fläche' },
+    { url: '', caption: 'Absatz — Daten in der Planung' },
+    { url: '', caption: 'Absatz — GPS Dashboard' },
+    { url: '', caption: 'Absatz — Forecasting' },
+    { url: '', caption: 'Absatz — Einsatzplanung' },
+    { url: '', caption: 'Absatz — Performance-Tracking' },
+    { url: '', caption: 'Absatz — Sell-in-Support' },
+    { url: '', caption: 'Absatz — Kontinuierliche Optimierung' },
 
     /* ── Omnichannel (indices 15–22) ── */
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Omnichannel — Im Online-Shop' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Omnichannel — QR-Code Beratung' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Omnichannel — POS-Display' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Omnichannel — Geschulte Video-Berater' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Omnichannel — Multitalente' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Omnichannel — Technische Integration' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Omnichannel — Reporting' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Omnichannel — Skalierbarkeit' },
+    { url: '', caption: 'Omnichannel — Im Online-Shop' },
+    { url: '', caption: 'Omnichannel — QR-Code Beratung' },
+    { url: '', caption: 'Omnichannel — POS-Display' },
+    { url: '', caption: 'Omnichannel — Geschulte Video-Berater' },
+    { url: '', caption: 'Omnichannel — Multitalente' },
+    { url: '', caption: 'Omnichannel — Technische Integration' },
+    { url: '', caption: 'Omnichannel — Reporting' },
+    { url: '', caption: 'Omnichannel — Skalierbarkeit' },
   ],
 
   /* ── LÖSUNGEN: Process Step Images ── */
   losungen_step_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Markteintritt — Step 1: Briefing' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Markteintritt — Step 2: Standortplanung' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Markteintritt — Step 3: Team-Aufbau' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Markteintritt — Step 4: Launch' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Markteintritt — Step 5: Tracking' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — Step 1: Analyse' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — Step 2: Forecasting' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — Step 3: Team' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — Step 4: Rollout' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Absatz — Step 5: Skalierung' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Omnichannel — Step 1: Pilotkonzept' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Omnichannel — Step 2: Integration' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Omnichannel — Step 3: Go-Live' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Omnichannel — Step 4: Optimierung' },
+    { url: '', caption: 'Markteintritt — Step 1: Briefing' },
+    { url: '', caption: 'Markteintritt — Step 2: Standortplanung' },
+    { url: '', caption: 'Markteintritt — Step 3: Team-Aufbau' },
+    { url: '', caption: 'Markteintritt — Step 4: Launch' },
+    { url: '', caption: 'Markteintritt — Step 5: Tracking' },
+    { url: '', caption: 'Absatz — Step 1: Analyse' },
+    { url: '', caption: 'Absatz — Step 2: Forecasting' },
+    { url: '', caption: 'Absatz — Step 3: Team' },
+    { url: '', caption: 'Absatz — Step 4: Rollout' },
+    { url: '', caption: 'Absatz — Step 5: Skalierung' },
+    { url: '', caption: 'Omnichannel — Step 1: Pilotkonzept' },
+    { url: '', caption: 'Omnichannel — Step 2: Integration' },
+    { url: '', caption: 'Omnichannel — Step 3: Go-Live' },
+    { url: '', caption: 'Omnichannel — Step 4: Optimierung' },
   ],
 
   /* ── LÖSUNGEN: Testimonial Images ── */
   losungen_testimonial_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Testimonial — Garmin', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Testimonial — Samsung', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Testimonial — Avoury', wide: true },
+    { url: '', caption: 'Testimonial — Garmin', wide: true },
+    { url: '', caption: 'Testimonial — Samsung', wide: true },
+    { url: '', caption: 'Testimonial — Avoury', wide: true },
   ],
 
   /* ── LÖSUNGEN: Wood Textures ── */
   losungen_wood_textures: [
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Wood Card — Main Background', wide: true },
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Expanded Panel — Wood Overlay', wide: true },
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Survey Card — Wood Texture' },
+    { url: '', caption: 'Wood Card — Main Background', wide: true },
+    { url: '', caption: 'Expanded Panel — Wood Overlay', wide: true },
+    { url: '', caption: 'Survey Card — Wood Texture' },
   ],
 
   /* ── SRT: Hero Wood Icons ── */
@@ -517,14 +517,14 @@ export const VIRTUAL_MEDIA: MediaSections = {
   case_studies_brand_logos: [],
 
   srt_product_desktop: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'SRT Desktop — Dashboard Showcase', wide: true },
+    { url: '', caption: 'SRT Desktop — Dashboard Showcase', wide: true },
   ],
   srt_product_mobile: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'SRT Mobile — App Showcase', wide: false },
+    { url: '', caption: 'SRT Mobile — App Showcase', wide: false },
   ],
 
   srt_hero_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'SRT Hero — Hintergrundfoto', wide: true },
+    { url: '', caption: 'SRT Hero — Hintergrundfoto', wide: true },
   ],
 
   srt_hero_icons: [
@@ -546,55 +546,55 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── SRT: Section Images ── */
   srt_section_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'SRT — Dashboard Screenshot', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'SRT — Mobile App Screenshot' },
+    { url: '', caption: 'SRT — Dashboard Screenshot', wide: true },
+    { url: '', caption: 'SRT — Mobile App Screenshot' },
   ],
 
   /* ── SRT: FunctionalityOverview Module Dashboard Screenshots ── */
   srt_functionality_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Planung — Dashboard' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Talentpool — Dashboard' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'GPS Check-In — Dashboard' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Externe Daten — Dashboard' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Document Intelligence — Dashboard' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Routenplanung — Dashboard' },
+    { url: '', caption: 'Planung — Dashboard' },
+    { url: '', caption: 'Talentpool — Dashboard' },
+    { url: '', caption: 'GPS Check-In — Dashboard' },
+    { url: '', caption: 'Externe Daten — Dashboard' },
+    { url: '', caption: 'Document Intelligence — Dashboard' },
+    { url: '', caption: 'Routenplanung — Dashboard' },
   ],
 
   /* ── LVP: Hero Images ── */
   lvp_hero_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'LVP — Hero Background', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'LVP — Presenter Shot' },
+    { url: '', caption: 'LVP — Hero Background', wide: true },
+    { url: '', caption: 'LVP — Presenter Shot' },
   ],
 
   /* ── LVP: Studio Images ── */
   lvp_studio_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'LVP — Studio Overview', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'LVP — Editing Suite' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'LVP — Product Photography' },
+    { url: '', caption: 'LVP — Studio Overview', wide: true },
+    { url: '', caption: 'LVP — Editing Suite' },
+    { url: '', caption: 'LVP — Product Photography' },
   ],
 
   /* ── LVP: Creative Showcase ── */
   lvp_creative_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'LVP — Demo Video Thumbnail' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'LVP — Live Shopping Split' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'LVP — Behind the Scenes' },
+    { url: '', caption: 'LVP — Demo Video Thumbnail' },
+    { url: '', caption: 'LVP — Live Shopping Split' },
+    { url: '', caption: 'LVP — Behind the Scenes' },
   ],
 
   /* ── CAREERS: Hero Images ── */
   careers_hero_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Karriere — Hero Team Photo', wide: true },
+    { url: '', caption: 'Karriere — Hero Team Photo', wide: true },
   ],
 
   /* ── CAREERS: Team Images ── */
   careers_team_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Karriere — Office Collaboration' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Karriere — Team Event' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Karriere — Modern Office' },
+    { url: '', caption: 'Karriere — Office Collaboration' },
+    { url: '', caption: 'Karriere — Team Event' },
+    { url: '', caption: 'Karriere — Modern Office' },
   ],
 
   /* ── CAREERS: Career Path Polaroid Images ── */
   careers_path_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Sales Family — Polaroid', wide: true },
+    { url: '', caption: 'Sales Family — Polaroid', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg', caption: 'Staff Family — Polaroid', wide: true },
   ],
 
@@ -608,14 +608,14 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── CAREERS: Team Events Images ── */
   careers_events_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Content Creation — Polaroid', wide: true },
+    { url: '', caption: 'Content Creation — Polaroid', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg', caption: 'Team Events — Polaroid', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg', caption: 'Promoter Events — Polaroid', wide: true },
   ],
 
   /* ── CAREERS: DreamTeam Events Images ── */
   careers_dreamteam_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Jährlicher Team-Summit', wide: true },
+    { url: '', caption: 'Jährlicher Team-Summit', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg', caption: 'Quartals-Celebrations', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg', caption: 'Training & Workshops', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/02/EVENT_NEU.jpg', caption: 'Team-Ausflüge', wide: true },
@@ -661,7 +661,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.sonic-group.de/wp-content/uploads/elementor/thumbs/SONIC_GESAMTLOGO_LIME-q0lflz24exgoq4608jg9ggegh9pjfwmmc0m1jsee5i.png', caption: 'OG:Image — 1200x630 PNG empfohlen', wide: true },
   ],
   site_logo: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Logo Light — SVG/PNG', wide: false },
+    { url: '', caption: 'Logo Light — SVG/PNG', wide: false },
   ],
 
   /* ── CAREERS: SonicFamily AI Portrait Images ── */
@@ -674,20 +674,20 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   careers_sonicfamily_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Sascha M. — Senior IT Admin' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Marcel W. — Finance Controller' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Andrew W. — Event and Logistics Manager' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Michelle G. — Senior Project Manager' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Janina B. — HR Manager' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Inga L. — Jr Art Direktor' },
+    { url: '', caption: 'Sascha M. — Senior IT Admin' },
+    { url: '', caption: 'Marcel W. — Finance Controller' },
+    { url: '', caption: 'Andrew W. — Event and Logistics Manager' },
+    { url: '', caption: 'Michelle G. — Senior Project Manager' },
+    { url: '', caption: 'Janina B. — HR Manager' },
+    { url: '', caption: 'Inga L. — Jr Art Direktor' },
   ],
 
   /* ── KREATION: Team Faces ── */
   kreation_faces_robert: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Robert H. — Creative Director' },
+    { url: '', caption: 'Robert H. — Creative Director' },
   ],
   kreation_faces_inga: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Inga L. — Head of Content' },
+    { url: '', caption: 'Inga L. — Head of Content' },
   ],
 
   /* ── CAREERS: RecruiterCTA Image ── */
@@ -697,12 +697,12 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── CAREERS: Stellenangebote Tanja Portrait ── */
   careers_stellenangebote_image: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Tanja — HR Team Portrait' },
+    { url: '', caption: 'Tanja — HR Team Portrait' },
   ],
 
   /* ── CAREERS: Sonic Sales Hero ── */
   careers_sonic_sales_hero: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Sonic Sales — Hero Background', wide: true },
+    { url: '', caption: 'Sonic Sales — Hero Background', wide: true },
   ],
 
   /* ── CAREERS: Sonic Staff Hero ── */
@@ -723,12 +723,12 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── CAREERS: Pictorial Showcase ── */
   careers_pictorial_showcase: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Team Moment 1' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Team Moment 2' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Team Moment 3' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Team Moment 4' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Team Moment 5' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Team Moment 6' },
+    { url: '', caption: 'Team Moment 1' },
+    { url: '', caption: 'Team Moment 2' },
+    { url: '', caption: 'Team Moment 3' },
+    { url: '', caption: 'Team Moment 4' },
+    { url: '', caption: 'Team Moment 5' },
+    { url: '', caption: 'Team Moment 6' },
   ],
 
   /* ── CAREERS: KarriereCulture — Wood Icons ── */
@@ -756,62 +756,62 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── LEISTUNGEN: Events Images ── */
   leistungen_events_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Events — Trade Show Booth', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Events — Corporate Stage' },
+    { url: '', caption: 'Events — Trade Show Booth', wide: true },
+    { url: '', caption: 'Events — Corporate Stage' },
   ],
 
   /* ── LEISTUNGEN: Kreation Images ── */
   leistungen_kreation_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Kreation — Creative Studio', wide: true },
+    { url: '', caption: 'Kreation — Creative Studio', wide: true },
   ],
 
   /* ── LEISTUNGEN: POS Images ── */
   leistungen_pos_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'POS — Retail Display', wide: true },
+    { url: '', caption: 'POS — Retail Display', wide: true },
   ],
 
   /* ── LEISTUNGEN: Staff Images ── */
   leistungen_staff_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Staff — Brand Ambassador Team', wide: true },
+    { url: '', caption: 'Staff — Brand Ambassador Team', wide: true },
   ],
 
   /* ── LEISTUNGEN: Video Images ── */
   leistungen_video_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Video — Production Set', wide: true },
+    { url: '', caption: 'Video — Production Set', wide: true },
   ],
 
   /* ── SONIC REELS: Virtual ── */
   reels_2015_2019: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Samsung Galaxy S7 launch activation, 2016', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Sonic Training Academy launch, 2017' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Philips DACH rollout — Vienna, 2017' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'IFA Berlin — largest activation to date, 2018', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Dyson luxury retail — Zurich, 2018' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: '500 ambassadors milestone dinner, 2019' },
+    { url: '', caption: 'Samsung Galaxy S7 launch activation, 2016', wide: true },
+    { url: '', caption: 'Sonic Training Academy launch, 2017' },
+    { url: '', caption: 'Philips DACH rollout — Vienna, 2017' },
+    { url: '', caption: 'IFA Berlin — largest activation to date, 2018', wide: true },
+    { url: '', caption: 'Dyson luxury retail — Zurich, 2018' },
+    { url: '', caption: '500 ambassadors milestone dinner, 2019' },
   ],
   reels_2024: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'SRT platform commercial launch event, 2024', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Garmin 122-location network launch, 2024' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Philips secures #1 in Germany, 2024' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'IFA Berlin — SRT-tracked activation, 2024', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: '€2B+ lifetime sales milestone, 2024' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'SRT live performance map — DACH coverage' },
+    { url: '', caption: 'SRT platform commercial launch event, 2024', wide: true },
+    { url: '', caption: 'Garmin 122-location network launch, 2024' },
+    { url: '', caption: 'Philips secures #1 in Germany, 2024' },
+    { url: '', caption: 'IFA Berlin — SRT-tracked activation, 2024', wide: true },
+    { url: '', caption: '€2B+ lifetime sales milestone, 2024' },
+    { url: '', caption: 'SRT live performance map — DACH coverage' },
   ],
   reels_2025: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Sonic team — 2,000+ active ambassadors, 2025', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Samsung Galaxy flagship launch, 2025' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Philips luxury activation — Galeria, 2025' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Sonic wins POPAI Best Agency — Germany, 2025', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'New HQ — Cologne, 2025' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Year-end celebration, December 2025' },
+    { url: '', caption: 'Sonic team — 2,000+ active ambassadors, 2025', wide: true },
+    { url: '', caption: 'Samsung Galaxy flagship launch, 2025' },
+    { url: '', caption: 'Philips luxury activation — Galeria, 2025' },
+    { url: '', caption: 'Sonic wins POPAI Best Agency — Germany, 2025', wide: true },
+    { url: '', caption: 'New HQ — Cologne, 2025' },
+    { url: '', caption: 'Year-end celebration, December 2025' },
   ],
   reels_2026: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Next chapter: Paris expansion concept, 2026', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'AR-enhanced product demonstration concept' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'European expansion strategy — 2026' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'AR-enhanced product demonstration concept', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'First international ambassador cohort' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'The mission continues.' },
+    { url: '', caption: 'Next chapter: Paris expansion concept, 2026', wide: true },
+    { url: '', caption: 'AR-enhanced product demonstration concept' },
+    { url: '', caption: 'European expansion strategy — 2026' },
+    { url: '', caption: 'AR-enhanced product demonstration concept', wide: true },
+    { url: '', caption: 'First international ambassador cohort' },
+    { url: '', caption: 'The mission continues.' },
   ],
 
   /* ── HOME: TrustStrip Brand Logos ── */
@@ -839,26 +839,26 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── HOME: DualCTA Backgrounds ── */
   home_dualcta_backgrounds: [
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Dual CTA — Business Background' },
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Dual CTA — Talent Background' },
+    { url: '', caption: 'Dual CTA — Business Background' },
+    { url: '', caption: 'Dual CTA — Talent Background' },
   ],
 
   /* ── HOME: SonicDNA Background ── */
   home_sonicdna_background: [
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'SonicDNA — Office Background', wide: true },
+    { url: '', caption: 'SonicDNA — Office Background', wide: true },
   ],
 
   /* ── HOME: OfficeVisit Image ── */
   home_officevisit_image: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Office Visit — Main Image' },
+    { url: '', caption: 'Office Visit — Main Image' },
   ],
 
   /* ── TEAM: Hero Images ── */
   team_hero_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Team — Hero Background', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Team — Member Photo 1' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Team — Member Photo 2' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Team — Member Photo 3' },
+    { url: '', caption: 'Team — Hero Background', wide: true },
+    { url: '', caption: 'Team — Member Photo 1' },
+    { url: '', caption: 'Team — Member Photo 2' },
+    { url: '', caption: 'Team — Member Photo 3' },
   ],
 
   /* ── TEAM: Core Values Images ── */
@@ -881,7 +881,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO02.jpg', caption: '2022–2023 — Accent' },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2022/04/SRT_OPENER.jpg', caption: '2024 — Hero' },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/06/SRT_OPENER.jpg', caption: '2024 — Accent' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: '2025 — Hero' },
+    { url: '', caption: '2025 — Hero' },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', caption: '2025 — Accent' },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO01.jpg', caption: '2026 — Hero' },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO02.jpg', caption: '2026 — Accent' },
@@ -904,47 +904,47 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── INDUSTRIES: Hero ── */
   industries_hero_bg: [
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Industries — Hero Background', wide: true },
+    { url: '', caption: 'Industries — Hero Background', wide: true },
   ],
 
   /* ── INDUSTRIES: Grid Images ── */
   industries_grid_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Consumer Electronics' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Home Appliances' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Beauty & Cosmetics' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Lifestyle & Wellness' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Automotive' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Entertainment & Media' },
+    { url: '', caption: 'Consumer Electronics' },
+    { url: '', caption: 'Home Appliances' },
+    { url: '', caption: 'Beauty & Cosmetics' },
+    { url: '', caption: 'Lifestyle & Wellness' },
+    { url: '', caption: 'Automotive' },
+    { url: '', caption: 'Entertainment & Media' },
   ],
 
   /* ── SERVICES: Content Studio ── */
   services_content_studio_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Content Studio — Hero', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Content Studio — Consultation' },
+    { url: '', caption: 'Content Studio — Hero', wide: true },
+    { url: '', caption: 'Content Studio — Consultation' },
   ],
 
   /* ── SERVICES: Events ── */
   services_events_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Events — Hero', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Events — Consultation' },
+    { url: '', caption: 'Events — Hero', wide: true },
+    { url: '', caption: 'Events — Consultation' },
   ],
 
   /* ── SERVICES: Market Entry ── */
   services_market_entry_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Market Entry — Hero', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Market Entry — Consultation' },
+    { url: '', caption: 'Market Entry — Hero', wide: true },
+    { url: '', caption: 'Market Entry — Consultation' },
   ],
 
   /* ── SERVICES: Retail POS ── */
   services_retail_pos_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Retail POS — Hero', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Retail POS — Consultation' },
+    { url: '', caption: 'Retail POS — Hero', wide: true },
+    { url: '', caption: 'Retail POS — Consultation' },
   ],
 
   /* ── SERVICES: Staffing ── */
   services_staffing_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Staffing — Hero', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Staffing — Consultation' },
+    { url: '', caption: 'Staffing — Hero', wide: true },
+    { url: '', caption: 'Staffing — Consultation' },
   ],
 
   /* ── BLOG ── */
@@ -954,37 +954,37 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── RATGEBER ── */
   ratgeber_hero: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Ratgeber — Hero Background', wide: true },
+    { url: '', caption: 'Ratgeber — Hero Background', wide: true },
   ],
 
   /* ── JOBS ── */
   jobs_hero: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Jobs — Hero Background', wide: true },
+    { url: '', caption: 'Jobs — Hero Background', wide: true },
   ],
 
   /* ── KONTAKT ── */
   kontakt_hero: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Kontakt — Hero Background', wide: true },
+    { url: '', caption: 'Kontakt — Hero Background', wide: true },
   ],
 
   /* ── LEISTUNGEN: Talentpool ── */
   leistungen_talentpool_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Talentpool — Group Hero', wide: true },
+    { url: '', caption: 'Talentpool — Group Hero', wide: true },
   ],
 
   /* ── LEISTUNGEN: Warehouse & Logistik ── */
   leistungen_warehouse_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Warehouse & Logistik — Facility', wide: true },
+    { url: '', caption: 'Warehouse & Logistik — Facility', wide: true },
   ],
 
   /* ── LEISTUNGEN: Warehouse — Full Service Photo ── */
   leistungen_warehouse_fullservice_photo: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Warehouse Full Service — Overview' },
+    { url: '', caption: 'Warehouse Full Service — Overview' },
   ],
 
   /* ── LEISTUNGEN: Forecasting ── */
   leistungen_forecasting_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Forecasting — Dashboard', wide: true },
+    { url: '', caption: 'Forecasting — Dashboard', wide: true },
   ],
 
   /* ── LEISTUNGEN: Overview — ServiceGrid BG Images ── */
@@ -997,12 +997,12 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── LEISTUNGEN: Events & Messen — Process Images ── */
   leistungen_events_process_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Schritt 01 — Event-/Messe-Briefing' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Schritt 02 — Konzeptentwicklung' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Schritt 03 — Personal-Auswahl' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Schritt 04 — Produktion & Vorbereitung' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Schritt 05 — Veranstaltung' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Schritt 06 — Reporting' },
+    { url: '', caption: 'Schritt 01 — Event-/Messe-Briefing' },
+    { url: '', caption: 'Schritt 02 — Konzeptentwicklung' },
+    { url: '', caption: 'Schritt 03 — Personal-Auswahl' },
+    { url: '', caption: 'Schritt 04 — Produktion & Vorbereitung' },
+    { url: '', caption: 'Schritt 05 — Veranstaltung' },
+    { url: '', caption: 'Schritt 06 — Reporting' },
   ],
 
   /* ── LEISTUNGEN: Events & Messen — Showcase Tabs ── */
@@ -1023,10 +1023,10 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── LEISTUNGEN: Forecasting — How It Works ── */
   leistungen_forecasting_process_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Schritt 01 — Datenbasis aufbauen', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Schritt 02 — Modell kalibrieren', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Schritt 03 — Prognose ausgeben', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Schritt 04 — Live abgleichen', wide: true },
+    { url: '', caption: 'Schritt 01 — Datenbasis aufbauen', wide: true },
+    { url: '', caption: 'Schritt 02 — Modell kalibrieren', wide: true },
+    { url: '', caption: 'Schritt 03 — Prognose ausgeben', wide: true },
+    { url: '', caption: 'Schritt 04 — Live abgleichen', wide: true },
   ],
 
   /* ── LEISTUNGEN: Kreation & Content — Carousel Tiles — none set via dashboard yet; component falls back to its own gradient placeholders ── */
@@ -1203,7 +1203,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── LEISTUNGEN: Overview Hero ── */
   leistungen_hero_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Leistungen — Hero Background', wide: true },
+    { url: '', caption: 'Leistungen — Hero Background', wide: true },
   ],
 
   /* ── HOME: Services Grid — Wood Icons ── */
@@ -1241,20 +1241,20 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── HOME: ClientSuccess — Wood Background ── */
   home_clientsuccess_wood_bg: [
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Dashboard Wood Background', wide: true },
+    { url: '', caption: 'Dashboard Wood Background', wide: true },
   ],
 
   /* ── HOME: LiveMetrics — Wood Background ── */
   home_livemetrics_wood_bg: [
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'LiveMetrics — Wood Background', wide: true },
+    { url: '', caption: 'LiveMetrics — Wood Background', wide: true },
   ],
 
   /* ── HOME: PhilosophySection — Wood Dividers ── */
   home_philosophy_wood_dividers: [
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Top Divider' },
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Bottom Divider' },
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Card Divider 1' },
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Card Divider 2' },
+    { url: '', caption: 'Top Divider' },
+    { url: '', caption: 'Bottom Divider' },
+    { url: '', caption: 'Card Divider 1' },
+    { url: '', caption: 'Card Divider 2' },
   ],
 
   /* ── HOME: DualAudienceCTA — Wood Icons ── */
@@ -1301,7 +1301,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── HOME: DanSection — Wood Background ── */
   home_dan_section_wood_bg: [
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Consultation Wood Icon' },
+    { url: '', caption: 'Consultation Wood Icon' },
   ],
 
   /* ── HOME: ConsultationButton — Wood Icon ── */
@@ -1344,7 +1344,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── ABOUT: OriginStory — Wood Ticker BG ── */
   about_origin_story_wood_bg: [
-    { url: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1920&q=60', caption: 'Origin Story — Wood Ticker BG' },
+    { url: '', caption: 'Origin Story — Wood Ticker BG' },
   ],
 
   /* ── SRT: TheProblem — Wood Icons ── */
@@ -1364,9 +1364,9 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── SRT: Pricing — Card Images ── */
   srt_pricing_images: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Starter Tier' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Professional Tier' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Enterprise Tier' },
+    { url: '', caption: 'Starter Tier' },
+    { url: '', caption: 'Professional Tier' },
+    { url: '', caption: 'Enterprise Tier' },
   ],
 
   /* ── TEAM: MeetTheTeam — Wood Icons ── */
@@ -1378,12 +1378,12 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── TEAM: TrainingDevelopment — Image ── */
   team_training_image: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Training Session' },
+    { url: '', caption: 'Training Session' },
   ],
 
   /* ── HOME: Video Embed & Cover ── */
   home_video: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', caption: 'Video Cover Image', wide: true },
+    { url: '', caption: 'Video Cover Image', wide: true },
     { url: 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&loop=1&playlist=2H1rFHQsG4g&rel=0&modestbranding=1', caption: 'YouTube Embed URL (full URL with params)' },
   ],
 };
