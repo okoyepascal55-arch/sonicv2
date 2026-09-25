@@ -1434,7 +1434,18 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'leistungen_staff', entryId: 'staff-hero-subtitle', from: 'Markenhilfe antworten', to: 'Markenfans anheuern: Für Sell-out, Sell-in, Schulungen, Brand Activation und mehr.', matchType: 'startsWith' as const },
   { sectionKey: 'leistungen_staff', entryId: 'staff-hero-description', from: 'Ihnen', to: 'Wir übernehmen Recruiting, Payroll und Steuerung, bspw. via Arbeitnehmerüberlassung.', matchType: 'contains' as const },
   { sectionKey: 'leistungen_pos', entryId: 'pos-hero-description', from: 'Ihren', to: 'Durchgetaktet. Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.', matchType: 'contains' as const },
-  { sectionKey: 'leistungen_forecasting', entryId: 'forecasting-hero-description', from: 'Scorpin', to: 'Auf Basis von historischen Sell-out-Daten, Standort-Performance und Marktintelligenz prognostizieren wir deine Ergebnisse — datenbasiert, nachvollziehbar, belastbar.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_forecasting', entryId: 'forecasting-hero-description', from: 'Scorpin', to: 'Auf Basis von historischen Sell-out-Daten, Standort-Performance und Marktintelligenz prognostizieren wir deine Ergebnisse — datenbasiert, nachvollziehbar, belastbar.', matchType: 'contains' as const },,
+  {
+    key: 'srt_developer',
+    label: 'SRT — Ein Wort vom Entwickler (Jörg)',
+    entries: [
+      { id: 'srt-joerg-badge',  label: 'Sektion Badge',            value: 'Ein Wort vom Entwickler',                                                                                                                                                                    type: 'text' as const },
+      { id: 'srt-joerg-name',   label: 'Name',                     value: 'Jörg',                                                                                                                                                                                       type: 'text' as const },
+      { id: 'srt-joerg-title',  label: 'Titel / Rolle',            value: 'Entwickler der Sonic Retail Technology',                                                                                                                                                     type: 'text' as const },
+      { id: 'srt-joerg-quote',  label: 'Zitat',                    value: 'Das SRT ist kein Tool — es ist der direkte Draht zwischen dem, was am POS passiert, und der Entscheidung, die daraus folgen muss. Wir haben es so gebaut, dass Promoter damit arbeiten wollen, nicht müssen.', type: 'textarea' as const },
+      { id: 'srt-joerg-video',  label: 'YouTube Video ID (optional, leer = nur Zitat)', value: '', type: 'text' as const },
+    ],
+  }
 ];
 
 function loadFromStorage(): TextSection[] {
