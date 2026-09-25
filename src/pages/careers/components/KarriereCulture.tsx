@@ -28,7 +28,7 @@ export default function KarriereCulture() {
   const dnaDescs = [tDna1, tDna2, tDna3, tDna4];
 
   return (
-    <section id="darum" className="py-20 md:py-[104px] px-5 md:px-10 bg-white">
+    <section id="darum" className="sonic-section-lg px-5 md:px-10 bg-white">
       <div className="sonic-container">
 
         {/*
