@@ -231,8 +231,12 @@ export const PAGE_GROUPS: PageGroup[] = [
     sections: [    ],
   },
   {
+    id: 'industries',
+    label: 'Industries',
     icon: 'ri-building-2-line',
     sections: [
+      // ── Used by live industries page components ──
+      // industries_grid_wood_icons removed (not used in any component)
     ],
   },
   {
@@ -619,7 +623,6 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Karriere — Hero Team Photo', wide: true },
   ],
 
-  /* ── CAREERS: Team Images ── */
   careers_team_images: [
     { url: '', caption: 'Karriere — Office Collaboration' },
     { url: '', caption: 'Karriere — Team Event' },
@@ -632,7 +635,6 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg', caption: 'Staff Family — Polaroid', wide: true },
   ],
 
-  /* ── CAREERS: Team Events Video URLs (editable in dashboard) ── */
   careers_events_videos: [
     { url: 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&rel=0&modestbranding=1', caption: 'Content Creation — YouTube Embed URL (full URL with ?autoplay=1&mute=1&rel=0...)' },
     { url: 'https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1&rel=0&modestbranding=1', caption: 'Team Events — YouTube Embed URL (full URL with ?autoplay=1&mute=1&rel=0...)' },
@@ -640,14 +642,12 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1&rel=0&modestbranding=1', caption: 'Roadshows & Messen — YouTube Embed URL (full URL with ?autoplay=1&mute=1&rel=0...)' },
   ],
 
-  /* ── CAREERS: Team Events Images ── */
   careers_events_images: [
     { url: '', caption: 'Content Creation — Polaroid', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg', caption: 'Team Events — Polaroid', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg', caption: 'Promoter Events — Polaroid', wide: true },
   ],
 
-  /* ── CAREERS: DreamTeam Events Images ── */
   careers_dreamteam_images: [
     { url: '', caption: 'Jährlicher Team-Summit', wide: true },
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg', caption: 'Quartals-Celebrations', wide: true },
@@ -716,7 +716,6 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Inga L. — Jr Art Direktor' },
   ],
 
-  /* ── KREATION: Team Faces ── */
   kreation_faces_robert: [
     { url: '', caption: 'Robert H. — Creative Director' },
   ],
@@ -887,7 +886,17 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Office Visit — Main Image' },
   ],
 
+    { url: '', caption: 'Team — Hero Background', wide: true },
+    { url: '', caption: 'Team — Member Photo 1' },
+    { url: '', caption: 'Team — Member Photo 2' },
+    { url: '', caption: 'Team — Member Photo 3' },
+  ],
 
+    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/2.jpg', caption: 'Core Values — Mensch' },
+    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/3.jpg', caption: 'Core Values — Motivation' },
+    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/4.jpg', caption: 'Core Values — Daten' },
+    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/5.jpg', caption: 'Core Values — Werkzeug' },
+  ],
 
   /* ── ABOUT: SonicReelsEmbed Hero & Accent Images ── */
   about_sonicreels_hero_accent: [
@@ -922,7 +931,18 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.sonic-group.de/wp-content/uploads/elementor/thumbs/SONIC_GESAMTLOGO_LIME-q0lflz24exgoq4608jg9ggegh9pjfwmmc0m1jsee5i.png', caption: 'Sonic Group — Main Logo' },
   ],
 
+  industries_hero_bg: [
+    { url: '', caption: 'Industries — Hero Background', wide: true },
+  ],
 
+  industries_grid_images: [
+    { url: '', caption: 'Consumer Electronics' },
+    { url: '', caption: 'Home Appliances' },
+    { url: '', caption: 'Beauty & Cosmetics' },
+    { url: '', caption: 'Lifestyle & Wellness' },
+    { url: '', caption: 'Automotive' },
+    { url: '', caption: 'Entertainment & Media' },
+  ],
 
   /* ── SERVICES: Content Studio ── */
   services_content_studio_images: [
@@ -964,6 +984,8 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Ratgeber — Hero Background', wide: true },
   ],
 
+    { url: '', caption: 'Jobs — Hero Background', wide: true },
+  ],
 
   /* ── KONTAKT ── */
   kontakt_hero: [
@@ -1317,7 +1339,23 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/11.jpg', caption: 'Attitude — Welcome Background', wide: true },
   ],
 
+  industries_expertise_wood_icons: [
+    { url: '', caption: 'Marktkenntnis' },
+    { url: '', caption: 'Produkttraining' },
+    { url: '', caption: 'Handelspartnerschaften' },
+    { url: '', caption: 'Datenbasierte Insights' },
+    { url: '', caption: 'Skalierbare Lösungen' },
+    { url: '', caption: 'Phygitale Integration' },
+  ],
 
+  industries_grid_wood_icons: [
+    { url: '', caption: 'Consumer Electronics' },
+    { url: '', caption: 'Home Appliances' },
+    { url: '', caption: 'Beauty & Personal Care' },
+    { url: '', caption: 'Lifestyle & Wellness' },
+    { url: '', caption: 'Automotive & Mobility' },
+    { url: '', caption: 'Entertainment & Media' },
+  ],
 
   /* ── ABOUT: ValuesVisual — Wood Icons ── */
   about_values_visual_wood_icons: [
@@ -1354,7 +1392,13 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Enterprise Tier' },
   ],
 
+    { url: '', caption: 'Human-First Culture' },
+    { url: '', caption: 'Growth Opportunities' },
+    { url: '', caption: 'Diverse Family' },
+  ],
 
+    { url: '', caption: 'Training Session' },
+  ],
 
   /* ── HOME: Video Embed & Cover ── */
   home_video: [
@@ -1510,12 +1554,12 @@ const HUMAN_LABELS: Record<string, string> = {
   'home_consultation_wood_icon': 'ConsultationButton — Wood Icon',
   'home_attitude_bg': 'Attitude — Welcome BG Image',
   'about_values_visual_wood_icons': 'ValuesVisual — Impact Wood Icons',
-  'about_origin_story_wood_bg': 'OriginStory — Wood Ticker BG',
+  'about_origin_story_wood_bg': 'OriginStory — Wood Ticker BG',: 'MeetTheTeam — Highlight Wood Icons',: 'Training — Image',
   'home_truststrip_logos': 'TrustStrip — Brand Logos',
   'home_brandintro_images': 'BrandIntro — Images',
   'home_dualcta_backgrounds': 'DualCTA — Backgrounds',
   'home_sonicdna_background': 'SonicDNA — Office Background',
-  'home_officevisit_image': 'OfficeVisit — Image',
+  'home_officevisit_image': 'OfficeVisit — Image',: 'Hero — Background & Photos',: 'Core Values — Images',
   'about_sonicreels_hero_accent': 'SonicReels — Hero & Accent Images',
   'common_clientproof_logos': 'ClientProof — Brand Logos',
   'common_logos': 'Site Logos (Nav & Footer)',
@@ -1525,7 +1569,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'services_retail_pos_images': 'Retail & POS',
   'services_staffing_images': 'Staffing',
   'blog_images': 'Blog — Hero & Featured',
-  'ratgeber_hero': 'Ratgeber — Hero Background',
+  'ratgeber_hero': 'Ratgeber — Hero Background',: 'Jobs — Hero Background',
   'case_tvsound_gallery_1': 'TV & Sound | POS & Retail',
   'case_tvsound_gallery_2': 'TV & Sound | Messen & Roadshows',
   'case_tvsound_gallery_3': 'TV & Sound | Training & Team',
@@ -1679,135 +1723,6 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'leistungen_warehouse_fullservice_photo': 1,
   'leistungen_video_youtube': 'Live Video — YouTube Showcase URL (im Feld \"Beschriftung\" eintragen)',
   'leistungen_video_format_photos': 6,
-};
-
-/* ─────────────────────────────────────────────
-   DESIGN-RECOMMENDED COUNTS
-   Based on actual page layouts — how many image
-   slots each section's design was built for.
-   Sections not listed here use the curator's
-   count from DEFAULT_MEDIA as fallback.
-───────────────────────────────────────────── */
-const DESIGN_RECOMMENDED: Record<string, number> = {
-  /* ── HOME: Fixed Design Slots ── */
-  'home_hero_stats': 4,               // 4 stat icon positions in Hero
-  'home_hero_cta_icons': 2,           // 2 CTA button icons
-  'home_hero_wood_textures': 3,       // Left btn + Right btn + Vertical divider
-  'home_showcase_service_images': 5,  // Staff, POS, SRT, LVP, Events — 5 service tabs
-  'home_showcase_wood_icons': 5,      // Matching wood icons for 5 services
-  'home_truststrip_logos': 12,        // 2 rows × 6 brand logos
-  'home_brandintro_images': 3,        // 2022, 2023, 2024 year images
-  'home_dualcta_backgrounds': 2,      // Business + Talent dual CTA bg
-  'home_sonicdna_background': 1,      // 1 office background image
-  'home_officevisit_image': 1,        // 1 main image
-  'home_pos': 3,                      // 3 POS remote images
-
-  /* ── HOME: "Menschen für…" folder sections (same structure → same cap) ── */
-  '/images/home/1. Menschen für Events & Messen': 5,
-  '/images/home/2. Menschen für Content': 5,
-  '/images/home/3. Menschen für Schulungen': 5,
-  '/images/home/4. Menschen für unsere Studios': 5,
-
-  /* ── LÖSUNGEN: Icons ── */
-  '/images/losungen': 3,
-  /* ── LÖSUNGEN: Local sub-folders from manifest ── */
-  '/images/Lösungen/1. Header': 4,
-  '/images/Lösungen/2. Markteintritt/2. Verkäuferschulungen': 2,
-  '/images/Lösungen/2. Markteintritt/4. Videocontent & Live-Beratung': 2,
-  '/images/Lösungen/2. Markteintritt/8. So läuft dein Markteintritt mit Sonic/3. Team-Aufbau & Schulung': 1,
-  'losungen_hero_backgrounds': 4,     // 1 main hero + 3 expanded panel heroes
-  'losungen_deliverable_images': 23,  // 7 Markteintritt + 8 Absatz + 8 Omnichannel = 23 total
-  'losungen_step_images': 14,         // 5 Markteintritt + 5 Absatz + 4 Omnichannel steps
-  'losungen_testimonial_images': 3,   // Garmin, Samsung, Avoury testimonials
-  'losungen_wood_textures': 3,        // Main card + Expanded overlay + Survey card
-
-  // Case study brand folders are flexible galleries — curator's count from DEFAULT_MEDIA is the guide
-
-  /* ── ABOUT: Fixed Design Slots ── */
-  '/images/Über uns/Über uns/1. Header': 1,                          // 1 group photo
-  '/images/Über uns/Über uns/2. Marken im Herzen. Erfolg im Fokus': 1, // 1 Werkbank image
-  '/images/Über uns/Über uns/3. Das Sonic Team': 1,                   // 1 team photo
-  '/images/Über uns/Über uns/4. Die Stimmen hinter Sonic/Björn': 2,  // Color + B&W
-  '/images/Über uns/Über uns/4. Die Stimmen hinter Sonic/Jo': 2,     // Color + B&W
-  '/images/Über uns/Über uns/4. Die Stimmen hinter Sonic/Lucas': 2,  // Color + B&W
-  '/images/Über uns/Leadership Perspectives': 3,                     // 3 executives shown
-  '/images/Über uns/Sonic Reels/2007-2015': 5,   // Same structure as other reels eras
-  '/images/Über uns/Sonic Reels/2019-2022': 5,
-  '/images/Über uns/Sonic Reels/2022-2023': 5,
-  'about_sonicreels_hero_accent': 14,  // 2 per era × 7 eras
-
-  /* ── SRT: Fixed Design Slots ── */
-  'srt_hero_icons': 4,       // 4 stat icon positions
-  'srt_feature_icons': 6,    // 6 feature wood icons
-  'srt_section_images': 2,   // Dashboard + Mobile app screenshots
-
-  /* ── LVP: Fixed Design Slots ── */
-  'lvp_hero_images': 2,       // Hero bg + Presenter shot
-  'lvp_studio_images': 3,     // Studio overview + Editing + Photography
-  'lvp_creative_images': 3,   // 3 creative showcase thumbnails
-
-  /* ── CAREERS: Fixed Design Slots ── */
-  '/images/Karriere': 5,        // Gallery & hero images
-  'careers_hero_images': 1,   // 1 hero team photo
-  'careers_team_images': 3,   // Office + Team event + Modern office
-  'careers_path_images': 2,   // Sales Family + Staff Family polaroids
-  'careers_events_videos': 4, // Content Creation, Team Events, Promoter Events, Roadshows & Messen
-  'careers_events_images': 4, // Content Creation, Team Events, Promoter Events, Roadshows & Messen
-  'careers_dreamteam_images': 6,
-  'careers_geschichten_images': 3,
-  'careers_mitarbeiterstimmen_sales_images': 3,
-  'careers_mitarbeiterstimmen_staff_images': 3,
-  'careers_sonicfaces_images': 5,
-  'careers_sonicfamily_images': 6,
-  'careers_recruitercta_image': 1,
-  'careers_stellenangebote_image': 1,
-  'careers_sonic_sales_hero': 1,
-  'careers_sonic_staff_hero': 1,
-  'careers_howwehire_wood_icons': 7,
-  'careers_culture_wood_icons': 6,
-  'careers_hero_wood_icons': 3,
-  'careers_perks_wood_icons': 2,
-
-  /* ── LEISTUNGEN: All sub-service hero images — same structure → same cap (5) ── */
-  'leistungen_pos_images': 5,
-  'leistungen_video_images': 5,
-  'leistungen_events_images': 5,
-  'leistungen_staff_images': 5,
-  'leistungen_talentpool_images': 5,
-  'leistungen_warehouse_images': 5,
-  'leistungen_forecasting_images': 5,
-  'leistungen_kreation_images': 5,
-  'leistungen_hero_images': 1,
-  'leistungen_servicegrid_bg': 4,
-  'leistungen_events_process_images': 6,
-  'leistungen_events_showcase_images': 12,
-  'leistungen_forecasting_process_images': 4,
-  'leistungen_kreation_carousel_images': 9,
-  'leistungen_kreation_showcase_images': 15,
-  'leistungen_kreation_showcase_secondary_konzeption': 5,
-  'leistungen_kreation_showcase_secondary_content': 5,
-  'leistungen_kreation_showcase_secondary_cgi': 5,
-  'leistungen_kreation_before_after': 2,
-  'leistungen_pos_assets_images': 20,
-  'leistungen_pos_process_images': 6,
-  'leistungen_staff_socks_images': 5,
-  'leistungen_talentpool_profiles_images': 4,
-  'leistungen_warehouse_items_images': 6,
-  'leistungen_stats_wood_icons': 4,
-  'leistungen_schallmauer_wood_icons': 3,
-  'leistungen_events_solution_wood_icons': 6,
-  'leistungen_forecasting_solution_wood_icons': 6,
-  'leistungen_pos_solution_wood_icons': 4,
-  'leistungen_staff_solution_wood_icons': 4,
-  'leistungen_staff_specialization_wood_icons': 6,
-  'leistungen_video_solution_wood_icons': 3,
-  'leistungen_video_advantages_wood_icons': 6,
-  'leistungen_kreation_solution_wood_icons': 4,
-  'leistungen_kreation_discipline_wood_icons': 3,
-  'leistungen_kreation_photo_grid': 5,
-  'leistungen_warehouse_fullservice_photo': 1,
-  'leistungen_video_youtube': 'Live Video — YouTube Showcase URL (im Feld \"Beschriftung\" eintragen)',
-  'leistungen_video_format_photos': 6,
 
 
 
@@ -1820,7 +1735,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
 
   /* ── SINGLE-IMAGE SECTIONS ── */
   'blog_images': 1,
-  'ratgeber_hero': 1,
+  'ratgeber_hero': 1,: 1,
   'kontakt_hero': 1,
   'common_logos': 1,
 
@@ -1848,7 +1763,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'srt_problem_wood_icons': 3,
   'srt_joerg_photo': 'SRT — Entwickler Jörg: Profilfoto',
   'srt_proof_wood_icons': 4,
-  'srt_pricing_images': 3,
+  'srt_pricing_images': 3,: 3,: 1,
 };
 
 /* ─────────────────────────────────────────────
@@ -2010,7 +1925,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'leistungen_warehouse_fullservice_photo':       { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'Warehouse full service — single landscape photo' },
 
   'blog_images':           { aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'Blog featured image — wide format' },
-  'ratgeber_hero':         { aspectRatio: '16:9', dimensions: '1920×1080', orientation: 'landscape', tip: 'Ratgeber hero — abstract knowledge hub concept' },
+  'ratgeber_hero':         { aspectRatio: '16:9', dimensions: '1920×1080', orientation: 'landscape', tip: 'Ratgeber hero — abstract knowledge hub concept' },:             { aspectRatio: '2.4:1', dimensions: '1920×800', orientation: 'landscape', tip: 'Jobs hero — modern office, collaborative workspace' },
   'kontakt_hero':          { aspectRatio: '16:9', dimensions: '1920×1080', orientation: 'landscape', tip: 'Kontakt hero — abstract geometric concept, dark' },
 
   /* ═══ COMMON ═══ */
