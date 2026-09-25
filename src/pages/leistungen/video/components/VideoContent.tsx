@@ -235,7 +235,6 @@ export default function VideoContent() {
       
       {/* Dark-bg WoodenDivider */}
       <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-<div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 <section id="kostenrechner" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
@@ -353,7 +352,6 @@ export default function VideoContent() {
       
       {/* Dark-bg WoodenDivider */}
       <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-<div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 <section id="formate" className="sonic-section-lg bg-white px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">
