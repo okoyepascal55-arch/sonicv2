@@ -887,19 +887,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Office Visit — Main Image' },
   ],
 
-  /* ── TEAM: Hero Images ── */: [
-    { url: '', caption: 'Team — Hero Background', wide: true },
-    { url: '', caption: 'Team — Member Photo 1' },
-    { url: '', caption: 'Team — Member Photo 2' },
-    { url: '', caption: 'Team — Member Photo 3' },
-  ],
 
-  /* ── TEAM: Core Values Images ── */: [
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/2.jpg', caption: 'Core Values — Mensch' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/3.jpg', caption: 'Core Values — Motivation' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/4.jpg', caption: 'Core Values — Daten' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/5.jpg', caption: 'Core Values — Werkzeug' },
-  ],
 
   /* ── ABOUT: SonicReelsEmbed Hero & Accent Images ── */
   about_sonicreels_hero_accent: [
@@ -976,9 +964,6 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Ratgeber — Hero Background', wide: true },
   ],
 
-  /* ── JOBS ── */: [
-    { url: '', caption: 'Jobs — Hero Background', wide: true },
-  ],
 
   /* ── KONTAKT ── */
   kontakt_hero: [
@@ -1369,15 +1354,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Enterprise Tier' },
   ],
 
-  /* ── TEAM: MeetTheTeam — Wood Icons ── */: [
-    { url: '', caption: 'Human-First Culture' },
-    { url: '', caption: 'Growth Opportunities' },
-    { url: '', caption: 'Diverse Family' },
-  ],
 
-  /* ── TEAM: TrainingDevelopment — Image ── */: [
-    { url: '', caption: 'Training Session' },
-  ],
 
   /* ── HOME: Video Embed & Cover ── */
   home_video: [
