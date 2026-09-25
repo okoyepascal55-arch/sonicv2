@@ -226,7 +226,7 @@ export default function TalentpoolContent() {
               <div key={i} className="bg-foreground-950 p-6 md:p-8 text-center relative overflow-hidden group">
                 <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/5 transition-colors duration-300" />
                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="leist-h2 text-primary-500 mb-1.5 relative z-10">{s.value}</div>
+                <div className="sonic-h2 text-primary-500 mb-1.5 relative z-10">{s.value}</div>
                 <div className="text-white/40 text-xs font-bold uppercase tracking-wider leading-snug relative z-10">{s.label}</div>
               </div>
             ))}
