@@ -505,6 +505,35 @@ export default function CaseStudiesPage() {
     const dashImg = moduleImgMap[caseId]?.[modIdx]?.[0];
     return dashImg?.url ? resolveImageUrl(dashImg.url) : fallback;
   };
+  // Dashboard-editable text via textStore (Dashboard → Fallbeispiele)
+  const tGarminHeadline  = useText('case_garmin_text', 'garmin-headline', 'Sieben Module. Ein Partner. Fünf Jahre Wachstum.');
+  const tGarminSubline   = useText('case_garmin_text', 'garmin-subline',  'Garmin #BEATYESTERDAY — Partner seit 2021.');
+  const tGarminOverview  = useText('case_garmin_text', 'garmin-overview', 'Vertrauen wächst, wenn Ergebnisse folgen. Mit Garmin starteten wir 2021 mit einem klaren Auftrag: Promotion in Deutschland.');
+  const tGarminQuote     = useText('case_garmin_text', 'garmin-quote',    'Gemeinsam mehr erreichen — das ist unser Motto mit Sonic.');
+  const tGarminAuthor    = useText('case_garmin_text', 'garmin-author',   'Projektteam Garmin Deutschland');
+  const tGarminRole      = useText('case_garmin_text', 'garmin-role',     'In Zusammenarbeit mit der Sonic Group');
+
+  const tSebHeadline     = useText('case_seb_text',    'seb-headline',    'Derselbe Markt. Mehr Ertrag pro Tag.');
+  const tSebSubline      = useText('case_seb_text',    'seb-subline',     'Groupe SEB — Tefal, Rowenta, Krups, WMF. Partner seit 2019.');
+  const tSebOverview     = useText('case_seb_text',    'seb-overview',    'Derselbe Markt. Dieselben Stores. Vier Marken. Und der Umsatz pro Einsatztag wächst von Jahr zu Jahr.');
+  const tSebQuote        = useText('case_seb_text',    'seb-quote',       'Sonic bringt unsere Marken durch gezielte Verkaufsunterstützung direkt zu den Menschen.');
+  const tSebAuthor       = useText('case_seb_text',    'seb-author',      'Projektleitung: Carina');
+  const tSebRole         = useText('case_seb_text',    'seb-role',        'Sonic Group — Projektverantwortung Groupe SEB');
+
+  const tAvouryHeadline  = useText('case_avoury_text', 'avoury-headline', 'Wenn Cross-Selling zum System wird.');
+  const tAvourySubline   = useText('case_avoury_text', 'avoury-subline',  'Avoury One by Melitta — Partner seit 2021.');
+  const tAvouryOverview  = useText('case_avoury_text', 'avoury-overview', 'Nicht jede Wachstumskurve sieht gleich aus. Die von Avoury sieht aus wie ein Aufstieg — und dann wie eine senkrechte Wand.');
+  const tAvouryQuote     = useText('case_avoury_text', 'avoury-quote',    'Dank datenbasierter Optimierungen und dem Sonic SRT konnten wir Geräteabsatz und Gesamtumsatz massiv steigern.');
+  const tAvouryAuthor    = useText('case_avoury_text', 'avoury-author',   'Projektteam Avoury by Melitta');
+  const tAvouryRole      = useText('case_avoury_text', 'avoury-role',     'In Zusammenarbeit mit der Sonic Group');
+
+  const tTvHeadline      = useText('case_tvsound_text','tvsound-headline','Vom Launch zur Marktführerschaft.');
+  const tTvSubline       = useText('case_tvsound_text','tvsound-subline', 'Drei Mandate · Drei Unternehmen · Ein roter Faden — seit 2009.');
+  const tTvOverview      = useText('case_tvsound_text','tvsound-overview','Drei Unternehmen. Drei völlig unterschiedliche Ausgangssituationen. Eines gemeinsam: Sie haben uns ihren wichtigsten Vertriebskanal anvertraut.');
+  const tTvQuote         = useText('case_tvsound_text','tvsound-quote',   'Im TV-Segment sind wir seit 2009. Was wir dabei gelernt haben: Der Markt belohnt nicht den Lautesten — er belohnt den Zuverlässigsten.');
+  const tTvAuthor        = useText('case_tvsound_text','tvsound-author',  'Sonic Group');
+  const tTvRole          = useText('case_tvsound_text','tvsound-role',    'TV & Sound — Projektüberblick DACH');
+
   // Dashboard-editable metrics via textStore
   const tGarminMetric  = useText('case_garmin',   'case-garmin-metric',         '+116%');
   const tGarminLabel   = useText('case_garmin',   'case-garmin-metric-label',   'Umsatzwachstum 2021–2024');
@@ -545,7 +574,7 @@ export default function CaseStudiesPage() {
         { label: 'Module', value: '7' },
       ],
       monthlyTrend: [38, 41, 44, 47, 54, 61, 67, 72, 77, 82, 90, 99], // 2021→2025 cumulative growth index
-      overview: 'Vertrauen wächst, wenn Ergebnisse folgen. Mit Garmin starteten wir 2021 mit einem klaren Auftrag: Promotion in Deutschland. Jedes Jahr hat Garmin den Leistungsumfang ausgebaut — weil die Ergebnisse stimmten. Heute verantworten wir sieben Bereiche: Promotion DE, Promotion AT, Promotion Sport, POS One World, POS-Service, Lager und Möbelbau & Logistik. Die Partnerschaft zeigt, was passiert, wenn Qualität Konsequenzen hat.',
+      overview: tGarminOverview, // was: 'Vertrauen wächst, wenn Ergebnisse folgen. Mit Garmin starteten wir 2021 mit einem klaren Auftrag: Promotion in Deutschland. Jedes Jahr hat Garmin den Leistungsumfang ausgebaut — weil die Ergebnisse stimmten. Heute verantworten wir sieben Bereiche: Promotion DE, Promotion AT, Promotion Sport, POS One World, POS-Service, Lager und Möbelbau & Logistik. Die Partnerschaft zeigt, was passiert, wenn Qualität Konsequenzen hat.',
       modules: [
         { num: '01', title: 'Promotions', desc: 'Beispiel: Aktivierung am POS per Rabatt-Aktion. Full-Service-Umsetzung durch unsere Field Force.', img: '/images/Case Studies -Fallbsp/Garmin/5243_190035993.webp', tags: ['POS', 'Field Force', 'DACH'] },
         { num: '02', title: 'Aktionen', desc: 'Beispiel: Smoothie-Verkostungsaktion am POS als niederschwelliger Gesprächseinstieg.', img: '/images/Case Studies -Fallbsp/Garmin/5243_190036664.webp', tags: ['Live-Aktion', 'Verkostung', 'POS'] },
@@ -634,8 +663,8 @@ export default function CaseStudiesPage() {
       woodIcon: 'https://cdn.brandfetch.io/melitta.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
       metric: tAvouryMetric,
       metricLabel: tAvouryLabel,
-      headline: 'Wenn Cross-Selling zum System wird',
-      subline: 'Avoury One by Melitta — die Form der Kurve ändert sich, wenn die Methode stimmt.',
+      headline: tAvouryHeadline,
+      subline: tAvourySubline, // was: 'Avoury One — die Form der Kurve ändert sich, wenn die Methode stimmt.',
       campaignType: 'Field Force, Recruiting & Datenoptimierung',
       since: '2021',
       quote: 'Dank datenbasierter Optimierungen und dem Sonic SRT konnten wir Geräteabsatz und Gesamtumsatz massiv steigern. Die Ergebnisse haben unsere Erwartungen weit übertroffen.',
@@ -686,8 +715,8 @@ export default function CaseStudiesPage() {
       woodIcon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 2H3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h8v2H8v2h8v-2h-3v-2h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zm-1 14H4V4h16v12z'/%3E%3C/svg%3E",
       metric: tTvMetric,
       metricLabel: tTvLabel,
-      headline: 'Vom Launch zur Marktführerschaft',
-      subline: 'Drei Mandate · Drei Unternehmen · Ein roter Faden — seit 2009.',
+      headline: tTvHeadline,
+      subline: tTvSubline, // was: 'Drei Mandate · Drei Unternehmen · Ein roter Faden — seit 2009.',
       campaignType: 'Field Force, POS-Möbel, Training, Digital & Messen',
       since: '2009',
       quote: 'Im TV-Segment sind wir seit 2009. Was wir dabei gelernt haben: Der Markt belohnt nicht den Lautesten — er belohnt den Zuverlässigsten. Drei Mandate. Drei Unternehmen. Derselbe Anspruch.',
