@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useText } from '@/hooks/useText';
 
 const PEOPLE = [
   {
@@ -19,13 +20,27 @@ const PEOPLE = [
 ];
 
 export default function KreationFaces() {
+  // KreationFaces — textStore hooks (Dashboard → Stimmen & Zitate)
+  const tRobertRole    = useText('kreation_voice_robert', 'robert-role',      'Creative Director');
+  const tRobertQuote   = useText('kreation_voice_robert', 'robert-pullquote', '„Kreation ist kein Zufall. Es ist das Ergebnis von Präzision, Mut und einem tiefen Verständnis der Marke.“');
+  const tRobertBio     = useText('kreation_voice_robert', 'robert-bio',       'Robert leitet die kreative Ausrichtung bei Sonic. Als Creative Director verbindet er strategisches Denken mit handwerklicher Präzision.');
+  const tIngaRole      = useText('kreation_voice_inga',   'inga-role',        'Jr. Art Direktorin');
+  const tIngaQuote     = useText('kreation_voice_inga',   'inga-pullquote',   '„Die besten Karrierewege lassen sich nicht planen. Manchmal entwickelt sich aus einem Praktikum eine echte Leidenschaft.“');
+  const tIngaBio       = useText('kreation_voice_inga',   'inga-bio',         'Inga ist Teil des Creation Teams und begleitet Projekte von der ersten Idee bis zur Umsetzung.');
+
+  // Override PEOPLE with textStore values
+  const resolvedPeople = [
+    { ...PEOPLE[0], role: tRobertRole, pullQuote: tRobertQuote, bio: tRobertBio },
+    { ...PEOPLE[1], role: tIngaRole,   pullQuote: tIngaQuote,   bio: tIngaBio   },
+  ];
+
   const { images: img0 } = useMediaStore('kreation_faces_robert');
   const { images: img1 } = useMediaStore('kreation_faces_inga');
   const dbImages = [img0[0], img1[0]];
 
   const [activeId, setActiveId] = useState(PEOPLE[0].id);
-  const active = PEOPLE.find(p => p.id === activeId) ?? PEOPLE[0];
-  const activeIdx = PEOPLE.findIndex(p => p.id === activeId);
+  const active = resolvedPeople.find(p => p.id === activeId) ?? PEOPLE[0];
+  const activeIdx = resolvedPeople.findIndex(p => p.id === activeId);
 
   const getImg = (idx: number) => {
     const item = dbImages[idx];
@@ -85,7 +100,7 @@ export default function KreationFaces() {
 
           {/* Name selector */}
           <div className="grid" style={{ gridTemplateColumns: `repeat(${PEOPLE.length}, 1fr)`, borderTop: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
-            {PEOPLE.map((person, i) => {
+            {resolvedPeople.map((person, i) => {
               const isActive = person.id === activeId;
               return (
                 <button key={person.id} onClick={() => setActiveId(person.id)}
