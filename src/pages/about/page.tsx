@@ -20,15 +20,27 @@ const ABOUT_NAV_ITEMS = [
 
 export default function AboutPage() {
   useSEO({
-    title: 'Über uns | Sonic Group — Sales- & Marketing-Agentur seit 2007',
-    description: 'Sonic Group: Unabhängige Marketing- und Sales-Agentur seit 2007. Über 500 Projekte, 1,35 Mio. Einsätze. Partner von Philips, Rowenta, Krups, Canon, Garmin & mehr. Jetzt kennenlernen.',
-    keywords: 'Sonic Group, Sales Promotion Agentur Deutschland, Marketing Agentur seit 2007, POS Agentur, retail activation agency Germany, Promotionagentur Krefeld, brand activation Europe, Sonic Sales Support GmbH',
+    title: 'Über Sonic Group | Sales Promotion & Retail Activation Agentur seit 2007 — Krefeld DACH',
+    description: 'Sonic Sales Support GmbH: Unabhängige Retail Activation Agentur seit 2007. 2.000+ Promoter, €2 Mrd. beeinflusster Umsatz, 18+ Jahre Handelserfahrung. Strategischer Partner für internationale Marken bei Markteintritt und Wachstum in Deutschland, Österreich und der Schweiz.',
+    keywords: 'Sonic Group, Sonic Sales Support, Retail Agentur Krefeld, Sales Promotion seit 2007, Markenagentur Deutschland, POS Agentur DACH, Field Force Partner, Retail Activation Partner, Markteintritt Deutschland, Handelspartner DACH, Unabhängige Agentur, Brand Activation Agentur',
     canonical: 'https://sonic-group.de/ueber-uns',
-    ogTitle: 'Über Sonic Group — Marken im Herzen, Erfolg im Fokus',
-    ogDescription: 'Seit 2007 unabhängig: Sonic Group vereint Konzeption, Kreation und Koordination unter einem Dach. 500+ Projekte, 1,35 Mio. Einsätze für Top-Marken wie Philips, Garmin, Canon und mehr.',
-    ogType: 'website',
-    ogImage: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png',
-  });
+    ogTitle: 'Über Sonic Group — Retail Activation Partner seit 2007',
+    ogDescription: 'Unabhängige Sales Promotion Agentur: 2.000+ Promoter, €2 Mrd. beeinflusster Umsatz, 18+ Jahre Handelserfahrung in Deutschland, Österreich und der Schweiz.',
+    jsonLd: [
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
+        { '@type': 'ListItem', position: 2, name: 'Über uns', item: 'https://sonic-group.de/ueber-uns' },
+      ]},
+      { '@context': 'https://schema.org', '@type': 'AboutPage',
+        name: 'Über Sonic Group', url: 'https://sonic-group.de/ueber-uns',
+        description: 'Sonic Sales Support GmbH — Sales Promotion und Retail Activation Agentur seit 2007 in Krefeld.',
+        mainEntity: { '@type': 'Organization', name: 'Sonic Sales Support GmbH',
+          foundingDate: '2007', address: { '@type': 'PostalAddress', addressLocality: 'Krefeld', addressCountry: 'DE' },
+          numberOfEmployees: { '@type': 'QuantitativeValue', value: 2000, unitText: 'Promoter' },
+        },
+      },
+    ],
+  })
 
   // ── Dashboard-managed media ──
   const { images: headerImages } = useMediaStore('/images/Über uns/Über uns/1. Header');
