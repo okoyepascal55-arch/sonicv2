@@ -102,9 +102,11 @@ export default function KreationContentPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">{SOLUTIONS.map((item, i) => { const active = hoveredSolution === i; return <div key={item.num} className={`relative overflow-hidden group ${active ? 'bg-foreground-950 border-primary-500' : 'bg-white border-foreground-950/[0.09]'}`} style={{ minHeight: 'clamp(160px, 30vw, 280px)', borderWidth: 1, borderStyle: 'solid' }} onMouseEnter={() => setHoveredSolution(i)} onMouseLeave={() => setHoveredSolution(null)}><div className="relative z-10 p-7"><img src={getSolutionIcon(i)} alt="" className={`w-12 h-12 object-cover mb-6 transition-transform duration-300 ${active ? 'scale-110' : ''}`} /><div className="flex items-center gap-2 mb-3"><span className="font-mono font-black text-xs text-primary-500">{item.num}</span><div className={`flex-1 h-px ${active ? 'bg-primary-500/25' : 'bg-foreground-950/8'}`} /></div><h3 className={`font-black text-base mb-3 tracking-tight ${active ? 'text-background-50' : 'text-foreground-950'}`}>{item.title}</h3><p className={`text-sm leading-relaxed mb-4 ${active ? 'text-background-50/60' : 'text-foreground-950/55'}`}>{item.desc}</p><div className="flex flex-wrap gap-1.5">{item.tags.map(tag => <span key={tag} className={`text-[9px] font-black px-2 py-0.5 uppercase tracking-widest ${active ? 'text-background-50 bg-primary-500/[0.12] border-primary-500/30' : 'text-foreground-950 bg-primary-500/8 border-primary-500/20'} border`}>{tag}</span>)}</div></div></div>; })}</div>
         </div>
       </section>
+      <WoodenDivider />
       <KreationShowcaseReference />
       <WoodenDivider />
       <KreationFaces />
+      <WoodenDivider />
       <KreationWavyDivider />
       <section id="referenzen"><ClientProof /></section>
       <div id="kontakt"><LeistungenKontakt headline="Content-Beratung" headlineAccent="buchen." subline="Wir zeigen dir in 30 Minuten, wie wir im Bereich Kreation und Content arbeiten — von Konzept bis Produktion." checkItems={[{ text: 'Strategische Herangehensweise' }, { text: 'Deine Ziele, unsere Beispiele' }, { text: 'Studio-Tour' }]} ctaLabel="Beratung buchen" ctaMailSubject="Kreation Content Beratung" ctaIcon="ri-calendar-line" /></div>
