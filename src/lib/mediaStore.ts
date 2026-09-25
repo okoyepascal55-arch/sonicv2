@@ -161,6 +161,7 @@ export const PAGE_GROUPS: PageGroup[] = [
       'kreation_faces_inga',
       'leistungen_warehouse_fullservice_photo',
       'leistungen_video_format_photos',
+      'leistungen_video_youtube',
     ],
   },
   {
@@ -1563,6 +1564,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'leistungen_kreation_discipline_wood_icons': 'Kreation — Discipline Wood Icons',
   'leistungen_kreation_photo_grid': 'Kreation — Rotating Photo Grid',
   'leistungen_warehouse_fullservice_photo': 'Warehouse — Full Service Photo',
+  'leistungen_video_youtube': 'Live Video — YouTube Showcase URL (im Feld \"Beschriftung\" eintragen)',
   'leistungen_video_format_photos': 'Video — Format Photos',
   'home_video': 'Hero Video — Embed & Cover',
   'home_services_wood_icons': 'Services Grid — Wood Icons',
@@ -1758,6 +1760,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'leistungen_kreation_discipline_wood_icons': 3,
   'leistungen_kreation_photo_grid': 5,
   'leistungen_warehouse_fullservice_photo': 1,
+  'leistungen_video_youtube': 'Live Video — YouTube Showcase URL (im Feld \"Beschriftung\" eintragen)',
   'leistungen_video_format_photos': 6,
 
   /* ── TEAM: Fixed Design Slots ── */
@@ -1963,6 +1966,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'leistungen_staff_socks_images':   { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'S.O.C.K.S. images — selection, orientation, training' },
   'leistungen_talentpool_profiles_images': { aspectRatio: '~2.3:1', dimensions: '~1024×448', orientation: 'landscape', tip: 'Talent profile images — wide format' },
   'leistungen_warehouse_items_images':{ aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'Warehouse items — POS material, display, fulfillment' },
+  'leistungen_video_youtube': 'Live Video — YouTube Showcase URL (im Feld \"Beschriftung\" eintragen)',
   'leistungen_video_format_photos':  { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'Video format photos — live-video, broadcast, streaming' },
 
   /* ═══ LEISTUNGEN: All Wood Icons (1:1 squares, varying sizes) ═══ */
