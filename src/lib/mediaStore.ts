@@ -236,6 +236,9 @@ export const PAGE_GROUPS: PageGroup[] = [
     icon: 'ri-building-2-line',
     sections: [
       // ── Used by live industries page components ──
+      'industries_hero_bg',
+      'industries_grid_images',
+      'industries_expertise_wood_icons',
       // industries_grid_wood_icons removed (not used in any component)
     ],
   },
@@ -931,18 +934,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.sonic-group.de/wp-content/uploads/elementor/thumbs/SONIC_GESAMTLOGO_LIME-q0lflz24exgoq4608jg9ggegh9pjfwmmc0m1jsee5i.png', caption: 'Sonic Group — Main Logo' },
   ],
 
-  industries_hero_bg: [
-    { url: '', caption: 'Industries — Hero Background', wide: true },
-  ],
 
-  industries_grid_images: [
-    { url: '', caption: 'Consumer Electronics' },
-    { url: '', caption: 'Home Appliances' },
-    { url: '', caption: 'Beauty & Cosmetics' },
-    { url: '', caption: 'Lifestyle & Wellness' },
-    { url: '', caption: 'Automotive' },
-    { url: '', caption: 'Entertainment & Media' },
-  ],
 
   /* ── SERVICES: Content Studio ── */
   services_content_studio_images: [
@@ -1339,23 +1331,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/11.jpg', caption: 'Attitude — Welcome Background', wide: true },
   ],
 
-  industries_expertise_wood_icons: [
-    { url: '', caption: 'Marktkenntnis' },
-    { url: '', caption: 'Produkttraining' },
-    { url: '', caption: 'Handelspartnerschaften' },
-    { url: '', caption: 'Datenbasierte Insights' },
-    { url: '', caption: 'Skalierbare Lösungen' },
-    { url: '', caption: 'Phygitale Integration' },
-  ],
 
-  industries_grid_wood_icons: [
-    { url: '', caption: 'Consumer Electronics' },
-    { url: '', caption: 'Home Appliances' },
-    { url: '', caption: 'Beauty & Personal Care' },
-    { url: '', caption: 'Lifestyle & Wellness' },
-    { url: '', caption: 'Automotive & Mobility' },
-    { url: '', caption: 'Entertainment & Media' },
-  ],
 
   /* ── ABOUT: ValuesVisual — Wood Icons ── */
   about_values_visual_wood_icons: [
