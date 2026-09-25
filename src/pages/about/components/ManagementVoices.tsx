@@ -231,7 +231,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
   const tHeading = useText('about_management_voices', 'about-voices-heading', 'Die Stimmen hinter Sonic.');
   const tSub     = useText('about_management_voices', 'about-voices-sub',     'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.');
 
-  const execs = EXECUTIVES.map((exec, i) => {
+  const execs = resolvedExecs.map((exec, i) => {
     // Match by executive first name found in either URL or caption.
     // Checking both fields handles: static manifest images (name in URL path),
     // user-uploaded Supabase images (name may only appear in the caption field),
