@@ -875,13 +875,24 @@ function WoodCard({
 ───────────────────────────────────────── */
 export default function LosungenPage() {
   useSEO({
-    title: 'Lösungen | Sonic Group — Markteintritt, Absatz & Omnichannel DACH',
-    description: 'Drei Retail-Lösungen von Sonic Group: Markteintritt im DACH-Raum, Absatzsteigerung am POS und Omnichannel-Strategie mit Live Video. Datenbasiert, messbar, skalierbar.',
-    keywords: 'Markteintritt DACH, Absatz steigern Retail, Omnichannel Strategie, Retail Lösungen Deutschland',
+    title: 'Retail-Lösungen | Sonic Group — Markteintritt, Absatz & Omnichannel DACH',
+    description: 'Drei bewährte Retail-Lösungen für Marken im DACH-Raum: Markteinführung, Abverkaufssteigerung und Omnichannel-Aktivierung. Sonic Group begleitet internationale und lokale Marken vom ersten POS-Kontakt bis zur nachhaltigen Marktpräsenz.',
+    keywords: 'Retail-Lösungen Deutschland, Markteintritt DACH, Absatzsteigerung Retail, Omnichannel Aktivierung, Markteinführung Deutschland, POS Promotion, Verkaufsförderung DACH, Retail Marketing Agentur, Field Marketing Germany, Sales Promotion Germany, Chinese brands Germany, US brands DACH entry, Retail Activation Europa',
     canonical: 'https://sonic-group.de/losungen',
-    ogTitle: 'Lösungen — Sonic Group DACH',
-    ogDescription: 'Markteintritt, Absatzsteigerung & Omnichannel: Drei datenbasierte Retail-Lösungen für den DACH-Markt.',
-  });
+    ogTitle: 'Retail-Lösungen — Sonic Group DACH',
+    ogDescription: 'Markteintritt, Abverkauf und Omnichannel — drei Lösungsansätze für Marken, die im deutschen Handel stark werden wollen.',
+    jsonLd: [
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
+        { '@type': 'ListItem', position: 2, name: 'Lösungen', item: 'https://sonic-group.de/losungen' },
+      ]},
+      { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
+        { '@type': 'Question', name: 'Wie unterstützt Sonic Group beim Markteintritt in Deutschland?', acceptedAnswer: { '@type': 'Answer', text: 'Sonic Group begleitet internationale Marken mit Field Force, POS-Aktivierung, Schulungen und Reporting-Systemen beim Eintritt in den deutschen Handel — von der Pilotphase bis zur flächendeckenden Skalierung.' }},
+        { '@type': 'Question', name: 'Wie steigert Sonic Group den Abverkauf am POS?', acceptedAnswer: { '@type': 'Answer', text: 'Durch geschulte Markenbotschafter, gezielte POS-Promotions, Live Video Beratung und datenbasiertes Reporting mit dem SRT (Sonic Reporting Tool) wird der Umsatz messbar gesteigert.' }},
+        { '@type': 'Question', name: 'Was ist Omnichannel-Retail-Aktivierung?', acceptedAnswer: { '@type': 'Answer', text: 'Omnichannel-Aktivierung verbindet stationären POS, Live Video Shopping und digitale Reichweite zu einem nahtlosen Markenerlebnis — Sonic Group koordiniert alle Kanäle aus einer Hand.' }},
+      ]},
+    ],
+  })
   // ── Dashboard-managed media ──
   const { images: heroBgImages } = useMediaStore('losungen_hero_backgrounds');
   const { images: woodTextures } = useMediaStore('losungen_wood_textures');
