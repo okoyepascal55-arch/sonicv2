@@ -1445,7 +1445,109 @@ const LEGACY_TEXT_FIXES = [
       { id: 'srt-joerg-quote',  label: 'Zitat',                    value: 'Das SRT ist kein Tool — es ist der direkte Draht zwischen dem, was am POS passiert, und der Entscheidung, die daraus folgen muss. Wir haben es so gebaut, dass Promoter damit arbeiten wollen, nicht müssen.', type: 'textarea' as const },
       { id: 'srt-joerg-video',  label: 'YouTube Video ID (optional, leer = nur Zitat)', value: '', type: 'text' as const },
     ],
-  }
+  },
+  /* ═══════════════════════ STIMMEN & ZITATE ════════════════════════ */
+  /* Management Voices — Björn Bourdin */
+  {
+    key: 'management_voice_bjorn',
+    label: 'Managementstimmen — Björn Bourdin',
+    pageGroupId: 'stimmen',
+    entries: [
+      { id: 'bjorn-eyebrow',       label: 'Eyebrow-Text',       value: 'Vision. Strategie. Führung.',                                                                                                                               type: 'text' as const },
+      { id: 'bjorn-pullquote',     label: 'Pull-Quote',          value: '\u201eWer die Fakten kennt und das Team versteht, trifft keine schlechten Entscheidungen \u2014 nur mutige.\u201c',                                       type: 'textarea' as const },
+      { id: 'bjorn-doing-1',       label: 'Doing Things — Text', value: 'Daten liefern die Fakten, Menschen den Unterschied. Alle \u201eThings\u201c die wir tun, basieren auf beidem.',                                          type: 'textarea' as const },
+      { id: 'bjorn-doing-2',       label: 'Doing Things Better', value: 'Nobody\u2019s perfect und auch wir m\u00fcssen unser \u201eDoing\u201c t\u00e4glich hinterfragen, optimieren und verbessern.',                          type: 'textarea' as const },
+      { id: 'bjorn-doing-3',       label: 'Doing New Things',    value: 'Der \u201eStrategic Plan\u201c wird nur dann funktionieren, wenn wir bereit sind, neue Wege zu gehen und Altbew\u00e4hrtes zu hinterfragen.',             type: 'textarea' as const },
+    ],
+  },
+  /* Management Voices — Jo Heitkämper */
+  {
+    key: 'management_voice_jo',
+    label: 'Managementstimmen — Jo Heitkämper',
+    pageGroupId: 'stimmen',
+    entries: [
+      { id: 'jo-eyebrow',          label: 'Eyebrow-Text',        value: 'Wachstum. Markt. Dynamik.',                                                                                                                                 type: 'text' as const },
+      { id: 'jo-pullquote',        label: 'Pull-Quote',           value: '\u201eProjekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten.\u201c',                                               type: 'textarea' as const },
+      { id: 'jo-doing-1',          label: 'Doing Things — Text',  value: 'Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten. Wir schaffen die Strukturen, die das verhindern.',            type: 'textarea' as const },
+      { id: 'jo-doing-2',          label: 'Doing Things Better',  value: 'Neue Ideen allein schaffen keinen Mehrwert. Entscheidend ist, wie konsequent und schnell sie umgesetzt werden.',                                            type: 'textarea' as const },
+      { id: 'jo-doing-3',          label: 'Doing New Things',     value: 'Automation durch Algorithmen, Analysen durch KI, Umsetzung \u00fcber die SRT. Wir investieren dort, wo Technologie echten Hebel bietet.',                 type: 'textarea' as const },
+    ],
+  },
+  /* Management Voices — Lucas Kreiten */
+  {
+    key: 'management_voice_lucas',
+    label: 'Managementstimmen — Lucas Kreiten',
+    pageGroupId: 'stimmen',
+    entries: [
+      { id: 'lucas-eyebrow',       label: 'Eyebrow-Text',        value: 'Zahlen. Struktur. Weitblick.',                                                                                                                              type: 'text' as const },
+      { id: 'lucas-pullquote',     label: 'Pull-Quote',           value: '\u201eFinance ist heute die zentrale Steuerungsfunktion, die Entscheidungen vorbereitet, Prozesse gestaltet und Wachstum erm\u00f6glicht.\u201c',        type: 'textarea' as const },
+      { id: 'lucas-bio',           label: 'Bio-Text',             value: 'Lucas verantwortet seit 2019 die finanzielle Steuerung von Sonic.',                                                                                         type: 'textarea' as const },
+      { id: 'lucas-doing-1',       label: 'Doing Things — Text',  value: 'Alles beginnt mit klaren Rollen, klaren Abl\u00e4ufen, klaren Zahlen. Wir schaffen die Basis, die exzellente Arbeit erst m\u00f6glich macht.',           type: 'textarea' as const },
+      { id: 'lucas-doing-2',       label: 'Doing Things Better',  value: 'Erst auf diesem stabilen Fundament kann Qualit\u00e4t entstehen. Daher entwickeln wir Prozesse, Systeme und Strukturen kontinuierlich weiter.',            type: 'textarea' as const },
+      { id: 'lucas-doing-3',       label: 'Doing New Things',     value: 'Innovation beginnt dort, wo Mut auf Verantwortung trifft. Sonic ist ein Ort, an dem beides m\u00f6glich ist.',                                            type: 'textarea' as const },
+    ],
+  },
+  /* Kreation Team — Robert H. */
+  {
+    key: 'kreation_voice_robert',
+    label: 'Kreation Team — Robert H. (Creative Director)',
+    pageGroupId: 'stimmen',
+    entries: [
+      { id: 'robert-role',         label: 'Rolle',               value: 'Creative Director',                                                                                                                                          type: 'text' as const },
+      { id: 'robert-pullquote',    label: 'Pull-Quote',           value: '\u201eKreation ist kein Zufall. Es ist das Ergebnis von Pr\u00e4zision, Mut und einem tiefen Verst\u00e4ndnis der Marke.\u201c',                        type: 'textarea' as const },
+      { id: 'robert-bio',          label: 'Bio-Text',             value: 'Robert leitet die kreative Ausrichtung bei Sonic. Als Creative Director verbindet er strategisches Denken mit handwerklicher Pr\u00e4zision.',             type: 'textarea' as const },
+    ],
+  },
+  /* Kreation Team — Inga L. */
+  {
+    key: 'kreation_voice_inga',
+    label: 'Kreation Team — Inga L. (Jr. Art Direktorin)',
+    pageGroupId: 'stimmen',
+    entries: [
+      { id: 'inga-role',           label: 'Rolle',               value: 'Jr. Art Direktorin',                                                                                                                                         type: 'text' as const },
+      { id: 'inga-pullquote',      label: 'Pull-Quote',           value: '\u201eDie besten Karrierewege lassen sich nicht planen. Manchmal entwickelt sich aus einem Praktikum eine echte Leidenschaft.\u201c',                    type: 'textarea' as const },
+      { id: 'inga-bio',            label: 'Bio-Text',             value: 'Inga ist Teil des Creation Teams und begleitet Projekte von der ersten Idee bis zur Umsetzung.',                                                            type: 'textarea' as const },
+    ],
+  },
+  /* SRT Developer Quote */
+  {
+    key: 'srt_stimme',
+    label: 'SRT — Ein Wort vom Entwickler (Jörg)',
+    pageGroupId: 'stimmen',
+    entries: [
+      { id: 'srt-joerg-name',      label: 'Name',                value: 'J\u00f6rg',                                                                                                                                                type: 'text' as const },
+      { id: 'srt-joerg-title',     label: 'Titel',               value: 'Entwickler der Sonic Retail Technology',                                                                                                                     type: 'text' as const },
+      { id: 'srt-joerg-quote',     label: 'Zitat',               value: 'Das SRT ist kein Tool \u2014 es ist der direkte Draht zwischen dem, was am POS passiert, und der Entscheidung, die daraus folgen muss.',                   type: 'textarea' as const },
+      { id: 'srt-joerg-video',     label: 'YouTube Video ID (optional)', value: '',                                                                                                                                                   type: 'text' as const },
+    ],
+  },
+  /* Karriere Team — 6 Mitarbeiterstimmen (Platzhalter — Inhalte ergänzen) */
+  {
+    key: 'karriere_stimmen',
+    label: 'Karriere — Mitarbeiterstimmen (6 Personen)',
+    pageGroupId: 'stimmen',
+    entries: [
+      { id: 'karriere-stimme-1-name',  label: 'Person 1 — Name',   value: '',  type: 'text' as const },
+      { id: 'karriere-stimme-1-role',  label: 'Person 1 — Rolle',  value: '',  type: 'text' as const },
+      { id: 'karriere-stimme-1-quote', label: 'Person 1 — Zitat',  value: '',  type: 'textarea' as const },
+      { id: 'karriere-stimme-2-name',  label: 'Person 2 — Name',   value: '',  type: 'text' as const },
+      { id: 'karriere-stimme-2-role',  label: 'Person 2 — Rolle',  value: '',  type: 'text' as const },
+      { id: 'karriere-stimme-2-quote', label: 'Person 2 — Zitat',  value: '',  type: 'textarea' as const },
+      { id: 'karriere-stimme-3-name',  label: 'Person 3 — Name',   value: '',  type: 'text' as const },
+      { id: 'karriere-stimme-3-role',  label: 'Person 3 — Rolle',  value: '',  type: 'text' as const },
+      { id: 'karriere-stimme-3-quote', label: 'Person 3 — Zitat',  value: '',  type: 'textarea' as const },
+      { id: 'karriere-stimme-4-name',  label: 'Person 4 — Name',   value: '',  type: 'text' as const },
+      { id: 'karriere-stimme-4-role',  label: 'Person 4 — Rolle',  value: '',  type: 'text' as const },
+      { id: 'karriere-stimme-4-quote', label: 'Person 4 — Zitat',  value: '',  type: 'textarea' as const },
+      { id: 'karriere-stimme-5-name',  label: 'Person 5 — Name',   value: '',  type: 'text' as const },
+      { id: 'karriere-stimme-5-role',  label: 'Person 5 — Rolle',  value: '',  type: 'text' as const },
+      { id: 'karriere-stimme-5-quote', label: 'Person 5 — Zitat',  value: '',  type: 'textarea' as const },
+      { id: 'karriere-stimme-6-name',  label: 'Person 6 — Name',   value: '',  type: 'text' as const },
+      { id: 'karriere-stimme-6-role',  label: 'Person 6 — Rolle',  value: '',  type: 'text' as const },
+      { id: 'karriere-stimme-6-quote', label: 'Person 6 — Zitat',  value: '',  type: 'textarea' as const },
+    ],
+  },
+
 ];
 
 function loadFromStorage(): TextSection[] {
