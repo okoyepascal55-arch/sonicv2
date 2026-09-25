@@ -29,13 +29,26 @@ const NAV_ITEMS = [
 
 export default function SRTPage() {
   useSEO({
-    title: 'SRT — Sonic Reporting Tool | Echtzeit-Retail-Software für Field Force DACH',
-    description: 'Das Sonic Reporting Tool (SRT): Echtzeit-Dashboards, GPS-Tracking, Forecasting und Live-KPIs für Field Force und Retail Activation im DACH-Raum. Jetzt Zugang anfragen.',
-    keywords: 'Sonic Reporting Tool, SRT Software, Field Force Tracking, Retail Echtzeit Dashboard, Promoter Software',
+    title: 'SRT — Sonic Reporting Tool | Field Force Software für Echtzeit-Retail-Steuerung DACH',
+    description: 'Das Sonic Reporting Tool (SRT): Echtzeit-Dashboards, GPS-Einsatzplanung, KI-gestütztes Forecasting und automatische Berichte für den Außendienst. Die Retail-Software, die Sonic intern für über 2.000 Promoter nutzt — jetzt für Partnermarken verfügbar.',
+    keywords: 'Sonic Reporting Tool, SRT Software, Field Force Software, Retail Echtzeit Dashboard, Außendienst Steuerung, GPS Tracking Promoter, Retail Analytics, KI Forecasting Retail, Sell-Out Prognose, Field Marketing Software Germany, Retail Intelligence DACH, POS Reporting Tool, Promoter App',
     canonical: 'https://sonic-group.de/srt',
-    ogTitle: 'SRT — Sonic Reporting Tool für Retail Activation',
-    ogDescription: 'Echtzeit-Dashboards, GPS-Tracking & Forecasting für Field Force im DACH-Raum.',
-  });
+    ogTitle: 'SRT — Sonic Reporting Tool für Retail Field Force',
+    ogDescription: 'Echtzeit-Dashboards, GPS-Tracking und KI-Forecasting für Field Marketing Teams. Das Tool, das Sonic intern für 2.000+ Promoter nutzt.',
+    jsonLd: [
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
+        { '@type': 'ListItem', position: 2, name: 'SRT', item: 'https://sonic-group.de/srt' },
+      ]},
+      { '@context': 'https://schema.org', '@type': 'SoftwareApplication',
+        name: 'Sonic Reporting Tool (SRT)', applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Web, iOS, Android',
+        description: 'Echtzeit-Retail-Management-Software: GPS-Einsatzplanung, Live-Dashboards, Forecasting und Berichtswesen für Field Force Teams.',
+        offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: 'Sonic Sales Support GmbH' }},
+        featureList: ['Echtzeit-Dashboards', 'GPS-Einsatzplanung', 'KI-Forecasting', 'Automatische Berichte', 'Sell-Out Analyse'],
+      },
+    ],
+  })
 
   const heroRef = useRef<HTMLDivElement>(null);
 
