@@ -19,13 +19,26 @@ const NAV_ITEMS = [
 
 export default function StaffAsAServicePage() {
   useSEO({
-    title: 'Staff as a Service | Sonic Group — Retail Staffing & Promoter DACH',
-    description: 'Staff as a Service von Sonic Group: 2.000+ festangestellte Promoter und Brand Ambassadors für Retail, Events und POS im DACH-Raum. Flexibel, skalierbar, datenbasiert.',
-    keywords: 'Staff as a Service, Retail Staffing DACH, Promoter Deutschland, Brand Ambassador, Feldvertrieb',
+    title: 'Staff as a Service | Sonic Group — 2.000+ Retail Promoter & Brand Ambassadors DACH',
+    description: 'Flexible Retail-Personaldienstleistungen von Sonic Group: 2.000+ festangestellte Promoter, Brand Ambassadors und Field Force Experten — einsetzbar für POS, Events und Messen in ganz DACH. Schnell skalierbar, qualitätszertifiziert.',
+    keywords: 'Staff as a Service, Retail Staffing DACH, Promoter Deutschland, Brand Ambassador Agentur, Field Force Germany, Außendienst Mitarbeiter, Personaldienstleister Promotion, Promoter Pool, Eventpersonal DACH, Retail Experten, Sales Promoter vermitteln, Messepersonal, Hostess Agentur',
     canonical: 'https://sonic-group.de/leistungen/staff-as-a-service',
-    ogTitle: 'Staff as a Service — Sonic Group DACH',
-    ogDescription: '2.000+ Promoter & Brand Ambassadors für Retail und Events im DACH-Raum.',
-  });
+    ogTitle: 'Staff as a Service — 2.000+ Promoter & Brand Ambassadors | Sonic Group',
+    ogDescription: 'Flexibles Retail-Personal: 2.000+ Promoter, Brand Ambassadors und Field Force Experten für POS, Events und Messen in DACH.',
+    jsonLd: [
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
+        { '@type': 'ListItem', position: 2, name: 'Leistungen', item: 'https://sonic-group.de/leistungen' },
+        { '@type': 'ListItem', position: 3, name: 'Staff as a Service', item: 'https://sonic-group.de/leistungen/staff-as-a-service' },
+      ]},
+      { '@context': 'https://schema.org', '@type': 'Service',
+        name: 'Staff as a Service', provider: { '@type': 'Organization', name: 'Sonic Sales Support GmbH' },
+        serviceType: 'Retail Staffing / Brand Ambassador Services',
+        areaServed: ['DE','AT','CH'],
+        description: '2.000+ festangestellte Promoter, Brand Ambassadors und Retail-Experten für flexible Einsätze in ganz DACH.',
+      },
+    ],
+  })
 
   const heroRef = useRef<HTMLDivElement>(null);
 
