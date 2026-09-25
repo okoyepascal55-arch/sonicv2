@@ -129,7 +129,7 @@ export default function StaffContent() {
       <WoodenDivider />
 
       {/* ── Solution (horizontal scroll) ── */}
-      <section id="loesung" className="sonic-section-lg bg-white px-4 md:px-6 relative overflow-hidden">
+      <section id="loesung" className="sonic-section-md bg-white px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.018] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="sonic-container relative">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
@@ -151,7 +151,7 @@ export default function StaffContent() {
       {/* ── Process ── */}
       <WoodenDivider />
 
-      <section id="ablauf" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
+      <section id="ablauf" className="sonic-section-md bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
         <div className="relative sonic-container">
@@ -256,7 +256,7 @@ export default function StaffContent() {
 
       {/* Dark-bg WoodenDivider — between two dark sections */}
       <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-      <section id="aufgabenbereiche" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
+      <section id="aufgabenbereiche" className="sonic-section-md bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="sonic-container relative">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
@@ -279,7 +279,7 @@ export default function StaffContent() {
 
       {/* Dark-bg WoodenDivider — between two dark sections */}
       <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-      <section id="socks" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
+      <section id="socks" className="sonic-section-md bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(200,212,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(200,212,0,0.6) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
         <div className="relative sonic-container">
