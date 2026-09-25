@@ -60,7 +60,26 @@ export default function KreationContentPage() {
   const tHeroH1Accent = useText('leistungen_kreation', 'kreation-hero-heading-accent', 'die Marken formt.');
   const tHeroSubtitle = useText('leistungen_kreation', 'kreation-hero-subtitle', 'Von Konzeption und CI bis Layout, POS und innovativen Formaten — Kreation als strategischer Prozess.');
 
-  useSEO({ title: 'Kreation | Sonic Group — Konzeption, CI, Layout & POS DACH', description: 'Kreation von Sonic Group: Konzeption, CI, Layout, POS-Design und Innovation für Marken im DACH-Raum — aus einer strategischen Kreativhand.', keywords: 'Content Produktion DACH, Inhouse Studio, CGI 3D Produktion, POS Design, Social Content Agentur', canonical: 'https://sonic-group.de/leistungen/kreation-content', ogTitle: 'Kreation & Content — Sonic Group DACH', ogDescription: 'Inhouse Foto, Video, CGI & POS-Design für Marken im DACH-Raum.' });
+  useSEO({
+    title: 'Kreation & Content | Sonic Group — Inhouse CI, Layout, POS-Design & Content DACH',
+    description: 'Inhouse Kreation von Sonic Group: Von CI-Konzeption und Layout bis POS-Design, Social Content und innovativen Formaten — alles aus einer strategischen Kreativhand für Marken im DACH-Raum. Konsistentes Branding vom Konzept bis zum POS-Display.',
+    keywords: 'Content Produktion DACH, Inhouse Studio Krefeld, POS Design Deutschland, Social Content Agentur, CI Konzeption, Layout Markendesign, Kreativagentur DACH, Brand Design Retail, POS Display Design, Campaign Konzeption, Marketing Material Produktion, Visual Identity DACH',
+    canonical: 'https://sonic-group.de/leistungen/kreation-content',
+    ogTitle: 'Kreation & Content — Inhouse Kreativagentur | Sonic Group DACH',
+    ogDescription: 'CI, Layout, POS-Design und Content aus einer Hand — Sonic Group's Inhouse-Kreation für konsistentes Markenmarketing im DACH-Handel.',
+    jsonLd: [
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
+        { '@type': 'ListItem', position: 2, name: 'Leistungen', item: 'https://sonic-group.de/leistungen' },
+        { '@type': 'ListItem', position: 3, name: 'Kreation & Content', item: 'https://sonic-group.de/leistungen/kreation-content' },
+      ]},
+      { '@context': 'https://schema.org', '@type': 'Service',
+        name: 'Kreation & Content', provider: { '@type': 'Organization', name: 'Sonic Sales Support GmbH' },
+        serviceType: 'Creative Production / Brand Design / Content Creation',
+        areaServed: ['DE','AT','CH'],
+      },
+    ],
+  })
 
   useEffect(() => {
     const el = solutionRef.current;
