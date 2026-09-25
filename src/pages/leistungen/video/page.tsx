@@ -21,12 +21,25 @@ const NAV_ITEMS = [
 export default function VideoPage() {
   useSEO({
     title: 'Live Video Promotion | Sonic Group — 1:1 Video-Beratung & Live Shopping DACH',
-    description: 'Live Video Promotion von Sonic Group: 1:1 Video-Kaufberatung, Live Shopping Events und Phygital Retail für den DACH-Markt. Conversion steigern, Retouren senken.',
-    keywords: 'Live Video Promotion, Video Kaufberatung, Live Shopping DACH, Phygital Retail, Video Commerce',
+    description: 'Live Video Promotion von Sonic Group: Professionelle 1:1 Video-Kaufberatung und Live Shopping Events direkt aus unseren Studios in Krefeld. Phygitale Retail-Aktivierung für Marken, die Online- und Offline-Kanäle verbinden wollen — messbar, skalierbar, DACH-weit.',
+    keywords: 'Live Video Promotion, Video Kaufberatung Deutschland, Live Shopping DACH, Phygital Retail, Video Commerce, Live Video Studio, 1:1 Videoberatung Retail, Shoppable Video, Live Stream Shopping, Virtual Sales Promoter, Video Sales Activation, Online POS Beratung',
     canonical: 'https://sonic-group.de/leistungen/live-video',
-    ogTitle: 'Live Video Promotion — Sonic Group',
-    ogDescription: '1:1 Video-Beratung & Live Shopping für den DACH-Markt. Conversion +34%, Retouren -28%.',
-  });
+    ogTitle: 'Live Video Promotion — Phygital Retail | Sonic Group',
+    ogDescription: 'Professionelle 1:1 Video-Beratung und Live Shopping aus eigenen Studios — die Brücke zwischen Online und stationärem Handel.',
+    jsonLd: [
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
+        { '@type': 'ListItem', position: 2, name: 'Leistungen', item: 'https://sonic-group.de/leistungen' },
+        { '@type': 'ListItem', position: 3, name: 'Live Video Promotion', item: 'https://sonic-group.de/leistungen/live-video' },
+      ]},
+      { '@context': 'https://schema.org', '@type': 'Service',
+        name: 'Live Video Promotion', provider: { '@type': 'Organization', name: 'Sonic Sales Support GmbH' },
+        serviceType: 'Live Video Commerce / Phygital Retail Activation',
+        areaServed: ['DE','AT','CH'],
+        description: '1:1 Video-Kaufberatung und Live Shopping Events aus professionellen Studios für Marken im DACH-Handel.',
+      },
+    ],
+  })
 
   const heroRef = useRef<HTMLDivElement>(null);
 
