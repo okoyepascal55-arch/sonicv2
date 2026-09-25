@@ -672,7 +672,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'jobs_hero', label: 'Jobs — Header Section',
-    pageGroupId: 'jobs', pagePath: '/jobs',
+    pageGroupId: 'careers', pagePath: '/jobs',
     description: 'The jobs listing page.',
     entries: [
       { id: 'jobs-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Jobs' },
@@ -682,7 +682,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'industries_hero', label: 'Industries Hero',
-    pageGroupId: 'industries', pagePath: '/industries',
+    pageGroupId: 'srt', pagePath: '/industries',
     description: 'The industries page hero.',
     entries: [
       { id: 'industries-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Branchen' },
@@ -692,7 +692,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'team_hero', label: 'Team Hero — Header Section',
-    pageGroupId: 'team', pagePath: '/team',
+    pageGroupId: 'leistungen', pagePath: '/team',
     description: 'The team page hero.',
     entries: [
       { id: 'team-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Team' },
@@ -984,7 +984,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   /* ════════════════════════════════════════════ TEAM — Additional Sections ════════════════════ */
   {
     key: 'team_stats', label: 'TeamStats — Numbers Section',
-    pageGroupId: 'team', pagePath: '/team',
+    pageGroupId: 'leistungen', pagePath: '/team',
     description: 'The team statistics section with key numbers.',
     entries: [
       { id: 'team-stats-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Our Numbers' },
@@ -994,7 +994,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'team_corevalues', label: 'CoreValues — Four Values',
-    pageGroupId: 'team', pagePath: '/team',
+    pageGroupId: 'leistungen', pagePath: '/team',
     description: 'The four core values: Mensch, Motivation, Daten, Werkzeug.',
     entries: [
       { id: 'team-values-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Our Values' },
@@ -1004,7 +1004,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'team_meet_the_team', label: 'MeetTheTeam — Team Profiles',
-    pageGroupId: 'team', pagePath: '/team',
+    pageGroupId: 'leistungen', pagePath: '/team',
     description: 'The meet the team section with 6 profiles.',
     entries: [
       { id: 'team-mtt-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Our People' },
@@ -1014,7 +1014,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'team_training', label: 'TrainingDevelopment — Growth Section',
-    pageGroupId: 'team', pagePath: '/team',
+    pageGroupId: 'leistungen', pagePath: '/team',
     description: 'The training and development section.',
     entries: [
       { id: 'team-training-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Growth & Development' },
@@ -1024,7 +1024,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'team_recruitment', label: 'RecruitmentPhilosophy — Hiring Section',
-    pageGroupId: 'team', pagePath: '/team',
+    pageGroupId: 'leistungen', pagePath: '/team',
     description: 'The recruitment philosophy: Einstellung über alles.',
     entries: [
       { id: 'team-recruit-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'EINSTELLUNG ÜBER ALLES' },
@@ -1036,7 +1036,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'team_clienttrust', label: 'ClientTrust — Brand Trust Section',
-    pageGroupId: 'team', pagePath: '/team',
+    pageGroupId: 'leistungen', pagePath: '/team',
     description: 'The client trust section with brand logos.',
     entries: [
       { id: 'team-trust-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'VERTRAUEN VON WELTMARKEN' },
@@ -1045,7 +1045,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'team_cta', label: 'TeamCTA — Join the Team',
-    pageGroupId: 'team', pagePath: '/team',
+    pageGroupId: 'leistungen', pagePath: '/team',
     description: 'The team CTA: Bereit anzupacken?',
     entries: [
       { id: 'team-cta-badge', label: 'CTA Badge', description: 'Section badge', type: 'badge', value: 'Werde Teil des Teams' },
@@ -1059,7 +1059,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   /* ════════════════════════════════════════════ INDUSTRIES — Additional Sections ════════════════════ */
   {
     key: 'industries_grid', label: 'IndustryGrid — 6 Industry Cards',
-    pageGroupId: 'industries', pagePath: '/industries',
+    pageGroupId: 'srt', pagePath: '/industries',
     description: 'The industry grid section with 6 industry cards.',
     entries: [
       { id: 'industries-grid-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Unsere Sektoren' },
@@ -1069,7 +1069,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'industries_expertise', label: 'IndustryExpertise — What Sets Us Apart',
-    pageGroupId: 'industries', pagePath: '/industries',
+    pageGroupId: 'srt', pagePath: '/industries',
     description: 'The expertise grid with 6 differentiators.',
     entries: [
       { id: 'industries-expertise-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Unsere Kompetenz' },
@@ -1079,7 +1079,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'industries_cta', label: 'IndustryCTA — Contact Section',
-    pageGroupId: 'industries', pagePath: '/industries',
+    pageGroupId: 'srt', pagePath: '/industries',
     description: 'The industries CTA: Lass uns deine Branche besprechen.',
     entries: [
       { id: 'industries-cta-badge', label: 'CTA Badge', description: 'Badge', type: 'badge', value: 'Kein Commitment. Nur ein Gespräch.' },
@@ -1092,7 +1092,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   /* ════════════════════════════════════════════ JOBS — Additional Section ════════════════════ */
   {
     key: 'jobs_cta', label: 'Jobs CTA — Initiativbewerbung Strip',
-    pageGroupId: 'jobs', pagePath: '/jobs',
+    pageGroupId: 'careers', pagePath: '/jobs',
     description: 'The bottom CTA strip for the jobs page.',
     entries: [
       { id: 'jobs-cta-badge', label: 'CTA Badge', description: 'Badge', type: 'badge', value: 'Keine passende Stelle dabei?' },
@@ -1359,6 +1359,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   // ── Case study headline metrics — editable from Dashboard → Text ──
   {
     key: 'case_garmin',
+    pageGroupId: 'case_studies',
     label: 'Fallbeispiel Garmin — Kennzahlen',
     entries: [
       { id: 'case-garmin-metric',       label: 'Headline-Kennzahl',     value: '+116%',                           type: 'text' as const },
@@ -1367,6 +1368,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'case_seb',
+    pageGroupId: 'case_studies',
     label: 'Fallbeispiel Groupe SEB — Kennzahlen',
     entries: [
       { id: 'case-seb-metric',          label: 'Headline-Kennzahl',     value: '+130%',                           type: 'text' as const },
@@ -1375,6 +1377,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'case_avoury',
+    pageGroupId: 'case_studies',
     label: 'Fallbeispiel Avoury — Kennzahlen',
     entries: [
       { id: 'case-avoury-metric',       label: 'Headline-Kennzahl',     value: '+1.187%',                              type: 'text' as const },
@@ -1383,6 +1386,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'case_tvsound',
+    pageGroupId: 'case_studies',
     label: 'Fallbeispiel TV & Sound — Kennzahlen',
     entries: [
       { id: 'case-tvsound-metric',       label: 'Headline-Kennzahl',        value: '1,72 Mrd. €',                          type: 'text' as const },
@@ -1394,6 +1398,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'karriere_dna',
+    pageGroupId: 'careers',
     label: 'Karriere DNA — Kartentexte',
     entries: [
       { id: 'dna-mensch-desc',   label: 'Der Mensch — Beschreibung',   value: 'Menschen, die Marken prägen. Ob legendäre Motorräder oder eine frische Teemarke – Promotions leben von den Menschen, die sie durchführen. Deshalb setzen wir auf Fachberater, die für die Marke brennen. Das Ergebnis? Transparent und messbar – jederzeit schwarz auf weiß nachvollziehbar.',      type: 'text' as const },
@@ -1435,6 +1440,7 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'leistungen_forecasting', entryId: 'forecasting-hero-description', from: 'Scorpin', to: 'Auf Basis von historischen Sell-out-Daten, Standort-Performance und Marktintelligenz prognostizieren wir deine Ergebnisse — datenbasiert, nachvollziehbar, belastbar.', matchType: 'contains' as const },,
   {
     key: 'srt_developer',
+    pageGroupId: 'srt',
     label: 'SRT — Ein Wort vom Entwickler (Jörg)',
     entries: [
       { id: 'srt-joerg-badge',  label: 'Sektion Badge',            value: 'Ein Wort vom Entwickler',                                                                                                                                                                    type: 'text' as const },
