@@ -66,7 +66,7 @@ export default function KreationContentPage() {
     keywords: 'Content Produktion DACH, Inhouse Studio Krefeld, POS Design Deutschland, Social Content Agentur, CI Konzeption, Layout Markendesign, Kreativagentur DACH, Brand Design Retail, POS Display Design, Campaign Konzeption, Marketing Material Produktion, Visual Identity DACH',
     canonical: 'https://sonic-group.de/leistungen/kreation-content',
     ogTitle: 'Kreation & Content — Inhouse Kreativagentur | Sonic Group DACH',
-    ogDescription: 'CI, Layout, POS-Design und Content aus einer Hand — Sonic Group's Inhouse-Kreation für konsistentes Markenmarketing im DACH-Handel.',
+    ogDescription: 'CI, Layout, POS-Design und Content aus einer Hand — Inhouse-Kreation von Sonic Group für konsistentes Markenmarketing im DACH-Handel.',
     jsonLd: [
       { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
