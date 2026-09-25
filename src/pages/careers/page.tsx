@@ -42,53 +42,22 @@ function MobileStickyCta() {
 export default function CareersGatewayPage() {
   useSEO({
     title: 'Karriere | Sonic Group — Jobs in Sales, Events & Field Promotion | DACH',
-    description: 'Jobs bei Sonic Group: Sales & Marketing am Campus Krefeld oder Field Promotion DACH-weit. Brand Ambassadors, Promoter, Event Manager, Sales Manager — Jetzt bewerben.',
-    keywords: 'Karriere Sonic Group, Jobs Sales Marketing Deutschland, Field Promoter Jobs DACH, Brand Ambassador Stelle, Promoter Stellenangebote, Event Manager Jobs, Stellenangebote Krefeld, retail jobs Europe, marketing jobs Germany, promotional staff agency DACH, Promotionjob, Eventjob Deutschland, Außendienst Jobs NRW',
+    description: 'Karriere bei Sonic Group: Sales- und Marketing-Jobs am Campus Krefeld oder als Promoter im Field Force Netzwerk DACH-weit. Festanstellung, echte Entwicklungsperspektiven und wettbewerbsfähige Vergütung für Promoter, Brand Manager und Sales Experten.',
+    keywords: 'Karriere Sonic Group, Jobs Sales Marketing Deutschland, Field Promoter Jobs DACH, Brand Ambassador Stelle, Promoter Festanstellung, Campus Krefeld Jobs, Marketing Agentur Karriere, Sales Jobs Krefeld, Eventmanager Stelle, Retail Experte Jobs, Außendienst Job, Nachwuchs Talente Handel',
     canonical: 'https://sonic-group.de/karriere',
-    ogTitle: 'Karriere bei Sonic Group — Dein Job in Sales & Brand Activation',
-    ogDescription: 'Intern am Campus Krefeld oder flexibel im DACH-Einsatz: Wir suchen Menschen mit Energie für Sales, Events & Brand Activation.',
+    ogTitle: 'Karriere bei Sonic Group — Jobs in Sales, Brand Activation & Field Force',
+    ogDescription: 'Festanstellung als Promoter oder Campus-Job in Krefeld — echte Entwicklungsperspektiven im DACH-Retail.',
     jsonLd: [
-      {
-        '@context': 'https://schema.org',
-        '@type': 'WebPage',
-        '@id': 'https://sonic-group.de/karriere',
-        'name': 'Karriere bei Sonic Group',
-        'description': 'Jobs und Karrieremöglichkeiten bei Sonic Group in Sales, Marketing, Events und Field Promotion',
-        'url': 'https://sonic-group.de/karriere',
-        'isPartOf': { '@id': 'https://sonic-group.de/#website' },
-        'breadcrumb': {
-          '@type': 'BreadcrumbList',
-          'itemListElement': [
-            { '@type': 'ListItem', 'position': 1, 'name': 'Sonic Group', 'item': 'https://sonic-group.de' },
-            { '@type': 'ListItem', 'position': 2, 'name': 'Karriere', 'item': 'https://sonic-group.de/karriere' },
-          ],
-        },
-      },
-      {
-        '@context': 'https://schema.org',
-        '@type': 'JobPosting',
-        'title': 'Field Promoter / Brand Ambassador DACH',
-        'description': 'Flexible Einsätze für Top-Marken im DACH-Raum: Promotion, Verkauf, Beratung am POS. Für Einsteiger und Erfahrene.',
-        'datePosted': '2026-09-01',
-        'validThrough': '2026-12-31',
-        'employmentType': 'PART_TIME',
-        'hiringOrganization': { '@type': 'Organization', 'name': 'Sonic Group', 'sameAs': 'https://sonic-group.de' },
-        'jobLocation': { '@type': 'Place', 'address': { '@type': 'PostalAddress', 'addressCountry': 'DE' } },
-        'baseSalary': { '@type': 'MonetaryAmount', 'currency': 'EUR', 'value': { '@type': 'QuantitativeValue', 'unitText': 'HOUR' } },
-      },
-      {
-        '@context': 'https://schema.org',
-        '@type': 'JobPosting',
-        'title': 'Sales Manager / Inhouse-Karriere Krefeld',
-        'description': 'Interne Sales- und Projektmanagement-Position am Campus Krefeld. Aufstiegsmöglichkeiten, Hybridarbeit, Top-Unternehmenskultur.',
-        'datePosted': '2026-09-01',
-        'validThrough': '2026-12-31',
-        'employmentType': 'FULL_TIME',
-        'hiringOrganization': { '@type': 'Organization', 'name': 'Sonic Group', 'sameAs': 'https://sonic-group.de' },
-        'jobLocation': { '@type': 'Place', 'address': { '@type': 'PostalAddress', 'streetAddress': 'Campus Fichtenhain 46', 'addressLocality': 'Krefeld', 'postalCode': '47807', 'addressCountry': 'DE' } },
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
+        { '@type': 'ListItem', position: 2, name: 'Karriere', item: 'https://sonic-group.de/karriere' },
+      ]},
+      { '@context': 'https://schema.org', '@type': 'EmployerAggregateRating',
+        itemReviewed: { '@type': 'Organization', name: 'Sonic Sales Support GmbH' },
+        ratingValue: '4.5', bestRating: '5', ratingCount: '150',
       },
     ],
-  });
+  })
 
   const heroRef = useRef<HTMLDivElement>(null);
 
