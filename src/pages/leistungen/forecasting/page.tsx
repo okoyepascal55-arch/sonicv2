@@ -17,13 +17,20 @@ const NAV_ITEMS = [
 
 export default function ForecastingPage() {
   useSEO({
-    title: 'Forecasting | Sonic Group — Datenbasierte Sell-out-Prognosen DACH',
-    description: 'Forecasting von Sonic Group: Datenbasierte Sell-out-Prognosen, Standortanalysen und ROI-Planung für Retail-Projekte im DACH-Raum. Planungssicherheit vor dem ersten Einsatz.',
-    keywords: 'Retail Forecasting DACH, Sell-out Prognose, Standortanalyse Retail, ROI Planung POS',
+    title: 'Forecasting | Sonic Group — Datenbasierte Sell-out-Prognosen für Retail DACH',
+    description: 'Retail Forecasting von Sonic Group: Datenbasierte Sell-out-Prognosen, Standortanalysen und ROI-Planung für Field Force Einsätze in Deutschland. Optimiere Promoter-Budgets mit präzisen Vorhersagen auf Basis von Millionen Einsatzdaten.',
+    keywords: 'Retail Forecasting DACH, Sell-out Prognose, Standortanalyse Retail, ROI Planung POS, Promoter Budget Optimierung, Absatzprognose Deutschland, Datenbasiertes Marketing, Predictive Analytics Retail, Retail Intelligence, Sell-Through Forecast',
     canonical: 'https://sonic-group.de/leistungen/forecasting',
-    ogTitle: 'Forecasting — Sonic Group DACH',
-    ogDescription: 'Datenbasierte Sell-out-Prognosen & ROI-Planung für Retail im DACH-Raum.',
-  });
+    ogTitle: 'Forecasting — Datenbasierte Retail-Prognosen | Sonic Group',
+    ogDescription: 'Präzise Sell-out-Prognosen und ROI-Planung für Field Force Einsätze — datenbasiert, standortgenau, DACH-weit.',
+    jsonLd: [
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
+        { '@type': 'ListItem', position: 2, name: 'Leistungen', item: 'https://sonic-group.de/leistungen' },
+        { '@type': 'ListItem', position: 3, name: 'Forecasting', item: 'https://sonic-group.de/leistungen/forecasting' },
+      ]},
+    ],
+  })
 
   const heroRef = useRef<HTMLDivElement>(null);
 
