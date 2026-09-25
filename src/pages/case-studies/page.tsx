@@ -461,13 +461,23 @@ function GalleryThumb({
 
 export default function CaseStudiesPage() {
   useSEO({
-    title: 'Fallbeispiele | Sonic Group — Garmin, Groupe SEB, Avoury, TV & Sound',
-    description: 'Bewiesene Ergebnisse: Sonic Group Fallbeispiele — Garmin +116%, Groupe SEB +130%, Avoury +1.187%, TV & Sound 1,72 Mrd. €. 187% Umsatzwachstum im DACH-Raum.',
-    keywords: 'Sonic Group Fallbeispiele, Garmin Retail Activation, TV & Sound, Groupe SEB, Avoury, DACH Retail Ergebnisse',
+    title: 'Fallbeispiele | Sonic Group — Garmin +116%, Groupe SEB +130%, Avoury, TV & Sound',
+    description: 'Bewiesene Ergebnisse: Sonic Group Fallbeispiele — Garmin +116% Umsatzwachstum, Groupe SEB +130% Umsatz je Einsatztag, Avoury +1.187% Abverkauf, TV & Sound 1,72 Mrd. € Umsatz. Wie Sonic Marken im deutschen Handel erfolgreich macht.',
+    keywords: 'Sonic Group Fallbeispiele, Garmin Retail Activation, Groupe SEB Promotion, Avoury Teemaschine POS, TV Sound Retail, Sales Promotion Erfolge, Retail Activation Ergebnisse, Brand Activation Referenzen, POS Promotion Case Study, Field Force Erfolge Deutschland, Consumer Electronics Retail DACH, Referenzen Sales Promotion',
     canonical: 'https://sonic-group.de/fallbeispiele',
-    ogTitle: 'Fallbeispiele — Sonic Group DACH',
-    ogDescription: 'Garmin +116%, Groupe SEB +130%, Avoury +1.187%, TV & Sound 1,72 Mrd. € — echte Markenerfolge mit Sonic Group.',
-  });
+    ogTitle: 'Fallbeispiele — Bewiesene Retail-Ergebnisse | Sonic Group',
+    ogDescription: 'Garmin +116%, Groupe SEB +130%, Avoury +1.187%, TV & Sound 1,72 Mrd. € — echte Ergebnisse aus dem deutschen Handel.',
+    jsonLd: [
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
+        { '@type': 'ListItem', position: 2, name: 'Fallbeispiele', item: 'https://sonic-group.de/fallbeispiele' },
+      ]},
+      { '@context': 'https://schema.org', '@type': 'CollectionPage',
+        name: 'Fallbeispiele — Sonic Group', url: 'https://sonic-group.de/fallbeispiele',
+        description: 'Nachgewiesene Retail-Aktivierungserfolge: Garmin, Groupe SEB, Avoury und TV & Sound.',
+      },
+    ],
+  })
 
   const navigate = useNavigate();
   const { images: woodTextures } = useMediaStore('losungen_wood_textures');
