@@ -20,12 +20,24 @@ const NAV_ITEMS = [
 export default function EventsMessenPage() {
   useSEO({
     title: 'Events & Messen | Sonic Group — Roadshows, Messestände & Brand Activation DACH',
-    description: 'Events, Messen und Roadshows von Sonic Group: Modulare Messestände, Brand Activation, Fahrzeug-Promotions und Live-Events im DACH-Raum. Full Service aus einer Hand.',
-    keywords: 'Events Messen DACH, Messestand Aufbau, Brand Activation Events, Roadshow Deutschland, Promotions Events',
+    description: 'Events, Messen und Roadshows von Sonic Group: Modulare Messestände, Brand Activation und Roadshow-Konzepte für internationale und lokale Marken in Deutschland, Österreich und der Schweiz. Konzeption, Aufbau, Betreuung — alles aus einer Hand.',
+    keywords: 'Events Messen DACH, Messestand Aufbau, Brand Activation Events, Roadshow Deutschland, Messestand Konzeption, Eventmarketing Agentur, Messe Promoter, Produktlaunch Event, Consumer Electronics Messe, IFA Berlin Agentur, Roadshow Österreich Schweiz, Live Event Marketing',
     canonical: 'https://sonic-group.de/leistungen/events-messen',
-    ogTitle: 'Events & Messen — Sonic Group DACH',
-    ogDescription: 'Modulare Messestände, Roadshows und Brand Activation Events im DACH-Raum. Full Service aus einer Hand.',
-  });
+    ogTitle: 'Events & Messen — Brand Activation | Sonic Group DACH',
+    ogDescription: 'Roadshows, Messestände und Brand Activation Events für Marken in DACH — Konzeption, Aufbau und Betreuung aus einer Hand.',
+    jsonLd: [
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
+        { '@type': 'ListItem', position: 2, name: 'Leistungen', item: 'https://sonic-group.de/leistungen' },
+        { '@type': 'ListItem', position: 3, name: 'Events & Messen', item: 'https://sonic-group.de/leistungen/events-messen' },
+      ]},
+      { '@context': 'https://schema.org', '@type': 'Service',
+        name: 'Events & Messen', provider: { '@type': 'Organization', name: 'Sonic Sales Support GmbH' },
+        serviceType: 'Event Marketing / Trade Show Activation',
+        areaServed: ['DE','AT','CH'],
+      },
+    ],
+  })
 
   const heroRef = useRef<HTMLDivElement>(null);
 
