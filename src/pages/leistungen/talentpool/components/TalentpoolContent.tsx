@@ -162,7 +162,7 @@ export default function TalentpoolContent() {
       <WoodenDivider />
 
       {/* ── Solution Section (light warm bg — directly after dark ChallengeSection) ── */}
-      <section id="loesung" className="sonic-section-lg bg-white px-4 md:px-6 relative overflow-hidden">
+      <section id="loesung" className="sonic-section-md bg-white px-4 md:px-6 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.018] pointer-events-none"
           style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }}
@@ -234,7 +234,7 @@ export default function TalentpoolContent() {
         </div>
       </section>
       {/* ── Talent Profiles (horizontal scroll, dark bg — intentional alternation) ── */}
-      <section id="talentprofile" className="sonic-section-lg bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
+      <section id="talentprofile" className="sonic-section-md bg-foreground-950 px-4 md:px-6 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-primary-500/4 blur-3xl pointer-events-none" />
         <div className="sonic-container relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
