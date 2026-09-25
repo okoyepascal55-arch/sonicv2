@@ -200,7 +200,7 @@ export default function VideoContent() {
       <WoodenDivider />
 
       {/* Solution */}
-      <section id="loesung" className="sonic-section-lg bg-white px-4 md:px-6 relative overflow-hidden">
+      <section id="loesung" className="sonic-section-md bg-white px-4 md:px-6 relative overflow-hidden">
         <div className="relative sonic-container">
           <div className="mb-14 text-center">
             <div className="flex items-center justify-center gap-3 mb-5">
@@ -217,7 +217,7 @@ export default function VideoContent() {
       {/* Advantages */}
       
       <WoodenDivider />
-<section id="vorteile" className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
+<section id="vorteile" className="sonic-section-md bg-foreground-950 px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">
             <div className="flex items-center justify-center gap-3 mb-5">
@@ -235,7 +235,7 @@ export default function VideoContent() {
       
       {/* Dark-bg WoodenDivider */}
       <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-<section id="kostenrechner" className="sonic-section-lg bg-white px-4 md:px-6">
+<section id="kostenrechner" className="sonic-section-md bg-white px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
             <div className="flex items-center justify-center gap-3 mb-5">
@@ -300,7 +300,7 @@ export default function VideoContent() {
       {/* Phygital */}
       
       <WoodenDivider />
-<section id="phygital" className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
+<section id="phygital" className="sonic-section-md bg-foreground-950 px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">
             <div className="flex items-center justify-center gap-3 mb-5">
@@ -352,7 +352,7 @@ export default function VideoContent() {
       
       {/* Dark-bg WoodenDivider */}
       <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-<section id="formate" className="sonic-section-lg bg-white px-4 md:px-6">
+<section id="formate" className="sonic-section-md bg-white px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">
             <div className="flex items-center justify-center gap-3 mb-5">
