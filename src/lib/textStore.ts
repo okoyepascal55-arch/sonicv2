@@ -1547,7 +1547,63 @@ const LEGACY_TEXT_FIXES = [
       { id: 'karriere-stimme-6-quote', label: 'Person 6 — Zitat',  value: '',  type: 'textarea' as const },
     ],
   },
-
+,
+  /* ═══════════════════════ FALLBEISPIELE — VOLLE TEXTKONTROLLE ═══════════ */
+  {
+    key: 'case_garmin_text',
+    label: 'Fallbeispiel Garmin — Texte',
+    pageGroupId: 'case_studies',
+    entries: [
+      { id: 'garmin-headline',  label: 'Headline',       value: 'Sieben Module. Ein Partner. Fünf Jahre Wachstum.',                                                                                                                                         type: 'text' as const },
+      { id: 'garmin-subline',   label: 'Subline',        value: 'Garmin #BEATYESTERDAY — Partner seit 2021.',                                                                                                                                               type: 'text' as const },
+      { id: 'garmin-overview',  label: 'Übersicht (Paragraph)', value: 'Vertrauen wächst, wenn Ergebnisse folgen. Mit Garmin starteten wir 2021 mit einem klaren Auftrag: Promotion in Deutschland. Jedes Jahr hat Garmin den Leistungsumfang ausgebaut — weil die Ergebnisse stimmten. Heute verantworten wir sieben Bereiche: Promotion DE, Promotion AT, Promotion Sport, POS One World, POS-Service, Lager und Möselbau & Logistik.',   type: 'textarea' as const },
+      { id: 'garmin-quote',     label: 'Zitat (Kunde)',  value: 'Gemeinsam mehr erreichen — das ist unser Motto mit Sonic. Know-how, Qualität und Innovation auf höchstem Niveau.',                                                        type: 'textarea' as const },
+      { id: 'garmin-author',    label: 'Zitat-Autor',    value: 'Projektteam Garmin Deutschland',                                                                                                                                                           type: 'text' as const },
+      { id: 'garmin-role',      label: 'Zitat-Rolle',    value: 'In Zusammenarbeit mit der Sonic Group',                                                                                                                                                    type: 'text' as const },
+    ],
+  },
+  {
+    key: 'case_seb_text',
+    label: 'Fallbeispiel Groupe SEB — Texte',
+    pageGroupId: 'case_studies',
+    entries: [
+      { id: 'seb-headline',     label: 'Headline',       value: 'Derselbe Markt. Mehr Ertrag pro Tag.',                                                                                                                                                    type: 'text' as const },
+      { id: 'seb-subline',      label: 'Subline',        value: 'Groupe SEB — Tefal, Rowenta, Krups, WMF. Partner seit 2019.',                                                                                                                        type: 'text' as const },
+      { id: 'seb-overview',     label: 'Übersicht (Paragraph)', value: 'Derselbe Markt. Dieselben Stores. Vier Marken. Und der Umsatz pro Einsatztag wächst von Jahr zu Jahr. Seit 2019 begleiten wir die Groupe SEB mit Tefal, Rowenta, Krups und WMF. Der Tagesumsatz hat sich von 947 € (2019) auf 2.178 € (2024) mehr als verdoppelt — nicht durch mehr Personal, sondern durch bessere Methode.', type: 'textarea' as const },
+      { id: 'seb-quote',        label: 'Zitat (Kunde)',  value: 'Sonic bringt unsere Marken durch gezielte Verkaufsunterstützung, fundiertes Fachwissen und aktiven POS-Support direkt zu den Menschen.',                                             type: 'textarea' as const },
+      { id: 'seb-author',       label: 'Zitat-Autor',    value: 'Projektleitung: Carina',                                                                                                                                                                   type: 'text' as const },
+      { id: 'seb-role',         label: 'Zitat-Rolle',    value: 'Sonic Group — Projektverantwortung Groupe SEB',                                                                                                                                       type: 'text' as const },
+    ],
+  },
+  {
+    key: 'case_avoury_text',
+    label: 'Fallbeispiel Avoury — Texte',
+    pageGroupId: 'case_studies',
+    entries: [
+      { id: 'avoury-headline',  label: 'Headline',       value: 'Wenn Cross-Selling zum System wird.',                                                                                                                                                      type: 'text' as const },
+      { id: 'avoury-subline',   label: 'Subline',        value: 'Avoury One by Melitta — Partner seit 2021.',                                                                                                                                          type: 'text' as const },
+      { id: 'avoury-overview',  label: 'Übersicht (Paragraph)', value: 'Nicht jede Wachstumskurve sieht gleich aus. Die von Avoury sieht aus wie ein Aufstieg — und dann wie eine senkrechte Wand. Seit 2021 unterstützen wir Melitta Single Portions am POS der Avoury One. Das zweite Jahr (+13 %) war solide. Das dritte Jahr war der Beweis: Wenn Gerätedemonstration, Personalauswahl und Cross-Selling zum System werden, verändert sich die Dynamik.', type: 'textarea' as const },
+      { id: 'avoury-quote',     label: 'Zitat (Kunde)',  value: 'Dank datenbasierter Optimierungen und dem Sonic SRT konnten wir Geräteabsatz und Gesamtumsatz massiv steigern.',                                                                    type: 'textarea' as const },
+      { id: 'avoury-author',    label: 'Zitat-Autor',    value: 'Projektteam Avoury by Melitta',                                                                                                                                                            type: 'text' as const },
+      { id: 'avoury-role',      label: 'Zitat-Rolle',    value: 'In Zusammenarbeit mit der Sonic Group',                                                                                                                                                    type: 'text' as const },
+    ],
+  },
+  {
+    key: 'case_tvsound_text',
+    label: 'Fallbeispiel TV & Sound — Texte',
+    pageGroupId: 'case_studies',
+    entries: [
+      { id: 'tvsound-headline', label: 'Headline',       value: 'Vom Launch zur Marktführerschaft.',                                                                                                                                                   type: 'text' as const },
+      { id: 'tvsound-subline',  label: 'Subline',        value: 'Drei Mandate · Drei Unternehmen · Ein roter Faden — seit 2009.',                                                                                                           type: 'text' as const },
+      { id: 'tvsound-overview', label: 'Übersicht (Paragraph)', value: 'Drei Unternehmen. Drei völlig unterschiedliche Ausgangssituationen. Eines gemeinsam: Sie haben uns ihren wichtigsten Vertriebskanal anvertraut — den deutschen Handel. Für einen globalen Konzern wurden wir über zehn Jahre zum unverzichtbaren POS-Partner. Für einen europäischen Hersteller haben wir Deutschland zu seinem erfolgreichsten Markt gemacht.', type: 'textarea' as const },
+      { id: 'tvsound-quote',    label: 'Zitat (intern)', value: 'Im TV-Segment sind wir seit 2009. Was wir dabei gelernt haben: Der Markt belohnt nicht den Lautesten — er belohnt den Zuverlässigsten.',                                        type: 'textarea' as const },
+      { id: 'tvsound-author',   label: 'Zitat-Autor',    value: 'Sonic Group',                                                                                                                                                                              type: 'text' as const },
+      { id: 'tvsound-role',     label: 'Zitat-Rolle',    value: 'TV & Sound — Projektüberblick DACH',                                                                                                                                             type: 'text' as const },
+      { id: 'tvsound-m1-label', label: 'Mandat 1 Label', value: 'Gründungskunde — 10 Jahre, ein Markt, ein Partner.',                                                                                                                             type: 'text' as const },
+      { id: 'tvsound-m2-label', label: 'Mandat 2 Label', value: 'Deutschland war nicht Plan A — bis wir kamen.',                                                                                                                                      type: 'text' as const },
+      { id: 'tvsound-m3-label', label: 'Mandat 3 Label', value: 'Von null auf Vollbetrieb in sechs Wochen.',                                                                                                                                                type: 'text' as const },
+    ],
+  }
 ];
 
 function loadFromStorage(): TextSection[] {
