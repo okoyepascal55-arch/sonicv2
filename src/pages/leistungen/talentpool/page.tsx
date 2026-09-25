@@ -19,13 +19,20 @@ const NAV_ITEMS = [
 
 export default function TalentpoolPage() {
   useSEO({
-    title: 'Talentpool | Sonic Group — 2.000+ Promoter & Brand Ambassadors DACH',
-    description: 'Der Sonic Talentpool: 2.000+ festangestellte Promoter, Brand Ambassadors und Retail-Experten für den DACH-Markt. Schnell verfügbar, intensiv geschult, messbar erfolgreich.',
-    keywords: 'Talentpool Promoter DACH, Brand Ambassador Deutschland, Retail Experten, Promoter Pool',
+    title: 'Talentpool | Sonic Group — 2.000+ Retail Promoter & Brand Ambassadors direkt buchen',
+    description: 'Sonic Talentpool: Zugang zu über 2.000 festangestellten, qualifizierten Promotern, Brand Ambassadors und Retail-Experten in ganz DACH. Sofort einsatzbereit, branchenerfahren, datengesteuert ausgewählt — für POS, Events und Field Force.',
+    keywords: 'Talentpool Promoter DACH, Brand Ambassador buchen, Retail Experten vermitteln, Promoter Pool Deutschland, Fachberater Retail, Außendienst Experten, Sales Promoter Pool, Promoter Recruiting DACH, Markenberater Handel, Consumer Electronics Promoter, Haushaltsgeräte Promoter',
     canonical: 'https://sonic-group.de/leistungen/talentpool',
-    ogTitle: 'Talentpool — Sonic Group DACH',
-    ogDescription: '2.000+ festangestellte Promoter & Brand Ambassadors für den DACH-Markt.',
-  });
+    ogTitle: 'Talentpool — 2.000+ Retail Promoter | Sonic Group DACH',
+    ogDescription: 'Direkter Zugang zu über 2.000 qualifizierten Promotern und Brand Ambassadors — sofort einsetzbar für POS, Events und Field Force.',
+    jsonLd: [
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
+        { '@type': 'ListItem', position: 2, name: 'Leistungen', item: 'https://sonic-group.de/leistungen' },
+        { '@type': 'ListItem', position: 3, name: 'Talentpool', item: 'https://sonic-group.de/leistungen/talentpool' },
+      ]},
+    ],
+  })
 
   const heroRef = useRef<HTMLDivElement>(null);
 
