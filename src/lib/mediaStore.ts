@@ -236,9 +236,6 @@ export const PAGE_GROUPS: PageGroup[] = [
     icon: 'ri-building-2-line',
     sections: [
       // ── Used by live industries page components ──
-      'industries_hero_bg',
-      'industries_grid_images',
-      'industries_expertise_wood_icons',
       // industries_grid_wood_icons removed (not used in any component)
     ],
   },
@@ -1570,7 +1567,6 @@ const HUMAN_LABELS: Record<string, string> = {
   'home_dan_section_wood_bg': 'DanSection — Wood Background',
   'home_consultation_wood_icon': 'ConsultationButton — Wood Icon',
   'home_attitude_bg': 'Attitude — Welcome BG Image',
-  'industries_expertise_wood_icons': 'Expertise — Wood Icons',
   'industries_grid_wood_icons': 'Grid — Wood Icons',
   'about_values_visual_wood_icons': 'ValuesVisual — Impact Wood Icons',
   'about_origin_story_wood_bg': 'OriginStory — Wood Ticker BG',: 'MeetTheTeam — Highlight Wood Icons',: 'Training — Image',
@@ -1582,8 +1578,6 @@ const HUMAN_LABELS: Record<string, string> = {
   'about_sonicreels_hero_accent': 'SonicReels — Hero & Accent Images',
   'common_clientproof_logos': 'ClientProof — Brand Logos',
   'common_logos': 'Site Logos (Nav & Footer)',
-  'industries_hero_bg': 'Hero — Background',
-  'industries_grid_images': 'Industry Grid — Images',
   'services_content_studio_images': 'Content Studio',
   'services_events_images': 'Events',
   'services_market_entry_images': 'Market Entry',
@@ -1748,8 +1742,6 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   /* ── TEAM: Fixed Design Slots ── */: 4,        // 1 bg + 3 headshot photos: 4,  // Mensch, Motivation, Daten, Werkzeug
 
   /* ── INDUSTRIES: Fixed Design Slots ── */
-  'industries_hero_bg': 1,       // 1 hero background
-  'industries_grid_images': 6,   // 6 industry grid cards
 
   /* ── SERVICES: All sub-service pages — same structure → same cap (5) ── */
   'services_content_studio_images': 5,
@@ -1782,7 +1774,6 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'home_dan_section_wood_bg': 1,
   'home_consultation_wood_icon': 1,
   'home_attitude_bg': 1,
-  'industries_expertise_wood_icons': 6,
   'industries_grid_wood_icons': 6,
   'about_values_visual_wood_icons': 4,
   'about_origin_story_wood_bg': 1,
@@ -1898,9 +1889,6 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   /* ═══ TEAM ═══ */:          { aspectRatio: '16:9', dimensions: '1920×1080 (bg) / 96×96 (headshots)', orientation: 'landscape', tip: 'Hero bg + small square headshot photos' },:    { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'Core values — Mensch, Motivation, Daten, Werkzeug' },: { aspectRatio: '1:1', dimensions: '48×48', orientation: 'icon', tip: 'Tiny chestnut wood icons for team highlights' },:       { aspectRatio: '4:5', dimensions: '800×1000', orientation: 'portrait', tip: 'Tall portrait — training session' },
 
   /* ═══ INDUSTRIES ═══ */
-  'industries_hero_bg':            { aspectRatio: '16:9', dimensions: '1920×1080', orientation: 'landscape', tip: 'Hero — dark retail scene, electronics store' },
-  'industries_grid_images':        { aspectRatio: '4:3', dimensions: '800×600', orientation: 'landscape', tip: 'Industry grid cards — clean product displays' },
-  'industries_expertise_wood_icons':{ aspectRatio: '1:1', dimensions: '100×100', orientation: 'icon', tip: 'Square walnut wood icons for expertise cards' },
   'industries_grid_wood_icons':    { aspectRatio: '1:1', dimensions: '64×64', orientation: 'icon', tip: 'Small chestnut wood icons for industry grid' },
 
   /* ═══ SRT ═══ */
