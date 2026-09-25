@@ -117,7 +117,10 @@ export default function VideoContent() {
   const tSolutionSub = useText('leistungen_video_content', 'video-solution-sub', 'Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit.');
   const tAdvantagesHeading = useText('leistungen_video_content', 'video-advantages-heading', 'Darum (Live) Video Promotion');
   const tPhygitalHeading = useText('leistungen_video_content', 'video-phygital-heading', 'Phygital optimal nutzen');
-  const tYoutubeUrl     = useText('leistungen_video', 'video-youtube-url',     '');
+  // YouTube URL from MEDIA dashboard (caption field of leistungen_video_youtube)
+  const { images: ytSection } = useMediaStore('leistungen_video_youtube');
+  const tYoutubeUrl = ytSection[0]?.caption || '';
+  // Text dashboard fallback (for title/subline)
   const tYoutubeTitle   = useText('leistungen_video', 'video-youtube-title',   'Sonic Live Video — Erlebe es in Aktion');
   const tYoutubeSubline = useText('leistungen_video', 'video-youtube-subline', 'Wie eine erfolgreiche Live-Video-Promotion aussieht — vom Studio bis zum Abverkauf.');
   const tFormatsHeading = useText('leistungen_video_content', 'video-formats-heading', '6 Formate. Ein Partner.');
