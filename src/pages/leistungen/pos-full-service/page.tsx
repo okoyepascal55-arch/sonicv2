@@ -18,13 +18,26 @@ const NAV_ITEMS = [
 
 export default function POSFullServicePage() {
   useSEO({
-    title: 'POS Full Service | Sonic Group — Point of Sale Promotion & Retail Activation DACH',
-    description: 'POS Full Service von Sonic Group: Geschulte Markenbotschafter, Shop-in-Shop-Konzepte und datenbasierte Retail Activation am Point of Sale im DACH-Raum.',
-    keywords: 'POS Full Service, Point of Sale Promotion, Retail Activation DACH, Shop in Shop, Markenbotschafter POS',
+    title: 'POS Full Service | Sonic Group — Point of Sale Promotion & Retail Activation Deutschland',
+    description: 'POS Full Service von Sonic Group: 2.000+ geschulte Markenbotschafter für Shop-in-Shop, Produktdemos und Live-Promotions im deutschen Handel. Messbare Umsatzsteigerung am Point of Sale — DACH-weit skalierbar.',
+    keywords: 'POS Full Service Deutschland, Point of Sale Promotion, Retail Activation DACH, Shop in Shop, Markenbotschafter, Produktdemonstration Retail, Promoter Agentur Deutschland, Verkaufsförderung POS, Brand Ambassador POS, Außendienst Promotion, Field Force POS, POS Marketing Agentur',
     canonical: 'https://sonic-group.de/leistungen/pos-full-service',
     ogTitle: 'POS Full Service — Sonic Group DACH',
-    ogDescription: 'Geschulte Markenbotschafter & datenbasierte POS-Activation im DACH-Raum.',
-  });
+    ogDescription: 'Geschulte Markenbotschafter, Shop-in-Shop-Konzepte und POS-Promotions für messbare Umsatzsteigerung im deutschen Handel.',
+    jsonLd: [
+      { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
+        { '@type': 'ListItem', position: 2, name: 'Leistungen', item: 'https://sonic-group.de/leistungen' },
+        { '@type': 'ListItem', position: 3, name: 'POS Full Service', item: 'https://sonic-group.de/leistungen/pos-full-service' },
+      ]},
+      { '@context': 'https://schema.org', '@type': 'Service',
+        name: 'POS Full Service', provider: { '@type': 'Organization', name: 'Sonic Sales Support GmbH' },
+        serviceType: 'Retail Activation / Point of Sale Promotion',
+        areaServed: ['DE','AT','CH'],
+        description: 'Vollständige POS-Aktivierung: Shop-in-Shop, Produktdemos, Promoter-Management und Reporting für Marken im DACH-Handel.',
+      },
+    ],
+  })
 
   const heroRef = useRef<HTMLDivElement>(null);
 
