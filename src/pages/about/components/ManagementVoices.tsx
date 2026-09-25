@@ -231,6 +231,42 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
   const tHeading = useText('about_management_voices', 'about-voices-heading', 'Die Stimmen hinter Sonic.');
   const tSub     = useText('about_management_voices', 'about-voices-sub',     'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.');
 
+  // Stimmen & Zitate — ManagementVoices textStore hooks
+  const tBjornEyebrow  = useText('management_voice_bjorn', 'bjorn-eyebrow',   'Vision. Strategie. Führung.');
+  const tBjornQuote    = useText('management_voice_bjorn', 'bjorn-pullquote',  '„Wer die Fakten kennt und das Team versteht, trifft keine schlechten Entscheidungen — nur mutige.“');
+  const tBjornDoing1   = useText('management_voice_bjorn', 'bjorn-doing-1',    'Daten liefern die Fakten, Menschen den Unterschied. Alle „Things“ die wir tun, basieren auf beidem.');
+  const tBjornDoing2   = useText('management_voice_bjorn', 'bjorn-doing-2',    'Nobody’s perfect und auch wir müssen unser „Doing“ täglich hinterfragen, optimieren und verbessern.');
+  const tBjornDoing3   = useText('management_voice_bjorn', 'bjorn-doing-3',    'Der „Strategic Plan“ wird nur dann funktionieren, wenn wir bereit sind, neue Wege zu gehen.');
+  const tJoEyebrow     = useText('management_voice_jo',    'jo-eyebrow',       'Wachstum. Markt. Dynamik.');
+  const tJoQuote       = useText('management_voice_jo',    'jo-pullquote',     '„Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten.“');
+  const tJoDoing1      = useText('management_voice_jo',    'jo-doing-1',       'Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten.');
+  const tJoDoing2      = useText('management_voice_jo',    'jo-doing-2',       'Neue Ideen allein schaffen keinen Mehrwert. Entscheidend ist, wie konsequent sie umgesetzt werden.');
+  const tJoDoing3      = useText('management_voice_jo',    'jo-doing-3',       'Automation durch Algorithmen, Analysen durch KI, Umsetzung über die SRT.');
+  const tLucasEyebrow  = useText('management_voice_lucas', 'lucas-eyebrow',    'Zahlen. Struktur. Weitblick.');
+  const tLucasQuote    = useText('management_voice_lucas', 'lucas-pullquote',  '„Finance ist heute die zentrale Steuerungsfunktion.“');
+  const tLucasBio      = useText('management_voice_lucas', 'lucas-bio',        'Lucas verantwortet seit 2019 die finanzielle Steuerung von Sonic.');
+  const tLucasDoing1   = useText('management_voice_lucas', 'lucas-doing-1',    'Alles beginnt mit klaren Rollen, klaren Abläufen, klaren Zahlen.');
+  const tLucasDoing2   = useText('management_voice_lucas', 'lucas-doing-2',    'Erst auf diesem stabilen Fundament kann Qualität entstehen.');
+  const tLucasDoing3   = useText('management_voice_lucas', 'lucas-doing-3',    'Innovation beginnt dort, wo Mut auf Verantwortung trifft.');
+
+  const resolvedExecs = [
+    { ...EXECUTIVES[0], eyebrow: tBjornEyebrow, pullQuote: tBjornQuote, doing: [
+        { ...EXECUTIVES[0].doing[0], text: tBjornDoing1 },
+        { ...EXECUTIVES[0].doing[1], text: tBjornDoing2 },
+        { ...EXECUTIVES[0].doing[2], text: tBjornDoing3 },
+    ]},
+    { ...EXECUTIVES[1], eyebrow: tJoEyebrow, pullQuote: tJoQuote, doing: [
+        { ...EXECUTIVES[1].doing[0], text: tJoDoing1 },
+        { ...EXECUTIVES[1].doing[1], text: tJoDoing2 },
+        { ...EXECUTIVES[1].doing[2], text: tJoDoing3 },
+    ]},
+    { ...EXECUTIVES[2], eyebrow: tLucasEyebrow, pullQuote: tLucasQuote, bio: tLucasBio, doing: [
+        { ...EXECUTIVES[2].doing[0], text: tLucasDoing1 },
+        { ...EXECUTIVES[2].doing[1], text: tLucasDoing2 },
+        { ...EXECUTIVES[2].doing[2], text: tLucasDoing3 },
+    ]},
+  ];
+
   const execs = resolvedExecs.map((exec, i) => {
     // Match by executive first name found in either URL or caption.
     // Checking both fields handles: static manifest images (name in URL path),
