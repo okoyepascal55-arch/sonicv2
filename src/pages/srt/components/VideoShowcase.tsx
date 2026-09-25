@@ -104,7 +104,7 @@ export default function VideoShowcase() {
               <span className="w-7 h-0.5 bg-primary-500" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
             </div>
-            <h2 className="sonic-h2 text-foreground-950 uppercase">{tHeading}</h2>
+            <h2 className="sonic-h2 text-foreground-950">{tHeading}</h2>
           </div>
           {/* Scenario tabs */}
           <div className="flex gap-[2px] flex-shrink-0">
