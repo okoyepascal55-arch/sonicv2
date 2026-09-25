@@ -193,7 +193,7 @@ export default function PricingAndAccess() {
         <div className="grid md:grid-cols-2 border-2 border-foreground-950/[0.08]">
           <div className="bg-foreground-950 p-8 md:p-11 flex flex-col justify-center">
             <div className="flex items-center gap-2.5 mb-4"><div className="w-1 h-[22px] bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.15em] text-primary-500">Zugang beantragen</span></div>
-            <h3 className="text-[28px] font-black leading-tight text-background-50 uppercase mb-4">Bereit für <span className="text-primary-500">volle</span> Transparenz?</h3>
+            <h3 className="text-[28px] font-black leading-tight text-background-50 mb-4">Bereit für <span className="text-primary-500">volle</span> Transparenz?</h3>
             <p className="text-[13px] leading-[1.7] text-background-50/50 max-w-xs mb-6">Kein Commitment. Nur ein Gespräch. Wir zeigen dir in 30 Minuten, wie das SRT für dein Projekt aussehen kann.</p>
             <div className="space-y-2.5">
               <span className="flex items-center gap-2.5 text-xs text-background-50/40"><i className="ri-time-line text-primary-500" />30 Minuten — kostenlos & unverbindlich</span>
