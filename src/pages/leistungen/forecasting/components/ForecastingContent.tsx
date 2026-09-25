@@ -98,7 +98,7 @@ export default function ForecastingContent() {
  <WoodenDivider />
 
  {/* ── Solution (horizontal scroll, light warm bg) ── */}
- <section id="loesung"className="sonic-section-lg bg-white px-4 md:px-6 relative overflow-hidden">
+ <section id="loesung" className="sonic-section-md bg-white px-4 md:px-6 relative overflow-hidden">
  <div className="absolute inset-0 opacity-[0.018] pointer-events-none"style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
  <div className="sonic-container relative">
  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
@@ -121,7 +121,7 @@ export default function ForecastingContent() {
  <WoodenDivider />
 
  {/* ── How it works — pictorial ── */}
- <section id="wie-es-funktioniert"className="sonic-section-lg bg-white px-4 md:px-6">
+ <section id="wie-es-funktioniert" className="sonic-section-md bg-white px-4 md:px-6">
  <div className="sonic-container">
  <div className="text-center mb-10 md:mb-14">
  <div className="flex items-center justify-center gap-3 mb-5">
