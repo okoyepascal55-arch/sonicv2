@@ -301,7 +301,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
                   <p className="text-white/60 text-xs font-medium">Sonic Lösung</p>
                 </div>
               </div>
-              <h2 className="leist-h2 text-white">
+              <h2 className="sonic-h2 text-white">
                 {s.title}
               </h2>
               <p className="text-base md:text-xl text-white/75 font-bold leading-relaxed mb-3 md:mb-6">{s.subtitle}</p>
@@ -328,7 +328,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
           <div className="mb-8 md:mb-12">
             <p className="text-xs md:text-sm font-black text-foreground-400 uppercase tracking-widest mb-2">Deine Herausforderung</p>
-            <h3 className="text-2xl md:text-4xl font-black text-foreground-950">
+            <h3 className="sonic-h3 text-foreground-950">
               {sKey === 'markteintritt' ? 'Drei typische Markteintritts-Hürden' :
                sKey === 'absatz' ? 'Der Retail-Alltag frisst Potenzial' :
                'Die Lücke, die kein Algorithmus schließt'}
@@ -368,7 +368,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
             <p className="text-xs md:text-sm font-black text-foreground-400 uppercase tracking-widest mb-2">
               {sKey === 'omnichannel' ? 'Unsere Antwort' : 'Unser Komplettpaket'}
             </p>
-            <h3 className="text-2xl md:text-4xl font-black text-foreground-950">
+            <h3 className="sonic-h3 text-foreground-950">
               {sKey === 'markteintritt' ? 'Wir machen deinen Markteintritt messbar erlebbar' :
                sKey === 'absatz' ? 'Sell-out-Steigerung als System' :
                'Video: drei Touchpoints, ein Studio'}
@@ -476,7 +476,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
           <div className="sonic-container">
             <div className="mb-8 md:mb-14">
               <p className="text-xs md:text-sm font-black text-foreground-400 uppercase tracking-widest mb-2">Der Weg zum Erfolg</p>
-              <h3 className="text-2xl md:text-4xl font-black text-foreground-950">
+              <h3 className="sonic-h3 text-foreground-950">
                 {sKey === 'markteintritt' ? 'So läuft dein Markteintritt mit Sonic' :
                  sKey === 'absatz' ? 'Das Sonic-System mit fünf Schritten' :
                  'So führen wir Video ein'}
@@ -615,7 +615,7 @@ function ContactForm() {
         <div className="w-16 h-16 flex items-center justify-center bg-primary-500/20 mx-auto mb-5">
           <i className="ri-check-double-line text-3xl text-primary-500"></i>
         </div>
-        <h3 className="text-2xl font-black text-foreground-950 mb-2 uppercase">Nachricht gesendet!</h3>
+        <h3 className="text-2xl font-black text-foreground-950 mb-2">Nachricht gesendet!</h3>
         <p className="text-foreground-500 text-sm leading-relaxed">
           Vielen Dank für deine Anfrage. Wir melden uns innerhalb von 24 Stunden bei dir.
         </p>
@@ -1157,7 +1157,7 @@ export default function LosungenPage() {
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Was immer gilt</span>
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             </div>
-            <h2 className="leist-h2 text-white mb-2">Ganz gleich, wo du stehst</h2>
+            <h2 className="sonic-h2 text-white mb-2">Ganz gleich, wo du stehst</h2>
             <p className="text-base md:text-xl text-white/50 font-semibold">Du bekommst immer</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
@@ -1490,7 +1490,7 @@ export default function LosungenPage() {
                     <div className="w-14 h-14 flex items-center justify-center bg-primary-500/20 border border-primary-500/40 mx-auto mb-4" style={{ borderRadius: 0 }}>
                       <i className="ri-check-double-line text-2xl text-primary-500"></i>
                     </div>
-                    <h3 className="text-xl md:text-2xl font-black text-white mb-2 uppercase">Vielen Dank!</h3>
+                    <h3 className="text-xl md:text-2xl font-black text-white mb-2">Vielen Dank!</h3>
                     <p className="text-white/50 mb-6 text-sm max-w-md mx-auto">Wir melden uns innerhalb von 24 Stunden bei dir mit einem maßgeschneiderten Ergebnis.</p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                       <a
@@ -1547,7 +1547,7 @@ export default function LosungenPage() {
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>FAQ</span>
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             </div>
-            <h2 className="leist-h2 text-foreground-950">Häufig gestellte <span className="v3-marker">Fragen</span></h2>
+            <h2 className="sonic-h2 text-foreground-950">Häufig gestellte <span className="v3-marker">Fragen</span></h2>
             <p className="text-foreground-500 text-base max-w-xl mx-auto leading-relaxed">Alles, was du über unsere Lösungen, unsere Arbeitsweise und den Start einer Zusammenarbeit wissen musst.</p>
           </div>
           <div className="space-y-4">
