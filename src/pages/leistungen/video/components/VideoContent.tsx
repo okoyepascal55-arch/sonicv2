@@ -117,6 +117,9 @@ export default function VideoContent() {
   const tSolutionSub = useText('leistungen_video_content', 'video-solution-sub', 'Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit.');
   const tAdvantagesHeading = useText('leistungen_video_content', 'video-advantages-heading', 'Darum (Live) Video Promotion');
   const tPhygitalHeading = useText('leistungen_video_content', 'video-phygital-heading', 'Phygital optimal nutzen');
+  const tYoutubeUrl     = useText('leistungen_video', 'video-youtube-url',     '');
+  const tYoutubeTitle   = useText('leistungen_video', 'video-youtube-title',   'Sonic Live Video — Erlebe es in Aktion');
+  const tYoutubeSubline = useText('leistungen_video', 'video-youtube-subline', 'Wie eine erfolgreiche Live-Video-Promotion aussieht — vom Studio bis zum Abverkauf.');
   const tFormatsHeading = useText('leistungen_video_content', 'video-formats-heading', '6 Formate. Ein Partner.');
   const { images: formatImages } = useMediaStore('leistungen_video_format_photos');
   const { images: solutionWoodIcons } = useMediaStore('leistungen_video_solution_wood_icons');
@@ -162,6 +165,32 @@ export default function VideoContent() {
 
   return (
     <>
+      {/* ── YouTube Video Showcase ── */}
+      {tYoutubeUrl && (
+        <section className="sonic-section-md bg-foreground-950 px-4 md:px-6">
+          <div className="sonic-container max-w-4xl">
+            <div className="text-center mb-8">
+              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Video</span>
+              <h2 className="sonic-h2 text-white mt-2 mb-3">{tYoutubeTitle}</h2>
+              <p className="text-foreground-400 text-sm md:text-base max-w-xl mx-auto">{tYoutubeSubline}</p>
+            </div>
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                src={`https://www.youtube.com/embed/${tYoutubeUrl.includes('youtu') ? tYoutubeUrl.split(/[/?=]/)[tYoutubeUrl.split(/[/?=]/).length - 1] : tYoutubeUrl}`}
+                className="absolute inset-0 w-full h-full"
+                style={{ border: 'none' }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={tYoutubeTitle}
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
+      <WoodenDivider />
+
       <ChallengeSection
         headline={tChallengeHeading}
         subline={tChallengeSub}
@@ -188,7 +217,6 @@ export default function VideoContent() {
       {/* Advantages */}
       
       <WoodenDivider />
-<WoodenDivider />
 <section id="vorteile" className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">
@@ -273,7 +301,6 @@ export default function VideoContent() {
       {/* Phygital */}
       
       <WoodenDivider />
-<WoodenDivider />
 <section id="phygital" className="sonic-section-lg bg-foreground-950 px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">
