@@ -280,6 +280,7 @@ export const PAGE_GROUPS: PageGroup[] = [
       'srt_section_images',
       'srt_problem_wood_icons',
       'srt_proof_wood_icons',
+      'srt_joerg_photo',
       'srt_pricing_images',
     ],
   },
@@ -1496,6 +1497,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'srt_feature_icons': 'SRT Features — Holz-Icons (6 Module)',
   'srt_functionality_images': 'SRT Funktionsumfang — Modul-Screenshots',
   'srt_problem_wood_icons': 'SRT Problem — Holz-Icons',
+  'srt_joerg_photo': 'SRT — Entwickler Jörg: Profilfoto',
   'srt_proof_wood_icons': 'SRT Statistiken — Holz-Icons',
   'srt_pricing_images': 'SRT Preise — Tier-Hintergrundbilder',
   'lvp_hero_images': 'Live Video — Hero Images',
@@ -1804,6 +1806,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'about_origin_story_wood_bg': 1,
   'srt_functionality_images': 6,  // 6 module screenshots
   'srt_problem_wood_icons': 3,
+  'srt_joerg_photo': 'SRT — Entwickler Jörg: Profilfoto',
   'srt_proof_wood_icons': 4,
   'srt_pricing_images': 3,
   'team_meet_team_wood_icons': 3,
@@ -1929,6 +1932,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'srt_feature_icons':         { aspectRatio: '1:1', dimensions: '120×120', orientation: 'icon', tip: 'Square walnut wood icons for feature cards' },
   'srt_section_images':        { aspectRatio: '3:2 or 2:3', dimensions: '1200×800 (dashboard) / 600×800 (mobile)', orientation: 'landscape', tip: 'Dashboard screenshot + mobile app — mixed ratios' },
   'srt_problem_wood_icons':    { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square walnut wood icons for problem cards' },
+  'srt_joerg_photo': 'SRT — Entwickler Jörg: Profilfoto',
   'srt_proof_wood_icons':      { aspectRatio: '1:1', dimensions: '80×80', orientation: 'icon', tip: 'Small walnut wood icons for proof stats' },
   'srt_pricing_images':        { aspectRatio: '2:1', dimensions: '800×400', orientation: 'landscape', tip: 'Wide pricing tier images — workspace/enterprise shots' },
 
