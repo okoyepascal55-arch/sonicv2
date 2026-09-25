@@ -10,6 +10,7 @@ import Zusammenarbeit from './components/Zusammenarbeit';
 import Proof from './components/Proof';
 import Industries from './components/Industries';
 import PricingAndAccess from './components/PricingAndAccess';
+import JoergQuote from './components/JoergQuote';
 import SRTWavyDivider from './components/SRTWavyDivider';
 import LeistungenPageNav from '../../components/feature/LeistungenPageNav';
 import './srt-final-fidelity.css';
@@ -59,6 +60,8 @@ export default function SRTPage() {
       <SRTWavyDivider />
       <Proof />
       <SRTWavyDivider darkBackground />
+      <JoergQuote />
+      <SRTWavyDivider />
       <PricingAndAccess />
     </div>
   );
