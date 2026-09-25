@@ -1679,4 +1679,928 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'leistungen_warehouse_fullservice_photo': 1,
   'leistungen_video_youtube': 'Live Video — YouTube Showcase URL (im Feld \"Beschriftung\" eintragen)',
   'leistungen_video_format_photos': 6,
+};
 
+/* ─────────────────────────────────────────────
+   DESIGN-RECOMMENDED COUNTS
+   Based on actual page layouts — how many image
+   slots each section's design was built for.
+   Sections not listed here use the curator's
+   count from DEFAULT_MEDIA as fallback.
+───────────────────────────────────────────── */
+const DESIGN_RECOMMENDED: Record<string, number> = {
+  /* ── HOME: Fixed Design Slots ── */
+  'home_hero_stats': 4,               // 4 stat icon positions in Hero
+  'home_hero_cta_icons': 2,           // 2 CTA button icons
+  'home_hero_wood_textures': 3,       // Left btn + Right btn + Vertical divider
+  'home_showcase_service_images': 5,  // Staff, POS, SRT, LVP, Events — 5 service tabs
+  'home_showcase_wood_icons': 5,      // Matching wood icons for 5 services
+  'home_truststrip_logos': 12,        // 2 rows × 6 brand logos
+  'home_brandintro_images': 3,        // 2022, 2023, 2024 year images
+  'home_dualcta_backgrounds': 2,      // Business + Talent dual CTA bg
+  'home_sonicdna_background': 1,      // 1 office background image
+  'home_officevisit_image': 1,        // 1 main image
+  'home_pos': 3,                      // 3 POS remote images
+
+  /* ── HOME: "Menschen für…" folder sections (same structure → same cap) ── */
+  '/images/home/1. Menschen für Events & Messen': 5,
+  '/images/home/2. Menschen für Content': 5,
+  '/images/home/3. Menschen für Schulungen': 5,
+  '/images/home/4. Menschen für unsere Studios': 5,
+
+  /* ── LÖSUNGEN: Icons ── */
+  '/images/losungen': 3,
+  /* ── LÖSUNGEN: Local sub-folders from manifest ── */
+  '/images/Lösungen/1. Header': 4,
+  '/images/Lösungen/2. Markteintritt/2. Verkäuferschulungen': 2,
+  '/images/Lösungen/2. Markteintritt/4. Videocontent & Live-Beratung': 2,
+  '/images/Lösungen/2. Markteintritt/8. So läuft dein Markteintritt mit Sonic/3. Team-Aufbau & Schulung': 1,
+  'losungen_hero_backgrounds': 4,     // 1 main hero + 3 expanded panel heroes
+  'losungen_deliverable_images': 23,  // 7 Markteintritt + 8 Absatz + 8 Omnichannel = 23 total
+  'losungen_step_images': 14,         // 5 Markteintritt + 5 Absatz + 4 Omnichannel steps
+  'losungen_testimonial_images': 3,   // Garmin, Samsung, Avoury testimonials
+  'losungen_wood_textures': 3,        // Main card + Expanded overlay + Survey card
+
+  // Case study brand folders are flexible galleries — curator's count from DEFAULT_MEDIA is the guide
+
+  /* ── ABOUT: Fixed Design Slots ── */
+  '/images/Über uns/Über uns/1. Header': 1,                          // 1 group photo
+  '/images/Über uns/Über uns/2. Marken im Herzen. Erfolg im Fokus': 1, // 1 Werkbank image
+  '/images/Über uns/Über uns/3. Das Sonic Team': 1,                   // 1 team photo
+  '/images/Über uns/Über uns/4. Die Stimmen hinter Sonic/Björn': 2,  // Color + B&W
+  '/images/Über uns/Über uns/4. Die Stimmen hinter Sonic/Jo': 2,     // Color + B&W
+  '/images/Über uns/Über uns/4. Die Stimmen hinter Sonic/Lucas': 2,  // Color + B&W
+  '/images/Über uns/Leadership Perspectives': 3,                     // 3 executives shown
+  '/images/Über uns/Sonic Reels/2007-2015': 5,   // Same structure as other reels eras
+  '/images/Über uns/Sonic Reels/2019-2022': 5,
+  '/images/Über uns/Sonic Reels/2022-2023': 5,
+  'about_sonicreels_hero_accent': 14,  // 2 per era × 7 eras
+
+  /* ── SRT: Fixed Design Slots ── */
+  'srt_hero_icons': 4,       // 4 stat icon positions
+  'srt_feature_icons': 6,    // 6 feature wood icons
+  'srt_section_images': 2,   // Dashboard + Mobile app screenshots
+
+  /* ── LVP: Fixed Design Slots ── */
+  'lvp_hero_images': 2,       // Hero bg + Presenter shot
+  'lvp_studio_images': 3,     // Studio overview + Editing + Photography
+  'lvp_creative_images': 3,   // 3 creative showcase thumbnails
+
+  /* ── CAREERS: Fixed Design Slots ── */
+  '/images/Karriere': 5,        // Gallery & hero images
+  'careers_hero_images': 1,   // 1 hero team photo
+  'careers_team_images': 3,   // Office + Team event + Modern office
+  'careers_path_images': 2,   // Sales Family + Staff Family polaroids
+  'careers_events_videos': 4, // Content Creation, Team Events, Promoter Events, Roadshows & Messen
+  'careers_events_images': 4, // Content Creation, Team Events, Promoter Events, Roadshows & Messen
+  'careers_dreamteam_images': 6,
+  'careers_geschichten_images': 3,
+  'careers_mitarbeiterstimmen_sales_images': 3,
+  'careers_mitarbeiterstimmen_staff_images': 3,
+  'careers_sonicfaces_images': 5,
+  'careers_sonicfamily_images': 6,
+  'careers_recruitercta_image': 1,
+  'careers_stellenangebote_image': 1,
+  'careers_sonic_sales_hero': 1,
+  'careers_sonic_staff_hero': 1,
+  'careers_howwehire_wood_icons': 7,
+  'careers_culture_wood_icons': 6,
+  'careers_hero_wood_icons': 3,
+  'careers_perks_wood_icons': 2,
+
+  /* ── LEISTUNGEN: All sub-service hero images — same structure → same cap (5) ── */
+  'leistungen_pos_images': 5,
+  'leistungen_video_images': 5,
+  'leistungen_events_images': 5,
+  'leistungen_staff_images': 5,
+  'leistungen_talentpool_images': 5,
+  'leistungen_warehouse_images': 5,
+  'leistungen_forecasting_images': 5,
+  'leistungen_kreation_images': 5,
+  'leistungen_hero_images': 1,
+  'leistungen_servicegrid_bg': 4,
+  'leistungen_events_process_images': 6,
+  'leistungen_events_showcase_images': 12,
+  'leistungen_forecasting_process_images': 4,
+  'leistungen_kreation_carousel_images': 9,
+  'leistungen_kreation_showcase_images': 15,
+  'leistungen_kreation_showcase_secondary_konzeption': 5,
+  'leistungen_kreation_showcase_secondary_content': 5,
+  'leistungen_kreation_showcase_secondary_cgi': 5,
+  'leistungen_kreation_before_after': 2,
+  'leistungen_pos_assets_images': 20,
+  'leistungen_pos_process_images': 6,
+  'leistungen_staff_socks_images': 5,
+  'leistungen_talentpool_profiles_images': 4,
+  'leistungen_warehouse_items_images': 6,
+  'leistungen_stats_wood_icons': 4,
+  'leistungen_schallmauer_wood_icons': 3,
+  'leistungen_events_solution_wood_icons': 6,
+  'leistungen_forecasting_solution_wood_icons': 6,
+  'leistungen_pos_solution_wood_icons': 4,
+  'leistungen_staff_solution_wood_icons': 4,
+  'leistungen_staff_specialization_wood_icons': 6,
+  'leistungen_video_solution_wood_icons': 3,
+  'leistungen_video_advantages_wood_icons': 6,
+  'leistungen_kreation_solution_wood_icons': 4,
+  'leistungen_kreation_discipline_wood_icons': 3,
+  'leistungen_kreation_photo_grid': 5,
+  'leistungen_warehouse_fullservice_photo': 1,
+  'leistungen_video_youtube': 'Live Video — YouTube Showcase URL (im Feld \"Beschriftung\" eintragen)',
+  'leistungen_video_format_photos': 6,
+
+
+
+  /* ── SERVICES: All sub-service pages — same structure → same cap (5) ── */
+  'services_content_studio_images': 5,
+  'services_events_images': 5,
+  'services_market_entry_images': 5,
+  'services_retail_pos_images': 5,
+  'services_staffing_images': 5,
+
+  /* ── SINGLE-IMAGE SECTIONS ── */
+  'blog_images': 1,
+  'ratgeber_hero': 1,
+  'kontakt_hero': 1,
+  'common_logos': 1,
+
+  /* ── COMMON: Fixed Design Slots ── */
+  'common_clientproof_logos': 6,  // 6 brand logos for ClientProof
+  'home_video': 2,               // Cover image + YouTube URL
+  'home_services_wood_icons': 5,
+  'home_sonicdna_wood_icons': 4,
+  'home_darumsonic_wood_icons': 2,
+  'home_clientsuccess_wood_icons': 6,
+  'home_clientsuccess_wood_bg': 1,
+  'home_philosophy_wood_dividers': 4,
+  'home_dual_audience_wood_icons': 2,
+  'home_dual_cta_wood_icons': 2,
+  'home_audience_selector_wood_icons': 4,
+  'home_challenge_wood_icons': 3,
+  'home_moderndna_wood_icons': 4,
+  'home_video_strip_wood_icons': 3,
+  'home_dan_section_wood_bg': 1,
+  'home_consultation_wood_icon': 1,
+  'home_attitude_bg': 1,
+  'about_values_visual_wood_icons': 4,
+  'about_origin_story_wood_bg': 1,
+  'srt_functionality_images': 6,  // 6 module screenshots
+  'srt_problem_wood_icons': 3,
+  'srt_joerg_photo': 'SRT — Entwickler Jörg: Profilfoto',
+  'srt_proof_wood_icons': 4,
+  'srt_pricing_images': 3,
+};
+
+/* ─────────────────────────────────────────────
+   DESIGN SPECS — ideal image dimensions per section
+   Based on actual component rendering analysis.
+   Unlisted sections inherit a sensible default.
+───────────────────────────────────────────── */
+const DESIGN_SPECS: Record<string, DesignSpec> = {
+
+  /* ═══ WOOD ICONS — perfect 1:1 squares ═══ */
+  'home_hero_stats':            { aspectRatio: '1:1', dimensions: '120×120', orientation: 'icon', tip: 'Square carved-wood icons — tight crop, sharp shadows, warm brown' },
+  'home_hero_cta_icons':        { aspectRatio: '1:1', dimensions: '120×120', orientation: 'icon', tip: 'Square carved-wood icons for hero CTA buttons' },
+  'home_hero_wood_textures':    { aspectRatio: '4:1 btns / 1:10 div', dimensions: '400×80 btns / 60×600 div', orientation: 'ultrawide', tip: 'Ultrawide distressed wood strips — seamless repeating grain' },
+  'home_showcase_wood_icons':   { aspectRatio: '1:1', dimensions: '100×100', orientation: 'icon', tip: 'Small square wood icons for service switcher cards' },
+  'home_services_wood_icons':   { aspectRatio: '1:1', dimensions: '120×120', orientation: 'icon', tip: 'Square carved-wood service category icons' },
+  'home_sonicdna_wood_icons':   { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square wood icons for SonicDNA value cards' },
+  'home_darumsonic_wood_icons': { aspectRatio: '1:1', dimensions: '120×120', orientation: 'icon', tip: 'Square wood icons for DarumSonic section' },
+  'home_clientsuccess_wood_icons': { aspectRatio: '1:1', dimensions: '100×100', orientation: 'icon', tip: 'Extremely weathered ancient wood icons — cracked, decayed look' },
+  'home_clientsuccess_wood_bg': { aspectRatio: '19.2:1', dimensions: '1920×100', orientation: 'ultrawide', tip: 'Ultrawide ancient barnwood strip — used as texture overlay' },
+  'home_philosophy_wood_dividers': { aspectRatio: '~160:1 or 1:4', dimensions: '1920×12 / 32×128', orientation: 'ultrawide', tip: 'Ultrawide horizontal dividers + narrow vertical dividers' },
+  'home_dual_audience_wood_icons': { aspectRatio: '1:1', dimensions: '100×100', orientation: 'icon', tip: 'Square light-oak wood icons for audience CTA' },
+  'home_dual_cta_wood_icons':   { aspectRatio: '1:1', dimensions: '128×128', orientation: 'icon', tip: 'Large square dark walnut wood icons for DualCTA' },
+  'home_audience_selector_wood_icons': { aspectRatio: '1:1', dimensions: '100×100', orientation: 'icon', tip: 'Square light-oak wood icons for audience selector' },
+  'home_challenge_wood_icons':  { aspectRatio: '1:1', dimensions: '120×120', orientation: 'icon', tip: 'Square walnut wood icons for challenge cards' },
+  'home_moderndna_wood_icons':  { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square dark walnut wood icons for ModernDNA values' },
+  'home_video_strip_wood_icons':{ aspectRatio: '1:1', dimensions: '72×72', orientation: 'icon', tip: 'Tiny square wood icons for video showcase stat strip' },
+  'home_dan_section_wood_bg':   { aspectRatio: '1:1', dimensions: '56×56', orientation: 'icon', tip: 'Tiny square wood icon for Dan contact button' },
+  'home_consultation_wood_icon':{ aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square dark walnut wood icon for consultation CTA' },
+
+  /* ═══ HOME: Hero & Showcase — wide landscape ═══ */
+  'home_showcase_service_images': { aspectRatio: '3:2', dimensions: '1200×800', orientation: 'landscape', tip: 'Wide landscape — brand activation, retail scenes, people in action' },
+  'home_sonicdna_background':  { aspectRatio: '2.4:1', dimensions: '1440×600', orientation: 'landscape', tip: 'Ultrawide office interior — bright, modern, natural light' },
+  'home_video':                 { aspectRatio: '16:9', dimensions: '1600×900', orientation: 'landscape', tip: 'Standard 16:9 video cover — cinematic retail scene' },
+  'home_attitude_bg':           { aspectRatio: '~2:1', dimensions: '~1600×800', orientation: 'landscape', tip: 'Wide welcome background — warm, inviting atmosphere' },
+  'home_dualcta_backgrounds':   { aspectRatio: '~9:7', dimensions: '900×700', orientation: 'landscape', tip: 'Slightly wide — business meeting & team scenes' },
+  'home_officevisit_image':     { aspectRatio: '4:5', dimensions: '800×1000', orientation: 'portrait', tip: 'Tall portrait — office interior, people working' },
+  'home_brandintro_images':     { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'Brand intro year photos — landscape shots' },
+  'home_truststrip_logos':      { aspectRatio: 'SVG flexible', dimensions: '~200×48', orientation: 'logo', tip: 'Brand logos — SVG preferred, dark theme, ~200px wide' },
+  'home_pos':                   { aspectRatio: '~2:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Wide POS remote images — retail displays' },
+
+  /* ═══ HOME: Menschen folders (5 images each) ═══ */
+  '/images/home/1. Menschen für Events & Messen': { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Events — people at trade shows, crowd, booths' },
+  '/images/home/2. Menschen für Content':          { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Content — studio, unboxing, filming' },
+  '/images/home/3. Menschen für Schulungen':       { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Schulungen — training rooms, people learning' },
+  '/images/home/4. Menschen für unsere Studios':   { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Studios — production, cameras, studio setups' },
+
+  /* ═══ LÖSUNGEN ═══ */
+  '/images/losungen':           { aspectRatio: '1:1', dimensions: '~600×600', orientation: 'square', tip: 'Solution icons — ambassador, dashboard, video symbols' },
+  '/images/Lösungen/1. Header': { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Header photos — hero banner shots, retail/product photography' },
+  '/images/Lösungen/2. Markteintritt/2. Verkäuferschulungen': { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Verkäuferschulungen — training workshops, retail staff' },
+  '/images/Lösungen/2. Markteintritt/4. Videocontent & Live-Beratung': { aspectRatio: '3:2', dimensions: '~800×500', orientation: 'landscape', tip: 'Video content — live streaming, advisors' },
+  '/images/Lösungen/2. Markteintritt/8. So läuft dein Markteintritt mit Sonic/3. Team-Aufbau & Schulung': { aspectRatio: '3:2', dimensions: '~800×500', orientation: 'landscape', tip: 'Team-Aufbau & Schulung — training, team building' },
+  'losungen_hero_backgrounds':  { aspectRatio: '16:9 or 2.4:1', dimensions: '1920×1080 / 1920×800', orientation: 'landscape', tip: 'Hero banners — dark cinematic retail scenes' },
+  'losungen_deliverable_images':{ aspectRatio: '8:5', dimensions: '800×500', orientation: 'landscape', tip: 'Deliverable images — professionals at work, clean scenes' },
+  'losungen_step_images':       { aspectRatio: '9:5', dimensions: '900×500', orientation: 'landscape', tip: 'Process step images — slightly wider than deliverables' },
+  'losungen_testimonial_images':{ aspectRatio: '12:7', dimensions: '1200×700', orientation: 'landscape', tip: 'Testimonial hero images — brand retail environment' },
+  'losungen_wood_textures':     { aspectRatio: '~3.2:1', dimensions: '1920×600 / 1920×400', orientation: 'ultrawide', tip: 'Ancient barnwood strips — dark overlay textures' },
+
+  /* ═══ ABOUT ═══ */
+  '/images/Über uns/Über uns/1. Header':                      { aspectRatio: '16:9', dimensions: '~1920×1080', orientation: 'landscape', tip: 'Group photo — Sonic team, outdoor/office' },
+  '/images/Über uns/Über uns/2. Marken im Herzen. Erfolg im Fokus': { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'Werkbank — workshop, craftsmanship' },
+  '/images/Über uns/Über uns/3. Das Sonic Team':              { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Team photo — group shot, casual/professional' },
+  '/images/Über uns/Über uns/4. Die Stimmen hinter Sonic/Björn': { aspectRatio: '1:1', dimensions: '~600×600', orientation: 'square', tip: 'Björn portraits — color + B&W, headshots' },
+  '/images/Über uns/Über uns/4. Die Stimmen hinter Sonic/Jo':   { aspectRatio: '1:1', dimensions: '~600×600', orientation: 'square', tip: 'Jo portraits — color + B&W, headshots' },
+  '/images/Über uns/Über uns/4. Die Stimmen hinter Sonic/Lucas': { aspectRatio: '1:1', dimensions: '~600×600', orientation: 'square', tip: 'Lucas portraits — color + B&W, headshots' },
+  '/images/Über uns/Leadership Perspectives': { aspectRatio: '2:3', dimensions: '~600×900', orientation: 'portrait', tip: 'Leadership portraits — executive headshots' },
+  '/images/Über uns/Sonic Reels/2007-2015': { aspectRatio: '3:2 or 2:3 or 1:1', dimensions: '~1200×800 / 600×800 / 600×600', orientation: 'landscape', tip: 'Mixed gallery — events, team, milestones (varied ratios ok)' },
+  '/images/Über uns/Sonic Reels/2019-2022': { aspectRatio: '3:2 or 2:3 or 1:1', dimensions: '~1200×800 / 600×800 / 600×600', orientation: 'landscape', tip: 'Mixed gallery — events, team, milestones' },
+  '/images/Über uns/Sonic Reels/2022-2023': { aspectRatio: '3:2 or 2:3 or 1:1', dimensions: '~1200×800 / 600×800 / 600×600', orientation: 'landscape', tip: 'Mixed gallery — events, team, milestones' },
+  'reels_2015_2019': { aspectRatio: '3:2 or 2:3 or 1:1', dimensions: '~1200×800 / 600×800 / 600×600', orientation: 'flexible', tip: 'Mixed gallery — varied ratios for visual interest' },
+  'reels_2024': { aspectRatio: '3:2 or 2:3 or 1:1', dimensions: '~1200×800 / 600×800 / 600×600', orientation: 'flexible', tip: 'Mixed gallery — varied ratios for visual interest' },
+  'reels_2025': { aspectRatio: '3:2 or 2:3 or 1:1', dimensions: '~1200×800 / 600×800 / 600×600', orientation: 'flexible', tip: 'Mixed gallery — varied ratios for visual interest' },
+  'reels_2026': { aspectRatio: '3:2 or 2:3 or 1:1', dimensions: '~1200×800 / 600×800 / 600×600', orientation: 'flexible', tip: 'Mixed gallery — varied ratios for visual interest' },
+  'about_sonicreels_hero_accent': { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Era hero & accent images — events, milestones' },
+  'about_values_visual_wood_icons': { aspectRatio: '1:1', dimensions: '80×80', orientation: 'icon', tip: 'Small walnut wood icons for impact stats' },
+  'about_origin_story_wood_bg': { aspectRatio: '19.2:1', dimensions: '1920×100', orientation: 'ultrawide', tip: 'Ultrawide warm chestnut wood strip — ticker background' },
+
+  /* ═══ CASE STUDIES ═══ */
+  '/images/Case Studies -Fallbsp/Avoury': { aspectRatio: '3:2 or 2:3', dimensions: '~800×600 / 600×800', orientation: 'flexible', tip: 'Gallery — product displays, booths, promotional shots' },
+  '/images/Case Studies -Fallbsp/Garmin': { aspectRatio: '3:2 or 2:3', dimensions: '~800×600 / 600×800', orientation: 'flexible', tip: 'Gallery — retail displays, staff, stores' },
+  '/images/Case Studies -Fallbsp/Philips': { aspectRatio: '3:2 or 2:3', dimensions: '~800×600 / 600×800', orientation: 'flexible', tip: 'Gallery — retail, promotions, team' },
+  '/images/Case Studies -Fallbsp/SEB':  { aspectRatio: '3:2 or 2:3', dimensions: '~800×600 / 600×800', orientation: 'flexible', tip: 'Gallery — kitchen appliances, retail, team' },
+
+  /* ═══ CAREERS ═══ */
+  '/images/Karriere':              { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Hero & gallery — team, office, events' },
+  'careers_hero_images':           { aspectRatio: '2.4:1', dimensions: '1920×800', orientation: 'landscape', tip: 'Hero team photo — wide, bright, diverse group' },
+  'careers_team_images':           { aspectRatio: '4:3', dimensions: '800×600', orientation: 'landscape', tip: 'Team lifestyle shots — office, events, collaboration' },
+  'careers_path_images':           { aspectRatio: '~2:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Career path polaroids — wide format sales/staff' },
+  'careers_events_images':         { aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'Team events polaroids — social, celebration' },
+  'careers_dreamteam_images':      { aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'DreamTeam polaroids — events, celebration' },
+  'careers_geschichten_images':    { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Story portraits — wide format, personal stories' },
+  'careers_mitarbeiterstimmen_sales_images': { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Sales testimonials — wide portrait-style' },
+  'careers_mitarbeiterstimmen_staff_images': { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Staff testimonials — wide portrait-style' },
+  'careers_sonicfaces_images':     { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'SonicFaces — wide portrait-style staff photos' },
+  'careers_sonicfamily_images':    { aspectRatio: '3:4', dimensions: '600×800', orientation: 'portrait', tip: 'AI portraits — professional headshots, dark backgrounds' },
+  'careers_recruitercta_image':    { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'RecruiterCTA — Tanja wide photo' },
+  'careers_stellenangebote_image': { aspectRatio: '1:1', dimensions: '96×96', orientation: 'icon', tip: 'Tanja headshot — small square portrait' },
+  'careers_sonic_sales_hero':      { aspectRatio: '~2:1', dimensions: '~1200×600', orientation: 'landscape', tip: 'Sonic Sales hero — wide' },
+  'careers_sonic_staff_hero':      { aspectRatio: '~2:1', dimensions: '~1200×600', orientation: 'landscape', tip: 'Sonic Staff hero — wide' },
+  'careers_howwehire_wood_icons':  { aspectRatio: '1:1', dimensions: '48×48', orientation: 'icon', tip: 'Tiny chestnut wood icons for hiring process steps' },
+  'careers_culture_wood_icons':    { aspectRatio: '1:1', dimensions: '80×80', orientation: 'icon', tip: 'Small walnut wood icons for culture values' },
+  'careers_hero_wood_icons':       { aspectRatio: '1:1', dimensions: '64×64', orientation: 'icon', tip: 'Small walnut wood icons for trust stats' },
+  'careers_perks_wood_icons':      { aspectRatio: '1:1', dimensions: '48×48', orientation: 'icon', tip: 'Tiny chestnut wood icons for perk sections' },
+
+
+
+  /* ═══ SRT ═══ */
+  'srt_hero_icons':            { aspectRatio: '1:1', dimensions: '80×80', orientation: 'icon', tip: 'Small walnut wood icons for hero stats' },
+  'srt_feature_icons':         { aspectRatio: '1:1', dimensions: '120×120', orientation: 'icon', tip: 'Square walnut wood icons for feature cards' },
+  'srt_section_images':        { aspectRatio: '3:2 or 2:3', dimensions: '1200×800 (dashboard) / 600×800 (mobile)', orientation: 'landscape', tip: 'Dashboard screenshot + mobile app — mixed ratios' },
+  'srt_problem_wood_icons':    { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square walnut wood icons for problem cards' },
+  'srt_joerg_photo': 'SRT — Entwickler Jörg: Profilfoto',
+  'srt_proof_wood_icons':      { aspectRatio: '1:1', dimensions: '80×80', orientation: 'icon', tip: 'Small walnut wood icons for proof stats' },
+  'srt_pricing_images':        { aspectRatio: '2:1', dimensions: '800×400', orientation: 'landscape', tip: 'Wide pricing tier images — workspace/enterprise shots' },
+
+  /* ═══ LEISTUNGEN: Core Service Images ═══ */
+  'leistungen_pos_images':        { aspectRatio: '3:2', dimensions: '1200×800', orientation: 'landscape', tip: 'POS retail displays — bright stores, products' },
+  'leistungen_video_images':      { aspectRatio: '3:2', dimensions: '1200×800', orientation: 'landscape', tip: 'Video production — studio, crew, equipment' },
+  'leistungen_events_images':     { aspectRatio: '3:2', dimensions: '1200×800', orientation: 'landscape', tip: 'Events — trade shows, booths, crowds' },
+  'leistungen_staff_images':      { aspectRatio: '3:2', dimensions: '1200×800', orientation: 'landscape', tip: 'Staff — brand ambassadors, team photos' },
+  'leistungen_talentpool_images': { aspectRatio: '3:2', dimensions: '1200×800', orientation: 'landscape', tip: 'Talentpool — diverse group, confident, professional' },
+  'leistungen_warehouse_images':  { aspectRatio: '3:2', dimensions: '1200×800', orientation: 'landscape', tip: 'Warehouse — clean, organized, logistics' },
+  'leistungen_forecasting_images':{ aspectRatio: '3:2', dimensions: '1200×800', orientation: 'landscape', tip: 'Forecasting — dashboards, data, analytics' },
+  'leistungen_kreation_images':   { aspectRatio: '3:2', dimensions: '1200×800', orientation: 'landscape', tip: 'Kreation — creative studio, designers, content' },
+  'leistungen_hero_images':       { aspectRatio: '~2:1', dimensions: '~1600×800', orientation: 'landscape', tip: 'Leistungen overview hero — wide format' },
+  'leistungen_servicegrid_bg':    { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'ServiceGrid backgrounds — wide format cards' },
+
+  /* ═══ LEISTUNGEN: Process & Showcase ═══ */
+  'leistungen_events_process_images':       { aspectRatio: '4:3', dimensions: '320×240', orientation: 'landscape', tip: 'Small process step thumbs — tight crop, clean scenes' },
+  'leistungen_events_showcase_images':      { aspectRatio: '~2:1 or 3:2', dimensions: '~1024×510 / ~800×600', orientation: 'landscape', tip: 'Mixed — showcase gallery, varied landscape' },
+  'leistungen_forecasting_process_images':  { aspectRatio: '3:2', dimensions: '600×400', orientation: 'landscape', tip: 'Process steps — data, dashboards, analysis' },
+  'leistungen_kreation_carousel_images':    { aspectRatio: '7:10', dimensions: '420×600', orientation: 'portrait', tip: 'Tall portrait tiles — product photography, design' },
+  'leistungen_kreation_showcase_images':    { aspectRatio: 'Mixed (4:3 to 3.4:1)', dimensions: '1200×350 to 800×600', orientation: 'landscape', tip: 'Showcase grid — ultrawide headers + regular tiles' },
+  'leistungen_kreation_showcase_secondary_konzeption': { aspectRatio: 'Mixed (4:3 to 3.4:1)', dimensions: '1200×350 to 800×600', orientation: 'landscape', tip: 'Alt rotation — same structure as primary showcase' },
+  'leistungen_kreation_showcase_secondary_content':   { aspectRatio: 'Mixed (4:3 to 3.4:1)', dimensions: '1200×350 to 800×600', orientation: 'landscape', tip: 'Alt rotation — same structure as primary showcase' },
+  'leistungen_kreation_showcase_secondary_cgi':       { aspectRatio: 'Mixed (4:3 to 3.4:1)', dimensions: '1200×350 to 800×600', orientation: 'landscape', tip: 'Alt rotation — same structure as primary showcase' },
+  'leistungen_kreation_before_after':{ aspectRatio: '1.76:1', dimensions: '1200×680', orientation: 'landscape', tip: 'Before/After slider — matching real photo & CGI render' },
+  'leistungen_pos_assets_images':    { aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'POS asset categories — wide format product/display shots' },
+  'leistungen_pos_process_images':   { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'POS process steps — workshop, production, rollout' },
+  'leistungen_staff_socks_images':   { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'S.O.C.K.S. images — selection, orientation, training' },
+  'leistungen_talentpool_profiles_images': { aspectRatio: '~2.3:1', dimensions: '~1024×448', orientation: 'landscape', tip: 'Talent profile images — wide format' },
+  'leistungen_warehouse_items_images':{ aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'Warehouse items — POS material, display, fulfillment' },
+  'leistungen_video_youtube': 'Live Video — YouTube Showcase URL (im Feld \"Beschriftung\" eintragen)',
+  'leistungen_video_format_photos':  { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'Video format photos — live-video, broadcast, streaming' },
+
+  /* ═══ LEISTUNGEN: All Wood Icons (1:1 squares, varying sizes) ═══ */
+  'leistungen_stats_wood_icons':                  { aspectRatio: '1:1', dimensions: '120×120', orientation: 'icon', tip: 'Square walnut wood stat icons — laurel, scale, compass' },
+  'leistungen_schallmauer_wood_icons':            { aspectRatio: '1:1', dimensions: '120×120', orientation: 'icon', tip: 'Square walnut wood way icons — rocket, chart, globe' },
+  'leistungen_events_solution_wood_icons':        { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square walnut wood solution icons — events' },
+  'leistungen_forecasting_solution_wood_icons':   { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square walnut wood solution icons — forecasting' },
+  'leistungen_pos_solution_wood_icons':           { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square walnut wood solution icons — POS' },
+  'leistungen_staff_solution_wood_icons':         { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square walnut wood solution icons — staff' },
+  'leistungen_staff_specialization_wood_icons':   { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square walnut wood specialization icons — staff' },
+  'leistungen_video_solution_wood_icons':         { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square walnut wood solution icons — video' },
+  'leistungen_video_advantages_wood_icons':       { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square walnut wood advantage icons — video' },
+  'leistungen_kreation_solution_wood_icons':      { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square walnut wood solution icons — kreation' },
+  'leistungen_kreation_discipline_wood_icons':    { aspectRatio: '1:1', dimensions: '120×120', orientation: 'icon', tip: 'Square walnut wood discipline icons — kreation, produktion, CGI' },
+  'leistungen_kreation_photo_grid':               { aspectRatio: '1:1', dimensions: '~600×600', orientation: 'square', tip: 'Square rotating photo grid — creative work' },
+  'leistungen_warehouse_fullservice_photo':       { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'Warehouse full service — single landscape photo' },
+
+  'blog_images':           { aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'Blog featured image — wide format' },
+  'ratgeber_hero':         { aspectRatio: '16:9', dimensions: '1920×1080', orientation: 'landscape', tip: 'Ratgeber hero — abstract knowledge hub concept' },
+  'kontakt_hero':          { aspectRatio: '16:9', dimensions: '1920×1080', orientation: 'landscape', tip: 'Kontakt hero — abstract geometric concept, dark' },
+
+  /* ═══ COMMON ═══ */
+  'common_clientproof_logos': { aspectRatio: 'SVG flexible', dimensions: '~200×48', orientation: 'logo', tip: 'Brand logos — SVG preferred, dark theme' },
+  'common_logos':             { aspectRatio: 'SVG flexible', dimensions: '~200×48', orientation: 'logo', tip: 'Sonic Group logo — main brand logo' },
+
+  /* ═══ OTHER (from virtual) ═══ */
+  'services_content_studio_images': { aspectRatio: '16:9 (hero) / 1:1 (consult)', dimensions: '1920×1080 / 800×800', orientation: 'landscape', tip: 'Content studio — hero wide + square consultation' },
+  'services_events_images':         { aspectRatio: '16:9 (hero) / 1:1 (consult)', dimensions: '1920×1080 / 800×800', orientation: 'landscape', tip: 'Events — hero wide + square consultation' },
+  'services_market_entry_images':   { aspectRatio: '2.4:1 (hero) / 1:1 (consult)', dimensions: '1920×800 / 800×800', orientation: 'landscape', tip: 'Market entry — hero wide + square consultation' },
+  'services_retail_pos_images':     { aspectRatio: '16:9 (hero) / 1:1 (consult)', dimensions: '1920×1080 / 800×800', orientation: 'landscape', tip: 'Retail POS — hero wide + square consultation' },
+  'services_staffing_images':       { aspectRatio: '16:9 (hero) / 1:1 (consult)', dimensions: '1920×1080 / 800×800', orientation: 'landscape', tip: 'Staffing — hero wide + square consultation' },
+
+  /* ═══ LVP — desktop only (no dashboard integration yet for these, but specs for reference) ═══ */
+  'lvp_hero_images':     { aspectRatio: '2.4:1 / 4:3', dimensions: '1920×800 / 800×600', orientation: 'landscape', tip: 'LVP hero bg + presenter shot' },
+  'lvp_studio_images':   { aspectRatio: '3:2', dimensions: '1200×800 / 800×600', orientation: 'landscape', tip: 'LVP studio — overview, editing, photography' },
+  'lvp_creative_images': { aspectRatio: '16:9', dimensions: '800×450', orientation: 'landscape', tip: 'LVP creative thumbnails — 16:9 video format' },
+};
+/* ─────────────────────────────────────────────
+   SUPABASE SYNC — cross-browser persistence
+   Stores only overrides (diff from DEFAULT_MEDIA)
+   in the media_store table. On page load, any
+   browser pulls the latest overrides and merges
+   them with DEFAULT_MEDIA, so image changes made
+   in one browser appear everywhere.
+───────────────────────────────────────────── */
+const SUPABASE_STORE_ID = 1;
+const LAST_SYNC_TS_KEY = 'sonic_media_last_sync_ts';
+let _supabaseSyncInFlight = false;
+let _supabaseSyncNeeded = false;
+
+function getSupabaseOverridesCache(): MediaSections | null {
+  try {
+    const raw = localStorage.getItem('sonic_media_supabase_cache');
+    if (!raw) return null;
+    return JSON.parse(raw) as MediaSections;
+  } catch {
+    return null;
+  }
+}
+
+function setSupabaseOverridesCache(overrides: MediaSections): void {
+  try {
+    localStorage.setItem('sonic_media_supabase_cache', JSON.stringify(overrides));
+  } catch { /* quota exceeded — ignore */ }
+}
+
+async function pullOverridesFromSupabase(): Promise<MediaSections | null> {
+  try {
+    const { data, error } = await supabase
+      .from('media_store')
+      .select('data, updated_at')
+      .eq('id', SUPABASE_STORE_ID)
+      .maybeSingle();
+
+    if (error || !data?.data) return null;
+
+    const overrides = data.data as MediaSections;
+    if (overrides && typeof overrides === 'object' && Object.keys(overrides).length > 0) {
+      // Content-based staleness check: if localStorage already contains all items
+      // that are in the remote overrides, then local is at least as fresh.
+      const localRaw = (() => {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch { return null; }
+      })();
+
+      if (localRaw) {
+        // Staleness check: if every key in the remote override is either:
+        //   a) absent from localStorage (never touched by this browser), OR
+        //   b) present in localStorage with the same or newer items
+        // … then local is at least as fresh and we skip the merge.
+        // We also skip if local has [] for a key (explicit deletion beats remote).
+        let localIsAtLeastAsFresh = true;
+        for (const key of Object.keys(overrides)) {
+          const remoteItems = overrides[key] || [];
+          if (!(key in localRaw)) {
+            // This browser never touched this section — remote may have newer data.
+            localIsAtLeastAsFresh = false;
+            break;
+          }
+          const localItems: MediaItem[] = localRaw[key] || [];
+          if (localItems.length === 0) {
+            // Local explicitly emptied this section (deletion) — local wins, no merge.
+            continue;
+          }
+          const localUrls = new Set(localItems.map((item: MediaItem) => item.url));
+          for (const item of remoteItems) {
+            if (!localUrls.has(item.url)) {
+              // Remote has an item local doesn't — but this could be stale (replaced/deleted).
+              // We handle it in the merge: local wins per-key, so skip staleness check here.
+              localIsAtLeastAsFresh = false;
+              break;
+            }
+          }
+          if (!localIsAtLeastAsFresh) break;
+        }
+        if (localIsAtLeastAsFresh) {
+          setSupabaseOverridesCache(overrides);
+          return null;
+        }
+      }
+
+      setSupabaseOverridesCache(overrides);
+      localStorage.setItem(LAST_SYNC_TS_KEY, String(Date.now()));
+      return overrides;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+async function pushOverridesToSupabase(overrides: MediaSections): Promise<void> {
+  if (_supabaseSyncInFlight) {
+    _supabaseSyncNeeded = true;
+    return;
+  }
+  _supabaseSyncInFlight = true;
+  try {
+    // Loop: after each sync completes, check if more changes were queued up
+    let currentOverrides = overrides;
+    do {
+      _supabaseSyncNeeded = false;
+      await supabase
+        .from('media_store')
+        .upsert({ id: SUPABASE_STORE_ID, data: currentOverrides, updated_at: new Date().toISOString() });
+      setSupabaseOverridesCache(currentOverrides);
+      localStorage.setItem(LAST_SYNC_TS_KEY, String(Date.now()));
+
+      // If more changes came in while we were syncing, compute fresh overrides and sync again
+      if (_supabaseSyncNeeded) {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          try {
+            const store = JSON.parse(raw) as MediaSections;
+            currentOverrides = computeOverrides(store);
+          } catch { /* ignore parse errors */ }
+        }
+      }
+    } while (_supabaseSyncNeeded);
+  } catch { /* network down — localStorage still works */ }
+  finally {
+    _supabaseSyncInFlight = false;
+  }
+}
+
+function computeOverrides(store: MediaSections): MediaSections {
+  const overrides: MediaSections = {};
+  for (const key of Object.keys(store)) {
+    const current = store[key];
+    const defaultVal = DEFAULT_MEDIA[key];
+
+    if (!current || current.length === 0) {
+      // Only write [] to Supabase when user explicitly cleared it OR section has DEFAULT_MEDIA.
+      // Never write [] because a browser never synced this section — that wipes Supabase uploads.
+      if ((defaultVal && defaultVal.length > 0) || _explicitlyDeletedKeys.has(key)) {
+        overrides[key] = [];
+      }
+      continue;
+    }
+
+    if (!defaultVal || defaultVal.length === 0) {
+      overrides[key] = current;
+      continue;
+    }
+
+    if (JSON.stringify(current) !== JSON.stringify(defaultVal)) {
+      overrides[key] = current;
+    }
+  }
+  return overrides;
+}
+
+async function syncOverridesToSupabase(store: MediaSections): Promise<void> {
+  const overrides = computeOverrides(store);
+  await pushOverridesToSupabase(overrides);
+}
+
+const STORAGE_KEY = 'sonic_media_store';
+
+let _cachedStore: MediaSections | null = null;
+
+function invalidateCache() {
+  _cachedStore = null;
+}
+
+// Strip readdy.ai placeholder URLs from any data — never render or cache them.
+function stripReaddy(sections: MediaSections): MediaSections {
+  const out: MediaSections = {};
+  for (const key of Object.keys(sections)) {
+    out[key] = (sections[key] || []).map((item) =>
+      item.url && item.url.includes('readdy.ai') ? { ...item, url: '' } : item
+    );
+  }
+  return out;
+}
+
+// Strip readdy.ai placeholder URLs from cached data (Supabase cache / localStorage).
+// If stripping leaves a section with ONLY empty URLs, omit that key entirely so
+// DEFAULT_MEDIA (which may have a real fallback) can still provide the value.
+// Sections with at least one real non-readdy URL are kept as-is.
+function stripReddy(sections: MediaSections): MediaSections {
+  const out: MediaSections = {};
+  for (const key of Object.keys(sections)) {
+    const cleaned = (sections[key] || []).map((item) =>
+      item.url && item.url.includes('readdy.ai') ? { ...item, url: '' } : item
+    );
+    // Keep the section only if at least one item has a real URL
+    if (cleaned.some((item) => item.url !== '')) {
+      out[key] = cleaned;
+    }
+    // Otherwise: omit this key → DEFAULT_MEDIA / Supabase provides the fallback
+  }
+  return out;
+}
+
+function getStoreSnapshot(): MediaSections {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    const merged = { ...DEFAULT_MEDIA };
+
+    // Layer 1: Supabase overrides (cross-browser base data)
+    const supabaseOverrides = getSupabaseOverridesCache();
+    if (supabaseOverrides) {
+      const cleanedOverrides = stripReaddy(supabaseOverrides);
+      for (const key of Object.keys(cleanedOverrides)) {
+        merged[key] = cleanedOverrides[key];
+      }
+    }
+
+    // Layer 2: localStorage (local edits ALWAYS win — prevents stale
+    // Supabase overrides from undoing fresh local changes)
+    if (raw) {
+      const parsed = stripReaddy(JSON.parse(raw) as MediaSections);
+      for (const key of Object.keys(parsed)) {
+        merged[key] = parsed[key];
+      }
+    }
+
+    // Pad: only fill slots for sections the user has NEVER touched (not in
+    // localStorage). If a section IS in localStorage, the user owns it —
+    // never re-append defaults, as that would restore deleted images.
+    const localSections = raw ? Object.keys(JSON.parse(raw) as MediaSections) : [];
+    const localSectionsSet = new Set(localSections);
+    for (const key of Object.keys(DEFAULT_MEDIA)) {
+      if (localSectionsSet.has(key)) continue; // user owns this section — never pad it
+      const defaultItems = DEFAULT_MEDIA[key];
+      const mergedItems = merged[key];
+      if (defaultItems && mergedItems && mergedItems.length < defaultItems.length) {
+        merged[key] = [
+          ...mergedItems,
+          ...defaultItems.slice(mergedItems.length),
+        ];
+      }
+    }
+
+    return merged;
+  } catch {
+    return { ...DEFAULT_MEDIA };
+  }
+}
+
+function loadFromStorage(): MediaSections {
+  if (_cachedStore) return _cachedStore;
+  _cachedStore = getStoreSnapshot();
+  return _cachedStore;
+}
+
+function saveToStorage(store: MediaSections): void {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+    invalidateCache();
+
+    // Immediately sync the local Supabase override cache so getStoreSnapshot()
+    // doesn't re-apply stale overrides on top of fresh edits (fixes the
+    // "must delete twice" bug caused by async Supabase sync lag).
+    const overrides = computeOverrides(store);
+    setSupabaseOverridesCache(overrides);
+
+    // Record the timestamp of this local edit so pullOverridesFromSupabase
+    // knows localStorage is fresh and won't overwrite it with stale Supabase data.
+    const now = Date.now();
+    localStorage.setItem(LAST_SYNC_TS_KEY, String(now));
+
+    window.dispatchEvent(new Event('media-store-update'));
+
+    // Fire-and-forget sync to Supabase so other browsers see changes
+    syncOverridesToSupabase(store);
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'Unknown storage error';
+    throw new Error(`Failed to save media store: ${msg}`);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   CATEGORIES — with lightweight memoization
+───────────────────────────────────────────────────────── */
+let _cachedCategoriesList: CategoryInfo[] | null = null;
+
+// Tracks section keys the user explicitly cleared this session.
+// Only these write [] to Supabase — prevents passive-empty browsers from wiping uploads.
+const _explicitlyDeletedKeys = new Set<string>();
+let _cachedCategoriesByGroup: Record<string, CategoryInfo[]> | null = null;
+
+export function invalidateCategoryCache() {
+  _cachedCategoriesList = null;
+  _cachedCategoriesByGroup = null;
+}
+
+/* ─────────────────────────────────────────────
+   PUBLIC API
+───────────────────────────────────────────── */
+export interface CategoryInfo {
+  key: string;
+  label: string;
+  pageGroupId: string;
+  imageCount: number;
+  recommendedCount: number;
+  designSpec: DesignSpec | null;
+}
+
+export interface DesignSpec {
+  aspectRatio: string;
+  dimensions: string;
+  orientation: 'landscape' | 'portrait' | 'square' | 'ultrawide' | 'flexible' | 'icon' | 'logo';
+  tip: string;
+}
+
+export function getPageGroupForSection(sectionKey: string): string {
+  for (const group of PAGE_GROUPS) {
+    if (group.sections.includes(sectionKey)) return group.id;
+  }
+  return 'other';
+}
+
+export function getCategoriesList(): CategoryInfo[] {
+  if (_cachedCategoriesList) return _cachedCategoriesList;
+
+  const store = loadFromStorage();
+  const allKeys = Object.keys(store);
+  _cachedCategoriesList = allKeys.map((key) => {
+    const label = HUMAN_LABELS[key] || key;
+    const pageGroupId = getPageGroupForSection(key);
+    const items = store[key];
+    const defaultItems = DEFAULT_MEDIA[key];
+    const recommendedCount = DESIGN_RECOMMENDED[key] ?? (defaultItems ? defaultItems.length : 0);
+    const designSpec = DESIGN_SPECS[key] || null;
+    return { key, label, pageGroupId, imageCount: items ? items.length : 0, recommendedCount, designSpec };
+  }).sort((a, b) => a.label.localeCompare(b.label));
+
+  return _cachedCategoriesList;
+}
+
+export function getCategoriesByPageGroup(): Record<string, CategoryInfo[]> {
+  if (_cachedCategoriesByGroup) return _cachedCategoriesByGroup;
+
+  const all = getCategoriesList();
+  const result: Record<string, CategoryInfo[]> = {};
+  for (const cat of all) {
+    if (!result[cat.pageGroupId]) result[cat.pageGroupId] = [];
+    result[cat.pageGroupId].push(cat);
+  }
+  // Ensure PAGE_GROUPS order
+  const ordered: Record<string, CategoryInfo[]> = {};
+  for (const group of PAGE_GROUPS) {
+    if (result[group.id]) ordered[group.id] = result[group.id];
+  }
+  for (const key of Object.keys(result)) {
+    if (!ordered[key]) ordered[key] = result[key];
+  }
+  _cachedCategoriesByGroup = ordered;
+
+  // Clean up stale list cache to keep them in sync
+  return ordered;
+}
+
+export function getSectionImages(sectionKey: string): MediaItem[] {
+  const store = loadFromStorage();
+  return store[sectionKey] || [];
+}
+
+export function addSectionImage(sectionKey: string, url: string, caption = '', wide = false): boolean {
+  invalidateCategoryCache();
+  const store = loadFromStorage();
+  if (!store[sectionKey]) {
+    store[sectionKey] = [];
+  }
+
+  if (store[sectionKey].some((item) => item.url === url)) {
+    return false;
+  }
+
+  store[sectionKey] = [...store[sectionKey], { url, caption, wide }];
+  saveToStorage(store);
+  return true;
+}
+
+export function deleteSectionImage(sectionKey: string, url: string): void {
+  invalidateCategoryCache();
+  const store = loadFromStorage();
+  if (!store[sectionKey]) return;
+
+  store[sectionKey] = store[sectionKey].filter((item) => item.url !== url);
+  if (store[sectionKey].length === 0) _explicitlyDeletedKeys.add(sectionKey);
+  saveToStorage(store);
+}
+
+export function addSectionImagesBulk(sectionKey: string, items: MediaItem[]): number {
+  invalidateCategoryCache();
+  const store = loadFromStorage();
+  if (!store[sectionKey]) {
+    store[sectionKey] = [];
+  }
+
+  const existingUrls = new Set(store[sectionKey].map((item) => item.url));
+  const newItems = items.filter((item) => !existingUrls.has(item.url));
+
+  if (newItems.length === 0) return 0;
+
+  store[sectionKey] = [...store[sectionKey], ...newItems];
+  saveToStorage(store);
+  return newItems.length;
+}
+
+export function deleteSectionImagesBulk(sectionKey: string, urls: string[]): number {
+  invalidateCategoryCache();
+  const store = loadFromStorage();
+  if (!store[sectionKey]) return 0;
+
+  const urlSet = new Set(urls);
+  const beforeCount = store[sectionKey].length;
+  store[sectionKey] = store[sectionKey].filter((item) => !urlSet.has(item.url));
+  if (store[sectionKey].length === 0) _explicitlyDeletedKeys.add(sectionKey);
+  saveToStorage(store);
+  return beforeCount - store[sectionKey].length;
+}
+
+export function resetMediaStore(): void {
+  invalidateCategoryCache();
+  saveToStorage({ ...DEFAULT_MEDIA });
+}
+
+export function resetSection(sectionKey: string): void {
+  invalidateCategoryCache();
+  const store = loadFromStorage();
+  const resetVal = [...(DEFAULT_MEDIA[sectionKey] || [])];
+  store[sectionKey] = resetVal;
+  if (resetVal.length === 0) _explicitlyDeletedKeys.add(sectionKey);
+  saveToStorage(store);
+}
+
+export function updateSectionImage(sectionKey: string, oldUrl: string, updates: { url?: string; caption?: string; wide?: boolean }): void {
+  invalidateCategoryCache();
+  const store = loadFromStorage();
+  if (!store[sectionKey]) return;
+
+  store[sectionKey] = store[sectionKey].map((item) => {
+    if (item.url === oldUrl) {
+      return {
+        ...item,
+        ...(updates.url !== undefined && { url: updates.url }),
+        ...(updates.caption !== undefined && { caption: updates.caption }),
+        ...(updates.wide !== undefined && { wide: updates.wide }),
+      };
+    }
+    return item;
+  });
+  saveToStorage(store);
+}
+
+export function reorderSectionImages(sectionKey: string, fromIndex: number, toIndex: number): void {
+  invalidateCategoryCache();
+  const store = loadFromStorage();
+  if (!store[sectionKey]) return;
+
+  const items = [...store[sectionKey]];
+  if (fromIndex < 0 || fromIndex >= items.length || toIndex < 0 || toIndex >= items.length) return;
+
+  const [moved] = items.splice(fromIndex, 1);
+  items.splice(toIndex, 0, moved);
+  store[sectionKey] = items;
+  saveToStorage(store);
+}
+
+export function getTotalImageCount(): number {
+  const store = loadFromStorage();
+  let total = 0;
+  for (const key of Object.keys(store)) {
+    const items = store[key];
+    if (items) total += items.length;
+  }
+  return total;
+}
+
+/* ─────────────────────────────────────────────
+   REACT HOOK
+───────────────────────────────────────────── */
+export function useMediaStore(sectionKey: string) {
+  const [images, setImages] = useState<MediaItem[]>(() =>
+    getSectionImages(sectionKey).map((item) => ({ ...item, url: resolveImageUrl(item.url) }))
+  );
+
+  // Re-initialize whenever sectionKey changes
+  useEffect(() => {
+    const raw = getSectionImages(sectionKey);
+    setImages(raw.map((item) => ({ ...item, url: resolveImageUrl(item.url) })));
+  }, [sectionKey]);
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      invalidateCache();
+      const raw = getSectionImages(sectionKey);
+      setImages(raw.map((item) => ({ ...item, url: resolveImageUrl(item.url) })));
+    };
+
+    window.addEventListener('media-store-update', handleUpdate);
+    return () => {
+      window.removeEventListener('media-store-update', handleUpdate);
+    };
+  }, [sectionKey]);
+
+  return {
+    images,
+    addImage: (url: string, caption?: string, wide?: boolean) =>
+      addSectionImage(sectionKey, url, caption, wide),
+    deleteImage: (url: string) =>
+      deleteSectionImage(sectionKey, url),
+    reset: () => resetSection(sectionKey),
+  about_client_logos: [],
+  case_studies: [],
+  leistungen_kreation_photo_grid: [],
+  ratgeber: [],
+  home_srt_wood_icons: [],
+  '/images/Über uns/Leadership Perspectives': [],
+  '/images/Über uns/Über uns/1. Header': [],
+  '/images/Über uns/Sonic Reels/2007-2015': [],
+  '/images/Karriere': [],
+  '/images/home/1. Menschen für Events & Messen': [],
+  '/images/home/2. Menschen für Content': [],
+  };
+}
+
+/* ─────────────────────────────────────────────
+   CROSS-BROWSER SYNC INITIALIZATION
+   On every page load, pull the latest overrides
+   from Supabase so image changes appear everywhere.
+───────────────────────────────────────────── */
+if (typeof window !== 'undefined') {
+  pullOverridesFromSupabase().then((remoteOverrides) => {
+    if (!remoteOverrides || Object.keys(remoteOverrides).length === 0) return;
+
+    // Union merge: start with DEFAULT_MEDIA, then apply Supabase overrides,
+    // then overlay localStorage. localStorage ALWAYS wins — it is the freshest
+    // source for this browser session and must never be overwritten.
+    const localRaw = (() => {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch { return null; }
+    })();
+
+    const merged = { ...DEFAULT_MEDIA };
+
+    // Layer 1 — apply Supabase overrides (data from other browsers)
+    for (const key of Object.keys(remoteOverrides)) {
+      merged[key] = remoteOverrides[key];
+    }
+
+    // Layer 2 — local state ALWAYS wins for any section this browser has touched.
+    // An empty local array = explicit deletion: do NOT restore from Supabase.
+    // A populated local array = current user state: do NOT add stale remote items.
+    // Supabase only fills in sections that are completely absent from localStorage
+    // (i.e. sections this browser has never interacted with).
+    if (localRaw) {
+      for (const key of Object.keys(localRaw)) {
+        merged[key] = localRaw[key] || [];
+      }
+    }
+
+    // Persist merged result only if it differs from current localStorage
+    try {
+      const currentRaw = localStorage.getItem(STORAGE_KEY);
+      const mergedStr = JSON.stringify(merged);
+      if (currentRaw !== mergedStr) {
+        localStorage.setItem(STORAGE_KEY, mergedStr);
+        invalidateCache();
+        window.dispatchEvent(new Event('media-store-update'));
+      }
+    } catch { /* quota */ }
+  });
+}
