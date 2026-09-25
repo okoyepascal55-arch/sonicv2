@@ -168,18 +168,18 @@ export default function VideoContent() {
 
   return (
     <>
-      {/* ── YouTube Video Showcase ── */}
-      {tYoutubeUrl && (
-        <section className="sonic-section-md bg-foreground-950 px-4 md:px-6">
-          <div className="sonic-container max-w-4xl">
-            <div className="text-center mb-8">
-              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Video</span>
-              <h2 className="sonic-h2 text-white mt-2 mb-3">{tYoutubeTitle}</h2>
-              <p className="text-foreground-400 text-sm md:text-base max-w-xl mx-auto">{tYoutubeSubline}</p>
-            </div>
-            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+      {/* ── YouTube Video Showcase — always visible; iframe only when URL is set ── */}
+      <section className="sonic-section-md bg-foreground-950 px-4 md:px-6">
+        <div className="sonic-container max-w-4xl">
+          <div className="text-center mb-8">
+            <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Video</span>
+            <h2 className="sonic-h2 text-white mt-2 mb-3">{tYoutubeTitle}</h2>
+            <p className="text-foreground-400 text-sm md:text-base max-w-xl mx-auto">{tYoutubeSubline}</p>
+          </div>
+          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            {tYoutubeUrl ? (
               <iframe
-                src={`https://www.youtube.com/embed/${tYoutubeUrl.includes('youtu') ? tYoutubeUrl.split(/[/?=]/)[tYoutubeUrl.split(/[/?=]/).length - 1] : tYoutubeUrl}`}
+                src={`https://www.youtube.com/embed/${tYoutubeUrl.includes('youtu') ? tYoutubeUrl.split(/[/?=v]/).filter(Boolean).slice(-1)[0] : tYoutubeUrl}`}
                 className="absolute inset-0 w-full h-full"
                 style={{ border: 'none' }}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -187,12 +187,19 @@ export default function VideoContent() {
                 title={tYoutubeTitle}
                 loading="lazy"
               />
-            </div>
+            ) : (
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4"
+                style={{ border: '2px dashed oklch(var(--primary-500) / 0.3)', background: 'oklch(0.11 0.004 118)' }}>
+                <i className="ri-youtube-line text-primary-500/40 text-5xl" />
+                <p className="text-foreground-400/50 text-sm text-center max-w-xs leading-relaxed px-4">
+                  YouTube Video hier einbetten —<br />
+                  URL im <strong className="text-primary-500/60">Media-Dashboard</strong> eintragen
+                </p>
+              </div>
+            )}
           </div>
-        </section>
-      )}
-
-      <WoodenDivider />
+        </div>
+      </section>
 
       <ChallengeSection
         headline={tChallengeHeading}
@@ -200,7 +207,7 @@ export default function VideoContent() {
         challenges={VIDEO_CHALLENGES}
       />
 
-      <WoodenDivider />
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
       {/* Solution */}
       <section id="loesung" className="sonic-section-md bg-white px-4 md:px-6 relative overflow-hidden">
