@@ -679,13 +679,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'jobs-hero-heading', label: 'Main Heading', description: 'Hero heading', type: 'heading', value: 'Finde deinen Job bei Sonic' },
       { id: 'jobs-hero-subtitle', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Entdecke offene Stellen in Sales, Staff, Events und mehr — und werde Teil der Sonic Family.' },
     ],
-  },
-  {
-    key: 'industries_hero', label: 'Industries Hero',
-    pageGroupId: 'srt', pagePath: '/industries',
-    description: 'The industries page hero.',
-    entries: [
-      { id: 'industries-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Branchen' },
+  }
       { id: 'industries-hero-heading', label: 'Main Heading', description: 'Hero heading', type: 'heading', value: 'Branchenexpertise, die den Unterschied macht' },
       { id: 'industries-hero-subtitle', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Von Consumer Electronics bis Beauty — wir kennen die Besonderheiten deiner Branche und setzen sie in messbare Ergebnisse um.' },
     ],
@@ -1057,32 +1051,14 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
 
   /* ════════════════════════════════════════════ INDUSTRIES — Additional Sections ════════════════════ */
-  {
-    key: 'industries_grid', label: 'IndustryGrid — 6 Industry Cards',
-    pageGroupId: 'srt', pagePath: '/industries',
-    description: 'The industry grid section with 6 industry cards.',
-    entries: [
-      { id: 'industries-grid-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Unsere Sektoren' },
       { id: 'industries-grid-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'BRANCHEN-EXPERTISE.' },
       { id: 'industries-grid-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Bewährte Erfolge in verschiedenen Sektoren mit maßgeschneiderten Strategien.' },
     ],
-  },
-  {
-    key: 'industries_expertise', label: 'IndustryExpertise — What Sets Us Apart',
-    pageGroupId: 'srt', pagePath: '/industries',
-    description: 'The expertise grid with 6 differentiators.',
-    entries: [
-      { id: 'industries-expertise-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Unsere Kompetenz' },
+  }
       { id: 'industries-expertise-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'WAS UNS UNTERSCHEIDET' },
       { id: 'industries-expertise-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: '17+ Jahre Branchen-Expertise mit nachweisbaren Ergebnissen für führende Marken.' },
     ],
-  },
-  {
-    key: 'industries_cta', label: 'IndustryCTA — Contact Section',
-    pageGroupId: 'srt', pagePath: '/industries',
-    description: 'The industries CTA: Lass uns deine Branche besprechen.',
-    entries: [
-      { id: 'industries-cta-badge', label: 'CTA Badge', description: 'Badge', type: 'badge', value: 'Kein Commitment. Nur ein Gespräch.' },
+  }
       { id: 'industries-cta-heading', label: 'CTA Heading', description: 'Main heading', type: 'heading', value: 'LASS UNS DEINE BRANCHE BESPRECHEN.' },
       { id: 'industries-cta-sub', label: 'CTA Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Produktlaunch, Markteintritt oder Optimierung — wir haben die Branchenexpertise.' },
       { id: 'industries-cta-btn-1', label: 'CTA Button 1', description: 'Consult button', type: 'cta', value: 'Beratung anfragen' },
