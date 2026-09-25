@@ -95,7 +95,7 @@ export default function KreationContentPage() {
       <WoodenDivider />
       <ChallengeSection id="herausforderung" headline={tChallengeHeading} subline={tChallengeSub} challenges={CHALLENGES} />
       <KreationWavyDivider darkBackground />
-      <section id="loesung" className="sonic-section-lg px-4 md:px-6 relative overflow-hidden bg-white">
+      <section id="loesung" className="sonic-section-md px-4 md:px-6 relative overflow-hidden bg-white">
         <div className="absolute top-0 right-0 pointer-events-none" style={{ width: 500, height: 500, background: 'oklch(0.81 0.19 115 / 0.08)', filter: 'blur(120px)' }} />
         <div ref={solutionRef} className="sonic-container relative" style={{ opacity: solutionVisible ? 1 : 0, transform: solutionVisible ? 'translateY(0)' : 'translateY(32px)', transition: 'opacity 0.7s ease, transform 0.7s ease' }}>
           <div className="mb-10"><div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Lösung</span></div><h2 className="sonic-h2 text-foreground-950 mb-3">{tSolutionHeading}</h2><p className="text-foreground-950/50 text-base max-w-2xl">{tSolutionSub}</p></div>
