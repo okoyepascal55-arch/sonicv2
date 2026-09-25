@@ -1680,4 +1680,3 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'leistungen_video_youtube': 'Live Video — YouTube Showcase URL (im Feld \"Beschriftung\" eintragen)',
   'leistungen_video_format_photos': 6,
 
-  /* ── TEAM: Fixed Design Slots ── */: 4,        // 1 bg + 3 headshot photos: 4,  // Mensch, Motivation, Daten, Werkzeug
