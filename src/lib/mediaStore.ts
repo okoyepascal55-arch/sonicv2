@@ -228,7 +228,12 @@ export const PAGE_GROUPS: PageGroup[] = [
     id: 'team',
     label: 'Team',
     icon: 'ri-team-line',
-    sections: [    ],
+    sections: [
+      'team_hero_images',
+      'team_corevalues_images',
+      'team_meet_team_wood_icons',
+      'team_training_image',
+    ],
   },
   {
     id: 'industries',
@@ -246,7 +251,9 @@ export const PAGE_GROUPS: PageGroup[] = [
     id: 'jobs',
     label: 'Jobs',
     icon: 'ri-briefcase-4-line',
-    sections: [    ],
+    sections: [
+      'jobs_hero',
+    ],
   },
   {
     id: 'ratgeber',
@@ -889,17 +896,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Office Visit — Main Image' },
   ],
 
-    { url: '', caption: 'Team — Hero Background', wide: true },
-    { url: '', caption: 'Team — Member Photo 1' },
-    { url: '', caption: 'Team — Member Photo 2' },
-    { url: '', caption: 'Team — Member Photo 3' },
-  ],
 
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/2.jpg', caption: 'Core Values — Mensch' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/3.jpg', caption: 'Core Values — Motivation' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/4.jpg', caption: 'Core Values — Daten' },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/01/5.jpg', caption: 'Core Values — Werkzeug' },
-  ],
 
   /* ── ABOUT: SonicReelsEmbed Hero & Accent Images ── */
   about_sonicreels_hero_accent: [
@@ -976,8 +973,6 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Ratgeber — Hero Background', wide: true },
   ],
 
-    { url: '', caption: 'Jobs — Hero Background', wide: true },
-  ],
 
   /* ── KONTAKT ── */
   kontakt_hero: [
@@ -1368,13 +1363,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Enterprise Tier' },
   ],
 
-    { url: '', caption: 'Human-First Culture' },
-    { url: '', caption: 'Growth Opportunities' },
-    { url: '', caption: 'Diverse Family' },
-  ],
 
-    { url: '', caption: 'Training Session' },
-  ],
 
   /* ── HOME: Video Embed & Cover ── */
   home_video: [
@@ -1530,12 +1519,13 @@ const HUMAN_LABELS: Record<string, string> = {
   'home_consultation_wood_icon': 'ConsultationButton — Wood Icon',
   'home_attitude_bg': 'Attitude — Welcome BG Image',
   'about_values_visual_wood_icons': 'ValuesVisual — Impact Wood Icons',
-  'about_origin_story_wood_bg': 'OriginStory — Wood Ticker BG',: 'MeetTheTeam — Highlight Wood Icons',: 'Training — Image',
+  'about_origin_story_wood_bg': 'OriginStory — Wood Ticker BG',
+
   'home_truststrip_logos': 'TrustStrip — Brand Logos',
   'home_brandintro_images': 'BrandIntro — Images',
   'home_dualcta_backgrounds': 'DualCTA — Backgrounds',
   'home_sonicdna_background': 'SonicDNA — Office Background',
-  'home_officevisit_image': 'OfficeVisit — Image',: 'Hero — Background & Photos',: 'Core Values — Images',
+  'home_officevisit_image': 'OfficeVisit — Image',
   'about_sonicreels_hero_accent': 'SonicReels — Hero & Accent Images',
   'common_clientproof_logos': 'ClientProof — Brand Logos',
   'common_logos': 'Site Logos (Nav & Footer)',
@@ -1545,7 +1535,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'services_retail_pos_images': 'Retail & POS',
   'services_staffing_images': 'Staffing',
   'blog_images': 'Blog — Hero & Featured',
-  'ratgeber_hero': 'Ratgeber — Hero Background',: 'Jobs — Hero Background',
+  'ratgeber_hero': 'Ratgeber — Hero Background',
   'case_tvsound_gallery_1': 'TV & Sound | POS & Retail',
   'case_tvsound_gallery_2': 'TV & Sound | Messen & Roadshows',
   'case_tvsound_gallery_3': 'TV & Sound | Training & Team',
@@ -1711,7 +1701,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
 
   /* ── SINGLE-IMAGE SECTIONS ── */
   'blog_images': 1,
-  'ratgeber_hero': 1,: 1,
+  'ratgeber_hero': 1,
   'kontakt_hero': 1,
   'common_logos': 1,
 
@@ -1739,7 +1729,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'srt_problem_wood_icons': 3,
   'srt_joerg_photo': 'SRT — Entwickler Jörg: Profilfoto',
   'srt_proof_wood_icons': 4,
-  'srt_pricing_images': 3,: 3,: 1,
+  'srt_pricing_images': 3,
 };
 
 /* ─────────────────────────────────────────────
@@ -1901,7 +1891,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'leistungen_warehouse_fullservice_photo':       { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'Warehouse full service — single landscape photo' },
 
   'blog_images':           { aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'Blog featured image — wide format' },
-  'ratgeber_hero':         { aspectRatio: '16:9', dimensions: '1920×1080', orientation: 'landscape', tip: 'Ratgeber hero — abstract knowledge hub concept' },:             { aspectRatio: '2.4:1', dimensions: '1920×800', orientation: 'landscape', tip: 'Jobs hero — modern office, collaborative workspace' },
+  'ratgeber_hero':         { aspectRatio: '16:9', dimensions: '1920×1080', orientation: 'landscape', tip: 'Ratgeber hero — abstract knowledge hub concept' },
   'kontakt_hero':          { aspectRatio: '16:9', dimensions: '1920×1080', orientation: 'landscape', tip: 'Kontakt hero — abstract geometric concept, dark' },
 
   /* ═══ COMMON ═══ */
