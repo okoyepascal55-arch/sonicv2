@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
@@ -17,6 +17,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     nachricht,
     subject,
   } = req.body as Record<string, string>;
+
+  if (!RESEND_API_KEY) {
+    console.error('[send] RESEND_API_KEY is not configured');
+    return res.status(503).json({ error: 'E-Mail-Service ist noch nicht konfiguriert.' });
+  }
 
   if (!name || !email || !nachricht) {
     return res.status(400).json({ error: 'Pflichtfelder fehlen (name, email, nachricht)' });
@@ -57,6 +62,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       <p style="font-size: 11px; color: #888;">Gesendet über sonic-group.de/kontakt</p>
     </div>
   `;
+
+  const resend = new Resend(RESEND_API_KEY);
 
   try {
     const { error } = await resend.emails.send({

@@ -79,5 +79,15 @@ export default defineConfig({
   server: {
     port: 3000,
     host: "0.0.0.0",
+    proxy: {
+      // In local dev, /api/send won't be served by Vite (it's a Vercel serverless function).
+      // Proxying to a non-existent target causes an intentional 502 so the form shows
+      // the error state — better than a silent hang or CORS error.
+      // Run `vercel dev` locally to get full serverless function support.
+      "/api": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+      },
+    },
   },
 });
