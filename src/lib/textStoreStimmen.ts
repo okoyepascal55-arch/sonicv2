@@ -233,7 +233,7 @@ export const STIMMEN_TEXT_SECTIONS: TextSection[] = [
     ],
   },
   kreationVoice('robert', 'Robert H.', 'Creative Director',
-    '„Kreation ist kein Zufall. Es ist das Ergebnis von Präzision, Mut und einem tiefen Verständnis der Marke.“',
+    '„Kreation ist kein Zufall. Es ist das Ergebnis von Präzision, Mut und einem tiefen Verständnis für Marken und Menschen.“',
     'Robert leitet die kreative Ausrichtung bei Sonic. Als Creative Director verbindet er strategisches Denken mit visueller Exzellenz — und gibt Markenauftritten eine unverwechselbare Handschrift.'),
   kreationVoice('inga', 'Inga L.', 'Jr. Art Direktorin',
     '„Die besten Karrierewege lassen sich nicht planen. Manchmal entwickelt sich aus einem Praktikum genau der Ort, an dem man wachsen möchte.“',
