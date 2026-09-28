@@ -34,7 +34,7 @@ const EXECUTIVES = [
     tag: 'Vertrieb · Wachstum',
     tenure: 'Seit 2007',
     eyebrow: 'Wachstum. Markt. Dynamik.',
-    pullQuote: '',
+    pullQuote: '„Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten. Deshalb betrachten wir jede Herausforderung gleichzeitig aus Sicht von Endkunden, Handel, Mitarbeitern und Auftraggebern. Wir tun Dinge, um erfolgreich zu sein – nicht, um beschäftigt zu sein.“',
     bio: '',
     doing: [
       { label: 'Doing Things', text: 'Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten. Deshalb betrachten wir jede Herausforderung gleichzeitig aus Sicht von Endkunden, Handel, Mitarbeitern und Auftraggebern. Wir tun Dinge, um erfolgreich zu sein – nicht, um beschäftigt zu sein.', alt: 'Ausführung schlägt Idee. Wir synchronisieren Perspektiven, damit Maßnahmen Wirkung erzeugen.' },
@@ -56,7 +56,7 @@ const EXECUTIVES = [
     tenure: 'Seit 2019',
     eyebrow: 'Zahlen. Struktur. Weitblick.',
     pullQuote: '„Finance ist heute die zentrale Steuerungsfunktion, die Entscheidungen vorbereitet, Prozesse gestaltet und Digitalisierung vorantreibt. Wir stehen dabei nicht neben dem operativen Geschäft — wir sind ein aktiver Teil davon.“',
-    bio: 'Lucas verantwortet seit 2019 die finanzielle Steuerung von Sonic. Unter seiner Führung hat sich das Finance Team von reiner Buchhaltung zu einer vollwertigen Finanzfunktion entwickelt. Strukturen, Prozesse und die Zusammenarbeit mit dem operativen Geschäft sind heute eng verzahnt. So ist Finance bei Sonic nicht nur Kontrollinstanz, sondern aktiver Gestalter unternehmerischer Entscheidungen.',
+    bio: '',
     doing: [
       { label: 'Doing Things', text: 'Alles beginnt mit klaren Rollen, klaren Abläufen, klaren Zahlen. Wir schaffen Transparenz über Ergebnisse, Prozesse und Zusammenhänge – als verlässliches Fundament, auf dem gute Entscheidungen und starke Teams überhaupt erst möglich werden.' },
       { label: 'Doing Things Better', text: 'Erst auf diesem stabilen Fundament kann Qualität entstehen. Daher entwickeln wir Prozesse, Strukturen und Steuerungslogiken kontinuierlich weiter, um aus guter Arbeit exzellente Ergebnisse werden zu lassen – und aus einzelnen Verbesserungen ein System, das dauerhaft trägt.' },
@@ -125,7 +125,7 @@ function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
             </div>
           ))}
         </div>
-        <div className="flex justify-end">
+        {exec.linkedin && <div className="flex justify-end">
           <a
             href={exec.linkedin}
             target="_blank"
@@ -133,9 +133,9 @@ function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
             className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.06em] text-primary-500 hover:text-white transition-colors"
           >
             <i className="ri-linkedin-fill text-base" />
-            LinkedIn
+            {exec.name} auf LinkedIn
           </a>
-        </div>
+        </div>}
       </div>
     </div>
   );
@@ -212,6 +212,17 @@ function DesktopCarousel({ execs }: { execs: typeof EXECUTIVES }) {
                 ))}
               </div>
             )}
+            {exec.linkedin && (
+              <a
+                href={exec.linkedin}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.06em] text-foreground-950 hover:text-primary-600 transition-colors"
+              >
+                <i className="ri-linkedin-fill text-base" style={{ color: 'oklch(0.55 0.08 115)' }} />
+                {exec.name} auf LinkedIn
+              </a>
+            )}
           </div>
           {/* Metrics footer */}
           <div className="grid grid-cols-2 flex-shrink-0" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
@@ -252,6 +263,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
       name: pick('name', exec.name),
       title: pick('title', exec.title),
       tenure: pick('tenure', exec.tenure),
+      linkedin: pick('linkedin', exec.linkedin),
       eyebrow: pick('eyebrow', exec.eyebrow),
       pullQuote: pick('pullquote', exec.pullQuote),
       bio: t[`${exec.id}-bio`] ?? exec.bio,

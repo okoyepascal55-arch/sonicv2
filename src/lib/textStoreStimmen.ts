@@ -24,6 +24,7 @@ interface ExecDefaults {
   name: string;
   title: string;
   tenure: string;
+  linkedin: string;
   eyebrow: string;
   pullquote: string;
   bio: string;
@@ -41,6 +42,7 @@ const execSection = (d: ExecDefaults): TextSection => ({
     e(`${d.id}-name`, 'Name', 'heading', d.name),
     e(`${d.id}-title`, 'Position', 'label', d.title),
     e(`${d.id}-tenure`, 'Dabei seit', 'label', d.tenure),
+    e(`${d.id}-linkedin`, 'LinkedIn-Profil (Link)', 'link', d.linkedin),
     e(`${d.id}-eyebrow`, 'Eyebrow-Text (Mobil-Badge)', 'badge', d.eyebrow),
     e(`${d.id}-pullquote`, 'Pull-Quote', 'quote', d.pullquote, true),
     e(`${d.id}-bio`, 'Bio-Text (optional)', 'paragraph', d.bio, true),
@@ -61,6 +63,7 @@ const EXECS: ExecDefaults[] = [
     name: 'Björn Bourdin',
     title: 'Geschäftsführer',
     tenure: 'Seit 2010',
+    linkedin: 'https://www.linkedin.com/in/bj%C3%B6rn-bourdin-33100b3/',
     eyebrow: 'Vision. Strategie. Führung.',
     pullquote: '„Wer die Fakten kennt und das Team versteht, trifft keine schlechten Entscheidungen — nur mutige.“',
     bio: '',
@@ -76,8 +79,9 @@ const EXECS: ExecDefaults[] = [
     name: 'Jo Heitkämper',
     title: 'Leiter Vertrieb',
     tenure: 'Seit 2007',
+    linkedin: 'https://www.linkedin.com/in/jo-heitk%C3%A4mper-81522260/',
     eyebrow: 'Wachstum. Markt. Dynamik.',
-    pullquote: '',
+    pullquote: '„Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten. Deshalb betrachten wir jede Herausforderung gleichzeitig aus Sicht von Endkunden, Handel, Mitarbeitern und Auftraggebern. Wir tun Dinge, um erfolgreich zu sein – nicht, um beschäftigt zu sein.“',
     bio: '',
     doing: [
       ['Doing Things', 'Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten. Deshalb betrachten wir jede Herausforderung gleichzeitig aus Sicht von Endkunden, Handel, Mitarbeitern und Auftraggebern. Wir tun Dinge, um erfolgreich zu sein – nicht, um beschäftigt zu sein.'],
@@ -91,9 +95,10 @@ const EXECS: ExecDefaults[] = [
     name: 'Lucas Kreiten',
     title: 'Leiter Finanzen',
     tenure: 'Seit 2019',
+    linkedin: 'https://www.linkedin.com/in/lucas-kreiten/',
     eyebrow: 'Zahlen. Struktur. Weitblick.',
     pullquote: '„Finance ist heute die zentrale Steuerungsfunktion, die Entscheidungen vorbereitet, Prozesse gestaltet und Digitalisierung vorantreibt. Wir stehen dabei nicht neben dem operativen Geschäft — wir sind ein aktiver Teil davon.“',
-    bio: 'Lucas verantwortet seit 2019 die finanzielle Steuerung von Sonic. Unter seiner Führung hat sich das Finance Team von reiner Buchhaltung zu einer vollwertigen Finanzfunktion entwickelt. Strukturen, Prozesse und die Zusammenarbeit mit dem operativen Geschäft sind heute eng verzahnt. So ist Finance bei Sonic nicht nur Kontrollinstanz, sondern aktiver Gestalter unternehmerischer Entscheidungen.',
+    bio: '',
     doing: [
       ['Doing Things', 'Alles beginnt mit klaren Rollen, klaren Abläufen, klaren Zahlen. Wir schaffen Transparenz über Ergebnisse, Prozesse und Zusammenhänge – als verlässliches Fundament, auf dem gute Entscheidungen und starke Teams überhaupt erst möglich werden.'],
       ['Doing Things Better', 'Erst auf diesem stabilen Fundament kann Qualität entstehen. Daher entwickeln wir Prozesse, Strukturen und Steuerungslogiken kontinuierlich weiter, um aus guter Arbeit exzellente Ergebnisse werden zu lassen – und aus einzelnen Verbesserungen ein System, das dauerhaft trägt.'],
