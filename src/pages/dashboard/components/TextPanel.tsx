@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, memo } from 'react';
 import {
   getTextSectionsByGroup,
+  getTextSectionsByKeys,
   updateTextEntry,
   resetTextSection,
   resetAllText,
@@ -9,6 +10,9 @@ import {
   type TextSection,
   type TextEntry,
 } from '@/lib/textStore';
+import { STIMMEN_TABS, STIMMEN_GROUP_ID } from '@/lib/textStoreStimmen';
+
+type StimmenTabId = typeof STIMMEN_TABS[number]['id'];
 
 interface TextPanelProps {
   activeGroup: string;
@@ -304,9 +308,22 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
   const [search, setSearch] = useState('');
   const [showResetAll, setShowResetAll] = useState(false);
 
-  const sections = useMemo(() => getTextSectionsByGroup(activeGroup), [activeGroup]);
-  const entryCount = useMemo(() => getTextEntryCount(activeGroup), [activeGroup]);
-  const sectionCount = useMemo(() => getTextSectionCount(activeGroup), [activeGroup]);
+  const [stimmenTab, setStimmenTab] = useState<StimmenTabId>(STIMMEN_TABS[0].id);
+  const isStimmen = activeGroup === STIMMEN_GROUP_ID;
+  const activeStimmenTab = STIMMEN_TABS.find((t) => t.id === stimmenTab) ?? STIMMEN_TABS[0];
+
+  const sections = useMemo(
+    () => (isStimmen ? getTextSectionsByKeys(activeStimmenTab.sectionKeys) : getTextSectionsByGroup(activeGroup)),
+    [activeGroup, isStimmen, activeStimmenTab],
+  );
+  const entryCount = useMemo(
+    () => (isStimmen ? sections.reduce((sum, s) => sum + s.entries.length, 0) : getTextEntryCount(activeGroup)),
+    [activeGroup, isStimmen, sections],
+  );
+  const sectionCount = useMemo(
+    () => (isStimmen ? sections.length : getTextSectionCount(activeGroup)),
+    [activeGroup, isStimmen, sections],
+  );
 
   // Refresh on store updates
   const [, setTick] = useState(0);
@@ -316,11 +333,11 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
     return () => window.removeEventListener('text-store-update', handler);
   }, []);
 
-  // Reset expanded state when group changes
+  // Reset expanded state when group or tab changes
   useEffect(() => {
     setExpandedSection(null);
     setSearch('');
-  }, [activeGroup]);
+  }, [activeGroup, stimmenTab]);
 
   const groupLabel = useMemo(() => {
     const labels: Record<string, string> = {
@@ -328,6 +345,7 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
       case_studies: 'Fallbeispiele', blog: 'Blog', careers: 'Karriere', kontakt: 'Kontakt',
       team: 'Team', industries: 'Industries', lvp: 'Live Video Promotion',
       jobs: 'Jobs', ratgeber: 'Ratgeber', srt: 'SRT', common: 'Common Components',
+      stimmen: 'Stimmen & Gesichter',
     };
     return labels[activeGroup] || activeGroup;
   }, [activeGroup]);
@@ -339,6 +357,7 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
       careers: 'ri-briefcase-line', kontakt: 'ri-mail-send-line', team: 'ri-team-line',
       industries: 'ri-building-2-line', lvp: 'ri-live-line', jobs: 'ri-briefcase-4-line',
       ratgeber: 'ri-book-open-line', srt: 'ri-pie-chart-2-line', common: 'ri-puzzle-line',
+      stimmen: 'ri-chat-quote-line',
     };
     return icons[activeGroup] || 'ri-folder-line';
   }, [activeGroup]);
@@ -348,12 +367,12 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
     const q = search.toLowerCase();
     return sections.filter((s) => {
       if (s.label.toLowerCase().includes(q)) return true;
-      if (s.description.toLowerCase().includes(q)) return true;
+      if ((s.description ?? '').toLowerCase().includes(q)) return true;
       return s.entries.some(
         (e) =>
-          e.label.toLowerCase().includes(q) ||
-          e.value.toLowerCase().includes(q) ||
-          e.description.toLowerCase().includes(q)
+          (e.label ?? '').toLowerCase().includes(q) ||
+          (e.value ?? '').toLowerCase().includes(q) ||
+          (e.description ?? '').toLowerCase().includes(q)
       );
     });
   }, [sections, search]);
@@ -363,7 +382,7 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
     setShowResetAll(false);
   }, []);
 
-  if (sections.length === 0) {
+  if (sections.length === 0 && !isStimmen) {
     return (
       <div className="flex-1 flex items-center justify-center text-gray-400 bg-gray-50">
         <div className="text-center px-4">
@@ -425,6 +444,34 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
           </div>
         </div>
 
+        {/* Page tabs — Stimmen & Gesichter */}
+        {isStimmen && (
+          <div className="mt-4 -mb-4 flex items-end gap-1 overflow-x-auto" role="tablist" aria-label="Seite wählen">
+            {STIMMEN_TABS.map((tab) => {
+              const isActive = tab.id === stimmenTab;
+              return (
+                <button
+                  key={tab.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setStimmenTab(tab.id)}
+                  className={`px-4 py-2.5 text-xs font-bold uppercase tracking-wider border-b-2 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                    isActive
+                      ? 'border-lime-400 text-gray-900 bg-lime-50'
+                      : 'border-transparent text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  <i className={`${tab.icon} text-sm`}></i>
+                  {tab.label}
+                  <span className={`text-3xs font-semibold px-1.5 py-0.5 rounded ${isActive ? 'bg-lime-400 text-gray-900' : 'bg-gray-100 text-gray-500'}`}>
+                    {tab.sectionKeys.length}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+
         {search && (
           <p className="text-2xs text-gray-400 mt-2">
             {filteredSections.length} von {sections.length} Bereichen gefunden
@@ -438,6 +485,20 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
         style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
       >
         <div className="max-w-5xl space-y-2">
+          {isStimmen && (
+            <div className="flex items-center gap-2 text-2xs text-gray-500 bg-white border border-gray-200 rounded-md px-3 py-2 mb-3">
+              <i className="ri-information-line text-gray-400 text-sm"></i>
+              <span className="flex-1">{activeStimmenTab.hint}</span>
+              <a
+                href={activeStimmenTab.pagePath}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-gray-700 hover:text-gray-900 whitespace-nowrap flex items-center gap-1"
+              >
+                Seite öffnen <i className="ri-external-link-line"></i>
+              </a>
+            </div>
+          )}
           {filteredSections.map((section) => (
             <SectionRow
               key={section.key}

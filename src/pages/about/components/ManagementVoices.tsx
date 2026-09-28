@@ -1,7 +1,7 @@
 import React from 'react';
 import type { MediaItem } from '@/lib/mediaStore';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
-import { useText } from '@/hooks/useText';
+import { useText, useTextSection } from '@/hooks/useText';
 
 type DoingItem = { label: string; text: string; alt?: string };
 
@@ -107,8 +107,8 @@ function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
         {exec.bio && <p className="text-sm text-white/55 leading-relaxed mb-5">{exec.bio}</p>}
         {exec.doing && exec.doing.length > 0 && (
           <div className="mb-6 space-y-3" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '16px' }}>
-            {exec.doing.map((d) => (
-              <div key={d.label}>
+            {exec.doing.map((d, di) => (
+              <div key={di}>
                 <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-1" style={{ color: 'oklch(0.81 0.19 115 / 0.7)' }}>{d.label}</p>
                 <p className="text-xs text-white/50 leading-relaxed">{d.text}</p>
               </div>
@@ -116,8 +116,8 @@ function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
           </div>
         )}
         <div className="grid grid-cols-2 gap-3 mb-7">
-          {exec.metrics.map((m) => (
-            <div key={m.label} className="border border-white/10 px-4 py-3.5">
+          {exec.metrics.map((m, mi) => (
+            <div key={mi} className="border border-white/10 px-4 py-3.5">
               <div className="text-xl font-black text-primary-500 leading-none">{m.value}</div>
               <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5">{m.label}</div>
             </div>
@@ -202,8 +202,8 @@ function DesktopCarousel({ execs }: { execs: typeof EXECUTIVES }) {
             {exec.bio && <p className="text-sm leading-relaxed mb-5" style={{ color: 'oklch(0.48 0.006 260)' }}>{exec.bio}</p>}
             {exec.doing && exec.doing.length > 0 && (
               <div className="mb-5 space-y-4" style={{ borderTop: '1px solid oklch(0.885 0.004 110)', paddingTop: '20px' }}>
-                {exec.doing.map((d) => (
-                  <div key={d.label}>
+                {exec.doing.map((d, di) => (
+                  <div key={di}>
                     <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-1.5" style={{ color: 'oklch(0.55 0.08 115)' }}>{d.label}</p>
                     <p className="text-[13px] leading-relaxed" style={{ color: 'oklch(0.48 0.006 260)' }}>{d.text}</p>
                   </div>
@@ -231,41 +231,49 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
   const tHeading = useText('about_management_voices', 'about-voices-heading', 'Die Stimmen hinter Sonic.');
   const tSub     = useText('about_management_voices', 'about-voices-sub',     'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.');
 
-  // Stimmen & Zitate — ManagementVoices textStore hooks
-  const tBjornEyebrow  = useText('management_voice_bjorn', 'bjorn-eyebrow',   'Vision. Strategie. Führung.');
-  const tBjornQuote    = useText('management_voice_bjorn', 'bjorn-pullquote',  '„Wer die Fakten kennt und das Team versteht, trifft keine schlechten Entscheidungen — nur mutige.“');
-  const tBjornDoing1   = useText('management_voice_bjorn', 'bjorn-doing-1',    'Daten liefern die Fakten, Menschen den Unterschied. Alle „Things“ die wir tun, basieren auf beidem.');
-  const tBjornDoing2   = useText('management_voice_bjorn', 'bjorn-doing-2',    'Nobody’s perfect und auch wir müssen unser „Doing“ täglich hinterfragen, optimieren und verbessern.');
-  const tBjornDoing3   = useText('management_voice_bjorn', 'bjorn-doing-3',    'Der „Strategic Plan“ wird nur dann funktionieren, wenn wir bereit sind, neue Wege zu gehen.');
-  const tJoEyebrow     = useText('management_voice_jo',    'jo-eyebrow',       'Wachstum. Markt. Dynamik.');
-  const tJoQuote       = useText('management_voice_jo',    'jo-pullquote',     '„Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten.“');
-  const tJoDoing1      = useText('management_voice_jo',    'jo-doing-1',       'Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten.');
-  const tJoDoing2      = useText('management_voice_jo',    'jo-doing-2',       'Neue Ideen allein schaffen keinen Mehrwert. Entscheidend ist, wie konsequent sie umgesetzt werden.');
-  const tJoDoing3      = useText('management_voice_jo',    'jo-doing-3',       'Automation durch Algorithmen, Analysen durch KI, Umsetzung über die SRT.');
-  const tLucasEyebrow  = useText('management_voice_lucas', 'lucas-eyebrow',    'Zahlen. Struktur. Weitblick.');
-  const tLucasQuote    = useText('management_voice_lucas', 'lucas-pullquote',  '„Finance ist heute die zentrale Steuerungsfunktion.“');
-  const tLucasBio      = useText('management_voice_lucas', 'lucas-bio',        'Lucas verantwortet seit 2019 die finanzielle Steuerung von Sonic.');
-  const tLucasDoing1   = useText('management_voice_lucas', 'lucas-doing-1',    'Alles beginnt mit klaren Rollen, klaren Abläufen, klaren Zahlen.');
-  const tLucasDoing2   = useText('management_voice_lucas', 'lucas-doing-2',    'Erst auf diesem stabilen Fundament kann Qualität entstehen.');
-  const tLucasDoing3   = useText('management_voice_lucas', 'lucas-doing-3',    'Innovation beginnt dort, wo Mut auf Verantwortung trifft.');
+  // Dashboard → Text → Stimmen & Gesichter → Tab „Über uns“
+  const tCtaText   = useText('about_management_voices', 'about-voices-cta-text',   'Lass uns besprechen, wie Sonic deine');
+  const tCtaAccent = useText('about_management_voices', 'about-voices-cta-accent', 'Marke unterstützen kann.');
+  const tCtaSub    = useText('about_management_voices', 'about-voices-cta-sub',    'Unabhängige Agentur — über 500 Projekte — B2B, B2B2C & D2C');
+  const tCtaBtn    = useText('about_management_voices', 'about-voices-cta',        'Beratungsgespräch buchen');
+
+  const bjornText = useTextSection('management_voice_bjorn');
+  const joText    = useTextSection('management_voice_jo');
+  const lucasText = useTextSection('management_voice_lucas');
+
+  // Overlay dashboard text onto the static defaults (empty/missing → default,
+  // except bio which may be intentionally cleared to hide it).
+  const applyText = (exec: typeof EXECUTIVES[0], t: Record<string, string>) => {
+    const pick = (key: string, fallback: string) => (t[`${exec.id}-${key}`]?.trim() ? t[`${exec.id}-${key}`] : fallback);
+    return {
+      ...exec,
+      name: pick('name', exec.name),
+      title: pick('title', exec.title),
+      tenure: pick('tenure', exec.tenure),
+      eyebrow: pick('eyebrow', exec.eyebrow),
+      pullQuote: pick('pullquote', exec.pullQuote),
+      bio: t[`${exec.id}-bio`] ?? exec.bio,
+      doing: exec.doing.map((d, i) => ({
+        ...d,
+        label: pick(`doing-${i + 1}-label`, d.label),
+        text: pick(`doing-${i + 1}`, d.text),
+      })),
+      metrics: exec.metrics.map((m, i) => ({
+        value: pick(`metric-${i + 1}-value`, m.value),
+        label: pick(`metric-${i + 1}-label`, m.label),
+      })),
+    };
+  };
 
   const resolvedExecs = [
-    { ...EXECUTIVES[0], eyebrow: tBjornEyebrow, pullQuote: tBjornQuote, doing: [
-        { ...EXECUTIVES[0].doing[0], text: tBjornDoing1 },
-        { ...EXECUTIVES[0].doing[1], text: tBjornDoing2 },
-        { ...EXECUTIVES[0].doing[2], text: tBjornDoing3 },
-    ]},
-    { ...EXECUTIVES[1], eyebrow: tJoEyebrow, pullQuote: tJoQuote, doing: [
-        { ...EXECUTIVES[1].doing[0], text: tJoDoing1 },
-        { ...EXECUTIVES[1].doing[1], text: tJoDoing2 },
-        { ...EXECUTIVES[1].doing[2], text: tJoDoing3 },
-    ]},
-    { ...EXECUTIVES[2], eyebrow: tLucasEyebrow, pullQuote: tLucasQuote, bio: tLucasBio, doing: [
-        { ...EXECUTIVES[2].doing[0], text: tLucasDoing1 },
-        { ...EXECUTIVES[2].doing[1], text: tLucasDoing2 },
-        { ...EXECUTIVES[2].doing[2], text: tLucasDoing3 },
-    ]},
+    applyText(EXECUTIVES[0], bjornText),
+    applyText(EXECUTIVES[1], joText),
+    applyText(EXECUTIVES[2], lucasText),
   ];
+
+  // Match portraits by the ORIGINAL first name so renaming a person in the
+  // dashboard doesn't break the image mapping.
+  const imageKeys = EXECUTIVES.map((x) => x.name.split(' ')[0].toLowerCase());
 
   const execs = resolvedExecs.map((exec, i) => {
     // Match by executive first name found in either URL or caption.
@@ -274,7 +282,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
     // and any filename the user chose via the dashboard Replace flow.
     // The old regex (/\d+\.webp$/i) was too narrow — Supabase storage URLs
     // like __storage__:dashboard/1234-bjorn.webp don't end in digit+.webp.
-    const name = exec.name.split(' ')[0].toLowerCase(); // "björn" | "jo" | "lucas"
+    const name = imageKeys[i]; // "björn" | "jo" | "lucas"
     const matched = leadershipImages?.find(img => {
       const searchTarget = (img.url + ' ' + (img.caption || '')).toLowerCase();
       return searchTarget.includes(name);
@@ -390,8 +398,8 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                       {exec.bio && <p className="text-sm leading-relaxed mb-5" style={{ color: 'oklch(0.48 0.006 260)' }}>{exec.bio}</p>}
                       {exec.doing && exec.doing.length > 0 && (
                         <div className="mb-6 space-y-4" style={{ borderTop: '1px solid oklch(0.885 0.004 110)', paddingTop: '20px' }}>
-                          {exec.doing.map((d) => (
-                            <div key={d.label}>
+                          {exec.doing.map((d, di) => (
+                            <div key={di}>
                               <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-1.5" style={{ color: 'oklch(0.55 0.08 115)' }}>{d.label}</p>
                               <p className="text-[13px] leading-relaxed" style={{ color: 'oklch(0.48 0.006 260)' }}>{d.text}</p>
                             </div>
@@ -401,7 +409,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                       <div className="grid grid-cols-2" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
                         {exec.metrics.map((m, mi) => (
                           <div
-                            key={m.label}
+                            key={mi}
                             className="px-4 py-3.5"
                             style={mi === 0 ? { borderRight: '1px solid oklch(0.885 0.004 110)' } : undefined}
                           >
@@ -434,12 +442,12 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
           <div className="border border-[#E7E4D4] py-6 md:py-7 px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAFDF5]">
             <div className="text-center sm:text-left">
               <p className="text-sm md:text-[15px] font-black text-foreground-950 leading-relaxed">
-                Lass uns besprechen, wie Sonic deine{' '}
-                <span className="text-primary-500">Marke unterstützen kann.</span>
+                {tCtaText}{' '}
+                <span className="text-primary-500">{tCtaAccent}</span>
               </p>
-              <p className="text-xs text-[#6E6E68] mt-1 hidden sm:block">
-                Unabhängige Agentur — über 500 Projekte — B2B, B2B2C &amp; D2C
-              </p>
+              {tCtaSub && (
+                <p className="text-xs text-[#6E6E68] mt-1 hidden sm:block">{tCtaSub}</p>
+              )}
             </div>
             <button
               type="button"
@@ -447,7 +455,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
               className="inline-flex items-center gap-2 bg-foreground-950 text-white px-6 py-3 font-black hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-300 whitespace-nowrap cursor-pointer text-xs flex-shrink-0"
             >
               <i className="ri-calendar-line text-sm" />
-              Beratungsgespräch buchen
+              {tCtaBtn}
             </button>
           </div>
         </div>

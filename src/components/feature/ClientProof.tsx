@@ -1,5 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
+import { useTextSection } from '@/hooks/useText';
+import { TESTIMONIAL_IDS } from '@/lib/textStoreStimmen';
 
 interface Testimonial {
   brand: string;
@@ -11,7 +13,7 @@ interface Testimonial {
   caseStudyLink: string;
 }
 
-const testimonials: Testimonial[] = [
+const baseTestimonials: Testimonial[] = [
   {
     brand: 'GARMIN',
     logo: 'https://cdn.brandfetch.io/garmin.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
@@ -211,6 +213,25 @@ export default function ClientProof() {
   const autoScrollRaf = useRef<number>(0);
   const { images: logoImages } = useMediaStore('common_clientproof_logos');
 
+  // Dashboard → Text → Stimmen & Gesichter → Tab „Kreation“ (also Common Components)
+  const t = useTextSection('common_client_testimonials');
+  const pick = (key: string, fallback: string) => (t[key]?.trim() ? t[key] : fallback);
+  const tBadge = pick('testimonials-badge', 'Kundenstimmen');
+  const tHeading1 = pick('testimonials-heading-1', 'Was unsere Partner');
+  const tHeading2 = pick('testimonials-heading-2', 'über uns sagen');
+  const testimonials: Testimonial[] = baseTestimonials.map((item, i) => {
+    const id = TESTIMONIAL_IDS[i];
+    if (!id) return item;
+    return {
+      ...item,
+      brand: pick(`testimonial-${id}-brand`, item.brand),
+      quote: pick(`testimonial-${id}-quote`, item.quote),
+      author: pick(`testimonial-${id}-author`, item.author),
+      role: pick(`testimonial-${id}-role`, item.role),
+      company: pick(`testimonial-${id}-company`, item.company),
+    };
+  });
+
   // Merge dashboard logos with hardcoded testimonials — logo from dashboard if available
   const getLogo = (brandFallback: string) => {
     // Try to match by brand name
@@ -274,10 +295,10 @@ export default function ClientProof() {
           <div>
             <div className="flex items-center gap-3 mb-3">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Kundenstimmen</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
             </div>
             <h2 className="sonic-h2 text-foreground-950">
-              Was unsere Partner<br className="hidden md:block" /> über uns sagen
+              {tHeading1}<br className="hidden md:block" /> {tHeading2}
             </h2>
           </div>
           {/* Scroll arrows — desktop only */}

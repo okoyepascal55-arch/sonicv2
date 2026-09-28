@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
-import { useText } from '@/hooks/useText';
+import { useText, useTextSection } from '@/hooks/useText';
 import { useMediaStore } from '@/lib/mediaStore';
 import { ChapterHeader, Marker } from './ChapterKit';
 
@@ -85,9 +85,36 @@ export default function SonicFamily() {
   const tHeading = useText('careers_family', 'careers-family-heading', 'Sonic Spirit & Faces');
   const tSub     = useText('careers_family', 'careers-family-sub', 'Sechs Geschichten. Eine Überzeugung: Potenzial schlägt Lebenslauf.');
   const tCta     = useText('careers_family', 'careers-family-cta', 'Teil der Geschichte werden');
+  const tCtaBefore = useText('careers_family', 'careers-family-cta-before', 'Willst du auch Teil von');
+  const tCtaAccent = useText('careers_family', 'careers-family-cta-accent', 'Sonic Spirit & Faces');
+  const tCtaAfter  = useText('careers_family', 'careers-family-cta-after',  'werden?');
+  const tCtaSub    = useText('careers_family', 'careers-family-cta-sub',    'Wir suchen Menschen, die ihre Geschichte teilen — 15 Minuten, ehrliche Fragen, kein Drehbuch.');
+
+  // Dashboard → Text → Stimmen & Gesichter → Tab „Karriere“
+  const faceText = [
+    useTextSection('karriere_face_sascha'),
+    useTextSection('karriere_face_marcel'),
+    useTextSection('karriere_face_andrew'),
+    useTextSection('karriere_face_michelle'),
+    useTextSection('karriere_face_janina'),
+    useTextSection('karriere_face_katharina'),
+  ];
 
   const { images: dbImages } = useMediaStore('careers_sonicfamily_images');
-  const FACES = getFaces(dbImages);
+  const FACES = getFaces(dbImages).map((face, i) => {
+    const t = faceText[i] ?? {};
+    const pick = (key: string, fallback: string) => (t[`face-${face.id}-${key}`]?.trim() ? t[`face-${face.id}-${key}`] : fallback);
+    const closing = t[`face-${face.id}-closing`];
+    return {
+      ...face,
+      name: pick('name', face.name),
+      role: pick('role', face.role),
+      pullQuote: pick('pullquote', face.pullQuote),
+      bio: pick('bio', face.bio),
+      // Empty closing quote in the dashboard hides it
+      closingQuote: closing !== undefined ? (closing.trim() || undefined) : face.closingQuote,
+    };
+  });
 
   // Active face — defaults to first one
   const [activeId, setActiveId] = useState<string>(FACES[0].id);
@@ -159,7 +186,7 @@ export default function SonicFamily() {
                 >
                   {active.pullQuote}
                 </blockquote>
-                {active.bio.split('\n\n').map((para, i) => (
+                {active.bio.split(/\n\s*\n/).filter(Boolean).map((para, i) => (
                   <p key={i} className="text-[13px] leading-[1.75] mb-4 last:mb-0" style={{ color: 'rgba(255,255,255,0.5)' }}>
                     {para}
                   </p>
@@ -260,11 +287,13 @@ export default function SonicFamily() {
         >
           <div className="text-center sm:text-left">
             <p className="text-base font-black text-foreground-950 leading-snug">
-              Willst du auch Teil von <Marker>Sonic Spirit &amp; Faces</Marker> werden?
+              {tCtaBefore} {tCtaAccent && <Marker>{tCtaAccent}</Marker>} {tCtaAfter}
             </p>
-            <p className="text-[13px] mt-1.5" style={{ color: 'oklch(0.55 0.006 260)' }}>
-              Wir suchen Menschen, die ihre Geschichte teilen — 15 Minuten, ehrliche Fragen, kein Drehbuch.
-            </p>
+            {tCtaSub && (
+              <p className="text-[13px] mt-1.5" style={{ color: 'oklch(0.55 0.006 260)' }}>
+                {tCtaSub}
+              </p>
+            )}
           </div>
           <a
             href={`mailto:${CONTACT_EMAIL}`}

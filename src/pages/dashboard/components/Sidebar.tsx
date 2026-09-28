@@ -5,7 +5,13 @@ import {
   getTotalImageCount,
   invalidateCategoryCache,
 } from '@/lib/mediaStore';
-import { getTextSectionCount, getTextEntryCount, getTotalTextCount, getTotalSectionCount } from '@/lib/textStore';
+import { getTextSectionCount, getTextEntryCount, getTotalTextCount, getTotalSectionCount, getTextSectionsByKeys } from '@/lib/textStore';
+import { STIMMEN_TABS, STIMMEN_GROUP_ID } from '@/lib/textStoreStimmen';
+
+/* Groups that exist only in the Text dashboard (no media). */
+const TEXT_ONLY_GROUPS = [
+  { id: STIMMEN_GROUP_ID, label: 'Stimmen & Gesichter', icon: 'ri-chat-quote-line' },
+];
 
 interface SidebarProps {
   activeGroup: string;
@@ -94,6 +100,11 @@ export default memo(function Sidebar({ activeGroup, onGroupSelect, variant, onCl
         entries: getTextEntryCount(gid),
       };
     }
+    const stimmenSections = getTextSectionsByKeys(STIMMEN_TABS.flatMap((t) => [...t.sectionKeys]));
+    result[STIMMEN_GROUP_ID] = {
+      sections: stimmenSections.length,
+      entries: stimmenSections.reduce((sum, s) => sum + s.entries.length, 0),
+    };
     return result;
   }, []);
 
@@ -123,7 +134,7 @@ export default memo(function Sidebar({ activeGroup, onGroupSelect, variant, onCl
 
   const navItems = useMemo(
     () =>
-      PAGE_GROUPS.map((group) => {
+      [...(activeTab === 'text' ? TEXT_ONLY_GROUPS : []), ...PAGE_GROUPS].map((group) => {
         const tc = textCounts[group.id] || { sections: 0, entries: 0 };
         return (
           <SidebarGroupButton

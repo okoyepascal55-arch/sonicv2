@@ -20,7 +20,11 @@ const PEOPLE = [
 ];
 
 export default function KreationFaces() {
-  // KreationFaces — textStore hooks (Dashboard → Stimmen & Zitate)
+  // Dashboard → Text → Stimmen & Gesichter → Tab „Kreation“
+  const tBadge         = useText('kreation_team_header', 'kreation-team-badge',   'Kreation Team');
+  const tHeading       = useText('kreation_team_header', 'kreation-team-heading', 'Die Köpfe hinter der Kreation.');
+  const tRobertName    = useText('kreation_voice_robert', 'robert-name',      'Robert H.');
+  const tIngaName      = useText('kreation_voice_inga',   'inga-name',        'Inga L.');
   const tRobertRole    = useText('kreation_voice_robert', 'robert-role',      'Creative Director');
   const tRobertQuote   = useText('kreation_voice_robert', 'robert-pullquote', '„Kreation ist kein Zufall. Es ist das Ergebnis von Präzision, Mut und einem tiefen Verständnis der Marke.“');
   const tRobertBio     = useText('kreation_voice_robert', 'robert-bio',       'Robert leitet die kreative Ausrichtung bei Sonic. Als Creative Director verbindet er strategisches Denken mit handwerklicher Präzision.');
@@ -30,8 +34,8 @@ export default function KreationFaces() {
 
   // Override PEOPLE with textStore values
   const resolvedPeople = [
-    { ...PEOPLE[0], role: tRobertRole, pullQuote: tRobertQuote, bio: tRobertBio },
-    { ...PEOPLE[1], role: tIngaRole,   pullQuote: tIngaQuote,   bio: tIngaBio   },
+    { ...PEOPLE[0], name: tRobertName || PEOPLE[0].name, role: tRobertRole, pullQuote: tRobertQuote, bio: tRobertBio },
+    { ...PEOPLE[1], name: tIngaName   || PEOPLE[1].name, role: tIngaRole,   pullQuote: tIngaQuote,   bio: tIngaBio   },
   ];
 
   const { images: img0 } = useMediaStore('kreation_faces_robert');
@@ -39,7 +43,7 @@ export default function KreationFaces() {
   const dbImages = [img0[0], img1[0]];
 
   const [activeId, setActiveId] = useState(PEOPLE[0].id);
-  const active = resolvedPeople.find(p => p.id === activeId) ?? PEOPLE[0];
+  const active = resolvedPeople.find(p => p.id === activeId) ?? resolvedPeople[0];
   const activeIdx = resolvedPeople.findIndex(p => p.id === activeId);
 
   const getImg = (idx: number) => {
@@ -57,9 +61,9 @@ export default function KreationFaces() {
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5">
             <span className="w-7 h-0.5 bg-primary-500" aria-hidden="true" />
-            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Kreation Team</span>
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
           </div>
-          <h2 className="sonic-h2 text-foreground-950">Die Köpfe hinter der Kreation.</h2>
+          <h2 className="sonic-h2 text-foreground-950">{tHeading}</h2>
         </div>
 
         <div className="flex flex-col gap-0" style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
