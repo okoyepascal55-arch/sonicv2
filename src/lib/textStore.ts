@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { STIMMEN_TEXT_SECTIONS } from './textStoreStimmen';
+import { supabase } from './supabase';
 export interface TextEntry {
   id: string;
   label: string;
@@ -1419,9 +1420,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
 ];
 
 /* ─────────────────────────────────────────────
-   STORAGE — localStorage persistence
+   STORAGE — published via Supabase (see overrides model below)
 ───────────────────────────────────────────── */
-const STORAGE_KEY = 'sonic_text_store';
 
 /* One-time in-memory normalization: replaces legacy English default copy with German. */
 const LEGACY_TEXT_FIXES = [
@@ -1518,61 +1518,227 @@ const LEGACY_TEXT_FIXES = [
   }
 ];
 
-function loadFromStorage(): TextSection[] {
+/* ─────────────────────────────────────────────
+   OVERRIDES MODEL — Supabase-backed
+   Only edited values are stored, as { sectionKey: { entryId: value } },
+   in the Supabase table text_store (row id = 1). Every visitor pulls that
+   row on load, so dashboard edits appear for everyone. A copy is cached in
+   localStorage for a fast first paint on repeat visits.
+───────────────────────────────────────────── */
+type TextOverrides = Record<string, Record<string, string>>;
+
+const OVERRIDES_CACHE_KEY = 'sonic_text_overrides_cache';
+const TEXT_STORE_ROW_ID = 1;
+
+export type TextSyncState = 'idle' | 'saving' | 'saved' | 'error' | 'unconfigured';
+export interface TextSyncStatus {
+  state: TextSyncState;
+  message?: string;
+}
+
+function isOverrides(v: unknown): v is TextOverrides {
+  if (!v || typeof v !== 'object' || Array.isArray(v)) return false;
+  return Object.values(v as Record<string, unknown>).every(
+    (sec) => !!sec && typeof sec === 'object' && !Array.isArray(sec)
+      && Object.values(sec as Record<string, unknown>).every((val) => typeof val === 'string'),
+  );
+}
+
+const cloneOverrides = (o: TextOverrides): TextOverrides => JSON.parse(JSON.stringify(o));
+
+function readOverridesCache(): TextOverrides {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return JSON.parse(JSON.stringify(DEFAULT_TEXT_SECTIONS));
-    const parsed = JSON.parse(raw) as TextSection[];
-    const stored = new Map(parsed.map((s) => [s.key, s]));
-    const defaults = JSON.parse(JSON.stringify(DEFAULT_TEXT_SECTIONS)) as TextSection[];
-    for (const ds of defaults) {
-      const existing = stored.get(ds.key);
-      if (!existing) {
-        stored.set(ds.key, ds);
-        continue;
-      }
-      // Keep edited values, but take structure (labels, order, new/removed
-      // entries) from the defaults so newly editable fields show up.
-      const savedValues = new Map((existing.entries ?? []).map((en) => [en.id, en.value]));
-      stored.set(ds.key, {
-        ...ds,
-        entries: ds.entries.map((en) =>
-          savedValues.has(en.id) ? { ...en, value: savedValues.get(en.id) as string } : en,
-        ),
-      });
-    }
-    const sections = Array.from(stored.values());
-    // LEGACY_TEXT_FIXES contains array holes (",,") and some stray section
-    // objects — skip anything that isn't a real fix, otherwise the whole load
-    // throws and every saved dashboard edit is silently discarded.
-    type LegacyFix = { sectionKey: string; entryId: string; from: string; to: string; matchType?: 'startsWith' | 'contains' };
-    const fixes = (LEGACY_TEXT_FIXES as unknown as Array<Partial<LegacyFix> | undefined>).filter(
-      (f): f is LegacyFix => !!f && typeof f.sectionKey === 'string' && typeof f.entryId === 'string',
-    );
-    for (const fix of fixes) {
-      const section = sections.find((s) => s.key === fix.sectionKey);
-      if (!section) continue;
-      const entry = section.entries.find((e) => e.id === fix.entryId);
-      if (!entry) continue;
-      const matches =
-        fix.matchType === 'startsWith' ? entry.value.startsWith(fix.from) :
-        fix.matchType === 'contains'   ? entry.value.includes(fix.from) :
-                                         entry.value === fix.from;
-      if (matches) entry.value = fix.to;
-    }
-    return sections;
+    if (typeof localStorage === 'undefined') return {};
+    const raw = localStorage.getItem(OVERRIDES_CACHE_KEY);
+    if (!raw) return {};
+    const parsed: unknown = JSON.parse(raw);
+    return isOverrides(parsed) ? parsed : {};
   } catch {
-    return JSON.parse(JSON.stringify(DEFAULT_TEXT_SECTIONS));
+    return {};
   }
 }
 
-function saveToStorage(sections: TextSection[]): void {
+function writeOverridesCache(): void {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(sections));
-    window.dispatchEvent(new Event('text-store-update'));
-  } catch (e) {
-    throw new Error('Failed to save text store');
+    localStorage.setItem(OVERRIDES_CACHE_KEY, JSON.stringify(overrides));
+  } catch { /* storage unavailable — in-memory still works */ }
+}
+
+let overrides: TextOverrides = readOverridesCache();
+let builtSections: TextSection[] | null = null;
+let pendingWrites = 0;
+let syncStatus: TextSyncStatus = supabase
+  ? { state: 'idle' }
+  : { state: 'unconfigured', message: 'Supabase ist nicht konfiguriert — Textänderungen können nicht veröffentlicht werden.' };
+
+function notifyTextChange(): void {
+  builtSections = null;
+  if (typeof window !== 'undefined') window.dispatchEvent(new Event('text-store-update'));
+}
+
+function setSyncStatus(next: TextSyncStatus): void {
+  syncStatus = next;
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent<TextSyncStatus>('text-store-sync', { detail: next }));
   }
+}
+
+export function getTextSyncStatus(): TextSyncStatus {
+  return syncStatus;
+}
+
+function buildSections(): TextSection[] {
+  const sections = JSON.parse(JSON.stringify(DEFAULT_TEXT_SECTIONS)) as TextSection[];
+  for (const section of sections) {
+    const o = overrides[section.key];
+    if (!o) continue;
+    for (const entry of section.entries) {
+      if (Object.prototype.hasOwnProperty.call(o, entry.id)) entry.value = o[entry.id];
+    }
+  }
+  // LEGACY_TEXT_FIXES contains array holes (",,") and some stray section
+  // objects — skip anything that isn't a real fix, otherwise the whole load
+  // throws and every dashboard edit is silently discarded.
+  type LegacyFix = { sectionKey: string; entryId: string; from: string; to: string; matchType?: 'startsWith' | 'contains' };
+  const fixes = (LEGACY_TEXT_FIXES as unknown as Array<Partial<LegacyFix> | undefined>).filter(
+    (f): f is LegacyFix => !!f && typeof f.sectionKey === 'string' && typeof f.entryId === 'string',
+  );
+  for (const fix of fixes) {
+    const section = sections.find((s) => s.key === fix.sectionKey);
+    const entry = section?.entries.find((e) => e.id === fix.entryId);
+    if (!entry) continue;
+    const matches =
+      fix.matchType === 'startsWith' ? entry.value.startsWith(fix.from) :
+      fix.matchType === 'contains'   ? entry.value.includes(fix.from) :
+                                       entry.value === fix.from;
+    if (matches) entry.value = fix.to;
+  }
+  return sections;
+}
+
+/* Returns the current sections (defaults + overrides). Treat as read-only. */
+function loadFromStorage(): TextSection[] {
+  if (!builtSections) {
+    try {
+      builtSections = buildSections();
+    } catch {
+      builtSections = JSON.parse(JSON.stringify(DEFAULT_TEXT_SECTIONS)) as TextSection[];
+    }
+  }
+  return builtSections;
+}
+
+async function fetchRemoteOverrides(): Promise<TextOverrides> {
+  const { data, error } = await supabase
+    .from('text_store')
+    .select('data')
+    .eq('id', TEXT_STORE_ROW_ID)
+    .maybeSingle();
+  if (error) throw error;
+  const remote: unknown = data?.data;
+  return isOverrides(remote) ? remote : {};
+}
+
+let pullInFlight: Promise<void> | null = null;
+
+/* Pull the latest published text. Runs automatically on page load. */
+export function refreshTextFromServer(): Promise<void> {
+  if (!supabase || typeof window === 'undefined') return Promise.resolve();
+  if (pullInFlight) return pullInFlight;
+  pullInFlight = (async () => {
+    try {
+      const remote = await fetchRemoteOverrides();
+      // Don't clobber an edit that is still being saved
+      if (pendingWrites > 0) return;
+      if (JSON.stringify(remote) !== JSON.stringify(overrides)) {
+        overrides = remote;
+        writeOverridesCache();
+        notifyTextChange();
+      }
+    } catch (err) {
+      console.warn('[textStore] could not load published text:', err);
+    } finally {
+      pullInFlight = null;
+    }
+  })();
+  return pullInFlight;
+}
+
+function describeSaveError(err: unknown): string {
+  const msg = err && typeof err === 'object' && 'message' in err ? String((err as { message: unknown }).message) : String(err);
+  if (/relation .*text_store|does not exist|schema cache/i.test(msg)) {
+    return 'Nicht gespeichert: Tabelle text_store fehlt — supabase/migrations/002_text_store.sql ausführen.';
+  }
+  if (/row-level security|permission denied/i.test(msg)) {
+    return 'Nicht gespeichert: Supabase verweigert den Zugriff (RLS-Policy für text_store prüfen).';
+  }
+  return `Nicht gespeichert: ${msg}`;
+}
+
+let writeChain: Promise<unknown> = Promise.resolve();
+
+/* Apply a change locally right away, then publish it. Each write re-reads
+   the latest row first so two editors don't overwrite each other's edits. */
+function commitChange(mutate: (o: TextOverrides) => void): Promise<boolean> {
+  const local = cloneOverrides(overrides);
+  mutate(local);
+  overrides = local;
+  writeOverridesCache();
+  notifyTextChange();
+
+  if (!supabase) {
+    setSyncStatus({ state: 'unconfigured', message: 'Supabase ist nicht konfiguriert — Änderung ist nur in diesem Browser sichtbar.' });
+    return Promise.resolve(false);
+  }
+
+  pendingWrites++;
+  setSyncStatus({ state: 'saving' });
+
+  const run = async (): Promise<boolean> => {
+    let published: TextOverrides | null = null;
+    try {
+      const next = await fetchRemoteOverrides();
+      mutate(next);
+      const { error } = await supabase
+        .from('text_store')
+        .upsert({ id: TEXT_STORE_ROW_ID, data: next, updated_at: new Date().toISOString() });
+      if (error) throw error;
+      published = next;
+      return true;
+    } catch (err) {
+      console.error('[textStore] save failed:', err);
+      setSyncStatus({ state: 'error', message: describeSaveError(err) });
+      return false;
+    } finally {
+      pendingWrites--;
+      if (pendingWrites === 0) {
+        if (published) {
+          // Adopt the server state (includes other editors' changes)
+          if (JSON.stringify(published) !== JSON.stringify(overrides)) {
+            overrides = published;
+            writeOverridesCache();
+            notifyTextChange();
+          }
+          if (syncStatus.state !== 'error') setSyncStatus({ state: 'saved' });
+        } else {
+          // Failed — show what is actually published again
+          void refreshTextFromServer();
+        }
+      }
+    }
+  };
+
+  const p = writeChain.then(run);
+  writeChain = p.catch(() => undefined);
+  return p;
+}
+
+function defaultValueOf(sectionKey: string, entryId: string): string | undefined {
+  return DEFAULT_TEXT_SECTIONS.find((s) => s.key === sectionKey)?.entries.find((e) => e.id === entryId)?.value;
+}
+
+if (typeof window !== 'undefined') {
+  void refreshTextFromServer();
 }
 
 export function getTextSections(): TextSection[] {
@@ -1594,29 +1760,31 @@ export function getTextSection(key: string): TextSection | undefined {
   return loadFromStorage().find((s) => s.key === key);
 }
 
-export function updateTextEntry(sectionKey: string, entryId: string, value: string): void {
-  const sections = loadFromStorage();
-  const section = sections.find((s) => s.key === sectionKey);
-  if (!section) return;
-  const entry = section.entries.find((e) => e.id === entryId);
-  if (!entry) return;
-  entry.value = value;
-  saveToStorage(sections);
+/* Save one text. Resolves true once it is published for all visitors. */
+export function updateTextEntry(sectionKey: string, entryId: string, value: string): Promise<boolean> {
+  const defaultValue = defaultValueOf(sectionKey, entryId);
+  return commitChange((o) => {
+    if (value === defaultValue) {
+      if (o[sectionKey]) {
+        delete o[sectionKey][entryId];
+        if (Object.keys(o[sectionKey]).length === 0) delete o[sectionKey];
+      }
+    } else {
+      (o[sectionKey] ??= {})[entryId] = value;
+    }
+  });
 }
 
-export function resetTextSection(sectionKey: string): void {
-  const sections = loadFromStorage();
-  const defaults = DEFAULT_TEXT_SECTIONS.find((s) => s.key === sectionKey);
-  if (!defaults) return;
-  const idx = sections.findIndex((s) => s.key === sectionKey);
-  if (idx >= 0) {
-    sections[idx] = JSON.parse(JSON.stringify(defaults));
-  }
-  saveToStorage(sections);
+export function resetTextSection(sectionKey: string): Promise<boolean> {
+  return commitChange((o) => {
+    delete o[sectionKey];
+  });
 }
 
-export function resetAllText(): void {
-  saveToStorage(JSON.parse(JSON.stringify(DEFAULT_TEXT_SECTIONS)));
+export function resetAllText(): Promise<boolean> {
+  return commitChange((o) => {
+    for (const key of Object.keys(o)) delete o[key];
+  });
 }
 
 export function getTextSectionCount(groupId: string): number {

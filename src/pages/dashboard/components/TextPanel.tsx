@@ -7,6 +7,9 @@ import {
   resetAllText,
   getTextEntryCount,
   getTextSectionCount,
+  getTextSyncStatus,
+  refreshTextFromServer,
+  type TextSyncStatus,
   type TextSection,
   type TextEntry,
 } from '@/lib/textStore';
@@ -302,6 +305,31 @@ const SectionRow = memo(function SectionRow({ section, isExpanded, onToggle }: S
   );
 });
 
+/* ── Publish status pill ── */
+function SyncStatusBadge() {
+  const [status, setStatus] = useState<TextSyncStatus>(getTextSyncStatus);
+  useEffect(() => {
+    const handler = (e: Event) => setStatus((e as CustomEvent<TextSyncStatus>).detail);
+    window.addEventListener('text-store-sync', handler);
+    return () => window.removeEventListener('text-store-sync', handler);
+  }, []);
+
+  const view: Record<TextSyncStatus['state'], { cls: string; icon: string; text: string }> = {
+    idle:         { cls: 'bg-gray-100 text-gray-500',   icon: 'ri-cloud-line',          text: 'Änderungen gehen sofort live' },
+    saving:       { cls: 'bg-amber-50 text-amber-700',  icon: 'ri-loader-4-line animate-spin', text: 'Wird veröffentlicht…' },
+    saved:        { cls: 'bg-lime-50 text-lime-800',    icon: 'ri-check-double-line',   text: 'Live auf der Website' },
+    error:        { cls: 'bg-red-50 text-red-700',      icon: 'ri-error-warning-line',  text: status.message || 'Nicht gespeichert' },
+    unconfigured: { cls: 'bg-red-50 text-red-700',      icon: 'ri-error-warning-line',  text: status.message || 'Supabase nicht konfiguriert' },
+  };
+  const v = view[status.state];
+  return (
+    <span role="status" className={`px-2.5 py-1.5 text-2xs font-semibold rounded-md flex items-center gap-1.5 max-w-xs ${v.cls}`}>
+      <i className={`${v.icon} text-sm shrink-0`}></i>
+      <span className="truncate" title={v.text}>{v.text}</span>
+    </span>
+  );
+}
+
 /* ── Main Panel ── */
 export default function TextPanel({ activeGroup }: TextPanelProps) {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
@@ -333,6 +361,11 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
     const handler = () => setTick((t) => t + 1);
     window.addEventListener('text-store-update', handler);
     return () => window.removeEventListener('text-store-update', handler);
+  }, []);
+
+  // Load the latest published text when the panel opens
+  useEffect(() => {
+    void refreshTextFromServer();
   }, []);
 
   // Reset expanded state when group or tab changes
@@ -413,6 +446,7 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
           </div>
 
           <div className="flex items-center gap-3">
+            <SyncStatusBadge />
             {/* Search */}
             <div className="relative">
               <span className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 flex items-center justify-center">
@@ -535,7 +569,7 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-5">
-              Sämtliche Texte auf der gesamten Website werden auf die ursprünglichen Werte zurückgesetzt.
+              Sämtliche Texte auf der gesamten Website werden für alle Besucher auf die ursprünglichen Werte zurückgesetzt.
               Diese Aktion kann nicht rückgängig gemacht werden.
             </p>
             <div className="flex gap-2 justify-end">
