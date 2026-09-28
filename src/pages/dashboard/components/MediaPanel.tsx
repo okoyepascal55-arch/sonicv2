@@ -15,6 +15,7 @@ import {
   type MediaItem,
   type DesignSpec,
 } from '@/lib/mediaStore';
+import { getYouTubeId, youTubeThumbnailUrl } from '@/lib/youtube';
 import { supabase } from '@/lib/supabase';
 import { compressImage } from '@/lib/imageCompress';
 
@@ -47,7 +48,9 @@ const ImageCard = memo(function ImageCard({
   isDragging, isDragOver,
 }: ImageCardProps) {
   const [errored, setErrored] = useState(false);
-  const displayUrl = resolveImageUrl(item.url);
+  // A YouTube link stored as a media item (e.g. the Live Video showcase) previews as its thumbnail
+  const ytId = getYouTubeId(item.url);
+  const displayUrl = ytId ? youTubeThumbnailUrl(ytId) : resolveImageUrl(item.url);
 
   const previewClass = useMemo(() => {
     try {
@@ -1330,7 +1333,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
 
             <div className="h-24 md:h-32 bg-gray-100 rounded-lg mb-3 md:mb-4 overflow-hidden">
               <img
-                src={resolveImageUrl(editTarget.url)}
+                src={getYouTubeId(editTarget.url) ? youTubeThumbnailUrl(getYouTubeId(editTarget.url)) : resolveImageUrl(editTarget.url)}
                 alt={editTarget.caption || 'Preview'}
                 className="w-full h-full object-contain"
                 loading="lazy"

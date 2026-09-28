@@ -158,15 +158,14 @@ export default function PricingAndAccess() {
   const tSub = useText('srt_pricing', 'srt-pricing-sub', 'Drei Stufen, klarer Mehrwert, keine versteckten Kosten.');
 
   return (
-    <section id="preise-zugang" className="sonic-section-md px-4 md:px-6 bg-foreground-950 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none opacity-[0.025]"
-        style={{ backgroundImage: 'linear-gradient(oklch(0.81 0.19 115) 1px, transparent 1px), linear-gradient(90deg, oklch(0.81 0.19 115) 1px, transparent 1px)', backgroundSize: '52px 52px' }}
-        aria-hidden="true" />
-      <div className="sonic-container relative z-10">
-        <div className="mb-8">
+    <section id="preise-zugang" className="sonic-section-md px-4 md:px-6 bg-foreground-950">
+      <div className="sonic-container">
+        <div className="mb-10">
           <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span></div>
-          <h2 className="sonic-h2 text-white">Transparente Preise. <span className="text-primary-500">Direkter Zugang.</span></h2>
-          <p className="text-sm text-white/35 mt-2">{tSub}</p>
+          <div className="grid md:grid-cols-2 gap-6 items-end">
+            <h2 className="sonic-h2 text-white">Transparente Preise. <span className="text-primary-500">Direkter Zugang.</span></h2>
+            <p className="text-sm text-white/45 leading-relaxed md:text-right md:max-w-sm md:ml-auto">{tSub}</p>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-2.5 mb-8">
@@ -175,7 +174,7 @@ export default function PricingAndAccess() {
             return (
             <article key={tier.name} className="relative overflow-hidden" style={{ background: 'oklch(0.14 0.005 118)', border: tier.highlight ? '1px solid oklch(0.81 0.19 115 / 0.45)' : '1px solid rgba(255,255,255,0.08)' }}>
               {tier.highlight && <div className="absolute -top-[2px] left-[-2px] right-[-2px] h-[3px] bg-primary-500" />}
-              {img && <div className="relative w-full h-28 overflow-hidden"><img src={img} alt="" aria-hidden="true" className="w-full h-full object-cover grayscale opacity-40" loading="lazy" /><div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" /></div>}
+              {img && <div className="relative w-full h-28 overflow-hidden"><img src={img} alt="" aria-hidden="true" className="w-full h-full object-cover grayscale opacity-40" loading="lazy" /><div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent, oklch(0.14 0.005 118))' }} /></div>}
               <div className="p-6">
               {tier.highlight && <p className="text-[10px] font-black uppercase mb-1" style={{ color: 'oklch(0.81 0.19 115)' }}>Empfohlen</p>}
               <span className={`inline-block text-[11px] font-black uppercase px-2.5 py-1 ${tier.highlight ? 'bg-primary-500 text-foreground-950' : 'bg-white/[0.08] text-white/50'}`}>{tier.name}</span>
@@ -190,8 +189,8 @@ export default function PricingAndAccess() {
           })}
         </div>
 
-        <div className="grid md:grid-cols-2 border-2 border-foreground-950/[0.08]">
-          <div className="bg-foreground-950 p-8 md:p-11 flex flex-col justify-center">
+        <div className="grid md:grid-cols-2" style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="p-8 md:p-11 flex flex-col justify-center" style={{ background: 'oklch(0.14 0.005 118)' }}>
             <div className="flex items-center gap-2.5 mb-4"><div className="w-1 h-[22px] bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.15em] text-primary-500">Zugang beantragen</span></div>
             <h3 className="text-[28px] font-black leading-tight text-background-50 mb-4">Bereit für <span className="text-primary-500">volle</span> Transparenz?</h3>
             <p className="text-[13px] leading-[1.7] text-background-50/50 max-w-xs mb-6">Kein Commitment. Nur ein Gespräch. Wir zeigen dir in 30 Minuten, wie das SRT für dein Projekt aussehen kann.</p>

@@ -1147,6 +1147,8 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   /* ── LEISTUNGEN: Video — Format Images ── */
+  // YouTube showcase on /leistungen/live-video — one item whose URL is the YouTube link
+  leistungen_video_youtube: [],
   leistungen_video_format_photos: [
     { url: '', caption: 'Live-Video-Beratung — 1:1 Calls' },
     { url: '', caption: 'Sales Broadcast' },
@@ -1411,6 +1413,8 @@ export const VIRTUAL_MEDIA: MediaSections = {
   ],
 
   /* ── SRT: Pricing — Card Images ── */
+  // Portrait for the developer quote (JoergQuote) on /srt
+  srt_joerg_photo: [],
   srt_pricing_images: [
     { url: '', caption: 'Starter Tier' },
     { url: '', caption: 'Professional Tier' },
@@ -1564,7 +1568,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'leistungen_kreation_discipline_wood_icons': 'Kreation — Discipline Wood Icons',
   'leistungen_kreation_photo_grid': 'Kreation — Rotating Photo Grid',
   'leistungen_warehouse_fullservice_photo': 'Warehouse — Full Service Photo',
-  'leistungen_video_youtube': 'Live Video — YouTube Showcase URL (im Feld \"Beschriftung\" eintragen)',
+  'leistungen_video_youtube': 'Live Video — YouTube-Video (Link unter „URL einfügen“ eintragen)',
   'leistungen_video_format_photos': 'Video — Format Photos',
   'home_video': 'Hero Video — Embed & Cover',
   'home_services_wood_icons': 'Services Grid — Wood Icons',
@@ -1760,7 +1764,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'leistungen_kreation_discipline_wood_icons': 3,
   'leistungen_kreation_photo_grid': 5,
   'leistungen_warehouse_fullservice_photo': 1,
-  'leistungen_video_youtube': 'Live Video — YouTube Showcase URL (im Feld \"Beschriftung\" eintragen)',
+  'leistungen_video_youtube': 1,
   'leistungen_video_format_photos': 6,
 
   /* ── TEAM: Fixed Design Slots ── */
@@ -1809,7 +1813,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'about_origin_story_wood_bg': 1,
   'srt_functionality_images': 6,  // 6 module screenshots
   'srt_problem_wood_icons': 3,
-  'srt_joerg_photo': 'SRT — Entwickler Jörg: Profilfoto',
+  'srt_joerg_photo': 1,
   'srt_proof_wood_icons': 4,
   'srt_pricing_images': 3,
   'team_meet_team_wood_icons': 3,
@@ -1935,7 +1939,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'srt_feature_icons':         { aspectRatio: '1:1', dimensions: '120×120', orientation: 'icon', tip: 'Square walnut wood icons for feature cards' },
   'srt_section_images':        { aspectRatio: '3:2 or 2:3', dimensions: '1200×800 (dashboard) / 600×800 (mobile)', orientation: 'landscape', tip: 'Dashboard screenshot + mobile app — mixed ratios' },
   'srt_problem_wood_icons':    { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square walnut wood icons for problem cards' },
-  'srt_joerg_photo': 'SRT — Entwickler Jörg: Profilfoto',
+  'srt_joerg_photo':           { aspectRatio: '4:5', dimensions: '~800×1000', orientation: 'portrait', tip: 'Porträt von Jörg — Gesicht im oberen Drittel, das Bild wird oben ausgerichtet beschnitten' },
   'srt_proof_wood_icons':      { aspectRatio: '1:1', dimensions: '80×80', orientation: 'icon', tip: 'Small walnut wood icons for proof stats' },
   'srt_pricing_images':        { aspectRatio: '2:1', dimensions: '800×400', orientation: 'landscape', tip: 'Wide pricing tier images — workspace/enterprise shots' },
 
@@ -1966,7 +1970,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'leistungen_staff_socks_images':   { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'S.O.C.K.S. images — selection, orientation, training' },
   'leistungen_talentpool_profiles_images': { aspectRatio: '~2.3:1', dimensions: '~1024×448', orientation: 'landscape', tip: 'Talent profile images — wide format' },
   'leistungen_warehouse_items_images':{ aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'Warehouse items — POS material, display, fulfillment' },
-  'leistungen_video_youtube': 'Live Video — YouTube Showcase URL (im Feld \"Beschriftung\" eintragen)',
+  'leistungen_video_youtube':       { aspectRatio: '16:9', dimensions: 'YouTube-Link', orientation: 'landscape', tip: 'Kein Bild hochladen: unter „URL einfügen“ den YouTube-Link eintragen (z. B. https://youtu.be/…). Leer = Platzhalter auf der Seite.' },
   'leistungen_video_format_photos':  { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'Video format photos — live-video, broadcast, streaming' },
 
   /* ═══ LEISTUNGEN: All Wood Icons (1:1 squares, varying sizes) ═══ */

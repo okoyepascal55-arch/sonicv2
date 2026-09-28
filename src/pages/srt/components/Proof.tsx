@@ -15,24 +15,17 @@ export default function Proof() {
   const tSub     = useText('srt_proof', 'srt-proof-sub',     'Tatsächlich gemessene Ergebnisse aus über 15 Jahren Retail-Aktivierungen.');
 
   return (
-    <section id="srt-proof" className="relative overflow-hidden bg-foreground-950 py-10 md:py-14">
-      {/* Grid backdrop */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{ backgroundImage: 'linear-gradient(oklch(0.81 0.19 115) 1px, transparent 1px), linear-gradient(90deg, oklch(0.81 0.19 115) 1px, transparent 1px)', backgroundSize: '52px 52px' }}
-        aria-hidden="true" />
-      {/* Lime left bar */}
-      <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-primary-500/40 to-transparent" aria-hidden="true" />
-
-      <div className="sonic-container relative z-10 px-4 md:px-6">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-7 h-0.5 bg-primary-500" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
-            </div>
-            <h2 className="sonic-h2 text-white">{tHeading}</h2>
+    <section id="srt-proof" className="sonic-section-md px-4 md:px-6 bg-foreground-950">
+      <div className="sonic-container">
+        <div className="mb-10">
+          <div className="flex items-center gap-3 mb-5">
+            <span className="w-7 h-0.5 bg-primary-500" />
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
           </div>
-          <p className="text-xs text-white/30 max-w-[240px] leading-relaxed md:text-right">{tSub}</p>
+          <div className="grid md:grid-cols-2 gap-6 items-end">
+            <h2 className="sonic-h2 text-white">{tHeading}</h2>
+            <p className="text-sm text-white/45 leading-relaxed md:text-right md:max-w-sm md:ml-auto">{tSub}</p>
+          </div>
         </div>
 
         {/* Telemetry grid */}
@@ -40,14 +33,13 @@ export default function Proof() {
           {STATS.map((stat, i) => {
             const woodIcon = woodIcons[i]?.url ? resolveImageUrl(woodIcons[i].url) : null;
             return (
-              <div key={stat.label} className="relative p-6 md:p-8 text-center group transition-all duration-300 hover:bg-white/[0.03]"
-                style={{
-                  borderRight: i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.08)' : undefined,
-                  borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.08)' : undefined,
-                }}>
-                {/* Active top indicator */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-primary-500 group-hover:w-full transition-all duration-400" />
-
+              <div key={stat.label}
+                className={[
+                  'relative p-6 md:p-8 text-center border-white/[0.08]',
+                  i < 2 ? 'border-b lg:border-b-0' : '',            // 2×2 on mobile: divide rows
+                  i % 2 === 0 ? 'border-r' : '',                    // divide columns in the 2×2 grid
+                  i === 1 ? 'lg:border-r' : '',                     // 1×4 on desktop: divide all four
+                ].join(' ')}>
                 {/* Sys label */}
                 <p className="text-[8px] font-black uppercase tracking-[0.3em] mb-4" style={{ color: 'oklch(0.81 0.19 115 / 0.35)' }}>{stat.sys}</p>
 

@@ -96,7 +96,7 @@ export default function EventsContent() {
 
       <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
-      {/* ── Solution (horizontal scroll, light warm bg) ── */}
+      {/* ── Solution — shared wood scroll cards, same system as Staff / Forecasting / Live Video ── */}
       <section id="loesung" className="sonic-section-md bg-white px-4 md:px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.018] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="sonic-container relative">
@@ -110,33 +110,9 @@ export default function EventsContent() {
                 {tSolutionHeading}
               </h2>
             </div>
-            <p className="text-foreground-950/45 text-sm leading-relaxed max-w-xs">{tSolutionSub}</p>
+            <p className="text-foreground-950/45 text-sm leading-relaxed max-w-xs lg:text-right">{tSolutionSub}</p>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {SOLUTIONS.map((s, i) => (
-              <div
-                key={s.num}
-                className="relative overflow-hidden p-6"
-                style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.09)' }}
-              >
-                <div
-                  className="absolute bottom-3 right-4 font-black leading-none select-none pointer-events-none"
-                  style={{ fontSize: '4.5rem', color: 'rgba(0,0,0,0.04)', lineHeight: 1 }}
-                >
-                  {s.num}
-                </div>
-                <div className="relative z-10">
-                  <div className="w-12 h-12 overflow-hidden mb-4 flex-shrink-0" style={{ border: '1px solid rgba(0,0,0,0.09)' }}>
-                    <img src={getSolutionWoodIcon(i)} alt={s.title} className="w-full h-full object-cover" loading="lazy" />
-                  </div>
-                  <span className="text-[10px] font-black uppercase tracking-widest text-primary-600">{s.accent}</span>
-                  <h3 className="text-base font-black text-foreground-950 mt-1 mb-2 leading-snug">{s.title}</h3>
-                  <p className="text-sm text-foreground-950/55 leading-relaxed">{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="wood" />
         </div>
       </section>
 

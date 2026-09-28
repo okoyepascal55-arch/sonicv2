@@ -7,6 +7,7 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { getYouTubeId, youTubeEmbedUrl } from '@/lib/youtube';
 import { useText } from '@/hooks/useText';
 
 const VIDEO_CHALLENGES: ChallengeItem[] = [
@@ -119,7 +120,7 @@ export default function VideoContent() {
   const tPhygitalHeading = useText('leistungen_video_content', 'video-phygital-heading', 'Phygital optimal nutzen');
   // YouTube URL from MEDIA dashboard (caption field of leistungen_video_youtube)
   const { images: ytSection } = useMediaStore('leistungen_video_youtube');
-  const tYoutubeUrl = ytSection[0]?.caption || '';
+  const ytId = getYouTubeId(ytSection[0]?.url) || getYouTubeId(ytSection[0]?.caption);
   // Text dashboard fallback (for title/subline)
   const tYoutubeTitle   = useText('leistungen_video', 'video-youtube-title',   'Sonic Live Video — Erlebe es in Aktion');
   const tYoutubeSubline = useText('leistungen_video', 'video-youtube-subline', 'Wie eine erfolgreiche Live-Video-Promotion aussieht — vom Studio bis zum Abverkauf.');
@@ -168,39 +169,6 @@ export default function VideoContent() {
 
   return (
     <>
-      {/* ── YouTube Video Showcase — always visible; iframe only when URL is set ── */}
-      <section className="sonic-section-md bg-foreground-950 px-4 md:px-6">
-        <div className="sonic-container max-w-4xl">
-          <div className="text-center mb-8">
-            <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Video</span>
-            <h2 className="sonic-h2 text-white mt-2 mb-3">{tYoutubeTitle}</h2>
-            <p className="text-foreground-400 text-sm md:text-base max-w-xl mx-auto">{tYoutubeSubline}</p>
-          </div>
-          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-            {tYoutubeUrl ? (
-              <iframe
-                src={`https://www.youtube.com/embed/${tYoutubeUrl.includes('youtu') ? tYoutubeUrl.split(/[/?=v]/).filter(Boolean).slice(-1)[0] : tYoutubeUrl}`}
-                className="absolute inset-0 w-full h-full"
-                style={{ border: 'none' }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={tYoutubeTitle}
-                loading="lazy"
-              />
-            ) : (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4"
-                style={{ border: '2px dashed oklch(var(--primary-500) / 0.3)', background: 'oklch(0.11 0.004 118)' }}>
-                <i className="ri-youtube-line text-primary-500/40 text-5xl" />
-                <p className="text-foreground-400/50 text-sm text-center max-w-xs leading-relaxed px-4">
-                  YouTube Video hier einbetten —<br />
-                  URL im <strong className="text-primary-500/60">Media-Dashboard</strong> eintragen
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
       <ChallengeSection
         headline={tChallengeHeading}
         subline={tChallengeSub}
@@ -224,9 +192,45 @@ export default function VideoContent() {
         </div>
       </section>
 
-      {/* Advantages */}
-      
       <WoodenDivider />
+
+      {/* ── Video showcase — third section: shows the solution in action. Link is set in Dashboard → Media → Live Video ── */}
+      <section id="video" className="sonic-section-md bg-foreground-950 px-4 md:px-6">
+        <div className="sonic-container max-w-4xl">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Video</span>
+            </div>
+            <h2 className="sonic-h2 text-white mb-3">{tYoutubeTitle}</h2>
+            <p className="text-foreground-400 text-sm md:text-base max-w-xl mx-auto">{tYoutubeSubline}</p>
+          </div>
+          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            {ytId ? (
+              <iframe
+                src={youTubeEmbedUrl(ytId)}
+                className="absolute inset-0 w-full h-full"
+                style={{ border: 'none' }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={tYoutubeTitle}
+                loading="lazy"
+              />
+            ) : (
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4"
+                style={{ border: '2px dashed oklch(var(--primary-500) / 0.3)', background: 'oklch(0.11 0.004 118)' }}>
+                <i className="ri-youtube-line text-primary-500/40 text-5xl" />
+                <p className="text-foreground-400/50 text-sm text-center max-w-xs leading-relaxed px-4">
+                  YouTube Video hier einbetten —<br />
+                  URL im <strong className="text-primary-500/60">Media-Dashboard</strong> eintragen
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Advantages — follows the dark video section directly (dark → dark: no divider) */}
 <section id="vorteile" className="sonic-section-md bg-foreground-950 px-4 md:px-6">
         <div className="sonic-container">
           <div className="text-center mb-14">

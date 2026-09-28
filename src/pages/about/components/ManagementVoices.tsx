@@ -13,7 +13,7 @@ const EXECUTIVES = [
     tag: 'Strategie · Führung',
     tenure: 'Seit 2010',
     eyebrow: 'Vision. Strategie. Führung.',
-    pullQuote: '„Wer die Fakten kennt und das Team versteht, trifft keine schlechten Entscheidungen — nur mutige."',
+    pullQuote: '„Wer die Fakten kennt und das Team versteht, trifft keine schlechten Entscheidungen — nur mutige.“',
     bio: '',
     doing: [
       { label: 'Doing Things', text: 'Daten liefern die Fakten, Menschen den Unterschied. Alle \u201eThings\u201c die mit Daten oder mit Menschen zu tun haben und die Herausforderungen unserer Kunden lösen, sind unsere Spielwiese.' },
@@ -34,7 +34,7 @@ const EXECUTIVES = [
     tag: 'Vertrieb · Wachstum',
     tenure: 'Seit 2007',
     eyebrow: 'Wachstum. Markt. Dynamik.',
-    pullQuote: '„Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten. Deshalb betrachten wir jede Herausforderung gleichzeitig aus Sicht von Endkunden, Handel, Mitarbeitern und Auftraggebern. Wir tun Dinge, um erfolgreich zu sein – nicht, um beschäftigt zu sein."',
+    pullQuote: '',
     bio: '',
     doing: [
       { label: 'Doing Things', text: 'Projekte scheitern selten an Ideen, sondern daran, dass Beteiligte aneinander vorbeiarbeiten. Deshalb betrachten wir jede Herausforderung gleichzeitig aus Sicht von Endkunden, Handel, Mitarbeitern und Auftraggebern. Wir tun Dinge, um erfolgreich zu sein – nicht, um beschäftigt zu sein.', alt: 'Ausführung schlägt Idee. Wir synchronisieren Perspektiven, damit Maßnahmen Wirkung erzeugen.' },
@@ -55,7 +55,7 @@ const EXECUTIVES = [
     tag: 'Finanzen · Strategie',
     tenure: 'Seit 2019',
     eyebrow: 'Zahlen. Struktur. Weitblick.',
-    pullQuote: '„Finance ist heute die zentrale Steuerungsfunktion, die Entscheidungen vorbereitet, Prozesse gestaltet und Digitalisierung vorantreibt. Wir stehen dabei nicht neben dem operativen Geschäft — wir sind ein aktiver Teil davon."',
+    pullQuote: '„Finance ist heute die zentrale Steuerungsfunktion, die Entscheidungen vorbereitet, Prozesse gestaltet und Digitalisierung vorantreibt. Wir stehen dabei nicht neben dem operativen Geschäft — wir sind ein aktiver Teil davon.“',
     bio: 'Lucas verantwortet seit 2019 die finanzielle Steuerung von Sonic. Unter seiner Führung hat sich das Finance Team von reiner Buchhaltung zu einer vollwertigen Finanzfunktion entwickelt. Strukturen, Prozesse und die Zusammenarbeit mit dem operativen Geschäft sind heute eng verzahnt. So ist Finance bei Sonic nicht nur Kontrollinstanz, sondern aktiver Gestalter unternehmerischer Entscheidungen.',
     doing: [
       { label: 'Doing Things', text: 'Alles beginnt mit klaren Rollen, klaren Abläufen, klaren Zahlen. Wir schaffen Transparenz über Ergebnisse, Prozesse und Zusammenhänge – als verlässliches Fundament, auf dem gute Entscheidungen und starke Teams überhaupt erst möglich werden.' },
@@ -101,9 +101,11 @@ function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
         <div className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-4">
           {String(idx + 1).padStart(2, '0')} / {String(EXECUTIVES.length).padStart(2, '0')}
         </div>
-        <blockquote className="text-white font-black leading-[1.3] mb-5" style={{ fontSize: 'clamp(18px,2vw,24px)', letterSpacing: '-0.015em' }}>
-          {exec.pullQuote}
-        </blockquote>
+        {exec.pullQuote && (
+          <blockquote className="text-white font-black leading-[1.3] mb-5" style={{ fontSize: 'clamp(18px,2vw,24px)', letterSpacing: '-0.015em' }}>
+            {exec.pullQuote}
+          </blockquote>
+        )}
         {exec.bio && <p className="text-sm text-white/55 leading-relaxed mb-5">{exec.bio}</p>}
         {exec.doing && exec.doing.length > 0 && (
           <div className="mb-6 space-y-3" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '16px' }}>

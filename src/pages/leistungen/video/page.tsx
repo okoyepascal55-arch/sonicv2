@@ -10,6 +10,7 @@ import VideoContent from './components/VideoContent';
 
 const NAV_ITEMS = [
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
+  { id: 'video', label: 'Video', icon: 'ri-play-circle-line' },
   { id: 'vorteile', label: 'Vorteile', icon: 'ri-thumb-up-line' },
   { id: 'kostenrechner', label: 'Kostenrechner', icon: 'ri-calculator-line' },
   { id: 'phygital', label: 'Phygital', icon: 'ri-links-line' },
