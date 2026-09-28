@@ -34,8 +34,8 @@ export default function KreationFaces() {
 
   // Override PEOPLE with textStore values
   const resolvedPeople = [
-    { ...PEOPLE[0], name: tRobertName || PEOPLE[0].name, role: tRobertRole, pullQuote: tRobertQuote, bio: tRobertBio },
-    { ...PEOPLE[1], name: tIngaName   || PEOPLE[1].name, role: tIngaRole,   pullQuote: tIngaQuote,   bio: tIngaBio   },
+    { ...PEOPLE[0], name: tRobertName.trim() || PEOPLE[0].name, role: tRobertRole.trim() || PEOPLE[0].role, pullQuote: tRobertQuote.trim() || PEOPLE[0].pullQuote, bio: tRobertBio },
+    { ...PEOPLE[1], name: tIngaName.trim()   || PEOPLE[1].name, role: tIngaRole.trim()   || PEOPLE[1].role, pullQuote: tIngaQuote.trim()   || PEOPLE[1].pullQuote, bio: tIngaBio   },
   ];
 
   const { images: img0 } = useMediaStore('kreation_faces_robert');

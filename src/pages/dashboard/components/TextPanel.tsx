@@ -308,13 +308,16 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
   const [search, setSearch] = useState('');
   const [showResetAll, setShowResetAll] = useState(false);
 
+  const [tick, setTick] = useState(0);
   const [stimmenTab, setStimmenTab] = useState<StimmenTabId>(STIMMEN_TABS[0].id);
   const isStimmen = activeGroup === STIMMEN_GROUP_ID;
   const activeStimmenTab = STIMMEN_TABS.find((t) => t.id === stimmenTab) ?? STIMMEN_TABS[0];
 
   const sections = useMemo(
     () => (isStimmen ? getTextSectionsByKeys(activeStimmenTab.sectionKeys) : getTextSectionsByGroup(activeGroup)),
-    [activeGroup, isStimmen, activeStimmenTab],
+    // tick: re-read after saves/resets so "Zurücksetzen" shows the restored text immediately
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [activeGroup, isStimmen, activeStimmenTab, tick],
   );
   const entryCount = useMemo(
     () => (isStimmen ? sections.reduce((sum, s) => sum + s.entries.length, 0) : getTextEntryCount(activeGroup)),
@@ -325,8 +328,7 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
     [activeGroup, isStimmen, sections],
   );
 
-  // Refresh on store updates
-  const [, setTick] = useState(0);
+  // Refresh on store updates (tick is declared above the section memos)
   useEffect(() => {
     const handler = () => setTick((t) => t + 1);
     window.addEventListener('text-store-update', handler);
