@@ -1417,6 +1417,22 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   /* ═══════════════ STIMMEN & GESICHTER — see textStoreStimmen.ts ═══════════════ */
   ...STIMMEN_TEXT_SECTIONS,
+  /* SRT — Ein Wort vom Entwickler (also shown in Stimmen & Gesichter → SRT) */
+  {
+    key: 'srt_developer',
+    pageGroupId: 'srt',
+    label: 'SRT — Ein Wort vom Entwickler (Jörg)',
+    pagePath: '/srt',
+    description: 'Zitat-Karte „Wer hinter dem SRT steht.“ auf der SRT-Seite. Das Porträt wird im Medien-Dashboard gepflegt (SRT → „Entwickler Jörg: Profilfoto“).',
+    entries: [
+      { id: 'srt-joerg-badge',   label: 'Sektion-Badge',   description: 'Kleine Zeile über der Überschrift', type: 'badge',   value: 'Ein Wort vom Entwickler' },
+      { id: 'srt-joerg-heading', label: 'Überschrift',     description: 'Große Überschrift über der Karte', type: 'heading', value: 'Wer hinter dem SRT steht.' },
+      { id: 'srt-joerg-name',    label: 'Name',            description: 'Groß im Porträt und in der Fußzeile der Karte', type: 'heading', value: 'Jörg' },
+      { id: 'srt-joerg-title',   label: 'Position / Rolle', description: 'Unter dem Namen, über dem Zitat und in der Fußzeile', type: 'label', value: 'Entwickler der Sonic Retail Technology' },
+      { id: 'srt-joerg-quote',   label: 'Zitat',           description: 'Das große Zitat rechts', type: 'quote', multiline: true, value: 'Das SRT ist kein Tool — es ist der direkte Draht zwischen dem, was am POS passiert, und der Entscheidung, die daraus folgen muss. Wir haben es so gebaut, dass Promoter damit arbeiten wollen, nicht müssen.' },
+      { id: 'srt-joerg-video',   label: 'YouTube-Video (optional)', description: 'YouTube-Link einfügen (z. B. https://youtu.be/…). Ersetzt das Porträt durch das Video. Leer = Porträt.', type: 'link', value: '' },
+    ],
+  },
 ];
 
 /* ─────────────────────────────────────────────
@@ -1447,22 +1463,6 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'leistungen_staff', entryId: 'staff-hero-description', from: 'Ihnen', to: 'Wir übernehmen Recruiting, Payroll und Steuerung, bspw. via Arbeitnehmerüberlassung.', matchType: 'contains' as const },
   { sectionKey: 'leistungen_pos', entryId: 'pos-hero-description', from: 'Ihren', to: 'Durchgetaktet. Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.', matchType: 'contains' as const },
   { sectionKey: 'leistungen_forecasting', entryId: 'forecasting-hero-description', from: 'Scorpin', to: 'Auf Basis von historischen Sell-out-Daten, Standort-Performance und Marktintelligenz prognostizieren wir deine Ergebnisse — datenbasiert, nachvollziehbar, belastbar.', matchType: 'contains' as const },,
-  {
-    key: 'srt_developer',
-    pageGroupId: 'srt',
-    label: 'SRT — Ein Wort vom Entwickler (Jörg)',
-    pagePath: '/srt',
-    description: 'Zitat-Karte „Wer hinter dem SRT steht.“ auf der SRT-Seite. Das Porträt wird im Medien-Dashboard gepflegt (SRT → „Entwickler Jörg: Profilfoto“).',
-    entries: [
-      { id: 'srt-joerg-badge',   label: 'Sektion-Badge',   description: 'Kleine Zeile über der Überschrift', type: 'badge',   value: 'Ein Wort vom Entwickler' },
-      { id: 'srt-joerg-heading', label: 'Überschrift',     description: 'Große Überschrift über der Karte', type: 'heading', value: 'Wer hinter dem SRT steht.' },
-      { id: 'srt-joerg-name',    label: 'Name',            description: 'Groß im Porträt und in der Fußzeile der Karte', type: 'heading', value: 'Jörg' },
-      { id: 'srt-joerg-title',   label: 'Position / Rolle', description: 'Unter dem Namen, über dem Zitat und in der Fußzeile', type: 'label', value: 'Entwickler der Sonic Retail Technology' },
-      { id: 'srt-joerg-quote',   label: 'Zitat',           description: 'Das große Zitat rechts', type: 'quote', multiline: true, value: 'Das SRT ist kein Tool — es ist der direkte Draht zwischen dem, was am POS passiert, und der Entscheidung, die daraus folgen muss. Wir haben es so gebaut, dass Promoter damit arbeiten wollen, nicht müssen.' },
-      { id: 'srt-joerg-video',   label: 'YouTube-Video (optional)', description: 'YouTube-Link einfügen (z. B. https://youtu.be/…). Ersetzt das Porträt durch das Video. Leer = Porträt.', type: 'link', value: '' },
-    ],
-  },
-,
   /* ═══════════════════════ FALLBEISPIELE — VOLLE TEXTKONTROLLE ═══════════ */
   {
     key: 'case_garmin_text',
