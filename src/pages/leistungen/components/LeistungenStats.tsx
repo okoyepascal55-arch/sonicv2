@@ -193,7 +193,7 @@ export default function LeistungenStats() {
                 Unsere Zahlen
               </span>
             </div>
-            <h2 className="text-base md:text-lg font-black text-[#1a1a1a] leading-none tracking-[-0.02em]">
+            <h2 className="sonic-h2 text-foreground-950">
               Track Record&nbsp;
               <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.1em', boxDecorationBreak: 'clone' }}>der überzeugt.</span>
             </h2>

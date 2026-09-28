@@ -47,7 +47,7 @@ export default function KarriereJobs() {
           >06</span>
           <div className="relative z-10">
             <ChapterEyebrow dark>{tBadge}</ChapterEyebrow>
-            <h2 className="font-black text-white mb-4" style={{ fontSize: 'clamp(1.75rem, 3.2vw, 3.25rem)', lineHeight: 1.04, letterSpacing: '-0.035em' }}>
+            <h2 className="sonic-h2 text-white mb-4">
               {headingMain} {headingAccent && <Marker>{headingAccent}</Marker>}
             </h2>
             <div className="flex items-center gap-3">

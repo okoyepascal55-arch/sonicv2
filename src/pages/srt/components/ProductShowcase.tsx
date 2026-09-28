@@ -315,7 +315,7 @@ export default function ProductShowcase() {
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
             <span className="w-7 h-0.5 bg-primary-500" />
           </div>
-          <h2 className="sonic-h2 text-white uppercase mb-4">{tHeading}</h2>
+          <h2 className="sonic-h2 text-white mb-4">{tHeading}</h2>
           <p className="text-sm text-white/40 max-w-xl mx-auto leading-relaxed">{tSub}</p>
         </div>
 

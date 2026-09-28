@@ -798,7 +798,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The two career paths: Sonic Sales Family and Sonic Staff Family.',
     entries: [
       { id: 'careers-paths-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Karrierepfade' },
-      { id: 'careers-paths-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'ZWEI WEGE. EIN ZIEL.' },
+      { id: 'careers-paths-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Zwei Wege. Ein Ziel.' },
       { id: 'careers-paths-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Ob intern am Campus oder flexibel im Außendienst — bei Sonic gibt es einen Weg für dich.' },
       { id: 'careers-paths-sales-badge', label: 'Sales Badge', description: 'Sales path badge', type: 'badge', value: 'Internes Team' },
       { id: 'careers-paths-sales-headline', label: 'Sales Headline', description: 'Sales headline', type: 'heading', value: 'Bürobasierte Karriere in Krefeld' },
@@ -1264,7 +1264,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'events-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Ein Moment, viele Baustellen.' },
       { id: 'events-challenge-sub', label: 'Challenge Subline', description: 'Challenge section subline', type: 'paragraph', value: 'Warum der Wow-Effekt bei Messen und Events nicht immer eintritt.' },
-      { id: 'events-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'MESSE- UND EVENT-FULL SERVICE.' },
+      { id: 'events-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Messe- und Event-Full Service.' },
       { id: 'events-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Wir setzen alles daran, dass dein Messe- oder Event-Auftritt zur Erfolgsgeschichte wird.' },
       { id: 'events-process-heading', label: 'Process Heading', description: 'Process H2', type: 'heading', value: 'So arbeiten wir' },
       { id: 'events-process-sub', label: 'Process Subline', description: 'Process description', type: 'paragraph', value: 'Von der Planung bis zum Reporting: ideenreich, professionell und zuverlässig.' },
@@ -1293,10 +1293,10 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'staff-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Staffing flexibilisieren ist komplex.' },
       { id: 'staff-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Im Bereich Sales und Promotion kommt klassisches Recruiting ans Limit.' },
-      { id: 'staff-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'PERSONALDIENSTLEISTUNG ALS DIGITALISIERTER SERVICE.' },
+      { id: 'staff-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Personaldienstleistung als digitalisierter Service.' },
       { id: 'staff-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Recruiting Task Force — Auswahl, Betreuung und Abrechnung aus einer Hand.' },
       { id: 'staff-process-heading', label: 'Process Heading', description: 'Process H2', type: 'heading', value: 'So läuft die Personalbeschaffung mit Sonic' },
-      { id: 'staff-specs-heading', label: 'Specializations Heading', description: 'Specializations H2', type: 'heading', value: 'ARBEITNEHMERÜBERLASSUNG FÜR DEINE FIELD FORCE.' },
+      { id: 'staff-specs-heading', label: 'Specializations Heading', description: 'Specializations H2', type: 'heading', value: 'Arbeitnehmerüberlassung für deine Field Force.' },
       { id: 'staff-socks-heading', label: 'SOCKS Heading', description: 'SOCKS H2', type: 'heading', value: 'Das S.O.C.K.S.-Prinzip' },
       { id: 'staff-socks-sub', label: 'SOCKS Subline', description: 'SOCKS description', type: 'paragraph', value: 'Unsere Qualitätsstrategie für Planung und Umsetzung von Sell-out-Maßnahmen.' },
     ],

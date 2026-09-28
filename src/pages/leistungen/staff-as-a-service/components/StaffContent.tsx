@@ -94,7 +94,7 @@ export default function StaffContent() {
   const tSolutionHeading = useText('leistungen_staff_content', 'staff-solution-heading', 'Personaldienstleistung als digitalisierter Service.');
   const tSolutionSub = useText('leistungen_staff_content', 'staff-solution-sub', 'Recruiting Task Force — Auswahl, Betreuung und Abrechnung aus einer Hand.');
   const tProcessHeading = useText('leistungen_staff_content', 'staff-process-heading', 'So läuft die Personalbeschaffung mit Sonic');
-  const tSpecsHeading = useText('leistungen_staff_content', 'staff-specs-heading', 'ARBEITNEHMERÜBERLASSUNG FÜR DEINE FIELD FORCE.');
+  const tSpecsHeading = useText('leistungen_staff_content', 'staff-specs-heading', 'Arbeitnehmerüberlassung für deine Field Force.');
   const tSocksHeading = useText('leistungen_staff_content', 'staff-socks-heading', 'Das S.O.C.K.S.-Prinzip');
   const tSocksSub = useText('leistungen_staff_content', 'staff-socks-sub', 'Unsere Qualitätsstrategie für Planung und Umsetzung von Sell-out-Maßnahmen.');
   const { images: socksImages } = useMediaStore('leistungen_staff_socks_images');

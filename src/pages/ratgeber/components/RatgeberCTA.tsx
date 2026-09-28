@@ -18,7 +18,7 @@ export default function RatgeberCTA({ headline, headlineAccent, subline }: Ratge
                 <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Jetzt starten</span>
               </div>
 
-              <h2 className="leist-h2 text-foreground-950 mb-4">
+              <h2 className="sonic-h2 text-foreground-950 mb-4">
                 {headline}<br />
                 <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{headlineAccent}</span>
               </h2>

@@ -487,7 +487,7 @@ export default function KreationShowcase() {
                 <span className="text-[10px] font-black uppercase tracking-[0.15em] text-foreground-950">Showcase</span>
               </div>
               
-              <h2 className="leist-h2 text-foreground-950 mb-3 uppercase">
+              <h2 className="sonic-h2 text-foreground-950 mb-3">
                 Unsere Arbeit.<br />
                 <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Deine Wirkung.</span>
               </h2>

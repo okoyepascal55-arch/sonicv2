@@ -56,7 +56,7 @@ export default function ContactForm() {
         <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
         <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Direkte Anfrage</span>
       </div>
-      <h2 className="font-black text-foreground-950 mb-3" style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', lineHeight: 1.05, letterSpacing: '-0.03em' }}>
+      <h2 className="sonic-h2 text-foreground-950 mb-3">
         Schreib{' '}
         <span style={{ background: 'oklch(var(--primary-500) / 0.9)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>
           uns

@@ -1041,14 +1041,6 @@ html {
   text-transform: uppercase;
 }
 
-/* H2: section headings — sentence case, never uppercase */
-.sonic-h2 {
-  font-size: clamp(1.625rem, 3.5vw, 2.625rem); /* 26px → 42px */
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
 /* H3: card headings, subsections — sentence case */
 .sonic-h3 {
   font-size: clamp(1.0625rem, 2vw, 1.25rem); /* 17px → 20px */

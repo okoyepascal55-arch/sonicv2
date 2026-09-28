@@ -213,7 +213,7 @@ export default function RatgeberHubPage() {
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tIntroBadge}</span>
           </div>
-            <h2 className="leist-h2 text-foreground-950 mb-5">
+            <h2 className="sonic-h2 text-foreground-950 mb-5">
               {tIntroHeading}
             </h2>
             <p className="text-base text-foreground-950/60 leading-relaxed max-w-3xl mx-auto">
@@ -248,7 +248,7 @@ export default function RatgeberHubPage() {
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tGeoBadge}</span>
           </div>
-            <h2 className="leist-h2 text-foreground-950 mb-5">
+            <h2 className="sonic-h2 text-foreground-950 mb-5">
               {tGeoHeading}
             </h2>
             <p className="text-base text-foreground-950/60 leading-relaxed max-w-3xl mx-auto mb-10">
@@ -288,7 +288,7 @@ export default function RatgeberHubPage() {
                   <span className="text-xs font-black text-foreground-950/50 uppercase tracking-widest">{tCtaBadge}</span>
                 </div>
 
-                <h2 className="leist-h2 text-foreground-950 mb-4">
+                <h2 className="sonic-h2 text-foreground-950 mb-4">
                   {tCtaHeading.split('\n').map((line, i) => i === 1 ? <span key={i}><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone' }}>{line}</span></span> : <span key={i}>{line}<br /></span>)}
                 </h2>
 

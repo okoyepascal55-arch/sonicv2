@@ -108,8 +108,7 @@ export function ChapterHeader({
         <div className={`relative z-10 ${headingMax}`}>
           <ChapterEyebrow dark={dark}>{eyebrow}</ChapterEyebrow>
           <h2
-            className={`font-black mb-4 ${dark ? 'text-white' : 'text-foreground-950'}`}
-            style={{ fontSize: headingSize, lineHeight: 1.04, letterSpacing: '-0.035em' }}
+            className={`sonic-h2 mb-4 ${dark ? 'text-white' : 'text-foreground-950'}`}
           >
             {heading}
           </h2>
@@ -136,8 +135,7 @@ export function ChapterHeader({
       <div className={`flex-1 ${headingMax}`}>
         <ChapterEyebrow dark={dark}>{eyebrow}</ChapterEyebrow>
         <h2
-          className={`font-black mb-4 ${dark ? 'text-white' : 'text-foreground-950'}`}
-          style={{ fontSize: headingSize, lineHeight: 1.04, letterSpacing: '-0.035em' }}
+          className={`sonic-h2 mb-4 ${dark ? 'text-white' : 'text-foreground-950'}`}
         >
           {heading}
         </h2>

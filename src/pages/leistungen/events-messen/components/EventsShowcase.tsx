@@ -103,7 +103,7 @@ export default function EventsShowcase() {
  <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0"aria-hidden="true"/>
  <span className="text-[11px] font-black uppercase tracking-[0.24em]"style={{ color: 'oklch(0.55 0.08 115)' }}>Formate</span>
  </div>
- <h2 className="leist-h2 text-foreground-950 mb-2">
+ <h2 className="sonic-h2 text-foreground-950 mb-2">
  Deine Marke. Unsere Bühne.
  </h2>
  <p className="text-foreground-950/50 text-base">Wähle ein Format und entdecke unsere Arbeit.</p>

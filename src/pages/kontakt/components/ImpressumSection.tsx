@@ -11,7 +11,7 @@ export default function ImpressumSection() {
         <div className="flex items-center gap-3 mb-12">
           <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
           <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Rechtliches</span>
-          <h2 id="impressum-heading" className="font-black text-foreground-950 ml-4" style={{ fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', letterSpacing: '-0.02em' }}>
+          <h2 id="impressum-heading" className="sonic-h2 text-foreground-950 ml-4">
             Impressum
           </h2>
         </div>

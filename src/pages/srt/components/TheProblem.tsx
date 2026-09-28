@@ -67,7 +67,7 @@ export default function TheProblem() {
           <div className="grid lg:grid-cols-1 md:grid-cols-2 gap-10 items-end">
             <div>
               <h2
-                className="leist-h2 text-foreground-950 uppercase"
+                className="sonic-h2 text-foreground-950"
               >
                 {tHeading}
               </h2>
