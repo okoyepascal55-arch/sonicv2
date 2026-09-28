@@ -7,7 +7,7 @@ import { getYouTubeId, youTubeEmbedUrl } from '@/lib/youtube';
   "Die Stimmen hinter Sonic" (/ueber-uns): bordered two-column card with the
   portrait on the left and a dark quote panel on the right.
   Portrait:   Dashboard → Media → SRT → "SRT — Entwickler Jörg: Profilfoto"
-  Text/Video: Dashboard → Text  → SRT → "Ein Wort vom Entwickler"
+  Text/Video: Dashboard → Text → Stimmen & Gesichter → SRT (also under Text → SRT)
   Without a portrait the left column shows a quiet monogram placeholder, so the
   layout never collapses into a different design.
 */
@@ -20,6 +20,7 @@ export default function JoergQuote() {
     'und der Entscheidung, die daraus folgen muss. Wir haben es so gebaut, dass Promoter ' +
     'damit arbeiten wollen, nicht müssen.');
   const tVideo  = useText('srt_developer', 'srt-joerg-video', '');
+  const tHeading = useText('srt_developer', 'srt-joerg-heading', 'Wer hinter dem SRT steht.');
 
   const { images: photoImages } = useMediaStore('srt_joerg_photo');
   const photoUrl = photoImages[0]?.url ? resolveImageUrl(photoImages[0].url) : '';
@@ -38,7 +39,7 @@ export default function JoergQuote() {
               {tBadge}
             </span>
           </div>
-          <h2 className="sonic-h2 text-foreground-950">Wer hinter dem SRT steht.</h2>
+          <h2 className="sonic-h2 text-foreground-950">{tHeading}</h2>
         </div>
 
         {/* Card — identical structure to the Sonic Faces story panel */}

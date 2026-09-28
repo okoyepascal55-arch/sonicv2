@@ -4,6 +4,7 @@
      • Über uns   → ManagementVoices   (/ueber-uns)
      • Karriere   → SonicFamily        (/karriere)
      • Kreation   → KreationFaces + ClientProof (/leistungen/kreation-content)
+     • SRT        → JoergQuote (/srt)
 
    Default values mirror the copy that is currently live on the site, so
    adding these sections changes nothing visually until someone edits them.
@@ -287,6 +288,14 @@ export const STIMMEN_TABS = [
     pagePath: '/leistungen/kreation-content',
     hint: '„Die Köpfe hinter der Kreation.“ + Kundenstimmen-Slider',
     sectionKeys: ['kreation_team_header', 'kreation_voice_robert', 'kreation_voice_inga', 'common_client_testimonials'],
+  },
+  {
+    id: 'srt',
+    label: 'SRT',
+    icon: 'ri-code-s-slash-line',
+    pagePath: '/srt',
+    hint: '„Wer hinter dem SRT steht.“ — Zitat von Jörg, Entwickler der SRT',
+    sectionKeys: ['srt_developer'],
   },
 ] as const;
 
