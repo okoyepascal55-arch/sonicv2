@@ -120,7 +120,7 @@ const verkaufsfoerderungPos: RatgeberPageContent = {
   ],
   ctaHeadline: 'Deine POS-Verkaufsförderung auf',
   ctaAccent: 'dem nächsten Level',
-  ctaSubline: 'Lass uns deine POS-Strategie besprechen. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Lass uns deine POS-Strategie besprechen.',
 };
 
 export default verkaufsfoerderungPos;

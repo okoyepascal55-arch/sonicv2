@@ -3,6 +3,9 @@ import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import WoodenButton from '@/components/base/WoodenButton';
 import { submitContactForm } from '@/lib/contact';
+import { openCalendly } from '@/components/feature/CalendlyWidget';
+import { useCtaText } from '@/hooks/useCtaText';
+import { useReviewText } from '@/hooks/useReviewText';
 
 interface QuizModalProps {
   isOpen: boolean;
@@ -64,6 +67,9 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
   const [contactData, setContactData] = useState({ name: '', company: '', email: '', phone: '' });
   const [contactError, setContactError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const cta = useCtaText();
+  // Dashboard → Text → Home → „Kurzumfrage — Ergebnis-CTA“
+  const resultCta = useReviewText('home_quiz_result_cta');
 
   // ── Focus trap ────────────────────────────────────────────────────────────
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -372,22 +378,22 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                 <h4 className="text-lg font-black text-foreground-950 mb-2">{getRecommendedService().title}</h4>
                 <p className="text-foreground-500 text-sm leading-relaxed">{getRecommendedService().description}</p>
               </div>
-              <p className="text-foreground-500 text-sm leading-relaxed mb-6 max-w-md mx-auto">
-                Buch jetzt ein kostenloses Beratungsgespräch, um deine passende Lösung im Detail zu besprechen.
-              </p>
+              {resultCta.line && (
+                <p className="text-foreground-500 text-sm leading-relaxed mb-6 max-w-md mx-auto">
+                  {resultCta.line}
+                </p>
+              )}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a
-                  href="https://calendly.com/sonic-group/beratungsgespraech"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handleClose}
+                <button
+                  type="button"
+                  onClick={() => { handleClose(); openCalendly(); }}
                   className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary-500 text-white font-black text-sm transition-all duration-300 whitespace-nowrap cursor-pointer uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-calendar-check-line text-base mr-1"></i>
-                  Beratungsgespräch buchen
+                  {cta.book}
                   <i className="ri-arrow-right-line text-lg" />
-                </a>
+                </button>
                 <button
                   onClick={handleReset}
                   className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-foreground-950 font-black text-sm transition-all duration-300 whitespace-nowrap cursor-pointer border-2 border-foreground-200 hover:border-primary-500 uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"

@@ -119,7 +119,7 @@ const fieldMarketingSampling: RatgeberPageContent = {
   ],
   ctaHeadline: 'Starte deine nächste',
   ctaAccent: 'Sampling-Kampagne',
-  ctaSubline: 'Lass uns gemeinsam den optimalen Field-Marketing-Plan für deine Marke entwickeln. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Lass uns gemeinsam den optimalen Field-Marketing-Plan für deine Marke entwickeln.',
 };
 
 export default fieldMarketingSampling;

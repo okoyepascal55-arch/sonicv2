@@ -119,7 +119,7 @@ const guerillaMarketing: RatgeberPageContent = {
   ],
   ctaHeadline: 'Deine nächste Guerilla-Aktion',
   ctaAccent: 'wird legendär',
-  ctaSubline: 'Entwickle mit uns eine Guerilla-Strategie, die deine Marke ins Gespräch bringt. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Entwickle mit uns eine Guerilla-Strategie, die deine Marke ins Gespräch bringt.',
 };
 
 export default guerillaMarketing;

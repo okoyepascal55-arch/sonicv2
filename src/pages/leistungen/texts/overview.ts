@@ -10,8 +10,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('h1-words', 'H1 — wechselnde Wörter (mit | trennen)', 'tag', 'ROI | Retail | POS | Events | Staffing | Video | Data | Growth'),
     e('lead', 'Leadzeile', 'paragraph', 'Full Service für deine Marken und Produkte im Retail'),
     e('sub', 'Unterzeile', 'paragraph', 'Von Daten & Software über Personal & Staffing bis zu POS, Video und Events: alles aus einer Hand. Daten liefern die Fakten, Menschen den Unterschied.'),
-    e('cta-primary', 'Button 1', 'cta', 'Beratungsgespräch buchen'),
-    e('cta-secondary', 'Button 2', 'cta', 'Alle Leistungen entdecken'),
+    e('cta-secondary', 'Button 2 (Button 1 = CTAs → „Termin“)', 'cta', 'Alle Leistungen entdecken'),
   ]),
   section('leistungen_overview_stats', 'Leistungen — Zahlen', P, 'Vier Kennzahlen (nur Zahlen aus der Agenturpräsentation). Der Zahlenteil im Wert zählt automatisch hoch.', [
     e('eyebrow', 'Eyebrow', 'label', 'Unsere Zahlen'),
@@ -59,6 +58,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('s4-cta', 'Kategorie 4 — Button 1', 'cta', 'Events & Messen'),
     e('s4-cta2', 'Kategorie 4 — Button 2', 'cta', 'Warehouse & Logistik'),
     e('s4-tags', 'Kategorie 4 — Tags', 'tag', 'Roadshows | Events | Warehouse'),
+    e('help-heading', 'Frage-Leiste — Überschrift (Button = CTAs → „Termin“)', 'subheading', 'Noch Fragen zum Leistungsumfang?'),
   ]),
   section('leistungen_overview_ways', 'Leistungen — Retail-Schallmauer (3 Wege)', P, 'Die drei Wege Markteintritt, Absatz steigern, Omnichannel. Listen und Tags mit | trennen.', [
     e('eyebrow', 'Eyebrow', 'label', 'Die Retail-Schallmauer'),
@@ -84,11 +84,9 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('w3-cta', 'Weg 3 — Button', 'cta', 'Omnichannel starten'),
     e('w3-tags', 'Weg 3 — Tags', 'tag', 'Live-Video | E-Commerce | Conversions'),
   ]),
-  section('leistungen_overview_cta', 'Leistungen — Kontaktbox', P, 'Kontaktbox am Seitenende. Punkte mit | trennen.', [
-    e('headline', 'Überschrift — Teil 1', 'heading', 'Bereit, die Retail-'),
-    e('headline-accent', 'Überschrift — Teil 2 (lime)', 'heading', 'Schallmauer zu durchbrechen?'),
-    e('subline', 'Unterzeile', 'paragraph', 'In 30 Minuten klären wir gemeinsam, welche Leistungen zu deinem Ziel passen.'),
-    e('items', 'Punkte', 'list-item', 'Kostenfreies 30-Minuten-Strategiegespräch | Alle Leistungen im Überblick | Erste Einschätzung zur Timeline'),
-    e('cta', 'Button', 'cta', 'Beratungsgespräch buchen'),
+  section('leistungen_overview_cta', 'Leistungen — Kontaktbox', P, 'Kontaktbox am Seitenende: kurze Frage, eine Zeile. Button und Zeile darunter: CTAs — Button-Texte.', [
+    e('headline', 'Überschrift — Teil 1', 'heading', 'Welche Leistung'),
+    e('headline-accent', 'Überschrift — Teil 2 (lime)', 'heading', 'passt zu dir?'),
+    e('subline', 'Unterzeile', 'paragraph', 'In 30 Minuten klären wir, was zu deinem Ziel passt.'),
   ]),
 ];

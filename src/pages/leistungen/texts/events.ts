@@ -4,8 +4,7 @@ import { e, section } from '@/lib/leistungenTextKit';
 const P = '/leistungen/events-messen';
 
 export const TEXT_SECTIONS: TextSection[] = [
-  section('leistungen_events_hero_buttons', 'Events & Messen — Hero Buttons', P, 'Die beiden Buttons im Hero.', [
-    e('cta-primary', 'Hero — Button (Mail)', 'cta', 'Beratungsgespräch buchen'),
+  section('leistungen_events_hero_buttons', 'Events & Messen — Hero Buttons', P, 'Der zweite Button im Hero (Button 1: CTAs — Button-Texte).', [
     e('cta-secondary', 'Hero — Button (Seite)', 'cta', 'Events & Messen'),
   ]),
   section('leistungen_events_challenges', 'Events & Messen — Herausforderungen (3 Punkte)', P, 'Die drei Hover-Punkte unter „Ein Moment, viele Baustellen.“', [
@@ -40,7 +39,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('card6-title', 'Karte 6 — Titel', 'subheading', '(Digitale) Kommunikation'),
     e('card6-desc', 'Karte 6 — Text', 'paragraph', 'Von der Einladung über Goodie-Bags und Give-aways bis zum Live-Stream: damit deine Botschaften ankommen.'),
   ]),
-  section('leistungen_events_process', 'Events & Messen — Ablauf (6 Schritte)', P, 'Titel, Text und Dauer der sechs Ablauf-Schritte und die Zeile über dem Button darunter. Der Button-Text selbst liegt in „Events & Messen — Content“.', [
+  section('leistungen_events_process', 'Events & Messen — Ablauf (6 Schritte)', P, 'Titel, Text und Dauer der sechs Ablauf-Schritte und die Zeile über dem Button darunter. Der Button-Text selbst liegt in „CTAs — Button-Texte“.', [
     e('eyebrow', 'Eyebrow', 'label', 'Ablauf'),
     e('step1-title', 'Schritt 1 — Titel', 'subheading', 'Event-/Messe-Briefing'),
     e('step1-desc', 'Schritt 1 — Text', 'paragraph', 'Wir analysieren Ziele, Zielgruppe und Anforderungen — im Abgleich mit deiner Gesamtstrategie und deinem Budget.'),
@@ -62,7 +61,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('step6-time', 'Schritt 6 — Dauer', 'badge', '3–5 Tage'),
     e('cta-kicker', 'Zeile über dem Button', 'label', 'Bereit für dein Event?'),
   ]),
-  section('leistungen_events_formats', 'Events & Messen — Formate (3 Tabs)', P, 'Formate-Block mit den Tabs Events, Messen, Fahrzeuge & Module. Kategorien mit „|“ trennen.', [
+  section('leistungen_events_formats', 'Events & Messen — Formate (3 Tabs)', P, 'Formate-Block mit den Tabs Events, Messen, Fahrzeuge & Module. Kategorien mit „|“ trennen. Button: CTAs — Button-Texte.', [
     e('eyebrow', 'Eyebrow', 'label', 'Formate'),
     e('heading', 'Überschrift', 'heading', 'Deine Marke. Unsere Bühne.'),
     e('sub', 'Unterzeile', 'paragraph', 'Wähle ein Format und entdecke unsere Arbeit.'),
@@ -80,13 +79,10 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('tab3-pills', 'Tab 3 — Kategorien (mit | trennen)', 'tag', 'Eventtrucks | Eventcontainer | Eventmodule | Promotionfahrzeuge'),
     e('label-categories', 'Label „Kategorien“', 'label', 'Kategorien'),
     e('label-examples', 'Label „Beispiele“', 'label', 'Beispiele'),
-    e('cta-label', 'Button', 'cta', 'Beratungsgespräch buchen'),
   ]),
-  section('leistungen_events_cta', 'Events & Messen — Kontakt-Box', P, 'Abschluss-Box am Seitenende. Checkliste mit „|“ trennen.', [
-    e('headline', 'Überschrift', 'heading', 'Bereit für deinen'),
-    e('headline-accent', 'Überschrift — Akzent', 'heading', 'nächsten Auftritt?'),
-    e('subline', 'Unterzeile', 'paragraph', 'Lass uns in 30 Minuten besprechen, wie wir deine Marke zum Erlebnis machen.'),
-    e('check-items', 'Checkliste (mit | trennen)', 'list-item', 'Kostenfreies 30-Minuten-Strategiegespräch | Deine Ziele, unser modulares System | Einblick in unsere Arbeitsweise und SRT | Erste Einschätzung zur Timeline'),
-    e('cta-label', 'Button', 'cta', 'Beratungsgespräch buchen'),
+  section('leistungen_events_cta', 'Events & Messen — Kontakt-Box', P, 'Abschluss-Box am Seitenende: kurze Frage, eine Zeile. Button und Zeile darunter: CTAs — Button-Texte.', [
+    e('headline', 'Überschrift', 'heading', 'Nächster Auftritt'),
+    e('headline-accent', 'Überschrift — Akzent', 'heading', 'geplant?'),
+    e('subline', 'Unterzeile', 'paragraph', 'Wir zeigen dir, wie wir deine Marke live erlebbar machen.'),
   ]),
 ];

@@ -115,7 +115,7 @@ const segmentierteAnsprache: RatgeberPageContent = {
   ],
   ctaHeadline: 'Erreiche deine Zielgruppen',
   ctaAccent: 'präzise und relevant.',
-  ctaSubline: 'Sprich mit uns über deine segmentierte Ansprache. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine segmentierte Ansprache.',
 };
 
 export default segmentierteAnsprache;

@@ -115,7 +115,7 @@ const produktLaunch: RatgeberPageContent = {
   ],
   ctaHeadline: 'Starte dein nächstes Produkt',
   ctaAccent: 'mit einem durchdachten Launch.',
-  ctaSubline: 'Sprich mit uns über deine Produkteinführung. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Produkteinführung.',
 };
 
 export default produktLaunch;

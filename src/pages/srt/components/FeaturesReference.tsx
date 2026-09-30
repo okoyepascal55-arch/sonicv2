@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useReviewText } from '@/hooks/useReviewText';
 
 const FEATURES = [
   { number: '01', icon: 'ri-dashboard-line', title: 'Echtzeit-Dashboard', description: 'Alle gewünschten Metriken auf einen Blick — live und übersichtlich dargestellt, für schnellere Entscheidungen.', tags: ['Live-Daten', 'KPIs', 'Echtzeit'], woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20dashboard%20monitor%20screen%20display%20analytics%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-dashboard-v1&orientation=squarish' },
@@ -104,7 +105,9 @@ export default function FeaturesReference() {
   const tBadge   = useText('srt_features', 'srt-features-badge',   'Die Lösung');
   const tHeading = useText('srt_features', 'srt-features-heading', 'SRT: Die All-in-One Software');
   const tSub     = useText('srt_features', 'srt-features-sub',     'Seit 2008 laufend weiterentwickelt, für maximalen Nutzwert. Seit 2024 mit KI-Features.');
-  const tCta     = useText('srt_features', 'srt-features-cta',     'SRT Demo anfragen');
+  const tCta     = useText('srt_features', 'srt-features-cta',     'Demo anfragen');
+  // Dashboard → Text → SRT → „SRT — CTA-Texte (Demo)“
+  const ct       = useReviewText('srt_cta_texts');
 
   const getIcon = (idx: number, fallback: string, title: string) => {
     const media = featureIcons[idx];
@@ -209,8 +212,8 @@ export default function FeaturesReference() {
         <div className="mt-[2px] flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-[18px]"
           style={{ background: 'oklch(0.13 0.005 118)', border: 'none' }}>
           <div>
-            <p className="text-white font-black text-[13px]">Noch Fragen zum Funktionsumfang?</p>
-            <p className="text-white/50 text-[11px]">Wir zeigen dir das SRT live — kostenlos und unverbindlich.</p>
+            <p className="text-white font-black text-[13px]">{ct['features-headline']}</p>
+            <p className="text-white/50 text-[11px]">{ct['features-line']}</p>
           </div>
           <a href={`mailto:${CONTACT_EMAIL}?subject=SRT%20Demo`}
             className="flex items-center gap-2 px-6 py-3 bg-primary-500 text-foreground-950 font-black text-xs uppercase tracking-widest whitespace-nowrap hover:bg-white transition-colors">

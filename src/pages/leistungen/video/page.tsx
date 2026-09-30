@@ -7,7 +7,8 @@ import ClientProof from '@/components/feature/ClientProof';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import VideoHero from './components/VideoHero';
 import VideoContent from './components/VideoContent';
-import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 import { useMediaStore } from '@/lib/mediaStore';
 import { getYouTubeId } from '@/lib/youtube';
 
@@ -47,6 +48,7 @@ export default function VideoPage() {
 
   const heroRef = useRef<HTMLDivElement>(null);
   const tc = useLeistungenText('leistungen_video_cta');
+  const cta = useCtaText();
   // The video block is hidden while no YouTube link is set — hide its nav entry too
   const { images: ytSection } = useMediaStore('leistungen_video_youtube');
   const hasVideo = !!(getYouTubeId(ytSection[0]?.url) || getYouTubeId(ytSection[0]?.caption));
@@ -76,8 +78,7 @@ export default function VideoPage() {
           headline={tc['headline']}
           headlineAccent={tc['headline-accent']}
           subline={tc['subline']}
-          checkItems={splitList(tc['check-items']).map((text) => ({ text }))}
-          ctaLabel={tc['cta']}
+          ctaLabel={cta.book}
           ctaMailSubject="Video Demo anfragen"
           ctaIcon="ri-video-line"
         />

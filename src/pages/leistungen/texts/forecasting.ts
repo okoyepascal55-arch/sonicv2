@@ -4,8 +4,7 @@ import { e, section } from '@/lib/leistungenTextKit';
 const P = '/leistungen/forecasting';
 
 export const TEXT_SECTIONS: TextSection[] = [
-  section('leistungen_forecasting_hero_buttons', 'Forecasting — Hero-Buttons', P, 'Die beiden Buttons im Hero.', [
-    e('primary', 'Hero — Button 1 (Beratung)', 'cta', 'Beratungsgespräch buchen'),
+  section('leistungen_forecasting_hero_buttons', 'Forecasting — Hero-Buttons', P, 'Der zweite Button im Hero (Button 1: CTAs — Button-Texte).', [
     e('secondary', 'Hero — Button 2 (SRT)', 'cta', 'SRT erkunden'),
   ]),
 
@@ -58,11 +57,9 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('st4_desc', 'Schritt 4 — Text', 'paragraph', 'Nach Projektstart gleichen wir die Prognose laufend mit echten Einsatzdaten im SRT ab. Optimierungspotenziale werden früh sichtbar.'),
   ]),
 
-  section('leistungen_forecasting_cta', 'Forecasting — Kontakt-Box', P, 'Die Kontakt-Box am Seitenende.', [
-    e('headline', 'Kontakt — Headline', 'heading', 'Starte mit einer'),
-    e('headline_accent', 'Kontakt — Headline (Akzent)', 'heading', 'Forecasting-Session.'),
-    e('subline', 'Kontakt — Text', 'paragraph', 'Wir schauen uns deine Datenbasis an und zeigen dir in 30 Minuten, was eine Prognose für dein Projekt realistisch leisten kann.'),
-    e('check_items', 'Kontakt — Punkte (mit | trennen)', 'list-item', 'Kostenfreies 30-Minuten-Strategiegespräch | Analyse deiner bestehenden Datenbasis | Einblick in unsere Forecasting-Methodik | Erste Einschätzung, was deine Daten hergeben'),
-    e('cta_label', 'Kontakt — Button', 'cta', 'Beratungsgespräch buchen'),
+  section('leistungen_forecasting_cta', 'Forecasting — Kontakt-Box', P, 'Abschluss-Box am Seitenende: kurze Frage, eine Zeile. Button und Zeile darunter: CTAs — Button-Texte.', [
+    e('headline', 'Kontakt — Headline', 'heading', 'Planung'),
+    e('headline_accent', 'Kontakt — Headline (Akzent)', 'heading', 'verbessern?'),
+    e('subline', 'Kontakt — Text', 'paragraph', 'Wir zeigen dir, was eine Prognose für dein Projekt leisten kann.'),
   ]),
 ];

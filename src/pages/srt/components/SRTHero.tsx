@@ -1,5 +1,6 @@
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 interface SRTHeroProps {
   onScrollToFeatures: () => void;
@@ -14,7 +15,7 @@ export default function SRTHero({ onScrollToFeatures }: SRTHeroProps) {
   const tH1_3 = useText('srt_hero', 'srt-hero-h1-3', 'TOOL.');
   const tSub = useText('srt_hero', 'srt-hero-sub', '');
   const tTagline = useText('srt_hero', 'srt-hero-tagline', 'Field-Force-ERP-System · Seit 2008 · Seit 2024 mit KI');
-  const tCtaPrimary = useText('srt_hero', 'srt-hero-cta-primary', 'Beratungsgespräch buchen');
+  const tCtaPrimary = useCtaText().book;
   const tCtaSecondary = useText('srt_hero', 'srt-hero-cta-secondary', 'Features entdecken');
   const tNavLabel = useText('srt_hero', 'srt-hero-nav-label', 'Direkt zu:');
   const tChip1 = useText('srt_hero', 'srt-hero-chip-1', 'All-in-Software');

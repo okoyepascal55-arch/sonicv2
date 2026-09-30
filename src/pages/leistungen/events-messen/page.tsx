@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
@@ -42,6 +43,7 @@ export default function EventsMessenPage() {
 
   const heroRef = useRef<HTMLDivElement>(null);
   const tCta = useLeistungenText('leistungen_events_cta');
+  const cta = useCtaText();
 
   return (
     <div className="min-h-[100dvh] overflow-x-hidden bg-white">
@@ -72,8 +74,7 @@ export default function EventsMessenPage() {
           headline={tCta.headline}
           headlineAccent={tCta['headline-accent']}
           subline={tCta.subline}
-          checkItems={splitList(tCta['check-items']).map((text) => ({ text }))}
-          ctaLabel={tCta['cta-label']}
+          ctaLabel={cta.book}
           ctaMailSubject="Events Messen Beratung"
         />
       </div>

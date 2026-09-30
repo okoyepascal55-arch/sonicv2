@@ -115,7 +115,7 @@ const verkaeuferschulungen: RatgeberPageContent = {
   ],
   ctaHeadline: 'Bereit, dein Verkaufsteam auf',
   ctaAccent: 'das nächste Level zu heben?',
-  ctaSubline: 'Sprich mit uns über maßgeschneiderte Verkäuferschulungen. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über maßgeschneiderte Verkäuferschulungen.',
 };
 
 export default verkaeuferschulungen;

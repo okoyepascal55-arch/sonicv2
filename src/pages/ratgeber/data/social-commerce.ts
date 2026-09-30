@@ -115,7 +115,7 @@ const socialCommerce: RatgeberPageContent = {
   ],
   ctaHeadline: 'Starte deine',
   ctaAccent: 'Social-Commerce-Strategie',
-  ctaSubline: 'Lass uns gemeinsam die richtigen Plattformen, Creator und Formate für deine Marke identifizieren. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Lass uns gemeinsam die richtigen Plattformen, Creator und Formate für deine Marke identifizieren.',
 };
 
 export default socialCommerce;

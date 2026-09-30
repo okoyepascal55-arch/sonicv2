@@ -1,5 +1,6 @@
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
+import { useCtaText } from '@/hooks/useCtaText';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 export default function SRTHeroReference() {
@@ -15,7 +16,8 @@ export default function SRTHeroReference() {
   const h1_3      = useText('srt_hero', 'srt-hero-h1-3',         'TOOL.');
   const sub       = useText('srt_hero', 'srt-hero-sub',          'Echtzeit-Dashboards, GPS-Tracking, Forecasting und Live-KPIs für Field Force und Retail Activation.');
   const tagline   = useText('srt_hero', 'srt-hero-tagline',      'Field-Force-ERP-System · Seit 2008 · Seit 2024 mit KI');
-  const primary   = useText('srt_hero', 'srt-hero-cta-primary',  'Beratungsgespräch buchen');
+  const cta       = useCtaText();
+  const primary   = cta.book;
   const secondary = useText('srt_hero', 'srt-hero-cta-secondary','Features entdecken');
   const ids = ['features', 'funktionsumfang', 'team-app', 'branchen', 'srt-proof'];
 

@@ -119,7 +119,7 @@ const markteintrittDach: RatgeberPageContent = {
   ],
   ctaHeadline: 'Starte deinen',
   ctaAccent: 'DACH-Markteintritt',
-  ctaSubline: 'Lass uns gemeinsam deine DACH-Strategie entwickeln — von der Planung bis zur operativen Umsetzung. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Lass uns gemeinsam deine DACH-Strategie entwickeln — von der Planung bis zur operativen Umsetzung.',
 };
 
 export default markteintrittDach;

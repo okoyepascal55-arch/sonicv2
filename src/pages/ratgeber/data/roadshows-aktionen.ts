@@ -119,7 +119,7 @@ const roadshowsAktionen: RatgeberPageContent = {
   ],
   ctaHeadline: 'Bring deine Marke',
   ctaAccent: 'auf die Straße',
-  ctaSubline: 'Entwickle mit uns dein Roadshow-Konzept — von der Idee bis zum ersten Standort. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Entwickle mit uns dein Roadshow-Konzept — von der Idee bis zum ersten Standort.',
 };
 
 export default roadshowsAktionen;

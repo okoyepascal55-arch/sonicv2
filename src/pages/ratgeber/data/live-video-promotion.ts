@@ -119,7 +119,7 @@ const liveVideoPromotion: RatgeberPageContent = {
   ],
   ctaHeadline: 'Starte deine erste',
   ctaAccent: 'Live Video Promotion',
-  ctaSubline: 'Sprich mit uns über deine Video-Promotion-Strategie — von der Technik bis zum ersten Live-Gespräch. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Video-Promotion-Strategie — von der Technik bis zum ersten Live-Gespräch.',
 };
 
 export default liveVideoPromotion;

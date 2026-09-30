@@ -2,6 +2,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 export default function VideoHero() {
   const { images: videoHeroImages } = useMediaStore('leistungen_video_images');
@@ -10,6 +11,7 @@ export default function VideoHero() {
     : 'https://www.sonic-group.de/wp-content/uploads/2023/06/LVP_NEU.jpg';
 
   const tBtn = useLeistungenText('leistungen_video_hero_buttons');
+  const cta = useCtaText();
   const tBadge = useText('leistungen_video', 'video-hero-badge', '(Live) Video');
   const tH1Line1 = useText('leistungen_video', 'video-hero-heading-line1', 'Live verkaufen.');
   const tH1Accent = useText('leistungen_video', 'video-hero-heading-accent', 'Digital begeistern.');
@@ -59,7 +61,7 @@ export default function VideoHero() {
             style={{ borderRadius: 0 }}
           >
             <i className="ri-calendar-line"></i>
-            {tBtn['primary']}
+            {cta.book}
           </a>
           <a
             href="/leistungen/pos-full-service"

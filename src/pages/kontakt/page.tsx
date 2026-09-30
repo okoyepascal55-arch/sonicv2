@@ -52,8 +52,8 @@ export default function KontaktPage() {
   const tHours = useText('kontakt_page', 'kontakt-detail-hours', 'Mo–Fr: 09:00–17:00 Uhr');
   const tCalLabel = useText('kontakt_page', 'kontakt-calendly-label', 'Direkt Termin wählen');
   const tCalSub = useText('kontakt_page', 'kontakt-calendly-sub', 'Kostenlos · Unverbindlich · 30 Minuten');
-  const tStatResp = useText('kontakt_page', 'kontakt-stat-response', '< 24h');
-  const tStatRespLabel = useText('kontakt_page', 'kontakt-stat-response-label', 'Antwortzeit');
+  const tStatResp = useText('kontakt_page', 'kontakt-stat-response', '30 Min.');
+  const tStatRespLabel = useText('kontakt_page', 'kontakt-stat-response-label', 'Erstgespräch');
   const tStatExp = useText('kontakt_page', 'kontakt-stat-experience', '20+');
   const tStatExpLabel = useText('kontakt_page', 'kontakt-stat-experience-label', 'Jahre Erfahrung');
   const tStatClients = useText('kontakt_page', 'kontakt-stat-clients', '100+');

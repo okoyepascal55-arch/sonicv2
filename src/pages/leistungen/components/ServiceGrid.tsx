@@ -4,6 +4,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
 import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 const SERVICES = [
   {
@@ -72,6 +73,7 @@ export default function ServiceGrid({ sectionRef }: Props) {
   const [active, setActive] = useState(0);
   const { images: gridImages } = useMediaStore('leistungen_servicegrid_bg');
   const t = useLeistungenText('leistungen_overview_services');
+  const cta = useCtaText();
   const services = SERVICES.map((sv, i) => {
     const n = i + 1;
     return {
@@ -249,15 +251,15 @@ export default function ServiceGrid({ sectionRef }: Props) {
               <i className="ri-question-line text-sm text-primary-600"></i>
             </div>
             <div>
-              <p className="text-foreground-950 font-black text-sm mb-0.5">Noch Fragen zum Leistungsumfang?</p>
-              <p className="text-foreground-500 text-xs">Wir beraten dich persönlich — kostenlos und unverbindlich.</p>
+              <p className="text-foreground-950 font-black text-sm mb-0.5">{t['help-heading']}</p>
+              <p className="text-foreground-500 text-xs">{cta.microline}</p>
             </div>
           </div>
           <a
-            href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespräch%20buchen`}
+            href={`mailto:${CONTACT_EMAIL}?subject=Termin%20vereinbaren`}
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white font-black text-xs uppercase tracking-widest cursor-pointer whitespace-nowrap transition-colors duration-300 hover:bg-foreground-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 flex-shrink-0"
           >
-            Beratungsgespräch buchen
+            {cta.book}
             <i className="ri-arrow-right-line"></i>
           </a>
         </div>

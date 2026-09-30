@@ -4,6 +4,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
 import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 const TAB_INFO = [
  { id: 'events', key: 'tab1', icon: 'ri-calendar-event-line', imageIndexes: [0, 1, 2, 3] },
@@ -55,6 +56,7 @@ export default function EventsShowcase() {
  const [lightboxIndex, setLightboxIndex] = useState(0);
 
  const tx = useLeistungenText('leistungen_events_formats');
+ const cta = useCtaText();
  const TABS = resolveTabs(showcaseImages, tx);
  const tab = TABS[activeTab];
 
@@ -221,7 +223,7 @@ export default function EventsShowcase() {
  style={{ borderRadius: 0 }}
  >
  <i className="ri-calendar-line"></i>
- {tx['cta-label']}
+ {cta.book}
  </a>
  </div>
  </div>

@@ -115,7 +115,7 @@ const instoreMedia: RatgeberPageContent = {
   ],
   ctaHeadline: 'Erreiche deine Kunden im',
   ctaAccent: 'Moment der Kaufentscheidung.',
-  ctaSubline: 'Sprich mit uns über deine Instore-Media-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Instore-Media-Strategie.',
 };
 
 export default instoreMedia;

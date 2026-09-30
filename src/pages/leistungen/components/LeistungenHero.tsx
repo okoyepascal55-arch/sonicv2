@@ -2,6 +2,7 @@ import React from 'react';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useCallback, useEffect, useState } from 'react';
 import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 
 interface Props {
@@ -14,6 +15,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
     ? resolveImageUrl(leistungenHeroImages[0].url)
     : undefined;
   const t = useLeistungenText('leistungen_overview_hero');
+  const cta = useCtaText();
   const words = splitList(t['h1-words']).map((w) => w.toUpperCase());
   const [wordIdx, setWordIdx] = useState(0);
   const [wordVisible, setWordVisible] = useState(true);
@@ -89,7 +91,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
             className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 bg-primary-500 text-foreground-950 font-bold text-xs md:text-sm hover:bg-white transition-all duration-200 whitespace-nowrap cursor-pointer"
           >
             <i className="ri-calendar-line text-base"></i>
-            {t['cta-primary']}
+            {cta.book}
           </a>
           <button
             onClick={onScrollToGrid}

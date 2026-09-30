@@ -2,6 +2,7 @@ import React from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 export default function TalentpoolHero() {
   const { images: talentpoolHeroImages } = useMediaStore('leistungen_talentpool_images');
@@ -9,6 +10,7 @@ export default function TalentpoolHero() {
     ? resolveImageUrl(talentpoolHeroImages[0].url)
     : 'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg';
 
+  const cta = useCtaText();
   const tBadge = useText('leistungen_talentpool', 'talentpool-hero-badge', 'Talentpool');
   const tH1Line1 = useText('leistungen_talentpool', 'talentpool-hero-heading-line1', '>1.800 Talente.');
   const tH1Accent = useText('leistungen_talentpool', 'talentpool-hero-heading-accent', 'Echte Markenbotschafter.');
@@ -62,7 +64,7 @@ export default function TalentpoolHero() {
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line" />
-            Beratungsgespräch buchen
+            {cta.book}
           </a>
 
           <a

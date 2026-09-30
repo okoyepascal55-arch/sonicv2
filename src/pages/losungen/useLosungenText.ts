@@ -19,8 +19,8 @@ export function useSolution(key: SolutionKey): Solution {
     stats: s.stats.map((st, i) => ({ value: pick(t, `stat-${i + 1}-value`, st.value), label: pick(t, `stat-${i + 1}-label`, st.label) })),
     proof: s.proof.map((p, i) => pick(t, `proof-${i + 1}`, p)),
     modules: s.modules.map((m, i) => ({ ...m, name: pick(t, `module-${i + 1}`, m.name) })),
+    ctaHeadline: pick(t, 'ctaHeadline', s.ctaHeadline),
     finalCta: pick(t, 'finalCta', s.finalCta),
-    ctaLabel: pick(t, 'ctaLabel', s.ctaLabel),
   } as Solution;
 }
 

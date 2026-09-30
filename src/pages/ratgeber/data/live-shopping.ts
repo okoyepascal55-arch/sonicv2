@@ -119,7 +119,7 @@ const liveShopping: RatgeberPageContent = {
   ],
   ctaHeadline: 'Starte dein erstes',
   ctaAccent: 'Live Shopping Event',
-  ctaSubline: 'Sprich mit uns über deine Live-Shopping-Strategie — vom Konzept bis zum ersten Stream. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Live-Shopping-Strategie — vom Konzept bis zum ersten Stream.',
 };
 
 export default liveShopping;

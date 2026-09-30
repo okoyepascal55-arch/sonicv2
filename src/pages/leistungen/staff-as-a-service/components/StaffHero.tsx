@@ -3,6 +3,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 export default function StaffHero() {
   const { images: staffHeroImages } = useMediaStore('leistungen_staff_images');
@@ -16,6 +17,7 @@ export default function StaffHero() {
   const tSubtitle = useText('leistungen_staff', 'staff-hero-subtitle', 'Markenfans anheuern: Für Sell-out, Sell-in, Schulungen, Brand Activation und mehr.');
   const tDesc = useText('leistungen_staff', 'staff-hero-description', 'Wir übernehmen Recruiting, Payroll und Steuerung, bspw. via Arbeitnehmerüberlassung.');
   const t = useLeistungenText('leistungen_staff_hero_stats');
+  const cta = useCtaText();
 
   return (
     <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
@@ -71,7 +73,7 @@ export default function StaffHero() {
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line"></i>
-            {t['btn-primary']}
+            {cta.book}
           </a>
           <a
             href="/leistungen/talentpool"

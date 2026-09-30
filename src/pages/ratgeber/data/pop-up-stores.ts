@@ -115,7 +115,7 @@ const popUpStores: RatgeberPageContent = {
   ],
   ctaHeadline: 'Bereit für dein nächstes',
   ctaAccent: 'temporäres Markenerlebnis?',
-  ctaSubline: 'Sprich mit uns über dein Pop-up-Store-Konzept. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über dein Pop-up-Store-Konzept.',
 };
 
 export default popUpStores;

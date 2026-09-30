@@ -115,7 +115,7 @@ const shopperMarketing: RatgeberPageContent = {
   ],
   ctaHeadline: 'Gewinne den Moment',
   ctaAccent: 'der Kaufentscheidung.',
-  ctaSubline: 'Sprich mit uns über deine Shopper-Marketing-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Shopper-Marketing-Strategie.',
 };
 
 export default shopperMarketing;

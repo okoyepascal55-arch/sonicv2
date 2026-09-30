@@ -4,6 +4,7 @@ import { LOSUNGEN_TEXT_SECTIONS } from './textStoreLosungen';
 import { KARRIERE_TEXT_SECTIONS } from './textStoreKarriere';
 import { REVIEW_TEXT_SECTIONS } from './textStoreReview';
 import { LEISTUNGEN_TEXT_SECTIONS } from './textStoreLeistungen';
+import { CTA_TEXT_SECTIONS } from './textStoreCta';
 import { supabase } from './supabase';
 export interface TextEntry {
   id: string;
@@ -58,7 +59,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'home-hero-left-h3-accent', label: 'Left Panel H3 Accent', description: 'Brand CTA accent word', type: 'heading', value: 'AGENTUR' },
       { id: 'home-hero-left-h3-line3', label: 'Left Panel H3 Line 3', description: 'Brand CTA ending', type: 'heading', value: 'MIT POWER?' },
       { id: 'home-hero-left-desc', label: 'Left Panel Description', description: 'Brand CTA description', type: 'paragraph', value: 'Promotion, POS, Studio und Events: Wir bringen deine Marke dahin, wo gekauft wird – mit Menschen, die verkaufen, und Daten, die es belegen.' },
-      { id: 'home-hero-left-btn', label: 'Left Panel Button', description: 'Brand CTA button', type: 'cta', value: 'Projekt anfragen' },
       { id: 'home-hero-right-badge', label: 'Right Panel Badge', description: 'Talent CTA badge', type: 'label', value: 'Der Mensch. Der Unterschied.' },
       { id: 'home-hero-right-h3', label: 'Right Panel H3 Line 1', description: 'Talent CTA heading', type: 'heading', value: 'SUCHST DU EINEN' },
       { id: 'home-hero-right-h3-accent', label: 'Right Panel H3 Accent', description: 'Talent CTA accent word', type: 'heading', value: 'JOB' },
@@ -211,7 +211,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'home-dualcta-left', label: 'Left Panel — Brands', description: 'Brands CTA heading', type: 'cta', value: 'Für Marken' },
       { id: 'home-dualcta-left-desc', label: 'Left Panel Description', description: 'Brands CTA description', type: 'paragraph', value: 'Bereit für mehr Sales? Lass uns gemeinsam deine Vertriebsstrategie auf das nächste Level heben.' },
-      { id: 'home-dualcta-left-btn', label: 'Left Panel Button', description: 'Brands CTA button', type: 'cta', value: 'Jetzt Beratung anfragen' },
       { id: 'home-dualcta-right', label: 'Right Panel — Talent', description: 'Talent CTA heading', type: 'cta', value: 'Für Talente' },
       { id: 'home-dualcta-right-desc', label: 'Right Panel Description', description: 'Talent CTA description', type: 'paragraph', value: 'Werde Teil der Sonic Family! Entdecke spannende Karrieremöglichkeiten in einem dynamischen Umfeld.' },
       { id: 'home-dualcta-right-btn', label: 'Right Panel Button', description: 'Talent CTA button', type: 'cta', value: 'Karriere entdecken' },
@@ -340,8 +339,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'kontakt-detail-hours', label: 'Detail — Erreichbarkeit', description: 'Hours', type: 'label', value: 'Mo–Fr: 09:00–17:00 Uhr' },
       { id: 'kontakt-calendly-label', label: 'Calendly Label', description: 'Calendly section heading', type: 'label', value: 'Direkt Termin wählen' },
       { id: 'kontakt-calendly-sub', label: 'Calendly Sub', description: 'Calendly subtext', type: 'label', value: 'Kostenlos · Unverbindlich · 30 Minuten' },
-      { id: 'kontakt-stat-response', label: 'Stat — Response Time', description: 'Response time', type: 'stat', value: '< 24h' },
-      { id: 'kontakt-stat-response-label', label: 'Stat Label — Response Time', description: 'Response label', type: 'stat-label', value: 'Antwortzeit' },
+      { id: 'kontakt-stat-response', label: 'Stat — Response Time', description: 'Response time', type: 'stat', value: '30 Min.' },
+      { id: 'kontakt-stat-response-label', label: 'Stat Label — Response Time', description: 'Response label', type: 'stat-label', value: 'Erstgespräch' },
       { id: 'kontakt-stat-experience', label: 'Stat — Experience', description: 'Experience', type: 'stat', value: '20+' },
       { id: 'kontakt-stat-experience-label', label: 'Stat Label — Experience', description: 'Experience label', type: 'stat-label', value: 'Jahre Erfahrung' },
       { id: 'kontakt-stat-clients', label: 'Stat — Clients', description: 'Clients', type: 'stat', value: '100+' },
@@ -365,7 +364,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-hero-h1-3', label: 'H1 — TOOL.', description: 'H1 last word', type: 'heading', value: 'TOOL.' },
       { id: 'srt-hero-sub', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Das SRT liefert Echtzeit-Zugriff auf Performance-Daten, Reportings und integriert Recruiting, Projektmanagement und Abrechnung — alles in einer Plattform.' },
       { id: 'srt-hero-tagline', label: 'Hero Tagline', description: 'Tagline below subtitle', type: 'label', value: 'Field-Force-ERP-System · Seit 2008 · Seit 2024 mit KI' },
-      { id: 'srt-hero-cta-primary', label: 'CTA Primary', description: 'Primary CTA button', type: 'cta', value: 'Beratungsgespräch buchen' },
       { id: 'srt-hero-cta-secondary', label: 'CTA Secondary', description: 'Secondary CTA button', type: 'cta', value: 'Features entdecken' },
       { id: 'srt-hero-nav-label', label: 'Nav Label', description: 'Direkt zu label', type: 'label', value: 'Direkt zu:' },
       { id: 'srt-hero-chip-1', label: 'Chip — All-in-Software', description: 'Nav chip', type: 'label', value: 'All-in-Software' },
@@ -451,11 +449,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pageGroupId: 'ratgeber', pagePath: '/ratgeber',
     description: 'The bottom CTA section.',
     entries: [
-      { id: 'ratgeber-cta-badge', label: 'CTA Badge', description: 'Contact badge', type: 'badge', value: 'Kontakt' },
-      { id: 'ratgeber-cta-heading', label: 'CTA Heading', description: 'CTA heading', type: 'heading', value: 'Sie haben ein konkretes Projekt vor Augen?' },
-      { id: 'ratgeber-cta-desc', label: 'CTA Description', description: 'CTA description', type: 'paragraph', value: 'Sprechen Sie mit uns über Ihre Markenaktivierung. Wir beraten Sie kostenfrei und unverbindlich — persönlich in Krefeld oder digital.' },
-      { id: 'ratgeber-cta-btn', label: 'CTA Button', description: 'CTA button text', type: 'cta', value: 'Jetzt anfragen' },
-      { id: 'ratgeber-cta-footer', label: 'CTA Footer', description: 'CTA footer text', type: 'label', value: 'Kostenfreies Erstgespräch' },
+      { id: 'ratgeber-cta-heading', label: 'CTA Heading', description: 'CTA heading', type: 'heading', value: 'Konkretes Projekt geplant?' },
+      { id: 'ratgeber-cta-desc', label: 'CTA Description', description: 'CTA description', type: 'paragraph', value: 'Erzähl uns kurz von deinem Projekt.' },
     ],
   },
 
@@ -487,7 +482,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'reels-end-label', label: 'End Card Label', description: 'End card tagline', type: 'label', value: 'Die Geschichte geht weiter' },
       { id: 'reels-end-text-line1', label: 'End Card Text Line 1', description: 'End card text', type: 'paragraph', value: 'Jede Ära fügte ein Kapitel hinzu. Jede Kampagne schrieb einen Satz.' },
       { id: 'reels-end-text-line2', label: 'End Card Text Line 2', description: 'End card text', type: 'paragraph', value: 'Die nächste Zeile beginnt mit dir.' },
-      { id: 'reels-end-cta', label: 'End Card CTA', description: 'End card CTA button', type: 'cta', value: 'Schreib das nächste Kapitel' },
       { id: 'reels-era-1-quote', label: 'Era 1 Quote', description: '2007–2015 quote', type: 'quote', value: 'Wir haben in einem Hinterzimmer mit zwei Schreibtischen und einer Überzeugung angefangen — ein gut geschulter Mensch schlägt ein gut platziertes Poster jedes Mal. 2013 waren wir schon fünfzig.' },
       { id: 'reels-era-1-attribution', label: 'Era 1 Attribution', description: '2007–2015 attribution', type: 'label', value: 'Björn Bourdin · Mitgründer, 2007' },
       { id: 'reels-era-1-caption', label: 'Era 1 Caption', description: '2007–2015 photo caption', type: 'caption', value: 'Erster Schreibtisch, erster Kunde — die Hinterzimmerjahre.' },
@@ -755,7 +749,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'about-voices-cta-text', label: 'CTA-Box — Text', description: 'Satzanfang in der Kontakt-Box unter dem Karussell', type: 'paragraph', value: 'Lass uns besprechen, wie Sonic deine' },
       { id: 'about-voices-cta-accent', label: 'CTA-Box — Hervorhebung (lime)', description: 'Farbig hervorgehobener Satzteil', type: 'paragraph', value: 'Marke unterstützen kann.' },
       { id: 'about-voices-cta-sub', label: 'CTA-Box — Unterzeile', description: 'Kleine Zeile unter dem Text (nur Desktop)', type: 'caption', value: 'Unabhängige Agentur — über 15 Kunden — B2B, B2B2C & D2C' },
-      { id: 'about-voices-cta', label: 'CTA-Button', description: 'Button-Text', type: 'cta', value: 'Beratungsgespräch buchen' },
     ],
   },
 
@@ -898,7 +891,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-proof-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'SRT in Zahlen' },
       { id: 'srt-proof-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Die Bilanz spricht für sich.' },
       { id: 'srt-proof-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Tatsächlich gemessene Ergebnisse aus über 15 Jahren Retail-Aktivierungen.' },
-      { id: 'srt-proof-cta', label: 'CTA', description: 'CTA text', type: 'cta', value: 'SRT Demo anfragen' },
     ],
   },
   {
@@ -923,8 +915,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-pricing-tier-1', label: 'Tier — Starter', description: 'Starter tier', type: 'heading', value: 'Starter' },
       { id: 'srt-pricing-tier-2', label: 'Tier — Professional', description: 'Professional tier', type: 'heading', value: 'Professional' },
       { id: 'srt-pricing-tier-3', label: 'Tier — Enterprise', description: 'Enterprise tier', type: 'heading', value: 'Enterprise' },
-      { id: 'srt-pricing-access-heading', label: 'Access Heading', description: 'Access heading', type: 'heading', value: 'Bereit für volle Transparenz?' },
-      { id: 'srt-pricing-btn', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Beratungsgespräch buchen' },
     ],
   },
   {
@@ -976,10 +966,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pageGroupId: 'case_studies', pagePath: '/fallbeispiele',
     description: 'The bottom CTA section.',
     entries: [
-      { id: 'casestudies-cta-badge', label: 'CTA Badge', description: 'Badge', type: 'badge', value: 'Lass uns sprechen' },
       { id: 'casestudies-cta-heading', label: 'CTA Heading', description: 'Heading', type: 'heading', value: 'Deine Marke. Unser Einsatz.' },
       { id: 'casestudies-cta-sub', label: 'CTA Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Wir bringen deine Marke dort zum Leuchten, wo die Kaufentscheidung fällt.' },
-      { id: 'casestudies-cta-btn-1', label: 'CTA Button 1', description: 'Primary CTA', type: 'cta', value: 'Gespräch buchen' },
       { id: 'casestudies-cta-btn-2', label: 'CTA Button 2', description: 'Secondary CTA', type: 'cta', value: 'Leistungen ansehen' },
     ],
   },
@@ -1085,10 +1073,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pageGroupId: 'srt', pagePath: '/industries',
     description: 'The industries CTA: Lass uns deine Branche besprechen.',
     entries: [
-      { id: 'industries-cta-badge', label: 'CTA Badge', description: 'Badge', type: 'badge', value: 'Kein Commitment. Nur ein Gespräch.' },
       { id: 'industries-cta-heading', label: 'CTA Heading', description: 'Main heading', type: 'heading', value: 'LASS UNS DEINE BRANCHE BESPRECHEN.' },
       { id: 'industries-cta-sub', label: 'CTA Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Produktlaunch, Markteintritt oder Optimierung — wir haben die Branchenexpertise.' },
-      { id: 'industries-cta-btn-1', label: 'CTA Button 1', description: 'Consult button', type: 'cta', value: 'Beratung anfragen' },
     ],
   },
 
@@ -1263,7 +1249,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'events-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Wir setzen alles daran, dass dein Messe- oder Event-Auftritt zur Erfolgsgeschichte wird.' },
       { id: 'events-process-heading', label: 'Process Heading', description: 'Process H2', type: 'heading', value: 'So arbeiten wir' },
       { id: 'events-process-sub', label: 'Process Subline', description: 'Process description', type: 'paragraph', value: 'Von der Planung bis zum Reporting: ideenreich, professionell und zuverlässig.' },
-      { id: 'events-cta-btn', label: 'CTA Button', description: 'CTA button text', type: 'cta', value: 'Beratungsgespräch buchen' },
     ],
   },
   {
@@ -1319,7 +1304,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'kreation-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Assets kommen oft aus verschiedenen Quellen.' },
       { id: 'kreation-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Content aus einer Hand. Inhouse.' },
       { id: 'kreation-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Ein Team für Konzept, Design und Rollout — plus ausdrucksstarkes Personal mit Fokus auf Content-Produktion: Unboxing- & How-to-Videos, Foto-/Video-Shootings, Livestreams & Produktvideos, Social Media.' },
-      { id: 'kreation-cta-btn', label: 'CTA Button', description: 'CTA button text', type: 'cta', value: 'Content-Beratung buchen' },
     ],
   },
   {
@@ -1429,6 +1413,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   /* ═══════════════ HOME / ÜBER UNS — see textStoreReview.ts ═══════════════ */
   ...REVIEW_TEXT_SECTIONS,
   ...LEISTUNGEN_TEXT_SECTIONS,
+  ...CTA_TEXT_SECTIONS,
   /* ═══════════════ FALLBEISPIELE — Texte je Fallstudie (/fallbeispiele) ═══════════════ */
   {
     key: 'case_garmin_text',
@@ -1531,7 +1516,6 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'careers_paths', entryId: 'careers-paths-sales-headline', from: 'Bürobasierte Karriere', to: 'Dein Job am Campus in Krefeld', matchType: 'startsWith' as const },
   { sectionKey: 'karriere_dna', entryId: 'dna-mensch-desc', from: 'legendäre Motorräder', to: 'Menschen, die Marken prägen. Ob eine Smartwatch oder eine frische Teemarke – Promotions leben von den Menschen, die sie durchführen. Deshalb setzen wir auf Fachberater, die für die Marke brennen. Das Ergebnis? Transparent und messbar – jederzeit schwarz auf weiß nachvollziehbar.', matchType: 'contains' as const },
   { sectionKey: 'about_management_voices', entryId: 'about-voices-cta-text', from: 'Lass uns besprechen, wie Sonic deine..', to: 'Lass uns besprechen, wie Sonic deine' },
-  { sectionKey: 'about_management_voices', entryId: 'about-voices-cta', from: 'Beratungsgespräch buchen..', to: 'Beratungsgespräch buchen' },
   // ── Heading casing normalization ──
   { sectionKey: 'about_origin_story', entryId: 'about-origin-heading', from: 'MARKEN IM HERZEN. ERFOLG IM FOKUS.', to: 'Marken im Herzen. Erfolg im Fokus.' },
   { sectionKey: 'about_leadership', entryId: 'about-leadership-heading', from: 'FACHLICHE UND MENSCHLICHE VIELFALT.', to: 'Fachliche und menschliche Vielfalt.' },
@@ -1571,6 +1555,14 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'common_navigation', entryId: 'nav-talentpool', from: 'Talentepool', to: 'Talentpool' },
   { sectionKey: 'careers_hero', entryId: 'careers-hero-stat-3-value', from: '2.000', to: '1.800+', matchType: 'contains' as const },
   { sectionKey: 'leistungen_main_hero', entryId: 'leistungen-hero-subtitle', from: 'wir decken die gesamte Wertschöpfungskette', to: 'Von POS-Promotion über Live Video bis zu Warehouse & Logistik — Personal, Daten und Umsetzung aus einer Hand.', matchType: 'contains' as const },
+  // ── CTA review 30.09.2026 — lean CTAs, no response-time promises ──
+  { sectionKey: 'ratgeber_cta', entryId: 'ratgeber-cta-heading', from: 'Sie haben ein konkretes Projekt', to: 'Konkretes Projekt geplant?', matchType: 'startsWith' as const },
+  { sectionKey: 'ratgeber_cta', entryId: 'ratgeber-cta-desc', from: 'Sprechen Sie mit uns über Ihre Markenaktivierung', to: 'Erzähl uns kurz von deinem Projekt.', matchType: 'startsWith' as const },
+  { sectionKey: 'kontakt_page', entryId: 'kontakt-stat-response', from: '24h', to: '30 Min.', matchType: 'contains' as const },
+  { sectionKey: 'kontakt_page', entryId: 'kontakt-stat-response-label', from: 'Antwortzeit', to: 'Erstgespräch' },
+  { sectionKey: 'losungen_markteintritt', entryId: 'finalCta', from: 'Bereit', to: 'In 30 Minuten klären wir, wie dein Launch aussehen kann.', matchType: 'startsWith' as const },
+  { sectionKey: 'losungen_absatz', entryId: 'finalCta', from: 'Bereit', to: 'In 30 Minuten klären wir, wo dein Absatz wachsen kann.', matchType: 'startsWith' as const },
+  { sectionKey: 'losungen_omnichannel', entryId: 'finalCta', from: 'Bereit', to: 'In 30 Minuten klären wir, wie Beratung in allen Kanälen funktioniert.', matchType: 'startsWith' as const },
 ];
 
 /* Substring corrections applied to every text (defaults and dashboard values).
@@ -1581,6 +1573,8 @@ const TEXT_SUBSTITUTIONS: Array<[string, string]> = [
   ['>1.700', '>1.800'],
   ['über 1.700', 'über 1.800'],
   ['Über 1.700', 'Über 1.800'],
+  [' Kostenfrei, unverbindlich, 30 Minuten.', ''],
+  [' Kostenfrei, 30 Minuten.', ''],
 ];
 
 /* ─────────────────────────────────────────────

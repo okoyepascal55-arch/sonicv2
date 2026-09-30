@@ -7,6 +7,7 @@ import ClientProof from '../../components/feature/ClientProof';
 import WoodenDivider from '../../components/base/WoodenDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import WoodenButton from '@/components/base/WoodenButton';
+import { useCtaText } from '@/hooks/useCtaText';
 
 /* ─────────────────────────────────────────
    SOLUTION DATA — exact content from brief
@@ -19,6 +20,7 @@ import { useSolution, useSolutionLabels, useLosungenPageText, useLosungenFaq } f
 ───────────────────────────────────────── */
 function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures, deliverableImages, stepImages, testimonialImages, iconImages }: { sKey: SolutionKey; onClose: () => void; carouselRef: React.RefObject<HTMLDivElement>; heroBgImages: import('@/lib/mediaStore').MediaItem[]; woodTextures: import('@/lib/mediaStore').MediaItem[]; deliverableImages: import('@/lib/mediaStore').MediaItem[]; stepImages: import('@/lib/mediaStore').MediaItem[]; testimonialImages: import('@/lib/mediaStore').MediaItem[]; iconImages: import('@/lib/mediaStore').MediaItem[] }) {
   const s = useSolution(sKey);
+  const cta = useCtaText();
   const [activeDeliverable, setActiveDeliverable] = useState(0);
   const [delivFade, setDelivFade] = useState(true);
 
@@ -172,7 +174,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
               href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch%20anfragen`}
               className="inline-flex items-center gap-1.5 text-xs font-bold text-primary-500 hover:text-primary-500 transition-colors cursor-pointer whitespace-nowrap"
             >
-              <i className="ri-calendar-line text-sm"></i>Beratungsgespräch
+              <i className="ri-calendar-line text-sm"></i>{cta.book}
             </a>
           </div>
         </div>
@@ -371,7 +373,9 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
         {/* ── Compact bottom bar ── */}
         <div className="border-t border-foreground-100 py-5 md:py-7 px-4 md:px-8">
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs md:text-sm text-foreground-500 text-center sm:text-left max-w-lg leading-relaxed">{s.finalCta}</p>
+            <p className="text-xs md:text-sm text-foreground-500 text-center sm:text-left max-w-lg leading-relaxed">
+              <strong className="font-black text-foreground-950">{s.ctaHeadline}</strong>{' '}{s.finalCta}
+            </p>
             <div className="flex items-center gap-4 flex-shrink-0">
               <button
                 onClick={scrollToCarousel}
@@ -384,7 +388,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
                 className="inline-flex items-center gap-2 bg-foreground-950 text-white px-5 py-2.5 font-black text-xs uppercase tracking-wider hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap"
                 style={{ borderRadius: 0 }}
               >
-                <i className="ri-calendar-line text-sm"></i>Beratungsgespräch
+                <i className="ri-calendar-line text-sm"></i>{cta.book}
               </a>
             </div>
           </div>
@@ -399,6 +403,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
    CONTACT FORM
 ───────────────────────────────────────── */
 function ContactForm() {
+  const cta = useCtaText();
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [charCount, setCharCount] = useState(0);
 
@@ -434,7 +439,7 @@ function ContactForm() {
         </div>
         <h3 className="text-2xl font-black text-foreground-950 mb-2">Nachricht gesendet!</h3>
         <p className="text-foreground-500 text-sm leading-relaxed">
-          Vielen Dank für deine Anfrage. Wir melden uns innerhalb von 24 Stunden bei dir.
+          Vielen Dank für deine Anfrage. Wir melden uns zeitnah.
         </p>
         <button
           onClick={() => setFormStatus('idle')}
@@ -558,7 +563,7 @@ function ContactForm() {
         ) : (
           <>
             <i className="ri-send-plane-line text-lg"></i>
-            Anfrage absenden
+            {cta.request}
           </>
         )}
       </button>
@@ -704,6 +709,7 @@ function WoodCard({
    MAIN PAGE
 ───────────────────────────────────────── */
 export default function LosungenPage() {
+  const cta = useCtaText();
   const labels = useSolutionLabels();
   const pt = useLosungenPageText();
   const faqTexts = useLosungenFaq();
@@ -1301,7 +1307,7 @@ export default function LosungenPage() {
                       <i className="ri-check-double-line text-2xl text-primary-500"></i>
                     </div>
                     <h3 className="text-xl md:text-2xl font-black text-white mb-2">Vielen Dank!</h3>
-                    <p className="text-white/50 mb-6 text-sm max-w-md mx-auto">Wir melden uns innerhalb von 24 Stunden bei dir mit einem maßgeschneiderten Ergebnis.</p>
+                    <p className="text-white/50 mb-6 text-sm max-w-md mx-auto">Wir melden uns zeitnah.</p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                       <a
                         href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch%20anfragen`}
@@ -1309,7 +1315,7 @@ export default function LosungenPage() {
                         style={{ borderRadius: 0 }}
                       >
                         <i className="ri-calendar-line"></i>
-                        Beratungsgespräch buchen
+                        {cta.book}
                       </a>
                       <button
                         onClick={() => {

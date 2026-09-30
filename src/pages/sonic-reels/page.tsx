@@ -2,7 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import SonicReelsTimeline from './components/SonicReelsTimeline';
 import { useTextSection } from '@/hooks/useText';
 import { useSEO } from '@/hooks/useSEO';
-import { CONTACT_EMAIL } from '@/lib/contact';
+import { Link } from 'react-router-dom';
+import { useCtaText } from '@/hooks/useCtaText';
 
 export interface EraPhoto {
   src: string;
@@ -315,6 +316,7 @@ export default function SonicReelsPage() {
 
   /* ── Pull editable text from the dashboard store ── */
   const texts = useTextSection('sonicreels_page');
+  const cta = useCtaText();
 
   const eras: EraData[] = ERA_BASE.map((base, i) => {
     const n = i + 1;
@@ -334,7 +336,8 @@ export default function SonicReelsPage() {
   const endLabel = texts['reels-end-label'] || 'Die Geschichte geht weiter';
   const endLine1 = texts['reels-end-text-line1'] || 'Jede Ära hat ein Kapitel geschrieben. Jede Kampagne einen Satz.';
   const endLine2 = texts['reels-end-text-line2'] || 'Die nächste Zeile schreibst du.';
-  const endCta = texts['reels-end-cta'] || 'Starte das nächste Kapitel';
+  // Button text: Dashboard → CTAs — Button-Texte („Projekt anfragen“ → /kontakt)
+  const endCta = cta.request;
 
   return (
     <div className="bg-[#161512] overflow-x-hidden">
@@ -409,8 +412,8 @@ export default function SonicReelsPage() {
           </p>
 
           {/* CTA — understated, outline style */}
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
+          <Link
+            to="/kontakt"
             className="inline-flex items-center gap-3 px-10 py-4 border font-black uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap"
             style={{
               borderColor: 'rgba(200,212,0,0.4)',
@@ -428,7 +431,7 @@ export default function SonicReelsPage() {
           >
             {endCta}
             <i className="ri-arrow-right-line text-lg" />
-          </a>
+          </Link>
 
           {/* Sprocket strip decoration */}
           <div className="flex items-center justify-center gap-3 mt-16 opacity-20">

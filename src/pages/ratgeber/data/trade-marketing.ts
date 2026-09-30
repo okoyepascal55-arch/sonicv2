@@ -115,7 +115,7 @@ const tradeMarketing: RatgeberPageContent = {
   ],
   ctaHeadline: 'Stärke deine',
   ctaAccent: 'Handelspartnerschaft.',
-  ctaSubline: 'Sprich mit uns über deine Trade-Marketing-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Trade-Marketing-Strategie.',
 };
 
 export default tradeMarketing;

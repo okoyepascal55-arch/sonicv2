@@ -1,11 +1,12 @@
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
+import { useCtaText } from '@/hooks/useCtaText';
+import { openCalendly } from '@/components/feature/CalendlyWidget';
 
 export default function IndustryCTA() {
-  const tBadge = useText('industries_cta', 'industries-cta-badge', 'Kein Commitment. Nur ein Gespräch.');
   const tHeading = useText('industries_cta', 'industries-cta-heading', 'LASS UNS DEINE BRANCHE BESPRECHEN.');
   const tSub = useText('industries_cta', 'industries-cta-sub', 'Produktlaunch, Markteintritt oder Optimierung — wir haben die Branchenexpertise.');
-  const tBtn = useText('industries_cta', 'industries-cta-btn-1', 'Beratung anfragen');
+  const cta = useCtaText();
   return (
     <section id="contact" className="sonic-section-lg px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="sonic-container relative z-10">
@@ -17,11 +18,6 @@ export default function IndustryCTA() {
           {/* Lime glow orb */}
           <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary-500/6 blur-[90px] pointer-events-none" />
 
-          <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-4 py-1.5 mb-8">
-            <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" />
-            <span className="text-xs font-black text-primary-500 uppercase tracking-widest">{tBadge}</span>
-          </div>
-
           <h2 className="sonic-h2 text-white mb-6">
             {tHeading.split('.')[0] || tHeading}.<br />
             <span className="text-primary-500">{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.') : 'BRANCHE BESPRECHEN.'}</span>
@@ -32,14 +28,15 @@ export default function IndustryCTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-flex items-center gap-3 px-7 py-3 bg-primary-500 text-foreground-950 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap text-sm"
+            <button
+              type="button"
+              onClick={() => openCalendly()}
+              className="inline-flex items-center gap-3 px-7 py-3 bg-primary-500 text-foreground-950 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap text-sm cursor-pointer"
               style={{ borderRadius: 0 }}
             >
-              {tBtn}
+              {cta.book}
               <i className="ri-arrow-right-line" />
-            </a>
+            </button>
             <a
               href="tel:+4921514794440"
               className="inline-flex items-center gap-3 px-7 py-3 border-2 border-primary-500 text-primary-500 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap text-sm"
@@ -49,6 +46,7 @@ export default function IndustryCTA() {
               +49 2151 479 444 0
             </a>
           </div>
+          {cta.microline && <p className="text-xs text-white/40 font-semibold mt-4">{cta.microline}</p>}
         </div>
 
         {/* Contact info cards */}

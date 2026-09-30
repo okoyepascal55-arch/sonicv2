@@ -76,8 +76,9 @@ const solutionSection = (key: typeof KEYS[number]): TextSection => {
   });
   s.proof.forEach((p, i) => entries.push(e(`proof-${i + 1}`, `Beleg ${i + 1}`, 'paragraph', p, true)));
   s.modules.forEach((m, i) => entries.push(e(`module-${i + 1}`, `Modul ${i + 1} (${m.level})`, 'label', m.name)));
-  entries.push(e('finalCta', 'Abschluss — Text', 'paragraph', s.finalCta, true));
-  entries.push(e('ctaLabel', 'Abschluss — Button', 'cta', s.ctaLabel));
+  entries.push(e('ctaHeadline', 'Abschluss — Frage', 'subheading', s.ctaHeadline));
+  entries.push(e('finalCta', 'Abschluss — Zeile', 'paragraph', s.finalCta));
+  // Button text: Dashboard → CTAs — Button-Texte („Termin vereinbaren“)
   return {
     key: `losungen_${key}`,
     label: `Lösungen — Tab „${s.label}“`,

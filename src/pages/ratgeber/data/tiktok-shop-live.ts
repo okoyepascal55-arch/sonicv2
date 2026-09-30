@@ -119,7 +119,7 @@ const tiktokShopLive: RatgeberPageContent = {
   ],
   ctaHeadline: 'Erobere den',
   ctaAccent: 'TikTok-Shop-Markt',
-  ctaSubline: 'Lass uns gemeinsam deine TikTok-Commerce-Strategie für den DACH-Raum entwickeln. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Lass uns gemeinsam deine TikTok-Commerce-Strategie für den DACH-Raum entwickeln.',
 };
 
 export default tiktokShopLive;

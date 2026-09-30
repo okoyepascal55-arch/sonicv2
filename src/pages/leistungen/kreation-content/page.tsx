@@ -16,6 +16,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 // Card texts: Dashboard → Text → Kreation & Content — Lösung (Karten)
 const SOLUTIONS = [
@@ -59,8 +60,8 @@ export default function KreationContentPage() {
   const tSol = useLeistungenText('leistungen_kreation_solutions');
   const tStats = useLeistungenText('leistungen_kreation_hero_stats');
   const tCta = useLeistungenText('leistungen_kreation_cta');
+  const cta = useCtaText();
   const solutions = SOLUTIONS.map((s, i) => ({ ...s, title: tSol[`c${i + 1}-title`], desc: tSol[`c${i + 1}-desc`], tags: splitList(tSol[`c${i + 1}-tags`]) }));
-  const tCtaBtn = useText('leistungen_kreation_content', 'kreation-cta-btn', 'Content-Beratung buchen');
   const tHeroBadge = useText('leistungen_kreation', 'kreation-hero-badge', 'Inhouse Kreation & Content');
   const tHeroH1Line1 = useText('leistungen_kreation', 'kreation-hero-heading-line1', 'Kreation,');
   const tHeroH1Accent = useText('leistungen_kreation', 'kreation-hero-heading-accent', 'die Marken formt.');
@@ -110,7 +111,7 @@ export default function KreationContentPage() {
             <h1 className="sonic-h1 text-foreground-950 mb-6">{tHeroH1Line1}<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{tHeroH1Accent}</span></h1>
             <p className="text-base md:text-lg text-foreground-950/50 max-w-2xl mx-auto leading-relaxed mb-10">{tHeroSubtitle}</p>
             <KreationHeroStats />
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"><a href={`mailto:${CONTACT_EMAIL}?subject=Kreation%20Content%20Beratung`} className="inline-flex items-center gap-2 bg-foreground-950 text-background-50 px-7 py-3 font-black text-sm hover:bg-primary-500 hover:text-foreground-950 transition-colors"><i className="ri-calendar-line" />{tCtaBtn}</a><a href="/leistungen/live-video" className="inline-flex items-center gap-2 border-2 border-foreground-950/12 text-foreground-950/60 px-6 py-3 font-black text-sm hover:border-foreground-950 hover:text-foreground-950 transition-colors">{tStats['btn-secondary']}<i className="ri-arrow-right-line" /></a></div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"><a href={`mailto:${CONTACT_EMAIL}?subject=Kreation%20Content%20Beratung`} className="inline-flex items-center gap-2 bg-foreground-950 text-background-50 px-7 py-3 font-black text-sm hover:bg-primary-500 hover:text-foreground-950 transition-colors"><i className="ri-calendar-line" />{cta.book}</a><a href="/leistungen/live-video" className="inline-flex items-center gap-2 border-2 border-foreground-950/12 text-foreground-950/60 px-6 py-3 font-black text-sm hover:border-foreground-950 hover:text-foreground-950 transition-colors">{tStats['btn-secondary']}<i className="ri-arrow-right-line" /></a></div>
           </div>
           <Carousel3DReference />
         </section>
@@ -133,7 +134,7 @@ export default function KreationContentPage() {
       <KreationFaces />
       <WoodenDivider />
       <section id="referenzen"><ClientProof /></section>
-      <div id="kontakt"><LeistungenKontakt headline={tCta['headline']} headlineAccent={tCta['headline-accent']} subline={tCta['subline']} checkItems={splitList(tCta['check-items']).map((text) => ({ text }))} ctaLabel={tCta['cta']} ctaMailSubject="Kreation Content Beratung" ctaIcon="ri-calendar-line" /></div>
+      <div id="kontakt"><LeistungenKontakt headline={tCta['headline']} headlineAccent={tCta['headline-accent']} subline={tCta['subline']} ctaLabel={cta.book} ctaMailSubject="Kreation Content Beratung" ctaIcon="ri-calendar-line" /></div>
       <ScrollToTopButton />
     </div>
   );

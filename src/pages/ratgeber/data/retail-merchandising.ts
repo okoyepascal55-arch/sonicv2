@@ -119,7 +119,7 @@ const retailMerchandising: RatgeberPageContent = {
   ],
   ctaHeadline: 'Maximiere deine',
   ctaAccent: 'Regal-Performance',
-  ctaSubline: 'Sprich mit uns über deine Merchandising-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Merchandising-Strategie.',
 };
 
 export default retailMerchandising;

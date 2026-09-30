@@ -115,7 +115,7 @@ const communityManagement: RatgeberPageContent = {
   ],
   ctaHeadline: 'Baue eine Community,',
   ctaAccent: 'die deine Marke trägt.',
-  ctaSubline: 'Sprich mit uns über deine Community-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Community-Strategie.',
 };
 
 export default communityManagement;

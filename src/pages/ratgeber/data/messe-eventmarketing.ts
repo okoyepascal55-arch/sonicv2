@@ -120,7 +120,7 @@ const messeEventmarketing: RatgeberPageContent = {
   ],
   ctaHeadline: 'Dein nächster Messeauftritt',
   ctaAccent: 'wird dein erfolgreichster',
-  ctaSubline: 'Sprechen wir über deine Messe- und Eventstrategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprechen wir über deine Messe- und Eventstrategie.',
 };
 
 export default messeEventmarketing;

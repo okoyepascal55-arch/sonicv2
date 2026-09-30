@@ -115,7 +115,7 @@ const customerExperience: RatgeberPageContent = {
   ],
   ctaHeadline: 'Gestalte Kundenerlebnisse,',
   ctaAccent: 'die begeistern und binden.',
-  ctaSubline: 'Sprich mit uns über deine Customer-Experience-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Customer-Experience-Strategie.',
 };
 
 export default customerExperience;

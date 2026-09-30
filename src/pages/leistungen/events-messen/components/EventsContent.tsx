@@ -7,6 +7,7 @@ import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 const CHALLENGE_ICONS = ['ri-star-line', 'ri-tools-line', 'ri-bar-chart-line'];
 
@@ -53,7 +54,7 @@ export default function EventsContent() {
   const tSolutionSub = useText('leistungen_events_content', 'events-solution-sub', 'Wir setzen alles daran, dass dein Messe- oder Event-Auftritt zur Erfolgsgeschichte wird.');
   const tProcessHeading = useText('leistungen_events_content', 'events-process-heading', 'So arbeiten wir');
   const tProcessSub = useText('leistungen_events_content', 'events-process-sub', 'Von der Planung bis zum Reporting: ideenreich, professionell und zuverlässig.');
-  const tCtaBtn = useText('leistungen_events_content', 'events-cta-btn', 'Beratungsgespräch buchen');
+  const cta = useCtaText();
   const tCh = useLeistungenText('leistungen_events_challenges');
   const tSol = useLeistungenText('leistungen_events_solutions');
   const tProc = useLeistungenText('leistungen_events_process');
@@ -221,7 +222,7 @@ export default function EventsContent() {
               href={`mailto:${CONTACT_EMAIL}?subject=Events%20Messen%20Beratung`}
               className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-white transition-all duration-300 whitespace-nowrap cursor-pointer group"
             >
-              {tCtaBtn}
+              {cta.book}
               <i className="ri-arrow-right-line transition-transform duration-300 group-hover:translate-x-1" />
             </a>
           </div>

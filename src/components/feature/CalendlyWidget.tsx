@@ -1,4 +1,10 @@
 import { useEffect } from 'react';
+import { getTextSection } from '@/lib/textStore';
+import { CTA_DEFAULTS, BOOKING_LABELS } from '@/lib/textStoreCta';
+
+/** Current CTA label from the dashboard (falls back to the default). */
+const ctaLabel = (id: string): string =>
+  getTextSection('common_cta')?.entries.find((en) => en.id === id)?.value?.trim() || CTA_DEFAULTS[id];
 
 declare global {
   interface Window {
@@ -35,7 +41,7 @@ export default function CalendlyWidget() {
       if (window.Calendly) {
         window.Calendly.initBadgeWidget({
           url: CALENDLY_URL,
-          text: 'Kostenlose 30-Min Beratung',
+          text: ctaLabel('badge'),
           color: '#c8d300',
           textColor: 'oklch(var(--foreground-950))',
           branding: false
@@ -55,12 +61,13 @@ export default function CalendlyWidget() {
       document.head.appendChild(mobileStyle);
     };
 
-    // 4. Global Click Listener for 'Beratungsgespräch buchen' buttons
+    // 4. Global click listener: every "Termin vereinbaren" button opens the booking calendar
     const handleGlobalClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       // Look for the text in the target or its closest parent (to handle icons inside buttons)
       const button = target.closest('a, button');
-      if (button && button.textContent?.includes('Beratungsgespräch buchen')) {
+      const labels = [ctaLabel('book'), ...BOOKING_LABELS];
+      if (button && labels.some((l) => button.textContent?.includes(l))) {
         e.preventDefault();
         e.stopPropagation();
         openCalendly();

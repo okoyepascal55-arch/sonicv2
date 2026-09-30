@@ -4,14 +4,13 @@ import { e, section } from '@/lib/leistungenTextKit';
 const P = '/leistungen/pos-full-service';
 
 export const TEXT_SECTIONS: TextSection[] = [
-  section('leistungen_pos_hero_stats', 'POS Full Service — Hero Kennzahlen & Buttons', P, 'Kennzahlen unter dem Hero-Text (nur Zahlen aus der Agenturpräsentation) und die beiden Hero-Buttons.', [
+  section('leistungen_pos_hero_stats', 'POS Full Service — Hero Kennzahlen & Buttons', P, 'Kennzahlen unter dem Hero-Text (nur Zahlen aus der Agenturpräsentation) und der zweite Hero-Button (Button 1: CTAs — Button-Texte).', [
     e('stat1-val', 'Hero — Kennzahl 1 — Wert', 'stat', '>1.000'),
     e('stat1-label', 'Hero — Kennzahl 1 — Label', 'stat-label', 'Stores betreut'),
     e('stat2-val', 'Hero — Kennzahl 2 — Wert', 'stat', '>1,3 Mio.'),
     e('stat2-label', 'Hero — Kennzahl 2 — Label', 'stat-label', 'Einsätze'),
     e('stat3-val', 'Hero — Kennzahl 3 — Wert', 'stat', '>2 Mrd. €'),
     e('stat3-label', 'Hero — Kennzahl 3 — Label', 'stat-label', 'Umsatz für Kunden'),
-    e('cta-primary', 'Hero — Button (Mail)', 'cta', 'POS-Projekt besprechen'),
     e('cta-secondary', 'Hero — Button (Seite)', 'cta', 'POS Full Service'),
   ]),
   section('leistungen_pos_solutions', 'POS Full Service — Lösung (4 Karten)', P, 'Die vier Lösungskarten unter „Dein POS-Komplettpaket.“', [
@@ -50,11 +49,9 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('step6-desc', 'Schritt 6 — Text', 'paragraph', 'Kontinuierliche Überwachung und detaillierte Performance-Auswertung. Im SRT, tagesaktuell.'),
     e('step6-time', 'Schritt 6 — Dauer', 'badge', 'Ongoing'),
   ]),
-  section('leistungen_pos_cta', 'POS Full Service — Kontakt-Box', P, 'Abschluss-Box am Seitenende. Checkliste mit „|“ trennen.', [
-    e('headline', 'Überschrift', 'heading', 'Bereit für'),
-    e('headline-accent', 'Überschrift — Akzent', 'heading', 'POS-Performance?'),
-    e('subline', 'Unterzeile', 'paragraph', 'Lass uns in 30 Minuten besprechen, wie wir den Abverkauf deiner Marke am Point of Sale unterstützen.'),
-    e('check-items', 'Checkliste (mit | trennen)', 'list-item', 'Kostenfreies 30-Minuten-Strategiegespräch | Deine Ziele, unser modulares System | Einblick in unsere POS-Referenzen | Erste Einschätzung zur Timeline'),
-    e('cta-label', 'Button', 'cta', 'POS-Projekt besprechen'),
+  section('leistungen_pos_cta', 'POS Full Service — Kontakt-Box', P, 'Abschluss-Box am Seitenende: kurze Frage, eine Zeile. Button und Zeile darunter: CTAs — Button-Texte.', [
+    e('headline', 'Überschrift', 'heading', 'POS-Projekt'),
+    e('headline-accent', 'Überschrift — Akzent', 'heading', 'geplant?'),
+    e('subline', 'Unterzeile', 'paragraph', 'Wir zeigen dir, wie wir es umsetzen.'),
   ]),
 ];

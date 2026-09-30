@@ -9,7 +9,8 @@ import ClientProof from '../../components/feature/ClientProof';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { StackedSectionReveal } from '@/components/feature/SectionReveal';
-import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 const NAV_ITEMS = [
   { id: 'zahlen', label: 'Zahlen', icon: 'ri-bar-chart-2-line' },
@@ -29,6 +30,7 @@ export default function LeistungenPage() {
   });
 
   const cta = useLeistungenText('leistungen_overview_cta');
+  const ctaText = useCtaText();
   const heroRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLElement>(null);
 
@@ -71,9 +73,8 @@ export default function LeistungenPage() {
         headline={cta['headline']}
         headlineAccent={cta['headline-accent']}
         subline={cta['subline']}
-        checkItems={splitList(cta['items']).map((text) => ({ text }))}
-        ctaLabel={cta['cta']}
-        ctaMailSubject={cta['cta']}
+        ctaLabel={ctaText.book}
+        ctaMailSubject={ctaText.book}
         ctaIcon="ri-calendar-line"
       />
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import type { MediaItem } from '@/lib/mediaStore';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useText, useTextSection } from '@/hooks/useText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 type DoingItem = { label: string; text: string; alt?: string };
 
@@ -264,7 +265,8 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
   const tCtaText   = useText('about_management_voices', 'about-voices-cta-text',   'Lass uns besprechen, wie Sonic deine');
   const tCtaAccent = useText('about_management_voices', 'about-voices-cta-accent', 'Marke unterstützen kann.');
   const tCtaSub    = useText('about_management_voices', 'about-voices-cta-sub',    'Unabhängige Agentur — über 15 Kunden — B2B, B2B2C & D2C');
-  const tCtaBtn    = useText('about_management_voices', 'about-voices-cta',        'Beratungsgespräch buchen');
+  const cta        = useCtaText();
+  const tCtaBtn    = cta.book;
 
   const bjornText = useTextSection('management_voice_bjorn');
   const joText    = useTextSection('management_voice_jo');

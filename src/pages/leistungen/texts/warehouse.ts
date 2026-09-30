@@ -4,14 +4,13 @@ import { e, section } from '@/lib/leistungenTextKit';
 const P = '/leistungen/warehouse-logistik';
 
 export const TEXT_SECTIONS: TextSection[] = [
-  section('leistungen_warehouse_stats', 'Warehouse & Logistik — Kennzahlen & Hero-Button', P, 'Die drei Kennzahlen erscheinen zweimal (Hero und „Darum Warehouse bei Sonic“) — hier einmal pflegen. Nur Zahlen aus der Agenturpräsentation oder Fakten ohne Zahl.', [
+  section('leistungen_warehouse_stats', 'Warehouse & Logistik — Kennzahlen', P, 'Die drei Kennzahlen erscheinen zweimal (Hero und „Darum Warehouse bei Sonic“) — hier einmal pflegen. Hero-Button: CTAs — Button-Texte. Nur Zahlen aus der Agenturpräsentation oder Fakten ohne Zahl.', [
     e('stat1-val', 'Kennzahl 1 — Wert', 'stat', 'Eigenes'),
     e('stat1-label', 'Kennzahl 1 — Label', 'stat-label', 'Lager'),
     e('stat2-val', 'Kennzahl 2 — Wert', 'stat', 'Europaweit'),
     e('stat2-label', 'Kennzahl 2 — Label', 'stat-label', 'Versand'),
     e('stat3-val', 'Kennzahl 3 — Wert', 'stat', 'Inhouse'),
     e('stat3-label', 'Kennzahl 3 — Label', 'stat-label', 'Möbelbau & Aufbau'),
-    e('hero-cta', 'Hero — Button', 'cta', 'Beratungsgespräch buchen'),
   ]),
   section('leistungen_warehouse_solutions', 'Warehouse & Logistik — Lösung (4 Karten)', P, 'Überschrift, Unterzeile und die vier Scroll-Karten im Lösungsblock.', [
     e('eyebrow', 'Eyebrow', 'label', 'Die Lösung'),
@@ -39,11 +38,9 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('p2', 'Absatz 2', 'paragraph', 'Für deine Ware, also Muster etc., ist es ebenfalls ideal, wenn wir ein Auge darauf haben. So stellen wir sicher, dass alle physischen Bausteine deines Projekts zur richtigen Zeit an den richtigen Ort gelangen.'),
     e('photo-caption', 'Foto — Label', 'caption', 'Lager direkt nebenan'),
   ]),
-  section('leistungen_warehouse_cta', 'Warehouse & Logistik — Kontaktbox', P, 'Kontaktbox am Seitenende. Punkte mit | trennen.', [
-    e('headline', 'Überschrift — Teil 1', 'heading', 'Deine Logistik.'),
-    e('headline-accent', 'Überschrift — Teil 2 (lime)', 'heading', 'Unser Warehouse.'),
-    e('subline', 'Unterzeile', 'paragraph', 'Wir zeigen dir in 30 Minuten, wie unser Warehousing und unsere Logistik in dein Gesamtprojekt passen.'),
-    e('items', 'Punkte', 'list-item', 'Lagerkonzept & Kapazitäten | Logistik-Prozesse & Schnittstellen | Fulfillment & Webshop-Integration'),
-    e('cta', 'Button', 'cta', 'Beratungsgespräch buchen'),
+  section('leistungen_warehouse_cta', 'Warehouse & Logistik — Kontaktbox', P, 'Abschluss-Box am Seitenende: kurze Frage, eine Zeile. Button und Zeile darunter: CTAs — Button-Texte.', [
+    e('headline', 'Überschrift — Teil 1', 'heading', 'Lager & Logistik'),
+    e('headline-accent', 'Überschrift — Teil 2 (lime)', 'heading', 'gesucht?'),
+    e('subline', 'Unterzeile', 'paragraph', 'Wir zeigen dir, wie unser Warehouse in dein Projekt passt.'),
   ]),
 ];

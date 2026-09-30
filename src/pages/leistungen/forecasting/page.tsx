@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
@@ -34,6 +35,7 @@ export default function ForecastingPage() {
   })
 
   const tc = useLeistungenText('leistungen_forecasting_cta');
+  const cta = useCtaText();
   const heroRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -64,8 +66,7 @@ export default function ForecastingPage() {
           headline={tc.headline}
           headlineAccent={tc.headline_accent}
           subline={tc.subline}
-          checkItems={splitList(tc.check_items).map((text) => ({ text }))}
-          ctaLabel={tc.cta_label}
+          ctaLabel={cta.book}
           ctaMailSubject="Forecasting Beratungsgespräch"
           ctaIcon="ri-line-chart-line"
         />

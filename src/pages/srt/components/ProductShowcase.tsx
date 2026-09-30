@@ -47,6 +47,7 @@ function ScreenMedia({ src, alt, objectPosition = 'object-top' }: { src: string 
 
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useReviewText } from '@/hooks/useReviewText';
 
 /** Laptop frame — pure CSS, no external deps. Screen fills with dashboard content. */
 function LaptopMockup({ src }: { src: string | null }) {
@@ -293,6 +294,8 @@ export default function ProductShowcase() {
 
   const tBadge   = useText('srt_showcase', 'srt-showcase-badge',   'Das Produkt');
   const tHeading = useText('srt_showcase', 'srt-showcase-heading', 'Desktop & Mobile — eine Plattform.');
+  // Dashboard → Text → SRT → „SRT — CTA-Texte (Demo)“
+  const ct       = useReviewText('srt_cta_texts');
   const tSub     = useText('srt_showcase', 'srt-showcase-sub',     'Das SRT läuft vollständig im Browser und als native App — mit identischer Datenbasis und synchronem Status in Echtzeit.');
 
   return (
@@ -382,13 +385,13 @@ export default function ProductShowcase() {
         {/* CTA below devices */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
           <div className="text-center sm:text-left">
-            <p className="text-white font-black text-sm">Bereit, das SRT live zu sehen?</p>
-            <p className="text-white/35 text-xs">Wir richten einen Demo-Zugang in 48 Stunden ein.</p>
+            <p className="text-white font-black text-sm">{ct['showcase-headline']}</p>
+            <p className="text-white/35 text-xs">{ct['showcase-line']}</p>
           </div>
           <a href="#preise-zugang"
             onClick={(e) => { e.preventDefault(); document.getElementById('preise-zugang')?.scrollIntoView({ behavior: 'smooth' }); }}
             className="flex items-center gap-2 px-6 py-3 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-widest whitespace-nowrap hover:bg-white transition-colors">
-            Demo anfragen <i className="ri-arrow-right-line" />
+            {ct.demo} <i className="ri-arrow-right-line" />
           </a>
         </div>
       </div>

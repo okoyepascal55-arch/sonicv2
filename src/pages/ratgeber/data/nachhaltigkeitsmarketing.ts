@@ -119,7 +119,7 @@ const nachhaltigkeitsmarketing: RatgeberPageContent = {
   ],
   ctaHeadline: 'Mach Nachhaltigkeit zum',
   ctaAccent: 'Markenvorteil',
-  ctaSubline: 'Entwickle mit uns eine Nachhaltigkeitsstrategie, die wirkt und verkauft. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Entwickle mit uns eine Nachhaltigkeitsstrategie, die wirkt und verkauft.',
 };
 
 export default nachhaltigkeitsmarketing;

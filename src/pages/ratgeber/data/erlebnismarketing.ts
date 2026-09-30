@@ -119,7 +119,7 @@ const erlebnismarketing: RatgeberPageContent = {
   ],
   ctaHeadline: 'Bereit für dein nächstes',
   ctaAccent: 'Markenerlebnis?',
-  ctaSubline: 'Sprich mit uns über deine Erlebnismarketing-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Erlebnismarketing-Strategie.',
 };
 
 export default erlebnismarketing;

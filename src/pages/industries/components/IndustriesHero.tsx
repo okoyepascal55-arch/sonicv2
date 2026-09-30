@@ -1,9 +1,11 @@
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
+import { useCtaText } from '@/hooks/useCtaText';
 
 export default function IndustriesHero() {
   const { images: industriesHeroImages } = useMediaStore('industries_hero_bg');
+  const cta = useCtaText();
   const heroImage = industriesHeroImages[0]?.url || 'https://readdy.ai/api/search-image?query=modern%20consumer%20electronics%20retail%20store%20interior%20premium%20product%20displays%20smartphones%20smartwatches%20home%20appliances%20professional%20brand%20activation%20team%20engaging%20customers%20dramatic%20overhead%20lighting%20cinematic%20dark%20moody%20atmosphere%20wide%20angle&width=1920&height=1080&seq=industries-hero-v2&orientation=landscape';
 
   return (
@@ -54,8 +56,8 @@ export default function IndustriesHero() {
             href={`mailto:${CONTACT_EMAIL}`}
             className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 border border-white/40 text-white font-bold text-xs md:text-sm hover:bg-white/10 transition-all duration-200 cursor-pointer whitespace-nowrap"
           >
-            <i className="ri-chat-1-line"></i>
-            Branche besprechen
+            <i className="ri-calendar-line"></i>
+            {cta.book}
           </a>
         </div>
         </div>

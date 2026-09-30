@@ -10,7 +10,8 @@ import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 import WoodenButton from '@/components/base/WoodenButton';
 
 const NAV_ITEMS = [
@@ -109,6 +110,7 @@ export default function WarehouseLogistikPage() {
  const tSol = useLeistungenText('leistungen_warehouse_solutions');
  const tFs = useLeistungenText('leistungen_warehouse_fullservice');
  const tCta = useLeistungenText('leistungen_warehouse_cta');
+ const cta = useCtaText();
  const STATS = [1, 2, 3].map((n) => ({ val: tStats[`stat${n}-val`], label: tStats[`stat${n}-label`] }));
  const solutions = SOLUTIONS.map((s) => ({ ...s, accent: tSol[`${s.key}-accent`], title: tSol[`${s.key}-title`], desc: tSol[`${s.key}-desc`] }));
  const { images: warehouseHeroImages } = useMediaStore('leistungen_warehouse_images');
@@ -186,7 +188,7 @@ export default function WarehouseLogistikPage() {
  ))}
  </div>
  <a href={`mailto:${CONTACT_EMAIL}?subject=Warehouse%20Logistik%20Beratung`} className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"style={{ borderRadius: 0 }}>
- <i className="ri-calendar-line"></i>{tStats['hero-cta']}
+ <i className="ri-calendar-line"></i>{cta.book}
  </a>
  </div>
  <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none"/>
@@ -349,8 +351,7 @@ export default function WarehouseLogistikPage() {
  headline={tCta['headline']}
  headlineAccent={tCta['headline-accent']}
  subline={tCta['subline']}
- checkItems={splitList(tCta['items']).map((text) => ({ text }))}
- ctaLabel={tCta['cta']}
+ ctaLabel={cta.book}
  ctaMailSubject="Warehouse Logistik Beratung"
  ctaIcon="ri-calendar-line"
  />

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PhoneFrame from '@/components/base/PhoneFrame';
 import WoodenButton from '@/components/base/WoodenButton';
+import { useCtaText } from '@/hooks/useCtaText';
 
 const STUDIO_IMG = 'https://storage.readdy-site.link/project_files/904b87b8-ea75-4880-a50b-adb150b0e454/f404951b-e9f8-4063-b803-e1145f43d540_DSC02106-Kopie.jpg';
 
@@ -126,6 +127,7 @@ function PhoneStudio() {
 }
 
 export default function VideoStudioPhone() {
+ const cta = useCtaText();
  const [activeTouchpoint, setActiveTouchpoint] = useState(0);
  const [activeOutcome, setActiveOutcome] = useState(0);
 
@@ -296,7 +298,7 @@ export default function VideoStudioPhone() {
  href="mailto:info@sonic-promo.de?subject=Live-Demo anfragen"
  className="flex-1 flex items-center justify-center gap-2 bg-primary-500 text-foreground-950 py-3 font-black text-xs uppercase tracking-wider hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer"
  >
- Live-Demo anfragen
+ {cta.book}
  <i className="ri-arrow-right-line"/>
  </a>
  <a

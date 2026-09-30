@@ -125,6 +125,44 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
       e('team3-label', 'Team-Kennzahl 3 — Label', 'stat-label', 'Kunden- & Agenturseite'),
     ],
   },
+  /* CTA review 30.09.2026 — lean CTA texts that used to be hard-coded.
+     Button labels themselves live in „CTAs — Button-Texte (alle Seiten)“. */
+  {
+    key: 'home_quiz_result_cta', label: 'Kurzumfrage — Ergebnis-CTA', pageGroupId: 'home', pagePath: '/', description: 'Zeile über dem Termin-Button im Ergebnis der Kurzumfrage.',
+    entries: [
+      e('line', 'Zeile', 'paragraph', 'In 30 Minuten klären wir, was zu deinem Ziel passt.'),
+    ],
+  },
+  {
+    key: 'casestudies_inline_cta', label: 'Fallbeispiele — Story-Button & CTA in der Story', pageGroupId: 'case_studies', pagePath: '/fallbeispiele', description: 'Button im Story-Slider und Box unter einer geöffneten Story (Button: „Projekt anfragen“).',
+    entries: [
+      e('read-story', 'Button im Slider — Story öffnen', 'cta', 'Story lesen'),
+      e('headline', 'Frage', 'subheading', 'Deine Marke als Nächstes?'),
+      e('line', 'Zeile', 'paragraph', 'Erzähl uns kurz von deinem Projekt.'),
+    ],
+  },
+  {
+    key: 'srt_cta_texts', label: 'SRT — CTA-Texte (Demo)', pageGroupId: 'srt', pagePath: '/srt', description: 'Demo-Boxen unter „Funktionsumfang“ und unter den Geräten sowie die Zugangs-Box mit Formular.',
+    entries: [
+      e('demo', 'Button — Demo anfragen (Geräte-Box & Formular)', 'cta', 'Demo anfragen'),
+      e('features-headline', 'Box Funktionsumfang — Frage', 'subheading', 'Noch Fragen zum Funktionsumfang?'),
+      e('features-line', 'Box Funktionsumfang — Zeile', 'paragraph', 'Wir zeigen dir das SRT live.'),
+      e('showcase-headline', 'Box unter den Geräten — Frage', 'subheading', 'SRT live sehen?'),
+      e('showcase-line', 'Box unter den Geräten — Zeile', 'paragraph', 'Wir richten dir einen Demo-Zugang ein.'),
+      e('access-headline', 'Zugang — Frage (weiß)', 'heading', 'SRT'),
+      e('access-accent', 'Zugang — Frage (lime)', 'heading', 'kennenlernen?'),
+      e('access-line', 'Zugang — Zeile', 'paragraph', 'Wir zeigen dir in 30 Minuten, wie das SRT für dein Projekt aussieht.'),
+      e('form-note', 'Formular — Zeile unter dem Button', 'caption', 'Kostenlos & unverbindlich'),
+      e('form-success', 'Formular — Bestätigung', 'paragraph', 'Wir melden uns zeitnah.'),
+    ],
+  },
+  {
+    key: 'kontakt_form_texts', label: 'Kontakt — Formular-Texte', pageGroupId: 'kontakt', pagePath: '/kontakt', description: 'Zeile unter „Schreib uns“ und Bestätigung nach dem Absenden (Button: „Projekt anfragen“).',
+    entries: [
+      e('sub', 'Zeile unter der Überschrift', 'paragraph', 'Wir melden uns zeitnah.'),
+      e('success', 'Bestätigung nach dem Absenden', 'paragraph', 'Wir melden uns zeitnah.'),
+    ],
+  },
 ];
 
 export const REVIEW_DEFAULTS: Record<string, Record<string, string>> = Object.fromEntries(

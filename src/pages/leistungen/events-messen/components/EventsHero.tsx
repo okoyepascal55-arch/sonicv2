@@ -3,6 +3,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 export default function EventsHero() {
   const { images: eventsHeroImages } = useMediaStore('leistungen_events_images');
@@ -15,6 +16,7 @@ export default function EventsHero() {
   const tH1Accent = useText('leistungen_events', 'events-hero-heading-accent', 'die begeistert.');
   const tSubtitle = useText('leistungen_events', 'events-hero-subtitle', 'Konzept. Personal. Logistik. Wir präsentieren deine Marke da, wo deine Zielgruppe ist.');
   const tBtn = useLeistungenText('leistungen_events_hero_buttons');
+  const cta = useCtaText();
   const tDesc = useText('leistungen_events', 'events-hero-description', 'Events, Messen, Roadshows und mehr. Vor Ort, auf Tour und hybrid. Bisher: über 200 Events und mehr als 30.000 Kontakte.');
 
   return (
@@ -67,7 +69,7 @@ export default function EventsHero() {
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line" />
-            {tBtn['cta-primary']}
+            {cta.book}
           </a>
 
           <a

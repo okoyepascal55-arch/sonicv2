@@ -119,7 +119,7 @@ const mysteryShopping: RatgeberPageContent = {
   ],
   ctaHeadline: 'Miss deine',
   ctaAccent: 'Service-Qualität',
-  ctaSubline: 'Entwickle mit uns ein Mystery-Shopping-Programm, das echte Verbesserungen liefert. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Entwickle mit uns ein Mystery-Shopping-Programm, das echte Verbesserungen liefert.',
 };
 
 export default mysteryShopping;

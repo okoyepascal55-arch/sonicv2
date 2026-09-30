@@ -115,7 +115,7 @@ const influencerMarketing: RatgeberPageContent = {
   ],
   ctaHeadline: 'Mach Creator zu deinen',
   ctaAccent: 'Markenbotschaftern.',
-  ctaSubline: 'Sprich mit uns über deine Influencer-Marketing-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über deine Influencer-Marketing-Strategie.',
 };
 
 export default influencerMarketing;

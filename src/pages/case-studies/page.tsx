@@ -6,6 +6,9 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/lib/textStore';
+import { useReviewText } from '@/hooks/useReviewText';
+import { useCtaText } from '@/hooks/useCtaText';
+import { openCalendly } from '@/components/feature/CalendlyWidget';
 
 
 /* ─────────────────────────────────────────────
@@ -486,6 +489,15 @@ export default function CaseStudiesPage() {
   })
 
   const navigate = useNavigate();
+  const cta = useCtaText();
+  const csCta = useReviewText('casestudies_inline_cta');
+  // Dashboard → Text → Fallbeispiele → „Case Studies CTA — Bottom Action“
+  const tFinalHeading = useText('casestudies_cta', 'casestudies-cta-heading', 'Deine Marke. Unser Einsatz.');
+  const tFinalSub = useText('casestudies_cta', 'casestudies-cta-sub', 'Wir bringen deine Marke dort zum Leuchten, wo die Kaufentscheidung fällt.');
+  const tFinalBtn2 = useText('casestudies_cta', 'casestudies-cta-btn-2', 'Leistungen ansehen');
+  const finalDot = tFinalHeading.indexOf('. ');
+  const tFinalHeadMain = finalDot > -1 ? tFinalHeading.slice(0, finalDot + 1) : tFinalHeading;
+  const tFinalHeadAccent = finalDot > -1 ? tFinalHeading.slice(finalDot + 2) : '';
   const { images: woodTextures } = useMediaStore('losungen_wood_textures');
   const { images: heroImages } = useMediaStore('case_studies_hero_images');
 
@@ -1064,7 +1076,7 @@ export default function CaseStudiesPage() {
                     onClick={() => handleReadFullStory(current.slug)}
                     className="inline-flex items-center justify-center gap-2 bg-primary-500 text-foreground-950 px-6 py-3 font-black uppercase tracking-wider hover:bg-white transition-all duration-300 cursor-pointer whitespace-nowrap text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white w-full sm:w-auto"
                   >
-                    Vollständige Story lesen
+                    {csCta['read-story']}
                     <i className="ri-arrow-down-line text-sm" />
                   </button>
                   <span className="text-white/30 text-xs font-bold">{currentSlide + 1} / {caseStudies.length}</span>
@@ -1169,22 +1181,22 @@ export default function CaseStudiesPage() {
             <div className="mb-10 bg-foreground-950 border border-primary-500/30 p-6 md:p-8">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div>
-                  <p className="text-primary-500 text-xs font-black uppercase tracking-widest mb-2">{expanded.metric} {expanded.metricLabel}</p>
                   <h3 className="sonic-h3 text-white">
-                    Auch für deine Marke möglich?
+                    {csCta.headline}
                   </h3>
-                  <p className="text-foreground-400 text-sm mt-2">
-                    Lass uns besprechen, wie Sonic ähnliche Ergebnisse für dein Unternehmen erzielen kann.
-                  </p>
+                  {csCta.line && (
+                    <p className="text-foreground-400 text-sm mt-2">
+                      {csCta.line}
+                    </p>
+                  )}
                 </div>
                 <a
-                  href="https://calendly.com/sonic-group/beratungsgespraech"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/kontakt"
+                  onClick={(e) => { e.preventDefault(); navigate('/kontakt'); }}
                   className="flex-shrink-0 inline-flex items-center gap-3 px-7 py-3.5 bg-primary-500 text-foreground-950 font-black uppercase tracking-wider hover:bg-white hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
                 >
-                  <i className="ri-calendar-line text-base" />
-                  Beratungsgespräch buchen
+                  <i className="ri-mail-send-line text-base" />
+                  {cta.request}
                 </a>
               </div>
             </div>
@@ -1226,25 +1238,27 @@ export default function CaseStudiesPage() {
         <div className="sonic-container relative z-10">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
-              <span className="text-primary-500 text-xs font-black uppercase tracking-widest mb-2 block">Lass uns sprechen</span>
-              <h2 className="sonic-h2 text-white mb-2">Deine Marke. <span className="text-primary-500">Unser Einsatz.</span></h2>
+              <h2 className="sonic-h2 text-white mb-2">{tFinalHeadMain}{tFinalHeadAccent && <>{' '}<span className="text-primary-500">{tFinalHeadAccent}</span></>}</h2>
               <p className="text-sm text-white/50 max-w-md">
-                Wir bringen deine Marke dort zum Leuchten, wo die Kaufentscheidung fällt.
+                {tFinalSub}
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+            <div className="flex flex-col gap-2 flex-shrink-0">
+            <div className="flex flex-col sm:flex-row gap-3">
               <button
-                onClick={() => { navigate('/'); setTimeout(() => { const el = document.getElementById('contact'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }, 300); }}
+                onClick={() => openCalendly()}
                 className="px-6 py-3 bg-primary-500 text-foreground-950 font-black uppercase tracking-wider text-xs hover:bg-white hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
               >
-                Gespräch buchen
+                {cta.book}
               </button>
               <button
                 onClick={() => navigate('/leistungen')}
                 className="px-6 py-3 bg-transparent text-white font-black uppercase tracking-wider text-xs border border-white/30 hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
               >
-                Leistungen ansehen
+                {tFinalBtn2}
               </button>
+            </div>
+            {cta.microline && <p className="text-[11px] text-white/40 font-semibold">{cta.microline}</p>}
             </div>
           </div>
         </div>

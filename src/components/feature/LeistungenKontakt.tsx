@@ -1,4 +1,5 @@
 import { openCalendly } from '@/components/feature/CalendlyWidget';
+import { useCtaText } from '@/hooks/useCtaText';
 
 interface CheckItem {
   text: string;
@@ -8,6 +9,7 @@ interface LeistungenKontaktProps {
   headline: string;
   headlineAccent: string;
   subline?: string;
+  /** @deprecated no longer rendered (CTA review 30.09.2026) */
   checkItems?: CheckItem[];
   ctaLabel: string;
   ctaMailSubject: string;
@@ -18,11 +20,11 @@ export default function LeistungenKontakt({
   headline,
   headlineAccent,
   subline,
-  checkItems,
   ctaLabel,
   ctaMailSubject,
   ctaIcon = 'ri-calendar-line',
 }: LeistungenKontaktProps) {
+  const cta = useCtaText();
   return (
     <>
       <section id="kontakt" className="bg-white py-20 px-6">
@@ -33,30 +35,13 @@ export default function LeistungenKontakt({
 
             <div className="relative grid md:grid-cols-2 gap-10 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/12 px-3 py-1 mb-5">
-                  <i className="ri-calendar-check-line text-foreground-950/50 text-xs"></i>
-                  <span className="text-xs font-black text-foreground-950/50 uppercase tracking-widest">Jetzt starten</span>
-                </div>
-
                 <h2 className="sonic-h2 text-foreground-950 mb-4">
                   {headline}<br />
                   <span className="text-primary-500">{headlineAccent}</span>
                 </h2>
 
-                {subline && <p className="text-foreground-950/55 text-base mb-6 leading-relaxed">{subline}</p>}
+                {subline && <p className="text-foreground-950/55 text-base leading-relaxed">{subline}</p>}
 
-                {checkItems && checkItems.length > 0 && (
-                  <div className="space-y-3">
-                    {checkItems.map((item, i) => (
-                      <div key={i} className="flex items-center gap-3">
-                        <div className="w-5 h-5 flex items-center justify-center bg-primary-500 flex-shrink-0">
-                          <i className="ri-check-line text-white text-xs"></i>
-                        </div>
-                        <span className="text-foreground-950/70 text-sm">{item.text}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
 
               <div className="text-center md:text-right">
@@ -68,7 +53,7 @@ export default function LeistungenKontakt({
                   <i className={`${ctaIcon} text-base`}></i>
                   {ctaLabel}
                 </button>
-                <p className="text-foreground-950/30 text-xs mt-3 font-semibold">Kostenfreies 30-Min-Gespräch</p>
+                <p className="text-foreground-950/40 text-xs mt-3 font-semibold">{cta.microline}</p>
               </div>
             </div>
           </div>

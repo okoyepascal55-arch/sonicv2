@@ -119,7 +119,7 @@ const markenaktivierung: RatgeberPageContent = {
   ],
   ctaHeadline: 'Aktiviere das volle',
   ctaAccent: 'Potenzial deiner Marke',
-  ctaSubline: 'Entwickle mit uns deine individuelle Markenaktivierungs-Strategie. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Entwickle mit uns deine individuelle Markenaktivierungs-Strategie.',
 };
 
 export default markenaktivierung;

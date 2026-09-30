@@ -1,4 +1,5 @@
 import { useText } from '@/hooks/useText';
+import { useReviewText } from '@/hooks/useReviewText';
 import { useState } from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { submitContactForm } from '@/lib/contact';
@@ -13,6 +14,8 @@ const TIERS = [
 
 // Simple inline contact form that submits via submitContactForm
 function SRTPricingForm() {
+  // Dashboard → Text → SRT → „SRT — CTA-Texte (Demo)“
+  const ct = useReviewText('srt_cta_texts');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
@@ -54,7 +57,7 @@ function SRTPricingForm() {
         <i className="ri-check-line text-foreground-950 text-2xl" />
       </div>
       <p className="text-white font-black text-base mb-1">Anfrage erhalten.</p>
-      <p className="text-white/45 text-sm">Wir melden uns innerhalb von 24 Stunden.</p>
+      <p className="text-white/45 text-sm">{ct['form-success']}</p>
     </div>
   );
 
@@ -143,10 +146,10 @@ function SRTPricingForm() {
       <button type="button" onClick={handleSubmit} disabled={status === 'sending'}
         className="w-full flex items-center justify-center gap-2 py-4 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-widest hover:bg-white transition-all disabled:opacity-60 mt-1">
         <i className="ri-send-plane-line" />
-        {status === 'sending' ? 'Wird gesendet …' : 'Zugang beantragen'}
+        {status === 'sending' ? 'Wird gesendet …' : ct.demo}
       </button>
 
-      <p className="text-[10px] text-white/25 text-center">Kostenlos & unverbindlich · Antwort innerhalb von 24 Stunden</p>
+      {ct['form-note'] && <p className="text-[10px] text-white/25 text-center">{ct['form-note']}</p>}
     </div>
   );
 }
@@ -156,6 +159,7 @@ export default function PricingAndAccess() {
   const tBadge = useText('srt_pricing', 'srt-pricing-badge', 'Preise & Zugang');
   const tHeading = useText('srt_pricing', 'srt-pricing-heading', 'Transparente Preise. Direkter Zugang.');
   const tSub = useText('srt_pricing', 'srt-pricing-sub', 'Drei Stufen, klarer Mehrwert, keine versteckten Kosten.');
+  const ct = useReviewText('srt_cta_texts');
 
   return (
     <section id="preise-zugang" className="sonic-section-md px-4 md:px-6 bg-foreground-950">
@@ -191,13 +195,8 @@ export default function PricingAndAccess() {
 
         <div className="grid md:grid-cols-2" style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
           <div className="p-8 md:p-11 flex flex-col justify-center" style={{ background: 'oklch(0.14 0.005 118)' }}>
-            <div className="flex items-center gap-2.5 mb-4"><div className="w-1 h-[22px] bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.15em] text-primary-500">Zugang beantragen</span></div>
-            <h3 className="text-[28px] font-black leading-tight text-background-50 mb-4">Bereit für <span className="text-primary-500">volle</span> Transparenz?</h3>
-            <p className="text-[13px] leading-[1.7] text-background-50/50 max-w-xs mb-6">Kein Commitment. Nur ein Gespräch. Wir zeigen dir in 30 Minuten, wie das SRT für dein Projekt aussehen kann.</p>
-            <div className="space-y-2.5">
-              <span className="flex items-center gap-2.5 text-xs text-background-50/40"><i className="ri-time-line text-primary-500" />30 Minuten — kostenlos & unverbindlich</span>
-              <span className="flex items-center gap-2.5 text-xs text-background-50/40"><i className="ri-shield-check-line text-primary-500" />Keine automatische Vertragsbindung</span>
-            </div>
+            <h3 className="text-[28px] font-black leading-tight text-background-50 mb-4">{ct['access-headline']}{ct['access-accent'] && <>{' '}<span className="text-primary-500">{ct['access-accent']}</span></>}</h3>
+            <p className="text-[13px] leading-[1.7] text-background-50/50 max-w-xs">{ct['access-line']}</p>
           </div>
           <div className="p-8 md:p-11 flex flex-col justify-center gap-3">
             <SRTPricingForm />

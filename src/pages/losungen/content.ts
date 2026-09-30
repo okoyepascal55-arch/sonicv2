@@ -56,8 +56,8 @@ export const SOLUTIONS = {
       { value: '200+', label: 'Promoter:innen im Einsatz' },
       { value: '100 %', label: 'Live-Transparenz ab Tag 1' },
     ],
-    finalCta: 'Bereit für deinen Markteintritt? Lass uns in 30 Minuten klären, wie dein Launch aussehen kann.',
-    ctaLabel: 'Markteintritt planen',
+    ctaHeadline: 'Markteintritt geplant?',
+    finalCta: 'In 30 Minuten klären wir, wie dein Launch aussehen kann.',
     proof: ['TV-Hersteller: sechs Wochen nach dem Start im Vollbetrieb, +75 % Umsatz im ersten Jahr.'] as string[],
     modules: [
       { name: 'Promotion & POS', level: 'kern' },
@@ -118,8 +118,8 @@ export const SOLUTIONS = {
       { value: '>1.000', label: 'betreute Stores' },
       { value: '100 %', label: 'Live-Transparenz' },
     ],
-    finalCta: 'Bereit, deinen Absatz zu steigern? Lass uns in 30 Minuten klären, wie dein Projekt aussehen kann.',
-    ctaLabel: 'Absatz steigern planen',
+    ctaHeadline: 'Absatz steigern?',
+    finalCta: 'In 30 Minuten klären wir, wo dein Absatz wachsen kann.',
     proof: ['Wearables-Hersteller: Umsatz pro Einsatztag Jahr für Jahr gesteigert – +20 %, +45 %, +23 %, +21 % seit 2021.', 'Hausgeräte-Hersteller: Umsatz pro Einsatztag seit 2019 um rund 150 % gesteigert.'] as string[],
     modules: [
       { name: 'Promotion & POS', level: 'kern' },
@@ -179,8 +179,8 @@ export const SOLUTIONS = {
       { value: '>4.200 Std.', label: 'Beratungszeit' },
       { value: '100 %', label: 'Managed Service' },
     ],
-    finalCta: 'Bereit für Omnichannel-Beratung? Lass uns in 30 Minuten klären, wie Live-Video-Beratung in deinem Shop und am POS funktioniert.',
-    ctaLabel: 'Omnichannel-Beratung planen',
+    ctaHeadline: 'Omnichannel aufbauen?',
+    finalCta: 'In 30 Minuten klären wir, wie Beratung in allen Kanälen funktioniert.',
     proof: [] as string[],
     modules: [
       { name: 'Live-Video-Beratung aus dem Studio', level: 'kern' },

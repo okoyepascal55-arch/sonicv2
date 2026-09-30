@@ -7,6 +7,7 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import Breadcrumb from '@/components/base/Breadcrumb';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 const GEO_LABELS: Record<GeoLevel, string> = {
   local: 'Lokal',
@@ -123,11 +124,10 @@ export default function RatgeberHubPage() {
   const tGeoNatD = useText('ratgeber_geo', 'ratgeber-geo-national-desc', '');
   const tGeoInt = useText('ratgeber_geo', 'ratgeber-geo-international', 'International');
   const tGeoIntD = useText('ratgeber_geo', 'ratgeber-geo-international-desc', '');
-  const tCtaBadge = useText('ratgeber_cta', 'ratgeber-cta-badge', 'Kontakt');
   const tCtaHeading = useText('ratgeber_cta', 'ratgeber-cta-heading', '');
   const tCtaDesc = useText('ratgeber_cta', 'ratgeber-cta-desc', '');
-  const tCtaBtn = useText('ratgeber_cta', 'ratgeber-cta-btn', 'Jetzt anfragen');
-  const tCtaFooter = useText('ratgeber_cta', 'ratgeber-cta-footer', 'Kostenfreies Erstgespräch');
+  // Button text: Dashboard → CTAs — Button-Texte („Projekt anfragen“ → /kontakt)
+  const tCtaBtn = useCtaText().request;
 
   const STATS = [
     { value: tStat1Val, label: tStat1Lab },
@@ -283,11 +283,6 @@ export default function RatgeberHubPage() {
 
             <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-10 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 bg-foreground-950/8 border border-foreground-950/12 px-3 py-1 mb-5" style={{ borderRadius: 0 }}>
-                  <i className="ri-mail-send-line text-foreground-950/50 text-xs"></i>
-                  <span className="text-xs font-black text-foreground-950/50 uppercase tracking-widest">{tCtaBadge}</span>
-                </div>
-
                 <h2 className="sonic-h2 text-foreground-950 mb-4">
                   {tCtaHeading.split('\n').map((line, i) => i === 1 ? <span key={i}><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone' }}>{line}</span></span> : <span key={i}>{line}<br /></span>)}
                 </h2>
@@ -306,9 +301,6 @@ export default function RatgeberHubPage() {
                   <i className="ri-mail-line text-base"></i>
                   {tCtaBtn}
                 </a>
-                <p className="text-foreground-950/30 text-xs mt-3 font-semibold">
-                  {tCtaFooter}
-                </p>
               </div>
             </div>
           </div>

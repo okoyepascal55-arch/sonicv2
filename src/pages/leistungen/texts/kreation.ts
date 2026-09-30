@@ -136,11 +136,9 @@ export const TEXT_SECTIONS: TextSection[] = [
     ]))),
 
   section('leistungen_kreation_cta', 'Kreation & Content — Kontakt-Box', P,
-    'Kontakt-Box am Seitenende. Checkliste: Punkte mit „|“ trennen.', [
-      e('headline', 'Kontakt — Überschrift', 'heading', 'Lass uns über'),
-      e('headline-accent', 'Kontakt — Überschrift (Akzent)', 'heading', 'deinen Content sprechen.'),
-      e('subline', 'Kontakt — Subline', 'paragraph', 'In 30 Minuten zeigen wir dir, wie wir Kreation und Content umsetzen — vom Konzept bis zur Produktion.'),
-      e('check-items', 'Kontakt — Checkliste (mit | trennen)', 'list-item', 'Strategische Herangehensweise | Deine Ziele, unsere Beispiele | Studio-Tour'),
-      e('cta', 'Kontakt — Button', 'cta', 'Content-Beratung buchen'),
+    'Abschluss-Box am Seitenende: kurze Frage, eine Zeile. Button und Zeile darunter: CTAs — Button-Texte.', [
+      e('headline', 'Kontakt — Überschrift', 'heading', 'Content für'),
+      e('headline-accent', 'Kontakt — Überschrift (Akzent)', 'heading', 'deine Marke?'),
+      e('subline', 'Kontakt — Subline', 'paragraph', 'Wir zeigen dir, wie wir Kreation und Content umsetzen.'),
     ]),
 ];

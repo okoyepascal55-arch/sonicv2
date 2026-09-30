@@ -1,5 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { submitContactForm } from '@/lib/contact';
+import { useCtaText } from '@/hooks/useCtaText';
+import { useReviewText } from '@/hooks/useReviewText';
 
 const interests = [
   'POS Full Service',
@@ -17,6 +19,9 @@ const fieldClass =
   'w-full py-3 border-0 border-b bg-transparent text-[15px] text-foreground-950 placeholder-foreground-300 focus:outline-none transition-colors duration-200';
 
 export default function ContactForm() {
+  const cta = useCtaText();
+  // Dashboard → Text → Kontakt → „Kontakt — Formular-Texte“
+  const ft = useReviewText('kontakt_form_texts');
   const [status, setStatus] = useState<Status>('idle');
   const [charCount, setCharCount] = useState(0);
   const [selectedInterest, setSelectedInterest] = useState('');
@@ -63,7 +68,7 @@ export default function ContactForm() {
         </span>
       </h2>
       <p className="text-[15px] leading-[1.7] max-w-md mb-12" style={{ color: 'oklch(var(--foreground-500))' }}>
-        Kein Commitment. Nur ein gutes Gespräch. Wir melden uns innerhalb von 24 Stunden.
+        {ft.sub}
       </p>
 
       {status === 'success' ? (
@@ -72,7 +77,7 @@ export default function ContactForm() {
             <i className="ri-check-double-line text-2xl text-primary-500" />
           </div>
           <h3 className="text-xl font-black text-foreground-950 mb-2">Nachricht erhalten</h3>
-          <p className="text-sm" style={{ color: 'oklch(var(--foreground-500))' }}>Wir melden uns innerhalb von 24 Stunden bei dir.</p>
+          <p className="text-sm" style={{ color: 'oklch(var(--foreground-500))' }}>{ft.success}</p>
         </div>
       ) : (
         <form data-readdy-form id="kontakt-sonic-group" onSubmit={handleSubmit} noValidate>
@@ -194,7 +199,7 @@ export default function ContactForm() {
                 </>
               ) : (
                 <>
-                  Nachricht senden
+                  {cta.request}
                   <i className="ri-arrow-right-line text-base" />
                 </>
               )}

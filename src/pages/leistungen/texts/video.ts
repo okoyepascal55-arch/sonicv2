@@ -4,8 +4,7 @@ import { e, section } from '@/lib/leistungenTextKit';
 const P = '/leistungen/live-video';
 
 export const TEXT_SECTIONS: TextSection[] = [
-  section('leistungen_video_hero_buttons', 'Live Video — Hero-Buttons', P, 'Die beiden Buttons im Hero.', [
-    e('primary', 'Button 1 (Beratung)', 'cta', 'Beratungsgespräch buchen'),
+  section('leistungen_video_hero_buttons', 'Live Video — Hero-Buttons', P, 'Der zweite Button im Hero (Button 1: CTAs — Button-Texte).', [
     e('secondary', 'Button 2 (Link POS Full Service)', 'cta', 'POS Full Service'),
   ]),
   section('leistungen_video_showcase', 'Live Video — Video-Block', P,
@@ -71,11 +70,9 @@ export const TEXT_SECTIONS: TextSection[] = [
     ]),
 
   section('leistungen_video_cta', 'Live Video — Kontakt-Box', P,
-    'Kontakt-Box am Seitenende. Checkliste: Punkte mit „|“ trennen.', [
-      e('headline', 'Kontakt — Überschrift', 'heading', 'Jetzt Video-Demo'),
-      e('headline-accent', 'Kontakt — Überschrift (Akzent)', 'heading', 'anfordern.'),
-      e('subline', 'Kontakt — Subline', 'paragraph', 'Lass uns besprechen, wie (Live) Video Promotion deine Marke weiterbringt.'),
-      e('check-items', 'Kontakt — Checkliste (mit | trennen)', 'list-item', 'Kostenfreies 30-Minuten-Strategiegespräch | Live-Demo in einem unserer Studios | Kosteneinschätzung für dein Projekt | Erste Einschätzung zur Timeline'),
-      e('cta', 'Kontakt — Button', 'cta', 'Beratungsgespräch buchen'),
+    'Abschluss-Box am Seitenende: kurze Frage, eine Zeile. Button und Zeile darunter: CTAs — Button-Texte.', [
+      e('headline', 'Kontakt — Überschrift', 'heading', 'Live-Video'),
+      e('headline-accent', 'Kontakt — Überschrift (Akzent)', 'heading', 'testen?'),
+      e('subline', 'Kontakt — Subline', 'paragraph', 'Wir zeigen dir, wie Live-Beratung für dein Produkt aussieht.'),
     ]),
 ];

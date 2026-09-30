@@ -3,6 +3,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 export default function POSHero() {
   const { images: posHeroImages } = useMediaStore('leistungen_pos_images');
@@ -15,6 +16,7 @@ export default function POSHero() {
   const tH1Accent = useText('leistungen_pos', 'pos-hero-heading-accent', 'für den POS.');
   const tSubtitle = useText('leistungen_pos', 'pos-hero-subtitle', 'Alles aus einer Hand. Design, Displays, Möbel, Collateral, Give-aways, Logistik, Personal.');
   const t = useLeistungenText('leistungen_pos_hero_stats');
+  const cta = useCtaText();
   const tDesc = useText('leistungen_pos', 'pos-hero-description', 'Durchgetaktet. Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.');
 
   return (
@@ -81,7 +83,7 @@ export default function POSHero() {
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line" />
-            {t['cta-primary']}
+            {cta.book}
           </a>
 
           <a

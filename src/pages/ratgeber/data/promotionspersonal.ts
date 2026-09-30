@@ -119,7 +119,7 @@ const promotionspersonal: RatgeberPageContent = {
   ],
   ctaHeadline: 'Finde die richtigen',
   ctaAccent: 'Markenbotschafter',
-  ctaSubline: 'Sprich mit uns über dein Personalprofil und deinen Bedarf. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über dein Personalprofil und deinen Bedarf.',
 };
 
 export default promotionspersonal;

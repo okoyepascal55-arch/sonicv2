@@ -5,14 +5,13 @@ const P = '/leistungen/staff-as-a-service';
 
 export const TEXT_SECTIONS: TextSection[] = [
   section('leistungen_staff_hero_stats', 'Staff as a Service — Hero Kennzahlen & Buttons', P,
-    'Die drei Kennzahlen unter dem Hero-Text und die beiden Hero-Buttons. Nur Zahlen aus der Agenturpräsentation verwenden.', [
+    'Die drei Kennzahlen unter dem Hero-Text und der zweite Hero-Button (Button 1: CTAs — Button-Texte). Nur Zahlen aus der Agenturpräsentation verwenden.', [
       e('stat-1-value', 'Hero — Kennzahl 1 — Wert', 'stat', '>1.800'),
       e('stat-1-label', 'Hero — Kennzahl 1 — Label', 'stat-label', 'Menschen im Talentpool'),
       e('stat-2-value', 'Hero — Kennzahl 2 — Wert', 'stat', '>1,3 Mio.'),
       e('stat-2-label', 'Hero — Kennzahl 2 — Label', 'stat-label', 'Einsätze'),
       e('stat-3-value', 'Hero — Kennzahl 3 — Wert', 'stat', '200+'),
       e('stat-3-label', 'Hero — Kennzahl 3 — Label', 'stat-label', 'Promoter:innen im Einsatz'),
-      e('btn-primary', 'Hero — Button primär', 'cta', 'Beratungsgespräch buchen'),
       e('btn-secondary', 'Hero — Button sekundär (Link Talentpool)', 'cta', 'Talentpool entdecken'),
     ]),
 
@@ -95,11 +94,9 @@ export const TEXT_SECTIONS: TextSection[] = [
     ]),
 
   section('leistungen_staff_cta', 'Staff as a Service — Kontakt-Box', P,
-    'Die Kontakt-Box am Seitenende. Checkpunkte mit „|“ trennen.', [
-      e('headline', 'Kontakt — Überschrift', 'heading', 'Bereit für Personal'),
-      e('headline-accent', 'Kontakt — Überschrift (Akzent)', 'heading', 'ohne Overhead?'),
-      e('subline', 'Kontakt — Subline', 'paragraph', 'Lass uns in 30 Minuten klären, welches Staffing-Modell zu deinem Projekt passt.'),
-      e('check-items', 'Kontakt — Checkpunkte (mit | trennen)', 'list-item', 'Kostenfreies 30-Minuten-Strategiegespräch | Deine Anforderungen, unser Talentpool | Einblick in Schulungskonzepte und S.O.C.K.S. | Erste Einschätzung zur Verfügbarkeit'),
-      e('cta-label', 'Kontakt — Button', 'cta', 'Beratungsgespräch buchen'),
+    'Abschluss-Box am Seitenende: kurze Frage, eine Zeile. Button und Zeile darunter: CTAs — Button-Texte.', [
+      e('headline', 'Kontakt — Überschrift', 'heading', 'Personal'),
+      e('headline-accent', 'Kontakt — Überschrift (Akzent)', 'heading', 'gesucht?'),
+      e('subline', 'Kontakt — Subline', 'paragraph', 'Wir klären, welches Staffing-Modell zu deinem Projekt passt.'),
     ]),
 ];

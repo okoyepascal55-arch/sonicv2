@@ -70,11 +70,9 @@ export const TEXT_SECTIONS: TextSection[] = [
     ]),
 
   section('leistungen_talentpool_cta', 'Talentpool — Kontakt-Box', P,
-    'Die Kontakt-Box am Seitenende. Checkpunkte mit „|“ trennen.', [
-      e('headline', 'Kontakt — Überschrift', 'heading', 'Dein Projekt.'),
-      e('headline-accent', 'Kontakt — Überschrift (Akzent)', 'heading', 'Unsere Talente.'),
-      e('subline', 'Kontakt — Subline', 'paragraph', 'In 30 Minuten klären wir, wie viele Talente du brauchst, wo sie eingesetzt werden und was du erwarten kannst.'),
-      e('check-items', 'Kontakt — Checkpunkte (mit | trennen)', 'list-item', 'Kostenfreies 30-Minuten-Strategiegespräch | Einblick in unseren Talentpool | Schulungskonzepte und Qualitätssicherung | Erste Einschätzung zur Verfügbarkeit'),
-      e('cta-label', 'Kontakt — Button', 'cta', 'Beratungsgespräch buchen'),
+    'Abschluss-Box am Seitenende: kurze Frage, eine Zeile. Button und Zeile darunter: CTAs — Button-Texte.', [
+      e('headline', 'Kontakt — Überschrift', 'heading', 'Talente für'),
+      e('headline-accent', 'Kontakt — Überschrift (Akzent)', 'heading', 'dein Projekt?'),
+      e('subline', 'Kontakt — Subline', 'paragraph', 'Wir klären, wie viele Talente du brauchst und wo sie eingesetzt werden.'),
     ]),
 ];

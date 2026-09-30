@@ -3,6 +3,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useCtaText } from '@/hooks/useCtaText';
 
 export default function ForecastingHero() {
   const { images: forecastHeroImages } = useMediaStore('leistungen_forecasting_images');
@@ -17,6 +18,7 @@ export default function ForecastingHero() {
   const tDesc = useText('leistungen_forecasting', 'forecasting-hero-description', 'Aus Kunden-, Sonic-, Staff- und Handelsdaten im SRT leiten wir her, was dein Projekt erwarten kann — datenbasiert, nachvollziehbar, belastbar.');
 
   const tBtn = useLeistungenText('leistungen_forecasting_hero_buttons');
+  const cta = useCtaText();
 
   return (
     <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
@@ -65,7 +67,7 @@ export default function ForecastingHero() {
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line" />
-            {tBtn.primary}
+            {cta.book}
           </a>
 
           <a

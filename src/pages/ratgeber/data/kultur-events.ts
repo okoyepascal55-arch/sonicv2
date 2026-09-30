@@ -115,7 +115,7 @@ const kulturEvents: RatgeberPageContent = {
   ],
   ctaHeadline: 'Lade deine Marke mit',
   ctaAccent: 'kultureller Relevanz auf.',
-  ctaSubline: 'Sprich mit uns über dein Kultur-Event. Kostenfrei, unverbindlich, 30 Minuten.',
+  ctaSubline: 'Sprich mit uns über dein Kultur-Event.',
 };
 
 export default kulturEvents;
