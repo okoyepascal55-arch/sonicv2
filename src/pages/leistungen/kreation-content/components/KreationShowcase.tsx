@@ -74,8 +74,8 @@ function BeforeAfterSlider() {
 
   // ── Dashboard images for Before/After ──
   const { images: baImages } = useMediaStore('leistungen_kreation_before_after');
-  const realityImg = baImages[0]?.url || 'https://readdy.ai/api/search-image?query=Philips%20brand%20trade%20show%20booth%20IFA%20Berlin%20real%20built%20exhibition%20stand%20professional%20retail%20display%20modern%20premium%20consumer%20electronics%20physical%20stand%20interior%20wide%20angle%20shot%20dramatic%20event%20photography&width=1200&height=680&seq=ba-reality&orientation=landscape';
-  const cgiImg = baImages[1]?.url || 'https://readdy.ai/api/search-image?query=Philips%20trade%20show%20booth%20photorealistic%20CGI%203D%20render%20architectural%20visualization%20exhibition%20stand%20design%20lime%20green%20accent%20lighting%20futuristic%20dark%20atmosphere%20high%20quality%20render%20IFA%20Berlin%20concept&width=1200&height=680&seq=ba-cgi&orientation=landscape';
+  const realityImg = baImages[0]?.url || 'https://readdy.ai/api/search-image?query=brand%20trade%20show%20booth%20IFA%20Berlin%20real%20built%20exhibition%20stand%20professional%20retail%20display%20modern%20premium%20consumer%20electronics%20physical%20stand%20interior%20wide%20angle%20shot%20dramatic%20event%20photography&width=1200&height=680&seq=ba-reality&orientation=landscape';
+  const cgiImg = baImages[1]?.url || 'https://readdy.ai/api/search-image?query=trade%20show%20booth%20photorealistic%20CGI%203D%20render%20architectural%20visualization%20exhibition%20stand%20design%20lime%20green%20accent%20lighting%20futuristic%20dark%20atmosphere%20high%20quality%20render%20IFA%20Berlin%20concept&width=1200&height=680&seq=ba-cgi&orientation=landscape';
 
   useEffect(() => {
     const el = revealRef.current; if (!el) return;
@@ -104,7 +104,7 @@ function BeforeAfterSlider() {
         <div>
           <div className="text-[9px] font-black uppercase tracking-[0.18em] text-primary-500 mb-2">CGI → Reality Vergleich</div>
           <h3 className="leist-h2 text-foreground-950 mb-1 uppercase">CGI-Render vs. gebauter Stand</h3>
-          <p className="text-xs font-light text-foreground-950/40">Ziehe den Regler — Philips @ IFA Berlin</p>
+          <p className="text-xs font-light text-foreground-950/40">Ziehe den Regler — vom CGI-Render zum gebauten Messestand</p>
         </div>
         <a href={`mailto:${CONTACT_EMAIL}?subject=CGI%20Portfolio%20anfragen`} className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest cursor-pointer transition-all duration-300 hover:bg-primary-500 hover:text-foreground-950 whitespace-nowrap bg-transparent text-foreground-950/40 border border-foreground-950/[0.12]" style={{ borderRadius: 0 }}>Portfolio anfragen <i className="ri-arrow-right-line" /></a>
       </div>

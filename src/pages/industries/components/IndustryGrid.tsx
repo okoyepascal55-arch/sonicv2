@@ -14,7 +14,7 @@ export default function IndustryGrid() {
     {
       title: 'Consumer Electronics',
       description: 'TVs, smartphones, wearables, audio equipment, and smart home devices',
-      brands: ['Philips', 'Canon', 'Garmin', 'TCL', 'OPPO'],
+      brands: ['Canon', 'Garmin', 'TCL', 'OPPO'],
       woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20smartphone%20electronics%20icon%20carved%20from%20dark%20chestnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background&width=64&height=64&seq=wood-electronics-chestnut&orientation=squarish',
       image: (gridImages[0] && gridImages[0].url) || 'https://readdy.ai/api/search-image?query=modern%20consumer%20electronics%20display%20with%20smartphones%20smartwatches%20and%20audio%20devices%20in%20premium%20retail%20setting%20clean%20professional%20lighting&width=800&height=600&seq=industry-electronics&orientation=landscape',
       stats: ['100,000+ POS', '€2B+ Sales Influenced']

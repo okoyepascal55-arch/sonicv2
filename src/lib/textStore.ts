@@ -83,7 +83,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'home-intro-heading', label: 'Main Heading', description: 'Section H2', type: 'heading', value: 'MARKEN IM HERZEN.' },
       { id: 'home-intro-heading-2', label: 'Heading Line 2', description: 'Second H2 line', type: 'heading', value: 'ERFOLG IM FOKUS.' },
       { id: 'home-intro-p1', label: 'Paragraph 1', description: 'First intro paragraph', type: 'paragraph', value: 'Wir sind eine unabhängige Marketing- und Sales-Agentur mit Schwerpunkten rund um die Konzeption, Kreation und Koordination von Kundenprojekten – ob am Point of Sale, im Studio, auf Messen oder Events in den Bereichen B2B, B2B2C und D2C. Seit 2007 leben wir Marken und machen sie erfolgreich – unabhängig von Größe, Branche und Zielgruppe. Dabei arbeiten wir stets geprägt von den Werten Mensch, Motivation, Daten und Werkzeug. Wir glauben daran, dass der Mensch den Unterschied macht, und leben eine familiäre, persönliche Firmenkultur.', multiline: true },
-      { id: 'home-intro-p2', label: 'Paragraph 2', description: 'Second intro paragraph', type: 'paragraph', value: 'Unsere Strategie: Ärmel hoch und anpacken! Echtes Handwerk – von Anfang bis Ende mit 100 % Leidenschaft und vollem Einsatz für die Ziele unserer Kunden. Mit Partnern wie Philips, Rowenta, Krups, Nexaro, Vorwerk, Canon, Garmin oder L\'Oréal. Mit der Erfahrung aus über 500 Projekten, 650.000 Manntagen und mehr als 100.000 Umsetzungen am POS. Mit einem Team aus Experten aller Bereiche – und mit dem Erfolg deiner Marke jederzeit im Fokus.', multiline: true },
+      { id: 'home-intro-p2', label: 'Paragraph 2', description: 'Second intro paragraph', type: 'paragraph', value: 'Unsere Strategie: Ärmel hoch und anpacken! Echtes Handwerk – von Anfang bis Ende mit 100 % Leidenschaft und vollem Einsatz für die Ziele unserer Kunden. Mit Partnern wie Rowenta, Krups, Nexaro, Vorwerk, Canon, Garmin oder L\'Oréal. Mit der Erfahrung aus über 500 Projekten, 650.000 Manntagen und mehr als 100.000 Umsetzungen am POS. Mit einem Team aus Experten aller Bereiche – und mit dem Erfolg deiner Marke jederzeit im Fokus.', multiline: true },
     ],
   },
   {
@@ -659,7 +659,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'casestudies-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Fallbeispiele' },
       { id: 'casestudies-hero-heading', label: 'Main Heading', description: 'Hero heading', type: 'heading', value: 'Erfolgsgeschichten, die für sich sprechen' },
-      { id: 'casestudies-hero-subtitle', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Entdecke, wie wir Marken wie Samsung, Garmin, Philips und Groupe SEB zu messbaren Erfolgen am POS verholfen haben.' },
+      { id: 'casestudies-hero-subtitle', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Entdecke, wie wir Marken wie Samsung, Garmin und Groupe SEB zu messbaren Erfolgen am POS verholfen haben.' },
     ],
   },
   {

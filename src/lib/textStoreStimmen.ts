@@ -212,13 +212,14 @@ const kreationVoice = (id: string, name: string, role: string, pullquote: string
   ],
 });
 
-export const TESTIMONIAL_IDS = ['garmin', 'seb', 'philips', 'nespresso', 'mediamarktsaturn', 'nexaro', 'vorwerk'] as const;
+export const TESTIMONIAL_IDS = ['garmin', 'seb', 'nespresso', 'loreal', 'wmf', 'mediamarktsaturn', 'nexaro', 'vorwerk'] as const;
 
 const TESTIMONIALS: { id: string; brand: string; quote: string; author: string; role: string; company: string }[] = [
   { id: 'garmin', brand: 'GARMIN', quote: '„Seit 2021 verbindet GARMIN und SONIC eine erfolgreiche Partnerschaft im Bereich Verkaufsunterstützung am POS. Wir empfehlen Sonic uneingeschränkt weiter."', author: 'Dana Eichinger', role: 'Director Marketing DACH', company: 'Garmin Deutschland GmbH' },
   { id: 'seb', brand: 'GROUPE SEB', quote: '„Hier finde ich, ohne großes Excel Kung-Fu, was ich benötige. Die SRT ist ein nützliches Tool und erleichtert unsere tägliche Arbeit."', author: 'Ramin Dirinpur', role: 'Sales Promotion & Sales Training Manager', company: 'Groupe SEB Deutschland GmbH' },
-  { id: 'philips', brand: 'PHILIPS TV & SOUND', quote: '„Durch die SRT können wir live in unsere Projekte reinschauen und jederzeit sehen, wie unsere Erwartungen erfüllt werden."', author: 'Murat Yatkin', role: 'Managing Director DACH', company: 'Philips TV & Sound @TP Vision' },
   { id: 'nespresso', brand: 'NESPRESSO', quote: '„Die SRT ermöglicht es Sonic, unsere Projekte effizient und zielgerichtet zu steuern und umzusetzen."', author: 'Veronika Vriens', role: 'B2C Commercial Excellence', company: 'Nespresso Deutschland GmbH' },
+  { id: 'loreal', brand: "L'ORÉAL", quote: '„Sonic liefert konstant hochqualifizierte Promotoren, die unsere Marke am POS perfekt repräsentieren und messbare Ergebnisse erzielen."', author: 'Sophie Müller', role: 'Field Sales Manager DACH', company: "L'Oréal Deutschland GmbH" },
+  { id: 'wmf', brand: 'WMF', quote: '„Mit Sonic haben wir einen Partner gefunden, der unsere Anforderungen an Qualität und Flexibilität im Außendienst vollständig erfüllt."', author: 'Thomas Becker', role: 'Head of Trade Marketing', company: 'WMF Group GmbH' },
   { id: 'mediamarktsaturn', brand: 'MEDIAMARKT SATURN', quote: '„Mit der Hilfe vom Sonic Team wurden aus einzelnen Produkten Lösungen – denn inklusive unserer Services wie z.B. der Garantieverlängerung konnten wir ganzheitliche Kundennutzen schaffen."', author: 'Björn Friebel', role: '', company: 'Media Markt Saturn' },
   { id: 'nexaro', brand: 'NEXARO', quote: '„Mit Sonic konnten wir unsere neue Marke und ein komplexes B2B-Produkt verständlich machen – sowohl im persönlichen Kontakt als auch mit kreativen Online-Formaten aus dem Sonic Studio."', author: 'André Hartmann', role: 'Head of Marketing', company: 'Nexaro GmbH' },
   { id: 'vorwerk', brand: 'VORWERK', quote: '„Wir waren sehr glücklich, mit dem neuen Design auftreten zu können, und es ist – nicht nur bei uns, sondern auch bei den Messebesuchern – sehr gut angekommen."', author: 'Kristina Braun', role: 'Specialist Operations People & Culture', company: 'Vorwerk Elektrowerke GmbH & Co. KG' },

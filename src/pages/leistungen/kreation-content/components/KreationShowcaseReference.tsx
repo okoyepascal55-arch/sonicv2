@@ -105,8 +105,8 @@ const FALLBACKS: Record<TabId, string[]> = {
 };
 
 const BEFORE_AFTER_FALLBACK = [
-  'https://readdy.ai/api/search-image?query=Philips%20brand%20trade%20show%20booth%20IFA%20Berlin%20real%20built%20exhibition%20stand%20professional%20retail%20display%20modern%20premium%20consumer%20electronics%20physical%20stand%20interior%20wide%20angle%20shot%20dramatic%20event%20photography&width=1200&height=680&seq=ba-reality&orientation=landscape',
-  'https://readdy.ai/api/search-image?query=Philips%20trade%20show%20booth%20photorealistic%20CGI%203D%20render%20architectural%20visualization%20exhibition%20stand%20design%20lime%20green%20accent%20lighting%20futuristic%20dark%20atmosphere%20high%20quality%20render%20IFA%20Berlin%20concept&width=1200&height=680&seq=ba-cgi&orientation=landscape',
+  'https://readdy.ai/api/search-image?query=brand%20trade%20show%20booth%20IFA%20Berlin%20real%20built%20exhibition%20stand%20professional%20retail%20display%20modern%20premium%20consumer%20electronics%20physical%20stand%20interior%20wide%20angle%20shot%20dramatic%20event%20photography&width=1200&height=680&seq=ba-reality&orientation=landscape',
+  'https://readdy.ai/api/search-image?query=trade%20show%20booth%20photorealistic%20CGI%203D%20render%20architectural%20visualization%20exhibition%20stand%20design%20lime%20green%20accent%20lighting%20futuristic%20dark%20atmosphere%20high%20quality%20render%20IFA%20Berlin%20concept&width=1200&height=680&seq=ba-cgi&orientation=landscape',
 ];
 
 function Lightbox({ items, images, startIndex, onClose }: { items: Item[]; images: string[]; startIndex: number; onClose: () => void }) {
@@ -181,7 +181,7 @@ function BeforeAfter({ reality, cgi, contactEmail }: { reality: string; cgi: str
   return (
     <div className="mt-1">
       <div className="flex items-start justify-between gap-4 px-8 py-7 bg-foreground-950/5 border border-foreground-950/[0.08]">
-        <div><p className="text-[9px] font-black uppercase tracking-[0.15em] text-primary-600 mb-2">CGI → Reality Vergleich</p><h3 className="sonic-h2 text-foreground-950 uppercase mb-1">CGI-Render vs. gebauter Stand</h3><p className="text-xs text-foreground-950/40">Ziehe den Regler — Philips @ IFA Berlin</p></div>
+        <div><p className="text-[9px] font-black uppercase tracking-[0.15em] text-primary-600 mb-2">CGI → Reality Vergleich</p><h3 className="sonic-h2 text-foreground-950 uppercase mb-1">CGI-Render vs. gebauter Stand</h3><p className="text-xs text-foreground-950/40">Ziehe den Regler — vom CGI-Render zum gebauten Messestand</p></div>
         <a href={`mailto:${contactEmail}?subject=Beratungsgespr%C3%A4ch`} className="flex-shrink-0 px-5 py-2.5 border border-foreground-950/[0.12] text-xs font-black uppercase tracking-widest text-foreground-950/40 hover:bg-primary-500 hover:text-foreground-950">Portfolio anfragen <i className="ri-arrow-right-line" /></a>
       </div>
       <div

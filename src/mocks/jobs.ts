@@ -75,7 +75,7 @@ export const mockJobs: JobPosting[] = [
     employmentType: 'Vollzeit',
     publishedAt: '2026-04-05',
     shortDescription:
-      'Kreiere Content für Marken wie Samsung, Philips und Groupe SEB. Von Reels bis CGI — deine Kreativität zählt.',
+      'Kreiere Content für Marken wie Samsung und Groupe SEB. Von Reels bis CGI — deine Kreativität zählt.',
     intro:
       '<p>Als Content Creator bei Sonic Group bist du für die visuelle Erzählung unserer Marken verantwortlich. Du produzierst Content für Social Media, POS-Materialien und digitale Kampagnen — von der Idee bis zum finalen Asset.</p><p>Reels, CGI-Visualisierungen, Fotoshootings: Bei uns ist keine Idee zu wild.</p>',
     tasks:

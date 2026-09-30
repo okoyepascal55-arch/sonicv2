@@ -4,7 +4,7 @@ export default function ClientTrust() {
   const tHeading = useText('team_clienttrust', 'team-trust-heading', 'VERTRAUEN VON WELTMARKEN');
   const tSub = useText('team_clienttrust', 'team-trust-sub', 'Unsere Teams arbeiten täglich mit den größten Marken der Welt.');
   const brands = [
-    'Philips', 'Garmin', 'Canon', 'L\'Oréal', 'Rowenta',
+    'Garmin', 'Canon', 'L\'Oréal', 'Rowenta',
     'Krups', 'Vorwerk', 'Tefal', 'WMF', 'Melitta'
   ];
 
