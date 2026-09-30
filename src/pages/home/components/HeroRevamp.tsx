@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import { useCtaText } from '@/hooks/useCtaText';
 
 const DYNAMIC_KEYWORDS = [
   'THINGS',
@@ -255,8 +254,8 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
   const tLeftH3Accent = useText('home_hero', 'home-hero-left-h3-accent', 'AGENTUR');
   const tLeftH3End = useText('home_hero', 'home-hero-left-h3-line3', 'MIT POWER?');
   const tLeftDesc = useText('home_hero', 'home-hero-left-desc', 'Promotion, POS, Studio und Events: Wir bringen deine Marke dahin, wo gekauft wird – mit Menschen, die verkaufen, und Daten, die es belegen.');
-  // Button text: Dashboard → CTAs — Button-Texte („Termin vereinbaren“)
-  const tLeftBtn = useCtaText().book;
+  // Scrolls to #losungen (not a booking button — must not say „Termin vereinbaren“)
+  const tLeftBtn = useText('home_hero', 'home-hero-left-btn', 'Lösungen entdecken');
   const tRightBadge = useText('home_hero', 'home-hero-right-badge', 'Mensch. Der Unterschied.');
   const tRightH3 = useText('home_hero', 'home-hero-right-h3', 'SUCHST DU EINEN');
   const tRightH3Accent = useText('home_hero', 'home-hero-right-h3-accent', 'JOB');

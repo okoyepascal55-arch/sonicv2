@@ -59,6 +59,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'home-hero-left-h3-accent', label: 'Left Panel H3 Accent', description: 'Brand CTA accent word', type: 'heading', value: 'AGENTUR' },
       { id: 'home-hero-left-h3-line3', label: 'Left Panel H3 Line 3', description: 'Brand CTA ending', type: 'heading', value: 'MIT POWER?' },
       { id: 'home-hero-left-desc', label: 'Left Panel Description', description: 'Brand CTA description', type: 'paragraph', value: 'Promotion, POS, Studio und Events: Wir bringen deine Marke dahin, wo gekauft wird – mit Menschen, die verkaufen, und Daten, die es belegen.' },
+      { id: 'home-hero-left-btn', label: 'Left Panel Button', description: 'Button der Marken-Karte (scrollt zu Lösungen)', type: 'cta', value: 'Lösungen entdecken' },
       { id: 'home-hero-right-badge', label: 'Right Panel Badge', description: 'Talent CTA badge', type: 'label', value: 'Der Mensch. Der Unterschied.' },
       { id: 'home-hero-right-h3', label: 'Right Panel H3 Line 1', description: 'Talent CTA heading', type: 'heading', value: 'SUCHST DU EINEN' },
       { id: 'home-hero-right-h3-accent', label: 'Right Panel H3 Accent', description: 'Talent CTA accent word', type: 'heading', value: 'JOB' },
@@ -261,7 +262,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'footer-city', label: 'City', description: 'City line', type: 'label', value: '47807 Krefeld, Germany' },
       { id: 'footer-phone', label: 'Phone', description: 'Phone number', type: 'label', value: '+49 2151 479 444 0' },
       { id: 'footer-email', label: 'Email', description: 'Email address', type: 'label', value: 'info@sonic-group.de' },
-      { id: 'footer-sales-badge', label: 'Sales Badge', description: 'Sales badge text', type: 'label', value: 'Part of €2B+ in influenced sales' },
+      { id: 'footer-sales-badge', label: 'Sales Badge', description: 'Sales badge text', type: 'label', value: 'Über 2 Mrd. € Umsatz für unsere Kunden' },
       { id: 'footer-col-leistungen', label: 'Column — Leistungen Heading', description: 'Footer column heading', type: 'footer-heading', value: '— Leistungen' },
       { id: 'footer-link-staff', label: 'Footer Link — Staff as a Service', description: 'Staff link', type: 'footer-link', value: 'Staff as a Service' },
       { id: 'footer-link-pos', label: 'Footer Link — POS Full Service', description: 'POS link', type: 'footer-link', value: 'POS Full Service' },
@@ -285,8 +286,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'footer-link-admin', label: 'Footer Link — Admin', description: 'Admin link', type: 'footer-link', value: 'Admin' },
       { id: 'footer-copyright', label: 'Copyright', description: 'Copyright text', type: 'label', value: '© {year} Sonic Sales Support GmbH. Alle Rechte vorbehalten.' },
       { id: 'footer-builtby', label: 'Built By', description: 'Built by attribution', type: 'label', value: 'Built by Reezan Digital' },
-      { id: 'footer-iso', label: 'ISO Badge', description: 'ISO certification badge', type: 'label', value: 'ISO Certified' },
-      { id: 'footer-gdpr', label: 'GDPR Badge', description: 'GDPR compliance badge', type: 'label', value: 'GDPR Compliant' },
+      { id: 'footer-iso', label: 'Zertifikat-Badge (leer = ausgeblendet)', description: 'Nur ausfüllen, wenn eine Zertifizierung besteht', type: 'label', value: '' },
+      { id: 'footer-gdpr', label: 'GDPR Badge', description: 'GDPR compliance badge', type: 'label', value: 'DSGVO-konform' },
     ],
   },
 
@@ -1608,6 +1609,13 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'srt_pricing', entryId: 'srt-pricing-tier-2', from: 'Professional', to: 'Reportings' },
   { sectionKey: 'srt_pricing', entryId: 'srt-pricing-tier-3', from: 'Enterprise', to: 'Projektteam' },
   { sectionKey: 'srt_developer', entryId: 'srt-joerg-title', from: 'Retail Technology', to: 'Entwickler des Sonic Reporting Tools', matchType: 'contains' as const },
+  // ── Footer & hero corrections 30.09.2026 ──
+  { sectionKey: 'common_footer', entryId: 'footer-sales-badge', from: 'influenced', to: 'Über 2 Mrd. € Umsatz für unsere Kunden', matchType: 'contains' as const },
+  { sectionKey: 'common_footer', entryId: 'footer-sales-badge', from: 'B+', to: 'Über 2 Mrd. € Umsatz für unsere Kunden', matchType: 'contains' as const },
+  { sectionKey: 'common_footer', entryId: 'footer-iso', from: 'ISO', to: '', matchType: 'contains' as const },
+  { sectionKey: 'common_footer', entryId: 'footer-gdpr', from: 'GDPR', to: 'DSGVO-konform', matchType: 'contains' as const },
+  { sectionKey: 'home_hero', entryId: 'home-hero-left-btn', from: 'Projekt anfragen', to: 'Lösungen entdecken' },
+  { sectionKey: 'home_hero', entryId: 'home-hero-left-btn', from: 'Termin vereinbaren', to: 'Lösungen entdecken' },
 ];
 
 /* Substring corrections applied to every text (defaults and dashboard values).

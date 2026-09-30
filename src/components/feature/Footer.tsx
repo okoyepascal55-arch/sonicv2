@@ -21,7 +21,7 @@ export default function Footer() {
   const tCity         = useText('common_footer', 'footer-city',         '47807 Krefeld, Germany');
   const tPhone        = useText('common_footer', 'footer-phone',        '+49 2151 479 444 0');
   const tEmail        = useText('common_footer', 'footer-email',        'info@sonic-group.de');
-  const tSalesBadge   = useText('common_footer', 'footer-sales-badge',  'Part of €2B+ in influenced sales');
+  const tSalesBadge   = useText('common_footer', 'footer-sales-badge',  'Über 2 Mrd. € Umsatz für unsere Kunden');
   const tColLeistungen= useText('common_footer', 'footer-col-leistungen','— Leistungen');
   const tLinkStaff    = useText('common_footer', 'footer-link-staff',   'Staff as a Service');
   const tLinkPos      = useText('common_footer', 'footer-link-pos',     'POS Full Service');
@@ -45,8 +45,8 @@ export default function Footer() {
   const tLinkAdmin    = useText('common_footer', 'footer-link-admin',   'Admin');
   const tCopyright    = useText('common_footer', 'footer-copyright',    '© {year} Sonic Sales Support GmbH. Alle Rechte vorbehalten.');
   const tBuiltBy      = useText('common_footer', 'footer-builtby',      'Built by Reezan Digital');
-  const tIso          = useText('common_footer', 'footer-iso',          'ISO Certified');
-  const tGdpr         = useText('common_footer', 'footer-gdpr',         'GDPR Compliant');
+  const tIso          = useText('common_footer', 'footer-iso',          '');
+  const tGdpr         = useText('common_footer', 'footer-gdpr',         'DSGVO-konform');
 
   const footerLinks = {
     solutions: [
@@ -207,12 +207,12 @@ export default function Footer() {
               </a>
             </div>
 
-            <div className="flex items-center gap-2 mb-2 md:mb-0">
+            {tSalesBadge.trim() && <div className="flex items-center gap-2 mb-2 md:mb-0">
               <div className="w-6 h-6 bg-primary-500/10 border border-primary-500/25 flex items-center justify-center flex-shrink-0">
                 <i className="ri-trophy-line text-primary-500 text-xs"></i>
               </div>
               <p className="text-sm md:text-[12px] text-background-50/60">{tSalesBadge}</p>
-            </div>
+            </div>}
           </div>
 
           {/* Leistungen */}
@@ -255,12 +255,12 @@ export default function Footer() {
               </a>
             </div>
             <div className="flex items-center gap-4 md:gap-5">
-              <span className="flex items-center gap-1 text-xs text-background-50/40">
+              {tIso.trim() && <span className="flex items-center gap-1 text-xs text-background-50/40">
                 <span className="w-4 h-4 flex items-center justify-center">
                   <i className="ri-shield-check-line text-background-50/40 text-xs"></i>
                 </span>
                 {tIso}
-              </span>
+              </span>}
               <span className="flex items-center gap-1 text-xs text-background-50/40">
                 <span className="w-4 h-4 flex items-center justify-center">
                   <i className="ri-lock-line text-background-50/40 text-xs"></i>

@@ -31,7 +31,7 @@ function DashboardPreview() {
           <div className="w-2 h-2 rounded-full" style={{ background: 'oklch(0.81 0.19 115 / 0.6)' }} />
         </div>
         <div className="flex-1 mx-3" style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '2px', padding: '2px 8px' }}>
-          <span className="text-[7px] text-white/25">app.sonic-srt.de/dashboard</span>
+          <span className="text-[7px] text-white/25">Sonic Reporting Tool</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-1.5 h-1.5 bg-green-400 animate-pulse" style={{ borderRadius: '50%' }} />

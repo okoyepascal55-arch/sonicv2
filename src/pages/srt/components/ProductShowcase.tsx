@@ -69,7 +69,7 @@ function LaptopMockup({ src }: { src: string | null }) {
               </div>
               <div className="flex-1 mx-4 h-[16px] rounded-sm flex items-center px-2"
                 style={{ background: 'rgba(255,255,255,0.05)' }}>
-                <span className="text-[8px] text-white/25">app.sonic-srt.de/dashboard</span>
+                <span className="text-[8px] text-white/25">Sonic Reporting Tool</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-[7px] h-[7px] rounded-full bg-green-400/70 animate-pulse" />
