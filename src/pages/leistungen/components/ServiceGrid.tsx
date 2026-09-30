@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 
 const SERVICES = [
   {
@@ -21,13 +22,13 @@ const SERVICES = [
     id: 'personal-staffing',
     number: '02',
     category: 'Personal & Staffing',
-    headline: 'Festangestellte Talente',
-    sub: 'Über 2.000 geschulte Markenbotschafter. Sofort einsatzbereit, GPS-getrackt, persönlich gecoacht — deutschlandweit.',
-    cta: 'Talentepool erkunden',
+    headline: 'Geschulte Talente',
+    sub: 'Über 1.800 Menschen im Talentpool, 200+ Promoter:innen im Einsatz. Ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit — geschult und persönlich betreut, deutschlandweit.',
+    cta: 'Talentpool erkunden',
     ctaLink: '/leistungen/talentpool',
     secondaryCta: 'Staffing ansehen',
     secondaryLink: '/leistungen/staff-as-a-service',
-    tags: ['Recruiting', 'Field Force', 'GPS-Check-in'],
+    tags: ['Recruiting', 'Field Force', 'Standort-Check-in'],
   },
   {
     id: 'pos-video',
@@ -70,10 +71,23 @@ export default function ServiceGrid({ sectionRef }: Props) {
   const navigate = useNavigate();
   const [active, setActive] = useState(0);
   const { images: gridImages } = useMediaStore('leistungen_servicegrid_bg');
+  const t = useLeistungenText('leistungen_overview_services');
+  const services = SERVICES.map((sv, i) => {
+    const n = i + 1;
+    return {
+      ...sv,
+      category: t[`s${n}-category`] || sv.category,
+      headline: t[`s${n}-headline`] || sv.headline,
+      sub: t[`s${n}-sub`] || sv.sub,
+      cta: t[`s${n}-cta`] || sv.cta,
+      secondaryCta: t[`s${n}-cta2`] || sv.secondaryCta,
+      tags: t[`s${n}-tags`] ? splitList(t[`s${n}-tags`]) : sv.tags,
+    };
+  });
 
   const resolvedImages = SERVICES.map((_, i) => gridImages[i]?.url || FALLBACK_IMAGES[i]);
 
-  const s = SERVICES[active];
+  const s = services[active];
 
   const handleNav = (link: string) => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -94,16 +108,16 @@ export default function ServiceGrid({ sectionRef }: Props) {
           <div className="inline-flex items-center gap-3 mb-4">
             <div className="flex items-center gap-3">
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Leistungsspektrum</span>
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{t['eyebrow']}</span>
           </div>
             <div className="w-10 h-px bg-primary-500/40" />
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
             <h2 className="sonic-h2 text-foreground-950">
-              Vier Kategorien.<br />Ein <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>System</span>.
+              {t['heading']}<br />Ein <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{t['heading-accent']}</span>.
             </h2>
             <p className="text-foreground-500 text-sm leading-relaxed max-w-xs lg:text-right lg:pb-1">
-              Jede Leistung einzeln buchbar — oder als integriertes Full-Service-Paket.
+              {t['sub']}
             </p>
           </div>
         </div>
@@ -115,7 +129,7 @@ export default function ServiceGrid({ sectionRef }: Props) {
           role="tablist"
           aria-label="Leistungskategorien"
         >
-          {SERVICES.map((item, i) => {
+          {services.map((item, i) => {
             const isActive = i === active;
             return (
               <button
@@ -207,7 +221,7 @@ export default function ServiceGrid({ sectionRef }: Props) {
 
           {/* Progress indicator */}
           <div className="flex items-center gap-1.5 px-5 md:px-8 pb-5">
-            {SERVICES.map((item, i) => (
+            {services.map((item, i) => (
               <button
                 key={item.id}
                 type="button"
@@ -221,7 +235,7 @@ export default function ServiceGrid({ sectionRef }: Props) {
               />
             ))}
             <span className="ml-3 text-[10px] font-black uppercase tracking-[0.2em] text-white/30 tabular-nums">
-              {String(active + 1).padStart(2, '0')} / {String(SERVICES.length).padStart(2, '0')}
+              {String(active + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}
             </span>
           </div>
         </div>

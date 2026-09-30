@@ -1,0 +1,60 @@
+import type { TextSection } from '@/lib/textStore';
+import { e, section } from '@/lib/leistungenTextKit';
+
+const P = '/leistungen/pos-full-service';
+
+export const TEXT_SECTIONS: TextSection[] = [
+  section('leistungen_pos_hero_stats', 'POS Full Service — Hero Kennzahlen & Buttons', P, 'Kennzahlen unter dem Hero-Text (nur Zahlen aus der Agenturpräsentation) und die beiden Hero-Buttons.', [
+    e('stat1-val', 'Hero — Kennzahl 1 — Wert', 'stat', '>1.000'),
+    e('stat1-label', 'Hero — Kennzahl 1 — Label', 'stat-label', 'Stores betreut'),
+    e('stat2-val', 'Hero — Kennzahl 2 — Wert', 'stat', '>1,3 Mio.'),
+    e('stat2-label', 'Hero — Kennzahl 2 — Label', 'stat-label', 'Einsätze'),
+    e('stat3-val', 'Hero — Kennzahl 3 — Wert', 'stat', '>2 Mrd. €'),
+    e('stat3-label', 'Hero — Kennzahl 3 — Label', 'stat-label', 'Umsatz für Kunden'),
+    e('cta-primary', 'Hero — Button (Mail)', 'cta', 'POS-Projekt besprechen'),
+    e('cta-secondary', 'Hero — Button (Seite)', 'cta', 'POS Full Service'),
+  ]),
+  section('leistungen_pos_solutions', 'POS Full Service — Lösung (4 Karten)', P, 'Die vier Lösungskarten unter „Dein POS-Komplettpaket.“', [
+    e('eyebrow', 'Eyebrow', 'label', 'Die Lösung'),
+    e('card1-accent', 'Karte 1 — Kategorie', 'label', 'Kreation & Print'),
+    e('card1-title', 'Karte 1 — Titel', 'subheading', 'POS-Materialien'),
+    e('card1-desc', 'Karte 1 — Text', 'paragraph', 'Möbel, Displays, Aufsteller, Regalstopper, Wobbler, Plakate, Flyer, Beklebungen, Gebäudebanner uvm.'),
+    e('card2-accent', 'Karte 2 — Kategorie', 'label', 'Team & Talent'),
+    e('card2-title', 'Karte 2 — Titel', 'subheading', 'Geschultes Personal'),
+    e('card2-desc', 'Karte 2 — Text', 'paragraph', 'Menschen für den Point of Sale: geschultes Personal mit Augenmerk auf Marken- und Produkt-Inszenierung. Für Produktvorführungen, Verkaufsunterstützung, Sales-Außendienst und Regalpflege.'),
+    e('card3-accent', 'Karte 3 — Kategorie', 'label', 'Platzierung & Pflege'),
+    e('card3-title', 'Karte 3 — Titel', 'subheading', 'Flächenmanagement'),
+    e('card3-desc', 'Karte 3 — Text', 'paragraph', 'Die richtige Platzierung deiner Produkte im Handel, dauerhaft. Zweitplatzierungen, Warenpräsentation, Regalpflege.'),
+    e('card4-accent', 'Karte 4 — Kategorie', 'label', 'Analytics & SRT'),
+    e('card4-title', 'Karte 4 — Titel', 'subheading', 'Performance-Tracking'),
+    e('card4-desc', 'Karte 4 — Text', 'paragraph', 'Detaillierte Auswertung von Verkaufszahlen und ROI deiner POS-Aktivitäten. Tagesaktuell im Sonic Reporting Tool (SRT).'),
+  ]),
+  section('leistungen_pos_process', 'POS Full Service — Ablauf (6 Schritte)', P, 'Titel, Text und Dauer der sechs Ablauf-Schritte.', [
+    e('eyebrow', 'Eyebrow', 'label', 'Ablauf'),
+    e('step1-title', 'Schritt 1 — Titel', 'subheading', 'Bedarfsanalyse'),
+    e('step1-desc', 'Schritt 1 — Text', 'paragraph', 'Wir analysieren Marke, Produkte, Zielgruppen und POS-Anforderungen.'),
+    e('step1-time', 'Schritt 1 — Dauer', 'badge', '1–2 Tage'),
+    e('step2-title', 'Schritt 2 — Titel', 'subheading', 'Konzeptentwicklung'),
+    e('step2-desc', 'Schritt 2 — Text', 'paragraph', 'Kreative POS-Lösungen und Materialien, die im Handel auffallen: Kampagnenkreation oder -adaption, Design, Materialauswahl.'),
+    e('step2-time', 'Schritt 2 — Dauer', 'badge', '1–4 Wochen'),
+    e('step3-title', 'Schritt 3 — Titel', 'subheading', 'Produktion'),
+    e('step3-desc', 'Schritt 3 — Text', 'paragraph', 'Herstellung aller POS-Materialien in der passenden Qualität: Print, Displays, Möbelsysteme.'),
+    e('step3-time', 'Schritt 3 — Dauer', 'badge', '1–4 Wochen'),
+    e('step4-title', 'Schritt 4 — Titel', 'subheading', 'Personal-Recruiting'),
+    e('step4-desc', 'Schritt 4 — Text', 'paragraph', 'Auswahl und Schulung qualifizierter Promoter bzw. Sales Supporter für deine Kampagne.'),
+    e('step4-time', 'Schritt 4 — Dauer', 'badge', '1–2 Wochen'),
+    e('step5-title', 'Schritt 5 — Titel', 'subheading', 'Rollout'),
+    e('step5-desc', 'Schritt 5 — Text', 'paragraph', 'Koordinierte Auslieferung und Platzierung in allen Verkaufsstellen. Logistik über unser eigenes Warehouse.'),
+    e('step5-time', 'Schritt 5 — Dauer', 'badge', '1–4 Wochen'),
+    e('step6-title', 'Schritt 6 — Titel', 'subheading', 'Monitoring & Reporting'),
+    e('step6-desc', 'Schritt 6 — Text', 'paragraph', 'Kontinuierliche Überwachung und detaillierte Performance-Auswertung. Im SRT, tagesaktuell.'),
+    e('step6-time', 'Schritt 6 — Dauer', 'badge', 'Ongoing'),
+  ]),
+  section('leistungen_pos_cta', 'POS Full Service — Kontakt-Box', P, 'Abschluss-Box am Seitenende. Checkliste mit „|“ trennen.', [
+    e('headline', 'Überschrift', 'heading', 'Bereit für'),
+    e('headline-accent', 'Überschrift — Akzent', 'heading', 'POS-Performance?'),
+    e('subline', 'Unterzeile', 'paragraph', 'Lass uns in 30 Minuten besprechen, wie wir den Abverkauf deiner Marke am Point of Sale unterstützen.'),
+    e('check-items', 'Checkliste (mit | trennen)', 'list-item', 'Kostenfreies 30-Minuten-Strategiegespräch | Deine Ziele, unser modulares System | Einblick in unsere POS-Referenzen | Erste Einschätzung zur Timeline'),
+    e('cta-label', 'Button', 'cta', 'POS-Projekt besprechen'),
+  ]),
+];

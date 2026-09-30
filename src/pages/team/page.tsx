@@ -3,8 +3,8 @@ import SectionReveal from '../../components/feature/SectionReveal';
 
 export default function TeamPage() {
   useSEO({
-    title: 'Unser Team | 2.000+ Markenbotschafter & Promoter | Sonic Group',
-    description: 'Das Sonic Group Team: 2.000+ geschulte Markenbotschafter, Promoter und Retail-Spezialisten für Events, Messen und POS-Aktivierung im DACH-Raum.',
+    title: 'Unser Team | 1.800+ Menschen im Talentpool | Sonic Group',
+    description: 'Das Sonic Group Team: über 1.800 Menschen im Talentpool, Promoter und Retail-Spezialisten für Events, Messen und POS-Aktivierung im DACH-Raum.',
     keywords: 'sonic group team, markenbotschafter, promotionspersonal, retail spezialisten, pos aktivierung',
     canonical: 'https://sonic-group.de/team',
   });

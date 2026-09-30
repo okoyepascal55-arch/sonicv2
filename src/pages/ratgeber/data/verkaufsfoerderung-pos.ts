@@ -88,7 +88,7 @@ const verkaufsfoerderungPos: RatgeberPageContent = {
     {
       label: 'Staff as a Service — qualifiziertes Promotionpersonal',
       href: '/leistungen/staff-as-a-service',
-      description: 'Zugriff auf 2.000+ geschulte Markenbotschafter für jede Verkaufsförderungsaktion.',
+      description: 'Zugriff auf über 1.800 Menschen im Talentpool – geschult für deine Verkaufsförderungsaktion.',
     },
     {
       label: 'Warehouse & Logistik — Materialversorgung für deine Promotion',

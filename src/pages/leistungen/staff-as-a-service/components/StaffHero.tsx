@@ -2,6 +2,7 @@ import React from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
 
 export default function StaffHero() {
   const { images: staffHeroImages } = useMediaStore('leistungen_staff_images');
@@ -14,6 +15,7 @@ export default function StaffHero() {
   const tH1Accent = useText('leistungen_staff', 'staff-hero-heading-accent', 'beim Personal.');
   const tSubtitle = useText('leistungen_staff', 'staff-hero-subtitle', 'Markenfans anheuern: Für Sell-out, Sell-in, Schulungen, Brand Activation und mehr.');
   const tDesc = useText('leistungen_staff', 'staff-hero-description', 'Wir übernehmen Recruiting, Payroll und Steuerung, bspw. via Arbeitnehmerüberlassung.');
+  const t = useLeistungenText('leistungen_staff_hero_stats');
 
   return (
     <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
@@ -52,9 +54,9 @@ export default function StaffHero() {
 
         <div className="grid grid-cols-3 gap-2 md:gap-8 mb-8 border-t border-white/15 pt-5">
           {[
-            { val: '>2.000', label: 'Talente im Pool' },
-            { val: '>1,35 Mio.', label: 'Einsätze' },
-            { val: '100 %', label: 'Festangestellt bei Sonic' },
+            { val: t['stat-1-value'], label: t['stat-1-label'] },
+            { val: t['stat-2-value'], label: t['stat-2-label'] },
+            { val: t['stat-3-value'], label: t['stat-3-label'] },
           ].map((s, i) => (
             <div key={i} className="text-center">
               <div className="text-base sm:text-xl md:text-2xl font-black text-primary-500 tabular-nums leading-tight">{s.val}</div>
@@ -69,14 +71,14 @@ export default function StaffHero() {
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line"></i>
-            Beratungsgespräch buchen
+            {t['btn-primary']}
           </a>
           <a
             href="/leistungen/talentpool"
             onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
             className="inline-flex items-center gap-2 border-2 border-white/25 text-white px-6 py-3 font-black hover:border-primary-500 hover:text-primary-500 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
-            Talentepool entdecken
+            {t['btn-secondary']}
             <i className="ri-arrow-right-line"></i>
           </a>
         </div>

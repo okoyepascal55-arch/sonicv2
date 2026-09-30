@@ -1,17 +1,8 @@
 import React from 'react';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useCallback, useEffect, useState } from 'react';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 
-const CYCLING_WORDS = [
-  'ROI',
-  'RETAIL',
-  'POS',
-  'EVENTS',
-  'STAFFING',
-  'VIDEO',
-  'DATA',
-  'GROWTH',
-];
 
 interface Props {
   onScrollToGrid: () => void;
@@ -22,13 +13,15 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
   const heroImage = leistungenHeroImages[0]?.url
     ? resolveImageUrl(leistungenHeroImages[0].url)
     : undefined;
+  const t = useLeistungenText('leistungen_overview_hero');
+  const words = splitList(t['h1-words']).map((w) => w.toUpperCase());
   const [wordIdx, setWordIdx] = useState(0);
   const [wordVisible, setWordVisible] = useState(true);
 
   const cycleWord = useCallback(() => {
     setWordVisible(false);
     setTimeout(() => {
-      setWordIdx((prev) => (prev + 1) % CYCLING_WORDS.length);
+      setWordIdx((prev) => prev + 1);
       setWordVisible(true);
     }, 320);
   }, []);
@@ -62,12 +55,12 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
         {/* v3 eyebrow — 28px lime hairline + label */}
         <div className="flex items-center gap-3 mb-5 md:mb-6">
           <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-          <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Leistungen</span>
+          <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{t['eyebrow']}</span>
         </div>
 
         {/* Main headline */}
         <h1 className="leist-h1-hub text-white mb-5 md:mb-6">
-          MANPOWER TRIFFT{' '}
+          {(t['h1'] ?? '').toUpperCase()}{' '}
           <span
             className="text-primary-500 inline-block"
             style={{
@@ -76,16 +69,15 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
               transition: 'opacity 0.32s ease, transform 0.32s ease',
             }}
           >
-            {CYCLING_WORDS[wordIdx]}
+            {words.length ? words[wordIdx % words.length] : ''}
           </span>
         </h1>
 
         <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-3">
-          Full Service für deine Marken und Produkte im Retail
+          {t['lead']}
         </p>
         <p className="text-xs md:text-sm text-white/60 leading-relaxed max-w-[480px] mb-6 md:mb-8">
-          Von Daten &amp; Software über Personal &amp; Staffing bis zu POS, Video und Events:{' '}
-          Alles aus einer Hand — datenbasiert geplant, live reportet, messbar erfolgreich.
+          {t['sub']}
         </p>
 
         {/* CTAs */}
@@ -97,13 +89,13 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
             className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 bg-primary-500 text-foreground-950 font-bold text-xs md:text-sm hover:bg-white transition-all duration-200 whitespace-nowrap cursor-pointer"
           >
             <i className="ri-calendar-line text-base"></i>
-            Beratungsgespräch buchen
+            {t['cta-primary']}
           </a>
           <button
             onClick={onScrollToGrid}
             className="inline-flex items-center justify-center gap-2 px-5 md:px-6 py-3 border border-white/40 text-white font-bold text-xs md:text-sm hover:bg-white/10 transition-all duration-200 whitespace-nowrap cursor-pointer"
           >
-            Alle Leistungen entdecken
+            {t['cta-secondary']}
             <i className="ri-arrow-down-line text-base"></i>
           </button>
         </div>

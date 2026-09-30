@@ -10,7 +10,7 @@ export const KARRIERE_TICKER = [
   { icon: 'ri-time-line', value: 'Ø 5,4 J.', label: 'im Campus-Team' },
   { icon: 'ri-time-line', value: 'Ø 2,9 J.', label: 'im POS-Team' },
   { icon: 'ri-user-star-line', value: '200+', label: 'Promoter:innen im Einsatz' },
-  { icon: 'ri-user-community-line', value: '1.700+', label: 'im Talentpool' },
+  { icon: 'ri-user-community-line', value: '1.800+', label: 'im Talentpool' },
   { icon: 'ri-user-add-line', value: '40', label: 'Neueinstellungen im ersten Halbjahr 2026' },
 ];
 

@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
@@ -19,12 +20,12 @@ const NAV_ITEMS = [
 
 export default function StaffAsAServicePage() {
   useSEO({
-    title: 'Staff as a Service | Sonic Group — 2.000+ Retail Promoter & Brand Ambassadors DACH',
-    description: 'Flexible Retail-Personaldienstleistungen von Sonic Group: 2.000+ festangestellte Promoter, Brand Ambassadors und Field Force Experten — einsetzbar für POS, Events und Messen in ganz DACH. Schnell skalierbar, qualitätszertifiziert.',
+    title: 'Staff as a Service | Sonic Group — Promoter:innen & Field Force aus dem Talentpool',
+    description: 'Staff as a Service von Sonic Group: Recruiting, Onboarding, Payroll und Steuerung aus einer Hand. Über 1.800 aktive Menschen im Talentpool, 200+ Promoter:innen im Einsatz — per kurzfristiger Beschäftigung, befristeter Teil-/Vollzeit oder Arbeitnehmerüberlassung.',
     keywords: 'Staff as a Service, Retail Staffing DACH, Promoter Deutschland, Brand Ambassador Agentur, Field Force Germany, Außendienst Mitarbeiter, Personaldienstleister Promotion, Promoter Pool, Eventpersonal DACH, Retail Experten, Sales Promoter vermitteln, Messepersonal, Hostess Agentur',
     canonical: 'https://sonic-group.de/leistungen/staff-as-a-service',
-    ogTitle: 'Staff as a Service — 2.000+ Promoter & Brand Ambassadors | Sonic Group',
-    ogDescription: 'Flexibles Retail-Personal: 2.000+ Promoter, Brand Ambassadors und Field Force Experten für POS, Events und Messen in DACH.',
+    ogTitle: 'Staff as a Service — Promoter:innen & Brand Ambassadors | Sonic Group',
+    ogDescription: 'Recruiting, Payroll und Steuerung aus einer Hand: über 1.800 Menschen im Talentpool, 200+ Promoter:innen im Einsatz — für POS, Events und Field Force.',
     jsonLd: [
       { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
@@ -35,12 +36,13 @@ export default function StaffAsAServicePage() {
         name: 'Staff as a Service', provider: { '@type': 'Organization', name: 'Sonic Sales Support GmbH' },
         serviceType: 'Retail Staffing / Brand Ambassador Services',
         areaServed: ['DE','AT','CH'],
-        description: '2.000+ festangestellte Promoter, Brand Ambassadors und Retail-Experten für flexible Einsätze in ganz DACH.',
+        description: 'Recruiting, Onboarding, Payroll und Steuerung von Promoter:innen, Brand Ambassadors und Field Force — aus einem Talentpool mit über 1.800 aktiven Menschen.',
       },
     ],
   })
 
   const heroRef = useRef<HTMLDivElement>(null);
+  const tCta = useLeistungenText('leistungen_staff_cta');
 
   return (
     <div className="min-h-[100dvh] overflow-x-hidden bg-white">
@@ -66,16 +68,11 @@ export default function StaffAsAServicePage() {
 
       <div id="kontakt">
         <LeistungenKontakt
-          headline="Bereit für Personal"
-          headlineAccent="ohne Overhead?"
-          subline="Lass uns in 30 Minuten klären, welches Staffing-Modell zu deinem Projekt passt."
-          checkItems={[
-            { text: 'Kostenfreies 30-Minuten-Strategiegespräch' },
-            { text: 'Deine Anforderungen, unser Talentpool' },
-            { text: 'Einblick in Schulungskonzepte und S.O.C.K.S.' },
-            { text: 'Erste Einschätzung zur Verfügbarkeit' },
-          ]}
-          ctaLabel="Beratung buchen"
+          headline={tCta['headline']}
+          headlineAccent={tCta['headline-accent']}
+          subline={tCta['subline']}
+          checkItems={splitList(tCta['check-items']).map((text) => ({ text }))}
+          ctaLabel={tCta['cta-label']}
           ctaMailSubject="Staff as a Service Beratung"
           ctaIcon="ri-user-add-line"
         />

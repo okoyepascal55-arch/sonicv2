@@ -39,7 +39,7 @@ const baseTestimonials: Testimonial[] = [
     author: 'Veronika Vriens',
     role: 'B2C Commercial Excellence',
     company: 'Nespresso Deutschland GmbH',
-    caseStudyLink: '/fallbeispiele',
+    caseStudyLink: '',
   },
   {
     brand: "L'ORÉAL",
@@ -48,7 +48,7 @@ const baseTestimonials: Testimonial[] = [
     author: 'Sophie Müller',
     role: 'Field Sales Manager DACH',
     company: "L'Oréal Deutschland GmbH",
-    caseStudyLink: '/fallbeispiele',
+    caseStudyLink: '',
   },
   {
     brand: 'WMF',
@@ -66,7 +66,7 @@ const baseTestimonials: Testimonial[] = [
     author: 'Björn Friebel',
     role: '',
     company: 'Media Markt Saturn',
-    caseStudyLink: '/fallbeispiele',
+    caseStudyLink: '',
   },
   {
     brand: 'NEXARO',
@@ -75,7 +75,7 @@ const baseTestimonials: Testimonial[] = [
     author: 'André Hartmann',
     role: 'Head of Marketing',
     company: 'Nexaro GmbH',
-    caseStudyLink: '/fallbeispiele',
+    caseStudyLink: '',
   },
   {
     brand: 'VORWERK',
@@ -84,7 +84,7 @@ const baseTestimonials: Testimonial[] = [
     author: 'Kristina Braun',
     role: 'Specialist Operations People & Culture',
     company: 'Vorwerk Elektrowerke GmbH & Co. KG',
-    caseStudyLink: '/fallbeispiele',
+    caseStudyLink: '',
   },
 ];
 
@@ -212,13 +212,13 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
             {item.role && <div className="text-sm md:text-xs text-foreground-500 mt-0.5">{item.role}</div>}
             <div className="text-sm md:text-xs text-primary-500 font-semibold mt-0.5">{item.company}</div>
           </div>
-          <a
+          {item.caseStudyLink && <a
             href={item.caseStudyLink}
             className="inline-flex items-center justify-center min-h-[44px] border-2 border-foreground-950 text-foreground-950 text-sm md:text-xs font-black tracking-widest px-4 py-2 hover:bg-primary-500 hover:border-primary-500 hover:text-background-50 transition-all duration-300 whitespace-nowrap"
             style={{ borderRadius: 0 }}
           >
             FALLSTUDIE LESEN
-          </a>
+          </a>}
         </div>
       </div>
     </div>

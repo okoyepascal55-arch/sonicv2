@@ -4,6 +4,7 @@ import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
 
 const POS_CHALLENGES: ChallengeItem[] = [
   {
@@ -28,10 +29,10 @@ const POS_CHALLENGES: ChallengeItem[] = [
 ];
 
 const SOLUTIONS = [
-  { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20display%20stand%20retail%20shelf%20layout%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-display-pos-sol-1&orientation=squarish', num: '01', accent: 'Kreation & Print', title: 'POS-Materialien', desc: 'Möbel, Displays, Aufsteller, Regalstopper, Wobbler, Plakate, Flyer, Beklebungen, Gebäudebanner uvm.' },
-  { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20person%20star%20talent%20team%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-person-pos-sol-2&orientation=squarish', num: '02', accent: 'Team & Talent', title: 'Geschultes Personal', desc: 'Professionelle Promoter für Produktvorführungen, Verkaufsunterstützung, Sales-Außendienst und Regalpflege.' },
-  { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20map%20location%20pin%20area%20management%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-map-pos-sol-3&orientation=squarish', num: '03', accent: 'Flächenmanagement', title: 'Flächenmanagement', desc: 'Optimale Platzierung deiner Produkte im Handel, dauerhaft. Zweitplatzierungen, Warenpräsentation, Regalpflege.' },
-  { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20dashboard%20analytics%20chart%20performance%20tracking%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-dash-pos-sol-4&orientation=squarish', num: '04', accent: 'Analytics & SRT', title: 'Performance-Tracking', desc: 'Detaillierte Auswertung von Verkaufszahlen und ROI deiner POS-Aktivitäten. Tagesaktuell im Sonic Reporting Tool (SRT).' },
+  { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20display%20stand%20retail%20shelf%20layout%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-display-pos-sol-1&orientation=squarish', num: '01', key: 'card1' },
+  { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20person%20star%20talent%20team%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-person-pos-sol-2&orientation=squarish', num: '02', key: 'card2' },
+  { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20map%20location%20pin%20area%20management%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-map-pos-sol-3&orientation=squarish', num: '03', key: 'card3' },
+  { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20dashboard%20analytics%20chart%20performance%20tracking%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-dash-pos-sol-4&orientation=squarish', num: '04', key: 'card4' },
 ];
 
 const ASSETS = [
@@ -85,12 +86,12 @@ const FALLBACK_ASSETS = [
 ];
 
 const STEPS = [
-  { num: '01', icon: 'ri-search-line', title: 'Bedarfsanalyse', desc: 'Wir analysieren Marke, Produkte, Zielgruppen und POS-Anforderungen.', time: '1–2 Tage', imgIndex: 0 },
-  { num: '02', icon: 'ri-lightbulb-line', title: 'Konzeptentwicklung', desc: 'Kreative POS-Lösungen und Materialien für maximale Aufmerksamkeit: Kampagnenkreation oder -adaption, Design, Materialauswahl.', time: '1–4 Wochen', imgIndex: 1 },
-  { num: '03', icon: 'ri-hammer-line', title: 'Produktion', desc: 'Herstellung aller POS-Materialien in der passenden Qualität: Print, Displays, Möbelsysteme.', time: '1–4 Wochen', imgIndex: 2 },
-  { num: '04', icon: 'ri-user-add-line', title: 'Personal-Recruiting', desc: 'Auswahl und Schulung qualifizierter Promoter bzw. Sales Supporter für deine Kampagne.', time: '1–2 Wochen', imgIndex: 3 },
-  { num: '05', icon: 'ri-truck-line', title: 'Rollout', desc: 'Koordinierte Auslieferung und Platzierung in allen Verkaufsstellen. Logistik über unser eigenes Warehouse.', time: '1–4 Wochen', imgIndex: 4 },
-  { num: '06', icon: 'ri-bar-chart-box-line', title: 'Monitoring & Reporting', desc: 'Kontinuierliche Überwachung und detaillierte Performance-Auswertung. Im SRT, tagesaktuell.', time: 'Ongoing', imgIndex: 5 },
+  { num: '01', icon: 'ri-search-line', key: 'step1', imgIndex: 0 },
+  { num: '02', icon: 'ri-lightbulb-line', key: 'step2', imgIndex: 1 },
+  { num: '03', icon: 'ri-hammer-line', key: 'step3', imgIndex: 2 },
+  { num: '04', icon: 'ri-user-add-line', key: 'step4', imgIndex: 3 },
+  { num: '05', icon: 'ri-truck-line', key: 'step5', imgIndex: 4 },
+  { num: '06', icon: 'ri-bar-chart-box-line', key: 'step6', imgIndex: 5 },
 ];
 
 const FALLBACK_PROCESS = [
@@ -106,11 +107,15 @@ export default function POSContent() {
   const tChallengeHeading = useText('leistungen_pos_content', 'pos-challenge-heading', 'POS-Qualität sichern ist aufwändig.');
   const tChallengeSub = useText('leistungen_pos_content', 'pos-challenge-sub', 'Warum es die Big Idea nicht immer bis ins Outlet schafft.');
   const tSolutionHeading = useText('leistungen_pos_content', 'pos-solution-heading', 'Dein POS-Komplettpaket.');
-  const tSolutionSub = useText('leistungen_pos_content', 'pos-solution-sub', 'Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.');
+  const tSolutionSub = useText('leistungen_pos_content', 'pos-solution-sub', 'Immer mit dem Ziel: Abverkauf unterstützen, Wachstum steigern, Marken erfolgreicher machen.');
   const tAssetsHeading = useText('leistungen_pos_content', 'pos-assets-heading', 'POS-Materialien & Branding');
   const tAssetsSub = useText('leistungen_pos_content', 'pos-assets-sub', 'Wir setzen deine Vorstellung vom idealen POS-Auftritt um.');
   const tProcessHeading = useText('leistungen_pos_content', 'pos-process-heading', 'So arbeiten wir');
-  const tProcessSub = useText('leistungen_pos_content', 'pos-process-sub', 'Von der Planung bis zur Umsetzung: professionell und effizient.');
+  const tProcessSub = useText('leistungen_pos_content', 'pos-process-sub', 'Von der Bedarfsanalyse bis zum Reporting: echtes Handwerk von Anfang bis Ende.');
+  const tSol = useLeistungenText('leistungen_pos_solutions');
+  const tProc = useLeistungenText('leistungen_pos_process');
+  const solutions = SOLUTIONS.map((s) => ({ ...s, accent: tSol[`${s.key}-accent`], title: tSol[`${s.key}-title`], desc: tSol[`${s.key}-desc`] }));
+  const steps = STEPS.map((st) => ({ ...st, title: tProc[`${st.key}-title`], desc: tProc[`${st.key}-desc`], time: tProc[`${st.key}-time`] }));
   const { images: assetsImages } = useMediaStore('leistungen_pos_assets_images');
   const { images: processImages } = useMediaStore('leistungen_pos_process_images');
   const { images: solutionWoodIcons } = useMediaStore('leistungen_pos_solution_wood_icons');
@@ -160,13 +165,13 @@ export default function POSContent() {
           <div className="mb-10 md:mb-14 text-center">
             <div className="flex items-center justify-center gap-3 mb-5">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Lösung</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tSol.eyebrow}</span>
             </div>
             <h2 className="sonic-h2 text-foreground-950 ">{tSolutionHeading}</h2>
             <p className="text-foreground-950/55 text-sm md:text-base max-w-2xl mx-auto">{tSolutionSub}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {SOLUTIONS.map((s, i) => (
+            {solutions.map((s, i) => (
               <div
                 key={s.num}
                 className="relative overflow-hidden p-6"
@@ -295,7 +300,7 @@ export default function POSContent() {
           <div className="text-center mb-12 md:mb-16">
             <div className="flex items-center justify-center gap-3 mb-5">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Ablauf</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tProc.eyebrow}</span>
             </div>
             <h2 className="sonic-h2 text-white">{tProcessHeading}</h2>
             <p className="text-white/40 text-sm mt-3">{tProcessSub}</p>
@@ -306,9 +311,9 @@ export default function POSContent() {
             {/* Desktop: full circle timeline */}
             <div className="hidden md:block">
               <div className="absolute top-[28px] left-[8.33%] right-[8.33%] h-px bg-white/10" />
-              <div className="absolute top-[28px] left-[8.33%] h-px bg-primary-500 transition-all duration-700 ease-out" style={{ width: `${(activeStep / (STEPS.length - 1)) * 83.33}%` }} />
+              <div className="absolute top-[28px] left-[8.33%] h-px bg-primary-500 transition-all duration-700 ease-out" style={{ width: `${(activeStep / (steps.length - 1)) * 83.33}%` }} />
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
-                {STEPS.map((step, i) => (
+                {steps.map((step, i) => (
                   <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
                     <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
                       <i className={`${step.icon} text-xl`} />
@@ -321,7 +326,7 @@ export default function POSContent() {
             </div>
             {/* Mobile: horizontal scroll pill tabs */}
             <div className="md:hidden flex gap-2 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
-              {STEPS.map((step, i) => (
+              {steps.map((step, i) => (
                 <button key={i} onClick={() => setActiveStep(i)}
                   className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2.5 border transition-all duration-300 cursor-pointer ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950' : 'bg-foreground-950 border-white/20 text-white/50'}`}>
                   <i className={`${step.icon} text-base`} />
@@ -338,17 +343,17 @@ export default function POSContent() {
               <div className="md:col-span-5 relative overflow-hidden border-b md:border-b-0 md:border-r border-white/10 min-h-[240px] md:min-h-[380px]">
                 <img
                   src={getProcessImg(activeStep)}
-                  alt={STEPS[activeStep].title}
+                  alt={steps[activeStep].title}
                   className="w-full h-full object-cover object-top"
                   loading="lazy"
                   decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/40" />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">Schritt {STEPS[activeStep].num}</span>
+                  <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">Schritt {steps[activeStep].num}</span>
                 </div>
                 <div className="absolute bottom-4 left-4 flex gap-1.5">
-                  {STEPS.map((_, i) => (
+                  {steps.map((_, i) => (
                     <button key={i} onClick={() => setActiveStep(i)} className={`h-1 transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-primary-500' : 'w-3 bg-white/40'}`} />
                   ))}
                 </div>
@@ -357,11 +362,11 @@ export default function POSContent() {
               {/* Right: Content */}
               <div className="md:col-span-7 p-8 md:p-12 flex flex-col justify-center min-h-[240px] md:min-h-[380px]">
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {STEPS[activeStep].num}</span>
-                  <span className="px-3 py-1.5 bg-primary-500 text-foreground-950 text-xs font-black">{STEPS[activeStep].time}</span>
+                  <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {steps[activeStep].num}</span>
+                  <span className="px-3 py-1.5 bg-primary-500 text-foreground-950 text-xs font-black">{steps[activeStep].time}</span>
                 </div>
-                <h3 className="sonic-h3 text-white mb-4">{STEPS[activeStep].title}</h3>
-                <p className="text-white/55 text-sm md:text-base leading-relaxed">{STEPS[activeStep].desc}</p>
+                <h3 className="sonic-h3 text-white mb-4">{steps[activeStep].title}</h3>
+                <p className="text-white/55 text-sm md:text-base leading-relaxed">{steps[activeStep].desc}</p>
 
                 {/* Navigation */}
                 <div className="mt-8 flex items-center gap-4">
@@ -373,18 +378,18 @@ export default function POSContent() {
                     <i className="ri-arrow-left-line text-lg" />
                   </button>
                   <div className="flex gap-2">
-                    {STEPS.map((_, i) => (
+                    {steps.map((_, i) => (
                       <button key={i} onClick={() => setActiveStep(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-primary-500' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
                     ))}
                   </div>
                   <button
-                    onClick={() => setActiveStep(Math.min(STEPS.length - 1, activeStep + 1))}
-                    disabled={activeStep === STEPS.length - 1}
+                    onClick={() => setActiveStep(Math.min(steps.length - 1, activeStep + 1))}
+                    disabled={activeStep === steps.length - 1}
                     className="w-11 h-11 border border-white/15 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all disabled:opacity-15 disabled:cursor-not-allowed cursor-pointer"
                   >
                     <i className="ri-arrow-right-line text-lg" />
                   </button>
-                  <span className="text-white/25 text-xs font-bold ml-2">{activeStep + 1} / {STEPS.length}</span>
+                  <span className="text-white/25 text-xs font-bold ml-2">{activeStep + 1} / {steps.length}</span>
                 </div>
               </div>
             </div>

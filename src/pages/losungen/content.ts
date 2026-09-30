@@ -46,7 +46,7 @@ export const SOLUTIONS = {
     steps: [
       { num: '01', title: 'Briefing & Markenverständnis', desc: 'Wir lernen dein Produkt kennen, als wäre es unseres: Positionierung, Zielgruppe, Wettbewerbsumfeld, Retail-Landschaft. Wir verstehen, was dein Produkt besonders macht und warum es gekauft werden soll.', img: 'https://readdy.ai/api/search-image?query=professional%20business%20briefing%20meeting%20team%20around%20table%20with%20brand%20strategy%20documents%20product%20samples%20whiteboard%20notes%20collaborative%20workshop%20modern%20office%20bright%20natural%20light&width=900&height=500&seq=step-mkt-1&orientation=landscape' },
       { num: '02', title: 'Standort- & Einsatzplanung', desc: 'Auf Basis unserer SRT-Daten planen wir gemeinsam: Welche Handelspartner, welche Zeitfenster, welche Personalstärke? Du bekommst einen klaren Rollout-Plan.', img: 'https://readdy.ai/api/search-image?query=strategic%20location%20planning%20map%20on%20large%20screen%20with%20data%20overlays%20retail%20store%20locations%20marked%20team%20analyzing%20deployment%20strategy%20modern%20office%20setting%20professional%20planning%20session&width=900&height=500&seq=step-mkt-2&orientation=landscape' },
-      { num: '03', title: 'Team-Aufbau & Schulung', desc: 'Wir stellen dein Launch-Team zusammen – aus unserem Team und unserem Talentpool mit über 1.700 aktiven Menschen – und schulen es intensiv auf dein Produkt.', img: 'https://readdy.ai/api/search-image?query=brand%20ambassador%20team%20training%20session%20group%20of%20young%20professionals%20learning%20product%20knowledge%20enthusiastic%20trainer%20modern%20training%20room%20corporate%20environment%20engaged%20participants&width=900&height=500&seq=step-mkt-3&orientation=landscape' },
+      { num: '03', title: 'Team-Aufbau & Schulung', desc: 'Wir stellen dein Launch-Team zusammen – aus unserem Team und unserem Talentpool mit über 1.800 aktiven Menschen – und schulen es intensiv auf dein Produkt.', img: 'https://readdy.ai/api/search-image?query=brand%20ambassador%20team%20training%20session%20group%20of%20young%20professionals%20learning%20product%20knowledge%20enthusiastic%20trainer%20modern%20training%20room%20corporate%20environment%20engaged%20participants&width=900&height=500&seq=step-mkt-3&orientation=landscape' },
       { num: '04', title: 'Launch & Aktivierung', desc: 'POS-Aufbau, Promotions, Events, Videoproduktion: Dein Markteintritt, orchestriert über alle Retail-Touchpoints. Koordiniert. Durchgetaktet. Sichtbar.', img: 'https://readdy.ai/api/search-image?query=product%20launch%20activation%20at%20retail%20store%20multiple%20brand%20ambassadors%20at%20branded%20display%20stands%20customers%20engaging%20with%20products%20busy%20retail%20environment%20professional%20execution&width=900&height=500&seq=step-mkt-4&orientation=landscape' },
       { num: '05', title: 'Tracking & Optimierung', desc: 'Live-Dashboards ab Tag 1. Was funktioniert, wird skaliert. Was nicht performt, wird angepasst. Du bekommst laufende Reviews und Handlungsempfehlungen. Nicht erst am Projektende.', img: 'https://readdy.ai/api/search-image?query=performance%20review%20meeting%20team%20analyzing%20live%20dashboard%20data%20on%20large%20screen%20discussing%20optimization%20strategies%20modern%20office%20professional%20business%20review%20session%20charts%20metrics&width=900&height=500&seq=step-mkt-5&orientation=landscape' },
     ],
@@ -217,7 +217,7 @@ export const LOSUNGEN_PAGE_TEXT = {
   alwaysHeading: 'Ganz gleich, wo du stehst',
   alwaysSub: 'Du bekommst immer',
   always1Title: 'Geschulte Talente',
-  always1Desc: '200+ Promoter:innen im Einsatz und über 1.700 Menschen im Talentpool. Geschult, motiviert, zuverlässig.',
+  always1Desc: '200+ Promoter:innen im Einsatz und über 1.800 Menschen im Talentpool. Geschult, motiviert, zuverlässig.',
   always2Title: 'Planung mit Erfahrung',
   always2Desc: 'Das SRT bündelt Daten aus über 1,3 Mio. Einsätzen – für Standortwahl und Einsatzplanung.',
   always3Title: 'Live-Reporting via SRT',
@@ -239,7 +239,7 @@ export const LOSUNGEN_FAQ: { question: string; answer: string }[] = [
   },
   {
     question: 'Wie groß ist der Talentpool?',
-    answer: 'Unser Talentpool umfasst über 1.700 aktive Menschen deutschlandweit. Aus diesem Pool – und bei Bedarf über gezieltes Recruiting – stellen wir das Team für dein Projekt zusammen. Allein im ersten Halbjahr 2026 haben wir 40 neue Kolleginnen und Kollegen eingestellt. Im Schnitt sind unsere Promoter:innen 2,9 Jahre bei uns, viele kennen Handel, Flächen und Kaufverhalten in ihrer Region genau.',
+    answer: 'Unser Talentpool umfasst über 1.800 aktive Menschen deutschlandweit. Aus diesem Pool – und bei Bedarf über gezieltes Recruiting – stellen wir das Team für dein Projekt zusammen. Allein im ersten Halbjahr 2026 haben wir 40 neue Kolleginnen und Kollegen eingestellt. Im Schnitt sind unsere Promoter:innen 2,9 Jahre bei uns, viele kennen Handel, Flächen und Kaufverhalten in ihrer Region genau.',
   },
   {
     question: 'Wie funktioniert die Live-Video-Beratung?',

@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
@@ -19,11 +20,11 @@ const NAV_ITEMS = [
 export default function POSFullServicePage() {
   useSEO({
     title: 'POS Full Service | Sonic Group — Point of Sale Promotion & Retail Activation Deutschland',
-    description: 'POS Full Service von Sonic Group: 2.000+ geschulte Markenbotschafter für Shop-in-Shop, Produktdemos und Live-Promotions im deutschen Handel. Messbare Umsatzsteigerung am Point of Sale — DACH-weit skalierbar.',
+    description: 'POS Full Service von Sonic Group: POS-Materialien, Shop-in-Shop, geschultes Personal, Flächenmanagement und Reporting im SRT aus einer Hand. Über 1.000 betreute Stores und mehr als 1,3 Mio. Einsätze — seit 2007.',
     keywords: 'POS Full Service Deutschland, Point of Sale Promotion, Retail Activation DACH, Shop in Shop, Markenbotschafter, Produktdemonstration Retail, Promoter Agentur Deutschland, Verkaufsförderung POS, Brand Ambassador POS, Außendienst Promotion, Field Force POS, POS Marketing Agentur',
     canonical: 'https://sonic-group.de/leistungen/pos-full-service',
     ogTitle: 'POS Full Service — Sonic Group DACH',
-    ogDescription: 'Geschulte Markenbotschafter, Shop-in-Shop-Konzepte und POS-Promotions für messbare Umsatzsteigerung im deutschen Handel.',
+    ogDescription: 'Geschultes Personal, Shop-in-Shop-Konzepte und POS-Promotions aus einer Hand — um den Abverkauf deiner Marke im Handel zu unterstützen.',
     jsonLd: [
       { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
@@ -40,6 +41,7 @@ export default function POSFullServicePage() {
   })
 
   const heroRef = useRef<HTMLDivElement>(null);
+  const tCta = useLeistungenText('leistungen_pos_cta');
 
   return (
     <div className="min-h-[100dvh] overflow-x-hidden bg-white">
@@ -65,16 +67,11 @@ export default function POSFullServicePage() {
 
       <div id="kontakt">
         <LeistungenKontakt
-          headline="Bereit für"
-          headlineAccent="POS-Performance?"
-          subline="Lass uns in 30 Minuten besprechen, wie wir deinen Point of Sale zum Point of Success machen."
-          checkItems={[
-            { text: 'Kostenfreies 30-Minuten-Strategiegespräch' },
-            { text: 'Deine Ziele, unser modulares System' },
-            { text: 'Einblick in unsere POS-Referenzen' },
-            { text: 'Erste Einschätzung zur Timeline' },
-          ]}
-          ctaLabel="POS-Projekt besprechen"
+          headline={tCta.headline}
+          headlineAccent={tCta['headline-accent']}
+          subline={tCta.subline}
+          checkItems={splitList(tCta['check-items']).map((text) => ({ text }))}
+          ctaLabel={tCta['cta-label']}
           ctaMailSubject="POS Full Service Beratung"
           ctaIcon="ri-store-line"
         />

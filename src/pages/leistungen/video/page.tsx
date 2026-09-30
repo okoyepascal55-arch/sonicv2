@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
 import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
@@ -7,6 +7,9 @@ import ClientProof from '@/components/feature/ClientProof';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import VideoHero from './components/VideoHero';
 import VideoContent from './components/VideoContent';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
+import { useMediaStore } from '@/lib/mediaStore';
+import { getYouTubeId } from '@/lib/youtube';
 
 const NAV_ITEMS = [
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
@@ -22,7 +25,7 @@ const NAV_ITEMS = [
 export default function VideoPage() {
   useSEO({
     title: 'Live Video Promotion | Sonic Group — 1:1 Video-Beratung & Live Shopping DACH',
-    description: 'Live Video Promotion von Sonic Group: Professionelle 1:1 Video-Kaufberatung und Live Shopping Events direkt aus unseren Studios in Krefeld. Phygitale Retail-Aktivierung für Marken, die Online- und Offline-Kanäle verbinden wollen — messbar, skalierbar, DACH-weit.',
+    description: 'Live Video Promotion von Sonic Group: 1:1 Video-Kaufberatung und Live Shopping Events direkt aus unseren Studios in Krefeld — über 47.000 Live-Beratungen, Ø 5,5 Min. Gesprächsdauer. Phygitale Retail-Aktivierung für Marken, die Online- und Offline-Kanäle verbinden wollen — messbar, skalierbar, DACH-weit.',
     keywords: 'Live Video Promotion, Video Kaufberatung Deutschland, Live Shopping DACH, Phygital Retail, Video Commerce, Live Video Studio, 1:1 Videoberatung Retail, Shoppable Video, Live Stream Shopping, Virtual Sales Promoter, Video Sales Activation, Online POS Beratung',
     canonical: 'https://sonic-group.de/leistungen/live-video',
     ogTitle: 'Live Video Promotion — Phygital Retail | Sonic Group',
@@ -43,10 +46,15 @@ export default function VideoPage() {
   })
 
   const heroRef = useRef<HTMLDivElement>(null);
+  const tc = useLeistungenText('leistungen_video_cta');
+  // The video block is hidden while no YouTube link is set — hide its nav entry too
+  const { images: ytSection } = useMediaStore('leistungen_video_youtube');
+  const hasVideo = !!(getYouTubeId(ytSection[0]?.url) || getYouTubeId(ytSection[0]?.caption));
+  const navItems = hasVideo ? NAV_ITEMS : NAV_ITEMS.filter((item) => item.id !== 'video');
 
   return (
     <div className="min-h-[100dvh] overflow-x-hidden bg-white">
-      <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
+      <LeistungenPageNav items={navItems} heroRef={heroRef} />
       <div ref={heroRef}>
         <VideoHero />
       </div>
@@ -65,16 +73,11 @@ export default function VideoPage() {
 
       <div id="kontakt">
         <LeistungenKontakt
-          headline="Jetzt Video-Demo"
-          headlineAccent="anfordern."
-          subline="Lass uns besprechen, wie (Live) Video Promotion deine Marke weiterbringt."
-          checkItems={[
-            { text: 'Kostenfreies 30-Minuten-Strategiegespräch' },
-            { text: 'Live-Demo in einem unserer Studios' },
-            { text: 'Individuelle Kosten-Nutzen-Analyse' },
-            { text: 'Erste Einschätzung zur Timeline' },
-          ]}
-          ctaLabel="Beratungsgespräch buchen"
+          headline={tc['headline']}
+          headlineAccent={tc['headline-accent']}
+          subline={tc['subline']}
+          checkItems={splitList(tc['check-items']).map((text) => ({ text }))}
+          ctaLabel={tc['cta']}
           ctaMailSubject="Video Demo anfragen"
           ctaIcon="ri-video-line"
         />

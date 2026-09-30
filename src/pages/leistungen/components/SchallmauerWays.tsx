@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 
 const FALLBACK_SCHALLMAUER_ICONS = [
   'https://readdy.ai/api/search-image?query=carved%20wooden%20rocket%20launch%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-way-rocket-leist-1&orientation=squarish',
@@ -25,8 +26,8 @@ const WAYS: Way[] = [
     key: 'markteintritt',
     num: '01',
     title: 'Markteintritt',
-    headline: 'Neu im Markt. Maximale Sichtbarkeit.',
-    desc: 'Dein Produkt ist kaufbereit, aber noch unbekannt? Wir ändern das. Mit Menschen, die deine Marke verstehen und sie am Point of Sale, per Video und bei Events zum Leben erwecken.',
+    headline: 'Neu im Markt. Schnell sichtbar.',
+    desc: 'Dein Produkt ist kaufbereit, aber noch unbekannt? Wir ändern das. Mit Menschen, die deine Marke verstehen und sie am Point of Sale, per Video und bei Events erlebbar machen.',
     bullets: [
       'Brand Ambassadors am POS',
       'Datenbasierte Standortplanung mit SRT',
@@ -41,12 +42,12 @@ const WAYS: Way[] = [
     key: 'absatz',
     num: '02',
     title: 'Absatz steigern',
-    headline: 'Produkt im Regal. Sell-out über Plan.',
-    desc: 'Unsere Field-Force-Teams sind deine verlängerte Vertriebsmannschaft am POS: daten- und ROI-getrieben geplant, lückenlos reportet. Du weißt vorher, was du erwarten kannst.',
+    headline: 'Produkt im Regal. Abverkauf mit Plan.',
+    desc: 'Unsere Field-Force-Teams sind deine verlängerte Vertriebsmannschaft am POS: datenbasiert geplant, lückenlos reportet. Du weißt vorher, womit du realistisch rechnen kannst.',
     bullets: [
-      'Festangestellte Promoter mit Produktwissen',
+      'Geschulte Promoter mit Produktwissen',
       'Forecasting vor dem ersten Einsatz',
-      'GPS-Tracking & Live-Dashboard',
+      'Standort-Check-in & Live-Dashboard',
       'Kontinuierliche Optimierung',
     ],
     cta: 'Absatz steigern',
@@ -58,12 +59,12 @@ const WAYS: Way[] = [
     num: '03',
     title: 'Omnichannel',
     headline: 'Human Power in allen Kanälen.',
-    desc: 'Die größte Schwachstelle im Omnichannel? Beratung. Unsere Lösung: Live-Video-Kaufberatung, erreichbar im Online-Shop oder per QR-Code auf der Verpackung.',
+    desc: 'Die größte Lücke im Omnichannel? Beratung. Unsere Antwort: Live-Video-Kaufberatung, erreichbar im Online-Shop oder per QR-Code auf der Verpackung.',
     bullets: [
       'Live-Video im Online-Shop',
       'QR-Code auf Verpackung & POS-Display',
-      'Geschulte Video-Berater aus dem Talentepool',
-      'Skalierbar von 100 bis 10.000 Calls/Monat',
+      'Geschulte Video-Berater aus dem Talentpool',
+      'Skalierbar vom Test bis zum Dauerbetrieb',
     ],
     cta: 'Omnichannel starten',
     link: '/losungen?open=omnichannel',
@@ -76,7 +77,20 @@ export default function SchallmauerWays() {
   const [active, setActive] = useState(0);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const navigate = useNavigate();
-  const way = WAYS[active];
+  const t = useLeistungenText('leistungen_overview_ways');
+  const ways = WAYS.map((w, i) => {
+    const n = i + 1;
+    return {
+      ...w,
+      title: t[`w${n}-title`] || w.title,
+      headline: t[`w${n}-headline`] || w.headline,
+      desc: t[`w${n}-desc`] || w.desc,
+      bullets: t[`w${n}-bullets`] ? splitList(t[`w${n}-bullets`]) : w.bullets,
+      cta: t[`w${n}-cta`] || w.cta,
+      tags: t[`w${n}-tags`] ? splitList(t[`w${n}-tags`]) : w.tags,
+    };
+  });
+  const way = ways[active];
 
   const getWoodIcon = (index: number) => {
     const item = woodIcons[index];
@@ -94,25 +108,25 @@ export default function SchallmauerWays() {
           {/* v3 eyebrow — 28px lime hairline flanking label */}
           <div className="flex items-center justify-center gap-3 mb-5">
             <span className="w-7 h-0.5 flex-shrink-0" style={{ background: 'oklch(0.81 0.19 115)' }} aria-hidden="true" />
-            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Retail-Schallmauer</span>
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{t['eyebrow']}</span>
             <span className="w-7 h-0.5 flex-shrink-0" style={{ background: 'oklch(0.81 0.19 115)' }} aria-hidden="true" />
           </div>
           {/* Ghost numeral — 56px / 900 / 6% opacity per brief */}
           <div className="relative inline-block mb-2">
             <span aria-hidden="true" className="absolute pointer-events-none select-none font-black" style={{ fontSize: '56px', lineHeight: 0.8, letterSpacing: '-0.06em', color: 'oklch(0.16 0.006 118 / 0.06)', top: '-20px', left: '50%', transform: 'translateX(-50%)', zIndex: 0, whiteSpace: 'nowrap' }}>03</span>
             <h2 className="sonic-h2 text-foreground-950 relative" style={{ zIndex: 1 }}>
-              Dein Weg zum{' '}
-              <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' } as React.CSSProperties}>Retail-Erfolg</span>
+              {t['heading']}{' '}
+              <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' } as React.CSSProperties}>{t['heading-accent']}</span>
             </h2>
           </div>
           <p className="text-sm md:text-base text-foreground-600 max-w-xl mx-auto">
-            Wähle deinen Pfad — oder kombiniere alle drei für maximale Marktdurchdringung.
+            {t['sub']}
           </p>
         </div>
 
         {/* Challenge Cards */}
         <div className="grid grid-cols-1 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {WAYS.map((w, i) => {
+          {ways.map((w, i) => {
             const isHovered = hoveredCard === w.key;
             const woodIcon = getWoodIcon(i);
             return (
@@ -130,7 +144,7 @@ export default function SchallmauerWays() {
                     : '0 2px 12px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.06)',
                   borderRadius: 0,
                 }}
-                onMouseEnter={() => { setHoveredCard(w.key); setActive(WAYS.findIndex(x => x.key === w.key)); }}
+                onMouseEnter={() => { setHoveredCard(w.key); setActive(ways.findIndex(x => x.key === w.key)); }}
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 {/* Lime accent top bar */}

@@ -9,17 +9,17 @@ export default function TalentpoolHero() {
     ? resolveImageUrl(talentpoolHeroImages[0].url)
     : 'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg';
 
-  const tBadge = useText('leistungen_talentpool', 'talentpool-hero-badge', 'Talentepool');
-  const tH1Line1 = useText('leistungen_talentpool', 'talentpool-hero-heading-line1', '>2.000 Talente.');
-  const tH1Accent = useText('leistungen_talentpool', 'talentpool-hero-heading-accent', 'Festangestellt.');
-  const tSubtitle = useText('leistungen_talentpool', 'talentpool-hero-subtitle', 'Keine Freelancer. Keine Zeitarbeit. Echte Markenbotschafter.');
-  const tDesc = useText('leistungen_talentpool', 'talentpool-hero-description', 'Unser Talentepool umfasst über 2.000 handverlesene, festangestellte Markenbotschafter deutschlandweit — trainiert, motiviert und live in ihrer eigenen Zielerreichung getrackt.');
+  const tBadge = useText('leistungen_talentpool', 'talentpool-hero-badge', 'Talentpool');
+  const tH1Line1 = useText('leistungen_talentpool', 'talentpool-hero-heading-line1', '>1.800 Talente.');
+  const tH1Accent = useText('leistungen_talentpool', 'talentpool-hero-heading-accent', 'Echte Markenbotschafter.');
+  const tSubtitle = useText('leistungen_talentpool', 'talentpool-hero-subtitle', 'Handverlesen. Geschult. Im Einsatz bei Sonic angestellt.');
+  const tDesc = useText('leistungen_talentpool', 'talentpool-hero-description', 'Unser Talentpool umfasst über 1.800 aktive Menschen deutschlandweit — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit Blick auf die eigene Zielerreichung, live im SRT.');
 
   return (
     <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
       <img
         src={heroImage}
-        alt="Talentepool Markenbotschafter"
+        alt="Talentpool Markenbotschafter"
         className="absolute inset-0 w-full h-full object-cover object-top"
       />
       <div

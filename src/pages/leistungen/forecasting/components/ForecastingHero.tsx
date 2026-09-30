@@ -2,6 +2,7 @@ import React from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
 
 export default function ForecastingHero() {
   const { images: forecastHeroImages } = useMediaStore('leistungen_forecasting_images');
@@ -12,8 +13,10 @@ export default function ForecastingHero() {
   const tBadge = useText('leistungen_forecasting', 'forecasting-hero-badge', 'Forecasting');
   const tH1Line1 = useText('leistungen_forecasting', 'forecasting-hero-heading-line1', 'Plausible');
   const tH1Accent = useText('leistungen_forecasting', 'forecasting-hero-heading-accent', 'Prognosen.');
-  const tSubtitle = useText('leistungen_forecasting', 'forecasting-hero-subtitle', 'Bevor der erste Einsatz startet, weißt du schon, was du erwarten kannst.');
-  const tDesc = useText('leistungen_forecasting', 'forecasting-hero-description', 'Auf Basis von historischen Sell-out-Daten, Standort‑Performance und Marktintelligenz prognostizieren wir deine Ergebnisse — datenbasiert, nachvollziehbar, belastbar.');
+  const tSubtitle = useText('leistungen_forecasting', 'forecasting-hero-subtitle', 'Bevor der erste Einsatz startet, weißt du, womit du realistisch rechnen kannst.');
+  const tDesc = useText('leistungen_forecasting', 'forecasting-hero-description', 'Aus Kunden-, Sonic-, Staff- und Handelsdaten im SRT leiten wir her, was dein Projekt erwarten kann — datenbasiert, nachvollziehbar, belastbar.');
+
+  const tBtn = useLeistungenText('leistungen_forecasting_hero_buttons');
 
   return (
     <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
@@ -62,7 +65,7 @@ export default function ForecastingHero() {
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line" />
-            Beratungsgespräch buchen
+            {tBtn.primary}
           </a>
 
           <a
@@ -70,7 +73,7 @@ export default function ForecastingHero() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
             className="inline-flex items-center gap-2 border-2 border-white/25 text-white px-6 py-3 font-black hover:border-primary-500 hover:text-primary-500 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
-            SRT erkunden
+            {tBtn.secondary}
             <i className="ri-arrow-right-line" />
           </a>
         </div>

@@ -1,6 +1,7 @@
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
 
 export default function VideoHero() {
   const { images: videoHeroImages } = useMediaStore('leistungen_video_images');
@@ -8,6 +9,7 @@ export default function VideoHero() {
     ? resolveImageUrl(videoHeroImages[0].url)
     : 'https://www.sonic-group.de/wp-content/uploads/2023/06/LVP_NEU.jpg';
 
+  const tBtn = useLeistungenText('leistungen_video_hero_buttons');
   const tBadge = useText('leistungen_video', 'video-hero-badge', '(Live) Video');
   const tH1Line1 = useText('leistungen_video', 'video-hero-heading-line1', 'Live verkaufen.');
   const tH1Accent = useText('leistungen_video', 'video-hero-heading-accent', 'Digital begeistern.');
@@ -57,14 +59,14 @@ export default function VideoHero() {
             style={{ borderRadius: 0 }}
           >
             <i className="ri-calendar-line"></i>
-            Beratung buchen
+            {tBtn['primary']}
           </a>
           <a
             href="/leistungen/pos-full-service"
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
             className="inline-flex items-center gap-2 border-2 border-white/25 text-white px-6 py-3 font-black hover:border-primary-500 hover:text-primary-500 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
-            POS Full Service
+            {tBtn['secondary']}
             <i className="ri-arrow-right-line"></i>
           </a>
         </div>

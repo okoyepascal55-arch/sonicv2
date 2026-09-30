@@ -2,6 +2,7 @@ import React from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
 
 export default function EventsHero() {
   const { images: eventsHeroImages } = useMediaStore('leistungen_events_images');
@@ -13,7 +14,8 @@ export default function EventsHero() {
   const tH1Line1 = useText('leistungen_events', 'events-hero-heading-line1', 'Live‑Kommunikation,');
   const tH1Accent = useText('leistungen_events', 'events-hero-heading-accent', 'die begeistert.');
   const tSubtitle = useText('leistungen_events', 'events-hero-subtitle', 'Konzept. Personal. Logistik. Wir präsentieren deine Marke da, wo deine Zielgruppe ist.');
-  const tDesc = useText('leistungen_events', 'events-hero-description', 'Events, Messen, Roadshows und mehr. Vor Ort, auf Tour und hybrid.');
+  const tBtn = useLeistungenText('leistungen_events_hero_buttons');
+  const tDesc = useText('leistungen_events', 'events-hero-description', 'Events, Messen, Roadshows und mehr. Vor Ort, auf Tour und hybrid. Bisher: über 200 Events und mehr als 30.000 Kontakte.');
 
   return (
     <section
@@ -65,7 +67,7 @@ export default function EventsHero() {
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line" />
-            Beratung buchen
+            {tBtn['cta-primary']}
           </a>
 
           <a
@@ -73,7 +75,7 @@ export default function EventsHero() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
             className="inline-flex items-center gap-2 border-2 border-white/25 text-white px-6 py-3 font-black hover:border-primary-500 hover:text-primary-500 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
-            Events &amp; Messen
+            {tBtn['cta-secondary']}
             <i className="ri-arrow-right-line" />
           </a>
         </div>

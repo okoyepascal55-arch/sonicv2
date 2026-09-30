@@ -79,7 +79,7 @@ const SERVICES_SCHEMA = {
       item: {
         '@type': 'Service',
         name: 'Staff as a Service',
-        description: '2.000+ festangestellte Promoter und Brand Ambassadors für Retail, Events und POS im DACH-Raum.',
+        description: 'Über 1.800 Menschen im Talentpool und 200+ Promoter:innen im Einsatz – für Retail, Events und POS.',
         url: 'https://sonic-group.de/leistungen/staff-as-a-service',
         provider: { '@type': 'Organization', name: 'Sonic Group' },
         areaServed: ['DE', 'AT', 'CH'],

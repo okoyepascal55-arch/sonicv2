@@ -9,6 +9,7 @@ import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { getYouTubeId, youTubeEmbedUrl } from '@/lib/youtube';
 import { useText } from '@/hooks/useText';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
 
 const VIDEO_CHALLENGES: ChallengeItem[] = [
   {
@@ -37,14 +38,8 @@ const SOLUTIONS = [
   { woodIcon: '', num: '03', accent: 'QR Backup', title: 'Retail: QR-Code Backup', desc: 'Die Field Force ist bspw. an 2 Tagen pro Woche im Outlet? Per QR-Code am Regal bzw. auf der Packung kann das Studio-Team jeden Tag live erreicht werden.' },
 ];
 
-const ADVANTAGES = [
-  { woodIcon: '', num: '01', accent: 'Kaufort', title: 'Am Einkaufsort', desc: 'Video für E-Commerce, Field Force für Retail: Kurz vor dem Kaufabschluss sprichst du mit deinen Kunden. Live.' },
-  { woodIcon: '', num: '02', accent: 'Reichweite', title: 'Mehr Reichweite', desc: 'Erreiche mit Aufzeichnungen tausende potenzielle Kunden gleichzeitig, unabhängig vom Standort.' },
-  { woodIcon: '', num: '03', accent: 'Analytics', title: 'Messbare Ergebnisse', desc: 'Echtzeit-Analytics zu Viewern, Engagement und Conversions. Jeder Call wird getrackt: Dauer, Ergebnis, Kundenzufriedenheit.' },
-  { woodIcon: '', num: '04', accent: 'Marktforschung', title: 'Marktforschung', desc: 'Aus den Fragen der Kunden lässt sich ableiten, wie gut die Kommunikationsstrategie (Ads, Shop) funktioniert.' },
-  { woodIcon: '', num: '05', accent: 'Interaktion', title: 'Interaktivität', desc: 'Direkter Dialog mit Kunden durch Live-Chat, Q&A und Produktvorführungen in Echtzeit. Mit menschlicher Qualität.' },
-  { woodIcon: '', num: '06', accent: 'Content', title: 'Wiederverwendbar', desc: 'Aufgezeichnete Sessions können als On-Demand-Content weiterverwendet werden und so bei Beratung und Verkauf laufend unterstützen.' },
-];
+// Card texts: Dashboard → Text → Live Video — Vorteile (leistungen_video_advantages)
+const ADVANTAGE_NUMS = ['01', '02', '03', '04', '05', '06'];
 
 const FORMATS = [
   {
@@ -91,15 +86,16 @@ const FORMATS = [
   },
 ];
 
+// Row labels: Dashboard → Text → Live Video — Phygital (leistungen_video_phygital); checkmarks stay here
 const PHYGITAL_COMPARE = [
-  { label: 'Erreicht Online-Shopper', video: true, field: false },
-  { label: 'Erreicht Retail-Shopper', video: false, field: true },
-  { label: 'Erhöht Conversion Rate', video: true, field: false },
-  { label: 'Generiert Leads und Sales', video: true, field: true },
-  { label: '24/7 abrufbar (als Aufnahme)', video: true, field: false },
-  { label: 'Während Öffnungszeiten', video: false, field: true },
-  { label: 'Nutzbar im Retail (QR-Code)', video: true, field: false },
-  { label: 'Promoter nutzbar für Videos', video: false, field: true },
+  { key: 'row1', video: true, field: false },
+  { key: 'row2', video: false, field: true },
+  { key: 'row3', video: true, field: false },
+  { key: 'row4', video: true, field: true },
+  { key: 'row5', video: true, field: false },
+  { key: 'row6', video: false, field: true },
+  { key: 'row7', video: true, field: false },
+  { key: 'row8', video: false, field: true },
 ];
 
 const FALLBACK_FORMATS = [
@@ -115,15 +111,22 @@ export default function VideoContent() {
   const tChallengeHeading = useText('leistungen_video_content', 'video-challenge-heading', 'Bewegtbild ist die Königsklasse.');
   const tChallengeSub = useText('leistungen_video_content', 'video-challenge-sub', 'Wenn (Live) Video Shopping einfach wäre, würde es jede Marke machen. Ist es aber nicht.');
   const tSolutionHeading = useText('leistungen_video_content', 'video-solution-heading', 'Sonic (Live) Video im Full Service.');
-  const tSolutionSub = useText('leistungen_video_content', 'video-solution-sub', 'Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit.');
+  const tSolutionSub = useText('leistungen_video_content', 'video-solution-sub', 'Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit. All in One: Regisseur, Moderator, Verkäufer.');
   const tAdvantagesHeading = useText('leistungen_video_content', 'video-advantages-heading', 'Darum (Live) Video Promotion');
   const tPhygitalHeading = useText('leistungen_video_content', 'video-phygital-heading', 'Phygital optimal nutzen');
   // YouTube URL from MEDIA dashboard (caption field of leistungen_video_youtube)
   const { images: ytSection } = useMediaStore('leistungen_video_youtube');
   const ytId = getYouTubeId(ytSection[0]?.url) || getYouTubeId(ytSection[0]?.caption);
-  // Text dashboard fallback (for title/subline)
-  const tYoutubeTitle   = useText('leistungen_video', 'video-youtube-title',   'Sonic Live Video — Erlebe es in Aktion');
-  const tYoutubeSubline = useText('leistungen_video', 'video-youtube-subline', 'Wie eine erfolgreiche Live-Video-Promotion aussieht — vom Studio bis zum Abverkauf.');
+  // Texts of the video block: Dashboard → Text → Live Video — Video-Block
+  const tVid = useLeistungenText('leistungen_video_showcase');
+  const tYoutubeTitle = tVid['title'];
+  const tAdv = useLeistungenText('leistungen_video_advantages');
+  const tCalc = useLeistungenText('leistungen_video_calculator');
+  const tPhy = useLeistungenText('leistungen_video_phygital');
+  const ADVANTAGES = ADVANTAGE_NUMS.map((num, i) => ({
+    woodIcon: '', num,
+    accent: tAdv[`a${i + 1}-accent`], title: tAdv[`a${i + 1}-title`], desc: tAdv[`a${i + 1}-desc`],
+  }));
   const tFormatsHeading = useText('leistungen_video_content', 'video-formats-heading', '6 Formate. Ein Partner.');
   const { images: formatImages } = useMediaStore('leistungen_video_format_photos');
   const { images: solutionWoodIcons } = useMediaStore('leistungen_video_solution_wood_icons');
@@ -160,12 +163,19 @@ export default function VideoContent() {
   const handleLbNext = () => setLightboxIndex((p) => (p + 1) % lightboxItems.length);
   const handleLbPrev = () => setLightboxIndex((p) => (p - 1 + lightboxItems.length) % lightboxItems.length);
 
-  const avgCallMin = 6;
+  // Ø call duration from the dashboard (presentation: Ø 5,5 Min.) — drives the number of possible calls
+  const avgCallRaw = (tCalc['stat-avg-value'] || '').replace(',', '.').replace(/[^0-9.]/g, '');
+  const avgCallParsed = parseFloat(avgCallRaw);
+  const avgCallMin = Number.isFinite(avgCallParsed) && avgCallParsed > 0 ? avgCallParsed : 5.5;
+  const avgCallDisplay = avgCallMin.toLocaleString('de-DE', { maximumFractionDigits: 1 });
   const callsPerHour = 60 / avgCallMin;
   const totalHours = daysPerWeek * hoursPerDay * (campaignDays / 7);
   const maxCalls = Math.round(totalHours * callsPerHour * teamSize);
-  const estimatedCostPerCall = 4.5;
-  const totalCost = Math.round(maxCalls * estimatedCostPerCall);
+  // Cost estimate unchanged: same basis as before (10 Beratungseinheiten/Std. je Person à 4,50 € = 45 €/Std.),
+  // independent of the Ø call duration, so the € figures stay exactly as they were.
+  const COST_UNITS_PER_HOUR = 10;
+  const estimatedCostPerUnit = 4.5;
+  const totalCost = Math.round(Math.round(totalHours * COST_UNITS_PER_HOUR * teamSize) * estimatedCostPerUnit);
 
   return (
     <>
@@ -194,41 +204,33 @@ export default function VideoContent() {
 
       <WoodenDivider />
 
-      {/* ── Video showcase — third section: shows the solution in action. Link is set in Dashboard → Media → Live Video ── */}
+      {/* ── Video showcase — third section: shows the solution in action. Link is set in Dashboard → Media → Live Video.
+           Without a link the whole block is hidden (no placeholder for visitors). ── */}
+      {ytId && (
       <section id="video" className="sonic-section-md bg-foreground-950 px-4 md:px-6">
         <div className="sonic-container max-w-4xl">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-5">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Video</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tVid['eyebrow']}</span>
             </div>
             <h2 className="sonic-h2 text-white mb-3">{tYoutubeTitle}</h2>
-            <p className="text-foreground-400 text-sm md:text-base max-w-xl mx-auto">{tYoutubeSubline}</p>
+            <p className="text-foreground-400 text-sm md:text-base max-w-xl mx-auto">{tVid['subline']}</p>
           </div>
           <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-            {ytId ? (
-              <iframe
-                src={youTubeEmbedUrl(ytId)}
-                className="absolute inset-0 w-full h-full"
-                style={{ border: 'none' }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={tYoutubeTitle}
-                loading="lazy"
-              />
-            ) : (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4"
-                style={{ border: '2px dashed oklch(var(--primary-500) / 0.3)', background: 'oklch(0.11 0.004 118)' }}>
-                <i className="ri-youtube-line text-primary-500/40 text-5xl" />
-                <p className="text-foreground-400/50 text-sm text-center max-w-xs leading-relaxed px-4">
-                  YouTube Video hier einbetten —<br />
-                  URL im <strong className="text-primary-500/60">Media-Dashboard</strong> eintragen
-                </p>
-              </div>
-            )}
+            <iframe
+              src={youTubeEmbedUrl(ytId)}
+              className="absolute inset-0 w-full h-full"
+              style={{ border: 'none' }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title={tYoutubeTitle}
+              loading="lazy"
+            />
           </div>
         </div>
       </section>
+      )}
 
       {/* Advantages — follows the dark video section directly (dark → dark: no divider) */}
 <section id="vorteile" className="sonic-section-md bg-foreground-950 px-4 md:px-6">
@@ -236,10 +238,10 @@ export default function VideoContent() {
           <div className="text-center mb-14">
             <div className="flex items-center justify-center gap-3 mb-5">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Vorteile</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tAdv['eyebrow']}</span>
             </div>
             <h2 className="sonic-h2 text-white">{tAdvantagesHeading}</h2>
-            <p className="text-white/45 text-sm mt-3">Chancen auf mehr Verkäufe und weniger Retouren.</p>
+            <p className="text-white/45 text-sm mt-3">{tAdv['sub']}</p>
           </div>
           <ScrollCardSection data={ADVANTAGES.map((a, i) => ({ ...a, woodIcon: advantagesWoodIcons[i]?.url ? resolveImageUrl(advantagesWoodIcons[i].url) : a.woodIcon || '' }))} label={`${ADVANTAGES.length} Vorteile — scrollen`} theme="dark" variant="wood" cardWidth="clamp(260px, 24vw, 320px)" cardMinHeight="300px" />
         </div>
@@ -254,18 +256,18 @@ export default function VideoContent() {
           <div className="text-center mb-14">
             <div className="flex items-center justify-center gap-3 mb-5">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Kostenrechner</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tCalc['eyebrow']}</span>
             </div>
-            <h2 className="sonic-h2 text-foreground-950">Live-Video: Kosten pro Jahr</h2>
+            <h2 className="sonic-h2 text-foreground-950">{tCalc['heading']}</h2>
           </div>
 
           <div className="border border-foreground-950/15 bg-white p-8 md:p-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
               {[
-                { label: 'Tage pro Woche', value: daysPerWeek, min: 1, max: 7, setter: setDaysPerWeek },
-                { label: 'Stunden pro Tag', value: hoursPerDay, min: 1, max: 12, setter: setHoursPerDay },
-                { label: 'Teamgröße', value: teamSize, min: 1, max: 10, setter: setTeamSize },
-                { label: 'Kampagnendauer (Tage)', value: campaignDays, min: 7, max: 365, setter: setCampaignDays },
+                { label: tCalc['slider-days'], value: daysPerWeek, min: 1, max: 7, setter: setDaysPerWeek },
+                { label: tCalc['slider-hours'], value: hoursPerDay, min: 1, max: 12, setter: setHoursPerDay },
+                { label: tCalc['slider-team'], value: teamSize, min: 1, max: 10, setter: setTeamSize },
+                { label: tCalc['slider-campaign'], value: campaignDays, min: 7, max: 365, setter: setCampaignDays },
               ].map((param, i) => (
                 <div key={i}>
                   <div className="flex items-center justify-between mb-3">
@@ -291,9 +293,9 @@ export default function VideoContent() {
 
             <div className="border-t border-foreground-950/10 pt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-foreground-950/10">
               {[
-                { val: maxCalls.toLocaleString('de-DE'), label: 'Max. mögliche Calls' },
-                { val: `${avgCallMin} Min.`, label: 'Ø Beratungsdauer' },
-                { val: `~${totalCost.toLocaleString('de-DE')} €`, label: 'Geschätzte Kosten' },
+                { val: maxCalls.toLocaleString('de-DE'), label: tCalc['stat-calls-label'] },
+                { val: `${avgCallDisplay} Min.`, label: tCalc['stat-avg-label'] },
+                { val: `~${totalCost.toLocaleString('de-DE')} €`, label: tCalc['stat-cost-label'] },
               ].map((stat, i) => (
                 <div key={i} className={`p-6 text-center ${i < 2 ? 'border-r border-foreground-950/10' : ''}`}>
                   <div className="text-3xl font-black text-foreground-950 font-mono mb-1">{stat.val}</div>
@@ -304,7 +306,7 @@ export default function VideoContent() {
 
             <div className="mt-8 text-center">
               <a href={`mailto:${CONTACT_EMAIL}?subject=Video-Konzept%20anfragen`} className="inline-flex items-center gap-2 bg-foreground-950 text-white px-8 py-4 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm">
-                <i className="ri-send-plane-line"></i>Video-Konzept anfragen
+                <i className="ri-send-plane-line"></i>{tCalc['button']}
               </a>
             </div>
           </div>
@@ -319,10 +321,10 @@ export default function VideoContent() {
           <div className="text-center mb-14">
             <div className="flex items-center justify-center gap-3 mb-5">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Ideale Kombination</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tPhy['eyebrow']}</span>
             </div>
             <h2 className="sonic-h2 text-white">{tPhygitalHeading}</h2>
-            <p className="text-white/45 text-sm mt-3 max-w-xl mx-auto">Video und Field Force ergänzen sich wunderbar. Clever eingesetzt wird der ROI beider Maßnahmen im Omnichannel erhöht.</p>
+            <p className="text-white/45 text-sm mt-3 max-w-xl mx-auto">{tPhy['sub']}</p>
           </div>
 
           <div className="border border-primary-500/15 overflow-hidden">
@@ -331,19 +333,19 @@ export default function VideoContent() {
               <div className="p-4 text-center border-l border-primary-500/15">
                 <div className="flex items-center justify-center gap-2">
                   <i className="ri-video-line text-primary-500 text-sm"></i>
-                  <span className="text-primary-500 text-xs font-black uppercase tracking-wider">Video</span>
+                  <span className="text-primary-500 text-xs font-black uppercase tracking-wider">{tPhy['col-video']}</span>
                 </div>
               </div>
               <div className="p-4 text-center border-l border-primary-500/15">
                 <div className="flex items-center justify-center gap-2">
                   <i className="ri-user-line text-white/60 text-sm"></i>
-                  <span className="text-white/60 text-xs font-black uppercase tracking-wider">Field Force</span>
+                  <span className="text-white/60 text-xs font-black uppercase tracking-wider">{tPhy['col-field']}</span>
                 </div>
               </div>
             </div>
             {PHYGITAL_COMPARE.map((row, i) => (
               <div key={i} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-b border-white/5 ${i % 2 === 0 ? '' : 'bg-white/2'}`}>
-                <div className="p-4 text-white/60 text-xs font-semibold">{row.label}</div>
+                <div className="p-4 text-white/60 text-xs font-semibold">{tPhy[row.key]}</div>
                 <div className="p-4 flex items-center justify-center border-l border-white/5">
                   {row.video
                     ? <div className="w-5 h-5 flex items-center justify-center bg-primary-500"><i className="ri-check-line text-foreground-950 text-xs"></i></div>

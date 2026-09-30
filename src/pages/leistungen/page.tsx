@@ -9,6 +9,7 @@ import ClientProof from '../../components/feature/ClientProof';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { StackedSectionReveal } from '@/components/feature/SectionReveal';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 
 const NAV_ITEMS = [
   { id: 'zahlen', label: 'Zahlen', icon: 'ri-bar-chart-2-line' },
@@ -27,6 +28,7 @@ export default function LeistungenPage() {
     ogDescription: 'Von POS-Promotion bis Live Video: Alle Retail-Leistungen von Sonic Group für den DACH-Markt.',
   });
 
+  const cta = useLeistungenText('leistungen_overview_cta');
   const heroRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLElement>(null);
 
@@ -66,12 +68,12 @@ export default function LeistungenPage() {
 
       <WoodenDivider />
       <LeistungenKontakt
-        headline="Bereit, die Retail-"
-        headlineAccent="Schallmauer zu durchbrechen?"
-        subline="In 30 Minuten klären wir gemeinsam, welche Leistungen deinen ROI am stärksten steigern."
-        checkItems={[{ text: 'Kostenfreies 30-Minuten-Strategiegespräch' }, { text: 'Alle Leistungen im Überblick' }, { text: 'Erste Einschätzung zur Timeline' }]}
-        ctaLabel="Beratungsgespräch buchen"
-        ctaMailSubject="Beratungsgespräch buchen"
+        headline={cta['headline']}
+        headlineAccent={cta['headline-accent']}
+        subline={cta['subline']}
+        checkItems={splitList(cta['items']).map((text) => ({ text }))}
+        ctaLabel={cta['cta']}
+        ctaMailSubject={cta['cta']}
         ctaIcon="ri-calendar-line"
       />
     </div>

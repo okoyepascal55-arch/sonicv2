@@ -79,7 +79,7 @@ export default function Navigation() {
   const tNavEvents = useText('common_navigation', 'nav-events', 'Events & Messen');
   const tCatTeam = useText('common_navigation', 'nav-cat-team', 'TEAM AUFBAUEN');
   const tNavStaff = useText('common_navigation', 'nav-staff', 'Staff as a Service');
-  const tNavTalentpool = useText('common_navigation', 'nav-talentpool', 'Talentepool');
+  const tNavTalentpool = useText('common_navigation', 'nav-talentpool', 'Talentpool');
   const tNavWarehouse = useText('common_navigation', 'nav-warehouse', 'Warehouse & Logistik');
   const tCatData = useText('common_navigation', 'nav-cat-data', 'DATEN & INSIGHTS');
   const tNavSrt = useText('common_navigation', 'nav-srt', 'SRT — Sonic Reporting Tool');

@@ -34,7 +34,7 @@ export default function SRTPage() {
     keywords: 'Sonic Reporting Tool, SRT Software, Field Force Software, Retail Echtzeit Dashboard, Außendienst Steuerung, GPS Tracking Promoter, Retail Analytics, KI Forecasting Retail, Sell-Out Prognose, Field Marketing Software Germany, Retail Intelligence DACH, POS Reporting Tool, Promoter App',
     canonical: 'https://sonic-group.de/srt',
     ogTitle: 'SRT — Sonic Reporting Tool für Retail Field Force',
-    ogDescription: 'Echtzeit-Dashboards, GPS-Tracking und KI-Forecasting für Field Marketing Teams. Das Tool, das Sonic intern für 2.000+ Promoter nutzt.',
+    ogDescription: 'Echtzeit-Dashboards, GPS-Tracking und KI-Forecasting für Field Marketing Teams. Das Tool, mit dem Sonic seine Promoter:innen im Einsatz steuert.',
     jsonLd: [
       { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },

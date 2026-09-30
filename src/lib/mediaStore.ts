@@ -1260,7 +1260,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
   /* ── HOME: DarumSonic — Wood Icons ── */
   home_darumsonic_wood_icons: [
     { url: '', caption: 'Datenbasierte Vorhersagen' },
-    { url: '', caption: '1.700+ im Talentpool' },
+    { url: '', caption: '1.800+ im Talentpool' },
   ],
 
   /* ── HOME: ClientSuccess — Wood Icons ── */
@@ -1520,7 +1520,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'leistungen_video_images': 'Live Video Promotion',
   'leistungen_events_images': 'Events & Messen',
   'leistungen_staff_images': 'Staff as a Service',
-  'leistungen_talentpool_images': 'Talentepool',
+  'leistungen_talentpool_images': 'Talentpool',
   'leistungen_warehouse_images': 'Warehouse & Logistik',
   'leistungen_forecasting_images': 'Forecasting',
   'leistungen_kreation_images': 'Kreation & Content',

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
 
 const FALLBACK_STAT_ICONS = [
   'https://readdy.ai/api/search-image?query=finely%20hand%20carved%20walnut%20wood%20victory%20laurel%20wreath%20encircling%20an%20upward%20arrow%20sculptural%20relief%20carving%20deep%20shadow%20casting%20warm%20dark%20amber%20brown%20wood%20grain%20visible%20rich%20three%20dimensional%20craftsmanship%20museum%20quality%20artisan%20object%20centered%20on%20pure%20white%20matte%20background%20studio%20product%20photography%20sharp%20focus%20dramatic%20side%20lighting&width=120&height=120&seq=wood-leist-stat-laurel-v2&orientation=squarish',
@@ -8,20 +9,21 @@ const FALLBACK_STAT_ICONS = [
   'https://readdy.ai/api/search-image?query=hand%20carved%20solid%20walnut%20wood%20precision%20compass%20rose%20eight%20point%20navigation%20star%20deeply%20incised%20relief%20carving%20rich%20dark%20amber%20brown%20grain%20highly%20detailed%20three%20dimensional%20military%20instrument%20quality%20centered%20on%20clean%20white%20studio%20background%20dramatic%20directional%20lighting%20sharp%20focus%20artisan%20craft&width=120&height=120&seq=wood-leist-stat-compass-v2&orientation=squarish',
 ];
 
-const STAT_LABELS = ['Produkte verkauft', 'Umsatz generiert', 'Talente im Pool', 'Einsätze durchgeführt'];
-const STAT_SUBS = [
-  'Direkter Abverkauf am POS',
-  'Für unsere Markenpartner',
-  'Geschulte Brand Ambassadors',
-  'Deutschlandweit seit 2007',
-];
-const STAT_VALUES = [3_700_000, 2_000, 2_000, 1_350_000];
-const STAT_DISPLAY = [
-  (v: number) => `>${(v / 1_000_000).toFixed(1).replace('.', ',')} Mio.`,
-  (v: number) => `>${v >= 2000 ? '2' : (v / 1000).toFixed(1)} Mrd. €`,
-  (v: number) => `>${v >= 2000 ? '2.000' : v.toLocaleString('de-DE')}`,
-  (v: number) => `>${(v / 1_000_000).toFixed(2).replace('.', ',')} Mio.`,
-];
+/** Split a display value like ">1,3 Mio." into prefix / number / suffix so the number can count up. */
+function parseStat(display: string): { prefix: string; target: number; decimals: number; grouping: boolean; suffix: string } | null {
+  const m = display.match(/^(\D*?)(\d{1,3}(?:\.\d{3})*|\d+)(?:,(\d+))?(.*)$/);
+  if (!m) return null;
+  const int = Number(m[2].replace(/\./g, ''));
+  const decimals = m[3]?.length ?? 0;
+  return { prefix: m[1], target: int + (decimals ? Number(m[3]) / 10 ** decimals : 0), decimals, grouping: m[2].includes('.'), suffix: m[4] };
+}
+
+const formatStat = (display: string, progress: number): string => {
+  const p = parseStat(display);
+  if (!p) return display;
+  const n = p.target * progress;
+  return p.prefix + n.toLocaleString('de-DE', { minimumFractionDigits: p.decimals, maximumFractionDigits: p.decimals, useGrouping: p.grouping }) + p.suffix;
+};
 
 function useCountUp(target: number, duration = 1600, active = false) {
   const [count, setCount] = useState(0);
@@ -42,7 +44,6 @@ function useCountUp(target: number, duration = 1600, active = false) {
 }
 
 function StatCard({
-  value,
   display,
   label,
   sub,
@@ -51,8 +52,7 @@ function StatCard({
   countActive,
   index,
 }: {
-  value: number;
-  display: (v: number) => string;
+  display: string;
   label: string;
   sub: string;
   woodIcon: string;
@@ -63,7 +63,7 @@ function StatCard({
   const [entered, setEntered] = useState(false);
   const [hovered, setHovered] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const count = useCountUp(value, 1600, countActive);
+  const count = useCountUp(1000, 1600, countActive);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -133,7 +133,7 @@ function StatCard({
               color: isLime ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-950))',
             }}
           >
-            {display(count)}
+            {countActive ? formatStat(display, count / 1000) : formatStat(display, 0)}
           </div>
           <div className="text-[10px] font-black uppercase tracking-wider text-[#1a1a1a] leading-tight mb-0.5">
             {label}
@@ -153,6 +153,8 @@ function StatCard({
 
 export default function LeistungenStats() {
   const { images: woodIcons } = useMediaStore('leistungen_stats_wood_icons');
+  const t = useLeistungenText('leistungen_overview_stats');
+  const stats = [1, 2, 3, 4].map((n) => ({ display: t[`stat${n}-value`] ?? '', label: t[`stat${n}-label`] ?? '', sub: t[`stat${n}-sub`] ?? '' }));
   const [countActive, setCountActive] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -190,12 +192,12 @@ export default function LeistungenStats() {
             >
               <span className="w-1 h-1 bg-primary-500 rounded-full animate-pulse" />
               <span className="text-[9px] font-black text-primary-500 uppercase tracking-widest">
-                Unsere Zahlen
+                {t['eyebrow']}
               </span>
             </div>
             <h2 className="sonic-h2 text-foreground-950">
-              Track Record&nbsp;
-              <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.1em', boxDecorationBreak: 'clone' }}>der überzeugt.</span>
+              {t['heading']}&nbsp;
+              <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.1em', boxDecorationBreak: 'clone' }}>{t['heading-accent']}</span>
             </h2>
           </div>
           {/* Accent bars */}
@@ -216,13 +218,12 @@ export default function LeistungenStats() {
 
         {/* Stats grid — horizontal row of 4 */}
         <div className="grid grid-cols-2 lg:grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
-          {STAT_VALUES.map((val, i) => (
+          {stats.map((st, i) => (
             <StatCard
               key={i}
-              value={val}
-              display={STAT_DISPLAY[i]}
-              label={STAT_LABELS[i]}
-              sub={STAT_SUBS[i]}
+              display={st.display}
+              label={st.label}
+              sub={st.sub}
               woodIcon={getWoodIcon(i)}
               delay={i * 100}
               countActive={countActive}

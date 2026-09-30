@@ -3,6 +3,7 @@ import { STIMMEN_TEXT_SECTIONS } from './textStoreStimmen';
 import { LOSUNGEN_TEXT_SECTIONS } from './textStoreLosungen';
 import { KARRIERE_TEXT_SECTIONS } from './textStoreKarriere';
 import { REVIEW_TEXT_SECTIONS } from './textStoreReview';
+import { LEISTUNGEN_TEXT_SECTIONS } from './textStoreLeistungen';
 import { supabase } from './supabase';
 export interface TextEntry {
   id: string;
@@ -119,7 +120,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'home-showcase-tab-5-detail', label: 'Events Detail', description: 'Events detail text', type: 'paragraph', value: 'Wir verstehen das und setzen alles daran, dass dein Stand oder Event eine echte Erfolgsgeschichte wird.' },
       { id: 'home-showcase-learn-more', label: 'Learn More Button', description: 'Learn More CTA on each service', type: 'cta', value: 'Learn More' },
       { id: 'home-showcase-metric-1-title', label: 'Key Metric Card — Expert Talent', description: 'Expert Talent card heading', type: 'heading', value: 'Expert Talent Network' },
-      { id: 'home-showcase-metric-1-desc', label: 'Key Metric Card — Expert Talent Desc', description: 'Expert Talent card text', type: 'paragraph', value: '2.000+ trained promoters ready to represent your brand' },
+      { id: 'home-showcase-metric-1-desc', label: 'Key Metric Card — Expert Talent Desc', description: 'Expert Talent card text', type: 'paragraph', value: '1.800+ people in our talent pool, ready for your project.' },
       { id: 'home-showcase-metric-2-title', label: 'Key Metric Card — Coverage', description: 'Coverage card heading', type: 'heading', value: 'Nationwide Coverage' },
       { id: 'home-showcase-metric-2-desc', label: 'Key Metric Card — Coverage Desc', description: 'Coverage card text', type: 'paragraph', value: 'Seamless execution across all major retail channels in DACH' },
       { id: 'home-showcase-metric-3-title', label: 'Key Metric Card — Results', description: 'Results card heading', type: 'heading', value: 'Proven Results' },
@@ -233,7 +234,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'nav-events', label: 'Nav — Events & Messen', description: 'Events link', type: 'nav-label', value: 'Events & Messen' },
       { id: 'nav-cat-team', label: 'Nav — Category: TEAM AUFBAUEN', description: 'Category header', type: 'tag', value: 'TEAM AUFBAUEN' },
       { id: 'nav-staff', label: 'Nav — Staff as a Service', description: 'Staff link', type: 'nav-label', value: 'Staff as a Service' },
-      { id: 'nav-talentpool', label: 'Nav — Talentepool', description: 'Talentpool link', type: 'nav-label', value: 'Talentepool' },
+      { id: 'nav-talentpool', label: 'Nav — Talentpool', description: 'Talentpool link', type: 'nav-label', value: 'Talentpool' },
       { id: 'nav-warehouse', label: 'Nav — Warehouse & Logistik', description: 'Warehouse link', type: 'nav-label', value: 'Warehouse & Logistik' },
       { id: 'nav-cat-data', label: 'Nav — Category: DATEN & INSIGHTS', description: 'Category header', type: 'tag', value: 'DATEN & INSIGHTS' },
       { id: 'nav-srt', label: 'Nav — SRT', description: 'SRT link', type: 'nav-label', value: 'SRT — Sonic Reporting Tool' },
@@ -524,7 +525,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-hero-stat-1-label', label: 'Stat Label — Kununu', description: 'Kununu label', type: 'stat-label', value: 'Kununu Score' },
       { id: 'careers-hero-stat-2-value', label: 'Stat — Tenure', description: 'Average tenure', type: 'stat', value: '4,2 Jahre' },
       { id: 'careers-hero-stat-2-label', label: 'Stat Label — Tenure', description: 'Tenure label', type: 'stat-label', value: 'Ø Betriebszugehörigkeit' },
-      { id: 'careers-hero-stat-3-value', label: 'Stat — Talentpool', description: 'Talent pool size', type: 'stat', value: '2.000+' },
+      { id: 'careers-hero-stat-3-value', label: 'Stat — Talentpool', description: 'Talent pool size', type: 'stat', value: '1.800+' },
       { id: 'careers-hero-stat-3-label', label: 'Stat Label — Talentpool', description: 'Talent label', type: 'stat-label', value: 'Talente im Netzwerk' },
     ],
   },
@@ -553,7 +554,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'leistungen-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Leistungen' },
       { id: 'leistungen-hero-heading', label: 'Hero Heading', description: 'Main hero heading', type: 'heading', value: 'Alle Retail-Leistungen aus einer Hand' },
-      { id: 'leistungen-hero-subtitle', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Von POS-Promotion über Live Video bis zu Warehouse & Logistik — wir decken die gesamte Wertschöpfungskette am Point of Sale ab.' },
+      { id: 'leistungen-hero-subtitle', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Von POS-Promotion über Live Video bis zu Warehouse & Logistik — Personal, Daten und Umsetzung aus einer Hand.' },
     ],
   },
 
@@ -567,7 +568,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'events-hero-heading-line1', label: 'H1 Line 1', description: 'Hero H1 first line', type: 'heading', value: 'Live‑Kommunikation,' },
       { id: 'events-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'die begeistert.' },
       { id: 'events-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Konzept. Personal. Logistik. Wir präsentieren deine Marke da, wo deine Zielgruppe ist.' },
-      { id: 'events-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Events, Messen, Roadshows und mehr. Vor Ort, auf Tour und hybrid.' },
+      { id: 'events-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Events, Messen, Roadshows und mehr. Vor Ort, auf Tour und hybrid. Bisher: über 200 Events und mehr als 30.000 Kontakte.' },
     ],
   },
   {
@@ -578,7 +579,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'pos-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'POS Full Service' },
       { id: 'pos-hero-heading-line1', label: 'H1 Line 1', description: 'Hero H1 first line', type: 'heading', value: 'End-to-end-Partner' },
       { id: 'pos-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'für den POS.' },
-      { id: 'pos-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Alles aus einer Hand. Design, Displays, Möbel, Collateral, Give-aways, Logistik, Manntage.' },
+      { id: 'pos-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Alles aus einer Hand. Design, Displays, Möbel, Collateral, Give-aways, Logistik, Personal.' },
       { id: 'pos-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Durchgetaktet. Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.' },
     ],
   },
@@ -596,7 +597,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'leistungen_video', label: 'Live Video — Hero',
-    pageGroupId: 'leistungen', pagePath: '/leistungen/video',
+    pageGroupId: 'leistungen', pagePath: '/leistungen/live-video',
     description: 'Live Video sub-page hero.',
     entries: [
       { id: 'video-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: '(Live) Video' },
@@ -622,11 +623,11 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pageGroupId: 'leistungen', pagePath: '/leistungen/talentpool',
     description: 'Talentpool sub-page hero.',
     entries: [
-      { id: 'talentpool-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Talentepool' },
-      { id: 'talentpool-hero-heading-line1', label: 'H1 Line 1', description: 'Hero H1 first line', type: 'heading', value: '>2.000 Talente.' },
-      { id: 'talentpool-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'Festangestellt.' },
-      { id: 'talentpool-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Keine Freelancer. Keine Zeitarbeit. Echte Markenbotschafter.' },
-      { id: 'talentpool-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Unser Talentepool umfasst über 2.000 handverlesene, festangestellte Markenbotschafter deutschlandweit — trainiert, motiviert und live in ihrer eigenen Zielerreichung getrackt.' },
+      { id: 'talentpool-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Talentpool' },
+      { id: 'talentpool-hero-heading-line1', label: 'H1 Line 1', description: 'Hero H1 first line', type: 'heading', value: '>1.800 Talente.' },
+      { id: 'talentpool-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'Echte Markenbotschafter.' },
+      { id: 'talentpool-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Handverlesen. Geschult. Im Einsatz bei Sonic angestellt.' },
+      { id: 'talentpool-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Unser Talentpool umfasst über 1.800 aktive Menschen deutschlandweit — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit Blick auf die eigene Zielerreichung, live im SRT.' },
     ],
   },
   {
@@ -637,8 +638,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'forecasting-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Forecasting' },
       { id: 'forecasting-hero-heading-line1', label: 'H1 Line 1', description: 'Hero H1 first line', type: 'heading', value: 'Plausible' },
       { id: 'forecasting-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'Prognosen.' },
-      { id: 'forecasting-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Bevor der erste Einsatz startet, weißt du schon, was du erwarten kannst.' },
-      { id: 'forecasting-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Auf Basis von historischen Sell-out-Daten, Standort‑Performance und Marktintelligenz prognostizieren wir deine Ergebnisse — datenbasiert, nachvollziehbar, belastbar.' },
+      { id: 'forecasting-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Bevor der erste Einsatz startet, weißt du, womit du realistisch rechnen kannst.' },
+      { id: 'forecasting-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Aus Kunden-, Sonic-, Staff- und Handelsdaten im SRT leiten wir her, was dein Projekt erwarten kann — datenbasiert, nachvollziehbar, belastbar.' },
     ],
   },
   {
@@ -649,7 +650,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'warehouse-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Warehouse & Logistik' },
       { id: 'warehouse-hero-heading-line1', label: 'H1 Line 1', description: 'Hero H1 first line', type: 'heading', value: 'Ware zur richtigen Zeit' },
       { id: 'warehouse-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'am richtigen Ort.' },
-      { id: 'warehouse-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Phygital? Können wir. Mit 250 eigenen Paletten-Stellplätzen für Assets, Messestände und Ware.' },
+      { id: 'warehouse-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Phygital? Können wir. Mit eigenem Lager für Assets, Messestände und Ware.' },
       { id: 'warehouse-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Mit Fulfillment-Services und Schnittstellen. Europaweit.' },
     ],
   },
@@ -702,7 +703,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'team-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Team' },
       { id: 'team-hero-heading', label: 'Main Heading', description: 'Hero heading', type: 'heading', value: 'Das Sonic Team' },
-      { id: 'team-hero-subtitle', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Über 2.000 Menschen, eine Mission: Retail Activation neu definieren.' },
+      { id: 'team-hero-subtitle', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Über 1.800 Menschen im Talentpool, eine Mission: Marken erlebbar machen.' },
     ],
   },
 
@@ -1273,11 +1274,11 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'pos-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'POS-Qualität sichern ist aufwändig.' },
       { id: 'pos-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Warum es die Big Idea nicht immer bis ins Outlet schafft.' },
       { id: 'pos-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Dein POS-Komplettpaket.' },
-      { id: 'pos-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.' },
+      { id: 'pos-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Immer mit dem Ziel: Abverkauf unterstützen, Wachstum steigern, Marken erfolgreicher machen.' },
       { id: 'pos-assets-heading', label: 'Assets Heading', description: 'Assets H2', type: 'heading', value: 'POS-Materialien & Branding' },
       { id: 'pos-assets-sub', label: 'Assets Subline', description: 'Assets description', type: 'paragraph', value: 'Wir setzen deine Vorstellung vom idealen POS-Auftritt um.' },
       { id: 'pos-process-heading', label: 'Process Heading', description: 'Process H2', type: 'heading', value: 'So arbeiten wir' },
-      { id: 'pos-process-sub', label: 'Process Subline', description: 'Process description', type: 'paragraph', value: 'Von der Planung bis zur Umsetzung: professionell und effizient.' },
+      { id: 'pos-process-sub', label: 'Process Subline', description: 'Process description', type: 'paragraph', value: 'Von der Bedarfsanalyse bis zum Reporting: echtes Handwerk von Anfang bis Ende.' },
     ],
   },
   {
@@ -1297,13 +1298,13 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   {
     key: 'leistungen_video_content', label: 'Live Video — Content',
-    pageGroupId: 'leistungen', pagePath: '/leistungen/video',
+    pageGroupId: 'leistungen', pagePath: '/leistungen/live-video',
     description: 'Live Video: challenge, solution, advantages, phygital, formats headings.',
     entries: [
       { id: 'video-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Bewegtbild ist die Königsklasse.' },
       { id: 'video-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Wenn (Live) Video Shopping einfach wäre, würde es jede Marke machen. Ist es aber nicht.' },
       { id: 'video-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Sonic (Live) Video im Full Service.' },
-      { id: 'video-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit.' },
+      { id: 'video-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit. All in One: Regisseur, Moderator, Verkäufer.' },
       { id: 'video-advantages-heading', label: 'Advantages Heading', description: 'Advantages H2', type: 'heading', value: 'Darum (Live) Video Promotion' },
       { id: 'video-phygital-heading', label: 'Phygital Heading', description: 'Phygital H2', type: 'heading', value: 'Phygital optimal nutzen' },
       { id: 'video-formats-heading', label: 'Formats Heading', description: 'Formats H2', type: 'heading', value: '6 Formate. Ein Partner.' },
@@ -1317,7 +1318,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'kreation-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Content aus zu vielen Einzelteilen.' },
       { id: 'kreation-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Assets kommen oft aus verschiedenen Quellen.' },
       { id: 'kreation-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Content aus einer Hand. Inhouse.' },
-      { id: 'kreation-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Von Kampagnenkonzept bis Design und Roll-out, von Fotografie bis zu (Live) Video.' },
+      { id: 'kreation-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Ein Team für Konzept, Design und Rollout — plus ausdrucksstarkes Personal mit Fokus auf Content-Produktion: Unboxing- & How-to-Videos, Foto-/Video-Shootings, Livestreams & Produktvideos, Social Media.' },
       { id: 'kreation-cta-btn', label: 'CTA Button', description: 'CTA button text', type: 'cta', value: 'Content-Beratung buchen' },
     ],
   },
@@ -1327,9 +1328,9 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'Talentpool: challenge, solution, profiles, stats headings.',
     entries: [
       { id: 'talentpool-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Wechselnde Gesichter. Kein Markenwissen. Kein ROI.' },
-      { id: 'talentpool-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Das Standardmodell in der Promotion-Branche ist kaputt.' },
-      { id: 'talentpool-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Der Sonic-Talentepool. Kein Vergleich.' },
-      { id: 'talentpool-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Festangestellt, trainiert und live-getrackt — das ist der Unterschied.' },
+      { id: 'talentpool-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Wer Personal nur über lose Netzwerke bucht, bekommt selten echte Markenbotschafter.' },
+      { id: 'talentpool-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Der Sonic-Talentpool. Menschen, die wir kennen.' },
+      { id: 'talentpool-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Handverlesen, geschult und im Einsatz bei Sonic angestellt. Daten liefern die Fakten, Menschen den Unterschied.' },
       { id: 'talentpool-profiles-heading', label: 'Profiles Heading', description: 'Profiles H2', type: 'heading', value: '4 Rollen. Ein Ansprechpartner.' },
       { id: 'talentpool-profiles-sub', label: 'Profiles Subline', description: 'Profiles description', type: 'paragraph', value: 'Jeden Talent-Typ aus einer Hand — koordiniert, geschult und live getrackt.' },
     ],
@@ -1339,12 +1340,12 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pageGroupId: 'leistungen', pagePath: '/leistungen/forecasting',
     description: 'Forecasting: challenge, solution, how-it-works, stats headings.',
     entries: [
-      { id: 'forecasting-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Ohne Prognose fliegt ihr im Blindflug.' },
+      { id: 'forecasting-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Ohne Prognose bleibt nur das Bauchgefühl.' },
       { id: 'forecasting-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Zu viele Retail-Projekte starten ohne belastbare Planung.' },
       { id: 'forecasting-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Forecasting. Datenbasiert. Belastbar.' },
-      { id: 'forecasting-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Prognosen auf echten Daten — nicht auf Excel-Tabellen und Bauchgefühl.' },
+      { id: 'forecasting-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Prognosen auf echten Einsatzdaten — nicht auf verstreuten Excel-Tabellen.' },
       { id: 'forecasting-how-heading', label: 'How Heading', description: 'How-it-works H2', type: 'heading', value: 'In 4 Schritten zur belastbaren Prognose' },
-      { id: 'forecasting-how-sub', label: 'How Subline', description: 'How description', type: 'paragraph', value: 'Unser Forecasting-Prozess: datenbasiert, transparent und direkt in dein Dashboard integriert.' },
+      { id: 'forecasting-how-sub', label: 'How Subline', description: 'How description', type: 'paragraph', value: 'Daten liefern die Fakten, Menschen den Unterschied. So entsteht deine Prognose — Schritt für Schritt, live im SRT einsehbar.' },
     ],
   },
 
@@ -1355,7 +1356,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'Warehouse & Logistik: key content headings.',
     entries: [
       { id: 'warehouse-content-heading', label: 'Content Heading', description: 'Main content heading', type: 'heading', value: 'Deine Logistik. Unser Warehouse.' },
-      { id: 'warehouse-content-sub', label: 'Content Subline', description: 'Content description', type: 'paragraph', value: 'Full-Service-Logistik mit eigenem Warehouse in Krefeld — für den gesamten DACH-Raum.' },
+      { id: 'warehouse-content-sub', label: 'Content Subline', description: 'Content description', type: 'paragraph', value: 'Full-Service-Logistik mit eigenem Warehouse in Krefeld — europaweit.' },
     ],
   },
   // ── Case study headline metrics — editable from Dashboard → Text ──
@@ -1427,6 +1428,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   ...KARRIERE_TEXT_SECTIONS,
   /* ═══════════════ HOME / ÜBER UNS — see textStoreReview.ts ═══════════════ */
   ...REVIEW_TEXT_SECTIONS,
+  ...LEISTUNGEN_TEXT_SECTIONS,
   /* ═══════════════ FALLBEISPIELE — Texte je Fallstudie (/fallbeispiele) ═══════════════ */
   {
     key: 'case_garmin_text',
@@ -1534,16 +1536,51 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'about_origin_story', entryId: 'about-origin-heading', from: 'MARKEN IM HERZEN. ERFOLG IM FOKUS.', to: 'Marken im Herzen. Erfolg im Fokus.' },
   { sectionKey: 'about_leadership', entryId: 'about-leadership-heading', from: 'FACHLICHE UND MENSCHLICHE VIELFALT.', to: 'Fachliche und menschliche Vielfalt.' },
   { sectionKey: 'careers_culture', entryId: 'careers-culture-heading', from: 'STARKE MENSCHEN FÜR STARKE MARKEN', to: 'Starke Menschen für starke Marken' },
-  { sectionKey: 'leistungen_talentpool_content', entryId: 'talentpool-solution-heading', from: 'DER SONIC-TALENTEPOOL. KEIN VERGLEICH.', to: 'Der Sonic-Talentepool. Kein Vergleich.' },
+  { sectionKey: 'leistungen_talentpool_content', entryId: 'talentpool-solution-heading', from: 'DER SONIC-TALENTEPOOL. KEIN VERGLEICH.', to: 'Der Sonic-Talentpool. Menschen, die wir kennen.' },
   { sectionKey: 'leistungen_talentpool_content', entryId: 'talentpool-profiles-heading', from: '4 ROLLEN. EIN ANSPRECHPARTNER.', to: '4 Rollen. Ein Ansprechpartner.' },
   { sectionKey: 'home_hero', entryId: 'home-hero-right-badge', from: 'Mensch. Der Unterschied.', to: 'Der Mensch. Der Unterschied.' },
   // ── Placeholder / Sie-form text cleanup (startsWith / contains matching) ──
-  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-subtitle', from: 'Wähle 1 Partnerin', to: 'Keine Freelancer. Keine Zeitarbeit. Echte Markenbotschafter.', matchType: 'startsWith' as const },
-  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-description', from: 'Nacht-Performance', to: 'Unser Talentepool umfasst über 2.000 handverlesene, festangestellte Markenbotschafter deutschlandweit — trainiert, motiviert und live in ihrer eigenen Zielerreichung getrackt.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-subtitle', from: 'Wähle 1 Partnerin', to: 'Handverlesen. Geschult. Im Einsatz bei Sonic angestellt.', matchType: 'startsWith' as const },
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-description', from: 'Nacht-Performance', to: 'Unser Talentpool umfasst über 1.800 aktive Menschen deutschlandweit — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit Blick auf die eigene Zielerreichung, live im SRT.', matchType: 'contains' as const },
   { sectionKey: 'leistungen_staff', entryId: 'staff-hero-subtitle', from: 'Markenhilfe antworten', to: 'Markenfans anheuern: Für Sell-out, Sell-in, Schulungen, Brand Activation und mehr.', matchType: 'startsWith' as const },
   { sectionKey: 'leistungen_staff', entryId: 'staff-hero-description', from: 'Ihnen', to: 'Wir übernehmen Recruiting, Payroll und Steuerung, bspw. via Arbeitnehmerüberlassung.', matchType: 'contains' as const },
   { sectionKey: 'leistungen_pos', entryId: 'pos-hero-description', from: 'Ihren', to: 'Durchgetaktet. Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.', matchType: 'contains' as const },
-  { sectionKey: 'leistungen_forecasting', entryId: 'forecasting-hero-description', from: 'Scorpin', to: 'Auf Basis von historischen Sell-out-Daten, Standort-Performance und Marktintelligenz prognostizieren wir deine Ergebnisse — datenbasiert, nachvollziehbar, belastbar.', matchType: 'contains' as const },,
+  { sectionKey: 'leistungen_forecasting', entryId: 'forecasting-hero-description', from: 'Scorpin', to: 'Aus Kunden-, Sonic-, Staff- und Handelsdaten im SRT leiten wir her, was dein Projekt erwarten kann — datenbasiert, nachvollziehbar, belastbar.', matchType: 'contains' as const },
+  // ── Leistungen elevation 30.09.2026 (Agenturpräsentation 2026) — corrects values saved in the dashboard ──
+  { sectionKey: 'leistungen_pos', entryId: 'pos-hero-subtitle', from: 'Logistik, Manntage', to: 'Alles aus einer Hand. Design, Displays, Möbel, Collateral, Give-aways, Logistik, Personal.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_pos_content', entryId: 'pos-solution-sub', from: 'Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.', to: 'Immer mit dem Ziel: Abverkauf unterstützen, Wachstum steigern, Marken erfolgreicher machen.' },
+  { sectionKey: 'leistungen_pos_content', entryId: 'pos-process-sub', from: 'Von der Planung bis zur Umsetzung: professionell und effizient.', to: 'Von der Bedarfsanalyse bis zum Reporting: echtes Handwerk von Anfang bis Ende.' },
+  { sectionKey: 'leistungen_events', entryId: 'events-hero-description', from: 'Events, Messen, Roadshows und mehr. Vor Ort, auf Tour und hybrid.', to: 'Events, Messen, Roadshows und mehr. Vor Ort, auf Tour und hybrid. Bisher: über 200 Events und mehr als 30.000 Kontakte.' },
+  { sectionKey: 'leistungen_warehouse', entryId: 'warehouse-hero-subtitle', from: 'Paletten-Stellpl', to: 'Phygital? Können wir. Mit eigenem Lager für Assets, Messestände und Ware.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_warehouse_content', entryId: 'warehouse-content-sub', from: 'für den gesamten DACH-Raum', to: 'Full-Service-Logistik mit eigenem Warehouse in Krefeld — europaweit.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-badge', from: 'Talentepool', to: 'Talentpool' },
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-heading-line1', from: '2.000', to: '>1.800 Talente.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-heading-accent', from: 'Festangestellt', to: 'Echte Markenbotschafter.', matchType: 'startsWith' as const },
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-subtitle', from: 'Keine Freelancer', to: 'Handverlesen. Geschult. Im Einsatz bei Sonic angestellt.', matchType: 'startsWith' as const },
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-description', from: 'festangestellte', to: 'Unser Talentpool umfasst über 1.800 aktive Menschen deutschlandweit — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit Blick auf die eigene Zielerreichung, live im SRT.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool_content', entryId: 'talentpool-challenge-sub', from: 'Das Standardmodell', to: 'Wer Personal nur über lose Netzwerke bucht, bekommt selten echte Markenbotschafter.', matchType: 'startsWith' as const },
+  { sectionKey: 'leistungen_talentpool_content', entryId: 'talentpool-solution-heading', from: 'Talentepool', to: 'Der Sonic-Talentpool. Menschen, die wir kennen.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool_content', entryId: 'talentpool-solution-sub', from: 'Festangestellt', to: 'Handverlesen, geschult und im Einsatz bei Sonic angestellt. Daten liefern die Fakten, Menschen den Unterschied.', matchType: 'startsWith' as const },
+  { sectionKey: 'leistungen_video_content', entryId: 'video-solution-sub', from: 'Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit.', to: 'Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit. All in One: Regisseur, Moderator, Verkäufer.' },
+  { sectionKey: 'leistungen_kreation_content', entryId: 'kreation-solution-sub', from: 'Von Kampagnenkonzept bis Design und Roll-out', to: 'Ein Team für Konzept, Design und Rollout — plus ausdrucksstarkes Personal mit Fokus auf Content-Produktion: Unboxing- & How-to-Videos, Foto-/Video-Shootings, Livestreams & Produktvideos, Social Media.', matchType: 'startsWith' as const },
+  { sectionKey: 'leistungen_forecasting', entryId: 'forecasting-hero-subtitle', from: 'weißt du schon, was du erwarten kannst', to: 'Bevor der erste Einsatz startet, weißt du, womit du realistisch rechnen kannst.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_forecasting', entryId: 'forecasting-hero-description', from: 'Marktintelligenz', to: 'Aus Kunden-, Sonic-, Staff- und Handelsdaten im SRT leiten wir her, was dein Projekt erwarten kann — datenbasiert, nachvollziehbar, belastbar.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_forecasting_content', entryId: 'forecasting-challenge-heading', from: 'Blindflug', to: 'Ohne Prognose bleibt nur das Bauchgefühl.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_forecasting_content', entryId: 'forecasting-solution-sub', from: 'Prognosen auf echten Daten — nicht auf Excel-Tabellen', to: 'Prognosen auf echten Einsatzdaten — nicht auf verstreuten Excel-Tabellen.', matchType: 'startsWith' as const },
+  { sectionKey: 'leistungen_forecasting_content', entryId: 'forecasting-how-sub', from: 'direkt in dein Dashboard integriert', to: 'Daten liefern die Fakten, Menschen den Unterschied. So entsteht deine Prognose — Schritt für Schritt, live im SRT einsehbar.', matchType: 'contains' as const },
+  { sectionKey: 'common_navigation', entryId: 'nav-talentpool', from: 'Talentepool', to: 'Talentpool' },
+  { sectionKey: 'careers_hero', entryId: 'careers-hero-stat-3-value', from: '2.000', to: '1.800+', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_main_hero', entryId: 'leistungen-hero-subtitle', from: 'wir decken die gesamte Wertschöpfungskette', to: 'Von POS-Promotion über Live Video bis zu Warehouse & Logistik — Personal, Daten und Umsetzung aus einer Hand.', matchType: 'contains' as const },
+];
+
+/* Substring corrections applied to every text (defaults and dashboard values).
+   Talentpool size per Agenturpräsentation 2026: über 1.800 aktive Menschen. */
+const TEXT_SUBSTITUTIONS: Array<[string, string]> = [
+  ['Talentepool', 'Talentpool'],
+  ['1.700+', '1.800+'],
+  ['>1.700', '>1.800'],
+  ['über 1.700', 'über 1.800'],
+  ['Über 1.700', 'Über 1.800'],
 ];
 
 /* ─────────────────────────────────────────────
@@ -1640,6 +1677,14 @@ function buildSections(): TextSection[] {
       fix.matchType === 'contains'   ? entry.value.includes(fix.from) :
                                        entry.value === fix.from;
     if (matches) entry.value = fix.to;
+  }
+  // Site-wide corrections inside any text, including values saved in the dashboard.
+  for (const section of sections) {
+    for (const entry of section.entries) {
+      for (const [from, to] of TEXT_SUBSTITUTIONS) {
+        if (entry.value.includes(from)) entry.value = entry.value.split(from).join(to);
+      }
+    }
   }
   return sections;
 }

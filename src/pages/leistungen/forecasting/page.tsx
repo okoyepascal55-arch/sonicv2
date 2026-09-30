@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
@@ -18,11 +19,11 @@ const NAV_ITEMS = [
 export default function ForecastingPage() {
   useSEO({
     title: 'Forecasting | Sonic Group — Datenbasierte Sell-out-Prognosen für Retail DACH',
-    description: 'Retail Forecasting von Sonic Group: Datenbasierte Sell-out-Prognosen, Standortanalysen und ROI-Planung für Field Force Einsätze in Deutschland. Optimiere Promoter-Budgets mit präzisen Vorhersagen auf Basis von Millionen Einsatzdaten.',
-    keywords: 'Retail Forecasting DACH, Sell-out Prognose, Standortanalyse Retail, ROI Planung POS, Promoter Budget Optimierung, Absatzprognose Deutschland, Datenbasiertes Marketing, Predictive Analytics Retail, Retail Intelligence, Sell-Through Forecast',
+    description: 'Retail Forecasting von Sonic Group: Datenbasierte Sell-out-Prognosen, Standortanalysen und ROI-Planung für Field Force Einsätze in Deutschland. Plane Promoter-Budgets mit nachvollziehbaren Prognosen auf Basis von über 1,3 Mio. dokumentierten Einsätzen im Sonic Reporting Tool (SRT).',
+    keywords: 'Retail Forecasting DACH, Sell-out Prognose, Standortanalyse Retail, ROI Planung POS, Promoter Budget Optimierung, Absatzprognose Deutschland, Datenbasiertes Marketing, Sonic Reporting Tool SRT, Retail Reporting, Sell-Through Forecast',
     canonical: 'https://sonic-group.de/leistungen/forecasting',
     ogTitle: 'Forecasting — Datenbasierte Retail-Prognosen | Sonic Group',
-    ogDescription: 'Präzise Sell-out-Prognosen und ROI-Planung für Field Force Einsätze — datenbasiert, standortgenau, DACH-weit.',
+    ogDescription: 'Plausible Sell-out-Prognosen und ROI-Planung für Field-Force-Einsätze — datenbasiert, standortgenau, nachvollziehbar.',
     jsonLd: [
       { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
@@ -32,6 +33,7 @@ export default function ForecastingPage() {
     ],
   })
 
+  const tc = useLeistungenText('leistungen_forecasting_cta');
   const heroRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -59,16 +61,11 @@ export default function ForecastingPage() {
 
       <div id="kontakt">
         <LeistungenKontakt
-          headline="Starte mit einer"
-          headlineAccent="Forecasting-Session."
-          subline="Wir analysieren deine Datenbasis und zeigen dir in 30 Minuten, welche Prognosegenauigkeit für dein Projekt realistisch ist."
-          checkItems={[
-            { text: 'Kostenfreies 30-Minuten-Strategiegespräch' },
-            { text: 'Analyse deiner bestehenden Datenbasis' },
-            { text: 'Einblick in unsere Forecasting-Methodik' },
-            { text: 'Erste Einschätzung zur Prognosegenauigkeit' },
-          ]}
-          ctaLabel="Beratungsgespräch buchen"
+          headline={tc.headline}
+          headlineAccent={tc.headline_accent}
+          subline={tc.subline}
+          checkItems={splitList(tc.check_items).map((text) => ({ text }))}
+          ctaLabel={tc.cta_label}
           ctaMailSubject="Forecasting Beratungsgespräch"
           ctaIcon="ri-line-chart-line"
         />

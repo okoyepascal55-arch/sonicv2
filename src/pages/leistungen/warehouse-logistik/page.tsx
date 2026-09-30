@@ -10,6 +10,7 @@ import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 import WoodenButton from '@/components/base/WoodenButton';
 
 const NAV_ITEMS = [
@@ -21,16 +22,10 @@ const NAV_ITEMS = [
 ];
 
 const SOLUTIONS = [
- { icon: 'ri-inbox-archive-line', num: '01', accent: 'Einlagerung & QS', title: 'Wareneingang & Qualitätskontrolle', desc: 'Bei Anlieferung: Qualitäts- und Mengenkontrolle, Einlagerung und Erfassung in unserer Lagersoftware.' },
- { icon: 'ri-archive-line', num: '02', accent: 'Lager & Bestand', title: 'Lagermanagement & Verwaltung', desc: 'POS-Werbemittel, Möbel, Pressemuster, Leihgeräte, Technik, Messestände: Alles sauber und sicher eingelagert, jederzeit abrufbar.' },
- { icon: 'ri-send-plane-line', num: '03', accent: 'Versand EU', title: 'Kommissionierung & Versand', desc: 'Abwicklung, Verbuchung, Kommissionierung und Auslieferung. Fristgerecht, europaweit. Mit Versandpartnern und eigenen Fahrern.' },
- { icon: 'ri-shopping-cart-line', num: '04', accent: 'E-Commerce', title: 'Fulfillment & Webshops', desc: 'Online-(Nach-)Bestellungen von Waren, Mustern und POS-Material wickeln wir komplett ab. Mit Schnittstellen zum E-Commerce, Billing, Bestandsführung, Analytics und Forecasts.' },
-];
-
-const STATS = [
- { val: '~500 qm', label: 'Lagerfläche' },
- { val: '250', label: 'Paletten-Stellplätze' },
- { val: '>22', label: 'Länder' },
+ { icon: 'ri-inbox-archive-line', num: '01', key: 'card1' },
+ { icon: 'ri-archive-line', num: '02', key: 'card2' },
+ { icon: 'ri-send-plane-line', num: '03', key: 'card3' },
+ { icon: 'ri-shopping-cart-line', num: '04', key: 'card4' },
 ];
 
 const WAREHOUSE_ITEMS = [
@@ -104,12 +99,18 @@ const WAREHOUSE_CHALLENGES: ChallengeItem[] = [
 
 export default function WarehouseLogistikPage() {
  const tContentHeading = useText('leistungen_warehouse_content', 'warehouse-content-heading', 'Deine Logistik. Unser Warehouse.');
- const tContentSub = useText('leistungen_warehouse_content', 'warehouse-content-sub', 'Full-Service-Logistik mit eigenem Warehouse in Krefeld — für den gesamten DACH-Raum.');
+ const tContentSub = useText('leistungen_warehouse_content', 'warehouse-content-sub', 'Full-Service-Logistik mit eigenem Warehouse in Krefeld — europaweit.');
  const tHeroBadge = useText('leistungen_warehouse', 'warehouse-hero-badge', 'Warehouse & Logistik');
  const tHeroH1Line1 = useText('leistungen_warehouse', 'warehouse-hero-heading-line1', 'Ware zur richtigen Zeit');
  const tHeroH1Accent = useText('leistungen_warehouse', 'warehouse-hero-heading-accent', 'am richtigen Ort.');
- const tHeroSubtitle = useText('leistungen_warehouse', 'warehouse-hero-subtitle', 'Phygital? Können wir. Mit 250 eigenen Paletten-Stellplätzen für Assets, Messestände und Ware.');
+ const tHeroSubtitle = useText('leistungen_warehouse', 'warehouse-hero-subtitle', 'Phygital? Können wir. Mit eigenem Lager für Assets, Messestände und Ware.');
  const tHeroDesc = useText('leistungen_warehouse', 'warehouse-hero-description', 'Mit Fulfillment-Services und Schnittstellen. Europaweit.');
+ const tStats = useLeistungenText('leistungen_warehouse_stats');
+ const tSol = useLeistungenText('leistungen_warehouse_solutions');
+ const tFs = useLeistungenText('leistungen_warehouse_fullservice');
+ const tCta = useLeistungenText('leistungen_warehouse_cta');
+ const STATS = [1, 2, 3].map((n) => ({ val: tStats[`stat${n}-val`], label: tStats[`stat${n}-label`] }));
+ const solutions = SOLUTIONS.map((s) => ({ ...s, accent: tSol[`${s.key}-accent`], title: tSol[`${s.key}-title`], desc: tSol[`${s.key}-desc`] }));
  const { images: warehouseHeroImages } = useMediaStore('leistungen_warehouse_images');
  const { images: warehouseItemsImages } = useMediaStore('leistungen_warehouse_items_images');
  const { images: fullserviceImages } = useMediaStore('leistungen_warehouse_fullservice_photo');
@@ -128,11 +129,11 @@ export default function WarehouseLogistikPage() {
 
  useSEO({
  title: 'Warehouse & Logistik | Sonic Group — POS-Lagerung & Fulfillment DACH',
- description: 'Warehouse & Logistik von Sonic Group: ~500 qm Lagerfläche, 250 Palettenstellplätze, Fulfillment und europaweite Lieferung für POS-Materialien, Messestände und Werbemittel.',
+ description: 'Warehouse & Logistik von Sonic Group: eigenes Lager, Fulfillment und europaweite Lieferung für POS-Materialien, Messestände und Werbemittel — als Teil des Sonic Gesamtpakets.',
  keywords: 'Warehouse Logistik DACH, POS Material Lagerung, Fulfillment Service, Messestand Lagerung, Werbemittel Logistik',
  canonical: 'https://sonic-group.de/leistungen/warehouse-logistik',
  ogTitle: 'Warehouse & Logistik — Sonic Group DACH',
- ogDescription: '~500 qm Lager, Fulfillment & europaweite Lieferung für POS-Materialien und Messestände.',
+ ogDescription: 'Eigenes Lager, Fulfillment & europaweite Lieferung für POS-Materialien und Messestände.',
  });
 
  const [activeItem, setActiveItem] = useState(0);
@@ -167,7 +168,7 @@ export default function WarehouseLogistikPage() {
 
  <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0"aria-hidden="true"/>
 
- <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Warehouse &amp; Logistik</span>
+ <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tHeroBadge}</span>
 
  </div>
 
@@ -185,7 +186,7 @@ export default function WarehouseLogistikPage() {
  ))}
  </div>
  <a href={`mailto:${CONTACT_EMAIL}?subject=Warehouse%20Logistik%20Beratung`} className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"style={{ borderRadius: 0 }}>
- <i className="ri-calendar-line"></i>Termin finden
+ <i className="ri-calendar-line"></i>{tStats['hero-cta']}
  </a>
  </div>
  <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none"/>
@@ -207,12 +208,12 @@ export default function WarehouseLogistikPage() {
  <div className="mb-10 md:mb-12">
  <div className="flex items-center gap-3 mb-5">
  <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0"aria-hidden="true"/>
- <span className="text-[11px] font-black uppercase tracking-[0.24em]"style={{ color: 'oklch(0.55 0.08 115)' }}>Die Lösung</span>
+ <span className="text-[11px] font-black uppercase tracking-[0.24em]"style={{ color: 'oklch(0.55 0.08 115)' }}>{tSol.eyebrow}</span>
  </div>
- <h2 className="sonic-h2 text-foreground-950 mb-3">Warehousing und Logistik als<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>integraler Baustein.</span></h2>
- <p className="text-foreground-950/50 text-sm md:text-base max-w-2xl">Einlagerung, Bereitstellung, Auslagerung, Anlieferung und Aufbau deiner Produkte, Werbematerialien, Messestände etc. Als Teil des Sonic Gesamtpakts.</p>
+ <h2 className="sonic-h2 text-foreground-950 mb-3">{tSol.heading}<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{tSol['heading-accent']}</span></h2>
+ <p className="text-foreground-950/50 text-sm md:text-base max-w-2xl">{tSol.sub}</p>
  </div>
- <ScrollCardSection data={SOLUTIONS} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light"variant="remix"cardMinHeight="320px"showWoodIcon={false} />
+ <ScrollCardSection data={solutions} label={`${solutions.length} Leistungen — scrollen`} theme="light"variant="remix"cardMinHeight="320px"showWoodIcon={false} />
  </div>
  </section>
 
@@ -305,14 +306,14 @@ export default function WarehouseLogistikPage() {
  <div>
  <div className="flex items-center gap-3 mb-5 md:mb-6">
  <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0"aria-hidden="true"/>
- <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Full Service</span>
+ <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tFs.eyebrow}</span>
  </div>
- <h2 className="sonic-h2 text-white mb-4 md:mb-6">Darum Warehouse<br /><span className="text-primary-500">bei Sonic.</span></h2>
+ <h2 className="sonic-h2 text-white mb-4 md:mb-6">{tFs.heading}<br /><span className="text-primary-500">{tFs['heading-accent']}</span></h2>
  <p className="text-white/65 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
- Unsere Lager- und Logistikleistungen dienen einem Zweck: Dein Projekt erfolgreich realisieren. POS-Material, Give-aways, Möbel und Equipment werden von uns produziert und unterliegen unserer Qualitätskontrolle. Diese gelingt effizient, wenn wir das Lager direkt nebenan haben.
+ {tFs.p1}
  </p>
  <p className="text-white/65 text-sm md:text-base leading-relaxed mb-6 md:mb-8">
- Für deine Ware, also Muster etc., ist es ebenfalls ideal, wenn wir ein Auge darauf haben. So stellen wir sicher, dass alle physischen Bausteine deines Projekts zur richtigen Zeit an den richtigen Ort gelangen können.
+ {tFs.p2}
  </p>
  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-primary-500/15">
  {STATS.map((s, i) => (
@@ -333,7 +334,7 @@ export default function WarehouseLogistikPage() {
  style={{ minHeight: 'clamp(200px, 28vw, 300px)' }}
  />
  <div className="absolute top-4 left-4 bg-primary-500 px-3 md:px-4 py-2">
- <span className="text-foreground-950 text-xs font-black uppercase tracking-widest">~500 qm Lagerfläche</span>
+ <span className="text-foreground-950 text-xs font-black uppercase tracking-widest">{tFs['photo-caption']}</span>
  </div>
  </div>
  </div>
@@ -345,15 +346,11 @@ export default function WarehouseLogistikPage() {
 
  <div id="kontakt">
  <LeistungenKontakt
- headline="Beratungsgespräch"
- headlineAccent="buchen."
- subline="Wir zeigen dir in 30 Minuten, welchen Mehrwert unser Warehousing- und Logistik-Angebot im Rahmen deiner Gesamtstrategie bietet."
- checkItems={[
- { text: 'Lagerkonzept & Kapazitäten' },
- { text: 'Logistik-Prozesse & Schnittstellen' },
- { text: 'Fulfillment & Webshop-Integration' },
- ]}
- ctaLabel="Termin finden"
+ headline={tCta['headline']}
+ headlineAccent={tCta['headline-accent']}
+ subline={tCta['subline']}
+ checkItems={splitList(tCta['items']).map((text) => ({ text }))}
+ ctaLabel={tCta['cta']}
  ctaMailSubject="Warehouse Logistik Beratung"
  ctaIcon="ri-calendar-line"
  />

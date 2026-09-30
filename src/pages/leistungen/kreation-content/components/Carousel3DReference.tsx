@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
 
-const LABELS = [
-  'Produktfotografie', 'Brand Design', 'Video Produktion', 'CGI & 3D',
-  'Social Content', 'POS & Events', 'Print & Packaging', 'Beauty', 'Food & Lifestyle',
-];
+// Tile labels + caption: Dashboard → Text → Kreation & Content — 3D-Karussell
+const TILE_COUNT = 9;
 
 const FALLBACKS = [
   'https://readdy.ai/api/search-image?query=professional%20product%20photography%20studio%20shoot%20consumer%20electronics%20packaging%20premium%20bright%20clean%20white%20background%20soft%20natural%20lighting%20commercial%20quality%20editorial%20photography%20minimalist%20modern&width=420&height=600&seq=c4-tile-01&orientation=portrait',
@@ -23,7 +22,9 @@ const RADIUS = 480;
 
 export default function Carousel3DReference() {
   const { images } = useMediaStore('leistungen_kreation_carousel_images');
-  const tiles = useMemo(() => LABELS.map((label, i) => ({ alt: label, src: images[i]?.url ? resolveImageUrl(images[i].url) : FALLBACKS[i] })), [images]);
+  const t = useLeistungenText('leistungen_kreation_carousel');
+  const labelsKey = Array.from({ length: TILE_COUNT }, (_, i) => t[`tile${i + 1}`] ?? '').join('|');
+  const tiles = useMemo(() => labelsKey.split('|').map((label, i) => ({ key: `tile-${i}`, alt: label, src: images[i]?.url ? resolveImageUrl(images[i].url) : FALLBACKS[i] })), [images, labelsKey]);
   const [angle, setAngle] = useState(0);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export default function Carousel3DReference() {
           const brightness = 0.75 + 0.25 * ((cosAngle + 1) / 2);
 
           return (
-            <div key={tile.alt} className="absolute" style={{ width: TILE_W, height: TILE_H, marginLeft: -TILE_W / 2, marginTop: -TILE_H / 2, top: '50%', left: '50%', transform: `translate(-50%,-50%) translateX(${x}px) translateZ(${z}px) rotateY(${rotateY}deg) scale(${scale})`, zIndex, opacity: isVisible ? 1 : 0, filter: `brightness(${brightness})`, transition: 'transform 0.15s ease', pointerEvents: isVisible ? 'auto' : 'none' }}>
+            <div key={tile.key} className="absolute" style={{ width: TILE_W, height: TILE_H, marginLeft: -TILE_W / 2, marginTop: -TILE_H / 2, top: '50%', left: '50%', transform: `translate(-50%,-50%) translateX(${x}px) translateZ(${z}px) rotateY(${rotateY}deg) scale(${scale})`, zIndex, opacity: isVisible ? 1 : 0, filter: `brightness(${brightness})`, transition: 'transform 0.15s ease', pointerEvents: isVisible ? 'auto' : 'none' }}>
               <div className="relative w-full h-full overflow-hidden bg-white" style={{ boxShadow: isCenter ? '0 32px 80px rgba(0,0,0,0.28), 0 8px 24px rgba(0,0,0,0.14)' : '0 10px 32px rgba(0,0,0,0.14)' }}>
                 <img src={tile.src} alt={tile.alt} className="absolute inset-0 w-full object-cover object-top" style={{ height: 'calc(100% - 30px)' }} draggable={false} />
                 <div className="absolute bottom-0 left-0 right-0 h-[30px] bg-white flex items-center justify-center"><span className="text-[9px] font-black tracking-[0.15em] uppercase text-black/40">{tile.alt}</span></div>
@@ -60,7 +61,7 @@ export default function Carousel3DReference() {
           );
         })}
       </div>
-      <div className="flex items-center justify-center gap-2 py-2 pb-10 opacity-40"><i className="ri-drag-move-line text-[13px] text-black/50" /><span className="text-[11px] font-black uppercase tracking-[0.1em] text-black/40">Automatisch rotierend — Referenzen aus echten Projekten</span></div>
+      <div className="flex items-center justify-center gap-2 py-2 pb-10 opacity-40"><i className="ri-drag-move-line text-[13px] text-black/50" /><span className="text-[11px] font-black uppercase tracking-[0.1em] text-black/40">{t['caption']}</span></div>
     </>
   );
 }

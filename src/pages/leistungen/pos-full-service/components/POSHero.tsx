@@ -2,6 +2,7 @@ import React from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
 
 export default function POSHero() {
   const { images: posHeroImages } = useMediaStore('leistungen_pos_images');
@@ -12,7 +13,8 @@ export default function POSHero() {
   const tBadge = useText('leistungen_pos', 'pos-hero-badge', 'POS Full Service');
   const tH1Line1 = useText('leistungen_pos', 'pos-hero-heading-line1', 'End-to-end-Partner');
   const tH1Accent = useText('leistungen_pos', 'pos-hero-heading-accent', 'für den POS.');
-  const tSubtitle = useText('leistungen_pos', 'pos-hero-subtitle', 'Alles aus einer Hand. Design, Displays, Möbel, Collateral, Give-aways, Logistik, Manntage.');
+  const tSubtitle = useText('leistungen_pos', 'pos-hero-subtitle', 'Alles aus einer Hand. Design, Displays, Möbel, Collateral, Give-aways, Logistik, Personal.');
+  const t = useLeistungenText('leistungen_pos_hero_stats');
   const tDesc = useText('leistungen_pos', 'pos-hero-description', 'Durchgetaktet. Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.');
 
   return (
@@ -60,9 +62,9 @@ export default function POSHero() {
 
         <div className="grid grid-cols-3 gap-2 md:gap-8 mb-8 border-t border-white/15 pt-5">
           {[
-            { val: '>100.000', label: 'POS bestückt' },
-            { val: '>650.000', label: 'Manntage' },
-            { val: '>5 Mio.', label: 'Produkte verkauft' },
+            { val: t['stat1-val'], label: t['stat1-label'] },
+            { val: t['stat2-val'], label: t['stat2-label'] },
+            { val: t['stat3-val'], label: t['stat3-label'] },
           ].map((s, i) => (
             <div key={i} className="text-center">
               <div className="text-base sm:text-xl md:text-2xl font-black text-primary-500 tabular-nums leading-tight">{s.val}</div>
@@ -79,7 +81,7 @@ export default function POSHero() {
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line" />
-            POS-Projekt besprechen
+            {t['cta-primary']}
           </a>
 
           <a
@@ -87,7 +89,7 @@ export default function POSHero() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
             className="inline-flex items-center gap-2 border-2 border-white/25 text-white px-6 py-3 font-black hover:border-primary-500 hover:text-primary-500 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
-            POS Full Service
+            {t['cta-secondary']}
             <i className="ri-arrow-right-line" />
           </a>
         </div>

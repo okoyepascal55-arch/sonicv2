@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
@@ -40,6 +41,7 @@ export default function EventsMessenPage() {
   })
 
   const heroRef = useRef<HTMLDivElement>(null);
+  const tCta = useLeistungenText('leistungen_events_cta');
 
   return (
     <div className="min-h-[100dvh] overflow-x-hidden bg-white">
@@ -67,16 +69,11 @@ export default function EventsMessenPage() {
 
       <div id="kontakt">
         <LeistungenKontakt
-          headline="Bereit für deinen"
-          headlineAccent="nächsten Auftritt?"
-          subline="Lass uns in 30 Minuten besprechen, wie wir deine Marke zum Erlebnis machen."
-          checkItems={[
-            { text: 'Kostenfreies 30-Minuten-Strategiegespräch' },
-            { text: 'Deine Ziele, unser modulares System' },
-            { text: 'Einblick in unsere Arbeitsweise und SRT' },
-            { text: 'Erste Einschätzung zur Timeline' },
-          ]}
-          ctaLabel="Beratung buchen"
+          headline={tCta.headline}
+          headlineAccent={tCta['headline-accent']}
+          subline={tCta.subline}
+          checkItems={splitList(tCta['check-items']).map((text) => ({ text }))}
+          ctaLabel={tCta['cta-label']}
           ctaMailSubject="Events Messen Beratung"
         />
       </div>

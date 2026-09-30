@@ -5,7 +5,7 @@ const STATS = [
   { value: '3,7 Mio.', prefix: '>', label: 'Produkte verkauft', sublabel: 'Seit Gründung 2008', icon: 'ri-shopping-cart-2-line', sys: 'SALES.VOLUME', trend: '+18% YoY' },
   { value: '2 Mrd.', prefix: '>', label: 'Umsatz generiert', sublabel: 'In Euro', icon: 'ri-money-euro-circle-line', sys: 'REVENUE.TOTAL', trend: 'In EUR' },
   { value: '1,35 Mio.', prefix: '>', label: 'Einsätze getrackt', sublabel: 'Durch das SRT', icon: 'ri-map-pin-2-line', sys: 'DEPLOYMENTS', trend: 'Seit 2008' },
-  { value: '2.000', prefix: '>', label: 'Talente im Pool', sublabel: 'Festangestellt', icon: 'ri-team-line', sys: 'TALENT.POOL', trend: 'DACH-weit' },
+  { value: '1.800', prefix: '>', label: 'Menschen im Talentpool', sublabel: 'Aktiv', icon: 'ri-team-line', sys: 'TALENT.POOL', trend: 'DACH-weit' },
 ];
 
 export default function Proof() {

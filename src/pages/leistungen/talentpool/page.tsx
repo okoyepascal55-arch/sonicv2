@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import ScrollToTopButton from '@/components/feature/ScrollToTopButton';
@@ -19,12 +20,12 @@ const NAV_ITEMS = [
 
 export default function TalentpoolPage() {
   useSEO({
-    title: 'Talentpool | Sonic Group — 2.000+ Retail Promoter & Brand Ambassadors direkt buchen',
-    description: 'Sonic Talentpool: Zugang zu über 2.000 festangestellten, qualifizierten Promotern, Brand Ambassadors und Retail-Experten in ganz DACH. Sofort einsatzbereit, branchenerfahren, datengesteuert ausgewählt — für POS, Events und Field Force.',
+    title: 'Talentpool | Sonic Group — über 1.800 aktive Talente für POS, Events & Field Force',
+    description: 'Sonic Talentpool: über 1.800 aktive Menschen — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit und geschult auf dein Produkt. Im Einsatz bei Sonic angestellt: Promoter:innen, Brand Ambassadors und Retail-Expert:innen für POS, Events und Field Force.',
     keywords: 'Talentpool Promoter DACH, Brand Ambassador buchen, Retail Experten vermitteln, Promoter Pool Deutschland, Fachberater Retail, Außendienst Experten, Sales Promoter Pool, Promoter Recruiting DACH, Markenberater Handel, Consumer Electronics Promoter, Haushaltsgeräte Promoter',
     canonical: 'https://sonic-group.de/leistungen/talentpool',
-    ogTitle: 'Talentpool — 2.000+ Retail Promoter | Sonic Group DACH',
-    ogDescription: 'Direkter Zugang zu über 2.000 qualifizierten Promotern und Brand Ambassadors — sofort einsetzbar für POS, Events und Field Force.',
+    ogTitle: 'Talentpool — über 1.800 aktive Talente | Sonic Group',
+    ogDescription: 'Über 1.800 aktive Menschen im Talentpool, 200+ Promoter:innen im Einsatz — für POS, Events und Field Force.',
     jsonLd: [
       { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
@@ -35,6 +36,7 @@ export default function TalentpoolPage() {
   })
 
   const heroRef = useRef<HTMLDivElement>(null);
+  const tCta = useLeistungenText('leistungen_talentpool_cta');
 
   return (
     <div className="min-h-[100dvh] overflow-x-hidden bg-white">
@@ -60,17 +62,12 @@ export default function TalentpoolPage() {
 
       <div id="kontakt">
         <LeistungenKontakt
-          headline="Dein Projekt."
-          headlineAccent="Unsere Talente."
-          subline="In 30 Minuten klären wir, wie viele Talente du brauchst, wo sie eingesetzt werden und was du erwarten kannst."
-          checkItems={[
-            { text: 'Kostenfreies 30-Minuten-Strategiegespräch' },
-            { text: 'Einblick in unseren Talentepool' },
-            { text: 'Schulungskonzepte und Qualitätssicherung' },
-            { text: 'Erste Einschätzung zur Verfügbarkeit' },
-          ]}
-          ctaLabel="Beratungsgespräch buchen"
-          ctaMailSubject="Talentepool Beratungsgespräch"
+          headline={tCta['headline']}
+          headlineAccent={tCta['headline-accent']}
+          subline={tCta['subline']}
+          checkItems={splitList(tCta['check-items']).map((text) => ({ text }))}
+          ctaLabel={tCta['cta-label']}
+          ctaMailSubject="Talentpool Beratungsgespräch"
           ctaIcon="ri-team-line"
         />
       </div>

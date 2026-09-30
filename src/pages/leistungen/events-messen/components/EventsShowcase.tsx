@@ -3,35 +3,12 @@ import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 
 const TAB_INFO = [
- {
- id: 'events',
- label: 'Events',
- icon: 'ri-calendar-event-line',
- headline: 'Deine Marke. Unsere Bühne.',
- sub: 'Von der exklusiven Produktpreview bis zum hybriden Kongress.',
- pills: ['Consumer & Corporate Events', 'Händler-Events', 'Kick-Off-Events', 'Kongresse & Tagungen', 'PR-Events', 'Produktlaunches', 'Promotions', 'Roadshows & Festivals'],
- imageIndexes: [0, 1, 2, 3],
- },
- {
- id: 'messen',
- label: 'Messen',
- icon: 'ri-building-4-line',
- headline: 'Messen verbinden Menschen mit Marken.',
- sub: 'Messe-Komplettpakete in allen Größen — von der Idee bis zum Abbau.',
- pills: ['Messebau & Ausstattung', 'Messedesign', 'Messe-Events', 'On- & Offline-Foren'],
- imageIndexes: [4, 5, 6, 7],
- },
- {
- id: 'fahrzeuge',
- label: 'Fahrzeuge & Module',
- icon: 'ri-truck-line',
- headline: 'Deine erfolgreiche Roadshow.',
- sub: 'Von uns gebaute Eventfahrzeuge oder transportierbare Module. Inklusive Ideen, Personal und laufendem Betrieb.',
- pills: ['Eventtrucks', 'Eventcontainer', 'Eventmodule', 'Promotionfahrzeuge'],
- imageIndexes: [8, 9, 10, 11],
- },
+ { id: 'events', key: 'tab1', icon: 'ri-calendar-event-line', imageIndexes: [0, 1, 2, 3] },
+ { id: 'messen', key: 'tab2', icon: 'ri-building-4-line', imageIndexes: [4, 5, 6, 7] },
+ { id: 'fahrzeuge', key: 'tab3', icon: 'ri-truck-line', imageIndexes: [8, 9, 10, 11] },
 ];
 
 const FALLBACK_IMAGES = [
@@ -52,9 +29,13 @@ const FALLBACK_IMAGES = [
 const FALLBACK_TAG = ['Corporate', 'Dokumentation', 'Roadshow', 'VIP', 'Messebau', 'Demo', 'CGI', 'Stand', 'Logistik', 'Container', 'Campus', 'Promo'];
 const FALLBACK_TITLE = ['Brand Activation', 'Event-Dokumentation', 'Roadshow & Festival', 'Händler-Event', 'Messebau Premium', 'Interaktive Demos', 'Produktpräsentation', 'Messe-Stand Konzept', 'Logistik & Aufbau', 'Eventcontainer', 'Sonic Campus Aerial', 'Promotionfahrzeug'];
 
-function resolveTabs(dashboardImages: { url: string; caption: string }[]) {
+function resolveTabs(dashboardImages: { url: string; caption: string }[], t: Record<string, string>) {
  return TAB_INFO.map((tab) => ({
  ...tab,
+ label: t[`${tab.key}-label`],
+ headline: t[`${tab.key}-headline`],
+ sub: t[`${tab.key}-sub`],
+ pills: splitList(t[`${tab.key}-pills`]),
  images: tab.imageIndexes.map((idx) => {
  const dashItem = dashboardImages[idx];
  return {
@@ -73,7 +54,8 @@ export default function EventsShowcase() {
  const [lightboxOpen, setLightboxOpen] = useState(false);
  const [lightboxIndex, setLightboxIndex] = useState(0);
 
- const TABS = resolveTabs(showcaseImages);
+ const tx = useLeistungenText('leistungen_events_formats');
+ const TABS = resolveTabs(showcaseImages, tx);
  const tab = TABS[activeTab];
 
  const lightboxItems: LightboxItem[] = tab.images.map((item) => ({
@@ -101,12 +83,12 @@ export default function EventsShowcase() {
  <div className="mb-10">
  <div className="flex items-center gap-3 mb-5">
  <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0"aria-hidden="true"/>
- <span className="text-[11px] font-black uppercase tracking-[0.24em]"style={{ color: 'oklch(0.55 0.08 115)' }}>Formate</span>
+ <span className="text-[11px] font-black uppercase tracking-[0.24em]"style={{ color: 'oklch(0.55 0.08 115)' }}>{tx.eyebrow}</span>
  </div>
  <h2 className="sonic-h2 text-foreground-950 mb-2">
- Deine Marke. Unsere Bühne.
+ {tx.heading}
  </h2>
- <p className="text-foreground-950/50 text-base">Wähle ein Format und entdecke unsere Arbeit.</p>
+ <p className="text-foreground-950/50 text-base">{tx.sub}</p>
  </div>
 
  {/* Pill tabs */}
@@ -189,7 +171,7 @@ export default function EventsShowcase() {
 
  {/* Category pills */}
  <div className="p-6 flex-1">
- <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-4">Kategorien</div>
+ <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-4">{tx['label-categories']}</div>
  <div className="flex flex-wrap gap-2 mb-6">
  {tab.pills.map((pill, i) => (
  <span
@@ -202,7 +184,7 @@ export default function EventsShowcase() {
  </div>
 
  {/* Image nav grid — each thumbnail opens lightbox */}
- <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-3">Beispiele</div>
+ <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-3">{tx['label-examples']}</div>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
  {tab.images.map((img, i) => (
  <button
@@ -239,7 +221,7 @@ export default function EventsShowcase() {
  style={{ borderRadius: 0 }}
  >
  <i className="ri-calendar-line"></i>
- Beratung buchen
+ {tx['cta-label']}
  </a>
  </div>
  </div>

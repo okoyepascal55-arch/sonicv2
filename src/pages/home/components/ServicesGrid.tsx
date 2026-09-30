@@ -105,7 +105,7 @@ const baseServices = [
       '/images/home/4. Menschen für unsere Studios/DSC05404.webp',
       '/images/home/4. Menschen für unsere Studios/IMG_0727.webp',
     ],
-    link: '/leistungen/video',
+    link: '/leistungen/live-video',
   }
 ];
 
