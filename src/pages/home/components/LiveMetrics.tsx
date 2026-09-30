@@ -1,16 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 
+// Kennzahlen — alle belegt durch die Sonic Agenturpräsentation 2026.
+// Promoter (200+) und Talentpool (1.700+) bewusst getrennt ausweisen.
 const COMPANY_DATA = {
-  productsSold: '>3,7 Mio.',
   revenueGenerated: '>2 Mrd. €',
-  assignmentsCompleted: '>1,35 Mio.',
-  promoters: '2.000+',
-  coverage: 'DACH',
-  implementations: '100K+',
-  retailPartners: '500+',
-  successRate: '98%',
-  conversion: '+340%',
+  assignmentsCompleted: '>1,3 Mio.',
+  stores: '>1.000',
+  promoters: '200+',
+  talentPool: '>1.700',
+  liveCalls: '>47.000',
 };
 
 export default function LiveMetrics() {
@@ -40,12 +39,12 @@ export default function LiveMetrics() {
   }, []);
 
   const desktopMetrics = [
-    { icon: 'ri-shopping-bag-line', value: COMPANY_DATA.productsSold, label: 'Produkte' },
-    { icon: 'ri-money-euro-circle-line', value: COMPANY_DATA.revenueGenerated, label: 'Umsatz' },
-    { icon: 'ri-map-pin-line', value: COMPANY_DATA.assignmentsCompleted, label: 'Einsätze' },
-    { icon: 'ri-user-star-line', value: COMPANY_DATA.promoters, label: 'Promoter' },
-    { icon: 'ri-store-2-line', value: COMPANY_DATA.implementations, label: 'POS' },
-    { icon: 'ri-line-chart-line', value: COMPANY_DATA.conversion, label: 'Conversion' },
+    { icon: 'ri-money-euro-circle-line', value: COMPANY_DATA.revenueGenerated, label: 'Umsatz für unsere Kunden' },
+    { icon: 'ri-map-pin-line', value: COMPANY_DATA.assignmentsCompleted, label: 'erledigte Einsätze' },
+    { icon: 'ri-store-2-line', value: COMPANY_DATA.stores, label: 'betreute Stores' },
+    { icon: 'ri-user-star-line', value: COMPANY_DATA.promoters, label: 'Promoter:innen im Einsatz' },
+    { icon: 'ri-team-line', value: COMPANY_DATA.talentPool, label: 'Menschen im Talentpool' },
+    { icon: 'ri-live-line', value: COMPANY_DATA.liveCalls, label: 'Live-Beratungen' },
   ];
 
   const mobileMetrics = desktopMetrics.slice(0, 4);

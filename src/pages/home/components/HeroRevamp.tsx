@@ -253,13 +253,13 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
   const tLeftH3 = useText('home_hero', 'home-hero-left-h3', 'SUCHST DU EINE');
   const tLeftH3Accent = useText('home_hero', 'home-hero-left-h3-accent', 'AGENTUR');
   const tLeftH3End = useText('home_hero', 'home-hero-left-h3-line3', 'MIT POWER?');
-  const tLeftDesc = useText('home_hero', 'home-hero-left-desc', 'Dein Full-Service-Partner für Performance Marketing, Retail-Aktivierung und nachhaltiges Markenwachstum.');
-  const tLeftBtn = useText('home_hero', 'home-hero-left-btn', 'Starte deinen Markteintritt');
+  const tLeftDesc = useText('home_hero', 'home-hero-left-desc', 'Promotion, POS, Studio und Events: Wir bringen deine Marke dahin, wo gekauft wird – mit Menschen, die verkaufen, und Daten, die es belegen.');
+  const tLeftBtn = useText('home_hero', 'home-hero-left-btn', 'Projekt anfragen');
   const tRightBadge = useText('home_hero', 'home-hero-right-badge', 'Mensch. Der Unterschied.');
   const tRightH3 = useText('home_hero', 'home-hero-right-h3', 'SUCHST DU EINEN');
   const tRightH3Accent = useText('home_hero', 'home-hero-right-h3-accent', 'JOB');
   const tRightH3End = useText('home_hero', 'home-hero-right-h3-line3', 'MIT ENERGIE?');
-  const tRightDesc = useText('home_hero', 'home-hero-right-desc', 'Arbeite für die größten Marken Deutschlands — und mach sie noch erfolgreicher.');
+  const tRightDesc = useText('home_hero', 'home-hero-right-desc', 'Arbeite für starke Marken wie Garmin, Canon und Groupe SEB — und mach sie noch erfolgreicher.');
   const tRightBtn = useText('home_hero', 'home-hero-right-btn', 'Komm zu Sonic');
   const tStatLabel1 = useText('home_hero', 'home-hero-stat-1-label', 'Produkte verkauft');
   const tStatLabel2 = useText('home_hero', 'home-hero-stat-2-label', 'Umsatz generiert');

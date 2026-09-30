@@ -1276,7 +1276,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
   /* ── HOME: DarumSonic — Wood Icons ── */
   home_darumsonic_wood_icons: [
     { url: '', caption: 'Datenbasierte Vorhersagen' },
-    { url: '', caption: '2.000 Talente im Pool' },
+    { url: '', caption: '1.700+ im Talentpool' },
   ],
 
   /* ── HOME: ClientSuccess — Wood Icons ── */
@@ -1344,9 +1344,9 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── HOME: VideoShowcase — Bottom Strip Wood Icons ── */
   home_video_strip_wood_icons: [
-    { url: '', caption: '2.000+ Promoter' },
+    { url: '', caption: 'Seit 2007' },
     { url: '', caption: 'DACH-weit' },
-    { url: '', caption: '€2,19 Mrd. Umsatz' },
+    { url: '', caption: 'Über 2 Mrd. € Umsatz' },
   ],
 
   /* ── HOME: DanSection — Wood Background ── */

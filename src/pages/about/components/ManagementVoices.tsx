@@ -21,7 +21,7 @@ const EXECUTIVES = [
       { label: 'Doing New Things', text: 'Der \u201eStrategic Plan\u201c wird nur dann funktionieren, wenn wir bereit sind, Gewohntes zu verlassen, neue Chancen zu erkennen und mutig neue Wege zu gehen. Innovation ist kein Zufall, sondern eine Einstellung.' },
     ] as DoingItem[],
     metrics: [
-      { value: '2.000+', label: 'Promoter:innen täglich' },
+      { value: '200+', label: 'Promoter:innen im Einsatz' },
       { value: 'DACH', label: 'Marktabdeckung' },
     ],
     linkedin: 'https://www.linkedin.com/in/bj%C3%B6rn-bourdin-33100b3/',
@@ -43,7 +43,7 @@ const EXECUTIVES = [
     ] as DoingItem[],
     metrics: [
       { value: '€2 Mrd.', label: 'Beeinflusster Umsatz' },
-      { value: '18+', label: 'Jahre Vertrieb' },
+      { value: 'Seit 2007', label: 'bei Sonic' },
     ],
     linkedin: 'https://www.linkedin.com/in/jo-heitk%C3%A4mper-81522260/',
     image: '', // fallback removed — deleted images must stay deleted
@@ -71,17 +71,33 @@ const EXECUTIVES = [
   },
 ];
 
+// Name tokens used to find each executive's portrait in the dashboard media
+// section. Matched as whole words, so "jo" never matches inside other words.
+const PORTRAIT_NAME_TOKENS: Record<string, string[]> = {
+  bjorn: ['björn', 'bjoern', 'bjorn', 'bourdin'],
+  jo: ['jo', 'heitkämper', 'heitkaemper', 'heitkamper'],
+  lucas: ['lucas', 'kreiten'],
+};
+
+function portraitWords(raw: string): Set<string> {
+  let text = raw;
+  try { text = decodeURIComponent(raw); } catch { /* keep raw */ }
+  return new Set(text.normalize('NFC').toLowerCase().split(/[^a-zäöüß]+/).filter(Boolean));
+}
+
 function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
   return (
     <div className="border border-[oklch(0.885_0.004_110)] overflow-hidden">
       {/* Portrait */}
       <div className="relative bg-foreground-950" style={{ minHeight: 'clamp(260px, 32vw, 340px)' }}>
-        <img
-          src={exec.image}
-          alt={exec.name}
-          className="absolute inset-0 w-full h-full object-cover object-top"
-          loading="lazy"
-        />
+        {exec.image && (
+          <img
+            src={exec.image}
+            alt={exec.name}
+            className="absolute inset-0 w-full h-full object-cover object-top"
+            loading="lazy"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
         <div className="absolute top-5 left-5 bg-primary-500 text-foreground-950 px-3 py-1 text-[10px] font-black uppercase tracking-widest">
           {exec.eyebrow}
@@ -184,7 +200,7 @@ function DesktopCarousel({ execs }: { execs: typeof EXECUTIVES }) {
         style={{ gridTemplateColumns: imageLeft ? '0.86fr 1.14fr' : '1.14fr 0.86fr' }}>
         {/* Portrait */}
         <div className="relative overflow-hidden" style={{ order: imageLeft ? 1 : 2, backgroundColor: 'oklch(0.13 0.005 118)', minHeight: 'clamp(300px, 44vw, 460px)' }}>
-          <img src={imageRes} alt={exec.name} className="absolute inset-0 w-full h-full object-cover object-top" />
+          {imageRes && <img src={imageRes} alt={exec.name} className="absolute inset-0 w-full h-full object-cover object-top" />}
           <div className="absolute inset-0 bg-gradient-to-t from-foreground-950/60 via-transparent to-transparent pointer-events-none" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
             <p className="text-white font-black text-xl uppercase leading-tight mb-1">{exec.name}</p>
@@ -247,7 +263,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
   // Dashboard → Text → Stimmen & Gesichter → Tab „Über uns“
   const tCtaText   = useText('about_management_voices', 'about-voices-cta-text',   'Lass uns besprechen, wie Sonic deine');
   const tCtaAccent = useText('about_management_voices', 'about-voices-cta-accent', 'Marke unterstützen kann.');
-  const tCtaSub    = useText('about_management_voices', 'about-voices-cta-sub',    'Unabhängige Agentur — über 500 Projekte — B2B, B2B2C & D2C');
+  const tCtaSub    = useText('about_management_voices', 'about-voices-cta-sub',    'Unabhängige Agentur — über 15 Kunden — B2B, B2B2C & D2C');
   const tCtaBtn    = useText('about_management_voices', 'about-voices-cta',        'Beratungsgespräch buchen');
 
   const bjornText = useTextSection('management_voice_bjorn');
@@ -285,26 +301,17 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
     applyText(EXECUTIVES[2], lucasText),
   ];
 
-  // Match portraits by the ORIGINAL first name so renaming a person in the
-  // dashboard doesn't break the image mapping.
-  const imageKeys = EXECUTIVES.map((x) => x.name.split(' ')[0].toLowerCase());
-
+  // Match portraits strictly by the person's own name tokens (file name or
+  // caption). No position-based fallback: if a person's photo is deleted, they
+  // get NO photo rather than someone else's (previously Jo inherited slot 2,
+  // which was one of Björn's photos).
   const execs = resolvedExecs.map((exec, i) => {
-    // Match by executive first name found in either URL or caption.
-    // Checking both fields handles: static manifest images (name in URL path),
-    // user-uploaded Supabase images (name may only appear in the caption field),
-    // and any filename the user chose via the dashboard Replace flow.
-    // The old regex (/\d+\.webp$/i) was too narrow — Supabase storage URLs
-    // like __storage__:dashboard/1234-bjorn.webp don't end in digit+.webp.
-    const name = imageKeys[i]; // "björn" | "jo" | "lucas"
-    const matched = leadershipImages?.find(img => {
-      const searchTarget = (img.url + ' ' + (img.caption || '')).toLowerCase();
-      return searchTarget.includes(name);
+    const tokens = PORTRAIT_NAME_TOKENS[EXECUTIVES[i].id] ?? [];
+    const matched = leadershipImages?.find((img) => {
+      const words = portraitWords(img.url + ' ' + (img.caption || ''));
+      return tokens.some((t) => words.has(t));
     });
-    // Index-based fallback: if no name match (e.g. user uploaded without exec
-    // name in filename or caption), assign by position (0=Björn, 1=Jo, 2=Lucas).
-    const fallback = leadershipImages?.[i];
-    return { ...exec, image: matched?.url ?? fallback?.url ?? exec.image };
+    return { ...exec, image: matched?.url ?? '' };
   });
 
   return (
@@ -374,12 +381,14 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                     className="relative"
                     style={{ minHeight: 'clamp(320px, 48vw, 520px)', order: imageLeft ? 1 : 2, backgroundColor: 'oklch(0.13 0.005 118)' }}
                   >
-                    <img
-                      src={exec.image}
-                      alt={exec.name}
-                      className="absolute inset-0 w-full h-full object-cover object-top"
-                      loading="lazy"
-                    />
+                    {exec.image && (
+                      <img
+                        src={exec.image}
+                        alt={exec.name}
+                        className="absolute inset-0 w-full h-full object-cover object-top"
+                        loading="lazy"
+                      />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                     <div className="absolute top-5 left-5 bg-primary-500 text-foreground-950 px-3 py-1 text-[10px] font-black uppercase tracking-widest">
                       {exec.eyebrow}

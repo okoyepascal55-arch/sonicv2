@@ -21,11 +21,11 @@ const ABOUT_NAV_ITEMS = [
 export default function AboutPage() {
   useSEO({
     title: 'Über Sonic Group | Sales Promotion & Retail Activation Agentur seit 2007 — Krefeld DACH',
-    description: 'Sonic Sales Support GmbH: Unabhängige Retail Activation Agentur seit 2007. 2.000+ Promoter, €2 Mrd. beeinflusster Umsatz, 18+ Jahre Handelserfahrung. Strategischer Partner für internationale Marken bei Markteintritt und Wachstum in Deutschland, Österreich und der Schweiz.',
+    description: 'Sonic Sales Support GmbH aus Krefeld: unabhängige Sales- und Marketing-Agentur seit 2007. Promotion, POS, Studio und Events – über 200 Promoter:innen im Einsatz, über 2 Mrd. € Umsatz für unsere Kunden in Deutschland, Österreich und der Schweiz.',
     keywords: 'Sonic Group, Sonic Sales Support, Retail Agentur Krefeld, Sales Promotion seit 2007, Markenagentur Deutschland, POS Agentur DACH, Field Force Partner, Retail Activation Partner, Markteintritt Deutschland, Handelspartner DACH, Unabhängige Agentur, Brand Activation Agentur',
     canonical: 'https://sonic-group.de/ueber-uns',
     ogTitle: 'Über Sonic Group — Retail Activation Partner seit 2007',
-    ogDescription: 'Unabhängige Sales Promotion Agentur: 2.000+ Promoter, €2 Mrd. beeinflusster Umsatz, 18+ Jahre Handelserfahrung in Deutschland, Österreich und der Schweiz.',
+    ogDescription: 'Unabhängige Sales Promotion Agentur seit 2007: über 200 Promoter:innen im Einsatz, über 2 Mrd. € Umsatz für unsere Kunden in Deutschland, Österreich und der Schweiz.',
     jsonLd: [
       { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
@@ -36,7 +36,6 @@ export default function AboutPage() {
         description: 'Sonic Sales Support GmbH — Sales Promotion und Retail Activation Agentur seit 2007 in Krefeld.',
         mainEntity: { '@type': 'Organization', name: 'Sonic Sales Support GmbH',
           foundingDate: '2007', address: { '@type': 'PostalAddress', addressLocality: 'Krefeld', addressCountry: 'DE' },
-          numberOfEmployees: { '@type': 'QuantitativeValue', value: 2000, unitText: 'Promoter' },
         },
       },
     ],

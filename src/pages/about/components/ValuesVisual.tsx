@@ -47,7 +47,7 @@ export default function ValuesVisual() {
             Wer mit Sonic <span className="v3-marker">erfolgreich</span> ist
           </h2>
           <p className="text-sm text-foreground-500 max-w-lg leading-relaxed">
-            12 Markenpartner vertrauen seit 2007 auf unsere Expertise am POS, in Studios und auf Events.
+            Über 15 Kunden – im Studio, auf der Fläche, im Fachhandel, in Sport & Freizeit und im B2B.
           </p>
         </div>
 

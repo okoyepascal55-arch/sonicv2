@@ -13,18 +13,18 @@ import { StackedSectionReveal } from '../../components/feature/SectionReveal';
 
 export default function HomePage() {
   useSEO({
-    title: 'Sonic Group | Retail Activation Agency for DACH & Europe — Market Entry Partner',
-    description: 'Sonic Group: Retail activation partner for Chinese and US manufacturers entering Germany, Austria, Switzerland. POS promotion, field staffing, live video, brand ambassador programs. 1.35M+ assignments. €2B+ sell-out.',
+    title: 'Sonic Group | Promotionagentur & Sales Support für POS, Studio und Events – Krefeld, seit 2007',
+    description: 'Sonic Group aus Krefeld: Promotion, Point of Sale, Live-Video-Beratung aus eigenen Studios, Events und Schulungen – seit 2007. Über 2 Mrd. € Umsatz für unsere Kunden, über 1,3 Mio. Einsätze, über 1.000 betreute Stores.',
     keywords: 'retail activation agency Germany, DACH market entry, POS promotion Germany, field marketing DACH, brand ambassador agency Europe, market entry Germany China brand, US brand launch Germany, Markteinführung Deutschland, Promotionagentur DACH, Sonic Group Krefeld, retail staffing Europe, live video promotion, trade marketing Germany',
     canonical: 'https://sonic-group.de/',
-    ogTitle: 'Sonic Group — Retail Activation Agency | DACH & Europe',
-    ogDescription: 'From POS to live video: Full-service retail activation for Chinese & US brands entering DACH. 1.35M+ assignments. €2B+ sell-out. 2,000+ field staff.',
+    ogTitle: 'Sonic Group — Promotionagentur & Sales Support | DACH',
+    ogDescription: 'Promotion, POS, Studio und Events aus einer Hand. Über 200 Promoter:innen im Einsatz, über 2 Mrd. € Umsatz für unsere Kunden, über 1,3 Mio. Einsätze.',
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       '@id': 'https://sonic-group.de/',
-      'name': 'Sonic Group — Retail Activation Agency DACH & Europe',
-      'description': 'Full-service retail activation and market entry agency for brands launching in Germany, Austria, Switzerland.',
+      'name': 'Sonic Group — Promotionagentur & Sales Support DACH',
+      'description': 'Promotion, POS, Live-Video-Beratung, Events und Schulungen für Marken in Deutschland, Österreich und der Schweiz – seit 2007.',
       'url': 'https://sonic-group.de',
       'isPartOf': { '@id': 'https://sonic-group.de/#website' },
       'about': { '@id': 'https://sonic-group.de/#organization' },

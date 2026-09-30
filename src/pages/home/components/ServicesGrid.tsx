@@ -9,10 +9,25 @@ function hideBrokenImg(e: React.SyntheticEvent<HTMLImageElement>) {
 
 const services = [
   {
+    short: 'Promotion & POS',
+    title: 'Menschen für Promotion & POS',
+    lead: 'Geschultes Personal mit Augenmerk auf Marken- und / oder Produkt-Inszenierung.',
+    description: 'End-to-End-Partner für den Point of Sale: Design, Displays, Möbel, Collateral, Give-aways, Logistik und Montage. Wir gestalten und bestücken deine Fläche — datenbasiert geplant, live reportet und messbar erfolgreich.',
+    tagline: 'Über 1.000 Stores. Über 1,3 Mio. Einsätze. Über 2 Mrd. € Umsatz.',
+    fallbackIcon: 'ri-store-2-line',
+    images: [
+      'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
+      'https://www.sonic-group.de/wp-content/uploads/2023/06/10.jpg',
+      'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg',
+    ],
+    link: '/leistungen/pos-full-service',
+  },
+  {
+    short: 'Events',
     title: 'Menschen für Events & Messen',
     lead: 'Dediziert geschultes Personal für bestimmte Funktionen – Moderation, Musik, Catering, Logistik und Aufbau.',
     description: 'Wir präsentieren deine Marke da, wo deine Zielgruppe ist: Events, Messen, Roadshows und hybride Formate. Von Konzept über Personal bis Logistik — alles aus einer Hand.',
-    tagline: 'Vor Ort. Auf Tour. Mit Wirkung.',
+    tagline: 'Über 200 Events. Über 30.000 Kontakte. Vor Ort, auf Tour, mit Wirkung.',
     fallbackIcon: 'ri-calendar-event-line',
     images: [
       '/images/home/1. Menschen für Events & Messen/0af37f3a-0e8d-46be-a8f4-b658aadaa087.webp',
@@ -33,9 +48,10 @@ const services = [
     link: '/leistungen/events-messen',
   },
   {
+    short: 'Content',
     title: 'Menschen für Content',
     lead: 'Ausdrucksstarkes Personal mit Fokus auf Content Produktion.',
-    description: 'Videocontent und Live-Video-Kanäle mit unseren Markenbotschaftern — für Produktberatung, Sales und Service-Support. QR-Code auf der Verpackung, Widget im Online-Shop oder Display am POS: Fachberatung auf Knopfdruck.',
+    description: 'Unboxing- und How-to-Videos, Foto- und Videoshootings, Livestreams, Produktvideos und Social Media — mit ausdrucksstarkem Personal vor und hinter der Kamera.',
     tagline: 'Von Social Content bis Livestreams und Produktvideos — Content mit Retail-DNA.',
     fallbackIcon: 'ri-movie-line',
     images: [
@@ -45,6 +61,7 @@ const services = [
     link: '/leistungen/kreation-content',
   },
   {
+    short: 'Schulungen',
     title: 'Menschen für Schulungen',
     lead: 'Für Marken-, Produkt- und Verkaufs-Training.',
     description: 'Menschen, die Marken erklären. Trainings, die Wissen direkt in Performance verwandeln — offline, hybrid oder online. Mit Personal und Technik aus einem System.',
@@ -69,23 +86,11 @@ const services = [
     link: '/losungen',
   },
   {
-    title: 'Menschen für den Point of Sale',
-    lead: 'Geschultes Personal mit Augenmerk auf Marken- und / oder Produkt-Inszenierung.',
-    description: 'End-to-End-Partner für den Point of Sale: Design, Displays, Möbel, Collateral, Give-aways, Logistik und Montage. Wir gestalten und bestücken deine Fläche — datenbasiert geplant, live reportet und messbar erfolgreich.',
-    tagline: 'Über 20.000 Stores. Über 1.300.000 Einsätze/Aufgaben. Über 2 Milliarden Umsatz €.',
-    fallbackIcon: 'ri-store-2-line',
-    images: [
-      'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/06/10.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg',
-    ],
-    link: '/leistungen/pos-full-service',
-  },
-  {
+    short: 'Studios',
     title: 'Menschen für unsere Studios',
     lead: 'All In One: Regisseur, Moderator, Verkäufer.',
     description: 'Erlebbar werden: Produktberatung, Sales und Service-Support direkt aus unseren Studio-Setups. Für Livestreams, Video-Commerce, digitale Beratung und Content-Produktion.',
-    tagline: 'Wir richten uns nach den Usern — kanalübergreifend, skalierbar und immer nah an der echten Customer Journey.',
+    tagline: 'Über 47.000 Live-Beratungen. Ø 5,5 Minuten Gesprächsdauer. Über 4.200 Stunden Beratungszeit.',
     fallbackIcon: 'ri-camera-line',
     images: [
       '/images/home/4. Menschen für unsere Studios/1.webp',
@@ -100,7 +105,7 @@ const services = [
       '/images/home/4. Menschen für unsere Studios/IMG_0727.webp',
     ],
     link: '/leistungen/video',
-  },
+  }
 ];
 
 export default function ServicesGrid() {
@@ -118,16 +123,14 @@ export default function ServicesGrid() {
   const { images: homePos }       = useMediaStore('home_pos');
   const { images: homeStudios }   = useMediaStore('/images/home/4. Menschen für unsere Studios');
 
-  const getSectionImagesMap = (idx: number) => {
-    switch (idx) {
-      case 0: return homeEvents;
-      case 1: return homeContent;
-      case 2: return homeSchulungen;
-      case 3: return homePos;
-      case 4: return homeStudios;
-      default: return [];
-    }
+  const imagesByShort: Record<string, typeof homeEvents> = {
+    'Promotion & POS': homePos,
+    'Events': homeEvents,
+    'Content': homeContent,
+    'Schulungen': homeSchulungen,
+    'Studios': homeStudios,
   };
+  const getSectionImagesMap = (idx: number) => imagesByShort[services[idx]?.short] ?? [];
 
   const currentMediaItems = getSectionImagesMap(selectedIndex);
   const currentImages = currentMediaItems.map(item => item.url);
@@ -196,11 +199,7 @@ export default function ServicesGrid() {
             </span>
           </h2>
           <p className="text-sm md:text-base text-foreground-600 max-w-2xl mx-auto font-medium leading-relaxed">
-            Die Full-Service-Leistungen von Sonic:{' '}
-            <span className="text-primary-600 font-semibold">Vertriebsagentur</span>,{' '}
-            <span className="text-primary-600 font-semibold">Personalagentur</span>,{' '}
-            <span className="text-primary-600 font-semibold">Performanceagentur</span> und{' '}
-            <span className="text-primary-600 font-semibold">Eventagentur</span> in einem.
+            <span className="text-primary-600 font-semibold">Promotion</span>, POS, Events, Studios, Content und Schulungen – ein Partner, ein Team, eine Datenbasis.
           </p>
         </div>
 
@@ -260,7 +259,7 @@ export default function ServicesGrid() {
                       color: isActive ? 'rgba(255,255,255,0.5)' : 'oklch(var(--foreground-400))',
                     }}
                   >
-                    {['Events','Content','Schulungen','POS','Studios'][index]}
+                    {service.short}
                   </span>
                 </button>
               );

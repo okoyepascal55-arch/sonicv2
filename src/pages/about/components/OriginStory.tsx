@@ -5,14 +5,14 @@ import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
 
 const tickerStats = [
-  { icon: 'ri-briefcase-line', value: '>500', label: 'Projekte' },
-  { icon: 'ri-user-line', value: '>1,35 Mio.', label: 'Einsätze' },
-  { icon: 'ri-store-2-line', value: '>100.000', label: 'POS-Umsetzungen' },
+  { icon: 'ri-briefcase-line', value: '>15', label: 'Kunden' },
+  { icon: 'ri-map-pin-line', value: '>1,3 Mio.', label: 'Einsätze' },
+  { icon: 'ri-store-2-line', value: '>1.000', label: 'Stores' },
   { icon: 'ri-calendar-check-line', value: '2007', label: 'Gegründet' },
-  { icon: 'ri-team-line', value: '>2.000', label: 'Talente im Pool' },
+  { icon: 'ri-user-star-line', value: '200+', label: 'Promoter:innen im Einsatz' },
+  { icon: 'ri-team-line', value: '>1.700', label: 'Menschen im Talentpool' },
   { icon: 'ri-global-line', value: 'DACH', label: 'Marktabdeckung' },
-  { icon: 'ri-bar-chart-2-line', value: '>2 Mrd. €', label: 'Umsatz generiert' },
-  { icon: 'ri-medal-line', value: '17+', label: 'Jahre Erfahrung' },
+  { icon: 'ri-bar-chart-2-line', value: '>2 Mrd. €', label: 'Umsatz für unsere Kunden' },
 ];
 
 export default function OriginStory({ focusImages }: { focusImages?: MediaItem[] }) {
@@ -78,9 +78,9 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
 
               {/* Floating stat card — rounded, clean */}
               <div className="mt-4 md:mt-0 md:absolute md:-bottom-6 md:-right-4 lg:-right-6 bg-white border border-background-200 p-4 md:p-5 md:w-52" style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
-                <div className="text-3xl md:text-4xl font-black text-foreground-950 leading-none mb-1 md:mb-2">17+</div>
+                <div className="text-3xl md:text-4xl font-black text-foreground-950 leading-none mb-1 md:mb-2">2007</div>
                 <div className="text-xs font-bold text-foreground-400 uppercase tracking-wider">
-                  Jahre Markenerfolg im DACH-Raum
+                  Seitdem Markenerfolg im DACH-Raum
                 </div>
                 <div className="mt-3 h-1 w-10 bg-primary-500" />
               </div>

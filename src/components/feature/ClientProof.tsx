@@ -51,21 +51,30 @@ const baseTestimonials: Testimonial[] = [
     caseStudyLink: '/fallbeispiele',
   },
   {
-    brand: "L'ORÉAL",
-    logo: 'https://cdn.brandfetch.io/loreal.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-    quote: '„Sonic liefert konstant hochqualifizierte Promotoren, die unsere Marke am POS perfekt repräsentieren und messbare Ergebnisse erzielen."',
-    author: 'Sophie Müller',
-    role: 'Field Sales Manager DACH',
-    company: "L'Oréal Deutschland GmbH",
+    brand: 'MEDIAMARKT SATURN',
+    logo: 'https://cdn.brandfetch.io/mediamarkt.de/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+    quote: '„Mit der Hilfe vom Sonic Team wurden aus einzelnen Produkten Lösungen – denn inklusive unserer Services wie z.B. der Garantieverlängerung konnten wir ganzheitliche Kundennutzen schaffen."',
+    author: 'Björn Friebel',
+    role: '',
+    company: 'Media Markt Saturn',
     caseStudyLink: '/fallbeispiele',
   },
   {
-    brand: 'WMF',
-    logo: 'https://cdn.brandfetch.io/wmf.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-    quote: '„Mit Sonic haben wir einen Partner gefunden, der unsere Anforderungen an Qualität und Flexibilität im Außendienst vollständig erfüllt."',
-    author: 'Thomas Becker',
-    role: 'Head of Trade Marketing',
-    company: 'WMF Group GmbH',
+    brand: 'NEXARO',
+    logo: 'https://cdn.brandfetch.io/id2dYOZ6uf/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1773621883167',
+    quote: '„Mit Sonic konnten wir unsere neue Marke und ein komplexes B2B-Produkt verständlich machen – sowohl im persönlichen Kontakt als auch mit kreativen Online-Formaten aus dem Sonic Studio."',
+    author: 'André Hartmann',
+    role: 'Head of Marketing',
+    company: 'Nexaro GmbH',
+    caseStudyLink: '/fallbeispiele',
+  },
+  {
+    brand: 'VORWERK',
+    logo: 'https://cdn.brandfetch.io/vorwerk.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+    quote: '„Wir waren sehr glücklich, mit dem neuen Design auftreten zu können, und es ist – nicht nur bei uns, sondern auch bei den Messebesuchern – sehr gut angekommen."',
+    author: 'Kristina Braun',
+    role: 'Specialist Operations People & Culture',
+    company: 'Vorwerk Elektrowerke GmbH & Co. KG',
     caseStudyLink: '/fallbeispiele',
   },
 ];
@@ -191,7 +200,7 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
         <div className="mt-auto">
           <div className="mb-4">
             <div className="font-black text-foreground-950 text-sm md:text-xs">{item.author}</div>
-            <div className="text-sm md:text-xs text-foreground-500 mt-0.5">{item.role}</div>
+            {item.role && <div className="text-sm md:text-xs text-foreground-500 mt-0.5">{item.role}</div>}
             <div className="text-sm md:text-xs text-primary-500 font-semibold mt-0.5">{item.company}</div>
           </div>
           <a

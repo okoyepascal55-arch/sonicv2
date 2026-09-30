@@ -181,7 +181,7 @@ export default function SRTTeaser() {
             <span className="text-primary-500">Reporting Tool</span>
           </h2>
           <p className="sonic-subline" style={{ color: 'oklch(var(--foreground-300))' }}>
-            Marktforschung, Forecasting, Einsatzplanung und Abrechnung — alles in einem Tool.
+            Seit 2008 unser eigenes Tool: individualisierbar, mehrsprachig, adaptiv. Über 21 Versionen, über 1,4 Mio. Einsätze gesteuert – du siehst deine Projektdaten live.
           </p>
         </div>
 

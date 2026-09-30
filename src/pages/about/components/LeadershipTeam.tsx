@@ -3,7 +3,7 @@ import { useMediaStore } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
 
 const TEAM_STATS = [
-  { value: '5,15', unit: 'Jahre', label: 'Ø Betriebszugehörigkeit' },
+  { value: '5,4', unit: 'Jahre', label: 'Ø Betriebszugehörigkeit Sonic-Team' },
   { value: 'Dual', unit: 'Studium', label: 'Ausbildungspartner' },
   { value: 'B2B + D2C', unit: '', label: 'Kunden- & Agenturseite' },
 ];

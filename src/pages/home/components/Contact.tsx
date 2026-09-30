@@ -93,14 +93,14 @@ export default function Contact() {
                     Daten Liefern Fakten
                   </p>
                   <p className="text-sm font-black text-white whitespace-nowrap">
-                    Datenbasierte Vorhersagen
+                    Messbar statt Bauchgefühl
                   </p>
                   <span className="text-xs text-foreground-500 leading-relaxed">
-                    — Absatzprognosen auf Basis echter Marktdaten, Sell-out-Historien und
-                    KI-Modellen, angedockt an deine Software.
+                    — Daten liefern die Fakten: Bauchgefühl, Analyse, Herleitung,
+                    Sicherheit – jede Maßnahme wird im SRT messbar.
                   </span>
                   <span className="flex flex-wrap gap-1.5">
-                    {['Forecasting', 'Marktdaten', 'Performance'].map((tag) => (
+                    {['Analyse', 'Herleitung', 'SRT'].map((tag) => (
                       <span
                         key={tag}
                         className="text-[9px] font-bold text-primary-500/50 border border-primary-500/20 px-2 py-0.5"
@@ -202,14 +202,14 @@ export default function Contact() {
                     Mensch. Der Unterschied.
                   </p>
                   <p className="text-sm font-black text-foreground-950 whitespace-nowrap">
-                    2.000 Talente im Pool
+                    1.700+ im Talentpool
                   </p>
                   <span className="text-xs text-foreground-400 leading-relaxed">
-                    — Festangestellt, leidenschaftlich und mit Live-Einblick in die
-                    Zielerreichung, deine Marke in besten Händen.
+                    — Über 1.700 aktive Menschen im Sonic-Talentpool – daraus stellen
+                    wir für jedes Projekt das passende Team zusammen.
                   </span>
                   <span className="flex flex-wrap gap-1.5">
-                    {['Festangestellt', 'Live-Einblick', 'Motivation'].map((tag) => (
+                    {['Talentpool', 'Live-Einblick', 'Motivation'].map((tag) => (
                       <span
                         key={tag}
                         className="text-[9px] font-bold text-primary-500/50 border border-primary-500/20 px-2 py-0.5"
