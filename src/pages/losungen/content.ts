@@ -58,7 +58,7 @@ export const SOLUTIONS = {
     ],
     finalCta: 'Bereit für deinen Markteintritt? Lass uns in 30 Minuten klären, wie dein Launch aussehen kann.',
     ctaLabel: 'Markteintritt planen',
-    proof: ['Beispiel TV-Projekt: sechs Wochen nach dem Start im Vollbetrieb, +75 % Umsatz im ersten Jahr.'] as string[],
+    proof: ['TV-Hersteller: sechs Wochen nach dem Start im Vollbetrieb, +75 % Umsatz im ersten Jahr.'] as string[],
     modules: [
       { name: 'Promotion & POS', level: 'kern' },
       { name: 'Schulungen', level: 'kern' },
@@ -120,13 +120,13 @@ export const SOLUTIONS = {
     ],
     finalCta: 'Bereit, deinen Absatz zu steigern? Lass uns in 30 Minuten klären, wie dein Projekt aussehen kann.',
     ctaLabel: 'Absatz steigern planen',
-    proof: ['Garmin: Umsatz pro Einsatztag +20 %, +45 %, +23 %, +21 % – Jahr für Jahr seit 2021.', 'Groupe SEB: Umsatz pro Einsatztag von 947 € (2019) auf 2.363 € (2025).'] as string[],
+    proof: ['Wearables-Hersteller: Umsatz pro Einsatztag Jahr für Jahr gesteigert – +20 %, +45 %, +23 %, +21 % seit 2021.', 'Hausgeräte-Hersteller: Umsatz pro Einsatztag seit 2019 um rund 150 % gesteigert.'] as string[],
     modules: [
       { name: 'Promotion & POS', level: 'kern' },
       { name: 'SRT Planung & Reporting', level: 'kern' },
       { name: 'Sell-in & Merchandising', level: 'kern' },
       { name: 'Schulungen', level: 'baustein' },
-      { name: 'Live-Video (QR-Backup)', level: 'optional' },
+      { name: 'Live-Video per QR-Code', level: 'optional' },
       { name: 'Events & Aktionen', level: 'optional' },
       { name: 'Warehouse & Logistik', level: 'optional' },
     ] as SolutionModule[],
@@ -227,7 +227,7 @@ export const LOSUNGEN_PAGE_TEXT = {
 export const LOSUNGEN_FAQ: { question: string; answer: string }[] = [
   {
     question: 'Für welche Branchen arbeitet Sonic?',
-    answer: 'Wir sind spezialisiert auf erklärungsbedürftige Produkte: Consumer Electronics, Haushalts- und Küchengeräte, Sport & Outdoor, Kosmetik, Pharma, Food & Beverages und B2B. Unsere Teams sind in allen großen Handelsketten im Einsatz – von MediaMarkt und Saturn über Douglas und dm bis zum Fachhandel und zu Sportfachgeschäften. Seit 2007 wissen wir, wie man komplexe Produkte am POS erklärt und Kaufentscheidungen erleichtert – für globale Konzerne genauso wie für neue Marken.',
+    answer: 'Wir sind spezialisiert auf erklärungsbedürftige Produkte: Consumer Electronics, Haushalts- und Küchengeräte, Sport & Outdoor, Kosmetik, Pharma, Food & Beverages und B2B. Unsere Teams sind in allen großen Handelsketten im Einsatz – von großen Elektronikfachmärkten über Parfümerien und Drogerien bis zum Fachhandel und zu Sportfachgeschäften. Seit 2007 wissen wir, wie man komplexe Produkte am POS erklärt und Kaufentscheidungen erleichtert – für globale Konzerne genauso wie für neue Marken.',
   },
   {
     question: 'Was unterscheidet Sonic von anderen Vertriebsagenturen?',
