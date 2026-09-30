@@ -132,7 +132,7 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
       },
       {
         src: 'https://readdy.ai/api/search-image?query=premium%20Garmin%20smartwatch%20retail%20display%20with%20professional%20brand%20promoter%20explaining%20features%20to%20customer%20modern%20sports%20store%20clean%20merchandising%20warm%20accent%20lighting%202024%20commercial%20product%20photography&width=1200&height=900&seq=sonic-reels-2024-01&orientation=landscape',
-        caption: 'Garmin wuchs um 130 % — der Beweis stand auf dem Bildschirm.',
+        caption: 'Wachstum, das man sieht — live im Dashboard.',
       },
       {
         src: 'https://readdy.ai/api/search-image?query=closeup%20of%20large%20monitor%20displaying%20retail%20analytics%20dashboard%20with%20glowing%20charts%20and%20real%20time%20sales%20data%20visualization%20dark%20modern%20office%20warm%20accent%20lighting%202024%20technology%20photography&width=1200&height=900&seq=sonic-reels-2024-02&orientation=landscape',

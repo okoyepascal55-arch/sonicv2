@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import CaseShowcase from './CaseShowcase';
 import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
@@ -187,12 +188,14 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
         style={{ borderRadius: 0, transition: 'opacity 0.2s ease', opacity: fade ? 1 : 0, minHeight: 'clamp(200px, 45vw, 380px)' }}
       >
         {/* LEFT — image (3 cols) */}
-        <div className="lg:col-span-3 relative overflow-hidden" style={{ minHeight: 'clamp(160px, 36vw, 280px)' }}>
-          <img
-            src={mod.img}
-            alt={`${mod.title} — ${brand}`}
-            className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 20%' }}
-          />
+        <div className="lg:col-span-3 relative overflow-hidden bg-foreground-950" style={{ minHeight: 'clamp(160px, 36vw, 280px)' }}>
+          {mod.img && (
+            <img
+              src={mod.img}
+              alt={`${mod.title} — ${brand}`}
+              className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 20%' }}
+            />
+          )}
           {/* Tag chips bottom-left */}
           <div className="absolute bottom-4 left-4 flex flex-wrap gap-1.5 z-10">
             {mod.tags.map((tag) => (
@@ -286,7 +289,10 @@ interface CaseStudy {
   role: string;
   woodStats: { label: string; value: string; progress: number }[];
   woodPills: { label: string; value: string }[];
-  monthlyTrend: number[];
+  /** Shape only — relative bar heights (0–100). No values are ever shown. */
+  trend: number[];
+  trendYears: string[];
+  trendTitle: string;
   overview: string;
   modules: ServiceModule[];
   gallery: string[];
@@ -461,12 +467,12 @@ function GalleryThumb({
 
 export default function CaseStudiesPage() {
   useSEO({
-    title: 'Fallbeispiele | Sonic Group — Garmin +116%, Groupe SEB +130%, Avoury, TV & Sound',
-    description: 'Bewiesene Ergebnisse: Sonic Group Fallbeispiele — Garmin +116% Umsatzwachstum, Groupe SEB +130% Umsatz je Einsatztag, Avoury +1.187% Abverkauf, TV & Sound 1,72 Mrd. € Umsatz. Wie Sonic Marken im deutschen Handel erfolgreich macht.',
+    title: 'Fallbeispiele | Sonic Group — Promotion, POS und Live-Video im Handel',
+    description: 'Wie Sonic Marken im Handel erfolgreich macht: Fallbeispiele mit Garmin, Groupe SEB, Avoury und TV & Sound – Promotion, POS-Service, Live-Video-Beratung, Roadshows und Trainings.',
     keywords: 'Sonic Group Fallbeispiele, Garmin Retail Activation, Groupe SEB Promotion, Avoury Teemaschine POS, TV Sound Retail, Sales Promotion Erfolge, Retail Activation Ergebnisse, Brand Activation Referenzen, POS Promotion Case Study, Field Force Erfolge Deutschland, Consumer Electronics Retail DACH, Referenzen Sales Promotion',
     canonical: 'https://sonic-group.de/fallbeispiele',
     ogTitle: 'Fallbeispiele — Bewiesene Retail-Ergebnisse | Sonic Group',
-    ogDescription: 'Garmin +116%, Groupe SEB +130%, Avoury +1.187%, TV & Sound 1,72 Mrd. € — echte Ergebnisse aus dem deutschen Handel.',
+    ogDescription: 'Promotion, POS-Service, Live-Video-Beratung und Trainings – echte Projekte aus dem deutschen Handel.',
     jsonLd: [
       { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
@@ -517,25 +523,25 @@ export default function CaseStudiesPage() {
   };
   // Dashboard-editable text via textStore (Dashboard → Fallbeispiele)
   const tGarminHeadline  = useText('case_garmin_text', 'garmin-headline', 'Sportlich nach vorn');
-  const tGarminSubline   = useText('case_garmin_text', 'garmin-subline',  '#beatyesterday: Seit 2021 — Retail-Partnerschaft mit Garmin im DACH-Raum');
-  const tGarminOverview  = useText('case_garmin_text', 'garmin-overview', 'Vertrauen wächst, wenn Ergebnisse folgen. Mit Garmin starteten wir 2021 mit einem klaren Auftrag: Promotion in Deutschland. Jedes Jahr hat Garmin den Leistungsumfang ausgebaut — weil die Ergebnisse stimmten. Heute verantworten wir sieben Bereiche: Promotion DE, Promotion AT, Promotion Sport, POS One World, POS-Service, Lager und Möbelbau & Logistik. Die Partnerschaft zeigt, was passiert, wenn Qualität Konsequenzen hat.');
+  const tGarminSubline   = useText('case_garmin_text', 'garmin-subline',  '#beatyesterday – Partnerschaft seit 2021');
+  const tGarminOverview  = useText('case_garmin_text', 'garmin-overview', 'Was uns verbindet, ist mehr als ein Geschäftsverhältnis: ein partnerschaftliches Miteinander, geprägt von Respekt, Transparenz und dem gemeinsamen Ziel, das Beste für Kundinnen und Kunden zu erreichen. 2021 starteten wir mit Promotion in Deutschland. Jahr für Jahr kamen Aufgaben dazu – heute verantworten wir sieben Bereiche: Promotion DE, Promotion AT, Promotion Sport, POS One World, POS-Service, Lager sowie Möbelbau und Logistik.');
   const tGarminQuote     = useText('case_garmin_text', 'garmin-quote',    'Seit 2021 verbindet GARMIN und Sonic eine erfolgreiche Partnerschaft im Bereich Verkaufsunterstützung am POS. Im Jahr 2024 entwickelte und realisierte Sonic ein innovatives, interaktives POS-Möbel- und Servicekonzept für GARMIN. Mit hoher Qualität, Professionalität und einem ausgeprägten Markenverständnis überzeugt Sonic auf ganzer Linie. Besonders schätzen wir die partnerschaftliche Zusammenarbeit auf Augenhöhe – stets lösungsorientiert und engagiert. Wir empfehlen Sonic uneingeschränkt weiter und freuen uns auf die weitere gemeinsame Erfolgsgeschichte.');
   const tGarminAuthor    = useText('case_garmin_text', 'garmin-author',   'Dana Eichinger');
   const tGarminRole      = useText('case_garmin_text', 'garmin-role',     'Director Marketing DACH, Garmin Deutschland GmbH');
 
-  const tSebHeadline     = useText('case_seb_text',    'seb-headline',    'Partnerschaft mit Performance');
-  const tSebSubline      = useText('case_seb_text',    'seb-subline',     'Tefal, Rowenta, Krups, WMF — Multi-Brand-Aktivierung seit 2019');
-  const tSebOverview     = useText('case_seb_text',    'seb-overview',    'Derselbe Markt. Dieselben Stores. Vier Marken. Und der Umsatz pro Einsatztag wächst von Jahr zu Jahr. Seit 2019 begleiten wir die Groupe SEB mit Tefal, Rowenta, Krups und WMF. Der Tagesumsatz hat sich von 947 € (2019) auf 2.178 € (2024) mehr als verdoppelt — nicht durch mehr Personal, sondern durch bessere Methode. Roadshows, Live-Cooking, Video-Beratung aus unseren Studios, POS-Aktivierung, Trainings und tagesgenauer Reporting-Loop: alles aus einer Hand, alles messbar.');
+  const tSebHeadline     = useText('case_seb_text',    'seb-headline',    'Gemeinsam im Haushalt');
+  const tSebSubline      = useText('case_seb_text',    'seb-subline',     'Etablierte Partnerschaft seit 2019 – Tefal, Rowenta, Krups und WMF');
+  const tSebOverview     = useText('case_seb_text',    'seb-overview',    'Die Zusammenarbeit zwischen Sonic und Groupe SEB ist ein echtes Erfolgsmodell – geprägt von Vertrauen, Effizienz und einem gemeinsamen Anspruch: Leidenschaft für starke Marken und zufriedene Kunden. Sonic bringt Tefal, Rowenta, Krups und WMF durch gezielte Verkaufsunterstützung, fundiertes Fachwissen und aktiven POS-Support direkt zu den Menschen – mit Roadshows, Live-Streams, Live-Video-Beratung, Merchandising und Show-Cooking.');
   const tSebQuote        = useText('case_seb_text',    'seb-quote',       'Hier finde ich, ohne großes Excel Kung-Fu, dass was ich für die Vorbereitung von Meetings benötige, das Ganze mit wenigen Klicks und mit Exportfunktion. Das SRT ist ein nützliches Tool und erleichtert unsere tägliche Arbeit.');
   const tSebAuthor       = useText('case_seb_text',    'seb-author',      'Ramin Dirinpur');
   const tSebRole         = useText('case_seb_text',    'seb-role',        'Sales Promotion & Sales Training Manager, Groupe SEB Deutschland GmbH');
 
-  const tAvouryHeadline  = useText('case_avoury_text', 'avoury-headline', 'Wenn Cross-Selling zum System wird');
-  const tAvourySubline   = useText('case_avoury_text', 'avoury-subline',  'Avoury One by Melitta — die Form der Kurve ändert sich, wenn die Methode stimmt.');
-  const tAvouryOverview  = useText('case_avoury_text', 'avoury-overview', 'Nicht jede Wachstumskurve sieht gleich aus. Die von Avoury sieht aus wie ein Aufstieg — und dann wie eine senkrechte Wand. Seit 2021 unterstützen wir Melitta Single Portions am POS der Avoury One. Das zweite Jahr (+13 %) war solide. Das dritte Jahr war der Beweis: Wenn Gerätedemonstration, Personalauswahl und Cross-Selling auf Kapseln und Zubehör zum System werden, verändert sich die Dynamik grundlegend. Nicht weil mehr Promoter eingesetzt wurden — sondern weil die richtigen, am richtigen Ort, mit der richtigen Methode eingesetzt werden. Daten machen den Unterschied.');
-  const tAvouryQuote     = useText('case_avoury_text', 'avoury-quote',    'Dank datenbasierter Optimierungen und dem Sonic SRT konnten wir Geräteabsatz und Gesamtumsatz massiv steigern. Die Ergebnisse haben unsere Erwartungen weit übertroffen.');
-  const tAvouryAuthor    = useText('case_avoury_text', 'avoury-author',   'Projektteam Avoury by Melitta');
-  const tAvouryRole      = useText('case_avoury_text', 'avoury-role',     'In Zusammenarbeit mit der Sonic Group');
+  const tAvouryHeadline  = useText('case_avoury_text', 'avoury-headline', 'Innovatives Wachstum');
+  const tAvourySubline   = useText('case_avoury_text', 'avoury-subline',  'Avoury One von Melitta Single Portions – Partnerschaft seit 2021');
+  const tAvouryOverview  = useText('case_avoury_text', 'avoury-overview', 'Seit der Einführung der Avoury One – der Teemaschine aus dem Hause Melitta Single Portions – konnten wir erhebliche Wachstumsimpulse setzen. Der Schlüssel zum Erfolg: gezieltes Cross-Selling, das bestehende Synergien nutzt und neue Vertriebspotenziale erschließt. Sonic bringt Premium-Genuss und innovative Verkaufsunterstützung direkt an den Point of Sale – mit Leidenschaft, Expertise und echtem Gespür für Markeninszenierung.');
+  const tAvouryQuote     = useText('case_avoury_text', 'avoury-quote',    'Avoury. The Tea. Sonic. The Support.');
+  const tAvouryAuthor    = useText('case_avoury_text', 'avoury-author',   'Sonic Group');
+  const tAvouryRole      = useText('case_avoury_text', 'avoury-role',     'Partnerschaft mit Melitta Single Portions seit 2021');
 
   const tTvHeadline      = useText('case_tvsound_text','tvsound-headline','Vom Launch zur Marktführerschaft');
   const tTvSubline       = useText('case_tvsound_text','tvsound-subline', 'Drei Mandate · Drei Unternehmen · Ein roter Faden — seit 2009.');
@@ -545,12 +551,12 @@ export default function CaseStudiesPage() {
   const tTvRole          = useText('case_tvsound_text','tvsound-role',    'TV & Sound — Projektüberblick DACH');
 
   // Dashboard-editable metrics via textStore
-  const tGarminMetric  = useText('case_garmin',   'case-garmin-metric',         '+116%');
-  const tGarminLabel   = useText('case_garmin',   'case-garmin-metric-label',   'Umsatzwachstum 2021–2024');
-  const tSebMetric     = useText('case_seb',      'case-seb-metric',            '+130%');
-  const tSebLabel      = useText('case_seb',      'case-seb-metric-label',      'Umsatz je Einsatztag 2019–2024');
-  const tAvouryMetric  = useText('case_avoury',   'case-avoury-metric',         '+1.187%');
-  const tAvouryLabel   = useText('case_avoury',   'case-avoury-metric-label',   'Abverkauf pro Einsatztag 2021–2023');
+  const tGarminMetric  = useText('case_garmin',   'case-garmin-metric',         '7 Bereiche');
+  const tGarminLabel   = useText('case_garmin',   'case-garmin-metric-label',   'Vom Promotion-Auftrag zum Full-Service-Partner');
+  const tSebMetric     = useText('case_seb',      'case-seb-metric',            '4 Marken');
+  const tSebLabel      = useText('case_seb',      'case-seb-metric-label',      'Tefal, Rowenta, Krups und WMF – ein Team seit 2019');
+  const tAvouryMetric  = useText('case_avoury',   'case-avoury-metric',         'Cross-Selling');
+  const tAvouryLabel   = useText('case_avoury',   'case-avoury-metric-label',   'Die Methode hinter dem Wachstum');
   const tTvMetric      = useText('case_tvsound',  'case-tvsound-metric',        '1,72 Mrd. €');
   const tTvLabel       = useText('case_tvsound',  'case-tvsound-metric-label',  'Kumulierter Umsatz, längstes Mandat');
 
@@ -574,22 +580,25 @@ export default function CaseStudiesPage() {
       author: tGarminAuthor,
       role: tGarminRole,
       woodStats: [
-        { label: 'Umsatzwachstum 2021–2024', value: '+116%', progress: 87 },
+        { label: 'Leistungsbereiche', value: '7', progress: 87 },
         { label: 'Märkte', value: 'DE + AT + Sport', progress: 70 },
         { label: 'Partnerschaft seit', value: '2021', progress: 55 },
       ],
       woodPills: [
         { label: 'Start', value: '2021' },
         { label: 'Märkte', value: 'DE + AT' },
-        { label: 'Module', value: '7' },
+        { label: 'Bereiche', value: '7' },
       ],
-      monthlyTrend: [38, 41, 44, 47, 54, 61, 67, 72, 77, 82, 90, 99], // 2021→2025 cumulative growth index
+      // Umsatz pro Einsatztag, relativer Verlauf laut Agenturpräsentation — nur Form, keine Werte
+      trend: [39, 46, 67, 83, 100],
+      trendYears: ['2021', '2022', '2023', '2024', '2025'],
+      trendTitle: 'Umsatz pro Einsatztag',
       overview: tGarminOverview,
       modules: [
         { num: '01', title: 'Promotions', desc: 'Beispiel: Aktivierung am POS per Rabatt-Aktion. Full-Service-Umsetzung durch unsere Field Force.', img: '/images/Case Studies -Fallbsp/Garmin/5243_190035993.webp', tags: ['POS', 'Field Force', 'DACH'] },
-        { num: '02', title: 'Aktionen', desc: 'Beispiel: Smoothie-Verkostungsaktion am POS als niederschwelliger Gesprächseinstieg.', img: '/images/Case Studies -Fallbsp/Garmin/5243_190036664.webp', tags: ['Live-Aktion', 'Verkostung', 'POS'] },
-        { num: '03', title: 'POS-Möbel', desc: 'Eigens entwickeltes, modulares Präsentationsmöbel mit digitalen Elementen.', img: '/images/Case Studies -Fallbsp/Garmin/5279_10060291.webp', tags: ['Design', 'Modular', 'Digital'] },
-        { num: '04', title: 'Training', desc: 'Wir schulen die Sales-Teams, bei uns in Krefeld und mobil in ganz Deutschland.', img: '/images/Case Studies -Fallbsp/Garmin/5315_195525779.webp', tags: ['Schulung', 'Krefeld', 'Zertifizierung'] },
+        { num: '02', title: 'Aktionen', desc: 'Beispiel: Smoothie-Verkostungsaktion am POS als niederschwelliger Gesprächseinstieg.', img: '/images/Case Studies -Fallbsp/Garmin/210330_Banner_Kacheln_310x150px_Seite_13_Reporting.webp', tags: ['Live-Aktion', 'Verkostung', 'POS'] },
+        { num: '03', title: 'POS-Möbel', desc: 'Eigens entwickeltes, modulares Präsentationsmöbel mit digitalen Elementen.', img: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_1000_A26_Front.webp', tags: ['Design', 'Modular', 'Digital'] },
+        { num: '04', title: 'Training', desc: 'Wir schulen die Sales-Teams, bei uns in Krefeld und mobil in ganz Deutschland.', img: '' /* Foto ohne Maske fehlt — bitte im Dashboard hochladen (case_garmin_module_4) */, tags: ['Schulung', 'Krefeld', 'Zertifizierung'] },
         { num: '05', title: 'Lager & Logistik', desc: 'POS-Ausstattung wird bei Sonic produziert, gelagert und versendet.', img: '/images/Case Studies -Fallbsp/Garmin/5431_162510371.webp', tags: ['Lager', 'Logistik', 'Versand'] },
       ],
       gallery: [
@@ -627,8 +636,8 @@ export default function CaseStudiesPage() {
       author: tSebAuthor,
       role: tSebRole,
       woodStats: [
-        { label: 'Umsatzwachstum pro Einsatztag', value: '+130%', progress: 88 },
-        { label: 'Laufzeit', value: '2019–2024', progress: 75 },
+        { label: 'Marken', value: 'Tefal, Rowenta, Krups, WMF', progress: 88 },
+        { label: 'Partnerschaft seit', value: '2019', progress: 75 },
         { label: 'Marken', value: '4', progress: 60 },
       ],
       woodPills: [
@@ -636,7 +645,10 @@ export default function CaseStudiesPage() {
         { label: 'Marken', value: '4' },
         { label: 'Module', value: '6' },
       ],
-      monthlyTrend: [40, 42, 45, 55, 66, 70, 80, 92, 91, 91, 95, 99], // 2019→2025 €/Einsatztag (947→2363)
+      // Umsatz pro Einsatztag, relativer Verlauf laut Agenturpräsentation — nur Form, keine Werte
+      trend: [40, 45, 67, 71, 93, 92, 100],
+      trendYears: ['2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+      trendTitle: 'Umsatz pro Einsatztag',
       overview: tSebOverview,
       modules: [
         { num: '01', title: 'Live-Video-Beratung', desc: 'Aus den Sonic-Studios. Digital am POS und im Online-Shop. Für Rowenta, Tefal, Krups und WMF.', img: '/images/Case Studies -Fallbsp/SEB/20250604_205405_187.webp', tags: ['Live-Video', 'Studio', 'Digital'] },
@@ -681,7 +693,7 @@ export default function CaseStudiesPage() {
       author: tAvouryAuthor,
       role: tAvouryRole,
       woodStats: [
-        { label: 'Abverkauf/Einsatztag 2021–2023', value: '+1.187%', progress: 99 },
+        { label: 'Methode', value: 'Cross-Selling', progress: 99 },
         { label: 'Schlüssel zum Erfolg', value: 'Cross-Selling', progress: 85 },
         { label: 'Partnerschaft seit', value: '2021', progress: 70 },
       ],
@@ -690,7 +702,10 @@ export default function CaseStudiesPage() {
         { label: 'Marke', value: 'Melitta' },
         { label: 'Module', value: '5' },
       ],
-      monthlyTrend: [3, 3, 4, 4, 13, 22, 25, 48, 72, 83, 92, 99], // 2021→2025 cumulative Abverkauf/Tag (hockey-stick)
+      // Abverkauf pro Tag, relativer Verlauf laut Agenturpräsentation — nur Form, keine Werte
+      trend: [4, 4, 26, 73, 100],
+      trendYears: ['2021', '2022', '2023', '2024', '2025'],
+      trendTitle: 'Abverkauf pro Einsatztag',
       overview: tAvouryOverview,
       modules: [
         { num: '01', title: 'Recruiting', desc: 'Zum Start: Zusammenstellung Field Force Team aus eigenem Pool plus aus Recruiting. Gezieltes Matching auf Profil, Standort und Verkaufsstärke.', img: '/images/Case Studies -Fallbsp/Avoury/IMG-20230928-WA0000.webp', tags: ['Recruiting', 'Talentpool', 'Matching'] },
@@ -742,7 +757,9 @@ export default function CaseStudiesPage() {
         { label: 'Mandate', value: '3' },
         { label: 'Markt',   value: 'DE' },
       ],
-      monthlyTrend: [8, 18, 40, 60, 82, 99, 92, 72, 28, 48, 65, 88], // 2009→2026 drei Mandate arc
+      trend: [],
+      trendYears: [],
+      trendTitle: 'Drei Mandate seit 2009',
       overview: tTvOverview,
       modules: [
         { num: '01', title: 'Gründungskunde · 2009–2019',        desc: '10 Jahre Partnerschaft: von der Markteinführung zum Peak. 1,72 Mrd. € kumulierter Umsatz. Im Spitzenjahr 2018: 45.380 Einsatztage. Im Projektverlauf übernimmt Sonic sukzessive weitere Produktkategorien.', img: '', tags: ['Promotion', 'POS-Möbel', 'Trainings', 'Roadshows', 'Lager'] },
@@ -967,30 +984,61 @@ export default function CaseStudiesPage() {
                   </div>
                 </div>
 
-                {/* Right — performance chart */}
+                {/* Right — development chart: shape only, no figures (client data stays confidential) */}
                 <div className="bg-black/30 border border-white/10 p-5 md:p-6 flex flex-col">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-white/70 text-xs font-black uppercase tracking-wide">Performance-Trend</span>
-                    <span className="text-primary-500 text-xs font-black bg-white/10 px-2.5 py-1">{current.since}–{(current.metricLabel.match(/20\d{2}/g) || []).pop() || '2024'}</span>
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <span className="text-white/70 text-xs font-black uppercase tracking-wide">{current.trendTitle}</span>
+                    {current.trendYears.length > 0 && (
+                      <span className="text-primary-500 text-xs font-black bg-white/10 px-2.5 py-1 whitespace-nowrap">{current.trendYears[0]}–{current.trendYears[current.trendYears.length - 1]}</span>
+                    )}
                   </div>
-                  <div className="flex-1 flex items-end gap-1 min-h-[120px] md:min-h-[140px]">
-                    {current.monthlyTrend.map((h, i) => (
-                      <div key={i} className="flex-1 flex flex-col justify-end h-full">
-                        <div
-                          className="w-full transition-all duration-700"
-                          style={{
-                            height: `${(h / 100) * 100}%`,
-                            background: h > 80 ? 'oklch(var(--primary-500))' : h > 60 ? 'oklch(var(--primary-500) / 0.75)' : 'oklch(var(--primary-500) / 0.45)',
-                          }}
-                        />
+                  {current.trend.length > 0 ? (
+                    <>
+                      <div className="flex-1 flex items-end gap-2 md:gap-3 min-h-[120px] md:min-h-[140px]" role="img" aria-label={`${current.trendTitle}: Entwicklung ${current.trendYears[0]} bis ${current.trendYears[current.trendYears.length - 1]}`}>
+                        {current.trend.map((h, i) => (
+                          <div key={i} className="flex-1 flex flex-col justify-end h-full">
+                            <div
+                              className="w-full transition-all duration-700"
+                              style={{
+                                height: `${Math.max(h, 3)}%`,
+                                background: i === current.trend.length - 1 ? 'oklch(var(--primary-500))' : 'oklch(var(--primary-500) / 0.5)',
+                              }}
+                            />
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                  <div className="flex justify-between mt-2">
-                    {['J','F','M','A','M','J','J','A','S','O','N','D'].map((m, i) => (
-                      <span key={i} className="text-white/30 flex-1 text-center text-[9px]">{m}</span>
-                    ))}
-                  </div>
+                      <div className="flex gap-2 md:gap-3 mt-2">
+                        {current.trendYears.map((y) => (
+                          <span key={y} className="text-white/40 flex-1 text-center text-[10px] tabular-nums">{y}</span>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    /* TV & Sound: three mandates on one timeline (width = duration) */
+                    <div className="flex-1 flex flex-col justify-center gap-3 min-h-[120px] md:min-h-[140px]">
+                      <div className="flex h-10" style={{ gap: '2px' }}>
+                        {[
+                          { label: 'Gründungskunde', years: '2009–2019', span: 11, tone: 0.45 },
+                          { label: 'Europäischer Hersteller', years: '2020–2024', span: 5, tone: 0.7 },
+                          { label: 'Laufendes Mandat', years: 'seit 2025', span: 2, tone: 1 },
+                        ].map((m) => (
+                          <div key={m.label} className="h-full" style={{ flex: m.span, background: `oklch(var(--primary-500) / ${m.tone})` }} title={`${m.label} · ${m.years}`} />
+                        ))}
+                      </div>
+                      <div className="flex" style={{ gap: '2px' }}>
+                        {[
+                          { label: 'Gründungskunde', years: '2009–2019', span: 11 },
+                          { label: 'Europ. Hersteller', years: '2020–2024', span: 5 },
+                          { label: 'Laufend', years: 'seit 2025', span: 2 },
+                        ].map((m) => (
+                          <div key={m.label} className="min-w-0" style={{ flex: m.span }}>
+                            <p className="text-white/70 text-[10px] font-black uppercase tracking-wide truncate">{m.label}</p>
+                            <p className="text-white/40 text-[10px] tabular-nums">{m.years}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -1078,11 +1126,6 @@ export default function CaseStudiesPage() {
               />
             )}
 
-            <GroupedImpressionenGallery
-              groups={expanded.imageGroups}
-              brand={expanded.brand}
-              openLightbox={openLightbox}
-            />
 
             {/* Related stories */}
             <div className="mb-10">
@@ -1172,6 +1215,9 @@ export default function CaseStudiesPage() {
           </div>
         </section>
       )}
+
+      {/* ── BILDERSHOWCASE (ersetzt die Bildgalerien je Fallbeispiel) ── */}
+      <CaseShowcase />
 
       <WoodenDivider />
 

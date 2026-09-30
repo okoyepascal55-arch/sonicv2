@@ -79,9 +79,9 @@ function DashboardPreview() {
           {/* Data table rows */}
           <div style={{ border: '1px solid rgba(255,255,255,0.05)' }}>
             {[
-              { name: 'MediaMarkt Berlin', val: '€4.210', status: true },
-              { name: 'Saturn Hamburg', val: '€3.880', status: true },
-              { name: 'Expert München', val: '€2.140', status: false },
+              { name: 'Store Berlin', val: '€4.210', status: true },
+              { name: 'Store Hamburg', val: '€3.880', status: true },
+              { name: 'Store München', val: '€2.140', status: false },
             ].map((r) => (
               <div key={r.name} className="flex items-center px-2 py-1" style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                 <div className="w-1 h-1 mr-2 flex-shrink-0" style={{ background: r.status ? 'oklch(0.81 0.19 115)' : 'rgba(255,255,255,0.2)', borderRadius: '50%' }} />

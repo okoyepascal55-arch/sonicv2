@@ -74,7 +74,7 @@ export default function MeetTheTeam() {
     {
       name: 'Marcel',
       role: 'Garmin Account Lead',
-      story: 'Drove Garmin revenue from €947/day to €2,178/day. His strategic approach sets the standard for account management.',
+      story: 'His strategic approach sets the standard for account management.',
       metric: '+130% growth',
       image: 'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO02.jpg',
       icon: 'ri-line-chart-line',

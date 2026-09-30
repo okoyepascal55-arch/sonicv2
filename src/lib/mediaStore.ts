@@ -305,26 +305,9 @@ export const PAGE_GROUPS: PageGroup[] = [
     sections: [
       'case_studies_hero_images',
       'case_studies_brand_logos',
-      // Garmin Impressionen
-      'case_garmin_gallery_1',
-      'case_garmin_gallery_2',
-      'case_garmin_gallery_3',
-      'case_garmin_gallery_4',
-      // Groupe SEB Impressionen
-      'case_seb_gallery_1',
-      'case_seb_gallery_2',
-      'case_seb_gallery_3',
-      'case_seb_gallery_4',
-      // TV & Sound Impressionen
-      'case_tvsound_gallery_1',
-      'case_tvsound_gallery_2',
-      'case_tvsound_gallery_3',
-      'case_tvsound_gallery_4',
-      // Avoury Impressionen
-      'case_avoury_gallery_1',
-      'case_avoury_gallery_2',
-      'case_avoury_gallery_3',
-      'case_avoury_gallery_4',
+      // Bildershowcase (ersetzt die Bildgalerien je Fallbeispiel)
+      'case_studies_pictorial_showcase',
+      // (Bildgalerien je Fallbeispiel entfernt — Bilder jetzt im Bildershowcase)
       // Module images — controllable from dashboard
       'case_garmin_module_1','case_garmin_module_2','case_garmin_module_3',
       'case_garmin_module_4','case_garmin_module_5',
@@ -563,6 +546,7 @@ export const VIRTUAL_MEDIA: MediaSections = {
   /* ── SRT: Case Studies dashboard control ── */
   case_studies_hero_images: [],
   case_studies_brand_logos: [],
+  case_studies_pictorial_showcase: [],
 
   srt_product_desktop: [
     { url: '', caption: 'SRT Desktop — Dashboard Showcase', wide: true },
@@ -1530,6 +1514,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'careers_culture_wood_icons': 'KarriereCulture — Wood Icons',
   'careers_hero_wood_icons': 'KarriereHero — Trust Stat Icons',
   'careers_pictorial_showcase': 'Careers — Pictorial Showcase (under Team Events)',
+  'case_studies_pictorial_showcase': 'Fallbeispiele — Bildershowcase (Projekt-Einblicke)',
   'careers_perks_wood_icons': 'Perks — Section Wood Icons',
   'leistungen_pos_images': 'POS Full Service',
   'leistungen_video_images': 'Live Video Promotion',

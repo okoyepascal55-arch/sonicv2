@@ -499,7 +499,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'reels-era-4-quote', label: 'Era 4 Quote', description: '2022–2023 quote', type: 'quote', value: 'Fünf globale Marken gleichzeitig, zwei Milliarden in aktivierten Umsätzen, und kein einziger KPI verfehlt. Dieser Druck hat uns letztlich dazu gebracht, unsere eigene Plattform zu bauen.' },
       { id: 'reels-era-4-attribution', label: 'Era 4 Attribution', description: '2022–2023 attribution', type: 'label', value: 'Lucas Kreiten · Geschäftsführer, 2023' },
       { id: 'reels-era-4-caption', label: 'Era 4 Caption', description: '2022–2023 photo caption', type: 'caption', value: 'Fünf Marken. Kein einziger KPI verfehlt.' },
-      { id: 'reels-era-5-quote', label: 'Era 5 Quote', description: '2024 quote', type: 'quote', value: 'Zum ersten Mal konnten unsere Kunden ihre Investition in Echtzeit bei der Arbeit beobachten. Garmin wuchs um 130% — und die Daten bewiesen endlich, was wir immer gewusst hatten.' },
+      { id: 'reels-era-5-quote', label: 'Era 5 Quote', description: '2024 quote', type: 'quote', value: 'Zum ersten Mal konnten unsere Kunden ihre Investition in Echtzeit bei der Arbeit beobachten — und die Daten bewiesen, was wir immer gewusst hatten.' },
       { id: 'reels-era-5-attribution', label: 'Era 5 Attribution', description: '2024 attribution', type: 'label', value: 'Björn Bourdin · Mitgründer, 2024' },
       { id: 'reels-era-5-caption', label: 'Era 5 Caption', description: '2024 photo caption', type: 'caption', value: 'Die Daten sahen endlich, was wir sahen.' },
       { id: 'reels-era-6-quote', label: 'Era 6 Quote', description: '2025 quote', type: 'quote', value: 'Zweitausend Spezialistinnen und Spezialisten, eine Bindungsquote von 98% und das beste Jahr, das wir je hatten. Wir haben uns genau einen Abend gegönnt, um es zu feiern.' },
@@ -1360,12 +1360,22 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   },
   // ── Case study headline metrics — editable from Dashboard → Text ──
   {
+    key: 'case_studies_showcase',
+    pageGroupId: 'case_studies', pagePath: '/fallbeispiele',
+    label: 'Fallbeispiele — Bildershowcase',
+    description: 'Überschrift über dem laufenden Bildband mit Projekt-Einblicken.',
+    entries: [
+      { id: 'case-showcase-badge', label: 'Badge', description: '', type: 'badge', value: 'Einblicke' },
+      { id: 'case-showcase-heading', label: 'Überschrift', description: '', type: 'heading', value: 'Aus unseren Projekten' },
+    ],
+  },
+  {
     key: 'case_garmin',
     pageGroupId: 'case_studies',
     label: 'Fallbeispiel Garmin — Kennzahlen',
     entries: [
-      { id: 'case-garmin-metric',       label: 'Headline-Kennzahl',     value: '+116%',                           type: 'text' as const },
-      { id: 'case-garmin-metric-label', label: 'Kennzahl-Beschriftung', value: 'Umsatzwachstum 2021–2024',        type: 'text' as const },
+      { id: 'case-garmin-metric',       label: 'Headline-Kennzahl',     value: '7 Bereiche',                           type: 'text' as const },
+      { id: 'case-garmin-metric-label', label: 'Kennzahl-Beschriftung', value: 'Vom Promotion-Auftrag zum Full-Service-Partner',        type: 'text' as const },
     ],
   },
   {
@@ -1373,8 +1383,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pageGroupId: 'case_studies',
     label: 'Fallbeispiel Groupe SEB — Kennzahlen',
     entries: [
-      { id: 'case-seb-metric',          label: 'Headline-Kennzahl',     value: '+130%',                           type: 'text' as const },
-      { id: 'case-seb-metric-label',    label: 'Kennzahl-Beschriftung', value: 'Umsatz je Einsatztag 2019–2024', type: 'text' as const },
+      { id: 'case-seb-metric',          label: 'Headline-Kennzahl',     value: '4 Marken',                           type: 'text' as const },
+      { id: 'case-seb-metric-label',    label: 'Kennzahl-Beschriftung', value: 'Tefal, Rowenta, Krups und WMF – ein Team seit 2019', type: 'text' as const },
     ],
   },
   {
@@ -1382,8 +1392,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pageGroupId: 'case_studies',
     label: 'Fallbeispiel Avoury — Kennzahlen',
     entries: [
-      { id: 'case-avoury-metric',       label: 'Headline-Kennzahl',     value: '+1.187%',                              type: 'text' as const },
-      { id: 'case-avoury-metric-label', label: 'Kennzahl-Beschriftung', value: 'Abverkauf pro Einsatztag 2021–2023',   type: 'text' as const },
+      { id: 'case-avoury-metric',       label: 'Headline-Kennzahl',     value: 'Cross-Selling',                              type: 'text' as const },
+      { id: 'case-avoury-metric-label', label: 'Kennzahl-Beschriftung', value: 'Die Methode hinter dem Wachstum',   type: 'text' as const },
     ],
   },
   {
@@ -1426,8 +1436,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'Texte der Fallstudie Garmin. Kennzahlen, Diagramm und Bilder werden separat gepflegt.',
     entries: [
       { id: 'garmin-headline', label: 'Überschrift', description: 'Große Überschrift der Fallstudie', type: 'heading', value: 'Sportlich nach vorn' },
-      { id: 'garmin-subline', label: 'Unterzeile', description: 'Zeile unter der Überschrift', type: 'subheading', value: '#beatyesterday: Seit 2021 — Retail-Partnerschaft mit Garmin im DACH-Raum' },
-      { id: 'garmin-overview', label: 'Übersicht', description: 'Einleitender Absatz der Fallstudie', type: 'paragraph', multiline: true, value: 'Vertrauen wächst, wenn Ergebnisse folgen. Mit Garmin starteten wir 2021 mit einem klaren Auftrag: Promotion in Deutschland. Jedes Jahr hat Garmin den Leistungsumfang ausgebaut — weil die Ergebnisse stimmten. Heute verantworten wir sieben Bereiche: Promotion DE, Promotion AT, Promotion Sport, POS One World, POS-Service, Lager und Möbelbau & Logistik. Die Partnerschaft zeigt, was passiert, wenn Qualität Konsequenzen hat.' },
+      { id: 'garmin-subline', label: 'Unterzeile', description: 'Zeile unter der Überschrift', type: 'subheading', value: '#beatyesterday – Partnerschaft seit 2021' },
+      { id: 'garmin-overview', label: 'Übersicht', description: 'Einleitender Absatz der Fallstudie', type: 'paragraph', multiline: true, value: 'Was uns verbindet, ist mehr als ein Geschäftsverhältnis: ein partnerschaftliches Miteinander, geprägt von Respekt, Transparenz und dem gemeinsamen Ziel, das Beste für Kundinnen und Kunden zu erreichen. 2021 starteten wir mit Promotion in Deutschland. Jahr für Jahr kamen Aufgaben dazu – heute verantworten wir sieben Bereiche: Promotion DE, Promotion AT, Promotion Sport, POS One World, POS-Service, Lager sowie Möbelbau und Logistik.' },
       { id: 'garmin-quote', label: 'Kundenzitat', description: 'Zitat im Zitat-Block (ohne Anführungszeichen eingeben)', type: 'quote', multiline: true, value: 'Seit 2021 verbindet GARMIN und Sonic eine erfolgreiche Partnerschaft im Bereich Verkaufsunterstützung am POS. Im Jahr 2024 entwickelte und realisierte Sonic ein innovatives, interaktives POS-Möbel- und Servicekonzept für GARMIN. Mit hoher Qualität, Professionalität und einem ausgeprägten Markenverständnis überzeugt Sonic auf ganzer Linie. Besonders schätzen wir die partnerschaftliche Zusammenarbeit auf Augenhöhe – stets lösungsorientiert und engagiert. Wir empfehlen Sonic uneingeschränkt weiter und freuen uns auf die weitere gemeinsame Erfolgsgeschichte.' },
       { id: 'garmin-author', label: 'Zitat — Name', description: 'Wer das Zitat gesagt hat', type: 'label', value: 'Dana Eichinger' },
       { id: 'garmin-role', label: 'Zitat — Position / Unternehmen', description: 'Unter dem Namen', type: 'label', value: 'Director Marketing DACH, Garmin Deutschland GmbH' },
@@ -1440,9 +1450,9 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pagePath: '/fallbeispiele',
     description: 'Texte der Fallstudie Groupe SEB. Kennzahlen, Diagramm und Bilder werden separat gepflegt.',
     entries: [
-      { id: 'seb-headline', label: 'Überschrift', description: 'Große Überschrift der Fallstudie', type: 'heading', value: 'Partnerschaft mit Performance' },
-      { id: 'seb-subline', label: 'Unterzeile', description: 'Zeile unter der Überschrift', type: 'subheading', value: 'Tefal, Rowenta, Krups, WMF — Multi-Brand-Aktivierung seit 2019' },
-      { id: 'seb-overview', label: 'Übersicht', description: 'Einleitender Absatz der Fallstudie', type: 'paragraph', multiline: true, value: 'Derselbe Markt. Dieselben Stores. Vier Marken. Und der Umsatz pro Einsatztag wächst von Jahr zu Jahr. Seit 2019 begleiten wir die Groupe SEB mit Tefal, Rowenta, Krups und WMF. Der Tagesumsatz hat sich von 947 € (2019) auf 2.178 € (2024) mehr als verdoppelt — nicht durch mehr Personal, sondern durch bessere Methode. Roadshows, Live-Cooking, Video-Beratung aus unseren Studios, POS-Aktivierung, Trainings und tagesgenauer Reporting-Loop: alles aus einer Hand, alles messbar.' },
+      { id: 'seb-headline', label: 'Überschrift', description: 'Große Überschrift der Fallstudie', type: 'heading', value: 'Gemeinsam im Haushalt' },
+      { id: 'seb-subline', label: 'Unterzeile', description: 'Zeile unter der Überschrift', type: 'subheading', value: 'Etablierte Partnerschaft seit 2019 – Tefal, Rowenta, Krups und WMF' },
+      { id: 'seb-overview', label: 'Übersicht', description: 'Einleitender Absatz der Fallstudie', type: 'paragraph', multiline: true, value: 'Die Zusammenarbeit zwischen Sonic und Groupe SEB ist ein echtes Erfolgsmodell – geprägt von Vertrauen, Effizienz und einem gemeinsamen Anspruch: Leidenschaft für starke Marken und zufriedene Kunden. Sonic bringt Tefal, Rowenta, Krups und WMF durch gezielte Verkaufsunterstützung, fundiertes Fachwissen und aktiven POS-Support direkt zu den Menschen – mit Roadshows, Live-Streams, Live-Video-Beratung, Merchandising und Show-Cooking.' },
       { id: 'seb-quote', label: 'Kundenzitat', description: 'Zitat im Zitat-Block (ohne Anführungszeichen eingeben)', type: 'quote', multiline: true, value: 'Hier finde ich, ohne großes Excel Kung-Fu, dass was ich für die Vorbereitung von Meetings benötige, das Ganze mit wenigen Klicks und mit Exportfunktion. Das SRT ist ein nützliches Tool und erleichtert unsere tägliche Arbeit.' },
       { id: 'seb-author', label: 'Zitat — Name', description: 'Wer das Zitat gesagt hat', type: 'label', value: 'Ramin Dirinpur' },
       { id: 'seb-role', label: 'Zitat — Position / Unternehmen', description: 'Unter dem Namen', type: 'label', value: 'Sales Promotion & Sales Training Manager, Groupe SEB Deutschland GmbH' },
@@ -1455,12 +1465,12 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pagePath: '/fallbeispiele',
     description: 'Texte der Fallstudie Avoury. Kennzahlen, Diagramm und Bilder werden separat gepflegt.',
     entries: [
-      { id: 'avoury-headline', label: 'Überschrift', description: 'Große Überschrift der Fallstudie', type: 'heading', value: 'Wenn Cross-Selling zum System wird' },
-      { id: 'avoury-subline', label: 'Unterzeile', description: 'Zeile unter der Überschrift', type: 'subheading', value: 'Avoury One by Melitta — die Form der Kurve ändert sich, wenn die Methode stimmt.' },
-      { id: 'avoury-overview', label: 'Übersicht', description: 'Einleitender Absatz der Fallstudie', type: 'paragraph', multiline: true, value: 'Nicht jede Wachstumskurve sieht gleich aus. Die von Avoury sieht aus wie ein Aufstieg — und dann wie eine senkrechte Wand. Seit 2021 unterstützen wir Melitta Single Portions am POS der Avoury One. Das zweite Jahr (+13 %) war solide. Das dritte Jahr war der Beweis: Wenn Gerätedemonstration, Personalauswahl und Cross-Selling auf Kapseln und Zubehör zum System werden, verändert sich die Dynamik grundlegend. Nicht weil mehr Promoter eingesetzt wurden — sondern weil die richtigen, am richtigen Ort, mit der richtigen Methode eingesetzt werden. Daten machen den Unterschied.' },
-      { id: 'avoury-quote', label: 'Kundenzitat', description: 'Zitat im Zitat-Block (ohne Anführungszeichen eingeben)', type: 'quote', multiline: true, value: 'Dank datenbasierter Optimierungen und dem Sonic SRT konnten wir Geräteabsatz und Gesamtumsatz massiv steigern. Die Ergebnisse haben unsere Erwartungen weit übertroffen.' },
-      { id: 'avoury-author', label: 'Zitat — Name', description: 'Wer das Zitat gesagt hat', type: 'label', value: 'Projektteam Avoury by Melitta' },
-      { id: 'avoury-role', label: 'Zitat — Position / Unternehmen', description: 'Unter dem Namen', type: 'label', value: 'In Zusammenarbeit mit der Sonic Group' },
+      { id: 'avoury-headline', label: 'Überschrift', description: 'Große Überschrift der Fallstudie', type: 'heading', value: 'Innovatives Wachstum' },
+      { id: 'avoury-subline', label: 'Unterzeile', description: 'Zeile unter der Überschrift', type: 'subheading', value: 'Avoury One von Melitta Single Portions – Partnerschaft seit 2021' },
+      { id: 'avoury-overview', label: 'Übersicht', description: 'Einleitender Absatz der Fallstudie', type: 'paragraph', multiline: true, value: 'Seit der Einführung der Avoury One – der Teemaschine aus dem Hause Melitta Single Portions – konnten wir erhebliche Wachstumsimpulse setzen. Der Schlüssel zum Erfolg: gezieltes Cross-Selling, das bestehende Synergien nutzt und neue Vertriebspotenziale erschließt. Sonic bringt Premium-Genuss und innovative Verkaufsunterstützung direkt an den Point of Sale – mit Leidenschaft, Expertise und echtem Gespür für Markeninszenierung.' },
+      { id: 'avoury-quote', label: 'Kundenzitat', description: 'Zitat im Zitat-Block (ohne Anführungszeichen eingeben)', type: 'quote', multiline: true, value: 'Avoury. The Tea. Sonic. The Support.' },
+      { id: 'avoury-author', label: 'Zitat — Name', description: 'Wer das Zitat gesagt hat', type: 'label', value: 'Sonic Group' },
+      { id: 'avoury-role', label: 'Zitat — Position / Unternehmen', description: 'Unter dem Namen', type: 'label', value: 'Partnerschaft mit Melitta Single Portions seit 2021' },
     ],
   },
   {
