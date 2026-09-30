@@ -54,7 +54,7 @@ export const KARRIERE_PATHS: Record<'sales' | 'staff', {
   staff: {
     title: 'POS Team',
     headline: 'Dein Einsatz am Point of Sale',
-    tagline: 'Du berätst, verkaufst und präsentierst Marken wie Garmin, Canon oder Groupe SEB direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.',
+    tagline: 'Du berätst, verkaufst und präsentierst Marken aus Consumer Electronics, Haushalt und Sport direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.',
     stats: [
       { value: 'Ø 2,9 J.', label: 'Zugehörigkeit' },
       { value: 'DACH', label: 'Einsatzgebiet' },

@@ -101,7 +101,7 @@ export default function KarrierepfadeSection() {
   const tSalesDesc = useText('careers_paths', 'careers-paths-sales-desc', 'Projektmanagement, HR, IT, Finance, Kreation: Hier planen und steuern wir die Projekte unserer Kunden. Mit klaren Aufgaben, Mentoring, hybridem Arbeiten und einem Team, das zusammenhält.');
   const tStaffBadge = useText('careers_paths', 'careers-paths-staff-badge', 'Deutschlandweit');
   const tStaffHeadline = useText('careers_paths', 'careers-paths-staff-headline', 'Dein Einsatz am Point of Sale');
-  const tStaffDesc = useText('careers_paths', 'careers-paths-staff-desc', 'Du berätst, verkaufst und präsentierst Marken wie Garmin, Canon oder Groupe SEB direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.');
+  const tStaffDesc = useText('careers_paths', 'careers-paths-staff-desc', 'Du berätst, verkaufst und präsentierst Marken aus Consumer Electronics, Haushalt und Sport direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.');
   const tApply = useText('careers_paths', 'careers-paths-apply', 'Initiativbewerbung senden');
   const tAside = useText('careers_paths', 'careers-paths-aside', 'Nicht sicher, welcher Weg zu dir passt? Schick uns eine Initiativbewerbung – wir finden gemeinsam die passende Aufgabe.');
 
