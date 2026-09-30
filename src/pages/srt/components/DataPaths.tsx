@@ -1,10 +1,11 @@
+import { useReviewText } from '@/hooks/useReviewText';
 import { useState, useEffect, useRef, useId, useCallback, useLayoutEffect } from 'react';
 import { useText } from '@/hooks/useText';
 
 const nodes = [
   { id: 'agentur', label: 'Sonic-Daten', icon: 'ri-user-star-line', desc: 'Einsatzplanung & Kampagnenstatus in Echtzeit' },
-  { id: 'externe', label: 'Externe Daten', icon: 'ri-global-line', desc: 'Marktdaten, POS & API-Feeds' },
-  { id: 'kunde', label: 'Kunden-Daten', icon: 'ri-file-list-3-line', desc: 'Live-KPIs, Abverkauf & Forecasting' },
+  { id: 'externe', label: 'Externe Daten', icon: 'ri-global-line', desc: 'Handelsdaten, Online-Shops & Hersteller-Apps' },
+  { id: 'kunde', label: 'Kunden-Daten', icon: 'ri-file-list-3-line', desc: 'Live-KPIs, Abverkauf & Reportings' },
   { id: 'mitarbeiter', label: 'Mitarbeiter-Daten', icon: 'ri-smartphone-line', desc: 'Einsatztracking, Ziele & Abrechnung' },
 ];
 
@@ -27,6 +28,7 @@ function shrinkToEdge(from: Point, to: Point): { x: number; y: number } {
 }
 
 export default function DataPaths() {
+  const dn = useReviewText('common_srt_data_nodes');
   const [activeNode, setActiveNode] = useState<string | null>(null);
   const [pulse, setPulse] = useState(false);
   const tBadge = useText('srt_datapaths', 'srt-data-badge', 'Datenfluss');
@@ -165,7 +167,7 @@ export default function DataPaths() {
         {/* Caption */}
         <div className="text-center mt-4 min-h-[20px]">
           {activeNodeData ? (
-            <p className="text-xs sm:text-sm text-foreground-300">{activeNodeData.desc}</p>
+            <p className="text-xs sm:text-sm text-foreground-300">{dn[`n${nodes.findIndex((n) => n.id === activeNodeData.id) + 1}-desc`] || activeNodeData.desc}</p>
           ) : (
             <p className="text-xs sm:text-sm text-foreground-500">Modul antippen für Details</p>
           )}

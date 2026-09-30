@@ -66,6 +66,8 @@ export default function CalendlyWidget() {
       const target = e.target as HTMLElement;
       // Look for the text in the target or its closest parent (to handle icons inside buttons)
       const button = target.closest('a, button');
+      // Buttons that open the calendar themselves (and e.g. close a modal first) opt out.
+      if (button?.hasAttribute('data-cta-direct')) return;
       const labels = [ctaLabel('book'), ...BOOKING_LABELS];
       if (button && labels.some((l) => button.textContent?.includes(l))) {
         e.preventDefault();

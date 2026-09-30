@@ -1,5 +1,6 @@
 import { useSEO } from '@/hooks/useSEO';
 import { useRef } from 'react';
+import { useReviewText } from '@/hooks/useReviewText';
 import SRTHeroReference from './components/SRTHeroReference';
 import TheProblemReference from './components/TheProblemReference';
 import FeaturesReference from './components/FeaturesReference';
@@ -24,17 +25,17 @@ const NAV_ITEMS = [
   { id: 'datenfluss', label: 'Datenfluss', icon: 'ri-flow-chart' },
   { id: 'branchen', label: 'Branchen', icon: 'ri-building-line' },
   { id: 'srt-proof', label: 'SRT in Zahlen', icon: 'ri-bar-chart-2-line' },
-  { id: 'preise-zugang', label: 'Preise & Zugang', icon: 'ri-price-tag-3-line' },
+  { id: 'preise-zugang', label: 'Zugang', icon: 'ri-key-2-line' },
 ];
 
 export default function SRTPage() {
   useSEO({
-    title: 'SRT — Sonic Reporting Tool | Field Force Software für Echtzeit-Retail-Steuerung DACH',
-    description: 'Das Sonic Reporting Tool (SRT): Echtzeit-Dashboards, GPS-Einsatzplanung, KI-gestütztes Forecasting und automatische Berichte für den Außendienst. Die Retail-Software, die Sonic intern für über 2.000 Promoter nutzt — jetzt für Partnermarken verfügbar.',
-    keywords: 'Sonic Reporting Tool, SRT Software, Field Force Software, Retail Echtzeit Dashboard, Außendienst Steuerung, GPS Tracking Promoter, Retail Analytics, KI Forecasting Retail, Sell-Out Prognose, Field Marketing Software Germany, Retail Intelligence DACH, POS Reporting Tool, Promoter App',
+    title: 'SRT — Sonic Reporting Tool | Field-Force-Software für Retail seit 2008',
+    description: 'Das Sonic Reporting Tool (SRT): seit 2008 im Einsatz, über 21 Versionen, über 1,3 Mio. erledigte Einsätze. Live-Daten, Einsatzplanung, Document Intelligence und individuelle Reportings (PowerPoint, Excel, SQL) für die Retail- und Field-Force-Projekte von Sonic.',
+    keywords: 'Sonic Reporting Tool, SRT Software, Field Force Software, Retail Reporting, Live-Dashboard Retail, Außendienst Steuerung, Einsatzplanung Promoter, Retail Analytics, Document Intelligence, Field Marketing Software, POS Reporting Tool, Promoter App',
     canonical: 'https://sonic-group.de/srt',
-    ogTitle: 'SRT — Sonic Reporting Tool für Retail Field Force',
-    ogDescription: 'Echtzeit-Dashboards, GPS-Tracking und KI-Forecasting für Field Marketing Teams. Das Tool, mit dem Sonic seine Promoter:innen im Einsatz steuert.',
+    ogTitle: 'SRT — Sonic Reporting Tool für Retail & Field Force',
+    ogDescription: 'Seit 2008, über 21 Versionen: das Tool, mit dem Sonic seine Einsätze im Handel steuert — mit Live-Daten und individuellen Reportings für Kunden.',
     jsonLd: [
       { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
@@ -42,19 +43,22 @@ export default function SRTPage() {
       ]},
       { '@context': 'https://schema.org', '@type': 'SoftwareApplication',
         name: 'Sonic Reporting Tool (SRT)', applicationCategory: 'BusinessApplication',
-        operatingSystem: 'Web, iOS, Android',
-        description: 'Echtzeit-Retail-Management-Software: GPS-Einsatzplanung, Live-Dashboards, Forecasting und Berichtswesen für Field Force Teams.',
+        operatingSystem: 'Web',
+        description: 'Das Sonic Reporting Tool (SRT) — seit 2008, über 21 Versionen: Einsatzplanung, Live-Dashboards, Document Intelligence und individuelle Reportings für Retail- und Field-Force-Projekte.',
         offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: 'Sonic Sales Support GmbH' }},
-        featureList: ['Echtzeit-Dashboards', 'GPS-Einsatzplanung', 'KI-Forecasting', 'Automatische Berichte', 'Sell-Out Analyse'],
+        featureList: ['Live-Dashboards', 'Einsatz- und Aufgabenplanung', 'Fotos und GPS-Koordinaten', 'Document Intelligence', 'Individuelle Reportings (PowerPoint, Excel, SQL)'],
       },
     ],
   })
 
   const heroRef = useRef<HTMLDivElement>(null);
+  // Dashboard → Text → SRT → „SRT — Seitennavigation“
+  const navText = useReviewText('srt_nav');
+  const navItems = NAV_ITEMS.map((item) => ({ ...item, label: navText[item.id] || item.label }));
 
   return (
     <div className="bg-white min-h-[100dvh] overflow-x-hidden">
-      <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
+      <LeistungenPageNav items={navItems} heroRef={heroRef} />
       <div ref={heroRef} id="overview"><SRTHeroReference /></div>
       <SRTWavyDivider darkBackground />
       <TheProblemReference />

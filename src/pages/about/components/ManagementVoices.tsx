@@ -262,8 +262,8 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
   const tSub     = useText('about_management_voices', 'about-voices-sub',     'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.');
 
   // Dashboard → Text → Stimmen & Gesichter → Tab „Über uns“
-  const tCtaText   = useText('about_management_voices', 'about-voices-cta-text',   'Lass uns besprechen, wie Sonic deine');
-  const tCtaAccent = useText('about_management_voices', 'about-voices-cta-accent', 'Marke unterstützen kann.');
+  const tCtaText   = useText('about_management_voices', 'about-voices-cta-text',   'Wie kann Sonic deine');
+  const tCtaAccent = useText('about_management_voices', 'about-voices-cta-accent', 'Marke unterstützen?');
   const tCtaSub    = useText('about_management_voices', 'about-voices-cta-sub',    'Unabhängige Agentur — über 15 Kunden — B2B, B2B2C & D2C');
   const cta        = useCtaText();
   const tCtaBtn    = cta.book;

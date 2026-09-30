@@ -46,7 +46,6 @@ function ScreenMedia({ src, alt, objectPosition = 'object-top' }: { src: string 
 }
 
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
-import { useText } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
 
 /** Laptop frame — pure CSS, no external deps. Screen fills with dashboard content. */
@@ -225,6 +224,8 @@ function PhoneMockup({ src }: { src: string | null }) {
 }
 
 function MobilePlaceholder() {
+  // Illustrative example texts — Dashboard → Text → SRT → „SRT — Produkt (Desktop & Mobil)“
+  const st = useReviewText('srt_showcase_texts');
   return (
     <div className="h-full flex flex-col overflow-hidden" style={{ fontSize: '7px' }}>
       {/* App nav bar */}
@@ -245,12 +246,12 @@ function MobilePlaceholder() {
               <div className="w-4 h-4 flex items-center justify-center" style={{ background: 'oklch(0.81 0.19 115 / 0.15)' }}>
                 <i className="ri-store-2-line" style={{ color: 'oklch(0.81 0.19 115)', fontSize: 8 }} />
               </div>
-              <span style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 700 }}>MediaMarkt Berlin</span>
+              <span style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 700 }}>{st['mock-store']}</span>
             </div>
             <span style={{ color: 'oklch(0.81 0.19 115)', fontWeight: 900 }}>10–18 Uhr</span>
           </div>
           <div className="flex gap-1 flex-wrap">
-            <span className="px-1.5 py-0.5" style={{ background: 'oklch(0.81 0.19 115 / 0.15)', color: 'oklch(0.81 0.19 115)', fontWeight: 700 }}>Samsung S25</span>
+            <span className="px-1.5 py-0.5" style={{ background: 'oklch(0.81 0.19 115 / 0.15)', color: 'oklch(0.81 0.19 115)', fontWeight: 700 }}>{st['mock-product']}</span>
             <span className="px-1.5 py-0.5" style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.5)' }}>Brand-Promoter</span>
             <span className="px-1.5 py-0.5 ml-auto" style={{ background: 'rgba(74,222,128,0.15)', color: '#4ade80', fontWeight: 700 }}>Heute</span>
           </div>
@@ -292,11 +293,13 @@ export default function ProductShowcase() {
   const desktopSrc = desktopImages[0]?.url ? resolveImageUrl(desktopImages[0].url) : null;
   const mobileSrc  = mobileImages[0]?.url  ? resolveImageUrl(mobileImages[0].url)  : null;
 
-  const tBadge   = useText('srt_showcase', 'srt-showcase-badge',   'Das Produkt');
-  const tHeading = useText('srt_showcase', 'srt-showcase-heading', 'Desktop & Mobile — eine Plattform.');
+  // Dashboard → Text → SRT → „SRT — Produkt (Desktop & Mobil)“
+  const st       = useReviewText('srt_showcase_texts');
+  const tBadge   = st.badge;
+  const tHeading = st.heading;
   // Dashboard → Text → SRT → „SRT — CTA-Texte (Demo)“
   const ct       = useReviewText('srt_cta_texts');
-  const tSub     = useText('srt_showcase', 'srt-showcase-sub',     'Das SRT läuft vollständig im Browser und als native App — mit identischer Datenbasis und synchronem Status in Echtzeit.');
+  const tSub     = st.sub;
 
   return (
     <section id="produkt" className="relative overflow-hidden bg-foreground-950 py-20 md:py-28">
@@ -330,7 +333,7 @@ export default function ProductShowcase() {
             <LaptopMockup src={desktopSrc} />
             <div className="flex items-center gap-2 mt-4 justify-center">
               <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" style={{ borderRadius: '50%' }} />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Desktop · Web-Browser</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">{st['label-desktop']}</span>
             </div>
           </div>
 
@@ -342,7 +345,7 @@ export default function ProductShowcase() {
             <PhoneMockup src={mobileSrc} />
             <div className="flex items-center gap-2 mt-4 justify-center">
               <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" style={{ borderRadius: '50%', animationDelay: '0.5s' }} />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Mobil · iOS & Android</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">{st['label-mobile']}</span>
             </div>
           </div>
         </div>
@@ -351,10 +354,10 @@ export default function ProductShowcase() {
         {/* App capabilities strip — content from EmployeeApp, merged here */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-[2px] mt-6" style={{ background: 'rgba(255,255,255,0.05)' }}>
           {[
-            { number: '01', icon: 'ri-calendar-check-line', title: 'Aufgaben einsehen',        desc: 'Einsätze, Zeiten und Standort — auf einen Blick im Smartphone.' },
-            { number: '02', icon: 'ri-map-pin-2-line',       title: 'GPS Check-in',             desc: 'Eincheckung nur vor Ort möglich. Zeiterfassung startet automatisch.' },
-            { number: '03', icon: 'ri-focus-3-line',          title: 'Zielerreichung tracken', desc: 'Ziele und Verkaufstaktiken live einsehen und direkt handeln.' },
-            { number: '04', icon: 'ri-money-euro-circle-line',title: 'Abrechnung erhalten',    desc: 'Transparente Gehaltsabrechnung mit Provisionen direkt in der App.' },
+            { number: '01', icon: 'ri-calendar-check-line', title: st['cap1-title'], desc: st['cap1-desc'] },
+            { number: '02', icon: 'ri-map-pin-2-line',       title: st['cap2-title'], desc: st['cap2-desc'] },
+            { number: '03', icon: 'ri-focus-3-line',          title: st['cap3-title'], desc: st['cap3-desc'] },
+            { number: '04', icon: 'ri-money-euro-circle-line',title: st['cap4-title'], desc: st['cap4-desc'] },
           ].map((step) => (
             <div key={step.number} className="p-5 flex flex-col gap-3" style={{ background: 'oklch(0.14 0.005 118)', border: '1px solid rgba(255,255,255,0.07)' }}>
               <div className="flex items-center justify-between">
@@ -372,14 +375,14 @@ export default function ProductShowcase() {
         {/* Platform badges */}
         <div className="flex items-center gap-4 mt-4">
           <div className="flex items-center gap-2 px-3 py-1.5" style={{ border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.04)' }}>
-            <i className="ri-apple-line text-white/60 text-sm" />
-            <span className="text-[10px] font-black text-white/50 uppercase tracking-wider">iOS</span>
+            <i className="ri-smartphone-line text-white/60 text-sm" />
+            <span className="text-[10px] font-black text-white/50 uppercase tracking-wider">{st['chip-1']}</span>
           </div>
           <div className="flex items-center gap-2 px-3 py-1.5" style={{ border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.04)' }}>
-            <i className="ri-android-line text-white/60 text-sm" />
-            <span className="text-[10px] font-black text-white/50 uppercase tracking-wider">Android</span>
+            <i className="ri-thumb-up-line text-white/60 text-sm" />
+            <span className="text-[10px] font-black text-white/50 uppercase tracking-wider">{st['chip-2']}</span>
           </div>
-          <span className="text-[10px] text-white/25 font-bold">· Offline-fähig</span>
+          <span className="text-[10px] text-white/25 font-bold">{st['chip-3']}</span>
         </div>
 
         {/* CTA below devices */}

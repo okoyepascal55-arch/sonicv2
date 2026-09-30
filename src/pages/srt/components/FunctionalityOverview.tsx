@@ -2,14 +2,15 @@ import { useState, useEffect, useRef } from 'react';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
+import { useReviewText } from '@/hooks/useReviewText';
 
 const MODULES = [
   { id: 'planung',   number: '01', icon: 'ri-calendar-2-line',         title: 'Einsatzplanung',       subtitle: 'Drag-and-Drop Kalender',              detail: 'Plane Einsätze mit einem visuellen Drag-and-Drop-Kalender. Weise Aufgaben direkt Mitarbeitern zu, setze Prioritäten und verfolge den Status in Echtzeit.', img: 'https://readdy.ai/api/search-image?query=modern+enterprise+SaaS+dark+UI+scheduling+calendar+drag+drop+lime+green+retail+field+force&width=1200&height=680&seq=srt-func-01-plan&orientation=landscape' },
   { id: 'talentpool',number: '02', icon: 'ri-team-line',               title: 'Talentpool',           subtitle: 'Von Recruiting bis Abrechnung',        detail: 'Von Bewerbung bis Abrechnung: Onboarding, Fotos, Qualifikationen, Verfügbarkeiten und Gehaltsdaten liegen zentral im SRT. Kein Tool-Wechsel.', img: 'https://readdy.ai/api/search-image?query=HR+talent+management+dashboard+dark+UI+lime+green+employee+profiles+grid+SaaS&width=1200&height=680&seq=srt-func-02-talent&orientation=landscape' },
   { id: 'gps',       number: '03', icon: 'ri-map-pin-2-line',          title: 'GPS Check-in',         subtitle: 'Nur vor Ort — keine Umgehung möglich', detail: 'Das System prüft per GPS, ob der Mitarbeiter wirklich am Einsatzort ist. Erst dann wird die Zeiterfassung freigegeben. Transparenz für alle Seiten.', img: 'https://readdy.ai/api/search-image?query=GPS+tracking+map+dark+UI+retail+store+locations+field+force+lime+green+SaaS&width=1200&height=680&seq=srt-func-03-gps&orientation=landscape' },
-  { id: 'extdaten',  number: '04', icon: 'ri-plug-line',               title: 'Datenintegration',     subtitle: 'ERP, WaWi & Hersteller-Apps',         detail: 'ERP-Systeme, Warenwirtschaft, Hersteller-Apps und Handelsdaten laufen in einer Oberfläche zusammen. Planogramme, WKZ-Daten, externe Reports.', img: 'https://readdy.ai/api/search-image?query=data+integration+API+ERP+dark+UI+lime+green+enterprise+SaaS+connected+systems&width=1200&height=680&seq=srt-func-04-ext&orientation=landscape' },
+  { id: 'extdaten',  number: '04', icon: 'ri-plug-line',               title: 'Datenintegration',     subtitle: 'Online-Shops, Hersteller-Apps & Handelsdaten', detail: 'Daten aus Online-Shops, Hersteller-Apps und dem Handel laufen im SRT in einer Oberfläche zusammen — inklusive WKZ-Handling.', img: 'https://readdy.ai/api/search-image?query=data+integration+API+ERP+dark+UI+lime+green+enterprise+SaaS+connected+systems&width=1200&height=680&seq=srt-func-04-ext&orientation=landscape' },
   { id: 'docintel',  number: '05', icon: 'ri-file-text-line',          title: 'Doc Intelligence',     subtitle: 'KI-gestützte Dokumentenverarbeitung',  detail: 'Rechnungen, Lieferscheine und Reports werden automatisch erkannt, klassifiziert und den richtigen Projekten zugeordnet. Spart Stunden manueller Arbeit.', img: 'https://readdy.ai/api/search-image?query=AI+document+processing+dark+UI+lime+green+enterprise+SaaS+invoice+automation&width=1200&height=680&seq=srt-func-05-doc&orientation=landscape' },
-  { id: 'route',     number: '06', icon: 'ri-route-line',              title: 'Routenplanung',        subtitle: 'Optimierte Außendienst-Routen',        detail: 'Das SRT berechnet die effizienteste Route für jeden Außendienstmitarbeiter — unter Berücksichtigung von Einsatzorten, Zeitfenstern und Verkehrslage.', img: 'https://readdy.ai/api/search-image?query=route+optimization+map+dark+UI+field+sales+lime+green+SaaS+enterprise&width=1200&height=680&seq=srt-func-06-route&orientation=landscape' },
+  { id: 'route',     number: '06', icon: 'ri-route-line',              title: 'Routenplanung',        subtitle: 'In Entwicklung · ab 2026/27',          detail: 'Geplant für 2026/27: Das SRT soll Routen für den Außendienst planen — auf Basis von Einsatzorten und Zeitfenstern.', img: 'https://readdy.ai/api/search-image?query=route+optimization+map+dark+UI+field+sales+lime+green+SaaS+enterprise&width=1200&height=680&seq=srt-func-06-route&orientation=landscape' },
 ];
 
 const INTERVAL = 4500;
@@ -21,6 +22,14 @@ export default function FunctionalityOverview() {
   const tBadge   = useText('srt_functionality', 'srt-func-badge',    'Funktionsumfang');
   const tHeading = useText('srt_functionality', 'srt-func-heading',  'Alles, was Field-Force-Management braucht.');
   const tDemoCta = useText('srt_functionality', 'srt-func-demo-cta', 'Demo anfragen');
+  // Dashboard → Text → SRT → „SRT — Funktionsumfang: 6 Module“
+  const mt = useReviewText('srt_modules');
+  const modules = MODULES.map((m, i) => ({
+    ...m,
+    title: mt[`m${i + 1}-title`] ?? m.title,
+    subtitle: mt[`m${i + 1}-subtitle`] ?? m.subtitle,
+    detail: mt[`m${i + 1}-detail`] ?? m.detail,
+  }));
 
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -43,7 +52,7 @@ export default function FunctionalityOverview() {
     setTimeout(() => { setPaused(false); }, 8000);
   };
 
-  const mod = MODULES[active];
+  const mod = modules[active];
 
   return (
     <section id="funktionsumfang" className="bg-white relative overflow-hidden py-20 md:py-28">
@@ -114,7 +123,7 @@ export default function FunctionalityOverview() {
 
           {/* Module tabs — 6 items in a 2×3 grid, full-width, generous */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-[2px]">
-            {MODULES.map((m, i) => (
+            {modules.map((m, i) => (
               <button key={m.id} type="button" onClick={() => select(i)}
                 className={`relative flex flex-col p-5 md:p-6 text-left transition-all duration-200 cursor-pointer group ${
                   active === i ? 'bg-foreground-950' : 'bg-white hover:bg-foreground-950/[0.03]'

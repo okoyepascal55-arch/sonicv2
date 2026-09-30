@@ -34,7 +34,7 @@ export default function TheProblemReference() {
 
   const tBadge   = useText('srt_problem', 'srt-problem-badge',   'Deine Herausforderung');
   const tHeading = useText('srt_problem', 'srt-problem-heading', 'Datenquellen zusammenführen');
-  const tSub     = useText('srt_problem', 'srt-problem-p1',      'Für effizientes Performance-Marketing müssen Daten aus vielen Quellen in Echtzeit zusammenlaufen. Genau daran scheitern die meisten Unternehmen — nicht an der Strategie, sondern an der Infrastruktur.');
+  const tSub     = useText('srt_problem', 'srt-problem-p1',      'Für erfolgreiche Retail- und Field-Force-Projekte müssen Daten aus vielen Quellen live zusammenlaufen. Genau daran scheitern viele Projekte — nicht an der Strategie, sondern an der Infrastruktur.');
   const tCta     = useText('srt_problem', 'srt-problem-cta-btn', 'Lösung ansehen');
 
   return (

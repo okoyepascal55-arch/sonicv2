@@ -1,10 +1,11 @@
 import { useText } from '@/hooks/useText';
+import { useReviewText } from '@/hooks/useReviewText';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 const STATS = [
-  { value: '3,7 Mio.', prefix: '>', label: 'Produkte verkauft', sublabel: 'Seit Gründung 2008', icon: 'ri-shopping-cart-2-line', sys: 'SALES.VOLUME', trend: '+18% YoY' },
+  { value: '1.000', prefix: '>', label: 'Stores betreut', sublabel: 'In Sonic-Projekten', icon: 'ri-store-2-line', sys: 'STORES', trend: 'Seit 2007' },
   { value: '2 Mrd.', prefix: '>', label: 'Umsatz generiert', sublabel: 'In Euro', icon: 'ri-money-euro-circle-line', sys: 'REVENUE.TOTAL', trend: 'In EUR' },
-  { value: '1,35 Mio.', prefix: '>', label: 'Einsätze getrackt', sublabel: 'Durch das SRT', icon: 'ri-map-pin-2-line', sys: 'DEPLOYMENTS', trend: 'Seit 2008' },
+  { value: '1,3 Mio.', prefix: '>', label: 'Einsätze getrackt', sublabel: 'Durch das SRT', icon: 'ri-map-pin-2-line', sys: 'DEPLOYMENTS', trend: 'Seit 2008' },
   { value: '1.800', prefix: '>', label: 'Menschen im Talentpool', sublabel: 'Aktiv', icon: 'ri-team-line', sys: 'TALENT.POOL', trend: 'DACH-weit' },
 ];
 
@@ -12,7 +13,16 @@ export default function Proof() {
   const { images: woodIcons } = useMediaStore('srt_proof_wood_icons');
   const tBadge   = useText('srt_proof', 'srt-proof-badge',   'SRT in Zahlen');
   const tHeading = useText('srt_proof', 'srt-proof-heading', 'Die Bilanz spricht für sich.');
-  const tSub     = useText('srt_proof', 'srt-proof-sub',     'Tatsächlich gemessene Ergebnisse aus über 15 Jahren Retail-Aktivierungen.');
+  // Dashboard → Text → SRT → „SRT — In Zahlen: Kennzahlen“
+  const pt = useReviewText('srt_proof_stats');
+  const stats = STATS.map((st, i) => ({
+    ...st,
+    value: pt[`s${i + 1}-value`] ?? st.value,
+    label: pt[`s${i + 1}-label`] ?? st.label,
+    sublabel: pt[`s${i + 1}-sublabel`] ?? st.sublabel,
+    trend: pt[`s${i + 1}-trend`] ?? st.trend,
+  }));
+  const tSub     = useText('srt_proof', 'srt-proof-sub',     'Kennzahlen aus Sonic-Projekten — seit 2007 im Handel, seit 2008 im SRT erfasst.');
 
   return (
     <section id="srt-proof" className="sonic-section-md px-4 md:px-6 bg-foreground-950">
@@ -30,10 +40,10 @@ export default function Proof() {
 
         {/* Telemetry grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4" style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
-          {STATS.map((stat, i) => {
+          {stats.map((stat, i) => {
             const woodIcon = woodIcons[i]?.url ? resolveImageUrl(woodIcons[i].url) : null;
             return (
-              <div key={stat.label}
+              <div key={i}
                 className={[
                   'relative p-6 md:p-8 text-center border-white/[0.08]',
                   i < 2 ? 'border-b lg:border-b-0' : '',            // 2×2 on mobile: divide rows

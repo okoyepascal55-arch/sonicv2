@@ -9,8 +9,8 @@ const FEATURES = [
   { number: '02', icon: 'ri-bar-chart-grouped-line', title: 'Performance-Tracking', description: 'Verkaufszahlen, Top-/Flop-Listen.', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20bar%20chart%20performance%20analytics%20graph%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-chart-v1&orientation=squarish' },
   { number: '03', icon: 'ri-team-line', title: 'Team-Management', description: 'Recruiting, Einsätze, GPS-genau.', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20team%20people%20group%20management%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-team-v1&orientation=squarish' },
   { number: '04', icon: 'ri-file-chart-line', title: 'Reportings', description: 'Excel, PPT, SQL.', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20document%20file%20report%20paper%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-report-v1&orientation=squarish' },
-  { number: '05', icon: 'ri-smartphone-line', title: 'Mobile App', description: 'iOS & Android, offline.', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20smartphone%20mobile%20phone%20app%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-mobile-v1&orientation=squarish' },
-  { number: '06', icon: 'ri-shield-check-line', title: 'Datensicherheit', description: 'AES-256, DSGVO.', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20shield%20security%20protection%20lock%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-shield-v1&orientation=squarish' },
+  { number: '05', icon: 'ri-smartphone-line', title: 'Mobile App', description: 'Mobil. Einhändig. Intuitiv.', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20smartphone%20mobile%20phone%20app%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-mobile-v1&orientation=squarish' },
+  { number: '06', icon: 'ri-shield-check-line', title: 'Datensicherheit', description: 'DSGVO-konform.', woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20shield%20security%20protection%20lock%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-shield-v1&orientation=squarish' },
 ];
 
 // Built-in HTML/CSS dashboard preview — no image needed, renders as designed software
@@ -108,6 +108,14 @@ export default function FeaturesReference() {
   const tCta     = useText('srt_features', 'srt-features-cta',     'Demo anfragen');
   // Dashboard → Text → SRT → „SRT — CTA-Texte (Demo)“
   const ct       = useReviewText('srt_cta_texts');
+  // Dashboard → Text → SRT → „SRT — All-in-One: Kacheln“
+  const fc       = useReviewText('srt_features_cards');
+  const features = FEATURES.map((f, i) => ({
+    ...f,
+    title: fc[`f${i + 1}-title`] ?? f.title,
+    description: fc[`f${i + 1}-desc`] ?? f.description,
+    tags: i === 0 ? [fc['f1-tag-1'], fc['f1-tag-2'], fc['f1-tag-3']].filter(Boolean) : f.tags,
+  }));
 
   const getIcon = (idx: number, fallback: string, title: string) => {
     const media = featureIcons[idx];
@@ -126,7 +134,7 @@ export default function FeaturesReference() {
         <div className="flex items-center gap-4 mb-5">
           <span className="w-7 h-0.5 bg-primary-500" />
           <span className="text-[11px] font-black tracking-[0.24em] uppercase" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
-          <span className="ml-auto text-[9px] font-black uppercase tracking-[0.2em] text-foreground-950/20 hidden md:block">Seit 2008 · 15+ Versionen</span>
+          <span className="ml-auto text-[9px] font-black uppercase tracking-[0.2em] text-foreground-950/20 hidden md:block">{fc.meta}</span>
         </div>
         <div className="grid md:grid-cols-2 gap-8 items-end mb-8">
           <h2 className="sonic-h2 text-foreground-950 ">
@@ -159,13 +167,13 @@ export default function FeaturesReference() {
             {/* Content — top-anchored */}
             <div className="relative z-30 p-7 md:p-8">
               <div className="w-11 h-11 overflow-hidden flex items-center justify-center mb-5 bg-primary-500">
-                {getIcon(0, FEATURES[0].woodIcon, FEATURES[0].title)}
+                {getIcon(0, features[0].woodIcon, features[0].title)}
               </div>
               <span className="text-[9px] font-black uppercase tracking-[0.25em] block mb-2" style={{ color: 'oklch(0.81 0.19 115 / 0.7)' }}>Modul 01 / 06</span>
-              <h3 className="text-[22px] md:text-[26px] font-black text-white mb-3 leading-tight">{FEATURES[0].title}</h3>
-              <p className="text-[13px] leading-relaxed text-white/45 max-w-[280px]">{FEATURES[0].description}</p>
+              <h3 className="text-[22px] md:text-[26px] font-black text-white mb-3 leading-tight">{features[0].title}</h3>
+              <p className="text-[13px] leading-relaxed text-white/45 max-w-[280px]">{features[0].description}</p>
               <div className="flex flex-wrap gap-1.5 mt-5">
-                {FEATURES[0].tags?.map(tag => (
+                {features[0].tags?.map(tag => (
                   <span key={tag} className="text-[9px] font-bold px-2.5 py-1" style={{ border: '1px solid oklch(0.81 0.19 115 / 0.4)', color: 'oklch(0.81 0.19 115)' }}>{tag}</span>
                 ))}
               </div>
@@ -173,7 +181,7 @@ export default function FeaturesReference() {
           </div>
 
           {/* F2 + F3 */}
-          {FEATURES.slice(1, 3).map((f, idx) => (
+          {features.slice(1, 3).map((f, idx) => (
             <div key={f.number} className="md:col-span-3 flex items-center gap-4 p-5 group transition-colors duration-200"
               style={{ background: 'oklch(0.15 0.005 118)', border: '1px solid rgba(255,255,255,0.06)' }}>
               <div className="w-11 h-11 overflow-hidden flex-shrink-0 transition-all duration-200 group-hover:scale-105"
@@ -192,7 +200,7 @@ export default function FeaturesReference() {
           ))}
 
           {/* F4, F5, F6 */}
-          {FEATURES.slice(3).map((f, idx) => (
+          {features.slice(3).map((f, idx) => (
             <div key={f.number} className="md:col-span-2 p-5 flex flex-col group transition-all duration-200"
               style={{ background: 'oklch(0.135 0.005 118)', border: '1px solid rgba(255,255,255,0.05)' }}>
               <div className="flex items-center justify-between mb-4">

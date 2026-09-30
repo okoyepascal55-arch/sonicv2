@@ -1,14 +1,15 @@
-import { useText } from '@/hooks/useText';
+import { useText, useTextSection } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
 import { useState } from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { submitContactForm } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
+/* Access cards (no price tiers) — texts: Dashboard → Text → SRT → „PricingAndAccess — Zugang zum SRT“ */
 const TIERS = [
-  { name: 'Starter', price: 'Individuell', desc: 'Für Marken, die den Markt testen oder fokussierte Kampagnen fahren.', features: ['Live-Dashboard-Zugang', 'Bis zu 3 Custom Reports', '1 User-Lizenz'], highlight: false },
-  { name: 'Professional', price: 'Individuell', desc: 'Für etablierte Marken, die ihre Retail-Präsenz skalieren.', features: ['Unbegrenzte Reports', 'API-Zugang, Forecasting', 'Bis zu 5 User-Lizenzen'], highlight: true },
-  { name: 'Enterprise', price: 'Auf Anfrage', desc: 'Für Partner und Marken mit komplexen Multi-Market-Projekten.', features: ['Dedizierter Account-Manager', 'White-Label-Reporting', 'Inkludiert für Sonic-Partner'], highlight: false },
+  { name: 'Live-Dashboard', price: 'Live', desc: 'Sieh jederzeit, was in deinem Projekt passiert — im Browser und mobil.', features: ['KPIs, die wir gemeinsam festlegen', 'Live-Daten aus dem Einsatz', 'Kunden-, Sonic-, Staff- und Handelsdaten'], highlight: false },
+  { name: 'Reportings', price: 'PPT · Excel · SQL', desc: 'Egal ob PowerPoint, Excel oder maßgeschneiderte SQL-Reportings — wir definieren gemeinsam die wichtigen.', features: ['PowerPoint, Excel oder SQL', 'Beliebig viele Reports', 'Individuell definiert'], highlight: true },
+  { name: 'Projektteam', price: 'Persönlich', desc: 'Hinter dem SRT steht dein Sonic-Projektteam — wir besprechen die Auswertungen mit dir.', features: ['Fester Ansprechpartner bei Sonic', 'Auswertungen gemeinsam besprechen', 'Demo-Zugang auf Anfrage'], highlight: false },
 ];
 
 
@@ -124,7 +125,7 @@ function SRTPricingForm() {
             <option value="Live-Reporting">Live-Reporting & Dashboards</option>
             <option value="Talentpool">Talentpool-Verwaltung</option>
             <option value="GPS-Tracking">GPS-Check-in & Zeiterfassung</option>
-            <option value="Datenintegration">ERP / Datenintegration</option>
+            <option value="Datenintegration">Datenintegration</option>
             <option value="KI-Dokumente">KI-Dokumentenverarbeitung</option>
             <option value="Vollständig">Gesamtlösung (alle Module)</option>
           </select>
@@ -156,9 +157,22 @@ function SRTPricingForm() {
 
 export default function PricingAndAccess() {
   const { images: tierImages } = useMediaStore('srt_pricing_images');
-  const tBadge = useText('srt_pricing', 'srt-pricing-badge', 'Preise & Zugang');
-  const tHeading = useText('srt_pricing', 'srt-pricing-heading', 'Transparente Preise. Direkter Zugang.');
-  const tSub = useText('srt_pricing', 'srt-pricing-sub', 'Drei Stufen, klarer Mehrwert, keine versteckten Kosten.');
+  const tBadge = useText('srt_pricing', 'srt-pricing-badge', 'Zugang');
+  const tHeading = useText('srt_pricing', 'srt-pricing-heading', 'Zugang zum');
+  const tHeadingAccent = useText('srt_pricing', 'srt-pricing-heading-accent', 'SRT.');
+  const tSub = useText('srt_pricing', 'srt-pricing-sub', 'Mit dem SRT siehst du die Daten deines Sonic-Projekts live. Reports definieren wir gemeinsam — so viele du brauchst.');
+  const tp = useTextSection('srt_pricing');
+  const tiers = TIERS.map((tier, i) => {
+    const k = `srt-pricing-tier-${i + 1}`;
+    return {
+      ...tier,
+      name: tp[k] ?? tier.name,
+      price: tp[`${k}-label`] ?? tier.price,
+      desc: tp[`${k}-desc`] ?? tier.desc,
+      features: tier.features.map((f, j) => tp[`${k}-f${j + 1}`] ?? f).filter(Boolean),
+      badge: tier.highlight ? (tp[`${k}-badge`] ?? 'Unbegrenzt') : '',
+    };
+  });
   const ct = useReviewText('srt_cta_texts');
 
   return (
@@ -167,25 +181,25 @@ export default function PricingAndAccess() {
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span></div>
           <div className="grid md:grid-cols-2 gap-6 items-end">
-            <h2 className="sonic-h2 text-white">Transparente Preise. <span className="text-primary-500">Direkter Zugang.</span></h2>
+            <h2 className="sonic-h2 text-white">{tHeading}{tHeadingAccent && <>{' '}<span className="text-primary-500">{tHeadingAccent}</span></>}</h2>
             <p className="text-sm text-white/45 leading-relaxed md:text-right md:max-w-sm md:ml-auto">{tSub}</p>
           </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-2.5 mb-8">
-          {TIERS.map((tier, i) => {
+          {tiers.map((tier, i) => {
             const img = tierImages[i]?.url ? resolveImageUrl(tierImages[i].url) : null;
             return (
-            <article key={tier.name} className="relative overflow-hidden" style={{ background: 'oklch(0.14 0.005 118)', border: tier.highlight ? '1px solid oklch(0.81 0.19 115 / 0.45)' : '1px solid rgba(255,255,255,0.08)' }}>
+            <article key={i} className="relative overflow-hidden" style={{ background: 'oklch(0.14 0.005 118)', border: tier.highlight ? '1px solid oklch(0.81 0.19 115 / 0.45)' : '1px solid rgba(255,255,255,0.08)' }}>
               {tier.highlight && <div className="absolute -top-[2px] left-[-2px] right-[-2px] h-[3px] bg-primary-500" />}
               {img && <div className="relative w-full h-28 overflow-hidden"><img src={img} alt="" aria-hidden="true" className="w-full h-full object-cover grayscale opacity-40" loading="lazy" /><div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent, oklch(0.14 0.005 118))' }} /></div>}
               <div className="p-6">
-              {tier.highlight && <p className="text-[10px] font-black uppercase mb-1" style={{ color: 'oklch(0.81 0.19 115)' }}>Empfohlen</p>}
+              {tier.highlight && tier.badge && <p className="text-[10px] font-black uppercase mb-1" style={{ color: 'oklch(0.81 0.19 115)' }}>{tier.badge}</p>}
               <span className={`inline-block text-[11px] font-black uppercase px-2.5 py-1 ${tier.highlight ? 'bg-primary-500 text-foreground-950' : 'bg-white/[0.08] text-white/50'}`}>{tier.name}</span>
               <div className="text-[22px] font-black text-primary-500 my-3">{tier.price}</div>
               <p className="text-xs text-white/40 leading-relaxed mb-4">{tier.desc}</p>
               <ul className="space-y-1.5 m-0 p-0 list-none">
-                {tier.features.map((feature) => <li key={feature} className="flex gap-2 text-xs text-white/50"><i className="ri-check-line text-primary-500 text-[13px]" />{feature}</li>)}
+                {tier.features.map((feature, j) => <li key={j} className="flex gap-2 text-xs text-white/50"><i className="ri-check-line text-primary-500 text-[13px]" />{feature}</li>)}
               </ul>
               </div>
             </article>

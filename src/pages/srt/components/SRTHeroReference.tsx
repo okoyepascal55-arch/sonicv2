@@ -14,7 +14,9 @@ export default function SRTHeroReference() {
   const h1_1      = useText('srt_hero', 'srt-hero-h1-1',         'SONIC');
   const h1_2      = useText('srt_hero', 'srt-hero-h1-2',         'REPORTING');
   const h1_3      = useText('srt_hero', 'srt-hero-h1-3',         'TOOL.');
-  const sub       = useText('srt_hero', 'srt-hero-sub',          'Echtzeit-Dashboards, GPS-Tracking, Forecasting und Live-KPIs für Field Force und Retail Activation.');
+  const sub       = useText('srt_hero', 'srt-hero-sub',          'Das SRT liefert Echtzeit-Zugriff auf Performance-Daten, Reportings und integriert Recruiting, Projektmanagement und Abrechnung — alles in einer Plattform.');
+  const systemLabel = useText('srt_hero', 'srt-hero-system-label', 'Version 21+');
+  const statusLabel = useText('srt_hero', 'srt-hero-status-label', 'Live · DACH');
   const tagline   = useText('srt_hero', 'srt-hero-tagline',      'Field-Force-ERP-System · Seit 2008 · Seit 2024 mit KI');
   const cta       = useCtaText();
   const primary   = cta.book;
@@ -60,12 +62,12 @@ export default function SRTHeroReference() {
       {/* Corner system decoratives — top right */}
       <div className="absolute top-8 right-8 hidden md:flex flex-col items-end gap-2 z-10 pointer-events-none" aria-hidden="true">
         <div className="flex items-center gap-2">
-          <span className="text-[8px] font-black uppercase tracking-[0.3em] text-primary-500/40">System v3.2</span>
+          <span className="text-[8px] font-black uppercase tracking-[0.3em] text-primary-500/40">{systemLabel}</span>
           <div className="w-1.5 h-1.5 bg-primary-500/50 animate-pulse" />
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-1.5 h-1.5 bg-green-400/60 animate-pulse" style={{ animationDelay: '0.3s' }} />
-          <span className="text-[8px] text-white/20">Live · DACH</span>
+          <span className="text-[8px] text-white/20">{statusLabel}</span>
         </div>
       </div>
 

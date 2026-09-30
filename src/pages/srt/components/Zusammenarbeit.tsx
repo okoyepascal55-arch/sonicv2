@@ -1,9 +1,9 @@
-import { useText } from '@/hooks/useText';
+import { useText, useTextSection } from '@/hooks/useText';
 
 const STEPS = [
   { number: '01', title: 'KPI-Definition', short: 'Erfolgskennzahlen definieren', icon: 'ri-focus-3-line', description: 'Gemeinsam definieren wir die Erfolgskennzahlen, die für dein Projekt entscheidend sind — Abverkauf, Standort-Performance, Mitarbeiter-KPIs.' },
-  { number: '02', title: 'Datenintegration', short: 'Systeme verknüpfen', icon: 'ri-database-2-line', description: 'Unsere Daten zu Branchen, Outlets und Mitarbeitern werden mit deinen ERP-Daten verknüpft, damit das SRT zur Single Source of Truth wird.' },
-  { number: '03', title: 'Dashboard-Setup', short: 'Visualisierung aufsetzen', icon: 'ri-layout-grid-line', description: 'Optisch sauber aufbereitet für den schnellen Überblick, oder Rohdaten-Stream für deine Tools — für laufende Kontrolle und Controlling.' },
+  { number: '02', title: 'Datenintegration', short: 'Daten verknüpfen', icon: 'ri-database-2-line', description: 'Unsere Daten zu Branchen, Outlets und Mitarbeitern werden mit deinen Daten verknüpft, damit das SRT zur Single Source of Truth wird.' },
+  { number: '03', title: 'Dashboard-Setup', short: 'Visualisierung aufsetzen', icon: 'ri-layout-grid-line', description: 'Optisch sauber aufbereitet für den schnellen Überblick — oder als PowerPoint-, Excel- oder SQL-Reporting für laufende Kontrolle und Controlling.' },
   { number: '04', title: 'Team-Management', short: 'Field Force aufbauen', icon: 'ri-team-line', description: 'Wir stellen in Absprache mit dir das Field-Team zusammen, erstellen den Einsatzkalender und buchen die Mitarbeiter ein.' },
   { number: '05', title: 'Abrechnung', short: 'Transparent & automatisch', icon: 'ri-money-euro-circle-line', description: 'Wir rechnen die Einsätze inkl. Prämien mit den Mitarbeitern ab und buchen Fremdkosten ein — zentral erfasst.' },
   { number: '06', title: 'Reportings', short: 'Performance kontinuierlich tracken', icon: 'ri-file-chart-2-line', description: 'Auf Basis aller Daten zu Absatz, Umsatz und Kosten erhältst du aktuelle Reportings, mit denen du die Performance trackst.' },
@@ -12,6 +12,14 @@ const STEPS = [
 export default function Zusammenarbeit() {
   const tBadge   = useText('srt_zusammenarbeit', 'srt-collab-badge',   'Zusammenarbeit');
   const tHeading = useText('srt_zusammenarbeit', 'srt-collab-heading', 'So funktioniert das SRT');
+  // Dashboard → Text → SRT → „Zusammenarbeit — 6-Step Process“
+  const ts = useTextSection('srt_zusammenarbeit');
+  const steps = STEPS.map((st, i) => ({
+    ...st,
+    title: ts[`srt-collab-step-${i + 1}`] ?? st.title,
+    short: ts[`srt-collab-step-${i + 1}-short`] ?? st.short,
+    description: ts[`srt-collab-step-${i + 1}-desc`] ?? st.description,
+  }));
 
   return (
     <section id="zusammenarbeit" className="bg-white py-20 md:py-28 px-4 md:px-6 relative overflow-hidden">
@@ -38,7 +46,7 @@ export default function Zusammenarbeit() {
 
         {/* Steps — clean 2×3 grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[1px]" style={{ background: 'rgba(0,0,0,0.06)' }}>
-          {STEPS.map((step, i) => (
+          {steps.map((step, i) => (
             <div key={step.number} className="bg-white p-7 md:p-8 relative group hover:bg-[#FAFDF5] transition-colors duration-200">
               {/* Step connector line — top for all except first row */}
               <div className="absolute top-0 left-8 right-8 h-px bg-transparent" />

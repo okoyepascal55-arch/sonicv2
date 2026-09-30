@@ -14,7 +14,7 @@ import { getYouTubeId, youTubeEmbedUrl } from '@/lib/youtube';
 export default function JoergQuote() {
   const tBadge  = useText('srt_developer', 'srt-joerg-badge', 'Ein Wort vom Entwickler');
   const tName   = useText('srt_developer', 'srt-joerg-name',  'Jörg');
-  const tTitle  = useText('srt_developer', 'srt-joerg-title', 'Entwickler der Sonic Retail Technology');
+  const tTitle  = useText('srt_developer', 'srt-joerg-title', 'Entwickler des Sonic Reporting Tools');
   const tQuote  = useText('srt_developer', 'srt-joerg-quote',
     'Das SRT ist kein Tool — es ist der direkte Draht zwischen dem, was am POS passiert, ' +
     'und der Entscheidung, die daraus folgen muss. Wir haben es so gebaut, dass Promoter ' +

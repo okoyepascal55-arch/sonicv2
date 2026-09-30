@@ -26,11 +26,11 @@ function PhoneScreen({ screen }: { screen: string }) {
                 <div className="w-5 h-5 bg-primary-500/20 flex items-center justify-center">
                   <i className="ri-store-2-line text-primary-500 text-2xs" />
                 </div>
-                <span className="text-3xs font-bold text-background-50">MediaMarkt Berlin-Mitte</span>
+                <span className="text-3xs font-bold text-background-50">Elektronikmarkt Berlin-Mitte</span>
                 <span className="ml-auto text-3xs text-primary-500 font-black">10:00–18:00</span>
               </div>
               <div className="flex gap-1.5 pl-1.5">
-                <span className="text-[7px] bg-primary-500/15 text-primary-500 px-1.5 py-0.5 font-bold">Samsung S25</span>
+                <span className="text-[7px] bg-primary-500/15 text-primary-500 px-1.5 py-0.5 font-bold">Smartwatch</span>
                 <span className="text-[7px] bg-background-50/5 text-foreground-500 px-1.5 py-0.5">Brand-Promoter</span>
                 <span className="text-[7px] bg-green-500/15 text-green-400 px-1.5 py-0.5 font-bold ml-auto">Heute</span>
               </div>
@@ -40,7 +40,7 @@ function PhoneScreen({ screen }: { screen: string }) {
                 <div className="w-5 h-5 bg-background-50/5 flex items-center justify-center">
                   <i className="ri-store-2-line text-foreground-600 text-2xs" />
                 </div>
-                <span className="text-3xs font-bold text-foreground-300">Saturn Altona, Hamburg</span>
+                <span className="text-3xs font-bold text-foreground-300">Elektronikmarkt Altona, Hamburg</span>
                 <span className="ml-auto text-3xs text-foreground-600">Mo, 17.04</span>
               </div>
               <div className="flex gap-1.5">
@@ -89,7 +89,7 @@ function PhoneScreen({ screen }: { screen: string }) {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 border border-primary-500/10 animate-pulse" />
             <div className="absolute bottom-2 left-2 right-2">
               <div className="bg-foreground-950/60 px-2 py-1 flex items-center justify-between">
-                <span className="text-[7px] text-foreground-500">MediaMarkt Berlin-Mitte</span>
+                <span className="text-[7px] text-foreground-500">Elektronikmarkt Berlin-Mitte</span>
                 <span className="text-[7px] text-primary-500 font-bold">12 m</span>
               </div>
             </div>
@@ -141,7 +141,7 @@ function PhoneScreen({ screen }: { screen: string }) {
           <div className="flex items-center justify-between mb-2.5"><span className="text-3xs font-black text-primary-500 uppercase tracking-wider">Lohnabrechnung</span><span className="text-3xs text-foreground-600">April 2026</span></div>
           <div className="flex-1 space-y-1.5 overflow-hidden">
             <div className="bg-foreground-900 border border-background-50/8 p-2 flex items-center justify-between"><div><div className="text-3xs text-background-50 font-bold">Grundgehalt</div><div className="text-[7px] text-foreground-600">96,0 Std × €14,50 brutto</div></div><span className="text-2xs text-background-50 font-black">€1.392,00</span></div>
-            <div className="bg-foreground-900 border border-background-50/8 p-2 flex items-center justify-between"><div><div className="text-3xs text-background-50 font-bold">Provision Samsung</div><div className="text-[7px] text-foreground-600">18 Verkäufe × €12,00</div></div><span className="text-2xs text-primary-500 font-black">€216,00</span></div>
+            <div className="bg-foreground-900 border border-background-50/8 p-2 flex items-center justify-between"><div><div className="text-3xs text-background-50 font-bold">Provision Smartwatch</div><div className="text-[7px] text-foreground-600">18 Verkäufe × €12,00</div></div><span className="text-2xs text-primary-500 font-black">€216,00</span></div>
             <div className="bg-foreground-900 border border-background-50/8 p-2 flex items-center justify-between"><div><div className="text-3xs text-background-50 font-bold">Zielerreichungsbonus</div><div className="text-[7px] text-foreground-600">94,7% → Stufe Silber</div></div><span className="text-2xs text-primary-500 font-black">€142,50</span></div>
             <div className="bg-foreground-900 border border-background-50/8 p-2 flex items-center justify-between"><div><div className="text-3xs text-background-50 font-bold">Fahrtkosten</div><div className="text-[7px] text-foreground-600">3 Einsätze × €18,00</div></div><span className="text-2xs text-foreground-300 font-black">€54,00</span></div>
             <div className="border-t border-primary-500/30 pt-1.5 flex items-center justify-between"><span className="text-3xs text-background-50 font-black uppercase">Brutto-Gesamt</span><span className="text-sm text-primary-500 font-black">€1.804,50</span></div>
@@ -189,7 +189,7 @@ export default function EmployeeApp() {
               {tHeading}
             </h2>
             <p className="text-white/50 text-sm leading-relaxed lg:pb-1">
-              {tSub || 'Alles was Außendienstmitarbeiter im Einsatz brauchen — direkt auf dem Smartphone. iOS & Android, offline-fähig.'}
+              {tSub || 'Alles was Außendienstmitarbeiter im Einsatz brauchen — direkt auf dem Smartphone. Mobil. Einhändig. Intuitiv.'}
             </p>
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function EmployeeApp() {
                 </div>
               </div>
             </PhoneFrame>
-            <FloatingBadge icon="ri-smartphone-line" text="iOS & Android" className="-top-2 -right-6" />
+            <FloatingBadge icon="ri-smartphone-line" text="Mobil · Einhändig" className="-top-2 -right-6" />
             </div>
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
               {STEPS.map((_, i) => (

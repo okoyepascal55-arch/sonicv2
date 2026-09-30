@@ -374,7 +374,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                 Unsere Empfehlung: <span className="text-primary-500">{getRecommendedService().title}</span>
               </h3>
               <div className="bg-white border border-foreground-200 p-5 mb-6 text-left">
-                <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-2">Ihre Empfohlene Lösung</p>
+                <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-2">{resultCta.eyebrow}</p>
                 <h4 className="text-lg font-black text-foreground-950 mb-2">{getRecommendedService().title}</h4>
                 <p className="text-foreground-500 text-sm leading-relaxed">{getRecommendedService().description}</p>
               </div>
@@ -386,6 +386,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <button
                   type="button"
+                  data-cta-direct
                   onClick={() => { handleClose(); openCalendly(); }}
                   className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary-500 text-white font-black text-sm transition-all duration-300 whitespace-nowrap cursor-pointer uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:scale-95"
                   style={{ borderRadius: 0 }}
@@ -403,10 +404,10 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                 </button>
               </div>
               <div className="mt-6 pt-5 border-t border-foreground-100">
-                <p className="text-sm text-foreground-400 mb-2">Nicht ganz passend?</p>
-                <a href="https://calendly.com/sonic-group/beratungsgespraech" target="_blank" rel="noopener noreferrer" onClick={handleClose} className="text-primary-500 hover:text-[#a8b300] font-semibold text-sm transition-colors cursor-pointer">
-                  Direkt mit unserem Team sprechen →
-                </a>
+                <p className="text-sm text-foreground-400 mb-2">{resultCta['alt-question']}</p>
+                <Link to="/kontakt" onClick={handleClose} className="text-primary-500 hover:text-[#a8b300] font-semibold text-sm transition-colors cursor-pointer">
+                  {resultCta['alt-link']}
+                </Link>
               </div>
             </div>
           )}
