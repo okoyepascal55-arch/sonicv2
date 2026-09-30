@@ -796,7 +796,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-paths-staff-badge', label: 'Staff Badge', description: 'Staff path badge', type: 'badge', value: 'Deutschlandweit' },
       { id: 'careers-paths-staff-headline', label: 'Staff Headline', description: 'Staff headline', type: 'heading', value: 'Dein Einsatz am Point of Sale' },
       { id: 'careers-paths-staff-desc', label: 'Staff Description', description: 'Staff description', type: 'paragraph', value: 'Du berätst, verkaufst und präsentierst Marken aus Consumer Electronics, Haushalt und Sport direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.' },
-      { id: 'careers-paths-aside', label: 'Hinweis neben der Überschrift', description: 'Kurzer Hinweis rechts neben „Zwei Wege. Ein Ziel.“', type: 'paragraph', value: 'Nicht sicher, welcher Weg zu dir passt? Schick uns eine Initiativbewerbung – wir finden gemeinsam die passende Aufgabe.' },
       { id: 'careers-paths-cta', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Alle Stellen ansehen' },
     ],
   },

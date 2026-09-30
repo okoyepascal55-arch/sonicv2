@@ -103,7 +103,6 @@ export default function KarrierepfadeSection() {
   const tStaffHeadline = useText('careers_paths', 'careers-paths-staff-headline', 'Dein Einsatz am Point of Sale');
   const tStaffDesc = useText('careers_paths', 'careers-paths-staff-desc', 'Du berätst, verkaufst und präsentierst Marken aus Consumer Electronics, Haushalt und Sport direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.');
   const tApply = useText('careers_paths', 'careers-paths-apply', 'Initiativbewerbung senden');
-  const tAside = useText('careers_paths', 'careers-paths-aside', 'Nicht sicher, welcher Weg zu dir passt? Schick uns eine Initiativbewerbung – wir finden gemeinsam die passende Aufgabe.');
 
   // Titles, stats and tabs: Dashboard → Text → Karriere → „Karriere — Campus Team & POS Team“
   const sales = useKarrierePath('sales');
@@ -140,14 +139,6 @@ export default function KarrierepfadeSection() {
           sub={tSub}
           headingMax="max-w-[620px]"
           absoluteNumeral={true}
-          aside={
-            <p
-              className="text-[12px] font-bold leading-[1.7] tracking-[0.04em] uppercase pl-6"
-              style={{ borderLeft: '1px solid oklch(var(--foreground-950) / 0.12)', color: 'oklch(var(--foreground-500))' }}
-            >
-              {tAside}
-            </p>
-          }
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0.5">
