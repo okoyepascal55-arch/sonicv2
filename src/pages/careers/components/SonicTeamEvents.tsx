@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { ChapterHeader, Marker } from './ChapterKit';
+import { useKarriereEventLines } from '../useKarriereText';
 
 const EVENTS = [
   {
     id: 'content',
     tag: 'Kreation',
     title: 'Content Creation',
-    stat: '50+ Shoots pro Monat',
+    stat: 'Shootings & Videos für unsere Kunden',
     fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png',
     videoUrl: 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&rel=0&modestbranding=1',
   },
@@ -16,7 +17,7 @@ const EVENTS = [
     id: 'team',
     tag: 'Intern',
     title: 'Team Events',
-    stat: '50+ Events pro Jahr',
+    stat: 'Sommerfest, Grillen, gemeinsame Mittagessen',
     fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg',
     videoUrl: 'https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1&rel=0&modestbranding=1',
   },
@@ -24,7 +25,7 @@ const EVENTS = [
     id: 'promoter',
     tag: 'Extern',
     title: 'Promoter Events',
-    stat: '98% Zufriedenheit',
+    stat: 'Kick-offs, Trainings & Contests',
     fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg',
     videoUrl: 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&rel=0&modestbranding=1',
   },
@@ -32,7 +33,7 @@ const EVENTS = [
     id: 'roadshow',
     tag: 'Unterwegs',
     title: 'Roadshows & Messen',
-    stat: '100+ Städte pro Jahr',
+    stat: 'Über 200 Events',
     fallbackImage: '/images/Karriere/IMG_0002.webp',
     videoUrl: 'https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1&rel=0&modestbranding=1',
   },
@@ -58,8 +59,11 @@ export default function SonicTeamEvents() {
   const tCampusTip2 = useText('careers_campus', 'careers-campus-tip-2', 'Kreise klicken zum Bewegen');
   const tCampusTip3 = useText('careers_campus', 'careers-campus-tip-3', 'Vollbild für beste Erfahrung');
 
+  // Dashboard → Text → Karriere → „Karriere — Team Events (Zeilen unter den Titeln)“
+  const eventLines = useKarriereEventLines();
   const resolvedEvents = EVENTS.map((ev, i) => ({
     ...ev,
+    stat: eventLines[ev.id as keyof typeof eventLines] ?? ev.stat,
     image: eventImages[i]?.url || ev.fallbackImage,
     videoUrl: eventVideos[i]?.url || ev.videoUrl,
   }));

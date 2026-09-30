@@ -51,7 +51,6 @@ export default function KarriereJobs() {
               {headingMain} {headingAccent && <Marker>{headingAccent}</Marker>}
             </h2>
             <div className="flex items-center gap-3">
-              <span className="px-2.5 py-1 bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-[0.2em]">Live</span>
               <span className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">Krefeld &amp; DACH-weit</span>
             </div>
           </div>

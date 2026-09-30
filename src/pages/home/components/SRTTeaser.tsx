@@ -1,3 +1,4 @@
+import { useReviewText } from '@/hooks/useReviewText';
 import { useState, useEffect, useRef, useId, useCallback, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuizModal from './QuizModal';
@@ -36,6 +37,8 @@ function shrinkToEdge(from: Point, to: Point): { x: number; y: number } {
 }
 
 export default function SRTTeaser() {
+  // Dashboard → Text → Home → „SRTTeaser — Unterzeile“
+  const st = useReviewText('home_srt_teaser');
   const [activeNode, setActiveNode] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [pulse, setPulse] = useState(false);
@@ -181,7 +184,7 @@ export default function SRTTeaser() {
             <span className="text-primary-500">Reporting Tool</span>
           </h2>
           <p className="sonic-subline" style={{ color: 'oklch(var(--foreground-300))' }}>
-            Seit 2008 unser eigenes Tool: individualisierbar, mehrsprachig, adaptiv. Über 21 Versionen, über 1,4 Mio. Einsätze gesteuert – du siehst deine Projektdaten live.
+            {st.sub}
           </p>
         </div>
 

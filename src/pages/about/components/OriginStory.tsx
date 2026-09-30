@@ -1,21 +1,16 @@
+import { useReviewText } from '@/hooks/useReviewText';
 import { useEffect, useRef, useState } from 'react';
 import type { MediaItem } from '@/lib/mediaStore';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import WoodenButton from '@/components/base/WoodenButton';
 
-const tickerStats = [
-  { icon: 'ri-briefcase-line', value: '>15', label: 'Kunden' },
-  { icon: 'ri-map-pin-line', value: '>1,3 Mio.', label: 'Einsätze' },
-  { icon: 'ri-store-2-line', value: '>1.000', label: 'Stores' },
-  { icon: 'ri-calendar-check-line', value: '2007', label: 'Gegründet' },
-  { icon: 'ri-user-star-line', value: '200+', label: 'Promoter:innen im Einsatz' },
-  { icon: 'ri-team-line', value: '>1.700', label: 'Menschen im Talentpool' },
-  { icon: 'ri-global-line', value: 'DACH', label: 'Marktabdeckung' },
-  { icon: 'ri-bar-chart-2-line', value: '>2 Mrd. €', label: 'Umsatz für unsere Kunden' },
-];
+const TICKER_ICONS = ['ri-briefcase-line', 'ri-map-pin-line', 'ri-store-2-line', 'ri-calendar-check-line', 'ri-user-star-line', 'ri-team-line', 'ri-global-line', 'ri-bar-chart-2-line'];
 
 export default function OriginStory({ focusImages }: { focusImages?: MediaItem[] }) {
+  // Dashboard → Text → Über uns → „Über uns — Kennzahlen-Ticker“
+  const at = useReviewText('about_ticker');
+  const tickerStats = TICKER_ICONS.map((icon, i) => ({ icon, value: at[`t${i + 1}-value`], label: at[`t${i + 1}-label`] }));
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const { images: woodTicker } = useMediaStore('about_origin_story_wood_bg');
@@ -78,9 +73,9 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
 
               {/* Floating stat card — rounded, clean */}
               <div className="mt-4 md:mt-0 md:absolute md:-bottom-6 md:-right-4 lg:-right-6 bg-white border border-background-200 p-4 md:p-5 md:w-52" style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
-                <div className="text-3xl md:text-4xl font-black text-foreground-950 leading-none mb-1 md:mb-2">2007</div>
+                <div className="text-3xl md:text-4xl font-black text-foreground-950 leading-none mb-1 md:mb-2">{at['float-value']}</div>
                 <div className="text-xs font-bold text-foreground-400 uppercase tracking-wider">
-                  Seitdem Markenerfolg im DACH-Raum
+                  {at['float-label']}
                 </div>
                 <div className="mt-3 h-1 w-10 bg-primary-500" />
               </div>

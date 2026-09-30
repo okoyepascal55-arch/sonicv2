@@ -1,3 +1,4 @@
+import { useReviewText } from '@/hooks/useReviewText';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useEffect, useRef, useState } from 'react';
 
@@ -17,6 +18,8 @@ const clients = [
 ];
 
 export default function ValuesVisual() {
+  // Dashboard → Text → Über uns → „Über uns — Referenzen & Team-Kennzahlen“
+  const vt = useReviewText('about_values_texts');
   const { images: logoImages } = useMediaStore('about_client_logos');
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -47,7 +50,7 @@ export default function ValuesVisual() {
             Wer mit Sonic <span className="v3-marker">erfolgreich</span> ist
           </h2>
           <p className="text-sm text-foreground-500 max-w-lg leading-relaxed">
-            Über 15 Kunden – im Studio, auf der Fläche, im Fachhandel, in Sport & Freizeit und im B2B.
+            {vt['refs-line']}
           </p>
         </div>
 

@@ -1,3 +1,4 @@
+import { useReviewText } from '@/hooks/useReviewText';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
@@ -7,7 +8,7 @@ function hideBrokenImg(e: React.SyntheticEvent<HTMLImageElement>) {
   e.currentTarget.style.display = 'none';
 }
 
-const services = [
+const baseServices = [
   {
     short: 'Promotion & POS',
     title: 'Menschen für Promotion & POS',
@@ -109,6 +110,16 @@ const services = [
 ];
 
 export default function ServicesGrid() {
+  // Dashboard → Text → Home → „ServicesGrid — Leistungen (Tabs)“
+  const sv = useReviewText('home_services_texts');
+  const services = baseServices.map((b, i) => ({
+    ...b,
+    short: sv[`tab${i + 1}-short`] || b.short,
+    title: sv[`tab${i + 1}-title`] || b.title,
+    lead: sv[`tab${i + 1}-lead`] || b.lead,
+    description: sv[`tab${i + 1}-desc`] || b.description,
+    tagline: sv[`tab${i + 1}-tagline`] ?? b.tagline,
+  }));
   const navigate = useNavigate();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
@@ -123,14 +134,10 @@ export default function ServicesGrid() {
   const { images: homePos }       = useMediaStore('home_pos');
   const { images: homeStudios }   = useMediaStore('/images/home/4. Menschen für unsere Studios');
 
-  const imagesByShort: Record<string, typeof homeEvents> = {
-    'Promotion & POS': homePos,
-    'Events': homeEvents,
-    'Content': homeContent,
-    'Schulungen': homeSchulungen,
-    'Studios': homeStudios,
-  };
-  const getSectionImagesMap = (idx: number) => imagesByShort[services[idx]?.short] ?? [];
+  // Image sets follow the tab's position (Promotion & POS, Events, Content, Schulungen, Studios),
+  // so renaming a tab in the dashboard never breaks its images.
+  const imagesByIndex = [homePos, homeEvents, homeContent, homeSchulungen, homeStudios];
+  const getSectionImagesMap = (idx: number) => imagesByIndex[idx] ?? [];
 
   const currentMediaItems = getSectionImagesMap(selectedIndex);
   const currentImages = currentMediaItems.map(item => item.url);
@@ -199,7 +206,7 @@ export default function ServicesGrid() {
             </span>
           </h2>
           <p className="text-sm md:text-base text-foreground-600 max-w-2xl mx-auto font-medium leading-relaxed">
-            <span className="text-primary-600 font-semibold">Promotion</span>, POS, Events, Studios, Content und Schulungen – ein Partner, ein Team, eine Datenbasis.
+            {sv.intro}
           </p>
         </div>
 
@@ -361,9 +368,15 @@ export default function ServicesGrid() {
             <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-2" style={{ color: 'oklch(0.55 0.08 115)' }}>
               {svc.lead}
             </p>
-            <p className="text-sm text-foreground-600 leading-relaxed mb-5">
+            <p className="text-sm text-foreground-600 leading-relaxed mb-3">
               {svc.description}
             </p>
+            {svc.tagline && (
+              <p className="flex items-start gap-2.5 text-xs font-bold text-foreground-950 leading-relaxed mb-5">
+                <span className="w-1.5 h-1.5 bg-primary-500 flex-shrink-0 mt-[5px]" aria-hidden="true" />
+                {svc.tagline}
+              </p>
+            )}
             <button
               onClick={() => handleGetStarted(svc.link)}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 font-black text-xs uppercase tracking-[0.14em] transition-all duration-200 cursor-pointer hover:bg-primary-500 hover:text-foreground-950"

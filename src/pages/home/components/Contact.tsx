@@ -1,7 +1,11 @@
+import { useReviewText } from '@/hooks/useReviewText';
 import { useNavigate } from 'react-router-dom';
 import WoodenButton from '@/components/base/WoodenButton';
 
 export default function Contact() {
+  // Dashboard → Text → Home → „Was uns antreibt — Karten 01/02“
+  const dc = useReviewText('home_drive_cards');
+  const tagsOf = (v: string) => v.split(',').map((x) => x.trim()).filter(Boolean);
   const navigate = useNavigate();
   const handleNav = (path: string) => navigate(path);
 
@@ -90,17 +94,16 @@ export default function Contact() {
                     01
                   </span>
                   <p className="text-[10px] font-black uppercase tracking-[0.28em] text-primary-500 whitespace-nowrap">
-                    Daten Liefern Fakten
+                    {dc['c1-eyebrow']}
                   </p>
                   <p className="text-sm font-black text-white whitespace-nowrap">
-                    Messbar statt Bauchgefühl
+                    {dc['c1-title']}
                   </p>
                   <span className="text-xs text-foreground-500 leading-relaxed">
-                    — Daten liefern die Fakten: Bauchgefühl, Analyse, Herleitung,
-                    Sicherheit – jede Maßnahme wird im SRT messbar.
+                    {dc['c1-text']}
                   </span>
                   <span className="flex flex-wrap gap-1.5">
-                    {['Analyse', 'Herleitung', 'SRT'].map((tag) => (
+                    {tagsOf(dc['c1-tags']).map((tag) => (
                       <span
                         key={tag}
                         className="text-[9px] font-bold text-primary-500/50 border border-primary-500/20 px-2 py-0.5"
@@ -199,17 +202,16 @@ export default function Contact() {
                     02
                   </span>
                   <p className="text-[10px] font-black uppercase tracking-[0.28em] text-primary-500 whitespace-nowrap">
-                    Mensch. Der Unterschied.
+                    {dc['c2-eyebrow']}
                   </p>
                   <p className="text-sm font-black text-foreground-950 whitespace-nowrap">
-                    1.700+ im Talentpool
+                    {dc['c2-title']}
                   </p>
                   <span className="text-xs text-foreground-400 leading-relaxed">
-                    — Über 1.700 aktive Menschen im Sonic-Talentpool – daraus stellen
-                    wir für jedes Projekt das passende Team zusammen.
+                    {dc['c2-text']}
                   </span>
                   <span className="flex flex-wrap gap-1.5">
-                    {['Talentpool', 'Live-Einblick', 'Motivation'].map((tag) => (
+                    {tagsOf(dc['c2-tags']).map((tag) => (
                       <span
                         key={tag}
                         className="text-[9px] font-bold text-primary-500/50 border border-primary-500/20 px-2 py-0.5"

@@ -1,14 +1,13 @@
+import { useReviewText } from '@/hooks/useReviewText';
 import { useText } from '@/hooks/useText';
 import { useMediaStore } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
 
-const TEAM_STATS = [
-  { value: '5,4', unit: 'Jahre', label: 'Ø Betriebszugehörigkeit Sonic-Team' },
-  { value: 'Dual', unit: 'Studium', label: 'Ausbildungspartner' },
-  { value: 'B2B + D2C', unit: '', label: 'Kunden- & Agenturseite' },
-];
 
 export default function LeadershipTeam() {
+  // Dashboard → Text → Über uns → „Über uns — Referenzen & Team-Kennzahlen“
+  const tv = useReviewText('about_values_texts');
+  const TEAM_STATS = [1, 2, 3].map((n) => ({ value: tv[`team${n}-value`], unit: tv[`team${n}-unit`], label: tv[`team${n}-label`] }));
   const tBadge = useText('about_leadership', 'about-leadership-badge', 'Das Team');
   const tHeading = useText('about_leadership', 'about-leadership-heading', 'Fachliche und menschliche Vielfalt.');
   const tSub = useText('about_leadership', 'about-leadership-sub', 'Bei Sonic treffen Expertisen aufeinander, die sich perfekt ergänzen.');

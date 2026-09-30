@@ -30,9 +30,9 @@ const challengeData = [
   {
     id: 'omnichannel',
     number: '03',
-    tag: 'ONLINE & OFFLINE VERBINDEN',
-    heading: 'ONLINE & OFFLINE VERBINDEN',
-    desc: 'Online für Information, offline für Erlebnis und Vertrauen. Mit Live-Video-Beratung per Shop, Display und QR-Code verbinden wir beides – mehr Abschlüsse, weniger Retouren.',
+    tag: 'OMNICHANNEL OPTIMIEREN',
+    heading: 'OMNICHANNEL OPTIMIEREN',
+    desc: 'Dieselbe persönliche Beratung im Laden, im Online-Shop und per QR-Code auf der Verpackung – live aus unseren Studios. Mehr Abschlüsse, weniger Retouren.',
     fallbackWoodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20store%20shop%20building%20icon%20made%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20retail%20storefront%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-carved-store-challenge-3&orientation=squarish',
     solutionKey: 'omnichannel',
     cta: 'MEHR DAZU',
@@ -47,22 +47,27 @@ export default function ChallengeSection() {
   const navigate = useNavigate();
   const { images: woodIcons } = useMediaStore('home_challenge_wood_icons');
 
-  const challenges = challengeData.map((c, i) => ({
-    ...c,
-    woodIcon: woodIcons[i]?.url || c.fallbackWoodIcon,
-  }));
-
   // ── Text Store hooks ──
   const tBadge = useText('home_challenge', 'home-challenge-badge', 'Deine Challenge');
   const tHeading = useText('home_challenge', 'home-challenge-heading', 'Drei Wege. Ein Partner.');
   const tPath1Title = useText('home_challenge', 'home-challenge-path-1', 'Markteintritt');
   const tPath2Title = useText('home_challenge', 'home-challenge-path-2', 'Absatz steigern');
-  const tPath3Title = useText('home_challenge', 'home-challenge-path-3', 'Omnichannel');
+  const tPath3Title = useText('home_challenge', 'home-challenge-path-3', 'Omnichannel optimieren');
   const tPath1Desc = useText('home_challenge', 'home-challenge-path-1-desc', '');
   const tPath2Desc = useText('home_challenge', 'home-challenge-path-2-desc', '');
   const tPath3Desc = useText('home_challenge', 'home-challenge-path-3-desc', '');
   const tPaths = [tPath1Title, tPath2Title, tPath3Title];
   const tDescs = [tPath1Desc, tPath2Desc, tPath3Desc];
+
+  // Titles and texts: Dashboard → Text → Home → „ChallengeSection — 3 Solution Paths“
+  const challenges = challengeData.map((c, i) => ({
+    ...c,
+    heading: tPaths[i]?.trim() ? tPaths[i].toUpperCase() : c.heading,
+    tag: tPaths[i]?.trim() ? tPaths[i].toUpperCase() : c.tag,
+    desc: tDescs[i]?.trim() ? tDescs[i] : c.desc,
+    woodIcon: woodIcons[i]?.url || c.fallbackWoodIcon,
+  }));
+
 
   const handleMehrDazu = (solutionKey: string) => {
     navigate(`/losungen?open=${solutionKey}`);

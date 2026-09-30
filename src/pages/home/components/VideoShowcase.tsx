@@ -1,7 +1,10 @@
+import { useReviewText } from '@/hooks/useReviewText';
 import { useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 
 export default function VideoShowcase() {
+  // Dashboard → Text → Home → „VideoShowcase — Texte“
+  const vt = useReviewText('home_video_texts');
   const [playing, setPlaying] = useState(false);
   const { images: videoMedia } = useMediaStore('home_video');
 
@@ -38,7 +41,7 @@ export default function VideoShowcase() {
                 </span>
               </h2>
               <p className="sonic-subline mt-3">
-                Erlebe, wie Sonic Marken am POS, im Studio und auf Events verkauft — mit Menschen, die Marken erlebbar machen.
+                {vt.sub}
               </p>
             </div>
 
@@ -134,15 +137,15 @@ export default function VideoShowcase() {
             {/* ── Bottom micro-bar ── */}
             <div className="flex items-center justify-center gap-6 mt-6 md:mt-8 flex-wrap">
               <span className="text-xs font-semibold text-foreground-400 uppercase tracking-wider">
-                Seit 2007
+                {vt['strip-1']}
               </span>
               <span className="w-1 h-1 bg-foreground-300" style={{ borderRadius: '50%' }} />
               <span className="text-xs font-semibold text-foreground-400 uppercase tracking-wider">
-                DACH-weit
+                {vt['strip-2']}
               </span>
               <span className="w-1 h-1 bg-foreground-300" style={{ borderRadius: '50%' }} />
               <span className="text-xs font-semibold text-foreground-400 uppercase tracking-wider">
-                Über 2 Mrd. € Umsatz
+                {vt['strip-3']}
               </span>
               <span className="w-1 h-1 bg-foreground-300" style={{ borderRadius: '50%' }} />
               <a

@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { STIMMEN_TEXT_SECTIONS } from './textStoreStimmen';
+import { LOSUNGEN_TEXT_SECTIONS } from './textStoreLosungen';
+import { KARRIERE_TEXT_SECTIONS } from './textStoreKarriere';
+import { REVIEW_TEXT_SECTIONS } from './textStoreReview';
 import { supabase } from './supabase';
 export interface TextEntry {
   id: string;
@@ -193,11 +196,11 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'home-challenge-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Deine Challenge' },
       { id: 'home-challenge-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Drei Wege. Ein Partner.' },
       { id: 'home-challenge-path-1', label: 'Path 1 — Markteintritt', description: 'Market entry path title', type: 'heading', value: 'Markteintritt' },
-      { id: 'home-challenge-path-1-desc', label: 'Path 1 Description', description: 'Market entry description', type: 'paragraph', value: 'Deine Marke kommt neu in den DACH-Raum? Wir bringen dich mit der richtigen Strategie und den besten Leuten in die Fläche.' },
+      { id: 'home-challenge-path-1-desc', label: 'Path 1 Description', description: 'Market entry description', type: 'paragraph', value: 'Deine Botschaft wird erlebbar – am POS, per Video und live. Damit neue Marken und erklärungsbedürftige Produkte vom ersten Tag an verkaufen.' },
       { id: 'home-challenge-path-2', label: 'Path 2 — Absatz steigern', description: 'Sales growth path', type: 'heading', value: 'Absatz steigern' },
-      { id: 'home-challenge-path-2-desc', label: 'Path 2 Description', description: 'Sales growth description', type: 'paragraph', value: 'Deine Sales-Performance stagniert? Mit datenbasierter Planung und operativer Exzellenz heben wir deine Zahlen auf das nächste Level.' },
-      { id: 'home-challenge-path-3', label: 'Path 3 — Omnichannel', description: 'Omnichannel path', type: 'heading', value: 'Omnichannel' },
-      { id: 'home-challenge-path-3-desc', label: 'Path 3 Description', description: 'Omnichannel description', type: 'paragraph', value: 'Online und offline verschmelzen? Wir bauen die Brücke — mit Live-Video, QR-Codes und nahtlosen Customer Journeys.' },
+      { id: 'home-challenge-path-2-desc', label: 'Path 2 Description', description: 'Sales growth description', type: 'paragraph', value: 'Unsere Promotion- und Field-Force-Teams sorgen dafür, dass dein Produkt im Handel stärker verkauft wird. Planbar, profitabel, live im SRT messbar.' },
+      { id: 'home-challenge-path-3', label: 'Path 3 — Omnichannel', description: 'Omnichannel path', type: 'heading', value: 'Omnichannel optimieren' },
+      { id: 'home-challenge-path-3-desc', label: 'Path 3 Description', description: 'Omnichannel description', type: 'paragraph', value: 'Dieselbe persönliche Beratung im Laden, im Online-Shop und per QR-Code auf der Verpackung – live aus unseren Studios. Mehr Abschlüsse, weniger Retouren.' },
     ],
   },
   {
@@ -702,16 +705,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'team-hero-subtitle', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Über 2.000 Menschen, eine Mission: Retail Activation neu definieren.' },
     ],
   },
-  {
-    key: 'losungen_hero', label: 'Lösungen Hero — Header Section',
-    pageGroupId: 'losungen', pagePath: '/losungen',
-    description: 'The solutions overview page hero.',
-    entries: [
-      { id: 'losungen-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Lösungen' },
-      { id: 'losungen-hero-heading', label: 'Main Heading', description: 'Hero heading', type: 'heading', value: 'Drei Wege. Ein Partner.' },
-      { id: 'losungen-hero-subtitle', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Egal ob Markteintritt, Absatzsteigerung oder Omnichannel — wir haben die passende Lösung für deine Retail-Strategie.' },
-    ],
-  },
 
   /* ════════════════════════════════════════════ ABOUT — Additional Sections ════════════════════ */
   {
@@ -795,17 +788,17 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   {
     key: 'careers_paths', label: 'KarrierepfadeSection — Two Career Paths',
     pageGroupId: 'careers', pagePath: '/karriere',
-    description: 'The two career paths: Sonic Sales Family and Sonic Staff Family.',
+    description: 'Die zwei Karrierewege: Campus Team und POS Team. Kennzahlen und Tabs stehen unter „Karriere — Campus Team & POS Team“.',
     entries: [
       { id: 'careers-paths-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Karrierepfade' },
       { id: 'careers-paths-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Zwei Wege. Ein Ziel.' },
-      { id: 'careers-paths-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Ob intern am Campus oder flexibel im Außendienst — bei Sonic gibt es einen Weg für dich.' },
+      { id: 'careers-paths-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Ob am Campus oder am POS – bei uns gibt es einen Weg für dich.' },
       { id: 'careers-paths-sales-badge', label: 'Sales Badge', description: 'Sales path badge', type: 'badge', value: 'Internes Team' },
-      { id: 'careers-paths-sales-headline', label: 'Sales Headline', description: 'Sales headline', type: 'heading', value: 'Bürobasierte Karriere in Krefeld' },
-      { id: 'careers-paths-sales-desc', label: 'Sales Description', description: 'Sales description', type: 'paragraph', value: 'Klare Aufstiegspfade, Mentoring, Hybridarbeit und eine echte Community.' },
+      { id: 'careers-paths-sales-headline', label: 'Sales Headline', description: 'Sales headline', type: 'heading', value: 'Dein Job am Campus in Krefeld' },
+      { id: 'careers-paths-sales-desc', label: 'Sales Description', description: 'Sales description', type: 'paragraph', value: 'Projektmanagement, HR, IT, Finance, Kreation: Hier planen und steuern wir die Projekte unserer Kunden. Mit klaren Aufgaben, Mentoring, hybridem Arbeiten und einem Team, das zusammenhält.' },
       { id: 'careers-paths-staff-badge', label: 'Staff Badge', description: 'Staff path badge', type: 'badge', value: 'Field Team' },
-      { id: 'careers-paths-staff-headline', label: 'Staff Headline', description: 'Staff headline', type: 'heading', value: 'Flexibler Einsatz DACH-weit' },
-      { id: 'careers-paths-staff-desc', label: 'Staff Description', description: 'Staff description', type: 'paragraph', value: '150+ Premium-Brands, Top-Incentives und maximale Flexibilität.' },
+      { id: 'careers-paths-staff-headline', label: 'Staff Headline', description: 'Staff headline', type: 'heading', value: 'Dein Einsatz am Point of Sale' },
+      { id: 'careers-paths-staff-desc', label: 'Staff Description', description: 'Staff description', type: 'paragraph', value: 'Du berätst, verkaufst und präsentierst Marken wie Garmin, Canon oder Groupe SEB direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.' },
       { id: 'careers-paths-cta', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Alle Stellen ansehen' },
     ],
   },
@@ -1409,14 +1402,20 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pageGroupId: 'careers',
     label: 'Karriere DNA — Kartentexte',
     entries: [
-      { id: 'dna-mensch-desc',   label: 'Der Mensch — Beschreibung',   value: 'Menschen, die Marken prägen. Ob legendäre Motorräder oder eine frische Teemarke – Promotions leben von den Menschen, die sie durchführen. Deshalb setzen wir auf Fachberater, die für die Marke brennen. Das Ergebnis? Transparent und messbar – jederzeit schwarz auf weiß nachvollziehbar.',      type: 'text' as const },
-      { id: 'dna-antrieb-desc',  label: 'Der Antrieb — Beschreibung',  value: 'Nicht jeder lässt sich durch dasselbe motivieren. Eine wettbewerbsfähige Bezahlung und Entwicklungsperspektiven sind oft genauso wichtig wie frisches Obst im Büro oder ein direkter Ansprechpartner im Projektteam – anstelle einer anonymen Hotline.',           type: 'text' as const },
+      { id: 'dna-mensch-desc',   label: 'Der Mensch — Beschreibung',   value: 'Menschen, die Marken prägen. Ob eine Smartwatch oder eine frische Teemarke – Promotions leben von den Menschen, die sie durchführen. Deshalb setzen wir auf Fachberater, die für die Marke brennen. Das Ergebnis? Transparent und messbar – jederzeit schwarz auf weiß nachvollziehbar.',      type: 'text' as const },
+      { id: 'dna-antrieb-desc',  label: 'Der Antrieb — Beschreibung',  value: 'Nicht jeder lässt sich durch dasselbe motivieren. Eine faire, nachvollziehbare Bezahlung und Entwicklungsperspektiven sind oft genauso wichtig wie frisches Obst im Büro oder ein direkter Ansprechpartner im Projektteam – anstelle einer anonymen Hotline.',           type: 'text' as const },
       { id: 'dna-daten-desc',    label: 'Die Daten — Beschreibung',    value: 'Entscheidungen beginnen oft mit einer Intuition – sollten jedoch mit Daten analysiert, evaluiert und getroffen werden. Nur so lassen sich unsere Empfehlungen in messbare Erfolge umwandeln. Jahrelange Erfahrung und umfassende Daten helfen uns, die richtigen Maßnahmen zu entwickeln.',                     type: 'text' as const },
       { id: 'dna-werkzeug-desc', label: 'Das Werkzeug — Beschreibung', value: 'Eigene Prozesse beherrschen – aber nicht alles selbst entwickeln. Unser Inhouse-IT-Team programmiert oder sourct gezielt die richtigen Tools, um gemeinsam mit starken Partnern die Herausforderungen unserer Kunden bestmöglich zu lösen.',             type: 'text' as const },
     ],
   },
   /* ═══════════════ STIMMEN & GESICHTER — see textStoreStimmen.ts ═══════════════ */
   ...STIMMEN_TEXT_SECTIONS,
+  /* ═══════════════ LÖSUNGEN — see textStoreLosungen.ts ═══════════════ */
+  ...LOSUNGEN_TEXT_SECTIONS,
+  /* ═══════════════ KARRIERE — see textStoreKarriere.ts ═══════════════ */
+  ...KARRIERE_TEXT_SECTIONS,
+  /* ═══════════════ HOME / ÜBER UNS — see textStoreReview.ts ═══════════════ */
+  ...REVIEW_TEXT_SECTIONS,
   /* ═══════════════ FALLBEISPIELE — Texte je Fallstudie (/fallbeispiele) ═══════════════ */
   {
     key: 'case_garmin_text',
@@ -1510,6 +1509,15 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'careers_campus', entryId: 'careers-campus-heading', from: 'BÜRO ERKUNDEN', to: 'Büro erkunden' },
   { sectionKey: 'about_management_voices', entryId: 'about-voices-sub', from: 'Strategie, Kreation und Operations — drei Perspektiven, eine Überzeugung.', to: 'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.' },
   { sectionKey: 'about_leadership', entryId: 'about-leadership-sub', from: 'Bei Sonic treffen Backgrounds aufeinander, die sich perfekt ergänzen.', to: 'Bei Sonic treffen Expertisen aufeinander, die sich perfekt ergänzen.' },
+  // ── Content review 30.09.2026 (Agenturpräsentation 2026) — corrects values saved in the dashboard ──
+  { sectionKey: 'careers_paths', entryId: 'careers-paths-sub', from: 'Ob  am Campus', to: 'Ob am Campus oder am POS – bei uns gibt es einen Weg für dich.', matchType: 'startsWith' as const },
+  { sectionKey: 'careers_paths', entryId: 'careers-paths-sales-desc', from: 'Klare Aufstiegspfade', to: 'Projektmanagement, HR, IT, Finance, Kreation: Hier planen und steuern wir die Projekte unserer Kunden. Mit klaren Aufgaben, Mentoring, hybridem Arbeiten und einem Team, das zusammenhält.', matchType: 'startsWith' as const },
+  { sectionKey: 'careers_paths', entryId: 'careers-paths-staff-desc', from: 'Premium-Brands', to: 'Du berätst, verkaufst und präsentierst Marken wie Garmin, Canon oder Groupe SEB direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.', matchType: 'contains' as const },
+  { sectionKey: 'careers_paths', entryId: 'careers-paths-staff-headline', from: 'Flexibler Einsatz', to: 'Dein Einsatz am Point of Sale', matchType: 'startsWith' as const },
+  { sectionKey: 'careers_paths', entryId: 'careers-paths-sales-headline', from: 'Bürobasierte Karriere', to: 'Dein Job am Campus in Krefeld', matchType: 'startsWith' as const },
+  { sectionKey: 'karriere_dna', entryId: 'dna-mensch-desc', from: 'legendäre Motorräder', to: 'Menschen, die Marken prägen. Ob eine Smartwatch oder eine frische Teemarke – Promotions leben von den Menschen, die sie durchführen. Deshalb setzen wir auf Fachberater, die für die Marke brennen. Das Ergebnis? Transparent und messbar – jederzeit schwarz auf weiß nachvollziehbar.', matchType: 'contains' as const },
+  { sectionKey: 'about_management_voices', entryId: 'about-voices-cta-text', from: 'Lass uns besprechen, wie Sonic deine..', to: 'Lass uns besprechen, wie Sonic deine' },
+  { sectionKey: 'about_management_voices', entryId: 'about-voices-cta', from: 'Beratungsgespräch buchen..', to: 'Beratungsgespräch buchen' },
   // ── Heading casing normalization ──
   { sectionKey: 'about_origin_story', entryId: 'about-origin-heading', from: 'MARKEN IM HERZEN. ERFOLG IM FOKUS.', to: 'Marken im Herzen. Erfolg im Fokus.' },
   { sectionKey: 'about_leadership', entryId: 'about-leadership-heading', from: 'FACHLICHE UND MENSCHLICHE VIELFALT.', to: 'Fachliche und menschliche Vielfalt.' },

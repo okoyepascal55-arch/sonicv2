@@ -1,49 +1,93 @@
+import { useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { ChapterHeader, Marker } from './ChapterKit';
+import { useKarrierePath } from '../useKarriereText';
+import type { PathTab } from '../content';
+
+/* Small square pill — same language as the Kultur tags (flat, lime hairline). */
+const pillBase = 'px-3 py-1.5 text-[10px] md:text-[11px] font-black uppercase tracking-[0.12em] transition-colors duration-200 cursor-pointer';
+
+function PathTabs({ tabs }: { tabs: PathTab[] }) {
+  const [active, setActive] = useState(tabs[0]?.id);
+  const tab = tabs.find((t) => t.id === active) ?? tabs[0];
+  if (!tab) return null;
+  const hair = '1px solid oklch(var(--foreground-950) / 0.08)';
+  return (
+    <div className="mt-8">
+      <div className="flex flex-wrap gap-2" role="tablist">
+        {tabs.map((t) => {
+          const on = t.id === tab.id;
+          return (
+            <button
+              key={t.id}
+              type="button"
+              role="tab"
+              aria-selected={on}
+              onClick={() => setActive(t.id)}
+              className={`${pillBase} ${on ? 'bg-primary-500 text-foreground-950' : 'text-foreground-950/70 hover:text-foreground-950'}`}
+              style={{ border: on ? '1px solid oklch(var(--primary-500))' : '1px solid oklch(var(--primary-500) / 0.45)' }}
+            >
+              {t.label}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="mt-4 p-5 md:p-6" role="tabpanel" style={{ border: hair, background: 'oklch(var(--foreground-950) / 0.02)' }}>
+        {tab.id === 'gehalt' && (
+          <>
+            <p className="text-[13px] font-black text-foreground-950 mb-4">{tab.heading}</p>
+            <ul className="space-y-3">
+              {tab.rows.map((r) => (
+                <li key={r.title} className="grid grid-cols-[132px_1fr] gap-3 items-baseline">
+                  <span className="text-[10px] font-black uppercase tracking-[0.18em] text-primary-600">{r.title}</span>
+                  <span className="text-[13px] leading-[1.6]" style={{ color: 'oklch(var(--foreground-600))' }}>{r.text}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-[12px] mt-4 pt-4" style={{ borderTop: hair, color: 'oklch(var(--foreground-500))' }}>{tab.note}</p>
+          </>
+        )}
+        {tab.id === 'benefits' && (
+          <div className="flex flex-wrap gap-2">
+            {tab.items.map((it) => (
+              <span key={it} className="px-2.5 py-1 text-[11px] font-bold text-foreground-950/75" style={{ border: '1px solid oklch(var(--foreground-950) / 0.12)', background: '#fff' }}>
+                {it}
+              </span>
+            ))}
+          </div>
+        )}
+        {tab.id === 'wachsen' && (
+          <ul className="space-y-3">
+            {tab.rows.map((r) => (
+              <li key={r.title} className="grid grid-cols-[140px_1fr] gap-3 items-baseline">
+                <span className="text-[12px] font-black text-foreground-950">{r.title}</span>
+                <span className="text-[13px] leading-[1.6]" style={{ color: 'oklch(var(--foreground-600))' }}>{r.text}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {tab.id === 'bewerbung' && (
+          <ol className="space-y-2.5">
+            {tab.steps.map((st, i) => (
+              <li key={i} className="flex items-baseline gap-3">
+                <span className="w-6 h-6 flex-shrink-0 flex items-center justify-center text-[11px] font-black bg-foreground-950 text-primary-500 tabular-nums">{i + 1}</span>
+                <span className="text-[13px] leading-[1.6]" style={{ color: 'oklch(var(--foreground-600))' }}>{st}</span>
+              </li>
+            ))}
+          </ol>
+        )}
+      </div>
+    </div>
+  );
+}
 
 type PathId = 'sales' | 'staff';
 
-const PATHS: Array<{
-  id: PathId;
-  badge: string;
-  title: string;
-  headline: string;
-  tagline: string;
-  fallbackImage: string;
-  stats: { value: string; label: string }[];
-  email: string;
-}> = [
-  {
-    id: 'sales',
-    badge: 'Internes Team',
-    title: 'Sonic Sales Family',
-    headline: 'Bürobasierte Karriere in Krefeld',
-    tagline: 'Klare Aufstiegspfade, Mentoring, Hybridarbeit und eine echte Community am Campus.',
-    fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png',
-    stats: [
-      { value: 'Ø 5,15 J.', label: 'Zugehörigkeit' },
-      { value: '98 %', label: 'Zufriedenheit' },
-      { value: 'Krefeld', label: 'Campus' },
-      { value: 'Hybrid', label: 'Arbeitsmodell' },
-    ],
-    email: 'karriere@sonic-group.de',
-  },
-  {
-    id: 'staff',
-    badge: 'Field Team',
-    title: 'Sonic Staff Family',
-    headline: 'Flexibler Einsatz DACH-weit',
-    tagline: '150+ Premium-Brands, Top-Incentives und maximale Flexibilität bei deiner Planung.',
-    fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg',
-    stats: [
-      { value: '150+', label: 'Marken' },
-      { value: '2.000+', label: 'Promoter:innen' },
-      { value: 'DACH', label: 'Gebiet' },
-      { value: 'Flex', label: 'Planung' },
-    ],
-    email: 'staffjobs@sonic-group.de',
-  },
+const PATHS: Array<{ id: PathId; badge: string; fallbackImage: string; email: string }> = [
+  { id: 'sales', badge: 'Internes Team', fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', email: 'karriere@sonic-group.de' },
+  { id: 'staff', badge: 'Field Team', fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg', email: 'staffjobs@sonic-group.de' },
 ];
 
 export default function KarrierepfadeSection() {
@@ -51,17 +95,25 @@ export default function KarrierepfadeSection() {
 
   const tBadge = useText('careers_paths', 'careers-paths-badge', 'Karrierepfade');
   const tHeading = useText('careers_paths', 'careers-paths-heading', 'Zwei Wege. Ein Ziel.');
-  const tSub = useText('careers_paths', 'careers-paths-sub', 'Ob intern am Campus oder flexibel im Außendienst — bei Sonic gibt es einen Weg für dich.');
+  const tSub = useText('careers_paths', 'careers-paths-sub', 'Ob am Campus oder am POS – bei uns gibt es einen Weg für dich.');
   const tSalesBadge = useText('careers_paths', 'careers-paths-sales-badge', 'Internes Team');
-  const tSalesHeadline = useText('careers_paths', 'careers-paths-sales-headline', 'Bürobasierte Karriere in Krefeld');
-  const tSalesDesc = useText('careers_paths', 'careers-paths-sales-desc', 'Klare Aufstiegspfade, Mentoring, Hybridarbeit und eine echte Community am Campus.');
+  const tSalesHeadline = useText('careers_paths', 'careers-paths-sales-headline', 'Dein Job am Campus in Krefeld');
+  const tSalesDesc = useText('careers_paths', 'careers-paths-sales-desc', 'Projektmanagement, HR, IT, Finance, Kreation: Hier planen und steuern wir die Projekte unserer Kunden. Mit klaren Aufgaben, Mentoring, hybridem Arbeiten und einem Team, das zusammenhält.');
   const tStaffBadge = useText('careers_paths', 'careers-paths-staff-badge', 'Field Team');
-  const tStaffHeadline = useText('careers_paths', 'careers-paths-staff-headline', 'Flexibler Einsatz DACH-weit');
-  const tStaffDesc = useText('careers_paths', 'careers-paths-staff-desc', '150+ Premium-Brands, Top-Incentives und maximale Flexibilität bei deiner Planung.');
+  const tStaffHeadline = useText('careers_paths', 'careers-paths-staff-headline', 'Dein Einsatz am Point of Sale');
+  const tStaffDesc = useText('careers_paths', 'careers-paths-staff-desc', 'Du berätst, verkaufst und präsentierst Marken wie Garmin, Canon oder Groupe SEB direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.');
   const tApply = useText('careers_paths', 'careers-paths-apply', 'Initiativbewerbung senden');
+
+  // Titles, stats and tabs: Dashboard → Text → Karriere → „Karriere — Campus Team & POS Team“
+  const sales = useKarrierePath('sales');
+  const staff = useKarrierePath('staff');
+  const details = { sales, staff };
 
   const resolvedPaths = PATHS.map((path, i) => ({
     ...path,
+    title: details[path.id].title,
+    stats: details[path.id].stats,
+    tabs: details[path.id].tabs,
     badge: path.id === 'sales' ? tSalesBadge : tStaffBadge,
     headline: path.id === 'sales' ? tSalesHeadline : tStaffHeadline,
     tagline: path.id === 'sales' ? tSalesDesc : tStaffDesc,
@@ -133,6 +185,7 @@ export default function KarrierepfadeSection() {
                       </div>
                     ))}
                   </div>
+                  <PathTabs tabs={path.tabs} />
                 </div>
                 <a
                   href={`mailto:${path.email}?subject=Initiativbewerbung`}

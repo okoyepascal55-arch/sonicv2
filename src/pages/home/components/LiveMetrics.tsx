@@ -1,16 +1,7 @@
+import { useReviewText } from '@/hooks/useReviewText';
 import { useState, useEffect, useRef } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 
-// Kennzahlen — alle belegt durch die Sonic Agenturpräsentation 2026.
-// Promoter (200+) und Talentpool (1.700+) bewusst getrennt ausweisen.
-const COMPANY_DATA = {
-  revenueGenerated: '>2 Mrd. €',
-  assignmentsCompleted: '>1,3 Mio.',
-  stores: '>1.000',
-  promoters: '200+',
-  talentPool: '>1.700',
-  liveCalls: '>47.000',
-};
 
 export default function LiveMetrics() {
   const [isVisible, setIsVisible] = useState(false);
@@ -38,14 +29,10 @@ export default function LiveMetrics() {
     return () => observer.disconnect();
   }, []);
 
-  const desktopMetrics = [
-    { icon: 'ri-money-euro-circle-line', value: COMPANY_DATA.revenueGenerated, label: 'Umsatz für unsere Kunden' },
-    { icon: 'ri-map-pin-line', value: COMPANY_DATA.assignmentsCompleted, label: 'erledigte Einsätze' },
-    { icon: 'ri-store-2-line', value: COMPANY_DATA.stores, label: 'betreute Stores' },
-    { icon: 'ri-user-star-line', value: COMPANY_DATA.promoters, label: 'Promoter:innen im Einsatz' },
-    { icon: 'ri-team-line', value: COMPANY_DATA.talentPool, label: 'Menschen im Talentpool' },
-    { icon: 'ri-live-line', value: COMPANY_DATA.liveCalls, label: 'Live-Beratungen' },
-  ];
+  // Dashboard → Text → Home → „LiveMetrics — Kennzahlen-Ticker“
+  const mt = useReviewText('home_metrics');
+  const icons = ['ri-money-euro-circle-line', 'ri-map-pin-line', 'ri-store-2-line', 'ri-user-star-line', 'ri-team-line', 'ri-live-line'];
+  const desktopMetrics = icons.map((icon, i) => ({ icon, value: mt[`m${i + 1}-value`], label: mt[`m${i + 1}-label`] }));
 
   const mobileMetrics = desktopMetrics.slice(0, 4);
 

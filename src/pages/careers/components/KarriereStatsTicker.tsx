@@ -1,12 +1,9 @@
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
-
-const STATS = [
-  { icon: 'ri-star-fill', value: '4.8/5', label: 'Kununu Score' },
-  { icon: 'ri-time-line', value: 'Ø 5,15 J.', label: 'Betriebszugehörigkeit' },
-  { icon: 'ri-user-community-line', value: '2.000+', label: 'Talente im Netzwerk' },
-];
+import { useKarriereTicker } from '../useKarriereText';
 
 export default function KarriereStatsTicker() {
+  // Dashboard → Text → Karriere → „Karriere — Kennzahlen-Ticker“
+  const STATS = useKarriereTicker();
   const { images: woodBgImages } = useMediaStore('home_livemetrics_wood_bg');
   const woodBgUrl = woodBgImages[0]?.url
     ? resolveImageUrl(woodBgImages[0].url)

@@ -41,12 +41,12 @@ function MobileStickyCta() {
 
 export default function CareersGatewayPage() {
   useSEO({
-    title: 'Karriere | Sonic Group — Jobs in Sales, Events & Field Promotion | DACH',
-    description: 'Karriere bei Sonic Group: Sales- und Marketing-Jobs am Campus Krefeld oder als Promoter im Field Force Netzwerk DACH-weit. Festanstellung, echte Entwicklungsperspektiven und wettbewerbsfähige Vergütung für Promoter, Brand Manager und Sales Experten.',
-    keywords: 'Karriere Sonic Group, Jobs Sales Marketing Deutschland, Field Promoter Jobs DACH, Brand Ambassador Stelle, Promoter Festanstellung, Campus Krefeld Jobs, Marketing Agentur Karriere, Sales Jobs Krefeld, Eventmanager Stelle, Retail Experte Jobs, Außendienst Job, Nachwuchs Talente Handel',
+    title: 'Karriere bei Sonic | Jobs am Campus Krefeld und im POS-Team',
+    description: 'Jobs bei Sonic: im Campus-Team in Krefeld oder im POS-Team deutschlandweit. Faire Bezahlung mit Provision und Qualitätsbonus, Schulungen vor jedem Projekt und echte Entwicklungsperspektiven – seit 2007.',
+    keywords: 'Karriere Sonic Group, Jobs Sales Marketing Deutschland, Field Promoter Jobs DACH, Brand Ambassador Stelle, Campus Krefeld Jobs, Marketing Agentur Karriere, Sales Jobs Krefeld, Eventmanager Stelle, Retail Experte Jobs, Außendienst Job, Nachwuchs Talente Handel',
     canonical: 'https://sonic-group.de/karriere',
-    ogTitle: 'Karriere bei Sonic Group — Jobs in Sales, Brand Activation & Field Force',
-    ogDescription: 'Festanstellung als Promoter oder Campus-Job in Krefeld — echte Entwicklungsperspektiven im DACH-Retail.',
+    ogTitle: 'Karriere bei Sonic — Campus Team & POS Team',
+    ogDescription: 'Campus-Job in Krefeld oder Einsatz am POS – faire Bezahlung, Schulungen und echte Entwicklungsperspektiven.',
     jsonLd: [
       { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://sonic-group.de' },
@@ -54,7 +54,7 @@ export default function CareersGatewayPage() {
       ]},
       { '@context': 'https://schema.org', '@type': 'EmployerAggregateRating',
         itemReviewed: { '@type': 'Organization', name: 'Sonic Sales Support GmbH' },
-        ratingValue: '4.5', bestRating: '5', ratingCount: '150',
+        ratingValue: '4.2', bestRating: '5', ratingCount: '54',
       },
     ],
   })

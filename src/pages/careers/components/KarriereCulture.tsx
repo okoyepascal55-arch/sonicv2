@@ -5,7 +5,7 @@ import { ChapterHeader, Marker } from './ChapterKit';
 
 const DNA_DATA = [
   { num: '01', title: 'Der Mensch', desc: 'Menschen, die Marken prägen. Promotions leben von den Menschen, die sie durchführen.' },
-  { num: '02', title: 'Der Antrieb', desc: 'Wettbewerbsfähige Bezahlung und Entwicklungsperspektiven motivieren unser Team.' },
+  { num: '02', title: 'Der Antrieb', desc: 'Faire, nachvollziehbare Bezahlung und Entwicklungsperspektiven motivieren unser Team.' },
   { num: '03', title: 'Die Daten', desc: 'Datenbasierte Entscheidungen verwandeln Intuition in messbare Erfolge.' },
   { num: '04', title: 'Das Werkzeug', desc: 'Inhouse-IT und starke Partner lösen Herausforderungen mit den richtigen Tools.' },
 ];
@@ -22,7 +22,7 @@ export default function KarriereCulture() {
 
   // DNA card descriptions — editable from Dashboard → Text → Karriere DNA
   const tDna1 = useText('karriere_dna', 'dna-mensch-desc',   'Menschen, die Marken prägen. Promotions leben von den Menschen, die sie durchführen.');
-  const tDna2 = useText('karriere_dna', 'dna-antrieb-desc',  'Wettbewerbsfähige Bezahlung und Entwicklungsperspektiven motivieren unser Team.');
+  const tDna2 = useText('karriere_dna', 'dna-antrieb-desc',  'Faire, nachvollziehbare Bezahlung und Entwicklungsperspektiven motivieren unser Team.');
   const tDna3 = useText('karriere_dna', 'dna-daten-desc',    'Datenbasierte Entscheidungen verwandeln Intuition in messbare Erfolge.');
   const tDna4 = useText('karriere_dna', 'dna-werkzeug-desc', 'Inhouse-IT und starke Partner lösen Herausforderungen mit den richtigen Tools.');
   const dnaDescs = [tDna1, tDna2, tDna3, tDna4];

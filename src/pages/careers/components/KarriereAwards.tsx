@@ -1,5 +1,6 @@
 import { useText } from '@/hooks/useText';
 import { ChapterHeader } from './ChapterKit';
+import { useKarriereAwards } from '../useKarriereText';
 
 const REVIEW_LINKS = {
   kununu: 'https://www.kununu.com/de/sonic-sales-support1',
@@ -15,10 +16,11 @@ export default function KarriereAwards() {
     'Wir geben jeden Tag unser Bestes, damit unsere Agentur ein erstklassiger Ort zum Arbeiten ist. Die Auszeichnung zur "Kununu Top Company" haben wir 2022, 2023, 2024, 2025 und 2026 erhalten.'
   );
 
+  // Dashboard → Text → Karriere → „Karriere — Auszeichnungen“
+  const aw = useKarriereAwards();
   const badges = [
-    { label: 'Kununu', sub: 'Top Company 2022–2026', rating: '★★★★★', href: REVIEW_LINKS.kununu },
-    { label: 'Google', sub: 'Bewertungen', rating: '4.8', href: REVIEW_LINKS.google },
-    { label: 'Glassdoor', sub: 'Bewertungen', rating: '★★★★★', href: REVIEW_LINKS.glassdoor },
+    { label: 'kununu', sub: aw.kununuSub, rating: aw.kununuRating, href: REVIEW_LINKS.kununu },
+    { label: 'Google', sub: aw.googleSub, rating: aw.googleRating, href: REVIEW_LINKS.google },
   ];
 
   return (
@@ -31,7 +33,7 @@ export default function KarriereAwards() {
           <span className="text-white font-black text-lg ml-auto">{tHeading}</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3" style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2" style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}>
           {badges.map((b, i) => (
             <a
               key={i}
