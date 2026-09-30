@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const kulturEvents: RatgeberPageContent = {
   slug: 'kultur-events',
   seoTitle: 'Kultur-Events 2026 — kulturelle Markenerlebnisse | Sonic Group',
-  metaDescription: 'Kultur-Events und Cultural Events Management verbinden Marken mit kulturellen Erlebnissen. Erfahre, wie Marken durch Kultursponsoring und -events Relevanz und Glaubwürdigkeit gewinnen. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Kultur-Events und Cultural Events Management verbinden Marken mit kulturellen Erlebnissen. Erfahre, wie Marken durch Kultursponsoring und -events Relevanz und Glaubwürdigkeit gewinnen. Praxiswissen aus der Markenaktivierung seit 2007.',
   h1: 'KULTUR-',
   h1Accent: 'EVENTS',
   heroSubtitle: 'Wie Marken durch kulturelle Erlebnisse Relevanz und Glaubwürdigkeit gewinnen',

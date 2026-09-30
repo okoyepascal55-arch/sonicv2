@@ -1,13 +1,11 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
-import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import ScrollCardSection from '@/components/feature/ScrollCardSection';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
-import { useCtaText } from '@/hooks/useCtaText';
 
 const CHALLENGE_ICONS = ['ri-star-line', 'ri-tools-line', 'ri-bar-chart-line'];
 
@@ -47,14 +45,18 @@ const FALLBACK_EVENTS_SOLUTION_ICONS = [
   'https://readdy.ai/api/search-image?query=carved%20wooden%20megaphone%20announcement%20communication%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-mega-events-sol-6&orientation=squarish',
 ];
 
-export default function EventsContent() {
+interface EventsContentProps {
+  /** Rendered right after the solution section (the Formate block). */
+  afterSolution?: ReactNode;
+}
+
+export default function EventsContent({ afterSolution }: EventsContentProps = {}) {
   const tChallengeHeading = useText('leistungen_events_content', 'events-challenge-heading', 'Ein Moment, viele Baustellen.');
   const tChallengeSub = useText('leistungen_events_content', 'events-challenge-sub', 'Warum der Wow-Effekt bei Messen und Events nicht immer eintritt.');
   const tSolutionHeading = useText('leistungen_events_content', 'events-solution-heading', 'Messe- und Event-Full Service.');
   const tSolutionSub = useText('leistungen_events_content', 'events-solution-sub', 'Wir setzen alles daran, dass dein Messe- oder Event-Auftritt zur Erfolgsgeschichte wird.');
   const tProcessHeading = useText('leistungen_events_content', 'events-process-heading', 'So arbeiten wir');
   const tProcessSub = useText('leistungen_events_content', 'events-process-sub', 'Von der Planung bis zum Reporting: ideenreich, professionell und zuverlässig.');
-  const cta = useCtaText();
   const tCh = useLeistungenText('leistungen_events_challenges');
   const tSol = useLeistungenText('leistungen_events_solutions');
   const tProc = useLeistungenText('leistungen_events_process');
@@ -104,6 +106,8 @@ export default function EventsContent() {
           <ScrollCardSection data={solutions.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${solutions.length} Leistungen — scrollen`} theme="light" variant="wood" />
         </div>
       </section>
+
+      {afterSolution}
 
       {/* ── Process ── */}
       <WoodenDivider />
@@ -210,22 +214,6 @@ export default function EventsContent() {
             </div>
           </div>
 
-          {/* Timeline bottom CTA */}
-          <div className="mt-10 text-center">
-            <div className="inline-flex items-center gap-3 text-white/25 text-xs font-black uppercase tracking-widest mb-5">
-              <div className="h-px w-10 bg-primary-500/20" />
-              <span>{tProc['cta-kicker']}</span>
-              <div className="h-px w-10 bg-primary-500/20" />
-            </div>
-            <br />
-            <a
-              href={`mailto:${CONTACT_EMAIL}?subject=Events%20Messen%20Beratung`}
-              className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-white transition-all duration-300 whitespace-nowrap cursor-pointer group"
-            >
-              {cta.book}
-              <i className="ri-arrow-right-line transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-          </div>
         </div>
       </section>
 

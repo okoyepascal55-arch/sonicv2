@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import hubCards from './data/hub-cards';
 import type { RatgeberHubCard, GeoLevel } from './data/types';
 import SectionReveal from '@/components/feature/SectionReveal';
@@ -12,7 +12,7 @@ import { useCtaText } from '@/hooks/useCtaText';
 const GEO_LABELS: Record<GeoLevel, string> = {
   local: 'Lokal',
   regional: 'Regional',
-  national: 'National',
+  national: 'Deutschlandweit',
   international: 'International',
 };
 
@@ -23,12 +23,8 @@ const GEO_STYLES: Record<GeoLevel, string> = {
   international: 'bg-emerald-100 text-emerald-800',
 };
 
-const STATS = [
-  { value: '27', label: 'Ratgeber-Artikel' },
-  { value: '4', label: 'Geo-Ebenen' },
-  { value: '77+', label: 'FAQ-Antworten' },
-  { value: '19+', label: 'Jahre Expertise' },
-];
+// Article count is computed from the hub data — never hard-coded.
+const ARTICLE_COUNT = hubCards.length;
 
 function HubCard({ card, onClick }: { card: RatgeberHubCard; onClick: (slug: string) => void }) {
   return (
@@ -80,7 +76,7 @@ export default function RatgeberHubPage() {
     document.title = 'Sonic Group Ratgeber — Praxiswissen für Markenaktivierung & Vertrieb | Sonic Group';
 
     const metaDesc = document.querySelector('meta[name="description"]');
-    const desc = 'Der Sonic Group Ratgeber-Hub vereint 27 praxisorientierte Fachartikel zu Erlebnismarketing, Verkaufsförderung, Messen, Field Marketing, TikTok Shop, Live Video Promotion, Markteintritt DACH und mehr. 19+ Jahre Markenaktivierungs-Know-how aus Krefeld für Deutschland und DACH.';
+    const desc = `Der Sonic Group Ratgeber-Hub vereint ${ARTICLE_COUNT} praxisorientierte Fachartikel zu Erlebnismarketing, Verkaufsförderung, Messen, Field Marketing, TikTok Shop, Live Video Promotion, Markteintritt DACH und mehr. Markenaktivierungs-Know-how aus Krefeld seit 2007 – für Deutschland und DACH.`;
     if (metaDesc) {
       metaDesc.setAttribute('content', desc);
     } else {
@@ -101,26 +97,28 @@ export default function RatgeberHubPage() {
   const tHeroH1_1 = useText('ratgeber_hero', 'ratgeber-hero-h1-1', 'SONIC GROUP');
   const tHeroH1Accent = useText('ratgeber_hero', 'ratgeber-hero-h1-accent', 'RATGEBER');
   const tHeroSub1 = useText('ratgeber_hero', 'ratgeber-hero-sub1', 'Praxiswissen für Markenaktivierung, Vertrieb und Kundenerlebnis');
-  const tHeroSub2 = useText('ratgeber_hero', 'ratgeber-hero-sub2', '');
-  const tStat1Val = useText('ratgeber_intro', 'ratgeber-stat-1-value', '27');
+  // „{count}“ is replaced with the live article count
+  const tHeroSub2 = useText('ratgeber_hero', 'ratgeber-hero-sub2', '{count} fundierte Ratgeber-Artikel aus der Praxis der Markenaktivierung. Von Krefeld über NRW bis in den gesamten DACH-Raum — lokal verankert, deutschlandweit wirksam, international ausgerichtet.').replace(/\{count\}/g, String(ARTICLE_COUNT));
+  const tStat1Val = String(ARTICLE_COUNT); // computed, not editable (always matches the number of articles)
   const tStat1Lab = useText('ratgeber_intro', 'ratgeber-stat-1-label', 'Ratgeber-Artikel');
   const tStat2Val = useText('ratgeber_intro', 'ratgeber-stat-2-value', '4');
   const tStat2Lab = useText('ratgeber_intro', 'ratgeber-stat-2-label', 'Geo-Ebenen');
   const tStat3Val = useText('ratgeber_intro', 'ratgeber-stat-3-value', '77+');
   const tStat3Lab = useText('ratgeber_intro', 'ratgeber-stat-3-label', 'FAQ-Antworten');
-  const tStat4Val = useText('ratgeber_intro', 'ratgeber-stat-4-value', '19+');
-  const tStat4Lab = useText('ratgeber_intro', 'ratgeber-stat-4-label', 'Jahre Expertise');
+  const tStat4Val = useText('ratgeber_intro', 'ratgeber-stat-4-value', '2007');
+  const tStat4Lab = useText('ratgeber_intro', 'ratgeber-stat-4-label', 'Gegründet');
   const tIntroBadge = useText('ratgeber_intro', 'ratgeber-intro-badge', 'Expertenwissen');
-  const tIntroHeading = useText('ratgeber_intro', 'ratgeber-intro-heading', '');
-  const tIntroText = useText('ratgeber_intro', 'ratgeber-intro-text', '');
+  const tIntroHeading = useText('ratgeber_intro', 'ratgeber-intro-heading', 'Alles, was du über moderne Markenaktivierung wissen musst');
+  const tIntroText = useText('ratgeber_intro', 'ratgeber-intro-text', 'Unser Ratgeber-Hub bündelt fundiertes Praxiswissen zu allen Facetten der Markenaktivierung — von der strategischen Planung über die operative Umsetzung bis zur Erfolgsmessung. Jeder Artikel basiert auf unserer Erfahrung mit internationalen Marken und liefert konkrete, umsetzbare Handlungsempfehlungen. Wähle dein Thema und vertiefe dein Wissen.');
+  const tBlogLink = useText('ratgeber_intro', 'ratgeber-blog-link', 'Aktuelles im Blog');
   const tGeoBadge = useText('ratgeber_geo', 'ratgeber-geo-badge', 'Reichweite');
-  const tGeoHeading = useText('ratgeber_geo', 'ratgeber-geo-heading', 'Lokal, regional, national, international');
-  const tGeoText = useText('ratgeber_geo', 'ratgeber-geo-text', '');
+  const tGeoHeading = useText('ratgeber_geo', 'ratgeber-geo-heading', 'Lokal, regional, deutschlandweit, international');
+  const tGeoText = useText('ratgeber_geo', 'ratgeber-geo-text', 'Unsere Ratgeber decken alle vier geografischen Ebenen ab — von der lokalen Markenaktivierung in Krefeld über die regionale Verankerung in NRW bis zur deutschlandweiten und internationalen Strategie für den gesamten DACH-Raum. So findest du für jede Herausforderung den passenden Ratgeber.');
   const tGeoLocal = useText('ratgeber_geo', 'ratgeber-geo-local', 'Lokal');
   const tGeoLocalD = useText('ratgeber_geo', 'ratgeber-geo-local-desc', '');
   const tGeoReg = useText('ratgeber_geo', 'ratgeber-geo-regional', 'Regional');
   const tGeoRegD = useText('ratgeber_geo', 'ratgeber-geo-regional-desc', '');
-  const tGeoNat = useText('ratgeber_geo', 'ratgeber-geo-national', 'National');
+  const tGeoNat = useText('ratgeber_geo', 'ratgeber-geo-national', 'Deutschlandweit');
   const tGeoNatD = useText('ratgeber_geo', 'ratgeber-geo-national-desc', '');
   const tGeoInt = useText('ratgeber_geo', 'ratgeber-geo-international', 'International');
   const tGeoIntD = useText('ratgeber_geo', 'ratgeber-geo-international-desc', '');
@@ -234,6 +232,17 @@ export default function RatgeberHubPage() {
                 <HubCard card={card} onClick={handleCardClick} />
               </SectionReveal>
             ))}
+          </div>
+
+          {/* Ratgeber ↔ Blog link line */}
+          <div className="mt-12 md:mt-16 text-center">
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground-950 hover:text-primary-500 transition-colors"
+            >
+              {tBlogLink}
+              <i className="ri-arrow-right-line text-lg"></i>
+            </Link>
           </div>
         </div>
       </section>

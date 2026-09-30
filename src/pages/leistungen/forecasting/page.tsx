@@ -56,7 +56,7 @@ export default function ForecastingPage() {
       <WoodenDivider />
 
       <section id="referenzen">
-        <ClientProof />
+        <ClientProof only={['seb', 'nespresso', 'garmin']} />
       </section>
 
       <WoodenDivider />

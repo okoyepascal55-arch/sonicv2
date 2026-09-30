@@ -53,9 +53,9 @@ const quizSteps: QuizStep[] = [
 
 const resultMapping: Record<string, { title: string; description: string; service: string; link: string }> = {
   'market-entry': { title: 'Markteintritts-Strategie', description: 'Du brauchst einen erprobten Partner, der dich durch DACH-Regularien, Handelsbeziehungen und lokale Marktdynamiken führt.', service: 'Markteintritts-Lösungen', link: '/losungen?open=markteintritt' },
-  'retail-pos': { title: 'Retail- & POS-Excellence', description: 'Baue deine Retail-Präsenz mit professionellem Merchandising, POS-Umsetzung und In-Store-Performance-Optimierung aus.', service: 'Retail- & POS-Services', link: '/leistungen/pos-full-service' },
-  staffing: { title: 'Staffing-Lösungen', description: 'Zugriff auf qualifizierte, geschulte Sales-Promoter und Markenbotschafter, die deine Marke in ganz DACH vertreten.', service: 'Staffing-Services', link: '/leistungen/staff-as-a-service' },
-  events: { title: 'Events & Messen', description: 'Führe Events und Messen mit erfahrenem Personal, Logistik-Support und Echtzeit-Reporting reibungslos durch.', service: 'Event-Services', link: '/leistungen/events-messen' },
+  'retail-pos': { title: 'POS Full Service', description: 'Baue deine Retail-Präsenz mit professionellem Merchandising, POS-Umsetzung und In-Store-Performance-Optimierung aus.', service: 'POS Full Service', link: '/leistungen/pos-full-service' },
+  staffing: { title: 'Staff as a Service', description: 'Zugriff auf qualifizierte, geschulte Promoter:innen, die deine Marke in ganz DACH vertreten.', service: 'Staff as a Service', link: '/leistungen/staff-as-a-service' },
+  events: { title: 'Events & Messen', description: 'Führe Events und Messen mit erfahrenem Personal, Logistik-Support und Echtzeit-Reporting reibungslos durch.', service: 'Events & Messen', link: '/leistungen/events-messen' },
 };
 
 export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
@@ -167,8 +167,14 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
   const handleReset = () => { setCurrentStep(0); setSelectedAnswers([]); setShowContactForm(false); setShowResult(false); setContactData({ name: '', company: '', email: '', phone: '' }); };
 
   const getRecommendedService = () => {
-    const primaryChallenge = selectedAnswers[0];
-    return resultMapping[primaryChallenge] || resultMapping['market-entry'];
+    const primaryChallenge = resultMapping[selectedAnswers[0]] ? selectedAnswers[0] : 'market-entry';
+    const base = resultMapping[primaryChallenge];
+    // Dashboard → Text → Home → „Kurzumfrage — Ergebnis-CTA“ (title/text per result)
+    return {
+      ...base,
+      title: resultCta[`${primaryChallenge}-title`] || base.title,
+      description: resultCta[`${primaryChallenge}-desc`] || base.description,
+    };
   };
 
   const progress = ((currentStep + (showContactForm ? 1 : 0) + (showResult ? 1 : 0)) / (quizSteps.length + 1)) * 100;

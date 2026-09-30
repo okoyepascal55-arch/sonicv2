@@ -13,7 +13,7 @@ import EventsShowcase from './components/EventsShowcase';
 
 const NAV_ITEMS = [
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
-  { id: 'events', label: 'Events', icon: 'ri-calendar-event-line' },
+  { id: 'events', label: 'Formate', icon: 'ri-calendar-event-line' },
   { id: 'arbeitsweise', label: 'Arbeitsweise', icon: 'ri-route-line' },
   { id: 'referenzen', label: 'Referenzen', icon: 'ri-chat-quote-line' },
   { id: 'kontakt', label: 'Kontakt', icon: 'ri-calendar-line' },
@@ -55,16 +55,19 @@ export default function EventsMessenPage() {
 
       <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
-      <EventsContent />
-
-      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-
-      <EventsShowcase />
+      <EventsContent
+        afterSolution={
+          <>
+            <WoodenDivider />
+            <EventsShowcase />
+          </>
+        }
+      />
 
       <WoodenDivider />
 
       <section id="referenzen">
-        <ClientProof />
+        <ClientProof only={['vorwerk', 'nexaro', 'garmin']} />
       </section>
 
       <WoodenDivider />

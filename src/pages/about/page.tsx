@@ -50,7 +50,7 @@ export default function AboutPage() {
   const tHeroBadge = useText('about_hero', 'about-hero-badge', 'Über Sonic');
   const tHeroH1 = useText('about_hero', 'about-hero-h1', 'MARKEN IM HERZEN.');
   const tHeroH1Line2 = useText('about_hero', 'about-hero-h1-line2', 'ERFOLG IM FOKUS.');
-  const tHeroSub = useText('about_hero', 'about-hero-sub', 'Unabhängige Marketing- und Sales-Agentur — von Konzeption bis Koordination, am POS, im Studio, auf Messen und Events. Seit 2007 mit vollem Einsatz für deine Marke.');
+  const tHeroSub = useText('about_hero', 'about-hero-sub', 'Unabhängige Marketing- und Sales-Agentur — von Konzeption bis Koordination, am POS, im Studio, auf Messen und Events. Mit vollem Einsatz für deine Marke.');
 
   const heroRef = useRef<HTMLDivElement>(null);
 

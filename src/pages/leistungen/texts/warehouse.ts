@@ -4,7 +4,7 @@ import { e, section } from '@/lib/leistungenTextKit';
 const P = '/leistungen/warehouse-logistik';
 
 export const TEXT_SECTIONS: TextSection[] = [
-  section('leistungen_warehouse_stats', 'Warehouse & Logistik — Kennzahlen', P, 'Die drei Kennzahlen erscheinen zweimal (Hero und „Darum Warehouse bei Sonic“) — hier einmal pflegen. Hero-Button: CTAs — Button-Texte. Nur Zahlen aus der Agenturpräsentation oder Fakten ohne Zahl.', [
+  section('leistungen_warehouse_stats', 'Warehouse & Logistik — Kennzahlen', P, 'Die drei Kennzahlen unter dem Hero-Text. Hero-Button: CTAs — Button-Texte. Nur Zahlen aus der Agenturpräsentation oder Fakten ohne Zahl.', [
     e('stat1-val', 'Kennzahl 1 — Wert', 'stat', 'Eigenes'),
     e('stat1-label', 'Kennzahl 1 — Label', 'stat-label', 'Lager'),
     e('stat2-val', 'Kennzahl 2 — Wert', 'stat', 'Europaweit'),
@@ -30,7 +30,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('card4-title', 'Karte 4 — Titel', 'subheading', 'Fulfillment & Webshops'),
     e('card4-desc', 'Karte 4 — Text', 'paragraph', 'Online-(Nach-)Bestellungen von Waren, Mustern und POS-Material wickeln wir komplett ab. Mit Schnittstellen zum E-Commerce, Billing, Bestandsführung, Analytics und Forecasts.'),
   ]),
-  section('leistungen_warehouse_fullservice', 'Warehouse & Logistik — Darum Warehouse bei Sonic', P, 'Dunkler Full-Service-Block mit Foto. Die Kennzahlen darin kommen aus „Kennzahlen & Hero-Button“.', [
+  section('leistungen_warehouse_fullservice', 'Warehouse & Logistik — Darum Warehouse bei Sonic', P, 'Dunkler Full-Service-Block mit Foto.', [
     e('eyebrow', 'Eyebrow', 'label', 'Full Service'),
     e('heading', 'Überschrift', 'heading', 'Darum Warehouse'),
     e('heading-accent', 'Überschrift — Akzent', 'heading', 'bei Sonic.'),

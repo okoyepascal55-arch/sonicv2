@@ -13,8 +13,8 @@ import { useLeistungenText } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
 
 const NAV_ITEMS = [
-  { id: 'zahlen', label: 'Zahlen', icon: 'ri-bar-chart-2-line' },
   { id: 'service-grid', label: 'Leistungen', icon: 'ri-apps-line' },
+  { id: 'zahlen', label: 'Zahlen', icon: 'ri-bar-chart-2-line' },
   { id: 'schallmauer', label: 'Schallmauer', icon: 'ri-sound-module-line' },
   { id: 'kundenstimmen', label: 'Kundenstimmen', icon: 'ri-chat-quote-line' },
 ];
@@ -22,7 +22,7 @@ const NAV_ITEMS = [
 export default function LeistungenPage() {
   useSEO({
     title: 'Leistungen | Sonic Group — POS, Live Video, Events, Staffing & Logistik',
-    description: 'Sonic Group Leistungen: POS Full Service, Live Video Promotion, Events & Messen, Staff as a Service, Talentpool, Kreation & Content, Forecasting, Warehouse & Logistik — für Marken im DACH-Markt und internationale Unternehmen aus China & USA.',
+    description: 'Sonic Group Leistungen: POS Full Service, Live Video, Events & Messen, Staff as a Service, Talentpool, Kreation & Content, Forecasting, Warehouse & Logistik — für Marken im DACH-Markt und internationale Unternehmen aus China & USA.',
     keywords: 'POS Full Service Germany, Live Video Promotion DACH, Events Messen Agentur, Staff as a Service Germany, Retail Staffing Europe, Kreation Content Agentur, field marketing Germany, market entry services DACH, brand activation services Europe, Verkaufsförderung Deutschland, Promotionpersonal Agentur, retail partner China brand Germany, trade marketing services',
     canonical: 'https://sonic-group.de/leistungen',
     ogTitle: 'Leistungen — Sonic Group DACH',
@@ -48,13 +48,13 @@ export default function LeistungenPage() {
         <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
         <div ref={heroRef}><LeistungenHero onScrollToGrid={scrollToGrid} /></div>
 
-        <div id="zahlen">
-          <StackedSectionReveal index={0} totalSections={4}><LeistungenStats /></StackedSectionReveal>
+        <div id="service-grid">
+          <StackedSectionReveal index={0} totalSections={4}><ServiceGrid sectionRef={gridRef} /></StackedSectionReveal>
         </div>
         <WoodenDivider />
 
-        <div id="service-grid">
-          <StackedSectionReveal index={1} totalSections={4}><ServiceGrid sectionRef={gridRef} /></StackedSectionReveal>
+        <div id="zahlen">
+          <StackedSectionReveal index={1} totalSections={4}><LeistungenStats /></StackedSectionReveal>
         </div>
         <WoodenDivider />
 

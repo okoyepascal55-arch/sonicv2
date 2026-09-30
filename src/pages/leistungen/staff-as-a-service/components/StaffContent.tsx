@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import ScrollCardSection from '@/components/feature/ScrollCardSection';
@@ -76,13 +77,14 @@ export default function StaffContent() {
   const tSolutionHeading = useText('leistungen_staff_content', 'staff-solution-heading', 'Personaldienstleistung als digitalisierter Service.');
   const tSolutionSub = useText('leistungen_staff_content', 'staff-solution-sub', 'Recruiting Task Force — Auswahl, Betreuung und Abrechnung aus einer Hand.');
   const tProcessHeading = useText('leistungen_staff_content', 'staff-process-heading', 'So läuft die Personalbeschaffung mit Sonic');
-  const tSpecsHeading = useText('leistungen_staff_content', 'staff-specs-heading', 'Arbeitnehmerüberlassung für deine Field Force.');
+  const tSpecsHeading = useText('leistungen_staff_content', 'staff-specs-heading', 'Drei Beschäftigungsmodelle für deine Field Force.');
   const tSocksHeading = useText('leistungen_staff_content', 'staff-socks-heading', 'Das S.O.C.K.S.-Prinzip');
   const tSocksSub = useText('leistungen_staff_content', 'staff-socks-sub', 'Unsere Qualitätsstrategie für Planung und Umsetzung von Sell-out-Maßnahmen.');
   const tCh = useLeistungenText('leistungen_staff_challenges');
   const tSol = useLeistungenText('leistungen_staff_solution');
   const tPr = useLeistungenText('leistungen_staff_process');
   const tSp = useLeistungenText('leistungen_staff_specs');
+  const tSocks = useLeistungenText('leistungen_staff_socks');
   const STAFF_CHALLENGES: ChallengeItem[] = STAFF_CHALLENGE_ICONS.map((icon, i) => ({
     icon, title: tCh[`c${i + 1}-title`], desc: tCh[`c${i + 1}-desc`], trigger: tCh[`c${i + 1}-trigger`],
   }));
@@ -137,6 +139,15 @@ export default function StaffContent() {
             <p className="text-foreground-950/45 text-sm leading-relaxed max-w-xs lg:text-right">{tSolutionSub}</p>
           </div>
           <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="wood" />
+          {tSol['crosslink-text'] && (
+            <p className="mt-8 text-sm md:text-base text-foreground-950/60">
+              {tSol['crosslink-text']}{' '}
+              <Link to="/leistungen/talentpool" onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })} className="inline-flex items-center gap-1 font-black text-foreground-950 underline decoration-primary-500 decoration-2 underline-offset-4 hover:text-primary-600">
+                {tSol['crosslink-link']}
+                <i className="ri-arrow-right-line" />
+              </Link>
+            </p>
+          )}
         </div>
       </section>
 
@@ -284,6 +295,7 @@ export default function StaffContent() {
             <h2 className="sonic-h2 text-white">
               {tSocksHeading}
             </h2>
+            {tSocks['lead'] && <p className="text-white/75 text-base md:text-lg font-semibold mt-3 max-w-xl mx-auto">{tSocks['lead']}</p>}
             <p className="text-white/40 text-sm mt-3 max-w-xl mx-auto">{tSocksSub}</p>
           </div>
 

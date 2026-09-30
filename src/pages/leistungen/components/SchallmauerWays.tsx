@@ -29,8 +29,8 @@ const WAYS: Way[] = [
     headline: 'Neu im Markt. Schnell sichtbar.',
     desc: 'Dein Produkt ist kaufbereit, aber noch unbekannt? Wir ändern das. Mit Menschen, die deine Marke verstehen und sie am Point of Sale, per Video und bei Events erlebbar machen.',
     bullets: [
-      'Brand Ambassadors am POS',
-      'Datenbasierte Standortplanung mit SRT',
+      'Promoter:innen am POS',
+      'Datenbasierte Standortplanung mit dem SRT',
       'Launch-Events & Promotions',
       'Live-Reporting ab Tag 1',
     ],
@@ -45,7 +45,7 @@ const WAYS: Way[] = [
     headline: 'Produkt im Regal. Abverkauf mit Plan.',
     desc: 'Unsere Field-Force-Teams sind deine verlängerte Vertriebsmannschaft am POS: datenbasiert geplant, lückenlos reportet. Du weißt vorher, womit du realistisch rechnen kannst.',
     bullets: [
-      'Geschulte Promoter mit Produktwissen',
+      'Geschulte Promoter:innen mit Produktwissen',
       'Forecasting vor dem ersten Einsatz',
       'Standort-Check-in & Live-Dashboard',
       'Kontinuierliche Optimierung',
@@ -111,15 +111,18 @@ export default function SchallmauerWays() {
             <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{t['eyebrow']}</span>
             <span className="w-7 h-0.5 flex-shrink-0" style={{ background: 'oklch(0.81 0.19 115)' }} aria-hidden="true" />
           </div>
-          {/* Ghost numeral — 56px / 900 / 6% opacity per brief */}
           <div className="relative inline-block mb-2">
-            <span aria-hidden="true" className="absolute pointer-events-none select-none font-black" style={{ fontSize: '56px', lineHeight: 0.8, letterSpacing: '-0.06em', color: 'oklch(0.16 0.006 118 / 0.06)', top: '-20px', left: '50%', transform: 'translateX(-50%)', zIndex: 0, whiteSpace: 'nowrap' }}>03</span>
             <h2 className="sonic-h2 text-foreground-950 relative" style={{ zIndex: 1 }}>
               {t['heading']}{' '}
               <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' } as React.CSSProperties}>{t['heading-accent']}</span>
             </h2>
           </div>
-          <p className="text-sm md:text-base text-foreground-600 max-w-xl mx-auto">
+          {t['explainer'] && (
+            <p className="text-sm md:text-base text-foreground-600 max-w-xl mx-auto mb-2">
+              {t['explainer']}
+            </p>
+          )}
+          <p className="text-sm md:text-base text-foreground-950 font-semibold max-w-xl mx-auto">
             {t['sub']}
           </p>
         </div>

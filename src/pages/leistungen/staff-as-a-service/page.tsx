@@ -63,7 +63,7 @@ export default function StaffAsAServicePage() {
       <WoodenDivider />
 
       <section id="referenzen">
-        <ClientProof />
+        <ClientProof only={['garmin', 'loreal', 'wmf', 'mediamarktsaturn', 'seb']} />
       </section>
 
       <WoodenDivider />

@@ -1,6 +1,14 @@
 {
   "buildCommand": "node generate_manifest.cjs && vite build",
   "outputDirectory": "out",
+  "redirects": [
+    { "source": "/jobs", "destination": "/karriere", "statusCode": 301 },
+    { "source": "/jobs/(.*)", "destination": "/karriere", "statusCode": 301 },
+    { "source": "/team", "destination": "/ueber-uns", "statusCode": 301 },
+    { "source": "/industries", "destination": "/leistungen", "statusCode": 301 },
+    { "source": "/industries/(.*)", "destination": "/leistungen", "statusCode": 301 },
+    { "source": "/branchen", "destination": "/leistungen", "statusCode": 301 }
+  ],
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]

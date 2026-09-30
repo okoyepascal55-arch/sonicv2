@@ -21,13 +21,13 @@ const VIDEO_CHALLENGES: ChallengeItem[] = [
   {
     icon: 'ri-question-line',
     title: 'Kosten völlig unklar',
-    desc: 'Wie sieht die Kosten-Nutzen-Rechnung bei (Live-)Video-Kanälen aus? Ohne Erfahrungswerte drohen Nicht- bzw. Fehl-Investitionen.',
+    desc: 'Wie sieht die Kosten-Nutzen-Rechnung bei Video- und Live-Video-Kanälen aus? Ohne Erfahrungswerte drohen Nicht- bzw. Fehl-Investitionen.',
     trigger: 'Ungewisses Budget?',
   },
   {
     icon: 'ri-global-line',
     title: 'Omnichannel — komplexe Umsetzung',
-    desc: '(Live) Video braucht man für E-Commerce, aber auch im Retail performt es stark. Die Umsetzung ist ohne Fach-Expertise schwierig.',
+    desc: 'Live Video braucht man für E-Commerce, aber auch im Retail performt es stark. Die Umsetzung ist ohne Fach-Expertise schwierig.',
     trigger: 'Klingt bekannt?',
   },
 ];
@@ -109,10 +109,10 @@ const FALLBACK_FORMATS = [
 
 export default function VideoContent() {
   const tChallengeHeading = useText('leistungen_video_content', 'video-challenge-heading', 'Bewegtbild ist die Königsklasse.');
-  const tChallengeSub = useText('leistungen_video_content', 'video-challenge-sub', 'Wenn (Live) Video Shopping einfach wäre, würde es jede Marke machen. Ist es aber nicht.');
-  const tSolutionHeading = useText('leistungen_video_content', 'video-solution-heading', 'Sonic (Live) Video im Full Service.');
+  const tChallengeSub = useText('leistungen_video_content', 'video-challenge-sub', 'Wenn Live Video Shopping einfach wäre, würde es jede Marke machen. Ist es aber nicht.');
+  const tSolutionHeading = useText('leistungen_video_content', 'video-solution-heading', 'Sonic Live Video im Full Service.');
   const tSolutionSub = useText('leistungen_video_content', 'video-solution-sub', 'Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit. All in One: Regisseur, Moderator, Verkäufer.');
-  const tAdvantagesHeading = useText('leistungen_video_content', 'video-advantages-heading', 'Darum (Live) Video Promotion');
+  const tAdvantagesHeading = useText('leistungen_video_content', 'video-advantages-heading', 'Darum Live Video');
   const tPhygitalHeading = useText('leistungen_video_content', 'video-phygital-heading', 'Phygital optimal nutzen');
   // YouTube URL from MEDIA dashboard (caption field of leistungen_video_youtube)
   const { images: ytSection } = useMediaStore('leistungen_video_youtube');
@@ -303,6 +303,9 @@ export default function VideoContent() {
                 </div>
               ))}
             </div>
+            {tCalc['estimate-note'] && (
+              <p className="mt-3 text-center text-foreground-950/50 text-xs md:text-sm">{tCalc['estimate-note']}</p>
+            )}
 
             <div className="mt-8 text-center">
               <a href={`mailto:${CONTACT_EMAIL}?subject=Video-Konzept%20anfragen`} className="inline-flex items-center gap-2 bg-foreground-950 text-white px-8 py-4 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm">

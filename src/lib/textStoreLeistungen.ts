@@ -14,9 +14,10 @@ import { TEXT_SECTIONS as VIDEO } from '@/pages/leistungen/texts/video';
 import { TEXT_SECTIONS as KREATION } from '@/pages/leistungen/texts/kreation';
 import { TEXT_SECTIONS as FORECASTING } from '@/pages/leistungen/texts/forecasting';
 import { TEXT_SECTIONS as WAREHOUSE } from '@/pages/leistungen/texts/warehouse';
+import { TEXT_SECTIONS as COMMON } from '@/pages/leistungen/texts/common';
 
 export const LEISTUNGEN_TEXT_SECTIONS: TextSection[] = [
-  ...OVERVIEW, ...POS, ...EVENTS, ...STAFF, ...TALENTPOOL, ...VIDEO, ...KREATION, ...FORECASTING, ...WAREHOUSE,
+  ...OVERVIEW, ...POS, ...EVENTS, ...STAFF, ...TALENTPOOL, ...VIDEO, ...KREATION, ...FORECASTING, ...WAREHOUSE, ...COMMON,
 ];
 
 export const LEISTUNGEN_DEFAULTS: Record<string, Record<string, string>> = Object.fromEntries(

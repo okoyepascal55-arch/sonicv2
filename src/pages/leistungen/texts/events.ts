@@ -5,7 +5,7 @@ const P = '/leistungen/events-messen';
 
 export const TEXT_SECTIONS: TextSection[] = [
   section('leistungen_events_hero_buttons', 'Events & Messen — Hero Buttons', P, 'Der zweite Button im Hero (Button 1: CTAs — Button-Texte).', [
-    e('cta-secondary', 'Hero — Button (Seite)', 'cta', 'Events & Messen'),
+    e('cta-secondary', 'Hero — Button 2 (führt zu Kreation & Content)', 'cta', 'Kreation & Content'),
   ]),
   section('leistungen_events_challenges', 'Events & Messen — Herausforderungen (3 Punkte)', P, 'Die drei Hover-Punkte unter „Ein Moment, viele Baustellen.“', [
     e('c1-title', 'Punkt 1 — Titel', 'subheading', 'Zu wenig Unique — alles schon gesehen'),
@@ -28,7 +28,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('card2-desc', 'Karte 2 — Text', 'paragraph', 'Die Ideen werden real: Mit Messe-, Möbel-, Modul- und Fahrzeugbau. Mit Bühnen, Displays, Installationen. Mit Licht, Sound, Screens und Interaktionen.'),
     e('card3-accent', 'Karte 3 — Kategorie', 'label', 'Team & Talent'),
     e('card3-title', 'Karte 3 — Titel', 'subheading', 'Geschultes Personal'),
-    e('card3-desc', 'Karte 3 — Text', 'paragraph', 'Dediziert geschultes Personal für bestimmte Funktionen: Moderation, Musik, Catering, Logistik und Aufbau. Dazu Promoter, Messe-Hostessen und Brand Ambassadors, handverlesen aus unserem Talentpool.'),
+    e('card3-desc', 'Karte 3 — Text', 'paragraph', 'Dediziert geschultes Personal für bestimmte Funktionen: Moderation, Musik, Catering, Logistik und Aufbau. Dazu Promoter:innen und Messe-Hostessen, handverlesen aus unserem Talentpool.'),
     e('card4-accent', 'Karte 4 — Kategorie', 'label', 'Erlebnis'),
     e('card4-title', 'Karte 4 — Titel', 'subheading', 'Catering & Experiences'),
     e('card4-desc', 'Karte 4 — Text', 'paragraph', 'Essen, Trinken, Kunst und immersive Erlebnisse: So wird die Veranstaltung zum Erlebnis, das lange im Gedächtnis bleibt.'),
@@ -39,7 +39,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('card6-title', 'Karte 6 — Titel', 'subheading', '(Digitale) Kommunikation'),
     e('card6-desc', 'Karte 6 — Text', 'paragraph', 'Von der Einladung über Goodie-Bags und Give-aways bis zum Live-Stream: damit deine Botschaften ankommen.'),
   ]),
-  section('leistungen_events_process', 'Events & Messen — Ablauf (6 Schritte)', P, 'Titel, Text und Dauer der sechs Ablauf-Schritte und die Zeile über dem Button darunter. Der Button-Text selbst liegt in „CTAs — Button-Texte“.', [
+  section('leistungen_events_process', 'Events & Messen — Ablauf (6 Schritte)', P, 'Titel, Text und Dauer der sechs Ablauf-Schritte', [
     e('eyebrow', 'Eyebrow', 'label', 'Ablauf'),
     e('step1-title', 'Schritt 1 — Titel', 'subheading', 'Event-/Messe-Briefing'),
     e('step1-desc', 'Schritt 1 — Text', 'paragraph', 'Wir analysieren Ziele, Zielgruppe und Anforderungen — im Abgleich mit deiner Gesamtstrategie und deinem Budget.'),
@@ -59,9 +59,8 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('step6-title', 'Schritt 6 — Titel', 'subheading', 'Reporting'),
     e('step6-desc', 'Schritt 6 — Text', 'paragraph', 'Detaillierte Auswertung mit KPIs, Insights und Optimierungsvorschlägen.'),
     e('step6-time', 'Schritt 6 — Dauer', 'badge', '3–5 Tage'),
-    e('cta-kicker', 'Zeile über dem Button', 'label', 'Bereit für dein Event?'),
   ]),
-  section('leistungen_events_formats', 'Events & Messen — Formate (3 Tabs)', P, 'Formate-Block mit den Tabs Events, Messen, Fahrzeuge & Module. Kategorien mit „|“ trennen. Button: CTAs — Button-Texte.', [
+  section('leistungen_events_formats', 'Events & Messen — Formate (3 Tabs)', P, 'Formate-Block mit den Tabs Events, Messen, Fahrzeuge & Module. Kategorien mit „|“ trennen.', [
     e('eyebrow', 'Eyebrow', 'label', 'Formate'),
     e('heading', 'Überschrift', 'heading', 'Deine Marke. Unsere Bühne.'),
     e('sub', 'Unterzeile', 'paragraph', 'Wähle ein Format und entdecke unsere Arbeit.'),

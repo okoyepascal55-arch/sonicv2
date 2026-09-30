@@ -6,7 +6,7 @@ const promotionspersonal: RatgeberPageContent = {
   metaDescription: 'Qualifiziertes Promotionspersonal für POS, Events und Field Marketing. Erfahre, worauf es bei Auswahl, Schulung und Einsatz von Markenbotschaftern ankommt — von Krefeld über NRW bis in den gesamten DACH-Raum.',
   h1: 'PROMOTIONS',
   h1Accent: 'PERSONAL',
-  heroSubtitle: 'Wie du die richtigen Markenbotschafter finden, schulen und erfolgreich einsetzen',
+  heroSubtitle: 'Wie du die richtigen Markenbotschafter findest, schulst und erfolgreich einsetzt',
   heroSummary: 'Promotionspersonal ist der kritischste Erfolgsfaktor jeder Markenaktivierung. Die beste Strategie, das durchdachteste Kampagnenkonzept und das schönste POS-Display nützen nichts, wenn die Menschen am Point of Sale nicht überzeugen. Doch was macht einen guten Markenbotschafter aus? Wie findet man die richtigen Profile für eine spezifische Kampagne? Und wie stellt man sicher, dass die Qualität über alle Standorte hinweg konstant hoch bleibt? Dieser Ratgeber liefert die Antworten.',
   heroImageUrl: 'https://readdy.ai/api/search-image?query=professional%20brand%20ambassadors%20and%20promotional%20staff%20in%20modern%20branded%20uniforms%20engaging%20with%20consumers%20at%20trade%20show%20booth%20bright%20natural%20lighting%20confident%20diverse%20team%20demonstrating%20products%20professional%20atmosphere%20clean%20composition%20warm%20welcoming%20expressions&width=1920&height=1080&seq=ratgeber-promotionspersonal-hero-v1&orientation=landscape',
   category: 'Promotionspersonal',
@@ -30,7 +30,7 @@ const promotionspersonal: RatgeberPageContent = {
     },
     {
       title: 'Recruiting-Kanäle — wo findet man das richtige Promotionspersonal?',
-      content: 'Die Suche nach geeignetem Personal folgt unterschiedlichen Strategien je nach Kampagnenprofil. Studentische Aushilfen sind ideal für saisonale Aktionen und jüngere Zielgruppen, erfordern aber intensivere Schulung und Betreuung. Professionelle Freelancer im Promotion-Bereich bringen Kampagnenerfahrung mit, sind flexibel einsetzbar und liefern konsistentere Qualität. Für Premium-Kampagnen mit erklärungsbedürftigen Produkten kommen oft branchenerfahrene Fachkräfte zum Einsatz — etwa Kosmetikerinnen für Beauty-Promotions oder Technikbegeisterte für Consumer-Electronics-Aktionen. Professionelle Agenturen unterhalten einen Pool von über 5.000 geprüften Markenbotschaftern mit dokumentierten Profilen, Leistungsnachweisen und Produktschulungen.',
+      content: 'Die Suche nach geeignetem Personal folgt unterschiedlichen Strategien je nach Kampagnenprofil. Studentische Aushilfen sind ideal für saisonale Aktionen und jüngere Zielgruppen, erfordern aber intensivere Schulung und Betreuung. Professionelle Freelancer im Promotion-Bereich bringen Kampagnenerfahrung mit, sind flexibel einsetzbar und liefern konsistentere Qualität. Für Premium-Kampagnen mit erklärungsbedürftigen Produkten kommen oft branchenerfahrene Fachkräfte zum Einsatz — etwa Kosmetikerinnen für Beauty-Promotions oder Technikbegeisterte für Consumer-Electronics-Aktionen. Professionelle Agenturen unterhalten große Pools geprüfter Markenbotschafter mit dokumentierten Profilen, Leistungsnachweisen und Produktschulungen.',
     },
     {
       title: 'Schulung und Briefing — wie aus Bewerbern Markenbotschafter werden',
@@ -85,7 +85,7 @@ const promotionspersonal: RatgeberPageContent = {
   ],
   internalLinks: [
     {
-      label: 'Staff as a Service — dein Zugang zu 5.000 geschulten Markenbotschaftern',
+      label: 'Staff as a Service — dein Zugang zu geschulten Promoter:innen',
       href: '/leistungen/staff-as-a-service',
       description: 'Flexibel buchbar, deutschlandweit, inklusive Einsatzsteuerung und Qualitätssicherung.',
     },

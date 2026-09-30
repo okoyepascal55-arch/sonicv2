@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const erlebnismarketing: RatgeberPageContent = {
   slug: 'erlebnismarketing',
   seoTitle: 'Erlebnismarketing Strategie 2026 — Marken erlebbar machen | Sonic Group',
-  metaDescription: 'Erlebnismarketing als Schlüsselstrategie für emotionale Kundenbindung. Erfahre, wie Marken durch multisensorische Erlebnisse am POS, auf Events und digital messbare Erfolge erzielen. Mit Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Erlebnismarketing als Schlüsselstrategie für emotionale Kundenbindung. Erfahre, wie Marken durch multisensorische Erlebnisse am POS, auf Events und digital messbare Erfolge erzielen. Mit Praxiswissen aus der Markenaktivierung seit 2007.',
   h1: 'ERLEBNISMARKETING',
   h1Accent: 'STRATEGIE',
   heroSubtitle: 'Wie Marken durch emotionale Erlebnisse messbare Markentreue aufbauen',
@@ -90,7 +90,7 @@ const erlebnismarketing: RatgeberPageContent = {
       description: 'Modulare Messestände, Roadshows und Brand Activation Events für den DACH-Raum.',
     },
     {
-      label: 'Live Video Promotion — persönliche Beratung in Echtzeit',
+      label: 'Live Video — persönliche Beratung in Echtzeit',
       href: '/leistungen/live-video',
       description: '1:1 Video-Kaufberatung und Live Shopping. Conversion steigern, Retouren senken.',
     },

@@ -8,12 +8,26 @@ import WoodenDivider from '../../components/base/WoodenDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import WoodenButton from '@/components/base/WoodenButton';
 import { useCtaText } from '@/hooks/useCtaText';
+import { openCalendly } from '@/components/feature/CalendlyWidget';
 
 /* ─────────────────────────────────────────
    SOLUTION DATA — exact content from brief
 ───────────────────────────────────────── */
 import { KEYS, type SolutionKey } from './content';
 import { useSolution, useSolutionLabels, useLosungenPageText, useLosungenFaq } from './useLosungenText';
+
+/* Module names that match a Leistungen menu name link to that page (C1). */
+const MODULE_LINKS: Record<string, string> = {
+  'POS Full Service': '/leistungen/pos-full-service',
+  'Staff as a Service': '/leistungen/staff-as-a-service',
+  'Talentpool': '/leistungen/talentpool',
+  'Events & Messen': '/leistungen/events-messen',
+  'Kreation & Content': '/leistungen/kreation-content',
+  'Live Video': '/leistungen/live-video',
+  'Forecasting': '/leistungen/forecasting',
+  'Warehouse & Logistik': '/leistungen/warehouse-logistik',
+  'SRT': '/srt',
+};
 
 /* ─────────────────────────────────────────
    EXPANDED PANEL
@@ -163,19 +177,6 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
                 <p className="text-sm md:text-base text-foreground-600 leading-relaxed">{ch.desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* ── Compact Mid CTA ── */}
-        <div className="border-t border-foreground-100 py-3 md:py-4 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-            <p className="text-xs md:text-sm text-foreground-500 font-medium">Bereit für messbaren Erfolg?</p>
-            <a
-              href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch%20anfragen`}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-primary-500 hover:text-primary-500 transition-colors cursor-pointer whitespace-nowrap"
-            >
-              <i className="ri-calendar-line text-sm"></i>{cta.book}
-            </a>
           </div>
         </div>
 
@@ -383,13 +384,14 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
               >
                 <i className="ri-arrow-up-line mr-1"></i>Zurück
               </button>
-              <a
-                href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch%20anfragen`}
+              <button
+                type="button"
+                onClick={() => openCalendly()}
                 className="inline-flex items-center gap-2 bg-foreground-950 text-white px-5 py-2.5 font-black text-xs uppercase tracking-wider hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap"
                 style={{ borderRadius: 0 }}
               >
                 <i className="ri-calendar-line text-sm"></i>{cta.book}
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -628,7 +630,7 @@ function WoodCard({
             </div>
           </div>
           <div className="inline-flex items-center gap-2 self-start sm:self-auto rounded-none border border-white/15 bg-white/5 px-4 py-2">
-            <span className="text-white/75 text-xs font-bold whitespace-nowrap">Sonic Group · Seit 2007</span>
+            <span className="text-white/75 text-xs font-bold whitespace-nowrap">{pt.cardChip}</span>
           </div>
         </div>
 
@@ -660,7 +662,11 @@ function WoodCard({
             <ul className="flex-1 flex flex-col justify-center gap-3">
               {s.modules.map((m, i) => (
                 <li key={i} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] items-center gap-3 md:gap-4">
-                  <span className="text-white/85 text-xs md:text-sm font-bold leading-tight">{m.name}</span>
+                  {MODULE_LINKS[m.name] ? (
+                    <Link to={MODULE_LINKS[m.name]} className="text-white/85 text-xs md:text-sm font-bold leading-tight hover:text-primary-500 underline decoration-white/20 underline-offset-4 hover:decoration-primary-500 transition-colors">{m.name}</Link>
+                  ) : (
+                    <span className="text-white/85 text-xs md:text-sm font-bold leading-tight">{m.name}</span>
+                  )}
                   <span className="flex items-center gap-2 min-w-0">
                     <span className="relative flex-1 h-2 bg-white/10" aria-hidden="true">
                       <span className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary-500/60 to-primary-500" style={{ width: LEVEL_WIDTH[m.level] }} />
@@ -727,7 +733,7 @@ export default function LosungenPage() {
       ]},
       { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
         { '@type': 'Question', name: 'Wie unterstützt Sonic Group beim Markteintritt in Deutschland?', acceptedAnswer: { '@type': 'Answer', text: 'Sonic Group begleitet internationale Marken mit Field Force, POS-Aktivierung, Schulungen und Reporting-Systemen beim Eintritt in den deutschen Handel — von der Pilotphase bis zur flächendeckenden Skalierung.' }},
-        { '@type': 'Question', name: 'Wie steigert Sonic Group den Abverkauf am POS?', acceptedAnswer: { '@type': 'Answer', text: 'Durch geschulte Markenbotschafter, gezielte POS-Promotions, Live Video Beratung und datenbasiertes Reporting mit dem SRT (Sonic Reporting Tool) wird der Umsatz messbar gesteigert.' }},
+        { '@type': 'Question', name: 'Wie steigert Sonic Group den Abverkauf am POS?', acceptedAnswer: { '@type': 'Answer', text: 'Durch geschulte Promoter:innen, gezielte POS-Promotions, Live-Video-Beratung und datenbasiertes Reporting mit dem SRT (Sonic Reporting Tool) wird der Umsatz messbar gesteigert.' }},
         { '@type': 'Question', name: 'Was bedeutet Omnichannel bei Sonic?', acceptedAnswer: { '@type': 'Answer', text: 'Omnichannel heißt bei Sonic: Kundinnen und Kunden bekommen dieselbe persönliche Beratung im Laden, im Online-Shop und per QR-Code auf der Verpackung – live aus unseren Studios in Krefeld.' }},
       ]},
     ],
@@ -1309,14 +1315,15 @@ export default function LosungenPage() {
                     <h3 className="text-xl md:text-2xl font-black text-white mb-2">Vielen Dank!</h3>
                     <p className="text-white/50 mb-6 text-sm max-w-md mx-auto">Wir melden uns zeitnah.</p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                      <a
-                        href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch%20anfragen`}
+                      <button
+                        type="button"
+                        onClick={() => openCalendly()}
                         className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 px-6 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap text-xs uppercase tracking-wider"
                         style={{ borderRadius: 0 }}
                       >
                         <i className="ri-calendar-line"></i>
                         {cta.book}
-                      </a>
+                      </button>
                       <button
                         onClick={() => {
                           setSurveyExpanded(false);
@@ -1349,12 +1356,7 @@ export default function LosungenPage() {
         </div>
       </div>
 
-      {/* ── CLIENT PROOF ── */}
-      <ClientProof />
-
-      <WoodenDivider />
-
-      {/* ── FAQ ── */}
+      {/* ── FAQ ── (before the testimonials) */}
       <section className="sonic-section-lg px-6 bg-white">
         <div className="sonic-container">
           <div className="text-center mb-16">
@@ -1410,6 +1412,11 @@ export default function LosungenPage() {
           </div>
         </div>
       </section>
+
+      <WoodenDivider />
+
+      {/* ── CLIENT PROOF ── */}
+      <ClientProof />
 
       <style>{`
         @keyframes expandIn {

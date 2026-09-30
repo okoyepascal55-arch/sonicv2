@@ -1,9 +1,10 @@
 import { useText } from '@/hooks/useText';
+import { useReviewText } from '@/hooks/useReviewText';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 const PROBLEMS = [
   {
-    num: '01', sys: 'DATA.SILOS',
+    num: '01', sys: 'Datensilos',
     title: 'Getrennte Datensilos',
     headline: 'Daten liegen überall — nur nicht zusammen.',
     body: 'WaWi, Marketing, Einsatzplanung — jede Abteilung eine eigene Wahrheit. Ein ganzheitliches Bild entsteht nur durch aufwendige manuelle Zusammenführung.',
@@ -11,7 +12,7 @@ const PROBLEMS = [
     woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20separated%20fragmented%20database%20cylinder%20storage%20units%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20isolated%20data%20sources%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-db-srt-problem-1&orientation=squarish',
   },
   {
-    num: '02', sys: 'BLIND.SPOT',
+    num: '02', sys: 'Blinder Fleck',
     title: 'Keine Dashboards',
     headline: 'Was du nicht siehst, kannst du nicht steuern.',
     body: 'Ohne gemeinsame Datenbasis: keine aussagekräftigen KPIs, kein Live-Monitoring. Kampagnen-Performance wird Wochen später sichtbar — zu spät zum Eingreifen.',
@@ -19,7 +20,7 @@ const PROBLEMS = [
     woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20monitor%20computer%20screen%20dashboard%20display%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20empty%20screen%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-screen-srt-problem-2&orientation=squarish',
   },
   {
-    num: '03', sys: 'LATE.SIGNAL',
+    num: '03', sys: 'Späte Signale',
     title: 'Verspätete Erkenntnisse',
     headline: 'Wer zu spät sieht, verliert den Marktanteil.',
     body: 'Excel-Konsolidierungen, wöchentliche Status-Meetings — das kostet Zeit, die am Markt fehlt. Schlechte Kampagnen-Performance erfährt das Management erst Tage später.',
@@ -32,6 +33,8 @@ export default function TheProblemReference() {
   const { images: woodIcons } = useMediaStore('srt_problem_wood_icons');
   const getWoodIcon = (idx: number) => woodIcons[idx]?.url ? resolveImageUrl(woodIcons[idx].url) : PROBLEMS[idx].woodIcon;
 
+  // Dashboard → Text → SRT → „SRT — Kurzlabels (Problem & Zahlen)“
+  const lb = useReviewText('srt_short_labels');
   const tBadge   = useText('srt_problem', 'srt-problem-badge',   'Deine Herausforderung');
   const tHeading = useText('srt_problem', 'srt-problem-heading', 'Datenquellen zusammenführen');
   const tSub     = useText('srt_problem', 'srt-problem-p1',      'Für erfolgreiche Retail- und Field-Force-Projekte müssen Daten aus vielen Quellen live zusammenlaufen. Genau daran scheitern viele Projekte — nicht an der Strategie, sondern an der Infrastruktur.');
@@ -72,7 +75,7 @@ export default function TheProblemReference() {
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
 
               {/* Sys label */}
-              <span className="text-[8px] font-black uppercase tracking-[0.3em] mb-6 block" style={{ color: 'oklch(0.81 0.19 115 / 0.4)' }}>{p.sys}</span>
+              <span className="text-[8px] font-black uppercase tracking-[0.3em] mb-6 block" style={{ color: 'oklch(0.81 0.19 115 / 0.4)' }}>{lb[`problem-${i + 1}`] || p.sys}</span>
 
               {/* Icon + number row */}
               <div className="flex items-start justify-between mb-6">

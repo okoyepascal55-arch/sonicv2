@@ -6,7 +6,7 @@ const verkaufsfoerderungPos: RatgeberPageContent = {
   metaDescription: 'Verkaufsförderung am Point of Sale strategisch einsetzen: Von Regalplatzierung über Promotionspersonal bis zur datengestützten Erfolgsmessung. Praxisratgeber für stationären Handel und Markenverantwortliche.',
   h1: 'VERKAUFSFÖRDERUNG',
   h1Accent: 'AM POS',
-  heroSubtitle: 'Wie du aus Regalplatzierung und Markenaktivierung messbare Umsatzsteigerung machen',
+  heroSubtitle: 'Wie du aus Regalplatzierung und Markenaktivierung messbare Umsatzsteigerung machst',
   heroSummary: 'Am Point of Sale entscheiden Sekunden über den Kauf. Verkaufsförderung setzt genau hier an: Mit geschulten Markenbotschaftern, durchdachter Warenplatzierung und datenbasierter Kampagnensteuerung wird aus dem schnellen Griff ins Regal eine bewusste Kaufentscheidung für deine Marke.',
   heroImageUrl: 'https://readdy.ai/api/search-image?query=professional%20retail%20merchandising%20and%20point%20of%20sale%20promotion%20display%20in%20modern%20supermarket%20aisle%20clean%20bright%20retail%20environment%20with%20brand%20ambassador%20demonstrating%20product%20to%20engaged%20customer%20organized%20promotional%20setup%20with%20product%20sampling%20station%20contemporary%20German%20retail%20store%20interior%20commercial%20photography%20with%20crisp%20natural%20lighting%20and%20warm%20tones&width=1920&height=1080&seq=ratgeber-verkaufsfoerderung-pos-hero-v1&orientation=landscape',
   category: 'Verkaufsförderung',
@@ -88,7 +88,7 @@ const verkaufsfoerderungPos: RatgeberPageContent = {
     {
       label: 'Staff as a Service — qualifiziertes Promotionpersonal',
       href: '/leistungen/staff-as-a-service',
-      description: 'Zugriff auf über 1.800 Menschen im Talentpool – geschult für deine Verkaufsförderungsaktion.',
+      description: 'Geschulte Promoter:innen aus unserem Talentpool – für deine Verkaufsförderungsaktion.',
     },
     {
       label: 'Warehouse & Logistik — Materialversorgung für deine Promotion',
@@ -96,7 +96,7 @@ const verkaufsfoerderungPos: RatgeberPageContent = {
       description: 'Lagerung, Konfektionierung und europaweite Lieferung deiner POS-Materialien.',
     },
     {
-      label: 'Live Video Promotion — digitale Verkaufsförderung',
+      label: 'Live Video — digitale Verkaufsförderung',
       href: '/leistungen/live-video',
       description: 'Persönliche Beratung per Live Video — die digitale Erweiterung deiner POS-Strategie.',
     },

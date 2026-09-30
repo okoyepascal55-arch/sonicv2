@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { ChapterEyebrow, Marker } from './ChapterKit';
@@ -14,6 +14,14 @@ export default function KarriereJobs() {
   const tTanjaDesc = useText('careers_jobs', 'careers-jobs-tanja-desc', 'Tanja aus unserem HR-Team nimmt sich gerne Zeit für ein unverbindliches Gespräch.');
   const tTanjaCta = useText('careers_jobs', 'careers-jobs-tanja-cta', 'Mit Tanja sprechen');
   const tInitiativCta = useText('careers_jobs', 'careers-jobs-initiativ-cta', 'Initiativbewerbung');
+  const tLoading = useText('careers_jobs', 'careers-jobs-loading', 'Stellenangebote werden geladen…');
+  const tEmpty = useText('careers_jobs', 'careers-jobs-empty', 'Aktuell keine offenen Stellen – bewirb dich initiativ.');
+
+  // The job list comes from the external B-ite widget. If the script can't load
+  // (blocked, offline, not allowed on this domain) or renders nothing, we show a
+  // friendly empty state instead of an endless loading text.
+  const widgetRef = useRef<HTMLDivElement>(null);
+  const [widgetState, setWidgetState] = useState<'loading' | 'ready' | 'empty'>('loading');
 
   const headingParts = tHeading.split('. ').map(s => s.endsWith('.') ? s : s + '.');
   const headingMain = headingParts[0] ?? tHeading;
@@ -25,13 +33,38 @@ export default function KarriereJobs() {
 
   // Load the official B-ite Jobs API widget.
   useEffect(() => {
-    if (document.querySelector('script[src*="api-loader-v1.min.js"]')) return;
-    const script = document.createElement('script');
-    script.src = 'https://static.b-ite.com/jobs-api/loader-v1/api-loader-v1.min.js';
-    script.async = true;
-    document.body.appendChild(script);
+    const el = widgetRef.current;
+    const hasContent = () => !!el && el.childElementCount > 0 && (el.textContent ?? '').trim().length > 0;
+
+    // Widget fills the container → hide our loading/empty state.
+    const observer = el
+      ? new MutationObserver(() => { if (hasContent()) setWidgetState('ready'); })
+      : null;
+    if (el && observer) observer.observe(el, { childList: true, subtree: true });
+
+    // Nothing rendered after a while → graceful empty state.
+    const timeout = window.setTimeout(() => {
+      setWidgetState((s) => (s === 'loading' ? (hasContent() ? 'ready' : 'empty') : s));
+    }, 8000);
+
+    let script = document.querySelector<HTMLScriptElement>('script[src*="api-loader-v1.min.js"]');
+    let added = false;
+    const onError = () => setWidgetState((s) => (s === 'ready' ? s : 'empty'));
+    if (!script) {
+      script = document.createElement('script');
+      script.src = 'https://static.b-ite.com/jobs-api/loader-v1/api-loader-v1.min.js';
+      script.async = true;
+      document.body.appendChild(script);
+      added = true;
+    }
+    script.addEventListener('error', onError);
+    if (hasContent()) setWidgetState('ready');
+
     return () => {
-      if (document.body.contains(script)) document.body.removeChild(script);
+      observer?.disconnect();
+      window.clearTimeout(timeout);
+      script?.removeEventListener('error', onError);
+      if (added && script && document.body.contains(script)) document.body.removeChild(script);
     };
   }, []);
 
@@ -62,12 +95,26 @@ export default function KarriereJobs() {
           <div className="p-8 md:p-12 bg-white">
             <p className="text-2xl md:text-[34px] font-black leading-[1.06] tracking-[-0.03em] text-foreground-950 mb-3">Jetzt durchstarten</p>
             <p className="text-[15px] leading-[1.7] text-foreground-500 mb-10">Alle offenen Positionen auf einen Blick — klick auf eine Stelle für Details.</p>
-            <div className="jobWrapper-block" data-bite-jobs-api-listing={BITE_LISTING_KEY}>
-              <div className="flex flex-col items-center justify-center gap-3.5 py-16 border-t border-foreground-100">
+            {/* Widget container — filled by the B-ite script; React renders no children here */}
+            <div ref={widgetRef} className="jobWrapper-block" data-bite-jobs-api-listing={BITE_LISTING_KEY} />
+            {widgetState === 'loading' && (
+              <div className="flex flex-col items-center justify-center gap-3.5 py-16 border-t border-foreground-100" role="status">
                 <span className="w-9 h-9 rounded-full border-[3px] border-primary-500/30 animate-spin" style={{ borderTopColor: 'oklch(var(--primary-500))' }} />
-                <p className="text-[11px] font-black uppercase tracking-[0.22em] text-foreground-400">Stellenangebote werden geladen…</p>
+                <p className="text-[11px] font-black uppercase tracking-[0.22em] text-foreground-400">{tLoading}</p>
               </div>
-            </div>
+            )}
+            {widgetState === 'empty' && (
+              <div className="flex flex-col items-center justify-center gap-5 py-14 border-t border-foreground-100 text-center">
+                <p className="text-[15px] font-bold leading-[1.6] text-foreground-700 max-w-[34ch]">{tEmpty}</p>
+                <a
+                  href="mailto:karriere@sonic-group.de?subject=Initiativbewerbung"
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-foreground-950 text-white text-[11px] font-black uppercase tracking-[0.14em] hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-200 cursor-pointer"
+                >
+                  <i className="ri-send-plane-line text-[15px]" />
+                  {tInitiativCta}
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Tanja panel */}

@@ -491,6 +491,8 @@ export default function CaseStudiesPage() {
   const navigate = useNavigate();
   const cta = useCtaText();
   const csCta = useReviewText('casestudies_inline_cta');
+  // Dashboard → Text → Fallbeispiele → „Fallbeispiele — Einzeltexte (Karten & Module)“
+  const csT = useReviewText('casestudies_card_texts');
   // Dashboard → Text → Fallbeispiele → „Case Studies CTA — Bottom Action“
   const tFinalHeading = useText('casestudies_cta', 'casestudies-cta-heading', 'Deine Marke. Unser Einsatz.');
   const tFinalSub = useText('casestudies_cta', 'casestudies-cta-sub', 'Wir bringen deine Marke dort zum Leuchten, wo die Kaufentscheidung fällt.');
@@ -537,7 +539,7 @@ export default function CaseStudiesPage() {
   const tGarminHeadline  = useText('case_garmin_text', 'garmin-headline', 'Sportlich nach vorn');
   const tGarminSubline   = useText('case_garmin_text', 'garmin-subline',  '#beatyesterday – Partnerschaft seit 2021');
   const tGarminOverview  = useText('case_garmin_text', 'garmin-overview', 'Was uns verbindet, ist mehr als ein Geschäftsverhältnis: ein partnerschaftliches Miteinander, geprägt von Respekt, Transparenz und dem gemeinsamen Ziel, das Beste für Kundinnen und Kunden zu erreichen. 2021 starteten wir mit Promotion in Deutschland. Jahr für Jahr kamen Aufgaben dazu – heute verantworten wir sieben Bereiche: Promotion DE, Promotion AT, Promotion Sport, POS One World, POS-Service, Lager sowie Möbelbau und Logistik.');
-  const tGarminQuote     = useText('case_garmin_text', 'garmin-quote',    'Seit 2021 verbindet GARMIN und Sonic eine erfolgreiche Partnerschaft im Bereich Verkaufsunterstützung am POS. Im Jahr 2024 entwickelte und realisierte Sonic ein innovatives, interaktives POS-Möbel- und Servicekonzept für GARMIN. Mit hoher Qualität, Professionalität und einem ausgeprägten Markenverständnis überzeugt Sonic auf ganzer Linie. Besonders schätzen wir die partnerschaftliche Zusammenarbeit auf Augenhöhe – stets lösungsorientiert und engagiert. Wir empfehlen Sonic uneingeschränkt weiter und freuen uns auf die weitere gemeinsame Erfolgsgeschichte.');
+  const tGarminQuote     = useText('case_garmin_text', 'garmin-quote',    'Im Jahr 2024 entwickelte und realisierte Sonic ein innovatives, interaktives POS-Möbel- und Servicekonzept für GARMIN. Mit hoher Qualität, Professionalität und einem ausgeprägten Markenverständnis überzeugt Sonic auf ganzer Linie. Besonders schätzen wir die partnerschaftliche Zusammenarbeit auf Augenhöhe – stets lösungsorientiert und engagiert.');
   const tGarminAuthor    = useText('case_garmin_text', 'garmin-author',   'Dana Eichinger');
   const tGarminRole      = useText('case_garmin_text', 'garmin-role',     'Director Marketing DACH, Garmin Deutschland GmbH');
 
@@ -586,7 +588,7 @@ export default function CaseStudiesPage() {
       metricLabel: tGarminLabel,
       headline: tGarminHeadline,
       subline: tGarminSubline,
-      campaignType: 'Retail Activation & POS Full-Service',
+      campaignType: csT['garmin-campaign'],
       since: '2021',
       quote: tGarminQuote,
       author: tGarminAuthor,
@@ -666,7 +668,7 @@ export default function CaseStudiesPage() {
         { num: '01', title: 'Live-Video-Beratung', desc: 'Aus den Sonic-Studios. Digital am POS und im Online-Shop. Für Rowenta, Tefal, Krups und WMF.', img: '/images/Case Studies -Fallbsp/SEB/20250604_205405_187.webp', tags: ['Live-Video', 'Studio', 'Digital'] },
         { num: '02', title: 'Aktionen', desc: 'Beispiel: verkaufsstarkes Live-Cooking am POS, betreut von unseren Foodies in der Field Force.', img: '/images/Case Studies -Fallbsp/SEB/Bild_NecafeDolceGusto.webp', tags: ['Live-Cooking', 'POS', 'Field Force'] },
         { num: '03', title: 'Roadshow', desc: 'Die rollende mehrmarkenfähige Trainings-Roadshow mit Foodtruck-Funktion: Airstream-Trailer als Showmobil.', img: '/images/Case Studies -Fallbsp/SEB/Gruppe Braun (37).webp', tags: ['Roadshow', 'Airstream', 'Mobile'] },
-        { num: '04', title: 'Verkauf, POS-Pflege, Warenpräsentation', desc: 'Unsere Sales-Activation-Fachleute als Markenbotschafter, Verkäufer und Servicekräfte am POS.', img: '/images/Case Studies -Fallbsp/SEB/Gruppe Gold (5).webp', tags: ['POS-Pflege', 'Präsentation', 'Verkauf'] },
+        { num: '04', title: 'Verkauf, POS-Pflege, Warenpräsentation', desc: csT['seb-module-4-desc'], img: '/images/Case Studies -Fallbsp/SEB/Gruppe Gold (5).webp', tags: ['POS-Pflege', 'Präsentation', 'Verkauf'] },
         { num: '05', title: 'Sales-Training', desc: 'Wir schulen Verkäufer der Handelsketten und unsere Field Force an unserem Campus in Krefeld sowie per Video-Webinar.', img: '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (13).webp', tags: ['Training', 'Krefeld', 'Zertifizierung'] },
         { num: '06', title: 'Reporting', desc: 'Tägliche Einsatzkosten und generierte Umsätze sind tag- und standortgenau auswertbar.', img: '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (26).webp', tags: ['SRT', 'Analytics', 'KPI'] },
       ],
@@ -721,7 +723,7 @@ export default function CaseStudiesPage() {
       overview: tAvouryOverview,
       modules: [
         { num: '01', title: 'Recruiting', desc: 'Zum Start: Zusammenstellung Field Force Team aus eigenem Pool plus aus Recruiting. Gezieltes Matching auf Profil, Standort und Verkaufsstärke.', img: '/images/Case Studies -Fallbsp/Avoury/IMG-20230928-WA0000.webp', tags: ['Recruiting', 'Talentpool', 'Matching'] },
-        { num: '02', title: 'Schulungen', desc: 'Vor den Einsätzen: Schulungen der Fachberater an unserem Campus in Krefeld — Produktwissen, Gesprächsführung, Cross-Selling-Methode.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_01.webp', tags: ['Campus Krefeld', 'Schulung', 'Zertifizierung'] },
+        { num: '02', title: 'Schulungen', desc: csT['avoury-module-2-desc'], img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_01.webp', tags: ['Campus Krefeld', 'Schulung', 'Zertifizierung'] },
         { num: '03', title: 'Sales Promotions', desc: 'Nicht Verkauf per Zufall — Verkauf per System. Gerätedemonstration, gezieltes Cross-Selling auf Kapseln und Zubehör, nach unserer Methode.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_05.webp', tags: ['POS', 'Cross-Selling', 'Methode'] },
         { num: '04', title: 'Reporting', desc: 'Was gemessen wird, wird besser. Das SRT zeigt tages- und standortgenau: wer verkauft, wo, wie viel — und warum. Das ist der Motor hinter der Kurve.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_07.webp', tags: ['SRT', 'Daten', 'Analyse'] },
         { num: '05', title: 'Laufende Optimierungen', desc: 'Personalauswahl, Outlet-Auswahl, Einsatztage — alles datenbasiert optimiert. Das Ergebnis gibt jedes Jahr recht.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_08.webp', tags: ['Optimierung', 'Datenbasiert', 'Matching'] },

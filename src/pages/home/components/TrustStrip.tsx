@@ -3,7 +3,7 @@ import { useText } from '@/hooks/useText';
 
 export default function TrustStrip() {
   const { images: logoImages } = useMediaStore('home_truststrip_logos');
-  const tTrustBadge = useText('home_truststrip', 'home-trust-badge', 'Marken, die uns vertrauen');
+  const tTrustBadge = useText('home_truststrip', 'home-trust-badge', 'Über 15 Kunden vertrauen uns');
 
   const allBrands = [
     { name: 'Philips', logo: (logoImages[0] && logoImages[0].url) || 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887', scale: 1.45 },

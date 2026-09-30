@@ -17,7 +17,7 @@ export default function SRTHeroReference() {
   const sub       = useText('srt_hero', 'srt-hero-sub',          'Das SRT liefert Echtzeit-Zugriff auf Performance-Daten, Reportings und integriert Recruiting, Projektmanagement und Abrechnung — alles in einer Plattform.');
   const systemLabel = useText('srt_hero', 'srt-hero-system-label', 'Version 21+');
   const statusLabel = useText('srt_hero', 'srt-hero-status-label', 'Live · DACH');
-  const tagline   = useText('srt_hero', 'srt-hero-tagline',      'Field-Force-ERP-System · Seit 2008 · Seit 2024 mit KI');
+  const tagline   = useText('srt_hero', 'srt-hero-tagline',      'Einsatz · Personal · Reporting · Seit 2008 · Seit 2024 mit KI');
   const cta       = useCtaText();
   const primary   = cta.book;
   const secondary = useText('srt_hero', 'srt-hero-cta-secondary','Features entdecken');

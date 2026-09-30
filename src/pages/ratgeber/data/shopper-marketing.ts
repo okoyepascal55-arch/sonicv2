@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const shopperMarketing: RatgeberPageContent = {
   slug: 'shopper-marketing',
   seoTitle: 'Shopper Marketing 2026 — Kaufentscheidung am POS gewinnen | Sonic Group',
-  metaDescription: 'Shopper Marketing beeinflusst Kaufentscheidungen genau am Point of Sale. Erfahre, wie Marken mit Shopper Insights, Zweitplatzierungen und Instore-Aktivierung den entscheidenden Moment gewinnen. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Shopper Marketing beeinflusst Kaufentscheidungen genau am Point of Sale. Erfahre, wie Marken mit Shopper Insights, Zweitplatzierungen und Instore-Aktivierung den entscheidenden Moment gewinnen. Praxiswissen aus der Markenaktivierung seit 2007.',
   h1: 'SHOPPER',
   h1Accent: 'MARKETING',
   heroSubtitle: 'Wie Marken die Kaufentscheidung genau im entscheidenden Moment gewinnen',

@@ -85,7 +85,7 @@ const liveShopping: RatgeberPageContent = {
   ],
   internalLinks: [
     {
-      label: 'Live Video Promotion — persönliche Beratung in Echtzeit',
+      label: 'Live Video — persönliche Beratung in Echtzeit',
       href: '/leistungen/live-video',
       description: 'Professionelles Live Video Shopping für Marken — inklusive Studio, Presenter und Technik aus einer Hand.',
     },

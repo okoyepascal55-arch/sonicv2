@@ -225,7 +225,17 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
   );
 }
 
-export default function ClientProof() {
+export type TestimonialId = typeof TESTIMONIAL_IDS[number];
+
+interface ClientProofProps {
+  /** Show only these testimonials (by id, in this order). Default: all.
+   *  Padded with the remaining testimonials so at least 3 are shown. */
+  only?: readonly TestimonialId[];
+}
+
+const MIN_TESTIMONIALS = 3;
+
+export default function ClientProof({ only }: ClientProofProps = {}) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const autoScrollPaused = useRef(false);
   const autoScrollRaf = useRef<number>(0);
@@ -237,7 +247,7 @@ export default function ClientProof() {
   const tBadge = pick('testimonials-badge', 'Kundenstimmen');
   const tHeading1 = pick('testimonials-heading-1', 'Was unsere Partner');
   const tHeading2 = pick('testimonials-heading-2', 'über uns sagen');
-  const testimonials: Testimonial[] = baseTestimonials.map((item, i) => {
+  const allTestimonials: Testimonial[] = baseTestimonials.map((item, i) => {
     const id = TESTIMONIAL_IDS[i];
     if (!id) return item;
     return {
@@ -249,6 +259,20 @@ export default function ClientProof() {
       company: pick(`testimonial-${id}-company`, item.company),
     };
   });
+
+  // Optional per-page filter (Leistungen pages show only the matching clients)
+  const testimonials: Testimonial[] = (() => {
+    if (!only || only.length === 0) return allTestimonials;
+    const idx = (id: string) => TESTIMONIAL_IDS.indexOf(id as TestimonialId);
+    const picked = only.map(idx).filter((i) => i >= 0 && allTestimonials[i]);
+    const unique = picked.filter((i, n) => picked.indexOf(i) === n);
+    for (let i = 0; unique.length < MIN_TESTIMONIALS && i < allTestimonials.length; i++) {
+      if (!unique.includes(i)) unique.push(i);
+    }
+    return unique.map((i) => allTestimonials[i]);
+  })();
+  // Repeat the cards so the auto-scrolling marquee always has enough width to drift
+  const repeats = testimonials.length < 5 ? 3 : 2;
 
   // Merge dashboard logos with hardcoded testimonials — logo from dashboard if available
   const getLogo = (brandFallback: string) => {
@@ -362,7 +386,7 @@ export default function ClientProof() {
             window.setTimeout(() => { autoScrollPaused.current = false; }, 2500);
           }}
         >
-          {[...testimonials, ...testimonials].map((item, i) => (
+          {Array.from({ length: testimonials.length * repeats }, (_, n) => testimonials[n % testimonials.length]).map((item, i) => (
             <TestimonialCard key={`${i}-${item.brand}`} item={{ ...item, logo: getLogo(item.logo) }} index={i % testimonials.length} />
           ))}
         </div>
@@ -374,7 +398,7 @@ export default function ClientProof() {
               key={i}
               onClick={() => {
                 if (!scrollRef.current) return;
-                const cardW = scrollRef.current.scrollWidth / (testimonials.length * 2);
+                const cardW = scrollRef.current.scrollWidth / (testimonials.length * repeats);
                 scrollRef.current.scrollTo({ left: i * cardW * 3, behavior: 'smooth' });
               }}
               className="group flex items-center justify-center w-8 h-8 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"

@@ -86,7 +86,7 @@ const socialCommerce: RatgeberPageContent = {
       description: 'Plattform-nativer Content für Instagram Shopping, TikTok Shop und YouTube Commerce.',
     },
     {
-      label: 'Live Video Promotion — das Live-Commerce-Instrument',
+      label: 'Live Video — das Live-Commerce-Instrument',
       href: '/leistungen/live-video',
       description: 'Professionelle Live-Stream-Produktion für Social-Commerce-Kanäle aus Krefelder Studios.',
     },

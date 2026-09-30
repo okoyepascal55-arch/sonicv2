@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
@@ -30,7 +31,7 @@ const SOLUTION_BASE = [
     woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20map%20pin%20location%20nationwide%20reach%20germany%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-pin-talent-04&orientation=squarish',
     number: '04',
     icon: 'ri-map-pin-2-line',
-    tags: ['Deutschlandweit', '>1.800 Talente'],
+    tags: ['Deutschlandweit', 'Stadt & Region'],
   },
   {
     woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20star%20person%20specialized%20expert%20talent%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-star-talent-05&orientation=squarish',
@@ -95,9 +96,9 @@ export default function TalentpoolContent() {
   const PROFILES = PROFILE_BASE.map((p, i) => ({ ...p, type: tPr[`p${i + 1}-type`], accent: tPr[`p${i + 1}-accent`], desc: tPr[`p${i + 1}-desc`] }));
   const STATS = Array.from({ length: STAT_COUNT }, (_, i) => ({ value: tSt[`stat-${i + 1}-value`], label: tSt[`stat-${i + 1}-label`] }));
   const tChallengeHeading = useText('leistungen_talentpool_content', 'talentpool-challenge-heading', 'Wechselnde Gesichter. Kein Markenwissen. Kein ROI.');
-  const tChallengeSub = useText('leistungen_talentpool_content', 'talentpool-challenge-sub', 'Wer Personal nur über lose Netzwerke bucht, bekommt selten echte Markenbotschafter.');
+  const tChallengeSub = useText('leistungen_talentpool_content', 'talentpool-challenge-sub', 'Wer Personal nur über lose Netzwerke bucht, bekommt selten Menschen, die deine Marke wirklich vertreten.');
   const tSolutionHeading = useText('leistungen_talentpool_content', 'talentpool-solution-heading', 'Der Sonic-Talentpool. Menschen, die wir kennen.');
-  const tSolutionSub = useText('leistungen_talentpool_content', 'talentpool-solution-sub', 'Handverlesen, geschult und im Einsatz bei Sonic angestellt. Daten liefern die Fakten, Menschen den Unterschied.');
+  const tSolutionSub = useText('leistungen_talentpool_content', 'talentpool-solution-sub', 'Persönlich ausgewählt, auf dein Produkt geschult und fest im Projekt. Daten liefern die Fakten, Menschen den Unterschied.');
   const tProfilesHeading = useText('leistungen_talentpool_content', 'talentpool-profiles-heading', '4 Rollen. Ein Ansprechpartner.');
   const tProfilesSub = useText('leistungen_talentpool_content', 'talentpool-profiles-sub', 'Jeden Talent-Typ aus einer Hand — koordiniert, geschult und live getrackt.');
 
@@ -171,6 +172,15 @@ export default function TalentpoolContent() {
               </div>
             ))}
           </div>
+          {tSol['crosslink-text'] && (
+            <p className="mt-8 text-sm md:text-base text-foreground-950/60">
+              {tSol['crosslink-text']}{' '}
+              <Link to="/leistungen/staff-as-a-service" onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })} className="inline-flex items-center gap-1 font-black text-foreground-950 underline decoration-primary-500 decoration-2 underline-offset-4 hover:text-primary-600">
+                {tSol['crosslink-link']}
+                <i className="ri-arrow-right-line" />
+              </Link>
+            </p>
+          )}
         </div>
       </section>
 

@@ -80,8 +80,8 @@ export const TEXT_SECTIONS: TextSection[] = [
       e('s1-label', 'Kennzahl 1 — Label', 'stat-label', 'Marken erlebbar machen'),
       e('s2-value', 'Kennzahl 2 — Wert', 'stat', 'Inhouse'),
       e('s2-label', 'Kennzahl 2 — Label', 'stat-label', 'Konzept bis Rollout'),
-      e('s3-value', 'Kennzahl 3 — Wert', 'stat', '>47.000'),
-      e('s3-label', 'Kennzahl 3 — Label', 'stat-label', 'Live-Beratungen aus dem Studio'),
+      e('s3-value', 'Kennzahl 3 — Wert', 'stat', 'Ein Team'),
+      e('s3-label', 'Kennzahl 3 — Label', 'stat-label', 'Foto, Video, CGI & POS-Design'),
       e('btn-secondary', 'Hero — Zweiter Button (Link zu Live Video)', 'cta', 'Live Video'),
     ]),
 

@@ -18,7 +18,7 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
   const tBadge = useText('about_origin_story', 'about-origin-badge', 'Über uns');
   const tHeading = useText('about_origin_story', 'about-origin-heading', 'Marken im Herzen. Erfolg im Fokus.');
   const tP1 = useText('about_origin_story', 'about-origin-p1', 'Wir sind eine unabhängige Marketing- und Sales-Agentur.');
-  const tP2 = useText('about_origin_story', 'about-origin-p2', 'Seit 2007 leben wir Marken und machen sie erfolgreich.');
+  const tP2 = useText('about_origin_story', 'about-origin-p2', 'Wir leben Marken und machen sie erfolgreich.');
   const tP3 = useText('about_origin_story', 'about-origin-p3', 'Unsere Strategie: Ärmel hoch und anpacken!');
   const tCta = useText('about_origin_story', 'about-origin-cta', 'Unsere Lösungen entdecken');
   const tickerBg = woodTicker[0]?.url || 'https://readdy.ai/api/search-image?query=warm%20chestnut%20brown%20hardwood%20plank%20with%20clearly%20visible%20natural%20wood%20grain%20texture%20rich%20amber%20brown%20tone%20deep%20grain%20lines%20carved%20oak%20walnut%20surface%20close%20up%20macro%20photography%20warm%20brown%20color%20natural%20material%20visible%20grain%20depth%20dark%20rich%20finish%20consistent%20with%20briefcase%20star%20wooden%20icons&width=1920&height=100&seq=about-origin-wood-ticker-v1&orientation=landscape';
@@ -67,7 +67,7 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
                   />
                 ) : null}
                 <div className="absolute top-3 left-3 md:top-5 md:left-5 bg-primary-500 text-foreground-950 px-3 md:px-4 py-1.5 md:py-2 text-[11px] font-black uppercase tracking-widest">
-                  Seit 2007
+                  {at['img-badge']}
                 </div>
               </div>
 
@@ -137,8 +137,6 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
               </div>
             ))}
             <span className="text-white/30 drop-shadow-md text-xs">·</span>
-            <span className="text-xs text-white/70 drop-shadow-md font-bold">Seit 2007 für deine Marke</span>
-            <span className="text-white/30 drop-shadow-md text-xs">·</span>
             <div className="flex items-center gap-2 px-4">
               <div className="w-1.5 h-1.5 bg-white/70 animate-pulse-slow" />
               <span className="text-xs font-sans tabular-nums text-white uppercase tracking-wider font-black drop-shadow-md">SONIC</span>
@@ -151,8 +149,6 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
                 <span className="text-xs text-white/80 drop-shadow-md font-bold">{s.label}</span>
               </div>
             ))}
-            <span className="text-white/30 drop-shadow-md text-xs">·</span>
-            <span className="text-xs text-white/70 drop-shadow-md font-bold">Seit 2007 für deine Marke</span>
             <span className="text-white/30 drop-shadow-md text-xs">·</span>
           </div>
         </div>

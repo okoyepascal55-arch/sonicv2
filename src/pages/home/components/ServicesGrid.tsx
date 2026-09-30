@@ -10,11 +10,11 @@ function hideBrokenImg(e: React.SyntheticEvent<HTMLImageElement>) {
 
 const baseServices = [
   {
-    short: 'Promotion & POS',
+    short: 'POS Full Service',
     title: 'Menschen für Promotion & POS',
     lead: 'Geschultes Personal mit Augenmerk auf Marken- und / oder Produkt-Inszenierung.',
-    description: 'End-to-End-Partner für den Point of Sale: Design, Displays, Möbel, Collateral, Give-aways, Logistik und Montage. Wir gestalten und bestücken deine Fläche — datenbasiert geplant, live reportet und messbar erfolgreich.',
-    tagline: 'Über 1.000 Stores. Über 1,3 Mio. Einsätze. Über 2 Mrd. € Umsatz.',
+    description: 'Geschulte Promoter:innen beraten und verkaufen direkt an deiner Fläche. Mit POS Full Service kommt alles Weitere aus einer Hand: Displays, Möbel, Collateral, Logistik und Montage — datenbasiert geplant, live reportet und messbar erfolgreich.',
+    tagline: 'Menschen, die verkaufen. Flächen, die wirken.',
     fallbackIcon: 'ri-store-2-line',
     images: [
       'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
@@ -24,7 +24,7 @@ const baseServices = [
     link: '/leistungen/pos-full-service',
   },
   {
-    short: 'Events',
+    short: 'Events & Messen',
     title: 'Menschen für Events & Messen',
     lead: 'Dediziert geschultes Personal für bestimmte Funktionen – Moderation, Musik, Catering, Logistik und Aufbau.',
     description: 'Wir präsentieren deine Marke da, wo deine Zielgruppe ist: Events, Messen, Roadshows und hybride Formate. Von Konzept über Personal bis Logistik — alles aus einer Hand.',
@@ -49,7 +49,7 @@ const baseServices = [
     link: '/leistungen/events-messen',
   },
   {
-    short: 'Content',
+    short: 'Kreation & Content',
     title: 'Menschen für Content',
     lead: 'Ausdrucksstarkes Personal mit Fokus auf Content Produktion.',
     description: 'Unboxing- und How-to-Videos, Foto- und Videoshootings, Livestreams, Produktvideos und Social Media — mit ausdrucksstarkem Personal vor und hinter der Kamera.',
@@ -84,10 +84,10 @@ const baseServices = [
       '/images/home/3. Menschen für Schulungen/DSC06029.webp',
       '/images/home/3. Menschen für Schulungen/DSC06083.webp',
     ],
-    link: '/losungen',
+    link: '/leistungen/staff-as-a-service',
   },
   {
-    short: 'Studios',
+    short: 'Live Video',
     title: 'Menschen für unsere Studios',
     lead: 'All In One: Regisseur, Moderator, Verkäufer.',
     description: 'Erlebbar werden: Produktberatung, Sales und Service-Support direkt aus unseren Studio-Setups. Für Livestreams, Video-Commerce, digitale Beratung und Content-Produktion.',

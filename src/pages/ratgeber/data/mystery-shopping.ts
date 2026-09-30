@@ -92,7 +92,7 @@ const mysteryShopping: RatgeberPageContent = {
     {
       label: 'Talentpool — die besten Köpfe für deine Marke',
       href: '/leistungen/talentpool',
-      description: 'Zugriff auf über 5.000 erprobte Markenbotschafter mit nachgewiesener Service- und Kommunikationskompetenz.',
+      description: 'Erprobte Promoter:innen mit nachgewiesener Service- und Kommunikationskompetenz.',
     },
     {
       label: 'Events & Messen — Service-Exzellenz live erleben',

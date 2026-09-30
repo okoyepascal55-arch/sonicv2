@@ -7,7 +7,7 @@ const markteintrittDach: RatgeberPageContent = {
   h1: 'MARKTEINTRITT',
   h1Accent: 'DACH',
   heroSubtitle: 'Wie internationale Marken Deutschland, Österreich und die Schweiz strategisch, regulatorisch sicher und skalierbar erobern',
-  heroSummary: 'Der Markteintritt in den DACH-Raum ist für internationale Marken eine der attraktivsten — und anspruchsvollsten — Expansionsentscheidungen. Mit über 100 Millionen deutschsprachigen Konsumenten, einer Einkaufkraft von über 4 Billionen Euro und einer E-Commerce-Penetration von über 80 Prozent bietet der DACH-Markt enormes Potenzial. Gleichzeitig stellen strikte regulatorische Anforderungen, kulturelle Besonderheiten und eine hoch entwickelte Handelslandschaft hohe Hürden auf. Sonic Group begleitet Marken seit 19 Jahren beim Markteintritt in Deutschland und der DACH-Region — von der strategischen Planung über den regulatorischen Setup bis zur operativen Markenaktivierung vor Ort.',
+  heroSummary: 'Der Markteintritt in den DACH-Raum ist für internationale Marken eine der attraktivsten — und anspruchsvollsten — Expansionsentscheidungen. Mit über 100 Millionen deutschsprachigen Konsumenten, einer Einkaufkraft von über 4 Billionen Euro und einer E-Commerce-Penetration von über 80 Prozent bietet der DACH-Markt enormes Potenzial. Gleichzeitig stellen strikte regulatorische Anforderungen, kulturelle Besonderheiten und eine hoch entwickelte Handelslandschaft hohe Hürden auf. Sonic Group begleitet Marken beim Markteintritt in Deutschland und der DACH-Region — von der strategischen Planung über den regulatorischen Setup bis zur operativen Markenaktivierung vor Ort.',
   heroImageUrl: 'https://readdy.ai/api/search-image?query=Modern%20European%20business%20expansion%20concept%20abstract%20map%20of%20Germany%20Austria%20Switzerland%20with%20strategic%20network%20connections%20professional%20corporate%20atmosphere%20clean%20minimalist%20design%20subtle%20warm%20lighting%20geometric%20composition%20dark%20moody%20background%20with%20lime%20green%20accent%20highlights%20international%20market%20entry%20visualization&width=1920&height=1080&seq=markteintritt-dach-hero-v1&orientation=landscape',
   category: 'Markteintritt',
   answerFirst: {
@@ -64,7 +64,7 @@ const markteintrittDach: RatgeberPageContent = {
     },
     {
       question: 'Brauche ich einen lokalen Partner — oder kann ich den Markteintritt selbst managen?',
-      answer: 'Technisch ist ein Eigen-Management des Markteintritts möglich, insbesondere für große Konzerne mit eigener europäischer Niederlassung. Für die meisten Marken ist die Zusammenarbeit mit einem lokalen Partner jedoch der erfolgsentscheidende Faktor. Die Gründe: Lokale Partner kennen die Handelslandschaft, die regulatorischen Feinheiten und die kulturellen Nuancen, die internationale Teams oft unterschätzen. Sie verfügen über etablierte Netzwerke zu Handelspartnern, Logistikdienstleistern und lokalen Medien. Sie können schneller reagieren und flexibler skalieren als eine neu aufgebaute internationale Niederlassung. Und sie tragen das operative Risiko des Launch-Managements, während die Marke sich auf Produkt und strategische Positionierung konzentrieren kann. Sonic Group fungiert als strategischer lokaler Partner mit 19 Jahren DACH-Expertise.',
+      answer: 'Technisch ist ein Eigen-Management des Markteintritts möglich, insbesondere für große Konzerne mit eigener europäischer Niederlassung. Für die meisten Marken ist die Zusammenarbeit mit einem lokalen Partner jedoch der erfolgsentscheidende Faktor. Die Gründe: Lokale Partner kennen die Handelslandschaft, die regulatorischen Feinheiten und die kulturellen Nuancen, die internationale Teams oft unterschätzen. Sie verfügen über etablierte Netzwerke zu Handelspartnern, Logistikdienstleistern und lokalen Medien. Sie können schneller reagieren und flexibler skalieren als eine neu aufgebaute internationale Niederlassung. Und sie tragen das operative Risiko des Launch-Managements, während die Marke sich auf Produkt und strategische Positionierung konzentrieren kann. Sonic Group fungiert als strategischer lokaler Partner mit langjähriger DACH-Expertise.',
     },
     {
       question: 'Welche Produkte haben die besten Chancen auf dem DACH-Markt?',
@@ -97,7 +97,7 @@ const markteintrittDach: RatgeberPageContent = {
     {
       label: 'Staff as a Service — lokale Markenbotschafter für den Markteintritt',
       href: '/leistungen/staff-as-a-service',
-      description: 'Über 1.800 Menschen im Talentpool – Promoter und Brand Ambassadors für deinen Launch.',
+      description: 'Geschulte Promoter:innen aus unserem Talentpool – für deinen Launch.',
     },
   ],
   crossLinks: [

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLeistungenText } from '@/hooks/useLeistungenText';
 
 export interface ChallengeItem {
   icon: string;
@@ -25,6 +26,8 @@ export default function ChallengeSection({
   subline,
   challenges,
 }: ChallengeSectionProps) {
+  // Dashboard → Leistungen — Herausforderung (alle Unterseiten)
+  const tCommon = useLeistungenText('leistungen_challenge_common');
   const [active, setActive] = useState<number | null>(null);
   const [revealed, setRevealed] = useState<boolean[]>(Array(challenges.length).fill(false));
   const [sectionVisible, setSectionVisible] = useState(true); // start visible, animate in on scroll
@@ -50,7 +53,7 @@ export default function ChallengeSection({
 
   const counterLabel = () => {
     if (allRevealed) return `${total}/${total} erkannt? Dann reden wir.`;
-    if (revealedCount === 0) return 'Hover über die Punkte — erkennst du dich wieder?';
+    if (revealedCount === 0) return tCommon['hint'] || 'Tippe oder fahre über die Punkte – erkennst du dich wieder?';
     return `${revealedCount}/${total} erkannt — weiter scrollen?`;
   };
 

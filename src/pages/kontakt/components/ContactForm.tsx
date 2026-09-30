@@ -3,13 +3,17 @@ import { submitContactForm } from '@/lib/contact';
 import { useCtaText } from '@/hooks/useCtaText';
 import { useReviewText } from '@/hooks/useReviewText';
 
+// Same 9 service names as the main menu (Leistungen), plus a general option.
 const interests = [
   'POS Full Service',
   'Staff as a Service',
-  'Sonic Reporting Tool (SRT)',
-  'Forecasting & Marktforschung',
+  'Talentpool',
   'Events & Messen',
   'Kreation & Content',
+  'Live Video',
+  'Forecasting',
+  'Warehouse & Logistik',
+  'SRT',
   'Allgemeine Anfrage',
 ];
 

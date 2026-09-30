@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const verkaeuferschulungen: RatgeberPageContent = {
   slug: 'verkaeuferschulungen',
   seoTitle: 'Verkäuferschulungen 2026 — Verkaufsteams stärken | Sonic Group',
-  metaDescription: 'Verkäuferschulungen steigern Umsatz und Beratungsqualität im Handel. Erfahre, wie geschulte Verkaufsteams Produkte souverän erklären, Einwände überwinden und Kunden nachhaltig binden. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Verkäuferschulungen steigern Umsatz und Beratungsqualität im Handel. Erfahre, wie geschulte Verkaufsteams Produkte souverän erklären, Einwände überwinden und Kunden nachhaltig binden. Praxiswissen aus der Markenaktivierung seit 2007.',
   h1: 'VERKÄUFER-',
   h1Accent: 'SCHULUNGEN',
   heroSubtitle: 'Wie geschulte Verkaufsteams Beratungsqualität und Umsatz messbar steigern',

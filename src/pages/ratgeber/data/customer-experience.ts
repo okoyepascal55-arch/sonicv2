@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const customerExperience: RatgeberPageContent = {
   slug: 'customer-experience',
   seoTitle: 'Customer Experience 2026 — Kundenerlebnis gestalten | Sonic Group',
-  metaDescription: 'Customer Experience entscheidet über Kundenbindung und Markentreue. Erfahre, wie Marken Kundenerlebnisse gestalten, die begeistern, binden und weiterempfohlen werden. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Customer Experience entscheidet über Kundenbindung und Markentreue. Erfahre, wie Marken Kundenerlebnisse gestalten, die begeistern, binden und weiterempfohlen werden. Praxiswissen aus der Markenaktivierung seit 2007.',
   h1: 'CUSTOMER',
   h1Accent: 'EXPERIENCE',
   heroSubtitle: 'Wie Marken Kundenerlebnisse schaffen, die begeistern und binden',

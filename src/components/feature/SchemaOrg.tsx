@@ -54,7 +54,7 @@ const SERVICES_SCHEMA = {
       position: 2,
       item: {
         '@type': 'Service',
-        name: 'Live Video Promotion',
+        name: 'Live Video',
         description: '1:1 Video-Kaufberatung und Live Shopping für den DACH-Markt. Conversion steigern, Retouren senken.',
         url: 'https://sonic-group.de/leistungen/live-video',
         provider: { '@type': 'Organization', name: 'Sonic Group' },

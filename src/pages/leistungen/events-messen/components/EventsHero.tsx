@@ -1,5 +1,6 @@
 import React from 'react';
-import { CONTACT_EMAIL } from '@/lib/contact';
+import { Link } from 'react-router-dom';
+import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
@@ -64,22 +65,23 @@ export default function EventsHero() {
 
 
         <div className="flex flex-wrap gap-3 mt-6">
-          <a
-            href={`mailto:${CONTACT_EMAIL}?subject=Events%20Messen%20Beratung`}
+          <button
+            type="button"
+            onClick={() => openCalendly()}
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line" />
             {cta.book}
-          </a>
+          </button>
 
-          <a
-            href="/leistungen/events-messen"
+          <Link
+            to="/leistungen/kreation-content"
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
             className="inline-flex items-center gap-2 border-2 border-white/25 text-white px-6 py-3 font-black hover:border-primary-500 hover:text-primary-500 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             {tBtn['cta-secondary']}
             <i className="ri-arrow-right-line" />
-          </a>
+          </Link>
         </div>
       </div>
 

@@ -85,7 +85,7 @@ const tiktokShopLive: RatgeberPageContent = {
   ],
   internalLinks: [
     {
-      label: 'Live Video Promotion — professionelle Stream-Produktion',
+      label: 'Live Video — professionelle Stream-Produktion',
       href: '/leistungen/live-video',
       description: 'Broadcast-Qualität Live-Streams aus Sonic-Studios für TikTok, Instagram und eigene Plattformen.',
     },

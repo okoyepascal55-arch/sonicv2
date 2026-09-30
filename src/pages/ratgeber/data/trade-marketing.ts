@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const tradeMarketing: RatgeberPageContent = {
   slug: 'trade-marketing',
   seoTitle: 'Trade Marketing 2026 — Handelspartnerschaften gewinnen | Sonic Group',
-  metaDescription: 'Trade Marketing sichert Listungen, Platzierungen und Abverkauf im Handel. Erfahre, wie Marken Handelspartner gewinnen, Konditionen verhandeln und gemeinsam mit dem Handel Umsatz steigern. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Trade Marketing sichert Listungen, Platzierungen und Abverkauf im Handel. Erfahre, wie Marken Handelspartner gewinnen, Konditionen verhandeln und gemeinsam mit dem Handel Umsatz steigern. Praxiswissen aus der Markenaktivierung seit 2007.',
   h1: 'TRADE',
   h1Accent: 'MARKETING',
   heroSubtitle: 'Wie Marken Handelspartner gewinnen und gemeinsam Umsatz steigern',

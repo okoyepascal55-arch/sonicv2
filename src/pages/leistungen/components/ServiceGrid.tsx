@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
 import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
-import { useCtaText } from '@/hooks/useCtaText';
 
 const SERVICES = [
   {
@@ -23,8 +21,8 @@ const SERVICES = [
     id: 'personal-staffing',
     number: '02',
     category: 'Personal & Staffing',
-    headline: 'Geschulte Talente',
-    sub: 'Über 1.800 Menschen im Talentpool, 200+ Promoter:innen im Einsatz. Ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit — geschult und persönlich betreut, deutschlandweit.',
+    headline: 'Geschulte Promoter:innen',
+    sub: 'Menschen aus unserem Talentpool, ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit — geschult, persönlich betreut und deutschlandweit im Einsatz.',
     cta: 'Talentpool erkunden',
     ctaLink: '/leistungen/talentpool',
     secondaryCta: 'Staffing ansehen',
@@ -39,7 +37,7 @@ const SERVICES = [
     sub: 'Physische Präsenz trifft digitale Live-Beratung. Vom Regal bis zum QR-Code — nahtlose Customer Experience.',
     cta: 'POS Full Service',
     ctaLink: '/leistungen/pos-full-service',
-    secondaryCta: 'Live Video Promotion',
+    secondaryCta: 'Live Video',
     secondaryLink: '/leistungen/live-video',
     tags: ['POS-Display', 'Shop-in-Shop', 'Live Video'],
   },
@@ -73,7 +71,6 @@ export default function ServiceGrid({ sectionRef }: Props) {
   const [active, setActive] = useState(0);
   const { images: gridImages } = useMediaStore('leistungen_servicegrid_bg');
   const t = useLeistungenText('leistungen_overview_services');
-  const cta = useCtaText();
   const services = SERVICES.map((sv, i) => {
     const n = i + 1;
     return {
@@ -244,25 +241,6 @@ export default function ServiceGrid({ sectionRef }: Props) {
 
         </div>{/* end continuous-border frame */}
 
-        {/* Bottom CTA strip */}
-        <div className="mt-6 px-6 md:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 bg-primary-50 border border-primary-200">
-          <div className="flex items-center gap-4">
-            <div className="w-9 h-9 flex items-center justify-center bg-primary-100 border border-primary-300 flex-shrink-0">
-              <i className="ri-question-line text-sm text-primary-600"></i>
-            </div>
-            <div>
-              <p className="text-foreground-950 font-black text-sm mb-0.5">{t['help-heading']}</p>
-              <p className="text-foreground-500 text-xs">{cta.microline}</p>
-            </div>
-          </div>
-          <a
-            href={`mailto:${CONTACT_EMAIL}?subject=Termin%20vereinbaren`}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white font-black text-xs uppercase tracking-widest cursor-pointer whitespace-nowrap transition-colors duration-300 hover:bg-foreground-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 flex-shrink-0"
-          >
-            {cta.book}
-            <i className="ri-arrow-right-line"></i>
-          </a>
-        </div>
       </div>
     </section>
   );

@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const communityManagement: RatgeberPageContent = {
   slug: 'community-management',
   seoTitle: 'Community Management 2026 — Marken-Communities aufbauen | Sonic Group',
-  metaDescription: 'Community Management baut loyale Marken-Communities auf. Erfahre, wie Marken Follower zu Fürsprechern machen, Dialog statt Monolog führen und Communities langfristig binden. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Community Management baut loyale Marken-Communities auf. Erfahre, wie Marken Follower zu Fürsprechern machen, Dialog statt Monolog führen und Communities langfristig binden. Praxiswissen aus der Markenaktivierung seit 2007.',
   h1: 'COMMUNITY',
   h1Accent: 'MANAGEMENT',
   heroSubtitle: 'Wie Marken aus Followern eine loyale, aktive Community machen',
@@ -91,7 +91,7 @@ const communityManagement: RatgeberPageContent = {
       description: 'Content und Formate, die den Dialog mit der Community beleben.',
     },
     {
-      label: 'Live Video Promotion — Community live erleben',
+      label: 'Live Video — Community live erleben',
       href: '/leistungen/live-video',
       description: 'Live-Formate, die Community und Marke in Echtzeit verbinden.',
     },

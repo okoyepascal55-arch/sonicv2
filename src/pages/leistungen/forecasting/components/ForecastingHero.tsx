@@ -1,5 +1,6 @@
 import React from 'react';
-import { CONTACT_EMAIL } from '@/lib/contact';
+import { Link } from 'react-router-dom';
+import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
@@ -15,7 +16,7 @@ export default function ForecastingHero() {
   const tH1Line1 = useText('leistungen_forecasting', 'forecasting-hero-heading-line1', 'Plausible');
   const tH1Accent = useText('leistungen_forecasting', 'forecasting-hero-heading-accent', 'Prognosen.');
   const tSubtitle = useText('leistungen_forecasting', 'forecasting-hero-subtitle', 'Bevor der erste Einsatz startet, weißt du, womit du realistisch rechnen kannst.');
-  const tDesc = useText('leistungen_forecasting', 'forecasting-hero-description', 'Aus Kunden-, Sonic-, Staff- und Handelsdaten im SRT leiten wir her, was dein Projekt erwarten kann — datenbasiert, nachvollziehbar, belastbar.');
+  const tDesc = useText('leistungen_forecasting', 'forecasting-hero-description', 'Aus Kunden-, Sonic-, Staff- und Handelsdaten im Sonic Reporting Tool (SRT) leiten wir her, was dein Projekt erwarten kann — datenbasiert, nachvollziehbar, belastbar.');
 
   const tBtn = useLeistungenText('leistungen_forecasting_hero_buttons');
   const cta = useCtaText();
@@ -62,22 +63,23 @@ export default function ForecastingHero() {
         </p>
 
         <div className="flex flex-wrap gap-3">
-          <a
-            href={`mailto:${CONTACT_EMAIL}?subject=Forecasting%20Beratung`}
+          <button
+            type="button"
+            onClick={() => openCalendly()}
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line" />
             {cta.book}
-          </a>
+          </button>
 
-          <a
-            href="/srt"
+          <Link
+            to="/srt"
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
             className="inline-flex items-center gap-2 border-2 border-white/25 text-white px-6 py-3 font-black hover:border-primary-500 hover:text-primary-500 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             {tBtn.secondary}
             <i className="ri-arrow-right-line" />
-          </a>
+          </Link>
         </div>
       </div>
 

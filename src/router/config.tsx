@@ -6,7 +6,6 @@ const HomePage = lazy(() => import('../pages/home/page'));
 const AboutPage = lazy(() => import('../pages/about/page'));
 const CareersPage = lazy(() => import('../pages/careers/page'));
 const CaseStudiesPage = lazy(() => import('../pages/case-studies/page'));
-const IndustriesPage = lazy(() => import('../pages/industries/page'));
 const SRTPage = lazy(() => import('../pages/srt/page'));
 const LosungenPage = lazy(() => import('../pages/losungen/page'));
 const SonicReelsPage = lazy(() => import('../pages/sonic-reels/page'));
@@ -102,9 +101,30 @@ const routes: RouteObject[] = [
     path: '/fallbeispiele',
     element: <CaseStudiesPage />,
   },
+  // Removed pages (30.09.2026) — old URLs redirect to the closest live page
+  {
+    path: '/jobs',
+    element: <Navigate to="/karriere" replace />,
+  },
+  {
+    path: '/jobs/*',
+    element: <Navigate to="/karriere" replace />,
+  },
+  {
+    path: '/team',
+    element: <Navigate to="/ueber-uns" replace />,
+  },
   {
     path: '/industries',
-    element: <IndustriesPage />,
+    element: <Navigate to="/leistungen" replace />,
+  },
+  {
+    path: '/industries/*',
+    element: <Navigate to="/leistungen" replace />,
+  },
+  {
+    path: '/branchen',
+    element: <Navigate to="/leistungen" replace />,
   },
   {
     path: '/leistungen/live-video',

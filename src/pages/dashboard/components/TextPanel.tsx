@@ -378,8 +378,8 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
     const labels: Record<string, string> = {
       home: 'Home', losungen: 'Lösungen', leistungen: 'Leistungen', about: 'Über uns',
       case_studies: 'Fallbeispiele', blog: 'Blog', careers: 'Karriere', kontakt: 'Kontakt',
-      team: 'Team', industries: 'Industries', lvp: 'Live Video Promotion',
-      jobs: 'Jobs', ratgeber: 'Ratgeber', srt: 'SRT', common: 'Common Components',
+      lvp: 'Live Video',
+      ratgeber: 'Ratgeber', srt: 'SRT', common: 'Common Components',
       stimmen: 'Stimmen & Gesichter',
     };
     return labels[activeGroup] || activeGroup;
@@ -389,8 +389,8 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
     const icons: Record<string, string> = {
       home: 'ri-home-line', losungen: 'ri-lightbulb-line', leistungen: 'ri-stack-line',
       about: 'ri-building-line', case_studies: 'ri-file-chart-line', blog: 'ri-article-line',
-      careers: 'ri-briefcase-line', kontakt: 'ri-mail-send-line', team: 'ri-team-line',
-      industries: 'ri-building-2-line', lvp: 'ri-live-line', jobs: 'ri-briefcase-4-line',
+      careers: 'ri-briefcase-line', kontakt: 'ri-mail-send-line',
+      lvp: 'ri-live-line',
       ratgeber: 'ri-book-open-line', srt: 'ri-pie-chart-2-line', common: 'ri-puzzle-line',
       stimmen: 'ri-chat-quote-line',
     };

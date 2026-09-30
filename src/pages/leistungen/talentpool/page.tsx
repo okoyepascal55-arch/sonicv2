@@ -57,7 +57,7 @@ export default function TalentpoolPage() {
       <WoodenDivider />
 
       <section id="referenzen">
-        <ClientProof />
+        <ClientProof only={['garmin', 'loreal', 'wmf', 'mediamarktsaturn', 'seb']} />
       </section>
 
       <WoodenDivider />

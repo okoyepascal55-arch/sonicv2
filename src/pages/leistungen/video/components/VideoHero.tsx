@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL } from '@/lib/contact';
+import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
@@ -12,7 +12,7 @@ export default function VideoHero() {
 
   const tBtn = useLeistungenText('leistungen_video_hero_buttons');
   const cta = useCtaText();
-  const tBadge = useText('leistungen_video', 'video-hero-badge', '(Live) Video');
+  const tBadge = useText('leistungen_video', 'video-hero-badge', 'Live Video');
   const tH1Line1 = useText('leistungen_video', 'video-hero-heading-line1', 'Live verkaufen.');
   const tH1Accent = useText('leistungen_video', 'video-hero-heading-accent', 'Digital begeistern.');
   const tSubtitle = useText('leistungen_video', 'video-hero-subtitle', 'Erlebbar werden — Videocontent und Live-Video-Kanäle mit unseren Markenbotschaftern.');
@@ -55,14 +55,15 @@ export default function VideoHero() {
 
 
         <div className="flex flex-wrap gap-3">
-          <a
-            href={`mailto:${CONTACT_EMAIL}?subject=Live%20Video%20Beratung`}
+          <button
+            type="button"
+            onClick={() => openCalendly()}
             className="inline-flex items-center gap-2 bg-primary-500 text-white font-black px-7 py-3 hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
             style={{ borderRadius: 0 }}
           >
             <i className="ri-calendar-line"></i>
             {cta.book}
-          </a>
+          </button>
           <a
             href="/leistungen/pos-full-service"
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}

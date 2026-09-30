@@ -223,7 +223,7 @@ export default function SonicReelsTimeline({ eras }: { eras: EraData[] }) {
       <FilmGrain opacity={0.05} />
 
       {/* ── Top film edge — dotted sprocket perforations ── */}
-      <FilmEdge accent={era.accent} code="SONIC REELS · 5219" />
+      <FilmEdge accent={era.accent} code="SONIC REELS" />
 
       {/* Background glow in the era accent */}
       <div

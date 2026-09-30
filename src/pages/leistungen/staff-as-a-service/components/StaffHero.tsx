@@ -1,5 +1,5 @@
 import React from 'react';
-import { CONTACT_EMAIL } from '@/lib/contact';
+import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
@@ -14,7 +14,7 @@ export default function StaffHero() {
   const tBadge = useText('leistungen_staff', 'staff-hero-badge', 'Staff as a Service');
   const tH1Line1 = useText('leistungen_staff', 'staff-hero-heading-line1', 'Rundum-Service');
   const tH1Accent = useText('leistungen_staff', 'staff-hero-heading-accent', 'beim Personal.');
-  const tSubtitle = useText('leistungen_staff', 'staff-hero-subtitle', 'Markenfans anheuern: Für Sell-out, Sell-in, Schulungen, Brand Activation und mehr.');
+  const tSubtitle = useText('leistungen_staff', 'staff-hero-subtitle', 'Promoter:innen für Sell-out, Sell-in, Schulungen, Brand Activation und mehr.');
   const tDesc = useText('leistungen_staff', 'staff-hero-description', 'Wir übernehmen Recruiting, Payroll und Steuerung, bspw. via Arbeitnehmerüberlassung.');
   const t = useLeistungenText('leistungen_staff_hero_stats');
   const cta = useCtaText();
@@ -68,13 +68,14 @@ export default function StaffHero() {
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <a
-            href={`mailto:${CONTACT_EMAIL}?subject=Staff%20as%20a%20Service%20Beratung`}
+          <button
+            type="button"
+            onClick={() => openCalendly()}
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line"></i>
             {cta.book}
-          </a>
+          </button>
           <a
             href="/leistungen/talentpool"
             onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}

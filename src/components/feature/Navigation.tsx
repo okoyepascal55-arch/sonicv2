@@ -75,7 +75,7 @@ export default function Navigation() {
   const tNavLeistungenAll = useText('common_navigation', 'nav-leistungen-all', 'Alle Leistungen');
   const tCatPos = useText('common_navigation', 'nav-cat-pos', 'AM POS VERKAUFEN');
   const tNavPos = useText('common_navigation', 'nav-pos', 'POS Full Service');
-  const tNavLvp = useText('common_navigation', 'nav-lvp', 'Live Video Promotion');
+  const tNavLvp = useText('common_navigation', 'nav-lvp', 'Live Video');
   const tNavEvents = useText('common_navigation', 'nav-events', 'Events & Messen');
   const tCatTeam = useText('common_navigation', 'nav-cat-team', 'TEAM AUFBAUEN');
   const tNavStaff = useText('common_navigation', 'nav-staff', 'Staff as a Service');

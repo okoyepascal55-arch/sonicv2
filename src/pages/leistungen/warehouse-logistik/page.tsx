@@ -7,7 +7,8 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import ScrollCardSection from '@/components/feature/ScrollCardSection';
-import { CONTACT_EMAIL } from '@/lib/contact';
+import ClientProof from '@/components/feature/ClientProof';
+import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
@@ -19,6 +20,7 @@ const NAV_ITEMS = [
  { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
  { id: 'beispiele', label: 'Beispiele', icon: 'ri-image-line' },
  { id: 'full-service', label: 'Full Service', icon: 'ri-shield-check-line' },
+ { id: 'referenzen', label: 'Referenzen', icon: 'ri-chat-quote-line' },
  { id: 'kontakt', label: 'Kontakt', icon: 'ri-calendar-line' },
 ];
 
@@ -104,7 +106,7 @@ export default function WarehouseLogistikPage() {
  const tHeroBadge = useText('leistungen_warehouse', 'warehouse-hero-badge', 'Warehouse & Logistik');
  const tHeroH1Line1 = useText('leistungen_warehouse', 'warehouse-hero-heading-line1', 'Ware zur richtigen Zeit');
  const tHeroH1Accent = useText('leistungen_warehouse', 'warehouse-hero-heading-accent', 'am richtigen Ort.');
- const tHeroSubtitle = useText('leistungen_warehouse', 'warehouse-hero-subtitle', 'Phygital? Können wir. Mit eigenem Lager für Assets, Messestände und Ware.');
+ const tHeroSubtitle = useText('leistungen_warehouse', 'warehouse-hero-subtitle', 'Alles an einem Ort: eigenes Lager für Assets, Messestände und Ware.');
  const tHeroDesc = useText('leistungen_warehouse', 'warehouse-hero-description', 'Mit Fulfillment-Services und Schnittstellen. Europaweit.');
  const tStats = useLeistungenText('leistungen_warehouse_stats');
  const tSol = useLeistungenText('leistungen_warehouse_solutions');
@@ -187,9 +189,9 @@ export default function WarehouseLogistikPage() {
  </div>
  ))}
  </div>
- <a href={`mailto:${CONTACT_EMAIL}?subject=Warehouse%20Logistik%20Beratung`} className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"style={{ borderRadius: 0 }}>
+ <button type="button" onClick={() => openCalendly()} className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"style={{ borderRadius: 0 }}>
  <i className="ri-calendar-line"></i>{cta.book}
- </a>
+ </button>
  </div>
  <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none"/>
  </section>
@@ -314,17 +316,9 @@ export default function WarehouseLogistikPage() {
  <p className="text-white/65 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
  {tFs.p1}
  </p>
- <p className="text-white/65 text-sm md:text-base leading-relaxed mb-6 md:mb-8">
+ <p className="text-white/65 text-sm md:text-base leading-relaxed">
  {tFs.p2}
  </p>
- <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-primary-500/15">
- {STATS.map((s, i) => (
- <div key={i} className={`p-4 md:p-5 text-center ${i < 2 ? 'border-r border-primary-500/15' : ''}`}>
- <div className="text-base md:text-xl font-black text-primary-500">{s.val}</div>
- <div className="text-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-wider mt-1">{s.label}</div>
- </div>
- ))}
- </div>
  </div>
  <div className="relative">
  <img
@@ -343,8 +337,14 @@ export default function WarehouseLogistikPage() {
  </div>
  </section>
 
- {/* Dark-bg WoodenDivider — full-service(dark) exit into kontakt(light) */}
+ {/* Dark-bg WoodenDivider — full-service(dark) exit into referenzen(light) */}
  <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
+
+ <section id="referenzen">
+ <ClientProof only={['garmin', 'vorwerk', 'seb']} />
+ </section>
+
+ <WoodenDivider />
 
  <div id="kontakt">
  <LeistungenKontakt

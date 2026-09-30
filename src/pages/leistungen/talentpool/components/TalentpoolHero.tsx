@@ -1,5 +1,5 @@
 import React from 'react';
-import { CONTACT_EMAIL } from '@/lib/contact';
+import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useCtaText } from '@/hooks/useCtaText';
@@ -15,7 +15,7 @@ export default function TalentpoolHero() {
   const tH1Line1 = useText('leistungen_talentpool', 'talentpool-hero-heading-line1', '>1.800 Talente.');
   const tH1Accent = useText('leistungen_talentpool', 'talentpool-hero-heading-accent', 'Echte Markenbotschafter.');
   const tSubtitle = useText('leistungen_talentpool', 'talentpool-hero-subtitle', 'Handverlesen. Geschult. Im Einsatz bei Sonic angestellt.');
-  const tDesc = useText('leistungen_talentpool', 'talentpool-hero-description', 'Unser Talentpool umfasst über 1.800 aktive Menschen deutschlandweit — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit Blick auf die eigene Zielerreichung, live im SRT.');
+  const tDesc = useText('leistungen_talentpool', 'talentpool-hero-description', 'In unserem Talentpool findest du Menschen aus ganz Deutschland — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit Blick auf die eigene Zielerreichung, live im Sonic Reporting Tool (SRT).');
 
   return (
     <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
@@ -59,13 +59,14 @@ export default function TalentpoolHero() {
         </p>
 
         <div className="flex flex-wrap gap-3">
-          <a
-            href={`mailto:${CONTACT_EMAIL}?subject=Talentpool%20Anfrage`}
+          <button
+            type="button"
+            onClick={() => openCalendly()}
             className="inline-flex items-center gap-2 bg-primary-500 text-white px-7 py-3 font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
             <i className="ri-calendar-line" />
             {cta.book}
-          </a>
+          </button>
 
           <a
             href="/leistungen/staff-as-a-service"

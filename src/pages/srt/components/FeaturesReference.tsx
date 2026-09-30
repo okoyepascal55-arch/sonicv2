@@ -104,7 +104,7 @@ export default function FeaturesReference() {
 
   const tBadge   = useText('srt_features', 'srt-features-badge',   'Die Lösung');
   const tHeading = useText('srt_features', 'srt-features-heading', 'SRT: Die All-in-One Software');
-  const tSub     = useText('srt_features', 'srt-features-sub',     'Seit 2008 laufend weiterentwickelt, für maximalen Nutzwert. Seit 2024 mit KI-Features.');
+  // Unterzeile: Dashboard → Text → SRT → „SRT — All-in-One: Kacheln“ (sub)
   const tCta     = useText('srt_features', 'srt-features-cta',     'Demo anfragen');
   // Dashboard → Text → SRT → „SRT — CTA-Texte (Demo)“
   const ct       = useReviewText('srt_cta_texts');
@@ -140,7 +140,7 @@ export default function FeaturesReference() {
           <h2 className="sonic-h2 text-foreground-950 ">
             SRT: Die <span className="px-[0.16em] py-[0.02em] bg-primary-500 text-foreground-950" style={{ boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>All-in-One</span> Software
           </h2>
-          <p className="text-sm text-foreground-950/45 leading-relaxed">{tSub}</p>
+          <p className="text-sm text-foreground-950/45 leading-relaxed">{fc.sub}</p>
         </div>
 
         {/* Bento */}
@@ -169,7 +169,7 @@ export default function FeaturesReference() {
               <div className="w-11 h-11 overflow-hidden flex items-center justify-center mb-5 bg-primary-500">
                 {getIcon(0, features[0].woodIcon, features[0].title)}
               </div>
-              <span className="text-[9px] font-black uppercase tracking-[0.25em] block mb-2" style={{ color: 'oklch(0.81 0.19 115 / 0.7)' }}>Modul 01 / 06</span>
+              <span className="text-[9px] font-black uppercase tracking-[0.25em] block mb-2" style={{ color: 'oklch(0.81 0.19 115 / 0.7)' }}>01 / 06</span>
               <h3 className="text-[22px] md:text-[26px] font-black text-white mb-3 leading-tight">{features[0].title}</h3>
               <p className="text-[13px] leading-relaxed text-white/45 max-w-[280px]">{features[0].description}</p>
               <div className="flex flex-wrap gap-1.5 mt-5">

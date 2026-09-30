@@ -178,11 +178,11 @@ export default function SRTTeaser() {
         <div className="sonic-section-header">
           <div className="flex items-center justify-center gap-3 mb-2">
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-            <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Field-Force ERP</span>
+            <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{st.eyebrow}</span>
           </div>
           <h2 className="sonic-h2 text-white">
-            SRT: Sonic{' '}
-            <span className="text-primary-500">Reporting Tool</span>
+            {st.heading}{' '}
+            <span className="text-primary-500">{st['heading-accent']}</span>
           </h2>
           <p className="sonic-subline" style={{ color: 'oklch(var(--foreground-300))' }}>
             {st.sub}
@@ -262,7 +262,7 @@ export default function SRTTeaser() {
               background: 'oklch(var(--primary-500))',
               boxShadow: '0 0 40px oklch(var(--primary-500) / 0.2)',
             }}
-            aria-label="Sonic Reporting Tool — Zentrales ERP-System"
+            aria-label="Sonic Reporting Tool (SRT) — zentrale Datenbasis"
           >
             <div className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 flex items-center justify-center text-foreground-950">
               <i className="ri-cpu-line text-base sm:text-xl lg:text-2xl" />

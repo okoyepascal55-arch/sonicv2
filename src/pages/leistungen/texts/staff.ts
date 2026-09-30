@@ -17,7 +17,7 @@ export const TEXT_SECTIONS: TextSection[] = [
 
   section('leistungen_staff_challenges', 'Staff as a Service — Herausforderungen (3 Punkte)', P,
     'Die drei Herausforderungs-Punkte (Titel, Text, Hover-Frage). Überschrift und Subline liegen in „Staff as a Service — Content“.', [
-      e('c1-title', 'Punkt 1 — Titel', 'subheading', 'Spezielle Talente — schwer zu finden'),
+      e('c1-title', 'Punkt 1 — Titel', 'subheading', 'Spezialisierte Promoter:innen — schwer zu finden'),
       e('c1-desc', 'Punkt 1 — Text', 'paragraph', 'Motivierbare Fachkräfte, die Lust auf wechselnde Einsätze haben, sind über reguläres Recruiting bzw. Personaldienstleister schwer zu finden.'),
       e('c1-trigger', 'Punkt 1 — Hover-Frage', 'label', 'Auch deine Erfahrung?'),
       e('c2-title', 'Punkt 2 — Titel', 'subheading', 'Payroll? Jeden Monat ein Kraftakt'),
@@ -33,7 +33,7 @@ export const TEXT_SECTIONS: TextSection[] = [
       e('eyebrow', 'Lösung — Eyebrow', 'label', 'Die Lösung'),
       e('s1-accent', 'Karte 1 — Kategorie', 'label', 'HR & Sourcing'),
       e('s1-title', 'Karte 1 — Titel', 'subheading', 'Recruiting'),
-      e('s1-desc', 'Karte 1 — Text', 'paragraph', 'Wir finden Talente in unserem Talentpool und on top über bewährte Recruiting-Strategien – ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Passend für deine Aufgaben. Mit digitalen Arbeitsverträgen. Null Arbeit für deine HR-Abteilung.'),
+      e('s1-desc', 'Karte 1 — Text', 'paragraph', 'Wir besetzen deine Einsätze aus unserem Talentpool und on top über bewährte Recruiting-Strategien. Passend für deine Aufgaben. Mit digitalen Arbeitsverträgen. Null Arbeit für deine HR-Abteilung.'),
       e('s2-accent', 'Karte 2 — Kategorie', 'label', 'Training'),
       e('s2-title', 'Karte 2 — Titel', 'subheading', 'Onboarding & Schulungen'),
       e('s2-desc', 'Karte 2 — Text', 'paragraph', 'Aufs Onboarding sind wir spezialisiert: Wir haben (Sales-)Trainer und kennen uns sehr gut mit Produkt- und Markenschulungen aus.'),
@@ -43,6 +43,8 @@ export const TEXT_SECTIONS: TextSection[] = [
       e('s4-accent', 'Karte 4 — Kategorie', 'label', 'Transparenz'),
       e('s4-title', 'Karte 4 — Titel', 'subheading', 'Kosten-Nutzen-Transparenz'),
       e('s4-desc', 'Karte 4 — Text', 'paragraph', 'Du kannst jederzeit alle Daten, u. a. (Lohn-)Kosten, einsehen und dir reporten lassen.'),
+      e('crosslink-text', 'Querverweis unter den Karten — Text', 'paragraph', 'Wer bei uns im Einsatz ist, zeigen wir dir im Talentpool.'),
+      e('crosslink-link', 'Querverweis — Linktext (führt zum Talentpool)', 'cta', 'Zum Talentpool'),
     ]),
 
   section('leistungen_staff_process', 'Staff as a Service — Ablauf (6 Schritte)', P,
@@ -70,9 +72,9 @@ export const TEXT_SECTIONS: TextSection[] = [
     ]),
 
   section('leistungen_staff_specs', 'Staff as a Service — Einsatzbereiche (6 Karten)', P,
-    'Eyebrow, Subline und die sechs Einsatzbereich-Karten. Die Überschrift liegt in „Staff as a Service — Content“.', [
+    'Eyebrow, Subline (nennt die drei Beschäftigungsmodelle) und die sechs Einsatzbereich-Karten. Die Überschrift liegt in „Staff as a Service — Content“.', [
       e('eyebrow', 'Einsatzbereiche — Eyebrow', 'label', 'Unsere Spezialisierung'),
-      e('sub', 'Einsatzbereiche — Subline', 'paragraph', 'Per Arbeitnehmerüberlassung, befristeter Teil-/Vollzeit oder kurzfristiger Beschäftigung: 6 Einsatzbereiche — ein Ansprechpartner bei Sonic.'),
+      e('sub', 'Einsatzbereiche — Subline', 'paragraph', 'Arbeitnehmerüberlassung, befristete Teil-/Vollzeit oder kurzfristige Beschäftigung – für 6 Einsatzbereiche, mit einem Ansprechpartner bei Sonic.'),
       e('sp1-accent', 'Karte 1 — Kategorie', 'label', 'POS & Retail'),
       e('sp1-title', 'Karte 1 — Titel', 'subheading', 'Sales Activation'),
       e('sp1-desc', 'Karte 1 — Text', 'paragraph', 'Sales-Profis, geschult auf zielgerichtete Beratung. Sie vermitteln Features, stärken deine Marktposition und machen aus Interessenten Käufer.'),
@@ -91,6 +93,11 @@ export const TEXT_SECTIONS: TextSection[] = [
       e('sp6-accent', 'Karte 6 — Kategorie', 'label', 'Know-how'),
       e('sp6-title', 'Karte 6 — Titel', 'subheading', 'Training'),
       e('sp6-desc', 'Karte 6 — Text', 'paragraph', 'Regelmäßige Trainings stellen sicher, dass dein Team und die Teams deiner Handelspartner immer über aktuelles Know-how verfügen.'),
+    ]),
+
+  section('leistungen_staff_socks', 'Staff as a Service — S.O.C.K.S.', P,
+    'Einleitungszeile im S.O.C.K.S.-Block. Überschrift und Subline liegen in „Staff as a Service — Content“.', [
+      e('lead', 'Einleitungszeile', 'paragraph', 'So planen wir den Einsatz deiner Teams.'),
     ]),
 
   section('leistungen_staff_cta', 'Staff as a Service — Kontakt-Box', P,

@@ -11,7 +11,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('stat2-label', 'Hero — Kennzahl 2 — Label', 'stat-label', 'Einsätze'),
     e('stat3-val', 'Hero — Kennzahl 3 — Wert', 'stat', '>2 Mrd. €'),
     e('stat3-label', 'Hero — Kennzahl 3 — Label', 'stat-label', 'Umsatz für Kunden'),
-    e('cta-secondary', 'Hero — Button (Seite)', 'cta', 'POS Full Service'),
+    e('cta-secondary', 'Hero — Button 2 (führt zu Warehouse & Logistik)', 'cta', 'Warehouse & Logistik'),
   ]),
   section('leistungen_pos_solutions', 'POS Full Service — Lösung (4 Karten)', P, 'Die vier Lösungskarten unter „Dein POS-Komplettpaket.“', [
     e('eyebrow', 'Eyebrow', 'label', 'Die Lösung'),
@@ -40,7 +40,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('step3-desc', 'Schritt 3 — Text', 'paragraph', 'Herstellung aller POS-Materialien in der passenden Qualität: Print, Displays, Möbelsysteme.'),
     e('step3-time', 'Schritt 3 — Dauer', 'badge', '1–4 Wochen'),
     e('step4-title', 'Schritt 4 — Titel', 'subheading', 'Personal-Recruiting'),
-    e('step4-desc', 'Schritt 4 — Text', 'paragraph', 'Auswahl und Schulung qualifizierter Promoter bzw. Sales Supporter für deine Kampagne.'),
+    e('step4-desc', 'Schritt 4 — Text', 'paragraph', 'Auswahl und Schulung qualifizierter Promoter:innen für deine Kampagne.'),
     e('step4-time', 'Schritt 4 — Dauer', 'badge', '1–2 Wochen'),
     e('step5-title', 'Schritt 5 — Titel', 'subheading', 'Rollout'),
     e('step5-desc', 'Schritt 5 — Text', 'paragraph', 'Koordinierte Auslieferung und Platzierung in allen Verkaufsstellen. Logistik über unser eigenes Warehouse.'),

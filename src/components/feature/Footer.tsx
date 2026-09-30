@@ -28,8 +28,8 @@ export default function Footer() {
   const tLinkEvents   = useText('common_footer', 'footer-link-events',  'Events & Messen');
   const tLinkKreation = useText('common_footer', 'footer-link-kreation','Kreation & Content');
   const tLinkWarehouse= useText('common_footer', 'footer-link-warehouse','Warehouse & Logistik');
-  const tLinkSrt      = useText('common_footer', 'footer-link-srt',     'SRT Technologie');
-  const tLinkLvp      = useText('common_footer', 'footer-link-lvp',     'Live Video Promotion');
+  const tLinkSrt      = useText('common_footer', 'footer-link-srt',     'SRT');
+  const tLinkLvp      = useText('common_footer', 'footer-link-lvp',     'Live Video');
   const tLinkForecasting = useText('common_footer', 'footer-link-forecasting', 'Forecasting');
   const tLinkTalentpool  = useText('common_footer', 'footer-link-talentpool',  'Talentpool');
   const tColCompany   = useText('common_footer', 'footer-col-company',  '— Unternehmen');
@@ -38,6 +38,7 @@ export default function Footer() {
   const tLinkCases    = useText('common_footer', 'footer-link-cases',   'Fallbeispiele');
   const tLinkReels    = useText('common_footer', 'footer-link-reels',   'Sonic Reels');
   const tLinkRatgeber = useText('common_footer', 'footer-link-ratgeber','Ratgeber');
+  const tLinkBlog     = useText('common_footer', 'footer-link-blog',    'Blog');
   const tColLegal     = useText('common_footer', 'footer-col-legal',    '— Rechtliches');
   const tLinkKontakt  = useText('common_footer', 'footer-link-kontakt', 'Kontakt');
   const tLinkImpressum    = useText('common_footer', 'footer-link-impressum',   'Impressum');
@@ -66,6 +67,7 @@ export default function Footer() {
       { label: tLinkCases,    href: '/fallbeispiele' },
       { label: tLinkReels,    href: '/sonic-reels' },
       { label: tLinkRatgeber, href: '/ratgeber' },
+      { label: tLinkBlog,     href: '/blog' },
     ],
     legal: [
       { label: tLinkKontakt,     href: '/#contact' },

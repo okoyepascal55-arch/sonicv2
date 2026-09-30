@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const segmentierteAnsprache: RatgeberPageContent = {
   slug: 'segmentierte-ansprache',
   seoTitle: 'Segmentierte Ansprache 2026 — Zielgruppen präzise erreichen | Sonic Group',
-  metaDescription: 'Segmentierte Ansprache erreicht Zielgruppen präzise und relevant. Erfahre, wie Marken Zielgruppen segmentieren, Botschaften personalisieren und Kampagnen effizienter machen. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Segmentierte Ansprache erreicht Zielgruppen präzise und relevant. Erfahre, wie Marken Zielgruppen segmentieren, Botschaften personalisieren und Kampagnen effizienter machen. Praxiswissen aus der Markenaktivierung seit 2007.',
   h1: 'SEGMENTIERTE',
   h1Accent: 'ANSPRACHE',
   heroSubtitle: 'Wie Marken Zielgruppen präzise, relevant und effizient erreichen',

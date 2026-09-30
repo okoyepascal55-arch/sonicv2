@@ -21,10 +21,8 @@ const EXECUTIVES = [
       { label: 'Doing Things Better', text: "Nobody's perfect und auch wir m\u00fcssen unser \u201eDoing\u201c t\u00e4glich hinterfragen bzw. optimieren, damit wir in dem was wir tun, noch besser werden." },
       { label: 'Doing New Things', text: 'Der \u201eStrategic Plan\u201c wird nur dann funktionieren, wenn wir bereit sind, Gewohntes zu verlassen, neue Chancen zu erkennen und mutig neue Wege zu gehen. Innovation ist kein Zufall, sondern eine Einstellung.' },
     ] as DoingItem[],
-    metrics: [
-      { value: '200+', label: 'Promoter:innen im Einsatz' },
-      { value: 'DACH', label: 'Marktabdeckung' },
-    ],
+    // 200+ / DACH already run in the page ticker above — not repeated here (flow review 30.09.2026)
+    metrics: [] as { value: string; label: string }[],
     linkedin: 'https://www.linkedin.com/in/bj%C3%B6rn-bourdin-33100b3/',
     image: '', // fallback removed — deleted images must stay deleted
   },
@@ -134,14 +132,14 @@ function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
             ))}
           </div>
         )}
-        <div className="grid grid-cols-2 gap-3 mb-7">
+        {exec.metrics.length > 0 && <div className="grid grid-cols-2 gap-3 mb-7">
           {exec.metrics.map((m, mi) => (
             <div key={mi} className="border border-white/10 px-4 py-3.5">
               <div className="text-xl font-black text-primary-500 leading-none">{m.value}</div>
               <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5">{m.label}</div>
             </div>
           ))}
-        </div>
+        </div>}
         {exec.linkedin && <div className="flex justify-end">
           <a
             href={exec.linkedin}
@@ -242,14 +240,14 @@ function DesktopCarousel({ execs }: { execs: typeof EXECUTIVES }) {
             )}
           </div>
           {/* Metrics footer */}
-          <div className="grid grid-cols-2 flex-shrink-0" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
+          {exec.metrics.length > 0 && <div className="grid grid-cols-2 flex-shrink-0" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
             {exec.metrics.map((m, i) => (
               <div key={i} className="p-4 md:p-5" style={{ borderRight: i < exec.metrics.length - 1 ? '1px solid oklch(0.885 0.004 110)' : undefined }}>
                 <p className="text-lg md:text-2xl font-black tracking-[-0.03em] text-foreground-950">{m.value}</p>
                 <p className="text-[9px] font-black uppercase tracking-wider text-foreground-950/35 mt-0.5">{m.label}</p>
               </div>
             ))}
-          </div>
+          </div>}
         </div>
       </div>
     </div>
@@ -264,7 +262,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
   // Dashboard → Text → Stimmen & Gesichter → Tab „Über uns“
   const tCtaText   = useText('about_management_voices', 'about-voices-cta-text',   'Wie kann Sonic deine');
   const tCtaAccent = useText('about_management_voices', 'about-voices-cta-accent', 'Marke unterstützen?');
-  const tCtaSub    = useText('about_management_voices', 'about-voices-cta-sub',    'Unabhängige Agentur — über 15 Kunden — B2B, B2B2C & D2C');
+  const tCtaSub    = useText('about_management_voices', 'about-voices-cta-sub',    'Unabhängige Agentur — B2B, B2B2C & D2C');
   const cta        = useCtaText();
   const tCtaBtn    = cta.book;
 
@@ -290,10 +288,16 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
         label: pick(`doing-${i + 1}-label`, d.label),
         text: pick(`doing-${i + 1}`, d.text),
       })),
-      metrics: exec.metrics.map((m, i) => ({
-        value: pick(`metric-${i + 1}-value`, m.value),
-        label: pick(`metric-${i + 1}-label`, m.label),
-      })),
+      // A metric cleared in the dashboard is hidden (not replaced by the default).
+      metrics: exec.metrics
+        .map((m, i) => {
+          const vKey = `${exec.id}-metric-${i + 1}-value`;
+          return {
+            value: vKey in t ? (t[vKey] ?? '').trim() : m.value,
+            label: pick(`metric-${i + 1}-label`, m.label),
+          };
+        })
+        .filter((m) => m.value !== ''),
     };
   };
 
@@ -431,7 +435,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                           ))}
                         </div>
                       )}
-                      <div className="grid grid-cols-2" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
+                      {exec.metrics.length > 0 && <div className="grid grid-cols-2" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
                         {exec.metrics.map((m, mi) => (
                           <div
                             key={mi}
@@ -442,7 +446,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                             <div className="text-[10px] font-bold uppercase tracking-wider mt-1.5" style={{ color: 'oklch(0.62 0.006 260)' }}>{m.label}</div>
                           </div>
                         ))}
-                      </div>
+                      </div>}
                     </div>
                     <div className="flex items-center justify-end pt-6 mt-6" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
                       <a

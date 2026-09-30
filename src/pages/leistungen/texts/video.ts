@@ -26,7 +26,7 @@ export const TEXT_SECTIONS: TextSection[] = [
       e('a2-desc', 'Vorteil 2 — Text', 'paragraph', 'Mit Aufzeichnungen erreichst du viele potenzielle Kunden gleichzeitig, unabhängig vom Standort.'),
       e('a3-accent', 'Vorteil 3 — Kategorie', 'label', 'Analytics'),
       e('a3-title', 'Vorteil 3 — Titel', 'subheading', 'Messbare Ergebnisse'),
-      e('a3-desc', 'Vorteil 3 — Text', 'paragraph', 'Jeder Call wird getrackt: Dauer, Ergebnis, Kundenzufriedenheit. Bisher über 47.000 Live-Beratungen, Ø 5,5 Min. Gesprächsdauer, über 4.200 Stunden Beratungszeit.'),
+      e('a3-desc', 'Vorteil 3 — Text', 'paragraph', 'Jeder Call wird getrackt: Dauer, Ergebnis, Kundenzufriedenheit. Bisher über 47.000 Live-Beratungen und über 4.200 Stunden Beratungszeit.'),
       e('a4-accent', 'Vorteil 4 — Kategorie', 'label', 'Marktforschung'),
       e('a4-title', 'Vorteil 4 — Titel', 'subheading', 'Marktforschung'),
       e('a4-desc', 'Vorteil 4 — Text', 'paragraph', 'Aus den Fragen der Kunden lässt sich ableiten, wie gut die Kommunikationsstrategie (Ads, Shop) funktioniert.'),
@@ -50,6 +50,7 @@ export const TEXT_SECTIONS: TextSection[] = [
       e('stat-avg-value', 'Ergebnis 2 — Ø Gesprächsdauer in Min. (Zahl)', 'stat', '5,5'),
       e('stat-avg-label', 'Ergebnis 2 — Label', 'stat-label', 'Ø Beratungsdauer'),
       e('stat-cost-label', 'Ergebnis 3 — Label', 'stat-label', 'Geschätzte Kosten'),
+      e('estimate-note', 'Hinweis unter der Schätzung', 'caption', 'Richtwert – die finale Kalkulation machen wir im Erstgespräch.'),
       e('button', 'Kostenrechner — Button', 'cta', 'Video-Konzept anfragen'),
     ]),
 
@@ -66,7 +67,7 @@ export const TEXT_SECTIONS: TextSection[] = [
       e('row5', 'Zeile 5', 'list-item', '24/7 abrufbar (als Aufnahme)'),
       e('row6', 'Zeile 6', 'list-item', 'Während Öffnungszeiten'),
       e('row7', 'Zeile 7', 'list-item', 'Nutzbar im Retail (QR-Code)'),
-      e('row8', 'Zeile 8', 'list-item', 'Promoter nutzbar für Videos'),
+      e('row8', 'Zeile 8', 'list-item', 'Promoter:innen nutzbar für Videos'),
     ]),
 
   section('leistungen_video_cta', 'Live Video — Kontakt-Box', P,

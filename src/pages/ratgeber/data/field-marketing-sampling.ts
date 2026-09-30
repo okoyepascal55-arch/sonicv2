@@ -42,7 +42,7 @@ const fieldMarketingSampling: RatgeberPageContent = {
     },
     {
       title: 'Der Faktor Mensch — warum der Markenbotschafter über Erfolg oder Misserfolg entscheidet',
-      content: 'Im Field Marketing ist der Markenbotschafter das Gesicht der Marke. Seine kommunikative Kompetenz, sein Produktwissen und seine Fähigkeit, auf unterschiedliche Kundentypen einzugehen, bestimmen maßgeblich den Kampagnenerfolg. Entscheidend ist die Passung zwischen Markenbotschafter und Zielgruppe in Alter, Auftreten und Ansprachestil. Fundierte Produktschulungen vor Kampagnenstart — einschließlich Rollenspielen zu typischen Kundeneinwänden — sind kein nettes Extra, sondern geschäftskritischer Erfolgsfaktor. Professionelle Agenturen greifen auf einen Pool von über 5.000 geschulten Markenbotschaftern zurück und können für jede Zielgruppe und jedes Produkt das optimale Personalprofil stellen.',
+      content: 'Im Field Marketing ist der Markenbotschafter das Gesicht der Marke. Seine kommunikative Kompetenz, sein Produktwissen und seine Fähigkeit, auf unterschiedliche Kundentypen einzugehen, bestimmen maßgeblich den Kampagnenerfolg. Entscheidend ist die Passung zwischen Markenbotschafter und Zielgruppe in Alter, Auftreten und Ansprachestil. Fundierte Produktschulungen vor Kampagnenstart — einschließlich Rollenspielen zu typischen Kundeneinwänden — sind kein nettes Extra, sondern geschäftskritischer Erfolgsfaktor. Professionelle Agenturen greifen auf große Pools geschulter Markenbotschafter zurück und können für jede Zielgruppe und jedes Produkt das optimale Personalprofil stellen.',
     },
   ],
   geoContext: {
@@ -87,7 +87,7 @@ const fieldMarketingSampling: RatgeberPageContent = {
     {
       label: 'Staff as a Service — qualifiziertes Promotionspersonal',
       href: '/leistungen/staff-as-a-service',
-      description: 'Zugriff auf über 5.000 geschulte Markenbotschafter für deine Field-Marketing-Kampagne.',
+      description: 'Geschulte Promoter:innen aus unserem Talentpool – für deine Field-Marketing-Kampagne.',
     },
     {
       label: 'POS Full Service — Markenaktivierung am Point of Sale',

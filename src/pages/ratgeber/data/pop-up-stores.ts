@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const popUpStores: RatgeberPageContent = {
   slug: 'pop-up-stores',
   seoTitle: 'Pop-up Stores 2026 — temporäre Retail-Erlebnisse | Sonic Group',
-  metaDescription: 'Pop-up Stores schaffen temporäre Markenerlebnisse mit Hype-Effekt. Erfahre, wie Marken mit zeitlich begrenzten Retail-Konzepten Aufmerksamkeit erzeugen, Produkte testen und Community aufbauen. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Pop-up Stores schaffen temporäre Markenerlebnisse mit Hype-Effekt. Erfahre, wie Marken mit zeitlich begrenzten Retail-Konzepten Aufmerksamkeit erzeugen, Produkte testen und Community aufbauen. Praxiswissen aus der Markenaktivierung seit 2007.',
   h1: 'POP-UP',
   h1Accent: 'STORES',
   heroSubtitle: 'Wie temporäre Retail-Konzepte Aufmerksamkeit und Abverkauf erzeugen',

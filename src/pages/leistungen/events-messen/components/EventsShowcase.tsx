@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
-import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
 import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
-import { useCtaText } from '@/hooks/useCtaText';
 
 const TAB_INFO = [
  { id: 'events', key: 'tab1', icon: 'ri-calendar-event-line', imageIndexes: [0, 1, 2, 3] },
@@ -56,7 +54,6 @@ export default function EventsShowcase() {
  const [lightboxIndex, setLightboxIndex] = useState(0);
 
  const tx = useLeistungenText('leistungen_events_formats');
- const cta = useCtaText();
  const TABS = resolveTabs(showcaseImages, tx);
  const tab = TABS[activeTab];
 
@@ -215,17 +212,6 @@ export default function EventsShowcase() {
  </div>
  </div>
 
- {/* CTA */}
- <div className="p-6 border-t border-foreground-950/10">
- <a
- href={`mailto:${CONTACT_EMAIL}?subject=Events%20Messen%20Beratung`}
- className="flex items-center justify-center gap-2 bg-foreground-950 text-white px-5 py-3.5 font-black text-xs uppercase tracking-widest hover:bg-primary-500 hover:text-white transition-all duration-300 whitespace-nowrap cursor-pointer w-full"
- style={{ borderRadius: 0 }}
- >
- <i className="ri-calendar-line"></i>
- {cta.book}
- </a>
- </div>
  </div>
  </div>
  </div>

@@ -85,9 +85,9 @@ const liveVideoPromotion: RatgeberPageContent = {
   ],
   internalLinks: [
     {
-      label: 'Live Video Promotion — unsere LVP-Leistungsseite',
+      label: 'Live Video — unsere Leistungsseite',
       href: '/leistungen/live-video',
-      description: 'Technische Details, Studio-Infrastruktur und Referenzprojekte zu Sonic Groups LVP-Leistung.',
+      description: 'Technische Details, Studio-Infrastruktur und Referenzprojekte zu unserer Leistung Live Video.',
     },
     {
       label: 'Kreation & Content — Content für deine Live-Video-Kampagnen',

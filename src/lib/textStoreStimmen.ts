@@ -72,7 +72,7 @@ const EXECS: ExecDefaults[] = [
       ['Doing Things Better', 'Nobody\'s perfect und auch wir müssen unser „Doing“ täglich hinterfragen bzw. optimieren, damit wir in dem was wir tun, noch besser werden.'],
       ['Doing New Things', 'Der „Strategic Plan“ wird nur dann funktionieren, wenn wir bereit sind, Gewohntes zu verlassen, neue Chancen zu erkennen und mutig neue Wege zu gehen. Innovation ist kein Zufall, sondern eine Einstellung.'],
     ],
-    metrics: [['200+', 'Promoter:innen im Einsatz'], ['DACH', 'Marktabdeckung']],
+    metrics: [], // 200+ / DACH already in the Über-uns ticker (flow review 30.09.2026)
   },
   {
     id: 'jo',
@@ -88,7 +88,7 @@ const EXECS: ExecDefaults[] = [
       ['Doing Things Better', 'Neue Ideen allein schaffen keinen Mehrwert. Entscheidend ist, wie konsequent sie in bestehende Strukturen integriert und im Alltag wirksam werden. Neue Dinge ergeben nur dann Sinn, wenn sie funktionieren und in Prozesse überführt werden.'],
       ['Doing New Things', 'Automation durch Algorithmen, Analysen durch KI, Umsetzung über die SRT. Wir automatisieren nicht, um Menschen zu ersetzen, sondern um ihnen Zeit für Beratung und bessere Entscheidungen zu geben. Erfahrung bleibt entscheidend, um Ergebnisse einzuordnen und Fehler zu erkennen.'],
     ],
-    metrics: [['€2 Mrd.', 'Beeinflusster Umsatz'], ['Seit 2007', 'bei Sonic']],
+    metrics: [['Seit 2007', 'bei Sonic']], // €2 Mrd. repeated the ticker's >2 Mrd. € (flow review 30.09.2026)
   },
   {
     id: 'lucas',

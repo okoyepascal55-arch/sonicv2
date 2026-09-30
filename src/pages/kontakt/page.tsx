@@ -54,9 +54,9 @@ export default function KontaktPage() {
   const tCalSub = useText('kontakt_page', 'kontakt-calendly-sub', 'Kostenlos · Unverbindlich · 30 Minuten');
   const tStatResp = useText('kontakt_page', 'kontakt-stat-response', '30 Min.');
   const tStatRespLabel = useText('kontakt_page', 'kontakt-stat-response-label', 'Erstgespräch');
-  const tStatExp = useText('kontakt_page', 'kontakt-stat-experience', '20+');
-  const tStatExpLabel = useText('kontakt_page', 'kontakt-stat-experience-label', 'Jahre Erfahrung');
-  const tStatClients = useText('kontakt_page', 'kontakt-stat-clients', '100+');
+  const tStatExp = useText('kontakt_page', 'kontakt-stat-experience', '2007');
+  const tStatExpLabel = useText('kontakt_page', 'kontakt-stat-experience-label', 'Gegründet');
+  const tStatClients = useText('kontakt_page', 'kontakt-stat-clients', '>15');
   const tStatClientsLabel = useText('kontakt_page', 'kontakt-stat-clients-label', 'Kunden');
   const tOfficeH3 = useText('kontakt_page', 'kontakt-office-h3', 'Sonic Group');
   const tOfficeAddr = useText('kontakt_page', 'kontakt-office-address', 'Campus Fichtenhain 46\n47807 Krefeld, Deutschland');

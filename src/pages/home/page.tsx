@@ -8,6 +8,9 @@ import ServicesGrid from './components/ServicesGrid';
 import SRTTeaser from './components/SRTTeaser';
 import ClientProof from '../../components/feature/ClientProof';
 import Contact from './components/Contact';
+import LeistungenKontakt from '../../components/feature/LeistungenKontakt';
+import { useCtaText } from '@/hooks/useCtaText';
+import { useReviewText } from '@/hooks/useReviewText';
 import WoodenDivider from '../../components/base/WoodenDivider';
 import { StackedSectionReveal } from '../../components/feature/SectionReveal';
 
@@ -30,6 +33,10 @@ export default function HomePage() {
       'about': { '@id': 'https://sonic-group.de/#organization' },
     },
   });
+
+  const cta = useCtaText();
+  // Dashboard → Text → Home → „Abschluss-CTA (Home)“
+  const closing = useReviewText('home_closing_cta');
 
   const totalSections = 8;
 
@@ -109,6 +116,16 @@ export default function HomePage() {
       <section id="contact" className="relative z-10 bg-white">
         <Contact />
       </section>
+
+      {/* Closing CTA — same lean box as the Leistungen pages (cta.book + cta.microline) */}
+      <LeistungenKontakt
+        headline={closing['headline']}
+        headlineAccent={closing['headline-accent']}
+        subline={closing['subline']}
+        ctaLabel={cta.book}
+        ctaMailSubject="Anfrage über die Startseite"
+        ctaIcon="ri-calendar-line"
+      />
     </div>
   );
 }

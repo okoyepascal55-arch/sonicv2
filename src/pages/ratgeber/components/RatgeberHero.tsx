@@ -10,8 +10,8 @@ interface RatgeberHeroProps {
 export default function RatgeberHero({ h1, h1Accent, heroSubtitle, heroSummary, heroImageUrl, category }: RatgeberHeroProps) {
   const stats = [
     { value: '60 %', label: 'Kaufentscheidungen am POS' },
-    { value: '19+', label: 'Jahre Markenaktivierung' },
-    { value: '1.800+', label: 'Menschen im Talentpool' },
+    { value: '2007', label: 'Gegründet' },
+    { value: '>1.800', label: 'Menschen im Talentpool' },
     { value: 'DACH', label: 'Region' },
   ];
 

@@ -3,7 +3,7 @@ import type { RatgeberPageContent } from './types';
 const instoreMedia: RatgeberPageContent = {
   slug: 'instore-media',
   seoTitle: 'Instore Media 2026 — Retail Media & Digital Signage | Sonic Group',
-  metaDescription: 'Instore Media und Digital Signage erreichen Kunden genau am Point of Sale. Erfahre, wie Marken mit Screens, Instore-Radio und Retail Media die Kaufentscheidung am Regal beeinflussen. Praxiswissen aus 19 Jahren Markenaktivierung.',
+  metaDescription: 'Instore Media und Digital Signage erreichen Kunden genau am Point of Sale. Erfahre, wie Marken mit Screens, Instore-Radio und Retail Media die Kaufentscheidung am Regal beeinflussen. Praxiswissen aus der Markenaktivierung seit 2007.',
   h1: 'INSTORE',
   h1Accent: 'MEDIA',
   heroSubtitle: 'Wie Digital Signage und Retail Media die Kaufentscheidung am POS lenken',

@@ -3,10 +3,10 @@ import { useReviewText } from '@/hooks/useReviewText';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 const STATS = [
-  { value: '1.000', prefix: '>', label: 'Stores betreut', sublabel: 'In Sonic-Projekten', icon: 'ri-store-2-line', sys: 'STORES', trend: 'Seit 2007' },
-  { value: '2 Mrd.', prefix: '>', label: 'Umsatz generiert', sublabel: 'In Euro', icon: 'ri-money-euro-circle-line', sys: 'REVENUE.TOTAL', trend: 'In EUR' },
-  { value: '1,3 Mio.', prefix: '>', label: 'Einsätze getrackt', sublabel: 'Durch das SRT', icon: 'ri-map-pin-2-line', sys: 'DEPLOYMENTS', trend: 'Seit 2008' },
-  { value: '1.800', prefix: '>', label: 'Menschen im Talentpool', sublabel: 'Aktiv', icon: 'ri-team-line', sys: 'TALENT.POOL', trend: 'DACH-weit' },
+  { value: '1.000', prefix: '>', label: 'Stores betreut', sublabel: 'In Sonic-Projekten', icon: 'ri-store-2-line', sys: 'Stores', trend: 'Im Handel' },
+  { value: '2 Mrd.', prefix: '>', label: 'Umsatz generiert', sublabel: 'In Euro', icon: 'ri-money-euro-circle-line', sys: 'Umsatz', trend: 'Für unsere Kunden' },
+  { value: '1,3 Mio.', prefix: '>', label: 'Einsätze getrackt', sublabel: 'Durch das SRT', icon: 'ri-map-pin-2-line', sys: 'Einsätze', trend: 'Im SRT' },
+  { value: '1.800', prefix: '>', label: 'Menschen im Talentpool', sublabel: 'Aktiv', icon: 'ri-team-line', sys: 'Talentpool', trend: 'DACH-weit' },
 ];
 
 export default function Proof() {
@@ -15,14 +15,17 @@ export default function Proof() {
   const tHeading = useText('srt_proof', 'srt-proof-heading', 'Die Bilanz spricht für sich.');
   // Dashboard → Text → SRT → „SRT — In Zahlen: Kennzahlen“
   const pt = useReviewText('srt_proof_stats');
+  // Dashboard → Text → SRT → „SRT — Kurzlabels (Problem & Zahlen)“
+  const lb = useReviewText('srt_short_labels');
   const stats = STATS.map((st, i) => ({
     ...st,
     value: pt[`s${i + 1}-value`] ?? st.value,
     label: pt[`s${i + 1}-label`] ?? st.label,
     sublabel: pt[`s${i + 1}-sublabel`] ?? st.sublabel,
     trend: pt[`s${i + 1}-trend`] ?? st.trend,
+    sys: lb[`proof-${i + 1}`] || st.sys,
   }));
-  const tSub     = useText('srt_proof', 'srt-proof-sub',     'Kennzahlen aus Sonic-Projekten — seit 2007 im Handel, seit 2008 im SRT erfasst.');
+  const tSub     = useText('srt_proof', 'srt-proof-sub',     'Kennzahlen aus unseren Projekten – im Handel erreicht, im SRT erfasst.');
 
   return (
     <section id="srt-proof" className="sonic-section-md px-4 md:px-6 bg-foreground-950">

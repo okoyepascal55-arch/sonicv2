@@ -83,7 +83,7 @@ export default function Contact() {
                 #Doing things
               </p>
 
-              {/* ── DarumSonic integration: Daten Liefern Fakten (single row) ── */}
+              {/* ── Value 01 Daten (single row) ── */}
               <div className="mt-5 pt-5 border-t border-white/8">
                 <div className="flex items-baseline gap-x-3 gap-y-1.5 flex-wrap">
                   <span
@@ -104,6 +104,39 @@ export default function Contact() {
                   </span>
                   <span className="flex flex-wrap gap-1.5">
                     {tagsOf(dc['c1-tags']).map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[9px] font-bold text-primary-500/50 border border-primary-500/20 px-2 py-0.5"
+                        style={{ borderRadius: 0 }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </span>
+                </div>
+              </div>
+
+              {/* ── Value 02 Mensch (single row — directly after 01, so the Karriere box no longer splits the values) ── */}
+              <div className="mt-5 pt-5 border-t border-white/8">
+                <div className="flex items-baseline gap-x-3 gap-y-1.5 flex-wrap">
+                  <span
+                    className="text-[20px] font-black leading-none flex-shrink-0 transition-colors duration-500"
+                    style={{ color: 'rgba(200,212,0,0.12)' }}
+                    aria-hidden="true"
+                  >
+                    02
+                  </span>
+                  <p className="text-[10px] font-black uppercase tracking-[0.28em] text-primary-500 whitespace-nowrap">
+                    {dc['c2-eyebrow']}
+                  </p>
+                  <p className="text-sm font-black text-white whitespace-nowrap">
+                    {dc['c2-title']}
+                  </p>
+                  <span className="text-xs text-foreground-500 leading-relaxed">
+                    {dc['c2-text']}
+                  </span>
+                  <span className="flex flex-wrap gap-1.5">
+                    {tagsOf(dc['c2-tags']).map((tag) => (
                       <span
                         key={tag}
                         className="text-[9px] font-bold text-primary-500/50 border border-primary-500/20 px-2 py-0.5"
@@ -191,38 +224,6 @@ export default function Contact() {
                 ))}
               </div>
 
-              {/* ── DarumSonic integration: Mensch. Der Unterschied. (single row) ── */}
-              <div className="mt-5 pt-5 border-t border-foreground-100">
-                <div className="flex items-baseline gap-x-3 gap-y-1.5 flex-wrap">
-                  <span
-                    className="text-[20px] font-black leading-none flex-shrink-0 transition-colors duration-500"
-                    style={{ color: 'rgba(200,212,0,0.18)' }}
-                    aria-hidden="true"
-                  >
-                    02
-                  </span>
-                  <p className="text-[10px] font-black uppercase tracking-[0.28em] text-primary-500 whitespace-nowrap">
-                    {dc['c2-eyebrow']}
-                  </p>
-                  <p className="text-sm font-black text-foreground-950 whitespace-nowrap">
-                    {dc['c2-title']}
-                  </p>
-                  <span className="text-xs text-foreground-400 leading-relaxed">
-                    {dc['c2-text']}
-                  </span>
-                  <span className="flex flex-wrap gap-1.5">
-                    {tagsOf(dc['c2-tags']).map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[9px] font-bold text-primary-500/50 border border-primary-500/20 px-2 py-0.5"
-                        style={{ borderRadius: 0 }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </span>
-                </div>
-              </div>
             </div>
 
             {/* CTA */}

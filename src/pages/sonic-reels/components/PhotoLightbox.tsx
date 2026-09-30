@@ -55,7 +55,7 @@ export default function PhotoLightbox({
 
       {/* Film edges */}
       <div className="absolute top-0 inset-x-0"><FilmEdge accent={accent} code={eraLabel} /></div>
-      <div className="absolute bottom-0 inset-x-0"><FilmEdge accent={accent} code="5219" /></div>
+      <div className="absolute bottom-0 inset-x-0"><FilmEdge accent={accent} code="SONIC REELS" /></div>
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-6xl px-6 md:px-20 py-20" onClick={(e) => e.stopPropagation()}>

@@ -12,7 +12,8 @@ import Carousel3DReference from './components/Carousel3DReference';
 import KreationShowcaseReference from './components/KreationShowcaseReference';
 import KreationHeroStats from './components/KreationHeroStats';
 import KreationWavyDivider from './components/KreationWavyDivider';
-import { CONTACT_EMAIL } from '@/lib/contact';
+import { Link } from 'react-router-dom';
+import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
@@ -111,14 +112,12 @@ export default function KreationContentPage() {
             <h1 className="sonic-h1 text-foreground-950 mb-6">{tHeroH1Line1}<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{tHeroH1Accent}</span></h1>
             <p className="text-base md:text-lg text-foreground-950/50 max-w-2xl mx-auto leading-relaxed mb-10">{tHeroSubtitle}</p>
             <KreationHeroStats />
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"><a href={`mailto:${CONTACT_EMAIL}?subject=Kreation%20Content%20Beratung`} className="inline-flex items-center gap-2 bg-foreground-950 text-background-50 px-7 py-3 font-black text-sm hover:bg-primary-500 hover:text-foreground-950 transition-colors"><i className="ri-calendar-line" />{cta.book}</a><a href="/leistungen/live-video" className="inline-flex items-center gap-2 border-2 border-foreground-950/12 text-foreground-950/60 px-6 py-3 font-black text-sm hover:border-foreground-950 hover:text-foreground-950 transition-colors">{tStats['btn-secondary']}<i className="ri-arrow-right-line" /></a></div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"><button type="button" onClick={() => openCalendly()} className="inline-flex items-center gap-2 bg-foreground-950 text-background-50 px-7 py-3 font-black text-sm hover:bg-primary-500 hover:text-foreground-950 transition-colors cursor-pointer"><i className="ri-calendar-line" />{cta.book}</button><Link to="/leistungen/live-video" className="inline-flex items-center gap-2 border-2 border-foreground-950/12 text-foreground-950/60 px-6 py-3 font-black text-sm hover:border-foreground-950 hover:text-foreground-950 transition-colors">{tStats['btn-secondary']}<i className="ri-arrow-right-line" /></Link></div>
           </div>
           <Carousel3DReference />
         </section>
       </div>
       <KreationWavyDivider />
-      <section className="sonic-section-md bg-white px-6 border-b border-foreground-950/8"><div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3">{resolvedDisciplines.map(item => <div key={item.label} className="flex flex-col items-center gap-4 py-4"><img src={item.src} alt={item.label} className="w-16 h-16 object-cover" loading="lazy" /><span className="text-xs font-black text-foreground-950/55 uppercase tracking-widest">{item.label}</span><div className="h-px w-6 bg-primary-500" /></div>)}</div></section>
-      <WoodenDivider />
       <ChallengeSection id="herausforderung" headline={tChallengeHeading} subline={tChallengeSub} challenges={CHALLENGES} />
       <KreationWavyDivider darkBackground />
       <section id="loesung" className="sonic-section-md px-4 md:px-6 relative overflow-hidden bg-white">
@@ -129,11 +128,12 @@ export default function KreationContentPage() {
         </div>
       </section>
       <WoodenDivider />
+      <section className="sonic-section-md bg-white px-6 border-b border-foreground-950/8"><div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3">{resolvedDisciplines.map(item => <div key={item.label} className="flex flex-col items-center gap-4 py-4"><img src={item.src} alt={item.label} className="w-16 h-16 object-cover" loading="lazy" /><span className="text-xs font-black text-foreground-950/55 uppercase tracking-widest">{item.label}</span><div className="h-px w-6 bg-primary-500" /></div>)}</div></section>
       <KreationShowcaseReference />
       <WoodenDivider />
       <KreationFaces />
       <WoodenDivider />
-      <section id="referenzen"><ClientProof /></section>
+      <section id="referenzen"><ClientProof only={['nexaro', 'vorwerk']} /></section>
       <div id="kontakt"><LeistungenKontakt headline={tCta['headline']} headlineAccent={tCta['headline-accent']} subline={tCta['subline']} ctaLabel={cta.book} ctaMailSubject="Kreation Content Beratung" ctaIcon="ri-calendar-line" /></div>
       <ScrollToTopButton />
     </div>
