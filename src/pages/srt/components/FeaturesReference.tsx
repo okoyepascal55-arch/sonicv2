@@ -123,7 +123,7 @@ export default function FeaturesReference() {
   };
 
   return (
-    <section className="px-4 md:px-6 py-16 md:py-24 bg-white relative overflow-hidden" id="features">
+    <section className="px-4 md:px-6 py-10 md:py-14 bg-white relative overflow-hidden" id="features">
       {/* Subtle light grid */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '56px 56px' }}

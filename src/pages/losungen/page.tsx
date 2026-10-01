@@ -158,7 +158,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
       <div className="bg-white">
 
         {/* ── Herausforderungen ── */}
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
           <div className="mb-8 md:mb-12">
             <p className="text-xs md:text-sm font-black text-foreground-400 uppercase tracking-widest mb-2">Deine Herausforderung</p>
             <h3 className="sonic-h3 text-foreground-950">
@@ -183,7 +183,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
         <WoodenDivider />
 
         {/* ── Deliverables ── */}
-        <div className="py-12 md:py-20 bg-white">
+        <div className="py-10 md:py-14 bg-white">
           <div className="max-w-7xl mx-auto px-4 md:px-8 mb-8 md:mb-12">
             <p className="text-xs md:text-sm font-black text-foreground-400 uppercase tracking-widest mb-2">
               {sKey === 'omnichannel' ? 'Unsere Antwort' : 'Unser Komplettpaket'}
@@ -292,7 +292,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
         <WoodenDivider />
 
         {/* ── Process Steps ── */}
-        <div className="bg-white py-12 md:py-20 px-4 md:px-8">
+        <div className="bg-white py-10 md:py-14 px-4 md:px-8">
           <div className="sonic-container">
             <div className="mb-8 md:mb-14">
               <p className="text-xs md:text-sm font-black text-foreground-400 uppercase tracking-widest mb-2">Der Weg zum Erfolg</p>

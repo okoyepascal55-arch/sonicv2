@@ -55,7 +55,7 @@ export default function FunctionalityOverview() {
   const mod = modules[active];
 
   return (
-    <section id="funktionsumfang" className="bg-white relative overflow-hidden py-20 md:py-28">
+    <section id="funktionsumfang" className="bg-white relative overflow-hidden py-10 md:py-14">
       {/* data grid */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.035]"
         style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.4) 1px, transparent 1px)', backgroundSize: '52px 52px' }}

@@ -180,7 +180,7 @@ export default function KontaktPage() {
       <WoodenDivider />
 
       {/* ── Main Content: Form + Map ───────────────────────────────────── */}
-      <section className="bg-white py-16 md:py-[112px] px-5 md:px-10" style={{ background: 'oklch(var(--background-50))' }}>
+      <section className="bg-white py-10 md:py-14 px-5 md:px-10" style={{ background: 'oklch(var(--background-50))' }}>
         <div className="sonic-container">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] bg-white" style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
             {/* Contact Form */}

@@ -59,7 +59,7 @@ export default function CaseShowcase() {
   const displayed = [...images, ...images];
 
   return (
-    <section className="bg-white py-14 md:py-20 overflow-hidden">
+    <section className="bg-white py-10 md:py-14 overflow-hidden">
       <div className="sonic-container px-5 md:px-10 mb-8">
         <div className="flex items-center gap-3 mb-3">
           <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />

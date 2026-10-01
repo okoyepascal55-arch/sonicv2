@@ -27,7 +27,7 @@ export default function LeistungenKontakt({
   const cta = useCtaText();
   return (
     <>
-      <section id="kontakt" className="bg-white py-20 px-6">
+      <section id="kontakt" className="bg-white py-10 md:py-14 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="border border-foreground-950/[0.1] bg-white p-10 md:p-14 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 blur-3xl pointer-events-none translate-x-16 -translate-y-16" />

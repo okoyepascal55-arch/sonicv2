@@ -126,7 +126,7 @@ export default function KarrierepfadeSection() {
   const headingAccent = sentences.length > 1 ? sentences.slice(1).join(' ') : '';
 
   return (
-    <section id="pfade" className="bg-white py-20 md:py-[104px] px-5 md:px-10">
+    <section id="pfade" className="bg-white py-10 md:py-14 px-5 md:px-10">
       <div className="sonic-container">
         {/*
           absoluteNumeral — removes "01" from flex flow so heading/sub align

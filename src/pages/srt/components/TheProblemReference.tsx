@@ -41,7 +41,7 @@ export default function TheProblemReference() {
   const tCta     = useText('srt_problem', 'srt-problem-cta-btn', 'Lösung ansehen');
 
   return (
-    <section id="das-problem" className="relative overflow-hidden bg-foreground-950 py-20 md:py-28 px-4 md:px-6">
+    <section id="das-problem" className="relative overflow-hidden bg-foreground-950 py-10 md:py-14 px-4 md:px-6">
       {/* Grid */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{ backgroundImage: 'linear-gradient(oklch(0.81 0.19 115) 1px, transparent 1px), linear-gradient(90deg, oklch(0.81 0.19 115) 1px, transparent 1px)', backgroundSize: '52px 52px' }}

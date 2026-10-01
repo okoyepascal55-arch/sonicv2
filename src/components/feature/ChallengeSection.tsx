@@ -61,7 +61,7 @@ export default function ChallengeSection({
     <section
       ref={sectionRef}
       id={id}
-      className="relative overflow-hidden py-16 md:py-28 px-4 md:px-6"
+      className="relative overflow-hidden py-10 md:py-14 px-4 md:px-6"
       style={{ background: 'oklch(0.13 0.005 118)' }}
     >
       {/* Ambient glow */}

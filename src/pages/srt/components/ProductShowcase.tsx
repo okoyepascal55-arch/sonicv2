@@ -302,7 +302,7 @@ export default function ProductShowcase() {
   const tSub     = st.sub;
 
   return (
-    <section id="produkt" className="relative overflow-hidden bg-foreground-950 py-20 md:py-28">
+    <section id="produkt" className="relative overflow-hidden bg-foreground-950 py-10 md:py-14">
       {/* Subtle data grid */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{ backgroundImage: 'linear-gradient(oklch(0.81 0.19 115) 1px, transparent 1px), linear-gradient(90deg, oklch(0.81 0.19 115) 1px, transparent 1px)', backgroundSize: '56px 56px' }}

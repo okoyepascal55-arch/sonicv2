@@ -125,7 +125,7 @@ export default function SonicFamily() {
   const headingAccent = headingParts.length > 1 ? `& ${headingParts.slice(1).join(' & ')}` : '';
 
   return (
-    <section id="spirit" className="bg-white py-20 md:py-[104px] px-5 md:px-10">
+    <section id="spirit" className="bg-white py-10 md:py-14 px-5 md:px-10">
       <div className="sonic-container">
         <ChapterHeader
           n="04"

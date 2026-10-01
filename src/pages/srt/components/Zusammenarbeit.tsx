@@ -22,7 +22,7 @@ export default function Zusammenarbeit() {
   }));
 
   return (
-    <section id="zusammenarbeit" className="bg-white py-20 md:py-28 px-4 md:px-6 relative overflow-hidden">
+    <section id="zusammenarbeit" className="bg-white py-10 md:py-14 px-4 md:px-6 relative overflow-hidden">
       {/* Subtle background grid */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.035]"
         style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '48px 48px' }}

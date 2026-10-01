@@ -1110,18 +1110,18 @@ export default function CaseStudiesPage() {
               <img src="/images/Case Studies -Fallbsp/Garmin/Tacx_Neu.webp" alt="" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 0%, rgba(11,11,12,0.9) 100%)' }} />
-            <div className="relative z-10 sonic-container py-12 md:py-16">
-              <div className="flex items-start gap-4 mb-4">
+            <div className="relative z-10 sonic-container py-12 md:py-16 lg:grid lg:grid-cols-2 lg:gap-14 lg:items-start">
+              <div className="flex items-start gap-4 mb-4 lg:mb-0">
                 <div className="w-1.5 h-12 bg-primary-500 flex-shrink-0 mt-1" />
                 <div>
                   <p className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-2">{expanded.metric} {expanded.metricLabel}</p>
                   <h2 className="leist-h2 text-white">
                     {expanded.brand} <span className="text-primary-500">Fallstudie</span>
                   </h2>
-                  <p className="text-white/60 text-base font-bold mt-2 max-w-xl">{expanded.headline} — {expanded.subline}</p>
+                  <p className="text-white/60 text-base font-bold mt-2">{expanded.headline} — {expanded.subline}</p>
                 </div>
               </div>
-              <p className="text-white/45 text-sm leading-relaxed max-w-2xl mt-5 pl-5 border-l border-white/10">{expanded.overview}</p>
+              <p className="text-white/55 text-sm md:text-[15px] leading-relaxed mt-5 lg:mt-1 pl-5 border-l border-white/10">{expanded.overview}</p>
             </div>
           </div>
 
@@ -1155,22 +1155,22 @@ export default function CaseStudiesPage() {
                     <div
                       key={relSlug}
                       onClick={() => handleReadFullStory(relSlug)}
-                      className="flex items-start gap-5 p-6 border border-foreground-200 hover:border-primary-500 transition-all duration-300 cursor-pointer group bg-white hover:bg-background-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 overflow-hidden"
+                      className="flex flex-col sm:flex-row items-start gap-3 sm:gap-5 p-5 sm:p-6 border border-foreground-200 hover:border-primary-500 transition-all duration-300 cursor-pointer group bg-white hover:bg-background-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 overflow-hidden"
                       style={{ borderRadius: 0 }}
                       role="button"
                       tabIndex={0}
                       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleReadFullStory(relSlug); }}
                     >
-                      <div className="flex-shrink-0 w-28 text-left">
+                      <div className="flex-shrink-0 sm:w-28 text-left">
                         <div className="text-2xl font-black text-primary-500 font-sans tabular-nums leading-none">{rel.metric}</div>
                         <div className="text-[10px] text-foreground-500 font-bold mt-1.5 leading-snug">{rel.metricLabel}</div>
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 w-full">
                         <h4 className="font-black text-foreground-950 group-hover:text-primary-500 transition-colors text-base mb-1">{rel.brand}</h4>
                         <p className="text-[11px] text-foreground-500 font-bold uppercase tracking-wide mb-2">{rel.campaignType}</p>
                         <p className="text-sm text-foreground-500 leading-relaxed line-clamp-2">{rel.headline} — {rel.subline}</p>
                       </div>
-                      <div className="flex-shrink-0 self-center">
+                      <div className="hidden sm:block flex-shrink-0 self-center">
                         <i className="ri-arrow-right-line text-primary-500 text-xl group-hover:translate-x-1 transition-transform"></i>
                       </div>
                     </div>
@@ -1204,10 +1204,10 @@ export default function CaseStudiesPage() {
             </div>
 
             {/* Next story CTA */}
-            <div className="flex items-center justify-between pt-6 border-t border-foreground-100">
+            <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-6 border-t border-foreground-100">
               <button
                 onClick={handleCollapseStory}
-                className="inline-flex items-center gap-2 text-foreground-400 hover:text-foreground-950 transition-colors text-xs font-bold uppercase tracking-wide cursor-pointer"
+                className="inline-flex items-center justify-center sm:justify-start gap-2 text-foreground-400 hover:text-foreground-950 transition-colors text-xs font-bold uppercase tracking-wide cursor-pointer"
               >
                 <i className="ri-arrow-up-line" />
                 Zurück zur Übersicht
@@ -1220,7 +1220,7 @@ export default function CaseStudiesPage() {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                   setTimeout(() => setExpandedStory(caseStudies[nextIdx].slug), 500);
                 }}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-foreground-950 text-white font-black uppercase tracking-wider hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground-950 text-white font-black uppercase tracking-wider hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
               >
                 Nächste Story
                 <i className="ri-arrow-right-line" />

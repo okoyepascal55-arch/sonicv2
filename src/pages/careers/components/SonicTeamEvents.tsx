@@ -80,7 +80,7 @@ export default function SonicTeamEvents() {
   const headingAccent = headingSentences.length > 1 ? headingSentences.slice(1).join(' ') : '';
 
   return (
-    <section id="leben" className="bg-white py-20 md:py-[104px] px-5 md:px-10 overflow-hidden">
+    <section id="leben" className="bg-white py-10 md:py-14 px-5 md:px-10 overflow-hidden">
       <div className="sonic-container">
         <ChapterHeader
           n="05"

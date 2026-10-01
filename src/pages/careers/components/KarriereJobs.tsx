@@ -69,7 +69,7 @@ export default function KarriereJobs() {
   }, []);
 
   return (
-    <section id="stellenangebote" className="py-20 md:py-[104px] px-5 md:px-10" style={{ background: 'oklch(0.13 0.005 118)' }}>
+    <section id="stellenangebote" className="py-10 md:py-14 px-5 md:px-10" style={{ background: 'oklch(0.13 0.005 118)' }}>
       <div className="sonic-container">
         {/* Section 06 header — matches absoluteNumeral pattern from ChapterKit */}
         <div className="relative mb-12 md:mb-14">

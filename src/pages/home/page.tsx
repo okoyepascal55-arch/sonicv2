@@ -107,11 +107,11 @@ export default function HomePage() {
       </StackedSectionReveal>
 
       {/* Gradient bridge into Contact */}
-      <div className="w-full h-8 pointer-events-none" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #FAFDF5 100%)' }} aria-hidden="true" />
+      <div className="w-full h-3 pointer-events-none" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #FAFDF5 100%)' }} aria-hidden="true" />
 
       <WoodenDivider />
 
-      <div className="w-full h-8 pointer-events-none" style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }} aria-hidden="true" />
+      <div className="w-full h-3 pointer-events-none" style={{ background: 'linear-gradient(180deg, oklch(var(--background-100)) 0%, white 100%)' }} aria-hidden="true" />
 
       <section id="contact" className="relative z-10 bg-white">
         <Contact />

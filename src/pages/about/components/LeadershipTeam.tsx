@@ -21,7 +21,7 @@ export default function LeadershipTeam() {
   const headingAccent = words.length > 1 ? words[words.length - 1] : '';
 
   return (
-    <section className="bg-white md:overflow-hidden py-14 md:py-20">
+    <section className="bg-white md:overflow-hidden py-10 md:py-14">
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
         {/* ── HEADER ── */}
         <div className="max-w-[640px] mb-10 md:mb-14">
