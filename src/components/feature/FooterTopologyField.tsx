@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import { isMotionPaused } from '@/lib/motion';
 
 /* ═══════════════════════════════════════════════════════════════════
    FOOTER TOPOLOGY FIELD — Interactive Liquid Glass Water
@@ -919,7 +920,8 @@ export default function FooterTopologyField() {
         }
       }
 
-      if (inViewRef.current) {
+      // Keep the last frame (no motion) when the visitor paused motion / prefers reduced motion
+      if (inViewRef.current && !isMotionPaused()) {
         rafRef.current = requestAnimationFrame(draw);
       } else {
         rafRef.current = 0;
@@ -943,9 +945,14 @@ export default function FooterTopologyField() {
     );
     visObserver.observe(wrapper);
 
+    // Resume drawing when motion is switched back on
+    const onMotionChange = () => { if (inViewRef.current && !rafRef.current) rafRef.current = requestAnimationFrame(draw); };
+    window.addEventListener('motion-pref-change', onMotionChange);
+
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       visObserver.disconnect();
+      window.removeEventListener('motion-pref-change', onMotionChange);
       window.removeEventListener('resize', resize);
       window.removeEventListener('scroll', onScroll);
       wrapper.removeEventListener('mousemove', onMouseMove);

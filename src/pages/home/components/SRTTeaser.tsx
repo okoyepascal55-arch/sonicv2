@@ -1,4 +1,5 @@
 import { useReviewText } from '@/hooks/useReviewText';
+import { useMotionPaused } from '@/lib/motion';
 import { useState, useEffect, useRef, useId, useCallback, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuizModal from './QuizModal';
@@ -37,6 +38,7 @@ function shrinkToEdge(from: Point, to: Point): { x: number; y: number } {
 }
 
 export default function SRTTeaser() {
+  const motionPaused = useMotionPaused();
   const dn = useReviewText('common_srt_data_nodes');
   // Dashboard → Text → Home → „SRTTeaser — Unterzeile“
   const st = useReviewText('home_srt_teaser');
@@ -230,7 +232,7 @@ export default function SRTTeaser() {
               ))}
 
             {/* Travelling data packets */}
-            {isVisible && lines &&
+            {isVisible && !motionPaused && lines &&
               Object.entries(lines).map(([id, [start, end]], i) => (
                 <g key={id}>
                   <circle r="2" fill="oklch(var(--primary-500))" opacity="0.6">

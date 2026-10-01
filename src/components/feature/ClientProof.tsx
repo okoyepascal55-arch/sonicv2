@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { isMotionPaused } from '@/lib/motion';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useTextSection } from '@/hooks/useText';
 import { TESTIMONIAL_IDS } from '@/lib/textStoreStimmen';
@@ -288,7 +289,7 @@ export default function ClientProof({ only }: ClientProofProps = {}) {
     const SCROLL_SPEED = 0.4;
 
     const drift = () => {
-      if (!autoScrollPaused.current && el) {
+      if (!autoScrollPaused.current && !isMotionPaused() && el) {
         el.scrollLeft += SCROLL_SPEED;
         if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 2) {
           el.scrollLeft = 0;

@@ -1,4 +1,5 @@
 import { useReviewText } from '@/hooks/useReviewText';
+import { useMotionPaused } from '@/lib/motion';
 import { useState, useEffect, useRef, useId, useCallback, useLayoutEffect } from 'react';
 import { useText } from '@/hooks/useText';
 
@@ -28,6 +29,7 @@ function shrinkToEdge(from: Point, to: Point): { x: number; y: number } {
 }
 
 export default function DataPaths() {
+  const motionPaused = useMotionPaused();
   const dn = useReviewText('common_srt_data_nodes');
   const [activeNode, setActiveNode] = useState<string | null>(null);
   const [pulse, setPulse] = useState(false);
@@ -128,7 +130,7 @@ export default function DataPaths() {
                 opacity={activeNode === id ? 1 : 0.55} className="transition-all duration-300"
                 filter={activeNode === id ? `url(#dp-glow-${woodenId})` : undefined} />
             ))}
-            {pulse && lines && Object.entries(lines).map(([id, [start, end]], i) => (
+            {pulse && !motionPaused && lines && Object.entries(lines).map(([id, [start, end]], i) => (
               <g key={id}>
                 <circle r="2" fill="oklch(var(--primary-500))" opacity="0.6">
                   <animateMotion dur="2.3s" begin={`${i * 0.5}s`} repeatCount="indefinite" path={`M${start.x},${start.y} L${end.x},${end.y}`} />

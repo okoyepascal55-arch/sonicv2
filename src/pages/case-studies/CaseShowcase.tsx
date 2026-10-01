@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { isMotionPaused } from '@/lib/motion';
 
 /* Real project photos (no masks) — replace or extend via Dashboard → Medien → Fallbeispiele → „Bildershowcase“. */
 const BASE = '/images/Case Studies -Fallbsp';
@@ -33,7 +34,7 @@ export default function CaseShowcase() {
     let animId = 0;
     let paused = false;
     const drift = () => {
-      if (!paused) {
+      if (!paused && !isMotionPaused()) {
         el.scrollLeft += 0.6;
         if (el.scrollLeft >= el.scrollWidth / 2) el.scrollLeft = 0;
       }

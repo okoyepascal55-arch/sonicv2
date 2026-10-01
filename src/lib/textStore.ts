@@ -1590,8 +1590,6 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'srt_proof_stats', entryId: 's1-trend', from: 'Seit 2007', to: 'Im Handel' },
   { sectionKey: 'srt_proof_stats', entryId: 's2-trend', from: 'In EUR', to: 'Für unsere Kunden' },
   { sectionKey: 'srt_proof_stats', entryId: 's3-trend', from: 'Seit 2008', to: 'Im SRT' },
-  { sectionKey: 'losungen_page', entryId: 'lp-heroSub', from: 'Die richtige Lösung für jede Phase deiner Retail-Strategie.', to: 'Die Retail-Schallmauer: der Punkt, an dem dein Produkt im Regal steht, sich aber nicht von selbst verkauft.' },
-  { sectionKey: 'losungen_page', entryId: 'lp-introText', from: 'Ganz gleich, ob du neu im Markt bist', to: 'Lösungen beschreiben dein Ziel – die Leistungen sind die Bausteine dafür.', matchType: 'startsWith' as const },
   { sectionKey: 'losungen_page', entryId: 'lp-always1Title', from: 'Geschulte Talente', to: 'Geschulte Promoter:innen' },
   { sectionKey: 'losungen_page', entryId: 'lp-always1Desc', from: '200+ Promoter:innen im Einsatz und über 1.800', to: 'Aus unserem Talentpool, auf dein Produkt trainiert. Geschult, motiviert, zuverlässig.', matchType: 'startsWith' as const },
   { sectionKey: 'losungen_page', entryId: 'lp-always2Desc', from: '1,3 Mio.', to: 'Das SRT bündelt die Daten aller bisherigen Einsätze – für Standortwahl und Einsatzplanung.', matchType: 'contains' as const },
@@ -1626,6 +1624,9 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'losungen_omnichannel', entryId: 'module-5', from: 'Promotion & POS', to: 'POS Full Service' },
   { sectionKey: 'losungen_faq', entryId: 'faq-1-a', from: 'Seit 2007 wissen wir', to: 'Wir sind spezialisiert auf erklärungsbedürftige Produkte: Consumer Electronics, Haushalts- und Küchengeräte, Sport & Outdoor, Kosmetik, Pharma, Food & Beverages und B2B. Unsere Teams sind in allen großen Handelsketten im Einsatz – von großen Elektronikfachmärkten über Parfümerien und Drogerien bis zum Fachhandel und zu Sportfachgeschäften. Wir wissen, wie man komplexe Produkte am POS erklärt und Kaufentscheidungen erleichtert – für globale Konzerne genauso wie für neue Marken.', matchType: 'contains' as const },
   { sectionKey: 'losungen_faq', entryId: 'faq-5-a', from: 'Über 47.000 Beratungsgespräche', to: 'Kunden klicken einen Button im Shop, aktivieren den Videochat am POS-Display oder scannen einen QR-Code auf einem Aufsteller oder der Produktverpackung. Dann werden sie sofort mit einem geschulten Video-Berater verbunden. Der Berater kennt dein Produkt, trägt dein Branding und berät in Echtzeit – genau wie ein Verkäufer im Laden, nur digital. Jeder Call wird getrackt: Dauer, Ergebnis, Kundenzufriedenheit, Kaufabschluss. Du brauchst keine eigene Infrastruktur, keine eigene Technik, keine eigenen Berater. Wir liefern alles: die Technologie, die Integration in deinen Shop oder dein POS-System, die geschulten Berater und das Reporting.', matchType: 'contains' as const },
+  // ── Lösungen intro restored to the original wording (01.10.2026, owner request) ──
+  { sectionKey: 'losungen_page', entryId: 'lp-heroSub', from: 'Die Retail-Schallmauer: der Punkt, an dem dein Produkt', to: 'Die richtige Lösung für jede Phase deiner Retail-Strategie.', matchType: 'startsWith' as const },
+  { sectionKey: 'losungen_page', entryId: 'lp-introText', from: 'Lösungen beschreiben dein Ziel', to: 'Ganz gleich, ob du neu im Markt bist, deinen Absatz steigern willst oder Beratung im Laden und online verbinden möchtest: Wir haben die Menschen, die Daten und die Erfahrung.', matchType: 'startsWith' as const },
 ];
 
 /* Substring corrections applied to every text (defaults and dashboard values).

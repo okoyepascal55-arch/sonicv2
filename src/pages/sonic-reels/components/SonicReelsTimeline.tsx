@@ -37,21 +37,35 @@ function EraPillNav({
   const eraStripDragging = useRef(false);
   const eraStripDragStart = useRef({ x: 0, scroll: 0 });
 
+  // Drag-to-scroll only kicks in after a real movement (>5px), so a normal click
+  // still reaches the era button (capturing the pointer on press swallowed the click).
+  const eraStripPressed = useRef(false);
   const onEraStripPointerDown = (e: React.PointerEvent) => {
-    eraStripDragging.current = true;
+    eraStripPressed.current = true;
+    eraStripDragging.current = false;
     eraStripDragStart.current = { x: e.clientX, scroll: stripRef.current?.scrollLeft ?? 0 };
-    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
-    if (stripRef.current) stripRef.current.style.cursor = 'grabbing';
   };
   const onEraStripPointerMove = (e: React.PointerEvent) => {
-    if (!eraStripDragging.current || !stripRef.current) return;
+    if (!eraStripPressed.current || !stripRef.current) return;
     const dx = e.clientX - eraStripDragStart.current.x;
+    if (!eraStripDragging.current) {
+      if (Math.abs(dx) < 5) return;
+      eraStripDragging.current = true;
+      (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+      stripRef.current.style.cursor = 'grabbing';
+    }
     stripRef.current.scrollLeft = eraStripDragStart.current.scroll - dx;
   };
   const onEraStripPointerUp = (e: React.PointerEvent) => {
-    eraStripDragging.current = false;
+    eraStripPressed.current = false;
     if (stripRef.current) stripRef.current.style.cursor = 'grab';
-    (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
+    if ((e.currentTarget as HTMLElement).hasPointerCapture?.(e.pointerId)) {
+      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+    }
+  };
+  // A click right after a drag should not also select an era
+  const onEraStripClickCapture = (e: React.MouseEvent) => {
+    if (eraStripDragging.current) { e.stopPropagation(); e.preventDefault(); eraStripDragging.current = false; }
   };
 
   useEffect(() => {
@@ -72,6 +86,7 @@ function EraPillNav({
         onPointerMove={onEraStripPointerMove}
         onPointerUp={onEraStripPointerUp}
         onPointerLeave={onEraStripPointerUp}
+        onClickCapture={onEraStripClickCapture}
       >
         <div className="flex items-center gap-3 w-max mx-auto">
           {eras.map((era, i) => {

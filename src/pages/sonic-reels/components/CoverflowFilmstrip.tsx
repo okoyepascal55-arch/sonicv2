@@ -99,20 +99,26 @@ export default function CoverflowFilmstrip({
   }, [activeIndex, photos]);
 
   // Mouse-drag horizontal scroll
+  // Pointer is captured only once a real drag starts (>4px) — capturing on press swallowed card clicks.
   const onPointerDown = (e: React.PointerEvent) => {
     dragState.current = { startX: e.clientX, startScroll: containerRef.current?.scrollLeft ?? 0, moved: false };
     dragging.current = true;
-    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
   };
   const onPointerMove = (e: React.PointerEvent) => {
     if (!dragging.current || !containerRef.current) return;
     const dx = e.clientX - dragState.current.startX;
-    if (Math.abs(dx) > 4) dragState.current.moved = true;
+    if (!dragState.current.moved) {
+      if (Math.abs(dx) <= 4) return;
+      dragState.current.moved = true;
+      (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+    }
     containerRef.current.scrollLeft = dragState.current.startScroll - dx;
   };
   const onPointerUp = (e: React.PointerEvent) => {
     dragging.current = false;
-    (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
+    if ((e.currentTarget as HTMLElement).hasPointerCapture?.(e.pointerId)) {
+      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+    }
   };
 
   const settling = useRef(false);

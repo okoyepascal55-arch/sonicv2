@@ -515,7 +515,21 @@ export const VIRTUAL_MEDIA: MediaSections = {
   /* ── SRT: Case Studies dashboard control ── */
   case_studies_hero_images: [],
   case_studies_brand_logos: [],
-  case_studies_pictorial_showcase: [],
+  // Default = the 12 project photos shown on the page; replace/extend them in the dashboard
+  case_studies_pictorial_showcase: [
+    { url: '/images/Case Studies -Fallbsp/SEB/Shooting_Miriam.webp', caption: 'Projekt-Einblick 1' },
+    { url: '/images/Case Studies -Fallbsp/Garmin/5243_190035993.webp', caption: 'Projekt-Einblick 2' },
+    { url: '/images/Case Studies -Fallbsp/SEB/Gruppe Braun (37).webp', caption: 'Projekt-Einblick 3' },
+    { url: '/images/Case Studies -Fallbsp/Avoury/2.webp', caption: 'Projekt-Einblick 4' },
+    { url: '/images/Case Studies -Fallbsp/SEB/image10.webp', caption: 'Projekt-Einblick 5' },
+    { url: '/images/Case Studies -Fallbsp/SEB/Optigrill Tisch.webp', caption: 'Projekt-Einblick 6' },
+    { url: '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (13).webp', caption: 'Projekt-Einblick 7' },
+    { url: '/images/Case Studies -Fallbsp/Avoury/IMG-20230928-WA0000.webp', caption: 'Projekt-Einblick 8' },
+    { url: '/images/Case Studies -Fallbsp/SEB/Bild_NecafeDolceGusto.webp', caption: 'Projekt-Einblick 9' },
+    { url: '/images/Case Studies -Fallbsp/SEB/Gruppe Gold (5).webp', caption: 'Projekt-Einblick 10' },
+    { url: '/images/Case Studies -Fallbsp/SEB/image12.webp', caption: 'Projekt-Einblick 11' },
+    { url: '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (26).webp', caption: 'Projekt-Einblick 12' },
+  ],
 
   srt_product_desktop: [
     { url: '', caption: 'SRT Desktop — Dashboard Showcase', wide: true },
