@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useMotionPaused } from '@/lib/motion';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
 
@@ -27,10 +28,12 @@ export default function Carousel3DReference() {
   const tiles = useMemo(() => labelsKey.split('|').map((label, i) => ({ key: `tile-${i}`, alt: label, src: images[i]?.url ? resolveImageUrl(images[i].url) : FALLBACKS[i] })), [images, labelsKey]);
   const [angle, setAngle] = useState(0);
 
+  const motionPaused = useMotionPaused();
   useEffect(() => {
+    if (motionPaused) return;
     const timer = window.setInterval(() => setAngle(value => value + 2), 150);
     return () => window.clearInterval(timer);
-  }, []);
+  }, [motionPaused]);
 
   return (
     <>

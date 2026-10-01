@@ -102,16 +102,16 @@ function Lightbox({ items, images, startIndex, onClose }: { items: Item[]; image
         </div>
       </div>
       <div className="relative flex-1 flex items-center justify-center px-16 py-12">
-        <button onClick={() => setIndex(value => (value - 1 + items.length) % items.length)} className="absolute left-4 w-12 h-12 border border-white/[0.12] text-white/60 hover:bg-primary-500 hover:text-foreground-950 flex items-center justify-center" aria-label="Vorheriges Bild"><i className="ri-arrow-left-line text-lg" /></button>
+        <button onClick={() => setIndex(value => (value - 1 + items.length) % items.length)} className="absolute left-4 w-12 h-12 border border-white/[0.12] text-white/60 hover:bg-primary-500 hover:text-foreground-950 flex items-center justify-center" aria-label="Vorheriges Bild"><i className="ri-arrow-left-line text-lg" aria-hidden="true" /></button>
         <div className="relative max-w-[900px] max-h-[70vh] w-full flex items-center justify-center overflow-hidden">
           <img src={src} alt={item.title} className="max-w-full max-h-[70vh] object-contain" />
         </div>
-        <button onClick={() => setIndex(value => (value + 1) % items.length)} className="absolute right-4 w-12 h-12 border border-white/[0.12] text-white/60 hover:bg-primary-500 hover:text-foreground-950 flex items-center justify-center" aria-label="Nächstes Bild"><i className="ri-arrow-right-line text-lg" /></button>
+        <button onClick={() => setIndex(value => (value + 1) % items.length)} className="absolute right-4 w-12 h-12 border border-white/[0.12] text-white/60 hover:bg-primary-500 hover:text-foreground-950 flex items-center justify-center" aria-label="Nächstes Bild"><i className="ri-arrow-right-line text-lg" aria-hidden="true" /></button>
       </div>
       <div className="px-6 md:px-8 py-5 border-t border-white/[0.07] flex items-center justify-between gap-6">
         <div><h3 className="text-xl font-black uppercase text-white mb-1">{item.title}</h3><p className="text-xs text-white/40">{item.sub}</p></div>
         <div className="hidden sm:flex gap-1">
-          {items.map((entry, i) => <button key={entry.id} onClick={() => setIndex(i)} className="relative overflow-hidden" style={{ width: 52, height: 36, opacity: i === index ? 1 : 0.4, border: i === index ? '1px solid oklch(0.81 0.19 115)' : '1px solid transparent' }}><img src={images[i]} alt="" className="w-full h-full object-cover" /></button>)}
+          {items.map((entry, i) => <button key={entry.id} onClick={() => setIndex(i)} aria-label={`${entry.title} anzeigen`} aria-current={i === index ? 'true' : undefined} className="relative overflow-hidden" style={{ width: 52, height: 36, opacity: i === index ? 1 : 0.4, border: i === index ? '1px solid oklch(0.81 0.19 115)' : '1px solid transparent' }}><img src={images[i]} alt="" className="w-full h-full object-cover" /></button>)}
         </div>
       </div>
     </div>,
@@ -218,7 +218,7 @@ export default function KreationShowcaseReference() {
             <div>
               <div className="flex border border-foreground-950/[0.12] bg-white overflow-x-auto">
                 <style>{`.tab-scroll::-webkit-scrollbar{display:none}`}</style>
-                {TABS.map(tab => <button key={tab.id} type="button" onClick={() => { setActiveTab(tab.id); setLightboxIndex(null); }} className={`flex items-center gap-2 px-4 md:px-5 py-3 text-[10px] font-black uppercase tracking-[0.12em] border-r last:border-r-0 border-foreground-950/10 ${activeTab === tab.id ? 'bg-foreground-950 text-primary-500' : 'text-foreground-950/40'}`}><i className={tab.icon} /><span className="hidden sm:inline">{t[`tab-${tab.id}`]}</span></button>)}
+                {TABS.map(tab => <button key={tab.id} type="button" onClick={() => { setActiveTab(tab.id); setLightboxIndex(null); }} aria-label={t[`tab-${tab.id}`]} aria-pressed={activeTab === tab.id} className={`flex items-center gap-2 px-4 md:px-5 py-3 text-[10px] font-black uppercase tracking-[0.12em] border-r last:border-r-0 border-foreground-950/10 ${activeTab === tab.id ? 'bg-foreground-950 text-primary-500' : 'text-foreground-950/40'}`}><i className={tab.icon} aria-hidden="true" /><span className="hidden sm:inline">{t[`tab-${tab.id}`]}</span></button>)}
               </div>
               <div className="flex justify-end gap-1 mt-2">{TABS.map(tab => <div key={tab.id} className={activeTab === tab.id ? 'w-7 bg-primary-500' : 'w-2 bg-foreground-950/15'} style={{ height: 2 }} />)}</div>
             </div>

@@ -63,9 +63,9 @@ export default function VideoShowcase() {
                   onClick={() => setPlaying(true)}
                   role="button"
                   tabIndex={0}
-                  aria-label="Sonic Video abspielen"
+                  aria-label="Video abspielen: Sonic Retail Activation"
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') setPlaying(true);
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPlaying(true); }
                   }}
                 >
                   {/* Cover image */}
@@ -155,7 +155,7 @@ export default function VideoShowcase() {
                 className="text-xs font-bold text-primary-600 hover:text-primary-700 transition-colors duration-200 flex items-center gap-1.5"
               >
                 <span className="w-4 h-4 flex items-center justify-center">
-                  <i className="ri-youtube-fill text-sm" />
+                  <i className="ri-youtube-fill text-sm" aria-hidden="true" />
                 </span>
                 Auf YouTube ansehen
               </a>

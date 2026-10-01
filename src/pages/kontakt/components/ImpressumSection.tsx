@@ -8,10 +8,10 @@ export default function ImpressumSection() {
     >
       <div className="sonic-container">
         {/* Section header */}
-        <div className="flex items-center gap-3 mb-12">
+        <div className="flex items-center gap-3 mb-12 max-[360px]:flex-wrap">
           <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
           <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Rechtliches</span>
-          <h2 id="impressum-heading" className="sonic-h2 text-foreground-950 ml-4">
+          <h2 id="impressum-heading" className="sonic-h2 text-foreground-950 ml-4 max-[360px]:ml-0 max-[360px]:min-w-0 max-[360px]:break-words">
             Impressum
           </h2>
         </div>

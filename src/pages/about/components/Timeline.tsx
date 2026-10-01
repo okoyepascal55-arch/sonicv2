@@ -151,6 +151,7 @@ export default function Timeline() {
               aria-selected={activeSection === s.key}
               aria-controls={`timeline-panel-${s.key}`}
               id={`timeline-tab-${s.key}`}
+              lang="en"
               className={`flex-1 px-3 py-3.5 text-[10px] font-black uppercase tracking-[0.06em] whitespace-nowrap cursor-pointer transition-all duration-300 border-r last:border-r-0 sm:border-r border-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset ${
                 activeSection === s.key
                   ? 'bg-foreground-950 text-white'
@@ -182,7 +183,7 @@ export default function Timeline() {
           {/* Section intro */}
           <div className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
-              <div className="text-xs font-black uppercase tracking-[0.3em] text-primary-500 mb-2">{current.tag}</div>
+              <div lang="en" className="text-xs font-black uppercase tracking-[0.3em] text-primary-500 mb-2">{current.tag}</div>
               <h3 className="sonic-h2 text-foreground-950">{current.title}</h3>
             </div>
             <p className="text-sm text-black/50 max-w-md leading-relaxed">{current.subtitle}</p>

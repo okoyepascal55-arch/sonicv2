@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import { useMotionPaused } from '@/lib/motion';
 import { createPortal } from 'react-dom';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore } from '@/lib/mediaStore';
@@ -183,6 +184,7 @@ function Lightbox({ items, startIdx, onClose }: LightboxProps) {
           <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '11px' }} className="text-background-50/35">{idx + 1} / {items.length}</span>
           <button
             onClick={onClose}
+            aria-label="Schließen"
             className="w-9 h-9 flex items-center justify-center cursor-pointer transition-all duration-200 hover:bg-primary-500 hover:text-foreground-950 bg-background-50/8 border border-background-50/[0.12] text-background-50/60"
             style={{ borderRadius: 0, fontSize: '14px' }}
           >✕</button>
@@ -194,10 +196,11 @@ function Lightbox({ items, startIdx, onClose }: LightboxProps) {
         {/* Prev button */}
         <button
           onClick={() => goTo(idx - 1)}
+          aria-label="Vorheriges Projekt"
           className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center cursor-pointer transition-all duration-200 hover:bg-primary-500 hover:text-foreground-950 bg-background-50/[0.07] border border-background-50/[0.12] text-background-50/60"
           style={{ borderRadius: 0 }}
         >
-          <i className="ri-arrow-left-line text-lg" />
+          <i className="ri-arrow-left-line text-lg" aria-hidden="true" />
         </button>
 
         {/* Image */}
@@ -239,6 +242,8 @@ function Lightbox({ items, startIdx, onClose }: LightboxProps) {
                 <button
                   key={ii}
                   onClick={(e) => { e.stopPropagation(); setImgIdx(ii); }}
+                  aria-label={`Bild ${ii + 1} von ${item.images.length} anzeigen`}
+                  aria-pressed={ii === imgIdx}
                   className="cursor-pointer transition-all duration-200"
                   style={{ width: ii === imgIdx ? '20px' : '6px', height: '3px', background: ii === imgIdx ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.3)', borderRadius: 0 }}
                 />
@@ -250,10 +255,11 @@ function Lightbox({ items, startIdx, onClose }: LightboxProps) {
         {/* Next button */}
         <button
           onClick={() => goTo(idx + 1)}
+          aria-label="Nächstes Projekt"
           className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center cursor-pointer transition-all duration-200 hover:bg-primary-500 hover:text-foreground-950 bg-background-50/[0.07] border border-background-50/[0.12] text-background-50/60"
           style={{ borderRadius: 0 }}
         >
-          <i className="ri-arrow-right-line text-lg" />
+          <i className="ri-arrow-right-line text-lg" aria-hidden="true" />
         </button>
       </div>
 
@@ -269,6 +275,8 @@ function Lightbox({ items, startIdx, onClose }: LightboxProps) {
             <button
               key={it.id}
               onClick={() => goTo(i)}
+              aria-label={`${it.title} anzeigen`}
+              aria-current={i === idx ? 'true' : undefined}
               className="relative overflow-hidden cursor-pointer transition-all duration-200"
               style={{ width: '52px', height: '36px', opacity: i === idx ? 1 : 0.4, border: i === idx ? '1px solid oklch(var(--primary-500))' : '1px solid transparent', borderRadius: 0 }}
             >
@@ -301,13 +309,14 @@ function ShowcaseCard({ item, colSpan, rowSpan, onOpen, titleSize, isWide = fals
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Auto-rotate images
+  const motionPaused = useMotionPaused();
   useEffect(() => {
-    if (item.images.length <= 1) return;
+    if (item.images.length <= 1 || motionPaused) return;
     timerRef.current = setInterval(() => {
       setImgIdx(p => (p + 1) % item.images.length);
     }, 3200 + Math.random() * 800);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [item.images.length]);
+  }, [item.images.length, motionPaused]);
 
   return (
     <div
@@ -506,6 +515,8 @@ export default function KreationShowcase() {
                     <button
                       key={tab.id}
                       onClick={() => switchTab(tab.id as 'konzeption' | 'content' | 'cgi')}
+                      aria-label={tab.label}
+                      aria-pressed={isActive}
                       className={`flex items-center gap-2 px-5 py-3 text-[10px] font-black uppercase tracking-[0.12em] transition-all duration-300 cursor-pointer whitespace-nowrap border-r last:border-r-0 border-foreground-950/10 ${
                         isActive
                           ? 'bg-foreground-950 text-primary-500'
@@ -513,7 +524,7 @@ export default function KreationShowcase() {
                       }`}
                       style={{ borderRadius: 0 }}
                     >
-                      <i className={`${tab.icon} text-sm`} />
+                      <i className={`${tab.icon} text-sm`} aria-hidden="true" />
                       <span className="hidden sm:inline">{tab.label}</span>
                     </button>
                   );

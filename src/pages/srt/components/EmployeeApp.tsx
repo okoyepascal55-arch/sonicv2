@@ -249,7 +249,7 @@ export default function EmployeeApp() {
             </div>
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
               {STEPS.map((_, i) => (
-                <button key={i} onClick={() => setActiveStep(i)} className={`transition-all duration-300 cursor-pointer ${
+                <button key={i} onClick={() => setActiveStep(i)} aria-label={`Schritt ${i + 1} von ${STEPS.length} anzeigen`} aria-current={activeStep === i ? 'step' : undefined} className={`transition-all duration-300 cursor-pointer ${
                   activeStep === i ? 'w-6 h-1.5 bg-primary-500' : i < activeStep ? 'w-1.5 h-1.5 bg-primary-500/50' : 'w-1.5 h-1.5 bg-white/15'
                 }`} />
               ))}

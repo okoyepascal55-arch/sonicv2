@@ -10,13 +10,13 @@ interface BreadcrumbProps {
 
 export default function Breadcrumb({ items }: BreadcrumbProps) {
   return (
-    <nav className="bg-[#FAFDF5] backdrop-blur-sm border-b border-[#E7E4D4] py-3">
+    <nav aria-label="Brotkrumen-Navigation" className="bg-[#FAFDF5] backdrop-blur-sm border-b border-[#E7E4D4] py-3">
       <div className="max-w-7xl mx-auto px-6">
-        <ol className="flex items-center gap-2 text-sm">
+        <ol className="flex items-center gap-2 text-sm max-[360px]:flex-wrap">
           {items.map((item, index) => (
             <li key={index} className="flex items-center gap-2">
               {index > 0 && (
-                <span className="text-foreground-400">
+                <span className="text-foreground-400" aria-hidden="true">
                   <i className="ri-arrow-right-s-line"></i>
                 </span>
               )}
@@ -28,7 +28,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
                   {item.label}
                 </a>
               ) : (
-                <span className="text-foreground-950 font-semibold">{item.label}</span>
+                <span className="text-foreground-950 font-semibold" aria-current="page">{item.label}</span>
               )}
             </li>
           ))}

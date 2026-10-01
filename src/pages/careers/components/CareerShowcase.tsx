@@ -47,7 +47,7 @@ export default function CareerShowcase() {
 
   return (
     // Full-bleed: -mx-5 md:-mx-10 matches the parent section's px-5 md:px-10 padding
-    <div className="overflow-hidden -mx-5 md:-mx-10 mt-10">
+    <div className="overflow-hidden -ml-5 md:-ml-10 mt-10">
       <div
         ref={trackRef}
         className="flex gap-3"

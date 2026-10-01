@@ -271,10 +271,11 @@ export default function VideoContent() {
               ].map((param, i) => (
                 <div key={i}>
                   <div className="flex items-center justify-between mb-3">
-                    <label className="text-foreground-950/70 text-sm font-bold">{param.label}</label>
+                    <label htmlFor={`kostenrechner-slider-${i}`} className="text-foreground-950/70 text-sm font-bold">{param.label}</label>
                     <span className="text-foreground-950 font-black text-lg font-mono">{param.value}</span>
                   </div>
                   <input
+                    id={`kostenrechner-slider-${i}`}
                     type="range"
                     min={param.min}
                     max={param.max}

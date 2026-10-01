@@ -91,7 +91,7 @@ export default function ContactForm() {
               <label htmlFor="name" className="block text-[11px] font-black uppercase tracking-[0.2em] mb-2.5" style={{ color: 'oklch(var(--foreground-600))' }}>
                 Name <span className="text-primary-500">*</span>
               </label>
-              <input
+              <input autoComplete="name" aria-required="true"
                 id="name" name="name" type="text" required placeholder="Max Mustermann"
                 onFocus={() => setFocused('name')} onBlur={() => setFocused(null)}
                 className={fieldClass} style={underlineStyle('name')}
@@ -101,7 +101,7 @@ export default function ContactForm() {
               <label htmlFor="unternehmen" className="block text-[11px] font-black uppercase tracking-[0.2em] mb-2.5" style={{ color: 'oklch(var(--foreground-600))' }}>
                 Unternehmen
               </label>
-              <input
+              <input autoComplete="organization"
                 id="unternehmen" name="unternehmen" type="text" placeholder="Muster GmbH"
                 onFocus={() => setFocused('unternehmen')} onBlur={() => setFocused(null)}
                 className={fieldClass} style={underlineStyle('unternehmen')}
@@ -115,7 +115,7 @@ export default function ContactForm() {
               <label htmlFor="email" className="block text-[11px] font-black uppercase tracking-[0.2em] mb-2.5" style={{ color: 'oklch(var(--foreground-600))' }}>
                 E-Mail <span className="text-primary-500">*</span>
               </label>
-              <input
+              <input autoComplete="email" aria-required="true"
                 id="email" name="email" type="email" required placeholder="max@muster.de"
                 onFocus={() => setFocused('email')} onBlur={() => setFocused(null)}
                 className={fieldClass} style={underlineStyle('email')}
@@ -125,7 +125,7 @@ export default function ContactForm() {
               <label htmlFor="telefon" className="block text-[11px] font-black uppercase tracking-[0.2em] mb-2.5" style={{ color: 'oklch(var(--foreground-600))' }}>
                 Telefon
               </label>
-              <input
+              <input autoComplete="tel"
                 id="telefon" name="telefon" type="tel" placeholder="+49 0000 000000"
                 onFocus={() => setFocused('telefon')} onBlur={() => setFocused(null)}
                 className={fieldClass} style={underlineStyle('telefon')}
@@ -166,7 +166,7 @@ export default function ContactForm() {
             <label htmlFor="nachricht" className="block text-[11px] font-black uppercase tracking-[0.2em] mb-2.5" style={{ color: 'oklch(var(--foreground-600))' }}>
               Nachricht <span className="text-primary-500">*</span>
             </label>
-            <textarea
+            <textarea aria-required="true"
               id="nachricht" name="nachricht" required rows={4} maxLength={500}
               placeholder="Erzähl uns kurz, worum es geht…"
               onChange={(e) => setCharCount(e.target.value.length)}

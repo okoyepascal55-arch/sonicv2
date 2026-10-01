@@ -1,4 +1,5 @@
 import { useReviewText } from '@/hooks/useReviewText';
+import { useMotionPaused, isMotionPaused } from '@/lib/motion';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
@@ -143,8 +144,10 @@ export default function ServicesGrid() {
   const currentImages = currentMediaItems.map(item => item.url);
   const imageCount = currentImages.length || 1;
 
+  const motionPaused = useMotionPaused();
   const startRotation = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
+    if (isMotionPaused()) return;
     intervalRef.current = setInterval(() => {
       setFade(false);
       setTimeout(() => {
@@ -160,7 +163,7 @@ export default function ServicesGrid() {
     startRotation();
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedIndex, currentImages.length]);
+  }, [selectedIndex, currentImages.length, motionPaused]);
 
   const goTo = (idx: number) => {
     setFade(false);

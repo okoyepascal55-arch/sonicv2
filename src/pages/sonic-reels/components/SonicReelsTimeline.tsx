@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useMotionPaused } from '@/lib/motion';
 import { EraData } from '../page';
 import CoverflowFilmstrip from './CoverflowFilmstrip';
 import PhotoSelector from './PhotoSelector';
@@ -172,11 +173,12 @@ export default function SonicReelsTimeline({ eras }: { eras: EraData[] }) {
   }, [step]);
 
   // Auto-advance the reel (photos, then eras)
+  const motionPaused = useMotionPaused();
   useEffect(() => {
-    if (!playing) return;
+    if (!playing || motionPaused) return;
     const t = setInterval(() => stepRef.current(1), 2200);
     return () => clearInterval(t);
-  }, [playing]);
+  }, [playing, motionPaused]);
 
   // Keyboard navigation
   useEffect(() => {

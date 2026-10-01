@@ -139,10 +139,11 @@ export default function DataPaths() {
 
           {/* Center node — SRT */}
           <button ref={centerRef} onClick={() => setActiveNode(p => p === 'center' ? null : 'center')}
+            aria-label="Sonic Reporting Tool (SRT) — zentrale Datenbasis"
             onMouseEnter={() => setActiveNode('center')} onMouseLeave={() => setActiveNode(p => p === 'center' ? null : p)}
             className={`absolute z-20 flex flex-col items-center justify-center transition-all duration-500 cursor-pointer w-16 h-16 sm:w-24 sm:h-24 md:w-[104px] md:h-[104px] lg:w-[124px] lg:h-[124px] ${pulse ? 'opacity-100 scale-100' : 'opacity-0 scale-75'} ${activeNode === 'center' ? 'ring-2 ring-primary-500/60' : 'hover:ring-1 hover:ring-primary-500/40'}`}
             style={{ left: '50%', top: '50%', transform: 'translate(-50%,-50%)', background: 'oklch(var(--primary-500))', boxShadow: '0 0 40px oklch(var(--primary-500) / 0.2)' }}>
-            <i className="ri-cpu-line text-foreground-950 text-base sm:text-xl lg:text-2xl" />
+            <i className="ri-cpu-line text-foreground-950 text-base sm:text-xl lg:text-2xl" aria-hidden="true" />
             <span className="hidden sm:block text-foreground-950 text-xs font-bold uppercase tracking-wider text-center leading-tight mt-1">SRT</span>
           </button>
 
@@ -156,7 +157,7 @@ export default function DataPaths() {
                 className={`absolute z-20 flex flex-col items-center gap-2 cursor-pointer transition-all duration-300 -translate-x-1/2 -translate-y-1/2 ${isActive ? 'scale-110' : 'hover:scale-105'}`}
                 style={{ left: `${pos.x}px`, top: `${pos.y}px` }}>
                 <div className={`w-9 h-9 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center border transition-all duration-300 backdrop-blur-lg ${isActive ? 'bg-primary-500/15 border-primary-500/70 text-primary-500' : 'bg-white/[0.08] border-white/25 text-white/85 hover:border-white/40 hover:text-primary-500'}`}>
-                  <i className={`${node.icon} text-sm sm:text-xl lg:text-2xl`} />
+                  <i className={`${node.icon} text-sm sm:text-xl lg:text-2xl`} aria-hidden="true" />
                 </div>
                 <span className={`text-[9px] sm:text-sm font-semibold uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${isActive ? 'text-primary-500' : 'text-white/85'}`}>{node.label}</span>
               </button>

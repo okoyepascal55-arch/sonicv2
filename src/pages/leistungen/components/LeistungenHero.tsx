@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMotionPaused } from '@/lib/motion';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useCallback, useEffect, useState } from 'react';
 import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
@@ -28,10 +29,12 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
     }, 320);
   }, []);
 
+  const motionPaused = useMotionPaused();
   useEffect(() => {
+    if (motionPaused) return;
     const id = setInterval(cycleWord, 2200);
     return () => clearInterval(id);
-  }, [cycleWord]);
+  }, [cycleWord, motionPaused]);
 
   return (
     <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}>

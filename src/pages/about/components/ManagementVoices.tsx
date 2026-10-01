@@ -126,7 +126,7 @@ function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
           <div className="mb-6 space-y-3" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '16px' }}>
             {exec.doing.map((d, di) => (
               <div key={di}>
-                <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-1" style={{ color: 'oklch(0.81 0.19 115 / 0.7)' }}>{d.label}</p>
+                <p lang="en" className="text-[9px] font-black uppercase tracking-[0.2em] mb-1" style={{ color: 'oklch(0.81 0.19 115 / 0.7)' }}>{d.label}</p>
                 <p className="text-xs text-white/50 leading-relaxed">{d.text}</p>
               </div>
             ))}
@@ -221,7 +221,7 @@ function DesktopCarousel({ execs }: { execs: typeof EXECUTIVES }) {
               <div className="mb-5 space-y-4" style={{ borderTop: '1px solid oklch(0.885 0.004 110)', paddingTop: '20px' }}>
                 {exec.doing.map((d, di) => (
                   <div key={di}>
-                    <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-1.5" style={{ color: 'oklch(0.55 0.08 115)' }}>{d.label}</p>
+                    <p lang="en" className="text-[9px] font-black uppercase tracking-[0.2em] mb-1.5" style={{ color: 'oklch(0.55 0.08 115)' }}>{d.label}</p>
                     <p className="text-[13px] leading-relaxed" style={{ color: 'oklch(0.48 0.006 260)' }}>{d.text}</p>
                   </div>
                 ))}
@@ -429,7 +429,7 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
                         <div className="mb-6 space-y-4" style={{ borderTop: '1px solid oklch(0.885 0.004 110)', paddingTop: '20px' }}>
                           {exec.doing.map((d, di) => (
                             <div key={di}>
-                              <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-1.5" style={{ color: 'oklch(0.55 0.08 115)' }}>{d.label}</p>
+                              <p lang="en" className="text-[9px] font-black uppercase tracking-[0.2em] mb-1.5" style={{ color: 'oklch(0.55 0.08 115)' }}>{d.label}</p>
                               <p className="text-[13px] leading-relaxed" style={{ color: 'oklch(0.48 0.006 260)' }}>{d.text}</p>
                             </div>
                           ))}

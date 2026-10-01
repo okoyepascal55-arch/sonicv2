@@ -146,9 +146,7 @@ export default function Navigation() {
 
   return (
     <>
-      <nav
-        role="navigation"
-        aria-label="Hauptnavigation"
+      <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-[env(safe-area-inset-top,0px)] ${
           isScrolled
             ? 'bg-white/95 backdrop-blur-md'
@@ -159,7 +157,7 @@ export default function Navigation() {
           borderBottom: '1px solid rgba(0,0,0,0.05)',
         } : undefined}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
+        <nav aria-label="Hauptnavigation" className="max-w-7xl mx-auto px-4 md:px-6 py-4">
           <div className="flex items-center justify-between">
             <button onClick={() => handleNavClick('/')} className="flex items-center space-x-3 cursor-pointer flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
               <img
@@ -183,17 +181,17 @@ export default function Navigation() {
               <div className="relative" onMouseEnter={() => setActiveDropdown('leistungen')} onMouseLeave={() => setActiveDropdown(null)}>
                 <button
                   onClick={() => setActiveDropdown(activeDropdown === 'leistungen' ? null : 'leistungen')}
-                  className={`text-sm font-medium transition-colors relative group flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isLeistungenActive)}`} aria-haspopup="true" aria-expanded={activeDropdown === 'leistungen'}>
+                  className={`text-sm font-medium transition-colors relative group flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isLeistungenActive)}`} aria-haspopup="true" aria-expanded={activeDropdown === 'leistungen'} aria-controls="desktop-leistungen-menu">
                   {tNavLeistungen}
-                  <i className={`ri-arrow-down-s-line text-base transition-transform duration-300 ${activeDropdown === 'leistungen' ? 'rotate-180' : ''}`}></i>
+                  <i className={`ri-arrow-down-s-line text-base transition-transform duration-300 ${activeDropdown === 'leistungen' ? 'rotate-180' : ''}`} aria-hidden="true"></i>
                   <span className={`absolute bottom-0 left-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full ${isLeistungenActive ? 'w-full' : 'w-0'}`}></span>
                 </button>
                 {activeDropdown === 'leistungen' && (
-                  <div className="absolute top-full left-0 pt-4" style={{ zIndex: 200 }}>
+                  <div id="desktop-leistungen-menu" className="absolute top-full left-0 pt-4" style={{ zIndex: 200 }}>
                     <div className="w-80 bg-background-50 border border-background-300/60 py-3" style={{ borderRadius: 0, boxShadow: '0 8px 32px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.08)' }}>
                     <button onClick={() => handleNavClick('/leistungen')}
                       className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-sm font-black text-foreground-800 hover:text-primary-500 hover:bg-[#FAFDF5] transition-colors cursor-pointer border-b border-background-200/70 mb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1">
-                      <i className="ri-grid-line text-base text-primary-500"></i>
+                      <i className="ri-grid-line text-base text-primary-500" aria-hidden="true"></i>
                       {tNavLeistungenAll}
                     </button>
                     {leistungenCategories.map((cat, catIdx) => (
@@ -204,7 +202,7 @@ export default function Navigation() {
                         {cat.items.map((item, itemIdx) => (
                           <button key={itemIdx} onClick={() => handleNavClick(item.href)}
                             className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm font-medium text-foreground-700 hover:text-primary-500 hover:bg-[#FAFDF5] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1">
-                            <i className={`${item.icon} text-base text-primary-500/60 flex-shrink-0`}></i>
+                            <i className={`${item.icon} text-base text-primary-500/60 flex-shrink-0`} aria-hidden="true"></i>
                             <span className="truncate">{item.name}</span>
                           </button>
                         ))}
@@ -218,13 +216,13 @@ export default function Navigation() {
               <div className="relative" onMouseEnter={() => setActiveDropdown('about')} onMouseLeave={() => setActiveDropdown(null)}>
                 <button
                   onClick={() => setActiveDropdown(activeDropdown === 'about' ? null : 'about')}
-                  className={`text-sm font-medium transition-colors relative group flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isAboutActive)}`} aria-haspopup="true" aria-expanded={activeDropdown === 'about'}>
+                  className={`text-sm font-medium transition-colors relative group flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isAboutActive)}`} aria-haspopup="true" aria-expanded={activeDropdown === 'about'} aria-controls="desktop-about-menu">
                   {tNavAbout}
-                  <i className={`ri-arrow-down-s-line text-base transition-transform duration-300 ${activeDropdown === 'about' ? 'rotate-180' : ''}`}></i>
+                  <i className={`ri-arrow-down-s-line text-base transition-transform duration-300 ${activeDropdown === 'about' ? 'rotate-180' : ''}`} aria-hidden="true"></i>
                   <span className={`absolute bottom-0 left-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full ${isAboutActive ? 'w-full' : 'w-0'}`}></span>
                 </button>
                 {activeDropdown === 'about' && (
-                  <div className="absolute top-full left-0 pt-4" style={{ zIndex: 200 }}>
+                  <div id="desktop-about-menu" className="absolute top-full left-0 pt-4" style={{ zIndex: 200 }}>
                     <div className="w-52 bg-background-50 border border-background-300/60 py-2" style={{ borderRadius: 0, boxShadow: '0 8px 32px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.08)' }}>
                     <div className="px-4 pt-2 pb-1">
                       <span className="text-xs font-black tracking-[0.2em] uppercase text-primary-500">{tNavAboutCat}</span>
@@ -232,7 +230,7 @@ export default function Navigation() {
                     {aboutDropdownItems.map((item, index) => (
                       <button key={index} onClick={() => handleNavClick(item.href)}
                         className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-sm font-medium text-foreground-700 hover:text-primary-500 hover:bg-[#FAFDF5] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1">
-                        <i className={`${item.icon} text-base text-primary-500/60 flex-shrink-0`}></i>
+                        <i className={`${item.icon} text-base text-primary-500/60 flex-shrink-0`} aria-hidden="true"></i>
                         <span className="truncate">{item.name}</span>
                       </button>
                     ))}
@@ -273,11 +271,11 @@ export default function Navigation() {
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu-panel"
             >
-              <i className={`${isMobileMenuOpen ? 'ri-close-line' : 'ri-menu-line'} text-2xl`}></i>
+              <i className={`${isMobileMenuOpen ? 'ri-close-line' : 'ri-menu-line'} text-2xl`} aria-hidden="true"></i>
             </button>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
       {isMobileMenuOpen && (
         <div
@@ -292,6 +290,8 @@ export default function Navigation() {
       <div
         ref={menuRef}
         id="mobile-menu-panel"
+        aria-hidden={!isMobileMenuOpen}
+        inert={!isMobileMenuOpen}
         className={`fixed top-0 right-0 bottom-0 z-[60] lg:hidden w-[70vw] max-w-sm bg-white shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
@@ -307,7 +307,7 @@ export default function Navigation() {
             className="w-11 h-11 flex items-center justify-center text-foreground-500 hover:bg-[#FAFDF5] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             aria-label="Menü schließen"
           >
-            <i className="ri-close-line text-xl"></i>
+            <i className="ri-close-line text-xl" aria-hidden="true"></i>
           </button>
         </div>
 
@@ -315,13 +315,13 @@ export default function Navigation() {
           <div className="px-4 space-y-1">
             <button onClick={() => handleNavClick('/')}
               className={`flex items-center gap-3 w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isPageActive('/', true) ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}>
-              <i className={`ri-home-line text-base w-5 text-center ${isPageActive('/', true) ? 'text-primary-500' : 'text-foreground-500'}`}></i>
+              <i className={`ri-home-line text-base w-5 text-center ${isPageActive('/', true) ? 'text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
               {tNavHome}
             </button>
 
             <button onClick={handleLosungenClick}
               className={`flex items-center gap-3 w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isPageActive('/losungen') ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}>
-              <i className={`ri-lightbulb-line text-base w-5 text-center ${isPageActive('/losungen') ? 'text-primary-500' : 'text-foreground-500'}`}></i>
+              <i className={`ri-lightbulb-line text-base w-5 text-center ${isPageActive('/losungen') ? 'text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
               {tNavLoesungen}
             </button>
           </div>
@@ -336,17 +336,17 @@ export default function Navigation() {
               aria-controls="mobile-leistungen-submenu"
             >
               <span className="flex items-center gap-3">
-                <i className={`ri-briefcase-line text-base w-5 text-center ${isLeistungenActive ? 'text-primary-500' : 'text-foreground-500'}`}></i>
+                <i className={`ri-briefcase-line text-base w-5 text-center ${isLeistungenActive ? 'text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
                 {tNavLeistungen}
               </span>
-              <i className={`ri-arrow-down-s-line text-base transition-transform duration-300 ${mobileExpanded === 'leistungen' ? 'rotate-180 text-primary-500' : 'text-foreground-500'}`}></i>
+              <i className={`ri-arrow-down-s-line text-base transition-transform duration-300 ${mobileExpanded === 'leistungen' ? 'rotate-180 text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
             </button>
 
             {mobileExpanded === 'leistungen' && (
               <div id="mobile-leistungen-submenu" className="mt-1 ml-8 space-y-0.5 pb-2">
                 <button onClick={() => handleNavClick('/leistungen')}
                   className="flex items-center gap-3 w-full text-left px-3 py-2.5 text-sm font-black text-foreground-700 hover:text-primary-500 hover:bg-primary-500/8 transition-colors cursor-pointer border-b border-background-200/70 mb-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
-                  <i className="ri-grid-line text-sm text-primary-500"></i>
+                  <i className="ri-grid-line text-sm text-primary-500" aria-hidden="true"></i>
                   {tNavLeistungenAll}
                 </button>
                 {leistungenCategories.map((cat, catIdx) => (
@@ -355,7 +355,7 @@ export default function Navigation() {
                     {cat.items.map((item, itemIdx) => (
                       <button key={itemIdx} onClick={() => handleNavClick(item.href)}
                         className="flex items-center gap-3 w-full text-left px-3 py-2 text-sm text-foreground-600 hover:text-primary-500 hover:bg-primary-500/8 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
-                        <i className={`${item.icon} text-sm text-primary-500/50`}></i>
+                        <i className={`${item.icon} text-sm text-primary-500/50`} aria-hidden="true"></i>
                         {item.name}
                       </button>
                     ))}
@@ -373,10 +373,10 @@ export default function Navigation() {
               aria-controls="mobile-about-submenu"
             >
               <span className="flex items-center gap-3">
-                <i className={`ri-information-line text-base w-5 text-center ${isAboutActive ? 'text-primary-500' : 'text-foreground-500'}`}></i>
+                <i className={`ri-information-line text-base w-5 text-center ${isAboutActive ? 'text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
                 {tNavAbout}
               </span>
-              <i className={`ri-arrow-down-s-line text-base transition-transform duration-300 ${mobileExpanded === 'about' ? 'rotate-180 text-primary-500' : 'text-foreground-500'}`}></i>
+              <i className={`ri-arrow-down-s-line text-base transition-transform duration-300 ${mobileExpanded === 'about' ? 'rotate-180 text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
             </button>
             {mobileExpanded === 'about' && (
               <div id="mobile-about-submenu" className="mt-1 ml-8 space-y-0.5 pb-2">
@@ -384,7 +384,7 @@ export default function Navigation() {
                 {aboutDropdownItems.map((item, index) => (
                   <button key={index} onClick={() => handleNavClick(item.href)}
                     className="flex items-center gap-3 w-full text-left px-3 py-2.5 text-sm text-foreground-600 hover:text-primary-500 hover:bg-primary-500/8 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
-                    <i className={`${item.icon} text-sm text-primary-500/50`}></i>
+                    <i className={`${item.icon} text-sm text-primary-500/50`} aria-hidden="true"></i>
                     {item.name}
                   </button>
                 ))}
@@ -397,25 +397,25 @@ export default function Navigation() {
           <div className="px-4 space-y-1">
             <button onClick={() => handleNavClick('/fallbeispiele')}
               className={`flex items-center gap-3 w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isPageActive('/fallbeispiele') ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}>
-              <i className={`ri-file-chart-line text-base w-5 text-center ${isPageActive('/fallbeispiele') ? 'text-primary-500' : 'text-foreground-500'}`}></i>
+              <i className={`ri-file-chart-line text-base w-5 text-center ${isPageActive('/fallbeispiele') ? 'text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
               {tNavCases}
             </button>
 
             <button onClick={() => handleNavClick('/blog')}
               className={`flex items-center gap-3 w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isPageActive('/blog') ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}>
-              <i className={`ri-article-line text-base w-5 text-center ${isPageActive('/blog') ? 'text-primary-500' : 'text-foreground-500'}`}></i>
+              <i className={`ri-article-line text-base w-5 text-center ${isPageActive('/blog') ? 'text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
               {tNavBlog}
             </button>
 
             <button onClick={() => handleNavClick('/karriere')}
               className={`flex items-center gap-3 w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isPageActive('/karriere') ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}>
-              <i className={`ri-user-add-line text-base w-5 text-center ${isPageActive('/karriere') ? 'text-primary-500' : 'text-foreground-500'}`}></i>
+              <i className={`ri-user-add-line text-base w-5 text-center ${isPageActive('/karriere') ? 'text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
               {tNavCareers}
             </button>
 
             <button onClick={() => handleNavClick('/kontakt')}
               className="flex items-center gap-3 w-full px-3 py-3 text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
-              <i className="ri-mail-send-line text-base w-5 text-center text-foreground-500"></i>
+              <i className="ri-mail-send-line text-base w-5 text-center text-foreground-500" aria-hidden="true"></i>
               {tNavContact}
             </button>
           </div>
@@ -426,12 +426,12 @@ export default function Navigation() {
             onClick={() => handleNavClick('/kontakt')}
             className="flex items-center justify-center gap-2 w-full py-3.5 bg-primary-500 text-foreground-950 text-sm font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 cursor-pointer"
             style={{ borderRadius: 0 }}>
-            <i className="ri-mail-line"></i>
+            <i className="ri-mail-line" aria-hidden="true"></i>
             {tNavContact}
           </button>
           <div className="flex items-center justify-center gap-4 mt-3">
             <a href="tel:+4921514794440" className="flex items-center gap-1.5 text-xs text-foreground-500 hover:text-primary-500 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-sm">
-              <i className="ri-phone-line"></i>
+              <i className="ri-phone-line" aria-hidden="true"></i>
               {tNavPhone}
             </a>
           </div>

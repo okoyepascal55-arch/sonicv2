@@ -101,9 +101,9 @@ export default function ScrollCardSection({
             e.currentTarget.style.borderColor = resolvedNavBorder;
             e.currentTarget.style.color = resolvedNavText;
           }}
-          aria-label="links"
+          aria-label="Nach links scrollen"
         >
-          <i className="ri-arrow-left-s-line text-xl" />
+          <i className="ri-arrow-left-s-line text-xl" aria-hidden="true" />
         </button>
         <button
           onClick={() => scroll('right')}
@@ -117,14 +117,17 @@ export default function ScrollCardSection({
             e.currentTarget.style.borderColor = resolvedNavBorder;
             e.currentTarget.style.color = resolvedNavText;
           }}
-          aria-label="rechts"
+          aria-label="Nach rechts scrollen"
         >
-          <i className="ri-arrow-right-s-line text-xl" />
+          <i className="ri-arrow-right-s-line text-xl" aria-hidden="true" />
         </button>
       </div>
 
       <div
         ref={scrollRef}
+        tabIndex={0}
+        role="region"
+        aria-label={`${label.replace(/\s*[—–-]\s*scrollen\s*$/i, '')} – seitlich scrollbar`}
         className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
@@ -292,7 +295,8 @@ export default function ScrollCardSection({
               padding: 0,
               transition: 'all 0.3s ease',
             }}
-            aria-label={`${i + 1}`}
+            aria-label={`Karte ${i + 1} von ${data.length} anzeigen`}
+            aria-current={i === (activeIdx ?? 0) ? 'true' : undefined}
           />
         ))}
       </div>

@@ -44,7 +44,7 @@ export default function LeistungenPage() {
 
   return (
     <div className="bg-white min-h-[100dvh] overflow-x-hidden">
-      <main id="main-content">
+      <div>
         <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
         <div ref={heroRef}><LeistungenHero onScrollToGrid={scrollToGrid} /></div>
 
@@ -66,7 +66,7 @@ export default function LeistungenPage() {
         <div id="kundenstimmen" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #FAFDF5 50%, #ffffff 100%)' }}>
           <StackedSectionReveal index={3} totalSections={4}><ClientProof /></StackedSectionReveal>
         </div>
-      </main>
+      </div>
 
       <WoodenDivider />
       <LeistungenKontakt

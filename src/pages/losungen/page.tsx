@@ -116,9 +116,10 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
             </button>
             <button
               onClick={onClose}
+              aria-label="Schließen"
               className="w-10 h-10 flex items-center justify-center bg-white/[0.06] border border-white/[0.10] hover:bg-white/[0.12] hover:scale-110 transition-all cursor-pointer"
             >
-              <i className="ri-close-line text-xl text-white"></i>
+              <i className="ri-close-line text-xl text-white" aria-hidden="true"></i>
             </button>
           </div>
 
@@ -275,6 +276,8 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
                       <button
                         key={idx}
                         onClick={() => handleDeliverableChange(idx)}
+                        aria-label={`Leistung ${idx + 1} von ${overriddenDeliverables.length} anzeigen`}
+                        aria-current={activeDeliverable === idx ? 'true' : undefined}
                         className={`h-1 transition-all duration-300 cursor-pointer ${
                           activeDeliverable === idx ? 'bg-primary-500 w-6' : 'bg-white/[0.12] w-3 hover:bg-primary-500/60'
                         }`}
@@ -462,8 +465,8 @@ function ContactForm() {
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Vorname *</label>
-          <input
+          <label htmlFor="losungen-kontakt-vorname" className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Vorname *</label>
+          <input autoComplete="given-name" aria-required="true" id="losungen-kontakt-vorname"
             type="text"
             name="vorname"
             required
@@ -472,8 +475,8 @@ function ContactForm() {
           />
         </div>
         <div>
-          <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Nachname *</label>
-          <input
+          <label htmlFor="losungen-kontakt-nachname" className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Nachname *</label>
+          <input autoComplete="family-name" aria-required="true" id="losungen-kontakt-nachname"
             type="text"
             name="nachname"
             required
@@ -484,8 +487,8 @@ function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">E-Mail *</label>
-        <input
+        <label htmlFor="losungen-kontakt-email" className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">E-Mail *</label>
+        <input autoComplete="email" aria-required="true" id="losungen-kontakt-email"
           type="email"
           name="email"
           required
@@ -495,8 +498,8 @@ function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Unternehmen</label>
-        <input
+        <label htmlFor="losungen-kontakt-unternehmen" className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Unternehmen</label>
+        <input autoComplete="organization" id="losungen-kontakt-unternehmen"
           type="text"
           name="unternehmen"
           placeholder="Dein Unternehmen GmbH"
@@ -505,8 +508,8 @@ function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Telefon</label>
-        <input
+        <label htmlFor="losungen-kontakt-telefon" className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Telefon</label>
+        <input autoComplete="tel" id="losungen-kontakt-telefon"
           type="tel"
           name="telefon"
           placeholder="+49 2151 479 444 0"
@@ -515,8 +518,8 @@ function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Ich interessiere mich für</label>
-        <select
+        <label htmlFor="losungen-kontakt-interesse" className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">Ich interessiere mich für</label>
+        <select id="losungen-kontakt-interesse"
           name="interesse"
           className="w-full px-4 py-3 border-2 border-foreground-200 text-sm text-foreground-950 focus:outline-none focus:border-primary-500 transition-colors bg-white cursor-pointer"
         >
@@ -529,13 +532,13 @@ function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">
+        <label htmlFor="losungen-kontakt-nachricht" className="block text-xs font-black text-foreground-500 uppercase tracking-widest mb-1.5">
           Deine Nachricht *
           <span className={`ml-2 font-normal normal-case ${charCount > 480 ? 'text-red-400' : 'text-foreground-400'}`}>
             {charCount}/500
           </span>
         </label>
-        <textarea
+        <textarea aria-required="true" id="losungen-kontakt-nachricht"
           name="nachricht"
           required
           rows={4}
@@ -1168,8 +1171,8 @@ export default function LosungenPage() {
                       {/* Name row */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
-                          <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Vorname <span className="text-white/60">*</span></label>
-                          <input
+                          <label htmlFor="losungen-anfrage-vorname" className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Vorname <span className="text-white/60">*</span></label>
+                          <input autoComplete="given-name" aria-required="true" id="losungen-anfrage-vorname"
                             type="text"
                             name="vorname"
                             required
@@ -1180,8 +1183,8 @@ export default function LosungenPage() {
                           />
                         </div>
                         <div>
-                          <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Nachname <span className="text-white/60">*</span></label>
-                          <input
+                          <label htmlFor="losungen-anfrage-nachname" className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Nachname <span className="text-white/60">*</span></label>
+                          <input autoComplete="family-name" aria-required="true" id="losungen-anfrage-nachname"
                             type="text"
                             name="nachname"
                             required
@@ -1196,8 +1199,8 @@ export default function LosungenPage() {
                       {/* Email + Phone */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
-                          <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">E-Mail <span className="text-white/60">*</span></label>
-                          <input
+                          <label htmlFor="losungen-anfrage-email" className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">E-Mail <span className="text-white/60">*</span></label>
+                          <input autoComplete="email" aria-required="true" id="losungen-anfrage-email"
                             type="email"
                             name="email"
                             required
@@ -1208,8 +1211,8 @@ export default function LosungenPage() {
                           />
                         </div>
                         <div>
-                          <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Telefon</label>
-                          <input
+                          <label htmlFor="losungen-anfrage-phone" className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Telefon</label>
+                          <input autoComplete="tel" id="losungen-anfrage-phone"
                             type="tel"
                             name="phone"
                             value={surveyPhone}
@@ -1223,8 +1226,8 @@ export default function LosungenPage() {
                       {/* Company + Role */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
-                          <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Unternehmen</label>
-                          <input
+                          <label htmlFor="losungen-anfrage-unternehmen" className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Unternehmen</label>
+                          <input autoComplete="organization" id="losungen-anfrage-unternehmen"
                             type="text"
                             name="unternehmen"
                             value={surveyCompany}
@@ -1234,8 +1237,8 @@ export default function LosungenPage() {
                           />
                         </div>
                         <div>
-                          <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Position</label>
-                          <input
+                          <label htmlFor="losungen-anfrage-position" className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Position</label>
+                          <input autoComplete="organization-title" id="losungen-anfrage-position"
                             type="text"
                             name="position"
                             value={surveyRole}
@@ -1248,8 +1251,8 @@ export default function LosungenPage() {
 
                       {/* Budget */}
                       <div>
-                        <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Budget-Range (optional)</label>
-                        <select
+                        <label htmlFor="losungen-anfrage-budget" className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">Budget-Range (optional)</label>
+                        <select id="losungen-anfrage-budget"
                           name="budget"
                           value={surveyBudget}
                           onChange={(e) => setSurveyBudget(e.target.value)}
@@ -1267,13 +1270,14 @@ export default function LosungenPage() {
 
                       {/* Notes */}
                       <div>
-                        <label className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">
+                        <label htmlFor="losungen-anfrage-notizen" className="block text-xs font-black text-primary-500 uppercase tracking-widest mb-1.5">
                           Zusätzliche Anmerkungen
                           <span className={`ml-2 font-normal normal-case ${surveyNotes.length > 400 ? 'text-red-400' : 'text-white/40'}`}>
                             {surveyNotes.length}/500
                           </span>
                         </label>
                         <textarea
+                          id="losungen-anfrage-notizen"
                           name="notizen"
                           rows={3}
                           maxLength={500}

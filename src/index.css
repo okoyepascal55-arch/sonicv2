@@ -1359,3 +1359,29 @@ html {
   letter-spacing: -0.04em;
   text-transform: uppercase;
 }
+
+
+/* ── Accessibility (01.10.2026) ── no visual change for mouse/touch users ── */
+/* Stop moving content when the visitor asks for it (system setting or the keyboard switch) */
+/* Animations jump to their end state (entry animations stay visible, loops stop) */
+html.motion-paused *, html.motion-paused *::before, html.motion-paused *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  animation-delay: 0s !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* Visible keyboard focus (WCAG 2.4.7): dark inner ring + lime outer ring works on light and dark backgrounds.
+   :focus-visible only — never shown on mouse clicks. */
+a:focus-visible, button:focus-visible, [role="button"]:focus-visible, [tabindex]:not([tabindex="-1"]):focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 3px solid #c8d400 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px #0b0b0c !important;
+}

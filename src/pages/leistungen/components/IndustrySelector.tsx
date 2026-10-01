@@ -303,7 +303,7 @@ export default function IndustrySelector() {
                       >
                         Name *
                       </label>
-                      <input
+                      <input autoComplete="name" aria-required="true"
                         id="survey-name"
                         type="text"
                         name="name"
@@ -321,7 +321,7 @@ export default function IndustrySelector() {
                       >
                         Unternehmen
                       </label>
-                      <input
+                      <input autoComplete="organization"
                         id="survey-company"
                         type="text"
                         name="company_display"
@@ -338,7 +338,7 @@ export default function IndustrySelector() {
                       >
                         E-Mail *
                       </label>
-                      <input
+                      <input autoComplete="email" aria-required="true"
                         id="survey-email"
                         type="email"
                         name="email"

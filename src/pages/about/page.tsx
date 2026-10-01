@@ -56,7 +56,7 @@ export default function AboutPage() {
 
   return (
     <div className="bg-white">
-      <main id="main-content">
+      <div>
       {/* ── IN-PAGE NAV — desktop float ── */}
       <LeistungenPageNav items={ABOUT_NAV_ITEMS} heroRef={heroRef} />
 
@@ -130,7 +130,7 @@ export default function AboutPage() {
       </div>
 
       <WoodenDivider />
-      </main>
+      </div>
     </div>
   );
 }

@@ -67,32 +67,32 @@ function SRTPricingForm() {
       {/* Row 1: Name + Email */}
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
-          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Name *</label>
-          <input aria-label="Name" type="text" placeholder="Vorname Nachname" value={name} onChange={e => setName(e.target.value)} className={inputCls} />
+          <label htmlFor="srt-demo-name" className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Name *</label>
+          <input autoComplete="name" aria-required="true" id="srt-demo-name" type="text" placeholder="Vorname Nachname" value={name} onChange={e => setName(e.target.value)} className={inputCls} />
         </div>
         <div>
-          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">E-Mail *</label>
-          <input aria-label="E-Mail" type="email" placeholder="name@unternehmen.de" value={email} onChange={e => setEmail(e.target.value)} className={inputCls} />
+          <label htmlFor="srt-demo-email" className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">E-Mail *</label>
+          <input autoComplete="email" aria-required="true" id="srt-demo-email" type="email" placeholder="name@unternehmen.de" value={email} onChange={e => setEmail(e.target.value)} className={inputCls} />
         </div>
       </div>
 
       {/* Row 2: Company + Phone */}
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
-          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Unternehmen</label>
-          <input aria-label="Unternehmen" type="text" placeholder="Marke / Unternehmen" value={company} onChange={e => setCompany(e.target.value)} className={inputCls} />
+          <label htmlFor="srt-demo-unternehmen" className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Unternehmen</label>
+          <input autoComplete="organization" id="srt-demo-unternehmen" type="text" placeholder="Marke / Unternehmen" value={company} onChange={e => setCompany(e.target.value)} className={inputCls} />
         </div>
         <div>
-          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Telefon</label>
-          <input aria-label="Telefon" type="tel" placeholder="+49 ..." value={phone} onChange={e => setPhone(e.target.value)} className={inputCls} />
+          <label htmlFor="srt-demo-telefon" className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Telefon</label>
+          <input autoComplete="tel" id="srt-demo-telefon" type="tel" placeholder="+49 ..." value={phone} onChange={e => setPhone(e.target.value)} className={inputCls} />
         </div>
       </div>
 
       {/* Row 3: Role + Team size */}
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
-          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Deine Funktion</label>
-          <select aria-label="Funktion" value={role} onChange={e => setRole(e.target.value)} className={selectCls}>
+          <label htmlFor="srt-demo-funktion" className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Deine Funktion</label>
+          <select id="srt-demo-funktion" value={role} onChange={e => setRole(e.target.value)} className={selectCls}>
             <option value="">Bitte wählen …</option>
             <option value="Marketing / Brand">Marketing / Brand Management</option>
             <option value="Vertrieb / Sales">Vertrieb / Sales</option>
@@ -103,8 +103,8 @@ function SRTPricingForm() {
           </select>
         </div>
         <div>
-          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Außendienst-Teamgröße</label>
-          <select aria-label="Teamgröße" value={teamSize} onChange={e => setTeamSize(e.target.value)} className={selectCls}>
+          <label htmlFor="srt-demo-teamgroesse" className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Außendienst-Teamgröße</label>
+          <select id="srt-demo-teamgroesse" value={teamSize} onChange={e => setTeamSize(e.target.value)} className={selectCls}>
             <option value="">Bitte wählen …</option>
             <option value="1–10">1–10 Mitarbeiter</option>
             <option value="11–50">11–50 Mitarbeiter</option>
@@ -118,8 +118,8 @@ function SRTPricingForm() {
       {/* Row 4: Use case + Timeline */}
       <div className="grid sm:grid-cols-2 gap-3">
         <div>
-          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Hauptinteresse</label>
-          <select aria-label="Hauptinteresse" value={useCase} onChange={e => setUseCase(e.target.value)} className={selectCls}>
+          <label htmlFor="srt-demo-hauptinteresse" className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Hauptinteresse</label>
+          <select id="srt-demo-hauptinteresse" value={useCase} onChange={e => setUseCase(e.target.value)} className={selectCls}>
             <option value="">Bitte wählen …</option>
             <option value="Einsatzplanung">Einsatz- & Aufgabenplanung</option>
             <option value="Live-Reporting">Live-Reporting & Dashboards</option>
@@ -131,8 +131,8 @@ function SRTPricingForm() {
           </select>
         </div>
         <div>
-          <label className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Gewünschter Start</label>
-          <select aria-label="Start-Zeitpunkt" value={timeline} onChange={e => setTimeline(e.target.value)} className={selectCls}>
+          <label htmlFor="srt-demo-start-zeitpunkt" className="text-[9px] font-black uppercase tracking-widest text-white/40 block mb-1">Gewünschter Start</label>
+          <select id="srt-demo-start-zeitpunkt" value={timeline} onChange={e => setTimeline(e.target.value)} className={selectCls}>
             <option value="">Bitte wählen …</option>
             <option value="Sofort">Sofort / so schnell wie möglich</option>
             <option value="1-3 Monate">In 1–3 Monaten</option>

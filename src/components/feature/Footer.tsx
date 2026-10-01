@@ -176,7 +176,7 @@ export default function Footer() {
                 className="flex items-center gap-2.5 min-h-[44px] md:min-h-0 py-1 text-background-50/60 hover:text-primary-500 transition-colors text-sm md:text-[12px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
               >
                 <span className="w-6 h-6 md:w-4 md:h-4 flex items-center justify-center flex-shrink-0">
-                  <i className="ri-phone-line text-primary-500 text-sm"></i>
+                  <i className="ri-phone-line text-primary-500 text-sm" aria-hidden="true"></i>
                 </span>
                 {tPhone}
               </a>
@@ -185,7 +185,7 @@ export default function Footer() {
                 className="flex items-center gap-2.5 min-h-[44px] md:min-h-0 py-1 text-background-50/60 hover:text-primary-500 transition-colors text-sm md:text-[12px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
               >
                 <span className="w-6 h-6 md:w-4 md:h-4 flex items-center justify-center flex-shrink-0">
-                  <i className="ri-mail-line text-primary-500 text-sm"></i>
+                  <i className="ri-mail-line text-primary-500 text-sm" aria-hidden="true"></i>
                 </span>
                 {tEmail}
               </a>
@@ -194,24 +194,24 @@ export default function Footer() {
             <div className="flex items-center gap-1.5 mb-3">
               <a href="https://www.linkedin.com/company/sonic-sales-support/" target="_blank" rel="nofollow noopener noreferrer"
                 className="w-11 h-11 md:w-7 md:h-7 bg-foreground-800 border border-foreground-700 flex items-center justify-center hover:bg-foreground-700 hover:border-foreground-600 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
-                aria-label="Sonic Group on LinkedIn">
-                <i className="ri-linkedin-fill text-background-50/70 text-xs"></i>
+                aria-label="Sonic Group auf LinkedIn (öffnet in neuem Tab)">
+                <i className="ri-linkedin-fill text-background-50/70 text-xs" aria-hidden="true"></i>
               </a>
               <a href="https://www.instagram.com/sonic_group/" target="_blank" rel="nofollow noopener noreferrer"
                 className="w-11 h-11 md:w-7 md:h-7 bg-foreground-800 border border-foreground-700 flex items-center justify-center hover:bg-foreground-700 hover:border-foreground-600 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
-                aria-label="Sonic Group on Instagram">
-                <i className="ri-instagram-line text-background-50/70 text-xs"></i>
+                aria-label="Sonic Group auf Instagram (öffnet in neuem Tab)">
+                <i className="ri-instagram-line text-background-50/70 text-xs" aria-hidden="true"></i>
               </a>
               <a href="https://www.facebook.com/SonicSalesSupport/" target="_blank" rel="nofollow noopener noreferrer"
                 className="w-11 h-11 md:w-7 md:h-7 bg-foreground-800 border border-foreground-700 flex items-center justify-center hover:bg-foreground-700 hover:border-foreground-600 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
-                aria-label="Sonic Group on Facebook">
-                <i className="ri-facebook-fill text-background-50/70 text-xs"></i>
+                aria-label="Sonic Group auf Facebook (öffnet in neuem Tab)">
+                <i className="ri-facebook-fill text-background-50/70 text-xs" aria-hidden="true"></i>
               </a>
             </div>
 
             {tSalesBadge.trim() && <div className="flex items-center gap-2 mb-2 md:mb-0">
               <div className="w-6 h-6 bg-primary-500/10 border border-primary-500/25 flex items-center justify-center flex-shrink-0">
-                <i className="ri-trophy-line text-primary-500 text-xs"></i>
+                <i className="ri-trophy-line text-primary-500 text-xs" aria-hidden="true"></i>
               </div>
               <p className="text-sm md:text-[12px] text-background-50/60">{tSalesBadge}</p>
             </div>}
@@ -259,13 +259,13 @@ export default function Footer() {
             <div className="flex items-center gap-4 md:gap-5">
               {tIso.trim() && <span className="flex items-center gap-1 text-xs text-background-50/40">
                 <span className="w-4 h-4 flex items-center justify-center">
-                  <i className="ri-shield-check-line text-background-50/40 text-xs"></i>
+                  <i className="ri-shield-check-line text-background-50/40 text-xs" aria-hidden="true"></i>
                 </span>
                 {tIso}
               </span>}
               <span className="flex items-center gap-1 text-xs text-background-50/40">
                 <span className="w-4 h-4 flex items-center justify-center">
-                  <i className="ri-lock-line text-background-50/40 text-xs"></i>
+                  <i className="ri-lock-line text-background-50/40 text-xs" aria-hidden="true"></i>
                 </span>
                 {tGdpr}
               </span>

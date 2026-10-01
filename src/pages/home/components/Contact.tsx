@@ -75,7 +75,7 @@ export default function Contact() {
               </p>
 
               {/* Tags — single inline line */}
-              <p className="text-[13px] font-bold text-white/60 mt-5">
+              <p lang="en" className="text-[13px] font-bold text-white/60 mt-5">
                 #Doing new things
                 <span className="mx-2 text-primary-500/40" aria-hidden="true">·</span>
                 #Doing things better

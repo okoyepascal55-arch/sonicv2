@@ -136,7 +136,7 @@ export default function EventsContent({ afterSolution }: EventsContentProps = {}
                 {steps.map((step, i) => (
                   <button key={i} onClick={() => setActiveStep(i)} className="flex flex-col items-center cursor-pointer group">
                     <div className={`w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950' : activeStep > i ? 'bg-primary-500/15 border-primary-500/40 text-primary-500' : 'bg-foreground-950 border-white/20 text-white/40 group-hover:border-white/40 group-hover:text-white/60'}`}>
-                      <i className={`${step.icon} text-xl`} />
+                      <i className={`${step.icon} text-xl`} aria-hidden="true" />
                     </div>
                     <span className={`mt-3 text-xs font-black uppercase tracking-widest transition-all duration-300 ${activeStep === i ? 'text-primary-500' : 'text-white/30'}`}>{step.num}</span>
                     <span className={`text-[11px] font-bold text-center leading-tight mt-0.5 transition-all duration-300 ${activeStep === i ? 'text-white/70' : 'text-white/25'}`}>{step.title}</span>
@@ -149,7 +149,7 @@ export default function EventsContent({ afterSolution }: EventsContentProps = {}
               {steps.map((step, i) => (
                 <button key={i} onClick={() => setActiveStep(i)}
                   className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2.5 border transition-all duration-300 cursor-pointer ${activeStep === i ? 'bg-primary-500 border-primary-500 text-foreground-950' : 'bg-foreground-950 border-white/20 text-white/50'}`}>
-                  <i className={`${step.icon} text-base`} />
+                  <i className={`${step.icon} text-base`} aria-hidden="true" />
                   <span className="text-[9px] font-black uppercase tracking-wide whitespace-nowrap">{step.num}</span>
                 </button>
               ))}
@@ -173,7 +173,7 @@ export default function EventsContent({ afterSolution }: EventsContentProps = {}
                 </div>
                 <div className="absolute bottom-4 left-4 flex gap-1.5">
                   {steps.map((_, i) => (
-                    <button key={i} onClick={() => setActiveStep(i)} className={`h-1 transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-primary-500' : 'w-3 bg-white/40'}`} />
+                    <button key={i} onClick={() => setActiveStep(i)} aria-label={`Schritt ${i + 1} von ${steps.length} anzeigen`} aria-current={activeStep === i ? 'step' : undefined} className={`h-1 transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-primary-500' : 'w-3 bg-white/40'}`} />
                   ))}
                 </div>
               </div>
@@ -191,22 +191,24 @@ export default function EventsContent({ afterSolution }: EventsContentProps = {}
                 <div className="mt-8 flex items-center gap-4">
                   <button
                     onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
+                    aria-label="Vorheriger Schritt"
                     disabled={activeStep === 0}
                     className="w-11 h-11 border border-white/15 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all disabled:opacity-15 disabled:cursor-not-allowed cursor-pointer"
                   >
-                    <i className="ri-arrow-left-line text-lg" />
+                    <i className="ri-arrow-left-line text-lg" aria-hidden="true" />
                   </button>
                   <div className="flex gap-2">
                     {steps.map((_, i) => (
-                      <button key={i} onClick={() => setActiveStep(i)} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-primary-500' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
+                      <button key={i} onClick={() => setActiveStep(i)} aria-label={`Schritt ${i + 1} von ${steps.length} anzeigen`} aria-current={activeStep === i ? 'step' : undefined} className={`h-2 rounded-none transition-all duration-300 cursor-pointer ${activeStep === i ? 'w-8 bg-primary-500' : 'w-2 bg-white/20 hover:bg-white/35'}`} />
                     ))}
                   </div>
                   <button
                     onClick={() => setActiveStep(Math.min(steps.length - 1, activeStep + 1))}
+                    aria-label="Nächster Schritt"
                     disabled={activeStep === steps.length - 1}
                     className="w-11 h-11 border border-white/15 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all disabled:opacity-15 disabled:cursor-not-allowed cursor-pointer"
                   >
-                    <i className="ri-arrow-right-line text-lg" />
+                    <i className="ri-arrow-right-line text-lg" aria-hidden="true" />
                   </button>
                   <span className="text-white/25 text-xs font-bold ml-2">{activeStep + 1} / {steps.length}</span>
                 </div>

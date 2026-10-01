@@ -301,8 +301,8 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                 />
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">Name</label>
-                    <input
+                    <label htmlFor="quiz-name" className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">Name</label>
+                    <input autoComplete="name" id="quiz-name"
                       type="text"
                       name="name"
                       value={contactData.name}
@@ -313,8 +313,8 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">Unternehmen</label>
-                    <input
+                    <label htmlFor="quiz-company" className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">Unternehmen</label>
+                    <input autoComplete="organization" id="quiz-company"
                       type="text"
                       name="company"
                       value={contactData.company}
@@ -326,10 +326,10 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">E-Mail-Adresse <span className="text-red-500">*</span></label>
+                  <label htmlFor="quiz-email" className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">E-Mail-Adresse <span className="text-red-500">*</span></label>
                   <div className="relative">
                     <i className="ri-mail-line absolute left-3 top-1/2 -translate-y-1/2 text-foreground-400 text-sm" />
-                    <input
+                    <input autoComplete="email" id="quiz-email"
                       type="email"
                       name="email"
                       value={contactData.email}
@@ -341,10 +341,10 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">Telefonnummer <span className="text-foreground-400 font-normal">(Optional)</span></label>
+                  <label htmlFor="quiz-phone" className="block text-xs font-black text-foreground-950 uppercase tracking-widest mb-2">Telefonnummer <span className="text-foreground-400 font-normal">(Optional)</span></label>
                   <div className="relative">
                     <i className="ri-phone-line absolute left-3 top-1/2 -translate-y-1/2 text-foreground-400 text-sm" />
-                    <input
+                    <input autoComplete="tel" id="quiz-phone"
                       type="tel"
                       name="phone"
                       value={contactData.phone}

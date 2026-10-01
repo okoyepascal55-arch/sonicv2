@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useMotionPaused } from '@/lib/motion';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
@@ -40,10 +41,11 @@ export default function FunctionalityOverview() {
     timer.current = setInterval(() => setActive(p => (p + 1) % MODULES.length), INTERVAL);
   };
 
+  const motionPaused = useMotionPaused();
   useEffect(() => {
-    if (!paused) startTimer();
+    if (!paused && !motionPaused) startTimer();
     return () => { if (timer.current) clearInterval(timer.current); };
-  }, [paused]);
+  }, [paused, motionPaused]);
 
   const select = (i: number) => {
     if (timer.current) clearInterval(timer.current);

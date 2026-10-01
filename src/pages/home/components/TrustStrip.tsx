@@ -75,6 +75,9 @@ export default function TrustStrip() {
           {/* Mobile: single-row horizontal scroll strip */}
           <div
             className="flex sm:hidden gap-2 overflow-x-auto pb-1 -mx-4 px-4"
+            tabIndex={0}
+            role="region"
+            aria-label="Kundenlogos – seitlich scrollbar"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {allBrands.map((brand, i) => (

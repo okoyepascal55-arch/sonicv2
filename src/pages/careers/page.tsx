@@ -63,7 +63,7 @@ export default function CareersGatewayPage() {
 
   return (
     <div className="min-h-[100dvh] bg-white pb-[76px] lg:pb-0">
-      <main id="main-content">
+      <div>
         {/* In-Page chapter rail */}
         <KarriereInPageNav heroRef={heroRef} />
 
@@ -105,7 +105,7 @@ export default function CareersGatewayPage() {
 
         {/* 06 — Stellen */}
         <KarriereJobs />
-      </main>
+      </div>
 
       {/* Mobile sticky CTA */}
       <MobileStickyCta />

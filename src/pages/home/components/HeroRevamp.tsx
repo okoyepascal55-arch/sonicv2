@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useMotionPaused } from '@/lib/motion';
 import { useNavigate } from 'react-router-dom';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
@@ -191,8 +192,9 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
     return () => clearTimeout(timer);
   }, []);
 
+  const motionPaused = useMotionPaused();
   useEffect(() => {
-    if (!started) return;
+    if (!started || motionPaused) return;
     const word = DYNAMIC_KEYWORDS[keywordIndex];
     const buildTime = (word.length + 6) * CHAR_DELAY; // +6 accounts for the "DOING " prefix
     const timeout = window.setTimeout(() => {
@@ -200,7 +202,7 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
       setScrambleKey((prev) => prev + 1);
     }, buildTime + HOLD_TIME);
     return () => clearTimeout(timeout);
-  }, [keywordIndex, started]);
+  }, [keywordIndex, started, motionPaused]);
 
   useEffect(() => {
     if (!('IntersectionObserver' in window)) { setStatsVisible(true); return; }
@@ -336,7 +338,7 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
               transform: translateY(-3px);
             }
           `}</style>
-          <h1 className="hero-headline text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-foreground-950 mb-4 md:mb-6 leading-[1.05] tracking-tight">
+          <h1 lang="en" className="hero-headline text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-foreground-950 mb-4 md:mb-6 leading-[1.05] tracking-tight">
             <AnimatedLine text={tH1Line1} lineDelay={0} />
             <br />
             <AnimatedLine text={tH1Line2} lineDelay={120} />
