@@ -770,6 +770,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-paths-staff-headline', label: 'Staff Headline', description: 'Staff headline', type: 'heading', value: 'Dein Einsatz am Point of Sale' },
       { id: 'careers-paths-staff-desc', label: 'Staff Description', description: 'Staff description', type: 'paragraph', value: 'Du berätst, verkaufst und präsentierst Marken aus Consumer Electronics, Haushalt und Sport direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.' },
       { id: 'careers-paths-cta', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Alle Stellen ansehen' },
+      { id: 'careers-paths-apply', label: 'Button unter beiden Wegen', description: 'Führt zum Bereich „Aktuelle Stellenangebote“', type: 'cta', value: 'Jetzt bewerben' },
     ],
   },
   {

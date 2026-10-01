@@ -102,7 +102,7 @@ export default function KarrierepfadeSection() {
   const tStaffBadge = useText('careers_paths', 'careers-paths-staff-badge', 'Deutschlandweit');
   const tStaffHeadline = useText('careers_paths', 'careers-paths-staff-headline', 'Dein Einsatz am Point of Sale');
   const tStaffDesc = useText('careers_paths', 'careers-paths-staff-desc', 'Du berätst, verkaufst und präsentierst Marken aus Consumer Electronics, Haushalt und Sport direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.');
-  const tApply = useText('careers_paths', 'careers-paths-apply', 'Initiativbewerbung senden');
+  const tApply = useText('careers_paths', 'careers-paths-apply', 'Jetzt bewerben');
 
   // Titles, stats and tabs: Dashboard → Text → Karriere → „Karriere — Campus Team & POS Team“
   const sales = useKarrierePath('sales');
@@ -180,7 +180,14 @@ export default function KarrierepfadeSection() {
                   <PathTabs tabs={path.tabs} />
                 </div>
                 <a
-                  href={`mailto:${path.email}?subject=Initiativbewerbung`}
+                  href="#stellenangebote"
+                  onClick={(e) => {
+                    const el = document.getElementById('stellenangebote');
+                    if (!el) return;
+                    e.preventDefault();
+                    const top = el.getBoundingClientRect().top + window.scrollY - 121; // main nav + in-page nav
+                    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+                  }}
                   className="mt-8 inline-flex items-center justify-center gap-2.5 px-6 py-4 bg-foreground-950 text-white text-[11px] font-black uppercase tracking-[0.14em] hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-200 cursor-pointer"
                 >
                   {tApply}
