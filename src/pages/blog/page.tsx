@@ -58,9 +58,8 @@ export default function BlogPage() {
 
   const gridRef = useRef<HTMLDivElement>(null);
 
-  // Dashboard → Text → Blog — graceful empty state + Blog ↔ Ratgeber link line
-  const tEmpty = useText('blog_hero', 'blog-empty', 'Neue Beiträge sind in Arbeit. Bis dahin findest du Grundlagen und Praxiswissen im Ratgeber.');
-  const tRatgeberLink = useText('blog_hero', 'blog-ratgeber-link', 'Mehr Grundlagen im Ratgeber');
+  // Dashboard → Text → Blog — graceful empty state
+  const tEmpty = useText('blog_hero', 'blog-empty', 'Neue Beiträge sind in Arbeit.');
 
   useEffect(() => {
     const fetchFeed = async () => {
@@ -228,14 +227,6 @@ export default function BlogPage() {
             <div className="bg-white p-10 md:p-14 text-center border border-black/10 mb-16 flex flex-col items-center gap-6">
               <i className="ri-article-line text-4xl text-foreground-300 block" aria-hidden="true"></i>
               <p className="text-foreground-700 font-bold max-w-xl leading-relaxed">{tEmpty}</p>
-              <Link
-                to="/ratgeber"
-                className="inline-flex items-center gap-2 px-8 py-3 bg-[#1a1a1a] text-primary-500 text-sm font-black uppercase tracking-widest hover:bg-primary-500 hover:text-[#1a1a1a] transition-all duration-300"
-                style={{ borderRadius: 0 }}
-              >
-                {tRatgeberLink}
-                <i className="ri-arrow-right-line"></i>
-              </Link>
             </div>
           ) : posts.length === 0 ? (
             <div className="bg-white p-10 text-center border border-black/10 mb-16">
@@ -371,16 +362,6 @@ export default function BlogPage() {
                 </div>
               )}
 
-              {/* Blog ↔ Ratgeber link line */}
-              <div className="mt-16 md:mt-20 text-center">
-                <Link
-                  to="/ratgeber"
-                  className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-wider text-[#1a1a1a] hover:text-primary-500 transition-colors"
-                >
-                  {tRatgeberLink}
-                  <i className="ri-arrow-right-line text-lg"></i>
-                </Link>
-              </div>
             </>
           )}
         </div>

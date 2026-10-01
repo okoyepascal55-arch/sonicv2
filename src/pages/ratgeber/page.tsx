@@ -110,7 +110,6 @@ export default function RatgeberHubPage() {
   const tIntroBadge = useText('ratgeber_intro', 'ratgeber-intro-badge', 'Expertenwissen');
   const tIntroHeading = useText('ratgeber_intro', 'ratgeber-intro-heading', 'Alles, was du über moderne Markenaktivierung wissen musst');
   const tIntroText = useText('ratgeber_intro', 'ratgeber-intro-text', 'Unser Ratgeber-Hub bündelt fundiertes Praxiswissen zu allen Facetten der Markenaktivierung — von der strategischen Planung über die operative Umsetzung bis zur Erfolgsmessung. Jeder Artikel basiert auf unserer Erfahrung mit internationalen Marken und liefert konkrete, umsetzbare Handlungsempfehlungen. Wähle dein Thema und vertiefe dein Wissen.');
-  const tBlogLink = useText('ratgeber_intro', 'ratgeber-blog-link', 'Aktuelles im Blog');
   const tGeoBadge = useText('ratgeber_geo', 'ratgeber-geo-badge', 'Reichweite');
   const tGeoHeading = useText('ratgeber_geo', 'ratgeber-geo-heading', 'Lokal, regional, deutschlandweit, international');
   const tGeoText = useText('ratgeber_geo', 'ratgeber-geo-text', 'Unsere Ratgeber decken alle vier geografischen Ebenen ab — von der lokalen Markenaktivierung in Krefeld über die regionale Verankerung in NRW bis zur deutschlandweiten und internationalen Strategie für den gesamten DACH-Raum. So findest du für jede Herausforderung den passenden Ratgeber.');
@@ -234,16 +233,6 @@ export default function RatgeberHubPage() {
             ))}
           </div>
 
-          {/* Ratgeber ↔ Blog link line */}
-          <div className="mt-12 md:mt-16 text-center">
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-wider text-foreground-950 hover:text-primary-500 transition-colors"
-            >
-              {tBlogLink}
-              <i className="ri-arrow-right-line text-lg"></i>
-            </Link>
-          </div>
         </div>
       </section>
 

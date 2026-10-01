@@ -4,6 +4,7 @@ import { useTextSection } from '@/hooks/useText';
 import { useSEO } from '@/hooks/useSEO';
 import { Link } from 'react-router-dom';
 import { useCtaText } from '@/hooks/useCtaText';
+import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 
 export interface EraPhoto {
   src: string;
@@ -215,6 +216,32 @@ const ERA_BASE: Array<Omit<EraData, 'quote' | 'attribution'> & { quote?: string;
   },
 ];
 
+/* Dashboard media slot per era (Dashboard → Medien → Über uns → Sonic Reels). */
+const ERA_MEDIA_KEYS: Record<string, string> = {
+  'era-2007-2015': '/images/Über uns/Sonic Reels/2007-2015',
+  'era-2015-2019': 'reels_2015_2019',
+  'era-2019-2022': '/images/Über uns/Sonic Reels/2019-2022',
+  'era-2022-2023': '/images/Über uns/Sonic Reels/2022-2023',
+  'era-2024': 'reels_2024',
+  'era-2025': 'reels_2025',
+  'era-2026': 'reels_2026',
+};
+
+/* Compare built-in and dashboard paths regardless of URL encoding / origin. */
+function normalisePath(src: string): string {
+  try { return decodeURIComponent(new URL(src, 'https://x.invalid').pathname); } catch { return src; }
+}
+
+/* Uploads get the file name as caption ("IMG_2662", "1 Kopie 2 3"). Only show a
+   caption on the site when someone actually wrote one in the dashboard. */
+function isWrittenCaption(caption?: string): caption is string {
+  const c = (caption || '').trim();
+  if (c.length < 8) return false;
+  if (/kopie|von \d+\)|\.(jpe?g|png|webp|heic)$|^(img|dsc|bild|photo|image|p\d)[\s_(-]|^[0-9a-f]{8}-[0-9a-f]{4}/i.test(c)) return false;
+  const words = c.split(/\s+/).filter((w) => /[a-zäöüß]{2,}/i.test(w)).length;
+  return words >= 3 && (/[.!?—–,:]/.test(c) || words >= 4);
+}
+
 /* ── Film countdown splash ────────────────────────────────────────────────── */
 function FilmCountdown({ onDone }: { onDone: () => void }) {
   const [count, setCount] = useState(4);
@@ -318,13 +345,39 @@ export default function SonicReelsPage() {
   const texts = useTextSection('sonicreels_page');
   const cta = useCtaText();
 
+  /* ── Photos: Dashboard → Medien → Sonic Reels (one slot list per era) ── */
+  const m1 = useMediaStore(ERA_MEDIA_KEYS['era-2007-2015']).images;
+  const m2 = useMediaStore(ERA_MEDIA_KEYS['era-2015-2019']).images;
+  const m3 = useMediaStore(ERA_MEDIA_KEYS['era-2019-2022']).images;
+  const m4 = useMediaStore(ERA_MEDIA_KEYS['era-2022-2023']).images;
+  const m5 = useMediaStore(ERA_MEDIA_KEYS['era-2024']).images;
+  const m6 = useMediaStore(ERA_MEDIA_KEYS['era-2025']).images;
+  const m7 = useMediaStore(ERA_MEDIA_KEYS['era-2026']).images;
+  const eraMedia = [m1, m2, m3, m4, m5, m6, m7];
+
   const eras: EraData[] = ERA_BASE.map((base, i) => {
     const n = i + 1;
+    const label = texts[`reels-era-${n}-label`] || base.label;
+    const tagline = texts[`reels-era-${n}-tagline`] || base.tagline;
+    const written = new Map(base.photos.map((p) => [normalisePath(p.src), p.caption]));
+    const dashPhotos: EraPhoto[] = (eraMedia[i] || [])
+      .filter((img) => img.url)
+      .map((img) => {
+        const src = resolveImageUrl(img.url);
+        const caption = written.get(normalisePath(src))
+          || (isWrittenCaption(img.caption) ? img.caption.trim() : `${tagline} · ${label}`);
+        return { src, caption };
+      });
+    const photos = dashPhotos.length > 0 ? dashPhotos : base.photos;
     return {
       ...base,
+      label,
+      tagline,
+      photos,
+      photo: photos[0]?.src || base.photo,
       quote: texts[`reels-era-${n}-quote`] || base.quote || '',
       attribution: texts[`reels-era-${n}-attribution`] || base.attribution || '',
-      caption: texts[`reels-era-${n}-caption`] || base.caption || '',
+      caption: base.caption || '',
     };
   });
 
