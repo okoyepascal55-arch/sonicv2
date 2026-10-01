@@ -2079,15 +2079,18 @@ function getStoreSnapshot(): MediaSections {
 
     // Layer 2: localStorage (local edits ALWAYS win — prevents stale
     // Supabase overrides from undoing fresh local changes)
-    // Exception: a local section that only holds placeholder/empty images (old
-    // readdy.ai copies) must not hide real uploads that are saved for everyone.
+    // Exception: a local section that is an old copy (still has readdy.ai placeholders,
+    // or only empty images) must not hide real uploads that are saved for everyone.
     const staleLocal = new Set<string>();
     if (raw) {
-      const parsed = stripReaddy(JSON.parse(raw) as MediaSections);
+      const rawParsed = JSON.parse(raw) as MediaSections;
+      const parsed = stripReaddy(rawParsed);
       for (const key of Object.keys(parsed)) {
         const localHasReal = (parsed[key] || []).some((i) => i.url);
+        // Still holding readdy.ai placeholders = a copy from before the cleanup
+        const localIsOldCopy = (rawParsed[key] || []).some((i) => i.url && i.url.includes('readdy.ai'));
         const sharedHasReal = (merged[key] || []).some((i) => i.url);
-        if (!localHasReal && sharedHasReal && supabaseOverrides && key in supabaseOverrides) {
+        if ((!localHasReal || localIsOldCopy) && sharedHasReal && supabaseOverrides && key in supabaseOverrides) {
           staleLocal.add(key);
           continue;
         }
