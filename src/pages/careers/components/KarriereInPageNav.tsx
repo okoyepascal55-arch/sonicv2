@@ -2,11 +2,10 @@ import { useEffect, useState, useRef } from 'react';
 
 const navItems = [
   { id: 'pfade', n: '01', label: 'Zwei Wege' },
-  { id: 'darum', n: '02', label: 'Kultur & DNA' },
-  { id: 'awards', n: '03', label: 'Ausgezeichnet' },
-  { id: 'spirit', n: '04', label: 'Geschichten' },
-  { id: 'leben', n: '05', label: 'Leben bei Sonic' },
-  { id: 'stellenangebote', n: '06', label: 'Stellen' },
+  { id: 'spirit', n: '02', label: 'Geschichten' },
+  { id: 'darum', n: '03', label: 'Kultur & DNA' },
+  { id: 'leben', n: '04', label: 'Leben bei Sonic' },
+  { id: 'stellenangebote', n: '05', label: 'Stellen' },
 ];
 
 const MAIN_NAV_H = 64;

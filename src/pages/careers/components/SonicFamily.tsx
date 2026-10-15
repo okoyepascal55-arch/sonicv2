@@ -190,7 +190,7 @@ export default function SonicFamily() {
     <section id="spirit" className="bg-white py-10 md:py-14 px-5 md:px-10">
       <div className="sonic-container">
         <ChapterHeader
-          n="04"
+          n="02"
           eyebrow={tBadge}
           heading={<>{headingMain} {headingAccent && <Marker>{headingAccent}</Marker>}</>}
           sub={tSub}

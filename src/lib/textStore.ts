@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { STIMMEN_TEXT_SECTIONS } from './textStoreStimmen';
 import { LOSUNGEN_TEXT_SECTIONS } from './textStoreLosungen';
 import { KARRIERE_TEXT_SECTIONS } from './textStoreKarriere';
+import { TV_COMPARE_SECTION } from './textStoreTvCompare';
 import { REVIEW_TEXT_SECTIONS } from './textStoreReview';
 import { LEISTUNGEN_TEXT_SECTIONS } from './textStoreLeistungen';
 import { CTA_TEXT_SECTIONS } from './textStoreCta';
@@ -729,7 +730,9 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-culture-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Starke Menschen für starke Marken' },
       { id: 'careers-culture-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Wir lieben und leben Marken, insbesondere am Point of Sale, auf Messen, bei Events, auf Roadshows und per Video aus unseren Studios an unserem Campus in Krefeld.', multiline: true },
       { id: 'careers-culture-p2', label: 'Paragraph 2', description: 'Second paragraph', type: 'paragraph', value: 'Energiegeladen und sympathisch: Diese Beschreibung passt auf die Menschen, die bei Sonic arbeiten. Passt sie auch auf dich?', multiline: true },
-      { id: 'careers-culture-award-heading', label: 'Award Heading', description: 'Ausgezeichnet heading', type: 'heading', value: 'Kultur? Leben wir.' },
+      { id: 'careers-culture-award-eyebrow', label: 'Ausgezeichnet — Eyebrow', description: 'Steht über „Kultur? Leben wir.“ am Ende von Kultur & DNA', type: 'badge', value: 'Ausgezeichnet' },
+      { id: 'careers-culture-award-heading', label: 'Award Heading', description: 'Überschrift neben den kununu-/Google-Karten', type: 'heading', value: 'Kultur? Leben wir.' },
+      { id: 'careers-culture-award-link', label: 'Ausgezeichnet — Link-Text auf den Karten', description: 'Karten öffnen kununu bzw. Google', type: 'cta', value: 'Bewertungen lesen' },
       { id: 'careers-culture-award-text', label: 'Award Text', description: 'Award description', type: 'paragraph', value: 'Die Auszeichnung zur "Kununu Top Company" haben wir 2022, 2023, 2024, 2025 und 2026 erhalten.', multiline: true },
       { id: 'careers-culture-values-heading', label: 'Values Heading', description: 'Values heading', type: 'heading', value: 'DIESE WERTE LEBEN WIR' },
       { id: 'careers-culture-value-1', label: 'Value — Gemeinschaftlich', description: 'Value 1', type: 'heading', value: 'Gemeinschaftlich' },
@@ -1312,6 +1315,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   ...LEISTUNGEN_TEXT_SECTIONS,
   ...CTA_TEXT_SECTIONS,
   /* ═══════════════ FALLBEISPIELE — Texte je Fallstudie (/fallbeispiele) ═══════════════ */
+  TV_COMPARE_SECTION,
   {
     key: 'case_garmin_text',
     label: 'Fallbeispiel Garmin — Texte',

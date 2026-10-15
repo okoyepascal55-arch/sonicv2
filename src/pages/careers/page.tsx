@@ -100,29 +100,24 @@ export default function CareersGatewayPage() {
 
         <WoodenDivider />
 
-        {/* 02 — Kultur & DNA */}
-        <KarriereCulture />
-
-        <WoodenDivider />
-
-        {/* 03 — Ausgezeichnet */}
-        <KarriereAwards />
-
-        {/* Dark-bg WoodenDivider — 03(dark) exit into 04(light) */}
-        <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-
-        {/* 04 — Geschichten */}
+        {/* 02 — Geschichten */}
         <SonicFamily />
 
         <WoodenDivider />
 
-        {/* 05 — Leben bei Sonic */}
+        {/* 03 — Kultur & DNA, closing with the ratings (Ausgezeichnet) */}
+        <KarriereCulture />
+        <KarriereAwards />
+
+        <WoodenDivider />
+
+        {/* 04 — Leben bei Sonic */}
         <SonicTeamEvents />
         <CareerShowcase />
 
         <WoodenDivider />
 
-        {/* 06 — Stellen */}
+        {/* 05 — Stellen */}
         <KarriereJobs />
       </div>
 

@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CaseShowcase from './CaseShowcase';
+import TvCompare, { useTvCompare } from './TvCompare';
 import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
@@ -27,96 +28,6 @@ interface Mandate {
   timelineEnd: number;
 }
 
-const TL_START = 2009;
-const TL_END   = 2026;
-const TL_SPAN  = TL_END - TL_START;
-
-function MandateComparison({ mandates }: { mandates: Mandate[] }) {
-  const yearFrac = (y: number) => (y - TL_START) / TL_SPAN;
-  return (
-    <div className="mb-14">
-      <div className="flex items-center gap-3 mb-8">
-        <div className="w-1 h-8 bg-primary-500 flex-shrink-0" />
-        <div>
-          <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Drei Mandate</p>
-          <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">TV &amp; Sound — Ein roter Faden seit 2009</h3>
-        </div>
-      </div>
-
-      {/* Timeline */}
-      <div className="mb-8">
-        <div className="flex justify-between mb-1">
-          <span className="text-[10px] font-black text-foreground-400 uppercase tracking-widest">2009</span>
-          <span className="text-[10px] font-black text-foreground-400 uppercase tracking-widest">2026</span>
-        </div>
-        <div className="relative h-9 bg-foreground-100 overflow-hidden">
-          {mandates.map((m, i) => (
-            <div key={i} className="absolute top-0 bottom-0 flex items-center overflow-hidden"
-              style={{
-                left: `${m.timelineStart * 100}%`,
-                width: `${(m.timelineEnd - m.timelineStart) * 100}%`,
-                background: m.isActive ? 'oklch(var(--primary-500))' : i === 0 ? 'oklch(var(--primary-500) / 0.85)' : 'oklch(var(--primary-500) / 0.6)',
-                borderRight: i < mandates.length - 1 ? '2px solid white' : 'none',
-              }}>
-              <span className="text-[9px] font-black uppercase tracking-widest text-foreground-950 px-2 truncate hidden sm:block">{m.period}</span>
-            </div>
-          ))}
-        </div>
-        <div className="relative h-5 mt-px" style={{ background: 'oklch(0.13 0.005 118)' }}>
-          {[2009, 2012, 2015, 2018, 2021, 2024].map(yr => (
-            <div key={yr} className="absolute top-0 flex flex-col items-center"
-              style={{ left: `${yearFrac(yr) * 100}%`, transform: 'translateX(-50%)' }}>
-              <div className="w-px h-1.5 bg-white/20" />
-              <span className="text-[9px] text-white/30 font-bold tabular-nums">{yr}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Three panels */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-[2px]" style={{ background: 'rgba(255,255,255,0.08)' }}>
-        {mandates.map((m, i) => (
-          <div key={i} className="relative flex flex-col"
-            style={{ background: m.isActive ? 'oklch(0.16 0.006 118)' : 'oklch(0.13 0.005 118)', padding: 'clamp(20px,3vw,32px) clamp(18px,2.5vw,28px)' }}>
-            <div className="absolute top-0 left-0 right-0"
-              style={{ height: '3px', background: m.isActive ? 'oklch(var(--primary-500))' : 'oklch(var(--primary-500) / 0.35)' }} />
-            <div className="flex items-start justify-between mb-4">
-              <span className="text-[10px] font-black uppercase tracking-[0.25em]" style={{ color: 'oklch(var(--primary-500) / 0.7)' }}>{m.num}</span>
-              {m.isActive && <span className="text-[9px] font-black uppercase tracking-[0.18em] bg-primary-500 text-foreground-950 px-2 py-0.5">Aktiv</span>}
-            </div>
-            <p className="text-[11px] font-black text-white/40 uppercase tracking-[0.2em] mb-2">{m.period}</p>
-            <h4 className="font-black text-white leading-snug mb-6" style={{ fontSize: 'clamp(14px,1.5vw,17px)' }}>{m.label}</h4>
-            <div className="mb-6 pb-6" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-              <div className="font-black text-primary-500 tabular-nums leading-none mb-1.5"
-                style={{ fontSize: 'clamp(26px,3.5vw,42px)', letterSpacing: '-0.04em' }}>{m.headlineValue}</div>
-              <div className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-snug">{m.headlineLabel}</div>
-            </div>
-            {/* Stats — value-hero cards */}
-            <div className="grid grid-cols-2 gap-[2px] mb-6" style={{ background: 'rgba(255,255,255,0.05)' }}>
-              {m.stats.map((stat, si) => (
-                <div key={si} className="flex flex-col p-3" style={{ background: 'oklch(0.12 0.004 118)' }}>
-                  <span className="font-black text-primary-500 tabular-nums leading-none mb-1.5"
-                    style={{ fontSize: 'clamp(15px,2vw,20px)', letterSpacing: '-0.03em' }}>{stat.value}</span>
-                  <span className="text-[9px] font-bold text-white/35 uppercase tracking-[0.18em] leading-snug">{stat.label}</span>
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-1.5 mt-auto">
-              {m.services.map(s => (
-                <span key={s} className="text-[9px] font-black uppercase tracking-[0.12em] text-primary-500 px-2 py-1"
-                  style={{ border: '1px solid oklch(var(--primary-500) / 0.28)' }}>{s}</span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-      <p className="text-[11px] text-foreground-400 mt-4 italic leading-relaxed">
-        Alle Markennamen auf Kundenwunsch anonymisiert. Werte aus internem Reporting Sonic Group.
-        Mandat 3 (ab 2025): laufendes Projekt — Kennzahlen beziehen sich auf das erste Projektjahr.
-      </p>
-    </div>
-  );
-}
 
 /* ─────────────────────────────────────────
    LEISTUNGEN IM EINSATZ — split image + content panel
@@ -571,6 +482,7 @@ export default function CaseStudiesPage() {
   const tSebLabel      = useText('case_seb',      'case-seb-metric-label',      'Tefal, Rowenta, Krups und WMF – ein Team seit 2019');
   const tAvouryMetric  = useText('case_avoury',   'case-avoury-metric',         'Cross-Selling');
   const tAvouryLabel   = useText('case_avoury',   'case-avoury-metric-label',   'Die Methode hinter dem Wachstum');
+  const tvCompare = useTvCompare();
   const tTvMetric      = useText('case_tvsound',  'case-tvsound-metric',        '1,72 Mrd. €');
   const tTvLabel       = useText('case_tvsound',  'case-tvsound-metric-label',  'Kumulierter Umsatz, längstes Mandat');
 
@@ -1031,20 +943,12 @@ export default function CaseStudiesPage() {
                     /* TV & Sound: three mandates on one timeline (width = duration) */
                     <div className="flex-1 flex flex-col justify-center gap-3 min-h-[120px] md:min-h-[140px]">
                       <div className="flex h-10" style={{ gap: '2px' }}>
-                        {[
-                          { label: 'Gründungskunde', years: '2009–2019', span: 11, tone: 0.45 },
-                          { label: 'Europäischer Hersteller', years: '2020–2024', span: 5, tone: 0.7 },
-                          { label: 'Laufendes Mandat', years: 'seit 2025', span: 2, tone: 1 },
-                        ].map((m) => (
+                        {tvCompare.mandates.map((mm, mi) => ({ label: mm.client, years: mm.period, span: mm.end - mm.start + 1, tone: [0.45, 0.7, 1][mi] ?? 1 })).map((m) => (
                           <div key={m.label} className="h-full" style={{ flex: m.span, background: `oklch(var(--primary-500) / ${m.tone})` }} title={`${m.label} · ${m.years}`} />
                         ))}
                       </div>
                       <div className="flex" style={{ gap: '2px' }}>
-                        {[
-                          { label: 'Gründungskunde', years: '2009–2019', span: 11 },
-                          { label: 'Europ. Hersteller', years: '2020–2024', span: 5 },
-                          { label: 'Laufend', years: 'seit 2025', span: 2 },
-                        ].map((m) => (
+                        {tvCompare.mandates.map((mm, mi) => ({ label: `Marke ${String(mi + 1).padStart(2, '0')}`, years: mm.period, span: mm.end - mm.start + 1 })).map((m) => (
                           <div key={m.label} className="min-w-0" style={{ flex: m.span }}>
                             <p className="text-white/70 text-[10px] font-black uppercase tracking-wide truncate">{m.label}</p>
                             <p className="text-white/40 text-[10px] tabular-nums">{m.years}</p>
@@ -1129,7 +1033,7 @@ export default function CaseStudiesPage() {
 
             {/* ── MODULES or MANDATE COMPARISON ── */}
             {expanded.comparisonMandates ? (
-              <MandateComparison mandates={expanded.comparisonMandates} />
+              <TvCompare />
             ) : (
               <LeistungenImEinsatz
                 modules={expanded.modules.map((mod, idx) => ({

@@ -78,7 +78,7 @@ export default function KarriereJobs() {
             className="hidden lg:block absolute top-0 right-0 font-black leading-[0.8] tracking-[-0.06em] select-none pointer-events-none"
             style={{ fontSize: '120px', color: 'rgba(255,255,255,0.07)' }}
             aria-hidden="true"
-          >06</span>
+          >05</span>
           <div className="relative z-10">
             <ChapterEyebrow dark>{tBadge}</ChapterEyebrow>
             <h2 className="sonic-h2 text-white mb-4">

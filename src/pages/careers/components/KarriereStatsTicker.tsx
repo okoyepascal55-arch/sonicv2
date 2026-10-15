@@ -1,5 +1,9 @@
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useKarriereTicker } from '../useKarriereText';
+import { REVIEW_LINKS } from './KarriereAwards';
+
+// Rating items link straight to the reviews (the readable, keyboard-reachable links sit in „Ausgezeichnet“).
+const linkFor = (icon: string) => (icon === 'ri-star-fill' ? REVIEW_LINKS.kununu : icon === 'ri-google-fill' ? REVIEW_LINKS.google : undefined);
 
 export default function KarriereStatsTicker() {
   // Dashboard → Text → Karriere → „Karriere — Kennzahlen-Ticker“
@@ -19,19 +23,28 @@ export default function KarriereStatsTicker() {
       </div>
       <div className="relative z-10 overflow-hidden py-3 md:py-4">
         <div
-          className="flex items-center gap-8 md:gap-14 animate-scroll-optimized whitespace-nowrap"
+          className="flex items-center gap-8 md:gap-14 animate-scroll-optimized whitespace-nowrap hover:[animation-play-state:paused]"
           aria-hidden="true"
         >
-          {displayed.map((stat, i) => (
-            <div key={i} className="flex items-center gap-3 flex-shrink-0">
+          {displayed.map((stat, i) => {
+            const href = linkFor(stat.icon);
+            const Item = href ? 'a' : 'div';
+            return (
+            <Item
+              key={i}
+              {...(href ? { href, target: '_blank', rel: 'nofollow noopener noreferrer', tabIndex: -1 } : {})}
+              className={`flex items-center gap-3 flex-shrink-0 ${href ? 'group cursor-pointer' : ''}`}
+            >
               {i % STATS.length === 0
                 ? <span className="text-primary-500 text-[10px]">●</span>
                 : <span className="text-primary-500/30 text-[10px]">·</span>}
               <i className={`${stat.icon} text-primary-500 text-sm`} />
-              <span className="text-sm font-black text-white tabular-nums">{stat.value}</span>
-              <span className="text-[10px] font-bold text-white/55 uppercase tracking-wider">{stat.label}</span>
-            </div>
-          ))}
+              <span className={`text-sm font-black tabular-nums ${href ? 'text-white group-hover:text-primary-500' : 'text-white'}`}>{stat.value}</span>
+              <span className={`text-[10px] font-bold uppercase tracking-wider ${href ? 'text-white/75 group-hover:text-primary-500 underline decoration-primary-500/50 underline-offset-4' : 'text-white/55'}`}>{stat.label}</span>
+              {href && <i className="ri-arrow-right-up-line text-primary-500 text-sm" aria-hidden="true" />}
+            </Item>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -38,7 +38,7 @@ export default function KarriereCulture() {
           sub is removed — the dark card carries that content directly.
         */}
         <ChapterHeader
-          n="02"
+          n="03"
           eyebrow="Unsere Kultur"
           heading={<>Starke Menschen für <Marker>starke Marken</Marker></>}
           headingMax="max-w-[700px]"

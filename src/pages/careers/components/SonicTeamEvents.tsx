@@ -83,7 +83,7 @@ export default function SonicTeamEvents() {
     <section id="leben" className="bg-white py-10 md:py-14 px-5 md:px-10 overflow-hidden">
       <div className="sonic-container">
         <ChapterHeader
-          n="05"
+          n="04"
           eyebrow={tBadge}
           heading={<>{headingMain} {headingAccent && <Marker>{headingAccent}</Marker>}</>}
           sub={tSub}
