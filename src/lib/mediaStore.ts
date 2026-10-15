@@ -609,8 +609,8 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── CAREERS: Career Path Polaroid Images ── */
   careers_path_images: [
-    { url: '', caption: 'Sales Family — Polaroid', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg', caption: 'Staff Family — Polaroid', wide: true },
+    { url: '', caption: 'Campus Team — Teamfoto (Querformat)', wide: true },
+    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg', caption: 'POS Team — Teamfoto (Querformat)', wide: true },
   ],
 
   /* ── CAREERS: Team Events Video URLs (editable in dashboard) ── */
@@ -1392,7 +1392,7 @@ const HUMAN_LABELS: Record<string, string> = {
   '/images/Karriere': 'Galerie & Hero',
   'careers_hero_images': 'Hero Team Photo',
   'careers_team_images': 'Team Images',
-  'careers_path_images': 'Karrierepfade — Polaroids',
+  'careers_path_images': 'Karrierepfade — Teamfotos (1 = Campus Team, 2 = POS Team)',
   'careers_events_videos': 'Team Events — Video URLs',
   'careers_events_images': 'Team Events — Polaroids',
   'careers_dreamteam_images': 'DreamTeam — Event Polaroids',
@@ -1581,7 +1581,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   '/images/Karriere': 5,        // Gallery & hero images
   'careers_hero_images': 1,   // 1 hero team photo
   'careers_team_images': 3,   // Office + Team event + Modern office
-  'careers_path_images': 2,   // Sales Family + Staff Family polaroids
+  'careers_path_images': 2,   // 1 = Campus Team, 2 = POS Team
   'careers_events_videos': 4, // Content Creation, Team Events, Promoter Events, Roadshows & Messen
   'careers_events_images': 4, // Content Creation, Team Events, Promoter Events, Roadshows & Messen
   'careers_dreamteam_images': 6,
@@ -1767,7 +1767,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   '/images/Karriere':              { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Hero & gallery — team, office, events' },
   'careers_hero_images':           { aspectRatio: '2.4:1', dimensions: '1920×800', orientation: 'landscape', tip: 'Hero team photo — wide, bright, diverse group' },
   'careers_team_images':           { aspectRatio: '4:3', dimensions: '800×600', orientation: 'landscape', tip: 'Team lifestyle shots — office, events, collaboration' },
-  'careers_path_images':           { aspectRatio: '~2:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Career path polaroids — wide format sales/staff' },
+  'careers_path_images':           { aspectRatio: '16:9', dimensions: '1920×1080', orientation: 'landscape', tip: 'Teamfoto im Querformat — wird hochkant (Karrierepfade) und als breites Bild (Team-Seite) zugeschnitten, Gesichter mittig' },
   'careers_events_images':         { aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'Team events polaroids — social, celebration' },
   'careers_dreamteam_images':      { aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'DreamTeam polaroids — events, celebration' },
   'careers_geschichten_images':    { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Story portraits — wide format, personal stories' },

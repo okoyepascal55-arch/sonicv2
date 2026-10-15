@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
+import { INITIATIVE_URL } from '../usePathData';
 
 export default function KarriereHero() {
   const [hovered, setHovered] = useState(false);
@@ -13,14 +14,10 @@ export default function KarriereHero() {
 
   const scrollToJobs = () => {
     const el = document.getElementById('stellenangebote');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) window.scrollTo({ top: Math.max(0, el.getBoundingClientRect().top + window.scrollY - 121), behavior: 'smooth' });
   };
 
-  const scrollToPfade = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const el = document.getElementById('pfade');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+
 
   return (
     <section
@@ -81,8 +78,9 @@ export default function KarriereHero() {
               <i className="ri-arrow-right-line text-[15px]" />
             </button>
             <a
-              href="#pfade"
-              onClick={scrollToPfade}
+              href={INITIATIVE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-6 md:px-8 py-4 md:py-[18px] text-white text-[12px] font-black uppercase tracking-[0.14em] whitespace-nowrap cursor-pointer"
               style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,0.26)' }}
             >

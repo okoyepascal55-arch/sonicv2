@@ -53,9 +53,9 @@ const pathEntries = (id: 'sales' | 'staff', name: string): TextEntry[] => {
 };
 
 const pathsSection: TextSection = {
-  key: 'careers_paths_details', label: 'Karriere — Campus Team & POS Team (Karten, Kennzahlen, Tabs)',
+  key: 'careers_paths_details', label: 'Karriere — Campus Team & POS Team (Titel, Kennzahlen, Team-Seiten)',
   pageGroupId: 'careers', pagePath: '/karriere',
-  description: 'Titel, Kennzahlen und die Tabs Gehalt / Benefits / Wachsen / Bewerbung der beiden Karten. Überschrift und Kartentext stehen unter „KarrierepfadeSection“.',
+  description: 'Titel und Kennzahlen der Teamfotos sowie die Bereiche Gehalt / Benefits / Wachsen / Bewerbung auf den Team-Seiten (/karriere/team). Leere Felder werden ausgeblendet. Badge, Unterzeile und Text stehen unter „KarrierepfadeSection“.',
   entries: [...pathEntries('sales', 'Campus'), ...pathEntries('staff', 'POS')],
 };
 

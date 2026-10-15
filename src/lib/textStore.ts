@@ -749,7 +749,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   {
     key: 'careers_paths', label: 'KarrierepfadeSection — Two Career Paths',
     pageGroupId: 'careers', pagePath: '/karriere',
-    description: 'Die zwei Karrierewege: Campus Team und POS Team. Kennzahlen und Tabs stehen unter „Karriere — Campus Team & POS Team“.',
+    description: 'Die zwei Karrierewege (Teamfotos zum Aufklappen): Campus Team und POS Team. Titel, Kennzahlen und die Inhalte der Team-Seiten stehen unter „Karriere — Campus Team & POS Team“, Fotos unter Medien → Karriere → „Karrierepfade — Teamfotos“.',
     entries: [
       { id: 'careers-paths-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Karrierepfade' },
       { id: 'careers-paths-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Zwei Wege. Ein Ziel.' },
@@ -761,7 +761,20 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-paths-staff-headline', label: 'Staff Headline', description: 'Staff headline', type: 'heading', value: 'Dein Einsatz am Point of Sale' },
       { id: 'careers-paths-staff-desc', label: 'Staff Description', description: 'Staff description', type: 'paragraph', value: 'Du berätst, verkaufst und präsentierst Marken aus Consumer Electronics, Haushalt und Sport direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.' },
       { id: 'careers-paths-cta', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Alle Stellen ansehen' },
-      { id: 'careers-paths-apply', label: 'Button unter beiden Wegen', description: 'Führt zum Bereich „Aktuelle Stellenangebote“', type: 'cta', value: 'Jetzt bewerben' },
+      { id: 'careers-paths-apply', label: 'Button „Jetzt bewerben“', description: 'Im geöffneten Teamfoto und auf den Team-Seiten — führt zu „Aktuelle Stellenangebote“', type: 'cta', value: 'Jetzt bewerben' },
+      { id: 'careers-paths-details', label: 'Button zur Team-Seite', description: 'Öffnet /karriere/team (Benefits, Wachsen, Bewerbung …)', type: 'cta', value: 'Benefits & Ablauf' },
+      { id: 'careers-paths-open', label: 'Link am geschlossenen Teamfoto', description: '', type: 'cta', value: 'Öffnen' },
+    ],
+  },
+  {
+    key: 'careers_path_page', label: 'Karrierepfad — Team-Seiten (/karriere/team)',
+    pageGroupId: 'careers', pagePath: '/karriere/team',
+    description: 'Feste Beschriftungen der Seiten „Campus Team“ und „POS Team“. Inhalte (Gehalt, Benefits, Wachsen, Bewerbung) stehen unter „Karriere — Campus Team & POS Team“ — leere Bereiche werden ausgeblendet.',
+    entries: [
+      { id: 'path-page-back', label: 'Zurück-Link', description: '', type: 'cta', value: 'Alle Karrierepfade' },
+      { id: 'path-page-intro-label', label: 'Label vor dem Einleitungstext', description: '', type: 'label', value: 'Dein Job' },
+      { id: 'path-page-cta', label: 'Lime-Box — Text vor dem Teamnamen', description: 'Ergibt z. B. „Bereit für das Campus Team?“', type: 'heading', value: 'Bereit für das' },
+      { id: 'path-page-or', label: 'Link zum anderen Team — Label', description: '', type: 'label', value: 'Oder lieber' },
     ],
   },
   {
@@ -776,7 +789,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-family-cta-accent', label: 'CTA-Box — Hervorhebung (lime)', description: 'Farbig markierter Teil', type: 'heading', value: 'Sonic Spirit & Faces' },
       { id: 'careers-family-cta-after', label: 'CTA-Box — Text nach Hervorhebung', description: '', type: 'heading', value: 'werden?' },
       { id: 'careers-family-cta-sub', label: 'CTA-Box — Unterzeile', description: '', type: 'paragraph', value: 'Wir suchen Menschen, die ihre Geschichte teilen — 15 Minuten, ehrliche Fragen, kein Drehbuch.' },
-      { id: 'careers-family-cta', label: 'CTA-Button', description: 'Button-Text (öffnet E-Mail)', type: 'cta', value: 'Teil der Geschichte werden' },
+      { id: 'careers-family-cta', label: 'CTA-Button', description: 'Button-Text — öffnet die Initiativbewerbung (B-ite)', type: 'cta', value: 'Teil der Geschichte werden' },
       { id: 'careers-family-more', label: 'Link „Geschichte aufklappen“', description: 'Erscheint bei langen Geschichten (mehr als 2 Absätze)', type: 'cta', value: 'Ganze Geschichte lesen' },
       { id: 'careers-family-less', label: 'Link „Geschichte zuklappen“', description: '', type: 'cta', value: 'Weniger anzeigen' },
       { id: 'careers-family-story-label', label: 'Label über dem Namen im Geschichtenbereich', description: '', type: 'label', value: 'Die Geschichte' },
@@ -805,7 +818,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-jobs-tanja-heading', label: 'Tanja Heading', description: 'Tanja question', type: 'heading', value: 'Unsicher, welche Stelle zu dir passt?' },
       { id: 'careers-jobs-tanja-desc', label: 'Tanja Description', description: 'Tanja description', type: 'paragraph', value: 'Tanja aus unserem HR-Team nimmt sich gerne Zeit für ein unverbindliches Gespräch.' },
       { id: 'careers-jobs-tanja-cta', label: 'Tanja CTA', description: 'Tanja CTA button', type: 'cta', value: 'Mit Tanja sprechen' },
-      { id: 'careers-jobs-initiativ-cta', label: 'Initiativ CTA', description: 'Initiativ button', type: 'cta', value: 'Initiativbewerbung' },
+      { id: 'careers-jobs-initiativ-cta', label: 'Initiativ CTA', description: 'Button — öffnet die Initiativbewerbung (B-ite)', type: 'cta', value: 'Initiativbewerbung' },
       { id: 'careers-jobs-loading', label: 'Ladetext', description: 'Shown while the job widget loads', type: 'label', value: 'Stellenangebote werden geladen…' },
       { id: 'careers-jobs-empty', label: 'Leerer Zustand', description: 'Shown when the job widget cannot load or has no jobs', type: 'paragraph', value: 'Aktuell keine offenen Stellen – bewirb dich initiativ.' },
     ],

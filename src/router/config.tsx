@@ -5,6 +5,7 @@ import { Navigate, RouteObject } from 'react-router-dom';
 const HomePage = lazy(() => import('../pages/home/page'));
 const AboutPage = lazy(() => import('../pages/about/page'));
 const CareersPage = lazy(() => import('../pages/careers/page'));
+const CareerTeamPage = lazy(() => import('../pages/careers/team/page'));
 const CaseStudiesPage = lazy(() => import('../pages/case-studies/page'));
 const SRTPage = lazy(() => import('../pages/srt/page'));
 const LosungenPage = lazy(() => import('../pages/losungen/page'));
@@ -96,6 +97,10 @@ const routes: RouteObject[] = [
   {
     path: '/karriere',
     element: <CareersPage />,
+  },
+  {
+    path: '/karriere/team',
+    element: <CareerTeamPage />,
   },
   {
     path: '/fallbeispiele',

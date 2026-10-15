@@ -1,126 +1,63 @@
 import { useState } from 'react';
-import { useMediaStore } from '@/lib/mediaStore';
+import { Link } from 'react-router-dom';
 import { useText } from '@/hooks/useText';
-import { ChapterHeader, Marker } from './ChapterKit';
-import { useKarrierePath } from '../useKarriereText';
-import type { PathTab } from '../content';
+import { ChapterHeader, Marker, INK } from './ChapterKit';
+import { useCareerPaths, scrollToJobs, JOBS_ANCHOR, type CareerPath } from '../usePathData';
 
-/* Small square pill — same language as the Kultur tags (flat, lime hairline). */
-const pillBase = 'px-3 py-1.5 text-[10px] md:text-[11px] font-black uppercase tracking-[0.12em] transition-colors duration-200 cursor-pointer';
+/* Karrierepfade — split-image chooser (15.10.2026, built from the Karrierepfade spec on the
+   light Karriere system: white section, dark photo panels, lime accents — same as Spirit & Faces). */
 
-function PathTabs({ tabs }: { tabs: PathTab[] }) {
-  const [active, setActive] = useState(tabs[0]?.id);
-  const tab = tabs.find((t) => t.id === active) ?? tabs[0];
-  if (!tab) return null;
-  const hair = '1px solid oklch(var(--foreground-950) / 0.08)';
+const LIME = 'oklch(0.81 0.19 115)';
+const EASE = 'cubic-bezier(0.2, 0.7, 0.2, 1)';
+
+function Stats({ stats, compact = false }: { stats: CareerPath['stats']; compact?: boolean }) {
   return (
-    <div className="mt-8">
-      <div className="flex flex-wrap gap-2" role="tablist">
-        {tabs.map((t) => {
-          const on = t.id === tab.id;
-          return (
-            <button
-              key={t.id}
-              type="button"
-              role="tab"
-              aria-selected={on}
-              onClick={() => setActive(t.id)}
-              className={`${pillBase} ${on ? 'bg-primary-500 text-foreground-950' : 'text-foreground-950/70 hover:text-foreground-950'}`}
-              style={{ border: on ? '1px solid oklch(var(--primary-500))' : '1px solid oklch(var(--primary-500) / 0.45)' }}
-            >
-              {t.label}
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="mt-4 p-5 md:p-6 lg:min-h-[268px]" role="tabpanel" style={{ border: hair, background: 'oklch(var(--foreground-950) / 0.02)' }}>
-        {tab.id === 'gehalt' && (
-          <>
-            <p className="text-[13px] font-black text-foreground-950 mb-4">{tab.heading}</p>
-            <ul className="space-y-3">
-              {tab.rows.map((r) => (
-                <li key={r.title} className="grid grid-cols-1 sm:grid-cols-[132px_1fr] gap-1 sm:gap-3 items-baseline">
-                  <span className="text-[10px] font-black uppercase tracking-[0.18em] text-primary-600">{r.title}</span>
-                  <span className="text-[13px] leading-[1.6]" style={{ color: 'oklch(var(--foreground-600))' }}>{r.text}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-[12px] mt-4 pt-4" style={{ borderTop: hair, color: 'oklch(var(--foreground-500))' }}>{tab.note}</p>
-          </>
-        )}
-        {tab.id === 'benefits' && (
-          <div className="flex flex-wrap gap-2">
-            {tab.items.map((it) => (
-              <span key={it} className="px-2.5 py-1 text-[11px] font-bold text-foreground-950/75" style={{ border: '1px solid oklch(var(--foreground-950) / 0.12)', background: '#fff' }}>
-                {it}
-              </span>
-            ))}
-          </div>
-        )}
-        {tab.id === 'wachsen' && (
-          <ul className="space-y-3">
-            {tab.rows.map((r) => (
-              <li key={r.title} className="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-1 sm:gap-3 items-baseline">
-                <span className="text-[12px] font-black text-foreground-950">{r.title}</span>
-                <span className="text-[13px] leading-[1.6]" style={{ color: 'oklch(var(--foreground-600))' }}>{r.text}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-        {tab.id === 'bewerbung' && (
-          <ol className="space-y-2.5">
-            {tab.steps.map((st, i) => (
-              <li key={i} className="flex items-baseline gap-3">
-                <span className="w-6 h-6 flex-shrink-0 flex items-center justify-center text-[11px] font-black bg-foreground-950 text-primary-500 tabular-nums">{i + 1}</span>
-                <span className="text-[13px] leading-[1.6]" style={{ color: 'oklch(var(--foreground-600))' }}>{st}</span>
-              </li>
-            ))}
-          </ol>
-        )}
-      </div>
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-3 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.2)' }}>
+      {stats.map((s) => (
+        <div key={s.label} className="min-w-0">
+          <p className={`font-black text-white leading-tight ${compact ? 'text-[15px]' : 'text-[16px] md:text-[18px]'}`}>{s.value}</p>
+          <p className="mt-1 text-[9px] font-black uppercase tracking-[0.12em] leading-snug" style={{ color: 'rgba(255,255,255,0.62)' }}>{s.label}</p>
+        </div>
+      ))}
     </div>
   );
 }
 
-type PathId = 'sales' | 'staff';
-
-const PATHS: Array<{ id: PathId; badge: string; fallbackImage: string; email: string }> = [
-  { id: 'sales', badge: 'Krefeld', fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png', email: 'karriere@sonic-group.de' },
-  { id: 'staff', badge: 'Deutschlandweit', fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg', email: 'staffjobs@sonic-group.de' },
-];
+function Buttons({ path, apply, details }: { path: CareerPath; apply: string; details: string }) {
+  return (
+    <div className="flex flex-wrap gap-2.5">
+      <a
+        href={`#${JOBS_ANCHOR}`}
+        onClick={(e) => { e.stopPropagation(); scrollToJobs(e); }}
+        className="inline-flex items-center gap-2.5 px-5 py-[15px] bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.15em] hover:bg-white transition-colors duration-200"
+      >
+        {apply}
+        <i className="ri-arrow-right-line text-sm" aria-hidden="true" />
+      </a>
+      <Link
+        to={`/karriere/team?path=${path.slug}`}
+        onClick={(e) => e.stopPropagation()}
+        className="inline-flex items-center gap-2.5 px-5 py-[15px] text-white text-[11px] font-extrabold uppercase tracking-[0.15em] hover:text-primary-500 hover:border-primary-500 transition-colors duration-200"
+        style={{ border: '1px solid rgba(255,255,255,0.4)' }}
+      >
+        {details}
+      </Link>
+    </div>
+  );
+}
 
 export default function KarrierepfadeSection() {
-  const { images: pathImages } = useMediaStore('careers_path_images');
-
   const tBadge = useText('careers_paths', 'careers-paths-badge', 'Karrierepfade');
   const tHeading = useText('careers_paths', 'careers-paths-heading', 'Zwei Wege. Ein Ziel.');
   const tSub = useText('careers_paths', 'careers-paths-sub', 'Ob am Campus oder am POS – bei uns gibt es einen Weg für dich.');
-  const tSalesBadge = useText('careers_paths', 'careers-paths-sales-badge', 'Krefeld');
-  const tSalesHeadline = useText('careers_paths', 'careers-paths-sales-headline', 'Dein Job am Campus in Krefeld');
-  const tSalesDesc = useText('careers_paths', 'careers-paths-sales-desc', 'Projektmanagement, HR, IT, Finance, Kreation: Hier planen und steuern wir die Projekte unserer Kunden. Mit klaren Aufgaben, Mentoring, hybridem Arbeiten und einem Team, das zusammenhält.');
-  const tStaffBadge = useText('careers_paths', 'careers-paths-staff-badge', 'Deutschlandweit');
-  const tStaffHeadline = useText('careers_paths', 'careers-paths-staff-headline', 'Dein Einsatz am Point of Sale');
-  const tStaffDesc = useText('careers_paths', 'careers-paths-staff-desc', 'Du berätst, verkaufst und präsentierst Marken aus Consumer Electronics, Haushalt und Sport direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.');
   const tApply = useText('careers_paths', 'careers-paths-apply', 'Jetzt bewerben');
+  const tDetails = useText('careers_paths', 'careers-paths-details', 'Benefits & Ablauf');
+  const tOpen = useText('careers_paths', 'careers-paths-open', 'Öffnen');
 
-  // Titles, stats and tabs: Dashboard → Text → Karriere → „Karriere — Campus Team & POS Team“
-  const sales = useKarrierePath('sales');
-  const staff = useKarrierePath('staff');
-  const details = { sales, staff };
+  const paths = useCareerPaths();
+  const [open, setOpen] = useState(0);
 
-  const resolvedPaths = PATHS.map((path, i) => ({
-    ...path,
-    title: details[path.id].title,
-    stats: details[path.id].stats,
-    tabs: details[path.id].tabs,
-    badge: path.id === 'sales' ? tSalesBadge : tStaffBadge,
-    headline: path.id === 'sales' ? tSalesHeadline : tStaffHeadline,
-    tagline: path.id === 'sales' ? tSalesDesc : tStaffDesc,
-    image: pathImages[i]?.url || path.fallbackImage,
-  }));
-
-  // Split "Zwei Wege. Ein Ziel." → main "Zwei Wege." / marker "Ein Ziel."
+  // "Zwei Wege. Ein Ziel." → "Zwei Wege." + marker "Ein Ziel."
   const sentences = tHeading.split('. ').map((s) => (s.endsWith('.') ? s : `${s}.`));
   const headingMain = sentences[0] ?? tHeading;
   const headingAccent = sentences.length > 1 ? sentences.slice(1).join(' ') : '';
@@ -128,74 +65,115 @@ export default function KarrierepfadeSection() {
   return (
     <section id="pfade" className="bg-white py-10 md:py-14 px-5 md:px-10">
       <div className="sonic-container">
-        {/*
-          absoluteNumeral — removes "01" from flex flow so heading/sub align
-          flush-left with the path cards below. Numeral floats top-right decoratively.
-        */}
         <ChapterHeader
           n="01"
           eyebrow={tBadge}
           heading={<>{headingMain} {headingAccent && <Marker>{headingAccent}</Marker>}</>}
           sub={tSub}
-          headingMax="max-w-[620px]"
+          headingMax="max-w-full"
           absoluteNumeral={true}
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0.5">
-          {resolvedPaths.map((path) => (
-            <div key={path.id} className="flex flex-col" style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
-              {/* Image */}
-              <div className="relative h-[280px] md:h-[340px] overflow-hidden" style={{ background: 'oklch(0.13 0.005 118)' }}>
-                <img src={path.image} alt={`${path.title} — ${path.headline}`} className="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" />
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,11,9,0.92) 0%, rgba(10,11,9,0.2) 60%, transparent 100%)' }} />
-                <div
-                  className="absolute top-5 left-5 px-3.5 py-[7px] text-[10px] font-black uppercase tracking-[0.2em] text-primary-500"
-                  style={{ background: 'rgba(12,13,11,0.42)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', border: '1px solid rgba(255,255,255,0.2)' }}
-                >
-                  {path.badge}
-                </div>
-                <div className="absolute left-0 right-0 bottom-0 p-7">
-                  <p className="text-3xl md:text-[44px] font-black leading-none tracking-[-0.035em] text-white mb-2.5">{path.title}</p>
-                  <div className="flex items-center gap-2.5">
-                    <span className="w-1 h-1 bg-primary-500" />
-                    <span className="text-[13px] font-black text-white">{path.headline}</span>
-                  </div>
-                </div>
-              </div>
+        {/* ── Desktop: two panels side by side, one open ── */}
+        <div className="hidden lg:flex gap-2" style={{ height: 'clamp(560px, 46vw, 640px)' }} role="group" aria-label="Karrierepfad auswählen">
+          {paths.map((path, i) => {
+            const isOpen = i === open;
+            return (
+              <div
+                key={path.slug}
+                onClick={() => setOpen(i)}
+                className="relative overflow-hidden min-w-0 cursor-pointer"
+                style={{ flex: isOpen ? '3 1 0%' : '1 1 0%', background: INK, transition: `flex 0.5s ${EASE}` }}
+              >
+                <img
+                  src={path.image}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ filter: isOpen ? 'none' : 'grayscale(1) brightness(0.6)', transition: 'filter 0.4s ease' }}
+                  loading="lazy"
+                  draggable={false}
+                />
+                <div className="absolute inset-0 pointer-events-none" style={{ background: isOpen ? 'linear-gradient(180deg, rgba(10,10,10,0) 18%, rgba(10,10,10,0.78) 52%, rgba(10,10,10,0.96) 100%)' : 'linear-gradient(180deg, rgba(10,10,10,0) 30%, rgba(10,10,10,0.92) 100%)', transition: 'background 0.4s ease' }} />
+                <span className="absolute top-0 left-0 h-1 pointer-events-none" style={{ width: isOpen ? '100%' : '0%', background: LIME, transition: `width 0.6s ${EASE}` }} aria-hidden="true" />
 
-              {/* Body */}
-              <div className="flex-1 p-7 md:p-10 flex flex-col justify-between">
-                <div>
-                  <p className="text-[15px] leading-[1.75] mb-8 lg:min-h-[105px]" style={{ color: 'oklch(var(--foreground-500))' }}>
-                    {path.tagline}
-                  </p>
-                  <div className="grid grid-cols-2" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.08)', borderLeft: '1px solid oklch(var(--foreground-950) / 0.08)' }}>
-                    {path.stats.map((s) => (
-                      <div key={s.label} className="px-4 md:px-5 py-[18px] min-w-0" style={{ borderRight: '1px solid oklch(var(--foreground-950) / 0.08)', borderBottom: '1px solid oklch(var(--foreground-950) / 0.08)' }}>
-                        <p className="text-[19px] md:text-[22px] font-black leading-none tracking-[-0.03em] text-foreground-950 tabular-nums mb-1.5">{s.value}</p>
-                        <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.1em] md:tracking-[0.16em] leading-snug" style={{ color: 'oklch(var(--foreground-400))' }}>{s.label}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <PathTabs tabs={path.tabs} />
+                <div className="absolute left-9 right-9 bottom-9 flex flex-col gap-[18px]">
+                  <span className="text-[10px] font-extrabold uppercase tracking-[0.2em]" style={{ color: LIME }}>{path.badge}</span>
+                  <h3
+                    className="font-black text-white leading-none"
+                    style={{ fontSize: isOpen ? '60px' : '30px', letterSpacing: '-0.02em', transition: `font-size 0.4s ${EASE}` }}
+                  >
+                    {path.title}
+                  </h3>
+                  {isOpen ? (
+                    <div className="flex flex-col gap-[22px] max-w-[560px] animate-fadeIn">
+                      <p className="text-[14px] leading-[1.7]" style={{ color: '#D6D6D6', textWrap: 'pretty' } as React.CSSProperties}>{path.description}</p>
+                      <Stats stats={path.stats} />
+                      <Buttons path={path} apply={tApply} details={tDetails} />
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); setOpen(i); }}
+                      className="self-start inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.15em] text-white hover:text-primary-500 transition-colors"
+                      aria-label={`${path.title} ${tOpen.toLowerCase()}`}
+                    >
+                      {tOpen}
+                      <i className="ri-arrow-right-line" aria-hidden="true" />
+                    </button>
+                  )}
                 </div>
-                <a
-                  href="#stellenangebote"
-                  onClick={(e) => {
-                    const el = document.getElementById('stellenangebote');
-                    if (!el) return;
-                    e.preventDefault();
-                    const top = el.getBoundingClientRect().top + window.scrollY - 121; // main nav + in-page nav
-                    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-                  }}
-                  className="mt-8 inline-flex items-center justify-center gap-2.5 px-6 py-4 bg-foreground-950 text-white text-[11px] font-black uppercase tracking-[0.14em] hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-200 cursor-pointer"
-                >
-                  {tApply}
-                  <i className="ri-arrow-right-line text-sm" />
-                </a>
               </div>
-            </div>
-          ))}
+            );
+          })}
+        </div>
+
+        {/* ── Mobile / tablet: stacked, closed panel 120px, open panel full ── */}
+        <div className="lg:hidden flex flex-col gap-2">
+          {paths.map((path, i) => {
+            const isOpen = i === open;
+            return (
+              <div
+                key={path.slug}
+                className="relative overflow-hidden"
+                style={{ background: INK, minHeight: isOpen ? 560 : 120, transition: `min-height 0.5s ${EASE}` }}
+              >
+                <img
+                  src={path.image}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ filter: isOpen ? 'none' : 'grayscale(1) brightness(0.6)', transition: 'filter 0.4s ease' }}
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 pointer-events-none" style={{ background: isOpen ? 'linear-gradient(180deg, rgba(10,10,10,0.05) 10%, rgba(10,10,10,0.95) 62%)' : 'rgba(10,10,10,0.55)' }} />
+                <span className="absolute top-0 left-0 h-1" style={{ width: isOpen ? '100%' : '0%', background: LIME }} aria-hidden="true" />
+                {isOpen ? (
+                  <div className="relative flex flex-col justify-end gap-4 p-6 animate-fadeIn" style={{ minHeight: 560 }}>
+                    <span className="text-[10px] font-extrabold uppercase tracking-[0.2em]" style={{ color: LIME }}>{path.badge}</span>
+                    <h3 className="font-black text-white leading-none text-[40px]" style={{ letterSpacing: '-0.02em' }}>{path.title}</h3>
+                    <p className="text-[14px] leading-[1.7]" style={{ color: '#D6D6D6' }}>{path.description}</p>
+                    <Stats stats={path.stats} compact />
+                    <Buttons path={path} apply={tApply} details={tDetails} />
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setOpen(i)}
+                    className="relative w-full h-[120px] flex items-end justify-between gap-4 p-6 text-left"
+                    aria-expanded={false}
+                  >
+                    <span className="block">
+                      <span className="block text-[10px] font-extrabold uppercase tracking-[0.2em] mb-2" style={{ color: LIME }}>{path.badge}</span>
+                      <span className="block font-black text-white text-[26px] leading-none" style={{ letterSpacing: '-0.02em' }}>{path.title}</span>
+                    </span>
+                    <span className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.15em] text-white">
+                      {tOpen}
+                      <i className="ri-arrow-right-line" aria-hidden="true" />
+                    </span>
+                  </button>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

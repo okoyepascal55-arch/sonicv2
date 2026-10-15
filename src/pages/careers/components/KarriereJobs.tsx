@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { ChapterEyebrow, Marker } from './ChapterKit';
+import { INITIATIVE_URL } from '../usePathData';
 
 const BITE_LISTING_KEY = 'sonic-sales-support-gmbh:main-listing';
 
@@ -107,7 +108,9 @@ export default function KarriereJobs() {
               <div className="flex flex-col items-center justify-center gap-5 py-14 border-t border-foreground-100 text-center">
                 <p className="text-[15px] font-bold leading-[1.6] text-foreground-700 max-w-[34ch]">{tEmpty}</p>
                 <a
-                  href="mailto:karriere@sonic-group.de?subject=Initiativbewerbung"
+                  href={INITIATIVE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-foreground-950 text-white text-[11px] font-black uppercase tracking-[0.14em] hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-200 cursor-pointer"
                 >
                   <i className="ri-send-plane-line text-[15px]" />
@@ -137,7 +140,9 @@ export default function KarriereJobs() {
                 {tTanjaCta}
               </a>
               <a
-                href="mailto:karriere@sonic-group.de?subject=Initiativbewerbung"
+                href={INITIATIVE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2.5 px-6 py-4 text-white text-[11px] font-black uppercase tracking-[0.14em] hover:bg-white/10 transition-colors duration-200 cursor-pointer"
                 style={{ border: '1px solid rgba(255,255,255,0.28)' }}
               >

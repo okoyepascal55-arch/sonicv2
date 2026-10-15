@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import KarriereHero from './components/KarriereHero';
@@ -60,6 +61,24 @@ export default function CareersGatewayPage() {
   })
 
   const heroRef = useRef<HTMLDivElement>(null);
+
+  // Arriving with a hash (e.g. /karriere#stellenangebote from the team pages) → scroll there
+  const location = useLocation();
+  useEffect(() => {
+    const id = location.hash.replace('#', '');
+    if (!id) return;
+    let tries = 0;
+    const timer = window.setInterval(() => {
+      const el = document.getElementById(id);
+      tries += 1;
+      if (el) {
+        window.clearInterval(timer);
+        const top = el.getBoundingClientRect().top + window.scrollY - 121;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      } else if (tries > 30) window.clearInterval(timer);
+    }, 100);
+    return () => window.clearInterval(timer);
+  }, [location.hash]);
 
   return (
     <div className="min-h-[100dvh] bg-white pb-[76px] lg:pb-0">

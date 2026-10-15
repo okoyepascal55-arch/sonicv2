@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { CONTACT_EMAIL } from '@/lib/contact';
+import { INITIATIVE_URL } from '../usePathData';
 import { useText, useTextSection } from '@/hooks/useText';
 import { useMediaStore } from '@/lib/mediaStore';
 import { ChapterHeader, Marker, INK } from './ChapterKit';
@@ -391,7 +391,9 @@ export default function SonicFamily() {
             )}
           </div>
           <a
-            href={`mailto:${CONTACT_EMAIL}`}
+            href={INITIATIVE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex-shrink-0 inline-flex items-center gap-2.5 px-7 py-4 bg-foreground-950 text-white text-[11px] font-black uppercase tracking-[0.14em] hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-200 cursor-pointer"
           >
             <i className="ri-user-add-line text-sm" />
