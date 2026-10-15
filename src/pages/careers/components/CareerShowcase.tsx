@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { isMotionPaused } from '@/lib/motion';
 
 const FALLBACK_IMAGES = [
   'https://readdy.ai/api/search-image?query=team%20office%20collaboration%20creative%20agency%20candid%20modern%20workspace%20authentic%20moment&width=360&height=480&seq=cs-01&orientation=portrait',
@@ -27,7 +28,7 @@ export default function CareerShowcase() {
     let paused = false;
     const SPEED = 0.6; // px per frame
     const drift = () => {
-      if (!paused && el) {
+      if (!paused && el && !isMotionPaused()) {
         el.scrollLeft += SPEED;
         // Seamless loop: when we've scrolled half (one full set), reset to 0
         if (el.scrollLeft >= el.scrollWidth / 2) el.scrollLeft = 0;
@@ -47,10 +48,10 @@ export default function CareerShowcase() {
 
   return (
     // Full-bleed: -mx-5 md:-mx-10 matches the parent section's px-5 md:px-10 padding
-    <div className="overflow-hidden -ml-5 md:-ml-10 mt-10">
+    <div className="overflow-hidden bg-white pb-10 md:pb-14">
       <div
         ref={trackRef}
-        className="flex gap-3"
+        className="flex gap-2"
         style={{ overflowX: 'scroll', scrollbarWidth: 'none', msOverflowStyle: 'none' } as React.CSSProperties}
         aria-hidden="true"
       >

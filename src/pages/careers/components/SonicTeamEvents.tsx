@@ -91,7 +91,7 @@ export default function SonicTeamEvents() {
         />
 
         {/* Events block */}
-        <div className="mb-16" style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
+        <div className="mb-14">
           <div className="relative overflow-hidden" style={{ background: "oklch(0.13 0.005 118)", minHeight: "520px" }}>
             {!playing ? (
               <div
@@ -131,21 +131,20 @@ export default function SonicTeamEvents() {
             )}
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
-            {resolvedEvents.map((ev, i) => {
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-2">
+            {resolvedEvents.map((ev) => {
               const isActive = ev.id === activeId;
               return (
                 <button
                   key={ev.id}
                   onClick={() => selectEvent(ev.id)}
                   className="relative h-[132px] overflow-hidden text-left cursor-pointer"
-                  style={{
-                    borderRight: i < resolvedEvents.length - 1 ? '1px solid oklch(var(--foreground-950) / 0.1)' : undefined,
-                    borderBottom: isActive ? '3px solid oklch(var(--primary-500))' : '3px solid transparent',
-                  }}
+                  style={{ background: 'oklch(0.13 0.005 118)' }}
+                  aria-pressed={isActive}
                 >
-                  <img src={ev.image} alt={ev.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-                  <div className="absolute inset-0" style={{ background: isActive ? 'rgba(10,11,9,0.35)' : 'rgba(10,11,9,0.5)' }} />
+                  <img src={ev.image} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ filter: isActive ? 'none' : 'grayscale(1) brightness(0.7)', transition: 'filter 0.4s ease' }} loading="lazy" />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,11,9,0.85) 0%, rgba(10,11,9,0.2) 70%)' }} />
+                  <span className="absolute top-0 left-0 h-1 transition-all duration-500" style={{ width: isActive ? '100%' : '0%', background: 'oklch(var(--primary-500))' }} aria-hidden="true" />
                   <div className="absolute left-3.5 bottom-3">
                     <p className="text-[9px] font-black uppercase tracking-[0.2em] mb-0.5" style={{ color: isActive ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.6)' }}>{ev.tag}</p>
                     <p className="text-[13px] font-black text-white">{ev.title}</p>
@@ -178,18 +177,14 @@ export default function SonicTeamEvents() {
             />
           </div>
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 px-6 py-6 md:px-8" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
-            <div className="flex flex-wrap gap-2">
-              {[
-                { icon: 'ri-drag-move-line', label: tCampusTip1 },
-                { icon: 'ri-walk-line', label: tCampusTip2 },
-                { icon: 'ri-fullscreen-line', label: tCampusTip3 },
-              ].map((item, i) => (
-                <span key={i} className="inline-flex items-center gap-2 px-3.5 py-[9px] text-xs font-bold text-foreground-800" style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
-                  <i className={`${item.icon} text-sm`} style={{ color: 'oklch(0.72 0.18 115)' }} />
-                  {item.label}
-                </span>
+            <ul className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] font-bold text-foreground-950">
+              {[tCampusTip1, tCampusTip2, tCampusTip3].map((label, i, arr) => (
+                <li key={i} className="flex items-center gap-4">
+                  <span>{label}</span>
+                  {i < arr.length - 1 && <span className="w-1.5 h-1.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />}
+                </li>
               ))}
-            </div>
+            </ul>
             <div className="flex items-center gap-5 flex-shrink-0">
               <div>
                 <p className="text-sm font-black text-foreground-950 mb-0.5">{tCampusAddress}</p>

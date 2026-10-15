@@ -7,7 +7,6 @@ import KarriereStatsTicker from './components/KarriereStatsTicker';
 import KarriereInPageNav from './components/KarriereInPageNav';
 import KarrierepfadeSection from './components/KarrierepfadeSection';
 import KarriereCulture from './components/KarriereCulture';
-import KarriereAwards from './components/KarriereAwards';
 import SonicFamily from './components/SonicFamily';
 import SonicTeamEvents from './components/SonicTeamEvents';
 import CareerShowcase from './components/CareerShowcase';
@@ -100,14 +99,13 @@ export default function CareersGatewayPage() {
 
         <WoodenDivider />
 
-        {/* 02 — Geschichten */}
-        <SonicFamily />
+        {/* 02 — Unsere Kultur (DNA + Ausgezeichnet) */}
+        <KarriereCulture />
 
         <WoodenDivider />
 
-        {/* 03 — Kultur & DNA, closing with the ratings (Ausgezeichnet) */}
-        <KarriereCulture />
-        <KarriereAwards />
+        {/* 03 — Geschichten */}
+        <SonicFamily />
 
         <WoodenDivider />
 

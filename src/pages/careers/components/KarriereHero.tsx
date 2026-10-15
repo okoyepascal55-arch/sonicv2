@@ -21,7 +21,7 @@ export default function KarriereHero() {
 
   return (
     <section
-      className="relative flex min-h-[320px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden group"
+      className="relative flex min-h-[320px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden group px-5 md:px-10"
       style={{ background: 'oklch(0.13 0.005 118)', paddingTop: 'clamp(56px, 14vw, 80px)' }}
       id="stellen"
       onMouseEnter={() => setHovered(true)}
@@ -69,10 +69,10 @@ export default function KarriereHero() {
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-3 mb-10 md:mb-14">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 mb-10 md:mb-14">
             <button
               onClick={scrollToJobs}
-              className="inline-flex items-center gap-2.5 px-6 md:px-8 py-4 md:py-[18px] bg-primary-500 text-foreground-950 text-[12px] font-black uppercase tracking-[0.14em] hover:bg-white transition-colors duration-200 cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2.5 px-6 md:px-8 py-4 md:py-[18px] bg-primary-500 text-foreground-950 text-[12px] font-black uppercase tracking-[0.14em] hover:bg-white transition-colors duration-200 cursor-pointer whitespace-nowrap"
             >
               Alle Stellen ansehen
               <i className="ri-arrow-right-line text-[15px]" />
@@ -81,7 +81,7 @@ export default function KarriereHero() {
               href={INITIATIVE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-6 md:px-8 py-4 md:py-[18px] text-white text-[12px] font-black uppercase tracking-[0.14em] whitespace-nowrap cursor-pointer"
+              className="inline-flex items-center justify-center gap-2.5 px-6 md:px-8 py-4 md:py-[18px] text-white text-[12px] font-black uppercase tracking-[0.14em] whitespace-nowrap cursor-pointer"
               style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,0.26)' }}
             >
               Initiativbewerbung

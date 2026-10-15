@@ -1,8 +1,8 @@
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useKarriereTicker } from '../useKarriereText';
-import { REVIEW_LINKS } from './KarriereAwards';
+import { REVIEW_LINKS } from './KarriereCulture';
 
-// Rating items link straight to the reviews (the readable, keyboard-reachable links sit in „Ausgezeichnet“).
+// Rating items link straight to the reviews (the readable, keyboard-reachable links sit in the „Ausgezeichnet“ strip of Unsere Kultur).
 const linkFor = (icon: string) => (icon === 'ri-star-fill' ? REVIEW_LINKS.kununu : icon === 'ri-google-fill' ? REVIEW_LINKS.google : undefined);
 
 export default function KarriereStatsTicker() {

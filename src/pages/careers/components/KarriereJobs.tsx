@@ -71,7 +71,7 @@ export default function KarriereJobs() {
 
   return (
     <section id="stellenangebote" className="py-10 md:py-14 px-5 md:px-10" style={{ background: 'oklch(0.13 0.005 118)' }}>
-      <div className="sonic-container" style={{ maxWidth: '96rem' }}>
+      <div className="sonic-container">
         {/* Section 06 header — matches absoluteNumeral pattern from ChapterKit */}
         <div className="relative mb-12 md:mb-14">
           <span
@@ -90,7 +90,7 @@ export default function KarriereJobs() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px]" style={{ border: '1px solid rgba(255,255,255,0.14)' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px]" style={{ border: '1px solid rgba(255,255,255,0.14)' }}>
           {/* Jobs widget — permanently open, light panel (the embedded B-ite widget
               renders light-styled job cards, which need a light background to read correctly) */}
           <div className="p-8 md:p-12 bg-white">
