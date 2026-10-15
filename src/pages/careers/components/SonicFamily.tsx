@@ -137,7 +137,6 @@ export default function SonicFamily() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [expanded, setExpanded] = useState(false);
   const active = FACES[activeIndex];
-  const next = FACES[(activeIndex + 1) % FACES.length];
   const select = (i: number) => { setActiveIndex(i); setExpanded(false); };
   const storyRef = useRef<HTMLDivElement>(null);
   const goNext = () => {
@@ -310,24 +309,19 @@ export default function SonicFamily() {
           ))}
         </div>
 
-        {/* ── The story ── */}
+        {/* ── The story (full width; name and role are already on the portrait) ── */}
         <div
           id="spirit-story"
           ref={storyRef}
           aria-live="polite"
-          className="mt-3 lg:mt-2 grid grid-cols-1 lg:grid-cols-[minmax(240px,4fr)_8fr]"
+          className="mt-3 lg:mt-2 p-7 md:p-10 xl:p-12"
           style={{ background: INK }}
         >
-          <div className="p-7 md:p-10 xl:p-12 flex flex-col justify-between gap-8" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-            <div key={`h-${active.id}`} className="animate-fadeIn lg:sticky lg:top-32">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="w-7 h-0.5 flex-shrink-0" style={{ background: LIME }} aria-hidden="true" />
-                <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: LIME }}>{tStory}</span>
-              </div>
-              <p className="font-black text-white leading-none" style={{ fontSize: 'clamp(30px,3vw,44px)', letterSpacing: '-0.035em' }}>{active.name}</p>
-              <p className="mt-3 text-[11px] font-black uppercase tracking-[0.2em] text-white/55">{active.role}</p>
+          <div className="flex items-center justify-between gap-6 mb-8">
+            <div className="flex items-center gap-3">
+              <span className="w-7 h-0.5 flex-shrink-0" style={{ background: LIME }} aria-hidden="true" />
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: LIME }}>{tStory}</span>
             </div>
-            {/* Step dots (desktop) */}
             <div className="hidden lg:flex gap-1.5" aria-hidden="true">
               {FACES.map((f, i) => (
                 <span key={f.id} className="h-[3px] w-10" style={{ background: i === activeIndex ? LIME : 'rgba(255,255,255,0.14)', transition: 'background 0.3s' }} />
@@ -335,43 +329,45 @@ export default function SonicFamily() {
             </div>
           </div>
 
-          <div key={`b-${active.id}`} className="p-7 md:p-10 xl:p-12 lg:border-l flex flex-col animate-fadeIn" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-            <div className="max-w-[68ch]">
+          <div key={`b-${active.id}`} className="animate-fadeIn">
+            <div className={shown.length > 1 ? 'lg:columns-2 lg:gap-14' : ''}>
               {shown.map((para, i) => (
-                <p key={i} className={`leading-[1.8] mb-5 last:mb-0 ${i === 0 ? 'text-[17px] md:text-[18px] text-white/85' : 'text-[15px] text-white/65'}`}>
+                <p
+                  key={i}
+                  className={`leading-[1.8] mb-5 last:mb-0 break-inside-avoid ${
+                    shown.length === 1 ? 'text-[17px] md:text-[20px] text-white/85' : i === 0 ? 'text-[17px] md:text-[18px] text-white/85' : 'text-[15px] md:text-[16px] text-white/65'
+                  }`}
+                >
                   {para}
                 </p>
               ))}
-              {canExpand && (
-                <button
-                  type="button"
-                  onClick={() => setExpanded((v) => !v)}
-                  aria-expanded={expanded}
-                  className="mt-6 inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] cursor-pointer hover:text-white transition-colors"
-                  style={{ color: LIME }}
-                >
-                  {expanded ? tLess : tMore}
-                  <i className={expanded ? 'ri-arrow-up-line' : 'ri-arrow-down-line'} aria-hidden="true" />
-                </button>
-              )}
-              {active.closingQuote && (expanded || !canExpand) && (
-                <p className="mt-10 font-black text-white" style={{ fontSize: 'clamp(18px,1.7vw,24px)', lineHeight: 1.35, letterSpacing: '-0.02em' }}>
-                  {active.closingQuote}
-                </p>
-              )}
             </div>
+            {active.closingQuote && (expanded || !canExpand) && (
+              <p className="mt-10 pt-8 font-black text-white" style={{ fontSize: 'clamp(18px,1.9vw,26px)', lineHeight: 1.35, letterSpacing: '-0.02em', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                {active.closingQuote}
+              </p>
+            )}
+          </div>
 
-            {/* Next story */}
+          <div className="mt-10 pt-6 flex flex-wrap items-center justify-between gap-4" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+            {canExpand ? (
+              <button
+                type="button"
+                onClick={() => setExpanded((v) => !v)}
+                aria-expanded={expanded}
+                className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] cursor-pointer hover:text-white transition-colors"
+                style={{ color: LIME }}
+              >
+                {expanded ? tLess : tMore}
+                <i className={expanded ? 'ri-arrow-up-line' : 'ri-arrow-down-line'} aria-hidden="true" />
+              </button>
+            ) : <span />}
             <button
               type="button"
               onClick={goNext}
-              className="group mt-10 pt-6 flex items-center justify-between gap-4 text-left cursor-pointer"
-              style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}
+              className="group inline-flex items-center gap-4 cursor-pointer"
             >
-              <span className="block">
-                <span className="block text-[10px] font-black uppercase tracking-[0.24em] text-white/45">{tNext}</span>
-                <span className="block mt-1 font-black text-white text-lg group-hover:text-primary-500 transition-colors">{next.name} · <span className="text-white/55 font-bold text-[15px]">{next.role}</span></span>
-              </span>
+              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-white group-hover:text-primary-500 transition-colors">{tNext}</span>
               <span className="w-11 h-11 flex-shrink-0 flex items-center justify-center bg-primary-500 text-foreground-950 group-hover:bg-white transition-colors" aria-hidden="true">
                 <i className="ri-arrow-right-line text-lg" />
               </span>
