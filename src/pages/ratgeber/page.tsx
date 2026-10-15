@@ -277,9 +277,9 @@ export default function RatgeberHubPage() {
       {/* CTA */}
       <section className="sonic-section-lg bg-white px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="border border-foreground-950/15 bg-white p-10 md:p-14 relative overflow-hidden" style={{ borderRadius: 0 }}>            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C8D400]/60 via-[#C8D400]/20 to-transparent" />
+          <div className="border border-foreground-950/15 bg-white p-6 sm:p-10 md:p-14 relative overflow-hidden" style={{ borderRadius: 0 }}>            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C8D400]/60 via-[#C8D400]/20 to-transparent" />
 
-            <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-10 items-center">
+            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
               <div>
                 <h2 className="sonic-h2 text-foreground-950 mb-4">
                   {tCtaHeading.split('\n').map((line, i) => i === 1 ? <span key={i}><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone' }}>{line}</span></span> : <span key={i}>{line}<br /></span>)}
@@ -293,7 +293,7 @@ export default function RatgeberHubPage() {
               <div className="text-center md:text-right">
                 <a
                   href="/kontakt"
-                  className="inline-flex items-center gap-3 bg-foreground-950 text-white px-10 py-5 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-foreground-950 text-white px-6 sm:px-10 py-5 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
                   style={{ borderRadius: 0 }}
                 >
                   <i className="ri-mail-line text-base"></i>

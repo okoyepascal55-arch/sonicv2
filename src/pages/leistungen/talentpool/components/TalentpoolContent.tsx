@@ -217,7 +217,7 @@ export default function TalentpoolContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 gap-4">
             {PROFILES.map((p, idx) => (
               <div
                 key={idx}

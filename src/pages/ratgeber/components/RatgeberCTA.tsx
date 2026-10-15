@@ -13,8 +13,8 @@ export default function RatgeberCTA({ headline, headlineAccent, subline }: Ratge
   return (
     <section className="sonic-section-lg bg-white px-6">
       <div className="max-w-4xl mx-auto">
-        <div className="border border-foreground-950/15 bg-white p-10 md:p-14 relative overflow-hidden" style={{ borderRadius: 0 }}>
-          <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-10 items-center">
+        <div className="border border-foreground-950/15 bg-white p-6 sm:p-10 md:p-14 relative overflow-hidden" style={{ borderRadius: 0 }}>
+          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
             <div>
               <h2 className="sonic-h2 text-foreground-950 mb-4">
                 {headline}<br />
@@ -28,7 +28,7 @@ export default function RatgeberCTA({ headline, headlineAccent, subline }: Ratge
               <button
                 type="button"
                 onClick={() => openCalendly()}
-                className="inline-flex items-center gap-3 bg-foreground-950 text-white px-10 py-5 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-foreground-950 text-white px-6 sm:px-10 py-5 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm uppercase tracking-wider"
                 style={{ borderRadius: 0 }}
               >
                 <i className="ri-calendar-line text-base"></i>

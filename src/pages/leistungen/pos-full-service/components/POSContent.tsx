@@ -342,7 +342,7 @@ export default function POSContent() {
 
           {/* Content Card */}
           <div key={activeStep} className="border border-white/10 bg-[#161616] overflow-hidden" style={{ animation: 'fadeSlideIn 0.4s ease-out' }}>
-            <div className="grid md:grid-cols-12 gap-0">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
               {/* Left: Step Image */}
               <div className="md:col-span-5 relative overflow-hidden border-b md:border-b-0 md:border-r border-white/10 min-h-[240px] md:min-h-[380px]">
                 <img
@@ -364,7 +364,7 @@ export default function POSContent() {
               </div>
 
               {/* Right: Content */}
-              <div className="md:col-span-7 p-8 md:p-12 flex flex-col justify-center min-h-[240px] md:min-h-[380px]">
+              <div className="md:col-span-7 min-w-0 p-6 sm:p-8 md:p-12 flex flex-col justify-center min-h-[240px] md:min-h-[380px]">
                 <div className="flex items-center gap-3 mb-5">
                   <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {steps[activeStep].num}</span>
                   <span className="px-3 py-1.5 bg-primary-500 text-foreground-950 text-xs font-black">{steps[activeStep].time}</span>
@@ -373,7 +373,7 @@ export default function POSContent() {
                 <p className="text-white/55 text-sm md:text-base leading-relaxed">{steps[activeStep].desc}</p>
 
                 {/* Navigation */}
-                <div className="mt-8 flex items-center gap-4">
+                <div className="mt-8 flex items-center gap-3 sm:gap-4">
                   <button
                     onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
                     aria-label="Vorheriger Schritt"
@@ -395,7 +395,7 @@ export default function POSContent() {
                   >
                     <i className="ri-arrow-right-line text-lg" aria-hidden="true" />
                   </button>
-                  <span className="text-white/25 text-xs font-bold ml-2">{activeStep + 1} / {steps.length}</span>
+                  <span className="hidden sm:inline text-white/25 text-xs font-bold ml-2">{activeStep + 1} / {steps.length}</span>
                 </div>
               </div>
             </div>

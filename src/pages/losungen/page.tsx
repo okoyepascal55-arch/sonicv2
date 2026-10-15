@@ -633,7 +633,7 @@ function WoodCard({
             </div>
           </div>
           <div className="inline-flex items-center gap-2 self-start sm:self-auto rounded-none border border-white/15 bg-white/5 px-4 py-2">
-            <span className="text-white/75 text-xs font-bold whitespace-nowrap">{pt.cardChip}</span>
+            <span className="text-white/75 text-xs font-bold sm:whitespace-nowrap">{pt.cardChip}</span>
           </div>
         </div>
 
@@ -886,7 +886,7 @@ export default function LosungenPage() {
             <h1 className="leist-h1-hub text-white mb-5 md:mb-6">
               {pt.heroH1Line1}<br />
               <span className="text-primary-500">{pt.heroH1Line2}</span><br />
-              <span className="whitespace-nowrap">{pt.heroH1Line3}</span>
+              <span className="md:whitespace-nowrap">{pt.heroH1Line3}</span>
             </h1>
 
             <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-3">
@@ -1385,9 +1385,9 @@ export default function LosungenPage() {
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full px-8 py-6 flex items-center justify-between text-left cursor-pointer bg-white hover:bg-primary-50 transition-colors duration-200"
+                  className="w-full px-5 py-5 md:px-8 md:py-6 flex items-center justify-between text-left cursor-pointer bg-white hover:bg-primary-50 transition-colors duration-200"
                 >
-                  <span className="text-lg font-black text-foreground-950 pr-6">{item.question}</span>
+                  <span className="min-w-0 text-base md:text-lg font-black text-foreground-950 pr-4 md:pr-6" style={{ hyphens: 'auto', overflowWrap: 'break-word' }}>{item.question}</span>
                   <div className={`w-9 h-9 flex-shrink-0 flex items-center justify-center transition-all duration-300 ${openFaq === index ? 'bg-primary-500' : 'bg-foreground-100'}`} style={{ borderRadius: 0 }}>
                     <i className={`${openFaq === index ? 'ri-subtract-line text-foreground-950' : 'ri-add-line text-foreground-500'} text-xl`} />
                   </div>

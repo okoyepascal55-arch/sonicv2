@@ -59,13 +59,13 @@ export default function PhotoSelector({
       {/* Label + counter */}
       <div className="flex items-center gap-4 px-4 md:px-6" style={{ height: 32 }}>
         <span
-          className="whitespace-nowrap"
+          className="whitespace-nowrap truncate min-w-0"
           style={{ fontFamily: 'monospace', fontSize: '0.58rem', color: `${accent}88`, fontWeight: 900, letterSpacing: '0.3em', textTransform: 'uppercase' }}
         >
           {eraLabel} · Kontaktabzug
         </span>
-        <div className="flex-1 h-px" style={{ background: 'rgba(255,255,255,0.05)' }} />
-        <span className="whitespace-nowrap" style={{ fontFamily: 'monospace', fontSize: '0.58rem', color: 'rgba(255,255,255,0.28)', fontWeight: 900, letterSpacing: '0.15em' }}>
+        <div className="flex-1 h-px min-w-[12px]" style={{ background: 'rgba(255,255,255,0.05)' }} />
+        <span className="whitespace-nowrap flex-shrink-0" style={{ fontFamily: 'monospace', fontSize: '0.58rem', color: 'rgba(255,255,255,0.28)', fontWeight: 900, letterSpacing: '0.15em' }}>
           PHOTO {String(activeIndex + 1).padStart(2, '0')} / {String(photos.length).padStart(2, '0')}
         </span>
       </div>

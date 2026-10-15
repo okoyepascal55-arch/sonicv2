@@ -288,6 +288,15 @@ html {
   body {
     @apply font-sans antialiased;
   }
+  /* Responsive safety (15.10.2026): long German words (e.g. „Erlebnismarketingstrategie“,
+     „Wareneingang & Qualitätskontrolle“) may no longer run out of narrow boxes — they hyphenate
+     at proper syllables (html lang="de") and only break hard as a last resort. */
+  h1, h2, h3, h4 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphenate-limit-chars: 10 4 4;
+  }
 }
 
 @layer utilities {

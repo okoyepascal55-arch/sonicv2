@@ -158,14 +158,14 @@ export default function KarrierepfadeSection() {
                   <button
                     type="button"
                     onClick={() => setOpen(i)}
-                    className="relative w-full h-[120px] flex items-end justify-between gap-4 p-6 text-left"
+                    className="relative w-full h-[120px] flex items-end justify-between gap-3 p-5 sm:p-6 text-left"
                     aria-expanded={false}
                   >
-                    <span className="block">
+                    <span className="block min-w-0">
                       <span className="block text-[10px] font-extrabold uppercase tracking-[0.2em] mb-2" style={{ color: LIME }}>{path.badge}</span>
                       <span className="block font-black text-white text-[26px] leading-none" style={{ letterSpacing: '-0.02em' }}>{path.title}</span>
                     </span>
-                    <span className="inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.15em] text-white">
+                    <span className="flex-shrink-0 inline-flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.15em] text-white">
                       {tOpen}
                       <i className="ri-arrow-right-line" aria-hidden="true" />
                     </span>

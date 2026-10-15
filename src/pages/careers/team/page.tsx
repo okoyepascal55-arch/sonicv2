@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
 import { useText } from '@/hooks/useText';
 import { INK } from '../components/ChapterKit';
+import WoodenDivider from '@/components/base/WoodenDivider';
 import { useCareerPaths, JOBS_ANCHOR } from '../usePathData';
 import type { PathTab } from '../content';
 
@@ -146,9 +147,15 @@ export default function CareerTeamPage() {
           <p className="text-[18px] md:text-[20px] font-bold leading-[1.6] text-foreground-950">{path.description}</p>
         </div>
 
+      </div>
+
+      {/* Same chapter divider as on /karriere: hero + intro → content */}
+      <div className="py-6 md:py-8"><WoodenDivider /></div>
+
+      <div className="sonic-container px-5 md:px-10">
         {/* 4.4 Content sections */}
         {sections.map((tab, i) => (
-          <section key={tab.id} className="grid grid-cols-1 lg:grid-cols-[4fr_8fr] gap-6 lg:gap-12 py-10 md:py-12" style={{ borderTop: RULE }}>
+          <section key={tab.id} className="grid grid-cols-1 lg:grid-cols-[4fr_8fr] gap-6 lg:gap-12 py-10 md:py-12" style={{ borderTop: i === 0 ? 'none' : RULE }}>
             <div className="flex flex-col gap-2.5">
               <span className="text-[11px] font-extrabold tracking-[0.15em] tabular-nums" style={{ color: MUTED }}>{String(i + 1).padStart(2, '0')}</span>
               <h2 className="text-[28px] md:text-[32px] font-black text-foreground-950" style={{ letterSpacing: '-0.01em' }}>{tab.label}</h2>
