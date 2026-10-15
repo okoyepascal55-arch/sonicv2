@@ -124,7 +124,7 @@ const faceSection = (d: FaceDefaults, idx: number): TextSection => ({
   label: `Spirit & Faces ${String(idx + 1).padStart(2, '0')} — ${d.name}`,
   pageGroupId: 'stimmen',
   pagePath: '/karriere',
-  description: 'Geschichte in „Sonic Spirit & Faces“. Absätze in der Bio mit einer Leerzeile trennen. Leeres Schlusszitat = wird ausgeblendet.',
+  description: 'Geschichte in „Sonic Spirit & Faces“ (Karriere). Absätze mit einer Leerzeile trennen — ab 3 Absätzen erscheint „Ganze Geschichte lesen“. Leeres Schlusszitat = ausgeblendet. Foto: Medien → Karriere → „Sonic Spirit & Faces“ (Bildunterschrift beginnt mit dem Vornamen).',
   entries: [
     e(`face-${d.id}-name`, 'Name', 'heading', d.name),
     e(`face-${d.id}-role`, 'Rolle', 'label', d.role),
@@ -134,7 +134,7 @@ const faceSection = (d: FaceDefaults, idx: number): TextSection => ({
   ],
 });
 
-export const FACE_IDS = ['sascha', 'marcel', 'andrew', 'michelle', 'janina', 'katharina'] as const;
+export const FACE_IDS = ['sascha', 'andrew', 'michelle', 'janina'] as const;
 
 const FACES: FaceDefaults[] = [
   {
@@ -143,13 +143,6 @@ const FACES: FaceDefaults[] = [
     role: 'Senior IT Admin',
     pullquote: '„Gute IT ist unsichtbar — und genau das ist das Ziel. Wenn die Systeme laufen, läuft Sonic.“',
     bio: 'Sascha verantwortet die IT-Infrastruktur bei Sonic. Er sorgt dafür, dass die technische Basis zuverlässig funktioniert — damit alle anderen ihre Arbeit machen können.',
-  },
-  {
-    id: 'marcel',
-    name: 'Marcel W.',
-    role: 'Finance Controller',
-    pullquote: '„Zahlen erzählen Geschichten — man muss nur wissen, wie man sie liest.“',
-    bio: 'Marcel bringt finanzielle Klarheit in ein schnellwachsendes Unternehmen. Als Finance Controller stellt er sicher, dass Entscheidungen auf verlässlichen Grundlagen getroffen werden.',
   },
   {
     id: 'andrew',
@@ -186,13 +179,6 @@ Heute ist Janina für das operative Personalmanagement verantwortlich. Dabei beg
 
 Manchmal beginnt der passende Karriereweg dort, wo man ursprünglich nur einen Studentenjob gesucht hat. Aus ersten Promotion-Einsätzen während des Studiums wurden neue Chancen, spannende Herausforderungen und Schritt für Schritt eine langfristige berufliche Heimat bei Sonic.`,
     closing: '„Karrierewege lassen sich nicht immer planen. Manchmal entstehen sie genau dort, wo Menschen Potenziale erkennen, Vertrauen schenken und Entwicklung ermöglichen.“',
-  },
-  {
-    id: 'katharina',
-    name: 'Katharina S.',
-    role: 'Business Controller',
-    pullquote: '„Gute Markenarbeit entsteht, wenn Strategie und Kreativität gemeinsam an einem Tisch sitzen.“',
-    bio: 'Katharina verantwortet bei Sonic die Schnittstelle zwischen Marke und Inhalt. Sie entwickelt Content-Strategien, die Markenbotschaften erlebbar machen — kanalübergreifend, konsistent und immer mit dem Blick auf die Zielgruppe.',
   },
 ];
 

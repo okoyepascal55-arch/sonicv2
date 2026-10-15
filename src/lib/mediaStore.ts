@@ -690,11 +690,9 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   careers_sonicfamily_images: [
     { url: '', caption: 'Sascha M. — Senior IT Admin' },
-    { url: '', caption: 'Marcel W. — Finance Controller' },
     { url: '', caption: 'Andrew W. — Event and Logistics Manager' },
     { url: '', caption: 'Michelle G. — Senior Project Manager' },
     { url: '', caption: 'Janina B. — HR Manager' },
-    { url: '', caption: 'Inga L. — Jr Art Direktor' },
   ],
 
   /* ── KREATION: Team Faces ── */
@@ -1402,7 +1400,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'careers_mitarbeiterstimmen_sales_images': 'Mitarbeiterstimmen — Sales',
   'careers_mitarbeiterstimmen_staff_images': 'Mitarbeiterstimmen — Staff',
   'careers_sonicfaces_images': 'SonicFaces — Portraits',
-  'careers_sonicfamily_images': 'SonicFamily — AI Portraits',
+  'careers_sonicfamily_images': 'Sonic Spirit & Faces — Porträts (Bildunterschrift beginnt mit dem Vornamen)',
   'kreation_faces_robert': 'Kreation Team — Robert H.',
   'kreation_faces_inga': 'Kreation Team — Inga L.',
   'careers_recruitercta_image': 'RecruiterCTA — Tanja Foto',
@@ -1591,7 +1589,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'careers_mitarbeiterstimmen_sales_images': 3,
   'careers_mitarbeiterstimmen_staff_images': 3,
   'careers_sonicfaces_images': 5,
-  'careers_sonicfamily_images': 6,
+  'careers_sonicfamily_images': 4,
   'careers_recruitercta_image': 1,
   'careers_stellenangebote_image': 1,
   'careers_sonic_sales_hero': 1,
@@ -1776,7 +1774,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'careers_mitarbeiterstimmen_sales_images': { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Sales testimonials — wide portrait-style' },
   'careers_mitarbeiterstimmen_staff_images': { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Staff testimonials — wide portrait-style' },
   'careers_sonicfaces_images':     { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'SonicFaces — wide portrait-style staff photos' },
-  'careers_sonicfamily_images':    { aspectRatio: '3:4', dimensions: '600×800', orientation: 'portrait', tip: 'AI portraits — professional headshots, dark backgrounds' },
+  'careers_sonicfamily_images':    { aspectRatio: '4:5', dimensions: '800×1000', orientation: 'portrait', tip: 'Porträt, Gesicht im oberen Drittel — Bildunterschrift z. B. „Sascha M. — Senior IT Admin“' },
   'careers_recruitercta_image':    { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'RecruiterCTA — Tanja wide photo' },
   'careers_stellenangebote_image': { aspectRatio: '1:1', dimensions: '96×96', orientation: 'icon', tip: 'Tanja headshot — small square portrait' },
   'careers_sonic_sales_hero':      { aspectRatio: '~2:1', dimensions: '~1200×600', orientation: 'landscape', tip: 'Sonic Sales hero — wide' },

@@ -767,7 +767,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   {
     key: 'careers_family', label: 'SonicFamily — Spirit & Faces',
     pageGroupId: 'careers', pagePath: '/karriere',
-    description: 'The Sonic Spirit & Faces section with team member stories.',
+    description: 'Sonic Spirit & Faces: vier Geschichten. Texte je Person unter Stimmen & Gesichter → Karriere, Fotos unter Medien → Karriere → „Sonic Spirit & Faces“.',
     entries: [
       { id: 'careers-family-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Echte Menschen. Echte Geschichten.' },
       { id: 'careers-family-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Sonic Spirit & Faces' },
@@ -777,6 +777,10 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-family-cta-after', label: 'CTA-Box — Text nach Hervorhebung', description: '', type: 'heading', value: 'werden?' },
       { id: 'careers-family-cta-sub', label: 'CTA-Box — Unterzeile', description: '', type: 'paragraph', value: 'Wir suchen Menschen, die ihre Geschichte teilen — 15 Minuten, ehrliche Fragen, kein Drehbuch.' },
       { id: 'careers-family-cta', label: 'CTA-Button', description: 'Button-Text (öffnet E-Mail)', type: 'cta', value: 'Teil der Geschichte werden' },
+      { id: 'careers-family-more', label: 'Link „Geschichte aufklappen“', description: 'Erscheint bei langen Geschichten (mehr als 2 Absätze)', type: 'cta', value: 'Ganze Geschichte lesen' },
+      { id: 'careers-family-less', label: 'Link „Geschichte zuklappen“', description: '', type: 'cta', value: 'Weniger anzeigen' },
+      { id: 'careers-family-story-label', label: 'Label über dem Namen im Geschichtenbereich', description: '', type: 'label', value: 'Die Geschichte' },
+      { id: 'careers-family-next', label: 'Link „Nächste Geschichte“', description: 'Steht über dem Namen der nächsten Person', type: 'cta', value: 'Nächste Geschichte' },
     ],
   },
   {

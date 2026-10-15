@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText, useTextSection } from '@/hooks/useText';
 import { useMediaStore } from '@/lib/mediaStore';
-import { ChapterHeader, Marker } from './ChapterKit';
+import { ChapterHeader, Marker, INK } from './ChapterKit';
 
 type Face = {
   id: string;
@@ -14,22 +14,16 @@ type Face = {
   image: string;
 };
 
-const getFaces = (dbImages: { url: string }[]): Face[] => [
+/* Four voices (15.10.2026). Portraits: Dashboard → Medien → Karriere → „Sonic Spirit & Faces“ —
+   matched by the name at the start of the caption (e.g. „Sascha M. — …“), else by position. */
+const BASE_FACES: Face[] = [
   {
     id: 'sascha',
     name: 'Sascha M.',
     role: 'Senior IT Admin',
     pullQuote: "„Gute IT ist unsichtbar — und genau das ist das Ziel. Wenn die Systeme laufen, läuft Sonic.“",
     bio: 'Sascha verantwortet die IT-Infrastruktur bei Sonic. Er sorgt dafür, dass die technische Basis zuverlässig funktioniert — damit alle anderen ihre Arbeit machen können.',
-    image: dbImages[0]?.url || 'https://readdy.ai/api/search-image?query=professional+man+IT+administrator+confident+portrait+modern+office+editorial&width=600&height=800&seq=sf-sascha-01&orientation=portrait',
-  },
-  {
-    id: 'marcel',
-    name: 'Marcel W.',
-    role: 'Finance Controller',
-    pullQuote: "„Zahlen erzählen Geschichten — man muss nur wissen, wie man sie liest.“",
-    bio: 'Marcel bringt finanzielle Klarheit in ein schnellwachsendes Unternehmen. Als Finance Controller stellt er sicher, dass Entscheidungen auf verlässlichen Grundlagen getroffen werden.',
-    image: dbImages[1]?.url || 'https://readdy.ai/api/search-image?query=professional+man+finance+controller+confident+editorial+portrait+office+modern&width=600&height=800&seq=sf-marcel-02&orientation=portrait',
+    image: '',
   },
   {
     id: 'andrew',
@@ -37,7 +31,7 @@ const getFaces = (dbImages: { url: string }[]): Face[] => [
     role: 'Event and Logistics Manager',
     pullQuote: "„Im Event-Geschäft gibt es kein 'Morgen'. Alles muss heute klappen — und das ist genau das, was mich antreibt.“",
     bio: 'Andrew koordiniert Events und Logistik bei Sonic. Er bringt Struktur in komplexe Abläufe und sorgt dafür, dass jede Veranstaltung reibungslos über die Bühne geht.',
-    image: dbImages[2]?.url || 'https://readdy.ai/api/search-image?query=professional+man+event+logistics+manager+confident+editorial+portrait+modern+office&width=600&height=800&seq=sf-andrew-03&orientation=portrait',
+    image: '',
   },
   {
     id: 'michelle',
@@ -45,7 +39,7 @@ const getFaces = (dbImages: { url: string }[]): Face[] => [
     role: 'Senior Project Manager',
     pullQuote: "„Erfolgreiche Projekte entstehen nicht durch Zufall — sie entstehen durch konsequente Planung und echte Teamarbeit.“",
     bio: 'Michelle leitet komplexe Kundenprojekte bei Sonic. Als Senior Project Manager hält sie alle Fäden zusammen und stellt sicher, dass Deadlines und Qualitätsansprüche eingehalten werden.',
-    image: dbImages[3]?.url || 'https://readdy.ai/api/search-image?query=professional+woman+senior+project+manager+confident+editorial+portrait+modern+office&width=600&height=800&seq=sf-michelle-04&orientation=portrait',
+    image: '',
   },
   {
     id: 'janina',
@@ -68,45 +62,69 @@ Heute ist Janina für das operative Personalmanagement verantwortlich. Dabei beg
 
 Manchmal beginnt der passende Karriereweg dort, wo man ursprünglich nur einen Studentenjob gesucht hat. Aus ersten Promotion-Einsätzen während des Studiums wurden neue Chancen, spannende Herausforderungen und Schritt für Schritt eine langfristige berufliche Heimat bei Sonic.`,
     closingQuote: '„Karrierewege lassen sich nicht immer planen. Manchmal entstehen sie genau dort, wo Menschen Potenziale erkennen, Vertrauen schenken und Entwicklung ermöglichen.“',
-    image: dbImages[4]?.url || 'https://readdy.ai/api/search-image?query=professional+woman+HR+manager+warm+authentic+smile+editorial+portrait+modern+office&width=600&height=800&seq=sf-janina-05&orientation=portrait',
-  },
-  {
-    id: 'katharina',
-    name: 'Katharina S.',
-    role: 'Business Controller',
-    pullQuote: '„Gute Markenarbeit entsteht, wenn Strategie und Kreativität gemeinsam an einem Tisch sitzen."',
-    bio: 'Katharina verantwortet bei Sonic die Schnittstelle zwischen Marke und Inhalt. Sie entwickelt Content-Strategien, die Markenbotschaften erlebbar machen — kanalübergreifend, konsistent und immer mit dem Blick auf die Zielgruppe.',
-    image: dbImages[5]?.url || 'https://readdy.ai/api/search-image?query=professional+young+woman+brand+content+manager+confident+editorial+portrait+modern+office+dark+background&width=600&height=800&seq=sf-katharina-06&orientation=portrait',
+    image: '',
   },
 ];
+
+function pickPortrait(images: { url: string; caption?: string }[], face: Face, index: number): string {
+  const first = face.name.split(' ')[0].toLowerCase();
+  const byName = images.find((img) => img.url && (img.caption || '').trim().toLowerCase().startsWith(first));
+  return byName?.url || images[index]?.url || '';
+}
+
+const EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
+
+function Portrait({ face, isActive }: { face: Face; isActive: boolean }) {
+  return face.image ? (
+    <img
+      src={face.image}
+      alt=""
+      className="absolute inset-0 w-full h-full object-cover object-top"
+      style={{
+        filter: isActive ? 'none' : 'grayscale(1) brightness(0.55) contrast(1.05)',
+        transform: isActive ? 'scale(1)' : 'scale(1.06)',
+        transition: `filter 0.7s ${EASE}, transform 1.2s ${EASE}`,
+      }}
+      loading="lazy"
+      draggable={false}
+    />
+  ) : (
+    <span className="absolute inset-0 flex items-center justify-center font-black text-white/10" style={{ fontSize: 'clamp(64px,9vw,140px)' }} aria-hidden="true">
+      {face.name.charAt(0)}
+    </span>
+  );
+}
 
 export default function SonicFamily() {
   const tBadge   = useText('careers_family', 'careers-family-badge', 'Echte Menschen. Echte Geschichten.');
   const tHeading = useText('careers_family', 'careers-family-heading', 'Sonic Spirit & Faces');
-  const tSub     = useText('careers_family', 'careers-family-sub', 'Sechs Geschichten. Eine Überzeugung: Potenzial schlägt Lebenslauf.');
+  const tSub     = useText('careers_family', 'careers-family-sub', 'Persönliche Geschichten, ehrliche Interviews und die Werte, die unsere Kultur ausmachen.');
   const tCta     = useText('careers_family', 'careers-family-cta', 'Teil der Geschichte werden');
   const tCtaBefore = useText('careers_family', 'careers-family-cta-before', 'Willst du auch Teil von');
   const tCtaAccent = useText('careers_family', 'careers-family-cta-accent', 'Sonic Spirit & Faces');
   const tCtaAfter  = useText('careers_family', 'careers-family-cta-after',  'werden?');
   const tCtaSub    = useText('careers_family', 'careers-family-cta-sub',    'Wir suchen Menschen, die ihre Geschichte teilen — 15 Minuten, ehrliche Fragen, kein Drehbuch.');
+  const tMore = useText('careers_family', 'careers-family-more', 'Ganze Geschichte lesen');
+  const tLess = useText('careers_family', 'careers-family-less', 'Weniger anzeigen');
+  const tStory = useText('careers_family', 'careers-family-story-label', 'Die Geschichte');
+  const tNext = useText('careers_family', 'careers-family-next', 'Nächste Geschichte');
 
   // Dashboard → Text → Stimmen & Gesichter → Tab „Karriere“
   const faceText = [
     useTextSection('karriere_face_sascha'),
-    useTextSection('karriere_face_marcel'),
     useTextSection('karriere_face_andrew'),
     useTextSection('karriere_face_michelle'),
     useTextSection('karriere_face_janina'),
-    useTextSection('karriere_face_katharina'),
   ];
 
   const { images: dbImages } = useMediaStore('careers_sonicfamily_images');
-  const FACES = getFaces(dbImages).map((face, i) => {
+  const FACES = BASE_FACES.map((face, i) => {
     const t = faceText[i] ?? {};
     const pick = (key: string, fallback: string) => (t[`face-${face.id}-${key}`]?.trim() ? t[`face-${face.id}-${key}`] : fallback);
     const closing = t[`face-${face.id}-closing`];
     return {
       ...face,
+      image: pickPortrait(dbImages, face, i),
       name: pick('name', face.name),
       role: pick('role', face.role),
       pullQuote: pick('pullquote', face.pullQuote),
@@ -116,13 +134,58 @@ export default function SonicFamily() {
     };
   });
 
-  // Active face — defaults to first one
-  const [activeId, setActiveId] = useState<string>(FACES[0].id);
-  const active = FACES.find(f => f.id === activeId) ?? FACES[0];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const active = FACES[activeIndex];
+  const next = FACES[(activeIndex + 1) % FACES.length];
+  const select = (i: number) => { setActiveIndex(i); setExpanded(false); };
+  const storyRef = useRef<HTMLDivElement>(null);
+  const goNext = () => {
+    select((activeIndex + 1) % FACES.length);
+    // keep the reader oriented: bring the portraits back into view
+    const el = document.getElementById('spirit-faces');
+    if (el && el.getBoundingClientRect().top < 0) {
+      window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 130, behavior: 'smooth' });
+    }
+  };
+
+  // Mobile carousel: keep the active card in view, and follow swipes
+  const railRef = useRef<HTMLDivElement>(null);
+  const autoScrollUntil = useRef(0);
+  useEffect(() => {
+    const rail = railRef.current;
+    const card = rail?.children[activeIndex] as HTMLElement | undefined;
+    if (rail && card && rail.scrollWidth > rail.clientWidth) {
+      const target = card.offsetLeft - (rail.clientWidth - card.offsetWidth) / 2;
+      if (Math.abs(rail.scrollLeft - target) > 4) {
+        autoScrollUntil.current = Date.now() + 700; // ignore our own scroll while it runs
+        rail.scrollTo({ left: target, behavior: 'smooth' });
+      }
+    }
+  }, [activeIndex]);
+  const onRailScroll = () => {
+    const rail = railRef.current;
+    if (!rail || rail.scrollWidth <= rail.clientWidth || Date.now() < autoScrollUntil.current) return;
+    const cards = Array.from(rail.children) as HTMLElement[];
+    const center = rail.scrollLeft + rail.clientWidth / 2;
+    let best = 0, bestDist = Infinity;
+    cards.forEach((c, i) => {
+      const d = Math.abs(c.offsetLeft - rail.offsetLeft + c.offsetWidth / 2 - center);
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+    if (best !== activeIndex) { setActiveIndex(best); setExpanded(false); }
+  };
+
+  const paragraphs = active.bio.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+  const PREVIEW = 2;
+  const shown = expanded ? paragraphs : paragraphs.slice(0, PREVIEW);
+  const canExpand = paragraphs.length > PREVIEW;
 
   const headingParts = tHeading.split(' & ');
   const headingMain  = headingParts[0] ?? tHeading;
   const headingAccent = headingParts.length > 1 ? `& ${headingParts.slice(1).join(' & ')}` : '';
+  const LIME = 'oklch(0.81 0.19 115)';
+  const num = (i: number) => String(i + 1).padStart(2, '0');
 
   return (
     <section id="spirit" className="bg-white py-10 md:py-14 px-5 md:px-10">
@@ -135,148 +198,184 @@ export default function SonicFamily() {
           headingMax="max-w-full"
         />
 
-        {/* ── Main layout: story panel (top) + name selector (bottom) ── */}
-        <div className="flex flex-col gap-0" style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
-
-          {/* Story panel — controlled by selected name below */}
-          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: '520px' }}>
-            {/* Portrait */}
-            <div
-              className="relative overflow-hidden"
-              style={{ background: 'oklch(0.13 0.005 118)', minHeight: '340px' }}
-            >
-              <img
-                key={active.id}
-                src={active.image}
-                alt={`${active.name} — ${active.role}`}
-                className="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-300"
-                loading="lazy"
-              />
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,11,9,0.88) 0%, rgba(10,11,9,0.1) 55%, transparent 100%)' }} />
-
-              {/* Name + role overlay */}
-              <div className="absolute left-0 right-0 bottom-0 p-7 md:p-10">
-
-                <p
-                  className="font-black text-white leading-none tracking-tight mb-1"
-                  style={{ fontSize: 'clamp(32px,4vw,52px)', letterSpacing: '-0.03em' }}
-                >
-                  {active.name}
-                </p>
-                <div className="flex items-center gap-2">
-                  <span className="text-[11px] font-bold text-white">{active.role}</span>
-
-                </div>
-              </div>
-            </div>
-
-            {/* Quote + bio — text-only panel, portrait height is independent */}
-            <div
-              className="flex flex-col justify-between p-8 md:p-12"
-              style={{ background: 'oklch(0.13 0.005 118)' }}
-            >
-              <div className="overflow-y-auto" style={{ maxHeight: '420px', paddingRight: '4px' }}>
-                <p className="text-[10px] font-black uppercase tracking-[0.28em] mb-8" style={{ color: 'oklch(0.81 0.19 115)' }}>
-                  {active.role}
-                </p>
-                <i className="ri-double-quotes-l text-3xl mb-5 block" style={{ color: 'oklch(0.81 0.19 115 / 0.35)' }} />
-                <blockquote
-                  className="font-black leading-[1.28] text-white mb-8"
-                  style={{ fontSize: 'clamp(18px,2vw,26px)', letterSpacing: '-0.02em' }}
-                >
-                  {active.pullQuote}
-                </blockquote>
-                {active.bio.split(/\n\s*\n/).filter(Boolean).map((para, i) => (
-                  <p key={i} className="text-[13px] leading-[1.75] mb-4 last:mb-0" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                    {para}
-                  </p>
-                ))}
-
-                {/* Closing quote — only shown when the face has a second quote */}
-                {active.closingQuote && (
-                  <div className="mt-8 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-                    <i className="ri-double-quotes-l text-xl mb-3 block" style={{ color: 'oklch(0.81 0.19 115 / 0.25)' }} />
-                    <p className="text-[13px] leading-relaxed italic" style={{ color: 'rgba(255,255,255,0.45)' }}>
-                      {active.closingQuote}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              <div
-                className="flex items-center gap-3 pt-6 mt-8"
-                style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}
+        {/* ── Desktop: expanding portrait panels ── */}
+        <div
+          id="spirit-faces"
+          className="hidden lg:flex gap-2"
+          style={{ height: 'clamp(520px, 44vw, 640px)' }}
+          role="group"
+          aria-label="Geschichte auswählen"
+        >
+          {FACES.map((face, i) => {
+            const isActive = i === activeIndex;
+            return (
+              <button
+                key={face.id}
+                type="button"
+                onClick={() => select(i)}
+                aria-pressed={isActive}
+                aria-controls="spirit-story"
+                aria-label={`${face.name} — ${face.role}`}
+                className="group relative overflow-hidden text-left cursor-pointer min-w-0"
+                style={{ flex: isActive ? '3.4 1 0%' : '1 1 0%', background: INK, transition: `flex 0.8s ${EASE}` }}
               >
-                <span className="w-6 h-px flex-1" style={{ background: 'oklch(0.81 0.19 115 / 0.3)' }} />
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
-                  {active.name} · {active.role}
+                <Portrait face={face} isActive={isActive} />
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: isActive
+                      ? 'linear-gradient(to top, rgba(10,11,9,0.94) 0%, rgba(10,11,9,0.55) 38%, rgba(10,11,9,0.05) 70%)'
+                      : 'linear-gradient(to top, rgba(10,11,9,0.85) 0%, rgba(10,11,9,0.25) 60%)',
+                    transition: `background 0.6s ${EASE}`,
+                  }}
+                />
+                {/* Lime frame line */}
+                <span className="absolute top-0 left-0 h-1 pointer-events-none" style={{ width: isActive ? '100%' : '0%', background: LIME, transition: `width 0.8s ${EASE}` }} aria-hidden="true" />
+
+                {/* Number */}
+                <span className="absolute top-5 left-5 text-[11px] font-black tracking-[0.24em] tabular-nums" style={{ color: isActive ? LIME : 'rgba(255,255,255,0.6)' }} aria-hidden="true">
+                  {num(i)}
                 </span>
+
+                {/* Collapsed: vertical name */}
+                <span
+                  className="absolute left-1/2 bottom-6 -translate-x-1/2 whitespace-nowrap text-[13px] font-black uppercase tracking-[0.28em] text-white group-hover:text-primary-500"
+                  style={{ writingMode: 'vertical-rl', transform: 'translateX(-50%) rotate(180deg)', opacity: isActive ? 0 : 1, transition: `opacity 0.35s ${EASE}, color 0.2s` }}
+                  aria-hidden="true"
+                >
+                  {face.name}
+                </span>
+
+                {/* Expanded: quote + name */}
+                <span
+                  className="absolute left-0 right-0 bottom-0 p-8 xl:p-10 block"
+                  style={{ opacity: isActive ? 1 : 0, transform: isActive ? 'none' : 'translateY(16px)', transition: `opacity 0.5s ${EASE} ${isActive ? '0.25s' : '0s'}, transform 0.6s ${EASE} ${isActive ? '0.25s' : '0s'}` }}
+                  aria-hidden={!isActive}
+                >
+                  <i className="ri-double-quotes-l text-3xl block mb-3" style={{ color: LIME }} aria-hidden="true" />
+                  <span className="block font-black text-white max-w-[640px]" style={{ fontSize: 'clamp(22px,2.1vw,32px)', lineHeight: 1.18, letterSpacing: '-0.025em' }}>
+                    {face.pullQuote}
+                  </span>
+                  <span className="flex items-end justify-between gap-6 mt-8 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}>
+                    <span className="block">
+                      <span className="block font-black text-white leading-none" style={{ fontSize: 'clamp(28px,2.6vw,40px)', letterSpacing: '-0.035em' }}>{face.name}</span>
+                      <span className="block mt-2 text-[11px] font-black uppercase tracking-[0.2em]" style={{ color: LIME }}>{face.role}</span>
+                    </span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.24em] text-white/50 tabular-nums">{num(i)} / {num(FACES.length - 1)}</span>
+                  </span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* ── Mobile / tablet: swipeable portrait cards ── */}
+        <div
+          ref={railRef}
+          onScroll={onRailScroll}
+          className="lg:hidden -mx-5 md:-mx-10 px-5 md:px-10 flex gap-3 overflow-x-auto snap-x snap-mandatory"
+          style={{ scrollbarWidth: 'none' }}
+          role="group"
+          aria-label="Geschichte auswählen"
+        >
+          {FACES.map((face, i) => {
+            const isActive = i === activeIndex;
+            return (
+              <button
+                key={face.id}
+                type="button"
+                onClick={() => select(i)}
+                aria-pressed={isActive}
+                aria-controls="spirit-story"
+                className="relative flex-shrink-0 overflow-hidden text-left snap-center"
+                style={{ width: 'min(82%, 420px)', aspectRatio: '4 / 5', background: INK }}
+              >
+                <Portrait face={face} isActive={isActive} />
+                <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(10,11,9,0.94) 0%, rgba(10,11,9,0.45) 45%, transparent 75%)' }} />
+                <span className="absolute top-0 left-0 h-1" style={{ width: isActive ? '100%' : '0%', background: LIME, transition: `width 0.6s ${EASE}` }} aria-hidden="true" />
+                <span className="absolute top-4 left-4 text-[10px] font-black tracking-[0.24em]" style={{ color: isActive ? LIME : 'rgba(255,255,255,0.7)' }} aria-hidden="true">{num(i)}</span>
+                <span className="absolute left-0 right-0 bottom-0 p-5 block">
+                  <span className="block font-black text-white text-[17px] leading-[1.25] mb-4" style={{ letterSpacing: '-0.02em' }}>{face.pullQuote}</span>
+                  <span className="block font-black text-white text-2xl leading-none" style={{ letterSpacing: '-0.03em' }}>{face.name}</span>
+                  <span className="block mt-1.5 text-[10px] font-black uppercase tracking-[0.18em]" style={{ color: LIME }}>{face.role}</span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+        {/* Mobile progress */}
+        <div className="lg:hidden flex gap-1.5 mt-4" aria-hidden="true">
+          {FACES.map((f, i) => (
+            <span key={f.id} className="h-[3px] flex-1" style={{ background: i === activeIndex ? LIME : 'oklch(var(--foreground-950) / 0.12)', transition: 'background 0.3s' }} />
+          ))}
+        </div>
+
+        {/* ── The story ── */}
+        <div
+          id="spirit-story"
+          ref={storyRef}
+          aria-live="polite"
+          className="mt-3 lg:mt-2 grid grid-cols-1 lg:grid-cols-[minmax(240px,4fr)_8fr]"
+          style={{ background: INK }}
+        >
+          <div className="p-7 md:p-10 xl:p-12 flex flex-col justify-between gap-8" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+            <div key={`h-${active.id}`} className="animate-fadeIn lg:sticky lg:top-32">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="w-7 h-0.5 flex-shrink-0" style={{ background: LIME }} aria-hidden="true" />
+                <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: LIME }}>{tStory}</span>
               </div>
+              <p className="font-black text-white leading-none" style={{ fontSize: 'clamp(30px,3vw,44px)', letterSpacing: '-0.035em' }}>{active.name}</p>
+              <p className="mt-3 text-[11px] font-black uppercase tracking-[0.2em] text-white/55">{active.role}</p>
+            </div>
+            {/* Step dots (desktop) */}
+            <div className="hidden lg:flex gap-1.5" aria-hidden="true">
+              {FACES.map((f, i) => (
+                <span key={f.id} className="h-[3px] w-10" style={{ background: i === activeIndex ? LIME : 'rgba(255,255,255,0.14)', transition: 'background 0.3s' }} />
+              ))}
             </div>
           </div>
 
-          {/* ── Name selector strip (bottom) — clicking reveals story above ── */}
-          <div
-            className="grid grid-cols-3 sm:grid-cols-6"
-            style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.1)' }}
-          >
-            {FACES.map((face, i) => {
-              const isActive = face.id === activeId;
-              return (
+          <div key={`b-${active.id}`} className="p-7 md:p-10 xl:p-12 lg:border-l flex flex-col animate-fadeIn" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+            <div className="max-w-[68ch]">
+              {shown.map((para, i) => (
+                <p key={i} className={`leading-[1.8] mb-5 last:mb-0 ${i === 0 ? 'text-[17px] md:text-[18px] text-white/85' : 'text-[15px] text-white/65'}`}>
+                  {para}
+                </p>
+              ))}
+              {canExpand && (
                 <button
-                  key={face.id}
-                  onClick={() => setActiveId(face.id)}
-                  className="flex flex-col items-center justify-center gap-2 py-4 px-2 sm:py-5 sm:px-3 cursor-pointer transition-all duration-200 focus:outline-none"
-                  style={{
-                    background: isActive ? 'oklch(0.13 0.005 118)' : '#fff',
-                    borderRight: (i + 1) % 3 !== 0 && i < FACES.length - 1 ? '1px solid oklch(var(--foreground-950) / 0.1)' : undefined,
-                    borderBottom: i < 3 ? '1px solid oklch(var(--foreground-950) / 0.1)' : undefined,
-                    borderTop: isActive ? '2px solid oklch(0.81 0.19 115)' : '2px solid transparent',
-                  }}
-                  aria-pressed={isActive}
+                  type="button"
+                  onClick={() => setExpanded((v) => !v)}
+                  aria-expanded={expanded}
+                  className="mt-6 inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] cursor-pointer hover:text-white transition-colors"
+                  style={{ color: LIME }}
                 >
-                  {/* Small portrait thumbnail */}
-                  <div
-                    className="w-10 h-10 md:w-12 md:h-12 overflow-hidden flex-shrink-0"
-                    style={{ border: isActive ? '2px solid oklch(0.81 0.19 115)' : '2px solid transparent' }}
-                  >
-                    <img
-                      src={face.image}
-                      alt={face.name}
-                      className="w-full h-full object-cover object-top"
-                    />
-                  </div>
-
-                  {/* Name + role */}
-                  <div className="text-center hidden sm:block">
-                    <p
-                      className="font-black leading-none"
-                      style={{
-                        fontSize: '11px',
-                        letterSpacing: '-0.01em',
-                        color: isActive ? '#fff' : 'oklch(0.16 0.006 118)',
-                      }}
-                    >
-                      {face.name}
-                    </p>
-                    <p
-                      className="text-[9px] font-bold mt-0.5 uppercase tracking-[0.1em]"
-                      style={{ color: isActive ? 'oklch(0.81 0.19 115)' : 'oklch(0.6 0.006 260)' }}
-                    >
-                      {face.role.split(' · ')[0]}
-                    </p>
-                  </div>
-
-                  {/* Active indicator dot */}
-                  {isActive && (
-                    <span
-                      className="hidden sm:block w-1 h-1"
-                      style={{ background: 'oklch(0.81 0.19 115)', borderRadius: '50%' }}
-                    />
-                  )}
+                  {expanded ? tLess : tMore}
+                  <i className={expanded ? 'ri-arrow-up-line' : 'ri-arrow-down-line'} aria-hidden="true" />
                 </button>
-              );
-            })}
+              )}
+              {active.closingQuote && (expanded || !canExpand) && (
+                <p className="mt-10 font-black text-white" style={{ fontSize: 'clamp(18px,1.7vw,24px)', lineHeight: 1.35, letterSpacing: '-0.02em' }}>
+                  {active.closingQuote}
+                </p>
+              )}
+            </div>
+
+            {/* Next story */}
+            <button
+              type="button"
+              onClick={goNext}
+              className="group mt-10 pt-6 flex items-center justify-between gap-4 text-left cursor-pointer"
+              style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}
+            >
+              <span className="block">
+                <span className="block text-[10px] font-black uppercase tracking-[0.24em] text-white/45">{tNext}</span>
+                <span className="block mt-1 font-black text-white text-lg group-hover:text-primary-500 transition-colors">{next.name} · <span className="text-white/55 font-bold text-[15px]">{next.role}</span></span>
+              </span>
+              <span className="w-11 h-11 flex-shrink-0 flex items-center justify-center bg-primary-500 text-foreground-950 group-hover:bg-white transition-colors" aria-hidden="true">
+                <i className="ri-arrow-right-line text-lg" />
+              </span>
+            </button>
           </div>
         </div>
 
