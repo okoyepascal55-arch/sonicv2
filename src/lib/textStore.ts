@@ -9,8 +9,8 @@ import { supabase } from './supabase';
 export interface TextEntry {
   id: string;
   label: string;
-  description: string;
-  type: 'heading' | 'subheading' | 'paragraph' | 'label' | 'cta' | 'badge' | 'stat' | 'stat-label' | 'link' | 'list-item' | 'quote' | 'caption' | 'tag' | 'nav-label' | 'footer-heading' | 'footer-link';
+  description?: string;
+  type: 'heading' | 'subheading' | 'paragraph' | 'label' | 'cta' | 'badge' | 'stat' | 'stat-label' | 'link' | 'list-item' | 'quote' | 'caption' | 'tag' | 'nav-label' | 'footer-heading' | 'footer-link' | 'text';
   value: string;
   multiline?: boolean;
 }
@@ -19,8 +19,8 @@ export interface TextSection {
   key: string;
   label: string;
   pageGroupId: string;
-  pagePath: string;
-  description: string;
+  pagePath?: string;
+  description?: string;
   entries: TextEntry[];
 }
 
