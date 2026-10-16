@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { STIMMEN_TEXT_SECTIONS } from './textStoreStimmen';
 import { LOSUNGEN_TEXT_SECTIONS } from './textStoreLosungen';
 import { KARRIERE_TEXT_SECTIONS } from './textStoreKarriere';
-import { TV_COMPARE_SECTION } from './textStoreTvCompare';
 import { REVIEW_TEXT_SECTIONS } from './textStoreReview';
 import { LEISTUNGEN_TEXT_SECTIONS } from './textStoreLeistungen';
 import { CTA_TEXT_SECTIONS } from './textStoreCta';
@@ -724,18 +723,13 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   {
     key: 'careers_culture', label: 'KarriereCulture — Darum Sonic + Werte',
     pageGroupId: 'careers', pagePath: '/karriere',
-    description: 'Unsere Kultur: Überschrift, zwei Absätze, Wertezeile, DNA-Eyebrow und der Streifen „Ausgezeichnet“. DNA-Texte unter „Karriere DNA“, Bewertungen unter „Karriere — Auszeichnungen“.',
+    description: 'The unified culture section with Darum Sonic, Ausgezeichnet, and Sonic-Werte.',
     entries: [
       { id: 'careers-culture-badge', label: 'Culture Badge', description: 'Darum Sonic badge', type: 'badge', value: 'Darum Sonic' },
-      { id: 'careers-culture-eyebrow', label: 'Eyebrow', description: 'Über der Überschrift', type: 'badge', value: 'Unsere Kultur' },
-      { id: 'careers-culture-heading', label: 'Überschrift', description: 'Der Teil nach „für “ wird lime hinterlegt', type: 'heading', value: 'Starke Menschen für starke Marken' },
-      { id: 'careers-culture-lead', label: 'Absatz 1 — fetter Einstieg', description: 'Steht fett vor Absatz 1', type: 'label', value: 'Wir lieben & leben Marken' },
+      { id: 'careers-culture-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Starke Menschen für starke Marken' },
       { id: 'careers-culture-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Wir lieben und leben Marken, insbesondere am Point of Sale, auf Messen, bei Events, auf Roadshows und per Video aus unseren Studios an unserem Campus in Krefeld.', multiline: true },
       { id: 'careers-culture-p2', label: 'Paragraph 2', description: 'Second paragraph', type: 'paragraph', value: 'Energiegeladen und sympathisch: Diese Beschreibung passt auf die Menschen, die bei Sonic arbeiten. Passt sie auch auf dich?', multiline: true },
-      { id: 'careers-culture-values', label: 'Wertezeile', description: 'Werte mit | trennen', type: 'tag', value: 'Energie | Sympathie | Anpacken | Teamgeist | Kreativität' },
-      { id: 'careers-culture-dna-eyebrow', label: 'DNA — Eyebrow', description: 'Über den vier DNA-Feldern', type: 'label', value: 'Unsere DNA — Vier Konstanten, die jede Entscheidung bei Sonic trägt.' },
-      { id: 'careers-culture-award-eyebrow', label: 'Ausgezeichnet — Eyebrow', description: 'Streifen unter den DNA-Feldern', type: 'badge', value: 'Ausgezeichnet' },
-      { id: 'careers-culture-award-heading', label: 'Award Heading', description: 'Neben „Ausgezeichnet“, vor den kununu-/Google-Plaketten', type: 'heading', value: 'Kultur? Leben wir.' },
+      { id: 'careers-culture-award-heading', label: 'Award Heading', description: 'Ausgezeichnet heading', type: 'heading', value: 'Kultur? Leben wir.' },
       { id: 'careers-culture-award-text', label: 'Award Text', description: 'Award description', type: 'paragraph', value: 'Die Auszeichnung zur "Kununu Top Company" haben wir 2022, 2023, 2024, 2025 und 2026 erhalten.', multiline: true },
       { id: 'careers-culture-values-heading', label: 'Values Heading', description: 'Values heading', type: 'heading', value: 'DIESE WERTE LEBEN WIR' },
       { id: 'careers-culture-value-1', label: 'Value — Gemeinschaftlich', description: 'Value 1', type: 'heading', value: 'Gemeinschaftlich' },
@@ -755,7 +749,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   {
     key: 'careers_paths', label: 'KarrierepfadeSection — Two Career Paths',
     pageGroupId: 'careers', pagePath: '/karriere',
-    description: 'Die zwei Karrierewege (Teamfotos zum Aufklappen): Campus Team und POS Team. Titel, Kennzahlen und die Inhalte der Team-Seiten stehen unter „Karriere — Campus Team & POS Team“, Fotos unter Medien → Karriere → „Karrierepfade — Teamfotos“.',
+    description: 'Die zwei Karrierewege: Campus Team und POS Team. Kennzahlen und Tabs stehen unter „Karriere — Campus Team & POS Team“.',
     entries: [
       { id: 'careers-paths-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Karrierepfade' },
       { id: 'careers-paths-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Zwei Wege. Ein Ziel.' },
@@ -767,26 +761,13 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-paths-staff-headline', label: 'Staff Headline', description: 'Staff headline', type: 'heading', value: 'Dein Einsatz am Point of Sale' },
       { id: 'careers-paths-staff-desc', label: 'Staff Description', description: 'Staff description', type: 'paragraph', value: 'Du berätst, verkaufst und präsentierst Marken aus Consumer Electronics, Haushalt und Sport direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.' },
       { id: 'careers-paths-cta', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Alle Stellen ansehen' },
-      { id: 'careers-paths-apply', label: 'Button „Jetzt bewerben“', description: 'Im geöffneten Teamfoto und auf den Team-Seiten — führt zu „Aktuelle Stellenangebote“', type: 'cta', value: 'Jetzt bewerben' },
-      { id: 'careers-paths-details', label: 'Button zur Team-Seite', description: 'Öffnet /karriere/team (Benefits, Wachsen, Bewerbung …)', type: 'cta', value: 'Benefits & Ablauf' },
-      { id: 'careers-paths-open', label: 'Link am geschlossenen Teamfoto', description: '', type: 'cta', value: 'Öffnen' },
-    ],
-  },
-  {
-    key: 'careers_path_page', label: 'Karrierepfad — Team-Seiten (/karriere/team)',
-    pageGroupId: 'careers', pagePath: '/karriere/team',
-    description: 'Feste Beschriftungen der Seiten „Campus Team“ und „POS Team“. Inhalte (Gehalt, Benefits, Wachsen, Bewerbung) stehen unter „Karriere — Campus Team & POS Team“ — leere Bereiche werden ausgeblendet.',
-    entries: [
-      { id: 'path-page-back', label: 'Zurück-Link', description: '', type: 'cta', value: 'Alle Karrierepfade' },
-      { id: 'path-page-intro-label', label: 'Label vor dem Einleitungstext', description: '', type: 'label', value: 'Dein Job' },
-      { id: 'path-page-cta', label: 'Lime-Box — Text vor dem Teamnamen', description: 'Ergibt z. B. „Bereit für das Campus Team?“', type: 'heading', value: 'Bereit für das' },
-      { id: 'path-page-or', label: 'Link zum anderen Team — Label', description: '', type: 'label', value: 'Oder lieber' },
+      { id: 'careers-paths-apply', label: 'Button unter beiden Wegen', description: 'Führt zum Bereich „Aktuelle Stellenangebote“', type: 'cta', value: 'Jetzt bewerben' },
     ],
   },
   {
     key: 'careers_family', label: 'SonicFamily — Spirit & Faces',
     pageGroupId: 'careers', pagePath: '/karriere',
-    description: 'Sonic Spirit & Faces: vier Geschichten. Texte je Person unter Stimmen & Gesichter → Karriere, Fotos unter Medien → Karriere → „Sonic Spirit & Faces“.',
+    description: 'The Sonic Spirit & Faces section with team member stories.',
     entries: [
       { id: 'careers-family-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Echte Menschen. Echte Geschichten.' },
       { id: 'careers-family-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Sonic Spirit & Faces' },
@@ -795,11 +776,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-family-cta-accent', label: 'CTA-Box — Hervorhebung (lime)', description: 'Farbig markierter Teil', type: 'heading', value: 'Sonic Spirit & Faces' },
       { id: 'careers-family-cta-after', label: 'CTA-Box — Text nach Hervorhebung', description: '', type: 'heading', value: 'werden?' },
       { id: 'careers-family-cta-sub', label: 'CTA-Box — Unterzeile', description: '', type: 'paragraph', value: 'Wir suchen Menschen, die ihre Geschichte teilen — 15 Minuten, ehrliche Fragen, kein Drehbuch.' },
-      { id: 'careers-family-cta', label: 'CTA-Button', description: 'Button-Text — öffnet die Initiativbewerbung (B-ite)', type: 'cta', value: 'Teil der Geschichte werden' },
-      { id: 'careers-family-more', label: 'Link „Geschichte aufklappen“', description: 'Erscheint bei langen Geschichten (mehr als 2 Absätze)', type: 'cta', value: 'Ganze Geschichte lesen' },
-      { id: 'careers-family-less', label: 'Link „Geschichte zuklappen“', description: '', type: 'cta', value: 'Weniger anzeigen' },
-      { id: 'careers-family-story-label', label: 'Label über dem Namen im Geschichtenbereich', description: '', type: 'label', value: 'Die Geschichte' },
-      { id: 'careers-family-next', label: 'Link „Nächste Geschichte“', description: 'Steht über dem Namen der nächsten Person', type: 'cta', value: 'Nächste Geschichte' },
+      { id: 'careers-family-cta', label: 'CTA-Button', description: 'Button-Text (öffnet E-Mail)', type: 'cta', value: 'Teil der Geschichte werden' },
     ],
   },
   {
@@ -824,7 +801,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-jobs-tanja-heading', label: 'Tanja Heading', description: 'Tanja question', type: 'heading', value: 'Unsicher, welche Stelle zu dir passt?' },
       { id: 'careers-jobs-tanja-desc', label: 'Tanja Description', description: 'Tanja description', type: 'paragraph', value: 'Tanja aus unserem HR-Team nimmt sich gerne Zeit für ein unverbindliches Gespräch.' },
       { id: 'careers-jobs-tanja-cta', label: 'Tanja CTA', description: 'Tanja CTA button', type: 'cta', value: 'Mit Tanja sprechen' },
-      { id: 'careers-jobs-initiativ-cta', label: 'Initiativ CTA', description: 'Button — öffnet die Initiativbewerbung (B-ite)', type: 'cta', value: 'Initiativbewerbung' },
+      { id: 'careers-jobs-initiativ-cta', label: 'Initiativ CTA', description: 'Initiativ button', type: 'cta', value: 'Initiativbewerbung' },
       { id: 'careers-jobs-loading', label: 'Ladetext', description: 'Shown while the job widget loads', type: 'label', value: 'Stellenangebote werden geladen…' },
       { id: 'careers-jobs-empty', label: 'Leerer Zustand', description: 'Shown when the job widget cannot load or has no jobs', type: 'paragraph', value: 'Aktuell keine offenen Stellen – bewirb dich initiativ.' },
     ],
@@ -1301,13 +1278,9 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pageGroupId: 'careers',
     label: 'Karriere DNA — Kartentexte',
     entries: [
-      { id: 'dna-mensch-title', label: 'Der Mensch — Titel', description: 'Titel des DNA-Felds', value: 'Der Mensch', type: 'heading' as const },
       { id: 'dna-mensch-desc',   label: 'Der Mensch — Beschreibung',   value: 'Menschen, die Marken prägen. Ob eine Smartwatch oder eine frische Teemarke – Promotions leben von den Menschen, die sie durchführen. Deshalb setzen wir auf Fachberater, die für die Marke brennen. Das Ergebnis? Transparent und messbar – jederzeit schwarz auf weiß nachvollziehbar.',      type: 'text' as const },
-      { id: 'dna-antrieb-title', label: 'Der Antrieb — Titel', description: 'Titel des DNA-Felds', value: 'Der Antrieb', type: 'heading' as const },
       { id: 'dna-antrieb-desc',  label: 'Der Antrieb — Beschreibung',  value: 'Nicht jeder lässt sich durch dasselbe motivieren. Eine faire, nachvollziehbare Bezahlung und Entwicklungsperspektiven sind oft genauso wichtig wie frisches Obst im Büro oder ein direkter Ansprechpartner im Projektteam – anstelle einer anonymen Hotline.',           type: 'text' as const },
-      { id: 'dna-daten-title', label: 'Die Daten — Titel', description: 'Titel des DNA-Felds', value: 'Die Daten', type: 'heading' as const },
       { id: 'dna-daten-desc',    label: 'Die Daten — Beschreibung',    value: 'Entscheidungen beginnen oft mit einer Intuition – sollten jedoch mit Daten analysiert, evaluiert und getroffen werden. Nur so lassen sich unsere Empfehlungen in messbare Erfolge umwandeln. Jahrelange Erfahrung und umfassende Daten helfen uns, die richtigen Maßnahmen zu entwickeln.',                     type: 'text' as const },
-      { id: 'dna-werkzeug-title', label: 'Das Werkzeug — Titel', description: 'Titel des DNA-Felds', value: 'Das Werkzeug', type: 'heading' as const },
       { id: 'dna-werkzeug-desc', label: 'Das Werkzeug — Beschreibung', value: 'Eigene Prozesse beherrschen – aber nicht alles selbst entwickeln. Unser Inhouse-IT-Team programmiert oder sourct gezielt die richtigen Tools, um gemeinsam mit starken Partnern die Herausforderungen unserer Kunden bestmöglich zu lösen.',             type: 'text' as const },
     ],
   },
@@ -1322,7 +1295,6 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   ...LEISTUNGEN_TEXT_SECTIONS,
   ...CTA_TEXT_SECTIONS,
   /* ═══════════════ FALLBEISPIELE — Texte je Fallstudie (/fallbeispiele) ═══════════════ */
-  TV_COMPARE_SECTION,
   {
     key: 'case_garmin_text',
     label: 'Fallbeispiel Garmin — Texte',

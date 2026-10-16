@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTextSection } from '@/hooks/useText';
-import { TV_COMPARE } from '@/lib/textStoreTvCompare';
+import { TV_COMPARE } from './tvCompareContent';
 
 /* TV & Sound — three brands side by side (15.10.2026).
    One question per row, the three brands across: the reader compares in a single glance.

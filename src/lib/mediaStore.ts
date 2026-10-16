@@ -609,8 +609,8 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   /* ── CAREERS: Career Path Polaroid Images ── */
   careers_path_images: [
-    { url: '', caption: 'Campus Team — Teamfoto (Querformat)', wide: true },
-    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg', caption: 'POS Team — Teamfoto (Querformat)', wide: true },
+    { url: '', caption: 'Sales Family — Polaroid', wide: true },
+    { url: 'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg', caption: 'Staff Family — Polaroid', wide: true },
   ],
 
   /* ── CAREERS: Team Events Video URLs (editable in dashboard) ── */
@@ -690,9 +690,11 @@ export const VIRTUAL_MEDIA: MediaSections = {
 
   careers_sonicfamily_images: [
     { url: '', caption: 'Sascha M. — Senior IT Admin' },
+    { url: '', caption: 'Marcel W. — Finance Controller' },
     { url: '', caption: 'Andrew W. — Event and Logistics Manager' },
     { url: '', caption: 'Michelle G. — Senior Project Manager' },
     { url: '', caption: 'Janina B. — HR Manager' },
+    { url: '', caption: 'Inga L. — Jr Art Direktor' },
   ],
 
   /* ── KREATION: Team Faces ── */
@@ -1392,7 +1394,7 @@ const HUMAN_LABELS: Record<string, string> = {
   '/images/Karriere': 'Galerie & Hero',
   'careers_hero_images': 'Hero Team Photo',
   'careers_team_images': 'Team Images',
-  'careers_path_images': 'Karrierepfade — Teamfotos (1 = Campus Team, 2 = POS Team)',
+  'careers_path_images': 'Karrierepfade — Polaroids',
   'careers_events_videos': 'Team Events — Video URLs',
   'careers_events_images': 'Team Events — Polaroids',
   'careers_dreamteam_images': 'DreamTeam — Event Polaroids',
@@ -1400,7 +1402,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'careers_mitarbeiterstimmen_sales_images': 'Mitarbeiterstimmen — Sales',
   'careers_mitarbeiterstimmen_staff_images': 'Mitarbeiterstimmen — Staff',
   'careers_sonicfaces_images': 'SonicFaces — Portraits',
-  'careers_sonicfamily_images': 'Sonic Spirit & Faces — Porträts (Bildunterschrift beginnt mit dem Vornamen)',
+  'careers_sonicfamily_images': 'SonicFamily — AI Portraits',
   'kreation_faces_robert': 'Kreation Team — Robert H.',
   'kreation_faces_inga': 'Kreation Team — Inga L.',
   'careers_recruitercta_image': 'RecruiterCTA — Tanja Foto',
@@ -1581,7 +1583,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   '/images/Karriere': 5,        // Gallery & hero images
   'careers_hero_images': 1,   // 1 hero team photo
   'careers_team_images': 3,   // Office + Team event + Modern office
-  'careers_path_images': 2,   // 1 = Campus Team, 2 = POS Team
+  'careers_path_images': 2,   // Sales Family + Staff Family polaroids
   'careers_events_videos': 4, // Content Creation, Team Events, Promoter Events, Roadshows & Messen
   'careers_events_images': 4, // Content Creation, Team Events, Promoter Events, Roadshows & Messen
   'careers_dreamteam_images': 6,
@@ -1589,7 +1591,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   'careers_mitarbeiterstimmen_sales_images': 3,
   'careers_mitarbeiterstimmen_staff_images': 3,
   'careers_sonicfaces_images': 5,
-  'careers_sonicfamily_images': 4,
+  'careers_sonicfamily_images': 6,
   'careers_recruitercta_image': 1,
   'careers_stellenangebote_image': 1,
   'careers_sonic_sales_hero': 1,
@@ -1767,14 +1769,14 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   '/images/Karriere':              { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Hero & gallery — team, office, events' },
   'careers_hero_images':           { aspectRatio: '2.4:1', dimensions: '1920×800', orientation: 'landscape', tip: 'Hero team photo — wide, bright, diverse group' },
   'careers_team_images':           { aspectRatio: '4:3', dimensions: '800×600', orientation: 'landscape', tip: 'Team lifestyle shots — office, events, collaboration' },
-  'careers_path_images':           { aspectRatio: '16:9', dimensions: '1920×1080', orientation: 'landscape', tip: 'Teamfoto im Querformat — wird hochkant (Karrierepfade) und als breites Bild (Team-Seite) zugeschnitten, Gesichter mittig' },
+  'careers_path_images':           { aspectRatio: '~2:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Career path polaroids — wide format sales/staff' },
   'careers_events_images':         { aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'Team events polaroids — social, celebration' },
   'careers_dreamteam_images':      { aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'DreamTeam polaroids — events, celebration' },
   'careers_geschichten_images':    { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Story portraits — wide format, personal stories' },
   'careers_mitarbeiterstimmen_sales_images': { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Sales testimonials — wide portrait-style' },
   'careers_mitarbeiterstimmen_staff_images': { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Staff testimonials — wide portrait-style' },
   'careers_sonicfaces_images':     { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'SonicFaces — wide portrait-style staff photos' },
-  'careers_sonicfamily_images':    { aspectRatio: '4:5', dimensions: '800×1000', orientation: 'portrait', tip: 'Porträt, Gesicht im oberen Drittel — Bildunterschrift z. B. „Sascha M. — Senior IT Admin“' },
+  'careers_sonicfamily_images':    { aspectRatio: '3:4', dimensions: '600×800', orientation: 'portrait', tip: 'AI portraits — professional headshots, dark backgrounds' },
   'careers_recruitercta_image':    { aspectRatio: '~2.3:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'RecruiterCTA — Tanja wide photo' },
   'careers_stellenangebote_image': { aspectRatio: '1:1', dimensions: '96×96', orientation: 'icon', tip: 'Tanja headshot — small square portrait' },
   'careers_sonic_sales_hero':      { aspectRatio: '~2:1', dimensions: '~1200×600', orientation: 'landscape', tip: 'Sonic Sales hero — wide' },
