@@ -123,7 +123,7 @@ export default function AboutPage() {
 
       <WoodenDivider />
 
-      <div id="management-voices">
+      <div>
         <StackedSectionReveal index={3} totalSections={4}>
           <ManagementVoices leadershipImages={leadershipImages} />
         </StackedSectionReveal>

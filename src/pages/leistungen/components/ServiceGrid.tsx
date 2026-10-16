@@ -95,7 +95,6 @@ export default function ServiceGrid({ sectionRef }: Props) {
 
   return (
     <section
-      id="service-grid"
       ref={sectionRef as React.RefObject<HTMLElement>}
       className="relative py-12 md:py-16 px-4 md:px-6 bg-white"
       role="region"

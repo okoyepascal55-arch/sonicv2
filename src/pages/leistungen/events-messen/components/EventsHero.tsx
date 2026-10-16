@@ -22,7 +22,7 @@ export default function EventsHero() {
 
   return (
     <section
-      className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950"
+      className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950 px-4 md:px-6"
       style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}
     >
       <img
@@ -38,7 +38,7 @@ export default function EventsHero() {
         }}
       />
 
-      <div className="relative z-20 w-full sonic-container px-4 md:px-8 pb-10 md:pb-14">
+      <div className="relative z-20 w-full sonic-container pb-10 md:pb-14">
 
         {/* v3 eyebrow — 28px lime hairline + label */}
 

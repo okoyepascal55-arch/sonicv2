@@ -176,7 +176,6 @@ export default function LeistungenStats() {
 
   return (
     <section
-      id="zahlen"
       className="sonic-section-sm px-6 bg-white border-b border-foreground-100 relative overflow-hidden"
     >
       {/* Subtle lime top edge */}

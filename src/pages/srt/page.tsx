@@ -19,8 +19,8 @@ import './srt-final-fidelity.css';
 const NAV_ITEMS = [
   { id: 'das-problem', label: 'Das Problem', icon: 'ri-error-warning-line' },
   { id: 'features', label: 'All-in-Software', icon: 'ri-apps-line' },
+  { id: 'produkt', label: 'Das Produkt', icon: 'ri-smartphone-line' },
   { id: 'funktionsumfang', label: 'Funktionsumfang', icon: 'ri-list-check-2' },
-  { id: 'team-app', label: 'Team-App', icon: 'ri-smartphone-line' },
   { id: 'zusammenarbeit', label: 'Zusammenarbeit', icon: 'ri-git-merge-line' },
   { id: 'datenfluss', label: 'Datenfluss', icon: 'ri-flow-chart' },
   { id: 'branchen', label: 'Branchen', icon: 'ri-building-line' },

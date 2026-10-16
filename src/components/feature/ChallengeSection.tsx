@@ -66,7 +66,7 @@ export default function ChallengeSection({
     >
       {/* Ambient glow */}
 
-      <div className="relative max-w-6xl mx-auto">
+      <div className="relative sonic-container">
 
         {/* Header row */}
         <div

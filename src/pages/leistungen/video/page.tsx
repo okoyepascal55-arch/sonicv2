@@ -13,6 +13,7 @@ import { useMediaStore } from '@/lib/mediaStore';
 import { getYouTubeId } from '@/lib/youtube';
 
 const NAV_ITEMS = [
+  { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'video', label: 'Video', icon: 'ri-play-circle-line' },
   { id: 'vorteile', label: 'Vorteile', icon: 'ri-thumb-up-line' },
@@ -73,7 +74,7 @@ export default function VideoPage() {
 
       <WoodenDivider />
 
-      <div id="kontakt">
+      <div>
         <LeistungenKontakt
           headline={tc['headline']}
           headlineAccent={tc['headline-accent']}

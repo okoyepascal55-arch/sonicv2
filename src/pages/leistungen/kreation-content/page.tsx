@@ -134,7 +134,7 @@ export default function KreationContentPage() {
       <KreationFaces />
       <WoodenDivider />
       <section id="referenzen"><ClientProof only={['nexaro', 'vorwerk']} /></section>
-      <div id="kontakt"><LeistungenKontakt headline={tCta['headline']} headlineAccent={tCta['headline-accent']} subline={tCta['subline']} ctaLabel={cta.book} ctaMailSubject="Kreation Content Beratung" ctaIcon="ri-calendar-line" /></div>
+      <div><LeistungenKontakt headline={tCta['headline']} headlineAccent={tCta['headline-accent']} subline={tCta['subline']} ctaLabel={cta.book} ctaMailSubject="Kreation Content Beratung" ctaIcon="ri-calendar-line" /></div>
       <ScrollToTopButton />
     </div>
   );

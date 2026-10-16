@@ -37,7 +37,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
   }, [cycleWord, motionPaused]);
 
   return (
-    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950" style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}>
+    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950 px-4 md:px-6" style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}>
       {/* Background photo */}
       <img
         src={heroImage || 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png'}
@@ -55,7 +55,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
       />
 
       {/* Content — left-aligned, bottom-anchored */}
-      <div className="relative z-20 w-full max-w-[1280px] mx-auto px-4 md:px-8 pb-6 md:pb-10">
+      <div className="relative z-20 w-full sonic-container pb-6 md:pb-10">
         <div className="max-w-[640px]">
         {/* v3 eyebrow — 28px lime hairline + label */}
         <div className="flex items-center gap-3 mb-5 md:mb-6">
@@ -66,15 +66,23 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
         {/* Main headline */}
         <h1 className="leist-h1-hub text-white mb-5 md:mb-6">
           {(t['h1'] ?? '').toUpperCase()}{' '}
-          <span
-            className="text-primary-500 inline-block"
-            style={{
-              opacity: wordVisible ? 1 : 0,
-              transform: wordVisible ? 'translateY(0)' : 'translateY(10px)',
-              transition: 'opacity 0.32s ease, transform 0.32s ease',
-            }}
-          >
-            {words.length ? words[wordIdx % words.length] : ''}
+          {/* All words share one grid cell, so the heading always reserves the width of the
+              longest word — the page no longer jumps when a shorter/longer word rotates in. */}
+          <span className="inline-grid align-bottom text-primary-500">
+            {words.map((w, i) => (
+              <span key={w + i} aria-hidden="true" className="invisible" style={{ gridArea: '1 / 1' }}>{w}</span>
+            ))}
+            <span
+              className="inline-block"
+              style={{
+                gridArea: '1 / 1',
+                opacity: wordVisible ? 1 : 0,
+                transform: wordVisible ? 'translateY(0)' : 'translateY(10px)',
+                transition: 'opacity 0.32s ease, transform 0.32s ease',
+              }}
+            >
+              {words.length ? words[wordIdx % words.length] : ''}
+            </span>
           </span>
         </h1>
 

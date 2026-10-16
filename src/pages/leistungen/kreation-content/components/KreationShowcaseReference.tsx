@@ -206,8 +206,8 @@ export default function KreationShowcaseReference() {
   const cgi = beforeAfter[1]?.url ? resolveImageUrl(beforeAfter[1].url) : BEFORE_AFTER_FALLBACK[1];
 
   return (
-    <section id="konzept" className="sonic-section-lg relative overflow-hidden bg-white">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+    <section id="konzept" className="sonic-section-lg relative overflow-hidden bg-white px-4 md:px-6">
+      <div className="sonic-container relative z-10">
         <div className="mb-10 md:mb-14">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div>

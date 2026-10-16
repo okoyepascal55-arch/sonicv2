@@ -11,6 +11,7 @@ import StaffHero from './components/StaffHero';
 import StaffContent from './components/StaffContent';
 
 const NAV_ITEMS = [
+  { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'ablauf', label: 'Ablauf', icon: 'ri-route-line' },
   { id: 'aufgabenbereiche', label: 'Aufgabenbereiche', icon: 'ri-focus-3-line' },
@@ -68,7 +69,7 @@ export default function StaffAsAServicePage() {
 
       <WoodenDivider />
 
-      <div id="kontakt">
+      <div>
         <LeistungenKontakt
           headline={tCta['headline']}
           headlineAccent={tCta['headline-accent']}

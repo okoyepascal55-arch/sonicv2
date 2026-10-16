@@ -17,6 +17,7 @@ const NAV_ITEMS = [
   { id: 'zahlen', label: 'Zahlen', icon: 'ri-bar-chart-2-line' },
   { id: 'schallmauer', label: 'Schallmauer', icon: 'ri-sound-module-line' },
   { id: 'kundenstimmen', label: 'Kundenstimmen', icon: 'ri-chat-quote-line' },
+  { id: 'kontakt', label: 'Kontakt', icon: 'ri-calendar-line' },
 ];
 
 export default function LeistungenPage() {

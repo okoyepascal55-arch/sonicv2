@@ -11,6 +11,7 @@ import ForecastingHero from './components/ForecastingHero';
 import ForecastingContent from './components/ForecastingContent';
 
 const NAV_ITEMS = [
+  { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'wie-es-funktioniert', label: 'So funktioniert es', icon: 'ri-route-line' },
   { id: 'referenzen', label: 'Referenzen', icon: 'ri-chat-quote-line' },
@@ -61,7 +62,7 @@ export default function ForecastingPage() {
 
       <WoodenDivider />
 
-      <div id="kontakt">
+      <div>
         <LeistungenKontakt
           headline={tc.headline}
           headlineAccent={tc.headline_accent}

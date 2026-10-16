@@ -12,6 +12,7 @@ import EventsContent from './components/EventsContent';
 import EventsShowcase from './components/EventsShowcase';
 
 const NAV_ITEMS = [
+  { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'events', label: 'Formate', icon: 'ri-calendar-event-line' },
   { id: 'arbeitsweise', label: 'Arbeitsweise', icon: 'ri-route-line' },
@@ -72,7 +73,7 @@ export default function EventsMessenPage() {
 
       <WoodenDivider />
 
-      <div id="kontakt">
+      <div>
         <LeistungenKontakt
           headline={tCta.headline}
           headlineAccent={tCta['headline-accent']}

@@ -13,8 +13,8 @@ import TalentpoolContent from './components/TalentpoolContent';
 const NAV_ITEMS = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
-  { id: 'talentprofile', label: 'Talentprofile', icon: 'ri-user-star-line' },
   { id: 'stats', label: 'Zahlen', icon: 'ri-bar-chart-line' },
+  { id: 'talentprofile', label: 'Talentprofile', icon: 'ri-user-star-line' },
   { id: 'referenzen', label: 'Referenzen', icon: 'ri-chat-quote-line' },
   { id: 'kontakt', label: 'Kontakt', icon: 'ri-calendar-line' },
 ];
@@ -62,7 +62,7 @@ export default function TalentpoolPage() {
 
       <WoodenDivider />
 
-      <div id="kontakt">
+      <div>
         <LeistungenKontakt
           headline={tCta['headline']}
           headlineAccent={tCta['headline-accent']}
