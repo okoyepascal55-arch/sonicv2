@@ -22,17 +22,17 @@ export default function WoodenDivider({ variant = 'horizontal', className = '' }
 
   // THE ONE APPROVED DIVIDER — smaller, thinner 3-line animated wave
   return (
-    <div className={`relative w-full h-8 md:h-6 overflow-hidden pointer-events-none ${className}`} aria-hidden="true">
+    <div className={`relative w-full h-6 overflow-hidden pointer-events-none ${className}`} aria-hidden="true">
       {/* Line 1 — Primary lime, slightly thinner */}
-      <svg className="absolute w-[200%] h-full animate-wave-1" style={{ top: '0px' }} viewBox="0 0 2000 24" preserveAspectRatio="none">
+      <svg className="absolute h-full animate-wave-1" style={{ top: '0px', width: 'max(200%, 2880px)' }} viewBox="0 0 2000 24" preserveAspectRatio="none">
         <path d="M0,12 Q50,6 100,12 T200,12 T300,12 T400,12 T500,12 T600,12 T700,12 T800,12 T900,12 T1000,12 T1100,12 T1200,12 T1300,12 T1400,12 T1500,12 T1600,12 T1700,12 T1800,12 T1900,12 T2000,12" fill="none" style={{ stroke: 'oklch(var(--primary-500))', strokeWidth: '2.2px', strokeLinecap: 'round' as const, strokeOpacity: 1 }} />
       </svg>
       {/* Line 2 — Darker */}
-      <svg className="absolute w-[200%] h-full animate-wave-2" style={{ top: '4px' }} viewBox="0 0 2000 24" preserveAspectRatio="none">
+      <svg className="absolute h-full animate-wave-2" style={{ top: '4px', width: 'max(200%, 2880px)' }} viewBox="0 0 2000 24" preserveAspectRatio="none">
         <path d="M0,12 Q50,18 100,12 T200,12 T300,12 T400,12 T500,12 T600,12 T700,12 T800,12 T900,12 T1000,12 T1100,12 T1200,12 T1300,12 T1400,12 T1500,12 T1600,12 T1700,12 T1800,12 T1900,12 T2000,12" fill="none" style={{ stroke: 'oklch(var(--primary-600))', strokeWidth: '2.4px', strokeLinecap: 'round' as const, strokeOpacity: 0.9 }} />
       </svg>
       {/* Line 3 — Lighter accent */}
-      <svg className="absolute w-[200%] h-full animate-wave-3" style={{ top: '8px' }} viewBox="0 0 2000 24" preserveAspectRatio="none">
+      <svg className="absolute h-full animate-wave-3" style={{ top: '8px', width: 'max(200%, 2880px)' }} viewBox="0 0 2000 24" preserveAspectRatio="none">
         <path d="M0,12 Q50,6 100,12 T200,12 T300,12 T400,12 T500,12 T600,12 T700,12 T800,12 T900,12 T1000,12 T1100,12 T1200,12 T1300,12 T1400,12 T1500,12 T1600,12 T1700,12 T1800,12 T1900,12 T2000,12" fill="none" style={{ stroke: 'oklch(var(--primary-500))', strokeWidth: '1.8px', strokeLinecap: 'round' as const, strokeOpacity: 0.7 }} />
       </svg>
     </div>
