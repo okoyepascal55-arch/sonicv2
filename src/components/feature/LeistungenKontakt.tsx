@@ -27,8 +27,8 @@ export default function LeistungenKontakt({
   const cta = useCtaText();
   return (
     <>
-      <section id="kontakt" className="bg-white py-10 md:py-14 px-6">
-        <div className="max-w-4xl mx-auto">
+      <section id="kontakt" className="bg-white py-10 md:py-14 px-4 md:px-6">
+        <div className="sonic-container">
           <div className="border border-foreground-950/[0.1] bg-white p-6 sm:p-10 md:p-14 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 blur-3xl pointer-events-none translate-x-16 -translate-y-16" />
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C8D400]/60 via-[#C8D400]/20 to-transparent" />
