@@ -75,7 +75,7 @@ export default function TheProblemReference() {
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
 
               {/* Sys label */}
-              <span className="text-[8px] font-black uppercase tracking-[0.3em] mb-6 block" style={{ color: 'oklch(0.81 0.19 115 / 0.4)' }}>{lb[`problem-${i + 1}`] || p.sys}</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.24em] mb-6 block" style={{ color: 'oklch(0.81 0.19 115 / 0.4)' }}>{lb[`problem-${i + 1}`] || p.sys}</span>
 
               {/* Icon + number row */}
               <div className="flex items-start justify-between mb-6">

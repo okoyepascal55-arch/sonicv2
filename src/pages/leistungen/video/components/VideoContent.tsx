@@ -281,7 +281,7 @@ export default function VideoContent() {
                     max={param.max}
                     value={param.value}
                     onChange={(e) => param.setter(Number(e.target.value))}
-                    className="w-full h-1.5 appearance-none cursor-pointer"
+                    className="sonic-range w-full appearance-none cursor-pointer"
                     style={{ accentColor: 'oklch(var(--primary-500))', background: `linear-gradient(to right, #C8D400 ${((param.value - param.min) / (param.max - param.min)) * 100}%, rgba(0,0,0,0.1) 0%)` }}
                   />
                   <div className="flex justify-between text-foreground-950/25 text-xs mt-1">

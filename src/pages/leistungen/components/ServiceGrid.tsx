@@ -225,7 +225,7 @@ export default function ServiceGrid({ sectionRef }: Props) {
                 type="button"
                 onClick={() => setActive(i)}
                 aria-label={item.category}
-                className="h-1 cursor-pointer transition-all duration-300"
+                className="tap-target h-1 cursor-pointer transition-all duration-300"
                 style={{
                   width: i === active ? 32 : 12,
                   background: i === active ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.15)',

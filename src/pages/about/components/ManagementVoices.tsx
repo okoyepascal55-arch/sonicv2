@@ -1,8 +1,9 @@
-import React from 'react';
 import type { MediaItem } from '@/lib/mediaStore';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useText, useTextSection } from '@/hooks/useText';
 import { useCtaText } from '@/hooks/useCtaText';
+import VoicesShowcase, { VoicesCta, markLastWord, type Voice } from '@/components/feature/VoicesShowcase';
+import { Marker } from '@/pages/careers/components/ChapterKit';
 
 type DoingItem = { label: string; text: string; alt?: string };
 
@@ -84,176 +85,6 @@ function portraitWords(raw: string): Set<string> {
   return new Set(text.normalize('NFC').toLowerCase().split(/[^a-zäöüß]+/).filter(Boolean));
 }
 
-function ExecCard({ exec, idx }: { exec: typeof EXECUTIVES[0]; idx: number }) {
-  return (
-    <div className="border border-[oklch(0.885_0.004_110)] overflow-hidden">
-      {/* Portrait */}
-      <div className="relative bg-foreground-950" style={{ minHeight: 'clamp(260px, 32vw, 340px)' }}>
-        {exec.image && (
-          <img
-            src={exec.image}
-            alt={exec.name}
-            className="absolute inset-0 w-full h-full object-cover object-top"
-            loading="lazy"
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-        <div className="absolute top-5 left-5 bg-primary-500 text-foreground-950 px-3 py-1 text-[10px] font-black uppercase tracking-widest">
-          {exec.eyebrow}
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 p-6">
-          <div className="text-[clamp(24px,4vw,36px)] font-black text-white leading-none tracking-tight">{exec.name}</div>
-          <div className="flex items-center gap-2 mt-2">
-            <span className="text-sm font-black text-white">{exec.title}</span>
-            <span className="w-1 h-1 bg-primary-500 flex-shrink-0" />
-            <span className="text-xs text-white/50 font-bold uppercase tracking-wider">{exec.tenure}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Text panel */}
-      <div className="bg-foreground-950 p-7 md:p-10">
-        <div className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-4">
-          {String(idx + 1).padStart(2, '0')} / {String(EXECUTIVES.length).padStart(2, '0')}
-        </div>
-        {exec.pullQuote && (
-          <blockquote className="text-white font-black leading-[1.3] mb-5" style={{ fontSize: 'clamp(18px,2vw,24px)', letterSpacing: '-0.015em' }}>
-            {exec.pullQuote}
-          </blockquote>
-        )}
-        {exec.bio && <p className="text-sm text-white/55 leading-relaxed mb-5">{exec.bio}</p>}
-        {exec.doing && exec.doing.length > 0 && (
-          <div className="mb-6 space-y-3" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '16px' }}>
-            {exec.doing.map((d, di) => (
-              <div key={di}>
-                <p lang="en" className="text-[9px] font-black uppercase tracking-[0.2em] mb-1" style={{ color: 'oklch(0.81 0.19 115 / 0.7)' }}>{d.label}</p>
-                <p className="text-xs text-white/50 leading-relaxed">{d.text}</p>
-              </div>
-            ))}
-          </div>
-        )}
-        {exec.metrics.length > 0 && <div className="grid grid-cols-2 gap-3 mb-7">
-          {exec.metrics.map((m, mi) => (
-            <div key={mi} className="border border-white/10 px-4 py-3.5">
-              <div className="text-xl font-black text-primary-500 leading-none">{m.value}</div>
-              <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5">{m.label}</div>
-            </div>
-          ))}
-        </div>}
-        {exec.linkedin && <div className="flex justify-end">
-          <a
-            href={exec.linkedin}
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.06em] text-primary-500 hover:text-white transition-colors"
-          >
-            <i className="ri-linkedin-fill text-base" />
-            {exec.name} auf LinkedIn
-          </a>
-        </div>}
-      </div>
-    </div>
-  );
-}
-
-
-// Desktop carousel — one card at a time, prev/next navigation
-function DesktopCarousel({ execs }: { execs: typeof EXECUTIVES }) {
-  const [current, setCurrent] = React.useState(0);
-  const exec = execs[current];
-  const imageLeft = current % 2 === 0;
-  const imageRes = exec.image;
-
-  return (
-    <div className="hidden lg:block">
-      {/* Navigation + counter */}
-      <div className="flex items-center justify-between mb-8">
-        <div className="flex items-center gap-3">
-          <span className="text-[11px] font-black uppercase tracking-[0.2em] text-foreground-950/30">
-            {String(current + 1).padStart(2, '0')} / {String(execs.length).padStart(2, '0')}
-          </span>
-          <div className="flex gap-1.5">
-            {execs.map((_, i) => (
-              <button key={i} type="button" onClick={() => setCurrent(i)}
-                className={`transition-all duration-200 cursor-pointer ${i === current ? 'w-6 h-1.5 bg-foreground-950' : 'w-1.5 h-1.5 bg-foreground-950/15 hover:bg-foreground-950/30'}`}
-                aria-label={execs[i].name} />
-            ))}
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <button type="button" onClick={() => setCurrent(p => (p - 1 + execs.length) % execs.length)}
-            className="w-10 h-10 flex items-center justify-center border border-foreground-950/15 hover:border-foreground-950 transition-colors cursor-pointer"
-            aria-label="Vorherige Person">
-            <i className="ri-arrow-left-line text-foreground-950/60" />
-          </button>
-          <button type="button" onClick={() => setCurrent(p => (p + 1) % execs.length)}
-            className="w-10 h-10 flex items-center justify-center border border-foreground-950/15 hover:border-primary-500 hover:bg-primary-500 hover:text-foreground-950 transition-all cursor-pointer"
-            aria-label="Nächste Person">
-            <i className="ri-arrow-right-line text-foreground-950/60 hover:text-foreground-950" />
-          </button>
-        </div>
-      </div>
-
-      {/* Single card — fixed height, slide transition */}
-      <div key={exec.id} className="relative grid border border-[oklch(0.885_0.004_110)] overflow-hidden"
-        style={{ gridTemplateColumns: imageLeft ? '0.86fr 1.14fr' : '1.14fr 0.86fr' }}>
-        {/* Portrait */}
-        <div className="relative overflow-hidden" style={{ order: imageLeft ? 1 : 2, backgroundColor: 'oklch(0.13 0.005 118)', minHeight: 'clamp(300px, 44vw, 460px)' }}>
-          {imageRes && <img src={imageRes} alt={exec.name} className="absolute inset-0 w-full h-full object-cover object-top" />}
-          <div className="absolute inset-0 bg-gradient-to-t from-foreground-950/60 via-transparent to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 p-6">
-            <p className="text-white font-black text-xl uppercase leading-tight mb-1">{exec.name}</p>
-            <p className="text-white/50 text-xs font-bold uppercase tracking-widest">{exec.title}</p>
-            <p className="text-primary-500 text-[10px] font-black uppercase tracking-widest mt-1">{exec.tenure}</p>
-          </div>
-        </div>
-
-        {/* Text panel */}
-        <div className="flex flex-col bg-white" style={{ order: imageLeft ? 2 : 1 }}>
-          <div className="p-8 md:p-10">
-            {exec.pullQuote && (
-              <blockquote className="text-lg md:text-xl font-bold leading-tight tracking-tight italic mb-5" style={{ color: 'oklch(var(--foreground-950))' }}>
-                {exec.pullQuote}
-              </blockquote>
-            )}
-            {exec.bio && <p className="text-sm leading-relaxed mb-5" style={{ color: 'oklch(0.48 0.006 260)' }}>{exec.bio}</p>}
-            {exec.doing && exec.doing.length > 0 && (
-              <div className="mb-5 space-y-4" style={{ borderTop: '1px solid oklch(0.885 0.004 110)', paddingTop: '20px' }}>
-                {exec.doing.map((d, di) => (
-                  <div key={di}>
-                    <p lang="en" className="text-[9px] font-black uppercase tracking-[0.2em] mb-1.5" style={{ color: 'oklch(0.55 0.08 115)' }}>{d.label}</p>
-                    <p className="text-[13px] leading-relaxed" style={{ color: 'oklch(0.48 0.006 260)' }}>{d.text}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-            {exec.linkedin && (
-              <a
-                href={exec.linkedin}
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.06em] text-foreground-950 hover:text-primary-600 transition-colors"
-              >
-                <i className="ri-linkedin-fill text-base" style={{ color: 'oklch(0.55 0.08 115)' }} />
-                {exec.name} auf LinkedIn
-              </a>
-            )}
-          </div>
-          {/* Metrics footer */}
-          {exec.metrics.length > 0 && <div className="grid grid-cols-2 flex-shrink-0" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
-            {exec.metrics.map((m, i) => (
-              <div key={i} className="p-4 md:p-5" style={{ borderRight: i < exec.metrics.length - 1 ? '1px solid oklch(0.885 0.004 110)' : undefined }}>
-                <p className="text-lg md:text-2xl font-black tracking-[-0.03em] text-foreground-950">{m.value}</p>
-                <p className="text-[9px] font-black uppercase tracking-wider text-foreground-950/35 mt-0.5">{m.label}</p>
-              </div>
-            ))}
-          </div>}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function ManagementVoices({ leadershipImages }: { leadershipImages?: MediaItem[] }) {
   const tBadge   = useText('about_management_voices', 'about-voices-badge',   'Führungsperspektiven');
   const tHeading = useText('about_management_voices', 'about-voices-heading', 'Die Stimmen hinter Sonic.');
@@ -320,175 +151,82 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
     return { ...exec, image: matched?.url ?? '' };
   });
 
-  return (
-    <section id="management-voices" className="bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10 py-10 md:py-14">
-
-        {/* Section header */}
-        <div className="mb-10 md:mb-14">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span>
-          </div>
-          <h2 className="sonic-h2 text-foreground-950 mb-3">{tHeading}</h2>
-          <p className="text-[15px] text-foreground-500 max-w-[480px] leading-relaxed">{tSub}</p>
-        </div>
-
-        {/* ── MOBILE / TABLET: simple 1-col stack ── */}
-        <div className="flex flex-col gap-8 lg:hidden">
-          {execs.map((exec, i) => (
-            <ExecCard key={exec.id} exec={exec} idx={i} />
-          ))}
-        </div>
-
-        {/* ── DESKTOP (lg+): carousel — one card at a time ── */}
-        <DesktopCarousel execs={execs} />
-
-        {/* hidden placeholder to keep old map — never rendered */}
-        <div className="hidden">
-          {execs.map((exec, i) => {
-            const imageLeft = i % 2 === 0;
-            return (
-              <div
-                key={exec.id}
-                className="relative"
-                style={{
-                  marginRight: imageLeft ? '96px' : undefined,
-                  marginLeft:  imageLeft ? undefined : '96px',
-                }}
-              >
-                {/* Ghost numeral */}
-                <div
-                  aria-hidden="true"
-                  style={{
-                    position: 'absolute',
-                    top: '-46px',
-                    [imageLeft ? 'right' : 'left']: '-96px',
-                    fontSize: '168px',
-                    fontWeight: 900,
-                    lineHeight: 0.7,
-                    letterSpacing: '-0.06em',
-                    color: 'oklch(0.16 0.006 118 / 0.05)',
-                    pointerEvents: 'none',
-                    userSelect: 'none',
-                    zIndex: 0,
-                  }}
-                >
-                  0{i + 1}
-                </div>
-
-                {/* Two-col card */}
-                <div
-                  className="relative z-10 grid border border-[oklch(0.885_0.004_110)] overflow-hidden"
-                  style={{ gridTemplateColumns: imageLeft ? '0.86fr 1.14fr' : '1.14fr 0.86fr' }}
-                >
-                  {/* Portrait */}
-                  <div
-                    className="relative"
-                    style={{ minHeight: 'clamp(320px, 48vw, 520px)', order: imageLeft ? 1 : 2, backgroundColor: 'oklch(0.13 0.005 118)' }}
-                  >
-                    {exec.image && (
-                      <img
-                        src={exec.image}
-                        alt={exec.name}
-                        className="absolute inset-0 w-full h-full object-cover object-top"
-                        loading="lazy"
-                      />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                    <div className="absolute top-5 left-5 bg-primary-500 text-foreground-950 px-3 py-1 text-[10px] font-black uppercase tracking-widest">
-                      {exec.eyebrow}
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-8">
-                      <div className="text-[clamp(28px,3.5vw,44px)] font-black text-white leading-none tracking-tight">{exec.name}</div>
-                      <div className="flex items-center gap-2 mt-2">
-                        <span className="text-sm font-black text-white">{exec.title}</span>
-                        <span className="w-1 h-1 bg-primary-500 flex-shrink-0" />
-                        <span className="text-xs text-white/50 font-bold uppercase tracking-wider">{exec.tenure}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Text panel */}
-                  <div
-                    className="flex flex-col justify-between"
-                    style={{ padding: '64px 56px', order: imageLeft ? 2 : 1, backgroundColor: 'oklch(0.975 0.002 110)' }}
-                  >
-                    <div>
-                      <div className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-6">
-                        {String(i + 1).padStart(2, '0')} / {String(execs.length).padStart(2, '0')}
-                      </div>
-                      <blockquote
-                        className="font-black leading-[1.28] mb-7"
-                        style={{ fontSize: '31px', letterSpacing: '-0.02em', color: 'oklch(0.16 0.006 118)' }}
-                      >
-                        {exec.pullQuote}
-                      </blockquote>
-                      {exec.bio && <p className="text-sm leading-relaxed mb-5" style={{ color: 'oklch(0.48 0.006 260)' }}>{exec.bio}</p>}
-                      {exec.doing && exec.doing.length > 0 && (
-                        <div className="mb-6 space-y-4" style={{ borderTop: '1px solid oklch(0.885 0.004 110)', paddingTop: '20px' }}>
-                          {exec.doing.map((d, di) => (
-                            <div key={di}>
-                              <p lang="en" className="text-[9px] font-black uppercase tracking-[0.2em] mb-1.5" style={{ color: 'oklch(0.55 0.08 115)' }}>{d.label}</p>
-                              <p className="text-[13px] leading-relaxed" style={{ color: 'oklch(0.48 0.006 260)' }}>{d.text}</p>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      {exec.metrics.length > 0 && <div className="grid grid-cols-2" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
-                        {exec.metrics.map((m, mi) => (
-                          <div
-                            key={mi}
-                            className="px-4 py-3.5"
-                            style={mi === 0 ? { borderRight: '1px solid oklch(0.885 0.004 110)' } : undefined}
-                          >
-                            <div className="text-xl font-black text-primary-500 leading-none">{m.value}</div>
-                            <div className="text-[10px] font-bold uppercase tracking-wider mt-1.5" style={{ color: 'oklch(0.62 0.006 260)' }}>{m.label}</div>
-                          </div>
-                        ))}
-                      </div>}
-                    </div>
-                    <div className="flex items-center justify-end pt-6 mt-6" style={{ borderTop: '1px solid oklch(0.885 0.004 110)' }}>
-                      <a
-                        href={exec.linkedin}
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.06em] text-primary-500 hover:text-foreground-950 transition-colors"
-                      >
-                        <i className="ri-linkedin-fill text-base" />
-                        LinkedIn
-                      </a>
-                    </div>
-                  </div>
-                </div>
+  const LIME = 'oklch(0.81 0.19 115)';
+  const voices: Voice[] = execs.map((exec) => ({
+    id: exec.id,
+    name: exec.name,
+    role: [exec.title, exec.tenure].filter(Boolean).join(' · '),
+    pullQuote: exec.pullQuote,
+    image: exec.image,
+    storyLabel: exec.eyebrow,
+    paragraphs: exec.bio ? [exec.bio] : [],
+    extra: (
+      <div className="flex flex-col gap-8">
+        {exec.doing.length > 0 && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10">
+            {exec.doing.map((d, di) => (
+              <div key={di} className="pt-5" style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}>
+                <p lang="en" className="text-[11px] font-black uppercase tracking-[0.2em] mb-3" style={{ color: LIME }}>{d.label}</p>
+                <p className="text-[15px] md:text-[16px] leading-[1.75] text-white/75">{d.text}</p>
               </div>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        )}
+        {(exec.metrics.length > 0 || exec.linkedin) && (
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            {exec.metrics.length > 0 ? (
+              <div className="flex flex-wrap gap-x-10 gap-y-4">
+                {exec.metrics.map((m, mi) => (
+                  <div key={mi}>
+                    <p className="font-black text-white leading-none" style={{ fontSize: 'clamp(24px,2.2vw,32px)', letterSpacing: '-0.03em' }}>{m.value}</p>
+                    <p className="mt-2 text-[10px] font-black uppercase tracking-[0.18em] text-white/50">{m.label}</p>
+                  </div>
+                ))}
+              </div>
+            ) : <span />}
+            {exec.linkedin && (
+              <a
+                href={exec.linkedin}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="inline-flex items-center gap-2 min-h-[44px] text-[11px] font-black uppercase tracking-[0.16em] hover:text-white transition-colors"
+                style={{ color: LIME }}
+              >
+                <i className="ri-linkedin-fill text-base" aria-hidden="true" />
+                {exec.name} auf LinkedIn
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    ),
+  }));
 
-        {/* Contact CTA — identical to original */}
-        <div id="kontakt" className="sonic-container mt-8 md:mt-10">
-          <div className="border border-[#E7E4D4] py-6 md:py-7 px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAFDF5]">
-            <div className="text-center sm:text-left">
-              <p className="text-sm md:text-[15px] font-black text-foreground-950 leading-relaxed">
-                {tCtaText}{' '}
-                <span className="text-primary-500">{tCtaAccent}</span>
-              </p>
-              {tCtaSub && (
-                <p className="text-xs text-[#6E6E68] mt-1 hidden sm:block">{tCtaSub}</p>
-              )}
-            </div>
+  return (
+    <VoicesShowcase
+      id="management-voices"
+      eyebrow={tBadge}
+      heading={markLastWord(tHeading)}
+      sub={tSub}
+      voices={voices}
+      storyLabel="Perspektive"
+      nextLabel="Nächste Perspektive"
+      footer={
+        <VoicesCta
+          text={<>{tCtaText} {tCtaAccent && <Marker>{tCtaAccent}</Marker>}</>}
+          sub={tCtaSub}
+          button={
             <button
               type="button"
               onClick={() => openCalendly()}
-              className="inline-flex items-center gap-2 bg-foreground-950 text-white px-6 py-3 font-black hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-300 whitespace-nowrap cursor-pointer text-xs flex-shrink-0"
+              className="flex-shrink-0 inline-flex items-center gap-2.5 px-7 py-4 bg-foreground-950 text-white text-[11px] font-black uppercase tracking-[0.14em] hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-200 cursor-pointer"
             >
-              <i className="ri-calendar-line text-sm" />
+              <i className="ri-calendar-line text-sm" aria-hidden="true" />
               {tCtaBtn}
             </button>
-          </div>
-        </div>
-      </div>
-    </section>
+          }
+        />
+      }
+    />
   );
 }

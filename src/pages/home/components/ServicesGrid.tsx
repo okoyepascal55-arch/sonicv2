@@ -346,7 +346,7 @@ export default function ServicesGrid() {
                     <button
                       key={idx}
                       onClick={() => goTo(idx)}
-                      className="w-6 h-6 flex items-center justify-center cursor-pointer"
+                      className="tap-target w-6 h-6 flex items-center justify-center cursor-pointer"
                       aria-label={`Bild ${idx + 1}`}
                     >
                       <span

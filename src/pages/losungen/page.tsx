@@ -953,7 +953,7 @@ export default function LosungenPage() {
               <button
                 key={i}
                 onClick={() => handleTabClick(key)}
-                className={`h-2 rounded-none transition-all cursor-pointer hover:scale-110 ${
+                className={`tap-target h-2 rounded-none transition-all cursor-pointer hover:scale-110 ${
                   activeTab === key ? 'bg-primary-500 w-6 shadow-lg' : 'bg-foreground-300 w-2 hover:bg-primary-500/60'
                 }`}
                 aria-label={`${labels[key]} anzeigen`}

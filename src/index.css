@@ -1394,3 +1394,53 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus
   outline-offset: 2px !important;
   box-shadow: 0 0 0 2px #0b0b0c !important;
 }
+
+/* ── Mobile touch areas (19.10.2026) ─────────────────────────────────────────
+   Carousel dots and step markers stay visually small, but on touch screens they
+   get an invisible 44px-tall hit area. Horizontal extension is only 4px per side
+   so neighbouring dots never steal each other's taps. */
+@media (pointer: coarse) {
+  button[aria-label*=" von "][aria-label$="anzeigen"]:not([class*="overflow-hidden"]):not(.absolute),
+  .tap-target {
+    position: relative;
+  }
+  button[aria-label*=" von "][aria-label$="anzeigen"]:not([class*="overflow-hidden"])::after,
+  .tap-target::after {
+    content: '';
+    position: absolute;
+    left: -4px;
+    right: -4px;
+    top: 50%;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+}
+
+/* Range sliders: same thin 6px bar, but a 28px-tall grab area and a visible handle */
+.sonic-range {
+  height: 28px;
+  padding: 11px 0;
+  background-clip: content-box !important;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.sonic-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  background: #C8D400;
+  border: 2px solid oklch(0.13 0.005 118);
+  cursor: pointer;
+}
+.sonic-range::-webkit-slider-runnable-track { height: 6px; background: transparent; }
+.sonic-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #C8D400;
+  border: 2px solid oklch(0.13 0.005 118);
+  border-radius: 0;
+  cursor: pointer;
+}
+.sonic-range::-moz-range-track { height: 6px; background: transparent; }
