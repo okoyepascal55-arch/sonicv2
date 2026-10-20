@@ -301,12 +301,15 @@ export default function SRTTeaser() {
         <div className="mt-8 md:mt-10 flex flex-col items-center">
           <button
             onClick={() => setQuizOpen(true)}
-            className="group inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-3 bg-primary-500 text-foreground-950 px-6 py-3 font-black uppercase tracking-wide text-sm md:text-base transition-colors duration-300 cursor-pointer hover:bg-white text-center"
+            className="group inline-flex items-center gap-3 bg-primary-500 text-foreground-950 px-4 sm:px-6 py-2.5 sm:py-3 font-black uppercase tracking-wide transition-colors duration-300 cursor-pointer hover:bg-white text-left sm:text-center"
             style={{ borderRadius: 0 }}
           >
-            <span className="text-[10px] font-black uppercase tracking-[0.22em] opacity-80">30-Sekunden Kurzumfrage</span>
-            <span className="text-sm md:text-base font-black uppercase leading-tight">Welche Sonic-Lösung passt zu dir?</span>
-            <i className="ri-arrow-right-line text-lg flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
+            {/* Mobile: compact two-line label with the arrow beside it; desktop: one line as before */}
+            <span className="flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-3 min-w-0">
+              <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.22em] opacity-80">30-Sekunden Kurzumfrage</span>
+              <span className="text-[12px] sm:text-sm md:text-base font-black uppercase leading-tight tracking-[0.02em] sm:tracking-wide">Welche Sonic-Lösung passt zu dir?</span>
+            </span>
+            <i className="ri-arrow-right-line text-base sm:text-lg flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
           </button>
 
           <p className="text-xs text-foreground-400 mt-3 font-semibold tracking-wide">

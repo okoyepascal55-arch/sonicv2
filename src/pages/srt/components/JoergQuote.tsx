@@ -30,7 +30,7 @@ export default function JoergQuote() {
     role: tTitle,
     pullQuote: tQuote,
     image: photoUrl,
-    storyLabel: 'Im Video',
+    storyLabel: 'Im Wortlaut',
     media: ytId ? (
       <div className="relative w-full" style={{ aspectRatio: '16 / 9' }}>
         <iframe

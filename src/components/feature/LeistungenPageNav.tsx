@@ -33,7 +33,8 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
     window.addEventListener('resize', measure);
     return () => { clearTimeout(t); window.removeEventListener('resize', measure); };
   }, []);
-  const offset = () => headerHeight() + (barRef.current?.getBoundingClientRect().height || INPAGE_NAV_H) + 8;
+  // On phones the bar is hidden (height 0), so jumps only clear the main header
+  const offset = () => headerHeight() + (barRef.current ? barRef.current.getBoundingClientRect().height : INPAGE_NAV_H) + 8;
 
   useEffect(() => {
     const measure = () => {
@@ -113,7 +114,8 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
 
   return (
     <>
-      <div ref={barRef} className={`fixed left-0 right-0 z-40 transition-all duration-300 ${visible ? 'translate-y-0 opacity-100' : '-translate-y-1 opacity-0 pointer-events-none'}`} style={{ top: navTop }} inert={!visible}>
+      {/* Phones: no second bar (20.10.2026) — the main menu is enough and the screen stays free */}
+      <div ref={barRef} className={`hidden md:block fixed left-0 right-0 z-40 transition-all duration-300 ${visible ? 'translate-y-0 opacity-100' : '-translate-y-1 opacity-0 pointer-events-none'}`} style={{ top: navTop }} inert={!visible}>
         <div className="h-[2px] bg-foreground-950 w-full" />
         <div className="w-full bg-foreground-950 px-4 md:px-6">
           {/* Centered when it fits; starts left and scrolls when it doesn't (centering an overflowing

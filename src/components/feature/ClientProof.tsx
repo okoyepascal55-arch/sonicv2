@@ -152,10 +152,10 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
   return (
     <div
       ref={cardRef}
-      className="relative bg-white p-5 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-visible flex flex-col"
+      className="relative bg-white p-4 md:p-5 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-visible flex flex-col"
       style={{
-        minWidth: 'clamp(260px, min(80vw, calc(28vw + 60px)), 360px)',
-        flex: '0 0 clamp(260px, min(80vw, calc(28vw + 60px)), 360px)',
+        minWidth: 'clamp(240px, min(74vw, calc(28vw + 60px)), 360px)',
+        flex: '0 0 clamp(240px, min(74vw, calc(28vw + 60px)), 360px)',
         borderRadius: 0,
       }}
       onMouseEnter={() => setIsHovered(true)}
@@ -203,19 +203,19 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
         {/* MIDDLE: Quote */}
         <div className="flex-1 mb-4">
           <i className="ri-double-quotes-l text-2xl text-primary-500/40 block mb-1"></i>
-          <p className="text-foreground-700 leading-relaxed text-sm md:text-xs italic">{item.quote}</p>
+          <p className="text-foreground-700 leading-relaxed text-[13px] md:text-xs italic">{item.quote}</p>
         </div>
 
         {/* BOTTOM: Author + Button */}
         <div className="mt-auto">
           <div className="mb-4">
-            <div className="font-black text-foreground-950 text-sm md:text-xs">{item.author}</div>
-            {item.role && <div className="text-sm md:text-xs text-foreground-500 mt-0.5">{item.role}</div>}
-            <div className="text-sm md:text-xs text-primary-500 font-semibold mt-0.5">{item.company}</div>
+            <div className="font-black text-foreground-950 text-[13px] md:text-xs">{item.author}</div>
+            {item.role && <div className="text-xs text-foreground-500 mt-0.5">{item.role}</div>}
+            <div className="text-xs text-primary-500 font-semibold mt-0.5">{item.company}</div>
           </div>
           {item.caseStudyLink && <a
             href={item.caseStudyLink}
-            className="inline-flex items-center justify-center min-h-[44px] border-2 border-foreground-950 text-foreground-950 text-sm md:text-xs font-black tracking-widest px-4 py-2 hover:bg-primary-500 hover:border-primary-500 hover:text-background-50 transition-all duration-300 whitespace-nowrap"
+            className="inline-flex items-center justify-center min-h-[44px] border-2 border-foreground-950 text-foreground-950 text-[11px] md:text-xs font-black tracking-[0.14em] md:tracking-widest px-4 py-2 hover:bg-primary-500 hover:border-primary-500 hover:text-background-50 transition-all duration-300 whitespace-nowrap"
             style={{ borderRadius: 0 }}
           >
             FALLSTUDIE LESEN

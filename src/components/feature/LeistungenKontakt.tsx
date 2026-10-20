@@ -29,7 +29,7 @@ export default function LeistungenKontakt({
     <>
       <section id="kontakt" className="bg-white py-10 md:py-14 px-4 md:px-6">
         <div className="sonic-container">
-          <div className="border border-foreground-950/[0.1] bg-white p-6 sm:p-10 md:p-14 relative overflow-hidden">
+          <div className="border border-foreground-950/[0.1] bg-white p-5 sm:p-10 md:p-14 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 blur-3xl pointer-events-none translate-x-16 -translate-y-16" />
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C8D400]/60 via-[#C8D400]/20 to-transparent" />
 
@@ -48,7 +48,7 @@ export default function LeistungenKontakt({
                 <button
                   type="button"
                   onClick={() => openCalendly()}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-foreground-950 text-white px-6 sm:px-10 py-5 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm rounded-none"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-foreground-950 text-white px-6 sm:px-10 py-4 sm:py-5 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm rounded-none"
                 >
                   <i className={`${ctaIcon} text-base`}></i>
                   {ctaLabel}

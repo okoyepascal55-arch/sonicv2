@@ -133,7 +133,7 @@ export default function VoicesShowcase({
   const PREVIEW = 2;
   const shown = expanded ? paragraphs : paragraphs.slice(0, PREVIEW);
   const canExpand = paragraphs.length > PREVIEW;
-  const hasStory = paragraphs.length > 0 || !!active.closingQuote || !!active.extra || !!active.media;
+  const hasStory = !!active.pullQuote || paragraphs.length > 0 || !!active.closingQuote || !!active.extra || !!active.media;
 
   return (
     <section id={id} className="bg-white py-10 md:py-14 px-4 md:px-6">
@@ -168,7 +168,7 @@ export default function VoicesShowcase({
                   className="absolute inset-0 pointer-events-none"
                   style={{
                     background: isActive
-                      ? 'linear-gradient(to top, rgba(10,11,9,0.94) 0%, rgba(10,11,9,0.55) 38%, rgba(10,11,9,0.05) 70%)'
+                      ? 'linear-gradient(to top, rgba(10,11,9,0.88) 0%, rgba(10,11,9,0.35) 22%, rgba(10,11,9,0) 42%)'
                       : 'linear-gradient(to top, rgba(10,11,9,0.85) 0%, rgba(10,11,9,0.25) 60%)',
                     transition: `background 0.6s ${EASE}`,
                   }}
@@ -191,17 +191,13 @@ export default function VoicesShowcase({
                   </span>
                 )}
 
-                {/* Open: quote + name */}
+                {/* Open: name + role only — the quote sits in the panel below, so the face stays free */}
                 <span
-                  className="absolute left-0 right-0 bottom-0 p-8 xl:p-10 block"
+                  className="absolute left-0 right-0 bottom-0 px-8 pb-7 xl:px-10 xl:pb-8 block"
                   style={{ opacity: isActive ? 1 : 0, transform: isActive ? 'none' : 'translateY(16px)', transition: `opacity 0.5s ${EASE} ${isActive ? '0.25s' : '0s'}, transform 0.6s ${EASE} ${isActive ? '0.25s' : '0s'}` }}
                   aria-hidden={!isActive}
                 >
-                  <i className="ri-double-quotes-l text-3xl block mb-3" style={{ color: LIME }} aria-hidden="true" />
-                  <span className="block font-black text-white max-w-[760px]" style={{ fontSize: 'clamp(22px,2.1vw,32px)', lineHeight: 1.18, letterSpacing: '-0.025em' }}>
-                    {v.pullQuote}
-                  </span>
-                  <span className="flex items-end justify-between gap-6 mt-8 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.14)' }}>
+                  <span className="flex items-end justify-between gap-6">
                     <span className="block">
                       <span className="block font-black text-white leading-none" style={{ fontSize: 'clamp(28px,2.6vw,40px)', letterSpacing: '-0.035em' }}>{v.name}</span>
                       <span className="block mt-2 text-[11px] font-black uppercase tracking-[0.2em]" style={{ color: LIME }}>{v.role}</span>
@@ -231,16 +227,14 @@ export default function VoicesShowcase({
               <Tag
                 key={v.id}
                 {...(single ? {} : { type: 'button' as const, onClick: () => select(i), 'aria-pressed': isActive, 'aria-controls': storyId })}
-                className="relative flex-shrink-0 overflow-hidden text-left snap-center flex flex-col justify-end"
-                // min-height instead of a fixed ratio: long quotes grow the card instead of being cut off
-                style={{ width: single ? '100%' : 'min(82%, 420px)', minHeight: single ? 'min(110vw, 520px)' : 'min(102vw, 525px)', background: INK }}
+                className="relative flex-shrink-0 overflow-hidden text-left snap-center"
+                style={{ width: single ? '100%' : 'min(82%, 420px)', aspectRatio: single ? '4 / 4.2' : '4 / 5', maxHeight: single ? 520 : undefined, background: INK }}
               >
                 <Portrait v={v} isActive={isActive} />
-                <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(10,11,9,0.94) 0%, rgba(10,11,9,0.45) 45%, transparent 75%)' }} />
+                <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(10,11,9,0.9) 0%, rgba(10,11,9,0.3) 24%, transparent 42%)' }} />
                 <span className="absolute top-0 left-0 h-1" style={{ width: isActive ? '100%' : '0%', background: LIME, transition: `width 0.6s ${EASE}` }} aria-hidden="true" />
                 {!single && <span className="absolute top-4 left-4 text-[10px] font-black tracking-[0.24em]" style={{ color: isActive ? LIME : 'rgba(255,255,255,0.7)' }} aria-hidden="true">{num(i)}</span>}
-                <span className="relative block p-5 pt-16">
-                  <span className="block font-black text-white text-[17px] leading-[1.25] mb-4" style={{ letterSpacing: '-0.02em' }}>{v.pullQuote}</span>
+                <span className="absolute left-0 right-0 bottom-0 block p-5">
                   <span className="block font-black text-white text-2xl leading-none" style={{ letterSpacing: '-0.03em' }}>{v.name}</span>
                   <span className="block mt-1.5 text-[10px] font-black uppercase tracking-[0.18em]" style={{ color: LIME }}>{v.role}</span>
                 </span>
@@ -256,7 +250,7 @@ export default function VoicesShowcase({
           </div>
         )}
 
-        {/* ── Story panel (name and role are already on the portrait) ── */}
+        {/* ── Story panel: quote first, then the story (name and role are on the portrait) ── */}
         {hasStory && (
           <div id={storyId} aria-live="polite" className="mt-3 lg:mt-2 p-7 md:p-10 xl:p-12" style={{ background: INK }}>
             <div className="flex items-center justify-between gap-6 mb-8">
@@ -274,6 +268,14 @@ export default function VoicesShowcase({
             </div>
 
             <div key={`b-${active.id}`} className="animate-fadeIn">
+              {active.pullQuote && (
+                <blockquote className="mb-10">
+                  <i className="ri-double-quotes-l text-3xl block mb-3" style={{ color: LIME }} aria-hidden="true" />
+                  <p className="font-black text-white max-w-[980px]" style={{ fontSize: 'clamp(20px,2.2vw,32px)', lineHeight: 1.25, letterSpacing: '-0.025em' }}>
+                    {active.pullQuote}
+                  </p>
+                </blockquote>
+              )}
               {active.media && <div className="mb-8">{active.media}</div>}
               {shown.length > 0 && (
                 <div className={shown.length > 1 ? 'lg:columns-2 lg:gap-14' : ''}>
