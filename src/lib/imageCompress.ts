@@ -1,16 +1,18 @@
 /**
  * Client-side image compression for the dashboard upload flow.
  *
- * Large raster images (JPG / PNG / WebP) are re-encoded as optimized WebP
- * with their resolution capped at full-HD. This dramatically reduces file
- * size (and therefore page load time) without any visible quality loss.
+ * High-quality mode (22.10.2026): photos stay sharp on large and retina screens.
+ * Only very large photos are re-encoded — as WebP at 92 % quality, longest edge up to
+ * 3840 px (4K), with high-quality resampling. The original is kept whenever it is
+ * already within those limits or the re-encode would not be smaller.
  *
- * SVG (vector) and already-small files pass through untouched.
+ * SVG (vector), PNG/GIF (logos, icons, transparency) and files up to 1.5 MB pass
+ * through untouched.
  */
 
-const MAX_DIMENSION = 1920; // cap the longest edge to full-HD width
-const QUALITY = 0.8; // WebP quality (0-1)
-const MIN_COMPRESS_SIZE = 200 * 1024; // only compress files larger than 200 KB
+const MAX_DIMENSION = 3840; // cap the longest edge at 4K — sharp on retina / large screens
+const QUALITY = 0.92; // WebP quality (0-1) — visually lossless
+const MIN_COMPRESS_SIZE = 1.5 * 1024 * 1024; // only touch files larger than 1.5 MB
 
 function loadImage(url: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
@@ -32,8 +34,8 @@ function canvasToBlob(
 }
 
 export async function compressImage(file: File): Promise<File> {
-  // Skip SVG — it's vector art and should never be rasterized.
-  if (file.type === 'image/svg+xml') return file;
+  // Skip SVG (vector) and PNG/GIF (logos, icons, transparency) — never re-encode those.
+  if (file.type === 'image/svg+xml' || file.type === 'image/png' || file.type === 'image/gif') return file;
 
   // Skip small files that don't need optimization.
   if (file.size <= MIN_COMPRESS_SIZE) return file;
@@ -58,6 +60,8 @@ export async function compressImage(file: File): Promise<File> {
     const ctx = canvas.getContext('2d');
     if (!ctx) return file;
 
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
     ctx.drawImage(img, 0, 0, width, height);
 
     // Re-encode as WebP (preserves transparency, best compression ratio).

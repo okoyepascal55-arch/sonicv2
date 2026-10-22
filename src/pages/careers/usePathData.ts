@@ -10,6 +10,7 @@ import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useKarrierePath } from './useKarriereText';
 import type { PathTab } from './content';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 export type PathSlug = 'campus' | 'pos';
 
@@ -26,8 +27,8 @@ export interface CareerPath {
 }
 
 const FALLBACK_IMAGES = [
-  'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png',
-  'https://www.sonic-group.de/wp-content/uploads/2023/02/POS_NEU.jpg',
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
 ];
 
 export const JOBS_ANCHOR = 'stellenangebote';

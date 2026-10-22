@@ -1,6 +1,7 @@
 import { useReviewText } from '@/hooks/useReviewText';
 import { useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 export default function VideoShowcase() {
   // Dashboard → Text → Home → „VideoShowcase — Texte“
@@ -8,7 +9,7 @@ export default function VideoShowcase() {
   const [playing, setPlaying] = useState(false);
   const { images: videoMedia } = useMediaStore('home_video');
 
-  const coverImage = videoMedia[0]?.url || 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png';
+  const coverImage = videoMedia[0]?.url || IMAGE_PLACEHOLDER;
   const youtubeUrl = videoMedia[1]?.url || 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&loop=1&playlist=2H1rFHQsG4g&rel=0&modestbranding=1';
 
   return (

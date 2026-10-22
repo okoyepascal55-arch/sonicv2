@@ -3,12 +3,13 @@ import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 export default function VideoHero() {
   const { images: videoHeroImages } = useMediaStore('leistungen_video_images');
   const heroImage = videoHeroImages[0]?.url
     ? resolveImageUrl(videoHeroImages[0].url)
-    : 'https://www.sonic-group.de/wp-content/uploads/2023/06/LVP_NEU.jpg';
+    : IMAGE_PLACEHOLDER;
 
   const tBtn = useLeistungenText('leistungen_video_hero_buttons');
   const cta = useCtaText();

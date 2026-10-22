@@ -4,12 +4,13 @@ import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 export default function StaffHero() {
   const { images: staffHeroImages } = useMediaStore('leistungen_staff_images');
   const heroImage = staffHeroImages[0]?.url
     ? resolveImageUrl(staffHeroImages[0].url)
-    : 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg';
+    : IMAGE_PLACEHOLDER;
 
   const tBadge = useText('leistungen_staff', 'staff-hero-badge', 'Staff as a Service');
   const tH1Line1 = useText('leistungen_staff', 'staff-hero-heading-line1', 'Rundum-Service');

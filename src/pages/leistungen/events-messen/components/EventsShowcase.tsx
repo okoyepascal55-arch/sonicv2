@@ -3,6 +3,7 @@ import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
 import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 const TAB_INFO = [
  { id: 'events', key: 'tab1', icon: 'ri-calendar-event-line', imageIndexes: [0, 1, 2, 3] },
@@ -11,18 +12,18 @@ const TAB_INFO = [
 ];
 
 const FALLBACK_IMAGES = [
- { img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg', title: 'Brand Activation', tag: 'Corporate' },
- { img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg', title: 'Event-Dokumentation', tag: 'Dokumentation' },
- { img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg', title: 'Roadshow & Festival', tag: 'Roadshow' },
- { img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg', title: 'Händler-Event', tag: 'VIP' },
- { img: 'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO01.jpg', title: 'Messebau Premium', tag: 'Messebau' },
- { img: 'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO02.jpg', title: 'Interaktive Demos', tag: 'Demo' },
- { img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/LUCID01.jpg', title: 'Produktpräsentation', tag: 'CGI' },
- { img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg', title: 'Messe-Stand Konzept', tag: 'Stand' },
- { img: 'https://www.sonic-group.de/wp-content/uploads/2023/06/LAGER_OPENER.jpg', title: 'Logistik & Aufbau', tag: 'Logistik' },
- { img: 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg', title: 'Eventcontainer', tag: 'Container' },
- { img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg', title: 'Sonic Campus Aerial', tag: 'Campus' },
- { img: 'https://www.sonic-group.de/wp-content/uploads/2023/01/5.jpg', title: 'Promotionfahrzeug', tag: 'Promo' },
+ { img: IMAGE_PLACEHOLDER, title: 'Brand Activation', tag: 'Corporate' },
+ { img: IMAGE_PLACEHOLDER, title: 'Event-Dokumentation', tag: 'Dokumentation' },
+ { img: IMAGE_PLACEHOLDER, title: 'Roadshow & Festival', tag: 'Roadshow' },
+ { img: IMAGE_PLACEHOLDER, title: 'Händler-Event', tag: 'VIP' },
+ { img: IMAGE_PLACEHOLDER, title: 'Messebau Premium', tag: 'Messebau' },
+ { img: IMAGE_PLACEHOLDER, title: 'Interaktive Demos', tag: 'Demo' },
+ { img: IMAGE_PLACEHOLDER, title: 'Produktpräsentation', tag: 'CGI' },
+ { img: IMAGE_PLACEHOLDER, title: 'Messe-Stand Konzept', tag: 'Stand' },
+ { img: IMAGE_PLACEHOLDER, title: 'Logistik & Aufbau', tag: 'Logistik' },
+ { img: IMAGE_PLACEHOLDER, title: 'Eventcontainer', tag: 'Container' },
+ { img: IMAGE_PLACEHOLDER, title: 'Sonic Campus Aerial', tag: 'Campus' },
+ { img: IMAGE_PLACEHOLDER, title: 'Promotionfahrzeug', tag: 'Promo' },
 ];
 
 const FALLBACK_TAG = ['Corporate', 'Dokumentation', 'Roadshow', 'VIP', 'Messebau', 'Demo', 'CGI', 'Stand', 'Logistik', 'Container', 'Campus', 'Promo'];

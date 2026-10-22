@@ -5,6 +5,7 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 const POS_CHALLENGES: ChallengeItem[] = [
   {
@@ -63,26 +64,26 @@ const ASSETS = [
 ];
 
 const FALLBACK_ASSETS = [
-  'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO02.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/06/10.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/02/2a.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/06/LVP_NEU.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/03/TPV.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/02/2b.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/02/2f.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO01.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/01/10-1.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/01/9-1-1024x510.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/06/LVP_NEU.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/02/5-1-1024x576.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/01/2-1-1024x706.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/03/shower.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/03/OPPOX5Pro_unboxing.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/02/2e.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/02/1_NEU.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/01/4.jpg',
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
 ];
 
 const STEPS = [
@@ -95,12 +96,12 @@ const STEPS = [
 ];
 
 const FALLBACK_PROCESS = [
-  'https://www.sonic-group.de/wp-content/uploads/2023/01/3.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/01/2.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/06/SRT_OPENER.jpg',
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
 ];
 
 export default function POSContent() {

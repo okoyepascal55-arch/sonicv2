@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useText } from '@/hooks/useText';
+import SiteLogo from '@/components/base/SiteLogo';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -160,11 +161,7 @@ export default function Navigation() {
         <nav aria-label="Hauptnavigation" className="max-w-7xl mx-auto px-4 md:px-6 py-4">
           <div className="flex items-center justify-between">
             <button onClick={() => handleNavClick('/')} className="flex items-center space-x-3 cursor-pointer flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
-              <img
-                src="https://www.sonic-group.de/wp-content/uploads/elementor/thumbs/SONIC_GESAMTLOGO_LIME-q0lflz24exgoq4608jg9ggegh9pjfwmmc0m1jsee5i.png"
-                alt="Sonic Group — Zur Startseite"
-                className="h-8 md:h-10 w-auto"
-              />
+              <SiteLogo alt="Sonic Group — Zur Startseite" className="h-8 md:h-10 w-auto" />
             </button>
 
             <div className="hidden lg:flex items-center space-x-8">
@@ -297,11 +294,7 @@ export default function Navigation() {
         }`}
       >
         <div className="flex items-center justify-between px-5 pt-[calc(env(safe-area-inset-top,0px)+1rem)] pb-4 border-b border-background-200/70 flex-shrink-0">
-          <img
-            src="https://www.sonic-group.de/wp-content/uploads/elementor/thumbs/SONIC_GESAMTLOGO_LIME-q0lflz24exgoq4608jg9ggegh9pjfwmmc0m1jsee5i.png"
-            alt="Sonic Group Logo"
-            className="h-8 w-auto"
-          />
+          <SiteLogo alt="Sonic Group Logo" className="h-8 w-auto" />
           <button
             onClick={() => setIsMobileMenuOpen(false)}
             className="w-11 h-11 flex items-center justify-center text-foreground-500 hover:bg-[#FAFDF5] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"

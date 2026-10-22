@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { useMediaStore } from '@/lib/mediaStore';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 function hideBrokenImg(e: React.SyntheticEvent<HTMLImageElement>) {
   e.currentTarget.style.display = 'none';
@@ -18,9 +19,9 @@ const baseServices = [
     tagline: 'Menschen, die verkaufen. Flächen, die wirken.',
     fallbackIcon: 'ri-store-2-line',
     images: [
-      'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/06/10.jpg',
-      'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg',
+      IMAGE_PLACEHOLDER,
+      IMAGE_PLACEHOLDER,
+      IMAGE_PLACEHOLDER,
     ],
     link: '/leistungen/pos-full-service',
   },

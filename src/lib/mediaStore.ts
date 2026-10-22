@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { IMAGE_PLACEHOLDER, isLegacyWpUrl } from './imagePlaceholder';
 import { supabase } from '@/lib/supabase';
 
 export interface MediaItem {
@@ -276,7 +277,13 @@ export const PAGE_GROUPS: PageGroup[] = [
       'case_studies_brand_logos',
       // Bildershowcase (ersetzt die Bildgalerien je Fallbeispiel)
       'case_studies_pictorial_showcase',
-      // (Bildgalerien je Fallbeispiel entfernt — Bilder jetzt im Bildershowcase)
+      // Bildgalerien je Fallbeispiel — wiederhergestellt 22.10.2026 (am 30.09. aus dem Dashboard
+      // genommen; die hochgeladenen Bilder waren nie gelöscht). Nur ergänzt, nichts anderes geändert.
+      'case_garmin_gallery_1','case_garmin_gallery_2','case_garmin_gallery_3','case_garmin_gallery_4',
+      'case_seb_gallery_1','case_seb_gallery_2','case_seb_gallery_3','case_seb_gallery_4',
+      'case_tvsound_gallery_1','case_tvsound_gallery_2','case_tvsound_gallery_3','case_tvsound_gallery_4',
+      'case_avoury_gallery_1','case_avoury_gallery_2','case_avoury_gallery_3','case_avoury_gallery_4',
+      'case_philips_gallery_1','case_philips_gallery_2',
       // Module images — controllable from dashboard
       'case_garmin_module_1','case_garmin_module_2','case_garmin_module_3',
       'case_garmin_module_4','case_garmin_module_5',
@@ -1391,6 +1398,21 @@ const HUMAN_LABELS: Record<string, string> = {
   'careers_hero_wood_icons': 'KarriereHero — Trust Stat Icons',
   'careers_pictorial_showcase': 'Careers — Pictorial Showcase (under Team Events)',
   'case_studies_pictorial_showcase': 'Fallbeispiele — Bildershowcase (Projekt-Einblicke)',
+  // Restored gallery slots (22.10.2026)
+  'case_garmin_gallery_1': 'Fallbeispiel Garmin — Bildergalerie 1',
+  'case_garmin_gallery_2': 'Fallbeispiel Garmin — Bildergalerie 2',
+  'case_garmin_gallery_3': 'Fallbeispiel Garmin — Bildergalerie 3',
+  'case_garmin_gallery_4': 'Fallbeispiel Garmin — Bildergalerie 4',
+  'case_seb_gallery_1': 'Fallbeispiel Groupe SEB — Bildergalerie 1',
+  'case_seb_gallery_2': 'Fallbeispiel Groupe SEB — Bildergalerie 2',
+  'case_seb_gallery_3': 'Fallbeispiel Groupe SEB — Bildergalerie 3',
+  'case_seb_gallery_4': 'Fallbeispiel Groupe SEB — Bildergalerie 4',
+  'case_avoury_gallery_1': 'Fallbeispiel Avoury — Bildergalerie 1',
+  'case_avoury_gallery_2': 'Fallbeispiel Avoury — Bildergalerie 2',
+  'case_avoury_gallery_3': 'Fallbeispiel Avoury — Bildergalerie 3',
+  'case_avoury_gallery_4': 'Fallbeispiel Avoury — Bildergalerie 4',
+  'case_philips_gallery_1': 'Fallbeispiel Philips — Bildergalerie 1',
+  'case_philips_gallery_2': 'Fallbeispiel Philips — Bildergalerie 2',
   'careers_perks_wood_icons': 'Perks — Section Wood Icons',
   'leistungen_pos_images': 'POS Full Service',
   'leistungen_video_images': 'Live Video',
@@ -1850,6 +1872,8 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
 ───────────────────────────────────────────── */
 const SUPABASE_STORE_ID = 1;
 const LAST_SYNC_TS_KEY = 'sonic_media_last_sync_ts';
+/** Time of this browser's own last dashboard edit (only set when saving). */
+const LOCAL_EDIT_TS_KEY = 'sonic_media_local_edit_ts';
 let _supabaseSyncInFlight = false;
 let _supabaseSyncNeeded = false;
 
@@ -1881,6 +1905,25 @@ async function pullOverridesFromSupabase(): Promise<MediaSections | null> {
 
     const overrides = data.data as MediaSections;
     if (overrides && typeof overrides === 'object' && Object.keys(overrides).length > 0) {
+      // Saved-for-everyone data that is NEWER than this browser's last own edit wins
+      // (22.10.2026). Before, an old local copy in a browser that had opened the
+      // dashboard earlier kept hiding images saved later from another device
+      // (e.g. a new favicon or icons). Browsers without a recorded edit count as old.
+      const remoteTs = Date.parse((data as { updated_at?: string }).updated_at || '') || 0;
+      const localEditTs = Number(localStorage.getItem(LOCAL_EDIT_TS_KEY) || 0);
+      if (remoteTs > localEditTs) {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          const local = (raw ? JSON.parse(raw) : {}) as MediaSections;
+          for (const key of Object.keys(overrides)) local[key] = overrides[key];
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(local));
+        } catch { /* keep going with the shared data */ }
+        setSupabaseOverridesCache(overrides);
+        localStorage.setItem(LAST_SYNC_TS_KEY, String(Date.now()));
+        invalidateCache();
+        window.dispatchEvent(new Event('media-store-update'));
+        return overrides;
+      }
       // Content-based staleness check: if localStorage already contains all items
       // that are in the remote overrides, then local is at least as fresh.
       const localRaw = (() => {
@@ -2119,6 +2162,7 @@ function saveToStorage(store: MediaSections): void {
     // knows localStorage is fresh and won't overwrite it with stale Supabase data.
     const now = Date.now();
     localStorage.setItem(LAST_SYNC_TS_KEY, String(now));
+    localStorage.setItem(LOCAL_EDIT_TS_KEY, String(now));
 
     window.dispatchEvent(new Event('media-store-update'));
 
@@ -2333,22 +2377,27 @@ export function getTotalImageCount(): number {
 /* ─────────────────────────────────────────────
    REACT HOOK
 ───────────────────────────────────────────── */
+/** Site rendering: old WordPress links are never loaded — they show the „Bild folgt“ panel. */
+function toSiteItem(item: MediaItem): MediaItem {
+  return { ...item, url: isLegacyWpUrl(item.url) ? IMAGE_PLACEHOLDER : resolveImageUrl(item.url) };
+}
+
 export function useMediaStore(sectionKey: string) {
   const [images, setImages] = useState<MediaItem[]>(() =>
-    getSectionImages(sectionKey).map((item) => ({ ...item, url: resolveImageUrl(item.url) }))
+    getSectionImages(sectionKey).map(toSiteItem)
   );
 
   // Re-initialize whenever sectionKey changes
   useEffect(() => {
     const raw = getSectionImages(sectionKey);
-    setImages(raw.map((item) => ({ ...item, url: resolveImageUrl(item.url) })));
+    setImages(raw.map(toSiteItem));
   }, [sectionKey]);
 
   useEffect(() => {
     const handleUpdate = () => {
       invalidateCache();
       const raw = getSectionImages(sectionKey);
-      setImages(raw.map((item) => ({ ...item, url: resolveImageUrl(item.url) })));
+      setImages(raw.map(toSiteItem));
     };
 
     window.addEventListener('media-store-update', handleUpdate);

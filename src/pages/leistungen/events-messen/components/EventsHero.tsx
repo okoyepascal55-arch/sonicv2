@@ -5,12 +5,13 @@ import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 export default function EventsHero() {
   const { images: eventsHeroImages } = useMediaStore('leistungen_events_images');
   const heroImage = eventsHeroImages[0]?.url
     ? resolveImageUrl(eventsHeroImages[0].url)
-    : 'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg';
+    : IMAGE_PLACEHOLDER;
 
   const tBadge = useText('leistungen_events', 'events-hero-badge', 'Events & Messen');
   const tH1Line1 = useText('leistungen_events', 'events-hero-heading-line1', 'Live‑Kommunikation,');

@@ -61,6 +61,8 @@ export default function VideoPage() {
       <div ref={heroRef}>
         <VideoHero />
       </div>
+      {/* Dark-bg WoodenDivider — hero(dark) exit into Herausforderung, like every Leistungen page */}
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
       <div>
         <VideoContent />

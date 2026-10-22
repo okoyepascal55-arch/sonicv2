@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import FooterTopologyField from './FooterTopologyField';
 import { useText } from '@/hooks/useText';
+import SiteLogo from '@/components/base/SiteLogo';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -154,12 +155,7 @@ export default function Footer() {
               to="/"
               className="flex items-center gap-3 mb-4 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-900"
             >
-              <img
-                src="https://www.sonic-group.de/wp-content/uploads/elementor/thumbs/SONIC_GESAMTLOGO_LIME-q0lflz24exgoq4608jg9ggegh9pjfwmmc0m1jsee5i.png"
-                alt="Sonic Group"
-                className="h-9 md:h-11 w-auto"
-                loading="lazy"
-              />
+              <SiteLogo alt="Sonic Group" className="h-9 md:h-11 w-auto" loading="lazy" />
             </Link>
 
             <div className="mb-3">

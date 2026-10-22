@@ -14,6 +14,7 @@ import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
 import WoodenButton from '@/components/base/WoodenButton';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 const NAV_ITEMS = [
  { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
@@ -71,12 +72,12 @@ const WAREHOUSE_ITEMS = [
 ];
 
 const FALLBACK_WAREHOUSE = [
- 'https://www.sonic-group.de/wp-content/uploads/2023/06/LAGER_OPENER.jpg',
- 'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg',
- 'https://www.sonic-group.de/wp-content/uploads/2023/06/10.jpg',
- 'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO01.jpg',
- 'https://www.sonic-group.de/wp-content/uploads/2023/06/SRT_OPENER.jpg',
- 'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg',
+ IMAGE_PLACEHOLDER,
+ IMAGE_PLACEHOLDER,
+ IMAGE_PLACEHOLDER,
+ IMAGE_PLACEHOLDER,
+ IMAGE_PLACEHOLDER,
+ IMAGE_PLACEHOLDER,
 ];
 
 const WAREHOUSE_CHALLENGES: ChallengeItem[] = [
@@ -120,11 +121,11 @@ export default function WarehouseLogistikPage() {
  const { images: fullserviceImages } = useMediaStore('leistungen_warehouse_fullservice_photo');
  const heroImage = warehouseHeroImages[0]?.url
  ? resolveImageUrl(warehouseHeroImages[0].url)
- : 'https://www.sonic-group.de/wp-content/uploads/2023/06/LAGER_OPENER.jpg';
+ : IMAGE_PLACEHOLDER;
 
  const warehouseFullservicePhoto = fullserviceImages[0]?.url
  ? resolveImageUrl(fullserviceImages[0].url)
- : 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg';
+ : IMAGE_PLACEHOLDER;
 
  const getWarehouseItemImg = (index: number) => {
  const item = warehouseItemsImages[index];
@@ -196,6 +197,9 @@ export default function WarehouseLogistikPage() {
  <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none"/>
  </section>
  </div>
+
+ {/* Dark-bg WoodenDivider — hero(dark) exit into Herausforderung, like every Leistungen page */}
+ <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
  {/* Challenge — shared dark component */}
  <ChallengeSection

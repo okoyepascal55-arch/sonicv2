@@ -4,6 +4,7 @@ import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useCallback, useEffect, useState } from 'react';
 import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 
 interface Props {
@@ -40,7 +41,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
     <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950 px-4 md:px-6" style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}>
       {/* Background photo */}
       <img
-        src={heroImage || 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png'}
+        src={heroImage || IMAGE_PLACEHOLDER}
         alt="Sonic Group Leistungen"
         className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 20%' }}
         fetchPriority="high"

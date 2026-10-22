@@ -7,6 +7,7 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 const STAFF_CHALLENGE_ICONS = ['ri-user-search-line', 'ri-money-euro-circle-line', 'ri-bar-chart-2-line'];
 
@@ -64,11 +65,11 @@ const SOCKS = [
 ];
 
 const FALLBACK_SOCKS = [
-  'https://www.sonic-group.de/wp-content/uploads/2023/06/SRT_OPENER.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/06/6.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/02/6-1-1024x570.jpg',
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
 ];
 
 export default function StaffContent() {

@@ -11,7 +11,6 @@ import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import Carousel3DReference from './components/Carousel3DReference';
 import KreationShowcaseReference from './components/KreationShowcaseReference';
 import KreationHeroStats from './components/KreationHeroStats';
-import KreationWavyDivider from './components/KreationWavyDivider';
 import { Link } from 'react-router-dom';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
@@ -117,9 +116,9 @@ export default function KreationContentPage() {
           <Carousel3DReference />
         </section>
       </div>
-      <KreationWavyDivider />
+      <WoodenDivider />
       <ChallengeSection id="herausforderung" headline={tChallengeHeading} subline={tChallengeSub} challenges={CHALLENGES} />
-      <KreationWavyDivider darkBackground />
+      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
       <section id="loesung" className="sonic-section-md px-4 md:px-6 relative overflow-hidden bg-white">
         <div className="absolute top-0 right-0 pointer-events-none" style={{ width: 500, height: 500, background: 'oklch(0.81 0.19 115 / 0.08)', filter: 'blur(120px)' }} />
         <div ref={solutionRef} className="sonic-container relative" style={{ opacity: solutionVisible ? 1 : 0, transform: solutionVisible ? 'translateY(0)' : 'translateY(32px)', transition: 'opacity 0.7s ease, transform 0.7s ease' }}>
@@ -128,12 +127,14 @@ export default function KreationContentPage() {
         </div>
       </section>
       <WoodenDivider />
-      <section className="sonic-section-md bg-white px-6 border-b border-foreground-950/8"><div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3">{resolvedDisciplines.map(item => <div key={item.label} className="flex flex-col items-center gap-4 py-4"><img src={item.src} alt={item.label} className="w-16 h-16 object-cover" loading="lazy" /><span className="text-xs font-black text-foreground-950/55 uppercase tracking-widest">{item.label}</span><div className="h-px w-6 bg-primary-500" /></div>)}</div></section>
+      <section className="sonic-section-md bg-white px-4 md:px-6"><div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3">{resolvedDisciplines.map(item => <div key={item.label} className="flex flex-col items-center gap-4 py-4"><img src={item.src} alt={item.label} className="w-16 h-16 object-cover" loading="lazy" /><span className="text-xs font-black text-foreground-950/55 uppercase tracking-widest">{item.label}</span><div className="h-px w-6 bg-primary-500" /></div>)}</div></section>
+      <WoodenDivider />
       <KreationShowcaseReference />
       <WoodenDivider />
       <KreationFaces />
       <WoodenDivider />
       <section id="referenzen"><ClientProof only={['nexaro', 'vorwerk']} /></section>
+      <WoodenDivider />
       <div><LeistungenKontakt headline={tCta['headline']} headlineAccent={tCta['headline-accent']} subline={tCta['subline']} ctaLabel={cta.book} ctaMailSubject="Kreation Content Beratung" ctaIcon="ri-calendar-line" /></div>
       <ScrollToTopButton />
     </div>

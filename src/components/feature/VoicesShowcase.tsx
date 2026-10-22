@@ -57,8 +57,10 @@ function Portrait({ v, isActive }: { v: Voice; isActive: boolean }) {
       draggable={false}
     />
   ) : (
-    <span className="absolute inset-0 flex items-center justify-center font-black text-white/10" style={{ fontSize: 'clamp(64px,9vw,140px)' }} aria-hidden="true">
-      {v.name.charAt(0)}
+    // No photo uploaded yet → visible photo placeholder (same as every other missing image)
+    <span className="absolute inset-0 flex flex-col items-center justify-center gap-3" style={{ background: '#1c1d19', outline: '2px dashed rgba(200,212,0,0.3)', outlineOffset: '-14px' }} aria-hidden="true">
+      <i className="ri-image-line text-5xl" style={{ color: 'rgba(200,212,0,0.75)' }} />
+      <span className="text-[11px] font-black uppercase tracking-[0.3em]" style={{ color: 'rgba(200,212,0,0.75)' }}>Foto folgt</span>
     </span>
   );
 }
@@ -149,7 +151,7 @@ export default function VoicesShowcase({
         <div
           id={facesId}
           className="hidden lg:flex gap-2"
-          style={{ height: single ? 'clamp(460px, 38vw, 560px)' : 'clamp(520px, 44vw, 640px)' }}
+          style={{ height: 'clamp(520px, 44vw, 640px)' }}
           role="group"
           aria-label="Stimme auswählen"
         >

@@ -5,6 +5,7 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
 import { useText } from '@/hooks/useText';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 // Publii publishes a standard JSON Feed (https://www.jsonfeed.org) when
 // "Enable JSON feed" is turned on in Website Settings → RSS/JSON feed.
@@ -48,7 +49,7 @@ export default function BlogPage() {
   const { images: blogHeroImages } = useMediaStore('blog_images');
   const heroImage = blogHeroImages[0]?.url
     ? resolveImageUrl(blogHeroImages[0].url)
-    : 'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg';
+    : IMAGE_PLACEHOLDER;
 
   const [allPosts, setAllPosts] = useState<PubliiFeedItem[]>([]);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);

@@ -3,6 +3,7 @@ import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { ChapterHeader, Marker } from './ChapterKit';
 import { useKarriereEventLines } from '../useKarriereText';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 const EVENTS = [
   {
@@ -10,7 +11,7 @@ const EVENTS = [
     tag: 'Kreation',
     title: 'Content Creation',
     stat: 'Shootings & Videos für unsere Kunden',
-    fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2025/10/image002Sonic-Hp.png',
+    fallbackImage: IMAGE_PLACEHOLDER,
     videoUrl: 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&rel=0&modestbranding=1',
   },
   {
@@ -18,7 +19,7 @@ const EVENTS = [
     tag: 'Intern',
     title: 'Team Events',
     stat: 'Sommerfest, Grillen, gemeinsame Mittagessen',
-    fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/01/7-1.jpg',
+    fallbackImage: IMAGE_PLACEHOLDER,
     videoUrl: 'https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1&rel=0&modestbranding=1',
   },
   {
@@ -26,7 +27,7 @@ const EVENTS = [
     tag: 'Extern',
     title: 'Promoter Events',
     stat: 'Kick-offs, Trainings & Contests',
-    fallbackImage: 'https://www.sonic-group.de/wp-content/uploads/2023/01/12.jpg',
+    fallbackImage: IMAGE_PLACEHOLDER,
     videoUrl: 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&rel=0&modestbranding=1',
   },
   {

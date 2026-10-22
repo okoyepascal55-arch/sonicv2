@@ -5,6 +5,7 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 const TALENTPOOL_CHALLENGE_ICONS = ['ri-user-unfollow-line', 'ri-loop-right-line', 'ri-eye-off-line'];
 
@@ -75,10 +76,10 @@ const PROFILE_BASE = [
 ];
 
 const FALLBACK_PROFILES = [
-  'https://www.sonic-group.de/wp-content/uploads/2023/06/POS_NEU.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/11/NEXARO01.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/02/3-1-1024x448.jpg',
-  'https://www.sonic-group.de/wp-content/uploads/2023/06/EVENT_NEU.jpg',
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
+  IMAGE_PLACEHOLDER,
 ];
 
 const STAT_COUNT = 4;

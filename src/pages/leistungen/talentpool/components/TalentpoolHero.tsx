@@ -3,12 +3,13 @@ import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useCtaText } from '@/hooks/useCtaText';
+import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 export default function TalentpoolHero() {
   const { images: talentpoolHeroImages } = useMediaStore('leistungen_talentpool_images');
   const heroImage = talentpoolHeroImages[0]?.url
     ? resolveImageUrl(talentpoolHeroImages[0].url)
-    : 'https://www.sonic-group.de/wp-content/uploads/2023/02/4-1-1024x444.jpg';
+    : IMAGE_PLACEHOLDER;
 
   const cta = useCtaText();
   const tBadge = useText('leistungen_talentpool', 'talentpool-hero-badge', 'Talentpool');

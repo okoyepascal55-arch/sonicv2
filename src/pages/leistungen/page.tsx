@@ -48,6 +48,8 @@ export default function LeistungenPage() {
       <div>
         <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
         <div ref={heroRef}><LeistungenHero onScrollToGrid={scrollToGrid} /></div>
+        {/* Dark-bg WoodenDivider — hero(dark) exit into the service grid, like every Leistungen page */}
+        <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
         <div id="service-grid">
           <StackedSectionReveal index={0} totalSections={4}><ServiceGrid sectionRef={gridRef} /></StackedSectionReveal>

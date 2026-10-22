@@ -10,7 +10,8 @@ const ORGANIZATION_SCHEMA = {
   '@type': 'Organization',
   name: 'Sonic Group',
   url: 'https://sonic-group.de',
-  logo: 'https://www.sonic-group.de/wp-content/uploads/elementor/thumbs/SONIC_GESAMTLOGO_LIME-q0lflz24exgoq4608jg9ggegh9pjfwmmc0m1jsee5i.png',
+  // Logo from the dashboard (site_logo) via the media proxy — no WordPress media (22.10.2026)
+  logo: `${(import.meta.env.VITE_PUBLIC_SUPABASE_URL ?? '').replace(/\/$/, '')}/functions/v1/media-proxy?path=${encodeURIComponent('dashboard/1787999780125-sonic_gesamtlogo_lime.png')}`,
   description: 'Sonic Group ist Europas führende Sales Promotion Agentur für den DACH-Markt. POS-Promotion, Live Video, Events, Staffing & Forecasting seit 2007.',
   foundingDate: '2007',
   areaServed: ['DE', 'AT', 'CH'],
