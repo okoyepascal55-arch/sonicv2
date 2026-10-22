@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
@@ -101,7 +101,15 @@ function DashboardPreview() {
 export default function FeaturesReference() {
   const { images: featureIcons } = useMediaStore('srt_feature_icons');
   const { images: sectionImages } = useMediaStore('srt_section_images');
-  const f1BgSrc = sectionImages[0]?.url ? resolveImageUrl(sectionImages[0].url) : null;
+  // Device previews (desktop, laptop, tablet, phone) from Dashboard → Medien → SRT → „SRT — Section Images“.
+  // Shown in full, and both uploads alternate (22.10.2026).
+  const previews = sectionImages.filter((m) => m?.url).map((m) => resolveImageUrl(m.url));
+  const [previewIdx, setPreviewIdx] = useState(0);
+  useEffect(() => {
+    if (previews.length < 2) return;
+    const t = setInterval(() => setPreviewIdx((i) => (i + 1) % previews.length), 4200);
+    return () => clearInterval(t);
+  }, [previews.length]);
 
   const tBadge   = useText('srt_features', 'srt-features-badge',   'Die Lösung');
   const tHeading = useText('srt_features', 'srt-features-heading', 'SRT: Die All-in-One Software');
@@ -151,12 +159,20 @@ export default function FeaturesReference() {
                 ))}
               </div>
             </div>
-            {/* Product screenshot, slightly cropped at the bottom like a hero shot */}
-            <div className="relative mt-8 mx-7 md:mx-9 -mb-px flex-1 min-h-[230px] overflow-hidden transition-transform duration-500 group-hover:-translate-y-1"
-              style={{ border: `1px solid ${HAIR}`, borderBottom: 'none', boxShadow: '0 30px 60px -30px rgba(0,0,0,0.45)' }}>
-              {f1BgSrc
-                ? <img src={f1BgSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-top" />
-                : <DashboardPreview />}
+            {/* Desktop + mobile device previews, shown in full (no cropping) */}
+            <div className="relative mt-6 flex-1 min-h-[260px] md:min-h-[300px]" style={{ background: '#ECE8E3' }}>
+              {previews.length > 0
+                ? previews.map((src, i) => (
+                    <img key={src} src={src} alt={i === 0 ? 'SRT auf Desktop, Laptop, Tablet und Smartphone' : ''} aria-hidden={i !== 0}
+                      className="absolute inset-0 w-full h-full object-contain transition-opacity duration-700"
+                      style={{ opacity: i === previewIdx ? 1 : 0 }} loading="lazy" decoding="async" />
+                  ))
+                : <div className="absolute inset-6 overflow-hidden" style={{ boxShadow: '0 30px 60px -30px rgba(0,0,0,0.45)' }}><DashboardPreview /></div>}
+              {previews.length > 1 && (
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5" aria-hidden="true">
+                  {previews.map((src, i) => <span key={src} className="h-[3px] w-6 transition-colors" style={{ background: i === previewIdx ? '#0a0b09' : 'rgba(0,0,0,0.18)' }} />)}
+                </div>
+              )}
             </div>
           </div>
 
