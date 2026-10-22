@@ -32,13 +32,18 @@ export function useBrandLogos(primary?: LogoSlot) {
   const logoFor = (brand: string, fallback = ''): string => {
     const key = brandKey(brand);
     if (!key) return fallback;
+    // All matches in slot priority; a full wordmark beats a square app icon (e.g. Brandfetch „…/icon.jpeg“),
+    // which renders as a solid block on the case-study cards.
+    const hits: string[] = [];
     for (const slot of order) {
-      const hit = bySlot[slot].find((img) => {
+      for (const img of bySlot[slot]) {
         const cap = brandKey(img.caption || '');
-        return usable(img.url) && cap.length >= 3 && (cap === key || cap.startsWith(key) || key.startsWith(cap));
-      });
-      if (hit) return hit.url;
+        if (usable(img.url) && cap.length >= 3 && (cap === key || cap.startsWith(key) || key.startsWith(cap))) hits.push(img.url);
+      }
     }
+    const isIcon = (u: string) => /\/icon\.(jpe?g|png|webp)/i.test(u);
+    const best = hits.find((u) => !isIcon(u)) || (fallback && !isIcon(fallback) ? '' : hits[0]);
+    if (best) return best;
     return fallback;
   };
   return { logoFor, slotImages: bySlot };
