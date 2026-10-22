@@ -1,6 +1,7 @@
 import { useText } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { WoodIcon, WindowBar, ProductGrid, Mono } from './SrtKit';
 
 const STATS = [
   { value: '1.000', prefix: '>', label: 'Stores betreut', sublabel: 'In Sonic-Projekten', icon: 'ri-store-2-line', sys: 'Stores', trend: 'Im Handel' },
@@ -28,8 +29,9 @@ export default function Proof() {
   const tSub     = useText('srt_proof', 'srt-proof-sub',     'Kennzahlen aus unseren Projekten – im Handel erreicht, im SRT erfasst.');
 
   return (
-    <section id="srt-proof" className="sonic-section-md px-4 md:px-6 bg-foreground-950">
-      <div className="sonic-container">
+    <section id="srt-proof" className="sonic-section-md px-4 md:px-6 bg-foreground-950 relative overflow-hidden">
+      <ProductGrid />
+      <div className="sonic-container relative z-10">
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5">
             <span className="w-7 h-0.5 bg-primary-500" />
@@ -37,46 +39,34 @@ export default function Proof() {
           </div>
           <div className="grid md:grid-cols-2 gap-6 items-end">
             <h2 className="sonic-h2 text-white">{tHeading}</h2>
-            <p className="text-sm text-white/45 leading-relaxed md:text-right md:max-w-sm md:ml-auto">{tSub}</p>
+            <p className="text-[15px] text-white/60 leading-relaxed md:text-right md:max-w-sm md:ml-auto">{tSub}</p>
           </div>
         </div>
 
-        {/* Telemetry grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4" style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
+        {/* KPI widgets (22.10.2026): each figure as a dashboard tile — same figures and labels */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {stats.map((stat, i) => {
             const woodIcon = woodIcons[i]?.url ? resolveImageUrl(woodIcons[i].url) : null;
             return (
-              <div key={i}
-                className={[
-                  'relative p-6 md:p-8 text-center border-white/[0.08]',
-                  i < 2 ? 'border-b lg:border-b-0' : '',            // 2×2 on mobile: divide rows
-                  i % 2 === 0 ? 'border-r' : '',                    // divide columns in the 2×2 grid
-                  i === 1 ? 'lg:border-r' : '',                     // 1×4 on desktop: divide all four
-                ].join(' ')}>
-                {/* Sys label */}
-                <p className="text-[8px] font-black uppercase tracking-[0.3em] mb-4" style={{ color: 'oklch(0.81 0.19 115 / 0.35)' }}>{stat.sys}</p>
-
-                {/* Wood icon */}
-                <div className="flex justify-center mb-5">
-                  {woodIcon
-                    ? <img src={woodIcon} alt="" aria-hidden="true" className="w-12 h-12 object-cover opacity-80" loading="lazy" />
-                    : <div className="w-12 h-12 flex items-center justify-center" style={{ border: '1px solid oklch(0.81 0.19 115 / 0.25)', background: 'oklch(0.81 0.19 115 / 0.08)' }}>
-                        <i className={`${stat.icon} text-xl text-primary-500/60`} />
-                      </div>}
-                </div>
-
-                {/* Value */}
-                <div className="font-black leading-none mb-2" style={{ fontSize: 'clamp(32px, 4vw, 44px)', letterSpacing: '-0.04em' }}>
-                  <span className="text-primary-500">{stat.prefix}</span>
-                  <span className="text-white">{stat.value}</span>
-                </div>
-
-                <p className="text-[12px] font-black text-white/60 mb-1">{stat.label}</p>
-                <p className="text-[9px] font-bold uppercase tracking-widest text-white/20">{stat.sublabel}</p>
-
-                {/* Trend chip */}
-                <div className="mt-4 inline-block text-[8px] font-bold px-2 py-0.5" style={{ background: 'oklch(0.81 0.19 115 / 0.10)', border: '1px solid oklch(0.81 0.19 115 / 0.20)', color: 'oklch(0.81 0.19 115)' }}>
-                  {stat.trend}
+              <div key={i} className="group flex flex-col" style={{ background: 'oklch(0.155 0.006 118)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                <WindowBar title={stat.sys} />
+                <div className="flex flex-col flex-1 p-6 md:p-7">
+                  <div className="flex items-start justify-between mb-6">
+                    {woodIcon
+                      ? <WoodIcon src={woodIcon} alt="" size={52} delay={i * 140} />
+                      : <span className="w-[52px] h-[52px] flex items-center justify-center" style={{ border: '1px solid oklch(0.81 0.19 115 / 0.25)', background: 'oklch(0.81 0.19 115 / 0.08)' }}><i className={`${stat.icon} text-xl text-primary-500`} aria-hidden="true" /></span>}
+                    <Mono dim>KPI 0{i + 1}</Mono>
+                  </div>
+                  <div className="font-black leading-none mb-3 whitespace-nowrap" style={{ fontSize: 'clamp(30px, 2.9vw, 44px)', letterSpacing: '-0.04em' }}>
+                    <span className="text-primary-500">{stat.prefix}</span>
+                    <span className="text-white">{stat.value}</span>
+                  </div>
+                  <p className="text-[14px] font-black text-white/80 mb-1">{stat.label}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 flex-1">{stat.sublabel}</p>
+                  <div className="mt-5 pt-4 flex items-center justify-between" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                    <Mono>{stat.trend}</Mono>
+                    <i className="ri-arrow-right-up-line text-primary-500" aria-hidden="true" />
+                  </div>
                 </div>
               </div>
             );

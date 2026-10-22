@@ -109,6 +109,8 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
     return () => document.removeEventListener('mousedown', handler);
   }, [mobileOpen]);
 
+  // Long menus (SRT: 10 items) use a tighter spacing so every item fits on laptop screens (22.10.2026)
+  const dense = items.length >= 9;
   const activeIndex = items.findIndex(i => i.id === activeId);
   const activeItem = items[activeIndex];
 
@@ -125,7 +127,7 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
             <div className="flex-shrink-0 flex items-center pr-5 mr-2 border-r border-white/10"><span className="text-xs font-black uppercase tracking-[0.25em] text-white/30">{String(activeIndex + 1).padStart(2, '0')}<span className="opacity-40">/{String(items.length).padStart(2, '0')}</span></span></div>
             {items.map(item => {
               const isActive = activeId === item.id;
-              const cls = `relative flex items-center gap-2 px-3 2xl:px-5 py-[14px] text-xs font-black uppercase tracking-[0.12em] 2xl:tracking-[0.18em] whitespace-nowrap cursor-pointer transition-all duration-200 flex-shrink-0 group ${isActive ? 'text-[#C8D400]' : 'text-white/40 hover:text-white'}`;
+              const cls = `relative flex items-center gap-2 ${dense ? 'px-2 xl:px-2.5 2xl:px-4 text-[11px] tracking-[0.06em] 2xl:tracking-[0.14em]' : 'px-3 2xl:px-5 text-xs tracking-[0.12em] 2xl:tracking-[0.18em]'} py-[14px] font-black uppercase whitespace-nowrap cursor-pointer transition-all duration-200 flex-shrink-0 group ${isActive ? 'text-[#C8D400]' : 'text-white/40 hover:text-white'}`;
               const inner = <>{item.icon && <span className={`w-5 h-5 hidden 2xl:flex items-center justify-center flex-shrink-0 ${isActive ? 'text-[#C8D400]' : 'opacity-50'}`}><i className={`${item.icon} text-sm`} /></span>}<span>{item.label}</span>{item.href && <i className="ri-external-link-line text-xs opacity-50 ml-0.5" />}</>;
               return item.href ? <Link key={item.id} to={item.href} className={cls} style={{ textDecoration: 'none' }}>{inner}</Link> : <button key={item.id} ref={el => { buttonRefs.current[item.id] = el; }} onClick={() => scrollTo(item.id)} className={cls} style={{ background: 'transparent', border: 'none' }}>{inner}</button>;
             })}

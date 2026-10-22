@@ -1,6 +1,7 @@
 import { useText } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { WoodIcon, WindowBar, ProductGrid, Mono } from './SrtKit';
 
 const PROBLEMS = [
   {
@@ -42,12 +43,9 @@ export default function TheProblemReference() {
 
   return (
     <section id="das-problem" className="relative overflow-hidden bg-foreground-950 py-10 md:py-14 px-4 md:px-6">
-      {/* Grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.025]"
-        style={{ backgroundImage: 'linear-gradient(oklch(0.81 0.19 115) 1px, transparent 1px), linear-gradient(90deg, oklch(0.81 0.19 115) 1px, transparent 1px)', backgroundSize: '52px 52px' }}
-        aria-hidden="true" />
+      <ProductGrid />
 
-      <div className="max-w-[1280px] mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* Section header — 2 col */}
         <div className="grid md:grid-cols-2 gap-10 items-end mb-14">
           <div>
@@ -58,7 +56,7 @@ export default function TheProblemReference() {
             <h2 className="sonic-h2 text-white ">{tHeading}</h2>
           </div>
           <div className="md:border-l md:border-white/10 md:pl-10">
-            <p className="text-sm text-white/45 leading-relaxed mb-6">{tSub}</p>
+            <p className="text-[15px] text-white/60 leading-relaxed mb-6">{tSub}</p>
             <button type="button"
               onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
               className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary-500 hover:text-white transition-colors cursor-pointer">
@@ -67,35 +65,24 @@ export default function TheProblemReference() {
           </div>
         </div>
 
-        {/* 3 problem cards — horizontal strip */}
-        <div className="grid md:grid-cols-3 gap-[1px]" style={{ background: 'rgba(255,255,255,0.06)' }}>
+        {/* 3 problem cards — app panels (22.10.2026): window bar, animated wooden icon, mono labels */}
+        <div className="grid md:grid-cols-3 gap-3">
           {PROBLEMS.map((p, i) => (
-            <div key={p.num} className="relative flex flex-col bg-foreground-950 p-8 md:p-10 group transition-all duration-300 hover:bg-white/[0.03]">
-              {/* Top lime sweep on hover */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
-
-              {/* Sys label */}
-              <span className="text-[10px] font-black uppercase tracking-[0.24em] mb-6 block" style={{ color: 'oklch(0.81 0.19 115 / 0.4)' }}>{lb[`problem-${i + 1}`] || p.sys}</span>
-
-              {/* Icon + number row */}
-              <div className="flex items-start justify-between mb-6">
-                <div className="w-12 h-12 overflow-hidden" style={{ border: '1px solid oklch(0.81 0.19 115 / 0.2)', background: 'oklch(0.81 0.19 115 / 0.06)' }}>
-                  <img src={getWoodIcon(i)} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
+            <div key={p.num} className="relative flex flex-col group transition-colors duration-300" style={{ background: 'oklch(0.155 0.006 118)', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-10" />
+              <WindowBar title={lb[`problem-${i + 1}`] || p.sys} status="" />
+              <div className="flex flex-col flex-1 p-7 md:p-8">
+                <div className="flex items-start justify-between mb-7">
+                  <WoodIcon src={getWoodIcon(i)} alt={p.title} size={60} delay={i * 140} />
+                  <Mono dim>{p.num} / 03</Mono>
                 </div>
-                <span className="font-black leading-none" style={{ fontSize: 64, color: 'rgba(255,255,255,0.05)', lineHeight: 1, WebkitTextStroke: '1px rgba(255,255,255,0.08)' }}>
-                  {p.num}
-                </span>
-              </div>
-
-              {/* Content */}
-              <p className="text-[10px] font-black uppercase tracking-[0.18em] text-primary-500/60 mb-2">{p.title}</p>
-              <h3 className="text-[17px] md:text-[20px] font-black text-white leading-snug mb-4 ">{p.headline}</h3>
-              <p className="text-[12px] text-white/40 leading-relaxed flex-1">{p.body}</p>
-
-              {/* Impact — bottom chip */}
-              <div className="mt-6 flex items-start gap-2 pt-5" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-                <i className="ri-error-warning-line text-primary-500/70 text-sm flex-shrink-0 mt-0.5" />
-                <p className="text-[11px] text-white/35 leading-snug">{p.impact}</p>
+                <Mono className="mb-2.5 block">{p.title}</Mono>
+                <h3 className="text-[19px] md:text-[21px] font-black text-white leading-snug mb-4">{p.headline}</h3>
+                <p className="text-[14px] text-white/55 leading-relaxed flex-1">{p.body}</p>
+                <div className="mt-7 flex items-start gap-2.5 px-3.5 py-3" style={{ background: 'oklch(0.81 0.19 115 / 0.06)', border: '1px solid oklch(0.81 0.19 115 / 0.18)' }}>
+                  <i className="ri-error-warning-line text-primary-500 text-sm flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  <p className="text-[12px] text-white/70 leading-snug">{p.impact}</p>
+                </div>
               </div>
             </div>
           ))}

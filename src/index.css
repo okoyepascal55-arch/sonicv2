@@ -1464,3 +1464,23 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus
   .hero-frame { min-height: clamp(600px, 76vh, 780px) !important; }
 }
 .hero-photo { object-position: center 20% !important; }
+
+/* ── SRT product UI (22.10.2026) ── wooden icons as animated app tiles */
+@keyframes srt-wood-in { 0% { opacity: 0; transform: translateY(14px) scale(0.86) rotate(-4deg); } 60% { opacity: 1; transform: translateY(-2px) scale(1.04) rotate(1deg); } 100% { opacity: 1; transform: none; } }
+@keyframes srt-wood-float { 0%, 100% { transform: translateY(0) scale(1.02); } 50% { transform: translateY(-3px) scale(1.06); } }
+@keyframes srt-wood-sheen { 0% { transform: translateX(-130%) skewX(-18deg); } 18%, 100% { transform: translateX(230%) skewX(-18deg); } }
+@keyframes srt-live { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 oklch(0.81 0.19 115 / 0.6); } 50% { opacity: 0.55; box-shadow: 0 0 0 4px oklch(0.81 0.19 115 / 0); } }
+@keyframes srt-flow { from { stroke-dashoffset: 24; } to { stroke-dashoffset: 0; } }
+.srt-wood-in { animation: srt-wood-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.srt-wood-float { animation: srt-wood-float 5.5s ease-in-out infinite; }
+.srt-wood-sheen { background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.28) 50%, transparent 100%); width: 45%; animation: srt-wood-sheen 6.5s ease-in-out infinite; }
+.srt-wood { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease; }
+.group:hover .srt-wood, .srt-wood:hover { transform: translateY(-3px) rotate(-2deg); box-shadow: 0 14px 34px -10px oklch(0.81 0.19 115 / 0.45) !important; }
+.srt-live-dot { animation: srt-live 2s ease-in-out infinite; }
+.srt-flow { stroke-dasharray: 4 8; animation: srt-flow 1.2s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .srt-wood-in, .srt-wood-float, .srt-wood-sheen, .srt-live-dot, .srt-flow { animation: none !important; opacity: 1; }
+}
+@keyframes srt-core-ring { 0% { box-shadow: 0 0 0 0 oklch(0.81 0.19 115 / 0.55); } 100% { box-shadow: 0 0 0 26px oklch(0.81 0.19 115 / 0); } }
+.srt-core-ring { animation: srt-core-ring 2.4s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) { .srt-core-ring { animation: none !important; } }

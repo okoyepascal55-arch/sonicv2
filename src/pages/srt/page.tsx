@@ -62,11 +62,12 @@ export default function SRTPage() {
       <div ref={heroRef} id="overview"><SRTHeroReference /></div>
       <SRTWavyDivider darkBackground />
       <TheProblemReference />
-      <SRTWavyDivider />
+      {/* Product stretch (22.10.2026): Problem → Features → Produkt → Module stay dark, like the tool itself */}
+      <SRTWavyDivider darkBackground />
       <FeaturesReference />
-      <SRTWavyDivider />
+      <SRTWavyDivider darkBackground />
       <ProductShowcase />
-
+      <SRTWavyDivider darkBackground />
       <FunctionalityOverview />
       <SRTWavyDivider darkBackground />
       <Zusammenarbeit />

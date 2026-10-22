@@ -3,6 +3,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
+import { WoodIcon, ProductGrid, Mono } from './SrtKit';
 
 const FEATURES = [
   { number: '01', icon: 'ri-dashboard-line', title: 'Echtzeit-Dashboard', description: 'Alle gewünschten Metriken auf einen Blick — live und übersichtlich dargestellt, für schnellere Entscheidungen.', tags: ['Live-Daten', 'KPIs', 'Echtzeit'], woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20dashboard%20monitor%20screen%20display%20analytics%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-dashboard-v1&orientation=squarish' },
@@ -117,34 +118,31 @@ export default function FeaturesReference() {
     tags: i === 0 ? [fc['f1-tag-1'], fc['f1-tag-2'], fc['f1-tag-3']].filter(Boolean) : f.tags,
   }));
 
-  const getIcon = (idx: number, fallback: string, title: string) => {
+  const iconSrc = (idx: number, fallback: string) => {
     const media = featureIcons[idx];
-    return <img src={media?.url ? resolveImageUrl(media.url) : fallback} alt={title} className="w-full h-full object-cover" loading="lazy" />;
+    return media?.url ? resolveImageUrl(media.url) : fallback;
   };
 
   return (
-    <section className="px-4 md:px-6 py-10 md:py-14 bg-white relative overflow-hidden" id="features">
-      {/* Subtle light grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
-        style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)', backgroundSize: '56px 56px' }}
-        aria-hidden="true" />
+    <section className="px-4 md:px-6 py-10 md:py-14 bg-foreground-950 relative overflow-hidden" id="features">
+      <ProductGrid />
 
-      <div className="max-w-[1280px] mx-auto relative z-10">
+      <div className="sonic-container relative z-10">
         {/* Header */}
         <div className="flex items-center gap-4 mb-5">
           <span className="w-7 h-0.5 bg-primary-500" />
           <span className="text-[11px] font-black tracking-[0.24em] uppercase" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
-          <span className="ml-auto text-[9px] font-black uppercase tracking-[0.2em] text-foreground-950/20 hidden md:block">{fc.meta}</span>
+          <span className="ml-auto hidden md:block"><Mono dim>{fc.meta}</Mono></span>
         </div>
         <div className="grid md:grid-cols-2 gap-8 items-end mb-8">
-          <h2 className="sonic-h2 text-foreground-950 ">
+          <h2 className="sonic-h2 text-white">
             SRT: Die <span className="px-[0.16em] py-[0.02em] bg-primary-500 text-foreground-950" style={{ boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>All-in-One</span> Software
           </h2>
-          <p className="text-sm text-foreground-950/45 leading-relaxed">{fc.sub}</p>
+          <p className="text-[15px] text-white/60 leading-relaxed">{fc.sub}</p>
         </div>
 
         {/* Bento */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-[2px]">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-3">
 
           {/* F1 — Hero card with live dashboard preview */}
           <div className="md:col-span-3 md:row-span-2 relative overflow-hidden" style={{ minHeight: 340, border: '1px solid oklch(0.81 0.19 115 / 0.35)' }}>
@@ -166,12 +164,10 @@ export default function FeaturesReference() {
 
             {/* Content — top-anchored */}
             <div className="relative z-30 p-7 md:p-8">
-              <div className="w-11 h-11 overflow-hidden flex items-center justify-center mb-5 bg-primary-500">
-                {getIcon(0, features[0].woodIcon, features[0].title)}
-              </div>
-              <span className="text-[9px] font-black uppercase tracking-[0.25em] block mb-2" style={{ color: 'oklch(0.81 0.19 115 / 0.7)' }}>01 / 06</span>
+              <div className="mb-5"><WoodIcon src={iconSrc(0, features[0].woodIcon)} alt={features[0].title} size={60} /></div>
+              <Mono className="block mb-2">Modul 01 / 06</Mono>
               <h3 className="text-[22px] md:text-[26px] font-black text-white mb-3 leading-tight">{features[0].title}</h3>
-              <p className="text-[13px] leading-relaxed text-white/45 max-w-[280px]">{features[0].description}</p>
+              <p className="text-[14px] leading-relaxed text-white/65 max-w-[320px]">{features[0].description}</p>
               <div className="flex flex-wrap gap-1.5 mt-5">
                 {features[0].tags?.map(tag => (
                   <span key={tag} className="text-[9px] font-bold px-2.5 py-1" style={{ border: '1px solid oklch(0.81 0.19 115 / 0.4)', color: 'oklch(0.81 0.19 115)' }}>{tag}</span>
@@ -182,16 +178,13 @@ export default function FeaturesReference() {
 
           {/* F2 + F3 */}
           {features.slice(1, 3).map((f, idx) => (
-            <div key={f.number} className="md:col-span-3 flex items-center gap-4 p-5 group transition-colors duration-200"
-              style={{ background: 'oklch(0.15 0.005 118)', border: '1px solid rgba(255,255,255,0.06)' }}>
-              <div className="w-11 h-11 overflow-hidden flex-shrink-0 transition-all duration-200 group-hover:scale-105"
-                style={{ background: 'oklch(0.81 0.19 115 / 0.10)', border: '1px solid oklch(0.81 0.19 115 / 0.25)' }}>
-                {getIcon(idx + 1, f.woodIcon, f.title)}
-              </div>
+            <div key={f.number} className="md:col-span-3 flex items-center gap-5 p-6 group transition-colors duration-200 hover:bg-white/[0.03]"
+              style={{ background: 'oklch(0.155 0.006 118)', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <WoodIcon src={iconSrc(idx + 1, f.woodIcon)} alt={f.title} size={56} delay={(idx + 1) * 120} />
               <div>
-                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-white/20 block mb-0.5">{f.number} / 06</span>
-                <h3 className="text-[13px] font-black text-white mb-1">{f.title}</h3>
-                <p className="text-[11px] text-white/35 leading-snug">{f.description}</p>
+                <Mono dim className="block mb-1">Modul {f.number} / 06</Mono>
+                <h3 className="text-[16px] font-black text-white mb-1">{f.title}</h3>
+                <p className="text-[13px] text-white/55 leading-snug">{f.description}</p>
               </div>
               <div className="ml-auto pl-4">
                 <i className={`${f.icon} text-[20px] text-white/8 group-hover:text-primary-500/20 transition-colors duration-200`} />
@@ -201,27 +194,24 @@ export default function FeaturesReference() {
 
           {/* F4, F5, F6 */}
           {features.slice(3).map((f, idx) => (
-            <div key={f.number} className="md:col-span-2 p-5 flex flex-col group transition-all duration-200"
-              style={{ background: 'oklch(0.135 0.005 118)', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-9 h-9 overflow-hidden transition-all duration-200 group-hover:scale-105"
-                  style={{ background: 'oklch(0.81 0.19 115 / 0.10)', border: '1px solid oklch(0.81 0.19 115 / 0.18)' }}>
-                  {getIcon(idx + 3, f.woodIcon, f.title)}
-                </div>
-                <span className="text-[9px] font-black text-white/15">{f.number}</span>
+            <div key={f.number} className="md:col-span-2 p-6 flex flex-col group transition-colors duration-200 hover:bg-white/[0.03]"
+              style={{ background: 'oklch(0.155 0.006 118)', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <div className="flex items-start justify-between mb-5">
+                <WoodIcon src={iconSrc(idx + 3, f.woodIcon)} alt={f.title} size={52} delay={(idx + 3) * 120} />
+                <Mono dim>{f.number} / 06</Mono>
               </div>
-              <h3 className="text-[12px] font-black text-white mb-2 leading-snug">{f.title}</h3>
-              <p className="text-[10.5px] text-white/30 leading-snug flex-1">{f.description}</p>
+              <h3 className="text-[16px] font-black text-white mb-2 leading-snug">{f.title}</h3>
+              <p className="text-[13px] text-white/55 leading-snug flex-1">{f.description}</p>
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="mt-[2px] flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-[18px]"
-          style={{ background: 'oklch(0.13 0.005 118)', border: 'none' }}>
+        <div className="mt-3 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-5"
+          style={{ background: 'oklch(0.81 0.19 115 / 0.06)', border: '1px solid oklch(0.81 0.19 115 / 0.25)' }}>
           <div>
             <p className="text-white font-black text-[13px]">{ct['features-headline']}</p>
-            <p className="text-white/50 text-[11px]">{ct['features-line']}</p>
+            <p className="text-white/60 text-[12px]">{ct['features-line']}</p>
           </div>
           <a href={`mailto:${CONTACT_EMAIL}?subject=SRT%20Demo`}
             className="flex items-center gap-2 px-6 py-3 bg-primary-500 text-foreground-950 font-black text-xs uppercase tracking-widest whitespace-nowrap hover:bg-white transition-colors">
