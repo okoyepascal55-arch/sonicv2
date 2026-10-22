@@ -21,15 +21,15 @@ export default function StaffHero() {
   const cta = useCtaText();
 
   return (
-    <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950 px-4 md:px-6" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
+    <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950 px-4 md:px-6 hero-frame" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
       <img
         src={heroImage}
         alt="Staff as a Service Team"
-        className="absolute inset-0 w-full h-full object-cover object-top"
+        className="hero-photo absolute inset-0 w-full h-full object-cover object-top"
       />
       <div
         className="absolute inset-0 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.85) 100%)' }}
+        style={{ background: 'var(--hero-scrim)' }}
       />
 
       <div className="relative z-20 w-full sonic-container pb-10 md:pb-14">

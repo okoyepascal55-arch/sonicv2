@@ -1444,3 +1444,23 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus
   cursor: pointer;
 }
 .sonic-range::-moz-range-track { height: 6px; background: transparent; }
+
+/* ── Hero system (22.10.2026) ─────────────────────────────────────────────────
+   One rule for every photo hero: headline block bottom-left on the page grid,
+   photo framed from the top so people sit above the text, and a soft fade only
+   behind the text (left + bottom) so faces are not darkened.
+   .hero-frame  → taller hero on desktop so the text block and the faces don't overlap
+   --hero-scrim → overlay used by all hero sections */
+:root {
+  --hero-scrim:
+    linear-gradient(to top, rgba(10, 11, 9, 0.92) 0%, rgba(10, 11, 9, 0.6) 34%, rgba(10, 11, 9, 0.25) 62%, rgba(10, 11, 9, 0.35) 100%);
+}
+@media (min-width: 768px) {
+  :root {
+    --hero-scrim:
+      linear-gradient(90deg, rgba(10, 11, 9, 0.78) 0%, rgba(10, 11, 9, 0.5) 34%, rgba(10, 11, 9, 0.08) 62%, rgba(10, 11, 9, 0) 100%),
+      linear-gradient(to top, rgba(10, 11, 9, 0.9) 0%, rgba(10, 11, 9, 0.35) 30%, rgba(10, 11, 9, 0) 52%);
+  }
+  .hero-frame { min-height: clamp(600px, 76vh, 780px) !important; }
+}
+.hero-photo { object-position: center 20% !important; }

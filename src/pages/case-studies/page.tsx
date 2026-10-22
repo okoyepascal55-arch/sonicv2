@@ -800,19 +800,19 @@ export default function CaseStudiesPage() {
 
       {/* ── HERO BANNER ── */}
       <section
-        className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950"
+        className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950 hero-frame px-4 md:px-6"
         style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}
       >
         <img
           src={heroImages[0]?.url ? resolveImageUrl(heroImages[0].url) : "/images/Case Studies -Fallbsp/Avoury/TEAGLOO_V4_02.webp0-07-31 at 12.12.39 (1).webp"}
           alt="Erfolgsgeschichten"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="hero-photo absolute inset-0 w-full h-full object-cover object-center"
           fetchPriority="high"
           decoding="async"
         />
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, rgba(11,11,12,0.30) 0%, rgba(11,11,12,0.20) 45%, rgba(11,11,12,0.82) 100%)' }}
+          style={{ background: 'var(--hero-scrim)' }}
           aria-hidden="true"
         />
         <div className="relative z-10 sonic-container pb-6 md:pb-10">

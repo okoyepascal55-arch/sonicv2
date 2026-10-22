@@ -63,19 +63,19 @@ export default function AboutPage() {
       {/* ── HERO — bottom-anchored, matching careers ── */}
       <div ref={heroRef}>
         <section
-          className="relative min-h-[360px] sm:min-h-[440px] md:min-h-[580px] flex flex-col justify-end overflow-hidden bg-foreground-950"
+          className="relative min-h-[360px] sm:min-h-[440px] md:min-h-[580px] flex flex-col justify-end overflow-hidden bg-foreground-950 hero-frame px-4 md:px-6"
           style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}
         >
           {/* Full-bleed background image — always renders with fallback */}
           <img
             src={headerImages[0]?.url || '/images/Über uns/Über uns/1. Header/Gruppenfoto-00351.webp'}
             alt="Sonic Group — Über uns"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="hero-photo absolute inset-0 w-full h-full object-cover"
             style={{ objectPosition: 'center 25%' }}
             fetchPriority="high"
           />
           {/* Dark overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/75" />
+          <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--hero-scrim)' }} />
 
           {/* Hero content — bottom-anchored, sonic-container matches all other pages */}
           <div className="relative z-10 sonic-container pb-5 md:pb-8">

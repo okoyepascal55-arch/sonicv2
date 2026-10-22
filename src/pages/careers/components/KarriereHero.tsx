@@ -21,7 +21,7 @@ export default function KarriereHero() {
 
   return (
     <section
-      className="relative flex min-h-[320px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden group px-5 md:px-10"
+      className="relative flex min-h-[320px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden group px-5 md:px-10 hero-frame"
       style={{ background: 'oklch(0.13 0.005 118)', paddingTop: 'clamp(56px, 14vw, 80px)' }}
       id="stellen"
       onMouseEnter={() => setHovered(true)}
@@ -32,7 +32,7 @@ export default function KarriereHero() {
         <img
           src={heroImage}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out"
+          className="hero-photo absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out"
           style={{ objectPosition: 'center 20%', transform: hovered ? 'scale(1.03)' : 'scale(1)' }}
           fetchPriority="high"
           decoding="async"
@@ -43,7 +43,7 @@ export default function KarriereHero() {
       {/* Dark gradient overlay */}
       <div
         className="absolute inset-0"
-        style={{ background: 'linear-gradient(to bottom, rgba(11,11,12,0.32) 0%, rgba(11,11,12,0.5) 50%, rgba(11,11,12,0.95) 100%)' }}
+        style={{ background: 'var(--hero-scrim)' }}
         aria-hidden="true"
       />
 

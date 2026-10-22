@@ -19,17 +19,17 @@ export default function TalentpoolHero() {
   const tDesc = useText('leistungen_talentpool', 'talentpool-hero-description', 'In unserem Talentpool findest du Menschen aus ganz Deutschland — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit Blick auf die eigene Zielerreichung, live im Sonic Reporting Tool (SRT).');
 
   return (
-    <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950 px-4 md:px-6" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
+    <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950 px-4 md:px-6 hero-frame" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>
       <img
         src={heroImage}
         alt="Talentpool Markenbotschafter"
-        className="absolute inset-0 w-full h-full object-cover object-top"
+        className="hero-photo absolute inset-0 w-full h-full object-cover object-top"
       />
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.85) 100%)',
+            'var(--hero-scrim)',
         }}
       />
 

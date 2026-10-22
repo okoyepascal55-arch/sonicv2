@@ -852,7 +852,7 @@ export default function LosungenPage() {
 
       {/* ── HERO ── */}
       <section
-        className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950"
+        className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950 hero-frame px-4 md:px-6"
         style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}
       >
         {/* Background image */}
@@ -860,7 +860,7 @@ export default function LosungenPage() {
           <img
             src={heroBgImages[0].url}
             alt="Lösungen Hero"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="hero-photo absolute inset-0 w-full h-full object-cover"
             style={{ objectPosition: 'center 20%' }}
             fetchPriority="high"
             decoding="async"
@@ -870,12 +870,12 @@ export default function LosungenPage() {
         {/* Dark veil — bottom-heavy, matches Leistungen reference */}
         <div
           className="absolute inset-0 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, rgba(11,11,12,0.30) 0%, rgba(11,11,12,0.20) 45%, rgba(11,11,12,0.82) 100%)' }}
+          style={{ background: 'var(--hero-scrim)' }}
           aria-hidden="true"
         />
 
         {/* Content — left-aligned, bottom-anchored */}
-        <div className="relative z-20 w-full max-w-[1280px] mx-auto px-4 md:px-8 pb-6 md:pb-10">
+        <div className="relative z-20 w-full sonic-container pb-6 md:pb-10">
           <div className="max-w-[640px]">
             {/* v3 eyebrow — lime hairline + label */}
             <div className="flex items-center gap-3 mb-5 md:mb-6">

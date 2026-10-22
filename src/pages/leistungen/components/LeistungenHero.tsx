@@ -38,12 +38,12 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
   }, [cycleWord, motionPaused]);
 
   return (
-    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950 px-4 md:px-6" style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}>
+    <section className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950 px-4 md:px-6 hero-frame" style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}>
       {/* Background photo */}
       <img
         src={heroImage || IMAGE_PLACEHOLDER}
         alt="Sonic Group Leistungen"
-        className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 20%' }}
+        className="hero-photo absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 20%' }}
         fetchPriority="high"
         decoding="async"
       />
@@ -51,7 +51,7 @@ export default function LeistungenHero({ onScrollToGrid }: Props) {
       {/* Dark veil — bottom-heavy for anchored content */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, rgba(11,11,12,0.30) 0%, rgba(11,11,12,0.20) 45%, rgba(11,11,12,0.82) 100%)' }}
+        style={{ background: 'var(--hero-scrim)' }}
         aria-hidden="true"
       />
 

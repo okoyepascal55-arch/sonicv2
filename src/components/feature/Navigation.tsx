@@ -97,14 +97,9 @@ export default function Navigation() {
   const tNavContact = useText('common_navigation', 'nav-contact', 'Kontakt');
   const tNavPhone = useText('common_navigation', 'nav-phone', '+49 2151 479 444 0');
 
-  // Pages with light backgrounds behind the hero need dark nav text when unscrolled.
-  // All other pages have dark heroes where white text is correct.
-  const lightHeroRoutes = ['/', '/leistungen/kreation-content'];
-  const hasLightHero = lightHeroRoutes.includes(location.pathname);
-
-  const textColor = isScrolled || hasLightHero
-    ? 'text-foreground-700 hover:text-primary-500'
-    : 'text-white hover:text-primary-500';
+  // The header always sits on the light strip above the heroes (main has pt-20), so the menu
+  // text is always dark — before, white text on dark-hero pages was invisible until scrolling (22.10.2026).
+  const textColor = 'text-foreground-700 hover:text-primary-500';
 
   const navText = (active: boolean) => active ? 'text-primary-500' : textColor;
 

@@ -30,14 +30,14 @@ export default function SRTHeroReference() {
 
   return (
     <section
-      className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950"
+      className="relative flex min-h-[340px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden bg-foreground-950 hero-frame px-4 md:px-6"
       style={{ paddingTop: 'clamp(56px, 14vw, 80px)' }}
     >
       {/* Dashboard-controlled background image */}
       <img
         src={heroImageUrl}
         alt="SRT — Sonic Reporting Tool"
-        className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 30%' }}
+        className="hero-photo absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 30%' }}
         fetchPriority="high"
         decoding="async"
       />
@@ -45,7 +45,7 @@ export default function SRTHeroReference() {
       {/* Dark veil — bottom-heavy */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, rgba(11,11,12,0.55) 0%, rgba(11,11,12,0.35) 40%, rgba(11,11,12,0.94) 100%)' }}
+        style={{ background: 'var(--hero-scrim)' }}
         aria-hidden="true"
       />
 
@@ -72,7 +72,7 @@ export default function SRTHeroReference() {
       </div>
 
       {/* Content — bottom-anchored */}
-      <div className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-8 pb-6 md:pb-10">
+      <div className="relative z-10 sonic-container w-full pb-6 md:pb-10">
         <div className="max-w-[640px]">
           {/* Eyebrow — lime dash + label, matches site standard */}
           <div className="flex items-center gap-3 mb-5 md:mb-6">
