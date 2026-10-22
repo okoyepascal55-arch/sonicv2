@@ -1,7 +1,7 @@
 import { useText } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
-import { WoodIcon, WindowBar, ProductGrid, Mono } from './SrtKit';
+import { WoodIcon, SrtHeader, MONO, HAIR, MUTED } from './SrtKit';
 
 const PROBLEMS = [
   {
@@ -42,48 +42,35 @@ export default function TheProblemReference() {
   const tCta     = useText('srt_problem', 'srt-problem-cta-btn', 'Lösung ansehen');
 
   return (
-    <section id="das-problem" className="relative overflow-hidden bg-foreground-950 py-10 md:py-14 px-4 md:px-6">
-      <ProductGrid />
-
-      <div className="sonic-container relative z-10">
-        {/* Section header — 2 col */}
-        <div className="grid md:grid-cols-2 gap-10 items-end mb-14">
-          <div>
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-7 h-0.5 bg-primary-500" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
-            </div>
-            <h2 className="sonic-h2 text-white ">{tHeading}</h2>
-          </div>
-          <div className="md:border-l md:border-white/10 md:pl-10">
-            <p className="text-[15px] text-white/60 leading-relaxed mb-6">{tSub}</p>
+    <section id="das-problem" className="relative bg-white py-16 md:py-24 px-4 md:px-6">
+      <div className="sonic-container">
+        <SrtHeader
+          eyebrow={tBadge}
+          title={tHeading}
+          side={<>
+            <p className="mb-5">{tSub}</p>
             <button type="button"
               onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
-              className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary-500 hover:text-white transition-colors cursor-pointer">
-              {tCta} <i className="ri-arrow-down-line" />
+              className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-foreground-950 hover:text-primary-600 transition-colors cursor-pointer">
+              {tCta} <i className="ri-arrow-down-line" aria-hidden="true" />
             </button>
-          </div>
-        </div>
+          </>}
+        />
 
-        {/* 3 problem cards — app panels (22.10.2026): window bar, animated wooden icon, mono labels */}
-        <div className="grid md:grid-cols-3 gap-3">
+        {/* Three problems — calm columns divided by hairlines (light redesign 22.10.2026) */}
+        <div className="grid md:grid-cols-3" style={{ borderTop: `1px solid ${HAIR}` }}>
           {PROBLEMS.map((p, i) => (
-            <div key={p.num} className="relative flex flex-col group transition-colors duration-300" style={{ background: 'oklch(0.155 0.006 118)', border: '1px solid rgba(255,255,255,0.08)' }}>
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-10" />
-              <WindowBar title={lb[`problem-${i + 1}`] || p.sys} status="" />
-              <div className="flex flex-col flex-1 p-7 md:p-8">
-                <div className="flex items-start justify-between mb-7">
-                  <WoodIcon src={getWoodIcon(i)} alt={p.title} size={60} delay={i * 140} />
-                  <Mono dim>{p.num} / 03</Mono>
-                </div>
-                <Mono className="mb-2.5 block">{p.title}</Mono>
-                <h3 className="text-[19px] md:text-[21px] font-black text-white leading-snug mb-4">{p.headline}</h3>
-                <p className="text-[14px] text-white/55 leading-relaxed flex-1">{p.body}</p>
-                <div className="mt-7 flex items-start gap-2.5 px-3.5 py-3" style={{ background: 'oklch(0.81 0.19 115 / 0.06)', border: '1px solid oklch(0.81 0.19 115 / 0.18)' }}>
-                  <i className="ri-error-warning-line text-primary-500 text-sm flex-shrink-0 mt-0.5" aria-hidden="true" />
-                  <p className="text-[12px] text-white/70 leading-snug">{p.impact}</p>
-                </div>
+            <div key={p.num} className={`flex flex-col pt-10 pb-2 md:pb-0 ${i > 0 ? 'md:pl-10' : ''} ${i < 2 ? 'md:pr-10 md:border-r' : ''} ${i > 0 ? 'border-t md:border-t-0' : ''}`} style={{ borderColor: HAIR }}>
+              <div className="flex items-start justify-between mb-8">
+                <WoodIcon src={getWoodIcon(i)} alt={p.title} size={56} delay={i * 140} />
+                <span className="text-[11px] uppercase tracking-[0.16em]" style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.35)' }}>{p.num} — {lb[`problem-${i + 1}`] || p.sys}</span>
               </div>
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] mb-3" style={{ color: 'oklch(0.55 0.08 115)' }}>{p.title}</p>
+              <h3 className="text-[21px] md:text-[23px] font-black text-foreground-950 leading-snug mb-4" style={{ letterSpacing: '-0.015em' }}>{p.headline}</h3>
+              <p className="text-[15px] leading-relaxed flex-1" style={{ color: MUTED }}>{p.body}</p>
+              <p className="mt-8 pt-5 text-[13px] leading-snug text-foreground-950/75 flex gap-2.5" style={{ borderTop: `1px solid ${HAIR}` }}>
+                <i className="ri-arrow-right-down-line text-primary-600 flex-shrink-0" aria-hidden="true" />{p.impact}
+              </p>
             </div>
           ))}
         </div>

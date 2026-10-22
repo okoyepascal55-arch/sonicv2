@@ -4,7 +4,7 @@ import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
-import { WindowBar, ProductGrid, Mono } from './SrtKit';
+import { WindowBar, SrtHeader, PAPER, HAIR, MUTED, MONO, LIME } from './SrtKit';
 
 const MODULES = [
   { id: 'planung',   number: '01', icon: 'ri-calendar-2-line',         title: 'Einsatzplanung',       subtitle: 'Drag-and-Drop Kalender',              detail: 'Plane Einsätze mit einem visuellen Drag-and-Drop-Kalender. Weise Aufgaben direkt Mitarbeitern zu, setze Prioritäten und verfolge den Status in Echtzeit.', img: 'https://readdy.ai/api/search-image?query=modern+enterprise+SaaS+dark+UI+scheduling+calendar+drag+drop+lime+green+retail+field+force&width=1200&height=680&seq=srt-func-01-plan&orientation=landscape' },
@@ -58,99 +58,62 @@ export default function FunctionalityOverview() {
   const mod = modules[active];
 
   return (
-    <section id="funktionsumfang" className="bg-foreground-950 relative overflow-hidden py-10 md:py-14 px-4 md:px-6">
-      <ProductGrid />
+    <section id="funktionsumfang" className="bg-white relative py-16 md:py-24 px-4 md:px-6">
+      <div className="sonic-container">
+        <SrtHeader
+          eyebrow={<>{tBadge} <span style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.35)' }}>— 6 Module</span></>}
+          title={tHeading}
+          side={
+            <a href={`mailto:${CONTACT_EMAIL}?subject=SRT%20Demo`}
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest text-foreground-950 hover:bg-foreground-950 hover:text-white transition-colors whitespace-nowrap"
+              style={{ border: '1px solid rgba(0,0,0,0.2)' }}>
+              {tDemoCta} <i className="ri-arrow-right-line" aria-hidden="true" />
+            </a>
+          }
+        />
 
-      <div className="sonic-container relative z-10">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-7 h-0.5 bg-primary-500" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
-              <Mono dim>— 6 Module</Mono>
-            </div>
-            <h2 className="sonic-h2 text-white">{tHeading}</h2>
+        {/* Feature picker (light redesign 22.10.2026): module list left, live preview right */}
+        <div className="grid lg:grid-cols-[minmax(260px,320px)_1fr] gap-6 lg:gap-10 items-start">
+          {/* Module list — vertical on desktop, swipeable chips on phones/tablets */}
+          <div className="flex lg:flex-col gap-2 lg:gap-0 overflow-x-auto lg:overflow-visible -mx-4 px-4 lg:mx-0 lg:px-0" style={{ scrollbarWidth: 'none' }} role="tablist" aria-label="Module">
+            {modules.map((m, i) => {
+              const on = active === i;
+              return (
+                <button key={m.id} type="button" role="tab" aria-selected={on} onClick={() => select(i)}
+                  className="relative flex-shrink-0 lg:w-full text-left px-4 py-3 lg:px-5 lg:py-4 cursor-pointer transition-colors duration-200"
+                  style={{ background: on ? PAPER : 'transparent', border: `1px solid ${on ? HAIR : 'transparent'}`, borderLeft: `2px solid ${on ? LIME : 'transparent'}` }}>
+                  <span className="flex items-center gap-3">
+                    <i className={`${m.icon} text-[17px] ${on ? 'text-foreground-950' : 'text-foreground-950/40'}`} aria-hidden="true" />
+                    <span className="min-w-0">
+                      <span className={`block text-[14px] font-black whitespace-nowrap ${on ? 'text-foreground-950' : 'text-foreground-950/55'}`}>{m.title}</span>
+                      <span className="hidden lg:block text-[12px] leading-snug mt-0.5" style={{ color: on ? MUTED : 'rgba(0,0,0,0.38)' }}>{m.subtitle}</span>
+                    </span>
+                    <span className="hidden lg:block ml-auto text-[10px]" style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.3)' }}>{m.number}</span>
+                  </span>
+                  {on && !paused && (
+                    <span key={active} className="absolute left-0 bottom-0 h-[2px] hidden lg:block" style={{ background: LIME, animation: `srtProg ${INTERVAL}ms linear forwards` }} aria-hidden="true" />
+                  )}
+                </button>
+              );
+            })}
+            <style>{`@keyframes srtProg { from { width: 0% } to { width: 100% } } @keyframes srtFuncFade { from { opacity: 0; transform: scale(1.01) } to { opacity: 1; transform: scale(1) } }`}</style>
           </div>
-          <a href={`mailto:${CONTACT_EMAIL}?subject=SRT%20Demo`}
-            className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest text-white hover:text-primary-500 hover:border-primary-500 transition-colors whitespace-nowrap self-start md:self-auto"
-            style={{ border: '1px solid rgba(255,255,255,0.25)' }}>
-            {tDemoCta} <i className="ri-arrow-right-line" />
-          </a>
-        </div>
 
-        {/* Main layout: screenshot (full-width) + modules below */}
-        <div className="flex flex-col gap-3">
-
-          {/* Module preview in an app window (22.10.2026) */}
-          <div className="flex flex-col overflow-hidden" style={{ background: 'oklch(0.155 0.006 118)', border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 30px 80px -30px rgba(0,0,0,0.8)' }}>
-          <WindowBar title={<>SRT · Module · {mod.title}</>} />
-          {/* Light canvas: the module sketches are transparent line drawings and need a paper background */}
-          <div className="relative overflow-hidden" style={{ aspectRatio: '16/7', minHeight: 280, background: '#f2f2ee' }}>
-            <img
-              key={active}
-              src={getImg(active)}
-              alt={mod.title}
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ animation: 'srtFuncFade 0.35s ease forwards' }}
-              loading="lazy"
-            />
-            <style>{`@keyframes srtFuncFade { from { opacity: 0; transform: scale(1.015) } to { opacity: 1; transform: scale(1) } }`}</style>
-
-            {/* Dark gradient overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground-950 via-foreground-950/15 to-transparent pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-r from-foreground-950/40 to-transparent pointer-events-none" />
-
-            {/* Module info overlay — bottom-left */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-              <div className="flex items-end justify-between">
-                <div>
-                  <p className="mb-2"><Mono>Modul {mod.number} / 06 — {mod.subtitle}</Mono></p>
-                  <h3 className="text-xl md:text-2xl font-black text-white mb-2">{mod.title}</h3>
-                  <p className="text-[15px] text-white/70 leading-relaxed max-w-[620px]">{mod.detail}</p>
-                </div>
-                {/* Progress bar */}
-                <div className="hidden md:block ml-8 flex-shrink-0 w-32">
-                  <div className="h-[2px] bg-white/10 rounded-full overflow-hidden">
-                    {!paused && (
-                      <div key={active} className="h-full bg-primary-500"
-                        style={{ animation: `srtProg ${INTERVAL}ms linear forwards` }} />
-                    )}
-                    <style>{`@keyframes srtProg { from { width: 0% } to { width: 100% } }`}</style>
-                  </div>
-                  <p className="mt-1.5 text-right"><Mono dim>{mod.number} / 06</Mono></p>
-                </div>
+          {/* Preview window */}
+          <div>
+            <div className="overflow-hidden bg-white" style={{ border: `1px solid ${HAIR}`, boxShadow: '0 40px 80px -40px rgba(0,0,0,0.35)' }}>
+              <WindowBar title={<>SRT · Module · {mod.title}</>} light />
+              <div className="relative overflow-hidden" style={{ aspectRatio: '16/9', background: '#f2f2ee' }}>
+                <img key={active} src={getImg(active)} alt={mod.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ animation: 'srtFuncFade 0.4s ease forwards' }} loading="lazy" />
               </div>
             </div>
-          </div>
-          </div>
-
-          {/* Module tabs — 6 items in a 2×3 grid, full-width, generous */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            {modules.map((m, i) => (
-              <button key={m.id} type="button" onClick={() => select(i)}
-                className={`relative flex flex-col p-5 md:p-6 text-left transition-all duration-200 cursor-pointer group ${
-                  active === i ? '' : 'hover:bg-white/[0.04]'
-                }`}
-                style={{ background: active === i ? 'oklch(0.81 0.19 115 / 0.08)' : 'oklch(0.155 0.006 118)', border: active === i ? '1px solid oklch(0.81 0.19 115 / 0.55)' : '1px solid rgba(255,255,255,0.08)' }}>
-                {/* Active top accent */}
-                {active === i && <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary-500" />}
-
-                {/* Icon */}
-                <div className="w-9 h-9 flex items-center justify-center mb-4 flex-shrink-0 transition-all duration-200" style={{ background: active === i ? 'oklch(0.81 0.19 115 / 0.15)' : 'rgba(255,255,255,0.05)' }}>
-                  <i className={`${m.icon} text-sm ${active === i ? 'text-primary-500' : 'text-white/45 group-hover:text-white/70'}`} />
-                </div>
-
-                {/* Text */}
-                <p className="mb-2"><Mono dim={active !== i}>{m.number}</Mono></p>
-                <p className={`text-[13px] font-black uppercase leading-snug mb-1 ${active === i ? 'text-white' : 'text-white/75'}`}>
-                  {m.title}
-                </p>
-                <p className="text-[11px] leading-snug" style={{ color: active === i ? 'rgba(255,255,255,0.65)' : 'rgba(255,255,255,0.45)' }}>
-                  {m.subtitle}
-                </p>
-              </button>
-            ))}
+            <div key={`t-${active}`} className="mt-6 animate-fadeIn">
+              <p className="text-[11px] uppercase tracking-[0.16em] mb-2" style={{ fontFamily: MONO, color: 'oklch(0.55 0.08 115)' }}>Modul {mod.number} / 06 — {mod.subtitle}</p>
+              <h3 className="text-[22px] md:text-[26px] font-black text-foreground-950 mb-2" style={{ letterSpacing: '-0.02em' }}>{mod.title}</h3>
+              <p className="text-[15px] leading-relaxed max-w-[680px]" style={{ color: MUTED }}>{mod.detail}</p>
+            </div>
           </div>
         </div>
       </div>

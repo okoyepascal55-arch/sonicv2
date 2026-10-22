@@ -2,7 +2,7 @@ import { useReviewText } from '@/hooks/useReviewText';
 import { useMotionPaused } from '@/lib/motion';
 import { useState, useEffect, useRef, useId, useCallback, useLayoutEffect } from 'react';
 import { useText } from '@/hooks/useText';
-import { WindowBar, ProductGrid } from './SrtKit';
+import { PAPER, HAIR, MUTED } from './SrtKit';
 
 const nodes = [
   { id: 'agentur', label: 'Sonic-Daten', icon: 'ri-user-star-line', desc: 'Einsatzplanung & Kampagnenstatus in Echtzeit' },
@@ -106,21 +106,19 @@ export default function DataPaths() {
   const activeNodeData = nodes.find((n) => n.id === activeNode);
 
   return (
-    <section id="datenfluss" className="sonic-section-lg px-4 md:px-6 bg-foreground-950 relative overflow-hidden">
-      <ProductGrid />
+    <section id="datenfluss" className="py-16 md:py-24 px-4 md:px-6 bg-white relative overflow-hidden">
       <div className="sonic-container relative z-10">
         <div className="mb-10">
-          <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tBadge}</span></div>
+          <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span></div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <h2 className="sonic-h2 text-background-50 ">{tHeading}</h2>
-            <p className="text-background-50/60 text-[15px] leading-relaxed max-w-md">{tSub}</p>
+            <h2 className="sonic-h2 text-foreground-950">{tHeading}</h2>
+            <p className="text-[15px] md:text-[16px] leading-relaxed max-w-md" style={{ color: MUTED }}>{tSub}</p>
           </div>
         </div>
 
         {/* Node diagram in an app window, full width (22.10.2026) */}
-        <div style={{ background: 'oklch(0.155 0.006 118 / 0.85)', border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 30px 80px -30px rgba(0,0,0,0.8)' }}>
-        <WindowBar title="SRT · Datenfluss" />
-        <div ref={diagramRef} className="relative flex items-center justify-center" style={{ height: 'clamp(300px, 46vw, 560px)', background: 'radial-gradient(ellipse 45% 50% at 50% 50%, oklch(0.81 0.19 115 / 0.08), transparent 70%)' }}>
+        <div style={{ background: PAPER, border: `1px solid ${HAIR}` }}>
+        <div ref={diagramRef} className="relative flex items-center justify-center" style={{ height: 'clamp(300px, 44vw, 540px)', background: 'radial-gradient(ellipse 40% 45% at 50% 50%, oklch(0.81 0.19 115 / 0.16), transparent 70%)' }}>
           <svg className="absolute inset-0 w-full h-full" viewBox={`0 0 ${containerSize.w || 1} ${containerSize.h || 1}`} preserveAspectRatio="none" aria-hidden="true">
             <defs>
               <filter id={`dp-glow-${woodenId}`}>
@@ -130,17 +128,17 @@ export default function DataPaths() {
             </defs>
             {lines && (Object.entries(lines) as Array<[string, [Point, Point]]>).map(([id, [start, end]]) => (
               <line key={id} x1={start.x} y1={start.y} x2={end.x} y2={end.y}
-                stroke="oklch(var(--primary-500))" strokeWidth="1.5"
+                stroke="oklch(0.62 0.15 115)" strokeWidth="1.5"
                 opacity={activeNode === id ? 1 : 0.55} className={`transition-opacity duration-300 ${motionPaused ? '' : 'srt-flow'}`}
                 style={motionPaused ? { strokeDasharray: '5 5' } : undefined}
                 filter={activeNode === id ? `url(#dp-glow-${woodenId})` : undefined} />
             ))}
             {pulse && !motionPaused && lines && Object.entries(lines).map(([id, [start, end]], i) => (
               <g key={id}>
-                <circle r="3.5" fill="oklch(var(--primary-500))" filter={`url(#dp-glow-${woodenId})`}>
+                <circle r="3.5" fill="oklch(0.62 0.15 115)" filter={`url(#dp-glow-${woodenId})`}>
                   <animateMotion dur="2.3s" begin={`${i * 0.5}s`} repeatCount="indefinite" path={`M${start.x},${start.y} L${end.x},${end.y}`} />
                 </circle>
-                <circle r="2" fill="oklch(var(--primary-500))" opacity="0.55">
+                <circle r="2" fill="oklch(0.62 0.15 115)" opacity="0.55">
                   <animateMotion dur="2.3s" begin={`${i * 0.5 + 1.15}s`} repeatCount="indefinite" path={`M${start.x},${start.y} L${end.x},${end.y}`} />
                 </circle>
               </g>
@@ -152,10 +150,10 @@ export default function DataPaths() {
             aria-label="Sonic Reporting Tool (SRT) — zentrale Datenbasis"
             onMouseEnter={() => setActiveNode('center')} onMouseLeave={() => setActiveNode(p => p === 'center' ? null : p)}
             className={`absolute z-20 flex flex-col items-center justify-center transition-all duration-500 cursor-pointer w-16 h-16 sm:w-24 sm:h-24 md:w-[104px] md:h-[104px] lg:w-[124px] lg:h-[124px] ${pulse ? 'opacity-100 scale-100' : 'opacity-0 scale-75'} ${activeNode === 'center' ? 'ring-2 ring-primary-500/60' : 'hover:ring-1 hover:ring-primary-500/40'}`}
-            style={{ left: '50%', top: '50%', transform: 'translate(-50%,-50%)', background: 'oklch(var(--primary-500))', boxShadow: '0 0 60px oklch(var(--primary-500) / 0.35)' }}>
+            style={{ left: '50%', top: '50%', transform: 'translate(-50%,-50%)', background: 'oklch(0.13 0.005 118)', boxShadow: '0 24px 50px -18px rgba(0,0,0,0.5)' }}>
             {!motionPaused && <span className="srt-core-ring absolute inset-0 pointer-events-none" aria-hidden="true" />}
-            <i className="ri-cpu-line text-foreground-950 text-base sm:text-xl lg:text-2xl" aria-hidden="true" />
-            <span className="hidden sm:block text-foreground-950 text-xs font-bold uppercase tracking-wider text-center leading-tight mt-1">SRT</span>
+            <i className="ri-cpu-line text-primary-500 text-base sm:text-xl lg:text-2xl" aria-hidden="true" />
+            <span className="hidden sm:block text-white text-xs font-bold uppercase tracking-wider text-center leading-tight mt-1">SRT</span>
           </button>
 
           {/* Outer nodes */}
@@ -167,19 +165,19 @@ export default function DataPaths() {
                 onClick={() => setActiveNode(p => p === node.id ? null : node.id)}
                 className={`absolute z-20 flex flex-col items-center gap-2 cursor-pointer transition-all duration-300 -translate-x-1/2 -translate-y-1/2 ${isActive ? 'scale-110' : 'hover:scale-105'}`}
                 style={{ left: `${pos.x}px`, top: `${pos.y}px` }}>
-                <div className={`w-9 h-9 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center border transition-all duration-300 backdrop-blur-lg ${isActive ? 'bg-primary-500/15 border-primary-500/70 text-primary-500' : 'bg-white/[0.08] border-white/25 text-white/85 hover:border-white/40 hover:text-primary-500'}`}>
+                <div className={`w-9 h-9 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center border transition-all duration-300 backdrop-blur-lg ${isActive ? 'bg-white border-primary-500 text-foreground-950 shadow-lg' : 'bg-white border-black/10 text-foreground-950/75 hover:border-primary-500 shadow-sm'}`}>
                   <i className={`${node.icon} text-sm sm:text-xl lg:text-2xl`} aria-hidden="true" />
                 </div>
-                <span className={`text-[9px] sm:text-sm font-semibold uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${isActive ? 'text-primary-500' : 'text-white/85'}`}>{node.label}</span>
+                <span className={`text-[9px] sm:text-sm font-semibold uppercase tracking-wide whitespace-nowrap transition-colors duration-300 ${isActive ? 'text-foreground-950' : 'text-foreground-950/70'}`}>{node.label}</span>
               </button>
             );
           })}
         </div>
 
         {/* Caption */}
-        <div className="text-center py-4 min-h-[20px]" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="text-center py-4 min-h-[20px]" style={{ borderTop: `1px solid ${HAIR}` }}>
           {activeNodeData ? (
-            <p className="text-xs sm:text-sm text-foreground-300">{dn[`n${nodes.findIndex((n) => n.id === activeNodeData.id) + 1}-desc`] || activeNodeData.desc}</p>
+            <p className="text-xs sm:text-sm text-foreground-950/70">{dn[`n${nodes.findIndex((n) => n.id === activeNodeData.id) + 1}-desc`] || activeNodeData.desc}</p>
           ) : (
             <p className="text-xs sm:text-sm text-foreground-500">Modul antippen für Details</p>
           )}

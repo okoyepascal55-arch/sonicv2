@@ -61,23 +61,23 @@ export default function SRTPage() {
       <LeistungenPageNav items={navItems} heroRef={heroRef} />
       <div ref={heroRef} id="overview"><SRTHeroReference /></div>
       <SRTWavyDivider darkBackground />
+      {/* Light product page (22.10.2026): only the hero and the product showcase are dark */}
       <TheProblemReference />
-      {/* Product stretch (22.10.2026): Problem → Features → Produkt → Module stay dark, like the tool itself */}
-      <SRTWavyDivider darkBackground />
+      <SRTWavyDivider />
       <FeaturesReference />
-      <SRTWavyDivider darkBackground />
+      <SRTWavyDivider />
       <ProductShowcase />
       <SRTWavyDivider darkBackground />
       <FunctionalityOverview />
-      <SRTWavyDivider darkBackground />
+      <SRTWavyDivider />
       <Zusammenarbeit />
       <SRTWavyDivider />
       <DataPaths />
-      <SRTWavyDivider darkBackground />
+      <SRTWavyDivider />
       <Industries />
       <SRTWavyDivider />
       <Proof />
-      <SRTWavyDivider darkBackground />
+      <SRTWavyDivider />
       <JoergQuote />
       <SRTWavyDivider />
       <PricingAndAccess />

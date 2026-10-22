@@ -3,7 +3,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
-import { WoodIcon, ProductGrid, Mono } from './SrtKit';
+import { WoodIcon, SrtHeader, PAPER, HAIR, MUTED, MONO } from './SrtKit';
 
 const FEATURES = [
   { number: '01', icon: 'ri-dashboard-line', title: 'Echtzeit-Dashboard', description: 'Alle gewünschten Metriken auf einen Blick — live und übersichtlich dargestellt, für schnellere Entscheidungen.', tags: ['Live-Daten', 'KPIs', 'Echtzeit'], woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20dashboard%20monitor%20screen%20display%20analytics%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-dashboard-v1&orientation=squarish' },
@@ -123,99 +123,77 @@ export default function FeaturesReference() {
     return media?.url ? resolveImageUrl(media.url) : fallback;
   };
 
+  const card = { background: PAPER, border: `1px solid ${HAIR}` } as const;
+
   return (
-    <section className="px-4 md:px-6 py-10 md:py-14 bg-foreground-950 relative overflow-hidden" id="features">
-      <ProductGrid />
+    <section className="px-4 md:px-6 py-16 md:py-24 bg-white relative" id="features">
+      <div className="sonic-container">
+        <SrtHeader
+          eyebrow={tBadge}
+          title={<>SRT: Die <span className="px-[0.16em] py-[0.02em] bg-primary-500 text-foreground-950" style={{ boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>All-in-One</span> Software</>}
+          side={<p>{fc.sub}</p>}
+        />
 
-      <div className="sonic-container relative z-10">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-5">
-          <span className="w-7 h-0.5 bg-primary-500" />
-          <span className="text-[11px] font-black tracking-[0.24em] uppercase" style={{ color: 'oklch(0.81 0.19 115)' }}>{tBadge}</span>
-          <span className="ml-auto hidden md:block"><Mono dim>{fc.meta}</Mono></span>
-        </div>
-        <div className="grid md:grid-cols-2 gap-8 items-end mb-8">
-          <h2 className="sonic-h2 text-white">
-            SRT: Die <span className="px-[0.16em] py-[0.02em] bg-primary-500 text-foreground-950" style={{ boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>All-in-One</span> Software
-          </h2>
-          <p className="text-[15px] text-white/60 leading-relaxed">{fc.sub}</p>
-        </div>
-
-        {/* Bento */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-3">
-
-          {/* F1 — Hero card with live dashboard preview */}
-          <div className="md:col-span-3 md:row-span-2 relative overflow-hidden" style={{ minHeight: 340, border: '1px solid oklch(0.81 0.19 115 / 0.35)' }}>
-            {/* Top lime accent line */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary-500 to-primary-500/20 z-30" />
-            {/* Left lime edge */}
-            <div className="absolute top-0 left-0 bottom-0 w-[2px] bg-gradient-to-b from-primary-500 via-primary-500/50 to-transparent z-30" />
-
-            {/* Dashboard preview or uploaded image */}
-            <div className="absolute inset-0 z-10">
-              {f1BgSrc
-                ? <img src={f1BgSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-40" />
-                : <DashboardPreview />}
-            </div>
-
-            {/* Gradient over dashboard: solid dark at top (text), transparent at bottom */}
-            <div className="absolute inset-0 z-20 pointer-events-none"
-              style={{ background: 'linear-gradient(180deg, oklch(0.13 0.005 118) 0%, oklch(0.13 0.005 118 / 0.7) 50%, transparent 100%)' }} />
-
-            {/* Content — top-anchored */}
-            <div className="relative z-30 p-7 md:p-8">
-              <div className="mb-5"><WoodIcon src={iconSrc(0, features[0].woodIcon)} alt={features[0].title} size={60} /></div>
-              <Mono className="block mb-2">Modul 01 / 06</Mono>
-              <h3 className="text-[22px] md:text-[26px] font-black text-white mb-3 leading-tight">{features[0].title}</h3>
-              <p className="text-[14px] leading-relaxed text-white/65 max-w-[320px]">{features[0].description}</p>
+        {/* Light bento (22.10.2026): soft surfaces, the dashboard shown as a product screenshot */}
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+          {/* F1 — product card */}
+          <div className="md:col-span-4 md:row-span-2 flex flex-col overflow-hidden group" style={card}>
+            <div className="p-7 md:p-9 pb-0">
+              <div className="flex items-start justify-between mb-6">
+                <WoodIcon src={iconSrc(0, features[0].woodIcon)} alt={features[0].title} size={56} />
+                <span className="text-[11px] uppercase tracking-[0.16em]" style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.35)' }}>01 / 06</span>
+              </div>
+              <h3 className="text-[24px] md:text-[28px] font-black text-foreground-950 mb-3 leading-tight" style={{ letterSpacing: '-0.02em' }}>{features[0].title}</h3>
+              <p className="text-[15px] leading-relaxed max-w-[460px]" style={{ color: MUTED }}>{features[0].description}</p>
               <div className="flex flex-wrap gap-1.5 mt-5">
                 {features[0].tags?.map(tag => (
-                  <span key={tag} className="text-[9px] font-bold px-2.5 py-1" style={{ border: '1px solid oklch(0.81 0.19 115 / 0.4)', color: 'oklch(0.81 0.19 115)' }}>{tag}</span>
+                  <span key={tag} className="text-[11px] font-bold px-2.5 py-1 bg-white text-foreground-950/70" style={{ border: `1px solid ${HAIR}` }}>{tag}</span>
                 ))}
               </div>
+            </div>
+            {/* Product screenshot, slightly cropped at the bottom like a hero shot */}
+            <div className="relative mt-8 mx-7 md:mx-9 -mb-px flex-1 min-h-[230px] overflow-hidden transition-transform duration-500 group-hover:-translate-y-1"
+              style={{ border: `1px solid ${HAIR}`, borderBottom: 'none', boxShadow: '0 30px 60px -30px rgba(0,0,0,0.45)' }}>
+              {f1BgSrc
+                ? <img src={f1BgSrc} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-top" />
+                : <DashboardPreview />}
             </div>
           </div>
 
           {/* F2 + F3 */}
           {features.slice(1, 3).map((f, idx) => (
-            <div key={f.number} className="md:col-span-3 flex items-center gap-5 p-6 group transition-colors duration-200 hover:bg-white/[0.03]"
-              style={{ background: 'oklch(0.155 0.006 118)', border: '1px solid rgba(255,255,255,0.08)' }}>
-              <WoodIcon src={iconSrc(idx + 1, f.woodIcon)} alt={f.title} size={56} delay={(idx + 1) * 120} />
-              <div>
-                <Mono dim className="block mb-1">Modul {f.number} / 06</Mono>
-                <h3 className="text-[16px] font-black text-white mb-1">{f.title}</h3>
-                <p className="text-[13px] text-white/55 leading-snug">{f.description}</p>
+            <div key={f.number} className="md:col-span-2 p-7 flex flex-col transition-transform duration-300 hover:-translate-y-1" style={card}>
+              <div className="flex items-start justify-between mb-6">
+                <WoodIcon src={iconSrc(idx + 1, f.woodIcon)} alt={f.title} size={48} delay={(idx + 1) * 120} />
+                <span className="text-[11px] uppercase tracking-[0.16em]" style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.35)' }}>{f.number} / 06</span>
               </div>
-              <div className="ml-auto pl-4">
-                <i className={`${f.icon} text-[20px] text-white/8 group-hover:text-primary-500/20 transition-colors duration-200`} />
-              </div>
+              <h3 className="text-[18px] font-black text-foreground-950 mb-1.5">{f.title}</h3>
+              <p className="text-[14px] leading-snug" style={{ color: MUTED }}>{f.description}</p>
             </div>
           ))}
 
           {/* F4, F5, F6 */}
           {features.slice(3).map((f, idx) => (
-            <div key={f.number} className="md:col-span-2 p-6 flex flex-col group transition-colors duration-200 hover:bg-white/[0.03]"
-              style={{ background: 'oklch(0.155 0.006 118)', border: '1px solid rgba(255,255,255,0.08)' }}>
-              <div className="flex items-start justify-between mb-5">
-                <WoodIcon src={iconSrc(idx + 3, f.woodIcon)} alt={f.title} size={52} delay={(idx + 3) * 120} />
-                <Mono dim>{f.number} / 06</Mono>
+            <div key={f.number} className="md:col-span-2 p-7 flex flex-col transition-transform duration-300 hover:-translate-y-1" style={card}>
+              <div className="flex items-start justify-between mb-6">
+                <WoodIcon src={iconSrc(idx + 3, f.woodIcon)} alt={f.title} size={48} delay={(idx + 3) * 120} />
+                <span className="text-[11px] uppercase tracking-[0.16em]" style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.35)' }}>{f.number} / 06</span>
               </div>
-              <h3 className="text-[16px] font-black text-white mb-2 leading-snug">{f.title}</h3>
-              <p className="text-[13px] text-white/55 leading-snug flex-1">{f.description}</p>
+              <h3 className="text-[18px] font-black text-foreground-950 mb-1.5">{f.title}</h3>
+              <p className="text-[14px] leading-snug" style={{ color: MUTED }}>{f.description}</p>
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="mt-3 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-5"
-          style={{ background: 'oklch(0.81 0.19 115 / 0.06)', border: '1px solid oklch(0.81 0.19 115 / 0.25)' }}>
-          <div>
-            <p className="text-white font-black text-[13px]">{ct['features-headline']}</p>
-            <p className="text-white/60 text-[12px]">{ct['features-line']}</p>
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-5 pt-8" style={{ borderTop: `1px solid ${HAIR}` }}>
+          <div className="text-center sm:text-left">
+            <p className="text-foreground-950 font-black text-[16px]">{ct['features-headline']}</p>
+            <p className="text-[14px]" style={{ color: MUTED }}>{ct['features-line']}</p>
           </div>
           <a href={`mailto:${CONTACT_EMAIL}?subject=SRT%20Demo`}
-            className="flex items-center gap-2 px-6 py-3 bg-primary-500 text-foreground-950 font-black text-xs uppercase tracking-widest whitespace-nowrap hover:bg-white transition-colors">
-            {tCta} <i className="ri-arrow-right-line" />
+            className="flex items-center gap-2 px-6 py-3.5 bg-foreground-950 text-white font-black text-xs uppercase tracking-widest whitespace-nowrap hover:bg-primary-500 hover:text-foreground-950 transition-colors">
+            {tCta} <i className="ri-arrow-right-line" aria-hidden="true" />
           </a>
         </div>
       </div>

@@ -176,11 +176,9 @@ export default function VoicesShowcase({
                   }}
                 />
                 <span className="absolute top-0 left-0 h-1 pointer-events-none" style={{ width: isActive ? '100%' : '0%', background: LIME, transition: `width 0.8s ${EASE}` }} aria-hidden="true" />
-                {!single && (
-                  <span className="absolute top-5 left-5 text-[11px] font-black tracking-[0.24em] tabular-nums" style={{ color: isActive ? LIME : 'rgba(255,255,255,0.6)' }} aria-hidden="true">
-                    {num(i)}
-                  </span>
-                )}
+                <span className="absolute top-5 left-5 text-[11px] font-black tracking-[0.24em] tabular-nums" style={{ color: isActive ? LIME : 'rgba(255,255,255,0.6)' }} aria-hidden="true">
+                  {num(i)}
+                </span>
 
                 {/* Collapsed: vertical name */}
                 {!single && (
@@ -204,12 +202,26 @@ export default function VoicesShowcase({
                       <span className="block font-black text-white leading-none" style={{ fontSize: 'clamp(28px,2.6vw,40px)', letterSpacing: '-0.035em' }}>{v.name}</span>
                       <span className="block mt-2 text-[11px] font-black uppercase tracking-[0.2em]" style={{ color: LIME }}>{v.role}</span>
                     </span>
-                    {!single && <span className="text-[10px] font-black uppercase tracking-[0.24em] text-white/50 tabular-nums">{num(i)} / {num(voices.length - 1)}</span>}
+                    <span className="text-[10px] font-black uppercase tracking-[0.24em] text-white/50 tabular-nums">{num(i)} / {num(voices.length - 1)}</span>
                   </span>
                 </span>
               </Tag>
             );
           })}
+          {/* One person (SRT): same look as the Management panels — open portrait + a narrow
+              closed panel carrying the role vertically (22.10.2026) */}
+          {single && (
+            <div className="relative overflow-hidden min-w-0" style={{ flex: '1 1 0%', background: INK }} aria-hidden="true">
+              <span className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,11,9,0.85) 0%, rgba(10,11,9,0.25) 60%)' }} />
+              <span className="absolute top-5 left-5 text-[11px] font-black tracking-[0.24em] tabular-nums text-white/40">SRT</span>
+              <span
+                className="absolute left-1/2 bottom-6 whitespace-nowrap text-[13px] font-black uppercase tracking-[0.28em]"
+                style={{ writingMode: 'vertical-rl', transform: 'translateX(-50%) rotate(180deg)', color: 'rgba(200,212,0,0.75)' }}
+              >
+                {voices[0].role}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* ── Mobile / tablet: swipeable portrait cards ── */}
