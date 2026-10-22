@@ -23,8 +23,8 @@ const NAV_ITEMS = [
   { id: 'funktionsumfang', label: 'Funktionsumfang', icon: 'ri-list-check-2' },
   { id: 'zusammenarbeit', label: 'Zusammenarbeit', icon: 'ri-git-merge-line' },
   { id: 'datenfluss', label: 'Datenfluss', icon: 'ri-flow-chart' },
-  { id: 'branchen', label: 'Branchen', icon: 'ri-building-line' },
   { id: 'srt-proof', label: 'SRT in Zahlen', icon: 'ri-bar-chart-2-line' },
+  { id: 'branchen', label: 'Branchen', icon: 'ri-building-line' },
   { id: 'preise-zugang', label: 'Zugang', icon: 'ri-key-2-line' },
 ];
 
@@ -73,12 +73,12 @@ export default function SRTPage() {
       <Zusammenarbeit />
       <SRTWavyDivider />
       <DataPaths />
-      <SRTWavyDivider />
-      <Industries />
-      <SRTWavyDivider />
+      {/* SRT in Zahlen = slim wooden LIVE strip, no divider needed around it */}
       <Proof />
-      <SRTWavyDivider />
       <JoergQuote />
+      <SRTWavyDivider />
+      {/* Branchen & Use Cases second to last, right before Zugang (22.10.2026) */}
+      <Industries />
       <SRTWavyDivider />
       <PricingAndAccess />
     </div>

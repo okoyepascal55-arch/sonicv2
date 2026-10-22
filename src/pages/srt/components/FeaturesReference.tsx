@@ -3,7 +3,7 @@ import { CONTACT_EMAIL } from '@/lib/contact';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
-import { WoodIcon, SrtHeader, PAPER, HAIR, MUTED, MONO } from './SrtKit';
+import { WoodIcon, SrtHeader, HAIR, MUTED, MONO } from './SrtKit';
 
 const FEATURES = [
   { number: '01', icon: 'ri-dashboard-line', title: 'Echtzeit-Dashboard', description: 'Alle gewünschten Metriken auf einen Blick — live und übersichtlich dargestellt, für schnellere Entscheidungen.', tags: ['Live-Daten', 'KPIs', 'Echtzeit'], woodIcon: 'https://readdy.ai/api/search-image?query=wooden%20dashboard%20monitor%20screen%20display%20analytics%20icon%20carved%20from%20solid%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=120&height=120&seq=wood-srt-dashboard-v1&orientation=squarish' },
@@ -131,7 +131,7 @@ export default function FeaturesReference() {
     return media?.url ? resolveImageUrl(media.url) : fallback;
   };
 
-  const card = { background: PAPER, border: `1px solid ${HAIR}` } as const;
+  const card = { background: '#fff', border: `1px solid ${HAIR}` } as const;
 
   return (
     <section className="px-4 md:px-6 py-16 md:py-24 bg-white relative" id="features">
@@ -142,7 +142,7 @@ export default function FeaturesReference() {
           side={<p>{fc.sub}</p>}
         />
 
-        {/* Light bento (22.10.2026): soft surfaces, the dashboard shown as a product screenshot */}
+        {/* Light bento (22.10.2026): white cards with hairlines, no grey surfaces */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
           {/* F1 — product card */}
           <div className="md:col-span-4 md:row-span-2 flex flex-col overflow-hidden group" style={card}>
@@ -160,7 +160,7 @@ export default function FeaturesReference() {
               </div>
             </div>
             {/* Desktop + mobile device previews, shown in full (no cropping) */}
-            <div className="relative mt-6 flex-1 min-h-[260px] md:min-h-[300px]" style={{ background: '#ECE8E3' }}>
+            <div className="relative mt-6 mx-7 md:mx-9 mb-7 md:mb-9 flex-1 min-h-[260px] md:min-h-[320px] bg-white">
               {previews.length > 0
                 ? previews.map((src, i) => (
                     <img key={src} src={src} alt={i === 0 ? 'SRT auf Desktop, Laptop, Tablet und Smartphone' : ''} aria-hidden={i !== 0}

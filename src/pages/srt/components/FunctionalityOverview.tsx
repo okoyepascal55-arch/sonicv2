@@ -4,7 +4,7 @@ import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import { useText } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
-import { WindowBar, SrtHeader, PAPER, HAIR, MUTED, MONO, LIME } from './SrtKit';
+import { WindowBar, SrtHeader, HAIR, MUTED, MONO, LIME } from './SrtKit';
 
 const MODULES = [
   { id: 'planung',   number: '01', icon: 'ri-calendar-2-line',         title: 'Einsatzplanung',       subtitle: 'Drag-and-Drop Kalender',              detail: 'Plane Einsätze mit einem visuellen Drag-and-Drop-Kalender. Weise Aufgaben direkt Mitarbeitern zu, setze Prioritäten und verfolge den Status in Echtzeit.', img: 'https://readdy.ai/api/search-image?query=modern+enterprise+SaaS+dark+UI+scheduling+calendar+drag+drop+lime+green+retail+field+force&width=1200&height=680&seq=srt-func-01-plan&orientation=landscape' },
@@ -81,7 +81,7 @@ export default function FunctionalityOverview() {
               return (
                 <button key={m.id} type="button" role="tab" aria-selected={on} onClick={() => select(i)}
                   className="relative flex-shrink-0 lg:w-full text-left px-4 py-3 lg:px-5 lg:py-4 cursor-pointer transition-colors duration-200"
-                  style={{ background: on ? PAPER : 'transparent', border: `1px solid ${on ? HAIR : 'transparent'}`, borderLeft: `2px solid ${on ? LIME : 'transparent'}` }}>
+                  style={{ background: on ? '#fff' : 'transparent', border: `1px solid ${on ? HAIR : 'transparent'}`, borderLeft: `2px solid ${on ? LIME : 'transparent'}` }}>
                   <span className="flex items-center gap-3">
                     <i className={`${m.icon} text-[17px] ${on ? 'text-foreground-950' : 'text-foreground-950/40'}`} aria-hidden="true" />
                     <span className="min-w-0">
@@ -103,7 +103,7 @@ export default function FunctionalityOverview() {
           <div>
             <div className="overflow-hidden bg-white" style={{ border: `1px solid ${HAIR}`, boxShadow: '0 40px 80px -40px rgba(0,0,0,0.35)' }}>
               <WindowBar title={<>SRT · Module · {mod.title}</>} light />
-              <div className="relative overflow-hidden" style={{ aspectRatio: '16/9', background: '#f2f2ee' }}>
+              <div className="relative overflow-hidden" style={{ aspectRatio: '16/9', background: '#fff' }}>
                 <img key={active} src={getImg(active)} alt={mod.title}
                   className="absolute inset-0 w-full h-full object-cover"
                   style={{ animation: 'srtFuncFade 0.4s ease forwards' }} loading="lazy" />

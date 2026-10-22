@@ -1,6 +1,6 @@
 import { useText } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
-import { SrtHeader, HAIR, MUTED } from './SrtKit';
+import { useMediaStore } from '@/lib/mediaStore';
 
 const STATS = [
   { value: '1.000', prefix: '>', label: 'Stores betreut', sublabel: 'In Sonic-Projekten', icon: 'ri-store-2-line', sys: 'Stores', trend: 'Im Handel' },
@@ -11,7 +11,6 @@ const STATS = [
 
 export default function Proof() {
   const tBadge   = useText('srt_proof', 'srt-proof-badge',   'SRT in Zahlen');
-  const tHeading = useText('srt_proof', 'srt-proof-heading', 'Die Bilanz spricht für sich.');
   // Dashboard → Text → SRT → „SRT — In Zahlen: Kennzahlen“
   const pt = useReviewText('srt_proof_stats');
   // Dashboard → Text → SRT → „SRT — Kurzlabels (Problem & Zahlen)“
@@ -24,23 +23,49 @@ export default function Proof() {
     trend: pt[`s${i + 1}-trend`] ?? st.trend,
     sys: lb[`proof-${i + 1}`] || st.sys,
   }));
-  const tSub     = useText('srt_proof', 'srt-proof-sub',     'Kennzahlen aus unseren Projekten – im Handel erreicht, im SRT erfasst.');
 
-  // Super minimal (22.10.2026): four figures in one row, one small label each, hairlines — nothing else
+  // „SRT in Zahlen“ as the wooden LIVE strip used on Home and Karriere (22.10.2026):
+  // wood texture from the dashboard (Home → LiveMetrics background), the four SRT figures running through.
+  // Headline texts stay in the dashboard; the strip itself is the whole section.
+  const { images: woodBg } = useMediaStore('home_livemetrics_wood_bg');
+  const woodUrl = woodBg[0]?.url || '';
+
+  const Items = ({ k }: { k: string }) => (
+    <>
+      <span className="flex items-center gap-2 flex-shrink-0">
+        <span className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-pulse-slow" />
+        <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-white drop-shadow-md whitespace-nowrap">LIVE</span>
+      </span>
+      {stats.map((st, i) => (
+        <span key={`${k}-${i}`} className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+          <span className="text-primary-500 drop-shadow-md text-xs">•</span>
+          <i className={`${st.icon} text-primary-500 drop-shadow-md text-xs sm:text-sm`} aria-hidden="true" />
+          <span className="text-xs sm:text-sm tabular-nums font-black text-white drop-shadow-md whitespace-nowrap">{st.prefix}{st.value}</span>
+          <span className="text-[10px] sm:text-xs text-white/90 drop-shadow-md font-bold whitespace-nowrap">{st.label}</span>
+        </span>
+      ))}
+      <span className="flex items-center gap-2 flex-shrink-0">
+        <span className="text-primary-500 drop-shadow-md text-xs">•</span>
+        <span className="text-[10px] sm:text-xs text-white/80 drop-shadow-md font-bold whitespace-nowrap">SRT</span>
+      </span>
+    </>
+  );
+
   return (
-    <section id="srt-proof" className="py-16 md:py-24 px-4 md:px-6 bg-white">
-      <div className="sonic-container">
-        <SrtHeader eyebrow={tBadge} title={tHeading} side={<p className="md:text-right md:max-w-sm md:ml-auto">{tSub}</p>} />
-        <dl className="grid grid-cols-2 lg:grid-cols-4" style={{ borderTop: `1px solid ${HAIR}` }}>
-          {stats.map((stat, i) => (
-            <div key={i} className={`pt-8 ${i % 2 === 1 ? 'pl-6 border-l' : 'pr-6'} ${i >= 2 ? 'mt-8 lg:mt-0' : ''} lg:px-10 ${i === 0 ? 'lg:pl-0' : 'lg:border-l'} ${i === 3 ? 'lg:pr-0' : ''}`} style={{ borderColor: HAIR }}>
-              <dd className="font-black text-foreground-950 leading-none whitespace-nowrap" style={{ fontSize: 'clamp(27px, 4vw, 56px)', letterSpacing: '-0.045em' }}>
-                {stat.prefix}{stat.value}
-              </dd>
-              <dt className="mt-3 text-[14px]" style={{ color: MUTED }}>{stat.label}</dt>
-            </div>
-          ))}
-        </dl>
+    <section id="srt-proof" aria-label={tBadge} className="relative overflow-hidden border-y border-foreground-200/40" style={{ paddingTop: '10px', paddingBottom: '10px', background: 'oklch(0.13 0.005 118)' }}>
+      <div className="absolute inset-0" aria-hidden="true">
+        {woodUrl && <img src={woodUrl} alt="" className="w-full h-full object-cover" loading="lazy" />}
+        <div className="absolute inset-0 bg-foreground-950/50" />
+      </div>
+      <div className="relative z-10 overflow-hidden">
+        <div className="flex items-center gap-6 md:gap-8 animate-scroll-optimized whitespace-nowrap py-1.5 sm:py-2 motion-reduce:animate-none" aria-hidden="true">
+          <Items k="a" />
+          <Items k="b" />
+          <Items k="c" />
+        </div>
+        <ul className="sr-only">
+          {stats.map((st, i) => <li key={i}>{st.label}: {st.prefix}{st.value}</li>)}
+        </ul>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 import { useText } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
-import { MONO, HAIR, MUTED, PAPER } from './SrtKit';
+import { MONO, HAIR, MUTED } from './SrtKit';
 
 const USE_CASES = [
   { icon: 'ri-store-2-line', title: 'FMCG & Retail Execution', items: ['In-Store-Performance', 'Regal-Audits mit Fotodokumentation', 'POS-Material-Tracking'] },
@@ -30,7 +30,7 @@ export default function Industries() {
   };
 
   return (
-    <section id="branchen" className="py-16 md:py-24 px-4 md:px-6 relative" style={{ background: PAPER }}>
+    <section id="branchen" className="py-16 md:py-24 px-4 md:px-6 relative bg-white">
       <div className="sonic-container relative z-10">
         <div className="mb-12 md:mb-16">
           <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span></div>
@@ -42,7 +42,7 @@ export default function Industries() {
         {/* Plain 3×2 grid of text blocks divided by hairlines (light redesign 22.10.2026) */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3" style={{ borderTop: `1px solid ${HAIR}`, borderLeft: `1px solid ${HAIR}` }}>
           {useCases.map((uc, i) => (
-            <article key={i} className="p-7 md:p-8 bg-transparent hover:bg-white transition-colors duration-300" style={{ borderRight: `1px solid ${HAIR}`, borderBottom: `1px solid ${HAIR}` }}>
+            <article key={i} className="p-7 md:p-8 bg-white" style={{ borderRight: `1px solid ${HAIR}`, borderBottom: `1px solid ${HAIR}` }}>
               <div className="flex items-center justify-between mb-5">
                 <i className={`${uc.icon} text-[20px] text-foreground-950/70`} aria-hidden="true" />
                 <span className="text-[10px] uppercase tracking-[0.16em]" style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.3)' }}>{String(i + 1).padStart(2, '0')}</span>

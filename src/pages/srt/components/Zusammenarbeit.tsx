@@ -1,5 +1,5 @@
 import { useText, useTextSection } from '@/hooks/useText';
-import { useInView, LIME, MONO, SrtHeader, HAIR, MUTED, PAPER } from './SrtKit';
+import { useInView, LIME, MONO, SrtHeader, HAIR, MUTED } from './SrtKit';
 
 const STEPS = [
   { number: '01', title: 'KPI-Definition', short: 'Erfolgskennzahlen definieren', icon: 'ri-focus-3-line', description: 'Gemeinsam definieren wir die Erfolgskennzahlen, die für dein Projekt entscheidend sind — Abverkauf, Standort-Performance, Mitarbeiter-KPIs.' },
@@ -25,7 +25,7 @@ export default function Zusammenarbeit() {
   const { ref: flowRef, seen } = useInView<HTMLOListElement>(0.2);
 
   return (
-    <section id="zusammenarbeit" className="py-16 md:py-24 px-4 md:px-6 relative" style={{ background: PAPER }}>
+    <section id="zusammenarbeit" className="py-16 md:py-24 px-4 md:px-6 relative bg-white">
       <div className="sonic-container">
         <SrtHeader eyebrow={tBadge} title={tHeading}
           side={<p className="text-[11px] uppercase tracking-[0.16em] md:text-right" style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.4)' }}>6 Schritte · End-to-End</p>} />

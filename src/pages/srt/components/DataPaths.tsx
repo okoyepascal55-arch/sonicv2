@@ -2,7 +2,7 @@ import { useReviewText } from '@/hooks/useReviewText';
 import { useMotionPaused } from '@/lib/motion';
 import { useState, useEffect, useRef, useId, useCallback, useLayoutEffect } from 'react';
 import { useText } from '@/hooks/useText';
-import { PAPER, HAIR, MUTED } from './SrtKit';
+import { HAIR, MUTED } from './SrtKit';
 
 const nodes = [
   { id: 'agentur', label: 'Sonic-Daten', icon: 'ri-user-star-line', desc: 'Einsatzplanung & Kampagnenstatus in Echtzeit' },
@@ -117,7 +117,7 @@ export default function DataPaths() {
         </div>
 
         {/* Node diagram in an app window, full width (22.10.2026) */}
-        <div style={{ background: PAPER, border: `1px solid ${HAIR}` }}>
+        <div className="bg-white" style={{ border: `1px solid ${HAIR}` }}>
         <div ref={diagramRef} className="relative flex items-center justify-center" style={{ height: 'clamp(300px, 44vw, 540px)', background: 'radial-gradient(ellipse 40% 45% at 50% 50%, oklch(0.81 0.19 115 / 0.16), transparent 70%)' }}>
           <svg className="absolute inset-0 w-full h-full" viewBox={`0 0 ${containerSize.w || 1} ${containerSize.h || 1}`} preserveAspectRatio="none" aria-hidden="true">
             <defs>

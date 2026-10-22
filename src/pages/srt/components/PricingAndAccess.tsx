@@ -176,7 +176,7 @@ export default function PricingAndAccess() {
   const ct = useReviewText('srt_cta_texts');
 
   return (
-    <section id="preise-zugang" className="py-16 md:py-24 px-4 md:px-6" style={{ background: '#F6F6F2' }}>
+    <section id="preise-zugang" className="py-16 md:py-24 px-4 md:px-6 bg-white">
       <div className="sonic-container">
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span></div>
