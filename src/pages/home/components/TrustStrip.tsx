@@ -5,23 +5,32 @@ export default function TrustStrip() {
   const { images: logoImages } = useMediaStore('home_truststrip_logos');
   const tTrustBadge = useText('home_truststrip', 'home-trust-badge', 'Über 15 Kunden vertrauen uns');
 
-  const allBrands = [
-    { name: 'Philips', logo: (logoImages[0] && logoImages[0].url) || 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887', scale: 1.45 },
-    { name: 'Rowenta', logo: (logoImages[1] && logoImages[1].url) || 'https://cdn.brandfetch.io/rowenta.de/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-    { name: 'Krups', logo: (logoImages[2] && logoImages[2].url) || 'https://cdn.brandfetch.io/krups.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-    { name: 'Nexaro', logo: (logoImages[3] && logoImages[3].url) || 'https://cdn.brandfetch.io/id2dYOZ6uf/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1773621883167' },
-    { name: 'Vorwerk', logo: (logoImages[4] && logoImages[4].url) || 'https://cdn.brandfetch.io/vorwerk.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-    { name: 'Canon', logo: (logoImages[5] && logoImages[5].url) || 'https://cdn.brandfetch.io/canon.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-    { name: 'Garmin', logo: (logoImages[6] && logoImages[6].url) || 'https://cdn.brandfetch.io/garmin.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-    { name: "L'Oréal", logo: (logoImages[7] && logoImages[7].url) || 'https://cdn.brandfetch.io/loreal.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-    { name: 'Samsung', logo: (logoImages[8] && logoImages[8].url) || 'https://cdn.brandfetch.io/idMbGUGol-/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667607407794' },
-    { name: 'Bosch', logo: (logoImages[9] && logoImages[9].url) || 'https://cdn.brandfetch.io/bosch.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-    { name: 'Dyson', logo: (logoImages[10] && logoImages[10].url) || 'https://cdn.brandfetch.io/dyson.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-    { name: 'Groupe SEB', logo: (logoImages[11] && logoImages[11].url) || 'https://cdn.brandfetch.io/groupeseb.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX', scale: 1.45 },
+  const fallbackBrands = [
+    { name: 'Philips', logo: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887', scale: 1.45 },
+    { name: 'Rowenta', logo: 'https://cdn.brandfetch.io/rowenta.de/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
+    { name: 'Krups', logo: 'https://cdn.brandfetch.io/krups.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
+    { name: 'Nexaro', logo: 'https://cdn.brandfetch.io/id2dYOZ6uf/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1773621883167' },
+    { name: 'Vorwerk', logo: 'https://cdn.brandfetch.io/vorwerk.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
+    { name: 'Canon', logo: 'https://cdn.brandfetch.io/canon.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
+    { name: 'Garmin', logo: 'https://cdn.brandfetch.io/garmin.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
+    { name: "L'Oréal", logo: 'https://cdn.brandfetch.io/loreal.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
+    { name: 'Samsung', logo: 'https://cdn.brandfetch.io/idMbGUGol-/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667607407794' },
+    { name: 'Bosch', logo: 'https://cdn.brandfetch.io/bosch.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
+    { name: 'Dyson', logo: 'https://cdn.brandfetch.io/dyson.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
+    { name: 'Groupe SEB', logo: 'https://cdn.brandfetch.io/groupeseb.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX', scale: 1.45 },
   ];
 
-  const row1 = allBrands.slice(0, 6);
-  const row2 = allBrands.slice(6, 12);
+  // The dashboard is the source (22.10.2026): every uploaded logo is shown, in the dashboard order,
+  // named by its label. The built-in list is only used while nothing is uploaded.
+  const uploaded = logoImages
+    .filter((img) => img.url && !img.url.startsWith('data:'))
+    .map((img) => ({ name: (img.caption || '').trim() || 'Logo', logo: img.url, scale: /philips|groupe ?seb/i.test(img.caption || '') ? 1.45 : undefined }));
+  const allBrands: { name: string; logo: string; scale?: number }[] = uploaded.length ? uploaded : fallbackBrands;
+
+
+  const half = Math.ceil(allBrands.length / 2);
+  const row1 = allBrands.slice(0, half);
+  const row2 = allBrands.slice(half);
 
   const LogoCard = ({ brand, compact = false }: { brand: { name: string; logo: string; scale?: number }; compact?: boolean }) => (
     <div

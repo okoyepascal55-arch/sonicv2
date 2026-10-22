@@ -857,9 +857,9 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pageGroupId: 'srt', pagePath: '/srt',
     description: 'The proof section with stats (Sonic seit 2007, SRT seit 2008). Kennzahlen: Abschnitt „SRT — In Zahlen: Kennzahlen“.',
     entries: [
-      { id: 'srt-proof-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'SRT in Zahlen' },
-      { id: 'srt-proof-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Die Bilanz spricht für sich.' },
-      { id: 'srt-proof-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Kennzahlen aus unseren Projekten – im Handel erreicht, im SRT erfasst.' },
+      { id: 'srt-proof-badge', label: 'Section Badge', description: 'Section badge — Hinweis (22.10.2026): nur noch als unsichtbare Beschriftung für Screenreader genutzt.', type: 'badge', value: 'SRT in Zahlen' },
+      { id: 'srt-proof-heading', label: 'Main Heading', description: 'Main heading — Hinweis (22.10.2026): derzeit nicht auf der Seite sichtbar (Bilanz ist jetzt die Holz-Live-Leiste).', type: 'heading', value: 'Die Bilanz spricht für sich.' },
+      { id: 'srt-proof-sub', label: 'Subtitle', description: 'Subtitle — Hinweis (22.10.2026): derzeit nicht auf der Seite sichtbar (Bilanz ist jetzt die Holz-Live-Leiste).', type: 'paragraph', value: 'Kennzahlen aus unseren Projekten – im Handel erreicht, im SRT erfasst.' },
     ],
   },
   {
@@ -1368,7 +1368,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-joerg-name',    label: 'Name',            description: 'Groß im Porträt und in der Fußzeile der Karte', type: 'heading', value: 'Jörg' },
       { id: 'srt-joerg-title',   label: 'Position / Rolle', description: 'Unter dem Namen, über dem Zitat und in der Fußzeile', type: 'label', value: 'Entwickler des Sonic Reporting Tools' },
       { id: 'srt-joerg-quote',   label: 'Zitat',           description: 'Das große Zitat rechts', type: 'quote', multiline: true, value: 'Das SRT ist kein Tool — es ist der direkte Draht zwischen dem, was am POS passiert, und der Entscheidung, die daraus folgen muss. Wir haben es so gebaut, dass Promoter damit arbeiten wollen, nicht müssen.' },
-      { id: 'srt-joerg-video',   label: 'YouTube-Video (optional)', description: 'YouTube-Link einfügen (z. B. https://youtu.be/…). Ersetzt das Porträt durch das Video. Leer = Porträt.', type: 'link', value: '' },
+      { id: 'srt-joerg-video',   label: 'YouTube-Video (optional)', description: 'YouTube-Link einfügen (z. B. https://youtu.be/…). Ersetzt das Porträt durch das Video. Leer = Porträt. Hinweis (22.10.2026): Video wird derzeit nicht auf der Seite angezeigt — es erscheint immer das Foto (Medien → SRT → Jörg Profilfoto).', type: 'link', value: '' },
     ],
   },
 ];

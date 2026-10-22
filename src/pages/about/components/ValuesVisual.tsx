@@ -1,5 +1,5 @@
 import { useReviewText } from '@/hooks/useReviewText';
-import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useBrandLogos } from '@/lib/brandLogos';
 import { useEffect, useRef, useState } from 'react';
 
 const clients = [
@@ -20,7 +20,8 @@ const clients = [
 export default function ValuesVisual() {
   // Dashboard → Text → Über uns → „Über uns — Referenzen & Team-Kennzahlen“
   const vt = useReviewText('about_values_texts');
-  const { images: logoImages } = useMediaStore('about_client_logos');
+  // Logos by brand name from the dashboard (Über uns „Kundenlogos“ first, then the other logo slots) — 22.10.2026
+  const { logoFor } = useBrandLogos('about_client_logos');
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [logoErrors, setLogoErrors] = useState<Set<number>>(new Set());
@@ -72,7 +73,7 @@ export default function ValuesVisual() {
                 {!hasLogoError && client.logo ? (
                   <div className="mb-2.5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-300 opacity-55 group-hover:opacity-100 group-hover:scale-105">
                     <img
-                      src={client.logo}
+                      src={logoFor(client.name, client.logo)}
                       alt={client.name}
                       className="h-7 w-auto max-w-[120px] object-contain"
                       loading="lazy"

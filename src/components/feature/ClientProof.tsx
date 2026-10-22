@@ -3,6 +3,7 @@ import { isMotionPaused } from '@/lib/motion';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useTextSection } from '@/hooks/useText';
 import { TESTIMONIAL_IDS } from '@/lib/textStoreStimmen';
+import { useBrandLogos } from '@/lib/brandLogos';
 
 interface Testimonial {
   brand: string;
@@ -240,7 +241,6 @@ export default function ClientProof({ only }: ClientProofProps = {}) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const autoScrollPaused = useRef(false);
   const autoScrollRaf = useRef<number>(0);
-  const { images: logoImages } = useMediaStore('common_clientproof_logos');
 
   // Dashboard → Text → Stimmen & Gesichter → Tab „Kreation“ (also Common Components)
   const t = useTextSection('common_client_testimonials');
@@ -276,11 +276,10 @@ export default function ClientProof({ only }: ClientProofProps = {}) {
   const repeats = testimonials.length < 5 ? 3 : 2;
 
   // Merge dashboard logos with hardcoded testimonials — logo from dashboard if available
-  const getLogo = (brandFallback: string) => {
-    // Try to match by brand name
-    const match = logoImages.find((img) => img.caption?.toLowerCase().includes(brandFallback.toLowerCase()));
-    return match?.url || brandFallback;
-  };
+  // Logo by BRAND NAME from the dashboard (22.10.2026) — before, the label was compared with the
+  // fallback web address, so uploaded logos were never used.
+  const { logoFor } = useBrandLogos('common_clientproof_logos');
+  const getLogo = (brand: string, fallback: string) => logoFor(brand, fallback);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -388,7 +387,7 @@ export default function ClientProof({ only }: ClientProofProps = {}) {
           }}
         >
           {Array.from({ length: testimonials.length * repeats }, (_, n) => testimonials[n % testimonials.length]).map((item, i) => (
-            <TestimonialCard key={`${i}-${item.brand}`} item={{ ...item, logo: getLogo(item.logo) }} index={i % testimonials.length} />
+            <TestimonialCard key={`${i}-${item.brand}`} item={{ ...item, logo: getLogo(item.brand, item.logo) }} index={i % testimonials.length} />
           ))}
         </div>
 

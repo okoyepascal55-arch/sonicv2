@@ -6,6 +6,7 @@ import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import { useBrandLogos } from '@/lib/brandLogos';
 import { useText } from '@/lib/textStore';
 import { useReviewText } from '@/hooks/useReviewText';
 import { useCtaText } from '@/hooks/useCtaText';
@@ -413,6 +414,9 @@ export default function CaseStudiesPage() {
   const tFinalHeadAccent = finalDot > -1 ? tFinalHeading.slice(finalDot + 2) : '';
   const { images: woodTextures } = useMediaStore('losungen_wood_textures');
   const { images: heroImages } = useMediaStore('case_studies_hero_images');
+  // Brand logos: Dashboard → Fallbeispiele „Markenlogos“ (label = brand name) wins, then other logo slots (22.10.2026)
+  const { logoFor } = useBrandLogos('case_studies_brand_logos');
+  const caseLogo = (brand: string, fallback: string) => logoFor(brand, brand === 'Avoury' ? logoFor('Melitta', fallback) : fallback);
 
   // ── Module image hooks — dashboard-controllable ──
   const { images: gMod1 } = useMediaStore('case_garmin_module_1');
@@ -885,7 +889,7 @@ export default function CaseStudiesPage() {
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8 pb-6" style={{ borderBottom: '1px solid rgba(255,255,255,0.14)' }}>
                 <div className="flex items-center gap-4">
                   <div className="overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0 p-2" style={{ width: '52px', height: '52px' }}>
-                    <img src={current.woodIcon} alt={`${current.brand}`} className="w-full h-full object-contain" loading="lazy" style={{ filter: 'brightness(0) invert(1)' }} />
+                    <img src={caseLogo(current.brand, current.woodIcon)} alt={`${current.brand}`} className="w-full h-full object-contain" loading="lazy" style={{ filter: 'brightness(0) invert(1)' }} />
                   </div>
                   <div>
                     <p className="text-primary-500 text-[10px] font-black uppercase tracking-[0.25em] mb-1">{current.campaignType}</p>

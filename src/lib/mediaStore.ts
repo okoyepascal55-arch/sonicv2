@@ -1718,7 +1718,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'home_dualcta_backgrounds':   { aspectRatio: '~9:7', dimensions: '900×700', orientation: 'landscape', tip: 'Slightly wide — business meeting & team scenes' },
   'home_officevisit_image':     { aspectRatio: '4:5', dimensions: '800×1000', orientation: 'portrait', tip: 'Tall portrait — office interior, people working' },
   'home_brandintro_images':     { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'Brand intro year photos — landscape shots' },
-  'home_truststrip_logos':      { aspectRatio: 'SVG flexible', dimensions: '~200×48', orientation: 'logo', tip: 'Brand logos — SVG preferred, dark theme, ~200px wide' },
+  'home_truststrip_logos':      { aspectRatio: 'SVG flexible', dimensions: '~200×48', orientation: 'logo', tip: 'Brand logos — SVG preferred, dark theme, ~200px wide. Hinweis: Die Website zeigt genau diese Logos in dieser Reihenfolge (1. Hälfte = obere Reihe). Label = Markenname (wird angezeigt und auf anderen Seiten zum Zuordnen genutzt).' },
   'home_pos':                   { aspectRatio: '~2:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Wide POS remote images — retail displays' },
 
   /* ═══ HOME: Menschen folders (5 images each) ═══ */
@@ -1793,7 +1793,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'srt_section_images':        { aspectRatio: '3:2 or 2:3', dimensions: '1200×800 (dashboard) / 600×800 (mobile)', orientation: 'landscape', tip: 'Dashboard screenshot + mobile app — mixed ratios' },
   'srt_problem_wood_icons':    { aspectRatio: '1:1', dimensions: '112×112', orientation: 'icon', tip: 'Square walnut wood icons for problem cards' },
   'srt_joerg_photo':           { aspectRatio: '4:5', dimensions: '~800×1000', orientation: 'portrait', tip: 'Porträt von Jörg — Gesicht im oberen Drittel, das Bild wird oben ausgerichtet beschnitten' },
-  'srt_proof_wood_icons':      { aspectRatio: '1:1', dimensions: '80×80', orientation: 'icon', tip: 'Small walnut wood icons for proof stats' },
+  'srt_proof_wood_icons':      { aspectRatio: '1:1', dimensions: '80×80', orientation: 'icon', tip: 'Small walnut wood icons for proof stats. Hinweis (22.10.2026): Derzeit nicht auf der SRT-Seite sichtbar — die Bilanz nutzt jetzt den Holz-Hintergrund der Live-Kennzahlen (Home → „Live-Metriken Holz“).' },
   'srt_pricing_images':        { aspectRatio: '2:1', dimensions: '800×400', orientation: 'landscape', tip: 'Wide pricing tier images — workspace/enterprise shots' },
 
   /* ═══ LEISTUNGEN: Core Service Images ═══ */
@@ -1847,7 +1847,12 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'kontakt_hero':          { aspectRatio: '16:9', dimensions: '1920×1080', orientation: 'landscape', tip: 'Kontakt hero — abstract geometric concept, dark' },
 
   /* ═══ COMMON ═══ */
-  'common_clientproof_logos': { aspectRatio: 'SVG flexible', dimensions: '~200×48', orientation: 'logo', tip: 'Brand logos — SVG preferred, dark theme' },
+  'common_clientproof_logos': { aspectRatio: 'SVG flexible', dimensions: '~200×48', orientation: 'logo', tip: 'Brand logos — SVG preferred, dark theme. Hinweis: Label = Markenname (z. B. „Garmin“, „L’Oréal“) — die Kundenstimmen holen das Logo über diesen Namen.' },
+  // Added 22.10.2026 (notes only — no existing slot changed)
+  'about_client_logos':       { aspectRatio: 'SVG flexible', dimensions: '~200×48', orientation: 'logo', tip: 'Brand logos für Über uns → Referenzen. Label = Markenname (z. B. „Philips“). Leer = Logo wird aus den anderen Logo-Slots per Name übernommen.' },
+  'case_studies_brand_logos': { aspectRatio: 'SVG flexible', dimensions: '~200×48', orientation: 'logo', tip: 'Markenlogos der Fallbeispiele. Label = Markenname des Falls (Garmin, Groupe SEB, Avoury, TV & Sound). Hat Vorrang vor allen anderen Logo-Slots.' },
+  'srt_product_desktop':      { aspectRatio: '16:10', dimensions: '1920×1200', orientation: 'landscape', tip: 'Hinweis (22.10.2026): Erscheint im SRT-Produktbereich UND in der Features-Karte „Echtzeit-Dashboard“.' },
+  'srt_product_mobile':       { aspectRatio: '9:19.5', dimensions: '1170×2532', orientation: 'portrait', tip: 'Hinweis (22.10.2026): Erscheint im SRT-Produktbereich UND in der Features-Karte „Echtzeit-Dashboard“.' },
   'common_logos':             { aspectRatio: 'SVG flexible', dimensions: '~200×48', orientation: 'logo', tip: 'Sonic Group logo — main brand logo' },
 
   /* ═══ OTHER (from virtual) ═══ */
