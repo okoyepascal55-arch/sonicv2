@@ -94,21 +94,14 @@ export default function TrustStrip() {
             ))}
           </div>
 
-          {/* sm+: 2-row grid */}
-          <div className="hidden sm:block">
-            {/* Row 1 */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4 mb-2 md:mb-4">
-              {row1.map((brand, i) => (
-                <LogoCard key={i} brand={brand} />
-              ))}
-            </div>
-
-            {/* Row 2 */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4">
-              {row2.map((brand, i) => (
-                <LogoCard key={i} brand={brand} />
-              ))}
-            </div>
+          {/* sm+: 2-row grid — column count follows the number of uploaded logos (max 8 per row) */}
+          <div
+            className="hidden sm:grid grid-cols-3 md:grid-cols-4 lg:[grid-template-columns:repeat(var(--trust-cols),minmax(0,1fr))] gap-2 md:gap-3"
+            style={{ ['--trust-cols' as string]: String(Math.min(8, Math.max(6, half))) }}
+          >
+            {[...row1, ...row2].map((brand, i) => (
+              <LogoCard key={i} brand={brand} />
+            ))}
           </div>
         </div>
       </div>
