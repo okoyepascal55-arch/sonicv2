@@ -85,7 +85,8 @@ export default function FunctionalityOverview() {
           {/* Module preview in an app window (22.10.2026) */}
           <div className="flex flex-col overflow-hidden" style={{ background: 'oklch(0.155 0.006 118)', border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 30px 80px -30px rgba(0,0,0,0.8)' }}>
           <WindowBar title={<>SRT · Module · {mod.title}</>} />
-          <div className="relative overflow-hidden" style={{ aspectRatio: '16/7', minHeight: 280 }}>
+          {/* Light canvas: the module sketches are transparent line drawings and need a paper background */}
+          <div className="relative overflow-hidden" style={{ aspectRatio: '16/7', minHeight: 280, background: '#f2f2ee' }}>
             <img
               key={active}
               src={getImg(active)}
