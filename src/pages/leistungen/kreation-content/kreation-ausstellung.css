@@ -39,3 +39,34 @@
 @media (min-width: 1024px) {
   .kr-facing { transform: rotateY(var(--kr-turn, 0deg)); }
 }
+
+/* ── Showcase deck (28.10.2026): each chapter is a full-screen card dealt onto the pile ── */
+.kr-deck {
+  --kr-top: 120px; --kr-top-px: 120;   /* mobile: header 64 + chapter bar ~48 + 8 */
+  --kr-peek: 6px;  --kr-peek-px: 6;    /* how much of each card under the pile stays visible */
+  --kr-card-h: calc(100svh - 160px);
+}
+@media (min-width: 1024px) {
+  .kr-deck {
+    --kr-top: 132px; --kr-top-px: 132; /* header 73 + page nav 49 + 10 */
+    --kr-peek: 12px; --kr-peek-px: 12;
+    --kr-card-h: calc(100svh - 204px);
+  }
+}
+.kr-card {
+  position: sticky;
+  top: calc(var(--kr-top) + var(--i) * var(--kr-peek));
+  height: var(--kr-card-h);
+  min-height: 460px;
+  margin-bottom: 28px;
+}
+.kr-card:last-child { margin-bottom: 0; }
+.kr-card-inner { transform: scale(calc(1 - var(--kr-p, 0) * 0.06)); transform-origin: 50% 0; will-change: transform; }
+.kr-card-dim { opacity: calc(var(--kr-p, 0) * 0.45); }
+
+/* No stacking for reduced motion or very short screens: cards simply follow each other */
+@media (prefers-reduced-motion: reduce), (max-height: 560px) {
+  .kr-card { position: relative; top: auto; height: 640px; min-height: 0; }
+  .kr-card-inner { transform: none; }
+  .kr-card-dim { opacity: 0; }
+}
