@@ -22,23 +22,10 @@
   .kr-wall-up, .kr-wall-down, .kr-row-left, .kr-stage-in { animation: none !important; }
 }
 
-/* Konzeption — pinboard cards straighten when picked up */
-.kr-pin { transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, z-index 0s; }
-.kr-pin:hover, .kr-pin:focus-visible { transform: rotate(0deg) translateY(-6px) scale(1.04) !important; z-index: 30 !important; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.75); }
-
 /* Layout — spreads row: hidden scrollbar, snap */
 .kr-spreads { scrollbar-width: none; scroll-snap-type: x mandatory; }
 .kr-spreads::-webkit-scrollbar { display: none; }
 .kr-spreads > * { scroll-snap-align: start; }
-
-/* POS — aisle: pieces stand like shelf facings, turn to face you on hover */
-.kr-aisle > div { perspective: 900px; }
-.kr-facing { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); transform-origin: center center; }
-.kr-facing:hover, .kr-facing:focus-visible { transform: rotateY(0deg) translateZ(30px) !important; }
-@media (prefers-reduced-motion: reduce) { .kr-pin, .kr-facing { transition: none; } }
-@media (min-width: 1024px) {
-  .kr-facing { transform: rotateY(var(--kr-turn, 0deg)); }
-}
 
 /* ── Showcase deck (28.10.2026): each chapter is a full-screen card dealt onto the pile ── */
 .kr-deck {

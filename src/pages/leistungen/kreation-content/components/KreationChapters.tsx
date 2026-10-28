@@ -9,12 +9,9 @@ import { FALLBACKS, BEFORE_AFTER_FALLBACK, type ChapterId } from './kreationFall
 
 /* ─────────────────────────────────────────────────────────────────────────
    Showcase as an exhibition in five chapters (28.10.2026).
-   Each discipline gets the presentation that matches what it produces:
-     01 Konzeption  → Die Pinnwand     (ideas pinned to a board)
-     02 Innovation  → Die Bühne        (one stage, auto-advancing like a launch film)
-     03 CI          → Das Markenblatt  (a brand-guideline sheet with grid and crop marks)
-     04 Layout      → Der Druckbogen   (magazine spreads you drag through)
-     05 POS         → Im Markt         (CGI → reality slider + an aisle of shelf facings)
+   Every chapter uses one viewer (a piece large, all pieces in a strip below), with one
+   signature detail each: Konzeption tape · Innovation auto-play · CI crop marks ·
+   Layout magazine spreads · POS opens with the CGI-vs-reality slider.
    Data is exactly what the old tabbed showcase used — nothing in the dashboard changes:
      Texts:  Text → Kreation & Content — Showcase (Rahmen) + Showcase: <Kapitel>
      Images: Media → Kreation Showcase Grid (shared) / Alt-Rotation <Kapitel> (per chapter)
@@ -22,19 +19,26 @@ import { FALLBACKS, BEFORE_AFTER_FALLBACK, type ChapterId } from './kreationFall
 ───────────────────────────────────────────────────────────────────────── */
 
 const ORDER: ChapterId[] = ['konzeption', 'innovation', 'ci', 'layout', 'pos'];
-const ITEM_COUNT = 6;
+const TEXT_COUNT = 6; // the dashboard card texts per chapter (i1–i6)
 
 type Item = { id: string; tag: string; title: string; sub: string; src: string };
-type MediaList = { url: string }[];
+type MediaList = { url: string; caption?: string }[];
 
-function buildItems(id: ChapterId, t: Record<string, string>, secondary: MediaList, primary: MediaList): Item[] {
-  return Array.from({ length: ITEM_COUNT }, (_, i) => ({
-    id: `${id}-${i + 1}`,
-    tag: t[`i${i + 1}-tag`] ?? '',
-    title: t[`i${i + 1}-title`] ?? '',
-    sub: t[`i${i + 1}-sub`] ?? '',
-    src: secondary[i]?.url ? resolveImageUrl(secondary[i].url) : primary[i]?.url ? resolveImageUrl(primary[i].url) : FALLBACKS[id][i],
-  }));
+/* Pieces 1–6 work exactly as before (chapter slot → shared slot → fallback, texts i1–i6).
+   Any further images added to the chapter's own slot (Alt-Rotation <Kapitel>) become extra
+   pieces automatically — their title is the caption typed in the dashboard's image editor. */
+function buildItems(id: ChapterId, t: Record<string, string>, secondary: MediaList, primary: MediaList, chapterName: string): Item[] {
+  const count = Math.max(TEXT_COUNT, secondary.length);
+  return Array.from({ length: count }, (_, i) => {
+    const hasText = i < TEXT_COUNT;
+    return {
+      id: `${id}-${i + 1}`,
+      tag: (hasText ? t[`i${i + 1}-tag`] : '') || chapterName,
+      title: (hasText ? t[`i${i + 1}-title`] : '') || secondary[i]?.caption || chapterName,
+      sub: hasText ? t[`i${i + 1}-sub`] ?? '' : '',
+      src: secondary[i]?.url ? resolveImageUrl(secondary[i].url) : primary[i]?.url ? resolveImageUrl(primary[i].url) : FALLBACKS[id][i] ?? '',
+    };
+  }).filter((it) => it.src);
 }
 
 function useInView<T extends HTMLElement>(threshold = 0.35) {
@@ -88,159 +92,136 @@ function Lightbox({ items, startIndex, onClose }: { items: Item[]; startIndex: n
 }
 
 /* ═════════════════════════════════════════════════════════════════════════
-   Deck of cards (28.10.2026): every chapter is one full-screen card. Scrolling
-   deals the next card onto the pile; the card underneath shrinks and dims a
-   little, its edge stays visible. Every format is sized to fit exactly one card.
+   Deck of cards: every chapter is one full-screen card dealt onto the pile.
+   Inside each card the same viewer (28.10.2026, v2): one piece large and uncropped,
+   all pieces of the chapter in a strip below — works for 3 pieces or 30.
 ═════════════════════════════════════════════════════════════════════════ */
 
-/* ── 01 Konzeption — Die Pinnwand ──────────────────────────────────────── */
-const PINS = [
-  { left: 3, top: 6, width: 30, rotate: -4 },
-  { left: 36, top: 3, width: 25, rotate: 3 },
-  { left: 65, top: 8, width: 31, rotate: -2 },
-  { left: 7, top: 52, width: 25, rotate: 2.5 },
-  { left: 36, top: 47, width: 30, rotate: -3 },
-  { left: 70, top: 54, width: 25, rotate: 4 },
-];
+type Variant = 'konzeption' | 'innovation' | 'ci' | 'pos';
+const AUTOPLAY_MS = 5000;
 
-function PinCard({ item, onOpen, style, className = '', compact = false }: { item: Item; onOpen: () => void; style?: React.CSSProperties; className?: string; compact?: boolean }) {
-  return (
-    <button type="button" onClick={onOpen} className={`kr-pin text-left bg-[#f6f6f2] p-1.5 md:p-2 pb-2 md:pb-3 cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${compact ? 'flex flex-col min-h-0' : ''} ${className}`} style={{ boxShadow: '0 14px 30px -14px rgba(0,0,0,0.7)', ...style }}>
-      <span className="absolute -top-2.5 left-1/2 w-12 md:w-14 h-4 md:h-5 bg-primary-500/85" style={{ transform: 'translateX(-50%) rotate(-3deg)' }} aria-hidden="true" />
-      <span className={`block relative overflow-hidden bg-foreground-950 ${compact ? 'flex-1 min-h-0' : ''}`} style={compact ? undefined : { aspectRatio: '4 / 3' }}>
-        <img src={item.src} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" draggable={false} />
-      </span>
-      <span className="block mt-2 px-1 flex-shrink-0">
-        {!compact && <span className="block text-[10px] font-bold text-foreground-500 mb-0.5">{item.tag}</span>}
-        <span className="block text-foreground-950 font-black text-[11px] md:text-sm leading-tight line-clamp-2 hyphens-auto [overflow-wrap:anywhere]" lang="de">{item.title}</span>
-      </span>
-    </button>
-  );
-}
-
-function Pinboard({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void }) {
-  const board: React.CSSProperties = { background: 'oklch(0.13 0.005 118)', backgroundImage: 'radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px)', backgroundSize: '22px 22px' };
+function CropMarks() {
+  const c = 'absolute w-4 h-4 border-foreground-950/70 pointer-events-none z-10';
   return (
     <>
-      {/* Desktop: pins sized to the card's height as well as its width (container units) */}
-      <div className="hidden md:block relative w-full h-full" style={{ ...board, containerType: 'size' }}>
-        {items.map((item, i) => (
-          <PinCard
-            key={item.id}
-            item={item}
-            onOpen={() => onOpen(i)}
-            className="absolute"
-            style={{ left: `${PINS[i].left}%`, top: `${PINS[i].top}%`, width: `min(${PINS[i].width}cqw, calc(56cqh - 64px))`, transform: `rotate(${PINS[i].rotate}deg)`, zIndex: 10 + i }}
-          />
-        ))}
-      </div>
-      {/* Mobile: 2 × 3 pins filling the card */}
-      <div className="md:hidden grid grid-cols-2 grid-rows-3 gap-x-3 gap-y-5 p-4 pt-6 h-full" style={board}>
-        {items.map((item, i) => (
-          <PinCard key={item.id} item={item} onOpen={() => onOpen(i)} compact className="relative" style={{ transform: `rotate(${i % 2 ? 1.5 : -1.5}deg)` }} />
-        ))}
-      </div>
+      <span className={`${c} top-2 left-2 border-t-2 border-l-2`} aria-hidden="true" />
+      <span className={`${c} top-2 right-2 border-t-2 border-r-2`} aria-hidden="true" />
+      <span className={`${c} bottom-2 left-2 border-b-2 border-l-2`} aria-hidden="true" />
+      <span className={`${c} bottom-2 right-2 border-b-2 border-r-2`} aria-hidden="true" />
     </>
   );
 }
 
-/* ── 02 Innovation — Die Bühne ─────────────────────────────────────────── */
-const STAGE_MS = 5000;
-
-function Stage({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void }) {
+function Viewer({ items, variant, onOpen, slider, sliderInfo, sliderThumb }: { items: Item[]; variant: Variant; onOpen: (i: number) => void; slider?: ReactNode; sliderInfo?: { tag: string; title: string; sub: string }; sliderThumb?: string }) {
   const motionPaused = useMotionPaused();
   const { ref, inView } = useInView<HTMLDivElement>(0.5);
+  // With a slider (POS) the slider is piece 0; image pieces follow
+  const offset = slider ? 1 : 0;
+  const total = items.length + offset;
   const [index, setIndex] = useState(0);
   const [hold, setHold] = useState(false);
-  const running = inView && !hold && !motionPaused;
+  const stripRef = useRef<HTMLDivElement>(null);
+  const autoplay = variant === 'innovation';
+  const running = autoplay && inView && !hold && !motionPaused;
 
   useEffect(() => {
     if (!running) return;
-    const timer = window.setTimeout(() => setIndex((v) => (v + 1) % items.length), STAGE_MS);
+    const timer = window.setTimeout(() => setIndex((v) => (v + 1) % total), AUTOPLAY_MS);
     return () => window.clearTimeout(timer);
-  }, [running, index, items.length]);
+  }, [running, index, total]);
 
-  const item = items[index];
-  const go = (d: number) => setIndex((v) => (v + d + items.length) % items.length);
+  // Keep the active thumbnail in view
+  useEffect(() => {
+    const strip = stripRef.current;
+    const el = strip?.children[index] as HTMLElement | undefined;
+    if (strip && el) strip.scrollTo({ left: el.offsetLeft - strip.offsetLeft - strip.clientWidth / 2 + el.clientWidth / 2, behavior: 'smooth' });
+  }, [index]);
+
+  const go = (d: number) => setIndex((v) => (v + d + total) % total);
+  const isSlider = slider && index === 0;
+  const item = isSlider ? null : items[index - offset];
+  const info = isSlider ? sliderInfo : item;
+
+  const stageBg: React.CSSProperties = variant === 'ci'
+    ? { background: '#fafaf7', backgroundImage: 'linear-gradient(oklch(var(--foreground-950) / 0.05) 1px, transparent 1px), linear-gradient(90deg, oklch(var(--foreground-950) / 0.05) 1px, transparent 1px)', backgroundSize: '24px 24px' }
+    : { background: 'oklch(0.13 0.005 118)' };
 
   return (
-    <div ref={ref} className="relative overflow-hidden bg-foreground-950 h-full" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)} onFocus={() => setHold(true)} onBlur={() => setHold(false)}>
-      <button type="button" key={item.id} onClick={() => onOpen(index)} className="kr-stage-in absolute inset-0 w-full h-full cursor-zoom-in" aria-label={`${item.title} im Vollbild öffnen`}>
-        <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
-      </button>
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, transparent 22%, transparent 45%, rgba(0,0,0,0.85) 100%)' }} />
-
-      <div className="absolute top-0 left-0 right-0 flex gap-1.5 p-4 md:p-5">
-        {items.map((it, i) => (
-          <button key={it.id} type="button" onClick={() => setIndex(i)} className="flex-1 h-6 flex items-center cursor-pointer" aria-label={it.title} aria-current={i === index}>
-            <span className="relative block w-full h-[3px] bg-white/25 overflow-hidden">
-              {i < index && <span className="absolute inset-0 bg-primary-500" />}
-              {i === index && (
-                running
-                  ? <span key={`${index}-run`} className="kr-stage-progress absolute inset-0 bg-primary-500" style={{ animationDuration: `${STAGE_MS}ms` }} />
-                  : <span className="absolute inset-y-0 left-0 w-1/3 bg-primary-500" />
-              )}
-            </span>
+    <div
+      ref={ref}
+      className="h-full flex flex-col min-h-0"
+      onMouseEnter={() => setHold(true)}
+      onMouseLeave={() => setHold(false)}
+      onKeyDown={(e) => { if (e.key === 'ArrowLeft') go(-1); if (e.key === 'ArrowRight') go(1); }}
+    >
+      {/* Stage — the piece shown whole (object-contain), blurred copy fills the rest */}
+      <div className="relative flex-1 min-h-0 overflow-hidden" style={stageBg}>
+        {isSlider ? (
+          <div className="absolute inset-0">{slider}</div>
+        ) : item && (
+          <button type="button" key={item.id} onClick={() => onOpen(index - offset)} className="kr-stage-in absolute inset-0 w-full h-full cursor-zoom-in" aria-label={`${item.title} im Vollbild öffnen`}>
+            {variant !== 'ci' && <img src={item.src} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover scale-110" style={{ filter: 'blur(22px) brightness(0.45)' }} />}
+            <img src={item.src} alt={item.title} className={`relative w-full h-full object-contain ${variant === 'ci' ? 'p-5 md:p-10' : ''}`} />
           </button>
-        ))}
+        )}
+
+        {variant === 'ci' && !isSlider && <CropMarks />}
+        {variant === 'konzeption' && !isSlider && (
+          <span className="absolute top-0 left-1/2 w-24 h-6 bg-primary-500/90 pointer-events-none z-10" style={{ transform: 'translate(-50%, -30%) rotate(-3deg)' }} aria-hidden="true" />
+        )}
+
+        {/* Auto-play progress (Innovation) */}
+        {autoplay && (
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-white/15 z-10" aria-hidden="true">
+            {running
+              ? <span key={`${index}-run`} className="kr-stage-progress block h-full bg-primary-500" style={{ animationDuration: `${AUTOPLAY_MS}ms` }} />
+              : <span className="block h-full w-1/3 bg-primary-500" />}
+          </div>
+        )}
+
+        {/* Prev / next */}
+        {total > 1 && !isSlider && (
+          <>
+            <button type="button" onClick={() => go(-1)} className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-black/45 text-white hover:bg-primary-500 hover:text-foreground-950 backdrop-blur-sm transition-colors cursor-pointer" aria-label="Vorheriges"><i className="ri-arrow-left-line text-lg" aria-hidden="true" /></button>
+            <button type="button" onClick={() => go(1)} className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-black/45 text-white hover:bg-primary-500 hover:text-foreground-950 backdrop-blur-sm transition-colors cursor-pointer" aria-label="Nächstes"><i className="ri-arrow-right-line text-lg" aria-hidden="true" /></button>
+          </>
+        )}
+        {isSlider && total > 1 && (
+          <button type="button" onClick={() => go(1)} className="absolute right-6 bottom-6 z-10 inline-flex items-center gap-2 bg-foreground-950 text-white px-4 py-2.5 text-xs font-black hover:bg-primary-500 hover:text-foreground-950 transition-colors cursor-pointer">
+            Weitere Arbeiten <i className="ri-arrow-right-line" aria-hidden="true" />
+          </button>
+        )}
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-9 flex items-end justify-between gap-6 pointer-events-none">
-        <div key={item.id} className="kr-stage-in min-w-0">
-          <span className="inline-block bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 mb-4">{item.tag}</span>
-          <p className="text-white font-black uppercase leading-[0.95] mb-2 hyphens-auto [overflow-wrap:anywhere]" lang="de" style={{ fontSize: 'clamp(1.3rem, 4vw, 3.4rem)', letterSpacing: '-0.03em' }}>{item.title}</p>
-          <p className="text-white/65 text-sm md:text-base">{item.sub}</p>
+      {/* Caption bar */}
+      <div className="flex items-center justify-between gap-4 py-3 flex-shrink-0 min-w-0">
+        <div className="flex items-center gap-3 min-w-0">
+          {info?.tag && <span className="flex-shrink-0 bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{info.tag}</span>}
+          <p className="min-w-0 truncate">
+            <span className="text-foreground-950 font-black text-sm md:text-base">{info?.title ?? ''}</span>
+            {info?.sub && <span className="hidden md:inline text-foreground-500 text-sm"> — {info.sub}</span>}
+          </p>
         </div>
-        <div className="hidden sm:flex items-center gap-2 pointer-events-auto flex-shrink-0">
-          <button type="button" onClick={() => go(-1)} className="w-11 h-11 flex items-center justify-center border border-white/25 text-white hover:bg-primary-500 hover:text-foreground-950 hover:border-primary-500 transition-colors cursor-pointer" aria-label="Vorheriges"><i className="ri-arrow-left-line text-lg" aria-hidden="true" /></button>
-          <button type="button" onClick={() => go(1)} className="w-11 h-11 flex items-center justify-center border border-white/25 text-white hover:bg-primary-500 hover:text-foreground-950 hover:border-primary-500 transition-colors cursor-pointer" aria-label="Nächstes"><i className="ri-arrow-right-line text-lg" aria-hidden="true" /></button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ── 03 CI — Das Markenblatt ───────────────────────────────────────────── */
-function CropMarks() {
-  const c = 'absolute w-3 h-3 border-foreground-950/60 pointer-events-none';
-  return (
-    <>
-      <span className={`${c} -top-1.5 -left-1.5 border-t border-l`} aria-hidden="true" />
-      <span className={`${c} -top-1.5 -right-1.5 border-t border-r`} aria-hidden="true" />
-      <span className={`${c} -bottom-1.5 -left-1.5 border-b border-l`} aria-hidden="true" />
-      <span className={`${c} -bottom-1.5 -right-1.5 border-b border-r`} aria-hidden="true" />
-    </>
-  );
-}
-
-// 3 × 3 on desktop: the key figure takes 2 × 2, the other five fill the rest. Mobile: 2 columns, key figure full width.
-const SHEET_CELLS = ['col-span-2 lg:row-span-2', '', '', '', '', ''];
-
-function BrandSheet({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void }) {
-  return (
-    <div className="relative bg-white h-full flex flex-col p-4 md:p-6" style={{ border: '1px solid oklch(var(--foreground-950) / 0.12)', backgroundImage: 'linear-gradient(oklch(var(--foreground-950) / 0.045) 1px, transparent 1px), linear-gradient(90deg, oklch(var(--foreground-950) / 0.045) 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
-      <div className="flex items-center justify-between gap-4 pb-3 mb-4 md:mb-5 flex-shrink-0" style={{ borderBottom: '2px solid oklch(var(--foreground-950))' }}>
-        <span className="text-foreground-950 font-black text-sm uppercase tracking-tight">{items[0]?.tag}</span>
-        <span className="flex items-center gap-1.5" aria-hidden="true">
-          <span className="w-4 h-4 bg-foreground-950" /><span className="w-4 h-4 bg-primary-500" /><span className="w-4 h-4 bg-white" style={{ border: '1px solid oklch(var(--foreground-950) / 0.2)' }} />
-        </span>
+        <span className="flex-shrink-0 text-foreground-500 text-xs font-bold tabular-nums">{String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
       </div>
 
-      <div className="flex-1 min-h-0 grid grid-cols-2 grid-rows-4 lg:grid-cols-3 lg:grid-rows-3 gap-x-4 md:gap-x-6 gap-y-3 md:gap-y-4">
-        {items.map((item, i) => (
-          <figure key={item.id} className={`flex flex-col min-w-0 min-h-0 ${SHEET_CELLS[i]}`}>
-            <button type="button" onClick={() => onOpen(i)} className="relative flex-1 min-h-0 cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
-              <CropMarks />
-              <span className="absolute inset-0 overflow-hidden bg-foreground-100">
-                <img src={item.src} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]" loading="lazy" />
-              </span>
+      {/* Strip — every piece of the chapter */}
+      <div ref={stripRef} className="kr-spreads flex gap-2 overflow-x-auto flex-shrink-0 pb-0.5" role="tablist" aria-label="Arbeiten">
+        {slider && (
+          <button type="button" onClick={() => setIndex(0)} role="tab" aria-selected={index === 0} className={`relative flex-shrink-0 w-[84px] md:w-[108px] h-[52px] md:h-[64px] overflow-hidden bg-foreground-950 cursor-pointer transition-opacity ${index === 0 ? 'ring-2 ring-inset ring-primary-500' : 'opacity-55 hover:opacity-90'}`} aria-label="CGI vs. Realität">
+            {sliderThumb && <img src={sliderThumb} alt="" className="w-full h-full object-cover opacity-70" loading="lazy" draggable={false} />}
+            <span className="absolute inset-x-0 bottom-0 bg-primary-500 text-foreground-950 text-[9px] font-black uppercase tracking-wider text-center py-0.5">CGI ↔ Real</span>
+          </button>
+        )}
+        {items.map((it, i) => {
+          const isActive = index === i + offset;
+          return (
+            <button key={it.id} type="button" onClick={() => setIndex(i + offset)} role="tab" aria-selected={isActive} className={`relative flex-shrink-0 w-[84px] md:w-[108px] h-[52px] md:h-[64px] overflow-hidden bg-foreground-950 cursor-pointer transition-opacity ${isActive ? 'opacity-100' : 'opacity-55 hover:opacity-90'}`} aria-label={it.title}>
+              <img src={it.src} alt="" className="w-full h-full object-cover" loading="lazy" draggable={false} />
+              {isActive && <span className="absolute inset-0 ring-2 ring-inset ring-primary-500" aria-hidden="true" />}
             </button>
-            <figcaption className="mt-2 flex items-baseline gap-2 flex-shrink-0 min-w-0">
-              <span className="hidden sm:inline text-[10px] font-mono text-foreground-500 tabular-nums flex-shrink-0">Abb. {String(i + 1).padStart(2, '0')}</span>
-              <span className="text-foreground-950 font-black text-[12px] md:text-[13px] leading-tight truncate">{item.title}</span>
-            </figcaption>
-          </figure>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -323,7 +304,7 @@ function Spreads({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void
   );
 }
 
-/* ── 05 POS — Im Markt: slider and aisle side by side ──────────────────── */
+/* ── POS — CGI-vs-reality slider (first piece of the POS card) ─────────── */
 function BeforeAfter({ reality, cgi, t }: { reality: string; cgi: string; t: Record<string, string> }) {
   const [pos, setPos] = useState(50);
   const ref = useRef<HTMLDivElement>(null);
@@ -335,10 +316,6 @@ function BeforeAfter({ reality, cgi, t }: { reality: string; cgi: string; t: Rec
 
   return (
     <div className="h-full flex flex-col min-h-0">
-      <div className="flex items-baseline justify-between gap-3 mb-2.5 flex-shrink-0">
-        <p className="text-foreground-950 font-black text-sm md:text-base leading-tight truncate">{t['ba-title']}</p>
-        <p className="hidden md:block text-foreground-500 text-xs truncate">{t['ba-hint']}</p>
-      </div>
       <div
         ref={ref}
         className="relative flex-1 min-h-0 overflow-hidden select-none cursor-col-resize bg-foreground-950 touch-pan-y"
@@ -364,41 +341,6 @@ function BeforeAfter({ reality, cgi, t }: { reality: string; cgi: string; t: Rec
           <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-11 h-11 bg-primary-500 text-foreground-950 flex items-center justify-center"><i className="ri-arrow-left-right-line text-xl" aria-hidden="true" /></div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function Aisle({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void }) {
-  return (
-    <div className="kr-aisle h-full min-h-0">
-      <div className="h-full flex lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-3 overflow-x-auto lg:overflow-visible kr-spreads">
-        {items.map((item, i) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => onOpen(i)}
-            className="kr-facing relative flex-shrink-0 w-[34vw] sm:w-[24vw] lg:w-auto h-full min-h-0 flex flex-col text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-            style={{ ['--kr-turn' as string]: `${[18, 0, -18][i % 3]}deg` }}
-          >
-            <span className="block relative flex-1 min-h-0 overflow-hidden bg-foreground-950">
-              <img src={item.src} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-              <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/75 to-transparent" />
-              <span className="absolute left-2.5 bottom-2 right-2.5 text-white font-black text-[11px] md:text-[12px] leading-tight line-clamp-2">{item.title}</span>
-            </span>
-            <span className="block h-1.5 bg-foreground-950 flex-shrink-0" aria-hidden="true" />
-            <span className="block h-1 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function PosCard({ items, reality, cgi, t, onOpen }: { items: Item[]; reality: string; cgi: string; t: Record<string, string>; onOpen: (i: number) => void }) {
-  return (
-    <div className="h-full grid grid-cols-1 grid-rows-[1fr_120px] lg:grid-rows-1 lg:grid-cols-12 gap-4 lg:gap-6">
-      <div className="lg:col-span-7 min-h-0 min-w-0"><BeforeAfter reality={reality} cgi={cgi} t={t} /></div>
-      <div className="lg:col-span-5 min-h-0 min-w-0"><Aisle items={items} onOpen={onOpen} /></div>
     </div>
   );
 }
@@ -439,11 +381,11 @@ export default function KreationChapters({ indexIcons }: { indexIcons: Record<Ch
   const { images: beforeAfter } = useMediaStore('leistungen_kreation_before_after');
 
   const chapters: Record<ChapterId, Item[]> = {
-    konzeption: buildItems('konzeption', tKonz, secKonz, primary),
-    innovation: buildItems('innovation', tInno, secInno, primary),
-    ci: buildItems('ci', tCi, secCi, primary),
-    layout: buildItems('layout', tLay, secLay, primary),
-    pos: buildItems('pos', tPos, secPos, primary),
+    konzeption: buildItems('konzeption', tKonz, secKonz, primary, t['tab-konzeption'] ?? 'Konzeption'),
+    innovation: buildItems('innovation', tInno, secInno, primary, t['tab-innovation'] ?? 'Innovation'),
+    ci: buildItems('ci', tCi, secCi, primary, t['tab-ci'] ?? 'CI'),
+    layout: buildItems('layout', tLay, secLay, primary, t['tab-layout'] ?? 'Layout'),
+    pos: buildItems('pos', tPos, secPos, primary, t['tab-pos'] ?? 'POS'),
   };
   const reality = beforeAfter[0]?.url ? resolveImageUrl(beforeAfter[0].url) : BEFORE_AFTER_FALLBACK[0];
   const cgi = beforeAfter[1]?.url ? resolveImageUrl(beforeAfter[1].url) : BEFORE_AFTER_FALLBACK[1];
@@ -562,19 +504,19 @@ export default function KreationChapters({ indexIcons }: { indexIcons: Record<Ch
             {/* The deck */}
             <div ref={deckRef} className="kr-deck relative pt-4 lg:pt-0">
               <DeckCard id="konzeption" index={0} num={num('konzeption')} name={name('konzeption')} desc={desc('konzeption')}>
-                <Pinboard items={chapters.konzeption} onOpen={open('konzeption')} />
+                <Viewer variant="konzeption" items={chapters.konzeption} onOpen={open('konzeption')} />
               </DeckCard>
               <DeckCard id="innovation" index={1} num={num('innovation')} name={name('innovation')} desc={desc('innovation')}>
-                <Stage items={chapters.innovation} onOpen={open('innovation')} />
+                <Viewer variant="innovation" items={chapters.innovation} onOpen={open('innovation')} />
               </DeckCard>
               <DeckCard id="ci" index={2} num={num('ci')} name={name('ci')} desc={desc('ci')}>
-                <BrandSheet items={chapters.ci} onOpen={open('ci')} />
+                <Viewer variant="ci" items={chapters.ci} onOpen={open('ci')} />
               </DeckCard>
               <DeckCard id="layout" index={3} num={num('layout')} name={name('layout')} desc={desc('layout')}>
                 <Spreads items={chapters.layout} onOpen={open('layout')} />
               </DeckCard>
               <DeckCard id="pos" index={4} num={num('pos')} name={name('pos')} desc={desc('pos')}>
-                <PosCard items={chapters.pos} reality={reality} cgi={cgi} t={t} onOpen={open('pos')} />
+                <Viewer variant="pos" items={chapters.pos} onOpen={open('pos')} slider={reality && cgi ? <BeforeAfter reality={reality} cgi={cgi} t={t} /> : undefined} sliderInfo={{ tag: t['ba-eyebrow'] ?? '', title: t['ba-title'] ?? '', sub: t['ba-hint'] ?? '' }} sliderThumb={cgi} />
               </DeckCard>
             </div>
           </div>
