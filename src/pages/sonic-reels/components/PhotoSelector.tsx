@@ -116,11 +116,11 @@ export default function PhotoSelector({
                 aria-current={isActive}
               >
                 {/* Thumbnail */}
-                <div className="relative overflow-hidden" style={{ height: 46 }}>
+                <div className="relative overflow-hidden bg-black" style={{ height: 46 }}>
                   <img
                     src={photo.src}
                     alt={photo.caption}
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-contain"
                     draggable={false}
                     style={{
                       filter: isActive ? 'none' : 'grayscale(0.65) brightness(0.55)',

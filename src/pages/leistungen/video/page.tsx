@@ -11,6 +11,7 @@ import { useLeistungenText } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
 import { useMediaStore } from '@/lib/mediaStore';
 import { getYouTubeId } from '@/lib/youtube';
+import { isVideoFileUrl } from '@/lib/videoFile';
 
 const NAV_ITEMS = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
@@ -52,7 +53,7 @@ export default function VideoPage() {
   const cta = useCtaText();
   // The video block is hidden while no YouTube link is set — hide its nav entry too
   const { images: ytSection } = useMediaStore('leistungen_video_youtube');
-  const hasVideo = !!(getYouTubeId(ytSection[0]?.url) || getYouTubeId(ytSection[0]?.caption));
+  const hasVideo = !!(isVideoFileUrl(ytSection[0]?.url) || getYouTubeId(ytSection[0]?.url) || getYouTubeId(ytSection[0]?.caption));
   const navItems = hasVideo ? NAV_ITEMS : NAV_ITEMS.filter((item) => item.id !== 'video');
 
   return (

@@ -120,125 +120,126 @@ export default function ServiceGrid({ sectionRef }: Props) {
           </div>
         </div>
 
-        {/* Tab row — continuous hairline frame joining into content below (no gap, no border-bottom) */}
-        <div
-          className="flex flex-wrap overflow-hidden"
-          style={{ border: '1px solid oklch(0.885 0.004 110)', borderBottom: 'none' }}
-          role="tablist"
-          aria-label="Leistungskategorien"
-        >
-          {services.map((item, i) => {
-            const isActive = i === active;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setActive(i)}
-                className="whitespace-nowrap inline-flex items-center gap-2 text-xs md:text-sm font-black uppercase tracking-wide transition-all duration-200 cursor-pointer px-4 md:px-6 py-3.5"
-                style={{
-                  background: isActive ? 'oklch(0.16 0.006 118)' : '#fff',
-                  color: isActive ? 'oklch(0.81 0.19 115)' : 'oklch(0.42 0.006 260)',
-                  borderRight: i < 3 ? '1px solid oklch(0.885 0.004 110)' : undefined,
-                }}
-              >
-                <span className="tabular-nums" style={{ color: isActive ? 'oklch(0.81 0.19 115)' : 'oklch(0.55 0.08 115)' }}>
-                  {item.number}
-                </span>
-                {item.category}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Image + caption — one continuous border joining the tab row above */}
-        <div style={{ border: '1px solid oklch(0.885 0.004 110)', borderTop: 'none' }}>
-        <div className="relative overflow-hidden bg-foreground-950">
-          <div className="relative aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/10] md:min-h-[520px] xl:min-h-[560px]">
-            <img
-              key={s.id}
-              src={resolvedImages[active]}
-              alt={`${s.category} — ${s.headline}`}
-              className="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500"
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-            <span className="absolute top-4 left-5 px-3 py-1 bg-primary-500 text-foreground-950 text-xs font-black tracking-widest">
-              {s.number}
-            </span>
-          </div>
-        </div>
-
-        {/* Bottom caption bar — attached to the image */}
-        <div className="bg-foreground-950 text-white">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 md:gap-6 px-5 md:px-8 py-6 md:py-8">
-            <div className="min-w-0">
-              <p className="text-[11px] md:text-xs font-black uppercase tracking-[0.18em] text-primary-500 mb-2">
-                {s.category}
-              </p>
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-black leading-tight mb-2">
-                {s.headline}
-              </h3>
-              <p className="text-sm text-white/75 leading-relaxed max-w-2xl">
-                {s.sub}
-              </p>
-
-              <div className="flex flex-wrap gap-2 mt-4">
-                {s.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 bg-white/10 border border-white/20 text-white/90 whitespace-nowrap"
-                  >
-                    {tag}
+        {/* ── Card — same card language as the homepage "Unsere Leistungen" (28.10.2026):
+             equal-column selector strip, 16:9 image with burned-in title, light caption bar ── */}
+        <div className="relative overflow-hidden" style={{ background: '#ffffff', border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
+          {/* Selector strip — 4 equal columns */}
+          <div
+            className="grid grid-cols-2 md:grid-cols-4"
+            style={{ borderBottom: '1px solid oklch(var(--foreground-950) / 0.1)' }}
+            role="tablist"
+            aria-label="Leistungskategorien"
+          >
+            {services.map((item, i) => {
+              const isActive = i === active;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActive(i)}
+                  className="flex flex-col items-center justify-center gap-1.5 py-3.5 px-2 cursor-pointer transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500"
+                  style={{
+                    background: isActive ? 'oklch(var(--foreground-950))' : '#fff',
+                    borderRight: '1px solid oklch(var(--foreground-950) / 0.08)',
+                    borderBottom: isActive ? '2px solid oklch(var(--primary-500))' : '2px solid transparent',
+                    minHeight: '60px',
+                  }}
+                >
+                  <span className="font-black leading-none tabular-nums" style={{ fontSize: '14px', letterSpacing: '-0.03em', color: isActive ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-300))' }}>
+                    {item.number}
                   </span>
-                ))}
+                  <span className="text-center leading-tight text-[9px] sm:text-[10px] font-black uppercase tracking-[0.08em]" style={{ color: isActive ? 'rgba(255,255,255,0.7)' : 'oklch(var(--foreground-500))' }}>
+                    {item.category}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Image — 16/9 with the headline burned in, like the homepage */}
+          <div className="relative overflow-hidden bg-foreground-950">
+            <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+              <img
+                key={s.id}
+                src={resolvedImages[active]}
+                alt={`${s.category} — ${s.headline}`}
+                className="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-gradient-to-t from-black/75 to-transparent pointer-events-none" />
+              <span className="absolute top-4 left-5 px-3 py-1 bg-primary-500 text-foreground-950 text-xs font-black tracking-widest">
+                {s.number}
+              </span>
+              <div className="absolute bottom-0 left-0 right-0 px-5 pb-4 md:px-8 md:pb-5 pointer-events-none">
+                <p className="font-black text-white leading-none uppercase tracking-tight" style={{ fontSize: 'clamp(18px, 3.5vw, 28px)', letterSpacing: '-0.025em', textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
+                  {s.headline}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Caption bar — light, matches the homepage micro-bar language */}
+          <div className="px-5 md:px-8 py-5 md:py-6" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.08)' }}>
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
+              <div className="min-w-0">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-2" style={{ color: 'oklch(0.55 0.08 115)' }}>
+                  {s.category}
+                </p>
+                <p className="text-sm text-foreground-600 leading-relaxed mb-4 max-w-2xl">
+                  {s.sub}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {s.tags.map((tag) => (
+                    <span key={tag} className="text-[9px] font-black px-2 py-0.5 uppercase tracking-widest text-foreground-950 bg-primary-500/10 border border-primary-500/25 whitespace-nowrap">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => handleNav(s.ctaLink)}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 font-black text-xs uppercase tracking-[0.14em] transition-all duration-200 cursor-pointer whitespace-nowrap hover:bg-primary-500 hover:text-foreground-950"
+                  style={{ background: 'oklch(var(--foreground-950))', color: '#fff', minHeight: '44px' }}
+                >
+                  {s.cta}
+                  <i className="ri-arrow-right-line text-sm"></i>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleNav(s.secondaryLink)}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 font-black text-xs uppercase tracking-[0.14em] transition-colors duration-200 cursor-pointer whitespace-nowrap border-2 border-foreground-950/12 text-foreground-950/70 hover:border-foreground-950 hover:text-foreground-950"
+                  style={{ minHeight: '44px' }}
+                >
+                  {s.secondaryCta}
+                  <i className="ri-arrow-right-up-line text-sm"></i>
+                </button>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
-              <button
-                type="button"
-                onClick={() => handleNav(s.ctaLink)}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary-500 text-foreground-950 font-black text-xs uppercase tracking-widest cursor-pointer whitespace-nowrap transition-colors duration-300 hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-950"
-              >
-                {s.cta}
-                <i className="ri-arrow-right-line"></i>
-              </button>
-              <button
-                type="button"
-                onClick={() => handleNav(s.secondaryLink)}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 text-primary-500 font-black text-xs uppercase tracking-widest cursor-pointer whitespace-nowrap transition-colors duration-300 hover:text-white border border-white/15 hover:border-primary-500/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground-950"
-              >
-                {s.secondaryCta}
-                <i className="ri-arrow-right-up-line text-sm"></i>
-              </button>
+            {/* Progress indicator */}
+            <div className="flex items-center gap-1.5 mt-5">
+              {services.map((item, i) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  aria-label={item.category}
+                  className="tap-target h-1 cursor-pointer transition-all duration-300"
+                  style={{ width: i === active ? 32 : 12, background: i === active ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-950) / 0.12)' }}
+                />
+              ))}
+              <span className="ml-3 text-[10px] font-black uppercase tracking-[0.2em] text-foreground-400 tabular-nums">
+                {String(active + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}
+              </span>
             </div>
           </div>
-
-          {/* Progress indicator */}
-          <div className="flex items-center gap-1.5 px-5 md:px-8 pb-5">
-            {services.map((item, i) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setActive(i)}
-                aria-label={item.category}
-                className="tap-target h-1 cursor-pointer transition-all duration-300"
-                style={{
-                  width: i === active ? 32 : 12,
-                  background: i === active ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.15)',
-                }}
-              />
-            ))}
-            <span className="ml-3 text-[10px] font-black uppercase tracking-[0.2em] text-white/30 tabular-nums">
-              {String(active + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}
-            </span>
-          </div>
         </div>
-
-        </div>{/* end continuous-border frame */}
 
       </div>
     </section>

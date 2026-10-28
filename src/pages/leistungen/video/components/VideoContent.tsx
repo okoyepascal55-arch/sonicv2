@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { CONTACT_EMAIL } from '@/lib/contact';
@@ -8,6 +8,8 @@ import ChallengeSection from '@/components/feature/ChallengeSection';
 import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { getYouTubeId, youTubeEmbedUrl } from '@/lib/youtube';
+import { isVideoFileUrl } from '@/lib/videoFile';
+import { useMotionPaused } from '@/lib/motion';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
 
@@ -66,7 +68,7 @@ const FORMATS = [
   {
     icon: 'ri-instagram-line',
     title: 'Social Commerce',
-    desc: 'Angebote auf Social Channels mit direkter Kaufoption. Reichweite und Conversion in einem Kanal.',
+    desc: 'Angebote auf Social Channels mit direkter Kaufoption — inklusive TikTok Live Shopping aus unserem Studio. Reichweite und Conversion in einem Kanal.',
     img: '',
     tag: 'Social',
   },
@@ -114,9 +116,13 @@ export default function VideoContent() {
   const tSolutionSub = useText('leistungen_video_content', 'video-solution-sub', 'Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit. All in One: Regisseur, Moderator, Verkäufer.');
   const tAdvantagesHeading = useText('leistungen_video_content', 'video-advantages-heading', 'Darum Live Video');
   const tPhygitalHeading = useText('leistungen_video_content', 'video-phygital-heading', 'Phygital optimal nutzen');
-  // YouTube URL from MEDIA dashboard (caption field of leistungen_video_youtube)
+  // Showcase video from MEDIA dashboard (Live Video slot): an uploaded video file (autoplays muted, looped)
+  // or, as fallback, a YouTube link (URL or caption field).
   const { images: ytSection } = useMediaStore('leistungen_video_youtube');
-  const ytId = getYouTubeId(ytSection[0]?.url) || getYouTubeId(ytSection[0]?.caption);
+  const videoFileUrl = isVideoFileUrl(ytSection[0]?.url) ? resolveImageUrl(ytSection[0].url) : '';
+  const ytId = videoFileUrl ? '' : (getYouTubeId(ytSection[0]?.url) || getYouTubeId(ytSection[0]?.caption));
+  const hasShowcase = !!(videoFileUrl || ytId);
+  const tTik = useLeistungenText('leistungen_video_tiktok');
   // Texts of the video block: Dashboard → Text → Live Video — Video-Block
   const tVid = useLeistungenText('leistungen_video_showcase');
   const tYoutubeTitle = tVid['title'];
@@ -204,30 +210,26 @@ export default function VideoContent() {
 
       <WoodenDivider />
 
-      {/* ── Video showcase — third section: shows the solution in action. Link is set in Dashboard → Media → Live Video.
-           Without a link the whole block is hidden (no placeholder for visitors). ── */}
-      {ytId && (
+      {/* ── TikTok Live Shopping — slim hint band (28.10.2026). Texts: Dashboard → Text → Live Video — TikTok Live Shopping ── */}
+      <TikTokLiveHint t={tTik} />
+
+      {/* ── Video showcase — shows the solution in action. Media: Dashboard → Media → Live Video.
+           Uploaded video file = autoplay (muted, loop, inline); YouTube link = fallback (autoplays muted).
+           Without media the whole block is hidden (no placeholder for visitors). ── */}
+      {hasShowcase && (
       <section id="video" className="sonic-section-md bg-foreground-950 px-4 md:px-6">
-        <div className="sonic-container max-w-4xl">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-5">
+        <div className="sonic-container">
+          <div className="mb-8 md:mb-10">
+            <div className="flex items-center gap-3 mb-5">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
               <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tVid['eyebrow']}</span>
             </div>
-            <h2 className="sonic-h2 text-white mb-3">{tYoutubeTitle}</h2>
-            <p className="text-foreground-400 text-sm md:text-base max-w-xl mx-auto">{tVid['subline']}</p>
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+              <h2 className="sonic-h2 text-white">{tYoutubeTitle}</h2>
+              <p className="text-[15px] md:text-[16px] leading-relaxed max-w-md text-foreground-400">{tVid['subline']}</p>
+            </div>
           </div>
-          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-            <iframe
-              src={youTubeEmbedUrl(ytId)}
-              className="absolute inset-0 w-full h-full"
-              style={{ border: 'none' }}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title={tYoutubeTitle}
-              loading="lazy"
-            />
-          </div>
+          <ShowcasePlayer fileUrl={videoFileUrl} ytId={ytId} title={tYoutubeTitle} />
         </div>
       </section>
       )}
@@ -332,7 +334,7 @@ export default function VideoContent() {
           </div>
 
           <div className="border border-primary-500/15 overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-white/5 border-b border-primary-500/15">
+            <div className="grid grid-cols-[1.4fr_1fr_1fr] bg-white/5 border-b border-primary-500/15">
               <div className="p-4 text-white/40 text-xs font-black uppercase tracking-wider"></div>
               <div className="p-4 text-center border-l border-primary-500/15">
                 <div className="flex items-center justify-center gap-2">
@@ -348,7 +350,7 @@ export default function VideoContent() {
               </div>
             </div>
             {PHYGITAL_COMPARE.map((row, i) => (
-              <div key={i} className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-b border-white/5 ${i % 2 === 0 ? '' : 'bg-white/2'}`}>
+              <div key={i} className={`grid grid-cols-[1.4fr_1fr_1fr] border-b border-white/5 ${i % 2 === 0 ? '' : 'bg-white/[0.02]'}`}>
                 <div className="p-4 text-white/60 text-xs font-semibold">{tPhy[row.key]}</div>
                 <div className="p-4 flex items-center justify-center border-l border-white/5">
                   {row.video
@@ -467,5 +469,123 @@ export default function VideoContent() {
       />
 
     </>
+  );
+}
+
+
+/* ── Showcase player — framed like the SRT "app window" ─────────────────── */
+function ShowcasePlayer({ fileUrl, ytId, title }: { fileUrl: string; ytId: string; title: string }) {
+  const motionPaused = useMotionPaused();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [muted, setMuted] = useState(true);
+
+  // Autoplay only while on screen (saves bandwidth/CPU), never when motion is paused.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !fileUrl) return;
+    if (motionPaused) { v.pause(); return; }
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) v.play().catch(() => { /* autoplay blocked — controls remain */ });
+      else v.pause();
+    }, { threshold: 0.25 });
+    obs.observe(v);
+    return () => obs.disconnect();
+  }, [fileUrl, motionPaused]);
+
+  const toggleMute = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+    if (!v.muted) v.play().catch(() => {});
+  };
+
+  return (
+    <div style={{ border: '1px solid rgba(255,255,255,0.12)' }}>
+      {/* Window bar */}
+      <div className="flex items-center justify-between px-4 py-2.5" style={{ borderBottom: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.03)' }}>
+        <span className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 bg-primary-500 rounded-full srt-live-dot" aria-hidden="true" />
+          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/80">Live aus dem Studio</span>
+        </span>
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/35 hidden sm:inline">Sonic Live Video</span>
+      </div>
+
+      <div className="relative w-full bg-black" style={{ aspectRatio: '16 / 9' }}>
+        {fileUrl ? (
+          <>
+            <video
+              ref={videoRef}
+              src={fileUrl}
+              className="absolute inset-0 w-full h-full object-cover"
+              autoPlay={!motionPaused}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              controls={motionPaused}
+              aria-label={title}
+            />
+            <button
+              type="button"
+              onClick={toggleMute}
+              className="absolute bottom-4 right-4 inline-flex items-center gap-2 bg-black/60 backdrop-blur-sm text-white px-3 py-2 text-[10px] font-black uppercase tracking-widest hover:bg-primary-500 hover:text-foreground-950 transition-colors cursor-pointer"
+              aria-label={muted ? 'Ton an' : 'Ton aus'}
+            >
+              <i className={muted ? 'ri-volume-mute-line text-sm' : 'ri-volume-up-line text-sm'} aria-hidden="true" />
+              {muted ? 'Ton an' : 'Ton aus'}
+            </button>
+          </>
+        ) : (
+          <iframe
+            src={`${youTubeEmbedUrl(ytId)}?autoplay=1&mute=1&loop=1&playlist=${ytId}&playsinline=1&rel=0&modestbranding=1`}
+            className="absolute inset-0 w-full h-full"
+            style={{ border: 'none' }}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title={title}
+            loading="lazy"
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── TikTok Live Shopping hint — slim dark band, not a full section ─────── */
+function TikTokLiveHint({ t }: { t: Record<string, string> }) {
+  if (!t['heading']) return null;
+  return (
+    <section id="tiktok-live" className="bg-foreground-950 px-4 md:px-6 py-8 md:py-10" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="sonic-container">
+        <div className="relative overflow-hidden flex flex-col md:flex-row md:items-center gap-5 md:gap-8 p-5 md:p-7" style={{ border: '1px solid oklch(0.81 0.19 115 / 0.35)', background: 'linear-gradient(100deg, oklch(0.81 0.19 115 / 0.08), transparent 60%)' }}>
+          <div className="flex items-center gap-4 flex-shrink-0">
+            <div className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-primary-500 text-foreground-950">
+              <i className="ri-tiktok-fill text-2xl md:text-[28px]" aria-hidden="true" />
+            </div>
+            {t['badge'] && (
+              <span className="inline-flex items-center gap-2 border border-primary-500/40 px-2.5 py-1">
+                <span className="w-1.5 h-1.5 bg-primary-500 rounded-full srt-live-dot" aria-hidden="true" />
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary-500">{t['badge']}</span>
+              </span>
+            )}
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-white font-black text-lg md:text-xl uppercase tracking-tight leading-tight mb-1.5">{t['heading']}</h3>
+            {t['text'] && <p className="text-white/60 text-sm leading-relaxed max-w-2xl">{t['text']}</p>}
+          </div>
+          {t['button'] && (
+            <a
+              href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('TikTok Live Shopping anfragen')}`}
+              className="inline-flex items-center justify-center gap-2 bg-primary-500 text-foreground-950 px-6 py-3 font-black text-xs uppercase tracking-[0.14em] hover:bg-white transition-colors whitespace-nowrap cursor-pointer flex-shrink-0 self-start md:self-center"
+              style={{ minHeight: '44px' }}
+            >
+              {t['button']}
+              <i className="ri-arrow-right-line" aria-hidden="true" />
+            </a>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }

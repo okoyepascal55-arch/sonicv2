@@ -8,10 +8,18 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('secondary', 'Button 2 (Link POS Full Service)', 'cta', 'POS Full Service'),
   ]),
   section('leistungen_video_showcase', 'Live Video — Video-Block', P,
-    'Video-Block unter der Lösung. Das Video selbst kommt aus Media → Live Video (YouTube-Link). Ohne Link wird der ganze Block ausgeblendet.', [
+    'Video-Block unter der Lösung. Das Video selbst kommt aus Media → Live Video (Video-Datei MP4 = Autoplay, oder YouTube-Link). Ohne Video wird der ganze Block ausgeblendet.', [
       e('eyebrow', 'Video — Eyebrow', 'label', 'Video'),
       e('title', 'Video — Überschrift', 'heading', 'Sonic Live Video — Erlebe es in Aktion'),
       e('subline', 'Video — Subline', 'paragraph', 'Der Weg zur Kaufklarheit: So sieht Live-Video-Beratung aus — vom Studio bis zum Abverkauf.'),
+    ]),
+
+  section('leistungen_video_tiktok', 'Live Video — TikTok Live Shopping', P,
+    'Schmaler Hinweis-Streifen unter der Lösung: Live Shopping auf TikTok aus dem Sonic-Studio. Überschrift leer = Streifen ausgeblendet.', [
+      e('badge', 'Badge', 'label', 'Neu im Studio'),
+      e('heading', 'Überschrift', 'subheading', 'TikTok Live Shopping aus unserem Studio'),
+      e('text', 'Text', 'paragraph', 'Produkte live zeigen, Fragen im Chat direkt beantworten, Kaufimpulse sofort auslösen: Unser Studio-Team geht für Marken jetzt auch auf TikTok live.'),
+      e('button', 'Button', 'cta', 'Live Shopping anfragen'),
     ]),
 
   section('leistungen_video_advantages', 'Live Video — Vorteile', P,

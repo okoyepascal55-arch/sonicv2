@@ -54,12 +54,10 @@ export default function LeistungenPage() {
         <div id="service-grid">
           <StackedSectionReveal index={0} totalSections={4}><ServiceGrid sectionRef={gridRef} /></StackedSectionReveal>
         </div>
-        <WoodenDivider />
-
+        {/* Unsere Zahlen = slim wooden LIVE strip (as on SRT), no dividers needed around it */}
         <div id="zahlen">
-          <StackedSectionReveal index={1} totalSections={4}><LeistungenStats /></StackedSectionReveal>
+          <LeistungenStats />
         </div>
-        <WoodenDivider />
 
         <div id="schallmauer">
           <StackedSectionReveal index={2} totalSections={4}><SchallmauerWays /></StackedSectionReveal>

@@ -29,10 +29,21 @@ function PolaroidCard({
     >
       {/* Photo mask */}
       <div className="relative overflow-hidden rounded-[9px]" style={{ aspectRatio: '4 / 3' }}>
+        {/* Whole photo, never cropped (28.10.2026): a blurred copy fills the leftover space,
+            the photo itself sits on top with object-contain. */}
+        <img
+          src={photo.src}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover scale-110"
+          draggable={false}
+          style={{ filter: `${filter && filter !== 'none' ? filter + ' ' : ''}blur(16px) brightness(0.55)`, transition: 'filter 0.5s ease' }}
+          loading="lazy"
+        />
         <img
           src={photo.src}
           alt={photo.caption}
-          className="w-full h-full object-cover object-top"
+          className="relative w-full h-full object-contain"
           draggable={false}
           style={{ filter, transition: 'filter 0.5s ease' }}
           loading="lazy"

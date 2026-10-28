@@ -75,141 +75,131 @@ export default function EventsShowcase() {
  setLightboxOpen(true);
  };
 
+ const total = tab.images.length;
+ const step = (d: number) => setActiveImg((p) => (p + d + total) % total);
+
  return (
  <section id="events" className="sonic-section-lg bg-white px-4 md:px-6">
  <div className="sonic-container">
 
- {/* Header */}
+ {/* Header — heading left, subline right (same layout as SRT / Leistungen, 28.10.2026) */}
  <div className="mb-10">
  <div className="flex items-center gap-3 mb-5">
- <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0"aria-hidden="true"/>
- <span className="text-[11px] font-black uppercase tracking-[0.24em]"style={{ color: 'oklch(0.55 0.08 115)' }}>{tx.eyebrow}</span>
+ <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+ <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tx.eyebrow}</span>
  </div>
- <h2 className="sonic-h2 text-foreground-950 mb-2">
- {tx.heading}
- </h2>
- <p className="text-foreground-950/50 text-base">{tx.sub}</p>
+ <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+ <h2 className="sonic-h2 text-foreground-950">{tx.heading}</h2>
+ {tx.sub && <p className="text-[15px] md:text-[16px] leading-relaxed max-w-md text-foreground-500">{tx.sub}</p>}
+ </div>
  </div>
 
- {/* Pill tabs */}
- <div className="flex flex-wrap gap-2 mb-8 justify-center">
- {TABS.map((t, i) => (
+ {/* One framed card: selector strip → image + dark info panel */}
+ <div style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
+
+ {/* Selector strip — equal columns, active = dark with lime underline (site-wide tab language) */}
+ <div className="grid grid-cols-3" style={{ borderBottom: '1px solid oklch(var(--foreground-950) / 0.1)' }} role="tablist" aria-label={tx.eyebrow || 'Formate'}>
+ {TABS.map((t, i) => {
+ const isActive = activeTab === i;
+ return (
  <button
  key={t.id}
+ type="button"
+ role="tab"
+ aria-selected={isActive}
  onClick={() => handleTabChange(i)}
- className={`flex items-center gap-2 px-5 py-2.5 font-bold text-sm transition-all whitespace-nowrap cursor-pointer ${
- activeTab === i
- ? 'bg-white shadow-lg ring-2 ring-[#C8D400] text-primary-500'
- : 'bg-white/60 hover:bg-white hover:shadow-md ring-1 ring-foreground-200 hover:ring-[#C8D400]/50 text-foreground-600'
- }`}
- style={{ borderRadius: 0 }}
+ className="group flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 py-3.5 sm:py-4 px-2 cursor-pointer transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500"
+ style={{
+ background: isActive ? 'oklch(var(--foreground-950))' : '#fff',
+ borderRight: i < TABS.length - 1 ? '1px solid oklch(var(--foreground-950) / 0.08)' : undefined,
+ borderBottom: isActive ? '2px solid oklch(var(--primary-500))' : '2px solid transparent',
+ }}
  >
- <i className={`${t.icon} text-base`}></i>
- <span>{t.label}</span>
+ <span className="font-black tabular-nums leading-none text-[13px]" style={{ color: isActive ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-300))' }}>{String(i + 1).padStart(2, '0')}</span>
+ <i className={`${t.icon} text-lg leading-none ${isActive ? 'text-primary-500' : 'text-foreground-400 group-hover:text-foreground-950'}`} aria-hidden="true" />
+ <span className={`text-[10px] sm:text-xs font-black uppercase tracking-[0.12em] text-center leading-tight ${isActive ? 'text-white' : 'text-foreground-600 group-hover:text-foreground-950'}`}>{t.label}</span>
  </button>
- ))}
+ );
+ })}
  </div>
 
- {/* Main showcase */}
- <div
- key={activeTab}
- className="grid lg:grid-cols-12 border border-foreground-950/10"
- style={{ animation: 'fadeSlideIn 0.4s ease-out' }}
- >
- {/* Large main image — clickable for lightbox */}
- <div
- className="lg:col-span-8 relative overflow-hidden group cursor-pointer lg:h-[500px] h-[220px]"
- onClick={() => openLightbox(activeImg)}
- aria-label="Bild im Vollbild öffnen"
- >
+ <div key={activeTab} className="grid lg:grid-cols-12" style={{ animation: 'fadeSlideIn 0.4s ease-out' }}>
+
+ {/* Main image — click opens lightbox; arrows + counter */}
+ <div className="lg:col-span-8 relative overflow-hidden bg-foreground-950 group h-[260px] sm:h-[360px] lg:h-[520px]">
+ <button type="button" className="absolute inset-0 w-full h-full cursor-zoom-in" onClick={() => openLightbox(activeImg)} aria-label={`${tab.images[activeImg].title} im Vollbild öffnen`}>
  <img
  key={activeImg}
  src={tab.images[activeImg].img}
  alt={tab.images[activeImg].title}
- className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+ className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
  loading="lazy"
  decoding="async"
  style={{ animation: 'fadeIn 0.35s ease-out' }}
  />
- <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent"/>
- <div className="absolute top-4 left-4">
- <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">{tab.images[activeImg].tag}</span>
- </div>
- {/* Zoom hint */}
- <div className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
- <i className="ri-zoom-in-line text-white text-base"></i>
- </div>
- <div className="absolute bottom-0 left-0 right-0 p-6">
- <h3 className="text-xl font-black text-white mb-1">{tab.images[activeImg].title}</h3>
- <p className="text-white/60 text-sm">{tab.headline}</p>
- </div>
- {/* Thumbnail strip at bottom */}
- <div className="absolute bottom-0 right-0 flex gap-1 p-3"onClick={(e) => e.stopPropagation()}>
- {tab.images.map((img, i) => (
- <button
- key={i}
- onClick={() => setActiveImg(i)}
- className={`w-14 h-10 overflow-hidden cursor-pointer transition-all duration-300 flex-shrink-0 ${activeImg === i ? 'ring-2 ring-[#C8D400]' : 'opacity-50 hover:opacity-80'}`}
- >
- <img src={img.img} alt={img.title} className="w-full h-full object-cover object-top"loading="lazy"decoding="async"/>
  </button>
- ))}
- </div>
- </div>
-
- {/* Right info panel */}
- <div className="lg:col-span-4 bg-white border-l border-foreground-950/10 flex flex-col lg:h-[500px] overflow-y-auto">
- {/* Headline block */}
- <div className="bg-foreground-950 p-6">
- <div className="flex items-center gap-2 mb-3">
- <i className={`${tab.icon} text-primary-500 text-lg`}></i>
- <span className="text-primary-500 text-xs font-black uppercase tracking-widest">{tab.label}</span>
- </div>
- <h3 className="text-base font-black text-white mb-2">{tab.headline}</h3>
- <p className="text-white/55 text-xs leading-relaxed">{tab.sub}</p>
- </div>
-
- {/* Category pills */}
- <div className="p-6 flex-1">
- <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-4">{tx['label-categories']}</div>
- <div className="flex flex-wrap gap-2 mb-6">
- {tab.pills.map((pill, i) => (
- <span
- key={i}
- className="bg-white border border-foreground-950/10 text-foreground-950/70 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5"
- >
- {pill}
+ <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent pointer-events-none" />
+ <span className="absolute top-4 left-4 bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1 pointer-events-none">{tab.images[activeImg].tag}</span>
+ <span className="absolute top-4 right-4 bg-black/55 backdrop-blur-sm text-white text-[10px] font-black tracking-[0.2em] tabular-nums px-2.5 py-1 pointer-events-none">
+ {String(activeImg + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
  </span>
+ {total > 1 && (
+ <>
+ <button type="button" onClick={() => step(-1)} className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-black/35 text-white hover:bg-primary-500 hover:text-foreground-950 backdrop-blur-sm transition-colors cursor-pointer" aria-label="Vorheriges Bild"><i className="ri-arrow-left-line text-lg" /></button>
+ <button type="button" onClick={() => step(1)} className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-black/35 text-white hover:bg-primary-500 hover:text-foreground-950 backdrop-blur-sm transition-colors cursor-pointer" aria-label="Nächstes Bild"><i className="ri-arrow-right-line text-lg" /></button>
+ </>
+ )}
+ <div className="absolute bottom-0 left-0 right-0 px-5 pb-5 md:px-7 md:pb-6 pointer-events-none">
+ <p className="font-black text-white leading-none uppercase tracking-tight mb-2" style={{ fontSize: 'clamp(18px, 3vw, 28px)', letterSpacing: '-0.025em', textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>{tab.images[activeImg].title}</p>
+ <div className="flex items-center gap-1.5">
+ {tab.images.map((_, i) => (
+ <span key={i} className="h-1 transition-all duration-300" style={{ width: i === activeImg ? 28 : 10, background: i === activeImg ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.35)' }} />
  ))}
  </div>
+ </div>
+ </div>
 
- {/* Image nav grid — each thumbnail opens lightbox */}
- <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-3">{tx['label-examples']}</div>
- <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
- {tab.images.map((img, i) => (
- <button
- key={i}
- onClick={() => { setActiveImg(i); openLightbox(i); }}
- className={`relative overflow-hidden cursor-pointer transition-all duration-300 group ${activeImg === i ? 'ring-2 ring-[#C8D400]' : 'opacity-55 hover:opacity-85'}`}
- style={{ minHeight: '60px' }}
- aria-label={`${img.title} im Vollbild öffnen`}
- >
- <img src={img.img} alt={img.title} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"loading="lazy"decoding="async"style={{ minHeight: '60px' }} />
- <div className="absolute inset-0 bg-black/25"/>
- {/* Zoom hint on hover */}
- <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
- <i className="ri-zoom-in-line text-white text-lg drop-shadow-lg"></i>
+ {/* Dark info panel */}
+ <div className="lg:col-span-4 bg-foreground-950 text-white flex flex-col lg:h-[520px]" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
+ <div className="p-6 md:p-7" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+ <div className="flex items-center gap-2 mb-3">
+ <i className={`${tab.icon} text-primary-500 text-lg`} aria-hidden="true" />
+ <span className="text-primary-500 text-[11px] font-black uppercase tracking-[0.2em]">{tab.label}</span>
  </div>
- <div className="absolute bottom-1 left-1.5">
- <span className="text-white text-[9px] font-black">{img.tag}</span>
+ <h3 className="text-lg md:text-xl font-black text-white leading-tight mb-2">{tab.headline}</h3>
+ <p className="text-white/60 text-sm leading-relaxed">{tab.sub}</p>
  </div>
- {activeImg === i && (
- <div className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center bg-primary-500">
- <i className="ri-check-line text-foreground-950 text-[9px]"></i>
+
+ <div className="p-6 md:p-7 flex-1 flex flex-col gap-6 overflow-y-auto">
+ {tab.pills.length > 0 && (
+ <div>
+ <div className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mb-3">{tx['label-categories']}</div>
+ <div className="flex flex-wrap gap-1.5">
+ {tab.pills.map((pill, i) => (
+ <span key={i} className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 text-white/90 bg-primary-500/[0.12] border border-primary-500/30">{pill}</span>
+ ))}
+ </div>
  </div>
  )}
+
+ <div className="mt-auto">
+ <div className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mb-3">{tx['label-examples']}</div>
+ <div className="grid grid-cols-4 gap-2">
+ {tab.images.map((img, i) => (
+ <button
+ key={i}
+ type="button"
+ onClick={() => setActiveImg(i)}
+ onDoubleClick={() => openLightbox(i)}
+ className={`relative overflow-hidden cursor-pointer transition-all duration-300 aspect-[4/3] ${activeImg === i ? 'ring-2 ring-primary-500' : 'opacity-50 hover:opacity-90'}`}
+ aria-label={img.title}
+ aria-pressed={activeImg === i}
+ >
+ <img src={img.img} alt="" className="w-full h-full object-cover object-top" loading="lazy" decoding="async" />
  </button>
  ))}
+ </div>
+ </div>
  </div>
  </div>
 

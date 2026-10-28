@@ -176,26 +176,29 @@ export default function SRTTeaser() {
       style={{ background: 'radial-gradient(ellipse at 50% 30%, #1a1a1a 0%, #111111 55%, #0B0B0C 100%)' }}
     >
       <div className="sonic-container relative z-10">
-        {/* ── Header ── */}
-        <div className="sonic-section-header">
-          <div className="flex items-center justify-center gap-3 mb-2">
+        {/* ── Header — same layout as the SRT page Datenfluss (28.10.2026), dark palette ── */}
+        <div className="mb-10">
+          <div className="flex items-center gap-3 mb-5">
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{st.eyebrow}</span>
           </div>
-          <h2 className="sonic-h2 text-white">
-            {st.heading}{' '}
-            <span className="text-primary-500">{st['heading-accent']}</span>
-          </h2>
-          <p className="sonic-subline" style={{ color: 'oklch(var(--foreground-300))' }}>
-            {st.sub}
-          </p>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <h2 className="sonic-h2 text-white">
+              {st.heading}{' '}
+              <span className="text-primary-500">{st['heading-accent']}</span>
+            </h2>
+            <p className="text-[15px] md:text-[16px] leading-relaxed max-w-md" style={{ color: 'oklch(var(--foreground-300))' }}>
+              {st.sub}
+            </p>
+          </div>
         </div>
 
-        {/* ── Diagram ── */}
+        {/* ── Diagram in an app window, full width (mirrors SRT DataPaths) ── */}
+        <div style={{ border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.02)' }}>
         <div
           ref={diagramRef}
           className="flex relative items-center justify-center"
-          style={{ height: 'clamp(240px, 55vw, 520px)' }}
+          style={{ height: 'clamp(300px, 44vw, 540px)', background: 'radial-gradient(ellipse 40% 45% at 50% 50%, oklch(0.81 0.19 115 / 0.14), transparent 70%)' }}
         >
           <svg
             className="absolute inset-0 w-full h-full"
@@ -213,7 +216,7 @@ export default function SRTTeaser() {
               </filter>
             </defs>
 
-            {/* Connection lines — all 4 the same length, drawn from measured box edges */}
+            {/* Connection lines — all 4 the same length, drawn from measured box edges, flowing dashes */}
             {lines &&
               (Object.entries(lines) as Array<[string, [Point, Point]]>).map(([id, [start, end]]) => (
                 <line
@@ -224,30 +227,28 @@ export default function SRTTeaser() {
                   y2={end.y}
                   stroke="oklch(var(--primary-500))"
                   strokeWidth="1.5"
-                  strokeDasharray="5 5"
                   opacity={activeNode === id ? 1 : 0.55}
-                  className="transition-all duration-300"
+                  className={`transition-opacity duration-300 ${motionPaused ? '' : 'srt-flow'}`}
+                  style={motionPaused ? { strokeDasharray: '5 5' } : undefined}
                   filter={activeNode === id ? `url(#srt-glow-${woodenId})` : undefined}
                 />
               ))}
 
             {/* Travelling data packets */}
-            {isVisible && !motionPaused && lines &&
+            {isVisible && pulse && !motionPaused && lines &&
               Object.entries(lines).map(([id, [start, end]], i) => (
                 <g key={id}>
-                  <circle r="2" fill="oklch(var(--primary-500))" opacity="0.6">
-                    <animateMotion
-                      dur="2.3s"
-                      begin={`${i * 0.5}s`}
-                      repeatCount="indefinite"
-                      path={`M${start.x},${start.y} L${end.x},${end.y}`}
-                    />
+                  <circle r="3.5" fill="oklch(var(--primary-500))" filter={`url(#srt-glow-${woodenId})`}>
+                    <animateMotion dur="2.3s" begin={`${i * 0.5}s`} repeatCount="indefinite" path={`M${start.x},${start.y} L${end.x},${end.y}`} />
+                  </circle>
+                  <circle r="2" fill="oklch(var(--primary-500))" opacity="0.55">
+                    <animateMotion dur="2.3s" begin={`${i * 0.5 + 1.15}s`} repeatCount="indefinite" path={`M${start.x},${start.y} L${end.x},${end.y}`} />
                   </circle>
                 </g>
               ))}
           </svg>
 
-          {/* Center node */}
+          {/* Center node — SRT core */}
           <button
             ref={centerRef}
             onClick={() => setActiveNode((prev) => (prev === 'center' ? null : 'center'))}
@@ -262,13 +263,12 @@ export default function SRTTeaser() {
               top: '50%',
               transform: 'translate(-50%, -50%)',
               background: 'oklch(var(--primary-500))',
-              boxShadow: '0 0 40px oklch(var(--primary-500) / 0.2)',
+              boxShadow: '0 24px 50px -18px rgba(0,0,0,0.6)',
             }}
             aria-label="Sonic Reporting Tool (SRT) — zentrale Datenbasis"
           >
-            <div className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 flex items-center justify-center text-foreground-950">
-              <i className="ri-cpu-line text-base sm:text-xl lg:text-2xl" />
-            </div>
+            {!motionPaused && <span className="srt-core-ring absolute inset-0 pointer-events-none" aria-hidden="true" />}
+            <i className="ri-cpu-line text-foreground-950 text-base sm:text-xl lg:text-2xl" aria-hidden="true" />
             <span className="hidden sm:block text-foreground-950 text-xs font-bold uppercase tracking-wider text-center leading-tight mt-1">
               SRT
             </span>
@@ -288,13 +288,14 @@ export default function SRTTeaser() {
           ))}
         </div>
 
-        {/* Caption */}
-        <div className="text-center mt-4 md:mt-2 min-h-[20px] md:min-h-[24px]">
+        {/* Caption bar */}
+        <div className="text-center py-4 min-h-[20px]" style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
           {activeNodeData ? (
             <p className="text-xs sm:text-sm text-foreground-300">{dn[`n${nodes.findIndex((n) => n.id === activeNodeData.id) + 1}-desc`] || activeNodeData.desc}</p>
           ) : (
             <p className="text-xs sm:text-sm text-foreground-500">Modul antippen für Details</p>
           )}
+        </div>
         </div>
 
         {/* ── Compact CTA (nudge) ── */}
@@ -347,8 +348,8 @@ function NodeButton({ node, active, onClick, left, top, buttonRef }: NodeButtonP
       <div
         className={`w-9 h-9 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center border transition-all duration-300 backdrop-blur-lg ${
           active
-            ? 'bg-primary-500/15 border-primary-500/70 text-primary-500'
-            : 'bg-white/[0.08] border-white/25 text-white/85 hover:border-white/40 hover:text-primary-500'
+            ? 'bg-[#1c1d1a] border-primary-500 text-primary-500 shadow-lg'
+            : 'bg-[#171816] border-white/15 text-white/85 hover:border-primary-500 shadow-sm'
         }`}
       >
         <i className={`${node.icon} text-sm sm:text-xl lg:text-2xl`} />

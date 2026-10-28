@@ -1823,7 +1823,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'leistungen_staff_socks_images':   { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'S.O.C.K.S. images — selection, orientation, training' },
   'leistungen_talentpool_profiles_images': { aspectRatio: '~2.3:1', dimensions: '~1024×448', orientation: 'landscape', tip: 'Talent profile images — wide format' },
   'leistungen_warehouse_items_images':{ aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'Warehouse items — POS material, display, fulfillment' },
-  'leistungen_video_youtube':       { aspectRatio: '16:9', dimensions: 'YouTube-Link', orientation: 'landscape', tip: 'Kein Bild hochladen: unter „URL einfügen“ den YouTube-Link eintragen (z. B. https://youtu.be/…). Leer = Platzhalter auf der Seite.' },
+  'leistungen_video_youtube':       { aspectRatio: '16:9', dimensions: 'Video-Datei (MP4) oder YouTube-Link', orientation: 'landscape', tip: 'Empfohlen: MP4 (16:9, max 50 MB, ideal 20–40 MB) hochladen — spielt automatisch stumm in Dauerschleife. Alternativ unter „URL einfügen“ einen YouTube-Link eintragen. Leer = Abschnitt ausgeblendet.' },
   'leistungen_video_format_photos':  { aspectRatio: '3:2', dimensions: '~800×600', orientation: 'landscape', tip: 'Video format photos — live-video, broadcast, streaming' },
 
   /* ═══ LEISTUNGEN: All Wood Icons (1:1 squares, varying sizes) ═══ */

@@ -18,8 +18,19 @@ import {
 import { getYouTubeId, youTubeThumbnailUrl } from '@/lib/youtube';
 import { supabase } from '@/lib/supabase';
 import { compressImage } from '@/lib/imageCompress';
+import { isVideoFile, isVideoFileUrl, VIDEO_UPLOAD_SECTIONS, MAX_VIDEO_FILE_SIZE, VIDEO_ACCEPT } from '@/lib/videoFile';
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+const IMAGE_ACCEPT = 'image/png,image/jpeg,image/webp,image/svg+xml';
+
+/** Video files are only allowed in VIDEO_UPLOAD_SECTIONS; returns an error message or ''. */
+function checkUploadFile(file: File, section: string | null): string {
+  const video = isVideoFile(file);
+  if (video && !(section && VIDEO_UPLOAD_SECTIONS.has(section))) return 'In diesem Abschnitt sind nur Bilder erlaubt.';
+  const max = video ? MAX_VIDEO_FILE_SIZE : MAX_FILE_SIZE;
+  if (file.size > max) return `Datei zu groß (${(file.size / 1024 / 1024).toFixed(1)} MB). Maximale Größe: ${max / 1024 / 1024} MB.`;
+  return '';
+}
 
 interface MediaPanelProps {
   activeGroup: string;
@@ -137,6 +148,16 @@ const ImageCard = memo(function ImageCard({
       onDragEnd={onDragEnd}
     >
       <div className={`relative h-28 md:h-36 w-full ${previewClass}`}>
+        {isVideoFileUrl(item.url) ? (
+          <video
+            src={displayUrl}
+            muted
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover bg-black"
+            onError={() => setErrored(true)}
+          />
+        ) : (
         <img
           src={displayUrl}
           alt={item.caption || `Image ${idx + 1}`}
@@ -144,6 +165,7 @@ const ImageCard = memo(function ImageCard({
           className={`w-full h-full ${item.url.endsWith('.svg') ? 'object-contain p-3' : 'object-cover'}`}
           onError={() => setErrored(true)}
         />
+        )}
         <button
           onClick={(e) => { e.stopPropagation(); onToggleSelect(item.url); }}
           className={`absolute top-2 right-2 w-6 h-6 rounded-full border-2 flex items-center justify-center cursor-pointer transition-colors z-10 ${selected ? 'bg-lime-400 border-lime-400 text-gray-900' : 'bg-white/80 border-gray-300 text-transparent hover:border-gray-400'}`}
@@ -540,8 +562,9 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
       return;
     }
 
-    if (file.size > MAX_FILE_SIZE) {
-      setStoreError(`Datei zu groß (${(file.size / 1024 / 1024).toFixed(1)} MB). Maximale Größe: 10 MB.`);
+    const replaceErr = checkUploadFile(file, expandedSection);
+    if (replaceErr) {
+      setStoreError(replaceErr);
       setReplaceTargetUrl(null);
       if (replaceFileInputRef.current) replaceFileInputRef.current.value = '';
       return;
@@ -559,7 +582,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
     setStoreError(null);
 
     try {
-      const optimized = await compressImage(file);
+      const optimized = isVideoFile(file) ? file : await compressImage(file);
       const safeName = optimized.name
         .toLowerCase()
         .replace(/[^a-z0-9._-]/g, '-')
@@ -791,8 +814,9 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
   const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    if (file.size > MAX_FILE_SIZE) {
-      setUploadError(`Datei zu groß (${(file.size / 1024 / 1024).toFixed(1)} MB). Maximale Größe: 10 MB.`);
+    const selectErr = checkUploadFile(file, expandedSection);
+    if (selectErr) {
+      setUploadError(selectErr);
       return;
     }
     setUploadFile(file);
@@ -800,7 +824,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
     if (!addCaption.trim()) {
       setAddCaption(file.name.replace(/\.[^/.]+$/, ''));
     }
-  }, [addCaption]);
+  }, [addCaption, expandedSection]);
 
   const handleUploadAndAdd = useCallback(async () => {
     if (!uploadFile || !expandedSection) return;
@@ -818,7 +842,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
     setStoreError(null);
 
     try {
-      const optimized = await compressImage(uploadFile);
+      const optimized = isVideoFile(uploadFile) ? uploadFile : await compressImage(uploadFile);
       const safeName = optimized.name
         .toLowerCase()
         .replace(/[^a-z0-9._-]/g, '-')
@@ -983,7 +1007,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
       <input
         ref={replaceFileInputRef}
         type="file"
-        accept="image/png,image/jpeg,image/webp,image/svg+xml"
+        accept={expandedSection && VIDEO_UPLOAD_SECTIONS.has(expandedSection) ? `${IMAGE_ACCEPT},${VIDEO_ACCEPT}` : IMAGE_ACCEPT}
         onChange={handleReplaceFileSelect}
         className="hidden"
       />
@@ -1244,12 +1268,15 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
                         Klicke hier oder ziehe eine Datei hierher
                       </p>
                       <p className="text-2xs md:text-xs text-gray-400">PNG, JPG, WebP, SVG — max 10 MB · große Bilder werden automatisch komprimiert</p>
+                      {expandedSection && VIDEO_UPLOAD_SECTIONS.has(expandedSection) && (
+                        <p className="text-2xs md:text-xs text-lime-600 font-semibold">Auch Video: MP4 / WebM — max 50 MB · spielt stumm in Dauerschleife</p>
+                      )}
                     </div>
                   )}
                   <input
                     ref={fileInputRef}
                     type="file"
-                    accept="image/png,image/jpeg,image/webp,image/svg+xml"
+                    accept={expandedSection && VIDEO_UPLOAD_SECTIONS.has(expandedSection) ? `${IMAGE_ACCEPT},${VIDEO_ACCEPT}` : IMAGE_ACCEPT}
                     onChange={handleFileSelect}
                     className="hidden"
                   />
