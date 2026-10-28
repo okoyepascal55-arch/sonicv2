@@ -183,88 +183,181 @@ export default function VideoContent() {
   const estimatedCostPerUnit = 4.5;
   const totalCost = Math.round(Math.round(totalHours * COST_UNITS_PER_HOUR * teamSize) * estimatedCostPerUnit);
 
+  const DARK = 'oklch(0.13 0.005 118)';
+
   return (
     <>
+      {/* ═══ Block 1 (dark): Herausforderung — follows the dark hero ═══ */}
       <ChallengeSection
         headline={tChallengeHeading}
         subline={tChallengeSub}
         challenges={VIDEO_CHALLENGES}
       />
 
-      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
+      <div style={{ background: DARK }}><WoodenDivider /></div>
 
-      {/* Solution */}
-      <section id="loesung" className="sonic-section-md bg-white px-4 md:px-6 relative overflow-hidden">
-        <div className="relative sonic-container">
-          <div className="mb-14 text-center">
-            <div className="flex items-center justify-center gap-3 mb-5">
-              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Die Lösung</span>
-            </div>
-            <h2 className="sonic-h2 text-foreground-950">{tSolutionHeading}</h2>
-            <p className="text-foreground-950/55 text-base max-w-2xl mx-auto">{tSolutionSub}</p>
-          </div>
+      {/* ═══ Block 2 (white): Lösung → Formate — what we do, then in which formats ═══ */}
+      <section id="loesung" className="sonic-section-md bg-white px-4 md:px-6">
+        <div className="sonic-container">
+          <SectionHead eyebrow="Die Lösung" heading={tSolutionHeading} sub={tSolutionSub} />
           <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: solutionWoodIcons[i]?.url ? resolveImageUrl(solutionWoodIcons[i].url) : s.woodIcon || '' }))} label={`${SOLUTIONS.length} Kanäle — scrollen`} theme="light" variant="wood" cardWidth="clamp(220px, 32vw, 380px)" cardMinHeight="340px" />
+        </div>
+      </section>
+
+      <section id="formate" className="sonic-section-md bg-white px-4 md:px-6" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.08)' }}>
+        <div className="sonic-container">
+          <SectionHead eyebrow="Video-Formate" heading={tFormatsHeading} />
+
+          {/* Same card language as the Events Formate block: tab strip → image + dark info panel */}
+          <div style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
+            <div className="grid grid-cols-3 lg:grid-cols-6" style={{ borderBottom: '1px solid oklch(var(--foreground-950) / 0.1)' }} role="tablist" aria-label="Video-Formate">
+              {resolvedFormats.map((f, i) => {
+                const isActive = activeFormat === i;
+                return (
+                  <button
+                    key={f.title}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setActiveFormat(i)}
+                    className="group flex flex-col items-center justify-center gap-1.5 py-3.5 px-2 cursor-pointer transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500"
+                    style={{
+                      background: isActive ? 'oklch(var(--foreground-950))' : '#fff',
+                      borderRight: '1px solid oklch(var(--foreground-950) / 0.08)',
+                      borderBottom: isActive ? '2px solid oklch(var(--primary-500))' : '2px solid transparent',
+                    }}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="font-black tabular-nums leading-none text-[12px]" style={{ color: isActive ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-300))' }}>{String(i + 1).padStart(2, '0')}</span>
+                      <i className={`${f.icon} text-base leading-none ${isActive ? 'text-primary-500' : 'text-foreground-400 group-hover:text-foreground-950'}`} aria-hidden="true" />
+                    </span>
+                    <span className={`text-[10px] sm:text-[11px] font-black uppercase tracking-[0.1em] text-center leading-tight ${isActive ? 'text-white' : 'text-foreground-600 group-hover:text-foreground-950'}`}>{f.title}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div key={activeFormat} className="grid lg:grid-cols-12" style={{ animation: 'fadeSlideIn 0.4s ease-out' }}>
+              <button
+                type="button"
+                onClick={() => openFormatLightbox(activeFormat)}
+                onMouseEnter={() => setFormatHovered(true)}
+                onMouseLeave={() => setFormatHovered(false)}
+                className="lg:col-span-8 relative overflow-hidden bg-foreground-950 group h-[260px] sm:h-[360px] lg:h-[480px] cursor-zoom-in text-left"
+                aria-label={`Bild vergrößern: ${FORMATS[activeFormat].title}`}
+              >
+                <img src={resolvedFormats[activeFormat].img} alt={FORMATS[activeFormat].title} className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent pointer-events-none" />
+                <span className="absolute top-4 left-4 bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">{FORMATS[activeFormat].tag}</span>
+                <span className="absolute top-4 right-4 bg-black/55 backdrop-blur-sm text-white text-[10px] font-black tracking-[0.2em] tabular-nums px-2.5 py-1">
+                  {String(activeFormat + 1).padStart(2, '0')} / {String(FORMATS.length).padStart(2, '0')}
+                </span>
+                <span className={`absolute inset-0 border-2 border-primary-500 pointer-events-none transition-opacity duration-300 ${formatHovered ? 'opacity-100' : 'opacity-0'}`} />
+                <p className="absolute bottom-0 left-0 right-0 px-5 pb-5 md:px-7 md:pb-6 font-black text-white leading-none uppercase tracking-tight" style={{ fontSize: 'clamp(18px, 3vw, 28px)', letterSpacing: '-0.025em', textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>{FORMATS[activeFormat].title}</p>
+              </button>
+
+              <div className="lg:col-span-4 bg-foreground-950 text-white flex flex-col p-6 md:p-8 lg:h-[480px]" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
+                <div className="w-12 h-12 flex items-center justify-center bg-primary-500 text-foreground-950 mb-6">
+                  <i className={`${FORMATS[activeFormat].icon} text-xl`} aria-hidden="true" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-black text-white leading-tight mb-4">{FORMATS[activeFormat].title}</h3>
+                <p className="text-white/65 text-[15px] leading-relaxed mb-8">{FORMATS[activeFormat].desc}</p>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(FORMATS[activeFormat].title + ' anfragen')}`}
+                  className="mt-auto inline-flex items-center justify-center gap-2 bg-primary-500 text-foreground-950 px-6 py-3 font-black text-xs uppercase tracking-[0.14em] hover:bg-white transition-colors whitespace-nowrap self-start"
+                  style={{ minHeight: '44px' }}
+                >
+                  Mehr erfahren <i className="ri-arrow-right-line" aria-hidden="true" />
+                </a>
+                <div className="flex items-center gap-1.5 mt-6">
+                  {FORMATS.map((f, i) => (
+                    <button key={f.title} type="button" onClick={() => setActiveFormat(i)} aria-label={f.title} className="tap-target h-1 cursor-pointer transition-all duration-300" style={{ width: i === activeFormat ? 28 : 10, background: i === activeFormat ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.2)' }} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <WoodenDivider />
 
-      {/* ── TikTok Live Shopping — slim hint band (28.10.2026). Texts: Dashboard → Text → Live Video — TikTok Live Shopping ── */}
-      <TikTokLiveHint t={tTik} />
+      {/* ═══ Block 3 (dark): Video (+ TikTok Live Shopping) → Vorteile → Phygital ═══ */}
+      <div style={{ background: DARK }}>
+        {(hasShowcase || tTik['heading']) && (
+          <section id="video" className="sonic-section-md px-4 md:px-6">
+            <div className="sonic-container">
+              {hasShowcase && (
+                <>
+                  <SectionHead dark eyebrow={tVid['eyebrow']} heading={tYoutubeTitle} sub={tVid['subline']} />
+                  <ShowcasePlayer fileUrl={videoFileUrl} ytId={ytId} title={tYoutubeTitle} />
+                </>
+              )}
+              {/* TikTok Live Shopping — attached to the studio video. Texts: Dashboard → Text → Live Video — TikTok Live Shopping */}
+              <div className={hasShowcase ? 'mt-4' : ''}>
+                <TikTokLiveHint t={tTik} />
+              </div>
+            </div>
+          </section>
+        )}
 
-      {/* ── Video showcase — shows the solution in action. Media: Dashboard → Media → Live Video.
-           Uploaded video file = autoplay (muted, loop, inline); YouTube link = fallback (autoplays muted).
-           Without media the whole block is hidden (no placeholder for visitors). ── */}
-      {hasShowcase && (
-      <section id="video" className="sonic-section-md bg-foreground-950 px-4 md:px-6">
+        <section id="vorteile" className="sonic-section-md px-4 md:px-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="sonic-container">
+            <SectionHead dark eyebrow={tAdv['eyebrow']} heading={tAdvantagesHeading} sub={tAdv['sub']} />
+            <ScrollCardSection data={ADVANTAGES.map((a, i) => ({ ...a, woodIcon: advantagesWoodIcons[i]?.url ? resolveImageUrl(advantagesWoodIcons[i].url) : a.woodIcon || '' }))} label={`${ADVANTAGES.length} Vorteile — scrollen`} theme="dark" variant="wood" cardWidth="clamp(260px, 24vw, 320px)" cardMinHeight="300px" />
+          </div>
+        </section>
+
+        <section id="phygital" className="sonic-section-md px-4 md:px-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="sonic-container">
+            <SectionHead dark eyebrow={tPhy['eyebrow']} heading={tPhygitalHeading} sub={tPhy['sub']} />
+
+            <div className="border border-white/10 overflow-hidden">
+              <div className="grid grid-cols-[1.4fr_1fr_1fr] bg-white/[0.04] border-b border-white/10">
+                <div className="p-4" />
+                <div className="p-4 text-center border-l border-white/10">
+                  <div className="flex items-center justify-center gap-2">
+                    <i className="ri-video-line text-primary-500 text-sm" aria-hidden="true"></i>
+                    <span className="text-primary-500 text-xs font-black uppercase tracking-wider">{tPhy['col-video']}</span>
+                  </div>
+                </div>
+                <div className="p-4 text-center border-l border-white/10">
+                  <div className="flex items-center justify-center gap-2">
+                    <i className="ri-user-line text-white/60 text-sm" aria-hidden="true"></i>
+                    <span className="text-white/60 text-xs font-black uppercase tracking-wider">{tPhy['col-field']}</span>
+                  </div>
+                </div>
+              </div>
+              {PHYGITAL_COMPARE.map((row, i) => (
+                <div key={i} className={`grid grid-cols-[1.4fr_1fr_1fr] border-b border-white/[0.06] last:border-b-0 ${i % 2 === 0 ? '' : 'bg-white/[0.02]'}`}>
+                  <div className="p-4 text-white/70 text-xs sm:text-sm font-semibold">{tPhy[row.key]}</div>
+                  <div className="p-4 flex items-center justify-center border-l border-white/[0.06]">
+                    {row.video
+                      ? <div className="w-5 h-5 flex items-center justify-center bg-primary-500"><i className="ri-check-line text-foreground-950 text-xs" aria-label="ja"></i></div>
+                      : <div className="w-5 h-5 flex items-center justify-center bg-white/5"><i className="ri-close-line text-white/25 text-xs" aria-label="nein"></i></div>}
+                  </div>
+                  <div className="p-4 flex items-center justify-center border-l border-white/[0.06]">
+                    {row.field
+                      ? <div className="w-5 h-5 flex items-center justify-center bg-primary-500"><i className="ri-check-line text-foreground-950 text-xs" aria-label="ja"></i></div>
+                      : <div className="w-5 h-5 flex items-center justify-center bg-white/5"><i className="ri-close-line text-white/25 text-xs" aria-label="nein"></i></div>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div style={{ background: DARK }}><WoodenDivider /></div>
+
+      {/* ═══ Block 4 (white): Kostenrechner → (page) Kundenstimmen → Kontakt ═══ */}
+      <section id="kostenrechner" className="sonic-section-md bg-white px-4 md:px-6">
         <div className="sonic-container">
-          <div className="mb-8 md:mb-10">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tVid['eyebrow']}</span>
-            </div>
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-              <h2 className="sonic-h2 text-white">{tYoutubeTitle}</h2>
-              <p className="text-[15px] md:text-[16px] leading-relaxed max-w-md text-foreground-400">{tVid['subline']}</p>
-            </div>
-          </div>
-          <ShowcasePlayer fileUrl={videoFileUrl} ytId={ytId} title={tYoutubeTitle} />
-        </div>
-      </section>
-      )}
+          <SectionHead eyebrow={tCalc['eyebrow']} heading={tCalc['heading']} />
 
-      {/* Advantages — follows the dark video section directly (dark → dark: no divider) */}
-<section id="vorteile" className="sonic-section-md bg-foreground-950 px-4 md:px-6">
-        <div className="sonic-container">
-          <div className="text-center mb-14">
-            <div className="flex items-center justify-center gap-3 mb-5">
-              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tAdv['eyebrow']}</span>
-            </div>
-            <h2 className="sonic-h2 text-white">{tAdvantagesHeading}</h2>
-            <p className="text-white/45 text-sm mt-3">{tAdv['sub']}</p>
-          </div>
-          <ScrollCardSection data={ADVANTAGES.map((a, i) => ({ ...a, woodIcon: advantagesWoodIcons[i]?.url ? resolveImageUrl(advantagesWoodIcons[i].url) : a.woodIcon || '' }))} label={`${ADVANTAGES.length} Vorteile — scrollen`} theme="dark" variant="wood" cardWidth="clamp(260px, 24vw, 320px)" cardMinHeight="300px" />
-        </div>
-      </section>
-
-      {/* Cost Calculator */}
-      
-      {/* Dark-bg WoodenDivider */}
-      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-<section id="kostenrechner" className="sonic-section-md bg-white px-4 md:px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="flex items-center justify-center gap-3 mb-5">
-              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tCalc['eyebrow']}</span>
-            </div>
-            <h2 className="sonic-h2 text-foreground-950">{tCalc['heading']}</h2>
-          </div>
-
-          <div className="border border-foreground-950/15 bg-white p-8 md:p-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
+          <div className="grid lg:grid-cols-12" style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
+            {/* Sliders */}
+            <div className="lg:col-span-7 p-6 md:p-10 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-9 content-center">
               {[
                 { label: tCalc['slider-days'], value: daysPerWeek, min: 1, max: 7, setter: setDaysPerWeek },
                 { label: tCalc['slider-hours'], value: hoursPerDay, min: 1, max: 12, setter: setHoursPerDay },
@@ -272,9 +365,9 @@ export default function VideoContent() {
                 { label: tCalc['slider-campaign'], value: campaignDays, min: 7, max: 365, setter: setCampaignDays },
               ].map((param, i) => (
                 <div key={i}>
-                  <div className="flex items-center justify-between mb-3">
-                    <label htmlFor={`kostenrechner-slider-${i}`} className="text-foreground-950/70 text-sm font-bold">{param.label}</label>
-                    <span className="text-foreground-950 font-black text-lg font-mono">{param.value}</span>
+                  <div className="flex items-baseline justify-between mb-3">
+                    <label htmlFor={`kostenrechner-slider-${i}`} className="text-foreground-700 text-sm font-bold">{param.label}</label>
+                    <span className="text-foreground-950 font-black text-xl tabular-nums">{param.value}</span>
                   </div>
                   <input
                     id={`kostenrechner-slider-${i}`}
@@ -286,7 +379,7 @@ export default function VideoContent() {
                     className="sonic-range w-full appearance-none cursor-pointer"
                     style={{ accentColor: 'oklch(var(--primary-500))', background: `linear-gradient(to right, #C8D400 ${((param.value - param.min) / (param.max - param.min)) * 100}%, rgba(0,0,0,0.1) 0%)` }}
                   />
-                  <div className="flex justify-between text-foreground-950/25 text-xs mt-1">
+                  <div className="flex justify-between text-foreground-400 text-xs mt-1.5 tabular-nums">
                     <span>{param.min}</span>
                     <span>{param.max}</span>
                   </div>
@@ -294,164 +387,25 @@ export default function VideoContent() {
               ))}
             </div>
 
-            <div className="border-t border-foreground-950/10 pt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-foreground-950/10">
-              {[
-                { val: maxCalls.toLocaleString('de-DE'), label: tCalc['stat-calls-label'] },
-                { val: `${avgCallDisplay} Min.`, label: tCalc['stat-avg-label'] },
-                { val: `~${totalCost.toLocaleString('de-DE')} €`, label: tCalc['stat-cost-label'] },
-              ].map((stat, i) => (
-                <div key={i} className={`p-6 text-center ${i < 2 ? 'border-r border-foreground-950/10' : ''}`}>
-                  <div className="text-3xl font-black text-foreground-950 font-mono mb-1">{stat.val}</div>
-                  <div className="text-foreground-950/45 text-xs font-bold uppercase tracking-wider">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-            {tCalc['estimate-note'] && (
-              <p className="mt-3 text-center text-foreground-950/50 text-xs md:text-sm">{tCalc['estimate-note']}</p>
-            )}
-
-            <div className="mt-8 text-center">
-              <a href={`mailto:${CONTACT_EMAIL}?subject=Video-Konzept%20anfragen`} className="inline-flex items-center gap-2 bg-foreground-950 text-white px-8 py-4 font-black hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm">
-                <i className="ri-send-plane-line"></i>{tCalc['button']}
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Phygital */}
-      
-      <WoodenDivider />
-<section id="phygital" className="sonic-section-md bg-foreground-950 px-4 md:px-6">
-        <div className="sonic-container">
-          <div className="text-center mb-14">
-            <div className="flex items-center justify-center gap-3 mb-5">
-              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tPhy['eyebrow']}</span>
-            </div>
-            <h2 className="sonic-h2 text-white">{tPhygitalHeading}</h2>
-            <p className="text-white/45 text-sm mt-3 max-w-xl mx-auto">{tPhy['sub']}</p>
-          </div>
-
-          <div className="border border-primary-500/15 overflow-hidden">
-            <div className="grid grid-cols-[1.4fr_1fr_1fr] bg-white/5 border-b border-primary-500/15">
-              <div className="p-4 text-white/40 text-xs font-black uppercase tracking-wider"></div>
-              <div className="p-4 text-center border-l border-primary-500/15">
-                <div className="flex items-center justify-center gap-2">
-                  <i className="ri-video-line text-primary-500 text-sm"></i>
-                  <span className="text-primary-500 text-xs font-black uppercase tracking-wider">{tPhy['col-video']}</span>
-                </div>
-              </div>
-              <div className="p-4 text-center border-l border-primary-500/15">
-                <div className="flex items-center justify-center gap-2">
-                  <i className="ri-user-line text-white/60 text-sm"></i>
-                  <span className="text-white/60 text-xs font-black uppercase tracking-wider">{tPhy['col-field']}</span>
-                </div>
-              </div>
-            </div>
-            {PHYGITAL_COMPARE.map((row, i) => (
-              <div key={i} className={`grid grid-cols-[1.4fr_1fr_1fr] border-b border-white/5 ${i % 2 === 0 ? '' : 'bg-white/[0.02]'}`}>
-                <div className="p-4 text-white/60 text-xs font-semibold">{tPhy[row.key]}</div>
-                <div className="p-4 flex items-center justify-center border-l border-white/5">
-                  {row.video
-                    ? <div className="w-5 h-5 flex items-center justify-center bg-primary-500"><i className="ri-check-line text-foreground-950 text-xs"></i></div>
-                    : <div className="w-5 h-5 flex items-center justify-center bg-white/5"><i className="ri-close-line text-white/20 text-xs"></i></div>
-                  }
-                </div>
-                <div className="p-4 flex items-center justify-center border-l border-white/5">
-                  {row.field
-                    ? <div className="w-5 h-5 flex items-center justify-center bg-primary-500"><i className="ri-check-line text-foreground-950 text-xs"></i></div>
-                    : <div className="w-5 h-5 flex items-center justify-center bg-white/5"><i className="ri-close-line text-white/20 text-xs"></i></div>
-                  }
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Formats — dynamic with image backgrounds */}
-      
-      {/* Dark-bg WoodenDivider */}
-      <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
-<section id="formate" className="sonic-section-md bg-white px-4 md:px-6">
-        <div className="sonic-container">
-          <div className="text-center mb-14">
-            <div className="flex items-center justify-center gap-3 mb-5">
-              <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Video-Formate</span>
-            </div>
-            <h2 className="sonic-h2 text-foreground-950">{tFormatsHeading}</h2>
-          </div>
-
-          {/* Format selector — thumbnail filmstrip */}
-          <div className="flex gap-2 overflow-x-auto pb-1">
-            {resolvedFormats.map((f, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveFormat(i)}
-                className="relative flex-shrink-0 overflow-hidden cursor-pointer transition-all duration-300"
-                style={{
-                  width: '112px',
-                  height: '80px',
-                  border: activeFormat === i ? '2px solid oklch(var(--primary-500))' : '1px solid rgba(0,0,0,0.12)',
-                  opacity: activeFormat === i ? 1 : 0.55,
-                }}
-              >
-                <img src={f.img} alt={f.title} className="w-full h-full object-cover object-top" loading="lazy" />
-                <div className="absolute inset-0 bg-black/35" />
-                <i className={`${f.icon} absolute top-1.5 left-1.5 text-white text-xs`}></i>
-                <span className="absolute bottom-1.5 left-1.5 text-white text-[9px] font-black uppercase tracking-wide">{f.tag}</span>
-              </button>
-            ))}
-          </div>
-
-          <div
-            key={activeFormat}
-            className="grid lg:grid-cols-12 border border-foreground-950/15 border-t-0"
-            style={{ animation: 'fadeSlideIn 0.4s ease-out' }}
-          >
-            {/* Image — click to open fullscreen lightbox */}
-            <div
-              className="lg:col-span-7 relative overflow-hidden cursor-pointer group lg:h-[480px] h-[240px]"
-              onClick={() => openFormatLightbox(activeFormat)}
-              onMouseEnter={() => setFormatHovered(true)}
-              onMouseLeave={() => setFormatHovered(false)}
-              role="button"
-              tabIndex={0}
-              aria-label={`Bild vergrößern: ${FORMATS[activeFormat].title}`}
-              onKeyDown={(e) => e.key === 'Enter' && openFormatLightbox(activeFormat)}
-            >
-              <img
-                src={resolvedFormats[activeFormat].img}
-                alt={FORMATS[activeFormat].title}
-                className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute top-4 left-4">
-                <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">{FORMATS[activeFormat].tag}</span>
-              </div>
-              {/* Expand indicator */}
-              <div className={`absolute top-4 right-4 flex items-center gap-2 bg-black/60 backdrop-blur-sm px-3 py-1.5 transition-opacity duration-300 ${formatHovered ? 'opacity-100' : 'opacity-0'}`}>
-                <i className="ri-fullscreen-line text-white text-sm"></i>
-                <span className="text-white text-xs font-black uppercase tracking-wider">Vollbild</span>
-              </div>
-              <div className={`absolute inset-0 border-2 border-primary-500 transition-opacity duration-300 pointer-events-none ${formatHovered ? 'opacity-100' : 'opacity-0'}`} />
-            </div>
-
-            {/* Info */}
-            <div className="lg:col-span-5 bg-white p-8 flex flex-col justify-center border-l border-foreground-950/15 lg:h-[480px] overflow-y-auto">
-              <div className="w-12 h-12 flex items-center justify-center bg-foreground-950 mb-5">
-                <i className={`${FORMATS[activeFormat].icon} text-xl text-primary-500`}></i>
-              </div>
-              <h3 className="text-2xl font-black text-foreground-950 mb-4 ">{FORMATS[activeFormat].title}</h3>
-              <p className="text-foreground-950/65 text-base leading-relaxed mb-8">{FORMATS[activeFormat].desc}</p>
-              <a
-                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(FORMATS[activeFormat].title + ' anfragen')}`}
-                className="inline-flex items-center gap-2 bg-foreground-950 text-white px-6 py-3 font-black text-xs uppercase tracking-widest hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer self-start"
-              >
-                Mehr erfahren <i className="ri-arrow-right-line"></i>
+            {/* Results */}
+            <div className="lg:col-span-5 bg-foreground-950 text-white p-6 md:p-10 flex flex-col">
+              <dl className="flex flex-col">
+                {[
+                  { val: maxCalls.toLocaleString('de-DE'), label: tCalc['stat-calls-label'], accent: true },
+                  { val: `${avgCallDisplay} Min.`, label: tCalc['stat-avg-label'], accent: false },
+                  { val: `~${totalCost.toLocaleString('de-DE')} €`, label: tCalc['stat-cost-label'], accent: false },
+                ].map((stat, i) => (
+                  <div key={i} className="py-5 first:pt-0" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+                    <dt className="text-white/50 text-xs font-bold uppercase tracking-wider mb-1.5">{stat.label}</dt>
+                    <dd className={`font-black tabular-nums leading-none ${stat.accent ? 'text-primary-500' : 'text-white'}`} style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)', letterSpacing: '-0.02em' }}>{stat.val}</dd>
+                  </div>
+                ))}
+              </dl>
+              {tCalc['estimate-note'] && (
+                <p className="mt-5 text-white/50 text-xs md:text-sm">{tCalc['estimate-note']}</p>
+              )}
+              <a href={`mailto:${CONTACT_EMAIL}?subject=Video-Konzept%20anfragen`} className="mt-8 inline-flex items-center justify-center gap-2 bg-primary-500 text-foreground-950 px-7 py-3.5 font-black text-sm hover:bg-white transition-colors whitespace-nowrap self-start">
+                <i className="ri-send-plane-line" aria-hidden="true"></i>{tCalc['button']}
               </a>
             </div>
           </div>
@@ -467,11 +421,28 @@ export default function VideoContent() {
         onNext={handleLbNext}
         onPrev={handleLbPrev}
       />
-
     </>
   );
 }
 
+/* ── Section header — one style for the whole page (28.10.2026):
+     eyebrow, heading left, subline right (as on SRT, Kreation, Events) ── */
+function SectionHead({ eyebrow, heading, sub, dark = false }: { eyebrow?: string; heading: string; sub?: string; dark?: boolean }) {
+  return (
+    <div className="mb-10 md:mb-12">
+      {eyebrow && (
+        <div className="flex items-center gap-3 mb-5">
+          <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+          <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: dark ? 'oklch(var(--primary-500))' : 'oklch(0.55 0.08 115)' }}>{eyebrow}</span>
+        </div>
+      )}
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <h2 className={`sonic-h2 ${dark ? 'text-white' : 'text-foreground-950'}`}>{heading}</h2>
+        {sub && <p className={`text-[15px] md:text-[16px] leading-relaxed max-w-md ${dark ? 'text-white/55' : 'text-foreground-500'}`}>{sub}</p>}
+      </div>
+    </div>
+  );
+}
 
 /* ── Showcase player — framed like the SRT "app window" ─────────────────── */
 function ShowcasePlayer({ fileUrl, ytId, title }: { fileUrl: string; ytId: string; title: string }) {
@@ -556,8 +527,7 @@ function ShowcasePlayer({ fileUrl, ytId, title }: { fileUrl: string; ytId: strin
 function TikTokLiveHint({ t }: { t: Record<string, string> }) {
   if (!t['heading']) return null;
   return (
-    <section id="tiktok-live" className="bg-foreground-950 px-4 md:px-6 py-8 md:py-10" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-      <div className="sonic-container">
+    <div id="tiktok-live" className="scroll-mt-32">
         <div className="relative overflow-hidden flex flex-col md:flex-row md:items-center gap-5 md:gap-8 p-5 md:p-7" style={{ border: '1px solid oklch(0.81 0.19 115 / 0.35)', background: 'linear-gradient(100deg, oklch(0.81 0.19 115 / 0.08), transparent 60%)' }}>
           <div className="flex items-center gap-4 flex-shrink-0">
             <div className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-primary-500 text-foreground-950">
@@ -585,7 +555,6 @@ function TikTokLiveHint({ t }: { t: Record<string, string> }) {
             </a>
           )}
         </div>
-      </div>
-    </section>
+    </div>
   );
 }

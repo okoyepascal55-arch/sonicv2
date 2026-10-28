@@ -59,7 +59,7 @@ export default function VideoHero() {
           <button
             type="button"
             onClick={() => openCalendly()}
-            className="inline-flex items-center gap-2 bg-primary-500 text-white font-black px-7 py-3 hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
+            className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 font-black px-7 py-3 hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
             style={{ borderRadius: 0 }}
           >
             <i className="ri-calendar-line"></i>

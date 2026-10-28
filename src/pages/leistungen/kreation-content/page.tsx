@@ -86,7 +86,8 @@ export default function KreationContentPage() {
   };
 
   return (
-    <div id="kreation-page" className="min-h-[100dvh] overflow-x-hidden bg-white">
+    <div id="kreation-page" className="min-h-[100dvh] overflow-x-clip bg-white">
+      {/* overflow-x-clip (not hidden): keeps the showcase chapter index sticky (28.10.2026) */}
       <LeistungenPageNav items={NAV_ITEMS} heroRef={heroRef} />
       <div ref={heroRef}><KreationHero /></div>
       {/* Dark hero → dark Herausforderung: one wooden divider on dark */}

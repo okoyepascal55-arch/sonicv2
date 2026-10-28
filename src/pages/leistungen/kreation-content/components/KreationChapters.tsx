@@ -401,9 +401,9 @@ function Aisle({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void }
 }
 
 /* ── Chapter frame ─────────────────────────────────────────────────────── */
-function Chapter({ id, num, name, desc, children }: { id: ChapterId; num: string; name: string; desc: string; children: ReactNode }) {
+function Chapter({ id, num, name, desc, next, children }: { id: ChapterId; num: string; name: string; desc: string; next?: { id: ChapterId; num: string; name: string }; children: ReactNode }) {
   return (
-    <article id={`kapitel-${id}`} data-chapter={id} className="scroll-mt-28 py-14 md:py-20" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
+    <article id={`kapitel-${id}`} data-chapter={id} className="scroll-mt-[124px] lg:scroll-mt-[136px] py-14 md:py-20" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
       <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 md:mb-10">
         <div className="flex items-end gap-4 md:gap-6">
           <span className="font-black tabular-nums leading-none text-transparent" style={{ fontSize: 'clamp(3.2rem, 7vw, 6rem)', WebkitTextStroke: '1.5px oklch(0.62 0.15 115)', letterSpacing: '-0.04em' }} aria-hidden="true">{num}</span>
@@ -412,6 +412,16 @@ function Chapter({ id, num, name, desc, children }: { id: ChapterId; num: string
         <p className="text-foreground-600 text-[15px] leading-relaxed max-w-sm md:pb-2">{desc}</p>
       </header>
       {children}
+      {next && (
+        <a href={`#kapitel-${next.id}`} className="group mt-10 md:mt-12 flex items-center justify-between gap-4 py-5 px-5 md:px-6 bg-foreground-950 text-white hover:bg-primary-500 hover:text-foreground-950 transition-colors">
+          <span className="flex items-baseline gap-3 min-w-0">
+            <span className="text-xs text-white/50 group-hover:text-foreground-950/60 flex-shrink-0">Weiter</span>
+            <span className="font-black tabular-nums text-primary-500 group-hover:text-foreground-950">{next.num}</span>
+            <span className="font-black uppercase tracking-tight text-lg md:text-xl truncate">{next.name}</span>
+          </span>
+          <i className="ri-arrow-down-line text-xl flex-shrink-0 transition-transform group-hover:translate-y-0.5" aria-hidden="true" />
+        </a>
+      )}
     </article>
   );
 }
@@ -461,6 +471,7 @@ export default function KreationChapters({ indexIcons }: { indexIcons: Record<Ch
   const name = (id: ChapterId) => t[`tab-${id}`] ?? id;
   const desc = (id: ChapterId) => t[`desc-${id}`] ?? '';
   const num = (id: ChapterId) => String(ORDER.indexOf(id) + 1).padStart(2, '0');
+  const nextOf = (id: ChapterId) => ({ id, num: num(id), name: name(id) });
 
   return (
     <section id="konzept" className="relative bg-white px-4 md:px-6 pt-16 md:pt-24">
@@ -473,7 +484,7 @@ export default function KreationChapters({ indexIcons }: { indexIcons: Record<Ch
         <div className="lg:grid lg:grid-cols-[200px_1fr] lg:gap-12 xl:gap-16">
           {/* Sticky chapter index (desktop) */}
           <nav className="hidden lg:block" aria-label="Kapitel">
-            <ol className="sticky top-28 flex flex-col">
+            <ol className="sticky top-[140px] flex flex-col">
               {ORDER.map((id) => {
                 const isActive = id === active;
                 return (
@@ -492,16 +503,32 @@ export default function KreationChapters({ indexIcons }: { indexIcons: Record<Ch
           </nav>
 
           <div ref={listRef} className="min-w-0">
-            <Chapter id="konzeption" num={num('konzeption')} name={name('konzeption')} desc={desc('konzeption')}>
+            {/* Mobile / tablet: slim pinned chapter bar while inside the showcase */}
+            <nav className="lg:hidden sticky top-[64px] z-30 -mx-4 md:-mx-6 px-4 md:px-6 bg-white/95 backdrop-blur" style={{ borderBottom: '1px solid oklch(var(--foreground-950) / 0.1)' }} aria-label="Kapitel">
+              <ol className="flex">
+                {ORDER.map((id) => {
+                  const isActive = id === active;
+                  return (
+                    <li key={id} className="flex-1 min-w-0">
+                      <a href={`#kapitel-${id}`} className="flex flex-col items-center py-2.5" style={{ borderBottom: `2px solid ${isActive ? 'oklch(0.81 0.19 115)' : 'transparent'}` }} aria-current={isActive ? 'true' : undefined}>
+                        <span className={`text-[10px] font-black tabular-nums ${isActive ? 'text-primary-600' : 'text-foreground-400'}`}>{num(id)}</span>
+                        <span className={`text-[10px] sm:text-xs font-black truncate max-w-full ${isActive ? 'text-foreground-950' : 'text-foreground-500'}`}>{name(id)}</span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ol>
+            </nav>
+            <Chapter id="konzeption" num={num('konzeption')} name={name('konzeption')} desc={desc('konzeption')} next={nextOf('innovation')}>
               <Pinboard items={chapters.konzeption} onOpen={open('konzeption')} />
             </Chapter>
-            <Chapter id="innovation" num={num('innovation')} name={name('innovation')} desc={desc('innovation')}>
+            <Chapter id="innovation" num={num('innovation')} name={name('innovation')} desc={desc('innovation')} next={nextOf('ci')}>
               <Stage items={chapters.innovation} onOpen={open('innovation')} />
             </Chapter>
-            <Chapter id="ci" num={num('ci')} name={name('ci')} desc={desc('ci')}>
+            <Chapter id="ci" num={num('ci')} name={name('ci')} desc={desc('ci')} next={nextOf('layout')}>
               <BrandSheet items={chapters.ci} onOpen={open('ci')} />
             </Chapter>
-            <Chapter id="layout" num={num('layout')} name={name('layout')} desc={desc('layout')}>
+            <Chapter id="layout" num={num('layout')} name={name('layout')} desc={desc('layout')} next={nextOf('pos')}>
               <Spreads items={chapters.layout} onOpen={open('layout')} />
             </Chapter>
             <Chapter id="pos" num={num('pos')} name={name('pos')} desc={desc('pos')}>
