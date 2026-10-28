@@ -1,0 +1,41 @@
+/* Kreation & Content — "Ausstellung" redesign (28.10.2026).
+   Page-scoped motion: the hero contact-sheet wall and the showcase chapters.
+   Everything stops under prefers-reduced-motion or the site-wide motion pause. */
+
+@keyframes kr-wall-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+@keyframes kr-wall-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+@keyframes kr-row-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes kr-stage-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes kr-stage-in { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: scale(1); } }
+
+.kr-wall-up { animation: kr-wall-up 60s linear infinite; }
+.kr-wall-down { animation: kr-wall-down 70s linear infinite; }
+.kr-row-left { animation: kr-row-left 45s linear infinite; }
+.kr-stage-progress { transform-origin: left center; animation: kr-stage-progress linear forwards; }
+.kr-stage-in { animation: kr-stage-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+.kr-paused .kr-wall-up,
+.kr-paused .kr-wall-down,
+.kr-paused .kr-row-left { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .kr-wall-up, .kr-wall-down, .kr-row-left, .kr-stage-in { animation: none !important; }
+}
+
+/* Konzeption — pinboard cards straighten when picked up */
+.kr-pin { transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, z-index 0s; }
+.kr-pin:hover, .kr-pin:focus-visible { transform: rotate(0deg) translateY(-6px) scale(1.04) !important; z-index: 30 !important; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.75); }
+
+/* Layout — spreads row: hidden scrollbar, snap */
+.kr-spreads { scrollbar-width: none; scroll-snap-type: x mandatory; }
+.kr-spreads::-webkit-scrollbar { display: none; }
+.kr-spreads > * { scroll-snap-align: start; }
+
+/* POS — aisle: pieces stand like shelf facings, turn to face you on hover */
+.kr-aisle > div { perspective: 900px; }
+.kr-facing { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); transform-origin: center center; }
+.kr-facing:hover, .kr-facing:focus-visible { transform: rotateY(0deg) translateZ(30px) !important; }
+@media (prefers-reduced-motion: reduce) { .kr-pin, .kr-facing { transition: none; } }
+@media (min-width: 1024px) {
+  .kr-facing { transform: rotateY(var(--kr-turn, 0deg)); }
+}
