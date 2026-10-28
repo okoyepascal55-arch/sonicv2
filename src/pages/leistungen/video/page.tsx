@@ -16,11 +16,11 @@ import { isVideoFileUrl } from '@/lib/videoFile';
 const NAV_ITEMS = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
+  { id: 'formate', label: 'Formate', icon: 'ri-film-line' },
   { id: 'video', label: 'Video', icon: 'ri-play-circle-line' },
   { id: 'vorteile', label: 'Vorteile', icon: 'ri-thumb-up-line' },
-  { id: 'kostenrechner', label: 'Kostenrechner', icon: 'ri-calculator-line' },
   { id: 'phygital', label: 'Phygital', icon: 'ri-links-line' },
-  { id: 'formate', label: 'Formate', icon: 'ri-film-line' },
+  { id: 'kostenrechner', label: 'Kostenrechner', icon: 'ri-calculator-line' },
   { id: 'referenzen', label: 'Referenzen', icon: 'ri-chat-quote-line' },
   { id: 'kontakt', label: 'Kontakt', icon: 'ri-calendar-line' },
 ];
@@ -69,13 +69,10 @@ export default function VideoPage() {
         <VideoContent />
       </div>
 
-      <WoodenDivider />
-
-      <section id="referenzen">
+      {/* Block 4 continues (white): Kostenrechner → Kundenstimmen → Kontakt, no dividers in between */}
+      <section id="referenzen" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.08)' }}>
         <ClientProof only={['mediamarktsaturn', 'nexaro', 'seb']} />
       </section>
-
-      <WoodenDivider />
 
       <div>
         <LeistungenKontakt
