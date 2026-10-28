@@ -11,7 +11,16 @@ export const isVideoFileUrl = (raw: string | undefined | null): boolean => VIDEO
 export const isVideoFile = (file: File): boolean => file.type.startsWith('video/') || VIDEO_EXT.test(file.name);
 
 /** Media slots whose dashboard upload also accepts video files. */
-export const VIDEO_UPLOAD_SECTIONS = new Set<string>(['leistungen_video_youtube']);
+export const VIDEO_UPLOAD_SECTIONS = new Set<string>([
+  'leistungen_video_youtube',
+  // Kreation showcase (28.10.2026): any piece can be a video
+  'leistungen_kreation_showcase_images',
+  'leistungen_kreation_showcase_secondary_konzeption',
+  'leistungen_kreation_showcase_secondary_innovation',
+  'leistungen_kreation_showcase_secondary_ci',
+  'leistungen_kreation_showcase_secondary_layout',
+  'leistungen_kreation_showcase_secondary_pos',
+]);
 
 export const MAX_VIDEO_FILE_SIZE = 50 * 1024 * 1024; // 50 MB
 

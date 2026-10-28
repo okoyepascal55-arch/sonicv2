@@ -6,6 +6,7 @@ import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useMotionPaused } from '@/lib/motion';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
 import { FALLBACKS, BEFORE_AFTER_FALLBACK, type ChapterId } from './kreationFallbacks';
+import { isVideoFileUrl } from '@/lib/videoFile';
 
 /* ─────────────────────────────────────────────────────────────────────────
    Showcase as an exhibition in five chapters (28.10.2026).
@@ -22,19 +23,72 @@ import { FALLBACKS, BEFORE_AFTER_FALLBACK, type ChapterId } from './kreationFall
 ───────────────────────────────────────────────────────────────────────── */
 
 const ORDER: ChapterId[] = ['konzeption', 'innovation', 'ci', 'layout', 'pos'];
-const ITEM_COUNT = 6;
+const TEXT_COUNT = 6; // dashboard card texts per chapter (i1–i6)
 
 type Item = { id: string; tag: string; title: string; sub: string; src: string };
-type MediaList = { url: string }[];
+type MediaList = { url: string; caption?: string }[];
 
-function buildItems(id: ChapterId, t: Record<string, string>, secondary: MediaList, primary: MediaList): Item[] {
-  return Array.from({ length: ITEM_COUNT }, (_, i) => ({
-    id: `${id}-${i + 1}`,
-    tag: t[`i${i + 1}-tag`] ?? '',
-    title: t[`i${i + 1}-title`] ?? '',
-    sub: t[`i${i + 1}-sub`] ?? '',
-    src: secondary[i]?.url ? resolveImageUrl(secondary[i].url) : primary[i]?.url ? resolveImageUrl(primary[i].url) : FALLBACKS[id][i],
-  }));
+/* Pieces 1–6 work as before (chapter slot → shared slot → fallback, texts i1–i6).
+   Every further image or video in the chapter's own slot (Alt-Rotation <Kapitel>) becomes
+   an extra piece automatically, titled by the caption typed in the dashboard (28.10.2026). */
+function buildItems(id: ChapterId, t: Record<string, string>, secondary: MediaList, primary: MediaList, chapterName: string): Item[] {
+  const count = Math.max(TEXT_COUNT, secondary.length);
+  return Array.from({ length: count }, (_, i) => {
+    const hasText = i < TEXT_COUNT;
+    return {
+      id: `${id}-${i + 1}`,
+      tag: (hasText ? t[`i${i + 1}-tag`] : '') || chapterName,
+      title: (hasText ? t[`i${i + 1}-title`] : '') || secondary[i]?.caption || chapterName,
+      sub: hasText ? t[`i${i + 1}-sub`] ?? '' : '',
+      src: secondary[i]?.url ? resolveImageUrl(secondary[i].url) : primary[i]?.url ? resolveImageUrl(primary[i].url) : FALLBACKS[id][i] ?? '',
+    };
+  }).filter((it) => it.src);
+}
+
+/* Image or video — every piece can be either. Videos play muted, looped and inline
+   (paused for reduced motion); `still` shows just the first frame (thumbnails). */
+function Media({ src, alt, className = '', still = false }: { src: string; alt: string; className?: string; still?: boolean }) {
+  const motionPaused = useMotionPaused();
+  if (isVideoFileUrl(src)) {
+    return still || motionPaused
+      ? <video src={`${src}#t=0.1`} className={className} muted playsInline preload="metadata" aria-label={alt} />
+      : <video src={src} className={className} autoPlay muted loop playsInline preload="metadata" aria-label={alt} />;
+  }
+  return <img src={src} alt={alt} className={className} loading="lazy" draggable={false} />;
+}
+
+/* Split pieces into pages (Pinnwand boards, Markenblatt sheets) */
+function paginate<T>(list: T[], size: number): T[][] {
+  const pages: T[][] = [];
+  for (let i = 0; i < list.length; i += size) pages.push(list.slice(i, i + size));
+  return pages.length ? pages : [[]];
+}
+
+/* Small "1 / 3" pager used by the paged formats */
+function Pager({ page, pages, onChange, label, dark = false }: { page: number; pages: number; onChange: (p: number) => void; label: string; dark?: boolean }) {
+  if (pages < 2) return null;
+  const btn = dark
+    ? 'border-white/25 text-white hover:bg-primary-500 hover:text-foreground-950 hover:border-primary-500'
+    : 'border-foreground-950/15 text-foreground-950 hover:bg-foreground-950 hover:text-primary-500';
+  return (
+    <div className="flex items-center gap-2">
+      <span className={`text-xs font-bold tabular-nums mr-1 ${dark ? 'text-white/70' : 'text-foreground-500'}`}>{label} {page + 1} / {pages}</span>
+      <button type="button" onClick={() => onChange((page - 1 + pages) % pages)} className={`w-9 h-9 flex items-center justify-center border transition-colors cursor-pointer ${btn}`} aria-label={`Vorherige ${label}`}><i className="ri-arrow-left-line" aria-hidden="true" /></button>
+      <button type="button" onClick={() => onChange((page + 1) % pages)} className={`w-9 h-9 flex items-center justify-center border transition-colors cursor-pointer ${btn}`} aria-label={`Nächste ${label}`}><i className="ri-arrow-right-line" aria-hidden="true" /></button>
+    </div>
+  );
+}
+
+/* Viewport is narrower than md (for formats that page differently on phones) */
+function useIsNarrow() {
+  const [narrow, setNarrow] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const on = () => setNarrow(mq.matches);
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
+  return narrow;
 }
 
 function useInView<T extends HTMLElement>(threshold = 0.35) {
@@ -75,7 +129,9 @@ function Lightbox({ items, startIndex, onClose }: { items: Item[]; startIndex: n
       </div>
       <div className="relative flex-1 flex items-center justify-center px-14 md:px-20 py-8">
         <button onClick={() => setIndex((v) => (v - 1 + items.length) % items.length)} className="absolute left-3 md:left-5 w-11 h-11 border border-white/[0.12] text-white/70 hover:bg-primary-500 hover:text-foreground-950 flex items-center justify-center cursor-pointer" aria-label="Vorheriges Bild"><i className="ri-arrow-left-line text-lg" aria-hidden="true" /></button>
-        <img src={item.src} alt={item.title} className="max-w-full max-h-[70vh] object-contain" />
+        {isVideoFileUrl(item.src)
+          ? <video key={item.src} src={item.src} className="max-w-full max-h-[70vh] object-contain" controls autoPlay muted loop playsInline />
+          : <img src={item.src} alt={item.title} className="max-w-full max-h-[70vh] object-contain" />}
         <button onClick={() => setIndex((v) => (v + 1) % items.length)} className="absolute right-3 md:right-5 w-11 h-11 border border-white/[0.12] text-white/70 hover:bg-primary-500 hover:text-foreground-950 flex items-center justify-center cursor-pointer" aria-label="Nächstes Bild"><i className="ri-arrow-right-line text-lg" aria-hidden="true" /></button>
       </div>
       <div className="px-6 md:px-8 py-5 border-t border-white/[0.07]">
@@ -108,7 +164,7 @@ function PinCard({ item, onOpen, style, className = '', compact = false }: { ite
     <button type="button" onClick={onOpen} className={`kr-pin text-left bg-[#f6f6f2] p-1.5 md:p-2 pb-2 md:pb-3 cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${compact ? 'flex flex-col min-h-0' : ''} ${className}`} style={{ boxShadow: '0 14px 30px -14px rgba(0,0,0,0.7)', ...style }}>
       <span className="absolute -top-2.5 left-1/2 w-12 md:w-14 h-4 md:h-5 bg-primary-500/85" style={{ transform: 'translateX(-50%) rotate(-3deg)' }} aria-hidden="true" />
       <span className={`block relative overflow-hidden bg-foreground-950 ${compact ? 'flex-1 min-h-0' : ''}`} style={compact ? undefined : { aspectRatio: '4 / 3' }}>
-        <img src={item.src} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" draggable={false} />
+        <Media src={item.src} alt={item.title} className="absolute inset-0 w-full h-full object-cover" />
       </span>
       <span className="block mt-2 px-1 flex-shrink-0">
         {!compact && <span className="block text-[10px] font-bold text-foreground-500 mb-0.5">{item.tag}</span>}
@@ -119,28 +175,36 @@ function PinCard({ item, onOpen, style, className = '', compact = false }: { ite
 }
 
 function Pinboard({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void }) {
+  const narrow = useIsNarrow();
+  const perBoard = narrow ? 4 : 6;
+  const boards = paginate(items.map((item, i) => ({ item, i })), perBoard);
+  const [page, setPage] = useState(0);
+  const current = boards[Math.min(page, boards.length - 1)];
   const board: React.CSSProperties = { background: 'oklch(0.13 0.005 118)', backgroundImage: 'radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px)', backgroundSize: '22px 22px' };
   return (
-    <>
+    <div className="relative h-full" style={board}>
       {/* Desktop: pins sized to the card's height as well as its width (container units) */}
-      <div className="hidden md:block relative w-full h-full" style={{ ...board, containerType: 'size' }}>
-        {items.map((item, i) => (
+      <div key={`d-${page}`} className="kr-stage-in hidden md:block absolute inset-0" style={{ containerType: 'size' }}>
+        {current.map(({ item, i }, k) => (
           <PinCard
             key={item.id}
             item={item}
             onOpen={() => onOpen(i)}
             className="absolute"
-            style={{ left: `${PINS[i].left}%`, top: `${PINS[i].top}%`, width: `min(${PINS[i].width}cqw, calc(56cqh - 64px))`, transform: `rotate(${PINS[i].rotate}deg)`, zIndex: 10 + i }}
+            style={{ left: `${PINS[k].left}%`, top: `${PINS[k].top}%`, width: `min(${PINS[k].width}cqw, calc(56cqh - 64px))`, transform: `rotate(${PINS[k].rotate}deg)`, zIndex: 10 + k }}
           />
         ))}
       </div>
-      {/* Mobile: 2 × 3 pins filling the card */}
-      <div className="md:hidden grid grid-cols-2 grid-rows-3 gap-x-3 gap-y-5 p-4 pt-6 h-full" style={board}>
-        {items.map((item, i) => (
-          <PinCard key={item.id} item={item} onOpen={() => onOpen(i)} compact className="relative" style={{ transform: `rotate(${i % 2 ? 1.5 : -1.5}deg)` }} />
+      {/* Mobile: 2 × 2 larger pins per board, readable titles */}
+      <div key={`m-${page}`} className="kr-stage-in md:hidden grid grid-cols-2 grid-rows-2 gap-x-3 gap-y-6 p-4 pt-6 pb-14 h-full">
+        {current.map(({ item, i }, k) => (
+          <PinCard key={item.id} item={item} onOpen={() => onOpen(i)} compact className="relative" style={{ transform: `rotate(${k % 2 ? 1.5 : -1.5}deg)` }} />
         ))}
       </div>
-    </>
+      <div className="absolute right-3 bottom-3 z-40">
+        <Pager page={page} pages={boards.length} onChange={setPage} label="Pinnwand" dark />
+      </div>
+    </div>
   );
 }
 
@@ -166,7 +230,7 @@ function Stage({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void }
   return (
     <div ref={ref} className="relative overflow-hidden bg-foreground-950 h-full" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)} onFocus={() => setHold(true)} onBlur={() => setHold(false)}>
       <button type="button" key={item.id} onClick={() => onOpen(index)} className="kr-stage-in absolute inset-0 w-full h-full cursor-zoom-in" aria-label={`${item.title} im Vollbild öffnen`}>
-        <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
+        <Media src={item.src} alt={item.title} className="w-full h-full object-cover" />
       </button>
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, transparent 22%, transparent 45%, rgba(0,0,0,0.85) 100%)' }} />
 
@@ -185,7 +249,7 @@ function Stage({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void }
         ))}
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-9 flex items-end justify-between gap-6 pointer-events-none">
+      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-9 pb-20 md:pb-24 flex items-end justify-between gap-6 pointer-events-none">
         <div key={item.id} className="kr-stage-in min-w-0">
           <span className="inline-block bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 mb-4">{item.tag}</span>
           <p className="text-white font-black uppercase leading-[0.95] mb-2 hyphens-auto [overflow-wrap:anywhere]" lang="de" style={{ fontSize: 'clamp(1.3rem, 4vw, 3.4rem)', letterSpacing: '-0.03em' }}>{item.title}</p>
@@ -194,6 +258,18 @@ function Stage({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void }
         <div className="hidden sm:flex items-center gap-2 pointer-events-auto flex-shrink-0">
           <button type="button" onClick={() => go(-1)} className="w-11 h-11 flex items-center justify-center border border-white/25 text-white hover:bg-primary-500 hover:text-foreground-950 hover:border-primary-500 transition-colors cursor-pointer" aria-label="Vorheriges"><i className="ri-arrow-left-line text-lg" aria-hidden="true" /></button>
           <button type="button" onClick={() => go(1)} className="w-11 h-11 flex items-center justify-center border border-white/25 text-white hover:bg-primary-500 hover:text-foreground-950 hover:border-primary-500 transition-colors cursor-pointer" aria-label="Nächstes"><i className="ri-arrow-right-line text-lg" aria-hidden="true" /></button>
+        </div>
+      </div>
+
+      {/* Strip of every piece — jump straight to one */}
+      <div className="absolute bottom-0 left-0 right-0 px-4 md:px-9 pb-3 md:pb-4">
+        <div className="kr-spreads flex gap-1.5 overflow-x-auto">
+          {items.map((it, i) => (
+            <button key={it.id} type="button" onClick={() => setIndex(i)} className={`relative flex-shrink-0 w-[64px] md:w-[84px] h-[40px] md:h-[52px] overflow-hidden bg-black cursor-pointer transition-opacity ${i === index ? 'opacity-100' : 'opacity-50 hover:opacity-85'}`} aria-label={it.title}>
+              <Media src={it.src} alt="" still className="w-full h-full object-cover" />
+              {i === index && <span className="absolute inset-0 ring-2 ring-inset ring-primary-500" aria-hidden="true" />}
+            </button>
+          ))}
         </div>
       </div>
     </div>
@@ -217,22 +293,25 @@ function CropMarks() {
 const SHEET_CELLS = ['col-span-2 lg:row-span-2', '', '', '', '', ''];
 
 function BrandSheet({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void }) {
+  const sheets = paginate(items.map((item, i) => ({ item, i })), 6);
+  const [page, setPage] = useState(0);
+  const current = sheets[Math.min(page, sheets.length - 1)];
   return (
     <div className="relative bg-white h-full flex flex-col p-4 md:p-6" style={{ border: '1px solid oklch(var(--foreground-950) / 0.12)', backgroundImage: 'linear-gradient(oklch(var(--foreground-950) / 0.045) 1px, transparent 1px), linear-gradient(90deg, oklch(var(--foreground-950) / 0.045) 1px, transparent 1px)', backgroundSize: '24px 24px' }}>
       <div className="flex items-center justify-between gap-4 pb-3 mb-4 md:mb-5 flex-shrink-0" style={{ borderBottom: '2px solid oklch(var(--foreground-950))' }}>
-        <span className="text-foreground-950 font-black text-sm uppercase tracking-tight">{items[0]?.tag}</span>
-        <span className="flex items-center gap-1.5" aria-hidden="true">
-          <span className="w-4 h-4 bg-foreground-950" /><span className="w-4 h-4 bg-primary-500" /><span className="w-4 h-4 bg-white" style={{ border: '1px solid oklch(var(--foreground-950) / 0.2)' }} />
-        </span>
+        <span className="text-foreground-950 font-black text-sm uppercase tracking-tight truncate">{current[0]?.item.tag}</span>
+        {sheets.length > 1
+          ? <Pager page={page} pages={sheets.length} onChange={setPage} label="Blatt" />
+          : <span className="text-[10px] font-mono text-foreground-500">Blatt 1 / 1</span>}
       </div>
 
-      <div className="flex-1 min-h-0 grid grid-cols-2 grid-rows-4 lg:grid-cols-3 lg:grid-rows-3 gap-x-4 md:gap-x-6 gap-y-3 md:gap-y-4">
-        {items.map((item, i) => (
-          <figure key={item.id} className={`flex flex-col min-w-0 min-h-0 ${SHEET_CELLS[i]}`}>
+      <div key={page} className="kr-stage-in flex-1 min-h-0 grid grid-cols-2 grid-rows-4 lg:grid-cols-3 lg:grid-rows-3 gap-x-4 md:gap-x-6 gap-y-3 md:gap-y-4">
+        {current.map(({ item, i }, k) => (
+          <figure key={item.id} className={`flex flex-col min-w-0 min-h-0 ${SHEET_CELLS[k]}`}>
             <button type="button" onClick={() => onOpen(i)} className="relative flex-1 min-h-0 cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
               <CropMarks />
               <span className="absolute inset-0 overflow-hidden bg-foreground-100">
-                <img src={item.src} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]" loading="lazy" />
+                <Media src={item.src} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]" />
               </span>
             </button>
             <figcaption className="mt-2 flex items-baseline gap-2 flex-shrink-0 min-w-0">
@@ -284,7 +363,7 @@ function Spreads({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void
           const page = 2 * i + 2;
           const picture = (
             <button type="button" onClick={() => { if (!drag.current?.moved) onOpen(i); }} className="relative overflow-hidden bg-foreground-950 cursor-zoom-in min-h-0" aria-label={`${item.title} im Vollbild öffnen`}>
-              <img src={item.src} alt={item.title} className="absolute inset-0 w-full h-full object-cover pointer-events-none" loading="lazy" draggable={false} />
+              <Media src={item.src} alt={item.title} className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
             </button>
           );
           const text = (
@@ -369,24 +448,30 @@ function BeforeAfter({ reality, cgi, t }: { reality: string; cgi: string; t: Rec
 }
 
 function Aisle({ items, onOpen }: { items: Item[]; onOpen: (i: number) => void }) {
+  const rowRef = useRef<HTMLDivElement>(null);
+  const scroll = (d: number) => rowRef.current?.scrollBy({ left: d * rowRef.current.clientWidth * 0.8, behavior: 'smooth' });
   return (
-    <div className="kr-aisle h-full min-h-0">
-      <div className="h-full flex lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-3 overflow-x-auto lg:overflow-visible kr-spreads">
+    <div className="h-full min-h-0 flex flex-col">
+      <div className="hidden lg:flex items-center justify-between mb-2.5 flex-shrink-0">
+        <span className="text-foreground-500 text-xs font-bold tabular-nums">{items.length} Arbeiten</span>
+        {items.length > 4 && (
+          <div className="flex gap-2">
+            <button type="button" onClick={() => scroll(-1)} className="w-9 h-9 flex items-center justify-center border border-foreground-950/15 text-foreground-950 hover:bg-foreground-950 hover:text-primary-500 transition-colors cursor-pointer" aria-label="Zurück"><i className="ri-arrow-left-line" aria-hidden="true" /></button>
+            <button type="button" onClick={() => scroll(1)} className="w-9 h-9 flex items-center justify-center border border-foreground-950/15 text-foreground-950 hover:bg-foreground-950 hover:text-primary-500 transition-colors cursor-pointer" aria-label="Weiter"><i className="ri-arrow-right-line" aria-hidden="true" /></button>
+          </div>
+        )}
+      </div>
+      {/* The shelf: scrolls sideways (mobile + desktop), so any number of pieces fit */}
+      <div ref={rowRef} className="kr-spreads flex-1 min-h-0 grid grid-flow-col auto-cols-[34vw] sm:auto-cols-[24vw] lg:auto-cols-[calc((100%-0.75rem)/2)] lg:grid-rows-2 gap-3 overflow-x-auto">
         {items.map((item, i) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => onOpen(i)}
-            className="kr-facing relative flex-shrink-0 w-[34vw] sm:w-[24vw] lg:w-auto h-full min-h-0 flex flex-col text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-            style={{ ['--kr-turn' as string]: `${[18, 0, -18][i % 3]}deg` }}
-          >
+          <button key={item.id} type="button" onClick={() => onOpen(i)} className="group relative min-h-0 flex flex-col text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
             <span className="block relative flex-1 min-h-0 overflow-hidden bg-foreground-950">
-              <img src={item.src} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-              <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/75 to-transparent" />
-              <span className="absolute left-2.5 bottom-2 right-2.5 text-white font-black text-[11px] md:text-[12px] leading-tight line-clamp-2">{item.title}</span>
+              <Media src={item.src} alt={item.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
             </span>
+            {/* Shelf edge */}
             <span className="block h-1.5 bg-foreground-950 flex-shrink-0" aria-hidden="true" />
             <span className="block h-1 bg-primary-500 flex-shrink-0" aria-hidden="true" />
+            <span className="block mt-1.5 text-foreground-950 text-[11px] md:text-[12px] font-black leading-tight line-clamp-2 flex-shrink-0">{item.title}</span>
           </button>
         ))}
       </div>
@@ -439,11 +524,11 @@ export default function KreationChapters({ indexIcons }: { indexIcons: Record<Ch
   const { images: beforeAfter } = useMediaStore('leistungen_kreation_before_after');
 
   const chapters: Record<ChapterId, Item[]> = {
-    konzeption: buildItems('konzeption', tKonz, secKonz, primary),
-    innovation: buildItems('innovation', tInno, secInno, primary),
-    ci: buildItems('ci', tCi, secCi, primary),
-    layout: buildItems('layout', tLay, secLay, primary),
-    pos: buildItems('pos', tPos, secPos, primary),
+    konzeption: buildItems('konzeption', tKonz, secKonz, primary, t['tab-konzeption'] ?? 'Konzeption'),
+    innovation: buildItems('innovation', tInno, secInno, primary, t['tab-innovation'] ?? 'Innovation'),
+    ci: buildItems('ci', tCi, secCi, primary, t['tab-ci'] ?? 'CI'),
+    layout: buildItems('layout', tLay, secLay, primary, t['tab-layout'] ?? 'Layout'),
+    pos: buildItems('pos', tPos, secPos, primary, t['tab-pos'] ?? 'POS'),
   };
   const reality = beforeAfter[0]?.url ? resolveImageUrl(beforeAfter[0].url) : BEFORE_AFTER_FALLBACK[0];
   const cgi = beforeAfter[1]?.url ? resolveImageUrl(beforeAfter[1].url) : BEFORE_AFTER_FALLBACK[1];
