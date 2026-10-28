@@ -119,61 +119,93 @@ function Lightbox({ items, images, startIndex, onClose }: { items: Item[]; image
   );
 }
 
-function ShowcaseCard({ item, src, span, rowSpan = 'span 1', onOpen, titleSize, isWide = false }: { item: Item; src: string; span: string; rowSpan?: string; onOpen: () => void; titleSize: string; isWide?: boolean }) {
+/* ─────────────────────────────────────────────────────────────────────────
+   Showcase — refreshed 28.10.2026. Same system as before (5 tabs, 5-cell bento,
+   wide highlight card, CGI slider in POS, full-screen view), elevated:
+   site-wide tab strip, contact-sheet hairlines, calmer overlays with the subline on
+   hover, staggered reveal on tab change, highlight card with the portfolio CTA,
+   swipe carousel on phones. Dashboard texts/images unchanged.
+───────────────────────────────────────────────────────────────────────── */
+
+const HAIR = 'oklch(var(--foreground-950) / 0.1)';
+
+function BentoCell({ item, src, index, onOpen, area, big = false }: { item: Item; src: string; index: number; onOpen: () => void; area: string; big?: boolean }) {
   return (
-    <button type="button" onClick={onOpen} className="relative overflow-hidden text-left cursor-pointer group w-full" style={{ gridColumn: span, gridRow: rowSpan, minHeight: isWide ? '280px' : '280px', height: isWide ? '280px' : undefined }}>
-      <img src={src} alt={item.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/10 to-transparent" />
-      <span className="absolute top-3 left-3 bg-primary-500 text-foreground-950 text-[9px] font-black uppercase tracking-[0.06em] px-2.5 py-1">{item.tag}</span>
-      <div className="absolute top-3 right-3 w-[34px] h-[34px] flex items-center justify-center bg-white/12 border border-white/25 text-white backdrop-blur-sm"><i className="ri-zoom-in-line text-sm" /></div>
-      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6"><h3 className="font-black text-white leading-tight uppercase" style={{ fontSize: titleSize }}>{item.title}</h3><p className="text-xs text-white/60 mt-1">{item.sub}</p></div>
+    <button
+      type="button"
+      onClick={onOpen}
+      className="kr-cell group relative overflow-hidden text-left cursor-zoom-in bg-foreground-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500"
+      style={{ gridArea: area, ['--n' as string]: index }}
+      aria-label={`${item.title} im Vollbild öffnen`}
+    >
+      <img src={src} alt={item.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]" loading="lazy" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent transition-opacity duration-500 group-hover:from-black/85" />
+      <span className="absolute top-3 left-3 bg-primary-500 text-foreground-950 text-[9px] font-black uppercase tracking-[0.08em] px-2.5 py-1">{item.tag}</span>
+      <span className="absolute top-3 right-3 text-white/60 text-[10px] font-black tabular-nums">{String(index + 1).padStart(2, '0')}</span>
+      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+        <h3 className="font-black text-white leading-tight uppercase" style={{ fontSize: big ? 'clamp(1.1rem, 2vw, 1.6rem)' : '14px', letterSpacing: '-0.01em' }}>{item.title}</h3>
+        <p className="text-xs md:text-sm text-white/70 max-h-0 opacity-0 overflow-hidden transition-all duration-500 group-hover:max-h-16 group-hover:opacity-100 group-hover:mt-1.5 group-focus-visible:max-h-16 group-focus-visible:opacity-100">{item.sub}</p>
+      </div>
     </button>
   );
 }
 
-function BeforeAfter({ reality, cgi, contactEmail, t }: { reality: string; cgi: string; contactEmail: string; t: Record<string, string> }) {
+function BeforeAfter({ reality, cgi, t }: { reality: string; cgi: string; contactEmail?: string; t: Record<string, string> }) {
   const [pos, setPos] = useState(55);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const move = useCallback((clientX: number) => {
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
-    const pct = Math.min(95, Math.max(5, ((clientX - rect.left) / rect.width) * 100));
-    setPos(pct);
+    setPos(Math.min(95, Math.max(5, ((clientX - rect.left) / rect.width) * 100)));
   }, []);
 
   return (
-    <div className="mt-1">
-      <div className="flex items-start justify-between gap-4 px-8 py-7 bg-foreground-950/5 border border-foreground-950/[0.08]">
-        <div><p className="text-[9px] font-black uppercase tracking-[0.15em] text-primary-600 mb-2">{t['ba-eyebrow']}</p><h3 className="sonic-h2 text-foreground-950 uppercase mb-1">{t['ba-title']}</h3><p className="text-xs text-foreground-950/40">{t['ba-hint']}</p></div>
-        <a href={`mailto:${contactEmail}?subject=Beratungsgespr%C3%A4ch`} className="flex-shrink-0 px-5 py-2.5 border border-foreground-950/[0.12] text-xs font-black uppercase tracking-widest text-foreground-950/40 hover:bg-primary-500 hover:text-foreground-950">{t['ba-button']} <i className="ri-arrow-right-line" /></a>
+    <div className="kr-cell" style={{ ['--n' as string]: 5, borderTop: `1px solid ${HAIR}` }}>
+      <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 px-5 md:px-6 py-4">
+        <p className="text-foreground-950 font-black text-base md:text-lg leading-tight">
+          <span className="text-[11px] font-bold mr-3" style={{ color: 'oklch(0.55 0.08 115)' }}>{t['ba-eyebrow']}</span>
+          {t['ba-title']}
+        </p>
+        <p className="text-foreground-500 text-xs md:text-sm flex items-center gap-4">
+          {t['ba-hint']}
+          {t['ba-button'] && <a href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch`} className="hidden md:inline-flex items-center gap-1.5 text-foreground-950 font-black text-xs hover:text-primary-600">{t['ba-button']} <i className="ri-arrow-right-line" aria-hidden="true" /></a>}
+        </p>
       </div>
       <div
         ref={containerRef}
-        className="relative h-[360px] overflow-hidden select-none cursor-col-resize"
+        className="relative h-[300px] md:h-[440px] overflow-hidden select-none cursor-col-resize touch-pan-y bg-foreground-950"
         onMouseMove={(e) => e.buttons === 1 && move(e.clientX)}
         onMouseDown={(e) => move(e.clientX)}
         onTouchMove={(e) => move(e.touches[0].clientX)}
+        role="slider"
+        aria-label={t['ba-title']}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(pos)}
+        tabIndex={0}
+        onKeyDown={(e) => { if (e.key === 'ArrowLeft') setPos((p) => Math.max(5, p - 5)); if (e.key === 'ArrowRight') setPos((p) => Math.min(95, p + 5)); }}
       >
-        <img src={reality} alt="Gebauter Stand" className="absolute inset-0 w-full h-full object-cover" draggable={false} />
-        <span className="absolute top-4 right-4 px-3 py-1.5 bg-white/15 border border-white/30 text-[9px] font-black uppercase tracking-[0.12em] text-white/80 backdrop-blur-sm">{t['ba-label-real']}</span>
+        <img src={reality} alt={t['ba-label-real']} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+        <span className="absolute top-4 right-4 px-3 py-1.5 bg-black/55 backdrop-blur-sm text-[9px] font-black uppercase tracking-[0.12em] text-white">{t['ba-label-real']}</span>
         <div className="absolute inset-0 pointer-events-none" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-          <img src={cgi} alt="CGI Render" className="w-full h-full object-cover" draggable={false} />
+          <img src={cgi} alt={t['ba-label-cgi']} className="w-full h-full object-cover" draggable={false} />
           <span className="absolute top-4 left-4 px-3 py-1.5 bg-primary-500 text-foreground-950 text-[9px] font-black uppercase tracking-[0.12em]">{t['ba-label-cgi']}</span>
         </div>
         <div className="absolute top-0 bottom-0 pointer-events-none" style={{ left: `${pos}%` }}>
-          <div className="w-0.5 h-full bg-primary-500" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-primary-500 text-foreground-950 flex items-center justify-center font-black text-sm cursor-col-resize pointer-events-auto"
-            onMouseDown={(e) => { e.preventDefault(); move(e.clientX); }}>↔</div>
+          <div className="w-0.5 h-full bg-primary-500 -translate-x-1/2" />
+          <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-11 h-11 bg-primary-500 text-foreground-950 flex items-center justify-center"><i className="ri-arrow-left-right-line text-lg" aria-hidden="true" /></div>
         </div>
       </div>
     </div>
   );
 }
 
-export default function KreationShowcaseReference() {
+export default function KreationShowcaseReference({ tabIcons }: { tabIcons?: Partial<Record<TabId, string>> }) {
   const [activeTab, setActiveTab] = useState<TabId>('konzeption');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const mobileRef = useRef<HTMLDivElement>(null);
   const t = useLeistungenText('leistungen_kreation_showcase');
   const tItems = useLeistungenText(`leistungen_kreation_showcase_${activeTab}`);
   // Primary fallback images (all tabs)
@@ -205,61 +237,129 @@ export default function KreationShowcaseReference() {
   const reality = beforeAfter[0]?.url ? resolveImageUrl(beforeAfter[0].url) : BEFORE_AFTER_FALLBACK[0];
   const cgi = beforeAfter[1]?.url ? resolveImageUrl(beforeAfter[1].url) : BEFORE_AFTER_FALLBACK[1];
 
+  const selectTab = (id: TabId) => {
+    setActiveTab(id);
+    setLightboxIndex(null);
+    setMobileIndex(0);
+    mobileRef.current?.scrollTo({ left: 0 });
+  };
+  const onTabKey = (e: React.KeyboardEvent, i: number) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    const next = (i + (e.key === 'ArrowRight' ? 1 : -1) + TABS.length) % TABS.length;
+    selectTab(TABS[next].id);
+    (e.currentTarget.parentElement?.children[next] as HTMLElement | undefined)?.focus();
+  };
+  const onMobileScroll = () => {
+    const row = mobileRef.current;
+    if (!row) return;
+    const w = (row.children[0] as HTMLElement | undefined)?.offsetWidth ?? row.clientWidth;
+    setMobileIndex(Math.min(items.length - 1, Math.round(row.scrollLeft / (w + 12))));
+  };
+
+  const wide = items[5];
+  const bentoAreas = ['a', 'b', 'c', 'd', 'e'];
+
   return (
-    <section id="konzept" className="sonic-section-lg relative overflow-hidden bg-white px-4 md:px-6">
+    <section id="konzept" className="sonic-section-lg relative bg-white px-4 md:px-6" style={{ borderTop: `1px solid ${HAIR}` }}>
       <div className="sonic-container relative z-10">
-        <div className="mb-10 md:mb-14">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <div>
-              <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-600">{t['eyebrow']}</span></div>
-              <h2 className="sonic-h2 text-foreground-950">{t['heading']}<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{t['heading-accent']}</span></h2>
-              <p className="text-sm max-w-sm leading-relaxed text-foreground-950/45 mt-3">{t[`desc-${activeTab}`]}</p>
-            </div>
-            <div>
-              <div className="flex border border-foreground-950/[0.12] bg-white overflow-x-auto">
-                <style>{`.tab-scroll::-webkit-scrollbar{display:none}`}</style>
-                {TABS.map(tab => <button key={tab.id} type="button" onClick={() => { setActiveTab(tab.id); setLightboxIndex(null); }} aria-label={t[`tab-${tab.id}`]} aria-pressed={activeTab === tab.id} className={`flex items-center gap-2 px-4 md:px-5 py-3 text-[10px] font-black uppercase tracking-[0.12em] border-r last:border-r-0 border-foreground-950/10 ${activeTab === tab.id ? 'bg-foreground-950 text-primary-500' : 'text-foreground-950/40'}`}><i className={tab.icon} aria-hidden="true" /><span className="hidden sm:inline">{t[`tab-${tab.id}`]}</span></button>)}
-              </div>
-              <div className="flex justify-end gap-1 mt-2">{TABS.map(tab => <div key={tab.id} className={activeTab === tab.id ? 'w-7 bg-primary-500' : 'w-2 bg-foreground-950/15'} style={{ height: 2 }} />)}</div>
-            </div>
+        {/* Header — heading left, tab description right (site-wide header style) */}
+        <div className="mb-10 md:mb-12">
+          <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{t['eyebrow']}</span></div>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <h2 className="sonic-h2 text-foreground-950">{t['heading']}<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{t['heading-accent']}</span></h2>
+            <p key={activeTab} className="kr-cell text-[15px] md:text-[16px] leading-relaxed max-w-md text-foreground-500">{t[`desc-${activeTab}`]}</p>
           </div>
         </div>
 
-        {/* MOBILE: simple 2-col card grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:hidden">
-          {items.map((item, i) => (
-            <button key={item.id} type="button" onClick={() => setLightboxIndex(i)} className="relative overflow-hidden text-left" style={{ height: 180 }}>
-              <img src={images[i]} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-              <span className="absolute top-2 left-2 bg-primary-500 text-foreground-950 text-[9px] font-black px-2 py-0.5 uppercase">{item.tag}</span>
-              <div className="absolute bottom-0 left-0 right-0 p-3"><p className="text-white font-black text-xs uppercase leading-snug">{item.title}</p><p className="text-white/50 text-[10px] mt-0.5">{item.sub}</p></div>
+        <div style={{ border: `1px solid ${HAIR}` }}>
+          {/* Tab strip — same language as Leistungen / Events / Live Video */}
+          <div className="grid grid-cols-5" style={{ borderBottom: `1px solid ${HAIR}` }} role="tablist" aria-label={t['eyebrow'] || 'Showcase'}>
+            {TABS.map((tab, i) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  tabIndex={isActive ? 0 : -1}
+                  onClick={() => selectTab(tab.id)}
+                  onKeyDown={(e) => onTabKey(e, i)}
+                  className="group flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2.5 py-3.5 sm:py-4 px-1 cursor-pointer transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500"
+                  style={{
+                    background: isActive ? 'oklch(var(--foreground-950))' : '#fff',
+                    borderRight: i < TABS.length - 1 ? '1px solid oklch(var(--foreground-950) / 0.08)' : undefined,
+                    borderBottom: isActive ? '2px solid oklch(var(--primary-500))' : '2px solid transparent',
+                  }}
+                >
+                  <span className="font-black tabular-nums leading-none text-[12px]" style={{ color: isActive ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-300))' }}>{String(i + 1).padStart(2, '0')}</span>
+                  {tabIcons?.[tab.id]
+                    ? <img src={tabIcons[tab.id]} alt="" className={`hidden sm:block w-7 h-7 object-cover transition-all duration-300 ${isActive ? 'scale-110' : 'opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0'}`} loading="lazy" />
+                    : <i className={`${tab.icon} hidden sm:inline text-base leading-none ${isActive ? 'text-primary-500' : 'text-foreground-400 group-hover:text-foreground-950'}`} aria-hidden="true" />}
+                  <span className={`hidden sm:inline text-[11px] font-black uppercase tracking-[0.1em] text-center leading-tight ${isActive ? 'text-white' : 'text-foreground-600 group-hover:text-foreground-950'}`}>{t[`tab-${tab.id}`]}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* DESKTOP: the bento, now a contact sheet with 1px hairlines between the pieces */}
+          <div
+            key={`bento-${activeTab}`}
+            className="hidden md:grid gap-px"
+            style={{ background: HAIR, gridTemplateColumns: 'repeat(12, 1fr)', gridTemplateRows: 'repeat(2, clamp(220px, 21vw, 290px))', gridTemplateAreas: '"a a a a a b b b b c c c" "a a a a a d d d d e e e"' }}
+          >
+            {bentoAreas.map((area, i) => (
+              <BentoCell key={items[i].id} item={items[i]} src={images[i]} index={i} area={area} big={i === 0} onOpen={() => setLightboxIndex(i)} />
+            ))}
+          </div>
+
+          {/* MOBILE: swipe through the pieces, one at a time */}
+          <div className="md:hidden">
+            <p className="px-3 pt-3 text-foreground-950 font-black text-sm uppercase tracking-tight">{t[`tab-${activeTab}`]}</p>
+            <div ref={mobileRef} onScroll={onMobileScroll} key={`m-${activeTab}`} className="kr-snap flex gap-3 overflow-x-auto p-3">
+              {items.map((item, i) => (
+                <button key={item.id} type="button" onClick={() => setLightboxIndex(i)} className="kr-cell relative flex-shrink-0 w-[82%] overflow-hidden text-left bg-foreground-950" style={{ aspectRatio: '4 / 5', ['--n' as string]: i }}>
+                  <img src={images[i]} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-transparent" />
+                  <span className="absolute top-3 left-3 bg-primary-500 text-foreground-950 text-[9px] font-black px-2 py-0.5 uppercase">{item.tag}</span>
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <p className="text-white font-black text-sm uppercase leading-snug">{item.title}</p>
+                    <p className="text-white/65 text-xs mt-1">{item.sub}</p>
+                  </div>
+                </button>
+              ))}
+            </div>
+            <div className="flex items-center justify-between px-3 pb-3">
+              <div className="flex gap-1.5">
+                {items.map((it, i) => <span key={it.id} className="h-1 transition-all duration-300" style={{ width: i === mobileIndex ? 24 : 8, background: i === mobileIndex ? 'oklch(var(--primary-500))' : 'oklch(var(--foreground-950) / 0.15)' }} />)}
+              </div>
+              <span className="text-[11px] font-bold text-foreground-500 tabular-nums">{String(mobileIndex + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
+            </div>
+          </div>
+
+          {/* POS: CGI → reality slider, inside the same frame */}
+          {activeTab === 'pos' && <BeforeAfter reality={reality} cgi={cgi} t={t} />}
+
+          {/* Highlight — the wide piece with a dark panel that carries the portfolio call to action */}
+          <div key={`hl-${activeTab}`} className="grid md:grid-cols-12" style={{ borderTop: `1px solid ${HAIR}` }}>
+            <button type="button" onClick={() => setLightboxIndex(5)} className="kr-cell hidden md:block md:col-span-8 relative overflow-hidden group cursor-zoom-in bg-foreground-950 h-[300px] lg:h-[340px]" style={{ ['--n' as string]: 6 }} aria-label={`${wide.title} im Vollbild öffnen`}>
+              <img src={images[5]} alt={wide.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" loading="lazy" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+              <span className="absolute top-4 left-4 bg-primary-500 text-foreground-950 text-[9px] font-black uppercase tracking-[0.08em] px-2.5 py-1">{wide.tag}</span>
             </button>
-          ))}
-        </div>
-        {/* DESKTOP: original bento grid */}
-        <div className="hidden md:grid gap-1" style={{ gridTemplateColumns: 'repeat(12, 1fr)', gridTemplateRows: 'repeat(2, 280px)' }}>
-          <ShowcaseCard item={items[0]} src={images[0]} span="span 5" rowSpan="span 2" onOpen={() => setLightboxIndex(0)} titleSize="clamp(1rem,2vw,1.5rem)" />
-          <ShowcaseCard item={items[1]} src={images[1]} span="span 4" rowSpan="span 1" onOpen={() => setLightboxIndex(1)} titleSize="14px" />
-          <ShowcaseCard item={items[2]} src={images[2]} span="span 3" rowSpan="span 1" onOpen={() => setLightboxIndex(2)} titleSize="13px" />
-          <ShowcaseCard item={items[3]} src={images[3]} span="span 4" rowSpan="span 1" onOpen={() => setLightboxIndex(3)} titleSize="13px" />
-          <ShowcaseCard item={items[4]} src={images[4]} span="span 3" rowSpan="span 1" onOpen={() => setLightboxIndex(4)} titleSize="12px" />
-        </div>
-        {/* /desktop bento */}
-        <div className="mt-1 hidden md:block">
-          <ShowcaseCard item={items[5]} src={images[5]} span="span 12" rowSpan="auto" onOpen={() => setLightboxIndex(5)} titleSize="20px" isWide />
-        </div>
-
-        <div className="mt-1 hidden md:grid grid-cols-6 gap-1">
-          {items.map((item, i) => <button key={item.id} type="button" onClick={() => setLightboxIndex(i)} className="relative overflow-hidden" style={{ height: 64, opacity: lightboxIndex === i ? 1 : 0.65, border: lightboxIndex === i ? '2px solid oklch(0.81 0.19 115)' : '2px solid transparent' }}><img src={images[i]} alt={item.title} className="absolute inset-0 w-full h-full object-cover" loading="lazy" /></button>)}
-        </div>
-
-        {activeTab === 'pos' && (
-          <BeforeAfter reality={reality} cgi={cgi} contactEmail={CONTACT_EMAIL} t={t} />
-        )}
-
-        <div className="mt-1 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 md:px-8 py-6 bg-foreground-950/5 border border-foreground-950/[0.08]">
-          <div className="flex items-center gap-4"><div className="w-9 h-9 flex items-center justify-center bg-primary-500/15"><i className="ri-image-line text-primary-600" /></div><span className="text-sm font-semibold text-foreground-950/50">{t['strip-text']}</span></div>
-          <a href={`mailto:${CONTACT_EMAIL}?subject=Beratungsgespr%C3%A4ch`} className="px-6 py-3 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-widest">{t['strip-button']} <i className="ri-arrow-right-line" /></a>
+            <div className="kr-cell md:col-span-4 bg-foreground-950 text-white p-6 md:p-8 flex flex-col" style={{ ['--n' as string]: 7 }}>
+              <span className="text-[11px] font-bold text-primary-500 mb-3">{t[`tab-${activeTab}`]} · {wide.tag}</span>
+              <h3 className="text-xl md:text-2xl font-black leading-tight mb-2">{wide.title}</h3>
+              <p className="text-white/60 text-sm leading-relaxed">{wide.sub}</p>
+              <div className="mt-auto pt-8">
+                <p className="text-white/45 text-xs mb-3">{t['strip-text']}</p>
+                <a href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Portfolio anfragen')}`} className="inline-flex items-center gap-2 bg-primary-500 text-foreground-950 px-6 py-3 text-xs font-black uppercase tracking-[0.14em] hover:bg-white transition-colors">
+                  {t['strip-button']} <i className="ri-arrow-right-line" aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
