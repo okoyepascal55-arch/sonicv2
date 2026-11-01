@@ -24,4 +24,4 @@ export const CTA_DEFAULTS: Record<string, string> = Object.fromEntries(
 );
 
 /** Labels that open the booking calendar (current + legacy labels still saved in the dashboard). */
-export const BOOKING_LABELS = ['Termin vereinbaren', 'Beratungsgespräch buchen'];
+export const BOOKING_LABELS = ['Termin vereinbaren', 'Beratungsgespräch buchen', 'Book a call'];

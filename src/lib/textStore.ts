@@ -6,6 +6,8 @@ import { REVIEW_TEXT_SECTIONS } from './textStoreReview';
 import { LEISTUNGEN_TEXT_SECTIONS } from './textStoreLeistungen';
 import { CTA_TEXT_SECTIONS } from './textStoreCta';
 import { supabase } from './supabase';
+import { getLanguage, type Lang } from './language';
+import { EN_TEXT } from './textEn';
 export interface TextEntry {
   id: string;
   label: string;
@@ -1684,14 +1686,21 @@ function writeOverridesCache(): void {
 }
 
 let overrides: TextOverrides = readOverridesCache();
-let builtSections: TextSection[] | null = null;
+/* Built sections per language (German is the base; English layers on top). */
+let builtSections: Partial<Record<Lang, TextSection[]>> = {};
+
+/* English edits from the dashboard live in the same row under "en::<sectionKey>",
+   so German entries are never touched and old clients simply ignore them. */
+const EN_PREFIX = 'en::';
+const overrideKey = (sectionKey: string, lang: Lang): string =>
+  lang === 'en' ? EN_PREFIX + sectionKey : sectionKey;
 let pendingWrites = 0;
 let syncStatus: TextSyncStatus = supabase
   ? { state: 'idle' }
   : { state: 'unconfigured', message: 'Supabase ist nicht konfiguriert — Textänderungen können nicht veröffentlicht werden.' };
 
 function notifyTextChange(): void {
-  builtSections = null;
+  builtSections = {};
   if (typeof window !== 'undefined') window.dispatchEvent(new Event('text-store-update'));
 }
 
@@ -1706,7 +1715,7 @@ export function getTextSyncStatus(): TextSyncStatus {
   return syncStatus;
 }
 
-function buildSections(): TextSection[] {
+function buildGermanSections(): TextSection[] {
   const sections = JSON.parse(JSON.stringify(DEFAULT_TEXT_SECTIONS)) as TextSection[];
   for (const section of sections) {
     const o = overrides[section.key];
@@ -1743,16 +1752,34 @@ function buildSections(): TextSection[] {
   return sections;
 }
 
-/* Returns the current sections (defaults + overrides). Treat as read-only. */
-function loadFromStorage(): TextSection[] {
-  if (!builtSections) {
-    try {
-      builtSections = buildSections();
-    } catch {
-      builtSections = JSON.parse(JSON.stringify(DEFAULT_TEXT_SECTIONS)) as TextSection[];
+/* English: dashboard EN edit → built-in English → German (so nothing is ever blank). */
+function buildSections(lang: Lang): TextSection[] {
+  const sections = buildGermanSections();
+  if (lang === 'de') return sections;
+  for (const section of sections) {
+    const edited = overrides[EN_PREFIX + section.key];
+    const builtIn = EN_TEXT[section.key];
+    for (const entry of section.entries) {
+      if (edited && Object.prototype.hasOwnProperty.call(edited, entry.id)) entry.value = edited[entry.id];
+      else if (builtIn && Object.prototype.hasOwnProperty.call(builtIn, entry.id)) entry.value = builtIn[entry.id];
     }
   }
-  return builtSections;
+  return sections;
+}
+
+/* Returns the current sections (defaults + overrides) in the given language
+   (default: the visitor's current language). Treat as read-only. */
+function loadFromStorage(lang: Lang = getLanguage()): TextSection[] {
+  let built = builtSections[lang];
+  if (!built) {
+    try {
+      built = buildSections(lang);
+    } catch {
+      built = JSON.parse(JSON.stringify(DEFAULT_TEXT_SECTIONS)) as TextSection[];
+    }
+    builtSections[lang] = built;
+  }
+  return built;
 }
 
 async function fetchRemoteOverrides(): Promise<TextOverrides> {
@@ -1887,31 +1914,61 @@ export function getTextSection(key: string): TextSection | undefined {
   return loadFromStorage().find((s) => s.key === key);
 }
 
-/* Save one text. Resolves true once it is published for all visitors. */
+/* What an entry shows with no dashboard edit in that language. */
+function baseValueOf(sectionKey: string, entryId: string, lang: Lang): string | undefined {
+  if (lang === 'de') return defaultValueOf(sectionKey, entryId);
+  return EN_TEXT[sectionKey]?.[entryId]
+    ?? loadFromStorage('de').find((s) => s.key === sectionKey)?.entries.find((e) => e.id === entryId)?.value;
+}
+
+/* Save one text in the current language. Resolves true once it is published for all visitors. */
 export function updateTextEntry(sectionKey: string, entryId: string, value: string): Promise<boolean> {
-  const defaultValue = defaultValueOf(sectionKey, entryId);
+  const lang = getLanguage();
+  const key = overrideKey(sectionKey, lang);
+  const baseValue = baseValueOf(sectionKey, entryId, lang);
   return commitChange((o) => {
-    if (value === defaultValue) {
-      if (o[sectionKey]) {
-        delete o[sectionKey][entryId];
-        if (Object.keys(o[sectionKey]).length === 0) delete o[sectionKey];
+    if (value === baseValue) {
+      if (o[key]) {
+        delete o[key][entryId];
+        if (Object.keys(o[key]).length === 0) delete o[key];
       }
     } else {
-      (o[sectionKey] ??= {})[entryId] = value;
+      (o[key] ??= {})[entryId] = value;
     }
   });
 }
 
+/* Resets only the current language — resetting English never touches German and vice versa. */
 export function resetTextSection(sectionKey: string): Promise<boolean> {
+  const key = overrideKey(sectionKey, getLanguage());
   return commitChange((o) => {
-    delete o[sectionKey];
+    delete o[key];
   });
 }
 
 export function resetAllText(): Promise<boolean> {
+  const en = getLanguage() === 'en';
   return commitChange((o) => {
-    for (const key of Object.keys(o)) delete o[key];
+    for (const key of Object.keys(o)) if (key.startsWith(EN_PREFIX) === en) delete o[key];
   });
+}
+
+/* For the dashboard's English view: the German an entry currently shows, and
+   whether that German was edited in the dashboard (its translation may need a check). */
+export function getGermanValue(sectionKey: string, entryId: string): string | undefined {
+  return loadFromStorage('de').find((s) => s.key === sectionKey)?.entries.find((e) => e.id === entryId)?.value;
+}
+
+export function isGermanEdited(sectionKey: string, entryId: string): boolean {
+  const o = overrides[sectionKey];
+  return !!o && Object.prototype.hasOwnProperty.call(o, entryId)
+    && o[entryId] !== defaultValueOf(sectionKey, entryId);
+}
+
+export function hasEnglishText(sectionKey: string, entryId: string): boolean {
+  const edited = overrides[EN_PREFIX + sectionKey];
+  return (!!edited && Object.prototype.hasOwnProperty.call(edited, entryId))
+    || EN_TEXT[sectionKey]?.[entryId] !== undefined;
 }
 
 export function getTextSectionCount(groupId: string): number {

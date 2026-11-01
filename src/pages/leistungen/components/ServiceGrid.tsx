@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMediaStore } from '@/lib/mediaStore';
 import WoodenButton from '@/components/base/WoodenButton';
 import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
+import { useLanguage } from '@/lib/language';
 
 const SERVICES = [
   {
@@ -71,6 +72,7 @@ export default function ServiceGrid({ sectionRef }: Props) {
   const [active, setActive] = useState(0);
   const { images: gridImages } = useMediaStore('leistungen_servicegrid_bg');
   const t = useLeistungenText('leistungen_overview_services');
+  const lang = useLanguage();
   const services = SERVICES.map((sv, i) => {
     const n = i + 1;
     return {
@@ -112,7 +114,7 @@ export default function ServiceGrid({ sectionRef }: Props) {
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
             <h2 className="sonic-h2 text-foreground-950">
-              {t['heading']}<br />Ein <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{t['heading-accent']}</span>.
+              {t['heading']}<br />{lang === 'en' ? 'One' : 'Ein'} <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{t['heading-accent']}</span>.
             </h2>
             <p className="text-foreground-500 text-sm leading-relaxed max-w-xs lg:text-right lg:pb-1">
               {t['sub']}

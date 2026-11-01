@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useText } from '@/hooks/useText';
 import SiteLogo from '@/components/base/SiteLogo';
+import LanguageSwitch from '@/components/base/LanguageSwitch';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -246,6 +247,8 @@ export default function Navigation() {
                 <span className={`absolute bottom-0 left-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full ${isPageActive('/karriere') ? 'w-full' : 'w-0'}`}></span>
               </button>
 
+              <LanguageSwitch />
+
               <button
                 onClick={() => handleNavClick('/kontakt')}
                 className="px-6 py-2.5 bg-primary-500 text-foreground-950 text-sm font-black hover:bg-white hover:text-foreground-950 transition-all duration-300 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 cursor-pointer"
@@ -254,6 +257,8 @@ export default function Navigation() {
               </button>
             </div>
 
+            <div className="lg:hidden flex items-center gap-2">
+            <LanguageSwitch className="bg-white/70 backdrop-blur-sm" />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`lg:hidden p-2.5 transition-colors z-[60] relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 ${
@@ -265,6 +270,7 @@ export default function Navigation() {
             >
               <i className={`${isMobileMenuOpen ? 'ri-close-line' : 'ri-menu-line'} text-2xl`} aria-hidden="true"></i>
             </button>
+            </div>
           </div>
         </nav>
       </header>

@@ -9,11 +9,15 @@ import {
   getTextSectionCount,
   getTextSyncStatus,
   refreshTextFromServer,
+  getGermanValue,
+  isGermanEdited,
+  hasEnglishText,
   type TextSyncStatus,
   type TextSection,
   type TextEntry,
 } from '@/lib/textStore';
 import { STIMMEN_TABS, STIMMEN_GROUP_ID } from '@/lib/textStoreStimmen';
+import { LANGS, setLanguage, useLanguage, type Lang } from '@/lib/language';
 
 type StimmenTabId = typeof STIMMEN_TABS[number]['id'];
 
@@ -60,8 +64,34 @@ const ENTRY_COLORS: Record<string, string> = {
   'footer-link': 'border-l-slate-300 bg-slate-50/30',
 };
 
+/* ── English view: the German original under each text, plus hints ── */
+function GermanReference({ sectionKey, entryId }: { sectionKey: string; entryId: string }) {
+  const de = getGermanValue(sectionKey, entryId) ?? '';
+  const missing = !hasEnglishText(sectionKey, entryId);
+  const changed = !missing && isGermanEdited(sectionKey, entryId);
+  return (
+    <div className="mb-1.5 space-y-1">
+      <p className="text-2xs text-gray-400 leading-tight whitespace-pre-wrap">
+        <span className="font-semibold uppercase tracking-wider mr-1">DE:</span>{de || '(leer)'}
+      </p>
+      {missing && (
+        <span className="inline-flex items-center gap-1 text-3xs font-semibold text-gray-600 bg-gray-100 px-1.5 py-0.5 rounded">
+          <i className="ri-translate-2"></i>Noch keine englische Version — Website zeigt Deutsch
+        </span>
+      )}
+      {changed && (
+        <span className="inline-flex items-center gap-1 text-3xs font-semibold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">
+          <i className="ri-error-warning-line"></i>Deutsch wurde im Dashboard geändert — Übersetzung prüfen
+        </span>
+      )}
+    </div>
+  );
+}
+
 /* ── Memoized single text entry row ── */
 interface EntryRowProps {
+  sectionKey: string;
+  lang: Lang;
   entry: TextEntry;
   value: string;
   isEditing: boolean;
@@ -71,7 +101,7 @@ interface EntryRowProps {
 }
 
 const EntryRow = memo(function EntryRow({
-  entry, value, isEditing, onStartEdit, onCancelEdit, onSave,
+  sectionKey, lang, entry, value, isEditing, onStartEdit, onCancelEdit, onSave,
 }: EntryRowProps) {
   const [draft, setDraft] = useState(value);
   const icon = ENTRY_ICONS[entry.type] || 'ri-text';
@@ -109,6 +139,7 @@ const EntryRow = memo(function EntryRow({
           {entry.description && (
             <p className="text-2xs text-gray-400 mb-1.5 leading-tight">{entry.description}</p>
           )}
+          {lang === 'en' && <GermanReference sectionKey={sectionKey} entryId={entry.id} />}
 
           {isEditing ? (
             <div className="space-y-2">
@@ -173,12 +204,13 @@ const EntryRow = memo(function EntryRow({
 
 /* ── Section accordion ── */
 interface SectionRowProps {
+  lang: Lang;
   section: TextSection;
   isExpanded: boolean;
   onToggle: () => void;
 }
 
-const SectionRow = memo(function SectionRow({ section, isExpanded, onToggle }: SectionRowProps) {
+const SectionRow = memo(function SectionRow({ lang, section, isExpanded, onToggle }: SectionRowProps) {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [localEntries, setLocalEntries] = useState<Map<string, string>>(() => {
@@ -256,6 +288,8 @@ const SectionRow = memo(function SectionRow({ section, isExpanded, onToggle }: S
             {section.entries.map((entry) => (
               <EntryRow
                 key={entry.id}
+                sectionKey={section.key}
+                lang={lang}
                 entry={entry}
                 value={localEntries.get(entry.id) || entry.value}
                 isEditing={editingId === entry.id}
@@ -282,7 +316,7 @@ const SectionRow = memo(function SectionRow({ section, isExpanded, onToggle }: S
           <div className="relative bg-white rounded-xl p-5 max-w-sm w-full shadow-xl border border-gray-200">
             <h3 className="text-sm font-bold text-gray-900 mb-2">Bereich zurücksetzen?</h3>
             <p className="text-xs text-gray-500 mb-4">
-              Alle Texte in &quot;{section.label}&quot; werden auf die Originalwerte zurückgesetzt.
+              Alle {lang === 'en' ? 'englischen ' : ''}Texte in &quot;{section.label}&quot; werden auf die Originalwerte zurückgesetzt.
             </p>
             <div className="flex gap-2 justify-end">
               <button
@@ -330,6 +364,29 @@ function SyncStatusBadge() {
   );
 }
 
+/* ── Which language is being edited (DE is the default) ── */
+function EditLanguageToggle({ lang }: { lang: Lang }) {
+  return (
+    <div role="group" aria-label="Sprache bearbeiten" className="flex items-center gap-1.5">
+      <span className="text-2xs font-semibold text-gray-500 whitespace-nowrap">Sprache:</span>
+      <div className="flex border border-gray-200 rounded-md overflow-hidden">
+        {LANGS.map((l) => (
+          <button
+            key={l}
+            onClick={() => setLanguage(l)}
+            aria-pressed={l === lang}
+            className={`px-2.5 py-1.5 text-2xs font-bold uppercase tracking-wider transition-colors cursor-pointer ${
+              l === lang ? 'bg-lime-400 text-gray-900' : 'bg-white text-gray-500 hover:text-gray-900'
+            }`}
+          >
+            {l}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ── Main Panel ── */
 export default function TextPanel({ activeGroup }: TextPanelProps) {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
@@ -337,6 +394,7 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
   const [showResetAll, setShowResetAll] = useState(false);
 
   const [tick, setTick] = useState(0);
+  const lang = useLanguage();
   const [stimmenTab, setStimmenTab] = useState<StimmenTabId>(STIMMEN_TABS[0].id);
   const isStimmen = activeGroup === STIMMEN_GROUP_ID;
   const activeStimmenTab = STIMMEN_TABS.find((t) => t.id === stimmenTab) ?? STIMMEN_TABS[0];
@@ -446,6 +504,7 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
           </div>
 
           <div className="flex items-center gap-3">
+            <EditLanguageToggle lang={lang} />
             <SyncStatusBadge />
             {/* Search */}
             <div className="relative">
@@ -538,6 +597,7 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
           {filteredSections.map((section) => (
             <SectionRow
               key={section.key}
+              lang={lang}
               section={section}
               isExpanded={expandedSection === section.key}
               onToggle={() => setExpandedSection(expandedSection === section.key ? null : section.key)}
@@ -564,12 +624,12 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
                 <i className="ri-alert-line text-red-500 text-lg"></i>
               </span>
               <div>
-                <h3 className="text-base font-bold text-gray-900">Alle Texte zurücksetzen?</h3>
+                <h3 className="text-base font-bold text-gray-900">Alle {lang === 'en' ? 'englischen ' : ''}Texte zurücksetzen?</h3>
                 <p className="text-xs text-gray-500">Diese Aktion betrifft ALLE Seiten</p>
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-5">
-              Sämtliche Texte auf der gesamten Website werden für alle Besucher auf die ursprünglichen Werte zurückgesetzt.
+              Sämtliche {lang === 'en' ? 'englischen ' : ''}Texte auf der gesamten Website werden für alle Besucher auf die ursprünglichen Werte zurückgesetzt.
               Diese Aktion kann nicht rückgängig gemacht werden.
             </p>
             <div className="flex gap-2 justify-end">

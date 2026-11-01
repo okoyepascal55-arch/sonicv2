@@ -78,10 +78,25 @@ export default function CalendlyWidget() {
 
     document.addEventListener('click', handleGlobalClick, true);
 
+    // 5. Language switch: re-create the floating badge with the label in the new language
+    const handleLanguageChange = () => {
+      if (!window.Calendly) return;
+      document.querySelector('.calendly-badge-widget')?.remove();
+      window.Calendly.initBadgeWidget({
+        url: CALENDLY_URL,
+        text: ctaLabel('badge'),
+        color: '#c8d300',
+        textColor: 'oklch(var(--foreground-950))',
+        branding: false
+      });
+    };
+    window.addEventListener('language-change', handleLanguageChange);
+
     return () => {
       if (document.head.contains(link)) document.head.removeChild(link);
       if (document.body.contains(script)) document.body.removeChild(script);
       document.removeEventListener('click', handleGlobalClick, true);
+      window.removeEventListener('language-change', handleLanguageChange);
       
       // Cleanup badge
       const badge = document.querySelector('.calendly-badge-widget');
