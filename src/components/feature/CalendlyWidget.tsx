@@ -78,10 +78,10 @@ export default function CalendlyWidget() {
 
     document.addEventListener('click', handleGlobalClick, true);
 
-    // 5. Language switch: re-create the floating badge with the label in the new language
+    // 5. Language switch: re-create the floating badge with the label in the new language.
+    //    initBadgeWidget replaces the existing badge itself — removing it first makes Calendly throw.
     const handleLanguageChange = () => {
       if (!window.Calendly) return;
-      document.querySelector('.calendly-badge-widget')?.remove();
       window.Calendly.initBadgeWidget({
         url: CALENDLY_URL,
         text: ctaLabel('badge'),
