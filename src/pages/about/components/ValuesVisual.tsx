@@ -3,7 +3,6 @@ import { useBrandLogos } from '@/lib/brandLogos';
 import { useEffect, useRef, useState } from 'react';
 
 const clients = [
-  { name: 'Philips', category: 'Unterhaltungselektronik', logo: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887' },
   { name: 'Rowenta', category: 'Haushaltsgeräte', logo: 'https://cdn.brandfetch.io/rowenta.de/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
   { name: 'Krups', category: 'Küchengeräte', logo: 'https://cdn.brandfetch.io/krups.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
   { name: 'Vorwerk', category: 'Haushaltsgeräte', logo: 'https://cdn.brandfetch.io/vorwerk.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },

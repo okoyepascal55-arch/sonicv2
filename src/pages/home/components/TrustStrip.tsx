@@ -6,7 +6,6 @@ export default function TrustStrip() {
   const tTrustBadge = useText('home_truststrip', 'home-trust-badge', 'Über 15 Kunden vertrauen uns');
 
   const fallbackBrands = [
-    { name: 'Philips', logo: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887', scale: 1.45 },
     { name: 'Rowenta', logo: 'https://cdn.brandfetch.io/rowenta.de/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
     { name: 'Krups', logo: 'https://cdn.brandfetch.io/krups.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
     { name: 'Nexaro', logo: 'https://cdn.brandfetch.io/id2dYOZ6uf/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1773621883167' },
