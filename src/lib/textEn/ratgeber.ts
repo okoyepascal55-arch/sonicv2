@@ -4,7 +4,7 @@ export const EN: Record<string, Record<string, string>> = {
   "ratgeber_hero": {
     "ratgeber-hero-h1-accent": "GUIDES",
     "ratgeber-hero-sub1": "Practical know-how for brand activation, sales and customer experience",
-    "ratgeber-hero-sub2": "{count} in-depth guides from real-world brand activation. From Krefeld and NRW to the whole DACH region — rooted locally, effective nationwide, internationally minded. (Articles are in German.)",
+    "ratgeber-hero-sub2": "{count} in-depth guides from real-world brand activation. From Krefeld and North Rhine-Westphalia to the whole DACH region — rooted locally, effective nationwide, internationally minded. (Articles are in German.)",
   },
   "ratgeber_intro": {
     "ratgeber-intro-badge": "Expert knowledge",
@@ -18,10 +18,10 @@ export const EN: Record<string, Record<string, string>> = {
   "ratgeber_geo": {
     "ratgeber-geo-badge": "Reach",
     "ratgeber-geo-heading": "Local, regional, nationwide, international",
-    "ratgeber-geo-text": "Our guides cover all four geographic levels — from local brand activation in Krefeld and regional roots in NRW to nationwide and international strategy for the entire DACH region. So you'll find the right guide for every challenge.",
+    "ratgeber-geo-text": "Our guides cover all four geographic levels — from local brand activation in Krefeld and regional roots in North Rhine-Westphalia to nationwide and international strategy for the entire DACH region. So you'll find the right guide for every challenge.",
     "ratgeber-geo-local": "Local",
     "ratgeber-geo-local-desc": "Krefeld and surroundings — local market knowledge with a personal touch.",
-    "ratgeber-geo-regional-desc": "NRW and the Rhineland — Germany's economic heartland.",
+    "ratgeber-geo-regional-desc": "North Rhine-Westphalia and the Rhineland — Germany's economic heartland.",
     "ratgeber-geo-national": "Nationwide",
     "ratgeber-geo-national-desc": "Nationwide strategies for every metropolitan region.",
     "ratgeber-geo-international-desc": "The DACH region and beyond — a global perspective.",
@@ -42,7 +42,7 @@ export const EN: Record<string, Record<string, string>> = {
   },
   "ratgeber_retail_merch": {
     "rgba-rm-hero-sub": "How professional merchandising measurably increases sell-out and prevents empty shelves",
-    "rgba-rm-cta-headline": "Maximise your",
+    "rgba-rm-cta-headline": "Maximize your",
     "rgba-rm-cta-accent": "shelf performance",
     "rgba-rm-cta-sub": "Talk to us about your merchandising strategy.",
   },
@@ -55,12 +55,12 @@ export const EN: Record<string, Record<string, string>> = {
     "rgba-pp-cta-sub": "Talk to us about your staff profile and your needs.",
   },
   "ratgeber_messe_event": {
-    "rgba-me-h1": "TRADE FAIR &",
+    "rgba-me-h1": "TRADE SHOW &",
     "rgba-me-h1-accent": "EVENT MARKETING",
-    "rgba-me-hero-sub": "How brands achieve maximum visibility and measurable leads at trade fairs and events",
-    "rgba-me-cta-headline": "Your next trade fair appearance",
+    "rgba-me-hero-sub": "How brands achieve maximum visibility and measurable leads at trade shows and events",
+    "rgba-me-cta-headline": "Your next trade show appearance",
     "rgba-me-cta-accent": "will be your most successful",
-    "rgba-me-cta-sub": "Let's talk about your trade fair and event strategy.",
+    "rgba-me-cta-sub": "Let's talk about your trade show and event strategy.",
   },
   "ratgeber_field_marketing": {
     "rgba-fm-hero-sub": "How product samples and personal engagement win new customers and build brand loyalty",
@@ -75,7 +75,7 @@ export const EN: Record<string, Record<string, string>> = {
     "rgba-gm-cta-sub": "Develop a guerrilla strategy with us that gets people talking about your brand.",
   },
   "ratgeber_live_shopping": {
-    "rgba-ls-hero-sub": "How interactive video consultation is revolutionising e-commerce and multiplying conversion rates",
+    "rgba-ls-hero-sub": "How interactive video consultation is revolutionizing e-commerce and multiplying conversion rates",
     "rgba-ls-cta-headline": "Launch your first",
     "rgba-ls-cta-accent": "live shopping event",
     "rgba-ls-cta-sub": "Talk to us about your live shopping strategy.",
@@ -100,7 +100,7 @@ export const EN: Record<string, Record<string, string>> = {
     "rgba-ms-hero-sub": "How undercover test purchases and objective service measurement measurably improve your customer experience",
     "rgba-ms-cta-headline": "Measure your",
     "rgba-ms-cta-accent": "service quality",
-    "rgba-ms-cta-sub": "Develop a mystery shopping programme with us.",
+    "rgba-ms-cta-sub": "Develop a mystery shopping program with us.",
   },
   "ratgeber_verkaufsfoerderung": {
     "rgba-vp-h1": "SALES PROMOTION",

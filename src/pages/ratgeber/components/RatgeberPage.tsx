@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useText } from '@/hooks/useText';
+import { useLanguage } from '@/lib/language';
 import type { RatgeberPageContent } from '../data/types';
 import RatgeberHero from './RatgeberHero';
 import RatgeberAnswerFirst from './RatgeberAnswerFirst';
@@ -48,6 +49,7 @@ interface RatgeberPageProps {
 }
 
 export default function RatgeberPage({ content, sectionKey }: RatgeberPageProps) {
+  const lang = useLanguage();
   const prefix = PREFIX_MAP[content.slug] || 'rgba-ma';
   const tH1 = useText(sectionKey, `${prefix}-h1`, content.h1);
   const tH1Accent = useText(sectionKey, `${prefix}-h1-accent`, content.h1Accent);
@@ -81,6 +83,12 @@ export default function RatgeberPage({ content, sectionKey }: RatgeberPageProps)
         ]}
       />
 
+      {lang === 'en' && (
+        <p lang="en" className="sonic-container py-3 text-sm" style={{ color: 'oklch(var(--foreground-600))' }}>
+          This guide is currently available in German only.
+        </p>
+      )}
+
       <RatgeberHero
         h1={tH1}
         h1Accent={tH1Accent}
@@ -92,6 +100,7 @@ export default function RatgeberPage({ content, sectionKey }: RatgeberPageProps)
 
       <WoodenDivider />
 
+      <div data-i18n-skip>
       <RatgeberAnswerFirst data={content.answerFirst} />
 
       <WoodenDivider />
@@ -105,6 +114,7 @@ export default function RatgeberPage({ content, sectionKey }: RatgeberPageProps)
       <WoodenDivider />
 
       <RatgeberFAQ faqs={content.faqs} />
+      </div>
 
       <WoodenDivider />
 

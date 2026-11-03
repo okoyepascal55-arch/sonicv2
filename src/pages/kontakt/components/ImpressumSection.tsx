@@ -1,7 +1,11 @@
+import { useLanguage } from '@/lib/language';
+
 export default function ImpressumSection() {
+  const lang = useLanguage();
   return (
     <section
       id="impressum"
+      data-i18n-skip
       className="bg-white py-16 md:py-24 px-5 md:px-10 border-t"
       style={{ borderColor: 'oklch(var(--foreground-950) / 0.08)' }}
       aria-labelledby="impressum-heading"
@@ -15,6 +19,12 @@ export default function ImpressumSection() {
             Impressum
           </h2>
         </div>
+
+        {lang === 'en' && (
+          <p lang="en" className="text-sm mb-8 max-w-2xl" style={{ color: 'oklch(var(--foreground-600))' }}>
+            Legal notice (Impressum) as required by German law. It is provided in German only; the German version is legally binding.
+          </p>
+        )}
 
         <div className="grid md:grid-cols-3" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
           {/* Angaben */}

@@ -11,7 +11,7 @@ export const EN: Record<string, Record<string, string>> = {
     "kontakt-detail-phone-label": "Phone",
     "kontakt-detail-email-label": "Email",
     "kontakt-detail-hours-label": "Office hours",
-    "kontakt-detail-hours": "Mon–Fri: 9:00 am–5:00 pm",
+    "kontakt-detail-hours": "Mon–Fri, 9 a.m.–5 p.m. CET",
     "kontakt-calendly-label": "Pick a time directly",
     "kontakt-calendly-sub": "Free · No obligation · 30 minutes",
     "kontakt-stat-response": "30 min",
@@ -19,7 +19,7 @@ export const EN: Record<string, Record<string, string>> = {
     "kontakt-stat-experience-label": "Founded",
     "kontakt-stat-clients-label": "Clients",
     "kontakt-office-address": "Campus Fichtenhain 46\n47807 Krefeld, Germany",
-    "kontakt-office-route": "Plan your route",
+    "kontakt-office-route": "Get directions",
     "kontakt-office-call": "Call",
   },
   "kontakt_form_texts": {

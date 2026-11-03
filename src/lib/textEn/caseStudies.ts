@@ -69,7 +69,7 @@ export const EN: Record<string, Record<string, string>> = {
   "case_tvsound_text": {
     "tvsound-headline": "From launch to market leadership",
     "tvsound-subline": "Three mandates · Three companies · One common thread — since 2009.",
-    "tvsound-overview": "Three companies. Three completely different starting points. One thing in common: they trusted us with their most important sales channel — German retail. For a global corporation, we became an indispensable POS partner for over ten years. For a European manufacturer, we made Germany its most successful market on the continent. For an international challenger, we went from zero to full operation within six weeks. Three mandates, three definitions of success — and Sonic delivered on all three. Brand names anonymised at the clients' request.",
+    "tvsound-overview": "Three companies. Three completely different starting points. One thing in common: they trusted us with their most important sales channel — German retail. For a global corporation, we became an indispensable POS partner for over ten years. For a European manufacturer, we made Germany its most successful market on the continent. For an international challenger, we went from zero to full operation within six weeks. Three mandates, three definitions of success — and Sonic delivered on all three. Brand names anonymized at the clients' request.",
     "tvsound-quote": "We've been in the TV segment since 2009. What we've learned: the market doesn't reward the loudest — it rewards the most reliable. Three mandates. Three companies. The same standard.",
     "tvsound-role": "TV & Sound — DACH project overview",
   },

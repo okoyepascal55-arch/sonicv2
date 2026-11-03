@@ -19,7 +19,7 @@ export const EN: Record<string, Record<string, string>> = {
     "reels-era-1-attribution": "Björn Bourdin · Co-founder, 2007",
     "reels-era-2-quote": "Samsung came overnight, and two hundred specialists rested on our shoulders. So we built the systems to carry them — training, certification, real-time communication.",
     "reels-era-2-attribution": "Jo Heitkämper · Co-founder, 2015",
-    "reels-era-3-quote": "Seventy-two hours to rebuild the entire concept. When the shops reopened, we were already inside — and we didn't lose a single client.",
+    "reels-era-3-quote": "Seventy-two hours to rebuild the entire concept. When the stores reopened, we were already inside — and we didn't lose a single client.",
     "reels-era-3-attribution": "Lucas Kreiten · Managing Director, 2020",
     "reels-era-4-quote": "Five global brands at once, two billion in activated sales, and not a single KPI missed. That pressure is ultimately what made us build our own platform.",
     "reels-era-4-attribution": "Lucas Kreiten · Managing Director, 2023",
