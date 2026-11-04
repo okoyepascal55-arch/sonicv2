@@ -429,7 +429,6 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
 
               <div className="relative z-10 p-5 md:p-10 lg:p-12 flex flex-col h-full" style={{ minHeight: 'clamp(220px, 45vw, 420px)' }}>
                 <div className="flex items-center gap-2 mb-4 md:mb-8">
-                  <div className={`w-2 h-2 rounded-full transition-all duration-500 ${hoveredSide === 'left' ? 'bg-primary-500 shadow-lg shadow-[#C8D400]/50 scale-125' : 'bg-primary-500/50'}`} />
                   <span className="text-primary-500/70 text-xs font-bold tracking-widest uppercase">{tLeftBadge}</span>
                 </div>
                 <div className={`w-10 h-10 md:w-16 md:h-16 relative overflow-hidden mb-4 md:mb-8 transition-all duration-500 ring-1 ring-white/10 ${hoveredSide === 'left' ? 'scale-110 ring-primary-500/40 shadow-xl shadow-primary-500/20' : ''}`}>
@@ -525,7 +524,6 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
 
               <div className="relative z-10 p-5 md:p-10 lg:p-12 flex flex-col h-full" style={{ minHeight: 'clamp(220px, 45vw, 420px)' }}>
                 <div className="flex items-center gap-2 mb-4 md:mb-8">
-                  <div className={`w-2 h-2 rounded-full transition-all duration-500 ${hoveredSide === 'right' ? 'bg-primary-500 shadow-lg shadow-[#C8D400]/50 scale-125' : 'bg-foreground-300'}`} />
                   <span className="text-foreground-400 text-xs font-bold tracking-widest uppercase">{tRightBadge}</span>
                 </div>
                 <div className={`w-10 h-10 md:w-16 md:h-16 relative overflow-hidden mb-4 md:mb-8 transition-all duration-500 ring-1 ring-foreground-200 ${hoveredSide === 'right' ? 'scale-110 ring-primary-500/40 shadow-xl shadow-primary-500/20' : ''}`}>

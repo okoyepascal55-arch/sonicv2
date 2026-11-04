@@ -17,7 +17,7 @@ export default function ForecastingHero() {
   const tH1Line1 = useText('leistungen_forecasting', 'forecasting-hero-heading-line1', 'Plausible');
   const tH1Accent = useText('leistungen_forecasting', 'forecasting-hero-heading-accent', 'Prognosen.');
   const tSubtitle = useText('leistungen_forecasting', 'forecasting-hero-subtitle', 'Bevor der erste Einsatz startet, weißt du, womit du realistisch rechnen kannst.');
-  const tDesc = useText('leistungen_forecasting', 'forecasting-hero-description', 'Aus Kunden-, Sonic-, Staff- und Handelsdaten im Sonic Reporting Tool (SRT) leiten wir her, was dein Projekt erwarten kann — datenbasiert, nachvollziehbar, belastbar.');
+  const tDesc = useText('leistungen_forecasting', 'forecasting-hero-description', 'Aus Kunden-, Sonic-, Staff- und Handelsdaten in der SRT (Sonic Reporting Tool) leiten wir her, was dein Projekt erwarten kann — datenbasiert, nachvollziehbar, belastbar.');
 
   const tBtn = useLeistungenText('leistungen_forecasting_hero_buttons');
   const cta = useCtaText();

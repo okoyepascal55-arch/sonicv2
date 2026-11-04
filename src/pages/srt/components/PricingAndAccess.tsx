@@ -9,7 +9,7 @@ import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 const TIERS = [
   { name: 'Live-Dashboard', price: 'Live', desc: 'Sieh jederzeit, was in deinem Projekt passiert — im Browser und mobil.', features: ['KPIs, die wir gemeinsam festlegen', 'Live-Daten aus dem Einsatz', 'Kunden-, Sonic-, Staff- und Handelsdaten'], highlight: false },
   { name: 'Reportings', price: 'PPT · Excel · SQL', desc: 'Egal ob PowerPoint, Excel oder maßgeschneiderte SQL-Reportings — wir definieren gemeinsam die wichtigen.', features: ['PowerPoint, Excel oder SQL', 'Beliebig viele Reports', 'Individuell definiert'], highlight: true },
-  { name: 'Projektteam', price: 'Persönlich', desc: 'Hinter dem SRT steht dein Sonic-Projektteam — wir besprechen die Auswertungen mit dir.', features: ['Fester Ansprechpartner bei Sonic', 'Auswertungen gemeinsam besprechen', 'Demo-Zugang auf Anfrage'], highlight: false },
+  { name: 'Projektteam', price: 'Persönlich', desc: 'Hinter der SRT steht dein Sonic-Projektteam — wir besprechen die Auswertungen mit dir.', features: ['Fester Ansprechpartner bei Sonic', 'Auswertungen gemeinsam besprechen', 'Demo-Zugang auf Anfrage'], highlight: false },
 ];
 
 
@@ -160,7 +160,7 @@ export default function PricingAndAccess() {
   const tBadge = useText('srt_pricing', 'srt-pricing-badge', 'Zugang');
   const tHeading = useText('srt_pricing', 'srt-pricing-heading', 'Zugang zum');
   const tHeadingAccent = useText('srt_pricing', 'srt-pricing-heading-accent', 'SRT.');
-  const tSub = useText('srt_pricing', 'srt-pricing-sub', 'Mit dem SRT siehst du die Daten deines Sonic-Projekts live. Reports definieren wir gemeinsam — so viele du brauchst.');
+  const tSub = useText('srt_pricing', 'srt-pricing-sub', 'Mit der SRT siehst du die Daten deines Sonic-Projekts live. Reports definieren wir gemeinsam — so viele du brauchst.');
   const tp = useTextSection('srt_pricing');
   const tiers = TIERS.map((tier, i) => {
     const k = `srt-pricing-tier-${i + 1}`;

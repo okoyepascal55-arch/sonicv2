@@ -43,7 +43,7 @@ const sections: { key: SectionKey; tag: string; title: string; subtitle: string;
       {
         number: '01',
         title: 'KI',
-        description: '2024 implementierten wir KI in das Sonic Reporting Tool, bspw. für Document Intelligence. Für besseres Projektverständnis.',
+        description: '2024 implementierten wir KI in die SRT (Sonic Reporting Tool), bspw. für Document Intelligence. Für besseres Projektverständnis.',
       },
       {
         number: '02',

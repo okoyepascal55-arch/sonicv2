@@ -14,7 +14,7 @@ const USE_CASES = [
 export default function Industries() {
   const tBadge = useText('srt_industries', 'srt-industries-badge', 'Branchen & Use Cases');
   const tHeading = useText('srt_industries', 'srt-industries-heading', 'Von Retail Execution bis Gesundheit & Pharma.');
-  const tSub = useText('srt_industries', 'srt-industries-sub', 'Das SRT ist bereit für jedes Projekt, bei dem Menschen zielorientiert und koordiniert eingesetzt werden.');
+  const tSub = useText('srt_industries', 'srt-industries-sub', 'Die SRT ist bereit für jedes Projekt, bei dem Menschen zielorientiert und koordiniert eingesetzt werden.');
   const tCta = useText('srt_industries', 'srt-industries-cta', 'Deine SRT-Konfiguration finden');
   // Dashboard → Text → SRT → „SRT — Branchen & Use Cases: Karten“
   const it = useReviewText('srt_industries_items');
@@ -60,7 +60,7 @@ export default function Industries() {
           ))}
         </div>
         <div className="text-center mt-12">
-          <p className="text-[14px] mb-4" style={{ color: MUTED }}>Noch unsicher, wie das SRT zu deinem Use Case passt?</p>
+          <p className="text-[14px] mb-4" style={{ color: MUTED }}>Noch unsicher, wie die SRT zu deinem Use Case passt?</p>
           <button onClick={scrollToAccess} className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-foreground-950 text-white text-xs font-black uppercase tracking-widest hover:bg-primary-500 hover:text-foreground-950 transition-all cursor-pointer">
             <i className="ri-compass-3-line" />{tCta}<i className="ri-arrow-right-line" />
           </button>

@@ -21,7 +21,7 @@ const NAV_ITEMS = [
 export default function ForecastingPage() {
   useSEO({
     title: 'Forecasting | Sonic Group — Datenbasierte Sell-out-Prognosen für Retail DACH',
-    description: 'Retail Forecasting von Sonic Group: Datenbasierte Sell-out-Prognosen, Standortanalysen und ROI-Planung für Field Force Einsätze in Deutschland. Plane Promoter-Budgets mit nachvollziehbaren Prognosen auf Basis von über 1,3 Mio. dokumentierten Einsätzen im Sonic Reporting Tool (SRT).',
+    description: 'Retail Forecasting von Sonic Group: Datenbasierte Sell-out-Prognosen, Standortanalysen und ROI-Planung für Field Force Einsätze in Deutschland. Plane Promoter-Budgets mit nachvollziehbaren Prognosen auf Basis von über 1,3 Mio. dokumentierten Einsätzen in der SRT (Sonic Reporting Tool).',
     keywords: 'Retail Forecasting DACH, Sell-out Prognose, Standortanalyse Retail, ROI Planung POS, Promoter Budget Optimierung, Absatzprognose Deutschland, Datenbasiertes Marketing, Sonic Reporting Tool SRT, Retail Reporting, Sell-Through Forecast',
     canonical: 'https://sonic-group.de/leistungen/forecasting',
     ogTitle: 'Forecasting — Datenbasierte Retail-Prognosen | Sonic Group',

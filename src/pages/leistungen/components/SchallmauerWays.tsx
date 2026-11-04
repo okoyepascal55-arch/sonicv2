@@ -30,7 +30,7 @@ const WAYS: Way[] = [
     desc: 'Dein Produkt ist kaufbereit, aber noch unbekannt? Wir ändern das. Mit Menschen, die deine Marke verstehen und sie am Point of Sale, per Video und bei Events erlebbar machen.',
     bullets: [
       'Promoter:innen am POS',
-      'Datenbasierte Standortplanung mit dem SRT',
+      'Datenbasierte Standortplanung mit der SRT',
       'Launch-Events & Promotions',
       'Live-Reporting ab Tag 1',
     ],

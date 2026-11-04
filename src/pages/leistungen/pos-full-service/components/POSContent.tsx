@@ -13,7 +13,7 @@ const POS_CHALLENGES: ChallengeItem[] = [
     trigger: 'Zu viele Ansprechpartner?',
     woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20chain%20link%20connection%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20chain%20links%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-chain-pos-challenge-1&orientation=squarish',
     title: 'Reibungsverluste durch zu viele Anbieter',
-    desc: 'Wenn Design, Druck, Ladenbau, Logistik, Personal etc. von verschiedenen Anbietern kommen, steigt der interne Aufwand erheblich.',
+    desc: 'Wenn Design, Druck, Ladenbau, Logistik und Personal von verschiedenen Anbietern kommen, steigt der interne Aufwand erheblich.',
   },
   {
     icon: 'ri-alert-line',
@@ -25,7 +25,7 @@ const POS_CHALLENGES: ChallengeItem[] = [
     icon: 'ri-tools-line',
     trigger: 'Klingt vertraut?',
     title: 'Pflegeaufwand ohne Ende',
-    desc: 'Der POS-Auftritt muss gepflegt werden. Das gelingt in den Outlets nur mit bestens geschulten und motivierten Mitarbeitern.',
+    desc: 'Der POS-Auftritt muss gepflegt werden. Das gelingt in den Outlets nur mit geschulten und motivierten Mitarbeitenden.',
   },
 ];
 
@@ -38,7 +38,7 @@ const SOLUTIONS = [
 
 const ASSETS = [
   {
-    category: 'Gedrucktes & Gebautes',
+    category: 'Printmaterialien',
     icon: 'ri-printer-line',
     items: ['POS-Design und Kampagnenadaption', 'Aufsteller, Plakate, Flyer, Beklebungen, Gebäudebanner', 'Standequipment und Promotion-Tools', 'Produktion, Aufbau, Logistik und Lager'],
     imageStartIndex: 0,
@@ -56,7 +56,7 @@ const ASSETS = [
     imageStartIndex: 8,
   },
   {
-    category: 'Give-aways',
+    category: 'Giveaways',
     icon: 'ri-gift-line',
     items: ['Hochwertige Werbeartikel', 'Kosteneffiziente Streuartikel', 'Merchandise'],
     imageStartIndex: 16,
@@ -105,7 +105,7 @@ const FALLBACK_PROCESS = [
 ];
 
 export default function POSContent() {
-  const tChallengeHeading = useText('leistungen_pos_content', 'pos-challenge-heading', 'POS-Qualität sichern ist aufwändig.');
+  const tChallengeHeading = useText('leistungen_pos_content', 'pos-challenge-heading', 'POS-Qualität dauerhaft zu sichern, ist aufwändig.');
   const tChallengeSub = useText('leistungen_pos_content', 'pos-challenge-sub', 'Warum es die Big Idea nicht immer bis ins Outlet schafft.');
   const tSolutionHeading = useText('leistungen_pos_content', 'pos-solution-heading', 'Dein POS-Komplettpaket.');
   const tSolutionSub = useText('leistungen_pos_content', 'pos-solution-sub', 'Immer mit dem Ziel: Abverkauf unterstützen, Wachstum steigern, Marken erfolgreicher machen.');

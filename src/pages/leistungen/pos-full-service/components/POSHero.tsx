@@ -16,7 +16,7 @@ export default function POSHero() {
   const tBadge = useText('leistungen_pos', 'pos-hero-badge', 'POS Full Service');
   const tH1Line1 = useText('leistungen_pos', 'pos-hero-heading-line1', 'End-to-end-Partner');
   const tH1Accent = useText('leistungen_pos', 'pos-hero-heading-accent', 'für den POS.');
-  const tSubtitle = useText('leistungen_pos', 'pos-hero-subtitle', 'Alles aus einer Hand. Design, Displays, Möbel, Collateral, Give-aways, Logistik, Personal.');
+  const tSubtitle = useText('leistungen_pos', 'pos-hero-subtitle', 'Alles aus einer Hand. Design, Displays, Möbel, POS-Materialien, Giveaways, Logistik und Personal.');
   const t = useLeistungenText('leistungen_pos_hero_stats');
   const cta = useCtaText();
   const tDesc = useText('leistungen_pos', 'pos-hero-description', 'Durchgetaktet. Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.');

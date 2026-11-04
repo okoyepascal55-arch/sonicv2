@@ -27,7 +27,7 @@ export const TEXT_SECTIONS: TextSection[] = [
       e('s2-title', 'Karte 2 — Titel', 'subheading', 'Intensivtraining auf dein Produkt'),
       e('s2-desc', 'Karte 2 — Text', 'paragraph', 'Vor jedem Einsatz durchlaufen unsere Talente ein Produkttraining, das wirklich sitzt: Positionierung, USPs, Kaufargumente, Einwandbehandlung.'),
       e('s3-accent', 'Karte 3 — Kategorie', 'label', 'Reporting'),
-      e('s3-title', 'Karte 3 — Titel', 'subheading', 'Live-Zielerreichung im SRT'),
+      e('s3-title', 'Karte 3 — Titel', 'subheading', 'Live-Zielerreichung in der SRT'),
       e('s3-desc', 'Karte 3 — Text', 'paragraph', 'Unsere Promoter:innen sehen ihre eigene Performance in Echtzeit: Kontakte, Verkäufe, Zielerreichung. Das motiviert — und macht Coaching präzise.'),
       e('s4-accent', 'Karte 4 — Kategorie', 'label', 'Reichweite'),
       e('s4-title', 'Karte 4 — Titel', 'subheading', 'Deutschlandweit einsatzbereit'),
@@ -39,7 +39,7 @@ export const TEXT_SECTIONS: TextSection[] = [
       e('s6-title', 'Karte 6 — Titel', 'subheading', 'Performance-getrackt'),
       e('crosslink-text', 'Querverweis unter den Karten — Text', 'paragraph', 'Wie wir Verträge, Einsatzplanung und Abrechnung für dich organisieren, zeigt Staff as a Service.'),
       e('crosslink-link', 'Querverweis — Linktext (führt zu Staff as a Service)', 'cta', 'Zu Staff as a Service'),
-      e('s6-desc', 'Karte 6 — Text', 'paragraph', 'Standort-Check-in, Fotos, Echtzeit-Reporting im SRT: Jeder Einsatz ist dokumentiert und transparent. Für dich als Auftraggeber und für die Promoter:innen selbst.'),
+      e('s6-desc', 'Karte 6 — Text', 'paragraph', 'Standort-Check-in, Fotos, Echtzeit-Reporting in der SRT: Jeder Einsatz ist dokumentiert und transparent. Für dich als Auftraggeber und für die Promoter:innen selbst.'),
     ]),
 
   section('leistungen_talentpool_stats', 'Talentpool — Kennzahlen (4 Werte)', P,

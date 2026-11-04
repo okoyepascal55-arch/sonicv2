@@ -516,12 +516,12 @@ export default function FooterTopologyField() {
       ctx.clearRect(0, 0, W, H);
 
       /* ── Deep warm background ─────────────────────────────── */
-      ctx.fillStyle = '#0b0b0c'; /* matches site bg-foreground-950 */
+      ctx.fillStyle = '#000000'; /* pure black (Website-Review 11/2026) */
       ctx.fillRect(0, 0, W, H);
       const warmGrad = ctx.createRadialGradient(W * 0.5, H * 0.55, 0, W * 0.5, H * 0.55, W * 0.7);
-      warmGrad.addColorStop(0, 'rgba(18,20,14,0.20)');
-      warmGrad.addColorStop(0.5, 'rgba(12,13,10,0.08)');
-      warmGrad.addColorStop(1, 'rgba(11,11,12,0)');
+      warmGrad.addColorStop(0, 'rgba(0,0,0,0.20)');
+      warmGrad.addColorStop(0.5, 'rgba(0,0,0,0.08)');
+      warmGrad.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = warmGrad;
       ctx.fillRect(0, 0, W, H);
 
@@ -895,9 +895,9 @@ export default function FooterTopologyField() {
 
       /* ── Subtle vignette ───────────────────────────────────── */
       const vigGrad = ctx.createRadialGradient(W * 0.5, H * 0.5, W * 0.35, W * 0.5, H * 0.5, W * 0.92);
-      vigGrad.addColorStop(0, 'rgba(24,24,24,0)');
-      vigGrad.addColorStop(0.7, 'rgba(24,24,24,0.10)');
-      vigGrad.addColorStop(1, 'rgba(24,24,24,0.40)');
+      vigGrad.addColorStop(0, 'rgba(0,0,0,0)');
+      vigGrad.addColorStop(0.7, 'rgba(0,0,0,0.10)');
+      vigGrad.addColorStop(1, 'rgba(0,0,0,0.40)');
       ctx.fillStyle = vigGrad;
       ctx.fillRect(0, 0, W, H);
 
@@ -969,7 +969,7 @@ export default function FooterTopologyField() {
     <div
       ref={wrapperRef}
       className="relative w-full overflow-hidden cursor-crosshair"
-      style={{ zIndex: 0, background: '#0b0b0c', height: 'clamp(140px, 22vw, 300px)' }}
+      style={{ zIndex: 0, background: '#000000', height: 'clamp(140px, 22vw, 300px)' }}
     >
       <canvas
         ref={canvasRef}
@@ -992,10 +992,10 @@ export default function FooterTopologyField() {
           zIndex: 1,
           background:
             'linear-gradient(to bottom, ' +
-            'rgba(24,24,24,0.55) 0%, ' +
-            'rgba(24,24,24,0.20) 40%, ' +
-            'rgba(24,24,24,0.05) 70%, ' +
-            'rgba(24,24,24,0) 100%)',
+            'rgba(0,0,0,0.55) 0%, ' +
+            'rgba(0,0,0,0.20) 40%, ' +
+            'rgba(0,0,0,0.05) 70%, ' +
+            'rgba(0,0,0,0) 100%)',
         }}
       />
 
@@ -1006,7 +1006,7 @@ export default function FooterTopologyField() {
           bottom: 0,
           height: '25%',
           zIndex: 1,
-          background: 'linear-gradient(to top, rgba(24,24,24,0.20) 0%, rgba(24,24,24,0.06) 50%, transparent 100%)',
+          background: 'linear-gradient(to top, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.06) 50%, transparent 100%)',
         }}
       />
     </div>

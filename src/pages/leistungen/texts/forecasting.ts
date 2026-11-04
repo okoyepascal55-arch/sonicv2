@@ -26,7 +26,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('scroll_label', 'Lösung — Scroll-Hinweis', 'label', '6 Features — scrollen'),
     e('s1_accent', 'Karte 1 — Kategorie', 'tag', 'Datenanalyse'),
     e('s1_title', 'Karte 1 — Titel', 'heading', 'Herleitung statt Schätzung'),
-    e('s1_desc', 'Karte 1 — Text', 'paragraph', 'Wir leiten deine Prognose aus historischen Einsatz- und Abverkaufsdaten im SRT her. Vom Bauchgefühl über Analyse und Herleitung zur Sicherheit.'),
+    e('s1_desc', 'Karte 1 — Text', 'paragraph', 'Wir leiten deine Prognose aus historischen Einsatz- und Abverkaufsdaten in der SRT her. Vom Bauchgefühl über Analyse und Herleitung zur Sicherheit.'),
     e('s2_accent', 'Karte 2 — Kategorie', 'tag', 'Standort'),
     e('s2_title', 'Karte 2 — Titel', 'heading', 'Standort-Potenzialanalyse'),
     e('s2_desc', 'Karte 2 — Text', 'paragraph', 'Welche Outlets versprechen den größten Hebel? Wir priorisieren Standorte nach erwartetem ROI — auf Basis der Performance aus über 1.000 betreuten Stores.'),
@@ -54,7 +54,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('st3_title', 'Schritt 3 — Titel', 'heading', 'Prognose ausgeben'),
     e('st3_desc', 'Schritt 3 — Text', 'paragraph', 'Du erhältst eine transparente Prognose: erwarteter Sell-out pro Standort, pro Zeitraum und pro Szenario — Best, Base und Worst Case. Jede Zahl mit nachvollziehbarer Herleitung.'),
     e('st4_title', 'Schritt 4 — Titel', 'heading', 'Live abgleichen'),
-    e('st4_desc', 'Schritt 4 — Text', 'paragraph', 'Nach Projektstart gleichen wir die Prognose laufend mit echten Einsatzdaten im SRT ab. Optimierungspotenziale werden früh sichtbar.'),
+    e('st4_desc', 'Schritt 4 — Text', 'paragraph', 'Nach Projektstart gleichen wir die Prognose laufend mit echten Einsatzdaten in der SRT ab. Optimierungspotenziale werden früh sichtbar.'),
   ]),
 
   section('leistungen_forecasting_cta', 'Forecasting — Kontakt-Box', P, 'Abschluss-Box am Seitenende: kurze Frage, eine Zeile. Button und Zeile darunter: CTAs — Button-Texte.', [

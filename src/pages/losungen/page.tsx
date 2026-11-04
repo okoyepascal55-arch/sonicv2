@@ -736,7 +736,7 @@ export default function LosungenPage() {
       ]},
       { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: [
         { '@type': 'Question', name: 'Wie unterstützt Sonic Group beim Markteintritt in Deutschland?', acceptedAnswer: { '@type': 'Answer', text: 'Sonic Group begleitet internationale Marken mit Field Force, POS-Aktivierung, Schulungen und Reporting-Systemen beim Eintritt in den deutschen Handel — von der Pilotphase bis zur flächendeckenden Skalierung.' }},
-        { '@type': 'Question', name: 'Wie steigert Sonic Group den Abverkauf am POS?', acceptedAnswer: { '@type': 'Answer', text: 'Durch geschulte Promoter:innen, gezielte POS-Promotions, Live-Video-Beratung und datenbasiertes Reporting mit dem SRT (Sonic Reporting Tool) wird der Umsatz messbar gesteigert.' }},
+        { '@type': 'Question', name: 'Wie steigert Sonic Group den Abverkauf am POS?', acceptedAnswer: { '@type': 'Answer', text: 'Durch geschulte Promoter:innen, gezielte POS-Promotions, Live-Video-Beratung und datenbasiertes Reporting mit der SRT (Sonic Reporting Tool) wird der Umsatz messbar gesteigert.' }},
         { '@type': 'Question', name: 'Was bedeutet Omnichannel bei Sonic?', acceptedAnswer: { '@type': 'Answer', text: 'Omnichannel heißt bei Sonic: Kundinnen und Kunden bekommen dieselbe persönliche Beratung im Laden, im Online-Shop und per QR-Code auf der Verpackung – live aus unseren Studios in Krefeld.' }},
       ]},
     ],

@@ -69,18 +69,18 @@ export default function Contact() {
 
               {/* Body */}
               <p className="text-sm text-foreground-400 leading-relaxed max-w-xl">
-                Als Sales- und Marketing-Agentur mit Schwerpunkten rund um Personalprojekte
-                sowie mit eigener Software verbinden wir Kreativität mit Performance, Daten mit
-                Menschen und Marken mit Konsumenten. Für deinen messbaren Markenerfolg.
+                Als Sales- und Marketing-Agentur verbinden wir starke Teams mit unserer eigenen
+                Software, Kreativität mit Performance, Daten mit Menschen und Marken mit
+                Konsumenten. Für deinen messbaren Markenerfolg.
               </p>
 
               {/* Tags — single inline line */}
               <p lang="en" className="text-[13px] font-bold text-white/60 mt-5">
+                #Doing things
+                <span className="mx-2 text-primary-500/40" aria-hidden="true">·</span>
                 #Doing new things
                 <span className="mx-2 text-primary-500/40" aria-hidden="true">·</span>
                 #Doing things better
-                <span className="mx-2 text-primary-500/40" aria-hidden="true">·</span>
-                #Doing things
               </p>
 
               {/* ── Value 01 Daten (single row) ── */}
@@ -180,7 +180,7 @@ export default function Contact() {
             <div>
               {/* Eyebrow */}
               <p className="text-[11px] font-black uppercase tracking-[0.3em] text-primary-500 mb-4">
-                Menschen mit Energie gesucht
+                Menschen mit Doer-Mentalität gesucht
               </p>
 
               {/* Headline */}

@@ -35,7 +35,7 @@ export default function ForecastingContent() {
  const tSolutionHeading = useText('leistungen_forecasting_content', 'forecasting-solution-heading', 'Forecasting. Datenbasiert. Belastbar.');
  const tSolutionSub = useText('leistungen_forecasting_content', 'forecasting-solution-sub', 'Prognosen auf echten Einsatzdaten — nicht auf verstreuten Excel-Tabellen.');
  const tHowHeading = useText('leistungen_forecasting_content', 'forecasting-how-heading', 'In 4 Schritten zur belastbaren Prognose');
- const tHowSub = useText('leistungen_forecasting_content', 'forecasting-how-sub', 'Daten liefern die Fakten, Menschen den Unterschied. So entsteht deine Prognose — Schritt für Schritt, live im SRT einsehbar.');
+ const tHowSub = useText('leistungen_forecasting_content', 'forecasting-how-sub', 'Daten liefern die Fakten, Menschen den Unterschied. So entsteht deine Prognose — Schritt für Schritt, live in der SRT einsehbar.');
  const tc = useLeistungenText('leistungen_forecasting_challenges');
  const ts = useLeistungenText('leistungen_forecasting_cards');
  const tw = useLeistungenText('leistungen_forecasting_steps');
