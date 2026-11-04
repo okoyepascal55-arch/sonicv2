@@ -26,7 +26,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('card3-desc', 'Karte 3 — Text', 'paragraph', 'Die richtige Platzierung deiner Produkte im Handel, dauerhaft. Zweitplatzierungen, Warenpräsentation, Regalpflege.'),
     e('card4-accent', 'Karte 4 — Kategorie', 'label', 'Analytics & SRT'),
     e('card4-title', 'Karte 4 — Titel', 'subheading', 'Performance-Tracking'),
-    e('card4-desc', 'Karte 4 — Text', 'paragraph', 'Detaillierte Auswertung von Verkaufszahlen und ROI deiner POS-Aktivitäten. Tagesaktuell im Sonic Reporting Tool (SRT).'),
+    e('card4-desc', 'Karte 4 — Text', 'paragraph', 'Detaillierte Auswertung von Verkaufszahlen und ROI deiner POS-Aktivitäten. Tagesaktuell in der SRT (Sonic Reporting Tool).'),
   ]),
   section('leistungen_pos_process', 'POS Full Service — Ablauf (6 Schritte)', P, 'Titel, Text und Dauer der sechs Ablauf-Schritte.', [
     e('eyebrow', 'Eyebrow', 'label', 'Ablauf'),
@@ -46,7 +46,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('step5-desc', 'Schritt 5 — Text', 'paragraph', 'Koordinierte Auslieferung und Platzierung in allen Verkaufsstellen. Logistik über unser eigenes Warehouse.'),
     e('step5-time', 'Schritt 5 — Dauer', 'badge', '1–4 Wochen'),
     e('step6-title', 'Schritt 6 — Titel', 'subheading', 'Monitoring & Reporting'),
-    e('step6-desc', 'Schritt 6 — Text', 'paragraph', 'Kontinuierliche Überwachung und detaillierte Performance-Auswertung. Im SRT, tagesaktuell.'),
+    e('step6-desc', 'Schritt 6 — Text', 'paragraph', 'Kontinuierliche Überwachung und detaillierte Performance-Auswertung. In der SRT, tagesaktuell.'),
     e('step6-time', 'Schritt 6 — Dauer', 'badge', 'Ongoing'),
   ]),
   section('leistungen_pos_cta', 'POS Full Service — Kontakt-Box', P, 'Abschluss-Box am Seitenende: kurze Frage, eine Zeile. Button und Zeile darunter: CTAs — Button-Texte.', [

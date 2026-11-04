@@ -14,7 +14,7 @@ export default function SRTHeroReference() {
   const h1_1      = useText('srt_hero', 'srt-hero-h1-1',         'SONIC');
   const h1_2      = useText('srt_hero', 'srt-hero-h1-2',         'REPORTING');
   const h1_3      = useText('srt_hero', 'srt-hero-h1-3',         'TOOL.');
-  const sub       = useText('srt_hero', 'srt-hero-sub',          'Das SRT liefert Echtzeit-Zugriff auf Performance-Daten, Reportings und integriert Recruiting, Projektmanagement und Abrechnung — alles in einer Plattform.');
+  const sub       = useText('srt_hero', 'srt-hero-sub',          'Die SRT liefert Echtzeit-Zugriff auf Performance-Daten, Reportings und integriert Recruiting, Projektmanagement und Abrechnung — alles in einer Plattform.');
   const systemLabel = useText('srt_hero', 'srt-hero-system-label', 'Version 21+');
   const statusLabel = useText('srt_hero', 'srt-hero-status-label', 'Live · DACH');
   const tagline   = useText('srt_hero', 'srt-hero-tagline',      'Einsatz · Personal · Reporting · Seit 2008 · Seit 2024 mit KI');

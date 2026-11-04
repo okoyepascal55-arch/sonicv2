@@ -12,12 +12,12 @@ import VoicesShowcase, { markLastWord, type Voice } from '@/components/feature/V
 export default function JoergQuote() {
   const tBadge  = useText('srt_developer', 'srt-joerg-badge', 'Ein Wort vom Entwickler');
   const tName   = useText('srt_developer', 'srt-joerg-name',  'Jörg');
-  const tTitle  = useText('srt_developer', 'srt-joerg-title', 'Entwickler des Sonic Reporting Tools');
+  const tTitle  = useText('srt_developer', 'srt-joerg-title', 'Entwickler der SRT (Sonic Reporting Tool)');
   const tQuote  = useText('srt_developer', 'srt-joerg-quote',
-    'Das SRT ist kein Tool — es ist der direkte Draht zwischen dem, was am POS passiert, ' +
-    'und der Entscheidung, die daraus folgen muss. Wir haben es so gebaut, dass Promoter ' +
+    'Die SRT ist kein Tool — sie ist der direkte Draht zwischen dem, was am POS passiert, ' +
+    'und der Entscheidung, die daraus folgen muss. Wir haben sie so gebaut, dass Promoter ' +
     'damit arbeiten wollen, nicht müssen.');
-  const tHeading = useText('srt_developer', 'srt-joerg-heading', 'Wer hinter dem SRT steht.');
+  const tHeading = useText('srt_developer', 'srt-joerg-heading', 'Wer hinter der SRT steht.');
 
   const { images: photoImages } = useMediaStore('srt_joerg_photo');
   const photoUrl = photoImages[0]?.url ? resolveImageUrl(photoImages[0].url) : '';

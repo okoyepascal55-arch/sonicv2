@@ -16,7 +16,7 @@ export const EN: Record<string, Record<string, string>> = {
   "leistungen_pos": {
     "pos-hero-heading-line1": "End-to-end partner",
     "pos-hero-heading-accent": "for the POS.",
-    "pos-hero-subtitle": "Everything from a single source. Design, displays, furniture, collateral, giveaways, logistics, staff.",
+    "pos-hero-subtitle": "Everything from a single source. Design, displays, furniture, POS materials, giveaways, logistics and staff.",
     "pos-hero-description": "Perfectly orchestrated. From creation to the final touch, we handle every service.",
   },
   "leistungen_staff": {
@@ -66,7 +66,7 @@ export const EN: Record<string, Record<string, string>> = {
     "events-process-sub": "From planning to reporting: creative, professional and reliable.",
   },
   "leistungen_pos_content": {
-    "pos-challenge-heading": "Securing POS quality takes effort.",
+    "pos-challenge-heading": "Securing POS quality long-term takes effort.",
     "pos-challenge-sub": "Why the big idea doesn't always make it all the way to the outlet.",
     "pos-solution-heading": "Your complete POS package.",
     "pos-solution-sub": "Always with one goal: support sell-out, drive growth, make brands more successful.",
@@ -137,7 +137,7 @@ export const EN: Record<string, Record<string, string>> = {
     "eyebrow": "Services",
     "h1": "Manpower meets",
     "lead": "Full service for your brands and products in retail",
-    "sub": "From data & software and staff & staffing to POS, video and events: all from a single source. Data delivers the facts, people make the difference.",
+    "sub": "From data & software and staff & staffing to POS, video, events and logistics: all from a single source. Data delivers the facts, people make the difference.",
     "cta-secondary": "Explore all services",
   },
   "leistungen_overview_stats": {
@@ -176,7 +176,7 @@ export const EN: Record<string, Record<string, string>> = {
     "s3-tags": "POS display | Shop-in-shop | Live video",
     "s4-category": "Events & logistics",
     "s4-headline": "Brand presence you can experience",
-    "s4-sub": "From activation space to warehouse — from a single source. Roadshows, trade fairs, in-store events, co-packing. Over 200 events, more than 30,000 contacts.",
+    "s4-sub": "From activation space to warehouse: all from a single source. Roadshows, trade fairs, in-store events plus warehouse management, co-packing and transport. Experience from over 200 events. 927 m² of our own warehouse space.",
     "s4-cta": "Events & Trade Fairs",
     "s4-cta2": "Warehouse & Logistics",
     "s4-tags": "Roadshows | Events | Warehouse",
@@ -185,8 +185,8 @@ export const EN: Record<string, Record<string, string>> = {
     "eyebrow": "The retail sound barrier",
     "heading": "Your path to",
     "heading-accent": "retail success",
-    "explainer": "The retail sound barrier is the point where your product is on the shelf but doesn't sell itself.",
-    "sub": "Three paths, one goal: choose the solution that fits your plans – the services above are its building blocks.",
+    "explainer": "The retail sound barrier is the point where visibility alone is no longer enough. Your product is on the market – but real success takes more.",
+    "sub": "Choose the path that fits your plans. Our services provide the right building blocks to make it happen.",
     "w1-title": "Market entry",
     "w1-headline": "New to the market. Visible fast.",
     "w1-desc": "Your product is ready to buy but still unknown? We change that. With people who understand your brand and bring it to life at the point of sale, on video and at events.",

@@ -34,7 +34,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('card4-desc', 'Karte 4 — Text', 'paragraph', 'Essen, Trinken, Kunst und immersive Erlebnisse: So wird die Veranstaltung zum Erlebnis, das lange im Gedächtnis bleibt.'),
     e('card5-accent', 'Karte 5 — Kategorie', 'label', 'Logistik'),
     e('card5-title', 'Karte 5 — Titel', 'subheading', 'Logistik & Controlling'),
-    e('card5-desc', 'Karte 5 — Text', 'paragraph', 'Ort und Zeit stehen fest. Wir sind da. Alles läuft. Dank unserem eigenen Warehouse und Logistikteam. Und die Kosten? Siehst du im Sonic Reporting Tool (SRT).'),
+    e('card5-desc', 'Karte 5 — Text', 'paragraph', 'Ort und Zeit stehen fest. Wir sind da. Alles läuft. Dank unserem eigenen Warehouse und Logistikteam. Und die Kosten? Siehst du in der SRT (Sonic Reporting Tool).'),
     e('card6-accent', 'Karte 6 — Kategorie', 'label', 'Kommunikation'),
     e('card6-title', 'Karte 6 — Titel', 'subheading', '(Digitale) Kommunikation'),
     e('card6-desc', 'Karte 6 — Text', 'paragraph', 'Von der Einladung über Goodie-Bags und Give-aways bis zum Live-Stream: damit deine Botschaften ankommen.'),

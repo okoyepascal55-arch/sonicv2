@@ -35,8 +35,8 @@ export default function DataPaths() {
   const [activeNode, setActiveNode] = useState<string | null>(null);
   const [pulse, setPulse] = useState(false);
   const tBadge = useText('srt_datapaths', 'srt-data-badge', 'Datenfluss');
-  const tHeading = useText('srt_datapaths', 'srt-data-heading', 'So fließen die Daten durch das SRT.');
-  const tSub = useText('srt_datapaths', 'srt-data-p1', 'Das SRT ist das zentrale Nervensystem — es verbindet Sonic, Kunden, Mitarbeiter und externe Systeme in einer einzigen, synchronen Datenbasis.');
+  const tHeading = useText('srt_datapaths', 'srt-data-heading', 'So fließen die Daten durch die SRT.');
+  const tSub = useText('srt_datapaths', 'srt-data-p1', 'Die SRT ist das zentrale Nervensystem — sie verbindet Sonic, Kunden, Mitarbeiter und externe Systeme in einer einzigen, synchronen Datenbasis.');
   const woodenId = useId();
 
   const diagramRef = useRef<HTMLDivElement>(null);

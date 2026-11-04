@@ -14,8 +14,8 @@ const baseServices = [
   {
     short: 'POS Full Service',
     title: 'Menschen für Promotion & POS',
-    lead: 'Geschultes Personal mit Augenmerk auf Marken- und / oder Produkt-Inszenierung.',
-    description: 'Geschulte Promoter:innen beraten und verkaufen direkt an deiner Fläche. Mit POS Full Service kommt alles Weitere aus einer Hand: Displays, Möbel, Collateral, Logistik und Montage — datenbasiert geplant, live reportet und messbar erfolgreich.',
+    lead: 'Menschen, die deine Marke verstehen und Produkte überzeugend inszenieren.',
+    description: 'Geschulte Promoter:innen beraten und verkaufen direkt an deiner Fläche. Mit POS Full Service kommt alles Weitere aus einer Hand: Displays, Möbel, POS-Materialien, Logistik und Montage – datenbasiert geplant, live reportet und messbar erfolgreich.',
     tagline: 'Menschen, die verkaufen. Flächen, die wirken.',
     fallbackIcon: 'ri-store-2-line',
     images: [
@@ -92,8 +92,8 @@ const baseServices = [
     short: 'Live Video',
     title: 'Menschen für unsere Studios',
     lead: 'All In One: Regisseur, Moderator, Verkäufer.',
-    description: 'Erlebbar werden: Produktberatung, Sales und Service-Support direkt aus unseren Studio-Setups. Für Livestreams, Video-Commerce, digitale Beratung und Content-Produktion.',
-    tagline: 'Über 47.000 Live-Beratungen. Ø 5,5 Minuten Gesprächsdauer. Über 4.200 Stunden Beratungszeit.',
+    description: 'Beratung, die verkauft: Produktberatung, Sales und Service-Support direkt aus unseren Studios. Für Livestreams, Video-Commerce, digitale Beratung und Content-Produktion.',
+    tagline: 'Ø 5,5 Minuten Gesprächsdauer. Über 4.200 Stunden Beratungszeit.',
     fallbackIcon: 'ri-camera-line',
     images: [
       '/images/home/4. Menschen für unsere Studios/1.webp',

@@ -64,7 +64,7 @@ const liveVideoPromotion: RatgeberPageContent = {
     },
     {
       question: 'Wie messe ich den ROI von Live Video Promotion?',
-      answer: 'Live Video Promotion ist eines der am besten messbaren Marketing-Instrumente. Sonic Group liefert für jede Video-Promotion-Kampagne tagesaktuelle Dashboards mit allen relevanten KPIs: Anzahl der Beratungsgespräche, durchschnittliche Gesprächsdauer, Conversion-Rate (Gespräch-zu-Kauf), durchschnittlicher Bestellwert, Retourenquote im Vergleich zu nicht-beratenen Käufen, Customer-Lifetime-Value der video-beratenen Kunden und ROAS (Return on Advertising Spend). Diese Daten werden mit dem SRT — Sonic Reporting Tool — in Echtzeit erfasst und sind für Markenverantwortliche jederzeit abrufbar.',
+      answer: 'Live Video Promotion ist eines der am besten messbaren Marketing-Instrumente. Sonic Group liefert für jede Video-Promotion-Kampagne tagesaktuelle Dashboards mit allen relevanten KPIs: Anzahl der Beratungsgespräche, durchschnittliche Gesprächsdauer, Conversion-Rate (Gespräch-zu-Kauf), durchschnittlicher Bestellwert, Retourenquote im Vergleich zu nicht-beratenen Käufen, Customer-Lifetime-Value der video-beratenen Kunden und ROAS (Return on Advertising Spend). Diese Daten werden mit der SRT — Sonic Reporting Tool — in Echtzeit erfasst und sind für Markenverantwortliche jederzeit abrufbar.',
     },
     {
       question: 'Für welche Produktkategorien eignet sich Live Video Promotion besonders?',

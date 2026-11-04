@@ -461,7 +461,7 @@ export default function CaseStudiesPage() {
   const tSebHeadline     = useText('case_seb_text',    'seb-headline',    'Gemeinsam im Haushalt');
   const tSebSubline      = useText('case_seb_text',    'seb-subline',     'Etablierte Partnerschaft seit 2019 – Tefal, Rowenta, Krups und WMF');
   const tSebOverview     = useText('case_seb_text',    'seb-overview',    'Die Zusammenarbeit zwischen Sonic und Groupe SEB ist ein echtes Erfolgsmodell – geprägt von Vertrauen, Effizienz und einem gemeinsamen Anspruch: Leidenschaft für starke Marken und zufriedene Kunden. Sonic bringt Tefal, Rowenta, Krups und WMF durch gezielte Verkaufsunterstützung, fundiertes Fachwissen und aktiven POS-Support direkt zu den Menschen – mit Roadshows, Live-Streams, Live-Video-Beratung, Merchandising und Show-Cooking.');
-  const tSebQuote        = useText('case_seb_text',    'seb-quote',       'Hier finde ich, ohne großes Excel Kung-Fu, dass was ich für die Vorbereitung von Meetings benötige, das Ganze mit wenigen Klicks und mit Exportfunktion. Das SRT ist ein nützliches Tool und erleichtert unsere tägliche Arbeit.');
+  const tSebQuote        = useText('case_seb_text',    'seb-quote',       'Hier finde ich, ohne großes Excel Kung-Fu, dass was ich für die Vorbereitung von Meetings benötige, das Ganze mit wenigen Klicks und mit Exportfunktion. Die SRT ist ein nützliches Tool und erleichtert unsere tägliche Arbeit.');
   const tSebAuthor       = useText('case_seb_text',    'seb-author',      'Ramin Dirinpur');
   const tSebRole         = useText('case_seb_text',    'seb-role',        'Sales Promotion & Sales Training Manager, Groupe SEB Deutschland GmbH');
 
@@ -641,7 +641,7 @@ export default function CaseStudiesPage() {
         { num: '01', title: 'Recruiting', desc: 'Zum Start: Zusammenstellung Field Force Team aus eigenem Pool plus aus Recruiting. Gezieltes Matching auf Profil, Standort und Verkaufsstärke.', img: '/images/Case Studies -Fallbsp/Avoury/IMG-20230928-WA0000.webp', tags: ['Recruiting', 'Talentpool', 'Matching'] },
         { num: '02', title: 'Schulungen', desc: csT['avoury-module-2-desc'], img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_01.webp', tags: ['Campus Krefeld', 'Schulung', 'Zertifizierung'] },
         { num: '03', title: 'Sales Promotions', desc: 'Nicht Verkauf per Zufall — Verkauf per System. Gerätedemonstration, gezieltes Cross-Selling auf Kapseln und Zubehör, nach unserer Methode.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_05.webp', tags: ['POS', 'Cross-Selling', 'Methode'] },
-        { num: '04', title: 'Reporting', desc: 'Was gemessen wird, wird besser. Das SRT zeigt tages- und standortgenau: wer verkauft, wo, wie viel — und warum. Das ist der Motor hinter der Kurve.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_07.webp', tags: ['SRT', 'Daten', 'Analyse'] },
+        { num: '04', title: 'Reporting', desc: 'Was gemessen wird, wird besser. Die SRT zeigt tages- und standortgenau: wer verkauft, wo, wie viel — und warum. Das ist der Motor hinter der Kurve.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_07.webp', tags: ['SRT', 'Daten', 'Analyse'] },
         { num: '05', title: 'Laufende Optimierungen', desc: 'Personalauswahl, Outlet-Auswahl, Einsatztage — alles datenbasiert optimiert. Das Ergebnis gibt jedes Jahr recht.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_08.webp', tags: ['Optimierung', 'Datenbasiert', 'Matching'] },
       ],
       gallery: [

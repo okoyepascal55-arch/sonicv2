@@ -192,7 +192,7 @@ export default function Features({ featureIcons }: FeaturesProps) {
         <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAFDF5] px-6 py-4 border border-background-200/50">
           <div>
             <p className="text-foreground-900 font-black text-xs mb-0.5">Noch Fragen zum Funktionsumfang?</p>
-            <p className="text-foreground-500 text-[11px]">Wir zeigen dir das SRT live — kostenlos und unverbindlich.</p>
+            <p className="text-foreground-500 text-[11px]">Wir zeigen dir die SRT live — kostenlos und unverbindlich.</p>
           </div>
           <a
             href={`mailto:${CONTACT_EMAIL}?subject=SRT%20Demo`}

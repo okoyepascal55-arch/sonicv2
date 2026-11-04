@@ -71,7 +71,7 @@ function MediaPlayer({ url, type, fallbackId, title, active }: { url: string; ty
 
 export default function VideoShowcase() {
   const tBadge   = useText('srt_video_showcase', 'srt-video-badge',   'SRT in Aktion');
-  const tHeading = useText('srt_video_showcase', 'srt-video-heading', 'Sieh das SRT live.');
+  const tHeading = useText('srt_video_showcase', 'srt-video-heading', 'Sieh die SRT live.');
 
   const { images: media1 } = useMediaStore('srt_video_media_1');
   const { images: media2 } = useMediaStore('srt_video_media_2');

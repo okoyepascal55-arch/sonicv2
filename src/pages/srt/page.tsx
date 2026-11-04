@@ -31,7 +31,7 @@ const NAV_ITEMS = [
 export default function SRTPage() {
   useSEO({
     title: 'SRT — Sonic Reporting Tool | Field-Force-Software für Retail seit 2008',
-    description: 'Das Sonic Reporting Tool (SRT): seit 2008 im Einsatz, über 21 Versionen, über 1,3 Mio. erledigte Einsätze. Live-Daten, Einsatzplanung, Document Intelligence und individuelle Reportings (PowerPoint, Excel, SQL) für die Retail- und Field-Force-Projekte von Sonic.',
+    description: 'Die SRT (Sonic Reporting Tool): seit 2008 im Einsatz, über 21 Versionen, über 1,3 Mio. erledigte Einsätze. Live-Daten, Einsatzplanung, Document Intelligence und individuelle Reportings (PowerPoint, Excel, SQL) für die Retail- und Field-Force-Projekte von Sonic.',
     keywords: 'Sonic Reporting Tool, SRT Software, Field Force Software, Retail Reporting, Live-Dashboard Retail, Außendienst Steuerung, Einsatzplanung Promoter, Retail Analytics, Document Intelligence, Field Marketing Software, POS Reporting Tool, Promoter App',
     canonical: 'https://sonic-group.de/srt',
     ogTitle: 'SRT — Sonic Reporting Tool für Retail & Field Force',
@@ -44,7 +44,7 @@ export default function SRTPage() {
       { '@context': 'https://schema.org', '@type': 'SoftwareApplication',
         name: 'Sonic Reporting Tool (SRT)', applicationCategory: 'BusinessApplication',
         operatingSystem: 'Web',
-        description: 'Das Sonic Reporting Tool (SRT) — seit 2008, über 21 Versionen: Einsatzplanung, Live-Dashboards, Document Intelligence und individuelle Reportings für Retail- und Field-Force-Projekte.',
+        description: 'Die SRT (Sonic Reporting Tool) — seit 2008, über 21 Versionen: Einsatzplanung, Live-Dashboards, Document Intelligence und individuelle Reportings für Retail- und Field-Force-Projekte.',
         offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', seller: { '@type': 'Organization', name: 'Sonic Sales Support GmbH' }},
         featureList: ['Live-Dashboards', 'Einsatz- und Aufgabenplanung', 'Fotos und GPS-Koordinaten', 'Document Intelligence', 'Individuelle Reportings (PowerPoint, Excel, SQL)'],
       },

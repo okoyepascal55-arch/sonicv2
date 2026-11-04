@@ -8,6 +8,7 @@ import { CTA_TEXT_SECTIONS } from './textStoreCta';
 import { supabase } from './supabase';
 import { getLanguage, type Lang } from './language';
 import { EN_TEXT } from './textEn';
+import { applySrtRule } from './srtRule';
 export interface TextEntry {
   id: string;
   label: string;
@@ -200,11 +201,11 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'home-challenge-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Deine Challenge' },
       { id: 'home-challenge-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Drei Wege. Ein Partner.' },
       { id: 'home-challenge-path-1', label: 'Path 1 — Markteintritt', description: 'Market entry path title', type: 'heading', value: 'Markteintritt' },
-      { id: 'home-challenge-path-1-desc', label: 'Path 1 Description', description: 'Market entry description', type: 'paragraph', value: 'Deine Botschaft wird erlebbar – am POS, per Video und live. Damit neue Marken und erklärungsbedürftige Produkte vom ersten Tag an verkaufen.' },
+      { id: 'home-challenge-path-1-desc', label: 'Path 1 Description', description: 'Market entry description', type: 'paragraph', value: 'Deine Botschaft wird erlebbar – am POS, per Video und live. Damit neue Marken und erklärungsbedürftige Produkte vom ersten Tag an erfolgreich im Markt starten.' },
       { id: 'home-challenge-path-2', label: 'Path 2 — Absatz steigern', description: 'Sales growth path', type: 'heading', value: 'Absatz steigern' },
-      { id: 'home-challenge-path-2-desc', label: 'Path 2 Description', description: 'Sales growth description', type: 'paragraph', value: 'Unsere Promotion- und Field-Force-Teams sorgen dafür, dass dein Produkt im Handel stärker verkauft wird. Planbar, profitabel, live im SRT messbar.' },
+      { id: 'home-challenge-path-2-desc', label: 'Path 2 Description', description: 'Sales growth description', type: 'paragraph', value: 'Unsere Promotion- und Field-Force-Teams sorgen dafür, dass dein Produkt im Handel stärker verkauft wird. Planbar, profitabel, live in der SRT messbar.' },
       { id: 'home-challenge-path-3', label: 'Path 3 — Omnichannel', description: 'Omnichannel path', type: 'heading', value: 'Omnichannel optimieren' },
-      { id: 'home-challenge-path-3-desc', label: 'Path 3 Description', description: 'Omnichannel description', type: 'paragraph', value: 'Dieselbe persönliche Beratung im Laden, im Online-Shop und per QR-Code auf der Verpackung – live aus unseren Studios. Mehr Abschlüsse, weniger Retouren.' },
+      { id: 'home-challenge-path-3-desc', label: 'Path 3 Description', description: 'Omnichannel description', type: 'paragraph', value: 'Persönliche Beratung, nahtlos über alle Kanäle hinweg – am POS, online und live aus unseren Studios. Für ein konsistentes Markenerlebnis, mehr Abschlüsse und weniger Retouren.' },
     ],
   },
   {
@@ -366,7 +367,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-hero-h1-1', label: 'H1 — SONIC', description: 'H1 first word', type: 'heading', value: 'SONIC' },
       { id: 'srt-hero-h1-2', label: 'H1 — REPORTING', description: 'H1 accent word', type: 'heading', value: 'REPORTING' },
       { id: 'srt-hero-h1-3', label: 'H1 — TOOL.', description: 'H1 last word', type: 'heading', value: 'TOOL.' },
-      { id: 'srt-hero-sub', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Das SRT liefert Echtzeit-Zugriff auf Performance-Daten, Reportings und integriert Recruiting, Projektmanagement und Abrechnung — alles in einer Plattform.' },
+      { id: 'srt-hero-sub', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Die SRT liefert Echtzeit-Zugriff auf Performance-Daten, Reportings und integriert Recruiting, Projektmanagement und Abrechnung — alles in einer Plattform.' },
       { id: 'srt-hero-tagline', label: 'Hero Tagline', description: 'Tagline below subtitle', type: 'label', value: 'Einsatz · Personal · Reporting · Seit 2008 · Seit 2024 mit KI' },
       { id: 'srt-hero-cta-secondary', label: 'CTA Secondary', description: 'Secondary CTA button', type: 'cta', value: 'Features entdecken' },
       { id: 'srt-hero-nav-label', label: 'Nav Label', description: 'Direkt zu label', type: 'label', value: 'Direkt zu:' },
@@ -571,7 +572,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'pos-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'POS Full Service' },
       { id: 'pos-hero-heading-line1', label: 'H1 Line 1', description: 'Hero H1 first line', type: 'heading', value: 'End-to-end-Partner' },
       { id: 'pos-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'für den POS.' },
-      { id: 'pos-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Alles aus einer Hand. Design, Displays, Möbel, Collateral, Give-aways, Logistik, Personal.' },
+      { id: 'pos-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Alles aus einer Hand. Design, Displays, Möbel, POS-Materialien, Giveaways, Logistik und Personal.' },
       { id: 'pos-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Durchgetaktet. Von der Kreation bis zum letzten Handgriff übernehmen wir alle Leistungen.' },
     ],
   },
@@ -619,7 +620,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'talentpool-hero-heading-line1', label: 'H1 Line 1', description: 'Hero H1 first line', type: 'heading', value: '>1.800 Talente.' },
       { id: 'talentpool-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'Echte Markenbotschafter.' },
       { id: 'talentpool-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Handverlesen. Geschult. Im Einsatz bei Sonic angestellt.' },
-      { id: 'talentpool-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'In unserem Talentpool findest du Menschen aus ganz Deutschland — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit Blick auf die eigene Zielerreichung, live im Sonic Reporting Tool (SRT).' },
+      { id: 'talentpool-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'In unserem Talentpool findest du Menschen aus ganz Deutschland — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit Blick auf die eigene Zielerreichung, live in der SRT (Sonic Reporting Tool).' },
     ],
   },
   {
@@ -631,7 +632,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'forecasting-hero-heading-line1', label: 'H1 Line 1', description: 'Hero H1 first line', type: 'heading', value: 'Plausible' },
       { id: 'forecasting-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'Prognosen.' },
       { id: 'forecasting-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Bevor der erste Einsatz startet, weißt du, womit du realistisch rechnen kannst.' },
-      { id: 'forecasting-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Aus Kunden-, Sonic-, Staff- und Handelsdaten im Sonic Reporting Tool (SRT) leiten wir her, was dein Projekt erwarten kann — datenbasiert, nachvollziehbar, belastbar.' },
+      { id: 'forecasting-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Aus Kunden-, Sonic-, Staff- und Handelsdaten in der SRT (Sonic Reporting Tool) leiten wir her, was dein Projekt erwarten kann — datenbasiert, nachvollziehbar, belastbar.' },
     ],
   },
   {
@@ -818,7 +819,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-problem-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Deine Herausforderung' },
       { id: 'srt-problem-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Datenquellen zusammenführen' },
       { id: 'srt-problem-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Für erfolgreiche Retail- und Field-Force-Projekte müssen Daten aus vielen Quellen live zusammenlaufen. Genau daran scheitern viele Projekte — nicht an der Strategie, sondern an der Infrastruktur.' },
-      { id: 'srt-problem-cta', label: 'CTA Text', description: 'CTA strip text', type: 'cta', value: 'Das SRT löst alle drei Probleme.' },
+      { id: 'srt-problem-cta', label: 'CTA Text', description: 'CTA strip text', type: 'cta', value: 'Die SRT löst alle drei Probleme.' },
       { id: 'srt-problem-cta-sub', label: 'CTA Subtitle', description: 'CTA subtext', type: 'label', value: 'Eine Plattform. Alle Daten. Echtzeit.' },
       { id: 'srt-problem-cta-btn', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Lösung ansehen' },
     ],
@@ -850,8 +851,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The interactive data flow diagram: Sonic, SRT, Kunde, Mitarbeiter, externe Daten.',
     entries: [
       { id: 'srt-data-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Datenfluss' },
-      { id: 'srt-data-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'So fließen die Daten durch das SRT.' },
-      { id: 'srt-data-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Das SRT ist das zentrale Nervensystem — es verbindet Sonic, Kunden, Mitarbeiter und externe Systeme in einer einzigen, synchronen Datenbasis.' },
+      { id: 'srt-data-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'So fließen die Daten durch die SRT.' },
+      { id: 'srt-data-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Die SRT ist das zentrale Nervensystem — sie verbindet Sonic, Kunden, Mitarbeiter und externe Systeme in einer einzigen, synchronen Datenbasis.' },
     ],
   },
   {
@@ -861,7 +862,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'srt-proof-badge', label: 'Section Badge', description: 'Section badge — Hinweis (22.10.2026): nur noch als unsichtbare Beschriftung für Screenreader genutzt.', type: 'badge', value: 'SRT in Zahlen' },
       { id: 'srt-proof-heading', label: 'Main Heading', description: 'Main heading — Hinweis (22.10.2026): derzeit nicht auf der Seite sichtbar (Bilanz ist jetzt die Holz-Live-Leiste).', type: 'heading', value: 'Die Bilanz spricht für sich.' },
-      { id: 'srt-proof-sub', label: 'Subtitle', description: 'Subtitle — Hinweis (22.10.2026): derzeit nicht auf der Seite sichtbar (Bilanz ist jetzt die Holz-Live-Leiste).', type: 'paragraph', value: 'Kennzahlen aus unseren Projekten – im Handel erreicht, im SRT erfasst.' },
+      { id: 'srt-proof-sub', label: 'Subtitle', description: 'Subtitle — Hinweis (22.10.2026): derzeit nicht auf der Seite sichtbar (Bilanz ist jetzt die Holz-Live-Leiste).', type: 'paragraph', value: 'Kennzahlen aus unseren Projekten – im Handel erreicht, in der SRT erfasst.' },
     ],
   },
   {
@@ -871,7 +872,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'srt-industries-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Branchen & Use Cases' },
       { id: 'srt-industries-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Von Retail Execution bis Healthcare.' },
-      { id: 'srt-industries-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Das SRT ist bereit für jedes Projekt, bei dem Menschen zielorientiert und koordiniert eingesetzt werden.' },
+      { id: 'srt-industries-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Die SRT ist bereit für jedes Projekt, bei dem Menschen zielorientiert und koordiniert eingesetzt werden.' },
       { id: 'srt-industries-cta', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Deine SRT-Konfiguration finden' },
     ],
   },
@@ -883,7 +884,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-pricing-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Zugang' },
       { id: 'srt-pricing-heading', label: 'Überschrift (weiß)', description: 'Erster Teil der Überschrift', type: 'heading', value: 'Zugang zum' },
       { id: 'srt-pricing-heading-accent', label: 'Überschrift (lime)', description: 'Zweiter Teil der Überschrift, lime hervorgehoben', type: 'heading', value: 'SRT.' },
-      { id: 'srt-pricing-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Mit dem SRT siehst du die Daten deines Sonic-Projekts live. Reports definieren wir gemeinsam — so viele du brauchst.' },
+      { id: 'srt-pricing-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Mit der SRT siehst du die Daten deines Sonic-Projekts live. Reports definieren wir gemeinsam — so viele du brauchst.' },
       { id: 'srt-pricing-tier-1', label: 'Karte 1 — Titel', description: 'Chip-Titel der ersten Karte', type: 'heading', value: 'Live-Dashboard' },
       { id: 'srt-pricing-tier-1-label', label: 'Karte 1 — Kurzlabel', description: 'Große lime Zeile unter dem Titel', type: 'label', value: 'Live' },
       { id: 'srt-pricing-tier-1-desc', label: 'Karte 1 — Text', description: 'Beschreibung', type: 'paragraph', value: 'Sieh jederzeit, was in deinem Projekt passiert — im Browser und mobil.' },
@@ -899,7 +900,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-pricing-tier-2-f3', label: 'Karte 2 — Punkt 3', description: 'Häkchen-Punkt', type: 'label', value: 'Individuell definiert' },
       { id: 'srt-pricing-tier-3', label: 'Karte 3 — Titel', description: 'Chip-Titel der dritten Karte', type: 'heading', value: 'Projektteam' },
       { id: 'srt-pricing-tier-3-label', label: 'Karte 3 — Kurzlabel', description: 'Große lime Zeile unter dem Titel', type: 'label', value: 'Persönlich' },
-      { id: 'srt-pricing-tier-3-desc', label: 'Karte 3 — Text', description: 'Beschreibung', type: 'paragraph', value: 'Hinter dem SRT steht dein Sonic-Projektteam — wir besprechen die Auswertungen mit dir.' },
+      { id: 'srt-pricing-tier-3-desc', label: 'Karte 3 — Text', description: 'Beschreibung', type: 'paragraph', value: 'Hinter der SRT steht dein Sonic-Projektteam — wir besprechen die Auswertungen mit dir.' },
       { id: 'srt-pricing-tier-3-f1', label: 'Karte 3 — Punkt 1', description: 'Häkchen-Punkt', type: 'label', value: 'Fester Ansprechpartner bei Sonic' },
       { id: 'srt-pricing-tier-3-f2', label: 'Karte 3 — Punkt 2', description: 'Häkchen-Punkt', type: 'label', value: 'Auswertungen gemeinsam besprechen' },
       { id: 'srt-pricing-tier-3-f3', label: 'Karte 3 — Punkt 3', description: 'Häkchen-Punkt', type: 'label', value: 'Demo-Zugang auf Anfrage' },
@@ -911,7 +912,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The six-step collaboration process: KPI, Datenintegration, Dashboard, Team, Abrechnung, Reportings.',
     entries: [
       { id: 'srt-collab-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Zusammenarbeit' },
-      { id: 'srt-collab-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'So funktioniert das SRT' },
+      { id: 'srt-collab-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'So funktioniert die SRT' },
       { id: 'srt-collab-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Von der ersten KPI-Definition bis zum laufenden Reporting — in 6 strukturierten Schritten.' },
       { id: 'srt-collab-step-1', label: 'Step 1 — KPI', description: 'KPI definition', type: 'heading', value: 'KPI-Definition' },
       { id: 'srt-collab-step-2', label: 'Step 2 — Daten', description: 'Data integration', type: 'heading', value: 'Datenintegration' },
@@ -922,7 +923,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-collab-step-1-short', label: 'Step 1 — Unterzeile', description: 'Kleine Zeile unter dem Titel', type: 'label', value: 'Erfolgskennzahlen definieren' },
       { id: 'srt-collab-step-1-desc', label: 'Step 1 — Text', description: 'Beschreibung', type: 'paragraph', value: 'Gemeinsam definieren wir die Erfolgskennzahlen, die für dein Projekt entscheidend sind — Abverkauf, Standort-Performance, Mitarbeiter-KPIs.' },
       { id: 'srt-collab-step-2-short', label: 'Step 2 — Unterzeile', description: 'Kleine Zeile unter dem Titel', type: 'label', value: 'Daten verknüpfen' },
-      { id: 'srt-collab-step-2-desc', label: 'Step 2 — Text', description: 'Beschreibung', type: 'paragraph', value: 'Unsere Daten zu Branchen, Outlets und Mitarbeitern werden mit deinen Daten verknüpft, damit das SRT zur zentralen Datenbasis wird.' },
+      { id: 'srt-collab-step-2-desc', label: 'Step 2 — Text', description: 'Beschreibung', type: 'paragraph', value: 'Unsere Daten zu Branchen, Outlets und Mitarbeitern werden mit deinen Daten verknüpft, damit die SRT zur zentralen Datenbasis wird.' },
       { id: 'srt-collab-step-3-short', label: 'Step 3 — Unterzeile', description: 'Kleine Zeile unter dem Titel', type: 'label', value: 'Visualisierung aufsetzen' },
       { id: 'srt-collab-step-3-desc', label: 'Step 3 — Text', description: 'Beschreibung', type: 'paragraph', value: 'Optisch sauber aufbereitet für den schnellen Überblick — oder als PowerPoint-, Excel- oder SQL-Reporting für laufende Kontrolle und Controlling.' },
       { id: 'srt-collab-step-4-short', label: 'Step 4 — Unterzeile', description: 'Kleine Zeile unter dem Titel', type: 'label', value: 'Field Force aufbauen' },
@@ -939,7 +940,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The video showcase: Live Reporting, Dashboard, Team-Performance, Einsatzplanung, Forecasting, Analytics.',
     entries: [
       { id: 'srt-video-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'SRT in Aktion' },
-      { id: 'srt-video-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'SIEH DAS SRT LIVE.' },
+      { id: 'srt-video-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'SIEH DIE SRT LIVE.' },
       { id: 'srt-video-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Jede Funktion demonstriert. Wähle eine Funktion und sieh zu.' },
     ],
   },
@@ -1138,7 +1139,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pageGroupId: 'leistungen', pagePath: '/leistungen/pos-full-service',
     description: 'POS Full Service: challenge, solution, assets, process headings.',
     entries: [
-      { id: 'pos-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'POS-Qualität sichern ist aufwändig.' },
+      { id: 'pos-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'POS-Qualität dauerhaft zu sichern, ist aufwändig.' },
       { id: 'pos-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Warum es die Big Idea nicht immer bis ins Outlet schafft.' },
       { id: 'pos-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Dein POS-Komplettpaket.' },
       { id: 'pos-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Immer mit dem Ziel: Abverkauf unterstützen, Wachstum steigern, Marken erfolgreicher machen.' },
@@ -1211,7 +1212,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'forecasting-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Forecasting. Datenbasiert. Belastbar.' },
       { id: 'forecasting-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Prognosen auf echten Einsatzdaten — nicht auf verstreuten Excel-Tabellen.' },
       { id: 'forecasting-how-heading', label: 'How Heading', description: 'How-it-works H2', type: 'heading', value: 'In 4 Schritten zur belastbaren Prognose' },
-      { id: 'forecasting-how-sub', label: 'How Subline', description: 'How description', type: 'paragraph', value: 'Daten liefern die Fakten, Menschen den Unterschied. So entsteht deine Prognose — Schritt für Schritt, live im SRT einsehbar.' },
+      { id: 'forecasting-how-sub', label: 'How Subline', description: 'How description', type: 'paragraph', value: 'Daten liefern die Fakten, Menschen den Unterschied. So entsteht deine Prognose — Schritt für Schritt, live in der SRT einsehbar.' },
     ],
   },
 
@@ -1322,7 +1323,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'seb-headline', label: 'Überschrift', description: 'Große Überschrift der Fallstudie', type: 'heading', value: 'Gemeinsam im Haushalt' },
       { id: 'seb-subline', label: 'Unterzeile', description: 'Zeile unter der Überschrift', type: 'subheading', value: 'Etablierte Partnerschaft seit 2019 – Tefal, Rowenta, Krups und WMF' },
       { id: 'seb-overview', label: 'Übersicht', description: 'Einleitender Absatz der Fallstudie', type: 'paragraph', multiline: true, value: 'Die Zusammenarbeit zwischen Sonic und Groupe SEB ist ein echtes Erfolgsmodell – geprägt von Vertrauen, Effizienz und einem gemeinsamen Anspruch: Leidenschaft für starke Marken und zufriedene Kunden. Sonic bringt Tefal, Rowenta, Krups und WMF durch gezielte Verkaufsunterstützung, fundiertes Fachwissen und aktiven POS-Support direkt zu den Menschen – mit Roadshows, Live-Streams, Live-Video-Beratung, Merchandising und Show-Cooking.' },
-      { id: 'seb-quote', label: 'Kundenzitat', description: 'Zitat im Zitat-Block (ohne Anführungszeichen eingeben)', type: 'quote', multiline: true, value: 'Hier finde ich, ohne großes Excel Kung-Fu, dass was ich für die Vorbereitung von Meetings benötige, das Ganze mit wenigen Klicks und mit Exportfunktion. Das SRT ist ein nützliches Tool und erleichtert unsere tägliche Arbeit.' },
+      { id: 'seb-quote', label: 'Kundenzitat', description: 'Zitat im Zitat-Block (ohne Anführungszeichen eingeben)', type: 'quote', multiline: true, value: 'Hier finde ich, ohne großes Excel Kung-Fu, dass was ich für die Vorbereitung von Meetings benötige, das Ganze mit wenigen Klicks und mit Exportfunktion. Die SRT ist ein nützliches Tool und erleichtert unsere tägliche Arbeit.' },
       { id: 'seb-author', label: 'Zitat — Name', description: 'Wer das Zitat gesagt hat', type: 'label', value: 'Ramin Dirinpur' },
       { id: 'seb-role', label: 'Zitat — Position / Unternehmen', description: 'Unter dem Namen', type: 'label', value: 'Sales Promotion & Sales Training Manager, Groupe SEB Deutschland GmbH' },
     ],
@@ -1366,10 +1367,10 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'Zitat-Karte „Wer hinter dem SRT steht.“ auf der SRT-Seite. Das Porträt wird im Medien-Dashboard gepflegt (SRT → „Entwickler Jörg: Profilfoto“).',
     entries: [
       { id: 'srt-joerg-badge',   label: 'Sektion-Badge',   description: 'Kleine Zeile über der Überschrift', type: 'badge',   value: 'Ein Wort vom Entwickler' },
-      { id: 'srt-joerg-heading', label: 'Überschrift',     description: 'Große Überschrift über der Karte', type: 'heading', value: 'Wer hinter dem SRT steht.' },
+      { id: 'srt-joerg-heading', label: 'Überschrift',     description: 'Große Überschrift über der Karte', type: 'heading', value: 'Wer hinter der SRT steht.' },
       { id: 'srt-joerg-name',    label: 'Name',            description: 'Groß im Porträt und in der Fußzeile der Karte', type: 'heading', value: 'Jörg' },
-      { id: 'srt-joerg-title',   label: 'Position / Rolle', description: 'Unter dem Namen, über dem Zitat und in der Fußzeile', type: 'label', value: 'Entwickler des Sonic Reporting Tools' },
-      { id: 'srt-joerg-quote',   label: 'Zitat',           description: 'Das große Zitat rechts', type: 'quote', multiline: true, value: 'Das SRT ist kein Tool — es ist der direkte Draht zwischen dem, was am POS passiert, und der Entscheidung, die daraus folgen muss. Wir haben es so gebaut, dass Promoter damit arbeiten wollen, nicht müssen.' },
+      { id: 'srt-joerg-title',   label: 'Position / Rolle', description: 'Unter dem Namen, über dem Zitat und in der Fußzeile', type: 'label', value: 'Entwickler der SRT (Sonic Reporting Tool)' },
+      { id: 'srt-joerg-quote',   label: 'Zitat',           description: 'Das große Zitat rechts', type: 'quote', multiline: true, value: 'Die SRT ist kein Tool — sie ist der direkte Draht zwischen dem, was am POS passiert, und der Entscheidung, die daraus folgen muss. Wir haben sie so gebaut, dass Promoter damit arbeiten wollen, nicht müssen.' },
       { id: 'srt-joerg-video',   label: 'YouTube-Video (optional)', description: 'YouTube-Link einfügen (z. B. https://youtu.be/…). Ersetzt das Porträt durch das Video. Leer = Porträt. Hinweis (22.10.2026): Video wird derzeit nicht auf der Seite angezeigt — es erscheint immer das Foto (Medien → SRT → Jörg Profilfoto).', type: 'link', value: '' },
     ],
   },
@@ -1623,6 +1624,24 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'losungen_page', entryId: 'lp-introText', from: 'Lösungen beschreiben dein Ziel', to: 'Ganz gleich, ob du neu im Markt bist, deinen Absatz steigern willst oder Beratung im Laden und online verbinden möchtest: Wir haben die Menschen, die Daten und die Erfahrung.', matchType: 'startsWith' as const },
   // ── Blog and Ratgeber are separate (01.10.2026, owner request) ──
   { sectionKey: 'blog_hero', entryId: 'blog-empty', from: 'Neue Beiträge sind in Arbeit. Bis dahin', to: 'Neue Beiträge sind in Arbeit.', matchType: 'startsWith' as const },
+  // ── Website-Review Teil 1+2 (11/2026): corrects values saved in the dashboard ──
+  { sectionKey: 'home_challenge', entryId: 'home-challenge-path-1-desc', from: 'vom ersten Tag an verkaufen', to: 'Deine Botschaft wird erlebbar – am POS, per Video und live. Damit neue Marken und erklärungsbedürftige Produkte vom ersten Tag an erfolgreich im Markt starten.', matchType: 'contains' as const },
+  { sectionKey: 'home_challenge', entryId: 'home-challenge-path-3-desc', from: 'Dieselbe persönliche Beratung im Laden', to: 'Persönliche Beratung, nahtlos über alle Kanäle hinweg – am POS, online und live aus unseren Studios. Für ein konsistentes Markenerlebnis, mehr Abschlüsse und weniger Retouren.', matchType: 'contains' as const },
+  { sectionKey: 'home_services_texts', entryId: 'tab1-lead', from: 'mit Augenmerk auf Marken- und / oder', to: 'Menschen, die deine Marke verstehen und Produkte überzeugend inszenieren.', matchType: 'contains' as const },
+  { sectionKey: 'home_services_texts', entryId: 'tab1-desc', from: 'Möbel, Collateral, Logistik und Montage', to: 'Geschulte Promoter:innen beraten und verkaufen direkt an deiner Fläche. Mit POS Full Service kommt alles Weitere aus einer Hand: Displays, Möbel, POS-Materialien, Logistik und Montage – datenbasiert geplant, live reportet und messbar erfolgreich.', matchType: 'contains' as const },
+  { sectionKey: 'home_services_texts', entryId: 'tab5-desc', from: 'Erlebbar werden: Produktberatung', to: 'Beratung, die verkauft: Produktberatung, Sales und Service-Support direkt aus unseren Studios. Für Livestreams, Video-Commerce, digitale Beratung und Content-Produktion.', matchType: 'contains' as const },
+  { sectionKey: 'home_srt_teaser', entryId: 'sub', from: 'Seit 2008 unser eigenes Tool', to: 'Seit 2008 das digitale Herzstück unserer Projekte. Die SRT verbindet Planung, Steuerung und Reporting in einem System – individualisierbar, mehrsprachig und adaptiv. So hast du deine wichtigsten Projektdaten und die Performance jederzeit live im Blick.', matchType: 'contains' as const },
+  { sectionKey: 'losungen_markteintritt', entryId: 'proof-1', from: 'TV-Hersteller: sechs Wochen nach dem Start', to: 'Neuer TV-Hersteller im deutschen Markt: 6 Wochen bis zum Vollbetrieb, +75 % Umsatz im ersten Jahr.', matchType: 'contains' as const },
+  { sectionKey: 'losungen_omnichannel', entryId: 'description', from: 'Omnichannel heißt bei uns', to: 'Persönliche Beratung über alle Kanäle hinweg. Unsere Hosts bringen Produktwissen, Beratung und Sales live aus unseren Studios dorthin, wo deine Kund:innen Kaufentscheidungen treffen. Digital, persönlich und direkt.', matchType: 'contains' as const },
+  { sectionKey: 'losungen_faq', entryId: 'faq-1-a', from: 'Kosmetik, Pharma, Food & Beverages', to: 'Unser Schwerpunkt liegt auf erklärungsbedürftigen Produkten, unter anderem aus Consumer Electronics, Haushalts- und Küchengeräten sowie Sport & Outdoor. Darüber hinaus arbeiten wir branchenübergreifend für Marken, die ihre Produkte im Handel erfolgreicher machen wollen. Unsere Teams kennen den POS und wissen, wie komplexe Produkte verständlich erklärt, überzeugend präsentiert und erfolgreich verkauft werden. Für etablierte Marken genauso wie für neue Player im Markt.', matchType: 'contains' as const },
+  { sectionKey: 'losungen_faq', entryId: 'faq-3-a', from: 'seit 2008 im Einsatz und in über 21 Versionen weiterentwickelt. Es verbindet', to: 'Die SRT ist unsere eigene Software und seit 2008 das digitale Herzstück unserer Projekte. In über 21 Versionen kontinuierlich weiterentwickelt, verbindet sie Kunden-, Sonic-, Mitarbeiter- und Handelsdaten in einem System. Von der Aufgaben- und Einsatzsteuerung über Kontrolle und Abrechnung bis zum Reporting. Unsere Teams arbeiten täglich mit der SRT, während du deine relevanten KPIs und Projektdaten live im Blick behältst. Individuelle Reportings stehen als Dashboard sowie als Excel-, PowerPoint- oder SQL-Report zur Verfügung.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_overview_hero', entryId: 'sub', from: 'bis zu POS, Video und Events:', to: 'Von Daten & Software über Personal & Staffing bis zu POS, Video, Events und Logistik: alles aus einer Hand. Daten liefern die Fakten, Menschen den Unterschied.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_overview_services', entryId: 's4-sub', from: 'mehr als 30.000 Kontakte', to: 'Von der Aktivierungsfläche bis zum Warenlager: alles aus einer Hand. Roadshows, Messen, Instore-Events sowie Lagermanagement, Konfektionierung und Transport. Über 200 Events Erfahrung. 927 m² eigene Lagerfläche.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_overview_ways', entryId: 'explainer', from: 'an dem dein Produkt im Regal steht', to: 'Die Retail-Schallmauer ist der Punkt, an dem Sichtbarkeit allein nicht mehr reicht. Dein Produkt ist im Markt – aber für echten Erfolg braucht es mehr.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_overview_ways', entryId: 'sub', from: 'die Leistungen oben sind die Bausteine', to: 'Wähle den Weg, der zu deinem Vorhaben passt. Unsere Leistungen liefern die passenden Bausteine für die Umsetzung.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_pos', entryId: 'pos-hero-subtitle', from: 'Möbel, Collateral, Give-aways', to: 'Alles aus einer Hand. Design, Displays, Möbel, POS-Materialien, Giveaways, Logistik und Personal.', matchType: 'contains' as const },
+  { sectionKey: 'losungen_markteintritt', entryId: 'stat-1-label', from: 'Promoter:innen im Einsatz', to: 'Mitarbeitende für Promotion und Field Force' },
+  { sectionKey: 'leistungen_pos_content', entryId: 'pos-challenge-heading', from: 'POS-Qualität sichern ist aufwändig.', to: 'POS-Qualität dauerhaft zu sichern, ist aufwändig.' },
 ];
 
 /* Substring corrections applied to every text (defaults and dashboard values).
@@ -1747,6 +1766,8 @@ function buildGermanSections(): TextSection[] {
       for (const [from, to] of TEXT_SUBSTITUTIONS) {
         if (entry.value.includes(from)) entry.value = entry.value.split(from).join(to);
       }
+      // „die SRT / in der SRT / mit der SRT" (Website-Review 11/2026)
+      entry.value = applySrtRule(entry.value);
     }
   }
   return sections;

@@ -94,10 +94,16 @@ export default function TrustStrip() {
             ))}
           </div>
 
-          {/* sm+: 2-row grid — column count follows the number of uploaded logos (max 8 per row) */}
+          {/* sm+: 2-row grid — column count follows the number of uploaded logos (max 8 per row), so
+              every row is full: 10 logos → 5 + 5, 12 → 6 + 6. Up to 10 logos keep that 2-row grid from
+              tablet width on; larger sets fall back to 3 / 4 columns on small screens. */}
           <div
-            className="hidden sm:grid grid-cols-3 md:grid-cols-4 lg:[grid-template-columns:repeat(var(--trust-cols),minmax(0,1fr))] gap-2 md:gap-3"
-            style={{ ['--trust-cols' as string]: String(Math.min(8, Math.max(6, half))) }}
+            className="hidden sm:grid [grid-template-columns:repeat(var(--trust-cols-sm),minmax(0,1fr))] md:[grid-template-columns:repeat(var(--trust-cols-md),minmax(0,1fr))] lg:[grid-template-columns:repeat(var(--trust-cols),minmax(0,1fr))] gap-2 md:gap-3"
+            style={{
+              ['--trust-cols' as string]: String(Math.min(8, Math.max(4, half))),
+              ['--trust-cols-md' as string]: String(half <= 5 ? Math.max(4, half) : 4),
+              ['--trust-cols-sm' as string]: String(half <= 5 ? Math.max(3, half) : 3),
+            }}
           >
             {[...row1, ...row2].map((brand, i) => (
               <LogoCard key={i} brand={brand} />

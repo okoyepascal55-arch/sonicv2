@@ -72,7 +72,7 @@ const roadshowsAktionen: RatgeberPageContent = {
     },
     {
       question: 'Wie stellt Sonic Group die Qualitätskonsistenz über mehrere Roadshow-Standorte sicher?',
-      answer: 'Qualitätssicherung über räumlich verteilte Roadshow-Teams hinweg ist eine der zentralen Kompetenzherausforderungen im Roadshow-Management. Sonic Group nutzt einen vierstufigen Ansatz: Erstens standardisierte Schulungen vor dem Start, bei denen alle Teams denselben Inszenierungsstandard erlernen. Zweitens detaillierte Setup-Checklisten und Foto-Dokumentation bei jedem Aufbau — so lässt sich die Qualität jedes Standorts remote prüfen. Drittens regelmäßige Supervision-Besuche durch erfahrene Teamleiter. Und viertens tägliches digitales Reporting über das SRT, das KPIs in Echtzeit erfasst und Abweichungen sofort sichtbar macht.',
+      answer: 'Qualitätssicherung über räumlich verteilte Roadshow-Teams hinweg ist eine der zentralen Kompetenzherausforderungen im Roadshow-Management. Sonic Group nutzt einen vierstufigen Ansatz: Erstens standardisierte Schulungen vor dem Start, bei denen alle Teams denselben Inszenierungsstandard erlernen. Zweitens detaillierte Setup-Checklisten und Foto-Dokumentation bei jedem Aufbau — so lässt sich die Qualität jedes Standorts remote prüfen. Drittens regelmäßige Supervision-Besuche durch erfahrene Teamleiter. Und viertens tägliches digitales Reporting über die SRT, die KPIs in Echtzeit erfasst und Abweichungen sofort sichtbar macht.',
     },
     {
       question: 'Was ist der Unterschied zwischen einer Roadshow und einem mobilen Pop-up-Store?',

@@ -5,7 +5,7 @@ import { useMediaStore } from '@/lib/mediaStore';
 const STATS = [
   { value: '1.000', prefix: '>', label: 'Stores betreut', sublabel: 'In Sonic-Projekten', icon: 'ri-store-2-line', sys: 'Stores', trend: 'Im Handel' },
   { value: '2 Mrd.', prefix: '>', label: 'Umsatz generiert', sublabel: 'In Euro', icon: 'ri-money-euro-circle-line', sys: 'Umsatz', trend: 'Für unsere Kunden' },
-  { value: '1,3 Mio.', prefix: '>', label: 'Einsätze getrackt', sublabel: 'Durch das SRT', icon: 'ri-map-pin-2-line', sys: 'Einsätze', trend: 'Im SRT' },
+  { value: '1,3 Mio.', prefix: '>', label: 'Einsätze getrackt', sublabel: 'Durch die SRT', icon: 'ri-map-pin-2-line', sys: 'Einsätze', trend: 'In der SRT' },
   { value: '1.800', prefix: '>', label: 'Menschen im Talentpool', sublabel: 'Aktiv', icon: 'ri-team-line', sys: 'Talentpool', trend: 'DACH-weit' },
 ];
 

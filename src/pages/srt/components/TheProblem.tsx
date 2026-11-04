@@ -17,7 +17,7 @@ export default function TheProblem() {
   const tBadge = useText('srt_problem', 'srt-problem-badge', 'Deine Herausforderung');
   const tHeading = useText('srt_problem', 'srt-problem-heading', 'Datenquellen zusammenführen');
   const tP1 = useText('srt_problem', 'srt-problem-p1', '');
-  const tCta = useText('srt_problem', 'srt-problem-cta', 'Das SRT löst alle drei Probleme.');
+  const tCta = useText('srt_problem', 'srt-problem-cta', 'Die SRT löst alle drei Probleme.');
   const tCtaSub = useText('srt_problem', 'srt-problem-cta-sub', 'Eine Plattform. Alle Daten. Echtzeit.');
   const tCtaBtn = useText('srt_problem', 'srt-problem-cta-btn', 'Lösung ansehen');
 
@@ -77,7 +77,7 @@ export default function TheProblem() {
                 {tP1 || 'Für effizientes Performance-Marketing müssen Daten aus vielen Quellen in Echtzeit zusammenlaufen. Genau daran scheitern die meisten Unternehmen — nicht an der Strategie, sondern an der Infrastruktur.'}
               </p>
               <p className="text-sm text-foreground-500 leading-relaxed">
-                Die drei häufigsten Probleme, die wir bei unseren Kunden beobachten — und für die das SRT die direkte Antwort ist.
+                Die drei häufigsten Probleme, die wir bei unseren Kunden beobachten — und für die die SRT die direkte Antwort ist.
               </p>
             </div>
           </div>
