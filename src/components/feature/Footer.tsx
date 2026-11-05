@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import FooterTopologyField from './FooterTopologyField';
 import { useText } from '@/hooks/useText';
 import SiteLogo from '@/components/base/SiteLogo';
+import { useSitePages } from '@/lib/sitePages';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -49,6 +50,9 @@ export default function Footer() {
   const tBuiltBy      = useText('common_footer', 'footer-builtby',      'Built by Reezan Digital');
   const tIso          = useText('common_footer', 'footer-iso',          '');
   const tGdpr         = useText('common_footer', 'footer-gdpr',         'DSGVO-konform');
+
+  // Dashboard → Seiten: switched-off pages leave the footer.
+  const pages = useSitePages();
 
   const footerLinks = {
     solutions: [
@@ -217,14 +221,14 @@ export default function Footer() {
           <FooterAccordion
             groupKey="solutions"
             label={tColLeistungen}
-            links={footerLinks.solutions}
+            links={footerLinks.solutions.filter((l) => pages.isOn(l.href))}
           />
 
           {/* Unternehmen */}
           <FooterAccordion
             groupKey="company"
             label={tColCompany}
-            links={footerLinks.company}
+            links={footerLinks.company.filter((l) => pages.isOn(l.href))}
           />
 
           {/* Rechtliches */}

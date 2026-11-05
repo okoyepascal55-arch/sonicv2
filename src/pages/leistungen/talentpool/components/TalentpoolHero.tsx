@@ -15,8 +15,8 @@ export default function TalentpoolHero() {
   const tBadge = useText('leistungen_talentpool', 'talentpool-hero-badge', 'Talentpool');
   const tH1Line1 = useText('leistungen_talentpool', 'talentpool-hero-heading-line1', '>1.800 Talente.');
   const tH1Accent = useText('leistungen_talentpool', 'talentpool-hero-heading-accent', 'Echte Markenbotschafter.');
-  const tSubtitle = useText('leistungen_talentpool', 'talentpool-hero-subtitle', 'Handverlesen. Geschult. Im Einsatz bei Sonic angestellt.');
-  const tDesc = useText('leistungen_talentpool', 'talentpool-hero-description', 'In unserem Talentpool findest du Menschen aus ganz Deutschland — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit Blick auf die eigene Zielerreichung, live in der SRT (Sonic Reporting Tool).');
+  const tSubtitle = useText('leistungen_talentpool', 'talentpool-hero-subtitle', 'Handverlesen. Geschult. Bei Sonic angestellt.');
+  const tDesc = useText('leistungen_talentpool', 'talentpool-hero-description', 'In unserem Talentpool findest du Menschen aus ganz Deutschland, ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit ihrer Zielerreichung jederzeit live in der SRT.');
 
   return (
     <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950 px-4 md:px-6 hero-frame" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>

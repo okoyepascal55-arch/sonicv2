@@ -73,10 +73,10 @@ const FALLBACK_SOCKS = [
 ];
 
 export default function StaffContent() {
-  const tChallengeHeading = useText('leistungen_staff_content', 'staff-challenge-heading', 'Staffing flexibilisieren ist komplex.');
-  const tChallengeSub = useText('leistungen_staff_content', 'staff-challenge-sub', 'Im Bereich Sales und Promotion kommt klassisches Recruiting ans Limit.');
+  const tChallengeHeading = useText('leistungen_staff_content', 'staff-challenge-heading', 'Flexibles Staffing ist anspruchsvoll.');
+  const tChallengeSub = useText('leistungen_staff_content', 'staff-challenge-sub', 'Gerade in Sales und Promotion stößt klassisches Recruiting schnell an seine Grenzen.');
   const tSolutionHeading = useText('leistungen_staff_content', 'staff-solution-heading', 'Personaldienstleistung als digitalisierter Service.');
-  const tSolutionSub = useText('leistungen_staff_content', 'staff-solution-sub', 'Recruiting Task Force — Auswahl, Betreuung und Abrechnung aus einer Hand.');
+  const tSolutionSub = useText('leistungen_staff_content', 'staff-solution-sub', 'Von der Auswahl über die Betreuung bis zur Abrechnung – effizient gesteuert und aus einer Hand.');
   const tProcessHeading = useText('leistungen_staff_content', 'staff-process-heading', 'So läuft die Personalbeschaffung mit Sonic');
   const tSpecsHeading = useText('leistungen_staff_content', 'staff-specs-heading', 'Drei Beschäftigungsmodelle für deine Field Force.');
   const tSocksHeading = useText('leistungen_staff_content', 'staff-socks-heading', 'Das S.O.C.K.S.-Prinzip');

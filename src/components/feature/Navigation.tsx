@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useText } from '@/hooks/useText';
 import SiteLogo from '@/components/base/SiteLogo';
 import LanguageSwitch from '@/components/base/LanguageSwitch';
+import { useSitePages } from '@/lib/sitePages';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -104,7 +105,9 @@ export default function Navigation() {
 
   const navText = (active: boolean) => active ? 'text-primary-500' : textColor;
 
-  const leistungenCategories = [
+  const pages = useSitePages();
+
+  const leistungenCategoriesAll = [
     {
       title: tCatPos,
       items: [
@@ -136,10 +139,16 @@ export default function Navigation() {
     },
   ];
 
-  const aboutDropdownItems = [
+  const aboutDropdownItemsAll = [
     { name: tNavAboutPage, href: '/ueber-uns', icon: 'ri-information-line' },
     { name: tNavAboutReels, href: '/sonic-reels', icon: 'ri-film-line' },
   ];
+
+  // Dashboard → Seiten: switched-off pages leave the menu; empty groups disappear.
+  const leistungenCategories = leistungenCategoriesAll
+    .map((cat) => ({ ...cat, items: cat.items.filter((item) => pages.isOn(item.href)) }))
+    .filter((cat) => cat.items.length > 0);
+  const aboutDropdownItems = aboutDropdownItemsAll.filter((item) => pages.isOn(item.href));
 
   return (
     <>
@@ -166,12 +175,12 @@ export default function Navigation() {
                 <span className={`absolute bottom-0 left-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full ${isPageActive('/', true) ? 'w-full' : 'w-0'}`}></span>
               </button>
 
-              <button onClick={handleLosungenClick} className={`text-sm font-medium transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isPageActive('/losungen'))}`}>
+              {pages.isOn('/losungen') && (<button onClick={handleLosungenClick} className={`text-sm font-medium transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isPageActive('/losungen'))}`}>
                 {tNavLoesungen}
                 <span className={`absolute bottom-0 left-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full ${isPageActive('/losungen') ? 'w-full' : 'w-0'}`}></span>
-              </button>
+              </button>)}
 
-              <div className="relative" onMouseEnter={() => setActiveDropdown('leistungen')} onMouseLeave={() => setActiveDropdown(null)}>
+              {(pages.isOn('/leistungen') || leistungenCategories.length > 0) && (<div className="relative" onMouseEnter={() => setActiveDropdown('leistungen')} onMouseLeave={() => setActiveDropdown(null)}>
                 <button
                   onClick={() => setActiveDropdown(activeDropdown === 'leistungen' ? null : 'leistungen')}
                   className={`text-sm font-medium transition-colors relative group flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isLeistungenActive)}`} aria-haspopup="true" aria-expanded={activeDropdown === 'leistungen'} aria-controls="desktop-leistungen-menu">
@@ -182,11 +191,11 @@ export default function Navigation() {
                 {activeDropdown === 'leistungen' && (
                   <div id="desktop-leistungen-menu" className="absolute top-full left-0 pt-4" style={{ zIndex: 200 }}>
                     <div className="w-80 bg-background-50 border border-background-300/60 py-3" style={{ borderRadius: 0, boxShadow: '0 8px 32px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.08)' }}>
-                    <button onClick={() => handleNavClick('/leistungen')}
+                    {pages.isOn('/leistungen') && (<button onClick={() => handleNavClick('/leistungen')}
                       className="flex items-center gap-3 w-full text-left px-4 py-2.5 text-sm font-black text-foreground-800 hover:text-primary-500 hover:bg-[#FAFDF5] transition-colors cursor-pointer border-b border-background-200/70 mb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1">
                       <i className="ri-grid-line text-base text-primary-500" aria-hidden="true"></i>
                       {tNavLeistungenAll}
-                    </button>
+                    </button>)}
                     {leistungenCategories.map((cat, catIdx) => (
                       <div key={catIdx} className="mb-2">
                         <div className="px-4 py-1.5">
@@ -204,9 +213,9 @@ export default function Navigation() {
                     </div>
                   </div>
                 )}
-              </div>
+              </div>)}
 
-              <div className="relative" onMouseEnter={() => setActiveDropdown('about')} onMouseLeave={() => setActiveDropdown(null)}>
+              {aboutDropdownItems.length > 0 && (<div className="relative" onMouseEnter={() => setActiveDropdown('about')} onMouseLeave={() => setActiveDropdown(null)}>
                 <button
                   onClick={() => setActiveDropdown(activeDropdown === 'about' ? null : 'about')}
                   className={`text-sm font-medium transition-colors relative group flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isAboutActive)}`} aria-haspopup="true" aria-expanded={activeDropdown === 'about'} aria-controls="desktop-about-menu">
@@ -230,22 +239,22 @@ export default function Navigation() {
                     </div>
                   </div>
                 )}
-              </div>
+              </div>)}
 
-              <button onClick={() => handleNavClick('/fallbeispiele')} className={`text-sm font-medium transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isPageActive('/fallbeispiele'))}`}>
+              {pages.isOn('/fallbeispiele') && (<button onClick={() => handleNavClick('/fallbeispiele')} className={`text-sm font-medium transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isPageActive('/fallbeispiele'))}`}>
                 {tNavCases}
                 <span className={`absolute bottom-0 left-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full ${isPageActive('/fallbeispiele') ? 'w-full' : 'w-0'}`}></span>
-              </button>
+              </button>)}
 
-              <button onClick={() => handleNavClick('/blog')} className={`text-sm font-medium transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isPageActive('/blog'))}`}>
+              {pages.isOn('/blog') && (<button onClick={() => handleNavClick('/blog')} className={`text-sm font-medium transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isPageActive('/blog'))}`}>
                 {tNavBlog}
                 <span className={`absolute bottom-0 left-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full ${isPageActive('/blog') ? 'w-full' : 'w-0'}`}></span>
-              </button>
+              </button>)}
 
-              <button onClick={() => handleNavClick('/karriere')} className={`text-sm font-medium transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isPageActive('/karriere'))}`}>
+              {pages.isOn('/karriere') && (<button onClick={() => handleNavClick('/karriere')} className={`text-sm font-medium transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isPageActive('/karriere'))}`}>
                 {tNavCareers}
                 <span className={`absolute bottom-0 left-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full ${isPageActive('/karriere') ? 'w-full' : 'w-0'}`}></span>
-              </button>
+              </button>)}
 
               <LanguageSwitch />
 
@@ -313,16 +322,16 @@ export default function Navigation() {
               {tNavHome}
             </button>
 
-            <button onClick={handleLosungenClick}
+            {pages.isOn('/losungen') && (<button onClick={handleLosungenClick}
               className={`flex items-center gap-3 w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isPageActive('/losungen') ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}>
               <i className={`ri-lightbulb-line text-base w-5 text-center ${isPageActive('/losungen') ? 'text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
               {tNavLoesungen}
-            </button>
+            </button>)}
           </div>
 
           <div className="my-3 mx-4 border-t border-background-200/70" />
 
-          <div className="px-4">
+          {(pages.isOn('/leistungen') || leistungenCategories.length > 0) && (<div className="px-4">
             <button
               onClick={() => setMobileExpanded(mobileExpanded === 'leistungen' ? null : 'leistungen')}
               className={`flex items-center justify-between w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isLeistungenActive ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}
@@ -338,11 +347,11 @@ export default function Navigation() {
 
             {mobileExpanded === 'leistungen' && (
               <div id="mobile-leistungen-submenu" className="mt-1 ml-8 space-y-0.5 pb-2">
-                <button onClick={() => handleNavClick('/leistungen')}
+                {pages.isOn('/leistungen') && (<button onClick={() => handleNavClick('/leistungen')}
                   className="flex items-center gap-3 w-full text-left px-3 py-2.5 text-sm font-black text-foreground-700 hover:text-primary-500 hover:bg-primary-500/8 transition-colors cursor-pointer border-b border-background-200/70 mb-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
                   <i className="ri-grid-line text-sm text-primary-500" aria-hidden="true"></i>
                   {tNavLeistungenAll}
-                </button>
+                </button>)}
                 {leistungenCategories.map((cat, catIdx) => (
                   <div key={catIdx} className="mb-1">
                     <div className="text-[10px] font-black tracking-[0.2em] uppercase text-foreground-500 px-3 py-1">{cat.title}</div>
@@ -357,9 +366,9 @@ export default function Navigation() {
                 ))}
               </div>
             )}
-          </div>
+          </div>)}
 
-          <div className="px-4 mt-1">
+          {aboutDropdownItems.length > 0 && (<div className="px-4 mt-1">
             <button
               onClick={() => setMobileExpanded(mobileExpanded === 'about' ? null : 'about')}
               className={`flex items-center justify-between w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isAboutActive ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}
@@ -384,28 +393,28 @@ export default function Navigation() {
                 ))}
               </div>
             )}
-          </div>
+          </div>)}
 
           <div className="my-3 mx-4 border-t border-background-200/70" />
 
           <div className="px-4 space-y-1">
-            <button onClick={() => handleNavClick('/fallbeispiele')}
+            {pages.isOn('/fallbeispiele') && (<button onClick={() => handleNavClick('/fallbeispiele')}
               className={`flex items-center gap-3 w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isPageActive('/fallbeispiele') ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}>
               <i className={`ri-file-chart-line text-base w-5 text-center ${isPageActive('/fallbeispiele') ? 'text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
               {tNavCases}
-            </button>
+            </button>)}
 
-            <button onClick={() => handleNavClick('/blog')}
+            {pages.isOn('/blog') && (<button onClick={() => handleNavClick('/blog')}
               className={`flex items-center gap-3 w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isPageActive('/blog') ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}>
               <i className={`ri-article-line text-base w-5 text-center ${isPageActive('/blog') ? 'text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
               {tNavBlog}
-            </button>
+            </button>)}
 
-            <button onClick={() => handleNavClick('/karriere')}
+            {pages.isOn('/karriere') && (<button onClick={() => handleNavClick('/karriere')}
               className={`flex items-center gap-3 w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isPageActive('/karriere') ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}>
               <i className={`ri-user-add-line text-base w-5 text-center ${isPageActive('/karriere') ? 'text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
               {tNavCareers}
-            </button>
+            </button>)}
 
             <button onClick={() => handleNavClick('/kontakt')}
               className="flex items-center gap-3 w-full px-3 py-3 text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
