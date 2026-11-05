@@ -1430,6 +1430,11 @@ const HUMAN_LABELS: Record<string, string> = {
   'leistungen_kreation_carousel_images': 'Kreation — Carousel Tiles',
   'leistungen_kreation_showcase_images': 'Kreation — Showcase Grid',
   'leistungen_kreation_showcase_secondary_konzeption': 'Kreation — Alt-Rotation Konzeption',
+  // names added 11/2026 for slots that showed only their internal key
+  'leistungen_kreation_showcase_secondary_innovation': 'Kreation — Alt-Rotation Innovation',
+  'leistungen_kreation_showcase_secondary_ci': 'Kreation — Alt-Rotation CI',
+  'leistungen_kreation_showcase_secondary_layout': 'Kreation — Alt-Rotation Layout',
+  'leistungen_kreation_showcase_secondary_pos': 'Kreation — Alt-Rotation POS',
   'leistungen_kreation_showcase_secondary_content': 'Kreation — Alt-Rotation Content',
   'leistungen_kreation_showcase_secondary_cgi': 'Kreation — Alt-Rotation CGI',
   'leistungen_kreation_before_after': 'Kreation — Before/After Slider',

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useLeistungenText, refIds } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
@@ -11,7 +11,7 @@ import EventsHero from './components/EventsHero';
 import EventsContent from './components/EventsContent';
 import EventsShowcase from './components/EventsShowcase';
 
-const NAV_ITEMS = [
+const NAV_ITEMS_BASE = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'events', label: 'Formate', icon: 'ri-calendar-event-line' },
@@ -21,6 +21,8 @@ const NAV_ITEMS = [
 ];
 
 export default function EventsMessenPage() {
+  const tPageNav = useLeistungenText('leistungen_events_page_nav');
+  const NAV_ITEMS = NAV_ITEMS_BASE.map((n) => ({ ...n, label: tPageNav[`nav-${n.id}`] || n.label }));
   useSEO({
     title: 'Events & Messen | Sonic Group — Roadshows, Messestände & Brand Activation DACH',
     description: 'Events, Messen und Roadshows von Sonic Group: Modulare Messestände, Brand Activation und Roadshow-Konzepte für internationale und lokale Marken in Deutschland, Österreich und der Schweiz. Konzeption, Aufbau, Betreuung — alles aus einer Hand.',
@@ -68,7 +70,7 @@ export default function EventsMessenPage() {
       <WoodenDivider />
 
       <section id="referenzen">
-        <ClientProof only={['vorwerk', 'nexaro', 'garmin']} />
+        <ClientProof only={refIds(tPageNav['referenzen'])} />
       </section>
 
       <WoodenDivider />

@@ -89,4 +89,13 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('headline-accent', 'Überschrift — Teil 2 (lime)', 'heading', 'passt zu dir?'),
     e('subline', 'Unterzeile', 'paragraph', 'In 30 Minuten klären wir, was zu deinem Ziel passt.'),
   ]),
+  // ── added 11/2026: was hard-coded in the component ──
+  section('leistungen_overview_page_nav', 'Leistungen — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), loreal (L\'Oréal), wmf (WMF), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
+    e('nav-service-grid', 'Seitenmenü — Leistungen', 'nav-label', 'Leistungen'),
+    e('nav-zahlen', 'Seitenmenü — Zahlen', 'nav-label', 'Zahlen'),
+    e('nav-schallmauer', 'Seitenmenü — Schallmauer', 'nav-label', 'Schallmauer'),
+    e('nav-kundenstimmen', 'Seitenmenü — Kundenstimmen', 'nav-label', 'Kundenstimmen'),
+    e('nav-kontakt', 'Seitenmenü — Kontakt', 'nav-label', 'Kontakt'),
+    e('referenzen', 'Referenzen — angezeigte Kundenstimmen (Kürzel, mit Komma trennen; leer = alle)', 'text', ''),
+  ]),
 ];

@@ -19,6 +19,7 @@ import { getYouTubeId, youTubeThumbnailUrl } from '@/lib/youtube';
 import { supabase } from '@/lib/supabase';
 import { compressImage } from '@/lib/imageCompress';
 import { isVideoFile, isVideoFileUrl, VIDEO_UPLOAD_SECTIONS, MAX_VIDEO_FILE_SIZE, VIDEO_ACCEPT } from '@/lib/videoFile';
+import { LEISTUNGEN_DASH_PAGES, sortLeistungenSlots, mediaSlotPage, UNUSED_MEDIA_SLOTS } from '../leistungenDash';
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 const IMAGE_ACCEPT = 'image/png,image/jpeg,image/webp,image/svg+xml';
@@ -266,7 +267,12 @@ const SectionRow = memo(function SectionRow({
           <i className={`${isExpanded ? 'ri-folder-open-line' : 'ri-folder-line'} text-xs md:text-base`}></i>
         </span>
         <div className="flex-1 min-w-0">
-          <div className="text-xs md:text-sm font-semibold text-gray-900 truncate">{cat.label}</div>
+          <div className="text-xs md:text-sm font-semibold text-gray-900 truncate flex items-center gap-2">
+            <span className="truncate">{cat.label}</span>
+            {UNUSED_MEDIA_SLOTS.has(cat.key) && (
+              <span className="shrink-0 text-3xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">Nicht auf der Website</span>
+            )}
+          </div>
           <div className="text-2xs text-gray-400 flex items-center gap-2">
             <span>{cat.imageCount} Bilder</span>
             {cat.recommendedCount > 0 && (
@@ -453,7 +459,20 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
 
   const group = useMemo(() => PAGE_GROUPS.find((g) => g.id === activeGroup), [activeGroup]);
   const groupedCategories = useMemo(() => getCategoriesByPageGroup(), [storeVersion]);
-  const categories = useMemo(() => groupedCategories[activeGroup] || [], [groupedCategories, activeGroup]);
+  // Leistungen: one chip per page, slots in page order (display only — slots, images and labels unchanged)
+  const [leistungenPage, setLeistungenPage] = useState<string>('all');
+  const allGroupCategories = useMemo(() => {
+    const list = groupedCategories[activeGroup] || [];
+    if (activeGroup !== 'leistungen') return list;
+    const order = sortLeistungenSlots(list.map((c) => c.key));
+    return order.map((k) => list.find((c) => c.key === k)!).filter(Boolean);
+  }, [groupedCategories, activeGroup]);
+  const categories = useMemo(
+    () => (activeGroup !== 'leistungen' || leistungenPage === 'all'
+      ? allGroupCategories
+      : allGroupCategories.filter((c) => mediaSlotPage(c.key) === leistungenPage)),
+    [allGroupCategories, activeGroup, leistungenPage],
+  );
 
   const refreshSection = useCallback((key: string) => {
     setSectionImages(getSectionImages(key));
@@ -1036,6 +1055,29 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
             </p>
           </div>
         </div>
+        {activeGroup === 'leistungen' && (
+          <div className="mt-3 -mb-3 flex items-end gap-1 overflow-x-auto" role="tablist" aria-label="Leistungen-Seite wählen">
+            {LEISTUNGEN_DASH_PAGES.filter((pg) => pg.id === 'all' || allGroupCategories.some((c) => mediaSlotPage(c.key) === pg.id)).map((pg) => {
+              const isActive = pg.id === leistungenPage;
+              const count = pg.id === 'all' ? allGroupCategories.length : allGroupCategories.filter((c) => mediaSlotPage(c.key) === pg.id).length;
+              return (
+                <button
+                  key={pg.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setLeistungenPage(pg.id)}
+                  className={`px-3 py-2 text-2xs md:text-xs font-bold uppercase tracking-wider border-b-2 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                    isActive ? 'border-lime-400 text-gray-900 bg-lime-50' : 'border-transparent text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  <i className={`${pg.icon} text-sm`}></i>
+                  {pg.label}
+                  <span className={`text-3xs font-semibold px-1.5 py-0.5 rounded ${isActive ? 'bg-lime-400 text-gray-900' : 'bg-gray-100 text-gray-500'}`}>{count}</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       {/* Sections List */}

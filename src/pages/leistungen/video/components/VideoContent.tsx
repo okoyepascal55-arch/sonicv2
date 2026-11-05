@@ -13,7 +13,7 @@ import { useMotionPaused } from '@/lib/motion';
 import { useText } from '@/hooks/useText';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
 
-const VIDEO_CHALLENGES: ChallengeItem[] = [
+const VIDEO_CHALLENGES_BASE: ChallengeItem[] = [
   {
     icon: 'ri-door-lock-line',
     title: 'Hohe Eintrittshürden',
@@ -34,7 +34,7 @@ const VIDEO_CHALLENGES: ChallengeItem[] = [
   },
 ];
 
-const SOLUTIONS = [
+const SOLUTIONS_BASE = [
   { woodIcon: '', num: '01', accent: 'Online & E-Commerce', title: 'E-Commerce', desc: 'Live-Beratung direkt im Online-Shop, flexibel auf ausgewählte Produkte und Servicezeiten zugeschnitten. Außerhalb der Live-Zeiten ergänzen aufgezeichnete Videos das Angebot.' },
   { woodIcon: '', num: '02', accent: 'Retail Display', title: 'Retail: Video-Display', desc: 'Live-Beratung direkt am POS: Über das Video-Display erreichen Kund:innen unser Studio-Team in Echtzeit. Aufgezeichnete Videos und ein integrierter Text-Chatbot ergänzen die Beratung.' },
   { woodIcon: '', num: '03', accent: 'QR Backup', title: 'Retail: QR-Code Backup', desc: 'Live-Beratung auch dann, wenn kein Team vor Ort ist: Per QR-Code am Regal oder auf der Verpackung erreichen Kund:innen unser Studio-Team direkt und in Echtzeit.' },
@@ -43,7 +43,7 @@ const SOLUTIONS = [
 // Card texts: Dashboard → Text → Live Video — Vorteile (leistungen_video_advantages)
 const ADVANTAGE_NUMS = ['01', '02', '03', '04', '05', '06'];
 
-const FORMATS = [
+const FORMATS_BASE = [
   {
     icon: 'ri-user-voice-line',
     title: 'Live-Video-Beratung',
@@ -110,6 +110,12 @@ const FALLBACK_FORMATS = [
 ];
 
 export default function VideoContent() {
+  const tVidFm = useLeistungenText('leistungen_video_formats');
+  const FORMATS = FORMATS_BASE.map((x, i) => ({ ...x, title: tVidFm[`f${i + 1}-title`] ?? x.title, desc: tVidFm[`f${i + 1}-desc`] ?? x.desc, tag: tVidFm[`f${i + 1}-tag`] ?? x.tag }));
+  const tVidCha = useLeistungenText('leistungen_video_channels');
+  const SOLUTIONS = SOLUTIONS_BASE.map((x, i) => ({ ...x, accent: tVidCha[`k${i + 1}-accent`] ?? x.accent, title: tVidCha[`k${i + 1}-title`] ?? x.title, desc: tVidCha[`k${i + 1}-desc`] ?? x.desc }));
+  const tVidCh = useLeistungenText('leistungen_video_challenges');
+  const VIDEO_CHALLENGES = VIDEO_CHALLENGES_BASE.map((c, i) => ({ ...c, title: tVidCh[`c${i + 1}-title`] ?? c.title, desc: tVidCh[`c${i + 1}-desc`] ?? c.desc, trigger: tVidCh[`c${i + 1}-trigger`] ?? c.trigger }));
   const tChallengeHeading = useText('leistungen_video_content', 'video-challenge-heading', 'Live-Video-Beratung: die Königsklasse im digitalen Verkauf.');
   const tChallengeSub = useText('leistungen_video_content', 'video-challenge-sub', 'Wenn Live Video Shopping einfach wäre, würde es jede Marke machen. Ist es aber nicht.');
   const tSolutionHeading = useText('leistungen_video_content', 'video-solution-heading', 'Sonic Live Video im Full Service.');
@@ -446,6 +452,7 @@ function SectionHead({ eyebrow, heading, sub, dark = false }: { eyebrow?: string
 
 /* ── Showcase player — framed like the SRT "app window" ─────────────────── */
 function ShowcasePlayer({ fileUrl, ytId, title }: { fileUrl: string; ytId: string; title: string }) {
+  const tVidLb = useLeistungenText('leistungen_video_labels');
   const motionPaused = useMotionPaused();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
@@ -477,9 +484,9 @@ function ShowcasePlayer({ fileUrl, ytId, title }: { fileUrl: string; ytId: strin
       <div className="flex items-center justify-between px-4 py-2.5" style={{ borderBottom: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.03)' }}>
         <span className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 bg-primary-500 rounded-full srt-live-dot" aria-hidden="true" />
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/80">Live aus dem Studio</span>
+          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/80">{tVidLb['studio-live']}</span>
         </span>
-        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/35 hidden sm:inline">Sonic Live Video</span>
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/35 hidden sm:inline">{tVidLb['studio-brand']}</span>
       </div>
 
       <div className="relative w-full bg-black" style={{ aspectRatio: '16 / 9' }}>

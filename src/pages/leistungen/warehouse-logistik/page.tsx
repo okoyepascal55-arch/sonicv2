@@ -11,12 +11,12 @@ import ClientProof from '@/components/feature/ClientProof';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useLeistungenText, refIds } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
 import WoodenButton from '@/components/base/WoodenButton';
 import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
-const NAV_ITEMS = [
+const NAV_ITEMS_BASE = [
  { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
  { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
  { id: 'beispiele', label: 'Beispiele', icon: 'ri-image-line' },
@@ -32,7 +32,7 @@ const SOLUTIONS = [
  { icon: 'ri-shopping-cart-line', num: '04', key: 'card4' },
 ];
 
-const WAREHOUSE_ITEMS = [
+const WAREHOUSE_ITEMS_BASE = [
  {
  imgIndex: 0,
  title: 'POS-Materialien & Displays',
@@ -80,7 +80,7 @@ const FALLBACK_WAREHOUSE = [
  IMAGE_PLACEHOLDER,
 ];
 
-const WAREHOUSE_CHALLENGES: ChallengeItem[] = [
+const WAREHOUSE_CHALLENGES_BASE: ChallengeItem[] = [
  {
  icon: 'ri-eye-off-line',
  title: 'Überblick fehlt',
@@ -102,6 +102,12 @@ const WAREHOUSE_CHALLENGES: ChallengeItem[] = [
 ];
 
 export default function WarehouseLogistikPage() {
+  const tPageNav = useLeistungenText('leistungen_warehouse_page_nav');
+  const NAV_ITEMS = NAV_ITEMS_BASE.map((n) => ({ ...n, label: tPageNav[`nav-${n.id}`] || n.label }));
+  const tWhIt = useLeistungenText('leistungen_warehouse_items');
+  const WAREHOUSE_ITEMS = WAREHOUSE_ITEMS_BASE.map((x, i) => ({ ...x, title: tWhIt[`i${i + 1}-title`] ?? x.title, tag: tWhIt[`i${i + 1}-tag`] ?? x.tag, desc: tWhIt[`i${i + 1}-desc`] ?? x.desc }));
+  const tWhCh = useLeistungenText('leistungen_warehouse_challenges');
+  const WAREHOUSE_CHALLENGES = WAREHOUSE_CHALLENGES_BASE.map((c, i) => ({ ...c, title: tWhCh[`c${i + 1}-title`] ?? c.title, desc: tWhCh[`c${i + 1}-desc`] ?? c.desc, trigger: tWhCh[`c${i + 1}-trigger`] ?? c.trigger }));
  const tContentHeading = useText('leistungen_warehouse_content', 'warehouse-content-heading', 'Deine Logistik. Unser Warehouse.');
  const tContentSub = useText('leistungen_warehouse_content', 'warehouse-content-sub', 'Full-Service-Logistik mit eigenem Warehouse in Krefeld — europaweit.');
  const tHeroBadge = useText('leistungen_warehouse', 'warehouse-hero-badge', 'Warehouse & Logistik');
@@ -204,8 +210,8 @@ export default function WarehouseLogistikPage() {
  {/* Challenge — shared dark component */}
  <ChallengeSection
  id="herausforderung"
- headline="Wenn Kampagne und Logistik getrennt laufen, entstehen Reibungsverluste."
- subline="Warum es beim Roll-out nicht immer optimal läuft."
+ headline={tWhCh['headline'] ?? 'Wenn Kampagne und Logistik getrennt laufen, entstehen Reibungsverluste.'}
+ subline={tWhCh['subline'] ?? 'Warum es beim Roll-out nicht immer optimal läuft.'}
  challenges={WAREHOUSE_CHALLENGES}
  />
 
@@ -232,12 +238,12 @@ export default function WarehouseLogistikPage() {
  <div className="mb-8 md:mb-10">
  <div className="flex items-center gap-3 mb-5">
  <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0"aria-hidden="true"/>
- <span className="text-[11px] font-black uppercase tracking-[0.24em]"style={{ color: 'oklch(0.55 0.08 115)' }}>Was wir lagern</span>
+ <span className="text-[11px] font-black uppercase tracking-[0.24em]"style={{ color: 'oklch(0.55 0.08 115)' }}>{tWhIt['eyebrow']}</span>
  </div>
  <h2 className="sonic-h2 text-foreground-950 mb-2">
- Alles unter einem Dach.
+ {tWhIt['heading']}
  </h2>
- <p className="text-foreground-950/50 text-sm md:text-base">Jederzeit abrufbar. Europaweit lieferbar.</p>
+ <p className="text-foreground-950/50 text-sm md:text-base">{tWhIt['sub']}</p>
  </div>
 
  {/* Pill tabs */}
@@ -282,7 +288,7 @@ export default function WarehouseLogistikPage() {
  </div>
  </div>
  <div className="lg:col-span-4 bg-white border-t lg:border-t-0 lg:border-l border-foreground-950/10 p-6 md:p-8 flex flex-col justify-center lg:h-[380px] overflow-y-auto">
- <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-4">Alle Kategorien</div>
+ <div className="text-[10px] font-black text-foreground-950/40 uppercase tracking-widest mb-4">{tWhIt['all-label']}</div>
  <div className="space-y-2">
  {WAREHOUSE_ITEMS.map((item, i) => (
  <button
@@ -345,7 +351,7 @@ export default function WarehouseLogistikPage() {
  <div style={{ background: 'oklch(0.13 0.005 118)' }}><WoodenDivider /></div>
 
  <section id="referenzen">
- <ClientProof only={['garmin', 'vorwerk', 'seb']} />
+ <ClientProof only={refIds(tPageNav['referenzen'])} />
  </section>
 
  <WoodenDivider />

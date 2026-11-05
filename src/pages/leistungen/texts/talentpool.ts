@@ -77,4 +77,30 @@ export const TEXT_SECTIONS: TextSection[] = [
       e('headline-accent', 'Kontakt — Überschrift (Akzent)', 'heading', 'dein Projekt?'),
       e('subline', 'Kontakt — Subline', 'paragraph', 'Wir klären, wie viele Promoter:innen du brauchst und wo sie eingesetzt werden.'),
     ]),
+  // ── added 11/2026: was hard-coded in the component ──
+  section('leistungen_talentpool_solution_tags', 'Talentpool — Lösung: Tags der 6 Karten', P, 'Die kleinen Tags unter den sechs Lösungskarten. Mit | trennen.', [
+    e('s1-tags', 'Karte 1 — Tags (mit | trennen)', 'tag', 'Bei Sonic angestellt | Verlässlich'),
+    e('s2-tags', 'Karte 2 — Tags (mit | trennen)', 'tag', 'Produktwissen | Schulung'),
+    e('s3-tags', 'Karte 3 — Tags (mit | trennen)', 'tag', 'Echtzeit | Motivation'),
+    e('s4-tags', 'Karte 4 — Tags (mit | trennen)', 'tag', 'Deutschlandweit | Stadt & Region'),
+    e('s5-tags', 'Karte 5 — Tags (mit | trennen)', 'tag', 'Kategorie-Training | Expertise'),
+    e('s6-tags', 'Karte 6 — Tags (mit | trennen)', 'tag', 'Standort-Check-in | Transparenz'),
+  ]),
+  // ── added 11/2026: was hard-coded in the component ──
+  section('leistungen_talentpool_profile_tags', 'Talentpool — Talentprofile: Tags der 4 Karten', P, 'Die Tags der vier Talentprofile. Mit | trennen.', [
+    e('p1-tags', 'Karte 1 — Tags (mit | trennen)', 'tag', 'POS-Aktivierung | Beratung & Verkauf | Demo & Erklärung'),
+    e('p2-tags', 'Karte 2 — Tags (mit | trennen)', 'tag', 'Live-Video-Calls | Online-Shop-Integration | After-Sales'),
+    e('p3-tags', 'Karte 3 — Tags (mit | trennen)', 'tag', 'Händlerschulungen | Produktwissen | Retail-Coaching'),
+    e('p4-tags', 'Karte 4 — Tags (mit | trennen)', 'tag', 'Instore-Events | Roadshows | Messen & Promotions'),
+  ]),
+  // ── added 11/2026: was hard-coded in the component ──
+  section('leistungen_talentpool_page_nav', 'Talentpool — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), loreal (L\'Oréal), wmf (WMF), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
+    e('nav-herausforderung', 'Seitenmenü — Herausforderung', 'nav-label', 'Herausforderung'),
+    e('nav-loesung', 'Seitenmenü — Lösung', 'nav-label', 'Lösung'),
+    e('nav-stats', 'Seitenmenü — Zahlen', 'nav-label', 'Zahlen'),
+    e('nav-talentprofile', 'Seitenmenü — Talentprofile', 'nav-label', 'Talentprofile'),
+    e('nav-referenzen', 'Seitenmenü — Referenzen', 'nav-label', 'Referenzen'),
+    e('nav-kontakt', 'Seitenmenü — Kontakt', 'nav-label', 'Kontakt'),
+    e('referenzen', 'Referenzen — angezeigte Kundenstimmen (Kürzel, mit Komma trennen)', 'text', 'garmin, loreal, wmf, mediamarktsaturn, seb'),
+  ]),
 ];

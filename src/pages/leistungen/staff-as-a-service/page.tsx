@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useLeistungenText, refIds } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
@@ -10,7 +10,7 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import StaffHero from './components/StaffHero';
 import StaffContent from './components/StaffContent';
 
-const NAV_ITEMS = [
+const NAV_ITEMS_BASE = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'ablauf', label: 'Ablauf', icon: 'ri-route-line' },
@@ -21,6 +21,8 @@ const NAV_ITEMS = [
 ];
 
 export default function StaffAsAServicePage() {
+  const tPageNav = useLeistungenText('leistungen_staff_page_nav');
+  const NAV_ITEMS = NAV_ITEMS_BASE.map((n) => ({ ...n, label: tPageNav[`nav-${n.id}`] || n.label }));
   useSEO({
     title: 'Staff as a Service | Sonic Group — Promoter:innen & Field Force aus dem Talentpool',
     description: 'Staff as a Service von Sonic Group: Recruiting, Onboarding, Payroll und Steuerung aus einer Hand. Über 1.800 aktive Menschen im Talentpool, 200+ Promoter:innen im Einsatz — per kurzfristiger Beschäftigung, befristeter Teil-/Vollzeit oder Arbeitnehmerüberlassung.',
@@ -64,7 +66,7 @@ export default function StaffAsAServicePage() {
       <WoodenDivider />
 
       <section id="referenzen">
-        <ClientProof only={['garmin', 'loreal', 'wmf', 'mediamarktsaturn', 'seb']} />
+        <ClientProof only={refIds(tPageNav['referenzen'])} />
       </section>
 
       <WoodenDivider />

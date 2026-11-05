@@ -4,10 +4,10 @@ import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
-const POS_CHALLENGES: ChallengeItem[] = [
+const POS_CHALLENGES_BASE: ChallengeItem[] = [
   {
     icon: 'ri-links-line',
     trigger: 'Zu viele Ansprechpartner?',
@@ -36,7 +36,7 @@ const SOLUTIONS = [
   { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20dashboard%20analytics%20chart%20performance%20tracking%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-dash-pos-sol-4&orientation=squarish', num: '04', key: 'card4' },
 ];
 
-const ASSETS = [
+const ASSETS_BASE = [
   {
     category: 'Printmaterialien',
     icon: 'ri-printer-line',
@@ -105,6 +105,10 @@ const FALLBACK_PROCESS = [
 ];
 
 export default function POSContent() {
+  const tPosAs = useLeistungenText('leistungen_pos_assets');
+  const ASSETS = ASSETS_BASE.map((x, i) => ({ ...x, category: tPosAs[`a${i + 1}-category`] ?? x.category, items: tPosAs[`a${i + 1}-items`] !== undefined ? splitList(tPosAs[`a${i + 1}-items`]) : x.items }));
+  const tPosCh = useLeistungenText('leistungen_pos_challenges');
+  const POS_CHALLENGES = POS_CHALLENGES_BASE.map((c, i) => ({ ...c, title: tPosCh[`c${i + 1}-title`] ?? c.title, desc: tPosCh[`c${i + 1}-desc`] ?? c.desc, trigger: tPosCh[`c${i + 1}-trigger`] ?? c.trigger }));
   const tChallengeHeading = useText('leistungen_pos_content', 'pos-challenge-heading', 'POS-Qualität dauerhaft zu sichern, ist aufwändig.');
   const tChallengeSub = useText('leistungen_pos_content', 'pos-challenge-sub', 'Warum es die Big Idea nicht immer bis ins Outlet schafft.');
   const tSolutionHeading = useText('leistungen_pos_content', 'pos-solution-heading', 'Dein POS-Komplettpaket.');

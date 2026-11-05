@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useLeistungenText, refIds } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
@@ -10,7 +10,7 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import TalentpoolHero from './components/TalentpoolHero';
 import TalentpoolContent from './components/TalentpoolContent';
 
-const NAV_ITEMS = [
+const NAV_ITEMS_BASE = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'stats', label: 'Zahlen', icon: 'ri-bar-chart-line' },
@@ -20,6 +20,8 @@ const NAV_ITEMS = [
 ];
 
 export default function TalentpoolPage() {
+  const tPageNav = useLeistungenText('leistungen_talentpool_page_nav');
+  const NAV_ITEMS = NAV_ITEMS_BASE.map((n) => ({ ...n, label: tPageNav[`nav-${n.id}`] || n.label }));
   useSEO({
     title: 'Talentpool | Sonic Group — über 1.800 aktive Talente für POS, Events & Field Force',
     description: 'Sonic Talentpool: über 1.800 aktive Menschen — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit und geschult auf dein Produkt. Im Einsatz bei Sonic angestellt: Promoter:innen, Brand Ambassadors und Retail-Expert:innen für POS, Events und Field Force.',
@@ -57,7 +59,7 @@ export default function TalentpoolPage() {
       <WoodenDivider />
 
       <section id="referenzen">
-        <ClientProof only={['garmin', 'loreal', 'wmf', 'mediamarktsaturn', 'seb']} />
+        <ClientProof only={refIds(tPageNav['referenzen'])} />
       </section>
 
       <WoodenDivider />

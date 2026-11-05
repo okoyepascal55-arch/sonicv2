@@ -14,7 +14,7 @@ import KreationShowcaseReference from './components/KreationShowcaseReference';
 import './kreation-ausstellung.css';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useLeistungenText, refIds } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
 
 // Card texts: Dashboard → Text → Kreation & Content — Lösung (Karten)
@@ -25,7 +25,7 @@ const SOLUTIONS = [
   { num: '04', fallback: 'https://readdy.ai/api/search-image?query=carved%20wooden%20document%20file%20copy%20asset%20production%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-kreation-sol-file-04&orientation=squarish' },
 ];
 
-const CHALLENGES: ChallengeItem[] = [
+const CHALLENGES_BASE: ChallengeItem[] = [
   { icon: 'ri-puzzle-line', title: 'Wenig Added Value', desc: 'Social Content, How-to-Videos, POS-Branding, Events: Oft aus verschiedenen Quellen, und nicht immer optimal aufeinander abgestimmt.', trigger: 'Auch bei euch so?' },
   { icon: 'ri-contrast-2-line', title: 'Uneinheitlicher Look', desc: 'Unterschiedliche Teams, Designer, Locations, Presenter, Herangehensweisen: Der Content wirkt nicht wie aus einem Guss.', trigger: 'Klingt vertraut?' },
   { icon: 'ri-time-line', title: 'Koordinationsaufwand', desc: 'Schwierig: Verschiedene Content-Lieferanten so zu koordinieren, dass die richtigen Botschaften zum richtigen Zeitpunkt fertig sind.', trigger: 'Schon frustriert?' },
@@ -36,7 +36,7 @@ const DISCIPLINES = [
   { label: 'POS & Rollout', fallback: 'https://readdy.ai/api/search-image?query=wooden%20store%20retail%20display%20pos%20stand%20icon%20carved%20from%20dark%20walnut%20wood%20rich%20brown%20grain%20texture%20natural%20material%20simple%20minimalist%20design%20on%20white%20background%20top%20view%20flat%20lay%20product%20photography&width=120&height=120&seq=wood-pos-disc-3&orientation=squarish' },
 ];
 
-const NAV_ITEMS = [
+const NAV_ITEMS_BASE = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'konzept', label: 'Konzept & Kreation', icon: 'ri-palette-line' },
@@ -46,6 +46,10 @@ const NAV_ITEMS = [
 ];
 
 export default function KreationContentPage() {
+  const tPageNav = useLeistungenText('leistungen_kreation_page_nav');
+  const NAV_ITEMS = NAV_ITEMS_BASE.map((n) => ({ ...n, label: tPageNav[`nav-${n.id}`] || n.label }));
+  const tKrCh = useLeistungenText('leistungen_kreation_challenges');
+  const CHALLENGES = CHALLENGES_BASE.map((c, i) => ({ ...c, title: tKrCh[`c${i + 1}-title`] ?? c.title, desc: tKrCh[`c${i + 1}-desc`] ?? c.desc, trigger: tKrCh[`c${i + 1}-trigger`] ?? c.trigger }));
   const { images: solutionWoodIcons } = useMediaStore('leistungen_kreation_solution_wood_icons');
   const { images: disciplineWoodIcons } = useMediaStore('leistungen_kreation_discipline_wood_icons');
   const heroRef = useRef<HTMLDivElement>(null);
@@ -97,7 +101,7 @@ export default function KreationContentPage() {
       <KreationShowcaseReference tabIcons={indexIcons} />
       <WoodenDivider />
       <KreationFaces />
-      <section id="referenzen"><ClientProof only={['nexaro', 'vorwerk']} /></section>
+      <section id="referenzen"><ClientProof only={refIds(tPageNav['referenzen'])} /></section>
       <WoodenDivider />
       <div><LeistungenKontakt headline={tCta['headline']} headlineAccent={tCta['headline-accent']} subline={tCta['subline']} ctaLabel={cta.book} ctaMailSubject="Kreation Content Beratung" ctaIcon="ri-calendar-line" /></div>
       <ScrollToTopButton />

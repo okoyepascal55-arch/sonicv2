@@ -141,4 +141,26 @@ export const TEXT_SECTIONS: TextSection[] = [
       e('headline-accent', 'Kontakt — Überschrift (Akzent)', 'heading', 'deine Marke?'),
       e('subline', 'Kontakt — Subline', 'paragraph', 'Wir zeigen dir, wie wir Kreation und Content umsetzen.'),
     ]),
+  // ── added 11/2026: was hard-coded in the component ──
+  section('leistungen_kreation_challenges', 'Kreation & Content — Herausforderungen (3 Punkte)', P, 'Die drei Hover-Punkte unter der Herausforderungs-Überschrift.', [
+    e('c1-title', 'Punkt 1 — Titel', 'subheading', 'Wenig Added Value'),
+    e('c1-desc', 'Punkt 1 — Text', 'paragraph', 'Social Content, How-to-Videos, POS-Branding, Events: Oft aus verschiedenen Quellen, und nicht immer optimal aufeinander abgestimmt.'),
+    e('c1-trigger', 'Punkt 1 — Frage', 'label', 'Auch bei euch so?'),
+    e('c2-title', 'Punkt 2 — Titel', 'subheading', 'Uneinheitlicher Look'),
+    e('c2-desc', 'Punkt 2 — Text', 'paragraph', 'Unterschiedliche Teams, Designer, Locations, Presenter, Herangehensweisen: Der Content wirkt nicht wie aus einem Guss.'),
+    e('c2-trigger', 'Punkt 2 — Frage', 'label', 'Klingt vertraut?'),
+    e('c3-title', 'Punkt 3 — Titel', 'subheading', 'Koordinationsaufwand'),
+    e('c3-desc', 'Punkt 3 — Text', 'paragraph', 'Schwierig: Verschiedene Content-Lieferanten so zu koordinieren, dass die richtigen Botschaften zum richtigen Zeitpunkt fertig sind.'),
+    e('c3-trigger', 'Punkt 3 — Frage', 'label', 'Schon frustriert?'),
+  ]),
+  // ── added 11/2026: was hard-coded in the component ──
+  section('leistungen_kreation_page_nav', 'Kreation & Content — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), loreal (L\'Oréal), wmf (WMF), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
+    e('nav-herausforderung', 'Seitenmenü — Herausforderung', 'nav-label', 'Herausforderung'),
+    e('nav-loesung', 'Seitenmenü — Lösung', 'nav-label', 'Lösung'),
+    e('nav-konzept', 'Seitenmenü — Konzept & Kreation', 'nav-label', 'Konzept & Kreation'),
+    e('nav-team', 'Seitenmenü — Kreation Team', 'nav-label', 'Kreation Team'),
+    e('nav-referenzen', 'Seitenmenü — Referenzen', 'nav-label', 'Referenzen'),
+    e('nav-kontakt', 'Seitenmenü — Kontakt', 'nav-label', 'Kontakt'),
+    e('referenzen', 'Referenzen — angezeigte Kundenstimmen (Kürzel, mit Komma trennen)', 'text', 'nexaro, vorwerk'),
+  ]),
 ];

@@ -7,13 +7,13 @@ import ClientProof from '@/components/feature/ClientProof';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import VideoHero from './components/VideoHero';
 import VideoContent from './components/VideoContent';
-import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useLeistungenText, refIds } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
 import { useMediaStore } from '@/lib/mediaStore';
 import { getYouTubeId } from '@/lib/youtube';
 import { isVideoFileUrl } from '@/lib/videoFile';
 
-const NAV_ITEMS = [
+const NAV_ITEMS_BASE = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'formate', label: 'Formate', icon: 'ri-film-line' },
@@ -26,6 +26,8 @@ const NAV_ITEMS = [
 ];
 
 export default function VideoPage() {
+  const tPageNav = useLeistungenText('leistungen_video_page_nav');
+  const NAV_ITEMS = NAV_ITEMS_BASE.map((n) => ({ ...n, label: tPageNav[`nav-${n.id}`] || n.label }));
   useSEO({
     title: 'Live Video | Sonic Group — 1:1 Video-Beratung & Live Shopping DACH',
     description: 'Live Video von Sonic Group: 1:1 Video-Kaufberatung und Live Shopping Events direkt aus unseren Studios in Krefeld — über 47.000 Live-Beratungen, Ø 5,5 Min. Gesprächsdauer. Phygitale Retail-Aktivierung für Marken, die Online- und Offline-Kanäle verbinden wollen — messbar, skalierbar, DACH-weit.',
@@ -71,7 +73,7 @@ export default function VideoPage() {
 
       {/* Block 4 continues (white): Kostenrechner → Kundenstimmen → Kontakt, no dividers in between */}
       <section id="referenzen" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.08)' }}>
-        <ClientProof only={['mediamarktsaturn', 'nexaro', 'seb']} />
+        <ClientProof only={refIds(tPageNav['referenzen'])} />
       </section>
 
       <div>
