@@ -97,11 +97,11 @@ export default function TalentpoolContent() {
   const PROFILES = PROFILE_BASE.map((p, i) => ({ ...p, type: tPr[`p${i + 1}-type`], accent: tPr[`p${i + 1}-accent`], desc: tPr[`p${i + 1}-desc`] }));
   const STATS = Array.from({ length: STAT_COUNT }, (_, i) => ({ value: tSt[`stat-${i + 1}-value`], label: tSt[`stat-${i + 1}-label`] }));
   const tChallengeHeading = useText('leistungen_talentpool_content', 'talentpool-challenge-heading', 'Wechselnde Gesichter. Kein Markenwissen. Kein ROI.');
-  const tChallengeSub = useText('leistungen_talentpool_content', 'talentpool-challenge-sub', 'Wer Personal nur über lose Netzwerke bucht, bekommt selten Menschen, die deine Marke wirklich vertreten.');
+  const tChallengeSub = useText('leistungen_talentpool_content', 'talentpool-challenge-sub', 'Wer Personal immer wieder kurzfristig neu besetzt, bekommt selten Menschen, die deine Marke wirklich kennen und überzeugend vertreten.');
   const tSolutionHeading = useText('leistungen_talentpool_content', 'talentpool-solution-heading', 'Der Sonic-Talentpool. Menschen, die wir kennen.');
   const tSolutionSub = useText('leistungen_talentpool_content', 'talentpool-solution-sub', 'Persönlich ausgewählt, auf dein Produkt geschult und fest im Projekt. Daten liefern die Fakten, Menschen den Unterschied.');
   const tProfilesHeading = useText('leistungen_talentpool_content', 'talentpool-profiles-heading', '4 Rollen. Ein Ansprechpartner.');
-  const tProfilesSub = useText('leistungen_talentpool_content', 'talentpool-profiles-sub', 'Jeden Talent-Typ aus einer Hand — koordiniert, geschult und live getrackt.');
+  const tProfilesSub = useText('leistungen_talentpool_content', 'talentpool-profiles-sub', 'Die passenden Menschen für jede Aufgabe – koordiniert, geschult und live getrackt.');
 
   const getProfileImg = (index: number) => {
     const item = profileImages[index];

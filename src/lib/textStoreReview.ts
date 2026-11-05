@@ -119,7 +119,7 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
       e('t4-value', 'Kennzahl 4 — Wert', 'stat', '2007'),
       e('t4-label', 'Kennzahl 4 — Label', 'stat-label', 'Gegründet'),
       e('t5-value', 'Kennzahl 5 — Wert', 'stat', '200+'),
-      e('t5-label', 'Kennzahl 5 — Label', 'stat-label', 'Promoter:innen im Einsatz'),
+      e('t5-label', 'Kennzahl 5 — Label', 'stat-label', 'Mitarbeitende für Promotion und Field Force'),
       e('t6-value', 'Kennzahl 6 — Wert', 'stat', '>1.800'),
       e('t6-label', 'Kennzahl 6 — Label', 'stat-label', 'Menschen im Talentpool'),
       e('t7-value', 'Kennzahl 7 — Wert', 'stat', 'DACH'),
@@ -134,7 +134,7 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
   {
     key: 'about_values_texts', label: 'Über uns — Referenzen & Team-Kennzahlen', pageGroupId: 'about', pagePath: '/ueber-uns', description: 'Zeile über den Referenz-Logos und die drei Team-Kennzahlen.',
     entries: [
-      e('refs-line', 'Referenzen — Zeile', 'paragraph', 'Unsere Kunden – im Studio, auf der Fläche, im Fachhandel, in Sport & Freizeit und im B2B.'),
+      e('refs-line', 'Referenzen — Zeile', 'paragraph', 'Unsere Kunden – vom POS über unsere Studios bis zu Events, Fachhandel und B2B.'),
       e('team1-value', 'Team-Kennzahl 1 — Wert', 'stat', '5,4'),
       e('team1-unit', 'Team-Kennzahl 1 — Einheit', 'label', 'Jahre'),
       e('team1-label', 'Team-Kennzahl 1 — Label', 'stat-label', 'Ø Betriebszugehörigkeit Sonic-Team'),
@@ -144,6 +144,38 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
       e('team3-value', 'Team-Kennzahl 3 — Wert', 'stat', 'B2B + D2C'),
       e('team3-unit', 'Team-Kennzahl 3 — Einheit', 'label', ''),
       e('team3-label', 'Team-Kennzahl 3 — Label', 'stat-label', 'Kunden- & Agenturseite'),
+    ],
+  },
+  /* Über uns client grid (Website-Review Teil 4, 11/2026) — fully controlled here:
+     order = order on the page; an empty brand field hides that tile.
+     The logo is picked by brand name from Medien → Über uns „Kundenlogos“ (image label = brand name). */
+  {
+    key: 'about_clients', label: 'Über uns — Kundenliste („Wer mit Sonic erfolgreich ist“)', pageGroupId: 'about', pagePath: '/ueber-uns', description: 'Reihenfolge wie auf der Seite. Leeres Markenfeld = Kachel ausgeblendet. Logo: Medien → Über uns „Kundenlogos“, Bildlabel = Markenname.',
+    entries: [
+      e('c1-name', 'Kachel 1 — Marke', 'label', 'TCL'),
+      e('c1-category', 'Kachel 1 — Kategorie', 'caption', 'Unterhaltungselektronik'),
+      e('c2-name', 'Kachel 2 — Marke', 'label', 'Rowenta'),
+      e('c2-category', 'Kachel 2 — Kategorie', 'caption', 'Haushaltsgeräte'),
+      e('c3-name', 'Kachel 3 — Marke', 'label', 'Krups'),
+      e('c3-category', 'Kachel 3 — Kategorie', 'caption', 'Küchengeräte'),
+      e('c4-name', 'Kachel 4 — Marke', 'label', 'Tefal'),
+      e('c4-category', 'Kachel 4 — Kategorie', 'caption', 'Kochgeschirr & Küchengeräte'),
+      e('c5-name', 'Kachel 5 — Marke', 'label', 'Canon'),
+      e('c5-category', 'Kachel 5 — Kategorie', 'caption', 'Bildgebung & Druck'),
+      e('c6-name', 'Kachel 6 — Marke', 'label', 'Garmin'),
+      e('c6-category', 'Kachel 6 — Kategorie', 'caption', 'Wearables & Navigation'),
+      e('c7-name', 'Kachel 7 — Marke', 'label', 'WMF'),
+      e('c7-category', 'Kachel 7 — Kategorie', 'caption', 'Premium Küche'),
+      e('c8-name', 'Kachel 8 — Marke', 'label', 'Nexaro'),
+      e('c8-category', 'Kachel 8 — Kategorie', 'caption', 'Robotik & Reinigungstechnologie'),
+      e('c9-name', 'Kachel 9 — Marke', 'label', ''),
+      e('c9-category', 'Kachel 9 — Kategorie', 'caption', ''),
+      e('c10-name', 'Kachel 10 — Marke', 'label', ''),
+      e('c10-category', 'Kachel 10 — Kategorie', 'caption', ''),
+      e('c11-name', 'Kachel 11 — Marke', 'label', ''),
+      e('c11-category', 'Kachel 11 — Kategorie', 'caption', ''),
+      e('c12-name', 'Kachel 12 — Marke', 'label', ''),
+      e('c12-category', 'Kachel 12 — Kategorie', 'caption', ''),
     ],
   },
   /* CTA review 30.09.2026 — lean CTA texts that used to be hard-coded.

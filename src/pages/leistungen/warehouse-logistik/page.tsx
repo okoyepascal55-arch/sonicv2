@@ -107,8 +107,8 @@ export default function WarehouseLogistikPage() {
  const tHeroBadge = useText('leistungen_warehouse', 'warehouse-hero-badge', 'Warehouse & Logistik');
  const tHeroH1Line1 = useText('leistungen_warehouse', 'warehouse-hero-heading-line1', 'Ware zur richtigen Zeit');
  const tHeroH1Accent = useText('leistungen_warehouse', 'warehouse-hero-heading-accent', 'am richtigen Ort.');
- const tHeroSubtitle = useText('leistungen_warehouse', 'warehouse-hero-subtitle', 'Alles an einem Ort: eigenes Lager für Assets, Messestände und Ware.');
- const tHeroDesc = useText('leistungen_warehouse', 'warehouse-hero-description', 'Mit Fulfillment-Services und Schnittstellen. Europaweit.');
+ const tHeroSubtitle = useText('leistungen_warehouse', 'warehouse-hero-subtitle', 'Alles an einem Ort: 927 m² eigene Lagerfläche für POS-Materialien, Messestände und Ware.');
+ const tHeroDesc = useText('leistungen_warehouse', 'warehouse-hero-description', 'Dazu Fulfillment, Bestandsmanagement und europaweite Logistik.');
  const tStats = useLeistungenText('leistungen_warehouse_stats');
  const tSol = useLeistungenText('leistungen_warehouse_solutions');
  const tFs = useLeistungenText('leistungen_warehouse_fullservice');
@@ -204,7 +204,7 @@ export default function WarehouseLogistikPage() {
  {/* Challenge — shared dark component */}
  <ChallengeSection
  id="herausforderung"
- headline="Kampagnen und Logistik sind oft getrennt."
+ headline="Wenn Kampagne und Logistik getrennt laufen, entstehen Reibungsverluste."
  subline="Warum es beim Roll-out nicht immer optimal läuft."
  challenges={WAREHOUSE_CHALLENGES}
  />

@@ -1,27 +1,38 @@
 import { useReviewText } from '@/hooks/useReviewText';
-import { useBrandLogos } from '@/lib/brandLogos';
+import { useBrandLogos, brandKey } from '@/lib/brandLogos';
+import { useTextSection } from '@/hooks/useText';
 import { useEffect, useRef, useState } from 'react';
 
-const clients = [
-  { name: 'Philips', category: 'Unterhaltungselektronik', logo: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887' },
-  { name: 'Rowenta', category: 'Haushaltsgeräte', logo: 'https://cdn.brandfetch.io/rowenta.de/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-  { name: 'Krups', category: 'Küchengeräte', logo: 'https://cdn.brandfetch.io/krups.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-  { name: 'Vorwerk', category: 'Haushaltsgeräte', logo: 'https://cdn.brandfetch.io/vorwerk.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-  { name: 'Canon', category: 'Bildgebung & Druck', logo: 'https://cdn.brandfetch.io/canon.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-  { name: 'Garmin', category: 'Wearables & Navigation', logo: 'https://cdn.brandfetch.io/garmin.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-  { name: "L'Oréal", category: 'Beauty & Kosmetik', logo: 'https://cdn.brandfetch.io/loreal.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-  { name: 'Nexaro', category: 'Robotik & Reinigungstechnologie', logo: 'https://cdn.brandfetch.io/id2dYOZ6uf/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1773621883167' },
-  { name: 'Bosch', category: 'Haushaltsgeräte', logo: 'https://cdn.brandfetch.io/bosch.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-  { name: 'Dyson', category: 'Premium Haushaltsgeräte', logo: 'https://cdn.brandfetch.io/dyson.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-  { name: 'Groupe SEB', category: 'Mehrmarken', logo: 'https://cdn.brandfetch.io/groupeseb.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-  { name: 'WMF', category: 'Premium Küche', logo: 'https://cdn.brandfetch.io/wmf.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX' },
-];
+/* Last-resort logo links by brand (the dashboard upload with the same label always wins).
+   The client list itself — names, categories, order — lives in
+   Dashboard → Text → Über uns „Kundenliste“ (Website-Review Teil 4, 11/2026). */
+const FALLBACK_LOGOS: Record<string, string> = {
+  tcl: 'https://cdn.brandfetch.io/tcl.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+  rowenta: 'https://cdn.brandfetch.io/rowenta.de/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+  krups: 'https://cdn.brandfetch.io/krups.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+  tefal: 'https://cdn.brandfetch.io/tefal.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+  canon: 'https://cdn.brandfetch.io/canon.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+  garmin: 'https://cdn.brandfetch.io/garmin.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+  wmf: 'https://cdn.brandfetch.io/wmf.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+  nexaro: 'https://cdn.brandfetch.io/id2dYOZ6uf/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1773621883167',
+  vorwerk: 'https://cdn.brandfetch.io/vorwerk.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+  groupeseb: 'https://cdn.brandfetch.io/groupeseb.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+};
+const CLIENT_SLOTS = 12;
 
 export default function ValuesVisual() {
   // Dashboard → Text → Über uns → „Über uns — Referenzen & Team-Kennzahlen“
   const vt = useReviewText('about_values_texts');
   // Logos by brand name from the dashboard (Über uns „Kundenlogos“ first, then the other logo slots) — 22.10.2026
   const { logoFor } = useBrandLogos('about_client_logos');
+  // Client tiles from the dashboard; an emptied brand field hides the tile.
+  const ct = useTextSection('about_clients');
+  const clients = Array.from({ length: CLIENT_SLOTS }, (_, i) => ({
+    name: (ct[`c${i + 1}-name`] ?? '').trim(),
+    category: (ct[`c${i + 1}-category`] ?? '').trim(),
+  }))
+    .filter((c) => c.name)
+    .map((c) => ({ ...c, logo: FALLBACK_LOGOS[brandKey(c.name)] ?? '' }));
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [logoErrors, setLogoErrors] = useState<Set<number>>(new Set());
@@ -70,7 +81,7 @@ export default function ValuesVisual() {
                 tabIndex={0}
                 aria-label={`${client.name} — ${client.category}`}
               >
-                {!hasLogoError && client.logo ? (
+                {!hasLogoError && logoFor(client.name, client.logo) ? (
                   <div className="mb-2.5 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-300 opacity-55 group-hover:opacity-100 group-hover:scale-105">
                     <img
                       src={logoFor(client.name, client.logo)}

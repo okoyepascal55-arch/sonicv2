@@ -304,7 +304,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'about-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Über Sonic' },
       { id: 'about-hero-h1', label: 'H1 Line 1', description: 'Hero H1', type: 'heading', value: 'MARKEN IM HERZEN.' },
       { id: 'about-hero-h1-line2', label: 'H1 Line 2', description: 'Hero H1 line 2', type: 'heading', value: 'ERFOLG IM FOKUS.' },
-      { id: 'about-hero-sub', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Unabhängige Marketing- und Sales-Agentur — von Konzeption bis Koordination, am POS, im Studio, auf Messen und Events. Mit vollem Einsatz für deine Marke.' },
+      { id: 'about-hero-sub', label: 'Hero Subtitle', description: 'Hero subtitle', type: 'paragraph', value: 'Unabhängige Marketing- und Sales-Agentur – von der Idee bis zur Umsetzung, am POS, im Studio, auf Messen und Events. Mit vollem Einsatz für deine Marke.' },
       { id: 'about-hero-scroll-label', label: 'Scroll Label', description: 'Scroll down label', type: 'label', value: 'Unsere Geschichte' },
     ],
   },
@@ -584,8 +584,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'staff-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Staff as a Service' },
       { id: 'staff-hero-heading-line1', label: 'H1 Line 1', description: 'Hero H1 first line', type: 'heading', value: 'Rundum-Service' },
       { id: 'staff-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'beim Personal.' },
-      { id: 'staff-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Promoter:innen für Sell-out, Sell-in, Schulungen, Brand Activation und mehr.' },
-      { id: 'staff-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Wir übernehmen Recruiting, Payroll und Steuerung, bspw. via Arbeitnehmerüberlassung.' },
+      { id: 'staff-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Promoter:innen für Sell-out, Sell-in, Schulungen und Brand Activation.' },
+      { id: 'staff-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Wir übernehmen Recruiting, Payroll und Steuerung, von der Personalauswahl bis zur Arbeitnehmerüberlassung.' },
     ],
   },
   {
@@ -619,8 +619,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'talentpool-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Talentpool' },
       { id: 'talentpool-hero-heading-line1', label: 'H1 Line 1', description: 'Hero H1 first line', type: 'heading', value: '>1.800 Talente.' },
       { id: 'talentpool-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'Echte Markenbotschafter.' },
-      { id: 'talentpool-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Handverlesen. Geschult. Im Einsatz bei Sonic angestellt.' },
-      { id: 'talentpool-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'In unserem Talentpool findest du Menschen aus ganz Deutschland — ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit Blick auf die eigene Zielerreichung, live in der SRT (Sonic Reporting Tool).' },
+      { id: 'talentpool-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Handverlesen. Geschult. Bei Sonic angestellt.' },
+      { id: 'talentpool-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'In unserem Talentpool findest du Menschen aus ganz Deutschland, ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit ihrer Zielerreichung jederzeit live in der SRT.' },
     ],
   },
   {
@@ -643,8 +643,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'warehouse-hero-badge', label: 'Hero Badge', description: 'Hero badge', type: 'badge', value: 'Warehouse & Logistik' },
       { id: 'warehouse-hero-heading-line1', label: 'H1 Line 1', description: 'Hero H1 first line', type: 'heading', value: 'Ware zur richtigen Zeit' },
       { id: 'warehouse-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'am richtigen Ort.' },
-      { id: 'warehouse-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Alles an einem Ort: eigenes Lager für Assets, Messestände und Ware.' },
-      { id: 'warehouse-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Mit Fulfillment-Services und Schnittstellen. Europaweit.' },
+      { id: 'warehouse-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Alles an einem Ort: 927 m² eigene Lagerfläche für POS-Materialien, Messestände und Ware.' },
+      { id: 'warehouse-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'Dazu Fulfillment, Bestandsmanagement und europaweite Logistik.' },
     ],
   },
 
@@ -678,7 +678,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The origin story and ticker stats section.',
     entries: [
       { id: 'about-origin-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Über uns' },
-      { id: 'about-origin-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Marken im Herzen. Erfolg im Fokus.' },
+      { id: 'about-origin-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'WIR MACHEN MARKEN ERFOLGREICH.' },
       { id: 'about-origin-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Wir sind eine unabhängige Marketing- und Sales-Agentur mit Schwerpunkten rund um die Konzeption, Kreation und Koordination von Kundenprojekten – ob am Point of Sale, im Studio, auf Messen oder Events in den Bereichen B2B, B2B2C und D2C.', multiline: true },
       { id: 'about-origin-p2', label: 'Paragraph 2', description: 'Second paragraph', type: 'paragraph', value: 'Wir leben Marken und machen sie erfolgreich – unabhängig von Größe, Branche und Zielgruppe. Dabei arbeiten wir stets geprägt von den Werten Mensch, Motivation, Daten und Werkzeug.', multiline: true },
       { id: 'about-origin-p3', label: 'Paragraph 3', description: 'Third paragraph', type: 'paragraph', value: 'Unsere Strategie: Ärmel hoch und anpacken! Echtes Handwerk – von Anfang bis Ende mit 100 % Leidenschaft und vollem Einsatz für die Ziele unserer Kunden.', multiline: true },
@@ -1154,10 +1154,10 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     pageGroupId: 'leistungen', pagePath: '/leistungen/staff-as-a-service',
     description: 'Staff as a Service: challenge, solution, process, specializations, SOCKS headings.',
     entries: [
-      { id: 'staff-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Staffing flexibilisieren ist komplex.' },
-      { id: 'staff-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Im Bereich Sales und Promotion kommt klassisches Recruiting ans Limit.' },
+      { id: 'staff-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Flexibles Staffing ist anspruchsvoll.' },
+      { id: 'staff-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Gerade in Sales und Promotion stößt klassisches Recruiting schnell an seine Grenzen.' },
       { id: 'staff-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Personaldienstleistung als digitalisierter Service.' },
-      { id: 'staff-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Recruiting Task Force — Auswahl, Betreuung und Abrechnung aus einer Hand.' },
+      { id: 'staff-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Von der Auswahl über die Betreuung bis zur Abrechnung – effizient gesteuert und aus einer Hand.' },
       { id: 'staff-process-heading', label: 'Process Heading', description: 'Process H2', type: 'heading', value: 'So läuft die Personalbeschaffung mit Sonic' },
       { id: 'staff-specs-heading', label: 'Specializations Heading', description: 'Specializations H2', type: 'heading', value: 'Drei Beschäftigungsmodelle für deine Field Force.' },
       { id: 'staff-socks-heading', label: 'SOCKS Heading', description: 'SOCKS H2', type: 'heading', value: 'Das S.O.C.K.S.-Prinzip' },
@@ -1195,11 +1195,11 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'Talentpool: challenge, solution, profiles, stats headings.',
     entries: [
       { id: 'talentpool-challenge-heading', label: 'Challenge Heading', description: 'Challenge section H2', type: 'heading', value: 'Wechselnde Gesichter. Kein Markenwissen. Kein ROI.' },
-      { id: 'talentpool-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Wer Personal nur über lose Netzwerke bucht, bekommt selten Menschen, die deine Marke wirklich vertreten.' },
+      { id: 'talentpool-challenge-sub', label: 'Challenge Subline', description: 'Challenge subline', type: 'paragraph', value: 'Wer Personal immer wieder kurzfristig neu besetzt, bekommt selten Menschen, die deine Marke wirklich kennen und überzeugend vertreten.' },
       { id: 'talentpool-solution-heading', label: 'Solution Heading', description: 'Solution H2', type: 'heading', value: 'Der Sonic-Talentpool. Menschen, die wir kennen.' },
       { id: 'talentpool-solution-sub', label: 'Solution Subline', description: 'Solution description', type: 'paragraph', value: 'Persönlich ausgewählt, auf dein Produkt geschult und fest im Projekt. Daten liefern die Fakten, Menschen den Unterschied.' },
       { id: 'talentpool-profiles-heading', label: 'Profiles Heading', description: 'Profiles H2', type: 'heading', value: '4 Rollen. Ein Ansprechpartner.' },
-      { id: 'talentpool-profiles-sub', label: 'Profiles Subline', description: 'Profiles description', type: 'paragraph', value: 'Jeden Talent-Typ aus einer Hand — koordiniert, geschult und live getrackt.' },
+      { id: 'talentpool-profiles-sub', label: 'Profiles Subline', description: 'Profiles description', type: 'paragraph', value: 'Die passenden Menschen für jede Aufgabe – koordiniert, geschult und live getrackt.' },
     ],
   },
   {
@@ -1660,6 +1660,40 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'leistungen_events_solutions', entryId: 'card5-desc', from: 'Dank unserem eigenen Warehouse', to: 'Ort und Zeit stehen fest. Wir sind da. Alles läuft. Dank unseres eigenen Warehouses und Logistikteams. Und die Kosten? Hast du jederzeit in der SRT im Blick.', matchType: 'contains' as const },
   { sectionKey: 'leistungen_events_solutions', entryId: 'card6-desc', from: 'bis zum Live-Stream: damit deine Botschaften ankommen', to: 'Von der Einladung über Goodie-Bags und Giveaways bis zum Livestream: Damit deine Botschaften vor, während und nach dem Event ankommen.', matchType: 'contains' as const },
   { sectionKey: 'leistungen_events_formats', entryId: 'tab3-sub', from: 'Von uns gebaute Eventfahrzeuge', to: 'Eventfahrzeuge und individuell gestaltete Module. Von der Idee bis zum laufenden Betrieb.', matchType: 'contains' as const },
+  // ── Website-Review Teil 4 (11/2026): corrects values saved in the dashboard ──
+  { sectionKey: 'leistungen_staff', entryId: 'staff-hero-subtitle', from: 'Brand Activation und mehr', to: 'Promoter:innen für Sell-out, Sell-in, Schulungen und Brand Activation.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff', entryId: 'staff-hero-description', from: 'bspw. via Arbeitnehmerüberlassung', to: 'Wir übernehmen Recruiting, Payroll und Steuerung, von der Personalauswahl bis zur Arbeitnehmerüberlassung.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_hero_stats', entryId: 'stat-3-label', from: 'Promoter:innen im Einsatz', to: 'Mitarbeitende für Promotion und Field Force' },
+  { sectionKey: 'leistungen_staff_content', entryId: 'staff-challenge-heading', from: 'Staffing flexibilisieren ist komplex', to: 'Flexibles Staffing ist anspruchsvoll.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_content', entryId: 'staff-challenge-sub', from: 'kommt klassisches Recruiting ans Limit', to: 'Gerade in Sales und Promotion stößt klassisches Recruiting schnell an seine Grenzen.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_challenges', entryId: 'c1-desc', from: 'Motivierbare Fachkräfte', to: 'Qualifizierte Fachkräfte für flexible und wechselnde Einsätze sind über klassische Recruiting-Wege oft schwer zu finden.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_challenges', entryId: 'c2-desc', from: 'für jede Person jeden Monat anders', to: 'Stundenlöhne, Provisionen, Pauschalen und Sozialversicherung: Je nach Einsatz und Person entsteht jeden Monat neuer Aufwand. Das bindet wertvolle Ressourcen in der internen Lohnbuchhaltung.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_challenges', entryId: 'c3-desc', from: 'erst weit im Nachhinein', to: 'Reportings kommen oft zu spät, weil Daten zu Einsätzen, Absatz und Personalkosten nicht rechtzeitig zusammenlaufen. So wird Optimierung schnell zur Bauchentscheidung.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_content', entryId: 'staff-solution-sub', from: 'Recruiting Task Force', to: 'Von der Auswahl über die Betreuung bis zur Abrechnung – effizient gesteuert und aus einer Hand.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_solution', entryId: 's1-desc', from: 'on top über bewährte', to: 'Wir besetzen deine Einsätze aus unserem Talentpool und ergänzen gezielt über bewährte Recruiting-Kanäle. Passend zu deinen Anforderungen, mit digitalen Arbeitsverträgen und minimalem Aufwand für deine HR-Abteilung.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_solution', entryId: 's2-desc', from: 'Aufs Onboarding sind wir', to: 'Onboarding ist unsere Stärke: Erfahrene Sales-Trainer:innen bereiten die Teams gezielt auf Produkte, Marken und ihre Aufgaben im Einsatz vor.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_solution', entryId: 's3-desc', from: 'Wer bekommt wofür wie viel Geld', to: 'Arbeitszeiten, Provisionen und Erfolgsfaktoren bilden die Basis für eine korrekte Abrechnung. Wir übernehmen die komplette Payroll auf Basis der Daten aus der SRT. Fair. Transparent. Nachvollziehbar.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_solution', entryId: 's4-desc', from: 'u. a. (Lohn-)Kosten', to: 'Du hast jederzeit Zugriff auf alle relevanten Daten und Personalkosten. Transparent aufbereitet und direkt in der SRT abrufbar.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_process', entryId: 'step-1-desc', from: 'welchen Umfang brauchst du', to: 'Wir verstehen dein Geschäft, deine Produkte und deinen Personalbedarf. Welche Rollen, Skills und Kapazitäten brauchst du? Gemeinsam definieren wir Einsatzort, Vertragsbedingungen, Gehaltsbestandteile und das passende Anforderungsprofil.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_specs', entryId: 'sp1-desc', from: 'machen aus Interessenten Käufer', to: 'Sales-Profis, geschult auf zielgerichtete Beratung. Sie vermitteln Produktvorteile verständlich, stärken deine Marke am POS und unterstützen aktiv die Kaufentscheidung.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_specs', entryId: 'sp3-desc', from: 'Brand-Activation-Mitarbeiter geben', to: 'Unsere Brand-Activation-Teams geben deiner Marke ein Gesicht. Im direkten Kontakt schaffen sie Nähe, Vertrauen und ein Markenerlebnis, das hängen bleibt.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_specs', entryId: 'sp4-desc', from: 'fleißige Hände', to: 'Eine starke Warenpräsentation am POS braucht Menschen mit Doing-Things-Mentalität. Ob 360-Grad-Außendienst oder spezialisierte Teams.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_staff_specs', entryId: 'sp5-desc', from: 'Regalpflege und mehr. Mit Schichtsystem', to: 'Wir finden die passenden Menschen für Shop-in-Shop-Outlets: für Beratung, Produkt-Demos, Verkauf und Regalpflege. Mit Schichtsystem und Plan B.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-subtitle', from: 'Im Einsatz bei Sonic angestellt', to: 'Handverlesen. Geschult. Bei Sonic angestellt.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool', entryId: 'talentpool-hero-description', from: 'mit Blick auf die eigene Zielerreichung', to: 'In unserem Talentpool findest du Menschen aus ganz Deutschland, ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit ihrer Zielerreichung jederzeit live in der SRT.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool_content', entryId: 'talentpool-challenge-sub', from: 'über lose Netzwerke', to: 'Wer Personal immer wieder kurzfristig neu besetzt, bekommt selten Menschen, die deine Marke wirklich kennen und überzeugend vertreten.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool_challenges', entryId: 'c1-desc', from: 'fängt jedes Mal von vorn', to: 'Wer für jedes Projekt neues Personal bucht, beginnt jedes Mal von vorn: Auswahl, Onboarding und Schulung wiederholen sich – und Ergebnisse werden schwer planbar.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool_solution', entryId: 's4-desc', from: 'Douglas, dm', to: 'Von Nord bis Süd, in der Großstadt wie in der Region: Unsere Talente sind deutschlandweit im Einsatz – im Elektronikfachmarkt, im Fachhandel und überall dort, wo persönliche Beratung den Unterschied macht.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool_solution', entryId: 's5-desc', from: 'Haushaltsgeräte, Kosmetik, Sport', to: 'Consumer Electronics, Haushaltsgeräte, Sport & Outdoor und weitere erklärungsbedürftige Produkte: Unsere Talente werden gezielt auf Produkt, Kategorie und Marke vorbereitet – statt mit einem allgemeinen Promoter-Profil in den Einsatz zu gehen.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool_solution', entryId: 's6-desc', from: 'Für dich als Auftraggeber und für die Promoter', to: 'Standort-Check-in, Fotos und Echtzeit-Reporting in der SRT: Jeder Einsatz ist dokumentiert und transparent – für dich und für die Promoter:innen selbst.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_talentpool_stats', entryId: 'stat-2-label', from: 'Promoter:innen im Einsatz', to: 'Mitarbeitende für Promotion und Field Force' },
+  { sectionKey: 'leistungen_talentpool_content', entryId: 'talentpool-profiles-sub', from: 'Jeden Talent-Typ aus einer Hand', to: 'Die passenden Menschen für jede Aufgabe – koordiniert, geschult und live getrackt.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_warehouse', entryId: 'warehouse-hero-subtitle', from: 'eigenes Lager für Assets', to: 'Alles an einem Ort: 927 m² eigene Lagerfläche für POS-Materialien, Messestände und Ware.', matchType: 'contains' as const },
+  { sectionKey: 'leistungen_warehouse', entryId: 'warehouse-hero-description', from: 'Mit Fulfillment-Services und Schnittstellen', to: 'Dazu Fulfillment, Bestandsmanagement und europaweite Logistik.', matchType: 'contains' as const },
+  { sectionKey: 'about_hero', entryId: 'about-hero-sub', from: 'von Konzeption bis Koordination', to: 'Unabhängige Marketing- und Sales-Agentur – von der Idee bis zur Umsetzung, am POS, im Studio, auf Messen und Events. Mit vollem Einsatz für deine Marke.', matchType: 'contains' as const },
+  { sectionKey: 'about_origin_story', entryId: 'about-origin-heading', from: 'Marken im Herzen. Erfolg im Fokus.', to: 'WIR MACHEN MARKEN ERFOLGREICH.', matchType: 'contains' as const },
+  { sectionKey: 'about_ticker', entryId: 't5-label', from: 'Promoter:innen im Einsatz', to: 'Mitarbeitende für Promotion und Field Force' },
+  { sectionKey: 'about_values_texts', entryId: 'refs-line', from: 'im Studio, auf der Fläche, im Fachhandel', to: 'Unsere Kunden – vom POS über unsere Studios bis zu Events, Fachhandel und B2B.', matchType: 'contains' as const },
 ];
 
 /* Substring corrections applied to every text (defaults and dashboard values).
@@ -1988,7 +2022,27 @@ export function resetTextSection(sectionKey: string): Promise<boolean> {
 export function resetAllText(): Promise<boolean> {
   const en = getLanguage() === 'en';
   return commitChange((o) => {
-    for (const key of Object.keys(o)) if (key.startsWith(EN_PREFIX) === en) delete o[key];
+    // Page on/off switches are settings, not text — a text reset never touches them.
+    for (const key of Object.keys(o)) if (key !== SITE_PAGES_KEY && key.startsWith(EN_PREFIX) === en) delete o[key];
+  });
+}
+
+/* ─────────────────────────────────────────────
+   PAGE ON/OFF SWITCHES (Dashboard → Seiten, 11/2026)
+   Stored in the same published row as the text, under a reserved key:
+   { "__site_pages": { "/sonic-reels": "off", "/blog": "on" } }.
+   Pages without an entry use their built-in default (see src/lib/sitePages.ts).
+───────────────────────────────────────────── */
+export const SITE_PAGES_KEY = '__site_pages';
+
+export function getSitePageSettings(): Record<string, string> {
+  return { ...(overrides[SITE_PAGES_KEY] ?? {}) };
+}
+
+/* Switch a page on or off for all visitors. Resolves true once it is published. */
+export function setSitePageEnabled(path: string, enabled: boolean): Promise<boolean> {
+  return commitChange((o) => {
+    (o[SITE_PAGES_KEY] ??= {})[path] = enabled ? 'on' : 'off';
   });
 }
 

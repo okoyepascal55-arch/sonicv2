@@ -3,6 +3,7 @@ import { useSEO } from '@/hooks/useSEO';
 import Sidebar from './components/Sidebar';
 import MediaPanel from './components/MediaPanel';
 import TextPanel from './components/TextPanel';
+import PagesPanel from './components/PagesPanel';
 
 const AUTH_KEY = 'sonic_admin_auth';
 
@@ -18,7 +19,7 @@ export default function DashboardPage() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [activeGroup, setActiveGroup] = useState('home');
-  const [activeTab, setActiveTab] = useState<'media' | 'text'>('media');
+  const [activeTab, setActiveTab] = useState<'media' | 'text' | 'pages'>('media');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
@@ -116,12 +117,14 @@ export default function DashboardPage() {
   return (
     <div className="flex h-[calc(100vh-5rem)] min-h-0 overflow-hidden">
       {/* Desktop Sidebar — always visible on lg+ */}
-      <div className="hidden lg:block">
-        <Sidebar activeGroup={activeGroup} onGroupSelect={handleGroupSelect} variant="desktop" activeTab={activeTab} />
-      </div>
+      {activeTab !== 'pages' && (
+        <div className="hidden lg:block">
+          <Sidebar activeGroup={activeGroup} onGroupSelect={handleGroupSelect} variant="desktop" activeTab={activeTab} />
+        </div>
+      )}
 
       {/* Mobile Sidebar Overlay */}
-      {sidebarOpen && (
+      {sidebarOpen && activeTab !== 'pages' && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-black/50" onClick={() => setSidebarOpen(false)}></div>
           <div className="absolute left-0 top-0 bottom-0 w-64 z-10">
@@ -169,6 +172,17 @@ export default function DashboardPage() {
               <i className="ri-file-text-line text-sm"></i>
               Text
             </button>
+            <button
+              onClick={() => setActiveTab('pages')}
+              className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                activeTab === 'pages'
+                  ? 'bg-lime-400 text-gray-900'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              <i className="ri-toggle-line text-sm"></i>
+              Seiten
+            </button>
           </div>
 
           <button
@@ -181,8 +195,10 @@ export default function DashboardPage() {
 
         {activeTab === 'media' ? (
           <MediaPanel activeGroup={activeGroup} />
-        ) : (
+        ) : activeTab === 'text' ? (
           <TextPanel activeGroup={activeGroup} />
+        ) : (
+          <PagesPanel />
         )}
       </div>
     </div>

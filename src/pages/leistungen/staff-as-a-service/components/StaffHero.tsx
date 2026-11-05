@@ -15,8 +15,8 @@ export default function StaffHero() {
   const tBadge = useText('leistungen_staff', 'staff-hero-badge', 'Staff as a Service');
   const tH1Line1 = useText('leistungen_staff', 'staff-hero-heading-line1', 'Rundum-Service');
   const tH1Accent = useText('leistungen_staff', 'staff-hero-heading-accent', 'beim Personal.');
-  const tSubtitle = useText('leistungen_staff', 'staff-hero-subtitle', 'Promoter:innen für Sell-out, Sell-in, Schulungen, Brand Activation und mehr.');
-  const tDesc = useText('leistungen_staff', 'staff-hero-description', 'Wir übernehmen Recruiting, Payroll und Steuerung, bspw. via Arbeitnehmerüberlassung.');
+  const tSubtitle = useText('leistungen_staff', 'staff-hero-subtitle', 'Promoter:innen für Sell-out, Sell-in, Schulungen und Brand Activation.');
+  const tDesc = useText('leistungen_staff', 'staff-hero-description', 'Wir übernehmen Recruiting, Payroll und Steuerung, von der Personalauswahl bis zur Arbeitnehmerüberlassung.');
   const t = useLeistungenText('leistungen_staff_hero_stats');
   const cta = useCtaText();
 

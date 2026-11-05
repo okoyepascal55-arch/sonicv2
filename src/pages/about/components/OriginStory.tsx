@@ -16,7 +16,7 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
   const { images: woodTicker } = useMediaStore('about_origin_story_wood_bg');
 
   const tBadge = useText('about_origin_story', 'about-origin-badge', 'Über uns');
-  const tHeading = useText('about_origin_story', 'about-origin-heading', 'Marken im Herzen. Erfolg im Fokus.');
+  const tHeading = useText('about_origin_story', 'about-origin-heading', 'WIR MACHEN MARKEN ERFOLGREICH.');
   const tP1 = useText('about_origin_story', 'about-origin-p1', 'Wir sind eine unabhängige Marketing- und Sales-Agentur.');
   const tP2 = useText('about_origin_story', 'about-origin-p2', 'Wir leben Marken und machen sie erfolgreich.');
   const tP3 = useText('about_origin_story', 'about-origin-p3', 'Unsere Strategie: Ärmel hoch und anpacken!');
@@ -89,8 +89,17 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
               style={{ transitionDelay: '250ms' }}
             >
               <h2 className="sonic-h2 text-foreground-950 mb-4 md:mb-6">
-                {tHeading.split('.')[0] || tHeading}<br />
-                <span className="v3-marker">{tHeading.includes('.') ? tHeading.split('.').slice(1).join('.').trim() : ''}</span>
+                {/* Two sentences: first line plain, second highlighted. One sentence (e.g. „WIR MACHEN MARKEN ERFOLGREICH.“): shown whole. */}
+                {(() => {
+                  const parts = tHeading.split(/(?<=\.)\s+/).filter(Boolean);
+                  if (parts.length < 2) return tHeading;
+                  return (
+                    <>
+                      {parts[0].replace(/\.$/, '')}<br />
+                      <span className="v3-marker">{parts.slice(1).join(' ')}</span>
+                    </>
+                  );
+                })()}
               </h2>
 
               <div className="space-y-3 md:space-y-4 text-sm md:text-[15px] leading-relaxed text-foreground-600 mb-5 md:mb-8">
