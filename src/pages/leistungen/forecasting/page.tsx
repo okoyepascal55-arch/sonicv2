@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useLeistungenText, refIds } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
@@ -10,7 +10,7 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import ForecastingHero from './components/ForecastingHero';
 import ForecastingContent from './components/ForecastingContent';
 
-const NAV_ITEMS = [
+const NAV_ITEMS_BASE = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'wie-es-funktioniert', label: 'So funktioniert es', icon: 'ri-route-line' },
@@ -19,6 +19,8 @@ const NAV_ITEMS = [
 ];
 
 export default function ForecastingPage() {
+  const tPageNav = useLeistungenText('leistungen_forecasting_page_nav');
+  const NAV_ITEMS = NAV_ITEMS_BASE.map((n) => ({ ...n, label: tPageNav[`nav-${n.id}`] || n.label }));
   useSEO({
     title: 'Forecasting | Sonic Group — Datenbasierte Sell-out-Prognosen für Retail DACH',
     description: 'Retail Forecasting von Sonic Group: Datenbasierte Sell-out-Prognosen, Standortanalysen und ROI-Planung für Field Force Einsätze in Deutschland. Plane Promoter-Budgets mit nachvollziehbaren Prognosen auf Basis von über 1,3 Mio. dokumentierten Einsätzen in der SRT (Sonic Reporting Tool).',
@@ -57,7 +59,7 @@ export default function ForecastingPage() {
       <WoodenDivider />
 
       <section id="referenzen">
-        <ClientProof only={['seb', 'nespresso', 'garmin']} />
+        <ClientProof only={refIds(tPageNav['referenzen'])} />
       </section>
 
       <WoodenDivider />

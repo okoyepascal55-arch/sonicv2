@@ -36,7 +36,7 @@ const SPECIALIZATION_BASE = [
   { woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20presentation%20board%20training%20knowledge%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-pres-staff-spec-6&orientation=squarish', num: '06' },
 ];
 
-const SOCKS = [
+const SOCKS_BASE = [
   {
     letter: 'S', title: 'Selection',
     desc: 'Die Gewissheit, den besten Kanal, die beste Region, den besten Shop und den besten Tag gewählt zu haben, um die meisten Produkte mit dem höchsten ROI zu verkaufen.',
@@ -73,6 +73,8 @@ const FALLBACK_SOCKS = [
 ];
 
 export default function StaffContent() {
+  const tSocksSt = useLeistungenText('leistungen_staff_socks_steps');
+  const SOCKS = SOCKS_BASE.map((x, i) => ({ ...x, title: tSocksSt[`s${i + 1}-title`] ?? x.title, desc: tSocksSt[`s${i + 1}-desc`] ?? x.desc }));
   const tChallengeHeading = useText('leistungen_staff_content', 'staff-challenge-heading', 'Flexibles Staffing ist anspruchsvoll.');
   const tChallengeSub = useText('leistungen_staff_content', 'staff-challenge-sub', 'Gerade in Sales und Promotion stößt klassisches Recruiting schnell an seine Grenzen.');
   const tSolutionHeading = useText('leistungen_staff_content', 'staff-solution-heading', 'Personaldienstleistung als digitalisierter Service.');
@@ -293,7 +295,7 @@ export default function StaffContent() {
           <div className="text-center mb-12 md:mb-16">
             <div className="flex items-center justify-center gap-3 mb-5">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Sell-out mit System</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tSocksSt['eyebrow']}</span>
             </div>
             <h2 className="sonic-h2 text-white">
               {tSocksHeading}

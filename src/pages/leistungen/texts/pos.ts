@@ -54,4 +54,37 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('headline-accent', 'Überschrift — Akzent', 'heading', 'geplant?'),
     e('subline', 'Unterzeile', 'paragraph', 'Wir zeigen dir, wie wir es umsetzen.'),
   ]),
+  // ── added 11/2026: was hard-coded in the component ──
+  section('leistungen_pos_challenges', 'POS Full Service — Herausforderungen (3 Punkte)', P, 'Die drei Hover-Punkte unter „POS-Qualität dauerhaft zu sichern, ist aufwändig.“.', [
+    e('c1-title', 'Punkt 1 — Titel', 'subheading', 'Reibungsverluste durch zu viele Anbieter'),
+    e('c1-desc', 'Punkt 1 — Text', 'paragraph', 'Wenn Design, Druck, Ladenbau, Logistik und Personal von verschiedenen Anbietern kommen, steigt der interne Aufwand erheblich.'),
+    e('c1-trigger', 'Punkt 1 — Frage', 'label', 'Zu viele Ansprechpartner?'),
+    e('c2-title', 'Punkt 2 — Titel', 'subheading', 'Teure Überraschungen im Rollout'),
+    e('c2-desc', 'Punkt 2 — Text', 'paragraph', 'Manches POS-Material sieht in der Präsentation super aus, ist aber bspw. teuer in der Produktion oder in zu wenigen Outlets einsetzbar.'),
+    e('c2-trigger', 'Punkt 2 — Frage', 'label', 'Schon passiert?'),
+    e('c3-title', 'Punkt 3 — Titel', 'subheading', 'Pflegeaufwand ohne Ende'),
+    e('c3-desc', 'Punkt 3 — Text', 'paragraph', 'Der POS-Auftritt muss gepflegt werden. Das gelingt in den Outlets nur mit geschulten und motivierten Mitarbeitenden.'),
+    e('c3-trigger', 'Punkt 3 — Frage', 'label', 'Klingt vertraut?'),
+  ]),
+  // ── added 11/2026: was hard-coded in the component ──
+  section('leistungen_pos_assets', 'POS Full Service — POS-Materialien & Branding (4 Tabs)', P, 'Tab-Namen und Punkte im Bereich „POS-Materialien & Branding“. Punkte mit | trennen. Bilder: Medien → Leistungen „POS Assets“.', [
+    e('a1-category', 'Tab 1 — Name', 'label', 'Printmaterialien'),
+    e('a1-items', 'Tab 1 — Punkte (mit | trennen)', 'list-item', 'POS-Design und Kampagnenadaption | Aufsteller, Plakate, Flyer, Beklebungen, Gebäudebanner | Standequipment und Promotion-Tools | Produktion, Aufbau, Logistik und Lager'),
+    e('a2-category', 'Tab 2 — Name', 'label', 'E-Commerce Marketing'),
+    e('a2-items', 'Tab 2 — Punkte (mit | trennen)', 'list-item', 'Shop-Optimierung, inkl. Web-Design | PDPs, A+ Content | Performance-Marketing, inkl. Ads, Media und Newslettern | Social Commerce, inkl. Community Management'),
+    e('a3-category', 'Tab 3 — Name', 'label', 'Möbelsysteme & Shop-in-Shop'),
+    e('a3-items', 'Tab 3 — Punkte (mit | trennen)', 'list-item', 'Architektur, Design, Technik und Warensicherung | Möbel, Regale, Shop-in-Shop-Systeme, Roadshow-Module | Interaktive Displaykonzepte | Produktion, Warehousing, Aufbau, Ausstattung, Pflege'),
+    e('a4-category', 'Tab 4 — Name', 'label', 'Giveaways'),
+    e('a4-items', 'Tab 4 — Punkte (mit | trennen)', 'list-item', 'Hochwertige Werbeartikel | Kosteneffiziente Streuartikel | Merchandise'),
+  ]),
+  // ── added 11/2026: was hard-coded in the component ──
+  section('leistungen_pos_page_nav', 'POS Full Service — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), loreal (L\'Oréal), wmf (WMF), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
+    e('nav-herausforderung', 'Seitenmenü — Herausforderung', 'nav-label', 'Herausforderung'),
+    e('nav-loesung', 'Seitenmenü — Lösung', 'nav-label', 'Lösung'),
+    e('nav-beispiele', 'Seitenmenü — Beispiele', 'nav-label', 'Beispiele'),
+    e('nav-arbeitsweise', 'Seitenmenü — Arbeitsweise', 'nav-label', 'Arbeitsweise'),
+    e('nav-referenzen', 'Seitenmenü — Referenzen', 'nav-label', 'Referenzen'),
+    e('nav-kontakt', 'Seitenmenü — Kontakt', 'nav-label', 'Kontakt'),
+    e('referenzen', 'Referenzen — angezeigte Kundenstimmen (Kürzel, mit Komma trennen)', 'text', 'garmin, loreal, wmf, mediamarktsaturn, seb'),
+  ]),
 ];

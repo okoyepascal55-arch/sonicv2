@@ -4,12 +4,12 @@ import type { ChallengeItem } from '@/components/feature/ChallengeSection';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useLeistungenText, splitList } from '@/hooks/useLeistungenText';
 import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 
 const TALENTPOOL_CHALLENGE_ICONS = ['ri-user-unfollow-line', 'ri-loop-right-line', 'ri-eye-off-line'];
 
-const SOLUTION_BASE = [
+const SOLUTION_BASE_BASE = [
   {
     woodIcon: 'https://readdy.ai/api/search-image?query=carved%20wooden%20shield%20check%20protection%20trust%20employment%20icon%20made%20from%20solid%20dark%20walnut%20wood%20three%20dimensional%20relief%20carving%20natural%20wood%20grain%20texture%20warm%20rich%20brown%20color%20simple%20minimalist%20symbol%20handcrafted%20artisan%20quality%20on%20clean%20white%20background%20top%20view%20product%20photography%20studio%20lighting&width=112&height=112&seq=wood-shield-talent-01&orientation=squarish',
     number: '01',
@@ -48,7 +48,7 @@ const SOLUTION_BASE = [
   },
 ];
 
-const PROFILE_BASE = [
+const PROFILE_BASE_BASE = [
   {
     number: '01',
     icon: 'ri-user-star-line',
@@ -85,6 +85,10 @@ const FALLBACK_PROFILES = [
 const STAT_COUNT = 4;
 
 export default function TalentpoolContent() {
+  const tTpProfTags = useLeistungenText('leistungen_talentpool_profile_tags');
+  const PROFILE_BASE = PROFILE_BASE_BASE.map((x, i) => ({ ...x, tags: tTpProfTags[`p${i + 1}-tags`] !== undefined ? splitList(tTpProfTags[`p${i + 1}-tags`]) : x.tags }));
+  const tTpTags = useLeistungenText('leistungen_talentpool_solution_tags');
+  const SOLUTION_BASE = SOLUTION_BASE_BASE.map((x, i) => ({ ...x, tags: tTpTags[`s${i + 1}-tags`] !== undefined ? splitList(tTpTags[`s${i + 1}-tags`]) : x.tags }));
   const { images: profileImages } = useMediaStore('leistungen_talentpool_profiles_images');
   const tCh = useLeistungenText('leistungen_talentpool_challenges');
   const tSol = useLeistungenText('leistungen_talentpool_solution');

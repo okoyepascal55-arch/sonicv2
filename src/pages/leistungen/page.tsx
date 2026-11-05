@@ -9,10 +9,10 @@ import ClientProof from '../../components/feature/ClientProof';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { StackedSectionReveal } from '@/components/feature/SectionReveal';
-import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useLeistungenText, refIds } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
 
-const NAV_ITEMS = [
+const NAV_ITEMS_BASE = [
   { id: 'service-grid', label: 'Leistungen', icon: 'ri-apps-line' },
   { id: 'zahlen', label: 'Zahlen', icon: 'ri-bar-chart-2-line' },
   { id: 'schallmauer', label: 'Schallmauer', icon: 'ri-sound-module-line' },
@@ -21,6 +21,8 @@ const NAV_ITEMS = [
 ];
 
 export default function LeistungenPage() {
+  const tPageNav = useLeistungenText('leistungen_overview_page_nav');
+  const NAV_ITEMS = NAV_ITEMS_BASE.map((n) => ({ ...n, label: tPageNav[`nav-${n.id}`] || n.label }));
   useSEO({
     title: 'Leistungen | Sonic Group — POS, Live Video, Events, Staffing & Logistik',
     description: 'Sonic Group Leistungen: POS Full Service, Live Video, Events & Messen, Staff as a Service, Talentpool, Kreation & Content, Forecasting, Warehouse & Logistik — für Marken im DACH-Markt und internationale Unternehmen aus China & USA.',
@@ -65,7 +67,7 @@ export default function LeistungenPage() {
         <WoodenDivider />
 
         <div id="kundenstimmen" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #FAFDF5 50%, #ffffff 100%)' }}>
-          <StackedSectionReveal index={3} totalSections={4}><ClientProof /></StackedSectionReveal>
+          <StackedSectionReveal index={3} totalSections={4}><ClientProof only={refIds(tPageNav['referenzen'])} /></StackedSectionReveal>
         </div>
       </div>
 

@@ -106,4 +106,29 @@ export const TEXT_SECTIONS: TextSection[] = [
       e('headline-accent', 'Kontakt — Überschrift (Akzent)', 'heading', 'gesucht?'),
       e('subline', 'Kontakt — Subline', 'paragraph', 'Wir klären, welches Staffing-Modell zu deinem Projekt passt.'),
     ]),
+  // ── added 11/2026: was hard-coded in the component ──
+  section('leistungen_staff_socks_steps', 'Staff as a Service — S.O.C.K.S. (5 Schritte)', P, 'Kicker und die fünf Schritte im Block „S.O.C.K.S.“. Der Buchstabe bleibt fest; Überschrift: „Staff as a Service — Content“, Einleitung: „Staff as a Service — S.O.C.K.S.“.', [
+    e('eyebrow', 'Kicker', 'badge', 'Sell-out mit System'),
+    e('s1-title', 'Schritt 1 — Titel', 'subheading', 'Selection'),
+    e('s1-desc', 'Schritt 1 — Text', 'paragraph', 'Die Gewissheit, den besten Kanal, die beste Region, den besten Shop und den besten Tag gewählt zu haben, um die meisten Produkte mit dem höchsten ROI zu verkaufen.'),
+    e('s2-title', 'Schritt 2 — Titel', 'subheading', 'Orientation'),
+    e('s2-desc', 'Schritt 2 — Text', 'paragraph', 'Sicherstellen, dass der Besucher das gewünschte Produkt auf einfachste Weise im Shop findet oder auf das Produkt aufmerksam wird.'),
+    e('s3-title', 'Schritt 3 — Titel', 'subheading', 'Condition'),
+    e('s3-desc', 'Schritt 3 — Text', 'paragraph', 'Sicherstellen, dass das Produkt so dargestellt ist, dass es kaufenswert erscheint. Begehrlich.'),
+    e('s4-title', 'Schritt 4 — Titel', 'subheading', 'Knowledge'),
+    e('s4-desc', 'Schritt 4 — Text', 'paragraph', 'Sicherstellen, dass die Empfehler das Produkt mit all seinen Vorteilen kennen. Sie fühlen sich sicher, den Besucher nach seinen Bedürfnissen zu fragen.'),
+    e('s5-title', 'Schritt 5 — Titel', 'subheading', 'Sellout'),
+    e('s5-desc', 'Schritt 5 — Text', 'paragraph', 'Das einzig mögliche Ergebnis, wenn alle Schritte perfekt ausgeführt wurden: Der Empfehler wird zum Verkäufer, der Besucher zum Käufer.'),
+  ]),
+  // ── added 11/2026: was hard-coded in the component ──
+  section('leistungen_staff_page_nav', 'Staff as a Service — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), loreal (L\'Oréal), wmf (WMF), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
+    e('nav-herausforderung', 'Seitenmenü — Herausforderung', 'nav-label', 'Herausforderung'),
+    e('nav-loesung', 'Seitenmenü — Lösung', 'nav-label', 'Lösung'),
+    e('nav-ablauf', 'Seitenmenü — Ablauf', 'nav-label', 'Ablauf'),
+    e('nav-aufgabenbereiche', 'Seitenmenü — Aufgabenbereiche', 'nav-label', 'Aufgabenbereiche'),
+    e('nav-socks', 'Seitenmenü — S.O.C.K.S.', 'nav-label', 'S.O.C.K.S.'),
+    e('nav-referenzen', 'Seitenmenü — Referenzen', 'nav-label', 'Referenzen'),
+    e('nav-kontakt', 'Seitenmenü — Kontakt', 'nav-label', 'Kontakt'),
+    e('referenzen', 'Referenzen — angezeigte Kundenstimmen (Kürzel, mit Komma trennen)', 'text', 'garmin, loreal, wmf, mediamarktsaturn, seb'),
+  ]),
 ];

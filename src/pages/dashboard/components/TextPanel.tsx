@@ -18,6 +18,7 @@ import {
 } from '@/lib/textStore';
 import { STIMMEN_TABS, STIMMEN_GROUP_ID } from '@/lib/textStoreStimmen';
 import { LANGS, setLanguage, useLanguage, type Lang } from '@/lib/language';
+import { LEISTUNGEN_DASH_PAGES, sortLeistungenSections, textSectionPage, contentAreasHint, UNUSED_TEXT_SECTIONS } from '../leistungenDash';
 
 type StimmenTabId = typeof STIMMEN_TABS[number]['id'];
 
@@ -254,7 +255,18 @@ const SectionRow = memo(function SectionRow({ lang, section, isExpanded, onToggl
           <i className={`${isExpanded ? 'ri-folders-line' : 'ri-folder-line'} text-base`}></i>
         </span>
         <div className="flex-1 min-w-0">
-          <div className="text-sm font-semibold text-gray-900 truncate">{section.label}</div>
+          <div className="text-sm font-semibold text-gray-900 truncate flex items-center gap-2">
+            <span className="truncate">{section.label}</span>
+            {UNUSED_TEXT_SECTIONS.has(section.key) && (
+              <span className="shrink-0 text-3xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">Nicht auf der Website</span>
+            )}
+          </div>
+          {section.pageGroupId === 'leistungen' && section.description && (
+            <div className="text-2xs text-gray-500 truncate">{section.description}</div>
+          )}
+          {section.pageGroupId === 'leistungen' && contentAreasHint(section.key, section.entries.map((e) => e.label)) && (
+            <div className="text-2xs text-lime-700 truncate">{contentAreasHint(section.key, section.entries.map((e) => e.label))}</div>
+          )}
           <div className="text-2xs text-gray-400 flex items-center gap-2">
             <span>{section.entries.length} Texte</span>
             <span className="text-gray-300">·</span>
@@ -397,13 +409,22 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
   const lang = useLanguage();
   const [stimmenTab, setStimmenTab] = useState<StimmenTabId>(STIMMEN_TABS[0].id);
   const isStimmen = activeGroup === STIMMEN_GROUP_ID;
+  const isLeistungen = activeGroup === 'leistungen';
+  const [leistungenPage, setLeistungenPage] = useState<string>('all');
   const activeStimmenTab = STIMMEN_TABS.find((t) => t.id === stimmenTab) ?? STIMMEN_TABS[0];
 
   const sections = useMemo(
-    () => (isStimmen ? getTextSectionsByKeys(activeStimmenTab.sectionKeys) : getTextSectionsByGroup(activeGroup)),
+    () => {
+      if (isStimmen) return getTextSectionsByKeys(activeStimmenTab.sectionKeys);
+      const list = getTextSectionsByGroup(activeGroup);
+      if (!isLeistungen) return list;
+      // Leistungen: grouped by page, in the order the sections appear on the page (display only)
+      const sorted = sortLeistungenSections(list);
+      return leistungenPage === 'all' ? sorted : sorted.filter((s) => textSectionPage(s.key, s.pagePath) === leistungenPage);
+    },
     // tick: re-read after saves/resets so "Zurücksetzen" shows the restored text immediately
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [activeGroup, isStimmen, activeStimmenTab, tick],
+    [activeGroup, isStimmen, isLeistungen, leistungenPage, activeStimmenTab, tick],
   );
   const entryCount = useMemo(
     () => (isStimmen ? sections.reduce((sum, s) => sum + s.entries.length, 0) : getTextEntryCount(activeGroup)),
@@ -538,6 +559,37 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
             </button>
           </div>
         </div>
+
+        {/* Page tabs — Leistungen: one chip per page */}
+        {isLeistungen && (
+          <div className="mt-4 -mb-4 flex items-end gap-1 overflow-x-auto" role="tablist" aria-label="Leistungen-Seite wählen">
+            {LEISTUNGEN_DASH_PAGES.map((pg) => {
+              const isActive = pg.id === leistungenPage;
+              const count = pg.id === 'all'
+                ? getTextSectionsByGroup('leistungen').length
+                : getTextSectionsByGroup('leistungen').filter((s) => textSectionPage(s.key, s.pagePath) === pg.id).length;
+              return (
+                <button
+                  key={pg.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => { setLeistungenPage(pg.id); setExpandedSection(null); }}
+                  className={`px-3 py-2.5 text-xs font-bold uppercase tracking-wider border-b-2 transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                    isActive
+                      ? 'border-lime-400 text-gray-900 bg-lime-50'
+                      : 'border-transparent text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  <i className={`${pg.icon} text-sm`}></i>
+                  {pg.label}
+                  <span className={`text-3xs font-semibold px-1.5 py-0.5 rounded ${isActive ? 'bg-lime-400 text-gray-900' : 'bg-gray-100 text-gray-500'}`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        )}
 
         {/* Page tabs — Stimmen & Gesichter */}
         {isStimmen && (

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useSEO } from '@/hooks/useSEO';
-import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useLeistungenText, refIds } from '@/hooks/useLeistungenText';
 import { useCtaText } from '@/hooks/useCtaText';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import LeistungenKontakt from '@/components/feature/LeistungenKontakt';
@@ -10,7 +10,7 @@ import WoodenDivider from '@/components/base/WoodenDivider';
 import POSHero from './components/POSHero';
 import POSContent from './components/POSContent';
 
-const NAV_ITEMS = [
+const NAV_ITEMS_BASE = [
   { id: 'herausforderung', label: 'Herausforderung', icon: 'ri-alert-line' },
   { id: 'loesung', label: 'Lösung', icon: 'ri-lightbulb-line' },
   { id: 'beispiele', label: 'Beispiele', icon: 'ri-image-line' },
@@ -20,6 +20,8 @@ const NAV_ITEMS = [
 ];
 
 export default function POSFullServicePage() {
+  const tPageNav = useLeistungenText('leistungen_pos_page_nav');
+  const NAV_ITEMS = NAV_ITEMS_BASE.map((n) => ({ ...n, label: tPageNav[`nav-${n.id}`] || n.label }));
   useSEO({
     title: 'POS Full Service | Sonic Group — Point of Sale Promotion & Retail Activation Deutschland',
     description: 'POS Full Service von Sonic Group: POS-Materialien, Shop-in-Shop, geschultes Personal, Flächenmanagement und Reporting in der SRT aus einer Hand. Über 1.000 betreute Stores und mehr als 1,3 Mio. Einsätze — seit 2007.',
@@ -63,7 +65,7 @@ export default function POSFullServicePage() {
       <WoodenDivider />
 
       <section id="referenzen">
-        <ClientProof only={['garmin', 'loreal', 'wmf', 'mediamarktsaturn', 'seb']} />
+        <ClientProof only={refIds(tPageNav['referenzen'])} />
       </section>
 
       <WoodenDivider />
