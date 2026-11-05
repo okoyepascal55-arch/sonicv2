@@ -1424,6 +1424,8 @@ const HUMAN_LABELS: Record<string, string> = {
   'leistungen_kreation_images': 'Kreation & Content',
   'leistungen_hero_images': 'Leistungen — Hero',
   'leistungen_servicegrid_bg': 'Overview — ServiceGrid BGs',
+  // name added 11/2026 (the slot showed only its key)
+  'about_client_logos': 'Über uns — Kundenlogos („Wer mit Sonic erfolgreich ist“)',
   'leistungen_events_process_images': 'Events — Prozess-Schritte',
   'leistungen_events_showcase_images': 'Events — Showcase Galerie',
   'leistungen_forecasting_process_images': 'Forecasting — Prozess-Schritte',

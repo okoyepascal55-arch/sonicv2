@@ -2011,6 +2011,30 @@ export function updateTextEntry(sectionKey: string, entryId: string, value: stri
   });
 }
 
+/* Save several texts at once in a given language (one publish). Used by the Über uns
+   „Kundenlogos" card, which always writes brand names in German (11/2026). */
+export function updateTextEntriesIn(lang: Lang, sectionKey: string, values: Record<string, string>): Promise<boolean> {
+  const key = overrideKey(sectionKey, lang);
+  return commitChange((o) => {
+    for (const [entryId, value] of Object.entries(values)) {
+      const baseValue = baseValueOf(sectionKey, entryId, lang);
+      if (value === baseValue) {
+        if (o[key]) {
+          delete o[key][entryId];
+          if (Object.keys(o[key]).length === 0) delete o[key];
+        }
+      } else {
+        (o[key] ??= {})[entryId] = value;
+      }
+    }
+  });
+}
+
+/* The value an entry shows in a given language (dashboard edit or built-in). */
+export function getTextValueIn(lang: Lang, sectionKey: string, entryId: string): string {
+  return loadFromStorage(lang).find((s) => s.key === sectionKey)?.entries.find((e) => e.id === entryId)?.value ?? '';
+}
+
 /* Resets only the current language — resetting English never touches German and vice versa. */
 export function resetTextSection(sectionKey: string): Promise<boolean> {
   const key = overrideKey(sectionKey, getLanguage());

@@ -1,3 +1,4 @@
+import ClientLogosPanel from './ClientLogosPanel';
 import { useState, useEffect, useCallback, useMemo, memo } from 'react';
 import {
   getTextSectionsByGroup,
@@ -632,6 +633,7 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
         style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
       >
         <div className="max-w-5xl space-y-2">
+          {activeGroup === 'about' && !search && <ClientLogosPanel />}
           {isStimmen && (
             <div className="flex items-center gap-2 text-2xs text-gray-500 bg-white border border-gray-200 rounded-md px-3 py-2 mb-3">
               <i className="ri-information-line text-gray-400 text-sm"></i>
