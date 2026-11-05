@@ -16,8 +16,8 @@ export default function VideoHero() {
   const tBadge = useText('leistungen_video', 'video-hero-badge', 'Live Video');
   const tH1Line1 = useText('leistungen_video', 'video-hero-heading-line1', 'Live verkaufen.');
   const tH1Accent = useText('leistungen_video', 'video-hero-heading-accent', 'Digital begeistern.');
-  const tSubtitle = useText('leistungen_video', 'video-hero-subtitle', 'Erlebbar werden — Videocontent und Live-Video-Kanäle mit unseren Markenbotschaftern.');
-  const tDesc = useText('leistungen_video', 'video-hero-description', 'Für Produktberatung, Sales und Service-Support. E-Commerce, Retail-Display, QR-Code — alles aus einer Hand.');
+  const tSubtitle = useText('leistungen_video', 'video-hero-subtitle', 'Beratung, die verkauft – live und digital.');
+  const tDesc = useText('leistungen_video', 'video-hero-description', 'Unsere Markenbotschafter bringen Produktberatung, Sales und Service-Support direkt zu deinen Kund:innen. Im E-Commerce, am POS und über digitale Touchpoints.');
 
   return (
     <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[520px] flex flex-col justify-end overflow-hidden bg-foreground-950 px-4 md:px-6 hero-frame" style={{ paddingTop: 'clamp(56px, 14vw, 80px)', paddingBottom: '60px' }}>

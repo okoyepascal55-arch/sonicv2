@@ -16,10 +16,10 @@ export default function EventsHero() {
   const tBadge = useText('leistungen_events', 'events-hero-badge', 'Events & Messen');
   const tH1Line1 = useText('leistungen_events', 'events-hero-heading-line1', 'Live‑Kommunikation,');
   const tH1Accent = useText('leistungen_events', 'events-hero-heading-accent', 'die begeistert.');
-  const tSubtitle = useText('leistungen_events', 'events-hero-subtitle', 'Konzept. Personal. Logistik. Wir präsentieren deine Marke da, wo deine Zielgruppe ist.');
+  const tSubtitle = useText('leistungen_events', 'events-hero-subtitle', 'Konzept. Personal. Logistik. Wir bringen deine Marke dorthin, wo deine Zielgruppe ist: auf Events, Messen und Roadshows.');
   const tBtn = useLeistungenText('leistungen_events_hero_buttons');
   const cta = useCtaText();
-  const tDesc = useText('leistungen_events', 'events-hero-description', 'Events, Messen, Roadshows und mehr. Vor Ort, auf Tour und hybrid. Bisher: über 200 Events und mehr als 30.000 Kontakte.');
+  const tDesc = useText('leistungen_events', 'events-hero-description', 'Vor Ort, auf Tour und hybrid. Erfahrung aus über 200 erfolgreich umgesetzten Events und Messen.');
 
   return (
     <section

@@ -17,27 +17,27 @@ const VIDEO_CHALLENGES: ChallengeItem[] = [
   {
     icon: 'ri-door-lock-line',
     title: 'Hohe Eintrittshürden',
-    desc: 'Studio, Equipment, Technik, Presenter im Schichtbetrieb: Hohe Investitionskosten bzw. schwere Dienstleister-Suche.',
+    desc: 'Studio, Equipment, Technik und Presenter im Schichtbetrieb: Professionelle Live-Video-Beratung braucht das richtige Setup und erfahrene Partner.',
     trigger: 'Schon daran gescheitert?',
   },
   {
     icon: 'ri-question-line',
     title: 'Kosten völlig unklar',
-    desc: 'Wie sieht die Kosten-Nutzen-Rechnung bei Video- und Live-Video-Kanälen aus? Ohne Erfahrungswerte drohen Nicht- bzw. Fehl-Investitionen.',
+    desc: 'Wie rechnet sich Live Video wirklich? Ohne Erfahrungswerte fehlen verlässliche Grundlagen für Budget, Aufwand und erwartbaren Return.',
     trigger: 'Ungewisses Budget?',
   },
   {
     icon: 'ri-global-line',
     title: 'Omnichannel — komplexe Umsetzung',
-    desc: 'Live Video braucht man für E-Commerce, aber auch im Retail performt es stark. Die Umsetzung ist ohne Fach-Expertise schwierig.',
+    desc: 'Live Video verbindet E-Commerce und Retail. Damit die Beratung über alle Touchpoints funktioniert, braucht es das richtige Zusammenspiel aus Technik, Content und erfahrenen Menschen.',
     trigger: 'Klingt bekannt?',
   },
 ];
 
 const SOLUTIONS = [
-  { woodIcon: '', num: '01', accent: 'Online & E-Commerce', title: 'E-Commerce', desc: 'Live-Video bspw. von 8 bis 20 Uhr, danach Recordings. Kann auf Fokus-Produkte beschränkt werden. Lässt sich besonders gut im eigenen Shop einbinden.' },
-  { woodIcon: '', num: '02', accent: 'Retail Display', title: 'Retail: Video-Display', desc: 'Video-Screen im Handel: Live-Chat am POS mit dem Team im Studio. Plus: Abrufbarkeit von bereits aufgezeichneten Videos und Integration Text-Chatbot.' },
-  { woodIcon: '', num: '03', accent: 'QR Backup', title: 'Retail: QR-Code Backup', desc: 'Die Field Force ist bspw. an 2 Tagen pro Woche im Outlet? Per QR-Code am Regal bzw. auf der Packung kann das Studio-Team jeden Tag live erreicht werden.' },
+  { woodIcon: '', num: '01', accent: 'Online & E-Commerce', title: 'E-Commerce', desc: 'Live-Beratung direkt im Online-Shop, flexibel auf ausgewählte Produkte und Servicezeiten zugeschnitten. Außerhalb der Live-Zeiten ergänzen aufgezeichnete Videos das Angebot.' },
+  { woodIcon: '', num: '02', accent: 'Retail Display', title: 'Retail: Video-Display', desc: 'Live-Beratung direkt am POS: Über das Video-Display erreichen Kund:innen unser Studio-Team in Echtzeit. Aufgezeichnete Videos und ein integrierter Text-Chatbot ergänzen die Beratung.' },
+  { woodIcon: '', num: '03', accent: 'QR Backup', title: 'Retail: QR-Code Backup', desc: 'Live-Beratung auch dann, wenn kein Team vor Ort ist: Per QR-Code am Regal oder auf der Verpackung erreichen Kund:innen unser Studio-Team direkt und in Echtzeit.' },
 ];
 
 // Card texts: Dashboard → Text → Live Video — Vorteile (leistungen_video_advantages)
@@ -47,7 +47,7 @@ const FORMATS = [
   {
     icon: 'ri-user-voice-line',
     title: 'Live-Video-Beratung',
-    desc: '1:1-Calls zwischen Kunde und Produktexperte. Persönlich, als echter Dialog, mit dem Ziel Kaufabschluss bzw. Cross-/Upselling.',
+    desc: 'Persönliche 1:1-Beratung zwischen Kund:innen und Produktexpert:innen. Im direkten Dialog entstehen Kaufentscheidungen sowie Potenziale für Cross- und Upselling.',
     img: '',
     tag: '1:1',
   },
@@ -110,7 +110,7 @@ const FALLBACK_FORMATS = [
 ];
 
 export default function VideoContent() {
-  const tChallengeHeading = useText('leistungen_video_content', 'video-challenge-heading', 'Bewegtbild ist die Königsklasse.');
+  const tChallengeHeading = useText('leistungen_video_content', 'video-challenge-heading', 'Live-Video-Beratung: die Königsklasse im digitalen Verkauf.');
   const tChallengeSub = useText('leistungen_video_content', 'video-challenge-sub', 'Wenn Live Video Shopping einfach wäre, würde es jede Marke machen. Ist es aber nicht.');
   const tSolutionHeading = useText('leistungen_video_content', 'video-solution-heading', 'Sonic Live Video im Full Service.');
   const tSolutionSub = useText('leistungen_video_content', 'video-solution-sub', 'Echte Menschen, geschult auf dein Produkt, beraten in Echtzeit. All in One: Regisseur, Moderator, Verkäufer.');

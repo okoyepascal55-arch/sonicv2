@@ -58,7 +58,7 @@ export const SOLUTIONS = {
     ],
     ctaHeadline: 'Markteintritt geplant?',
     finalCta: 'In 30 Minuten klären wir, wie dein Launch aussehen kann.',
-    proof: ['Neuer TV-Hersteller im deutschen Markt: 6 Wochen bis zum Vollbetrieb, +75 % Umsatz im ersten Jahr.'] as string[],
+    proof: ['NEUER TV-HERSTELLER IM DEUTSCHEN MARKT', '6 Wochen bis zum Vollbetrieb', '+75 % Umsatz im ersten Jahr'] as string[],
     modules: [
       { name: 'POS Full Service', level: 'kern' },
       { name: 'Schulungen', level: 'kern' },
