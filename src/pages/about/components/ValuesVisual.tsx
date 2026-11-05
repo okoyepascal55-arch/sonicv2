@@ -1,38 +1,18 @@
 import { useReviewText } from '@/hooks/useReviewText';
-import { useBrandLogos, brandKey } from '@/lib/brandLogos';
-import { useTextSection } from '@/hooks/useText';
+import { useBrandLogos } from '@/lib/brandLogos';
+import { useClientTiles } from '@/lib/aboutClients';
 import { useEffect, useRef, useState } from 'react';
 
-/* Last-resort logo links by brand (the dashboard upload with the same label always wins).
-   The client list itself — names, categories, order — lives in
-   Dashboard → Text → Über uns „Kundenliste“ (Website-Review Teil 4, 11/2026). */
-const FALLBACK_LOGOS: Record<string, string> = {
-  tcl: 'https://cdn.brandfetch.io/tcl.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-  rowenta: 'https://cdn.brandfetch.io/rowenta.de/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-  krups: 'https://cdn.brandfetch.io/krups.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-  tefal: 'https://cdn.brandfetch.io/tefal.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-  canon: 'https://cdn.brandfetch.io/canon.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-  garmin: 'https://cdn.brandfetch.io/garmin.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-  wmf: 'https://cdn.brandfetch.io/wmf.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-  nexaro: 'https://cdn.brandfetch.io/id2dYOZ6uf/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1773621883167',
-  vorwerk: 'https://cdn.brandfetch.io/vorwerk.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-  groupeseb: 'https://cdn.brandfetch.io/groupeseb.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-};
-const CLIENT_SLOTS = 12;
+/* The client list — names, categories, order, show/hide — and its logos are controlled in
+   Dashboard → Über uns „Kundenlogos“ (src/lib/aboutClients.ts, 11/2026). */
 
 export default function ValuesVisual() {
   // Dashboard → Text → Über uns → „Über uns — Referenzen & Team-Kennzahlen“
   const vt = useReviewText('about_values_texts');
   // Logos by brand name from the dashboard (Über uns „Kundenlogos“ first, then the other logo slots) — 22.10.2026
   const { logoFor } = useBrandLogos('about_client_logos');
-  // Client tiles from the dashboard; an emptied brand field hides the tile.
-  const ct = useTextSection('about_clients');
-  const clients = Array.from({ length: CLIENT_SLOTS }, (_, i) => ({
-    name: (ct[`c${i + 1}-name`] ?? '').trim(),
-    category: (ct[`c${i + 1}-category`] ?? '').trim(),
-  }))
-    .filter((c) => c.name)
-    .map((c) => ({ ...c, logo: FALLBACK_LOGOS[brandKey(c.name)] ?? '' }));
+  // Client tiles from the dashboard (hidden or empty slots are left out).
+  const clients = useClientTiles().map((c) => ({ name: c.name, category: c.category, logo: c.fallbackLogo }));
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [logoErrors, setLogoErrors] = useState<Set<number>>(new Set());

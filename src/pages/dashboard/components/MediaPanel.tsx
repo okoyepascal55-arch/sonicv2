@@ -1,3 +1,4 @@
+import ClientLogosPanel from './ClientLogosPanel';
 import { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
 import {
   PAGE_GROUPS,
@@ -1085,6 +1086,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
         className="flex-1 overflow-y-auto min-h-0 px-3 md:px-6 py-3 md:py-4"
         style={{ overscrollBehavior: 'contain', WebkitOverflowScrolling: 'touch' }}
       >
+        {activeGroup === 'about' && <div className="max-w-5xl"><ClientLogosPanel /></div>}
         {/* ── Floating bulk action bar ── */}
         {selectedUrls.size > 0 && expandedSection && (
           <div className="sticky top-0 z-20 mb-3 bg-gray-900 text-white rounded-xl px-3 md:px-4 py-2.5 flex items-center gap-3 shadow-lg">
