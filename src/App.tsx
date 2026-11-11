@@ -78,6 +78,8 @@ function AnimatedRoutes() {
 function AppLayout() {
   const location = useLocation();
   const isDashboard = location.pathname === '/dashboard';
+  // Versteckte Film-Seite (/film): eigene schlichte Seite ohne Menü & Footer
+  const isBare = location.pathname.replace(/\/+$/, '') === '/film';
 
   return (
     <>
@@ -87,11 +89,11 @@ function AppLayout() {
       <SkipLink />
       <ScrollToHash />
       <div className={isDashboard ? 'min-h-[100dvh] flex flex-col bg-foreground-950' : 'min-h-[100dvh] flex flex-col bg-background-50'}>
-        {!isDashboard && <Navigation />}
-        <main id="main-content" className={isDashboard ? 'flex-1' : 'flex-1 pt-20'}>
+        {!isDashboard && !isBare && <Navigation />}
+        <main id="main-content" className={isDashboard || isBare ? 'flex-1' : 'flex-1 pt-20'}>
           <AnimatedRoutes />
         </main>
-        {!isDashboard && <Footer />}
+        {!isDashboard && !isBare && <Footer />}
       </div>
     </>
   );

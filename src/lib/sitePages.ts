@@ -38,6 +38,8 @@ export const SITE_PAGES: SitePage[] = [
   { path: '/srt', label: 'SRT', group: 'Leistungen', parent: '/leistungen', defaultOn: true },
   { path: '/leistungen/forecasting', label: 'Forecasting', group: 'Leistungen', parent: '/leistungen', defaultOn: true },
   { path: '/leistungen/kreation-content', label: 'Kreation & Content', group: 'Leistungen', parent: '/leistungen', defaultOn: true },
+  // Versteckt — nie im Menü/Footer, nur per Link (PPTs). Aus = Link leitet auf Home weiter.
+  { path: '/film', label: 'Film-Seite (nur per Link, /film)', group: 'Versteckte Seiten', parent: '/', defaultOn: true },
 ];
 
 const matches = (pathname: string, base: string) => pathname === base || pathname.startsWith(base + '/');

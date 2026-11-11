@@ -4,6 +4,7 @@ Allow: /
 # Disallow admin and private paths
 Disallow: /404
 Disallow: /dashboard
+Disallow: /film
 
 # Sitemap location
 Sitemap: https://sonic-group.de/sitemap.xml

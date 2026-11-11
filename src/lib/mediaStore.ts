@@ -303,6 +303,15 @@ export const PAGE_GROUPS: PageGroup[] = [
       'common_logos',
     ],
   },
+  // ═══ FILM-SEITE (versteckt, nur per Link: /film) — ergänzt 11.11.2026 ═══
+  {
+    id: 'film',
+    label: 'Film-Seite (versteckt)',
+    icon: 'ri-film-line',
+    sections: [
+      'film_page_video',
+    ],
+  },
 ];
 
 /* ─────────────────────────────────────────────
@@ -1300,6 +1309,12 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Enterprise Tier' },
   ],
 
+  /* ── FILM-SEITE (/film): Video Embed & Cover. Leer = übernimmt das Home-Video ── */
+  film_page_video: [
+    { url: '', caption: 'Video Cover Image (leer = Cover vom Home-Video)', wide: true },
+    { url: '', caption: 'YouTube Embed URL (leer = Home-Video)' },
+  ],
+
   /* ── HOME: Video Embed & Cover ── */
   home_video: [
     { url: '', caption: 'Video Cover Image', wide: true },
@@ -1461,6 +1476,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'leistungen_video_youtube': 'Live Video — YouTube-Video (Link unter „URL einfügen“ eintragen)',
   'leistungen_video_format_photos': 'Video — Format Photos',
   'home_video': 'Hero Video — Embed & Cover',
+  'film_page_video': 'Film-Seite — Video & Cover (leer = Home-Video)',
   'home_services_wood_icons': 'Services Grid — Wood Icons',
   'home_sonicdna_wood_icons': 'SonicDNA — Card Wood Icons',
   'home_darumsonic_wood_icons': 'DarumSonic — Wood Icons',
@@ -1666,6 +1682,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   /* ── COMMON: Fixed Design Slots ── */
   'common_clientproof_logos': 6,  // 6 brand logos for ClientProof
   'home_video': 2,               // Cover image + YouTube URL
+  'film_page_video': 2,          // Film-Seite: Cover image + YouTube URL
   'home_services_wood_icons': 5,
   'home_sonicdna_wood_icons': 4,
   'home_darumsonic_wood_icons': 2,
@@ -1721,6 +1738,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'home_showcase_service_images': { aspectRatio: '3:2', dimensions: '1200×800', orientation: 'landscape', tip: 'Wide landscape — brand activation, retail scenes, people in action' },
   'home_sonicdna_background':  { aspectRatio: '2.4:1', dimensions: '1440×600', orientation: 'landscape', tip: 'Ultrawide office interior — bright, modern, natural light' },
   'home_video':                 { aspectRatio: '16:9', dimensions: '1600×900', orientation: 'landscape', tip: 'Standard 16:9 video cover — cinematic retail scene' },
+  'film_page_video':            { aspectRatio: '16:9', dimensions: '1600×900', orientation: 'landscape', tip: 'Cover für die versteckte Film-Seite (/film) — leer lassen, um das Home-Cover zu nutzen' },
   'home_attitude_bg':           { aspectRatio: '~2:1', dimensions: '~1600×800', orientation: 'landscape', tip: 'Wide welcome background — warm, inviting atmosphere' },
   'home_dualcta_backgrounds':   { aspectRatio: '~9:7', dimensions: '900×700', orientation: 'landscape', tip: 'Slightly wide — business meeting & team scenes' },
   'home_officevisit_image':     { aspectRatio: '4:5', dimensions: '800×1000', orientation: 'portrait', tip: 'Tall portrait — office interior, people working' },

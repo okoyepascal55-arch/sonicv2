@@ -5,6 +5,7 @@ import { KARRIERE_TEXT_SECTIONS } from './textStoreKarriere';
 import { REVIEW_TEXT_SECTIONS } from './textStoreReview';
 import { LEISTUNGEN_TEXT_SECTIONS } from './textStoreLeistungen';
 import { CTA_TEXT_SECTIONS } from './textStoreCta';
+import { FILM_TEXT_SECTIONS } from './textStoreFilm';
 import { supabase } from './supabase';
 import { getLanguage, type Lang } from './language';
 import { EN_TEXT } from './textEn';
@@ -40,6 +41,7 @@ export const TEXT_PAGE_GROUPS = [
   { id: 'ratgeber', label: 'Ratgeber', icon: 'ri-book-open-line' },
   { id: 'srt', label: 'SRT', icon: 'ri-pie-chart-2-line' },
   { id: 'common', label: 'Common Components', icon: 'ri-puzzle-line' },
+  { id: 'film', label: 'Film-Seite (versteckt)', icon: 'ri-film-line' },
 ] as const;
 
 /* ─────────────────────────────────────────────
@@ -1297,6 +1299,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
   ...REVIEW_TEXT_SECTIONS,
   ...LEISTUNGEN_TEXT_SECTIONS,
   ...CTA_TEXT_SECTIONS,
+  /* ═══════════════ FILM-SEITE (versteckt, /film) — see textStoreFilm.ts ═══════════════ */
+  ...FILM_TEXT_SECTIONS,
   /* ═══════════════ FALLBEISPIELE — Texte je Fallstudie (/fallbeispiele) ═══════════════ */
   {
     key: 'case_garmin_text',
