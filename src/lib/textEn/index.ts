@@ -14,7 +14,8 @@ import { EN as leistungen } from './leistungen';
 import { EN as caseStudies } from './caseStudies';
 import { EN as blog } from './blog';
 import { EN as losungen } from './losungen';
+import { EN as film } from './film';
 
 export const EN_TEXT: Record<string, Record<string, string>> = {
-  ...home, ...common, ...about, ...kontakt, ...srt, ...ratgeber, ...sonicReels, ...careers, ...leistungen, ...caseStudies, ...blog, ...losungen,
+  ...home, ...common, ...about, ...kontakt, ...srt, ...ratgeber, ...sonicReels, ...careers, ...leistungen, ...caseStudies, ...blog, ...losungen, ...film,
 };

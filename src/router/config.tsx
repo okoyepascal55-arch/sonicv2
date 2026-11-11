@@ -52,6 +52,7 @@ const KulturEventsPage = lazy(() => import('../pages/ratgeber/kultur-events/page
 const SegmentierteAnsprachePage = lazy(() => import('../pages/ratgeber/segmentierte-ansprache/page'));
 const RatgeberHubPage = lazy(() => import('../pages/ratgeber/page'));
 const DashboardPage = lazy(() => import('../pages/dashboard/page'));
+const FilmPage = lazy(() => import('../pages/film/page'));
 
 const routes: RouteObject[] = [
   {
@@ -61,6 +62,11 @@ const routes: RouteObject[] = [
   {
     path: '/dashboard',
     element: <DashboardPage />,
+  },
+  // Versteckte Film-Seite — nur per Link (PPTs), nicht im Menü/Footer/Sitemap (11.11.2026)
+  {
+    path: '/film',
+    element: <FilmPage />,
   },
   {
     path: '/login',
