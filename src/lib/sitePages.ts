@@ -18,6 +18,8 @@ export interface SitePage {
   alsoMatches?: string[];
   /** Built-in state when nothing was set in the dashboard. */
   defaultOn: boolean;
+  /** Also off whenever its parent page is switched off (Leistungen sub-pages follow the overview). */
+  followsParent?: boolean;
 }
 
 export const SITE_PAGES: SitePage[] = [
@@ -29,15 +31,15 @@ export const SITE_PAGES: SitePage[] = [
   { path: '/karriere', label: 'Karriere (inkl. Team-Seite)', group: 'Hauptseiten', parent: '/', alsoMatches: ['/careers', '/jobs'], defaultOn: true },
   { path: '/ratgeber', label: 'Ratgeber (alle Artikel)', group: 'Hauptseiten', parent: '/', defaultOn: true },
   { path: '/sonic-reels', label: 'Sonic Reels', group: 'Über uns', parent: '/ueber-uns', defaultOn: false },
-  { path: '/leistungen/pos-full-service', label: 'POS Full Service', group: 'Leistungen', parent: '/leistungen', defaultOn: true },
-  { path: '/leistungen/live-video', label: 'Live Video', group: 'Leistungen', parent: '/leistungen', defaultOn: true },
-  { path: '/leistungen/events-messen', label: 'Events & Messen', group: 'Leistungen', parent: '/leistungen', defaultOn: true },
-  { path: '/leistungen/staff-as-a-service', label: 'Staff as a Service', group: 'Leistungen', parent: '/leistungen', defaultOn: true },
-  { path: '/leistungen/talentpool', label: 'Talentpool', group: 'Leistungen', parent: '/leistungen', defaultOn: true },
-  { path: '/leistungen/warehouse-logistik', label: 'Warehouse & Logistik', group: 'Leistungen', parent: '/leistungen', defaultOn: true },
-  { path: '/srt', label: 'SRT', group: 'Leistungen', parent: '/leistungen', defaultOn: true },
-  { path: '/leistungen/forecasting', label: 'Forecasting', group: 'Leistungen', parent: '/leistungen', defaultOn: true },
-  { path: '/leistungen/kreation-content', label: 'Kreation & Content', group: 'Leistungen', parent: '/leistungen', defaultOn: true },
+  { path: '/leistungen/pos-full-service', label: 'POS Full Service', group: 'Leistungen', parent: '/leistungen', defaultOn: true, followsParent: true },
+  { path: '/leistungen/live-video', label: 'Live Video', group: 'Leistungen', parent: '/leistungen', defaultOn: true, followsParent: true },
+  { path: '/leistungen/events-messen', label: 'Events & Messen', group: 'Leistungen', parent: '/leistungen', defaultOn: true, followsParent: true },
+  { path: '/leistungen/staff-as-a-service', label: 'Staff as a Service', group: 'Leistungen', parent: '/leistungen', defaultOn: true, followsParent: true },
+  { path: '/leistungen/talentpool', label: 'Talentpool', group: 'Leistungen', parent: '/leistungen', defaultOn: true, followsParent: true },
+  { path: '/leistungen/warehouse-logistik', label: 'Warehouse & Logistik', group: 'Leistungen', parent: '/leistungen', defaultOn: true, followsParent: true },
+  { path: '/srt', label: 'SRT', group: 'Leistungen', parent: '/leistungen', defaultOn: true, followsParent: true },
+  { path: '/leistungen/forecasting', label: 'Forecasting', group: 'Leistungen', parent: '/leistungen', defaultOn: true, followsParent: true },
+  { path: '/leistungen/kreation-content', label: 'Kreation & Content', group: 'Leistungen', parent: '/leistungen', defaultOn: true, followsParent: true },
   // Versteckt — nie im Menü/Footer, nur per Link (PPTs). Aus = Link leitet auf Home weiter.
   { path: '/film', label: 'Film-Seite (nur per Link, /film)', group: 'Versteckte Seiten', parent: '/', defaultOn: true },
 ];
@@ -57,9 +59,21 @@ export function pageForPath(pathname: string): SitePage | undefined {
   return best;
 }
 
-function enabledIn(settings: Record<string, string>, page: SitePage): boolean {
+/** The page's own switch, ignoring its parent. */
+function ownSwitchIn(settings: Record<string, string>, page: SitePage): boolean {
   const v = settings[page.path];
   return v === 'on' ? true : v === 'off' ? false : page.defaultOn;
+}
+
+/** Effective state: a page that follows its parent is off while the parent is off
+    (e.g. "Leistungen (Übersicht)" off → every Leistungen page off, SRT included). */
+function enabledIn(settings: Record<string, string>, page: SitePage): boolean {
+  if (!ownSwitchIn(settings, page)) return false;
+  if (page.followsParent) {
+    const parent = SITE_PAGES.find((p) => p.path === page.parent);
+    if (parent && !enabledIn(settings, parent)) return false;
+  }
+  return true;
 }
 
 /** Is the page behind this address switched on? Addresses that aren't switchable are always on. */
@@ -95,7 +109,10 @@ export function useSitePages() {
     settings,
     isOn: (pathname: string) => isPathEnabled(pathname, settings),
     redirectFor: (pathname: string) => redirectTargetFor(pathname, settings),
-    pageOn: (page: SitePage) => enabledIn(settings, page),
+    /** The page's own dashboard switch. */
+    pageOn: (page: SitePage) => ownSwitchIn(settings, page),
+    /** Whether the page is actually live (own switch and, if it follows one, its parent). */
+    pageLive: (page: SitePage) => enabledIn(settings, page),
     setOn: (page: SitePage, on: boolean) => setSitePageEnabled(page.path, on),
   };
 }

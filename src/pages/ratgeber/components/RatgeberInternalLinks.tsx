@@ -1,10 +1,14 @@
+import { useSitePages } from '@/lib/sitePages';
 import type { InternalLink } from '../data/types';
 
 interface RatgeberInternalLinksProps {
   links: InternalLink[];
 }
 
-export default function RatgeberInternalLinks({ links }: RatgeberInternalLinksProps) {
+export default function RatgeberInternalLinks({ links: allLinks }: RatgeberInternalLinksProps) {
+  // Dashboard → Seiten: switched-off Leistungen pages are not linked
+  const pages = useSitePages();
+  const links = allLinks.filter((l) => pages.isOn(l.href));
   if (links.length === 0) return null;
 
   return (

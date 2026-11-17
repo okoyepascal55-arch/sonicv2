@@ -1,3 +1,4 @@
+import { useSitePages } from '@/lib/sitePages';
 import { useReviewText } from '@/hooks/useReviewText';
 import { useMotionPaused, isMotionPaused } from '@/lib/motion';
 import { useState, useEffect, useRef } from 'react';
@@ -123,6 +124,8 @@ export default function ServicesGrid() {
     tagline: sv[`tab${i + 1}-tagline`] ?? b.tagline,
   }));
   const navigate = useNavigate();
+  // Dashboard → Seiten: no "Mehr dazu" button to a switched-off page
+  const pages = useSitePages();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
   const [fade, setFade] = useState(true);
@@ -381,7 +384,7 @@ export default function ServicesGrid() {
                 {svc.tagline}
               </p>
             )}
-            <button
+            {pages.isOn(svc.link) && <button
               onClick={() => handleGetStarted(svc.link)}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 font-black text-xs uppercase tracking-[0.14em] transition-all duration-200 cursor-pointer hover:bg-primary-500 hover:text-foreground-950"
               style={{
@@ -392,7 +395,7 @@ export default function ServicesGrid() {
             >
               Mehr dazu
               <i className="ri-arrow-right-line text-sm" />
-            </button>
+            </button>}
           </div>
 
         </div>

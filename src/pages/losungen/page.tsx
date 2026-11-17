@@ -8,6 +8,7 @@ import WoodenDivider from '../../components/base/WoodenDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
 import WoodenButton from '@/components/base/WoodenButton';
 import { useCtaText } from '@/hooks/useCtaText';
+import { useSitePages } from '@/lib/sitePages';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 
 /* ─────────────────────────────────────────
@@ -596,6 +597,8 @@ function WoodCard({
 }) {
   const s = useSolution(sKey);
   const pt = useLosungenPageText();
+  // Dashboard → Seiten: module names only link to pages that are switched on
+  const pages = useSitePages();
   const heroStat = s.stats[0];
   const factStats = s.stats.slice(1, 4);
   const LEVEL_WIDTH: Record<string, string> = { kern: '100%', baustein: '64%', optional: '32%' };
@@ -665,7 +668,7 @@ function WoodCard({
             <ul className="flex-1 flex flex-col justify-center gap-3">
               {s.modules.map((m, i) => (
                 <li key={i} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] items-center gap-3 md:gap-4">
-                  {MODULE_LINKS[m.name] ? (
+                  {MODULE_LINKS[m.name] && pages.isOn(MODULE_LINKS[m.name]) ? (
                     <Link to={MODULE_LINKS[m.name]} className="text-white/85 text-xs md:text-sm font-bold leading-tight hover:text-primary-500 underline decoration-white/20 underline-offset-4 hover:decoration-primary-500 transition-colors">{m.name}</Link>
                   ) : (
                     <span className="text-white/85 text-xs md:text-sm font-bold leading-tight">{m.name}</span>

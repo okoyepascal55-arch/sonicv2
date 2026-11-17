@@ -217,12 +217,14 @@ export default function Footer() {
             </div>}
           </div>
 
-          {/* Leistungen */}
-          <FooterAccordion
-            groupKey="solutions"
-            label={tColLeistungen}
-            links={footerLinks.solutions.filter((l) => pages.isOn(l.href))}
-          />
+          {/* Leistungen — whole column disappears when every Leistungen page is off */}
+          {footerLinks.solutions.some((l) => pages.isOn(l.href)) && (
+            <FooterAccordion
+              groupKey="solutions"
+              label={tColLeistungen}
+              links={footerLinks.solutions.filter((l) => pages.isOn(l.href))}
+            />
+          )}
 
           {/* Unternehmen */}
           <FooterAccordion
