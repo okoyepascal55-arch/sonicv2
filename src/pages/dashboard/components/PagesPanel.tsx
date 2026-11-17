@@ -71,11 +71,16 @@ export default function PagesPanel() {
             <ul className="divide-y divide-gray-100">
               {SITE_PAGES.filter((p) => p.group === group).map((page) => {
                 const on = pages.pageOn(page);
+                // Own switch on, but off because the parent page is off (Leistungen-Übersicht aus → alle Leistungen aus)
+                const offByParent = on && !pages.pageLive(page);
                 return (
                   <li key={page.path} className="flex items-center gap-4 px-4 py-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className={`text-sm font-semibold truncate ${on ? 'text-gray-900' : 'text-gray-400'}`}>{page.label}</span>
+                        <span className={`text-sm font-semibold truncate ${on && !offByParent ? 'text-gray-900' : 'text-gray-400'}`}>{page.label}</span>
+                        {offByParent && (
+                          <span className="text-3xs font-bold uppercase tracking-wider text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded shrink-0">aus über {parentLabel(page)}</span>
+                        )}
                         {!on && (
                           <span className="text-3xs font-bold uppercase tracking-wider text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded shrink-0">aus</span>
                         )}
@@ -83,6 +88,7 @@ export default function PagesPanel() {
                       <p className="text-2xs text-gray-400 mt-0.5 truncate">
                         {page.path}
                         {!on && <> · leitet weiter zu {parentLabel(page)}</>}
+                        {offByParent && <> · wird wieder sichtbar, sobald {parentLabel(page)} an ist</>}
                       </p>
                     </div>
                     <Switch on={on} label={page.label} onChange={(next) => void pages.setOn(page, next)} />
