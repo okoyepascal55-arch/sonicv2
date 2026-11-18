@@ -14,6 +14,8 @@ export const REVIEW_LINKS = {
 };
 
 const HAIR = '#E2E2E2';
+/** DNA bento lines (18.11.2026): same solid line as the values strip above, so every tile is clearly framed */
+const GRID_LINE = '#0A0A0A';
 const SPANS = ['lg:col-span-7', 'lg:col-span-5', 'lg:col-span-5', 'lg:col-span-7'];
 
 function Eyebrow({ children, bar = true }: { children: React.ReactNode; bar?: boolean }) {
@@ -88,7 +90,7 @@ export default function KarriereCulture() {
         {/* 3.3 DNA + award strip — hairline bento */}
         <div className="flex flex-col gap-5">
           <Eyebrow>{tDnaEyebrow}</Eyebrow>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-px" style={{ background: HAIR, border: `1px solid ${HAIR}` }}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-px" style={{ background: GRID_LINE, border: `1px solid ${GRID_LINE}` }}>
             {dna.map((d, i) => (
               <div key={i} className={`bg-white flex flex-col justify-between gap-9 px-7 py-8 md:px-9 md:py-10 lg:min-h-[280px] ${SPANS[i]}`}>
                 <div className="flex items-baseline justify-between">
