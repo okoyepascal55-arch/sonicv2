@@ -23,7 +23,7 @@ export default function Footer() {
   const tCity         = useText('common_footer', 'footer-city',         '47807 Krefeld, Germany');
   const tPhone        = useText('common_footer', 'footer-phone',        '+49 2151 479 444 0');
   const tEmail        = useText('common_footer', 'footer-email',        'info@sonic-group.de');
-  const tSalesBadge   = useText('common_footer', 'footer-sales-badge',  'Über 2 Mrd. € Umsatz für unsere Kunden');
+  const tSalesBadge   = useText('common_footer', 'footer-sales-badge',  '');
   const tColLeistungen= useText('common_footer', 'footer-col-leistungen','— Leistungen');
   const tLinkStaff    = useText('common_footer', 'footer-link-staff',   'Staff as a Service');
   const tLinkPos      = useText('common_footer', 'footer-link-pos',     'POS Full Service');

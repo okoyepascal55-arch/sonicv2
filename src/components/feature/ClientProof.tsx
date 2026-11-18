@@ -15,56 +15,57 @@ interface Testimonial {
   caseStudyLink: string;
 }
 
+// Same order as TESTIMONIAL_IDS — texts from „Kunden_Aussagen.pptx“ (18.11.2026)
 const baseTestimonials: Testimonial[] = [
   {
     brand: 'GARMIN',
     logo: 'https://cdn.brandfetch.io/garmin.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-    quote: '„Seit 2021 verbindet GARMIN und SONIC eine erfolgreiche Partnerschaft im Bereich Verkaufsunterstützung am POS. Wir empfehlen Sonic uneingeschränkt weiter."',
+    quote: '„Seit 2021 verbindet GARMIN und SONIC eine erfolgreiche Partnerschaft im Bereich Verkaufsunterstützung am POS. Im Jahr 2024 entwickelte und realisierte SONIC ein innovatives, interaktives POS-Möbel- und Servicekonzept für GARMIN. Mit hoher Qualität, Professionalität und einem ausgeprägten Markenverständnis überzeugt SONIC auf ganzer Linie. Besonders schätzen wir die partnerschaftliche Zusammenarbeit auf Augenhöhe – stets lösungsorientiert und engagiert. Wir empfehlen SONIC uneingeschränkt weiter und freuen uns auf die weitere gemeinsame Erfolgsgeschichte.“',
     author: 'Dana Eichinger',
     role: 'Director Marketing DACH',
     company: 'Garmin Deutschland GmbH',
-    caseStudyLink: '/fallbeispiele',
+    caseStudyLink: '',
   },
   {
     brand: 'GROUPE SEB',
     logo: 'https://cdn.brandfetch.io/groupeseb.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-    quote: '„Hier finde ich, ohne großes Excel Kung-Fu, was ich benötige. Die SRT ist ein nützliches Tool und erleichtert unsere tägliche Arbeit."',
+    quote: '„Hier finde ich, ohne großes Excel Kung-Fu, das, was ich für die Vorbereitung von Meetings benötige, das Ganze mit wenigen Klicks und mit Exportfunktion. Die SRT ist ein nützliches Tool und erleichtert unsere tägliche Arbeit.“',
     author: 'Ramin Dirinpur',
     role: 'Sales Promotion & Sales Training Manager',
     company: 'Groupe SEB Deutschland GmbH',
-    caseStudyLink: '/fallbeispiele',
+    caseStudyLink: '',
   },
   {
     brand: 'NESPRESSO',
     logo: 'https://cdn.brandfetch.io/idaYSyWs1H/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1668078167864',
-    quote: '„Die SRT ermöglicht es Sonic, unsere Projekte effizient und zielgerichtet zu steuern und umzusetzen."',
+    quote: '„Die SRT ermöglicht es der Sonic, unsere Projekte entsprechend effizient und zielgerichtet zu steuern und zu realisieren.“',
     author: 'Veronika Vriens',
-    role: 'B2C Commercial Excellence',
+    role: 'B2C Commercial Excellence Manager',
     company: 'Nespresso Deutschland GmbH',
     caseStudyLink: '',
   },
   {
-    brand: "L'ORÉAL",
-    logo: 'https://cdn.brandfetch.io/loreal.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-    quote: '„Sonic liefert konstant hochqualifizierte Promotoren, die unsere Marke am POS perfekt repräsentieren und messbare Ergebnisse erzielen."',
-    author: 'Sophie Müller',
-    role: 'Field Sales Manager DACH',
-    company: "L'Oréal Deutschland GmbH",
+    brand: 'PHILIPS',
+    logo: 'https://cdn.brandfetch.io/idYAn8G7ED/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1667913396887',
+    quote: '„Durch die SRT können wir live in unsere Projekte mit der Sonic reinschauen und zu jederzeit sehen, wie unsere Erwartungen erfüllt werden.“',
+    author: 'Murat Yatkin',
+    role: 'Managing Director DACH Philips TV & Sound',
+    company: 'TP Vision',
     caseStudyLink: '',
   },
   {
-    brand: 'WMF',
-    logo: 'https://cdn.brandfetch.io/wmf.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-    quote: '„Mit Sonic haben wir einen Partner gefunden, der unsere Anforderungen an Qualität und Flexibilität im Außendienst vollständig erfüllt."',
-    author: 'Thomas Becker',
-    role: 'Head of Trade Marketing',
-    company: 'WMF Group GmbH',
-    caseStudyLink: '/fallbeispiele',
+    brand: 'CANON',
+    logo: 'https://cdn.brandfetch.io/canon.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
+    quote: '„Unsere Partnerschaft mit Sonic umfasst ein breites Spektrum strategischer Marketingaktivitäten – von Field Marketing und Merchandising bis zur Canon Academy. Die erfahrenen Trainer, Merchandiser und Produktexperten von Sonic repräsentieren unsere Marke jeden Tag im Markt. Sonic ist für Canon ein wichtiger Partner, der uns dabei hilft, nah an unseren Kunden und Zielgruppen zu bleiben und gleichzeitig wertvolle Einblicke sowie direktes Feedback aus dem Markt zu gewinnen.“',
+    author: 'Go Ito',
+    role: 'Marketing Director DACH',
+    company: 'Canon ITCG',
+    caseStudyLink: '',
   },
   {
     brand: 'MEDIAMARKT SATURN',
     logo: 'https://cdn.brandfetch.io/mediamarkt.de/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-    quote: '„Mit der Hilfe vom Sonic Team wurden aus einzelnen Produkten Lösungen – denn inklusive unserer Services wie z.B. der Garantieverlängerung konnten wir ganzheitliche Kundennutzen schaffen."',
+    quote: '„Mit der Hilfe vom Sonic Team wurden aus einzelnen Produkten Lösungen – denn inklusive unserer Services wie z.B. der Garantieverlängerung konnten wir ganzheitlichen Kundennutzen schaffen.“',
     author: 'Björn Friebel',
     role: '',
     company: 'Media Markt Saturn',
@@ -73,7 +74,7 @@ const baseTestimonials: Testimonial[] = [
   {
     brand: 'NEXARO',
     logo: 'https://cdn.brandfetch.io/id2dYOZ6uf/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1773621883167',
-    quote: '„Mit Sonic konnten wir unsere neue Marke und ein komplexes B2B-Produkt verständlich machen – sowohl im persönlichen Kontakt als auch mit kreativen Online-Formaten aus dem Sonic Studio."',
+    quote: '„Mit Sonic konnten wir unsere neue Marke und ein komplexes B2B-Produkt verständlich machen – sowohl im persönlichen Kontakt als auch mit kreativen Online-Formaten aus dem Sonic Studio.“',
     author: 'André Hartmann',
     role: 'Head of Marketing',
     company: 'Nexaro GmbH',
@@ -82,7 +83,7 @@ const baseTestimonials: Testimonial[] = [
   {
     brand: 'VORWERK',
     logo: 'https://cdn.brandfetch.io/vorwerk.com/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX',
-    quote: '„Wir waren sehr glücklich, mit dem neuen Design auftreten zu können, und es ist – nicht nur bei uns, sondern auch bei den Messebesuchern – sehr gut angekommen."',
+    quote: '„Wir waren sehr glücklich, mit dem neuen Design auftreten zu können, und es ist – nicht nur bei uns – sondern auch bei den Messebesuchern sehr gut angekommen.“',
     author: 'Kristina Braun',
     role: 'Specialist Operations People & Culture',
     company: 'Vorwerk Elektrowerke GmbH & Co. KG',
@@ -214,13 +215,7 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
             {item.role && <div className="text-xs text-foreground-500 mt-0.5">{item.role}</div>}
             <div className="text-xs text-primary-500 font-semibold mt-0.5">{item.company}</div>
           </div>
-          {item.caseStudyLink && <a
-            href={item.caseStudyLink}
-            className="inline-flex items-center justify-center min-h-[44px] border-2 border-foreground-950 text-foreground-950 text-[11px] md:text-xs font-black tracking-[0.14em] md:tracking-widest px-4 py-2 hover:bg-primary-500 hover:border-primary-500 hover:text-background-50 transition-all duration-300 whitespace-nowrap"
-            style={{ borderRadius: 0 }}
-          >
-            FALLSTUDIE LESEN
-          </a>}
+          {/* „Fallstudie lesen“ button removed from all reference cards (18.11.2026) */}
         </div>
       </div>
     </div>

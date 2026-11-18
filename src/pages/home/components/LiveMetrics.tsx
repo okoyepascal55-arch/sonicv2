@@ -68,7 +68,12 @@ export default function LiveMetrics() {
     <section ref={sectionRef} className="relative overflow-hidden border-y border-foreground-200/40" style={{ paddingTop: '10px', paddingBottom: '10px' }}>
       {/* Chestnut brown wood texture */}
       <div className="absolute inset-0" aria-hidden="true">
-        <img src={woodBgUrl} alt="" className="w-full h-full object-cover" loading="lazy" />
+        {/* Tiled at the strip's own height (18.11.2026) — the texture used to be stretched to the
+            full width with object-cover, which blew a small image up ~4.5× */}
+        <div
+          className="w-full h-full"
+          style={{ backgroundImage: `url("${woodBgUrl}")`, backgroundRepeat: 'repeat-x', backgroundSize: 'auto 100%', backgroundPosition: 'left center' }}
+        />
         <div className="absolute inset-0 bg-foreground-950/50" />
       </div>
 

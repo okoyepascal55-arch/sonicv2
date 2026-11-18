@@ -267,7 +267,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'footer-city', label: 'City', description: 'City line', type: 'label', value: '47807 Krefeld, Germany' },
       { id: 'footer-phone', label: 'Phone', description: 'Phone number', type: 'label', value: '+49 2151 479 444 0' },
       { id: 'footer-email', label: 'Email', description: 'Email address', type: 'label', value: 'info@sonic-group.de' },
-      { id: 'footer-sales-badge', label: 'Sales Badge', description: 'Sales badge text', type: 'label', value: 'Über 2 Mrd. € Umsatz für unsere Kunden' },
+      { id: 'footer-sales-badge', label: 'Sales Badge', description: 'Zeile mit Pokal-Symbol im Footer — leer = ausgeblendet (seit 18.11.2026 entfernt)', type: 'label', value: '' },
       { id: 'footer-col-leistungen', label: 'Column — Leistungen Heading', description: 'Footer column heading', type: 'footer-heading', value: '— Leistungen' },
       { id: 'footer-link-staff', label: 'Footer Link — Staff as a Service', description: 'Staff link', type: 'footer-link', value: 'Staff as a Service' },
       { id: 'footer-link-pos', label: 'Footer Link — POS Full Service', description: 'POS link', type: 'footer-link', value: 'POS Full Service' },
@@ -1386,6 +1386,15 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
 
 /* One-time in-memory normalization: replaces legacy English default copy with German. */
 const LEGACY_TEXT_FIXES = [
+  // ── Kundenstimmen aus „Kunden_Aussagen.pptx“ (18.11.2026): replace older shortened/reworded quotes ──
+  { sectionKey: 'common_client_testimonials', entryId: 'testimonial-garmin-quote', from: 'Wir empfehlen Sonic uneingeschränkt weiter."', to: '„Seit 2021 verbindet GARMIN und SONIC eine erfolgreiche Partnerschaft im Bereich Verkaufsunterstützung am POS. Im Jahr 2024 entwickelte und realisierte SONIC ein innovatives, interaktives POS-Möbel- und Servicekonzept für GARMIN. Mit hoher Qualität, Professionalität und einem ausgeprägten Markenverständnis überzeugt SONIC auf ganzer Linie. Besonders schätzen wir die partnerschaftliche Zusammenarbeit auf Augenhöhe – stets lösungsorientiert und engagiert. Wir empfehlen SONIC uneingeschränkt weiter und freuen uns auf die weitere gemeinsame Erfolgsgeschichte.“', matchType: 'contains' as const },
+  { sectionKey: 'common_client_testimonials', entryId: 'testimonial-seb-quote', from: 'was ich benötige. Die SRT ist ein nützliches Tool', to: '„Hier finde ich, ohne großes Excel Kung-Fu, das, was ich für die Vorbereitung von Meetings benötige, das Ganze mit wenigen Klicks und mit Exportfunktion. Die SRT ist ein nützliches Tool und erleichtert unsere tägliche Arbeit.“', matchType: 'contains' as const },
+  { sectionKey: 'common_client_testimonials', entryId: 'testimonial-nespresso-quote', from: 'Die SRT ermöglicht es Sonic, unsere Projekte effizient', to: '„Die SRT ermöglicht es der Sonic, unsere Projekte entsprechend effizient und zielgerichtet zu steuern und zu realisieren.“', matchType: 'contains' as const },
+  { sectionKey: 'common_client_testimonials', entryId: 'testimonial-mediamarktsaturn-quote', from: 'konnten wir ganzheitliche Kundennutzen schaffen', to: '„Mit der Hilfe vom Sonic Team wurden aus einzelnen Produkten Lösungen – denn inklusive unserer Services wie z.B. der Garantieverlängerung konnten wir ganzheitlichen Kundennutzen schaffen.“', matchType: 'contains' as const },
+  { sectionKey: 'common_client_testimonials', entryId: 'testimonial-vorwerk-quote', from: 'nicht nur bei uns, sondern auch bei den Messebesuchern', to: '„Wir waren sehr glücklich, mit dem neuen Design auftreten zu können, und es ist – nicht nur bei uns – sondern auch bei den Messebesuchern sehr gut angekommen.“', matchType: 'contains' as const },
+  // Footer line „Über 2 Mrd. € Umsatz für unsere Kunden“ removed (18.11.2026)
+  { sectionKey: 'common_footer', entryId: 'footer-sales-badge', from: 'Über 2 Mrd. € Umsatz für unsere Kunden', to: '' },
+  { sectionKey: 'common_client_testimonials', entryId: 'testimonial-nespresso-role', from: 'B2C Commercial Excellence', to: 'B2C Commercial Excellence Manager' },
   { sectionKey: 'about_management_voices', entryId: 'about-voices-badge', from: 'Leadership Perspectives', to: 'Führungsperspektiven' },
   { sectionKey: 'careers_events', entryId: 'careers-events-heading', from: 'WIR ARBEITEN HART. WIR FEIERN NOCH MEHR.', to: 'Voller Einsatz. Echtes Team.' },
   { sectionKey: 'careers_events', entryId: 'careers-events-heading', from: 'Wir arbeiten hart. Wir feiern noch mehr.', to: 'Voller Einsatz. Echtes Team.' },
@@ -1465,8 +1474,8 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'srt_pricing', entryId: 'srt-pricing-tier-3', from: 'Enterprise', to: 'Projektteam' },
   { sectionKey: 'srt_developer', entryId: 'srt-joerg-title', from: 'Retail Technology', to: 'Entwickler des Sonic Reporting Tools', matchType: 'contains' as const },
   // ── Footer & hero corrections 30.09.2026 ──
-  { sectionKey: 'common_footer', entryId: 'footer-sales-badge', from: 'influenced', to: 'Über 2 Mrd. € Umsatz für unsere Kunden', matchType: 'contains' as const },
-  { sectionKey: 'common_footer', entryId: 'footer-sales-badge', from: 'B+', to: 'Über 2 Mrd. € Umsatz für unsere Kunden', matchType: 'contains' as const },
+  { sectionKey: 'common_footer', entryId: 'footer-sales-badge', from: 'influenced', to: '', matchType: 'contains' as const },
+  { sectionKey: 'common_footer', entryId: 'footer-sales-badge', from: 'B+', to: '', matchType: 'contains' as const },
   { sectionKey: 'common_footer', entryId: 'footer-iso', from: 'ISO', to: '', matchType: 'contains' as const },
   { sectionKey: 'common_footer', entryId: 'footer-gdpr', from: 'GDPR', to: 'DSGVO-konform', matchType: 'contains' as const },
   { sectionKey: 'home_hero', entryId: 'home-hero-left-btn', from: 'Projekt anfragen', to: 'Lösungen entdecken' },

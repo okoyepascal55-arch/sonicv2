@@ -1,5 +1,117 @@
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useEffect, useState } from 'react';
+
+type Brand = { name: string; logo: string; scale?: number };
+
+/* Logo normalisation (18.11.2026): every logo gets the same visual weight instead of the same
+   height — wide wordmarks get less height, compact marks more (equal-area sizing from the image's
+   own aspect ratio). Before hover all logos share one flat grey tone; hover shows the real colours. */
+const toneCache = new Map<string, string>();
+const FALLBACK_FILTER = 'grayscale(1) contrast(1.1) opacity(0.8)';
+
+/** Resting filter for a logo: greyscale, with its brightness corrected so every logo lands on the
+ *  same mid-dark grey (pale logos are darkened to the same near-black, then all are softened equally). Measured on a separate CORS
+ *  image so the visible logo is never affected; if measuring is impossible → plain greyscale. */
+function useRestFilter(url: string) {
+  const [filter, setFilter] = useState<string>(() => toneCache.get(url) ?? FALLBACK_FILTER);
+  useEffect(() => {
+    if (!url) return;
+    const cached = toneCache.get(url);
+    if (cached) { setFilter(cached); return; }
+    let cancelled = false;
+    const probe = new Image();
+    probe.crossOrigin = 'anonymous';
+    probe.onload = () => {
+      let result = FALLBACK_FILTER;
+      try {
+        const w = 64;
+        const h = Math.max(1, Math.round((probe.naturalHeight / Math.max(1, probe.naturalWidth)) * w));
+        const c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        const ctx = c.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(probe, 0, 0, w, h);
+          const d = ctx.getImageData(0, 0, w, h).data;
+          const alphaAt = (x: number, y: number) => d[(y * w + x) * 4 + 3];
+          const transparentBg = [alphaAt(0, 0), alphaAt(w - 1, 0), alphaAt(0, h - 1), alphaAt(w - 1, h - 1)].every((v) => v < 20);
+          if (transparentBg) {
+            let sum = 0, n = 0;
+            for (let i = 0; i < d.length; i += 4) {
+              if (d[i + 3] < 128) continue;
+              sum += (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) / 255;
+              n++;
+            }
+            if (n > 0) {
+              const lum = Math.max(0.04, sum / n);
+              const TARGET = 0.1;
+              const f = Math.min(1, Math.max(0.12, TARGET / lum));
+              result = `grayscale(1) brightness(${f.toFixed(2)}) opacity(0.62)`;
+            }
+          }
+        }
+      } catch { result = FALLBACK_FILTER; }
+      toneCache.set(url, result);
+      if (!cancelled) setFilter(result);
+    };
+    probe.onerror = () => { toneCache.set(url, FALLBACK_FILTER); };
+    probe.src = url;
+    return () => { cancelled = true; };
+  }, [url]);
+  return filter;
+}
+
+function LogoCard({ brand, compact = false }: { brand: Brand; compact?: boolean }) {
+  const [ratio, setRatio] = useState<number | null>(null);
+  const restFilter = useRestFilter(brand.logo);
+  // Equal-area sizing: height = sqrt(area / aspect ratio), clamped to the card.
+  const area = compact ? 1100 : 2000;
+  const maxH = compact ? 26 : 38;
+  const minH = compact ? 10 : 14;
+  const maxW = compact ? 92 : 132;
+  let h = maxH * 0.7;
+  if (ratio) {
+    h = Math.sqrt(area / ratio);
+    if (h * ratio > maxW) h = maxW / ratio;
+    h = Math.min(maxH, Math.max(minH, h));
+  }
+  return (
+    <div
+      className={`flex items-center justify-center flex-shrink-0 bg-white transition-all duration-300 cursor-pointer border hover:border-primary-500/40 group ${compact ? 'px-3' : 'px-3 md:px-4'}`}
+      style={{ borderRadius: 0, borderColor: 'oklch(var(--foreground-950) / 0.1)', height: compact ? '40px' : '56px', minWidth: compact ? '108px' : undefined }}
+    >
+      {brand.logo ? (
+        <img
+          src={brand.logo}
+          alt={brand.name}
+          className="trust-logo object-contain transition-all duration-300 group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
+          style={{ height: `${Math.round(h)}px`, width: 'auto', maxWidth: '100%', ['--rest-filter' as string]: restFilter }}
+          onLoad={(e) => {
+            const img = e.currentTarget;
+            if (img.naturalWidth && img.naturalHeight) setRatio(img.naturalWidth / img.naturalHeight);
+          }}
+          onError={(e) => {
+            const target = e.currentTarget;
+            target.style.display = 'none';
+            const parent = target.parentElement;
+            if (parent) {
+              const span = document.createElement('span');
+              span.className = 'text-sm font-black text-foreground-400 tracking-wide';
+              span.textContent = brand.name.toUpperCase();
+              parent.appendChild(span);
+            }
+          }}
+        />
+      ) : (
+        <span className="text-sm font-black text-foreground-400 tracking-wide group-hover:text-foreground-950 transition-colors duration-300">
+          {brand.name.toUpperCase()}
+        </span>
+      )}
+    </div>
+  );
+}
 
 export default function TrustStrip() {
   const { images: logoImages } = useMediaStore('home_truststrip_logos');
@@ -25,47 +137,12 @@ export default function TrustStrip() {
   const uploaded = logoImages
     .filter((img) => img.url && !img.url.startsWith('data:'))
     .map((img) => ({ name: (img.caption || '').trim() || 'Logo', logo: img.url, scale: /philips|groupe ?seb/i.test(img.caption || '') ? 1.45 : undefined }));
-  const allBrands: { name: string; logo: string; scale?: number }[] = uploaded.length ? uploaded : fallbackBrands;
+  const allBrands: Brand[] = uploaded.length ? uploaded : fallbackBrands;
 
 
   const half = Math.ceil(allBrands.length / 2);
   const row1 = allBrands.slice(0, half);
   const row2 = allBrands.slice(half);
-
-  const LogoCard = ({ brand, compact = false }: { brand: { name: string; logo: string; scale?: number }; compact?: boolean }) => (
-    <div
-      className={`flex items-center justify-center flex-shrink-0 bg-white transition-all duration-300 grayscale hover:grayscale-0 cursor-pointer border hover:border-primary-500/40 group ${
-        compact ? 'px-3 py-2' : 'p-2.5 md:p-5'
-      }`}
-      style={{ borderRadius: 0, borderColor: 'oklch(var(--foreground-950) / 0.1)', height: compact ? '40px' : '56px', minHeight: compact ? '40px' : '56px', maxHeight: compact ? '40px' : '56px' }}
-    >
-      {brand.logo ? (
-        <img
-          src={brand.logo}
-          alt={brand.name}
-          className={`max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ${compact ? 'h-4' : 'h-5 md:h-7'}`}
-          loading="lazy"
-          decoding="async"
-          style={brand.scale ? { height: compact ? '22px' : '34px', maxHeight: compact ? '26px' : '40px' } : undefined}
-          onError={(e) => {
-            const target = e.currentTarget;
-            target.style.display = 'none';
-            const parent = target.parentElement;
-            if (parent) {
-              const span = document.createElement('span');
-              span.className = 'text-sm font-black text-foreground-400 tracking-wide';
-              span.textContent = brand.name.toUpperCase();
-              parent.appendChild(span);
-            }
-          }}
-        />
-      ) : (
-        <span className="text-sm font-black text-foreground-400 tracking-wide group-hover:text-foreground-950 transition-colors duration-300">
-          {brand.name.toUpperCase()}
-        </span>
-      )}
-    </div>
-  );
 
   return (
     <section className="sonic-section-sm sm:px-4 md:px-6 bg-transparent relative">
@@ -74,6 +151,7 @@ export default function TrustStrip() {
         aria-hidden="true"
       />
 
+      <style>{`.trust-logo{filter:var(--rest-filter)}.group:hover .trust-logo{filter:none}`}</style>
       <div className="sonic-container relative z-10">
         <div className="border-t border-foreground-200 pt-5 sm:pt-8 md:pt-12">
           <div className="flex items-center gap-3 mb-4">

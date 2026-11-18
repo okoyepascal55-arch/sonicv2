@@ -78,9 +78,9 @@ export default function Contact() {
               <p lang="en" className="text-[13px] font-bold text-white/60 mt-5">
                 #Doing things
                 <span className="mx-2 text-primary-500/40" aria-hidden="true">·</span>
-                #Doing new things
-                <span className="mx-2 text-primary-500/40" aria-hidden="true">·</span>
                 #Doing things better
+                <span className="mx-2 text-primary-500/40" aria-hidden="true">·</span>
+                #Doing new things
               </p>
 
               {/* ── Value 01 Daten (single row) ── */}
