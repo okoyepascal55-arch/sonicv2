@@ -67,7 +67,7 @@ export const EN: Record<string, Record<string, string>> = {
     "proof-3": "+75% revenue in the first year",
     "ctaHeadline": "Planning a market entry?",
     "finalCta": "In 30 minutes we'll work out what your launch could look like.",
-    "schwerpunkt-3": "Training",
+    "schwerpunkt-2": "Training",
     "schwerpunkt-5": "Creation & Content",
     "schwerpunkt-6": "Warehouse & Logistics",
     "schwerpunkt-7": "Events & Trade Fairs"
@@ -119,7 +119,7 @@ export const EN: Record<string, Record<string, string>> = {
     "proof-2": "Home appliance manufacturer: revenue per deployment day up by around 150% since 2019.",
     "ctaHeadline": "Want to increase sales?",
     "finalCta": "In 30 minutes we'll work out where your sales can grow.",
-    "schwerpunkt-4": "Training"
+    "schwerpunkt-5": "Training"
   },
   "losungen_omnichannel": {
     "title": "Human power in every channel",
@@ -164,7 +164,7 @@ export const EN: Record<string, Record<string, string>> = {
     "stat-4-label": "managed service",
     "ctaHeadline": "Building omnichannel?",
     "finalCta": "In 30 minutes we'll work out how advice can work across all channels.",
-    "schwerpunkt-4": "Training",
+    "schwerpunkt-3": "Training",
     "schwerpunkt-5": "QR code",
     "schwerpunkt-6": "Creation & Content"
   },
