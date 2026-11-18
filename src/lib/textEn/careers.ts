@@ -57,7 +57,7 @@ export const EN: Record<string, Record<string, string>> = {
   "careers_jobs": {
     "careers-jobs-badge": "Current openings",
     "careers-jobs-heading": "Your job is waiting. Apply now.",
-    "careers-jobs-tanja-heading": "Not sure which role suits you?",
+    "careers-jobs-tanja-heading": "Let's find your role together.",
     "careers-jobs-tanja-desc": "Tanja from our HR team is happy to take time for an informal chat.",
     "careers-jobs-tanja-cta": "Talk to Tanja",
     "careers-jobs-initiativ-cta": "Speculative application",

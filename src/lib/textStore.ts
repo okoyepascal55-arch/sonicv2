@@ -788,7 +788,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     entries: [
       { id: 'careers-jobs-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Aktuelle Stellenangebote' },
       { id: 'careers-jobs-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Dein Job wartet. Jetzt bewerben.' },
-      { id: 'careers-jobs-tanja-heading', label: 'Tanja Heading', description: 'Tanja question', type: 'heading', value: 'Unsicher, welche Stelle zu dir passt?' },
+      { id: 'careers-jobs-tanja-heading', label: 'Tanja Heading', description: 'Tanja question', type: 'heading', value: 'Lass uns gemeinsam deine Stelle finden.' },
       { id: 'careers-jobs-tanja-desc', label: 'Tanja Description', description: 'Tanja description', type: 'paragraph', value: 'Tanja aus unserem HR-Team nimmt sich gerne Zeit für ein unverbindliches Gespräch.' },
       { id: 'careers-jobs-tanja-cta', label: 'Tanja CTA', description: 'Tanja CTA button', type: 'cta', value: 'Mit Tanja sprechen' },
       { id: 'careers-jobs-initiativ-cta', label: 'Initiativ CTA', description: 'Initiativ button', type: 'cta', value: 'Initiativbewerbung' },
@@ -1371,6 +1371,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
 
 /* One-time in-memory normalization: replaces legacy English default copy with German. */
 const LEGACY_TEXT_FIXES = [
+  // Karriere Tanja card: more positive heading (18.11.2026)
+  { sectionKey: 'careers_jobs', entryId: 'careers-jobs-tanja-heading', from: 'Unsicher, welche Stelle zu dir passt?', to: 'Lass uns gemeinsam deine Stelle finden.' },
   // Lösungen: „Module dieser Lösung“ → „Sonic Schwerpunkte“ (18.11.2026)
   { sectionKey: 'losungen_page', entryId: 'lp-modulesHeading', from: 'Module dieser Lösung', to: 'Sonic Schwerpunkte' },
   // ── Kundenstimmen aus „Kunden_Aussagen.pptx“ (18.11.2026): replace older shortened/reworded quotes ──

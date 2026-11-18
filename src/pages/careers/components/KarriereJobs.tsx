@@ -11,7 +11,7 @@ export default function KarriereJobs() {
 
   const tBadge = useText('careers_jobs', 'careers-jobs-badge', 'Aktuelle Stellenangebote');
   const tHeading = useText('careers_jobs', 'careers-jobs-heading', 'Dein nächster Karriereschritt');
-  const tTanjaHeading = useText('careers_jobs', 'careers-jobs-tanja-heading', 'Unsicher, welche Stelle zu dir passt?');
+  const tTanjaHeading = useText('careers_jobs', 'careers-jobs-tanja-heading', 'Lass uns gemeinsam deine Stelle finden.');
   const tTanjaDesc = useText('careers_jobs', 'careers-jobs-tanja-desc', 'Tanja aus unserem HR-Team nimmt sich gerne Zeit für ein unverbindliches Gespräch.');
   const tTanjaCta = useText('careers_jobs', 'careers-jobs-tanja-cta', 'Mit Tanja sprechen');
   const tInitiativCta = useText('careers_jobs', 'careers-jobs-initiativ-cta', 'Initiativbewerbung');
