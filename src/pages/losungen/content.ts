@@ -60,7 +60,7 @@ export const SOLUTIONS = {
     finalCta: 'In 30 Minuten klären wir, wie dein Launch aussehen kann.',
     proof: ['NEUER TV-HERSTELLER IM DEUTSCHEN MARKT', '6 Wochen bis zum Vollbetrieb', '+75 % Umsatz im ersten Jahr'] as string[],
     modules: [
-      { name: 'SRT', bar: 100 },
+      { name: 'Sonic Reporting Tool', bar: 100 },
       { name: 'POS Full Service', bar: 100 },
       { name: 'Schulungen', bar: 100 },
       { name: 'Live Video', bar: 100 },
@@ -122,7 +122,7 @@ export const SOLUTIONS = {
     finalCta: 'In 30 Minuten klären wir, wo dein Absatz wachsen kann.',
     proof: ['Wearables-Hersteller: Umsatz pro Einsatztag Jahr für Jahr gesteigert – +20 %, +45 %, +23 %, +21 % seit 2021.', 'Hausgeräte-Hersteller: Umsatz pro Einsatztag seit 2019 um rund 150 % gesteigert.'] as string[],
     modules: [
-      { name: 'SRT', bar: 100 },
+      { name: 'Sonic Reporting Tool', bar: 100 },
       { name: 'POS Full Service', bar: 100 },
       { name: 'Merchandising', bar: 100 },
       { name: 'Schulungen', bar: 67 },
@@ -181,7 +181,7 @@ export const SOLUTIONS = {
     finalCta: 'In 30 Minuten klären wir, wie Beratung in allen Kanälen funktioniert.',
     proof: [] as string[],
     modules: [
-      { name: 'SRT', bar: 100 },
+      { name: 'Sonic Reporting Tool', bar: 100 },
       { name: 'Online Services', bar: 100 },
       { name: 'Live Video', bar: 100 },
       { name: 'Schulungen', bar: 100 },

@@ -28,6 +28,7 @@ const MODULE_LINKS: Record<string, string> = {
   'Forecasting': '/leistungen/forecasting',
   'Warehouse & Logistik': '/leistungen/warehouse-logistik',
   'SRT': '/srt',
+  'Sonic Reporting Tool': '/srt',
 };
 
 /* ─────────────────────────────────────────
