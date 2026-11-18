@@ -9,16 +9,7 @@ export const EN: Record<string, Record<string, string>> = {
     "careers-hero-stat-2-label": "Avg. length of service",
     "careers-hero-stat-3-label": "Talent in our network",
   },
-  "careers_campus": {
-    "careers-campus-badge": "Our campus",
-    "careers-campus-heading": "Explore the office",
-    "careers-campus-sub": "360° tour of our headquarters in Krefeld — Campus Fichtenhain 46.",
-    "careers-campus-city": "47807 Krefeld, Germany",
-    "careers-campus-route": "Plan your route",
-    "careers-campus-tip-1": "Click & drag to look around",
-    "careers-campus-tip-2": "Click the circles to move",
-    "careers-campus-tip-3": "Go full screen for the best experience",
-  },
+
   "careers_culture": {
     "careers-culture-badge": "Why Sonic",
     "careers-culture-heading": "Strong people for strong brands",

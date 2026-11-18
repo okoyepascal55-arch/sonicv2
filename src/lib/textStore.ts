@@ -524,22 +524,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-hero-stat-3-label', label: 'Stat Label — Talentpool', description: 'Talent label', type: 'stat-label', value: 'Talente im Netzwerk' },
     ],
   },
-  {
-    key: 'careers_campus', label: 'Careers — Campus Section',
-    pageGroupId: 'careers', pagePath: '/karriere',
-    description: 'The office tour section. Verified from careers/page.tsx.',
-    entries: [
-      { id: 'careers-campus-badge', label: 'Campus Badge', description: 'Section badge', type: 'badge', value: 'Unser Campus' },
-      { id: 'careers-campus-heading', label: 'Campus Heading', description: 'Section heading', type: 'heading', value: 'Büro erkunden' },
-      { id: 'careers-campus-sub', label: 'Campus Subtitle', description: 'Section subtitle', type: 'paragraph', value: '360°-Rundgang durch unseren Hauptsitz in Krefeld — Campus Fichtenhain 46.' },
-      { id: 'careers-campus-address', label: 'Campus Address', description: 'Address line', type: 'label', value: 'Campus Fichtenhain 46' },
-      { id: 'careers-campus-city', label: 'Campus City', description: 'City line', type: 'label', value: '47807 Krefeld, Deutschland' },
-      { id: 'careers-campus-route', label: 'Route Button', description: 'Route button', type: 'cta', value: 'Route planen' },
-      { id: 'careers-campus-tip-1', label: 'Tour Tip 1', description: 'Dragging tip', type: 'label', value: 'Klicken & Ziehen zum Umsehen' },
-      { id: 'careers-campus-tip-2', label: 'Tour Tip 2', description: 'Walking tip', type: 'label', value: 'Kreise klicken zum Bewegen' },
-      { id: 'careers-campus-tip-3', label: 'Tour Tip 3', description: 'Fullscreen tip', type: 'label', value: 'Vollbild für beste Erfahrung' },
-    ],
-  },
+
 
   /* ════════════════════════════════════════════ LEISTUNGEN ════════════════════ */
   {
@@ -1402,7 +1387,6 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'careers_events', entryId: 'careers-events-heading', from: 'Wir arbeiten hart. Wir feiern noch mehr.', to: 'Voller Einsatz. Echtes Team.' },
   { sectionKey: 'careers_jobs', entryId: 'careers-jobs-heading', from: 'Dein nächster Karriereschritt', to: 'Dein Job wartet. Jetzt bewerben.' },
   { sectionKey: 'careers_jobs', entryId: 'careers-jobs-heading', from: 'DEIN NÄCHSTER KARRIERESCHRITT', to: 'Dein Job wartet. Jetzt bewerben.' },
-  { sectionKey: 'careers_campus', entryId: 'careers-campus-heading', from: 'BÜRO ERKUNDEN', to: 'Büro erkunden' },
   { sectionKey: 'about_management_voices', entryId: 'about-voices-sub', from: 'Strategie, Kreation und Operations — drei Perspektiven, eine Überzeugung.', to: 'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.' },
   { sectionKey: 'about_leadership', entryId: 'about-leadership-sub', from: 'Bei Sonic treffen Backgrounds aufeinander, die sich perfekt ergänzen.', to: 'Bei Sonic treffen Expertisen aufeinander, die sich perfekt ergänzen.' },
   // ── Content review 30.09.2026 (Agenturpräsentation 2026) — corrects values saved in the dashboard ──

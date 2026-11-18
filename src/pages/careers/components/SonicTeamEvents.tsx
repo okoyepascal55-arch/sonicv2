@@ -50,16 +50,6 @@ export default function SonicTeamEvents() {
   const tHeading = useText('careers_events', 'careers-events-heading', 'Voller Einsatz. Echtes Team.');
   const tSub = useText('careers_events', 'careers-events-sub', 'Von Content-Shootings bis Team-Events — bei Sonic ist jeder Moment eine Chance, zusammen etwas zu erleben.');
 
-  const tCampusBadge = useText('careers_campus', 'careers-campus-badge', 'Unser Campus');
-  const tCampusHeading = useText('careers_campus', 'careers-campus-heading', 'Büro erkunden');
-  const tCampusSub = useText('careers_campus', 'careers-campus-sub', '360°-Rundgang durch unseren Hauptsitz in Krefeld — Campus Fichtenhain 46.');
-  const tCampusAddress = useText('careers_campus', 'careers-campus-address', 'Campus Fichtenhain 46');
-  const tCampusCity = useText('careers_campus', 'careers-campus-city', '47807 Krefeld, Deutschland');
-  const tCampusRoute = useText('careers_campus', 'careers-campus-route', 'Route planen');
-  const tCampusTip1 = useText('careers_campus', 'careers-campus-tip-1', 'Klicken & Ziehen zum Umsehen');
-  const tCampusTip2 = useText('careers_campus', 'careers-campus-tip-2', 'Kreise klicken zum Bewegen');
-  const tCampusTip3 = useText('careers_campus', 'careers-campus-tip-3', 'Vollbild für beste Erfahrung');
-
   // Dashboard → Text → Karriere → „Karriere — Team Events (Zeilen unter den Titeln)“
   const eventLines = useKarriereEventLines();
   const resolvedEvents = EVENTS.map((ev, i) => ({
@@ -81,7 +71,7 @@ export default function SonicTeamEvents() {
   const headingAccent = headingSentences.length > 1 ? headingSentences.slice(1).join(' ') : '';
 
   return (
-    <section id="leben" className="bg-white py-10 md:py-14 px-5 md:px-10 overflow-hidden">
+    <section id="leben" className="bg-white pt-10 md:pt-14 pb-4 md:pb-6 px-5 md:px-10 overflow-hidden">
       <div className="sonic-container">
         <ChapterHeader
           n="04"
@@ -91,8 +81,8 @@ export default function SonicTeamEvents() {
           headingMax="max-w-full"
         />
 
-        {/* Events block */}
-        <div className="mb-14">
+        {/* Events block — „Büro erkunden“ (360° tour) removed 18.11.2026; section ends here */}
+        <div>
           <div className="relative overflow-hidden" style={{ background: "oklch(0.13 0.005 118)", minHeight: "520px" }}>
             {!playing ? (
               <div
@@ -157,52 +147,6 @@ export default function SonicTeamEvents() {
           </div>
         </div>
 
-        {/* Campus */}
-        <div className="flex items-center gap-3 mb-5">
-          <span className="w-7 h-0.5 bg-primary-500" aria-hidden="true" />
-          <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tCampusBadge}</span>
-        </div>
-        <h3 className="font-black mb-4 text-foreground-950" style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2.5rem)', lineHeight: 1.05, letterSpacing: '-0.035em' }}>
-          {tCampusHeading.split(' ').slice(0, -1).join(' ')} <Marker>{tCampusHeading.split(' ').slice(-1)}</Marker>
-        </h3>
-        <p className="text-base md:text-[17px] leading-relaxed max-w-[520px] mb-8" style={{ color: 'oklch(var(--foreground-500))' }}>{tCampusSub}</p>
-
-        <div style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
-          <div className="relative aspect-video" style={{ background: 'oklch(0.13 0.005 118)' }}>
-            <iframe
-              src="https://my.matterport.com/show/?m=NUpWzUwWfMQ"
-              className="absolute inset-0 w-full h-full border-0"
-              allowFullScreen
-              title="Sonic Office Virtual Tour"
-              loading="lazy"
-            />
-          </div>
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 px-6 py-6 md:px-8" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
-            <ul className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] font-bold text-foreground-950">
-              {[tCampusTip1, tCampusTip2, tCampusTip3].map((label, i, arr) => (
-                <li key={i} className="flex items-center gap-4">
-                  <span>{label}</span>
-                  {i < arr.length - 1 && <span className="w-1.5 h-1.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />}
-                </li>
-              ))}
-            </ul>
-            <div className="flex items-center gap-5 flex-shrink-0">
-              <div>
-                <p className="text-sm font-black text-foreground-950 mb-0.5">{tCampusAddress}</p>
-                <p className="text-xs" style={{ color: 'oklch(var(--foreground-500))' }}>{tCampusCity}</p>
-              </div>
-              <a
-                href="https://maps.google.com/?q=Campus+Fichtenhain+46,+47807+Krefeld"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3.5 bg-foreground-950 text-white text-[11px] font-black uppercase tracking-[0.14em] hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-200 cursor-pointer whitespace-nowrap"
-              >
-                <i className="ri-map-pin-line text-sm" />
-                {tCampusRoute}
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
