@@ -8,7 +8,7 @@ type Brand = { name: string; logo: string; scale?: number };
    height — wide wordmarks get less height, compact marks more (equal-area sizing from the image's
    own aspect ratio). Before hover all logos share one flat grey tone; hover shows the real colours. */
 const toneCache = new Map<string, string>();
-const FALLBACK_FILTER = 'grayscale(1) contrast(1.1) opacity(0.8)';
+const FALLBACK_FILTER = 'grayscale(1) contrast(1.1) opacity(0.62)';
 
 /** Resting filter for a logo: greyscale, with its brightness corrected so every logo lands on the
  *  same mid-dark grey (pale logos are darkened to the same near-black, then all are softened equally). Measured on a separate CORS
@@ -55,7 +55,8 @@ function useRestFilter(url: string) {
       if (!cancelled) setFilter(result);
     };
     probe.onerror = () => { toneCache.set(url, FALLBACK_FILTER); };
-    probe.src = url;
+    // separate URL so the browser doesn't reuse the visible logo's non-CORS cache entry
+    probe.src = url + (url.includes('?') ? '&' : '?') + 'tone-probe=1';
     return () => { cancelled = true; };
   }, [url]);
   return filter;
