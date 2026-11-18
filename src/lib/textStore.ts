@@ -10,6 +10,8 @@ import { supabase } from './supabase';
 import { getLanguage, type Lang } from './language';
 import { EN_TEXT } from './textEn';
 import { applySrtRule } from './srtRule';
+import { isArchivedTextSection } from './dashboardArchive';
+import { orderTextSections } from './dashboardOrder';
 export interface TextEntry {
   id: string;
   label: string;
@@ -208,6 +210,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'home-challenge-path-2-desc', label: 'Path 2 Description', description: 'Sales growth description', type: 'paragraph', value: 'Unsere Promotion- und Field-Force-Teams sorgen dafür, dass dein Produkt im Handel stärker verkauft wird. Planbar, profitabel, live in der SRT messbar.' },
       { id: 'home-challenge-path-3', label: 'Path 3 — Omnichannel', description: 'Omnichannel path', type: 'heading', value: 'Omnichannel optimieren' },
       { id: 'home-challenge-path-3-desc', label: 'Path 3 Description', description: 'Omnichannel description', type: 'paragraph', value: 'Persönliche Beratung, nahtlos über alle Kanäle hinweg – am POS, online und live aus unseren Studios. Für ein konsistentes Markenerlebnis, mehr Abschlüsse und weniger Retouren.' },
+      { id: 'home-challenge-sub', label: 'Unterzeile', description: 'Zeile unter der Überschrift', type: 'subheading', value: 'An welchem Punkt stehst du?' },
     ],
   },
   {
@@ -794,6 +797,9 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-jobs-initiativ-cta', label: 'Initiativ CTA', description: 'Initiativ button', type: 'cta', value: 'Initiativbewerbung' },
       { id: 'careers-jobs-loading', label: 'Ladetext', description: 'Shown while the job widget loads', type: 'label', value: 'Stellenangebote werden geladen…' },
       { id: 'careers-jobs-empty', label: 'Leerer Zustand', description: 'Shown when the job widget cannot load or has no jobs', type: 'paragraph', value: 'Aktuell keine offenen Stellen – bewirb dich initiativ.' },
+      { id: 'careers-jobs-location', label: 'Zeile unter der Überschrift', description: 'Ort', type: 'caption', value: 'Krefeld & DACH-weit' },
+      { id: 'careers-jobs-widget-heading', label: 'Stellen-Box — Überschrift', description: 'Über der Stellenliste', type: 'heading', value: 'Jetzt durchstarten' },
+      { id: 'careers-jobs-widget-sub', label: 'Stellen-Box — Zeile', description: 'Über der Stellenliste', type: 'paragraph', value: 'Alle offenen Positionen auf einen Blick — klick auf eine Stelle für Details.' },
     ],
   },
 
@@ -858,9 +864,11 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The industries section with use cases across retail categories.',
     entries: [
       { id: 'srt-industries-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Branchen & Use Cases' },
-      { id: 'srt-industries-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Von Retail Execution bis Healthcare.' },
+      { id: 'srt-industries-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Von Retail Execution bis Gesundheit & Pharma.' },
       { id: 'srt-industries-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Die SRT ist bereit für jedes Projekt, bei dem Menschen zielorientiert und koordiniert eingesetzt werden.' },
       { id: 'srt-industries-cta', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Deine SRT-Konfiguration finden' },
+      { id: 'srt-industries-heading-accent', label: 'Überschrift — Akzent (lime, Ende der Überschrift)', description: 'Dieser Teil der Überschrift wird lime markiert', type: 'heading', value: 'Gesundheit & Pharma.' },
+      { id: 'srt-industries-question', label: 'Frage über dem Button', description: 'Unten', type: 'paragraph', value: 'Noch unsicher, wie die SRT zu deinem Use Case passt?' },
     ],
   },
   {
@@ -919,6 +927,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-collab-step-5-desc', label: 'Step 5 — Text', description: 'Beschreibung', type: 'paragraph', value: 'Wir rechnen die Einsätze inkl. Prämien mit den Mitarbeitern ab und buchen Fremdkosten ein — zentral erfasst.' },
       { id: 'srt-collab-step-6-short', label: 'Step 6 — Unterzeile', description: 'Kleine Zeile unter dem Titel', type: 'label', value: 'Performance kontinuierlich tracken' },
       { id: 'srt-collab-step-6-desc', label: 'Step 6 — Text', description: 'Beschreibung', type: 'paragraph', value: 'Auf Basis aller Daten zu Absatz, Umsatz und Kosten erhältst du aktuelle Reportings, mit denen du die Performance trackst.' },
+      { id: 'srt-collab-steps-label', label: 'Zeile rechts neben der Überschrift', description: 'Kurzinfo', type: 'caption', value: '6 Schritte · End-to-End' },
     ],
   },
   {
@@ -1973,12 +1982,25 @@ export function getTextSections(): TextSection[] {
   return loadFromStorage();
 }
 
+/** Dashboard only — archived leftovers (see dashboardArchive.ts) are hidden. */
+function dashboardSections(): TextSection[] {
+  return loadFromStorage().filter((s) => !isArchivedTextSection(s.key));
+}
+
 export function getTextSectionsByGroup(pageGroupId: string): TextSection[] {
-  return loadFromStorage().filter((s) => s.pageGroupId === pageGroupId);
+  // In page order with numbered plain names (dashboardOrder.ts — display only)
+  return orderTextSections(pageGroupId, dashboardSections().filter((s) => s.pageGroupId === pageGroupId));
+}
+
+/** Dashboard search across ALL pages: every visible text area, page name in front. */
+export function getAllTextSectionsForSearch(): TextSection[] {
+  return TEXT_PAGE_GROUPS.flatMap((g) =>
+    getTextSectionsByGroup(g.id).map((s) => ({ ...s, label: `${g.label} › ${s.label}` })),
+  );
 }
 
 export function getTextSectionsByKeys(keys: readonly string[]): TextSection[] {
-  const all = loadFromStorage();
+  const all = dashboardSections();
   return keys
     .map((k) => all.find((s) => s.key === k))
     .filter((s): s is TextSection => Boolean(s));
@@ -2090,21 +2112,21 @@ export function hasEnglishText(sectionKey: string, entryId: string): boolean {
 }
 
 export function getTextSectionCount(groupId: string): number {
-  return loadFromStorage().filter((s) => s.pageGroupId === groupId).length;
+  return dashboardSections().filter((s) => s.pageGroupId === groupId).length;
 }
 
 export function getTextEntryCount(groupId: string): number {
-  return loadFromStorage()
+  return dashboardSections()
     .filter((s) => s.pageGroupId === groupId)
     .reduce((sum, s) => sum + s.entries.length, 0);
 }
 
 export function getTotalTextCount(): number {
-  return loadFromStorage().reduce((sum, s) => sum + s.entries.length, 0);
+  return dashboardSections().reduce((sum, s) => sum + s.entries.length, 0);
 }
 
 export function getTotalSectionCount(): number {
-  return loadFromStorage().length;
+  return dashboardSections().length;
 }
 
 // React hook — read a single text entry, re-renders on text-store-update events.

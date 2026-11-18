@@ -25,5 +25,10 @@ export const EN: Record<string, Record<string, string>> = {
   "kontakt_form_texts": {
     "sub": "We'll get back to you shortly.",
     "success": "We'll get back to you shortly.",
+    "eyebrow": "Direct inquiry",
+    "heading": "Write to",
+    "heading-accent": "us",
+    "success-title": "Message received",
+    "note": "No spam. No sharing. Just real contact."
   },
 };

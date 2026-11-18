@@ -2,6 +2,7 @@ import ClientLogosPanel from './ClientLogosPanel';
 import { useState, useEffect, useCallback, useMemo, memo } from 'react';
 import {
   getTextSectionsByGroup,
+  getAllTextSectionsForSearch,
   getTextSectionsByKeys,
   updateTextEntry,
   resetTextSection,
@@ -287,6 +288,16 @@ const SectionRow = memo(function SectionRow({ lang, section, isExpanded, onToggl
                 <i className="ri-information-line text-gray-400 text-sm"></i>
               </span>
               <p className="text-2xs text-gray-500 max-w-lg leading-relaxed">{section.description}</p>
+              {section.pagePath?.startsWith('/') && (
+                <a
+                  href={section.pagePath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 text-2xs font-semibold text-lime-700 hover:text-lime-900 whitespace-nowrap flex items-center gap-1"
+                >
+                  Auf der Seite ansehen <i className="ri-external-link-line"></i>
+                </a>
+              )}
             </div>
             <button
               onClick={() => setShowResetConfirm(true)}
@@ -477,10 +488,11 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
     return icons[activeGroup] || 'ri-folder-line';
   }, [activeGroup]);
 
+  // Search looks through ALL pages (not only the selected one), page name shown in front.
   const filteredSections = useMemo(() => {
     if (!search.trim()) return sections;
     const q = search.toLowerCase();
-    return sections.filter((s) => {
+    return getAllTextSectionsForSearch().filter((s) => {
       if (s.label.toLowerCase().includes(q)) return true;
       if ((s.description ?? '').toLowerCase().includes(q)) return true;
       return s.entries.some(
@@ -490,7 +502,8 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
           (e.description ?? '').toLowerCase().includes(q)
       );
     });
-  }, [sections, search]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sections, search, tick]);
 
   const handleResetAll = useCallback(() => {
     resetAllText();
@@ -537,7 +550,7 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Texte durchsuchen…"
+                placeholder="Alle Seiten durchsuchen…"
                 className="pl-7 pr-3 py-1.5 border border-gray-200 rounded-md text-xs focus:outline-none focus:border-lime-400 transition-colors w-48"
               />
               {search && (
@@ -622,7 +635,7 @@ export default function TextPanel({ activeGroup }: TextPanelProps) {
 
         {search && (
           <p className="text-2xs text-gray-400 mt-2">
-            {filteredSections.length} von {sections.length} Bereichen gefunden
+            {filteredSections.length} Bereiche auf allen Seiten gefunden
           </p>
         )}
       </div>

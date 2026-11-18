@@ -293,7 +293,7 @@ export default function SRTTeaser() {
           {activeNodeData ? (
             <p className="text-xs sm:text-sm text-foreground-300">{dn[`n${nodes.findIndex((n) => n.id === activeNodeData.id) + 1}-desc`] || activeNodeData.desc}</p>
           ) : (
-            <p className="text-xs sm:text-sm text-foreground-500">Modul antippen für Details</p>
+            <p className="text-xs sm:text-sm text-foreground-500">{st['tap-hint']}</p>
           )}
         </div>
         </div>
@@ -307,14 +307,14 @@ export default function SRTTeaser() {
           >
             {/* Mobile: compact two-line label with the arrow beside it; desktop: one line as before */}
             <span className="flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-3 min-w-0">
-              <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.22em] opacity-80">30-Sekunden Kurzumfrage</span>
-              <span className="text-[12px] sm:text-sm md:text-base font-black uppercase leading-tight tracking-[0.02em] sm:tracking-wide">Welche Sonic-Lösung passt zu dir?</span>
+              <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.22em] opacity-80">{st['quiz-kicker']}</span>
+              <span className="text-[12px] sm:text-sm md:text-base font-black uppercase leading-tight tracking-[0.02em] sm:tracking-wide">{st['quiz-btn']}</span>
             </span>
             <i className="ri-arrow-right-line text-base sm:text-lg flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
           </button>
 
           <p className="text-xs text-foreground-400 mt-3 font-semibold tracking-wide">
-            Keine Registrierung · Kein Commitment
+            {st['quiz-note']}
           </p>
         </div>
       </div>

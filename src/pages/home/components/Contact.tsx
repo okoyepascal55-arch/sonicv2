@@ -5,6 +5,8 @@ import WoodenButton from '@/components/base/WoodenButton';
 export default function Contact() {
   // Dashboard → Text → Home → „Was uns antreibt — Karten 01/02“
   const dc = useReviewText('home_drive_cards');
+  // Dashboard → Text → Home → „Sonic Group & Karriere — zwei Boxen unten“
+  const cb = useReviewText('home_contact_block');
   const tagsOf = (v: string) => v.split(',').map((x) => x.trim()).filter(Boolean);
   const navigate = useNavigate();
   const handleNav = (path: string) => navigate(path);
@@ -46,7 +48,7 @@ export default function Contact() {
             <div>
               {/* Eyebrow */}
               <p className="text-[11px] font-black uppercase tracking-[0.3em] text-primary-500 mb-4">
-                Was uns antreibt
+                {cb['about-eyebrow']}
               </p>
 
               {/* Headline */}
@@ -60,7 +62,7 @@ export default function Contact() {
                     WebkitBoxDecorationBreak: 'clone',
                   }}
                 >
-                  Sonic Group
+                  {cb['about-title']}
                 </span>
               </h2>
 
@@ -69,18 +71,17 @@ export default function Contact() {
 
               {/* Body */}
               <p className="text-sm text-foreground-400 leading-relaxed max-w-xl">
-                Als Sales- und Marketing-Agentur verbinden wir starke Teams mit unserer eigenen
-                Software, Kreativität mit Performance, Daten mit Menschen und Marken mit
-                Konsumenten. Für deinen messbaren Markenerfolg.
+                {cb['about-body']}
               </p>
 
               {/* Tags — single inline line */}
               <p lang="en" className="text-[13px] font-bold text-white/60 mt-5">
-                #Doing things
-                <span className="mx-2 text-primary-500/40" aria-hidden="true">·</span>
-                #Doing things better
-                <span className="mx-2 text-primary-500/40" aria-hidden="true">·</span>
-                #Doing new things
+                {tagsOf(cb['about-tags']).map((tag, i) => (
+                  <span key={tag}>
+                    {i > 0 && <span className="mx-2 text-primary-500/40" aria-hidden="true">·</span>}
+                    {tag}
+                  </span>
+                ))}
               </p>
 
               {/* ── Value 01 Daten (single row) ── */}
@@ -157,7 +158,7 @@ export default function Contact() {
                 className="inline-flex items-center gap-3 border-2 border-primary-500 text-primary-500 px-7 py-3 font-black text-[13px] uppercase tracking-wider hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 active:scale-95"
                 style={{ borderRadius: 0 }}
               >
-                Mehr über Sonic
+                {cb['about-btn']}
                 <i className="ri-arrow-right-line text-base" />
               </button>
             </div>
@@ -180,7 +181,7 @@ export default function Contact() {
             <div>
               {/* Eyebrow */}
               <p className="text-[11px] font-black uppercase tracking-[0.3em] text-primary-500 mb-4">
-                Menschen mit Doer-Mentalität gesucht
+                {cb['career-eyebrow']}
               </p>
 
               {/* Headline */}
@@ -194,7 +195,7 @@ export default function Contact() {
                     WebkitBoxDecorationBreak: 'clone',
                   }}
                 >
-                  Karriere
+                  {cb['career-title']}
                 </span>
               </h2>
 
@@ -203,18 +204,16 @@ export default function Contact() {
 
               {/* Body */}
               <p className="text-sm text-foreground-600 leading-relaxed max-w-xl">
-                Zeige was du kannst, und freue dich auf gemeinsame Erfolge. Wichtig ist für uns
-                deine Einstellung zum Job und was du erreichen willst – nicht nur das, was du
-                schon erreicht hast.
+                {cb['career-body']}
               </p>
 
               {/* Feature pills */}
               <div className="flex flex-col gap-2.5 mt-5">
                 {[
-                  { icon: 'ri-star-line', text: 'Führende Marken aus aller Welt' },
-                  { icon: 'ri-rocket-2-line', text: 'Einstellung schlägt Lebenslauf' },
-                  { icon: 'ri-team-line', text: 'Ein Team, das wie Familie ist' },
-                ].map((item, i) => (
+                  { icon: 'ri-star-line', text: cb['career-pill-1'] },
+                  { icon: 'ri-rocket-2-line', text: cb['career-pill-2'] },
+                  { icon: 'ri-team-line', text: cb['career-pill-3'] },
+                ].filter((item) => item.text.trim()).map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <div className="w-5 h-5 flex items-center justify-center text-primary-500 flex-shrink-0">
                       <i className={`${item.icon} text-base`} />
@@ -233,7 +232,7 @@ export default function Contact() {
                 className="inline-flex items-center gap-3 bg-primary-500 text-white px-7 py-3 font-black text-[13px] uppercase tracking-wider hover:bg-foreground-950 hover:text-primary-500 transition-all duration-300 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
                 style={{ borderRadius: 0 }}
               >
-                Mehr dazu
+                {cb['career-btn']}
                 <i className="ri-arrow-right-line text-base" />
               </button>
             </div>

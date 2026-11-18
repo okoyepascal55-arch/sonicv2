@@ -11,6 +11,9 @@ export default function KarriereJobs() {
 
   const tBadge = useText('careers_jobs', 'careers-jobs-badge', 'Aktuelle Stellenangebote');
   const tHeading = useText('careers_jobs', 'careers-jobs-heading', 'Dein nächster Karriereschritt');
+  const tLocation = useText('careers_jobs', 'careers-jobs-location', 'Krefeld & DACH-weit');
+  const tWidgetHeading = useText('careers_jobs', 'careers-jobs-widget-heading', 'Jetzt durchstarten');
+  const tWidgetSub = useText('careers_jobs', 'careers-jobs-widget-sub', 'Alle offenen Positionen auf einen Blick — klick auf eine Stelle für Details.');
   const tTanjaHeading = useText('careers_jobs', 'careers-jobs-tanja-heading', 'Lass uns gemeinsam deine Stelle finden.');
   const tTanjaDesc = useText('careers_jobs', 'careers-jobs-tanja-desc', 'Tanja aus unserem HR-Team nimmt sich gerne Zeit für ein unverbindliches Gespräch.');
   const tTanjaCta = useText('careers_jobs', 'careers-jobs-tanja-cta', 'Mit Tanja sprechen');
@@ -85,7 +88,7 @@ export default function KarriereJobs() {
               {headingMain} {headingAccent && <Marker>{headingAccent}</Marker>}
             </h2>
             <div className="flex items-center gap-3">
-              <span className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">Krefeld &amp; DACH-weit</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.22em] text-white/45">{tLocation}</span>
             </div>
           </div>
         </div>
@@ -94,8 +97,8 @@ export default function KarriereJobs() {
           {/* Jobs widget — permanently open, light panel (the embedded B-ite widget
               renders light-styled job cards, which need a light background to read correctly) */}
           <div className="p-8 md:p-12 bg-white">
-            <p className="text-2xl md:text-[34px] font-black leading-[1.06] tracking-[-0.03em] text-foreground-950 mb-3">Jetzt durchstarten</p>
-            <p className="text-[15px] leading-[1.7] text-foreground-500 mb-10">Alle offenen Positionen auf einen Blick — klick auf eine Stelle für Details.</p>
+            <p className="text-2xl md:text-[34px] font-black leading-[1.06] tracking-[-0.03em] text-foreground-950 mb-3">{tWidgetHeading}</p>
+            <p className="text-[15px] leading-[1.7] text-foreground-500 mb-10">{tWidgetSub}</p>
             {/* Widget container — filled by the B-ite script; React renders no children here */}
             <div ref={widgetRef} className="jobWrapper-block" data-bite-jobs-api-listing={BITE_LISTING_KEY} />
             {widgetState === 'loading' && (

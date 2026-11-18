@@ -63,6 +63,9 @@ export const EN: Record<string, Record<string, string>> = {
     "careers-jobs-initiativ-cta": "Speculative application",
     "careers-jobs-loading": "Loading job openings…",
     "careers-jobs-empty": "No open positions right now – send us a speculative application.",
+    "careers-jobs-location": "Krefeld & across DACH",
+    "careers-jobs-widget-heading": "Get started now",
+    "careers-jobs-widget-sub": "All open positions at a glance — click a role for details."
   },
   "karriere_dna": {
     "dna-mensch-desc": "People who shape brands. Whether it's a smartwatch or a fresh tea brand – promotions live through the people who run them. That's why we rely on product specialists who are passionate about the brand. The result? Transparent and measurable – traceable in black and white at any time.",

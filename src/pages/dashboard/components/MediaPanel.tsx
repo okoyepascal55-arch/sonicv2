@@ -462,18 +462,28 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
   const groupedCategories = useMemo(() => getCategoriesByPageGroup(), [storeVersion]);
   // Leistungen: one chip per page, slots in page order (display only — slots, images and labels unchanged)
   const [leistungenPage, setLeistungenPage] = useState<string>('all');
+  // Search across ALL pages (18.11.2026) — page name shown in front of each result
+  const [mediaSearch, setMediaSearch] = useState('');
   const allGroupCategories = useMemo(() => {
     const list = groupedCategories[activeGroup] || [];
     if (activeGroup !== 'leistungen') return list;
     const order = sortLeistungenSlots(list.map((c) => c.key));
     return order.map((k) => list.find((c) => c.key === k)!).filter(Boolean);
   }, [groupedCategories, activeGroup]);
-  const categories = useMemo(
-    () => (activeGroup !== 'leistungen' || leistungenPage === 'all'
+  const categories = useMemo(() => {
+    const q = mediaSearch.trim().toLowerCase();
+    if (q) {
+      return PAGE_GROUPS.flatMap((g) =>
+        (groupedCategories[g.id] || [])
+          .filter((c) => c.label.toLowerCase().includes(q) || c.key.toLowerCase().includes(q))
+          .map((c) => ({ ...c, label: `${g.label} › ${c.label}` })),
+      );
+    }
+    return activeGroup !== 'leistungen' || leistungenPage === 'all'
       ? allGroupCategories
-      : allGroupCategories.filter((c) => mediaSlotPage(c.key) === leistungenPage)),
-    [allGroupCategories, activeGroup, leistungenPage],
-  );
+      : allGroupCategories.filter((c) => mediaSlotPage(c.key) === leistungenPage);
+  }, [allGroupCategories, activeGroup, leistungenPage, mediaSearch, groupedCategories]);
+  useEffect(() => { setMediaSearch(''); }, [activeGroup]);
 
   const refreshSection = useCallback((key: string) => {
     setSectionImages(getSectionImages(key));
@@ -1051,9 +1061,30 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
           <div className="min-w-0">
             <h2 className="text-sm md:text-lg font-bold text-gray-900 truncate">{group.label}</h2>
             <p className="text-2xs md:text-xs text-gray-500">
-              {categories.length} Abschnitte ·{' '}
-              {categories.reduce((sum, c) => sum + c.imageCount, 0)} Bilder
+              {mediaSearch.trim() ? `${categories.length} Bildbereiche auf allen Seiten gefunden` : <>{categories.length} Abschnitte ·{' '}
+              {categories.reduce((sum, c) => sum + c.imageCount, 0)} Bilder</>}
             </p>
+          </div>
+          <div className="relative ml-auto">
+            <span className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+              <i className="ri-search-line text-gray-400 text-xs"></i>
+            </span>
+            <input
+              type="text"
+              value={mediaSearch}
+              onChange={(e) => setMediaSearch(e.target.value)}
+              placeholder="Alle Seiten durchsuchen…"
+              className="pl-7 pr-7 py-1.5 border border-gray-200 rounded-md text-xs focus:outline-none focus:border-lime-400 transition-colors w-40 md:w-56"
+            />
+            {mediaSearch && (
+              <button
+                onClick={() => setMediaSearch('')}
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 flex items-center justify-center text-gray-400 hover:text-gray-600 cursor-pointer"
+                aria-label="Suche löschen"
+              >
+                <i className="ri-close-line text-xs"></i>
+              </button>
+            )}
           </div>
         </div>
         {activeGroup === 'leistungen' && (

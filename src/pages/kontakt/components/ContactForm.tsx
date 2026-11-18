@@ -63,12 +63,12 @@ export default function ContactForm() {
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
         <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-        <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>Direkte Anfrage</span>
+        <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{ft['eyebrow']}</span>
       </div>
       <h2 className="sonic-h2 text-foreground-950 mb-3">
-        Schreib{' '}
+        {ft['heading']}{' '}
         <span style={{ background: 'oklch(var(--primary-500) / 0.9)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>
-          uns
+          {ft['heading-accent']}
         </span>
       </h2>
       <p className="text-[15px] leading-[1.7] max-w-md mb-12" style={{ color: 'oklch(var(--foreground-500))' }}>
@@ -80,7 +80,7 @@ export default function ContactForm() {
           <div className="w-14 h-14 mx-auto mb-5 flex items-center justify-center" style={{ background: 'oklch(var(--primary-500) / 0.15)', border: '1px solid oklch(var(--primary-500) / 0.3)' }}>
             <i className="ri-check-double-line text-2xl text-primary-500" />
           </div>
-          <h3 className="text-xl font-black text-foreground-950 mb-2">Nachricht erhalten</h3>
+          <h3 className="text-xl font-black text-foreground-950 mb-2">{ft['success-title']}</h3>
           <p className="text-sm" style={{ color: 'oklch(var(--foreground-500))' }}>{ft.success}</p>
         </div>
       ) : (
@@ -208,7 +208,7 @@ export default function ContactForm() {
                 </>
               )}
             </button>
-            <p className="text-xs" style={{ color: 'oklch(var(--foreground-400))' }}>Kein Spam. Keine Weitergabe. Nur echter Kontakt.</p>
+            <p className="text-xs" style={{ color: 'oklch(var(--foreground-400))' }}>{ft['note']}</p>
           </div>
         </form>
       )}

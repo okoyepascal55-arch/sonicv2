@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
+import { useReviewText } from '@/hooks/useReviewText';
 import { INITIATIVE_URL } from '../usePathData';
 
 export default function KarriereHero() {
   const [hovered, setHovered] = useState(false);
+  // Dashboard → Text → Karriere → „Hero — Menschen mit Energie gesucht“
+  const ht = useReviewText('karriere_hero_texts');
   const { images: heroBgImages } = useMediaStore('careers_hero_images');
   const { images: karriereImages } = useMediaStore('/images/Karriere');
 
@@ -53,19 +56,19 @@ export default function KarriereHero() {
           {/* Eyebrow — lime dash + label, matches Leistungen reference */}
           <div className="flex items-center gap-3 mb-5 md:mb-6">
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Karriere bei Sonic</span>
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{ht['badge']}</span>
           </div>
 
           {/* Headline — leist-h1-hub matches Leistungen reference */}
           <h1 className="leist-h1-hub text-white mb-5 md:mb-6">
-            Menschen mit <span className="text-primary-500">Energie</span> gesucht
+            {ht['h1-start']} <span className="text-primary-500">{ht['h1-accent']}</span> {ht['h1-end']}
           </h1>
 
           <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-3">
-            Zeige, was du kannst, und freue dich auf gemeinsame Erfolge. Wichtig ist uns deine Einstellung zum Job — nicht nur das, was du schon erreicht hast.
+            {ht['intro']}
           </p>
           <p className="text-xs md:text-sm text-white/60 leading-relaxed max-w-[480px] mb-6 md:mb-8">
-            Aktuelle Stellen am Sonic-Campus in Krefeld und deutschlandweite Einsätze für unsere Kundenprojekte.
+            {ht['sub']}
           </p>
 
           {/* CTAs */}
@@ -74,7 +77,7 @@ export default function KarriereHero() {
               onClick={scrollToJobs}
               className="inline-flex items-center justify-center gap-2.5 px-6 md:px-8 py-4 md:py-[18px] bg-primary-500 text-foreground-950 text-[12px] font-black uppercase tracking-[0.14em] hover:bg-white transition-colors duration-200 cursor-pointer whitespace-nowrap"
             >
-              Alle Stellen ansehen
+              {ht['btn-jobs']}
               <i className="ri-arrow-right-line text-[15px]" />
             </button>
             <a
@@ -84,7 +87,7 @@ export default function KarriereHero() {
               className="inline-flex items-center justify-center gap-2.5 px-6 md:px-8 py-4 md:py-[18px] text-white text-[12px] font-black uppercase tracking-[0.14em] whitespace-nowrap cursor-pointer"
               style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,0.26)' }}
             >
-              Initiativbewerbung
+              {ht['btn-initiative']}
             </a>
           </div>
 

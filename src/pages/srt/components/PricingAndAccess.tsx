@@ -57,7 +57,7 @@ function SRTPricingForm() {
       <div className="w-12 h-12 bg-primary-500 flex items-center justify-center mx-auto mb-4">
         <i className="ri-check-line text-foreground-950 text-2xl" />
       </div>
-      <p className="text-foreground-950 font-black text-base mb-1">Anfrage erhalten.</p>
+      <p className="text-foreground-950 font-black text-base mb-1">{ct['form-success-title']}</p>
       <p className="text-foreground-950/60 text-sm">{ct['form-success']}</p>
     </div>
   );

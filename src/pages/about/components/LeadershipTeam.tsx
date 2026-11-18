@@ -48,7 +48,7 @@ export default function LeadershipTeam() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-foreground-950/80 via-[#0B0B0C]/5 to-transparent" />
             <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">
-              Das Sonic Team
+              {tv['team-badge']}
             </div>
           </div>
 
@@ -70,7 +70,7 @@ export default function LeadershipTeam() {
             {/* Description — original Vielfalt copy */}
             <div className="pt-5 mt-6">
               <p className="text-white/55 text-[13px] leading-relaxed">
-                Vielfalt zeichnet uns aus: Ex-Europa-CMOs, Field-Force-Projektmanager, Kreative, Telco-Experten, Programmierer, Digitalprofis, Eventprofis, Messebauer und Logistikprofis. Wir verstehen deine Herausforderungen, weil wir sie aus Kunden- und Agenturseite kennen.
+                {tv['team-desc']}
               </p>
             </div>
 

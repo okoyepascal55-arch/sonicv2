@@ -50,6 +50,7 @@ export default function ChallengeSection() {
   // ── Text Store hooks ──
   const tBadge = useText('home_challenge', 'home-challenge-badge', 'Deine Challenge');
   const tHeading = useText('home_challenge', 'home-challenge-heading', 'Drei Wege. Ein Partner.');
+  const tSub = useText('home_challenge', 'home-challenge-sub', 'An welchem Punkt stehst du?');
   const tPath1Title = useText('home_challenge', 'home-challenge-path-1', 'Markteintritt');
   const tPath2Title = useText('home_challenge', 'home-challenge-path-2', 'Absatz steigern');
   const tPath3Title = useText('home_challenge', 'home-challenge-path-3', 'Omnichannel optimieren');
@@ -117,7 +118,7 @@ export default function ChallengeSection() {
               })()}
             </h2>
             <p className="sonic-subline">
-              An welchem Punkt stehst du?
+              {tSub}
             </p>
           </div>
 

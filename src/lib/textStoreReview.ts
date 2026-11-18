@@ -4,6 +4,7 @@
    Components read them via useReviewText(sectionKey).
 ───────────────────────────────────────────── */
 import type { TextEntry, TextSection } from './textStore';
+import { LIVE_TEXT_SECTIONS } from './textStoreLive';
 
 type EntryType = TextEntry['type'];
 const e = (id: string, label: string, type: EntryType, value: string): TextEntry => ({
@@ -44,6 +45,10 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
       e('strip-1', 'Leiste 1', 'caption', 'Seit 2007'),
       e('strip-2', 'Leiste 2', 'caption', 'DACH-weit'),
       e('strip-3', 'Leiste 3', 'caption', 'Messbar in der SRT'),
+      e('heading', 'Überschrift (schwarz)', 'heading', 'Erlebe Sonic'),
+      e('heading-accent', 'Überschrift — Akzent (lime)', 'heading', 'in 2 Minuten.'),
+      e('play-hint', 'Hinweis auf dem Video', 'caption', 'Klicken zum Abspielen'),
+      e('youtube', 'Link unter dem Video', 'link', 'Auf YouTube ansehen'),
     ],
   },
   {
@@ -75,6 +80,10 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
       e('tab5-lead', 'Tab 5 — Leadzeile', 'label', 'All In One: Regisseur, Moderator, Verkäufer.'),
       e('tab5-desc', 'Tab 5 — Text', 'paragraph', 'Beratung, die verkauft: Produktberatung, Sales und Service-Support direkt aus unseren Studios. Für Livestreams, Video-Commerce, digitale Beratung und Content-Produktion.'),
       e('tab5-tagline', 'Tab 5 — Belegzeile', 'caption', 'Ø 5,5 Minuten Gesprächsdauer. Über 4.200 Stunden Beratungszeit.'),
+      e('eyebrow', 'Kicker über der Überschrift', 'badge', 'Unsere Leistungen'),
+      e('heading', 'Überschrift (schwarz)', 'heading', 'Manpower trifft'),
+      e('heading-accent', 'Überschrift — Akzent (lime)', 'heading', 'ROI'),
+      e('more', 'Button in den Tabs', 'cta', 'Mehr dazu'),
     ],
   },
   {
@@ -84,6 +93,10 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
       e('heading', 'Überschrift (weiß)', 'heading', 'Sonic Reporting Tool'),
       e('heading-accent', 'Überschrift — Akzent (lime)', 'heading', '(SRT)'),
       e('sub', 'Unterzeile', 'paragraph', 'Seit 2008 das digitale Herzstück unserer Projekte. Die SRT verbindet Planung, Steuerung und Reporting in einem System – individualisierbar, mehrsprachig und adaptiv. So hast du deine wichtigsten Projektdaten und die Performance jederzeit live im Blick.'),
+      e('tap-hint', 'Hinweis unter dem Datenfluss', 'caption', 'Modul antippen für Details'),
+      e('quiz-kicker', 'Kurzumfrage-Button — kleine Zeile', 'label', '30-Sekunden Kurzumfrage'),
+      e('quiz-btn', 'Kurzumfrage-Button — Text', 'cta', 'Welche Sonic-Lösung passt zu dir?'),
+      e('quiz-note', 'Kurzumfrage — Zeile unter dem Button', 'caption', 'Keine Registrierung · Kein Commitment'),
     ],
   },
   {
@@ -144,6 +157,12 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
       e('team3-value', 'Team-Kennzahl 3 — Wert', 'stat', 'B2B + D2C'),
       e('team3-unit', 'Team-Kennzahl 3 — Einheit', 'label', ''),
       e('team3-label', 'Team-Kennzahl 3 — Label', 'stat-label', 'Kunden- & Agenturseite'),
+      e('heading', 'Referenzen — Überschrift Anfang', 'heading', 'Wer mit Sonic'),
+      e('heading-accent', 'Referenzen — Überschrift Akzent (lime)', 'heading', 'erfolgreich'),
+      e('heading-end', 'Referenzen — Überschrift Ende', 'heading', 'ist'),
+      e('refs-divider', 'Trennzeile über den Referenzen', 'caption', 'Über die Sonic Group — Referenzen'),
+      e('team-badge', 'Team-Foto — Etikett', 'label', 'Das Sonic Team'),
+      e('team-desc', 'Team — Text unter den Kennzahlen', 'paragraph', 'Vielfalt zeichnet uns aus: Ex-Europa-CMOs, Field-Force-Projektmanager, Kreative, Telco-Experten, Programmierer, Digitalprofis, Eventprofis, Messebauer und Logistikprofis. Wir verstehen deine Herausforderungen, weil wir sie aus Kunden- und Agenturseite kennen.'),
     ],
   },
   /* Über uns client grid (Website-Review Teil 4, 11/2026) — fully controlled here:
@@ -238,6 +257,7 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
       e('access-line', 'Zugang — Zeile', 'paragraph', 'Wir zeigen dir in 30 Minuten, wie die SRT für dein Projekt aussieht.'),
       e('form-note', 'Formular — Zeile unter dem Button', 'caption', 'Kostenlos & unverbindlich'),
       e('form-success', 'Formular — Bestätigung', 'paragraph', 'Wir melden uns zeitnah.'),
+      e('form-success-title', 'Formular — Bestätigung Überschrift', 'heading', 'Anfrage erhalten.'),
     ],
   },
   /* ── SRT content review 30.09.2026 (Agenturpräsentation 2026) — texts that used to be hard-coded ── */
@@ -390,8 +410,15 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
     entries: [
       e('sub', 'Zeile unter der Überschrift', 'paragraph', 'Wir melden uns zeitnah.'),
       e('success', 'Bestätigung nach dem Absenden', 'paragraph', 'Wir melden uns zeitnah.'),
+      e('eyebrow', 'Kicker', 'badge', 'Direkte Anfrage'),
+      e('heading', 'Überschrift (schwarz)', 'heading', 'Schreib'),
+      e('heading-accent', 'Überschrift — Akzent (lime)', 'heading', 'uns'),
+      e('success-title', 'Bestätigung — Überschrift', 'heading', 'Nachricht erhalten'),
+      e('note', 'Zeile neben dem Button', 'caption', 'Kein Spam. Keine Weitergabe. Nur echter Kontakt.'),
     ],
   },
+  // Texts that used to be hard-coded (dashboard audit 18.11.2026)
+  ...LIVE_TEXT_SECTIONS,
 ];
 
 export const REVIEW_DEFAULTS: Record<string, Record<string, string>> = Object.fromEntries(

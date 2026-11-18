@@ -39,7 +39,7 @@ export default function ValuesVisual() {
           className={`mb-10 md:mb-12 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           <h2 className="sonic-h2 text-foreground-950 mb-2">
-            Wer mit Sonic <span className="v3-marker">erfolgreich</span> ist
+            {vt['heading']} <span className="v3-marker">{vt['heading-accent']}</span> {vt['heading-end']}
           </h2>
           <p className="text-sm text-foreground-500 max-w-lg leading-relaxed">
             {vt['refs-line']}

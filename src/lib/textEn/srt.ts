@@ -58,6 +58,8 @@ export const EN: Record<string, Record<string, string>> = {
     "srt-industries-heading": "From retail execution to healthcare.",
     "srt-industries-sub": "The SRT is ready for any project where people are deployed in a coordinated, goal-oriented way.",
     "srt-industries-cta": "Find your SRT setup",
+    "srt-industries-heading-accent": "healthcare.",
+    "srt-industries-question": "Still unsure how the SRT fits your use case?"
   },
   "srt_pricing": {
     "srt-pricing-badge": "Access",
@@ -103,6 +105,7 @@ export const EN: Record<string, Record<string, string>> = {
     "srt-collab-step-5-desc": "We bill deployments including bonuses with the staff and book third-party costs — all recorded centrally.",
     "srt-collab-step-6-short": "Track performance continuously",
     "srt-collab-step-6-desc": "Based on all data on sales volume, revenue and costs, you receive up-to-date reports to track performance.",
+    "srt-collab-steps-label": "6 steps · End-to-end"
   },
   "srt_video_showcase": {
     "srt-video-badge": "The SRT in action",
@@ -120,6 +123,7 @@ export const EN: Record<string, Record<string, string>> = {
     "access-line": "In 30 minutes we'll show you what the SRT looks like for your project.",
     "form-note": "Free & no obligation",
     "form-success": "We'll get back to you shortly.",
+    "form-success-title": "Request received."
   },
   "srt_features_cards": {
     "meta": "For clients & teams",

@@ -28,7 +28,7 @@ export default function VideoShowcase() {
             {/* ── Header: headline + subline, centered ── */}
             <div className="sonic-section-header" style={{ marginBottom: '2rem' }}>
               <h2 className="sonic-h2 text-foreground-950">
-                Erlebe Sonic{' '}
+                {vt['heading']}{' '}
                 <span
                   style={{
                     background: 'oklch(var(--primary-500) / 0.9)',
@@ -38,7 +38,7 @@ export default function VideoShowcase() {
                     WebkitBoxDecorationBreak: 'clone',
                   }}
                 >
-                  in 2 Minuten.
+                  {vt['heading-accent']}
                 </span>
               </h2>
               <p className="sonic-subline mt-3">
@@ -118,7 +118,7 @@ export default function VideoShowcase() {
                   {/* Bottom label */}
                   <div className="absolute bottom-5 left-0 right-0 text-center z-10">
                     <span className="text-white/60 text-xs font-semibold uppercase tracking-[0.2em] transition-opacity duration-300 group-hover:opacity-0">
-                      Klicken zum Abspielen
+                      {vt['play-hint']}
                     </span>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ export default function VideoShowcase() {
                 <span className="w-4 h-4 flex items-center justify-center">
                   <i className="ri-youtube-fill text-sm" aria-hidden="true" />
                 </span>
-                Auf YouTube ansehen
+                {vt['youtube']}
               </a>
             </div>
           </div>

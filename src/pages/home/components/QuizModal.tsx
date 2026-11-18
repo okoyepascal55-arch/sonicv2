@@ -70,6 +70,13 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
   const cta = useCtaText();
   // Dashboard → Text → Home → „Kurzumfrage — Ergebnis-CTA“
   const resultCta = useReviewText('home_quiz_result_cta');
+  // Dashboard → Text → Home → „Kurzumfrage — Fragen & Texte“ (questions/answers; logic stays in code)
+  const qt = useReviewText('home_quiz_texts');
+  const steps = quizSteps.map((s, i) => ({
+    ...s,
+    question: qt[`q${i + 1}`] || s.question,
+    options: s.options.map((o, j) => ({ ...o, label: qt[`q${i + 1}-o${j + 1}`] || o.label })),
+  }));
 
   // ── Focus trap ────────────────────────────────────────────────────────────
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -207,8 +214,8 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
               <i className="ri-question-line text-xl text-foreground-950" />
             </div>
             <div>
-              <p className="text-xs font-bold text-primary-500 uppercase tracking-wider">Kurz-Check</p>
-              <p className="text-sm text-foreground-500">Finde deine passende Sonic-Lösung</p>
+              <p className="text-xs font-bold text-primary-500 uppercase tracking-wider">{qt['kicker']}</p>
+              <p className="text-sm text-foreground-500">{qt['title']}</p>
             </div>
           </div>
           {/* Progress */}
@@ -227,9 +234,9 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
         <div className="px-8 pb-8">
           {!showContactForm && !showResult ? (
             <div>
-              <h3 className="text-xl font-black text-foreground-950 mb-6">{quizSteps[currentStep].question}</h3>
+              <h3 className="text-xl font-black text-foreground-950 mb-6">{steps[currentStep].question}</h3>
               <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3">
-                {quizSteps[currentStep].options.map((option, index) => (
+                {steps[currentStep].options.map((option, index) => (
                   <button
                     key={index}
                     onClick={() => handleOptionClick(option.result, currentStep)}
@@ -272,7 +279,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
               {currentStep > 0 && (
                 <div className="text-center mt-5">
                   <button onClick={() => setCurrentStep(currentStep - 1)} className="inline-flex items-center gap-2 text-foreground-400 hover:text-primary-500 font-semibold text-sm transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">
-                    <i className="ri-arrow-left-line" /> Zurück
+                    <i className="ri-arrow-left-line" /> {qt['back']}
                   </button>
                 </div>
               )}
@@ -284,8 +291,8 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                 <div className="w-14 h-14 bg-primary-500/15 border-2 border-primary-500/30 flex items-center justify-center mx-auto mb-4" style={{ borderRadius: 0 }}>
                   <i className="ri-user-line text-2xl text-primary-500" />
                 </div>
-                <h3 className="text-xl font-black text-foreground-950 mb-2 uppercase">Fast geschafft!</h3>
-                <p className="text-foreground-500 text-sm">Gib deine Kontaktdaten ein, um deine persönliche Empfehlung zu sehen.</p>
+                <h3 className="text-xl font-black text-foreground-950 mb-2 uppercase">{qt['contact-title']}</h3>
+                <p className="text-foreground-500 text-sm">{qt['contact-sub']}</p>
               </div>
 
               <div className="space-y-4 mb-6">
@@ -366,9 +373,9 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                 className="w-full flex items-center justify-center gap-2 py-4 bg-foreground-950 text-white font-black text-sm uppercase tracking-widest hover:bg-primary-500 hover:text-white transition-all duration-300 cursor-pointer disabled:opacity-50 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
                 style={{ borderRadius: 0 }}
               >
-                {submitting ? <><i className="ri-loader-4-line animate-spin" /> Wird verarbeitet…</> : <><i className="ri-lightbulb-flash-line" /> Meine Empfehlung ansehen</>}
+                {submitting ? <><i className="ri-loader-4-line animate-spin" /> Wird verarbeitet…</> : <><i className="ri-lightbulb-flash-line" /> {qt['submit']}</>}
               </button>
-              <p className="text-center text-xs text-foreground-400 mt-3">Kein Spam. Wir melden uns nur, wenn es für deine Herausforderung relevant ist.</p>
+              <p className="text-center text-xs text-foreground-400 mt-3">{qt['privacy']}</p>
             </div>
           ) : (
             // Result
@@ -377,7 +384,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                 <i className="ri-lightbulb-flash-line text-3xl text-primary-500" />
               </div>
               <h3 className="text-2xl font-black text-foreground-950 mb-3">
-                Unsere Empfehlung: <span className="text-primary-500">{getRecommendedService().title}</span>
+                {qt['result-label']} <span className="text-primary-500">{getRecommendedService().title}</span>
               </h3>
               <div className="bg-white border border-foreground-200 p-5 mb-6 text-left">
                 <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-2">{resultCta.eyebrow}</p>
@@ -406,7 +413,7 @@ export default function QuizModal({ isOpen, onClose }: QuizModalProps) {
                   className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-foreground-950 font-black text-sm transition-all duration-300 whitespace-nowrap cursor-pointer border-2 border-foreground-200 hover:border-primary-500 uppercase tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
                   style={{ borderRadius: 0 }}
                 >
-                  <i className="ri-refresh-line text-lg" /> Neu starten
+                  <i className="ri-refresh-line text-lg" /> {qt['restart']}
                 </button>
               </div>
               <div className="mt-6 pt-5 border-t border-foreground-100">

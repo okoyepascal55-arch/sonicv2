@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { isArchivedMediaSlot } from './dashboardArchive';
 import { IMAGE_PLACEHOLDER, isLegacyWpUrl } from './imagePlaceholder';
 import { supabase } from '@/lib/supabase';
 
@@ -2249,7 +2250,8 @@ export function getCategoriesList(): CategoryInfo[] {
   if (_cachedCategoriesList) return _cachedCategoriesList;
 
   const store = loadFromStorage();
-  const allKeys = Object.keys(store);
+  // Archived leftovers (dashboardArchive.ts) are hidden from the dashboard — data is kept.
+  const allKeys = Object.keys(store).filter((key) => !isArchivedMediaSlot(key));
   _cachedCategoriesList = allKeys.map((key) => {
     const label = HUMAN_LABELS[key] || key;
     const pageGroupId = getPageGroupForSection(key);
@@ -2271,6 +2273,14 @@ export function getCategoriesByPageGroup(): Record<string, CategoryInfo[]> {
   for (const cat of all) {
     if (!result[cat.pageGroupId]) result[cat.pageGroupId] = [];
     result[cat.pageGroupId].push(cat);
+  }
+  // Within a page: same order as the page itself (PAGE_GROUPS lists the slots top to bottom),
+  // instead of alphabetical. Display only (18.11.2026).
+  for (const group of PAGE_GROUPS) {
+    const list = result[group.id];
+    if (!list) continue;
+    const pos = new Map(group.sections.map((k, i) => [k, i]));
+    list.sort((a, b) => (pos.get(a.key) ?? 9999) - (pos.get(b.key) ?? 9999));
   }
   // Ensure PAGE_GROUPS order
   const ordered: Record<string, CategoryInfo[]> = {};
@@ -2398,6 +2408,7 @@ export function getTotalImageCount(): number {
   const store = loadFromStorage();
   let total = 0;
   for (const key of Object.keys(store)) {
+    if (isArchivedMediaSlot(key)) continue;
     const items = store[key];
     if (items) total += items.length;
   }

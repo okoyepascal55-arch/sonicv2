@@ -86,6 +86,7 @@ export const EN: Record<string, Record<string, string>> = {
     "home-challenge-path-2-desc": "Our promotion and field force teams make your product sell more in retail. Predictable, profitable, measurable live in the SRT.",
     "home-challenge-path-3": "Optimise omnichannel",
     "home-challenge-path-3-desc": "Personal advice, seamless across every channel – at the POS, online and live from our studios. For a consistent brand experience, more sales and fewer returns.",
+    "home-challenge-sub": "Where are you right now?"
   },
   "home_dualcta": {
     "home-dualcta-left": "For brands",
@@ -109,6 +110,10 @@ export const EN: Record<string, Record<string, string>> = {
     "strip-1": "Since 2007",
     "strip-2": "Across DACH",
     "strip-3": "Measurable in the SRT",
+    "heading": "Experience Sonic",
+    "heading-accent": "in 2 minutes.",
+    "play-hint": "Click to play",
+    "youtube": "Watch on YouTube"
   },
   "home_services_texts": {
     "intro": "POS Full Service, events & trade fairs, creation & content, training and live video – one partner, one team, one database.",
@@ -135,10 +140,18 @@ export const EN: Record<string, Record<string, string>> = {
     "tab5-lead": "All in one: director, host, salesperson.",
     "tab5-desc": "Advice that sells: product advice, sales and service support straight from our studios. For livestreams, video commerce, digital consultation and content production.",
     "tab5-tagline": "Avg. call duration 5.5 minutes. Over 4,200 hours of consultation.",
+    "eyebrow": "Our services",
+    "heading": "Manpower meets",
+    "heading-accent": "ROI",
+    "more": "Learn more"
   },
   "home_srt_teaser": {
     "eyebrow": "Reporting & steering",
     "sub": "The digital heart of our projects since 2008. The SRT connects planning, control and reporting in one system – customizable, multilingual and adaptive. So you always have your key project data and performance in view, live.",
+    "tap-hint": "Tap a module for details",
+    "quiz-kicker": "30-second quick survey",
+    "quiz-btn": "Which Sonic solution is right for you?",
+    "quiz-note": "No registration · No commitment"
   },
   "home_drive_cards": {
     "c1-eyebrow": "Data",

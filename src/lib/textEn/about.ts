@@ -100,5 +100,11 @@ export const EN: Record<string, Record<string, string>> = {
     "team2-unit": "study programme",
     "team2-label": "Training partner",
     "team3-label": "Client & agency side",
+    "heading": "Who is",
+    "heading-accent": "successful",
+    "heading-end": "with Sonic",
+    "refs-divider": "About Sonic Group — References",
+    "team-badge": "The Sonic team",
+    "team-desc": "Diversity sets us apart: former European CMOs, field force project managers, creatives, telco experts, programmers, digital pros, event pros, trade fair builders and logistics pros. We understand your challenges because we know them from both the client and the agency side."
   },
 };

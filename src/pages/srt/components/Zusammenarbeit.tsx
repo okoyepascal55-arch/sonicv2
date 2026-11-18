@@ -13,6 +13,7 @@ const STEPS = [
 export default function Zusammenarbeit() {
   const tBadge   = useText('srt_zusammenarbeit', 'srt-collab-badge',   'Zusammenarbeit');
   const tHeading = useText('srt_zusammenarbeit', 'srt-collab-heading', 'So funktioniert die SRT');
+  const tSteps = useText('srt_zusammenarbeit', 'srt-collab-steps-label', '6 Schritte · End-to-End');
   // Dashboard → Text → SRT → „Zusammenarbeit — 6-Step Process“
   const ts = useTextSection('srt_zusammenarbeit');
   const steps = STEPS.map((st, i) => ({
@@ -28,7 +29,7 @@ export default function Zusammenarbeit() {
     <section id="zusammenarbeit" className="py-16 md:py-24 px-4 md:px-6 relative bg-white">
       <div className="sonic-container">
         <SrtHeader eyebrow={tBadge} title={tHeading}
-          side={<p className="text-[11px] uppercase tracking-[0.16em] md:text-right" style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.4)' }}>6 Schritte · End-to-End</p>} />
+          side={<p className="text-[11px] uppercase tracking-[0.16em] md:text-right" style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.4)' }}>{tSteps}</p>} />
 
         {/* Minimal pipeline (22.10.2026): one thin line, six numbered dots, text only — the line draws once */}
         <ol ref={flowRef} className="relative grid grid-cols-1 lg:grid-cols-6 gap-10 lg:gap-8">

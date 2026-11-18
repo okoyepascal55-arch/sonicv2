@@ -35,6 +35,7 @@ interface Mandate {
 ───────────────────────────────────────── */
 function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; brand: string }) {
   const [activeIdx, setActiveIdx] = useState(0);
+  const cl = useReviewText('case_studies_labels');
   const [fade, setFade] = useState(true);
 
   const handleChange = (idx: number) => {
@@ -53,8 +54,8 @@ function LeistungenImEinsatz({ modules, brand }: { modules: ServiceModule[]; bra
       <div className="flex items-center gap-3 mb-5">
         <div className="w-1 h-8 bg-primary-500"></div>
         <div>
-          <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Leistungen im Einsatz</p>
-          <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">{brand} — Was wir eingesetzt haben</h3>
+          <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">{cl['services-kicker']}</p>
+          <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">{brand} — {cl['services-title']}</h3>
         </div>
       </div>
 
@@ -381,6 +382,7 @@ function GalleryThumb({
 }
 
 export default function CaseStudiesPage() {
+  const cl = useReviewText('case_studies_labels');
   useSEO({
     title: 'Fallbeispiele | Sonic Group — Promotion, POS und Live-Video im Handel',
     description: 'Wie Sonic Marken im Handel erfolgreich macht: Fallbeispiele mit Garmin, Groupe SEB, Avoury und TV & Sound – Promotion, POS-Service, Live-Video-Beratung, Roadshows und Trainings.',
@@ -822,10 +824,10 @@ export default function CaseStudiesPage() {
         <div className="relative z-10 sonic-container pb-6 md:pb-10">
           <div className="flex items-center gap-3 mb-5 md:mb-6">
             <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>Fallbeispiele</span>
+            <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.81 0.19 115)' }}>{cl['badge']}</span>
           </div>
           <h1 className="leist-h1-hub text-white mb-4 md:mb-5">
-            ERFOLGS<span className="text-primary-500">GESCHICHTEN</span>
+            {cl['h1']}<span className="text-primary-500">{cl['h1-accent']}</span>
           </h1>
 
         </div>
@@ -837,7 +839,7 @@ export default function CaseStudiesPage() {
         {/* Intro — single-column paragraph only (the wood card below already carries the stats) */}
         <div className="sonic-container py-6 md:py-8 border-b border-foreground-100">
           <p className="text-foreground-600 w-full" style={{ fontSize: '19px', lineHeight: '1.7' }}>
-            Gemeinsam mit unseren Kunden erzielen wir messbare Erfolge. Unsere datengetriebene Arbeitsweise ermöglicht laufende Optimierungen — die Ergebnisse wachsen mit jeder weiteren Zusammenarbeit.
+            {cl['intro']}
           </p>
         </div>
 
@@ -1024,7 +1026,7 @@ export default function CaseStudiesPage() {
                 <div>
                   <p className="text-primary-500 text-[10px] font-black uppercase tracking-[0.3em] mb-2">{expanded.metric} {expanded.metricLabel}</p>
                   <h2 className="leist-h2 text-white">
-                    {expanded.brand} <span className="text-primary-500">Fallstudie</span>
+                    {expanded.brand} <span className="text-primary-500">{cl['case-accent']}</span>
                   </h2>
                   <p className="text-white/60 text-base font-bold mt-2">{expanded.headline} — {expanded.subline}</p>
                 </div>
@@ -1053,7 +1055,7 @@ export default function CaseStudiesPage() {
             <div className="mb-10">
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-1 h-8 bg-primary-500"></div>
-                <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">Weitere Erfolgsgeschichten</h3>
+                <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">{cl['more-heading']}</h3>
               </div>
               <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
                 {expanded.relatedStories.map((relSlug) => {
@@ -1118,7 +1120,7 @@ export default function CaseStudiesPage() {
                 className="inline-flex items-center justify-center sm:justify-start gap-2 text-foreground-400 hover:text-foreground-950 transition-colors text-xs font-bold uppercase tracking-wide cursor-pointer"
               >
                 <i className="ri-arrow-up-line" />
-                Zurück zur Übersicht
+                {cl['back']}
               </button>
               <button
                 onClick={() => {
@@ -1130,7 +1132,7 @@ export default function CaseStudiesPage() {
                 }}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground-950 text-white font-black uppercase tracking-wider hover:bg-primary-500 hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 active:scale-95"
               >
-                Nächste Story
+                {cl['next']}
                 <i className="ri-arrow-right-line" />
               </button>
             </div>

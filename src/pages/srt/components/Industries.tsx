@@ -16,6 +16,13 @@ export default function Industries() {
   const tHeading = useText('srt_industries', 'srt-industries-heading', 'Von Retail Execution bis Gesundheit & Pharma.');
   const tSub = useText('srt_industries', 'srt-industries-sub', 'Die SRT ist bereit für jedes Projekt, bei dem Menschen zielorientiert und koordiniert eingesetzt werden.');
   const tCta = useText('srt_industries', 'srt-industries-cta', 'Deine SRT-Konfiguration finden');
+  // The heading now comes from the dashboard (it was hard-coded before). The accent part is
+  // marked lime when the heading ends with it.
+  const tHeadingAccent = useText('srt_industries', 'srt-industries-heading-accent', 'Gesundheit & Pharma.');
+  const tQuestion = useText('srt_industries', 'srt-industries-question', 'Noch unsicher, wie die SRT zu deinem Use Case passt?');
+  const accent = tHeadingAccent.trim();
+  const hasAccent = !!accent && tHeading.trim().endsWith(accent);
+  const headingStart = hasAccent ? tHeading.trim().slice(0, -accent.length).trimEnd() : tHeading;
   // Dashboard → Text → SRT → „SRT — Branchen & Use Cases: Karten“
   const it = useReviewText('srt_industries_items');
   const useCases = USE_CASES.map((uc, i) => ({
@@ -35,7 +42,7 @@ export default function Industries() {
         <div className="mb-12 md:mb-16">
           <div className="flex items-center gap-3 mb-5"><span className="w-7 h-0.5 bg-primary-500" /><span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{tBadge}</span></div>
           <div className="grid md:grid-cols-2 gap-6 items-end">
-            <h2 className="sonic-h2 text-foreground-950">Von Retail Execution bis <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>Gesundheit & Pharma.</span></h2>
+            <h2 className="sonic-h2 text-foreground-950">{headingStart}{hasAccent && <> <span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{accent}</span></>}</h2>
             <p className="text-[15px] text-foreground-950/60 leading-relaxed md:text-right md:max-w-sm md:ml-auto">{tSub}</p>
           </div>
         </div>
@@ -60,7 +67,7 @@ export default function Industries() {
           ))}
         </div>
         <div className="text-center mt-12">
-          <p className="text-[14px] mb-4" style={{ color: MUTED }}>Noch unsicher, wie die SRT zu deinem Use Case passt?</p>
+          <p className="text-[14px] mb-4" style={{ color: MUTED }}>{tQuestion}</p>
           <button onClick={scrollToAccess} className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-foreground-950 text-white text-xs font-black uppercase tracking-widest hover:bg-primary-500 hover:text-foreground-950 transition-all cursor-pointer">
             <i className="ri-compass-3-line" />{tCta}<i className="ri-arrow-right-line" />
           </button>

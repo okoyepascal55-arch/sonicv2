@@ -10,6 +10,7 @@ const TICKER_ICONS = ['ri-briefcase-line', 'ri-map-pin-line', 'ri-store-2-line',
 export default function OriginStory({ focusImages }: { focusImages?: MediaItem[] }) {
   // Dashboard → Text → Über uns → „Über uns — Kennzahlen-Ticker“
   const at = useReviewText('about_ticker');
+  const avt = useReviewText('about_values_texts');
   const tickerStats = TICKER_ICONS.map((icon, i) => ({ icon, value: at[`t${i + 1}-value`], label: at[`t${i + 1}-label`] }));
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -167,7 +168,7 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
       <div className="max-w-7xl mx-auto px-4 md:px-6 pt-10 md:pt-12 pb-5 md:pb-6">
         <div className="flex items-center gap-4">
           <div className="h-px flex-1 bg-foreground-200/60" />
-          <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-foreground-300 whitespace-nowrap max-[360px]:whitespace-normal max-[360px]:min-w-0 max-[360px]:text-center">Über die Sonic Group — Referenzen</span>
+          <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-foreground-300 whitespace-nowrap max-[360px]:whitespace-normal max-[360px]:min-w-0 max-[360px]:text-center">{avt['refs-divider']}</span>
           <div className="h-px flex-1 bg-foreground-200/60" />
         </div>
       </div>
