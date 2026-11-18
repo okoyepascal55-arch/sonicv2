@@ -5,8 +5,8 @@
  * Figures follow the Sonic Agenturpräsentation 2026.
  */
 
-export type ModuleLevel = 'kern' | 'baustein' | 'optional';
-export interface SolutionModule { name: string; level: ModuleLevel }
+/** „Sonic Schwerpunkte“: bar = length in % (100 = voll, 67 = ⅔, 50 = ½, 33 = ⅓) — sorted longest first */
+export interface SolutionModule { name: string; bar: number }
 
 export const SOLUTIONS = {
   markteintritt: {
@@ -60,13 +60,13 @@ export const SOLUTIONS = {
     finalCta: 'In 30 Minuten klären wir, wie dein Launch aussehen kann.',
     proof: ['NEUER TV-HERSTELLER IM DEUTSCHEN MARKT', '6 Wochen bis zum Vollbetrieb', '+75 % Umsatz im ersten Jahr'] as string[],
     modules: [
-      { name: 'POS Full Service', level: 'kern' },
-      { name: 'Schulungen', level: 'kern' },
-      { name: 'Events & Messen', level: 'kern' },
-      { name: 'SRT', level: 'kern' },
-      { name: 'Kreation & Content', level: 'baustein' },
-      { name: 'Live Video', level: 'baustein' },
-      { name: 'Warehouse & Logistik', level: 'optional' },
+      { name: 'SRT', bar: 100 },
+      { name: 'POS Full Service', bar: 100 },
+      { name: 'Schulungen', bar: 100 },
+      { name: 'Live Video', bar: 100 },
+      { name: 'Kreation & Content', bar: 67 },
+      { name: 'Warehouse & Logistik', bar: 50 },
+      { name: 'Events & Messen', bar: 33 },
     ] as SolutionModule[],
     link: '/losungen?open=markteintritt',
   },
@@ -122,13 +122,11 @@ export const SOLUTIONS = {
     finalCta: 'In 30 Minuten klären wir, wo dein Absatz wachsen kann.',
     proof: ['Wearables-Hersteller: Umsatz pro Einsatztag Jahr für Jahr gesteigert – +20 %, +45 %, +23 %, +21 % seit 2021.', 'Hausgeräte-Hersteller: Umsatz pro Einsatztag seit 2019 um rund 150 % gesteigert.'] as string[],
     modules: [
-      { name: 'POS Full Service', level: 'kern' },
-      { name: 'SRT', level: 'kern' },
-      { name: 'Sell-in & Merchandising', level: 'kern' },
-      { name: 'Schulungen', level: 'baustein' },
-      { name: 'Live Video', level: 'optional' },
-      { name: 'Events & Messen', level: 'optional' },
-      { name: 'Warehouse & Logistik', level: 'optional' },
+      { name: 'SRT', bar: 100 },
+      { name: 'POS Full Service', bar: 100 },
+      { name: 'Merchandising', bar: 100 },
+      { name: 'Schulungen', bar: 67 },
+      { name: 'Live Video', bar: 33 },
     ] as SolutionModule[],
     link: '/losungen?open=absatz',
   },
@@ -183,12 +181,12 @@ export const SOLUTIONS = {
     finalCta: 'In 30 Minuten klären wir, wie Beratung in allen Kanälen funktioniert.',
     proof: [] as string[],
     modules: [
-      { name: 'Live Video', level: 'kern' },
-      { name: 'Shop, Display & QR-Code', level: 'kern' },
-      { name: 'SRT', level: 'kern' },
-      { name: 'Kreation & Content', level: 'baustein' },
-      { name: 'POS Full Service', level: 'baustein' },
-      { name: 'Schulungen', level: 'optional' },
+      { name: 'SRT', bar: 100 },
+      { name: 'Online Services', bar: 100 },
+      { name: 'Live Video', bar: 100 },
+      { name: 'Schulungen', bar: 100 },
+      { name: 'QR-Code', bar: 67 },
+      { name: 'Kreation & Content', bar: 33 },
     ] as SolutionModule[],
     link: '/leistungen/live-video',
   },
@@ -209,11 +207,8 @@ export const LOSUNGEN_PAGE_TEXT = {
   introBadge: 'Lösungen für den DACH-Markt',
   introText: 'Ganz gleich, ob du neu im Markt bist, deinen Absatz steigern willst oder Beratung im Laden und online verbinden möchtest: Wir haben die Menschen, die Daten und die Erfahrung.',
   cardChip: 'Sonic Group · Drei Wege, ein Partner',
-  modulesHeading: 'Module dieser Lösung',
+  modulesHeading: 'Sonic Schwerpunkte',
   modulesPill: 'Modular kombinierbar',
-  modulesLegendKern: 'Kern',
-  modulesLegendBaustein: 'Baustein',
-  modulesLegendOptional: 'Optional',
   alwaysBadge: 'Was immer gilt',
   alwaysHeading: 'Ganz gleich, wo du stehst',
   alwaysSub: 'Du bekommst immer',

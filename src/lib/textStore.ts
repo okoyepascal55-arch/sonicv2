@@ -1386,6 +1386,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
 
 /* One-time in-memory normalization: replaces legacy English default copy with German. */
 const LEGACY_TEXT_FIXES = [
+  // Lösungen: „Module dieser Lösung“ → „Sonic Schwerpunkte“ (18.11.2026)
+  { sectionKey: 'losungen_page', entryId: 'lp-modulesHeading', from: 'Module dieser Lösung', to: 'Sonic Schwerpunkte' },
   // ── Kundenstimmen aus „Kunden_Aussagen.pptx“ (18.11.2026): replace older shortened/reworded quotes ──
   { sectionKey: 'common_client_testimonials', entryId: 'testimonial-garmin-quote', from: 'Wir empfehlen Sonic uneingeschränkt weiter."', to: '„Seit 2021 verbindet GARMIN und SONIC eine erfolgreiche Partnerschaft im Bereich Verkaufsunterstützung am POS. Im Jahr 2024 entwickelte und realisierte SONIC ein innovatives, interaktives POS-Möbel- und Servicekonzept für GARMIN. Mit hoher Qualität, Professionalität und einem ausgeprägten Markenverständnis überzeugt SONIC auf ganzer Linie. Besonders schätzen wir die partnerschaftliche Zusammenarbeit auf Augenhöhe – stets lösungsorientiert und engagiert. Wir empfehlen SONIC uneingeschränkt weiter und freuen uns auf die weitere gemeinsame Erfolgsgeschichte.“', matchType: 'contains' as const },
   { sectionKey: 'common_client_testimonials', entryId: 'testimonial-seb-quote', from: 'was ich benötige. Die SRT ist ein nützliches Tool', to: '„Hier finde ich, ohne großes Excel Kung-Fu, das, was ich für die Vorbereitung von Meetings benötige, das Ganze mit wenigen Klicks und mit Exportfunktion. Die SRT ist ein nützliches Tool und erleichtert unsere tägliche Arbeit.“', matchType: 'contains' as const },

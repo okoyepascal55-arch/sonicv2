@@ -18,7 +18,13 @@ export function useSolution(key: SolutionKey): Solution {
     steps: s.steps.map((st, i) => ({ ...st, title: pick(t, `step-${i + 1}-title`, st.title), desc: pick(t, `step-${i + 1}-desc`, st.desc) })),
     stats: s.stats.map((st, i) => ({ value: pick(t, `stat-${i + 1}-value`, st.value), label: pick(t, `stat-${i + 1}-label`, st.label) })),
     proof: s.proof.map((p, i) => pick(t, `proof-${i + 1}`, p)),
-    modules: s.modules.map((m, i) => ({ ...m, name: pick(t, `module-${i + 1}`, m.name) })),
+    modules: s.modules
+      .map((m, i) => {
+        const raw = parseFloat((t[`schwerpunkt-${i + 1}-bar`] ?? '').replace(',', '.').replace('%', ''));
+        return { name: pick(t, `schwerpunkt-${i + 1}`, m.name), bar: Number.isFinite(raw) ? Math.min(100, Math.max(0, raw)) : m.bar };
+      })
+      .filter((m) => m.name.trim() && m.bar > 0)
+      .sort((a, b) => b.bar - a.bar),
     ctaHeadline: pick(t, 'ctaHeadline', s.ctaHeadline),
     finalCta: pick(t, 'finalCta', s.finalCta),
   } as Solution;

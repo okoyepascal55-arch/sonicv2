@@ -601,8 +601,6 @@ function WoodCard({
   const pages = useSitePages();
   const heroStat = s.stats[0];
   const factStats = s.stats.slice(1, 4);
-  const LEVEL_WIDTH: Record<string, string> = { kern: '100%', baustein: '64%', optional: '32%' };
-  const LEVEL_LABEL: Record<string, string> = { kern: pt.modulesLegendKern, baustein: pt.modulesLegendBaustein, optional: pt.modulesLegendOptional };
 
   return (
     <div className="w-full relative overflow-hidden" style={{ borderRadius: 0, border: '1px solid oklch(0.885 0.004 110)' }}>
@@ -673,11 +671,8 @@ function WoodCard({
                   ) : (
                     <span className="text-white/85 text-xs md:text-sm font-bold leading-tight">{m.name}</span>
                   )}
-                  <span className="flex items-center gap-2 min-w-0">
-                    <span className="relative flex-1 h-2 bg-white/10" aria-hidden="true">
-                      <span className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary-500/60 to-primary-500" style={{ width: LEVEL_WIDTH[m.level] }} />
-                    </span>
-                    <span className={`text-[10px] font-black uppercase tracking-wide w-16 text-right ${m.level === 'kern' ? 'text-primary-500' : 'text-white/45'}`}>{LEVEL_LABEL[m.level]}</span>
+                  <span className="relative block h-2 bg-white/10 min-w-0" aria-hidden="true">
+                    <span className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary-500/60 to-primary-500" style={{ width: `${m.bar}%` }} />
                   </span>
                 </li>
               ))}
@@ -888,8 +883,8 @@ export default function LosungenPage() {
 
             <h1 className="leist-h1-hub text-white mb-5 md:mb-6">
               {pt.heroH1Line1}<br />
-              <span className="text-primary-500">{pt.heroH1Line2}</span><br />
-              <span className="md:whitespace-nowrap">{pt.heroH1Line3}</span>
+              {pt.heroH1Line2}<br />
+              <span className="md:whitespace-nowrap text-primary-500">{pt.heroH1Line3}</span>
             </h1>
 
             <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-[480px] mb-3">
@@ -1372,7 +1367,7 @@ export default function LosungenPage() {
               <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>FAQ</span>
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             </div>
-            <h2 className="sonic-h2 text-foreground-950">Häufig gestellte <span className="v3-marker">Fragen</span></h2>
+            <h2 className="sonic-h2 text-foreground-950"><span className="v3-marker">Häufig gestellte</span> Fragen</h2>
             <p className="text-foreground-500 text-base max-w-xl mx-auto leading-relaxed">Alles, was du über unsere Lösungen, unsere Arbeitsweise und den Start einer Zusammenarbeit wissen musst.</p>
           </div>
           <div className="space-y-4">
