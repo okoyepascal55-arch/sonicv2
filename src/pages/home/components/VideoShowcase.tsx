@@ -2,15 +2,34 @@ import { useReviewText } from '@/hooks/useReviewText';
 import { useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
+import { useLanguage } from '@/lib/language';
+
+const DEFAULT_VIDEO = 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&loop=1&playlist=2H1rFHQsG4g&rel=0&modestbranding=1';
+
+/** YouTube watch link for any embed/watch/short URL. */
+function watchUrl(url: string): string {
+  const m = url.match(/(?:embed\/|watch\?v=|youtu\.be\/|shorts\/)([\w-]{11})/);
+  return m ? `https://www.youtube.com/watch?v=${m[1]}` : url;
+}
+
+/** Any YouTube link (watch, youtu.be, shorts) → playable embed link; embed links stay as they are. */
+function embedUrl(url: string): string {
+  if (url.includes('/embed/')) return url;
+  const m = url.match(/(?:watch\?v=|youtu\.be\/|shorts\/)([\w-]{11})/);
+  return m ? `https://www.youtube.com/embed/${m[1]}?autoplay=1&mute=1&loop=1&playlist=${m[1]}&rel=0&modestbranding=1` : url;
+}
 
 export default function VideoShowcase() {
   // Dashboard → Text → Home → „VideoShowcase — Texte“
   const vt = useReviewText('home_video_texts');
   const [playing, setPlaying] = useState(false);
   const { images: videoMedia } = useMediaStore('home_video');
+  // Dashboard → Medien → Home → „Hero Video — Englisch (EN-Seite)“ — empty slots fall back to German
+  const { images: videoMediaEn } = useMediaStore('home_video_en');
+  const isEn = useLanguage() === 'en';
 
-  const coverImage = videoMedia[0]?.url || IMAGE_PLACEHOLDER;
-  const youtubeUrl = videoMedia[1]?.url || 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&loop=1&playlist=2H1rFHQsG4g&rel=0&modestbranding=1';
+  const coverImage = (isEn && videoMediaEn[0]?.url) || videoMedia[0]?.url || IMAGE_PLACEHOLDER;
+  const youtubeUrl = embedUrl((isEn && videoMediaEn[1]?.url) || videoMedia[1]?.url || DEFAULT_VIDEO);
 
   return (
     <section className="sonic-section-md px-4 md:px-6 bg-white">
@@ -150,7 +169,7 @@ export default function VideoShowcase() {
               </span>
               <span className="w-1 h-1 bg-foreground-300" style={{ borderRadius: '50%' }} />
               <a
-                href="https://www.youtube.com/watch?v=2H1rFHQsG4g"
+                href={watchUrl(youtubeUrl)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs font-bold text-primary-600 hover:text-primary-700 transition-colors duration-200 flex items-center gap-1.5"

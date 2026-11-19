@@ -36,6 +36,7 @@ export const SLOT_POSITIONS: Record<string, Notes> = {
   home_hero_cta_icons: ['Hero — Icon im Button der schwarzen Agentur-Karte', 'Hero — Icon im Button der weißen Job-Karte'],
   home_hero_wood_textures: ['Hero — Holz im Button der Agentur-Karte („Lösungen entdecken“)', 'Hero — Holz im Button der Job-Karte („Komm zu Sonic“)', 'Hero — Holz-Trennleiste zwischen den beiden Karten'],
   home_video: ['Video-Block — Vorschaubild (vor dem Abspielen)', 'Video-Block — das Video selbst (YouTube-Link)'],
+  home_video_en: ['Video-Block EN — Vorschaubild (leer = deutsches)', 'Video-Block EN — englisches Video (YouTube-Link, leer = deutsches)'],
   home_challenge_wood_icons: ['Deine Challenge — Karte 1 „Markteintritt“', 'Deine Challenge — Karte 2 „Absatz steigern“', 'Deine Challenge — Karte 3 „Omnichannel“'],
   home_truststrip_logos: nth('Logo in der Kundenlogo-Leiste (von links, Zeile für Zeile)'),
   home_livemetrics_wood_bg: ['Holz des Kennzahlen-Laufbands (Home, Leistungen, Karriere, SRT) — wird gekachelt, nicht gestreckt'],

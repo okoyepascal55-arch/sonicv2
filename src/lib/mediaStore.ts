@@ -72,6 +72,7 @@ export const PAGE_GROUPS: PageGroup[] = [
       'home_truststrip_logos',
       // ── VideoShowcase ──
       'home_video',
+      'home_video_en',
       'home_video_strip_wood_icons',
       // ── ChallengeSection ──
       'home_challenge_wood_icons',
@@ -1321,6 +1322,11 @@ export const VIRTUAL_MEDIA: MediaSections = {
     { url: '', caption: 'Video Cover Image', wide: true },
     { url: 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&loop=1&playlist=2H1rFHQsG4g&rel=0&modestbranding=1', caption: 'YouTube Embed URL (full URL with params)' },
   ],
+  /* English homepage video (19.11.2026) — empty = German video/cover is used */
+  home_video_en: [
+    { url: '', caption: 'Video Cover Image (EN) — leer = deutsches Vorschaubild', wide: true },
+    { url: '', caption: 'YouTube-Link (EN) — leer = deutsches Video' },
+  ],
 };
 
 /* ─────────────────────────────────────────────
@@ -1477,6 +1483,7 @@ const HUMAN_LABELS: Record<string, string> = {
   'leistungen_video_youtube': 'Live Video — YouTube-Video (Link unter „URL einfügen“ eintragen)',
   'leistungen_video_format_photos': 'Video — Format Photos',
   'home_video': 'Hero Video — Embed & Cover',
+  'home_video_en': 'Hero Video — Englisch (EN-Seite)',
   'film_page_video': 'Film-Seite — Video & Cover (leer = Home-Video)',
   'home_services_wood_icons': 'Services Grid — Wood Icons',
   'home_sonicdna_wood_icons': 'SonicDNA — Card Wood Icons',
@@ -1683,6 +1690,7 @@ const DESIGN_RECOMMENDED: Record<string, number> = {
   /* ── COMMON: Fixed Design Slots ── */
   'common_clientproof_logos': 6,  // 6 brand logos for ClientProof
   'home_video': 2,               // Cover image + YouTube URL
+  'home_video_en': 2,            // EN cover image + EN YouTube URL
   'film_page_video': 2,          // Film-Seite: Cover image + YouTube URL
   'home_services_wood_icons': 5,
   'home_sonicdna_wood_icons': 4,
@@ -1739,6 +1747,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
   'home_showcase_service_images': { aspectRatio: '3:2', dimensions: '1200×800', orientation: 'landscape', tip: 'Wide landscape — brand activation, retail scenes, people in action' },
   'home_sonicdna_background':  { aspectRatio: '2.4:1', dimensions: '1440×600', orientation: 'landscape', tip: 'Ultrawide office interior — bright, modern, natural light' },
   'home_video':                 { aspectRatio: '16:9', dimensions: '1600×900', orientation: 'landscape', tip: 'Standard 16:9 video cover — cinematic retail scene' },
+  'home_video_en':              { aspectRatio: '16:9', dimensions: '1600×900', orientation: 'landscape', tip: 'English video — cover 16:9 + YouTube link; empty = German video' },
   'film_page_video':            { aspectRatio: '16:9', dimensions: '1600×900', orientation: 'landscape', tip: 'Cover für die versteckte Film-Seite (/film) — leer lassen, um das Home-Cover zu nutzen' },
   'home_attitude_bg':           { aspectRatio: '~2:1', dimensions: '~1600×800', orientation: 'landscape', tip: 'Wide welcome background — warm, inviting atmosphere' },
   'home_dualcta_backgrounds':   { aspectRatio: '~9:7', dimensions: '900×700', orientation: 'landscape', tip: 'Slightly wide — business meeting & team scenes' },
