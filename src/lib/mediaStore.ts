@@ -2385,13 +2385,18 @@ export function resetSection(sectionKey: string): void {
   saveToStorage(store);
 }
 
-export function updateSectionImage(sectionKey: string, oldUrl: string, updates: { url?: string; caption?: string; wide?: boolean }): void {
+/**
+ * index (optional, 19.11.2026): the exact slot clicked in the dashboard. Without it, every slot
+ * with the same URL was changed — two empty slots ('' === '') got overwritten together.
+ */
+export function updateSectionImage(sectionKey: string, oldUrl: string, updates: { url?: string; caption?: string; wide?: boolean }, index?: number): void {
   invalidateCategoryCache();
   const store = loadFromStorage();
   if (!store[sectionKey]) return;
+  const exactSlot = index !== undefined && store[sectionKey][index]?.url === oldUrl;
 
-  store[sectionKey] = store[sectionKey].map((item) => {
-    if (item.url === oldUrl) {
+  store[sectionKey] = store[sectionKey].map((item, i) => {
+    if (exactSlot ? i === index : item.url === oldUrl) {
       return {
         ...item,
         ...(updates.url !== undefined && { url: updates.url }),

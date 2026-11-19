@@ -51,9 +51,9 @@ interface ImageCardProps {
   idx: number;
   selected: boolean;
   onToggleSelect: (url: string) => void;
-  onEdit: (item: MediaItem) => void;
+  onEdit: (item: MediaItem, idx?: number) => void;
   onDelete: (url: string) => void;
-  onReplace: (url: string) => void;
+  onReplace: (url: string, idx?: number) => void;
   onDragStart: (idx: number) => void;
   onDragOver: (e: React.DragEvent, idx: number) => void;
   onDrop: (idx: number) => void;
@@ -118,14 +118,14 @@ const ImageCard = memo(function ImageCard({
               <i className="ri-draggable text-2xs md:text-xs"></i>
             </div>
             <button
-              onClick={() => onEdit(item)}
+              onClick={() => onEdit(item, idx)}
               className="w-6 h-6 md:w-7 md:h-7 flex items-center justify-center bg-gray-900/80 text-white rounded-md cursor-pointer hover:bg-gray-900"
               title="Bild bearbeiten"
             >
               <i className="ri-pencil-line text-2xs md:text-xs"></i>
             </button>
             <button
-              onClick={() => onReplace(item.url)}
+              onClick={() => onReplace(item.url, idx)}
               className="w-6 h-6 md:w-7 md:h-7 flex items-center justify-center bg-gray-900/80 text-white rounded-md cursor-pointer hover:bg-lime-500 hover:text-gray-900"
               title="Bild ersetzen"
             >
@@ -207,14 +207,14 @@ const ImageCard = memo(function ImageCard({
             <i className="ri-draggable text-2xs md:text-xs"></i>
           </div>
           <button
-            onClick={() => onEdit(item)}
+            onClick={() => onEdit(item, idx)}
             className="w-6 h-6 md:w-7 md:h-7 flex items-center justify-center bg-gray-900/80 text-white rounded-md cursor-pointer hover:bg-gray-900"
             title="Bild bearbeiten"
           >
             <i className="ri-pencil-line text-2xs md:text-xs"></i>
           </button>
           <button
-            onClick={() => onReplace(item.url)}
+            onClick={() => onReplace(item.url, idx)}
             className="w-6 h-6 md:w-7 md:h-7 flex items-center justify-center bg-gray-900/80 text-white rounded-md cursor-pointer hover:bg-lime-500 hover:text-gray-900"
             title="Bild ersetzen (neue Datei hochladen)"
           >
@@ -267,9 +267,9 @@ interface SectionRowProps {
   onOpenAddModal: (mode: 'url' | 'upload') => void;
   onBulkUpload: () => void;
   onResetSection: () => void;
-  onEdit: (item: MediaItem) => void;
+  onEdit: (item: MediaItem, idx?: number) => void;
   onDelete: (url: string) => void;
-  onReplace: (url: string) => void;
+  onReplace: (url: string, idx?: number) => void;
   onToggleSelect: (url: string) => void;
   onSelectAll: () => void;
   onDeselectAll: () => void;
@@ -425,7 +425,7 @@ const SectionRow = memo(function SectionRow({
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-3">
               {sectionImages.map((item, idx) => (
                 <ImageCard
-                  key={item.url}
+                  key={`${item.url}#${idx}`}
                   item={item}
                   idx={idx}
                   selected={selectedUrls.has(item.url)}
@@ -489,6 +489,9 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
 
   // ── Replace state ──
   const [replaceTargetUrl, setReplaceTargetUrl] = useState<string | null>(null);
+  // Exact slot position for replace/edit (19.11.2026) — slots with the same URL stay independent
+  const replaceTargetIdx = useRef<number | undefined>(undefined);
+  const editTargetIdx = useRef<number | undefined>(undefined);
   const [replacing, setReplacing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const replaceFileInputRef = useRef<HTMLInputElement>(null);
@@ -627,7 +630,8 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
   }, []);
 
   /* ── Replace handler ── */
-  const handleReplaceClick = useCallback((url: string) => {
+  const handleReplaceClick = useCallback((url: string, idx?: number) => {
+    replaceTargetIdx.current = idx;
     setReplaceTargetUrl(url);
     replaceFileInputRef.current?.click();
   }, []);
@@ -679,7 +683,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
 
       const storageUrl = `${STORAGE_PREFIX}${path}`;
 
-      updateSectionImage(expandedSection, replaceTargetUrl, { url: storageUrl });
+      updateSectionImage(expandedSection, replaceTargetUrl, { url: storageUrl }, replaceTargetIdx.current);
       refreshSection(expandedSection);
       setReplaceTargetUrl(null);
     } catch (err: any) {
@@ -1010,7 +1014,8 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
     }
   }, [expandedSection, refreshSection]);
 
-  const openEditModal = useCallback((item: MediaItem) => {
+  const openEditModal = useCallback((item: MediaItem, idx?: number) => {
+    editTargetIdx.current = idx;
     setEditTarget(item);
     setEditCaption(item.caption || '');
     setEditUrl(item.url);
@@ -1026,7 +1031,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
         url: editUrl.trim() || editTarget.url,
         caption: editCaption.trim(),
         wide: editWide,
-      });
+      }, editTargetIdx.current);
       setEditTarget(null);
       refreshSection(expandedSection);
     } catch (err: any) {
@@ -1548,7 +1553,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
 
               <button
                 onClick={() => {
-                  handleReplaceClick(editTarget.url);
+                  handleReplaceClick(editTarget.url, editTargetIdx.current);
                   setEditTarget(null);
                 }}
                 className="w-full py-2 md:py-2.5 bg-gray-100 hover:bg-lime-50 text-gray-700 hover:text-gray-900 border border-gray-200 hover:border-lime-400 text-xs md:text-sm font-semibold rounded-md transition-colors cursor-pointer whitespace-nowrap flex items-center justify-center gap-1.5"

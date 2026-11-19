@@ -6,6 +6,8 @@ import { useLanguage } from '@/lib/language';
 
 const DEFAULT_VIDEO = 'https://www.youtube.com/embed/2H1rFHQsG4g?autoplay=1&mute=1&loop=1&playlist=2H1rFHQsG4g&rel=0&modestbranding=1';
 
+const isYouTube = (url: string) => /youtube\.com|youtu\.be|youtube-nocookie\.com/i.test(url);
+
 /** YouTube watch link for any embed/watch/short URL. */
 function watchUrl(url: string): string {
   const m = url.match(/(?:embed\/|watch\?v=|youtu\.be\/|shorts\/)([\w-]{11})/);
@@ -28,8 +30,11 @@ export default function VideoShowcase() {
   const { images: videoMediaEn } = useMediaStore('home_video_en');
   const isEn = useLanguage() === 'en';
 
-  const coverImage = (isEn && videoMediaEn[0]?.url) || videoMedia[0]?.url || IMAGE_PLACEHOLDER;
-  const youtubeUrl = embedUrl((isEn && videoMediaEn[1]?.url) || videoMedia[1]?.url || DEFAULT_VIDEO);
+  // Safety net: cover must be an image, video must be a YouTube link (slots can get mixed up)
+  const enCover = isEn && videoMediaEn[0]?.url && !isYouTube(videoMediaEn[0].url) ? videoMediaEn[0].url : '';
+  const enVideo = isEn && videoMediaEn[1]?.url && isYouTube(videoMediaEn[1].url) ? videoMediaEn[1].url : '';
+  const coverImage = enCover || videoMedia[0]?.url || IMAGE_PLACEHOLDER;
+  const youtubeUrl = embedUrl(enVideo || videoMedia[1]?.url || DEFAULT_VIDEO);
 
   return (
     <section className="sonic-section-md px-4 md:px-6 bg-white">
