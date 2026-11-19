@@ -1,4 +1,5 @@
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
+import WoodBackground from '@/components/base/WoodBackground';
 import { useKarriereTicker } from '../useKarriereText';
 import { REVIEW_LINKS } from './KarriereCulture';
 
@@ -18,7 +19,8 @@ export default function KarriereStatsTicker() {
   return (
     <div className="relative overflow-hidden w-full" style={{ borderTop: '1px solid oklch(0.81 0.19 115 / 0.12)' }}>
       <div className="absolute inset-0" aria-hidden="true">
-        <img src={woodBgUrl} alt="" className="w-full h-full object-cover" loading="lazy" />
+        {/* Wood never stretched (19.11.2026) */}
+        <WoodBackground url={woodBgUrl} />
         <div className="absolute inset-0 bg-foreground-950/65" />
       </div>
       <div className="relative z-10 overflow-hidden py-3 md:py-4">

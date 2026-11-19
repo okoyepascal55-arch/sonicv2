@@ -1,4 +1,5 @@
 import ClientLogosPanel from './ClientLogosPanel';
+import { checkImageSize, parseTargetSizes, readImageFileSize } from '@/lib/imageSize';
 import { slotPositionNote } from '@/lib/dashboardSlotPositions';
 import { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
 import {
@@ -16,6 +17,7 @@ import {
   resolveImageUrl,
   type MediaItem,
   type DesignSpec,
+  getDesignSpec,
 } from '@/lib/mediaStore';
 import { getYouTubeId, youTubeThumbnailUrl } from '@/lib/youtube';
 import { supabase } from '@/lib/supabase';
@@ -43,6 +45,8 @@ interface MediaPanelProps {
 interface ImageCardProps {
   /** Where this image appears on the site (display only, dashboardSlotPositions.ts) */
   positionNote?: string | null;
+  /** Size the slot needs (DESIGN_SPECS dimensions) — for the resolution check */
+  targetDims?: string | null;
   item: MediaItem;
   idx: number;
   selected: boolean;
@@ -61,9 +65,12 @@ interface ImageCardProps {
 const ImageCard = memo(function ImageCard({
   item, idx, selected, onToggleSelect, onEdit, onDelete, onReplace,
   onDragStart, onDragOver, onDrop, onDragEnd,
-  isDragging, isDragOver, positionNote,
+  isDragging, isDragOver, positionNote, targetDims,
 }: ImageCardProps) {
   const [errored, setErrored] = useState(false);
+  // Real pixel size of the image → „zu klein für diesen Platz“ check (19.11.2026)
+  const [natural, setNatural] = useState<{ w: number; h: number } | null>(null);
+  const sizeVerdict = natural ? checkImageSize(natural.w, natural.h, parseTargetSizes(targetDims)) : null;
   // A YouTube link stored as a media item (e.g. the Live Video showcase) previews as its thumbnail
   const ytId = getYouTubeId(item.url);
   const displayUrl = ytId ? youTubeThumbnailUrl(ytId) : resolveImageUrl(item.url);
@@ -174,6 +181,10 @@ const ImageCard = memo(function ImageCard({
           loading="lazy"
           className={`w-full h-full ${item.url.endsWith('.svg') ? 'object-contain p-3' : 'object-cover'}`}
           onError={() => setErrored(true)}
+          onLoad={(e) => {
+            const im = e.currentTarget;
+            if (!ytId && !item.url.endsWith('.svg') && im.naturalWidth) setNatural({ w: im.naturalWidth, h: im.naturalHeight });
+          }}
         />
         )}
         <button
@@ -223,6 +234,17 @@ const ImageCard = memo(function ImageCard({
           <p className="text-2xs md:text-xs font-semibold text-lime-700 leading-snug mb-0.5 md:mb-1" title={positionNote}>
             <i className="ri-map-pin-line mr-0.5" aria-hidden="true"></i>Bild {idx + 1} → {positionNote}
           </p>
+        )}
+        {natural && sizeVerdict && (
+          sizeVerdict.ok ? (
+            <p className="text-3xs md:text-2xs font-semibold text-emerald-700 mb-0.5 md:mb-1" title="Auflösung reicht für diesen Platz">
+              <i className="ri-checkbox-circle-line mr-0.5" aria-hidden="true"></i>{natural.w}×{natural.h} px — scharf
+            </p>
+          ) : (
+            <p className="text-3xs md:text-2xs font-bold text-amber-800 bg-amber-50 border border-amber-200 rounded px-1.5 py-0.5 mb-0.5 md:mb-1" title="Das Bild wird auf der Seite vergrößert und wirkt unscharf">
+              <i className="ri-error-warning-line mr-0.5" aria-hidden="true"></i>{natural.w}×{natural.h} px — zu klein für diesen Platz (mind. {sizeVerdict.need?.w}×{sizeVerdict.need?.h})
+            </p>
+          )
         )}
         {item.caption && (
           <p className="text-2xs md:text-xs font-medium text-gray-700 truncate mb-0.5 md:mb-1">{item.caption}</p>
@@ -418,6 +440,7 @@ const SectionRow = memo(function SectionRow({
                   isDragging={dragIndex === idx}
                   isDragOver={dragOverIndex === idx}
                   positionNote={slotPositionNote(cat.key, idx)}
+                  targetDims={cat.designSpec?.dimensions}
                 />
               ))}
             </div>
@@ -445,6 +468,16 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
   const [editUrl, setEditUrl] = useState('');
   const [editWide, setEditWide] = useState(false);
   const [storeError, setStoreError] = useState<string | null>(null);
+  // Amber notice after an upload whose image is smaller than its slot needs (19.11.2026)
+  const [sizeWarning, setSizeWarning] = useState<string | null>(null);
+  const sizeWarningFor = async (file: File, section: string | null): Promise<string | null> => {
+    if (!section) return null;
+    const sz = await readImageFileSize(file);
+    if (!sz) return null;
+    const v = checkImageSize(sz.w, sz.h, parseTargetSizes(getDesignSpec(section)?.dimensions));
+    if (v.ok || !v.need) return null;
+    return `„${file.name}“ hat ${sz.w}×${sz.h} px — zu klein für diesen Platz (mind. ${v.need.w}×${v.need.h} px). Es wurde hochgeladen, wirkt auf der Seite aber unscharf. Besser: eine größere Version hochladen.`;
+  };
 
   // ── Selection state ──
   const [selectedUrls, setSelectedUrls] = useState<Set<string>>(new Set());
@@ -626,6 +659,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
     setStoreError(null);
 
     try {
+      setSizeWarning(isVideoFile(file) ? null : await sizeWarningFor(file, expandedSection));
       const optimized = isVideoFile(file) ? file : await compressImage(file);
       const safeName = optimized.name
         .toLowerCase()
@@ -806,10 +840,13 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
     setBulkProgress({ total: bulkFiles.length, done: 0, errors: [] });
     const errors: string[] = [];
     const newItems: MediaItem[] = [];
+    const bulkSmall: string[] = [];
 
     for (let i = 0; i < bulkFiles.length; i++) {
       const file = bulkFiles[i];
       try {
+        const small = await sizeWarningFor(file, expandedSection);
+        if (small) bulkSmall.push(small);
         const optimized = await compressImage(file);
         const safeName = optimized.name
           .toLowerCase()
@@ -839,6 +876,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
         setBulkProgress((prev) => ({ ...prev, done: prev.done + 1, errors: [...prev.errors, `${file.name}: ${msg}`] }));
       }
     }
+    setSizeWarning(bulkSmall.length ? bulkSmall.join('\n') : null);
 
     // Add all successful uploads in one batch
     if (newItems.length > 0) {
@@ -886,6 +924,7 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
     setStoreError(null);
 
     try {
+      setSizeWarning(isVideoFile(uploadFile) ? null : await sizeWarningFor(uploadFile, expandedSection));
       const optimized = isVideoFile(uploadFile) ? uploadFile : await compressImage(uploadFile);
       const safeName = optimized.name
         .toLowerCase()
@@ -1159,6 +1198,15 @@ export default function MediaPanel({ activeGroup }: MediaPanelProps) {
 
         <div className="max-w-5xl space-y-2">
           {/* Storage error banner */}
+          {sizeWarning && (
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 md:p-4 mb-3 flex items-start gap-2">
+              <i className="ri-error-warning-line text-amber-600 text-sm mt-0.5" aria-hidden="true"></i>
+              <p className="flex-1 min-w-0 text-xs md:text-sm text-amber-800 whitespace-pre-line">{sizeWarning}</p>
+              <button onClick={() => setSizeWarning(null)} className="text-amber-700 hover:text-amber-900 cursor-pointer" aria-label="Hinweis schließen">
+                <i className="ri-close-line"></i>
+              </button>
+            </div>
+          )}
           {storeError && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-3 md:p-4 mb-3 flex items-start gap-2">
               <span className="w-5 h-5 flex items-center justify-center shrink-0 mt-0.5">

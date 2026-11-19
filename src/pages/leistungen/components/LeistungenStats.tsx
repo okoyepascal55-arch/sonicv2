@@ -1,4 +1,5 @@
 import { useMediaStore } from '@/lib/mediaStore';
+import WoodBackground from '@/components/base/WoodBackground';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
 import { useReviewText } from '@/hooks/useReviewText';
 
@@ -44,7 +45,8 @@ export default function LeistungenStats() {
   return (
     <section aria-label={heading || 'Unsere Zahlen'} className="relative overflow-hidden border-y border-foreground-200/40" style={{ paddingTop: '10px', paddingBottom: '10px', background: 'oklch(0.13 0.005 118)' }}>
       <div className="absolute inset-0" aria-hidden="true">
-        {woodUrl && <img src={woodUrl} alt="" className="w-full h-full object-cover" loading="lazy" />}
+        {/* Wood never stretched (19.11.2026) */}
+        {woodUrl && <WoodBackground url={woodUrl} />}
         <div className="absolute inset-0 bg-foreground-950/50" />
       </div>
       <div className="relative z-10 overflow-hidden">

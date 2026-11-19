@@ -2239,6 +2239,11 @@ export interface DesignSpec {
   tip: string;
 }
 
+/** Design spec (ideal size etc.) of one slot, or null. */
+export function getDesignSpec(sectionKey: string): DesignSpec | null {
+  return DESIGN_SPECS[sectionKey] ?? null;
+}
+
 export function getPageGroupForSection(sectionKey: string): string {
   for (const group of PAGE_GROUPS) {
     if (group.sections.includes(sectionKey)) return group.id;
