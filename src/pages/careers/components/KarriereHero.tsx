@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useReviewText } from '@/hooks/useReviewText';
 import { INITIATIVE_URL } from '../usePathData';
 
 export default function KarriereHero() {
-  const [hovered, setHovered] = useState(false);
   // Dashboard → Text → Karriere → „Hero — Menschen mit Energie gesucht“
   const ht = useReviewText('karriere_hero_texts');
   const { images: heroBgImages } = useMediaStore('careers_hero_images');
@@ -27,16 +25,14 @@ export default function KarriereHero() {
       className="relative flex min-h-[320px] sm:min-h-[400px] md:min-h-[560px] flex-col justify-end overflow-hidden group px-5 md:px-10 hero-frame"
       style={{ background: 'oklch(0.13 0.005 118)', paddingTop: 'clamp(56px, 14vw, 80px)' }}
       id="stellen"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
     >
       {/* Full-bleed background image */}
       <div className="absolute inset-0" aria-hidden="true">
         <img
           src={heroImage}
           alt=""
-          className="hero-photo absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out"
-          style={{ objectPosition: 'center 20%', transform: hovered ? 'scale(1.03)' : 'scale(1)' }}
+          className="hero-photo absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: 'center 20%' }}
           fetchPriority="high"
           decoding="async"
         />

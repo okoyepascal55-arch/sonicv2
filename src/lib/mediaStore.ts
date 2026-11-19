@@ -1792,7 +1792,7 @@ const DESIGN_SPECS: Record<string, DesignSpec> = {
 
   /* ═══ CAREERS ═══ */
   '/images/Karriere':              { aspectRatio: '3:2', dimensions: '~1200×800', orientation: 'landscape', tip: 'Hero & gallery — team, office, events' },
-  'careers_hero_images':           { aspectRatio: '2.4:1', dimensions: '1920×800', orientation: 'landscape', tip: 'Hero team photo — wide, bright, diverse group' },
+  'careers_hero_images':           { aspectRatio: '2.4:1', dimensions: '2880×1200', orientation: 'landscape', tip: 'Hero team photo — wide, bright, diverse group' },
   'careers_team_images':           { aspectRatio: '4:3', dimensions: '800×600', orientation: 'landscape', tip: 'Team lifestyle shots — office, events, collaboration' },
   'careers_path_images':           { aspectRatio: '~2:1', dimensions: '~1024×444', orientation: 'landscape', tip: 'Career path polaroids — wide format sales/staff' },
   'careers_events_images':         { aspectRatio: '~2:1', dimensions: '~1024×510', orientation: 'landscape', tip: 'Team events polaroids — social, celebration' },

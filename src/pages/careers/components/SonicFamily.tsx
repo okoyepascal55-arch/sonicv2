@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { INITIATIVE_URL } from '../usePathData';
 import { useText, useTextSection } from '@/hooks/useText';
 import { useMediaStore } from '@/lib/mediaStore';
 import { ChapterHeader, Marker, INK } from './ChapterKit';
@@ -99,7 +98,7 @@ export default function SonicFamily() {
   const tBadge   = useText('careers_family', 'careers-family-badge', 'Echte Menschen. Echte Geschichten.');
   const tHeading = useText('careers_family', 'careers-family-heading', 'Sonic Spirit & Faces');
   const tSub     = useText('careers_family', 'careers-family-sub', 'Persönliche Geschichten, ehrliche Interviews und die Werte, die unsere Kultur ausmachen.');
-  const tCta     = useText('careers_family', 'careers-family-cta', 'Teil der Geschichte werden');
+  const tCta     = useText('careers_family', 'careers-family-cta', 'Offene Stellen ansehen');
   const tCtaBefore = useText('careers_family', 'careers-family-cta-before', 'Willst du auch Teil von');
   const tCtaAccent = useText('careers_family', 'careers-family-cta-accent', 'Sonic Spirit & Faces');
   const tCtaAfter  = useText('careers_family', 'careers-family-cta-after',  'werden?');
@@ -390,14 +389,19 @@ export default function SonicFamily() {
               </p>
             )}
           </div>
+          {/* Jumps to the open jobs on this page (19.11.2026) */}
           <a
-            href={INITIATIVE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#stellenangebote"
+            onClick={(ev) => {
+              const el = document.getElementById('stellenangebote');
+              if (!el) return;
+              ev.preventDefault();
+              window.scrollTo({ top: Math.max(0, el.getBoundingClientRect().top + window.scrollY - 121), behavior: 'smooth' });
+            }}
             className="flex-shrink-0 inline-flex items-center gap-2.5 px-7 py-4 bg-foreground-950 text-white text-[11px] font-black uppercase tracking-[0.14em] hover:bg-primary-500 hover:text-foreground-950 transition-colors duration-200 cursor-pointer"
           >
-            <i className="ri-user-add-line text-sm" />
             {tCta}
+            <i className="ri-arrow-down-line text-sm" />
           </a>
         </div>
       </div>

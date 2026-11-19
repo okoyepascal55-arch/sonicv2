@@ -56,7 +56,7 @@ export const EN: Record<string, Record<string, string>> = {
     "careers-family-cta-before": "Want to become part of",
     "careers-family-cta-after": "too?",
     "careers-family-cta-sub": "We're looking for people who want to share their story — 15 minutes, honest questions, no script.",
-    "careers-family-cta": "Be part of the story",
+    "careers-family-cta": "See open positions",
     "careers-family-more": "Read the full story",
     "careers-family-less": "Show less",
     "careers-family-story-label": "The story",

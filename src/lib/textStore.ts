@@ -782,7 +782,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-family-cta-accent', label: 'CTA-Box — Hervorhebung (lime)', description: 'Farbig markierter Teil', type: 'heading', value: 'Sonic Spirit & Faces' },
       { id: 'careers-family-cta-after', label: 'CTA-Box — Text nach Hervorhebung', description: '', type: 'heading', value: 'werden?' },
       { id: 'careers-family-cta-sub', label: 'CTA-Box — Unterzeile', description: '', type: 'paragraph', value: 'Wir suchen Menschen, die ihre Geschichte teilen — 15 Minuten, ehrliche Fragen, kein Drehbuch.' },
-      { id: 'careers-family-cta', label: 'CTA-Button', description: 'Button-Text (öffnet E-Mail)', type: 'cta', value: 'Teil der Geschichte werden' },
+      { id: 'careers-family-cta', label: 'CTA-Button', description: 'Button-Text — springt zu den offenen Stellen auf dieser Seite', type: 'cta', value: 'Offene Stellen ansehen' },
       { id: 'careers-family-more', label: 'Button — Geschichte aufklappen', description: 'Geschichten', type: 'cta', value: 'Ganze Geschichte lesen' },
       { id: 'careers-family-less', label: 'Button — zuklappen', description: 'Geschichten', type: 'cta', value: 'Weniger anzeigen' },
       { id: 'careers-family-story-label', label: 'Kicker über der Geschichte', description: 'Geschichten', type: 'badge', value: 'Die Geschichte' },
@@ -1744,6 +1744,9 @@ const LEGACY_TEXT_FIXES = [
   { sectionKey: 'about_origin_story', entryId: 'about-origin-heading', from: 'Marken im Herzen. Erfolg im Fokus.', to: 'WIR MACHEN MARKEN ERFOLGREICH.', matchType: 'contains' as const },
   { sectionKey: 'about_ticker', entryId: 't5-label', from: 'Promoter:innen im Einsatz', to: 'Mitarbeitende für Promotion und Field Force' },
   { sectionKey: 'about_values_texts', entryId: 'refs-line', from: 'im Studio, auf der Fläche, im Fachhandel', to: 'Unsere Kunden – vom POS über unsere Studios bis zu Events, Fachhandel und B2B.', matchType: 'contains' as const },
+  /* 19.11.2026 — Sonic Spirit & Faces button now leads to the open jobs */
+  { sectionKey: 'careers_family', entryId: 'careers-family-cta', from: 'Talentpool', to: 'Offene Stellen ansehen', matchType: 'contains' as const },
+  { sectionKey: 'careers_family', entryId: 'careers-family-cta', from: 'Teil der Geschichte werden', to: 'Offene Stellen ansehen' },
 ];
 
 /* Substring corrections applied to every text (defaults and dashboard values).
