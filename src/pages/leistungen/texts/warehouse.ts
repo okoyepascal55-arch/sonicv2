@@ -83,7 +83,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('i6-desc', 'Kategorie 6 — Text', 'paragraph', 'Kommissionierung, Verpackung, Versand'),
   ]),
   // ── added 11/2026: was hard-coded in the component ──
-  section('leistungen_warehouse_page_nav', 'Warehouse & Logistik — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), loreal (L\'Oréal), wmf (WMF), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
+  section('leistungen_warehouse_page_nav', 'Warehouse & Logistik — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), philips (Philips), canon (Canon), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
     e('nav-herausforderung', 'Seitenmenü — Herausforderung', 'nav-label', 'Herausforderung'),
     e('nav-loesung', 'Seitenmenü — Lösung', 'nav-label', 'Lösung'),
     e('nav-beispiele', 'Seitenmenü — Beispiele', 'nav-label', 'Beispiele'),

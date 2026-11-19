@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import WoodenButton from '@/components/base/WoodenButton';
 import { submitContactForm } from '@/lib/contact';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useCtaText } from '@/hooks/useCtaText';

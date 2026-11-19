@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useSyncExternalStore } from 'react';
+import { useSyncExternalStore } from 'react';
 import { getTextSections, type TextSection } from '@/lib/textStore';
 
 /* ── In-memory cache to avoid repeated localStorage reads ── */

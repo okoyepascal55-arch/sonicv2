@@ -110,7 +110,9 @@ const FALLBACK_FORMATS = [
 ];
 
 export default function VideoContent() {
+  const ui = useLeistungenText('leistungen_challenge_common'); // shared labels (Schritt, scrollen …)
   const tVidFm = useLeistungenText('leistungen_video_formats');
+  const tVidLbl = useLeistungenText('leistungen_video_labels');
   const FORMATS = FORMATS_BASE.map((x, i) => ({ ...x, title: tVidFm[`f${i + 1}-title`] ?? x.title, desc: tVidFm[`f${i + 1}-desc`] ?? x.desc, tag: tVidFm[`f${i + 1}-tag`] ?? x.tag }));
   const tVidCha = useLeistungenText('leistungen_video_channels');
   const SOLUTIONS = SOLUTIONS_BASE.map((x, i) => ({ ...x, accent: tVidCha[`k${i + 1}-accent`] ?? x.accent, title: tVidCha[`k${i + 1}-title`] ?? x.title, desc: tVidCha[`k${i + 1}-desc`] ?? x.desc }));
@@ -205,14 +207,14 @@ export default function VideoContent() {
       {/* ═══ Block 2 (white): Lösung → Formate — what we do, then in which formats ═══ */}
       <section id="loesung" className="sonic-section-md bg-white px-4 md:px-6">
         <div className="sonic-container">
-          <SectionHead eyebrow="Die Lösung" heading={tSolutionHeading} sub={tSolutionSub} />
-          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: solutionWoodIcons[i]?.url ? resolveImageUrl(solutionWoodIcons[i].url) : s.woodIcon || '' }))} label={`${SOLUTIONS.length} Kanäle — scrollen`} theme="light" variant="wood" cardWidth="clamp(220px, 32vw, 380px)" cardMinHeight="340px" />
+          <SectionHead eyebrow={tVidLbl['eyebrow-solution']} heading={tSolutionHeading} sub={tSolutionSub} />
+          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: solutionWoodIcons[i]?.url ? resolveImageUrl(solutionWoodIcons[i].url) : s.woodIcon || '' }))} label={`${SOLUTIONS.length} ${ui['word-kanaele']} — ${ui['scroll']}`} theme="light" variant="wood" cardWidth="clamp(220px, 32vw, 380px)" cardMinHeight="340px" />
         </div>
       </section>
 
       <section id="formate" className="sonic-section-md bg-white px-4 md:px-6" style={{ borderTop: '1px solid oklch(var(--foreground-950) / 0.08)' }}>
         <div className="sonic-container">
-          <SectionHead eyebrow="Video-Formate" heading={tFormatsHeading} />
+          <SectionHead eyebrow={tVidLbl['eyebrow-formats']} heading={tFormatsHeading} />
 
           {/* Same card language as the Events Formate block: tab strip → image + dark info panel */}
           <div style={{ border: '1px solid oklch(var(--foreground-950) / 0.1)' }}>
@@ -273,7 +275,7 @@ export default function VideoContent() {
                   className="mt-auto inline-flex items-center justify-center gap-2 bg-primary-500 text-foreground-950 px-6 py-3 font-black text-xs uppercase tracking-[0.14em] hover:bg-white transition-colors whitespace-nowrap self-start"
                   style={{ minHeight: '44px' }}
                 >
-                  Mehr erfahren <i className="ri-arrow-right-line" aria-hidden="true" />
+                  {tVidLbl['formats-more']} <i className="ri-arrow-right-line" aria-hidden="true" />
                 </a>
                 <div className="flex items-center gap-1.5 mt-6">
                   {FORMATS.map((f, i) => (
@@ -310,7 +312,7 @@ export default function VideoContent() {
         <section id="vorteile" className="sonic-section-md px-4 md:px-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
           <div className="sonic-container">
             <SectionHead dark eyebrow={tAdv['eyebrow']} heading={tAdvantagesHeading} sub={tAdv['sub']} />
-            <ScrollCardSection data={ADVANTAGES.map((a, i) => ({ ...a, woodIcon: advantagesWoodIcons[i]?.url ? resolveImageUrl(advantagesWoodIcons[i].url) : a.woodIcon || '' }))} label={`${ADVANTAGES.length} Vorteile — scrollen`} theme="dark" variant="wood" cardWidth="clamp(260px, 24vw, 320px)" cardMinHeight="300px" />
+            <ScrollCardSection data={ADVANTAGES.map((a, i) => ({ ...a, woodIcon: advantagesWoodIcons[i]?.url ? resolveImageUrl(advantagesWoodIcons[i].url) : a.woodIcon || '' }))} label={`${ADVANTAGES.length} ${ui['word-vorteile']} — ${ui['scroll']}`} theme="dark" variant="wood" cardWidth="clamp(260px, 24vw, 320px)" cardMinHeight="300px" />
           </div>
         </section>
 

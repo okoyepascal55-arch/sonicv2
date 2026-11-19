@@ -38,6 +38,8 @@ export const EN: Record<string, Record<string, string>> = {
     "footer-link-datenschutz": "Privacy policy",
     "footer-copyright": "© {year} Sonic Sales Support GmbH. All rights reserved.",
     "footer-gdpr": "GDPR-compliant",
+    "footer-link-forecasting": "Forecasting",
+    "footer-link-talentpool": "Talent pool"
   },
   "common_client_testimonials": {
     "testimonials-badge": "Client voices",
@@ -57,6 +59,10 @@ export const EN: Record<string, Record<string, string>> = {
     "n2-desc": "Retail data, online shops & manufacturer apps",
     "n3-desc": "Live KPIs, sell-out & reports",
     "n4-desc": "Deployment tracking, targets & billing",
+    "n1-label": "Sonic data",
+    "n2-label": "External data",
+    "n3-label": "Client data",
+    "n4-label": "Staff data"
   },
   "common_cta": {
     "book": "Book a call",

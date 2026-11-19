@@ -154,7 +154,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('c3-trigger', 'Punkt 3 — Frage', 'label', 'Schon frustriert?'),
   ]),
   // ── added 11/2026: was hard-coded in the component ──
-  section('leistungen_kreation_page_nav', 'Kreation & Content — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), loreal (L\'Oréal), wmf (WMF), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
+  section('leistungen_kreation_page_nav', 'Kreation & Content — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), philips (Philips), canon (Canon), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
     e('nav-herausforderung', 'Seitenmenü — Herausforderung', 'nav-label', 'Herausforderung'),
     e('nav-loesung', 'Seitenmenü — Lösung', 'nav-label', 'Lösung'),
     e('nav-konzept', 'Seitenmenü — Konzept & Kreation', 'nav-label', 'Konzept & Kreation'),

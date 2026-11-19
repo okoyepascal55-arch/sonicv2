@@ -15,9 +15,13 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
   {
     key: 'common_srt_data_nodes', label: 'SRT — Datenfluss-Knoten (Home & SRT)', pageGroupId: 'srt', pagePath: '/srt', description: 'Beschreibungen der vier Datenquellen im Datenfluss-Diagramm (Home-Teaser und SRT-Seite).',
     entries: [
+      e('n1-label', 'Knoten 1 — Name', 'label', 'Sonic-Daten'),
       e('n1-desc', 'Sonic-Daten — Text', 'caption', 'Einsatzplanung & Kampagnenstatus in Echtzeit'),
+      e('n2-label', 'Knoten 2 — Name', 'label', 'Externe Daten'),
       e('n2-desc', 'Externe Daten — Text', 'caption', 'Handelsdaten, Online-Shops & Hersteller-Apps'),
+      e('n3-label', 'Knoten 3 — Name', 'label', 'Kunden-Daten'),
       e('n3-desc', 'Kunden-Daten — Text', 'caption', 'Live-KPIs, Abverkauf & Reportings'),
+      e('n4-label', 'Knoten 4 — Name', 'label', 'Mitarbeiter-Daten'),
       e('n4-desc', 'Mitarbeiter-Daten — Text', 'caption', 'Einsatztracking, Ziele & Abrechnung'),
     ],
   },
@@ -396,6 +400,7 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
     entries: [
       e('das-problem', 'Das Problem', 'label', 'Das Problem'),
       e('features', 'All-in-Software', 'label', 'All-in-Software'),
+      e('produkt', 'Das Produkt', 'label', 'Das Produkt'),
       e('funktionsumfang', 'Funktionsumfang', 'label', 'Funktionsumfang'),
       e('team-app', 'Team-App', 'label', 'Team-App'),
       e('zusammenarbeit', 'Zusammenarbeit', 'label', 'Zusammenarbeit'),

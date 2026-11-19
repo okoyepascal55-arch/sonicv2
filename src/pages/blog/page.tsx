@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
-import WoodenButton from '@/components/base/WoodenButton';
 import { useText } from '@/hooks/useText';
 import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
 

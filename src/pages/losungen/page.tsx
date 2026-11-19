@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import WoodBackground from '@/components/base/WoodBackground';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
 import { submitContactForm } from '@/lib/contact';
@@ -6,7 +7,6 @@ import { useMediaStore } from '@/lib/mediaStore';
 import ClientProof from '../../components/feature/ClientProof';
 import WoodenDivider from '../../components/base/WoodenDivider';
 import { CONTACT_EMAIL } from '@/lib/contact';
-import WoodenButton from '@/components/base/WoodenButton';
 import { useCtaText } from '@/hooks/useCtaText';
 import { useSitePages } from '@/lib/sitePages';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
@@ -37,6 +37,7 @@ const MODULE_LINKS: Record<string, string> = {
 function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures, deliverableImages, stepImages, testimonialImages, iconImages }: { sKey: SolutionKey; onClose: () => void; carouselRef: React.RefObject<HTMLDivElement>; heroBgImages: import('@/lib/mediaStore').MediaItem[]; woodTextures: import('@/lib/mediaStore').MediaItem[]; deliverableImages: import('@/lib/mediaStore').MediaItem[]; stepImages: import('@/lib/mediaStore').MediaItem[]; testimonialImages: import('@/lib/mediaStore').MediaItem[]; iconImages: import('@/lib/mediaStore').MediaItem[] }) {
   const s = useSolution(sKey);
   const cta = useCtaText();
+  const ptx = useLosungenPageText();
   const [activeDeliverable, setActiveDeliverable] = useState(0);
   const [delivFade, setDelivFade] = useState(true);
 
@@ -95,13 +96,8 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
       <div className="relative bg-foreground-950 overflow-hidden">
         <div className="absolute inset-0 opacity-15">
           {(woodTextures[1] && woodTextures[1].url) ? (
-            <img
-              src={woodTextures[1].url}
-              alt=""
-              className="w-full h-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
+/* Wood: fills when large enough, otherwise tiled — never stretched (19.11.2026) */
+            <WoodBackground url={woodTextures[1].url} />
           ) : null}
         </div>
 
@@ -134,7 +130,7 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
                 </div>
                 <div>
                   <p className="text-white font-black text-sm">{s.label}</p>
-                  <p className="text-white/60 text-xs font-medium">Sonic Lösung</p>
+                  <p className="text-white/60 text-xs font-medium">{ptx.solutionKicker}</p>
                 </div>
               </div>
               <h2 className="sonic-h2 text-white">
@@ -608,13 +604,8 @@ function WoodCard({
       {/* Wood texture — actual image, dark diagonal overlay, no shadow/glow */}
       <div className="absolute inset-0">
         {(woodTextures[0] && woodTextures[0].url) ? (
-          <img
-            src={woodTextures[0].url}
-            alt=""
-            className="w-full h-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
+/* Wood: fills when large enough, otherwise tiled — never stretched (19.11.2026) */
+            <WoodBackground url={woodTextures[0].url} />
         ) : null}
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(10,11,9,0.86), rgba(10,11,9,0.78), rgba(10,11,9,0.88))' }} />
       </div>
@@ -630,7 +621,7 @@ function WoodCard({
               <i className={`${s.icon} text-xl md:text-2xl text-primary-500`}></i>
             </div>
             <div className="min-w-0">
-              <p className="text-primary-500 text-2xs font-black uppercase tracking-widest">Sonic Lösung</p>
+              <p className="text-primary-500 text-2xs font-black uppercase tracking-widest">{pt.solutionKicker}</p>
               <h2 className="text-xl md:text-2xl font-black text-white leading-tight">{s.label}</h2>
             </div>
           </div>
@@ -697,13 +688,13 @@ function WoodCard({
             onClick={onToggle}
             className="inline-flex items-center gap-2 rounded-none bg-primary-500 text-foreground-950 px-7 py-3 font-black uppercase tracking-wider hover:bg-white hover:text-foreground-950 transition-all duration-300 cursor-pointer whitespace-nowrap text-xs md:text-sm"
           >
-            {isExpanded ? 'Schließen' : 'Mehr dazu'}
+            {isExpanded ? pt.cardClose : pt.cardMore}
             <i className={`ri-arrow-down-line text-sm transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}></i>
           </button>
           <button
             onClick={onToggle}
             className="w-11 h-11 md:w-12 md:h-12 rounded-none flex items-center justify-center border border-white/25 text-white hover:border-primary-500 hover:text-primary-500 transition-all duration-300 cursor-pointer"
-            aria-label={isExpanded ? 'Schließen' : 'Mehr dazu'}
+            aria-label={isExpanded ? pt.cardClose : pt.cardMore}
           >
             <i className={`ri-arrow-down-line text-lg transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}></i>
           </button>
@@ -1031,13 +1022,13 @@ export default function LosungenPage() {
                     <i className="ri-flashlight-line text-lg text-primary-500"></i>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-0.5">Schnell-Check</p>
-                    <h3 className="text-sm md:text-base font-black text-foreground-950 leading-snug">Finde die passende Sonic-Lösung für dein Projekt</h3>
-                    <p className="text-xs text-foreground-500 mt-0.5 hidden sm:block">5 Fragen · 60 Sekunden · Maßgeschneidertes Ergebnis</p>
+                    <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] mb-0.5">{pt.quickCheckKicker}</p>
+                    <h3 className="text-sm md:text-base font-black text-foreground-950 leading-snug">{pt.quickCheckTitle}</h3>
+                    <p className="text-xs text-foreground-500 mt-0.5 hidden sm:block">{pt.quickCheckLine}</p>
                   </div>
                 </div>
                 <div className="flex-shrink-0 flex items-center gap-2 px-4 py-2 bg-primary-500 text-foreground-950 font-black text-xs uppercase tracking-wider group-hover:bg-foreground-950 group-hover:text-white transition-all duration-300">
-                  <span className="hidden sm:inline">Loslegen</span>
+                  <span className="hidden sm:inline">{pt.quickCheckBtn}</span>
                   <i className="ri-arrow-right-line text-sm"></i>
                 </div>
               </div>
@@ -1083,7 +1074,7 @@ export default function LosungenPage() {
                     <div className="mb-6">
                       <div className="inline-flex items-center gap-2 bg-primary-500/15 border border-primary-500/30 px-3 py-1 mb-3">
                         <div className="w-1.5 h-1.5 bg-primary-500 animate-pulse" />
-                        <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">Schnell-Check</span>
+                        <span className="text-xs font-black text-primary-500 uppercase tracking-[0.2em]">{pt.quickCheckKicker}</span>
                       </div>
                       <h2 className="sonic-h3 text-white leading-tight">Finde deine Sonic-Lösung</h2>
                     </div>
@@ -1365,11 +1356,11 @@ export default function LosungenPage() {
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>FAQ</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{pt.faqBadge}</span>
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
             </div>
-            <h2 className="sonic-h2 text-foreground-950"><span className="v3-marker">Häufig gestellte</span> Fragen</h2>
-            <p className="text-foreground-500 text-base max-w-xl mx-auto leading-relaxed">Alles, was du über unsere Lösungen, unsere Arbeitsweise und den Start einer Zusammenarbeit wissen musst.</p>
+            <h2 className="sonic-h2 text-foreground-950"><span className="v3-marker">{pt.faqHeadingAccent}</span> {pt.faqHeadingEnd}</h2>
+            <p className="text-foreground-500 text-base max-w-xl mx-auto leading-relaxed">{pt.faqIntro}</p>
           </div>
           <div className="space-y-4">
             {faqItems.map((item, index) => (
@@ -1405,12 +1396,12 @@ export default function LosungenPage() {
 
           {/* Bottom CTA */}
           <div className="mt-10 py-5 px-5 border border-foreground-200 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-xs md:text-sm text-foreground-500 text-center sm:text-left">Noch Fragen offen? Wir beantworten sie gerne persönlich.</p>
+            <p className="text-xs md:text-sm text-foreground-500 text-center sm:text-left">{pt.faqQuestion}</p>
             <a
               href={`mailto:${CONTACT_EMAIL}?subject=Frage%20zu%20Sonic%20L%C3%B6sungen`}
               className="inline-flex items-center gap-1.5 text-xs font-bold text-primary-500 hover:text-primary-500 transition-colors cursor-pointer whitespace-nowrap"
             >
-              <i className="ri-mail-line text-sm"></i>Frage stellen
+              <i className="ri-mail-line text-sm"></i>{pt.faqBtn}
             </a>
           </div>
         </div>

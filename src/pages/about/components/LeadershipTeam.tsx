@@ -1,7 +1,6 @@
 import { useReviewText } from '@/hooks/useReviewText';
 import { useText } from '@/hooks/useText';
 import { useMediaStore } from '@/lib/mediaStore';
-import WoodenButton from '@/components/base/WoodenButton';
 
 
 export default function LeadershipTeam() {

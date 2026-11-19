@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
 import WoodenDivider from '@/components/base/WoodenDivider';
-import WoodenButton from '@/components/base/WoodenButton';
 import { getPostSlug } from '../page';
 
 // Publii publishes a standard JSON Feed (https://www.jsonfeed.org) when

@@ -10,7 +10,7 @@ import { supabase } from './supabase';
 import { getLanguage, type Lang } from './language';
 import { EN_TEXT } from './textEn';
 import { applySrtRule } from './srtRule';
-import { isArchivedTextSection } from './dashboardArchive';
+import { isArchivedTextSection, isArchivedTextEntry } from './dashboardArchive';
 import { orderTextSections } from './dashboardOrder';
 export interface TextEntry {
   id: string;
@@ -211,6 +211,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'home-challenge-path-3', label: 'Path 3 — Omnichannel', description: 'Omnichannel path', type: 'heading', value: 'Omnichannel optimieren' },
       { id: 'home-challenge-path-3-desc', label: 'Path 3 Description', description: 'Omnichannel description', type: 'paragraph', value: 'Persönliche Beratung, nahtlos über alle Kanäle hinweg – am POS, online und live aus unseren Studios. Für ein konsistentes Markenerlebnis, mehr Abschlüsse und weniger Retouren.' },
       { id: 'home-challenge-sub', label: 'Unterzeile', description: 'Zeile unter der Überschrift', type: 'subheading', value: 'An welchem Punkt stehst du?' },
+      { id: 'home-challenge-card-cta', label: 'Karten — Button', description: 'Button unten in allen drei Karten', type: 'cta', value: 'MEHR DAZU' },
     ],
   },
   {
@@ -297,6 +298,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'footer-builtby', label: 'Built By', description: 'Built by attribution', type: 'label', value: 'Built by Reezan Digital' },
       { id: 'footer-iso', label: 'Zertifikat-Badge (leer = ausgeblendet)', description: 'Nur ausfüllen, wenn eine Zertifizierung besteht', type: 'label', value: '' },
       { id: 'footer-gdpr', label: 'GDPR Badge', description: 'GDPR compliance badge', type: 'label', value: 'DSGVO-konform' },
+      { id: 'footer-link-forecasting', label: 'Link — Forecasting', description: 'Leistungen-Spalte', type: 'link', value: 'Forecasting' },
+      { id: 'footer-link-talentpool', label: 'Link — Talentpool', description: 'Leistungen-Spalte', type: 'link', value: 'Talentpool' },
     ],
   },
 
@@ -391,7 +394,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
     description: 'The feature cards section.',
     entries: [
       { id: 'srt-features-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Features' },
-      { id: 'srt-features-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Alles in einer Plattform' },
+      { id: 'srt-features-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'SRT: Die All-in-One Software' },
+      { id: 'srt-features-heading-accent', label: 'Überschrift — Akzent (lime hinterlegt)', description: 'Dieser Teil der Überschrift wird lime hinterlegt', type: 'heading', value: 'All-in-One' },
       { id: 'srt-feature-1', label: 'Feature 1 — Dashboard', description: 'Dashboard feature', type: 'heading', value: 'Live Dashboard' },
       { id: 'srt-feature-1-desc', label: 'Feature 1 Description', description: 'Dashboard description', type: 'paragraph', value: 'Alle KPIs in Echtzeit — Umsätze, Contacts, Conversion Rates und mehr.' },
       { id: 'srt-feature-2', label: 'Feature 2 — Performance', description: 'Performance feature', type: 'heading', value: 'Performance Tracking' },
@@ -404,6 +408,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-feature-5-desc', label: 'Feature 5 Description', description: 'Mobile description', type: 'paragraph', value: 'Für Promoter und Area Manager — Check-ins, Produktinfos und Live-Daten direkt aufs Smartphone.' },
       { id: 'srt-feature-6', label: 'Feature 6 — Security', description: 'Security feature', type: 'heading', value: 'Datenschutz & Sicherheit' },
       { id: 'srt-feature-6-desc', label: 'Feature 6 Description', description: 'Security description', type: 'paragraph', value: 'GDPR-konform, DSGVO-zertifiziert, gehostet in deutschen Rechenzentren.' },
+      { id: 'srt-features-cta', label: 'Button', description: 'All-in-One', type: 'cta', value: 'Demo anfragen' },
     ],
   },
 
@@ -611,6 +616,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'talentpool-hero-heading-accent', label: 'H1 Accent', description: 'Hero H1 accent', type: 'heading', value: 'Echte Markenbotschafter.' },
       { id: 'talentpool-hero-subtitle', label: 'Hero Subtitle', description: 'Hero bold subtitle', type: 'paragraph', value: 'Handverlesen. Geschult. Bei Sonic angestellt.' },
       { id: 'talentpool-hero-description', label: 'Hero Description', description: 'Hero secondary description', type: 'paragraph', value: 'In unserem Talentpool findest du Menschen aus ganz Deutschland, ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit ihrer Zielerreichung jederzeit live in der SRT.' },
+      { id: 'talentpool-hero-btn-2', label: 'Hero — Button 2 (zu Staff as a Service)', description: 'Zweiter Button im Hero', type: 'cta', value: 'Staff as a Service' },
     ],
   },
   {
@@ -737,6 +743,11 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-culture-value-5-desc', label: 'Value 5 Desc', description: 'Value 5 desc', type: 'paragraph', value: 'Unsere Stärken und Fähigkeiten setzen wir verantwortungsbewusst ein.' },
       { id: 'careers-culture-value-6', label: 'Value — Arbeitsumfeld', description: 'Value 6', type: 'heading', value: 'Arbeitsumfeld' },
       { id: 'careers-culture-value-6-desc', label: 'Value 6 Desc', description: 'Value 6 desc', type: 'paragraph', value: 'Aufgaben, die zu deiner Persönlichkeit passen. Menschen, mit denen man gerne zusammenarbeitet.' },
+      { id: 'careers-culture-eyebrow', label: 'Kicker über der Überschrift', description: 'Kultur & DNA', type: 'badge', value: 'Unsere Kultur' },
+      { id: 'careers-culture-lead', label: 'Zeile über dem Text', description: 'Kultur & DNA', type: 'subheading', value: 'Wir lieben & leben Marken' },
+      { id: 'careers-culture-values', label: 'Werte-Zeile (mit | trennen)', description: 'Die schwarze Werte-Leiste', type: 'label', value: 'Energie | Sympathie | Anpacken | Teamgeist | Kreativität' },
+      { id: 'careers-culture-dna-eyebrow', label: 'DNA — Zeile über den vier Kacheln', description: 'Kultur & DNA', type: 'caption', value: 'Unsere DNA — Vier Konstanten, die jede Entscheidung bei Sonic trägt.' },
+      { id: 'careers-culture-award-eyebrow', label: 'Auszeichnung — Kicker', description: 'Leiste unter den DNA-Kacheln', type: 'badge', value: 'Ausgezeichnet' },
     ],
   },
   {
@@ -755,6 +766,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-paths-staff-desc', label: 'Staff Description', description: 'Staff description', type: 'paragraph', value: 'Du berätst, verkaufst und präsentierst Marken aus Consumer Electronics, Haushalt und Sport direkt im Handel – deutschlandweit, mit festen Einsatzorten und -zeiten. Vor jedem Projekt wirst du geschult, und im Projektteam hast du einen festen Ansprechpartner.' },
       { id: 'careers-paths-cta', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Alle Stellen ansehen' },
       { id: 'careers-paths-apply', label: 'Button unter beiden Wegen', description: 'Führt zum Bereich „Aktuelle Stellenangebote“', type: 'cta', value: 'Jetzt bewerben' },
+      { id: 'careers-paths-details', label: 'Karte — Zeile „Benefits & Ablauf“', description: 'Aufklapp-Zeile', type: 'label', value: 'Benefits & Ablauf' },
+      { id: 'careers-paths-open', label: 'Karte — „Öffnen“', description: 'Aufklapp-Zeile', type: 'label', value: 'Öffnen' },
     ],
   },
   {
@@ -770,6 +783,10 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-family-cta-after', label: 'CTA-Box — Text nach Hervorhebung', description: '', type: 'heading', value: 'werden?' },
       { id: 'careers-family-cta-sub', label: 'CTA-Box — Unterzeile', description: '', type: 'paragraph', value: 'Wir suchen Menschen, die ihre Geschichte teilen — 15 Minuten, ehrliche Fragen, kein Drehbuch.' },
       { id: 'careers-family-cta', label: 'CTA-Button', description: 'Button-Text (öffnet E-Mail)', type: 'cta', value: 'Teil der Geschichte werden' },
+      { id: 'careers-family-more', label: 'Button — Geschichte aufklappen', description: 'Geschichten', type: 'cta', value: 'Ganze Geschichte lesen' },
+      { id: 'careers-family-less', label: 'Button — zuklappen', description: 'Geschichten', type: 'cta', value: 'Weniger anzeigen' },
+      { id: 'careers-family-story-label', label: 'Kicker über der Geschichte', description: 'Geschichten', type: 'badge', value: 'Die Geschichte' },
+      { id: 'careers-family-next', label: 'Button — nächste Geschichte', description: 'Geschichten', type: 'cta', value: 'Nächste Geschichte' },
     ],
   },
   {
@@ -782,6 +799,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'careers-events-tab-1', label: 'Tab — Content Creation', description: 'Content tab', type: 'label', value: 'Content Creation' },
       { id: 'careers-events-tab-2', label: 'Tab — Team Events', description: 'Team tab', type: 'label', value: 'Team Events' },
       { id: 'careers-events-tab-3', label: 'Tab — Promoter Events', description: 'Promoter tab', type: 'label', value: 'Promoter Events' },
+      { id: 'careers-events-sub', label: 'Text unter der Überschrift', description: 'Leben bei Sonic', type: 'paragraph', value: 'Von Content-Shootings bis Team-Events — bei Sonic ist jeder Moment eine Chance, zusammen etwas zu erleben.' },
     ],
   },
   {
@@ -815,6 +833,18 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-problem-cta', label: 'CTA Text', description: 'CTA strip text', type: 'cta', value: 'Die SRT löst alle drei Probleme.' },
       { id: 'srt-problem-cta-sub', label: 'CTA Subtitle', description: 'CTA subtext', type: 'label', value: 'Eine Plattform. Alle Daten. Echtzeit.' },
       { id: 'srt-problem-cta-btn', label: 'CTA Button', description: 'CTA button', type: 'cta', value: 'Lösung ansehen' },
+      { id: 'card-1-title', label: 'Karte 1 — Titel', description: 'Das Problem', type: 'label', value: 'Getrennte Datensilos' },
+      { id: 'card-1-headline', label: 'Karte 1 — Überschrift', description: 'Das Problem', type: 'heading', value: 'Daten liegen überall — nur nicht zusammen.' },
+      { id: 'card-1-body', label: 'Karte 1 — Text', description: 'Das Problem', type: 'paragraph', value: 'WaWi, Marketing, Einsatzplanung — jede Abteilung eine eigene Wahrheit. Ein ganzheitliches Bild entsteht nur durch aufwendige manuelle Zusammenführung.' },
+      { id: 'card-1-impact', label: 'Karte 1 — Folge (Zeile mit Pfeil)', description: 'Das Problem', type: 'paragraph', value: 'Entscheidungen basieren auf Schnipseln statt vollständigen Fakten.' },
+      { id: 'card-2-title', label: 'Karte 2 — Titel', description: 'Das Problem', type: 'label', value: 'Keine Dashboards' },
+      { id: 'card-2-headline', label: 'Karte 2 — Überschrift', description: 'Das Problem', type: 'heading', value: 'Was du nicht siehst, kannst du nicht steuern.' },
+      { id: 'card-2-body', label: 'Karte 2 — Text', description: 'Das Problem', type: 'paragraph', value: 'Ohne gemeinsame Datenbasis: keine aussagekräftigen KPIs, kein Live-Monitoring. Kampagnen-Performance wird Wochen später sichtbar — zu spät zum Eingreifen.' },
+      { id: 'card-2-impact', label: 'Karte 2 — Folge (Zeile mit Pfeil)', description: 'Das Problem', type: 'paragraph', value: 'Fehlgeleitete Ressourcen. Verpasste Optimierungsfenster.' },
+      { id: 'card-3-title', label: 'Karte 3 — Titel', description: 'Das Problem', type: 'label', value: 'Verspätete Erkenntnisse' },
+      { id: 'card-3-headline', label: 'Karte 3 — Überschrift', description: 'Das Problem', type: 'heading', value: 'Wer zu spät sieht, verliert den Marktanteil.' },
+      { id: 'card-3-body', label: 'Karte 3 — Text', description: 'Das Problem', type: 'paragraph', value: 'Excel-Konsolidierungen, wöchentliche Status-Meetings — das kostet Zeit, die am Markt fehlt. Schlechte Kampagnen-Performance erfährt das Management erst Tage später.' },
+      { id: 'card-3-impact', label: 'Karte 3 — Folge (Zeile mit Pfeil)', description: 'Das Problem', type: 'paragraph', value: 'Reaktiv statt proaktiv. Der Wettbewerb handelt schneller.' },
     ],
   },
   {
@@ -826,6 +856,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-func-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'Die Module hinter dem Dashboard.' },
       { id: 'srt-func-sub', label: 'Subtitle', description: 'Subtitle', type: 'paragraph', value: 'Von der Einsatzplanung bis zur KI-gestützten Dokumentenverarbeitung — sechs Module, eine Plattform.' },
       { id: 'srt-func-demo-cta', label: 'Demo CTA', description: 'Demo CTA text', type: 'cta', value: 'Demo anfragen' },
+      { id: 'srt-func-count', label: 'Zusatz neben dem Kicker („— 6 Module“)', description: 'Funktionsumfang', type: 'label', value: '6 Module' },
     ],
   },
   {
@@ -846,6 +877,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-data-badge', label: 'Section Badge', description: 'Section badge', type: 'badge', value: 'Datenfluss' },
       { id: 'srt-data-heading', label: 'Main Heading', description: 'Main heading', type: 'heading', value: 'So fließen die Daten durch die SRT.' },
       { id: 'srt-data-p1', label: 'Paragraph 1', description: 'First paragraph', type: 'paragraph', value: 'Die SRT ist das zentrale Nervensystem — sie verbindet Sonic, Kunden, Mitarbeiter und externe Systeme in einer einzigen, synchronen Datenbasis.' },
+      { id: 'srt-data-tap-hint', label: 'Hinweis unter dem Datenfluss', description: 'Datenfluss', type: 'caption', value: 'Modul antippen für Details' },
     ],
   },
   {
@@ -928,6 +960,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-collab-step-6-short', label: 'Step 6 — Unterzeile', description: 'Kleine Zeile unter dem Titel', type: 'label', value: 'Performance kontinuierlich tracken' },
       { id: 'srt-collab-step-6-desc', label: 'Step 6 — Text', description: 'Beschreibung', type: 'paragraph', value: 'Auf Basis aller Daten zu Absatz, Umsatz und Kosten erhältst du aktuelle Reportings, mit denen du die Performance trackst.' },
       { id: 'srt-collab-steps-label', label: 'Zeile rechts neben der Überschrift', description: 'Kurzinfo', type: 'caption', value: '6 Schritte · End-to-End' },
+      { id: 'srt-collab-step-word', label: 'Wort „Schritt“ über jedem Schritt', description: 'Zusammenarbeit', type: 'label', value: 'Schritt' },
     ],
   },
   {
@@ -1281,6 +1314,10 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'dna-antrieb-desc',  label: 'Der Antrieb — Beschreibung',  value: 'Nicht jeder lässt sich durch dasselbe motivieren. Eine faire, nachvollziehbare Bezahlung und Entwicklungsperspektiven sind oft genauso wichtig wie frisches Obst im Büro oder ein direkter Ansprechpartner im Projektteam – anstelle einer anonymen Hotline.',           type: 'text' as const },
       { id: 'dna-daten-desc',    label: 'Die Daten — Beschreibung',    value: 'Entscheidungen beginnen oft mit einer Intuition – sollten jedoch mit Daten analysiert, evaluiert und getroffen werden. Nur so lassen sich unsere Empfehlungen in messbare Erfolge umwandeln. Jahrelange Erfahrung und umfassende Daten helfen uns, die richtigen Maßnahmen zu entwickeln.',                     type: 'text' as const },
       { id: 'dna-werkzeug-desc', label: 'Das Werkzeug — Beschreibung', value: 'Eigene Prozesse beherrschen – aber nicht alles selbst entwickeln. Unser Inhouse-IT-Team programmiert oder sourct gezielt die richtigen Tools, um gemeinsam mit starken Partnern die Herausforderungen unserer Kunden bestmöglich zu lösen.',             type: 'text' as const },
+      { id: 'dna-mensch-title', label: 'Kachel 01 — Titel', description: 'DNA-Kachel', type: 'heading', value: 'Der Mensch' },
+      { id: 'dna-antrieb-title', label: 'Kachel 02 — Titel', description: 'DNA-Kachel', type: 'heading', value: 'Der Antrieb' },
+      { id: 'dna-daten-title', label: 'Kachel 03 — Titel', description: 'DNA-Kachel', type: 'heading', value: 'Die Daten' },
+      { id: 'dna-werkzeug-title', label: 'Kachel 04 — Titel', description: 'DNA-Kachel', type: 'heading', value: 'Das Werkzeug' },
     ],
   },
   /* ═══════════════ STIMMEN & GESICHTER — see textStoreStimmen.ts ═══════════════ */
@@ -1370,6 +1407,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'srt-joerg-title',   label: 'Position / Rolle', description: 'Unter dem Namen, über dem Zitat und in der Fußzeile', type: 'label', value: 'Entwickler der SRT (Sonic Reporting Tool)' },
       { id: 'srt-joerg-quote',   label: 'Zitat',           description: 'Das große Zitat rechts', type: 'quote', multiline: true, value: 'Die SRT ist kein Tool — sie ist der direkte Draht zwischen dem, was am POS passiert, und der Entscheidung, die daraus folgen muss. Wir haben sie so gebaut, dass Promoter damit arbeiten wollen, nicht müssen.' },
       { id: 'srt-joerg-video',   label: 'YouTube-Video (optional)', description: 'YouTube-Link einfügen (z. B. https://youtu.be/…). Ersetzt das Porträt durch das Video. Leer = Porträt. Hinweis (22.10.2026): Video wird derzeit nicht auf der Seite angezeigt — es erscheint immer das Foto (Medien → SRT → Jörg Profilfoto).', type: 'link', value: '' },
+      { id: 'srt-joerg-story-label', label: 'Kicker über dem Zitat', description: 'Ein Wort vom Entwickler', type: 'badge', value: 'Im Wortlaut' },
     ],
   },
 ];
@@ -1380,6 +1418,8 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
 
 /* One-time in-memory normalization: replaces legacy English default copy with German. */
 const LEGACY_TEXT_FIXES = [
+  // Lösungen: write out „SRT“ on first mention (19.11.2026) — only if the saved text is still the old wording
+  { sectionKey: 'losungen_page', entryId: 'lp-always2Desc', from: 'Die SRT bündelt die Daten aller bisherigen Einsätze – für Standortwahl und Einsatzplanung.', to: 'Die SRT (Sonic Reporting Tool) bündelt die Daten aller bisherigen Einsätze – für Standortwahl und Einsatzplanung.' },
   // Karriere Tanja card: more positive heading (18.11.2026)
   { sectionKey: 'careers_jobs', entryId: 'careers-jobs-tanja-heading', from: 'Unsicher, welche Stelle zu dir passt?', to: 'Lass uns gemeinsam deine Stelle finden.' },
   // Lösungen: „Module dieser Lösung“ → „Sonic Schwerpunkte“ (18.11.2026)
@@ -1984,7 +2024,11 @@ export function getTextSections(): TextSection[] {
 
 /** Dashboard only — archived leftovers (see dashboardArchive.ts) are hidden. */
 function dashboardSections(): TextSection[] {
-  return loadFromStorage().filter((s) => !isArchivedTextSection(s.key));
+  return loadFromStorage()
+    .filter((s) => !isArchivedTextSection(s.key))
+    .map((s) => (s.entries.some((e) => isArchivedTextEntry(s.key, e.id))
+      ? { ...s, entries: s.entries.filter((e) => !isArchivedTextEntry(s.key, e.id)) }
+      : s));
 }
 
 export function getTextSectionsByGroup(pageGroupId: string): TextSection[] {

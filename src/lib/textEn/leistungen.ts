@@ -43,6 +43,7 @@ export const EN: Record<string, Record<string, string>> = {
     "talentpool-hero-heading-accent": "Real brand ambassadors.",
     "talentpool-hero-subtitle": "Hand-picked. Trained. Employed by Sonic.",
     "talentpool-hero-description": "Our talent pool brings together people from all over Germany, selected for profile, know-how, experience and brand fit. Trained, motivated and with their target achievement live in the SRT at any time.",
+    "talentpool-hero-btn-2": "Staff as a Service"
   },
   "leistungen_forecasting": {
     "forecasting-hero-heading-line1": "Reliable",
@@ -123,6 +124,8 @@ export const EN: Record<string, Record<string, string>> = {
   "kreation_team_header": {
     "kreation-team-badge": "Creative team",
     "kreation-team-heading": "The minds behind the creative.",
+    "kreation-team-story-label": "About me",
+    "kreation-team-next": "Next voice"
   },
   "kreation_voice_robert": {
     "robert-pullquote": "“Creativity isn't chance. It's the result of precision, courage and a deep understanding of brands and people.”",
@@ -324,6 +327,18 @@ export const EN: Record<string, Record<string, string>> = {
     "tab3-pills": "Event trucks | Event containers | Event modules | Promotion vehicles",
     "label-categories": "Categories",
     "label-examples": "Examples",
+    "img-tag-1": "Corporate",
+    "img-tag-2": "Documentation",
+    "img-tag-3": "Roadshow",
+    "img-tag-4": "VIP",
+    "img-tag-5": "Trade fair build",
+    "img-tag-6": "Demo",
+    "img-tag-7": "CGI",
+    "img-tag-8": "Booth",
+    "img-tag-9": "Logistics",
+    "img-tag-10": "Container",
+    "img-tag-11": "Campus",
+    "img-tag-12": "Promo"
   },
   "leistungen_events_cta": {
     "headline": "Planning your",
@@ -739,5 +754,16 @@ export const EN: Record<string, Record<string, string>> = {
   },
   "leistungen_challenge_common": {
     "hint": "Tap or hover over the points – do you recognise yourself?",
+    "badge": "Your challenge",
+    "counter": "recognized",
+    "counter-more": "keep scrolling?",
+    "done": "Then let's talk.",
+    "solved": "We have the solution.",
+    "step": "Step",
+    "scroll": "scroll",
+    "word-leistungen": "services",
+    "word-einsatzbereiche": "areas of deployment",
+    "word-kanaele": "channels",
+    "word-vorteile": "advantages"
   },
 };

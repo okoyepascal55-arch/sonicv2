@@ -22,6 +22,7 @@ export default function FunctionalityOverview() {
   const getImg = (idx: number) => moduleImages[idx]?.url ? resolveImageUrl(moduleImages[idx].url) : MODULES[idx].img;
 
   const tBadge   = useText('srt_functionality', 'srt-func-badge',    'Funktionsumfang');
+  const tCount   = useText('srt_functionality', 'srt-func-count',    '6 Module');
   const tHeading = useText('srt_functionality', 'srt-func-heading',  'Die Module hinter dem Dashboard.');
   const tDemoCta = useText('srt_functionality', 'srt-func-demo-cta', 'Demo anfragen');
   // Dashboard → Text → SRT → „SRT — Funktionsumfang: 6 Module“
@@ -61,7 +62,7 @@ export default function FunctionalityOverview() {
     <section id="funktionsumfang" className="bg-white relative py-16 md:py-24 px-4 md:px-6">
       <div className="sonic-container">
         <SrtHeader
-          eyebrow={<>{tBadge} <span style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.35)' }}>— 6 Module</span></>}
+          eyebrow={<>{tBadge} <span style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.35)' }}>— {tCount}</span></>}
           title={tHeading}
           side={
             <a href={`mailto:${CONTACT_EMAIL}?subject=SRT%20Demo`}

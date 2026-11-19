@@ -90,7 +90,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('subline', 'Unterzeile', 'paragraph', 'In 30 Minuten klären wir, was zu deinem Ziel passt.'),
   ]),
   // ── added 11/2026: was hard-coded in the component ──
-  section('leistungen_overview_page_nav', 'Leistungen — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), loreal (L\'Oréal), wmf (WMF), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
+  section('leistungen_overview_page_nav', 'Leistungen — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), philips (Philips), canon (Canon), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
     e('nav-service-grid', 'Seitenmenü — Leistungen', 'nav-label', 'Leistungen'),
     e('nav-zahlen', 'Seitenmenü — Zahlen', 'nav-label', 'Zahlen'),
     e('nav-schallmauer', 'Seitenmenü — Schallmauer', 'nav-label', 'Schallmauer'),

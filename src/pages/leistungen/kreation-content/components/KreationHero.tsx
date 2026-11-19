@@ -35,6 +35,7 @@ export default function KreationHero() {
   const tShow = useLeistungenText('leistungen_kreation_showcase');
 
   const tBadge = useText('leistungen_kreation', 'kreation-hero-badge', 'Inhouse Kreation & Content');
+  const tCrumb = useText('common_navigation', 'nav-leistungen', 'Leistungen'); // breadcrumb = menu name
   const tLine1 = useText('leistungen_kreation', 'kreation-hero-heading-line1', 'Kreation,');
   const tAccent = useText('leistungen_kreation', 'kreation-hero-heading-accent', 'die Marken formt.');
   const tSubtitle = useText('leistungen_kreation', 'kreation-hero-subtitle', 'Von Konzeption und CI bis Layout, POS und innovativen Formaten — Kreation als strategischer Prozess.');
@@ -71,7 +72,7 @@ export default function KreationHero() {
       <div className="relative z-10 sonic-container pb-14 md:pb-20 lg:min-h-[640px] flex flex-col justify-center">
         <div className="max-w-[760px] lg:max-w-[54%]">
           <div className="flex items-center gap-2 mb-8">
-            <Link to="/leistungen" className="text-white/40 text-xs font-bold uppercase tracking-widest hover:text-white">Leistungen</Link>
+            <Link to="/leistungen" className="text-white/40 text-xs font-bold uppercase tracking-widest hover:text-white">{tCrumb}</Link>
             <i className="ri-arrow-right-s-line text-white/30 text-sm" aria-hidden="true" />
             <span className="text-primary-500 text-xs font-black uppercase tracking-widest">{tBadge}</span>
           </div>

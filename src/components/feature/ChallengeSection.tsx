@@ -21,13 +21,14 @@ interface ChallengeSectionProps {
 
 export default function ChallengeSection({
   id = 'herausforderung',
-  badge = 'Deine Herausforderung',
+  badge,
   headline,
   subline,
   challenges,
 }: ChallengeSectionProps) {
   // Dashboard → Leistungen — Herausforderung (alle Unterseiten)
   const tCommon = useLeistungenText('leistungen_challenge_common');
+  const badgeText = badge ?? tCommon['badge'];
   const [active, setActive] = useState<number | null>(null);
   const [revealed, setRevealed] = useState<boolean[]>(Array(challenges.length).fill(false));
   const [sectionVisible, setSectionVisible] = useState(true); // start visible, animate in on scroll
@@ -52,9 +53,9 @@ export default function ChallengeSection({
   };
 
   const counterLabel = () => {
-    if (allRevealed) return `${total}/${total} erkannt? Dann reden wir.`;
+    if (allRevealed) return `${total}/${total} ${tCommon['counter']}? ${tCommon['done']}`;
     if (revealedCount === 0) return tCommon['hint'] || 'Tippe oder fahre über die Punkte – erkennst du dich wieder?';
-    return `${revealedCount}/${total} erkannt — weiter scrollen?`;
+    return `${revealedCount}/${total} ${tCommon['counter']} — ${tCommon['counter-more']}`;
   };
 
   return (
@@ -80,7 +81,7 @@ export default function ChallengeSection({
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-6">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{badge}</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.24em]" style={{ color: 'oklch(0.55 0.08 115)' }}>{badgeText}</span>
             </div>
             <h2 className="sonic-h2 text-white mb-4">
               {headline}
@@ -290,8 +291,8 @@ export default function ChallengeSection({
               style={{ color: allRevealed ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.4)' }}
             >
               {allRevealed
-                ? `${total}/${total} — Wir haben die Lösung.`
-                : `${revealedCount}/${total} erkannt`}
+                ? `${total}/${total} — ${tCommon['solved']}`
+                : `${revealedCount}/${total} ${tCommon['counter']}`}
             </span>
           </div>
           <div className="h-px flex-grow" style={{ background: 'rgba(255,255,255,0.08)' }} />

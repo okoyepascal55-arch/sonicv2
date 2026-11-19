@@ -113,6 +113,9 @@ export default function FeaturesReference() {
 
   const tBadge   = useText('srt_features', 'srt-features-badge',   'Die Lösung');
   const tHeading = useText('srt_features', 'srt-features-heading', 'SRT: Die All-in-One Software');
+  const tHeadingAccent = useText('srt_features', 'srt-features-heading-accent', 'All-in-One');
+  // Heading now from the dashboard; the accent part gets the lime highlight when it occurs in it
+  const accentAt = tHeadingAccent ? tHeading.indexOf(tHeadingAccent) : -1;
   // Unterzeile: Dashboard → Text → SRT → „SRT — All-in-One: Kacheln“ (sub)
   const tCta     = useText('srt_features', 'srt-features-cta',     'Demo anfragen');
   // Dashboard → Text → SRT → „SRT — CTA-Texte (Demo)“
@@ -138,7 +141,7 @@ export default function FeaturesReference() {
       <div className="sonic-container">
         <SrtHeader
           eyebrow={tBadge}
-          title={<>SRT: Die <span className="px-[0.16em] py-[0.02em] bg-primary-500 text-foreground-950" style={{ boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>All-in-One</span> Software</>}
+          title={accentAt < 0 ? tHeading : <>{tHeading.slice(0, accentAt)}<span className="px-[0.16em] py-[0.02em] bg-primary-500 text-foreground-950" style={{ boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{tHeadingAccent}</span>{tHeading.slice(accentAt + tHeadingAccent.length)}</>}
           side={<p>{fc.sub}</p>}
         />
 

@@ -105,6 +105,7 @@ const FALLBACK_PROCESS = [
 ];
 
 export default function POSContent() {
+  const ui = useLeistungenText('leistungen_challenge_common'); // shared labels (Schritt, scrollen …)
   const tPosAs = useLeistungenText('leistungen_pos_assets');
   const ASSETS = ASSETS_BASE.map((x, i) => ({ ...x, category: tPosAs[`a${i + 1}-category`] ?? x.category, items: tPosAs[`a${i + 1}-items`] !== undefined ? splitList(tPosAs[`a${i + 1}-items`]) : x.items }));
   const tPosCh = useLeistungenText('leistungen_pos_challenges');
@@ -212,7 +213,7 @@ export default function POSContent() {
           <div className="mb-10 md:mb-12 text-center">
             <div className="flex items-center justify-center gap-3 mb-5">
               <span className="w-7 h-0.5 bg-primary-500 flex-shrink-0" aria-hidden="true" />
-              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">Alle Assets</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary-500">{tPosAs['all-label'] || 'Alle Assets'}</span>
             </div>
             <h2 className="sonic-h2 text-white">{tAssetsHeading}</h2>
             <p className="text-white/40 text-sm mt-3">{tAssetsSub}</p>
@@ -359,7 +360,7 @@ export default function POSContent() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/40" />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">Schritt {steps[activeStep].num}</span>
+                  <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">{ui['step']} {steps[activeStep].num}</span>
                 </div>
                 <div className="absolute bottom-4 left-4 flex gap-1.5">
                   {steps.map((_, i) => (
@@ -371,7 +372,7 @@ export default function POSContent() {
               {/* Right: Content */}
               <div className="md:col-span-7 min-w-0 p-6 sm:p-8 md:p-12 flex flex-col justify-center min-h-[240px] md:min-h-[380px]">
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {steps[activeStep].num}</span>
+                  <span className="text-primary-500 text-xs font-black uppercase tracking-widest">{ui['step']} {steps[activeStep].num}</span>
                   <span className="px-3 py-1.5 bg-primary-500 text-foreground-950 text-xs font-black">{steps[activeStep].time}</span>
                 </div>
                 <h3 className="sonic-h3 text-white mb-4">{steps[activeStep].title}</h3>

@@ -12,6 +12,7 @@ import VoicesShowcase, { markLastWord, type Voice } from '@/components/feature/V
 export default function JoergQuote() {
   const tBadge  = useText('srt_developer', 'srt-joerg-badge', 'Ein Wort vom Entwickler');
   const tName   = useText('srt_developer', 'srt-joerg-name',  'Jörg');
+  const tStoryLabel = useText('srt_developer', 'srt-joerg-story-label', 'Im Wortlaut');
   const tTitle  = useText('srt_developer', 'srt-joerg-title', 'Entwickler der SRT (Sonic Reporting Tool)');
   const tQuote  = useText('srt_developer', 'srt-joerg-quote',
     'Die SRT ist kein Tool — sie ist der direkte Draht zwischen dem, was am POS passiert, ' +
@@ -28,7 +29,7 @@ export default function JoergQuote() {
     role: tTitle,
     pullQuote: tQuote,
     image: photoUrl,
-    storyLabel: 'Im Wortlaut',
+    storyLabel: tStoryLabel,
   }];
 
   return <VoicesShowcase id="entwickler" eyebrow={tBadge} heading={markLastWord(tHeading, 'SRT')} voices={voices} />;

@@ -30,6 +30,11 @@ export const EN: Record<string, Record<string, string>> = {
     "careers-culture-value-5-desc": "We use our strengths and skills responsibly.",
     "careers-culture-value-6": "Work environment",
     "careers-culture-value-6-desc": "Tasks that suit your personality. People you enjoy working with.",
+    "careers-culture-eyebrow": "Our culture",
+    "careers-culture-lead": "We love & live brands",
+    "careers-culture-values": "Energy | Charm | Hands-on | Team spirit | Creativity",
+    "careers-culture-dna-eyebrow": "Our DNA — four constants behind every decision at Sonic.",
+    "careers-culture-award-eyebrow": "Award-winning"
   },
   "careers_paths": {
     "careers-paths-badge": "Career paths",
@@ -42,6 +47,8 @@ export const EN: Record<string, Record<string, string>> = {
     "careers-paths-staff-desc": "You advise, sell and present brands from consumer electronics, household and sport directly in retail – across Germany, with fixed locations and hours. You're trained before every project and have a dedicated contact person in the project team.",
     "careers-paths-cta": "View all jobs",
     "careers-paths-apply": "Apply now",
+    "careers-paths-details": "Benefits & process",
+    "careers-paths-open": "Open"
   },
   "careers_family": {
     "careers-family-badge": "Real people. Real stories.",
@@ -50,9 +57,14 @@ export const EN: Record<string, Record<string, string>> = {
     "careers-family-cta-after": "too?",
     "careers-family-cta-sub": "We're looking for people who want to share their story — 15 minutes, honest questions, no script.",
     "careers-family-cta": "Be part of the story",
+    "careers-family-more": "Read the full story",
+    "careers-family-less": "Show less",
+    "careers-family-story-label": "The story",
+    "careers-family-next": "Next story"
   },
   "careers_events": {
     "careers-events-heading": "Full commitment. Real team.",
+    "careers-events-sub": "From content shoots to team events — at Sonic, every moment is a chance to experience something together."
   },
   "careers_jobs": {
     "careers-jobs-badge": "Current openings",
@@ -72,6 +84,10 @@ export const EN: Record<string, Record<string, string>> = {
     "dna-antrieb-desc": "Not everyone is motivated by the same things. Fair, transparent pay and development prospects are often just as important as fresh fruit in the office or a direct contact in the project team – instead of an anonymous hotline.",
     "dna-daten-desc": "Decisions often start with intuition – but they should be analysed, evaluated and made with data. Only then can our recommendations turn into measurable success. Years of experience and comprehensive data help us develop the right measures.",
     "dna-werkzeug-desc": "Master our own processes – but don't build everything ourselves. Our in-house IT team develops or sources exactly the right tools to solve our clients' challenges as well as possible, together with strong partners.",
+    "dna-mensch-title": "The people",
+    "dna-antrieb-title": "The drive",
+    "dna-daten-title": "The data",
+    "dna-werkzeug-title": "The tools"
   },
   "karriere_face_sascha": {
     "face-sascha-pullquote": "“Good IT is invisible — and that's exactly the goal. When the systems run, Sonic runs.”",

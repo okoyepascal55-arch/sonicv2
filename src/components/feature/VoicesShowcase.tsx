@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useReviewText } from '@/hooks/useReviewText';
 import { ChapterEyebrow, Marker, INK } from '@/pages/careers/components/ChapterKit';
 
 /*
@@ -43,6 +44,7 @@ export function markLastWord(text: string, prefer?: string): ReactNode {
 }
 
 function Portrait({ v, isActive }: { v: Voice; isActive: boolean }) {
+  const ui = useReviewText('common_ui_labels');
   return v.image ? (
     <img
       src={v.image}
@@ -60,7 +62,7 @@ function Portrait({ v, isActive }: { v: Voice; isActive: boolean }) {
     // No photo uploaded yet → visible photo placeholder (same as every other missing image)
     <span className="absolute inset-0 flex flex-col items-center justify-center gap-3" style={{ background: '#1c1d19', outline: '2px dashed rgba(200,212,0,0.3)', outlineOffset: '-14px' }} aria-hidden="true">
       <i className="ri-image-line text-5xl" style={{ color: 'rgba(200,212,0,0.75)' }} />
-      <span className="text-[11px] font-black uppercase tracking-[0.3em]" style={{ color: 'rgba(200,212,0,0.75)' }}>Foto folgt</span>
+      <span className="text-[11px] font-black uppercase tracking-[0.3em]" style={{ color: 'rgba(200,212,0,0.75)' }}>{ui['photo-follows']}</span>
     </span>
   );
 }
@@ -74,7 +76,7 @@ export default function VoicesShowcase({
   storyLabel = 'Die Geschichte',
   moreLabel = 'Ganze Geschichte lesen',
   lessLabel = 'Weniger anzeigen',
-  nextLabel = 'Nächste Stimme',
+  nextLabel: nextLabelProp,
   footer,
 }: {
   id: string;
@@ -88,6 +90,8 @@ export default function VoicesShowcase({
   nextLabel?: string;
   footer?: ReactNode;
 }) {
+  const uiLabels = useReviewText('common_ui_labels');
+  const nextLabel = nextLabelProp ?? uiLabels['voices-next'];
   const [activeIndex, setActiveIndex] = useState(0);
   const [expanded, setExpanded] = useState(false);
   const single = voices.length === 1;

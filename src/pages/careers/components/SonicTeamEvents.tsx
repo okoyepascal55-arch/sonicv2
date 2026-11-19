@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
+import { useReviewText } from '@/hooks/useReviewText';
 import { ChapterHeader, Marker } from './ChapterKit';
 import { useKarriereEventLines } from '../useKarriereText';
 import { IMAGE_PLACEHOLDER } from '@/lib/imagePlaceholder';
@@ -52,8 +53,13 @@ export default function SonicTeamEvents() {
 
   // Dashboard → Text → Karriere → „Karriere — Team Events (Zeilen unter den Titeln)“
   const eventLines = useKarriereEventLines();
+  // Dashboard → Text → Karriere → „Leben bei Sonic — die vier Event-Tabs“ (order = tab order)
+  const et = useReviewText('karriere_events_tabs');
+
   const resolvedEvents = EVENTS.map((ev, i) => ({
     ...ev,
+    tag: et[`tab-${i + 1}-tag`] || ev.tag,
+    title: et[`tab-${i + 1}-title`] || ev.title,
     stat: eventLines[ev.id as keyof typeof eventLines] ?? ev.stat,
     image: eventImages[i]?.url || ev.fallbackImage,
     videoUrl: eventVideos[i]?.url || ev.videoUrl,

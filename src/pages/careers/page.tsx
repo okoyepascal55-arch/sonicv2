@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSEO } from '@/hooks/useSEO';
+import { useReviewText } from '@/hooks/useReviewText';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import KarriereHero from './components/KarriereHero';
 import KarriereStatsTicker from './components/KarriereStatsTicker';
@@ -13,6 +14,7 @@ import CareerShowcase from './components/CareerShowcase';
 import KarriereJobs from './components/KarriereJobs';
 
 function MobileStickyCta() {
+  const nt = useReviewText('karriere_nav_texts');
   const scrollToJobs = () => {
     const el = document.getElementById('stellenangebote');
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -33,7 +35,7 @@ function MobileStickyCta() {
         className="w-full h-[52px] flex items-center justify-center gap-2.5 bg-primary-500 text-foreground-950 text-xs font-black uppercase tracking-[0.12em] cursor-pointer"
       >
         <i className="ri-briefcase-line text-base" />
-        Stellenangebote
+        {nt['apply-mobile']}
       </button>
     </div>
   );

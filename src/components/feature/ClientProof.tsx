@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
 import { isMotionPaused } from '@/lib/motion';
-import { useMediaStore } from '@/lib/mediaStore';
 import { useTextSection } from '@/hooks/useText';
 import { TESTIMONIAL_IDS } from '@/lib/textStoreStimmen';
 import { useBrandLogos } from '@/lib/brandLogos';

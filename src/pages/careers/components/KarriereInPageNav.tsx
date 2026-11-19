@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { useReviewText } from '@/hooks/useReviewText';
 
 const navItems = [
   { id: 'pfade', n: '01', label: 'Zwei Wege' },
@@ -16,6 +17,8 @@ interface Props {
 }
 
 export default function KarriereInPageNav({ heroRef }: Props) {
+  // Dashboard → Text → Karriere → „Seitenmenü (schwarze Leiste) & Bewerben-Buttons“
+  const nt = useReviewText('karriere_nav_texts');
   const [activeId, setActiveId] = useState('');
   const [visible, setVisible] = useState(false);
   const heroThresholdRef = useRef<number | null>(null);
@@ -102,7 +105,7 @@ export default function KarriereInPageNav({ heroRef }: Props) {
                 className="text-[12px] font-black uppercase tracking-[0.12em]"
                 style={{ color: isActive ? 'oklch(var(--primary-500))' : 'rgba(255,255,255,0.45)' }}
               >
-                {item.label}
+                {nt[`nav-${navItems.indexOf(item) + 1}`] || item.label}
               </span>
             </button>
           );
@@ -113,7 +116,7 @@ export default function KarriereInPageNav({ heroRef }: Props) {
           className="hidden md:inline-flex ml-auto items-center gap-2 self-center px-5 py-[11px] bg-primary-500 text-foreground-950 text-[11px] font-black uppercase tracking-[0.12em] whitespace-nowrap cursor-pointer flex-shrink-0"
         >
           <i className="ri-briefcase-line text-sm" />
-          Bewerben
+          {nt['apply']}
         </button>
       </div>
     </div>

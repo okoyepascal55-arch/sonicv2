@@ -78,6 +78,18 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('tab3-pills', 'Tab 3 — Kategorien (mit | trennen)', 'tag', 'Eventtrucks | Eventcontainer | Eventmodule | Promotionfahrzeuge'),
     e('label-categories', 'Label „Kategorien“', 'label', 'Kategorien'),
     e('label-examples', 'Label „Beispiele“', 'label', 'Beispiele'),
+    e('img-tag-1', 'Bild 1 — Kategorie-Etikett (Bild 1 in „Events — Showcase-Bilder“; Titel = Bildunterschrift)', 'label', 'Corporate'),
+    e('img-tag-2', 'Bild 2 — Kategorie-Etikett (Bild 2 in „Events — Showcase-Bilder“; Titel = Bildunterschrift)', 'label', 'Dokumentation'),
+    e('img-tag-3', 'Bild 3 — Kategorie-Etikett (Bild 3 in „Events — Showcase-Bilder“; Titel = Bildunterschrift)', 'label', 'Roadshow'),
+    e('img-tag-4', 'Bild 4 — Kategorie-Etikett (Bild 4 in „Events — Showcase-Bilder“; Titel = Bildunterschrift)', 'label', 'VIP'),
+    e('img-tag-5', 'Bild 5 — Kategorie-Etikett (Bild 5 in „Events — Showcase-Bilder“; Titel = Bildunterschrift)', 'label', 'Messebau'),
+    e('img-tag-6', 'Bild 6 — Kategorie-Etikett (Bild 6 in „Events — Showcase-Bilder“; Titel = Bildunterschrift)', 'label', 'Demo'),
+    e('img-tag-7', 'Bild 7 — Kategorie-Etikett (Bild 7 in „Events — Showcase-Bilder“; Titel = Bildunterschrift)', 'label', 'CGI'),
+    e('img-tag-8', 'Bild 8 — Kategorie-Etikett (Bild 8 in „Events — Showcase-Bilder“; Titel = Bildunterschrift)', 'label', 'Stand'),
+    e('img-tag-9', 'Bild 9 — Kategorie-Etikett (Bild 9 in „Events — Showcase-Bilder“; Titel = Bildunterschrift)', 'label', 'Logistik'),
+    e('img-tag-10', 'Bild 10 — Kategorie-Etikett (Bild 10 in „Events — Showcase-Bilder“; Titel = Bildunterschrift)', 'label', 'Container'),
+    e('img-tag-11', 'Bild 11 — Kategorie-Etikett (Bild 11 in „Events — Showcase-Bilder“; Titel = Bildunterschrift)', 'label', 'Campus'),
+    e('img-tag-12', 'Bild 12 — Kategorie-Etikett (Bild 12 in „Events — Showcase-Bilder“; Titel = Bildunterschrift)', 'label', 'Promo'),
   ]),
   section('leistungen_events_cta', 'Events & Messen — Kontakt-Box', P, 'Abschluss-Box am Seitenende: kurze Frage, eine Zeile. Button und Zeile darunter: CTAs — Button-Texte.', [
     e('headline', 'Überschrift', 'heading', 'Nächster Auftritt'),
@@ -85,7 +97,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('subline', 'Unterzeile', 'paragraph', 'Wir zeigen dir, wie wir deine Marke live erlebbar machen.'),
   ]),
   // ── added 11/2026: was hard-coded in the component ──
-  section('leistungen_events_page_nav', 'Events & Messen — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), loreal (L\'Oréal), wmf (WMF), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
+  section('leistungen_events_page_nav', 'Events & Messen — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), philips (Philips), canon (Canon), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
     e('nav-herausforderung', 'Seitenmenü — Herausforderung', 'nav-label', 'Herausforderung'),
     e('nav-loesung', 'Seitenmenü — Lösung', 'nav-label', 'Lösung'),
     e('nav-events', 'Seitenmenü — Formate', 'nav-label', 'Formate'),

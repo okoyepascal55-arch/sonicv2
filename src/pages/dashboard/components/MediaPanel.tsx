@@ -1,4 +1,5 @@
 import ClientLogosPanel from './ClientLogosPanel';
+import { slotPositionNote } from '@/lib/dashboardSlotPositions';
 import { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
 import {
   PAGE_GROUPS,
@@ -40,6 +41,8 @@ interface MediaPanelProps {
 
 /* ── Memoized image card ── */
 interface ImageCardProps {
+  /** Where this image appears on the site (display only, dashboardSlotPositions.ts) */
+  positionNote?: string | null;
   item: MediaItem;
   idx: number;
   selected: boolean;
@@ -58,7 +61,7 @@ interface ImageCardProps {
 const ImageCard = memo(function ImageCard({
   item, idx, selected, onToggleSelect, onEdit, onDelete, onReplace,
   onDragStart, onDragOver, onDrop, onDragEnd,
-  isDragging, isDragOver,
+  isDragging, isDragOver, positionNote,
 }: ImageCardProps) {
   const [errored, setErrored] = useState(false);
   // A YouTube link stored as a media item (e.g. the Live Video showcase) previews as its thumbnail
@@ -131,6 +134,11 @@ const ImageCard = memo(function ImageCard({
           </div>
         </div>
         <div className="px-2 md:px-3 py-1.5 md:py-2">
+          {positionNote && (
+            <p className="text-2xs md:text-xs font-semibold text-lime-700 leading-snug mb-0.5 md:mb-1" title={positionNote}>
+              <i className="ri-map-pin-line mr-0.5" aria-hidden="true"></i>Bild {idx + 1} → {positionNote}
+            </p>
+          )}
           <p className="text-2xs md:text-xs font-medium text-red-600 truncate mb-0.5 md:mb-1">
             {item.caption || `Image ${idx + 1}`} — (Kaputtes Bild)
           </p>
@@ -211,6 +219,11 @@ const ImageCard = memo(function ImageCard({
         </div>
       </div>
       <div className="px-2 md:px-3 py-1.5 md:py-2">
+        {positionNote && (
+          <p className="text-2xs md:text-xs font-semibold text-lime-700 leading-snug mb-0.5 md:mb-1" title={positionNote}>
+            <i className="ri-map-pin-line mr-0.5" aria-hidden="true"></i>Bild {idx + 1} → {positionNote}
+          </p>
+        )}
         {item.caption && (
           <p className="text-2xs md:text-xs font-medium text-gray-700 truncate mb-0.5 md:mb-1">{item.caption}</p>
         )}
@@ -404,6 +417,7 @@ const SectionRow = memo(function SectionRow({
                   onDragEnd={onDragEnd}
                   isDragging={dragIndex === idx}
                   isDragOver={dragOverIndex === idx}
+                  positionNote={slotPositionNote(cat.key, idx)}
                 />
               ))}
             </div>

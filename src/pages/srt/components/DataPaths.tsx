@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useId, useCallback, useLayoutEffect } from
 import { useText } from '@/hooks/useText';
 import { HAIR, MUTED } from './SrtKit';
 
-const nodes = [
+const BASE_NODES = [
   { id: 'agentur', label: 'Sonic-Daten', icon: 'ri-user-star-line', desc: 'Einsatzplanung & Kampagnenstatus in Echtzeit' },
   { id: 'externe', label: 'Externe Daten', icon: 'ri-global-line', desc: 'Handelsdaten, Online-Shops & Hersteller-Apps' },
   { id: 'kunde', label: 'Kunden-Daten', icon: 'ri-file-list-3-line', desc: 'Live-KPIs, Abverkauf & Reportings' },
@@ -32,9 +32,12 @@ function shrinkToEdge(from: Point, to: Point): { x: number; y: number } {
 export default function DataPaths() {
   const motionPaused = useMotionPaused();
   const dn = useReviewText('common_srt_data_nodes');
+  // Node names from the dashboard (n1-label … n4-label), same order as the nodes
+  const nodes = BASE_NODES.map((n, i) => ({ ...n, label: dn[`n${i + 1}-label`] || n.label }));
   const [activeNode, setActiveNode] = useState<string | null>(null);
   const [pulse, setPulse] = useState(false);
   const tBadge = useText('srt_datapaths', 'srt-data-badge', 'Datenfluss');
+  const tTapHint = useText('srt_datapaths', 'srt-data-tap-hint', 'Modul antippen für Details');
   const tHeading = useText('srt_datapaths', 'srt-data-heading', 'So fließen die Daten durch die SRT.');
   const tSub = useText('srt_datapaths', 'srt-data-p1', 'Die SRT ist das zentrale Nervensystem — sie verbindet Sonic, Kunden, Mitarbeiter und externe Systeme in einer einzigen, synchronen Datenbasis.');
   const woodenId = useId();
@@ -179,7 +182,7 @@ export default function DataPaths() {
           {activeNodeData ? (
             <p className="text-xs sm:text-sm text-foreground-950/70">{dn[`n${nodes.findIndex((n) => n.id === activeNodeData.id) + 1}-desc`] || activeNodeData.desc}</p>
           ) : (
-            <p className="text-xs sm:text-sm text-foreground-500">Modul antippen für Details</p>
+            <p className="text-xs sm:text-sm text-foreground-500">{tTapHint}</p>
           )}
         </div>
         </div>

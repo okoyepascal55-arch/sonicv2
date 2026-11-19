@@ -35,6 +35,19 @@ const PAGE_LABELS: Record<keyof typeof LOSUNGEN_PAGE_TEXT, [string, EntryType, b
   always2Desc: ['Was immer gilt — Punkt 2 Text', 'paragraph', true],
   always3Title: ['Was immer gilt — Punkt 3 Titel', 'subheading'],
   always3Desc: ['Was immer gilt — Punkt 3 Text', 'paragraph', true],
+  solutionKicker: ['Lösungskarte — Kicker „Sonic Lösung“', 'badge'],
+  cardMore: ['Lösungskarte — Button aufklappen', 'cta'],
+  cardClose: ['Lösungskarte — Button zuklappen', 'cta'],
+  quickCheckKicker: ['Schnell-Check — Kicker', 'badge'],
+  quickCheckTitle: ['Schnell-Check — Titel', 'heading'],
+  quickCheckLine: ['Schnell-Check — Zeile', 'caption'],
+  quickCheckBtn: ['Schnell-Check — Button', 'cta'],
+  faqBadge: ['FAQ — Kicker', 'badge'],
+  faqHeadingAccent: ['FAQ — Überschrift Akzent (lime)', 'heading'],
+  faqHeadingEnd: ['FAQ — Überschrift Ende', 'heading'],
+  faqIntro: ['FAQ — Text unter der Überschrift', 'paragraph'],
+  faqQuestion: ['FAQ — Frage unten', 'paragraph'],
+  faqBtn: ['FAQ — Button unten', 'cta'],
 };
 
 const pageSection: TextSection = {

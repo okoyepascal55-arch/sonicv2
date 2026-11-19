@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import WoodBackground from '@/components/base/WoodBackground';
 import { useNavigate } from 'react-router-dom';
 import CaseShowcase from './CaseShowcase';
 import TvCompare, { useTvCompare } from './TvCompare';
@@ -8,6 +9,7 @@ import Lightbox, { LightboxItem } from '@/components/base/Lightbox';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { useBrandLogos } from '@/lib/brandLogos';
 import { useText } from '@/lib/textStore';
+import { mergeCase } from './caseContent';
 import { useReviewText } from '@/hooks/useReviewText';
 import { useCtaText } from '@/hooks/useCtaText';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
@@ -219,166 +221,13 @@ interface CaseStudy {
 }
 
 
-// ── Grouped Impressionen Gallery ────────────────────────────────────────────
-function GroupedImpressionenGallery({
-  groups,
-  brand,
-  openLightbox,
-}: {
-  groups: { title: string; mediaKey: string; fallbacks: string[] }[];
-  brand: string;
-  openLightbox: (items: LightboxItem[], startIndex: number) => void;
-}) {
-  // Collect images from media store for each group
-  const allMediaKeys = [
-    'case_garmin_gallery_1','case_garmin_gallery_2','case_garmin_gallery_3','case_garmin_gallery_4',
-    'case_seb_gallery_1','case_seb_gallery_2',
-    'case_tvsound_gallery_1','case_tvsound_gallery_2',
-    'case_avoury_gallery_1','case_avoury_gallery_2',
-  ] as const;
-
-  // Fetch all possible store sections upfront (hooks cannot be conditional)
-  const g1 = useMediaStore('case_garmin_gallery_1');
-  const g2 = useMediaStore('case_garmin_gallery_2');
-  const g3 = useMediaStore('case_garmin_gallery_3');
-  const g4 = useMediaStore('case_garmin_gallery_4');
-  const s1 = useMediaStore('case_seb_gallery_1');
-  const s2 = useMediaStore('case_seb_gallery_2');
-  const tv1 = useMediaStore('case_tvsound_gallery_1');
-  const tv2 = useMediaStore('case_tvsound_gallery_2');
-  const a1 = useMediaStore('case_avoury_gallery_1');
-  const a2 = useMediaStore('case_avoury_gallery_2');
-  const a3 = useMediaStore('case_avoury_gallery_3');
-  const a4 = useMediaStore('case_avoury_gallery_4');
-  const s3 = useMediaStore('case_seb_gallery_3');
-  const s4 = useMediaStore('case_seb_gallery_4');
-  const tv3 = useMediaStore('case_tvsound_gallery_3');
-  const tv4 = useMediaStore('case_tvsound_gallery_4');
-
-  const storeMap: Record<string, ReturnType<typeof useMediaStore>> = {
-    'case_garmin_gallery_1': g1, 'case_garmin_gallery_2': g2,
-    'case_garmin_gallery_3': g3, 'case_garmin_gallery_4': g4,
-    'case_seb_gallery_1': s1, 'case_seb_gallery_2': s2,
-    'case_tvsound_gallery_1': tv1, 'case_tvsound_gallery_2': tv2,
-    'case_avoury_gallery_1': a1, 'case_avoury_gallery_2': a2,
-    'case_avoury_gallery_3': a3, 'case_avoury_gallery_4': a4,
-    'case_seb_gallery_3': s3, 'case_seb_gallery_4': s4,
-    'case_tvsound_gallery_3': tv3, 'case_tvsound_gallery_4': tv4,
-  };
-
-  const getGroupImages = (group: typeof groups[0]): string[] => {
-    const store = storeMap[group.mediaKey];
-    const storeUrls = store?.images?.filter(img => img.url).map(img => resolveImageUrl(img.url)) ?? [];
-    return storeUrls.length > 0 ? storeUrls : group.fallbacks;
-  };
-
-  // Build flat lightbox array across all groups for navigation
-  const allItems: LightboxItem[] = groups.flatMap(group =>
-    getGroupImages(group).map(src => ({
-      image: src,
-      title: group.title,
-      category: brand,
-      description: `${group.title} — ${brand} Fallbeispiel`,
-    }))
-  );
-
-  let globalIdx = 0;
-
-  return (
-    <div className="mb-14">
-      {/* Section header */}
-      <div className="flex items-center gap-3 mb-10">
-        <div className="w-1 h-8 bg-primary-500 flex-shrink-0" />
-        <div>
-          <p className="text-xs font-black text-foreground-400 uppercase tracking-widest mb-0.5">Bildergalerie</p>
-          <h3 className="text-xl font-black text-foreground-950 uppercase tracking-wide">
-            {brand} — <span className="v3-marker">Impressionen</span>
-          </h3>
-        </div>
-      </div>
-
-      {/* Groups — each with editorial layout */}
-      <div className="flex flex-col gap-12">
-        {groups.map((group) => {
-          const images = getGroupImages(group);
-          if (!images.length) return null;
-
-          const groupStartIdx = globalIdx;
-          globalIdx += images.length;
-
-          return (
-            <div key={group.mediaKey}>
-              {/* Category label */}
-              <div className="flex items-center gap-3 mb-3">
-                <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.28em]"
-                  style={{ color: 'oklch(0.55 0.08 115)' }}>
-                  <span className="w-3 h-0.5 bg-primary-500 flex-shrink-0" />
-                  {group.title}
-                </span>
-                <div className="flex-1 h-px" style={{ background: 'oklch(0.55 0.08 115 / 0.15)' }} />
-              </div>
-
-              {/* Bento grid — 4-col base, featured col-span-2 row-span-2, rest fill */}
-              <div
-                className="grid grid-cols-2 sm:grid-cols-4 gap-[3px]"
-                style={{ background: 'oklch(0.90 0.003 110)', gridAutoRows: '140px' }}
-              >
-                {images.map((src, imgIdx) => {
-                  const isFeatured = imgIdx === 0 && images.length > 1;
-                  const lightboxIdx = groupStartIdx + imgIdx;
-                  return (
-                    <GalleryThumb
-                      key={imgIdx}
-                      src={src}
-                      alt={`${group.title} — ${brand}`}
-                      lightboxIdx={lightboxIdx}
-                      allItems={allItems}
-                      openLightbox={openLightbox}
-                      className={isFeatured ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1'}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-/** Reusable gallery thumbnail with consistent hover behaviour */
-function GalleryThumb({
-  src, alt, lightboxIdx, allItems, openLightbox, className = '',
-}: {
-  src: string; alt: string; lightboxIdx: number;
-  allItems: LightboxItem[];
-  openLightbox: (items: LightboxItem[], idx: number) => void;
-  className?: string;
-}) {
-  return (
-    <div
-      className={`relative overflow-hidden group cursor-pointer ${className}`}
-      onClick={() => openLightbox(allItems, lightboxIdx)}
-      role="button" tabIndex={0}
-      aria-label={`${alt} — vergrößern`}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(allItems, lightboxIdx); } }}
-    >
-      <img src={src} alt={alt}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-        loading="lazy" />
-      {/* Hover overlay */}
-      <div className="absolute inset-0 bg-foreground-950/0 group-hover:bg-foreground-950/35 transition-colors duration-300" />
-      {/* Expand icon */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="w-11 h-11 flex items-center justify-center bg-primary-500">
-          <i className="ri-zoom-in-line text-foreground-950 text-lg font-bold" />
-        </div>
-      </div>
-      {/* Lime top accent */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary-500 translate-y-[-100%] group-hover:translate-y-0 transition-transform duration-300" />
-    </div>
-  );
+/** Case story texts: defaults from caseContent.ts, dashboard values win (19.11.2026). */
+function useCaseContent() {
+  const g = useReviewText('case_garmin_details');
+  const s = useReviewText('case_seb_details');
+  const a = useReviewText('case_avoury_details');
+  const t = useReviewText('case_tvsound_details');
+  return { garmin: mergeCase('garmin', g), seb: mergeCase('seb', s), avoury: mergeCase('avoury', a), tvsound: mergeCase('tvsound', t) };
 }
 
 export default function CaseStudiesPage() {
@@ -496,6 +345,8 @@ export default function CaseStudiesPage() {
   const [expandedStory, setExpandedStory] = useState<string | null>(null);
   const expandedRef = useRef<HTMLDivElement>(null);
 
+  // Fixed story texts come from caseContent.ts + dashboard (case_<brand>_details)
+  const cc = useCaseContent();
   const caseStudies: CaseStudy[] = [
     {
       id: 'garmin',
@@ -507,7 +358,7 @@ export default function CaseStudiesPage() {
       headline: tGarminHeadline,
       subline: tGarminSubline,
       campaignType: csT['garmin-campaign'],
-      since: '2021',
+      since: cc.garmin.since,
       quote: tGarminQuote,
       author: tGarminAuthor,
       role: tGarminRole,
@@ -516,22 +367,18 @@ export default function CaseStudiesPage() {
         { label: 'Märkte', value: 'DE + AT + Sport', progress: 70 },
         { label: 'Partnerschaft seit', value: '2021', progress: 55 },
       ],
-      woodPills: [
-        { label: 'Start', value: '2021' },
-        { label: 'Märkte', value: 'DE + AT' },
-        { label: 'Bereiche', value: '7' },
-      ],
+      woodPills: cc.garmin.pills,
       // Umsatz pro Einsatztag, relativer Verlauf laut Agenturpräsentation — nur Form, keine Werte
       trend: [39, 46, 67, 83, 100],
       trendYears: ['2021', '2022', '2023', '2024', '2025'],
-      trendTitle: 'Umsatz pro Einsatztag',
+      trendTitle: cc.garmin.trendTitle,
       overview: tGarminOverview,
       modules: [
-        { num: '01', title: 'Promotions', desc: 'Beispiel: Aktivierung am POS per Rabatt-Aktion. Full-Service-Umsetzung durch unsere Field Force.', img: '/images/Case Studies -Fallbsp/Garmin/5243_190035993.webp', tags: ['POS', 'Field Force', 'DACH'] },
-        { num: '02', title: 'Aktionen', desc: 'Beispiel: Smoothie-Verkostungsaktion am POS als niederschwelliger Gesprächseinstieg.', img: '/images/Case Studies -Fallbsp/Garmin/210330_Banner_Kacheln_310x150px_Seite_13_Reporting.webp', tags: ['Live-Aktion', 'Verkostung', 'POS'] },
-        { num: '03', title: 'POS-Möbel', desc: 'Eigens entwickeltes, modulares Präsentationsmöbel mit digitalen Elementen.', img: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_1000_A26_Front.webp', tags: ['Design', 'Modular', 'Digital'] },
-        { num: '04', title: 'Training', desc: 'Wir schulen die Sales-Teams, bei uns in Krefeld und mobil in ganz Deutschland.', img: '' /* Foto ohne Maske fehlt — bitte im Dashboard hochladen (case_garmin_module_4) */, tags: ['Schulung', 'Krefeld', 'Zertifizierung'] },
-        { num: '05', title: 'Lager & Logistik', desc: 'POS-Ausstattung wird bei Sonic produziert, gelagert und versendet.', img: '/images/Case Studies -Fallbsp/Garmin/5431_162510371.webp', tags: ['Lager', 'Logistik', 'Versand'] },
+        { num: '01', title: cc.garmin.modules[0].title, desc: cc.garmin.modules[0].desc ?? '', img: '/images/Case Studies -Fallbsp/Garmin/5243_190035993.webp', tags: cc.garmin.modules[0].tags },
+        { num: '02', title: cc.garmin.modules[1].title, desc: cc.garmin.modules[1].desc ?? '', img: '/images/Case Studies -Fallbsp/Garmin/210330_Banner_Kacheln_310x150px_Seite_13_Reporting.webp', tags: cc.garmin.modules[1].tags },
+        { num: '03', title: cc.garmin.modules[2].title, desc: cc.garmin.modules[2].desc ?? '', img: '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_1000_A26_Front.webp', tags: cc.garmin.modules[2].tags },
+        { num: '04', title: cc.garmin.modules[3].title, desc: cc.garmin.modules[3].desc ?? '', img: '' /* Foto ohne Maske fehlt — bitte im Dashboard hochladen (case_garmin_module_4) */, tags: cc.garmin.modules[3].tags },
+        { num: '05', title: cc.garmin.modules[4].title, desc: cc.garmin.modules[4].desc ?? '', img: '/images/Case Studies -Fallbsp/Garmin/5431_162510371.webp', tags: cc.garmin.modules[4].tags },
       ],
       gallery: [
         '/images/Case Studies -Fallbsp/Garmin/Garmin_POS_CDU-Light_600_A26_Front.webp',
@@ -562,8 +409,8 @@ export default function CaseStudiesPage() {
       metricLabel: tSebLabel,
       headline: tSebHeadline,
       subline: tSebSubline,
-      campaignType: 'Multi-Brand Field Force & Live-Video',
-      since: '2019',
+      campaignType: cc.seb.campaign ?? '',
+      since: cc.seb.since,
       quote: tSebQuote,
       author: tSebAuthor,
       role: tSebRole,
@@ -572,23 +419,19 @@ export default function CaseStudiesPage() {
         { label: 'Partnerschaft seit', value: '2019', progress: 75 },
         { label: 'Marken', value: '4', progress: 60 },
       ],
-      woodPills: [
-        { label: 'Start', value: '2019' },
-        { label: 'Marken', value: '4' },
-        { label: 'Module', value: '6' },
-      ],
+      woodPills: cc.seb.pills,
       // Umsatz pro Einsatztag, relativer Verlauf laut Agenturpräsentation — nur Form, keine Werte
       trend: [40, 45, 67, 71, 93, 92, 100],
       trendYears: ['2019', '2020', '2021', '2022', '2023', '2024', '2025'],
-      trendTitle: 'Umsatz pro Einsatztag',
+      trendTitle: cc.seb.trendTitle,
       overview: tSebOverview,
       modules: [
-        { num: '01', title: 'Live-Video-Beratung', desc: 'Aus den Sonic-Studios. Digital am POS und im Online-Shop. Für Rowenta, Tefal, Krups und WMF.', img: '/images/Case Studies -Fallbsp/SEB/20250604_205405_187.webp', tags: ['Live-Video', 'Studio', 'Digital'] },
-        { num: '02', title: 'Aktionen', desc: 'Beispiel: verkaufsstarkes Live-Cooking am POS, betreut von unseren Foodies in der Field Force.', img: '/images/Case Studies -Fallbsp/SEB/Bild_NecafeDolceGusto.webp', tags: ['Live-Cooking', 'POS', 'Field Force'] },
-        { num: '03', title: 'Roadshow', desc: 'Die rollende mehrmarkenfähige Trainings-Roadshow mit Foodtruck-Funktion: Airstream-Trailer als Showmobil.', img: '/images/Case Studies -Fallbsp/SEB/Gruppe Braun (37).webp', tags: ['Roadshow', 'Airstream', 'Mobile'] },
-        { num: '04', title: 'Verkauf, POS-Pflege, Warenpräsentation', desc: csT['seb-module-4-desc'], img: '/images/Case Studies -Fallbsp/SEB/Gruppe Gold (5).webp', tags: ['POS-Pflege', 'Präsentation', 'Verkauf'] },
-        { num: '05', title: 'Sales-Training', desc: 'Wir schulen Verkäufer der Handelsketten und unsere Field Force an unserem Campus in Krefeld sowie per Video-Webinar.', img: '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (13).webp', tags: ['Training', 'Krefeld', 'Zertifizierung'] },
-        { num: '06', title: 'Reporting', desc: 'Tägliche Einsatzkosten und generierte Umsätze sind tag- und standortgenau auswertbar.', img: '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (26).webp', tags: ['SRT', 'Analytics', 'KPI'] },
+        { num: '01', title: cc.seb.modules[0].title, desc: cc.seb.modules[0].desc ?? '', img: '/images/Case Studies -Fallbsp/SEB/20250604_205405_187.webp', tags: cc.seb.modules[0].tags },
+        { num: '02', title: cc.seb.modules[1].title, desc: cc.seb.modules[1].desc ?? '', img: '/images/Case Studies -Fallbsp/SEB/Bild_NecafeDolceGusto.webp', tags: cc.seb.modules[1].tags },
+        { num: '03', title: cc.seb.modules[2].title, desc: cc.seb.modules[2].desc ?? '', img: '/images/Case Studies -Fallbsp/SEB/Gruppe Braun (37).webp', tags: cc.seb.modules[2].tags },
+        { num: '04', title: cc.seb.modules[3].title, desc: csT['seb-module-4-desc'], img: '/images/Case Studies -Fallbsp/SEB/Gruppe Gold (5).webp', tags: cc.seb.modules[3].tags },
+        { num: '05', title: cc.seb.modules[4].title, desc: cc.seb.modules[4].desc ?? '', img: '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (13).webp', tags: cc.seb.modules[4].tags },
+        { num: '06', title: cc.seb.modules[5].title, desc: cc.seb.modules[5].desc ?? '', img: '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (26).webp', tags: cc.seb.modules[5].tags },
       ],
       gallery: [
         '/images/Case Studies -Fallbsp/SEB/Komm-Zentrum (34).webp',
@@ -619,8 +462,8 @@ export default function CaseStudiesPage() {
       metricLabel: tAvouryLabel,
       headline: tAvouryHeadline,
       subline: tAvourySubline, // was: 'Avoury One — die Form der Kurve ändert sich, wenn die Methode stimmt.',
-      campaignType: 'Field Force, Recruiting & Datenoptimierung',
-      since: '2021',
+      campaignType: cc.avoury.campaign ?? '',
+      since: cc.avoury.since,
       quote: tAvouryQuote,
       author: tAvouryAuthor,
       role: tAvouryRole,
@@ -629,22 +472,18 @@ export default function CaseStudiesPage() {
         { label: 'Schlüssel zum Erfolg', value: 'Cross-Selling', progress: 85 },
         { label: 'Partnerschaft seit', value: '2021', progress: 70 },
       ],
-      woodPills: [
-        { label: 'Start', value: '2021' },
-        { label: 'Marke', value: 'Melitta' },
-        { label: 'Module', value: '5' },
-      ],
+      woodPills: cc.avoury.pills,
       // Abverkauf pro Tag, relativer Verlauf laut Agenturpräsentation — nur Form, keine Werte
       trend: [4, 4, 26, 73, 100],
       trendYears: ['2021', '2022', '2023', '2024', '2025'],
-      trendTitle: 'Abverkauf pro Einsatztag',
+      trendTitle: cc.avoury.trendTitle,
       overview: tAvouryOverview,
       modules: [
-        { num: '01', title: 'Recruiting', desc: 'Zum Start: Zusammenstellung Field Force Team aus eigenem Pool plus aus Recruiting. Gezieltes Matching auf Profil, Standort und Verkaufsstärke.', img: '/images/Case Studies -Fallbsp/Avoury/IMG-20230928-WA0000.webp', tags: ['Recruiting', 'Talentpool', 'Matching'] },
-        { num: '02', title: 'Schulungen', desc: csT['avoury-module-2-desc'], img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_01.webp', tags: ['Campus Krefeld', 'Schulung', 'Zertifizierung'] },
-        { num: '03', title: 'Sales Promotions', desc: 'Nicht Verkauf per Zufall — Verkauf per System. Gerätedemonstration, gezieltes Cross-Selling auf Kapseln und Zubehör, nach unserer Methode.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_05.webp', tags: ['POS', 'Cross-Selling', 'Methode'] },
-        { num: '04', title: 'Reporting', desc: 'Was gemessen wird, wird besser. Die SRT zeigt tages- und standortgenau: wer verkauft, wo, wie viel — und warum. Das ist der Motor hinter der Kurve.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_07.webp', tags: ['SRT', 'Daten', 'Analyse'] },
-        { num: '05', title: 'Laufende Optimierungen', desc: 'Personalauswahl, Outlet-Auswahl, Einsatztage — alles datenbasiert optimiert. Das Ergebnis gibt jedes Jahr recht.', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_08.webp', tags: ['Optimierung', 'Datenbasiert', 'Matching'] },
+        { num: '01', title: cc.avoury.modules[0].title, desc: cc.avoury.modules[0].desc ?? '', img: '/images/Case Studies -Fallbsp/Avoury/IMG-20230928-WA0000.webp', tags: cc.avoury.modules[0].tags },
+        { num: '02', title: cc.avoury.modules[1].title, desc: csT['avoury-module-2-desc'], img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_01.webp', tags: cc.avoury.modules[1].tags },
+        { num: '03', title: cc.avoury.modules[2].title, desc: cc.avoury.modules[2].desc ?? '', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_05.webp', tags: cc.avoury.modules[2].tags },
+        { num: '04', title: cc.avoury.modules[3].title, desc: cc.avoury.modules[3].desc ?? '', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_07.webp', tags: cc.avoury.modules[3].tags },
+        { num: '05', title: cc.avoury.modules[4].title, desc: cc.avoury.modules[4].desc ?? '', img: '/images/Case Studies -Fallbsp/Avoury/TEAGLOO_08.webp', tags: cc.avoury.modules[4].tags },
       ],
       gallery: [
         '/images/Case Studies -Fallbsp/Avoury/b111db44-a0cf-4eea-b5b7-5a0fd48e1762.webp',
@@ -674,8 +513,8 @@ export default function CaseStudiesPage() {
       metricLabel: tTvLabel,
       headline: tTvHeadline,
       subline: tTvSubline, // was: 'Drei Mandate · Drei Unternehmen · Ein roter Faden — seit 2009.',
-      campaignType: 'Field Force, POS-Möbel, Training, Digital & Messen',
-      since: '2009',
+      campaignType: cc.tvsound.campaign ?? '',
+      since: cc.tvsound.since,
       quote: tTvQuote,
       author: tTvAuthor,
       role: tTvRole,
@@ -684,19 +523,15 @@ export default function CaseStudiesPage() {
         { label: 'Kumulierter Umsatz Mandat 2 (2020–2024)', value: '239,8 Mio. €', progress: 72 },
         { label: 'Umsatzwachstum Mandat 3 · Jahr 1',        value: '+75 %',        progress: 88 },
       ],
-      woodPills: [
-        { label: 'Seit',    value: '2009' },
-        { label: 'Mandate', value: '3' },
-        { label: 'Markt',   value: 'DE' },
-      ],
+      woodPills: cc.tvsound.pills,
       trend: [],
       trendYears: [],
-      trendTitle: 'Drei Mandate seit 2009',
+      trendTitle: cc.tvsound.trendTitle,
       overview: tTvOverview,
       modules: [
-        { num: '01', title: 'Gründungskunde · 2009–2019',        desc: '10 Jahre Partnerschaft: von der Markteinführung zum Peak. 1,72 Mrd. € kumulierter Umsatz. Im Spitzenjahr 2018: 45.380 Einsatztage. Im Projektverlauf übernimmt Sonic sukzessive weitere Produktkategorien.', img: '', tags: ['Promotion', 'POS-Möbel', 'Trainings', 'Roadshows', 'Lager'] },
-        { num: '02', title: 'Europäischer Hersteller · 2020–2024', desc: 'Deutschland war nicht Plan A. Vier Jahre später war es der erfolgreichste europäische Markt des Kunden. +61 % Umsatzwachstum 2021→2024. +40 % Absatz 2020→2024. Sonic lieferte Field Force, 3D-Raumplaner-Konzept und laufendes Kampagnenmanagement.', img: '', tags: ['Field Force', '3D-Raumplaner', 'Digital', 'Kampagnen', 'Training'] },
-        { num: '03', title: 'Laufendes Mandat · Ab 2025',         desc: 'Von null auf Vollbetrieb in sechs Wochen. Im ersten Projektjahr: +75 % Umsatz, +66 % Absatz, 10 % ISS. Mandat läuft.', img: '', tags: ['Launch', 'Rapid Scale', 'POS', 'Messen', 'Digital'] },
+        { num: '01', title: cc.tvsound.modules[0].title,        desc: cc.tvsound.modules[0].desc ?? '', img: '', tags: cc.tvsound.modules[0].tags },
+        { num: '02', title: cc.tvsound.modules[1].title, desc: cc.tvsound.modules[1].desc ?? '', img: '', tags: cc.tvsound.modules[1].tags },
+        { num: '03', title: cc.tvsound.modules[2].title,         desc: cc.tvsound.modules[2].desc ?? '', img: '', tags: cc.tvsound.modules[2].tags },
       ],
       gallery: ['', '', ''],
       bentoImages: [
@@ -713,36 +548,24 @@ export default function CaseStudiesPage() {
       ],
       comparisonMandates: [
         {
-          num: '01 / 03', period: '2009–2019', label: 'Gründungskunde — 10 Jahre, ein Markt, ein Partner.',
-          headlineValue: '1,72 Mrd. €', headlineLabel: 'Kumulierter Umsatz',
-          stats: [
-            { value: '45.380',  label: 'Einsatztage im Spitzenjahr 2018' },
-            { value: '10 Jahre',label: 'Laufzeit der Partnerschaft' },
-            { value: '+Multi',  label: 'Produktkategorien im Projektverlauf übernommen' },
-          ],
-          services: ['Promotion', 'POS-Möbel', 'Trainings', 'Roadshows', 'Lager'],
+          num: '01 / 03', period: '2009–2019', label: cc.tvsound.mandates![0].label,
+          headlineValue: cc.tvsound.mandates![0].headlineValue, headlineLabel: cc.tvsound.mandates![0].headlineLabel,
+          stats: cc.tvsound.mandates![0].stats,
+          services: cc.tvsound.mandates![0].services,
           isActive: false, timelineStart: 0, timelineEnd: 10 / 17,
         },
         {
-          num: '02 / 03', period: '2020–2024', label: 'Deutschland war nicht Plan A — bis wir kamen.',
-          headlineValue: '239,8 Mio. €', headlineLabel: 'Kumulierter Umsatz',
-          stats: [
-            { value: '+61 %',  label: 'Umsatzwachstum 2021 → 2024' },
-            { value: '+40 %',  label: 'Absatzwachstum 2020 → 2024' },
-            { value: '# 1',    label: 'Erfolgreichster europ. Markt des Kunden' },
-          ],
-          services: ['Field Force', '3D-Raumplaner', 'Digital', 'Kampagnen', 'Training'],
+          num: '02 / 03', period: '2020–2024', label: cc.tvsound.mandates![1].label,
+          headlineValue: cc.tvsound.mandates![1].headlineValue, headlineLabel: cc.tvsound.mandates![1].headlineLabel,
+          stats: cc.tvsound.mandates![1].stats,
+          services: cc.tvsound.mandates![1].services,
           isActive: false, timelineStart: 11 / 17, timelineEnd: 15 / 17,
         },
         {
-          num: '03 / 03', period: 'Ab 2025', label: 'Von null auf Vollbetrieb in sechs Wochen.',
-          headlineValue: '+75 %', headlineLabel: 'Umsatzwachstum · Jahr 1',
-          stats: [
-            { value: '+66 %',    label: 'Absatzwachstum Jahr 1' },
-            { value: '10 %',     label: 'ISS binnen eines Jahres' },
-            { value: '6 Wochen', label: 'Von Briefing bis Vollbetrieb' },
-          ],
-          services: ['Launch', 'Rapid Scale', 'POS', 'Messen', 'Digital'],
+          num: '03 / 03', period: 'Ab 2025', label: cc.tvsound.mandates![2].label,
+          headlineValue: cc.tvsound.mandates![2].headlineValue, headlineLabel: cc.tvsound.mandates![2].headlineLabel,
+          stats: cc.tvsound.mandates![2].stats,
+          services: cc.tvsound.mandates![2].services,
           isActive: true, timelineStart: 16 / 17, timelineEnd: 1,
         },
       ],
@@ -880,7 +703,8 @@ export default function CaseStudiesPage() {
             {/* Wood texture bg */}
             <div className="absolute inset-0">
               {(woodTextures[0] && woodTextures[0].url) ? (
-                <img src={woodTextures[0].url} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+/* Wood: fills when large enough, otherwise tiled — never stretched (19.11.2026) */
+            <WoodBackground url={woodTextures[0].url} />
               ) : <div className="w-full h-full bg-foreground-950" />}
               <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.38) 50%, rgba(0,0,0,0.58) 100%)' }} />
             </div>
@@ -901,7 +725,7 @@ export default function CaseStudiesPage() {
                 </div>
                 <div className="flex items-center gap-2 self-start border border-white/15 bg-white/5 px-3 py-1.5 flex-shrink-0">
                   <i className="ri-calendar-line text-primary-500 text-xs" />
-                  <span className="text-white/60 text-xs font-bold whitespace-nowrap">Seit {current.since}</span>
+                  <span className="text-white/60 text-xs font-bold whitespace-nowrap">{cl['since-word']} {current.since}</span>
                 </div>
               </div>
 
@@ -954,7 +778,7 @@ export default function CaseStudiesPage() {
                         ))}
                       </div>
                       <div className="flex" style={{ gap: '2px' }}>
-                        {tvCompare.mandates.map((mm, mi) => ({ label: `Marke ${String(mi + 1).padStart(2, '0')}`, years: mm.period, span: mm.end - mm.start + 1 })).map((m) => (
+                        {tvCompare.mandates.map((mm, mi) => ({ label: `${tvCompare.brandWord} ${String(mi + 1).padStart(2, '0')}`, years: mm.period, span: mm.end - mm.start + 1 })).map((m) => (
                           <div key={m.label} className="min-w-0" style={{ flex: m.span }}>
                             <p className="text-white/70 text-[10px] font-black uppercase tracking-wide truncate">{m.label}</p>
                             <p className="text-white/40 text-[10px] tabular-nums">{m.years}</p>

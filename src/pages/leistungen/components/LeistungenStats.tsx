@@ -1,5 +1,6 @@
 import { useMediaStore } from '@/lib/mediaStore';
 import { useLeistungenText } from '@/hooks/useLeistungenText';
+import { useReviewText } from '@/hooks/useReviewText';
 
 // „Unsere Zahlen“ as the wooden LIVE strip used on Home, Karriere and SRT (28.10.2026).
 // Values, labels and the heading stay in the dashboard (Text → Leistungen → Zahlen);
@@ -7,6 +8,7 @@ import { useLeistungenText } from '@/hooks/useLeistungenText';
 const ICONS = ['ri-store-2-line', 'ri-money-euro-circle-line', 'ri-team-line', 'ri-map-pin-2-line'];
 
 export default function LeistungenStats() {
+  const ui = useReviewText('common_ui_labels');
   const t = useLeistungenText('leistungen_overview_stats');
   const stats = [1, 2, 3, 4]
     .map((n, i) => ({ display: t[`stat${n}-value`] ?? '', label: t[`stat${n}-label`] ?? '', sub: t[`stat${n}-sub`] ?? '', icon: ICONS[i] }))
@@ -20,7 +22,7 @@ export default function LeistungenStats() {
     <>
       <span className="flex items-center gap-2 flex-shrink-0">
         <span className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-pulse-slow" />
-        <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-white drop-shadow-md whitespace-nowrap">LIVE</span>
+        <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-white drop-shadow-md whitespace-nowrap">{ui['live-badge']}</span>
       </span>
       {stats.map((st, i) => (
         <span key={`${k}-${i}`} className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">

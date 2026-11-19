@@ -38,12 +38,7 @@ export default function LiveMetrics() {
 
   const TickerItems = ({ items, prefix }: { items: typeof desktopMetrics; prefix: string }) => (
     <>
-      <div className="flex items-center gap-2 flex-shrink-0">
-        <div className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-pulse-slow" />
-        <span className="text-[10px] sm:text-xs font-sans tabular-nums text-white uppercase tracking-wider font-black drop-shadow-md whitespace-nowrap">
-          LIVE
-        </span>
-      </div>
+      {/* „LIVE“ badge removed from the strip (19.11.2026) */}
       {items.map((metric, idx) => (
         <div key={`${prefix}-m-${idx}`} className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
           <span className="text-primary-500 drop-shadow-md text-xs">•</span>

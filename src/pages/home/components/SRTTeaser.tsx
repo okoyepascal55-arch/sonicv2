@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import QuizModal from './QuizModal';
 import WoodenButton from '@/components/base/WoodenButton';
 
-const nodes = [
+const BASE_NODES = [
   { id: 'agentur', label: 'Sonic-Daten', icon: 'ri-user-star-line', desc: 'Einsatzplanung & Kampagnenstatus in Echtzeit' },
   { id: 'daten', label: 'Externe Daten', icon: 'ri-global-line', desc: 'Handelsdaten, Online-Shops & Hersteller-Apps' },
   { id: 'kunde', label: 'Kunden-Daten', icon: 'ri-file-list-3-line', desc: 'Live-KPIs, Abverkauf & Reportings' },
@@ -40,6 +40,8 @@ function shrinkToEdge(from: Point, to: Point): { x: number; y: number } {
 export default function SRTTeaser() {
   const motionPaused = useMotionPaused();
   const dn = useReviewText('common_srt_data_nodes');
+  // Node names from the dashboard (n1-label … n4-label), same order as the nodes
+  const nodes = BASE_NODES.map((n, i) => ({ ...n, label: dn[`n${i + 1}-label`] || n.label }));
   // Dashboard → Text → Home → „SRTTeaser — Unterzeile“
   const st = useReviewText('home_srt_teaser');
   const [activeNode, setActiveNode] = useState<string | null>(null);

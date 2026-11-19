@@ -31,6 +31,7 @@ export function useTvCompare() {
       isTags: ri === TV_COMPARE.rows.length - 1,
     })),
     note: pick('tvc-note', TV_COMPARE.note),
+    brandWord: pick('tvc-brand-word', 'Marke'),
   };
 }
 
@@ -110,7 +111,7 @@ export default function TvCompare() {
               <div key={i} role="columnheader" className="relative p-6 lg:p-7 flex flex-col gap-3" style={{ background: INK }}>
                 <span className="absolute top-0 left-0 right-0 h-1" style={{ background: live ? LIME : 'oklch(var(--primary-500) / 0.4)' }} aria-hidden="true" />
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-[10px] font-black uppercase tracking-[0.22em]" style={{ color: LIME }}>Marke {String(i + 1).padStart(2, '0')}</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.22em]" style={{ color: LIME }}>{d.brandWord} {String(i + 1).padStart(2, '0')}</span>
                   <span
                     className="text-[9px] font-black uppercase tracking-[0.16em] px-2 py-0.5"
                     style={live ? { background: LIME, color: INK } : { border: '1px solid rgba(255,255,255,0.25)', color: 'rgba(255,255,255,0.7)' }}
@@ -156,7 +157,7 @@ export default function TvCompare() {
                 className="py-3 px-2 text-left"
                 style={{ background: on ? INK : 'transparent', border: on ? `1px solid ${INK}` : RULE }}
               >
-                <span className="block text-[9px] font-black uppercase tracking-[0.18em]" style={{ color: on ? LIME : 'oklch(var(--foreground-500))' }}>Marke {String(i + 1).padStart(2, '0')}</span>
+                <span className="block text-[9px] font-black uppercase tracking-[0.18em]" style={{ color: on ? LIME : 'oklch(var(--foreground-500))' }}>{d.brandWord} {String(i + 1).padStart(2, '0')}</span>
                 <span className={`block mt-1 text-[11px] font-black leading-tight ${on ? 'text-white' : 'text-foreground-950'}`}>{m.period}</span>
               </button>
             );

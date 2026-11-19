@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useReviewText } from '@/hooks/useReviewText';
 
 interface ScrollToTopButtonProps {
   /** Scroll distance in px before the button appears. Default: 400 */
@@ -6,6 +7,7 @@ interface ScrollToTopButtonProps {
 }
 
 export default function ScrollToTopButton({ threshold = 400 }: ScrollToTopButtonProps) {
+  const ui = useReviewText('common_ui_labels');
   const [visible, setVisible] = useState(false);
   const [scrollPct, setScrollPct] = useState(0);
 
@@ -97,7 +99,7 @@ export default function ScrollToTopButton({ threshold = 400 }: ScrollToTopButton
         "
         style={{ borderRadius: 0 }}
       >
-        Nach oben
+        {ui['to-top']}
       </span>
     </button>
   );

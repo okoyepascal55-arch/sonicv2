@@ -76,9 +76,10 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('a3-items', 'Tab 3 — Punkte (mit | trennen)', 'list-item', 'Architektur, Design, Technik und Warensicherung | Möbel, Regale, Shop-in-Shop-Systeme, Roadshow-Module | Interaktive Displaykonzepte | Produktion, Warehousing, Aufbau, Ausstattung, Pflege'),
     e('a4-category', 'Tab 4 — Name', 'label', 'Giveaways'),
     e('a4-items', 'Tab 4 — Punkte (mit | trennen)', 'list-item', 'Hochwertige Werbeartikel | Kosteneffiziente Streuartikel | Merchandise'),
+    e('all-label', 'Kicker „Alle Assets“ über der Asset-Übersicht', 'label', 'Alle Assets'),
   ]),
   // ── added 11/2026: was hard-coded in the component ──
-  section('leistungen_pos_page_nav', 'POS Full Service — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), loreal (L\'Oréal), wmf (WMF), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
+  section('leistungen_pos_page_nav', 'POS Full Service — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), philips (Philips), canon (Canon), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
     e('nav-herausforderung', 'Seitenmenü — Herausforderung', 'nav-label', 'Herausforderung'),
     e('nav-loesung', 'Seitenmenü — Lösung', 'nav-label', 'Lösung'),
     e('nav-beispiele', 'Seitenmenü — Beispiele', 'nav-label', 'Beispiele'),

@@ -41,7 +41,7 @@ function resolveTabs(dashboardImages: { url: string; caption: string }[], t: Rec
  return {
  img: dashItem?.url ? resolveImageUrl(dashItem.url) : FALLBACK_IMAGES[idx].img,
  title: dashItem?.caption || FALLBACK_TITLE[idx],
- tag: FALLBACK_TAG[idx],
+ tag: t[`img-tag-${idx + 1}`] || FALLBACK_TAG[idx],
  };
  }),
  }));

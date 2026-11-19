@@ -23,6 +23,8 @@ export default function KreationFaces() {
   // Dashboard → Text → Stimmen & Gesichter → Tab „Kreation“
   const tBadge         = useText('kreation_team_header', 'kreation-team-badge',   'Kreation Team');
   const tHeading       = useText('kreation_team_header', 'kreation-team-heading', 'Die Köpfe hinter der Kreation.');
+  const tStoryLabel    = useText('kreation_team_header', 'kreation-team-story-label', 'Über mich');
+  const tNext          = useText('kreation_team_header', 'kreation-team-next', 'Nächste Stimme');
   const tRobertName    = useText('kreation_voice_robert', 'robert-name',      'Robert H.');
   const tIngaName      = useText('kreation_voice_inga',   'inga-name',        'Inga L.');
   const tRobertRole    = useText('kreation_voice_robert', 'robert-role',      'Creative Director');
@@ -65,8 +67,8 @@ export default function KreationFaces() {
       eyebrow={tBadge}
       heading={markLastWord(tHeading)}
       voices={voices}
-      storyLabel="Über mich"
-      nextLabel="Nächste Stimme"
+      storyLabel={tStoryLabel}
+      nextLabel={tNext}
     />
   );
 }

@@ -86,7 +86,8 @@ export const EN: Record<string, Record<string, string>> = {
     "home-challenge-path-2-desc": "Our promotion and field force teams make your product sell more in retail. Predictable, profitable, measurable live in the SRT.",
     "home-challenge-path-3": "Optimise omnichannel",
     "home-challenge-path-3-desc": "Personal advice, seamless across every channel – at the POS, online and live from our studios. For a consistent brand experience, more sales and fewer returns.",
-    "home-challenge-sub": "Where are you right now?"
+    "home-challenge-sub": "Where are you right now?",
+    "home-challenge-card-cta": "LEARN MORE"
   },
   "home_dualcta": {
     "home-dualcta-left": "For brands",

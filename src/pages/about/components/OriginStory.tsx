@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import type { MediaItem } from '@/lib/mediaStore';
 import { useMediaStore } from '@/lib/mediaStore';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
 
 const TICKER_ICONS = ['ri-briefcase-line', 'ri-map-pin-line', 'ri-store-2-line', 'ri-calendar-check-line', 'ri-user-star-line', 'ri-team-line', 'ri-global-line', 'ri-bar-chart-2-line'];
 

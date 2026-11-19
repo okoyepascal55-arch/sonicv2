@@ -14,7 +14,6 @@ export const EN: Record<string, Record<string, string>> = {
     "srt-hero-chip-5": "Client voices",
   },
   "srt_features": {
-    "srt-features-heading": "Everything in one platform",
     "srt-feature-1-desc": "All KPIs in real time — revenue, contacts, conversion rates and more.",
     "srt-feature-2-desc": "Compare locations, teams and periods. Spot trends before they emerge.",
     "srt-feature-3-desc": "Deployment planning, shift schedules and time tracking for your entire field force team.",
@@ -23,6 +22,9 @@ export const EN: Record<string, Record<string, string>> = {
     "srt-feature-5-desc": "For promoters and area managers — check-ins, product info and live data right on their smartphone.",
     "srt-feature-6": "Data protection & security",
     "srt-feature-6-desc": "GDPR-compliant and hosted in German data centres.",
+    "srt-features-heading": "SRT: The all-in-one software",
+    "srt-features-heading-accent": "all-in-one",
+    "srt-features-cta": "Request a demo"
   },
   "srt_problem": {
     "srt-problem-badge": "Your challenge",
@@ -31,12 +33,25 @@ export const EN: Record<string, Record<string, string>> = {
     "srt-problem-cta": "The SRT solves all three problems.",
     "srt-problem-cta-sub": "One platform. All data. Real time.",
     "srt-problem-cta-btn": "See the solution",
+    "card-1-title": "Separate data silos",
+    "card-1-headline": "Data is everywhere — just not in one place.",
+    "card-1-body": "Inventory, marketing, scheduling — every department has its own version of the truth. A complete picture only emerges through time-consuming manual consolidation.",
+    "card-1-impact": "Decisions rest on fragments instead of complete facts.",
+    "card-2-title": "No dashboards",
+    "card-2-headline": "What you can't see, you can't steer.",
+    "card-2-body": "Without a shared data foundation: no meaningful KPIs, no live monitoring. Campaign performance becomes visible weeks later — too late to step in.",
+    "card-2-impact": "Misdirected resources. Missed optimization windows.",
+    "card-3-title": "Late insights",
+    "card-3-headline": "See it too late, and you lose market share.",
+    "card-3-body": "Excel consolidations, weekly status meetings — that costs time you need in the market. Management only learns about weak campaign performance days later.",
+    "card-3-impact": "Reactive instead of proactive. The competition moves faster."
   },
   "srt_functionality": {
     "srt-func-badge": "Features",
     "srt-func-heading": "The modules behind the dashboard.",
     "srt-func-sub": "From deployment planning to AI-powered document processing — six modules, one platform.",
     "srt-func-demo-cta": "Request a demo",
+    "srt-func-count": "6 modules"
   },
   "srt_employee_app": {
     "srt-app-badge": "The SRT from the staff perspective",
@@ -47,6 +62,7 @@ export const EN: Record<string, Record<string, string>> = {
     "srt-data-badge": "Data flow",
     "srt-data-heading": "How data flows through the SRT.",
     "srt-data-p1": "The SRT is the central nervous system — it connects Sonic, clients, staff and external systems in one single, synchronised database.",
+    "srt-data-tap-hint": "Tap a module for details"
   },
   "srt_proof": {
     "srt-proof-badge": "The SRT in numbers",
@@ -105,7 +121,8 @@ export const EN: Record<string, Record<string, string>> = {
     "srt-collab-step-5-desc": "We bill deployments including bonuses with the staff and book third-party costs — all recorded centrally.",
     "srt-collab-step-6-short": "Track performance continuously",
     "srt-collab-step-6-desc": "Based on all data on sales volume, revenue and costs, you receive up-to-date reports to track performance.",
-    "srt-collab-steps-label": "6 steps · End-to-end"
+    "srt-collab-steps-label": "6 steps · End-to-end",
+    "srt-collab-step-word": "Step"
   },
   "srt_video_showcase": {
     "srt-video-badge": "The SRT in action",
@@ -236,11 +253,13 @@ export const EN: Record<string, Record<string, string>> = {
     "branchen": "Industries",
     "srt-proof": "The SRT in numbers",
     "preise-zugang": "Access",
+    "produkt": "The product"
   },
   "srt_developer": {
     "srt-joerg-badge": "A word from the developer",
     "srt-joerg-heading": "The person behind the SRT.",
     "srt-joerg-title": "Developer of the Sonic Reporting Tool",
     "srt-joerg-quote": "The SRT isn't a tool — it's the direct line between what happens at the POS and the decision that has to follow. We built it so that promoters want to work with it, not have to.",
+    "srt-joerg-story-label": "In his words"
   },
 };

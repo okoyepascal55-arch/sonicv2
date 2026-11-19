@@ -73,6 +73,7 @@ const FALLBACK_SOCKS = [
 ];
 
 export default function StaffContent() {
+  const ui = useLeistungenText('leistungen_challenge_common'); // shared labels (Schritt, scrollen …)
   const tSocksSt = useLeistungenText('leistungen_staff_socks_steps');
   const SOCKS = SOCKS_BASE.map((x, i) => ({ ...x, title: tSocksSt[`s${i + 1}-title`] ?? x.title, desc: tSocksSt[`s${i + 1}-desc`] ?? x.desc }));
   const tChallengeHeading = useText('leistungen_staff_content', 'staff-challenge-heading', 'Flexibles Staffing ist anspruchsvoll.');
@@ -141,7 +142,7 @@ export default function StaffContent() {
             </div>
             <p className="text-foreground-950/45 text-sm leading-relaxed max-w-xs lg:text-right">{tSolutionSub}</p>
           </div>
-          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} Leistungen — scrollen`} theme="light" variant="wood" />
+          <ScrollCardSection data={SOLUTIONS.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${SOLUTIONS.length} ${ui['word-leistungen']} — ${ui['scroll']}`} theme="light" variant="wood" />
           {tSol['crosslink-text'] && (
             <p className="mt-8 text-sm md:text-base text-foreground-950/60">
               {tSol['crosslink-text']}{' '}
@@ -216,14 +217,14 @@ export default function StaffContent() {
                 <div className="relative w-16 h-16 md:w-20 md:h-20 bg-primary-500/10 border border-primary-500/30 flex items-center justify-center mb-5">
                   <i className={`${STEPS[activeStep].icon} text-primary-500 text-2xl md:text-3xl`} />
                 </div>
-                <div className="relative text-primary-500 text-xs font-black uppercase tracking-widest mb-1">Schritt {STEPS[activeStep].num}</div>
+                <div className="relative text-primary-500 text-xs font-black uppercase tracking-widest mb-1">{ui['step']} {STEPS[activeStep].num}</div>
                 <div className="relative text-white/40 text-sm font-bold text-center">{STEPS[activeStep].title}</div>
               </div>
 
               {/* Right: Content */}
               <div className="md:col-span-7 p-8 md:p-12 flex flex-col justify-center min-h-[240px] md:min-h-[380px]">
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {STEPS[activeStep].num}</span>
+                  <span className="text-primary-500 text-xs font-black uppercase tracking-widest">{ui['step']} {STEPS[activeStep].num}</span>
                   <span className="px-3 py-1.5 bg-primary-500 text-foreground-950 text-xs font-black">{STEPS[activeStep].time}</span>
                 </div>
                 <h3 className="sonic-h3 text-white mb-4">{STEPS[activeStep].title}</h3>
@@ -279,7 +280,7 @@ export default function StaffContent() {
             </div>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs lg:text-right">{tSp['sub']}</p>
           </div>
-          <ScrollCardSection data={SPECIALIZATIONS.map((s, i) => ({ ...s, woodIcon: getSpecializationWoodIcon(i) }))} label={`${SPECIALIZATIONS.length} Einsatzbereiche — scrollen`} theme="dark" variant="wood" />
+          <ScrollCardSection data={SPECIALIZATIONS.map((s, i) => ({ ...s, woodIcon: getSpecializationWoodIcon(i) }))} label={`${SPECIALIZATIONS.length} ${ui['word-einsatzbereiche']} — ${ui['scroll']}`} theme="dark" variant="wood" />
         </div>
       </section>
 

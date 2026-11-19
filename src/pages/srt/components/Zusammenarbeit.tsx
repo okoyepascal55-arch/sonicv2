@@ -14,6 +14,7 @@ export default function Zusammenarbeit() {
   const tBadge   = useText('srt_zusammenarbeit', 'srt-collab-badge',   'Zusammenarbeit');
   const tHeading = useText('srt_zusammenarbeit', 'srt-collab-heading', 'So funktioniert die SRT');
   const tSteps = useText('srt_zusammenarbeit', 'srt-collab-steps-label', '6 Schritte · End-to-End');
+  const tStepWord = useText('srt_zusammenarbeit', 'srt-collab-step-word', 'Schritt');
   // Dashboard → Text → SRT → „Zusammenarbeit — 6-Step Process“
   const ts = useTextSection('srt_zusammenarbeit');
   const steps = STEPS.map((st, i) => ({
@@ -46,7 +47,7 @@ export default function Zusammenarbeit() {
               <span className="absolute lg:static left-0 top-0 flex w-[19px] h-[19px] items-center justify-center rounded-full bg-white" style={{ border: `1px solid ${seen ? LIME : HAIR}`, transition: `border-color 0.3s ease ${0.3 + i * 0.4}s` }} aria-hidden="true">
                 <span className="w-[7px] h-[7px] rounded-full" style={{ background: seen ? LIME : 'rgba(0,0,0,0.15)', transition: `background 0.3s ease ${0.3 + i * 0.4}s` }} />
               </span>
-              <p className="lg:mt-6 text-[11px] uppercase tracking-[0.16em] mb-2" style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.4)' }}>Schritt {step.number}</p>
+              <p className="lg:mt-6 text-[11px] uppercase tracking-[0.16em] mb-2" style={{ fontFamily: MONO, color: 'rgba(0,0,0,0.4)' }}>{tStepWord} {step.number}</p>
               <h3 className="text-[17px] font-black text-foreground-950 mb-1 leading-snug" style={{ hyphens: 'auto', overflowWrap: 'break-word' }}>{step.title}</h3>
               <p className="text-[11px] font-bold uppercase tracking-wide mb-3" style={{ color: 'oklch(0.5 0.1 115)' }}>{step.short}</p>
               <p className="text-[14px] leading-relaxed" style={{ color: MUTED }}>{step.description}</p>

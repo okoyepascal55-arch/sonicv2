@@ -1,4 +1,4 @@
-import { useText } from '@/hooks/useText';
+import { useText, useTextSection } from '@/hooks/useText';
 import { useReviewText } from '@/hooks/useReviewText';
 import { useMediaStore, resolveImageUrl } from '@/lib/mediaStore';
 import { WoodIcon, SrtHeader, MONO, HAIR, MUTED } from './SrtKit';
@@ -40,6 +40,15 @@ export default function TheProblemReference() {
   const tHeading = useText('srt_problem', 'srt-problem-heading', 'Datenquellen zusammenführen');
   const tSub     = useText('srt_problem', 'srt-problem-p1',      'Für erfolgreiche Retail- und Field-Force-Projekte müssen Daten aus vielen Quellen live zusammenlaufen. Genau daran scheitern viele Projekte — nicht an der Strategie, sondern an der Infrastruktur.');
   const tCta     = useText('srt_problem', 'srt-problem-cta-btn', 'Lösung ansehen');
+  // Card texts from the dashboard (card-1-title … card-3-impact), same order as the cards
+  const pt = useTextSection('srt_problem');
+  const problems = PROBLEMS.map((p, i) => ({
+    ...p,
+    title: pt[`card-${i + 1}-title`] || p.title,
+    headline: pt[`card-${i + 1}-headline`] || p.headline,
+    body: pt[`card-${i + 1}-body`] || p.body,
+    impact: pt[`card-${i + 1}-impact`] || p.impact,
+  }));
 
   return (
     <section id="das-problem" className="relative bg-white py-16 md:py-24 px-4 md:px-6">
@@ -59,7 +68,7 @@ export default function TheProblemReference() {
 
         {/* Three problems — calm columns divided by hairlines (light redesign 22.10.2026) */}
         <div className="grid md:grid-cols-3" style={{ borderTop: `1px solid ${HAIR}` }}>
-          {PROBLEMS.map((p, i) => (
+          {problems.map((p, i) => (
             <div key={p.num} className={`flex flex-col pt-10 pb-2 md:pb-0 ${i > 0 ? 'md:pl-10' : ''} ${i < 2 ? 'md:pr-10 md:border-r' : ''} ${i > 0 ? 'border-t md:border-t-0' : ''}`} style={{ borderColor: HAIR }}>
               <div className="flex items-start justify-between mb-8">
                 <WoodIcon src={getWoodIcon(i)} alt={p.title} size={56} delay={i * 140} />

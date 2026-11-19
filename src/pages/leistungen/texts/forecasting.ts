@@ -63,7 +63,7 @@ export const TEXT_SECTIONS: TextSection[] = [
     e('subline', 'Kontakt — Text', 'paragraph', 'Wir zeigen dir, was eine Prognose für dein Projekt leisten kann.'),
   ]),
   // ── added 11/2026: was hard-coded in the component ──
-  section('leistungen_forecasting_page_nav', 'Forecasting — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), loreal (L\'Oréal), wmf (WMF), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
+  section('leistungen_forecasting_page_nav', 'Forecasting — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), philips (Philips), canon (Canon), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
     e('nav-herausforderung', 'Seitenmenü — Herausforderung', 'nav-label', 'Herausforderung'),
     e('nav-loesung', 'Seitenmenü — Lösung', 'nav-label', 'Lösung'),
     e('nav-wie-es-funktioniert', 'Seitenmenü — So funktioniert es', 'nav-label', 'So funktioniert es'),

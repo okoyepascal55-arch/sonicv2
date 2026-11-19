@@ -1,6 +1,5 @@
 import { useReviewText } from '@/hooks/useReviewText';
 import { useNavigate } from 'react-router-dom';
-import WoodenButton from '@/components/base/WoodenButton';
 
 export default function Contact() {
   // Dashboard → Text → Home → „Was uns antreibt — Karten 01/02“

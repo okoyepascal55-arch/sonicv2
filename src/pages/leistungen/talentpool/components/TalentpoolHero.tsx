@@ -16,6 +16,7 @@ export default function TalentpoolHero() {
   const tH1Line1 = useText('leistungen_talentpool', 'talentpool-hero-heading-line1', '>1.800 Talente.');
   const tH1Accent = useText('leistungen_talentpool', 'talentpool-hero-heading-accent', 'Echte Markenbotschafter.');
   const tSubtitle = useText('leistungen_talentpool', 'talentpool-hero-subtitle', 'Handverlesen. Geschult. Bei Sonic angestellt.');
+  const tBtn2 = useText('leistungen_talentpool', 'talentpool-hero-btn-2', 'Staff as a Service');
   const tDesc = useText('leistungen_talentpool', 'talentpool-hero-description', 'In unserem Talentpool findest du Menschen aus ganz Deutschland, ausgewählt nach Profil, Know-how, Erfahrung und Marken-Fit. Trainiert, motiviert und mit ihrer Zielerreichung jederzeit live in der SRT.');
 
   return (
@@ -74,7 +75,7 @@ export default function TalentpoolHero() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
             className="inline-flex items-center gap-2 border-2 border-white/25 text-white px-6 py-3 font-black hover:border-primary-500 hover:text-primary-500 transition-all duration-300 whitespace-nowrap cursor-pointer text-sm"
           >
-            Staff as a Service
+            {tBtn2}
             <i className="ri-arrow-right-line" />
           </a>
         </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useReviewText } from '@/hooks/useReviewText';
 import { Link } from 'react-router-dom';
 
 interface NavItem { id: string; label: string; icon?: string; href?: string; }
@@ -16,6 +17,7 @@ function headerHeight(): number {
 }
 
 export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavProps) {
+  const ui = useReviewText('common_ui_labels');
   const [activeId, setActiveId] = useState(items[0]?.id || '');
   const [visible, setVisible] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -135,7 +137,7 @@ export default function LeistungenPageNav({ items, heroRef }: LeistungenPageNavP
             <div className="absolute bottom-0 h-[2px] bg-[#C8D400] transition-all duration-300 ease-out pointer-events-none" style={{ left: indicatorStyle.left, width: indicatorStyle.width }} />
           </div>
           <div ref={mobileMenuRef} className="md:hidden relative w-full">
-            <div className="flex items-center justify-between py-3 gap-3"><div className="flex items-center gap-2 min-w-0"><span className="text-xs font-black uppercase tracking-[0.25em] flex-shrink-0 text-white/30">{String(activeIndex + 1).padStart(2, '0')}/{String(items.length).padStart(2, '0')}</span><div className="w-px h-4 bg-white/15" />{activeItem?.icon && <i className={`${activeItem.icon} text-sm text-[#C8D400]`} />}<span className="text-xs font-black uppercase tracking-[0.18em] truncate text-[#C8D400]">{activeItem?.label}</span></div><button onClick={() => setMobileOpen(v => !v)} className="flex items-center gap-2 px-3 py-2 bg-white/10 text-white cursor-pointer"><span className="text-xs font-black uppercase tracking-widest text-white/50">Menü</span><i className={`${mobileOpen ? 'ri-close-line' : 'ri-menu-3-line'} text-base`} /></button></div>
+            <div className="flex items-center justify-between py-3 gap-3"><div className="flex items-center gap-2 min-w-0"><span className="text-xs font-black uppercase tracking-[0.25em] flex-shrink-0 text-white/30">{String(activeIndex + 1).padStart(2, '0')}/{String(items.length).padStart(2, '0')}</span><div className="w-px h-4 bg-white/15" />{activeItem?.icon && <i className={`${activeItem.icon} text-sm text-[#C8D400]`} />}<span className="text-xs font-black uppercase tracking-[0.18em] truncate text-[#C8D400]">{activeItem?.label}</span></div><button onClick={() => setMobileOpen(v => !v)} className="flex items-center gap-2 px-3 py-2 bg-white/10 text-white cursor-pointer"><span className="text-xs font-black uppercase tracking-widest text-white/50">{ui['menu']}</span><i className={`${mobileOpen ? 'ri-close-line' : 'ri-menu-3-line'} text-base`} /></button></div>
             {mobileOpen && <div className="absolute top-full left-0 right-0 z-50 bg-foreground-950 border-t border-white/10">{items.map((item, i) => <button key={item.id} onClick={() => scrollTo(item.id)} className={`w-full flex items-center gap-3 px-5 py-3.5 text-left border-b border-white/5 ${activeId === item.id ? 'bg-[#C8D400]/15 text-[#C8D400]' : 'text-white/50'}`}><span className="text-xs font-black w-5 opacity-50">{String(i + 1).padStart(2, '0')}</span>{item.icon && <i className={`${item.icon} text-sm`} />}<span className="text-xs font-black uppercase tracking-[0.18em] flex-1">{item.label}</span></button>)}</div>}
           </div>
         </div>

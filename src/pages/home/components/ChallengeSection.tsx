@@ -51,6 +51,7 @@ export default function ChallengeSection() {
   const tBadge = useText('home_challenge', 'home-challenge-badge', 'Deine Challenge');
   const tHeading = useText('home_challenge', 'home-challenge-heading', 'Drei Wege. Ein Partner.');
   const tSub = useText('home_challenge', 'home-challenge-sub', 'An welchem Punkt stehst du?');
+  const tCardCta = useText('home_challenge', 'home-challenge-card-cta', 'MEHR DAZU');
   const tPath1Title = useText('home_challenge', 'home-challenge-path-1', 'Markteintritt');
   const tPath2Title = useText('home_challenge', 'home-challenge-path-2', 'Absatz steigern');
   const tPath3Title = useText('home_challenge', 'home-challenge-path-3', 'Omnichannel optimieren');
@@ -220,7 +221,7 @@ export default function ChallengeSection() {
                         color: active ? 'oklch(var(--foreground-950))' : '#6B7280',
                       }}
                     >
-                      {challenge.cta}
+                      {tCardCta}
                       <i
                         className="ri-arrow-down-line text-sm transition-transform duration-300"
                         style={{ transform: active ? 'translateY(3px)' : 'translateY(0)' }}

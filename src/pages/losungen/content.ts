@@ -215,9 +215,23 @@ export const LOSUNGEN_PAGE_TEXT = {
   always1Title: 'Geschulte Promoter:innen',
   always1Desc: 'Aus unserem Talentpool, auf dein Produkt trainiert. Geschult, motiviert, zuverlässig.',
   always2Title: 'Planung mit Erfahrung',
-  always2Desc: 'Die SRT bündelt die Daten aller bisherigen Einsätze – für Standortwahl und Einsatzplanung.',
+  always2Desc: 'Die SRT (Sonic Reporting Tool) bündelt die Daten aller bisherigen Einsätze – für Standortwahl und Einsatzplanung.',
   always3Title: 'Live-Reporting via SRT',
   always3Desc: 'Dein Dashboard mit allen vereinbarten KPIs – oder als Export für Excel, PowerPoint und SQL.',
+  // Fixed labels connected to the dashboard (19.11.2026)
+  solutionKicker: 'Sonic Lösung',
+  cardMore: 'Mehr dazu',
+  cardClose: 'Schließen',
+  quickCheckKicker: 'Schnell-Check',
+  quickCheckTitle: 'Finde die passende Sonic-Lösung für dein Projekt',
+  quickCheckLine: '5 Fragen · 60 Sekunden · Maßgeschneidertes Ergebnis',
+  quickCheckBtn: 'Loslegen',
+  faqBadge: 'FAQ',
+  faqHeadingAccent: 'Häufig gestellte',
+  faqHeadingEnd: 'Fragen',
+  faqIntro: 'Alles, was du über unsere Lösungen, unsere Arbeitsweise und den Start einer Zusammenarbeit wissen musst.',
+  faqQuestion: 'Noch Fragen offen? Wir beantworten sie gerne persönlich.',
+  faqBtn: 'Frage stellen',
 };
 
 export const LOSUNGEN_FAQ: { question: string; answer: string }[] = [

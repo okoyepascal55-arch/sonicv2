@@ -133,9 +133,12 @@ export const TEXT_SECTIONS: TextSection[] = [
   section('leistungen_video_labels', 'Live Video — Kleine Labels (Video-Block)', P, 'Die zwei Labels über dem YouTube-Video.', [
     e('studio-live', 'Label links (mit Live-Punkt)', 'label', 'Live aus dem Studio'),
     e('studio-brand', 'Label rechts', 'label', 'Sonic Live Video'),
+    e('eyebrow-solution', 'Kicker über „Die Lösung“', 'badge', 'Die Lösung'),
+    e('eyebrow-formats', 'Kicker über den Video-Formaten', 'badge', 'Video-Formate'),
+    e('formats-more', 'Video-Formate — Link „Mehr erfahren“', 'link', 'Mehr erfahren'),
   ]),
   // ── added 11/2026: was hard-coded in the component ──
-  section('leistungen_video_page_nav', 'Live Video — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), loreal (L\'Oréal), wmf (WMF), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
+  section('leistungen_video_page_nav', 'Live Video — Seitenmenü & Referenzen', P, 'Beschriftung der Sprungmarken-Leiste und welche Kundenstimmen unter „Referenzen“ erscheinen. Mögliche Kürzel: garmin (Garmin), seb (Groupe SEB), nespresso (Nespresso), philips (Philips), canon (Canon), mediamarktsaturn (MediaMarkt Saturn), nexaro (Nexaro), vorwerk (Vorwerk). Die Zitate selbst: Text → Stimmen & Gesichter.', [
     e('nav-herausforderung', 'Seitenmenü — Herausforderung', 'nav-label', 'Herausforderung'),
     e('nav-loesung', 'Seitenmenü — Lösung', 'nav-label', 'Lösung'),
     e('nav-formate', 'Seitenmenü — Formate', 'nav-label', 'Formate'),

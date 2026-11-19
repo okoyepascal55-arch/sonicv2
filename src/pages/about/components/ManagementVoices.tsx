@@ -1,4 +1,5 @@
 import type { MediaItem } from '@/lib/mediaStore';
+import { useReviewText } from '@/hooks/useReviewText';
 import { openCalendly } from '@/components/feature/CalendlyWidget';
 import { useText, useTextSection } from '@/hooks/useText';
 import { useCtaText } from '@/hooks/useCtaText';
@@ -86,6 +87,7 @@ function portraitWords(raw: string): Set<string> {
 }
 
 export default function ManagementVoices({ leadershipImages }: { leadershipImages?: MediaItem[] }) {
+  const navT = useReviewText('about_page_nav');
   const tBadge   = useText('about_management_voices', 'about-voices-badge',   'Führungsperspektiven');
   const tHeading = useText('about_management_voices', 'about-voices-heading', 'Die Stimmen hinter Sonic.');
   const tSub     = useText('about_management_voices', 'about-voices-sub',     'Strategie, Kreation und Betrieb — drei Perspektiven, eine Überzeugung.');
@@ -209,8 +211,8 @@ export default function ManagementVoices({ leadershipImages }: { leadershipImage
       heading={markLastWord(tHeading)}
       sub={tSub}
       voices={voices}
-      storyLabel="Perspektive"
-      nextLabel="Nächste Perspektive"
+      storyLabel={navT['voices-story-label']}
+      nextLabel={navT['voices-next']}
       footer={
         <VoicesCta
           text={<>{tCtaText} {tCtaAccent && <Marker>{tCtaAccent}</Marker>}</>}

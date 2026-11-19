@@ -57,6 +57,7 @@ export default function EventsContent({ afterSolution }: EventsContentProps = {}
   const tSolutionSub = useText('leistungen_events_content', 'events-solution-sub', 'Wir setzen alles daran, dass dein Messe- oder Event-Auftritt zur Erfolgsgeschichte wird.');
   const tProcessHeading = useText('leistungen_events_content', 'events-process-heading', 'So arbeiten wir');
   const tProcessSub = useText('leistungen_events_content', 'events-process-sub', 'Von der Planung bis zum Reporting: ideenreich, professionell und zuverlässig.');
+  const ui = useLeistungenText('leistungen_challenge_common'); // shared labels (Schritt, scrollen …)
   const tCh = useLeistungenText('leistungen_events_challenges');
   const tSol = useLeistungenText('leistungen_events_solutions');
   const tProc = useLeistungenText('leistungen_events_process');
@@ -103,7 +104,7 @@ export default function EventsContent({ afterSolution }: EventsContentProps = {}
             </div>
             <p className="text-foreground-950/45 text-sm leading-relaxed max-w-xs lg:text-right">{tSolutionSub}</p>
           </div>
-          <ScrollCardSection data={solutions.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${solutions.length} Leistungen — scrollen`} theme="light" variant="wood" />
+          <ScrollCardSection data={solutions.map((s, i) => ({ ...s, woodIcon: getSolutionWoodIcon(i) }))} label={`${solutions.length} ${ui['word-leistungen']} — ${ui['scroll']}`} theme="light" variant="wood" />
         </div>
       </section>
 
@@ -169,7 +170,7 @@ export default function EventsContent({ afterSolution }: EventsContentProps = {}
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/40" />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">Schritt {steps[activeStep].num}</span>
+                  <span className="bg-primary-500 text-foreground-950 text-[10px] font-black uppercase tracking-widest px-3 py-1">{ui['step']} {steps[activeStep].num}</span>
                 </div>
                 <div className="absolute bottom-4 left-4 flex gap-1.5">
                   {steps.map((_, i) => (
@@ -181,7 +182,7 @@ export default function EventsContent({ afterSolution }: EventsContentProps = {}
               {/* Right: Content */}
               <div className="md:col-span-7 p-8 md:p-12 flex flex-col justify-center min-h-[240px] md:min-h-[380px]">
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="text-primary-500 text-xs font-black uppercase tracking-widest">Schritt {steps[activeStep].num}</span>
+                  <span className="text-primary-500 text-xs font-black uppercase tracking-widest">{ui['step']} {steps[activeStep].num}</span>
                   <span className="px-3 py-1.5 bg-primary-500 text-foreground-950 text-xs font-black">{steps[activeStep].time}</span>
                 </div>
                 <h3 className="sonic-h3 text-white mb-4">{steps[activeStep].title}</h3>

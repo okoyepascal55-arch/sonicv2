@@ -102,7 +102,11 @@ const WAREHOUSE_CHALLENGES_BASE: ChallengeItem[] = [
 ];
 
 export default function WarehouseLogistikPage() {
+  const ui = useLeistungenText('leistungen_challenge_common'); // shared labels (Schritt, scrollen …)
   const tPageNav = useLeistungenText('leistungen_warehouse_page_nav');
+  // Breadcrumb = menu names (Text → Common → Navigation)
+  const tCrumbLeistungen = useText('common_navigation', 'nav-leistungen', 'Leistungen');
+  const tCrumbWarehouse = useText('common_navigation', 'nav-warehouse', 'Warehouse & Logistik');
   const NAV_ITEMS = NAV_ITEMS_BASE.map((n) => ({ ...n, label: tPageNav[`nav-${n.id}`] || n.label }));
   const tWhIt = useLeistungenText('leistungen_warehouse_items');
   const WAREHOUSE_ITEMS = WAREHOUSE_ITEMS_BASE.map((x, i) => ({ ...x, title: tWhIt[`i${i + 1}-title`] ?? x.title, tag: tWhIt[`i${i + 1}-tag`] ?? x.tag, desc: tWhIt[`i${i + 1}-desc`] ?? x.desc }));
@@ -168,9 +172,9 @@ export default function WarehouseLogistikPage() {
  <div className="relative z-20 w-full sonic-container pb-10 md:pb-14">
  {/* Breadcrumb chip — unique to Warehouse per brief */}
  <div className="flex items-center gap-2 mb-5 md:mb-6"style={{ opacity: 0.7 }}>
- <a href="/leistungen"className="text-white/60 text-xs font-bold"style={{ textDecoration: 'none' }}>Leistungen</a>
+ <a href="/leistungen"className="text-white/60 text-xs font-bold"style={{ textDecoration: 'none' }}>{tCrumbLeistungen}</a>
  <span className="text-primary-500 text-xs">›</span>
- <span className="text-white text-xs font-bold">Warehouse &amp; Logistik</span>
+ <span className="text-white text-xs font-bold">{tCrumbWarehouse}</span>
  </div>
 
  {/* v3 eyebrow */}
@@ -227,7 +231,7 @@ export default function WarehouseLogistikPage() {
  <h2 className="sonic-h2 text-foreground-950 mb-3">{tSol.heading}<br /><span style={{ background: 'oklch(0.81 0.19 115 / 0.9)', color: 'oklch(0.16 0.006 118)', padding: '0.02em 0.16em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone' }}>{tSol['heading-accent']}</span></h2>
  <p className="text-foreground-950/50 text-sm md:text-base max-w-2xl">{tSol.sub}</p>
  </div>
- <ScrollCardSection data={solutions} label={`${solutions.length} Leistungen — scrollen`} theme="light"variant="remix"cardMinHeight="320px"showWoodIcon={false} />
+ <ScrollCardSection data={solutions} label={`${solutions.length} ${ui['word-leistungen']} — ${ui['scroll']}`} theme="light"variant="remix"cardMinHeight="320px"showWoodIcon={false} />
  </div>
  </section>
 

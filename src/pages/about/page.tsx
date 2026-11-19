@@ -4,13 +4,12 @@ import { useMediaStore } from '@/lib/mediaStore';
 import WoodenDivider from '@/components/base/WoodenDivider';
 import LeistungenPageNav from '@/components/feature/LeistungenPageNav';
 import OriginStory from './components/OriginStory';
-import Timeline from './components/Timeline';
 import ValuesVisual from './components/ValuesVisual';
 import LeadershipTeam from './components/LeadershipTeam';
 import ManagementVoices from './components/ManagementVoices';
 import { StackedSectionReveal } from '@/components/feature/SectionReveal';
 import { useText } from '@/hooks/useText';
-import WoodenButton from '@/components/base/WoodenButton';
+import { useReviewText } from '@/hooks/useReviewText';
 
 const ABOUT_NAV_ITEMS = [
   { id: 'uber-uns', label: 'Über uns', icon: 'ri-home-heart-line' },
@@ -19,6 +18,8 @@ const ABOUT_NAV_ITEMS = [
 ];
 
 export default function AboutPage() {
+  // Dashboard → Text → Über uns → „Seitenmenü & Stimmen-Buttons“
+  const navT = useReviewText('about_page_nav');
   useSEO({
     title: 'Über Sonic Group | Sales Promotion & Retail Activation Agentur seit 2007 — Krefeld DACH',
     description: 'Sonic Sales Support GmbH aus Krefeld: unabhängige Sales- und Marketing-Agentur seit 2007. Promotion, POS, Studio und Events – über 200 Promoter:innen im Einsatz, über 2 Mrd. € Umsatz für unsere Kunden in Deutschland, Österreich und der Schweiz.',
@@ -58,7 +59,7 @@ export default function AboutPage() {
     <div className="bg-white">
       <div>
       {/* ── IN-PAGE NAV — desktop float ── */}
-      <LeistungenPageNav items={ABOUT_NAV_ITEMS} heroRef={heroRef} />
+      <LeistungenPageNav items={ABOUT_NAV_ITEMS.map((it, i) => ({ ...it, label: navT[`nav-${i + 1}`] || it.label }))} heroRef={heroRef} />
 
       {/* ── HERO — bottom-anchored, matching careers ── */}
       <div ref={heroRef}>

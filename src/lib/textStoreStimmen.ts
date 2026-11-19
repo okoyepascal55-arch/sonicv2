@@ -238,6 +238,8 @@ export const STIMMEN_TEXT_SECTIONS: TextSection[] = [
     entries: [
       e('kreation-team-badge', 'Sektion-Badge', 'badge', 'Kreation Team'),
       e('kreation-team-heading', 'Überschrift', 'heading', 'Die Köpfe hinter der Kreation.'),
+      e('kreation-team-story-label', 'Kicker über der Geschichte', 'badge', 'Über mich'),
+      e('kreation-team-next', 'Button — nächste Person', 'cta', 'Nächste Stimme'),
     ],
   },
   kreationVoice('robert', 'Robert H.', 'Creative Director',

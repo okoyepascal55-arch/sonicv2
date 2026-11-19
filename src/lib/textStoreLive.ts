@@ -7,6 +7,7 @@
 ───────────────────────────────────────────── */
 import type { TextEntry, TextSection } from './textStore';
 import { TV_COMPARE } from '@/pages/case-studies/tvCompareContent';
+import { CASE_DETAIL_SECTIONS } from '@/pages/case-studies/caseContent';
 
 type EntryType = TextEntry['type'];
 const e = (id: string, label: string, type: EntryType, value: string): TextEntry => ({
@@ -62,6 +63,30 @@ export const LIVE_TEXT_SECTIONS: TextSection[] = [
     ],
   },
 
+  /* ── Common ── */
+  {
+    key: 'common_ui_labels', label: 'Kleine Bedienelemente (alle Seiten)', pageGroupId: 'common', pagePath: '/',
+    description: 'Feste Beschriftungen, die auf mehreren Seiten vorkommen: Menü-Knopf der Seitenleisten (Handy), „Nach oben“, Platzhalter ohne Foto.',
+    entries: [
+      e('menu', 'Seitenleiste (Handy) — Knopf „Menü“', 'label', 'Menü'),
+      e('to-top', 'Knopf „Nach oben“ (unten rechts)', 'label', 'Nach oben'),
+      e('photo-follows', 'Platzhalter, solange kein Foto da ist', 'label', 'Foto folgt'),
+      e('voices-next', 'Stimmen-Karussell — Standard-Button „Nächste Stimme“', 'cta', 'Nächste Stimme'),
+      e('live-badge', 'Kennzahlen-Laufband Leistungen — Wort „LIVE“ am Anfang', 'label', 'LIVE'),
+    ],
+  },
+  /* ── Über uns ── */
+  {
+    key: 'about_page_nav', label: 'Seitenmenü & Stimmen-Buttons', pageGroupId: 'about', pagePath: '/ueber-uns',
+    description: 'Die Sprungmarken-Leiste unter dem Hero (Über uns · Team · Management) und die Buttons bei „Die Stimmen hinter Sonic“.',
+    entries: [
+      e('nav-1', 'Seitenmenü 1', 'nav-label', 'Über uns'),
+      e('nav-2', 'Seitenmenü 2', 'nav-label', 'Team'),
+      e('nav-3', 'Seitenmenü 3', 'nav-label', 'Management'),
+      e('voices-story-label', 'Stimmen — Kicker über dem Text', 'badge', 'Perspektive'),
+      e('voices-next', 'Stimmen — Button nächste Person', 'cta', 'Nächste Perspektive'),
+    ],
+  },
   /* ── Karriere ── */
   {
     key: 'karriere_hero_texts', label: 'Hero — „Menschen mit Energie gesucht“', pageGroupId: 'careers', pagePath: '/karriere',
@@ -75,6 +100,29 @@ export const LIVE_TEXT_SECTIONS: TextSection[] = [
       e('sub', 'Zweite Zeile', 'paragraph', 'Aktuelle Stellen am Sonic-Campus in Krefeld und deutschlandweite Einsätze für unsere Kundenprojekte.'),
       e('btn-jobs', 'Button 1 — Stellen', 'cta', 'Alle Stellen ansehen'),
       e('btn-initiative', 'Button 2 — Initiativbewerbung', 'cta', 'Initiativbewerbung'),
+    ],
+  },
+  {
+    key: 'karriere_nav_texts', label: 'Seitenmenü (schwarze Leiste) & Bewerben-Buttons', pageGroupId: 'careers', pagePath: '/karriere',
+    description: 'Die schwarze Leiste unter dem Hero (01–05) und die Bewerben-Buttons (Desktop rechts, Handy unten).',
+    entries: [
+      e('nav-1', 'Menü 01', 'label', 'Zwei Wege'),
+      e('nav-2', 'Menü 02', 'label', 'Kultur & DNA'),
+      e('nav-3', 'Menü 03', 'label', 'Geschichten'),
+      e('nav-4', 'Menü 04', 'label', 'Leben bei Sonic'),
+      e('nav-5', 'Menü 05', 'label', 'Stellen'),
+      e('apply', 'Button rechts (Desktop)', 'cta', 'Bewerben'),
+      e('apply-mobile', 'Button unten (Handy)', 'cta', 'Stellenangebote'),
+    ],
+  },
+  {
+    key: 'karriere_events_tabs', label: 'Leben bei Sonic — die vier Event-Tabs', pageGroupId: 'careers', pagePath: '/karriere',
+    description: 'Kicker und Titel der vier Kacheln unter dem Event-Video (die Zeilen darunter: „Leben bei Sonic — Zeilen unter den Events“). Bilder: „Leben bei Sonic — Event-Bilder“, Videos: „… — Event-Videos“ (Bild/Video 1 = Tab 1 usw.).',
+    entries: [
+      e('tab-1-tag', 'Tab 1 — Kicker', 'badge', 'Kreation'), e('tab-1-title', 'Tab 1 — Titel', 'heading', 'Content Creation'),
+      e('tab-2-tag', 'Tab 2 — Kicker', 'badge', 'Intern'), e('tab-2-title', 'Tab 2 — Titel', 'heading', 'Team Events'),
+      e('tab-3-tag', 'Tab 3 — Kicker', 'badge', 'Extern'), e('tab-3-title', 'Tab 3 — Titel', 'heading', 'Promoter Events'),
+      e('tab-4-tag', 'Tab 4 — Kicker', 'badge', 'Unterwegs'), e('tab-4-title', 'Tab 4 — Titel', 'heading', 'Roadshows & Messen'),
     ],
   },
   {
@@ -103,8 +151,11 @@ export const LIVE_TEXT_SECTIONS: TextSection[] = [
       e('more-heading', 'Fallstudie — „Weitere Erfolgsgeschichten“', 'heading', 'Weitere Erfolgsgeschichten'),
       e('back', 'Fallstudie — Button zurück', 'cta', 'Zurück zur Übersicht'),
       e('next', 'Fallstudie — Button nächste', 'cta', 'Nächste Story'),
+      e('since-word', 'Story-Kopf — Wort „Seit“ vor dem Jahr', 'label', 'Seit'),
     ],
   },
+  // Story details per case (Eckdaten, Module, Mandate) — 19.11.2026
+  ...CASE_DETAIL_SECTIONS,
   {
     key: 'case_tvsound_compare', label: 'TV & Sound — „Drei Mandate im Vergleich“', pageGroupId: 'case_studies', pagePath: '/fallbeispiele',
     description: 'Vergleichstabelle der drei TV-Mandate in der Fallstudie TV & Sound. Markennamen bleiben anonymisiert.',
@@ -122,6 +173,7 @@ export const LIVE_TEXT_SECTIONS: TextSection[] = [
         ...r.values.map((v, mi) => e(`tvc-r${ri + 1}-m${mi + 1}`, `Zeile ${ri + 1} („${r.label}“) — Mandat ${mi + 1}`, 'label', v)),
       ]),
       e('tvc-note', 'Fußnote', 'caption', TV_COMPARE.note),
+      e('tvc-brand-word', 'Wort „Marke“ vor 01/02/03 (Zeitleiste & Auswahl)', 'label', 'Marke'),
     ],
   },
 ];
