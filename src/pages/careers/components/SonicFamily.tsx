@@ -65,10 +65,17 @@ Manchmal beginnt der passende Karriereweg dort, wo man ursprünglich nur einen S
   },
 ];
 
+const firstName = (face: Face) => face.name.split(' ')[0].toLowerCase();
+
+/** Dashboard slot whose caption starts with this person's first name (-1 if none). */
+function slotIndexFor(images: { url: string; caption?: string }[], face: Face): number {
+  const first = firstName(face);
+  return images.findIndex((img) => img.url && (img.caption || '').trim().toLowerCase().startsWith(first));
+}
+
 function pickPortrait(images: { url: string; caption?: string }[], face: Face, index: number): string {
-  const first = face.name.split(' ')[0].toLowerCase();
-  const byName = images.find((img) => img.url && (img.caption || '').trim().toLowerCase().startsWith(first));
-  return byName?.url || images[index]?.url || '';
+  const slot = slotIndexFor(images, face);
+  return (slot >= 0 ? images[slot]?.url : '') || images[index]?.url || '';
 }
 
 const EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
@@ -117,7 +124,7 @@ export default function SonicFamily() {
   ];
 
   const { images: dbImages } = useMediaStore('careers_sonicfamily_images');
-  const FACES = BASE_FACES.map((face, i) => {
+  const RESOLVED = BASE_FACES.map((face, i) => {
     const t = faceText[i] ?? {};
     const pick = (key: string, fallback: string) => (t[`face-${face.id}-${key}`]?.trim() ? t[`face-${face.id}-${key}`] : fallback);
     const closing = t[`face-${face.id}-closing`];
@@ -132,6 +139,12 @@ export default function SonicFamily() {
       closingQuote: closing !== undefined ? (closing.trim() || undefined) : face.closingQuote,
     };
   });
+  // Order on the site = order of the portraits in the dashboard (23.11.2026).
+  // Each person keeps their own portrait and story; people without a portrait slot come last.
+  const FACES = BASE_FACES
+    .map((face, i) => ({ face: RESOLVED[i], slot: slotIndexFor(dbImages, face), i }))
+    .sort((a, b) => (a.slot < 0 ? 999 : a.slot) - (b.slot < 0 ? 999 : b.slot) || a.i - b.i)
+    .map((x) => x.face);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [expanded, setExpanded] = useState(false);

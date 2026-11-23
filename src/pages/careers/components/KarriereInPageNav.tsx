@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useReviewText } from '@/hooks/useReviewText';
+import { useSectionOn } from '@/lib/sitePages';
 
 const navItems = [
   { id: 'pfade', n: '01', label: 'Zwei Wege' },
@@ -19,6 +20,8 @@ interface Props {
 export default function KarriereInPageNav({ heroRef }: Props) {
   // Dashboard → Text → Karriere → „Seitenmenü (schwarze Leiste) & Bewerben-Buttons“
   const nt = useReviewText('karriere_nav_texts');
+  const lebenOn = useSectionOn('#karriere-leben');
+  const items = navItems.filter((item) => item.id !== 'leben' || lebenOn);
   const [activeId, setActiveId] = useState('');
   const [visible, setVisible] = useState(false);
   const heroThresholdRef = useRef<number | null>(null);
@@ -80,7 +83,7 @@ export default function KarriereInPageNav({ heroRef }: Props) {
       style={{ top: `${MAIN_NAV_H}px`, background: 'oklch(0.13 0.005 118)', borderBottom: '1px solid oklch(var(--primary-500) / 0.3)' }}
     >
       <div className="max-w-[1280px] mx-auto px-5 md:px-10 flex items-stretch overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
-        {navItems.map((item) => {
+        {items.map((item) => {
           const isActive = activeId === item.id;
           return (
             <button

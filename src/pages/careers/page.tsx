@@ -12,6 +12,7 @@ import SonicFamily from './components/SonicFamily';
 import SonicTeamEvents from './components/SonicTeamEvents';
 import CareerShowcase from './components/CareerShowcase';
 import KarriereJobs from './components/KarriereJobs';
+import { useSectionOn } from '@/lib/sitePages';
 
 function MobileStickyCta() {
   const nt = useReviewText('karriere_nav_texts');
@@ -62,6 +63,8 @@ export default function CareersGatewayPage() {
   })
 
   const heroRef = useRef<HTMLDivElement>(null);
+  // Dashboard → Seiten → Abschnitte: „Leben bei Sonic“ an/aus
+  const lebenOn = useSectionOn('#karriere-leben');
 
   // Arriving with a hash (e.g. /karriere#stellenangebote from the team pages) → scroll there
   const location = useLocation();
@@ -112,7 +115,7 @@ export default function CareersGatewayPage() {
         <WoodenDivider />
 
         {/* 04 — Leben bei Sonic */}
-        <SonicTeamEvents />
+        {lebenOn && <SonicTeamEvents />}
         <CareerShowcase />
 
         <WoodenDivider />

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { SITE_PAGES, useSitePages, type SitePage } from '@/lib/sitePages';
+import { SITE_PAGES, SITE_SECTIONS, useSitePages, type SitePage } from '@/lib/sitePages';
 import { getTextSyncStatus, type TextSyncStatus } from '@/lib/textStore';
 
 /* ── Dashboard → Seiten: switch whole pages on or off (11/2026) ── */
@@ -98,6 +98,33 @@ export default function PagesPanel() {
             </ul>
           </section>
         ))}
+
+        {/* Single sections inside a page (23.11.2026) */}
+        <section className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <h3 className="px-4 py-2.5 text-2xs font-black uppercase tracking-wider text-gray-500 bg-gray-50 border-b border-gray-200">Abschnitte</h3>
+          <ul className="divide-y divide-gray-100">
+            {SITE_SECTIONS.map((section) => {
+              const on = pages.sectionOn(section);
+              return (
+                <li key={section.key} className="flex items-center gap-4 px-4 py-3">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className={`text-sm font-semibold truncate ${on ? 'text-gray-900' : 'text-gray-400'}`}>{section.label}</span>
+                      {!on && (
+                        <span className="text-3xs font-bold uppercase tracking-wider text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded shrink-0">aus</span>
+                      )}
+                    </div>
+                    <p className="text-2xs text-gray-400 mt-0.5 truncate">
+                      {section.page}
+                      {!on && <> · auf der Seite ausgeblendet — Texte, Bilder & Videos bleiben im Dashboard</>}
+                    </p>
+                  </div>
+                  <Switch on={on} label={section.label} onChange={(next) => void pages.setSectionOn(section, next)} />
+                </li>
+              );
+            })}
+          </ul>
+        </section>
       </div>
     </div>
   );

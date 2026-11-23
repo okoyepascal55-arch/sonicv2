@@ -44,6 +44,39 @@ export const SITE_PAGES: SitePage[] = [
   { path: '/film', label: 'Film-Seite (nur per Link, /film)', group: 'Versteckte Seiten', parent: '/', defaultOn: true },
 ];
 
+/* SECTION SWITCHES (23.11.2026) — single sections inside a page, same storage as the pages.
+   Off = the section is hidden on the live page (and from its chapter menu); its texts,
+   images and videos stay in the dashboard, so switching it on restores it. */
+export interface SiteSection {
+  key: string;
+  label: string;
+  page: string;
+  defaultOn: boolean;
+}
+
+export const SITE_SECTIONS: SiteSection[] = [
+  { key: '#karriere-leben', label: 'Karriere — „Leben bei Sonic“ (Team-Events-Videos, Kapitel 04)', page: '/karriere', defaultOn: false },
+];
+
+export function isSectionOn(key: string, settings: Record<string, string> = getSitePageSettings()): boolean {
+  const v = settings[key];
+  if (v === 'on') return true;
+  if (v === 'off') return false;
+  return SITE_SECTIONS.find((x) => x.key === key)?.defaultOn ?? true;
+}
+
+/** Re-renders when the dashboard publishes a change. */
+export function useSectionOn(key: string): boolean {
+  const [on, setOn] = useState(() => isSectionOn(key));
+  useEffect(() => {
+    const update = () => setOn(isSectionOn(key));
+    update();
+    window.addEventListener('text-store-update', update);
+    return () => window.removeEventListener('text-store-update', update);
+  }, [key]);
+  return on;
+}
+
 const matches = (pathname: string, base: string) => pathname === base || pathname.startsWith(base + '/');
 
 /** The switchable page an address belongs to (most specific match), if any. */
@@ -114,5 +147,7 @@ export function useSitePages() {
     /** Whether the page is actually live (own switch and, if it follows one, its parent). */
     pageLive: (page: SitePage) => enabledIn(settings, page),
     setOn: (page: SitePage, on: boolean) => setSitePageEnabled(page.path, on),
+    sectionOn: (section: SiteSection) => isSectionOn(section.key, settings),
+    setSectionOn: (section: SiteSection, on: boolean) => setSitePageEnabled(section.key, on),
   };
 }
