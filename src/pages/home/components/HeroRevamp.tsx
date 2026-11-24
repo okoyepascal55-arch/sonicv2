@@ -6,6 +6,7 @@ import { useText } from '@/hooks/useText';
 
 const DYNAMIC_KEYWORDS = [
   'THINGS',
+  'PROMOTION',
   'RETAIL',
   'POS',
   'EVENTS',
@@ -180,10 +181,15 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
 
   const navigate = useNavigate();
 
+  // Dashboard → Text → Home → Hero → „Wechselnde Wörter nach DOING“ (24.11.2026)
+  const tKeywords = useText('home_hero', 'home-hero-keywords', DYNAMIC_KEYWORDS.join('\n'));
+  const parsedKeywords = tKeywords.split('\n').map((w) => w.trim().toUpperCase()).filter(Boolean);
+  const KEYWORDS = parsedKeywords.length > 0 ? parsedKeywords : DYNAMIC_KEYWORDS;
+
   const [keywordIndex, setKeywordIndex] = useState(0);
   const [scrambleKey, setScrambleKey] = useState(0);
   const [started, setStarted] = useState(false);
-  const keyword = DYNAMIC_KEYWORDS[keywordIndex];
+  const keyword = KEYWORDS[keywordIndex % KEYWORDS.length];
   const combo = `DOING ${keyword}`;
   const comboRevealed = useTextTypewriter(combo, scrambleKey);
 
@@ -195,14 +201,14 @@ export default function HeroRevamp({ scrolled }: HeroRevampProps) {
   const motionPaused = useMotionPaused();
   useEffect(() => {
     if (!started || motionPaused) return;
-    const word = DYNAMIC_KEYWORDS[keywordIndex];
+    const word = KEYWORDS[keywordIndex % KEYWORDS.length];
     const buildTime = (word.length + 6) * CHAR_DELAY; // +6 accounts for the "DOING " prefix
     const timeout = window.setTimeout(() => {
-      setKeywordIndex((prev) => (prev + 1) % DYNAMIC_KEYWORDS.length);
+      setKeywordIndex((prev) => (prev + 1) % KEYWORDS.length);
       setScrambleKey((prev) => prev + 1);
     }, buildTime + HOLD_TIME);
     return () => clearTimeout(timeout);
-  }, [keywordIndex, started, motionPaused]);
+  }, [keywordIndex, started, motionPaused, KEYWORDS.length]);
 
   useEffect(() => {
     if (!('IntersectionObserver' in window)) { setStatsVisible(true); return; }

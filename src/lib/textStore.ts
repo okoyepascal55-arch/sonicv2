@@ -60,6 +60,7 @@ export const DEFAULT_TEXT_SECTIONS: TextSection[] = [
       { id: 'home-hero-h1-line1', label: 'H1 Line 1', description: 'First line of H1', type: 'heading', value: 'WE HAVE A' },
       { id: 'home-hero-h1-line2', label: 'H1 Line 2', description: 'Second line of H1', type: 'heading', value: 'STRATEGIC PLAN.' },
       { id: 'home-hero-h1-line3', label: 'H1 Line 3', description: 'Third line with dynamic keyword', type: 'heading', value: "IT'S CALLED DOING" },
+      { id: 'home-hero-keywords', label: 'Wechselnde Wörter nach DOING (eins pro Zeile)', description: 'Reihenfolge = Reihenfolge auf der Seite. Leer = eingebaute Liste.', type: 'paragraph', value: 'THINGS\nPROMOTION\nRETAIL\nPOS\nEVENTS\nACTIVATIONS\nCOMMUNITY OUTREACH\nFORECASTING\nFIELD SALES\nBRAND EXPERIENCE\nMERCHANDISING\nTRADE MARKETING', multiline: true },
       { id: 'home-hero-subtitle', label: 'Subtitle', description: 'Below H1', type: 'paragraph', value: 'People powered. Data proven.' },
       { id: 'home-hero-left-badge', label: 'Left Panel Badge', description: 'Brand CTA badge text', type: 'label', value: 'Daten Liefern Fakten.' },
       { id: 'home-hero-left-h3', label: 'Left Panel H3 Line 1', description: 'Brand CTA heading', type: 'heading', value: 'SUCHST DU EINE' },
