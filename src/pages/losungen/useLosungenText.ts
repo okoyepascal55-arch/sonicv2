@@ -15,6 +15,8 @@ export function useSolution(key: SolutionKey): Solution {
     description: pick(t, 'description', s.description),
     challenges: s.challenges.map((c, i) => ({ ...c, title: pick(t, `challenge-${i + 1}-title`, c.title), desc: pick(t, `challenge-${i + 1}-desc`, c.desc) })),
     deliverables: s.deliverables.map((d, i) => ({ ...d, title: pick(t, `deliv-${i + 1}-title`, d.title), desc: pick(t, `deliv-${i + 1}-desc`, d.desc) })),
+    stepsKicker: pick(t, 'stepsKicker', s.stepsKicker),
+    stepsHeading: pick(t, 'stepsHeading', s.stepsHeading),
     steps: s.steps.map((st, i) => ({ ...st, title: pick(t, `step-${i + 1}-title`, st.title), desc: pick(t, `step-${i + 1}-desc`, st.desc) })),
     stats: s.stats.map((st, i) => ({ value: pick(t, `stat-${i + 1}-value`, st.value), label: pick(t, `stat-${i + 1}-label`, st.label) })),
     proof: s.proof.map((p, i) => pick(t, `proof-${i + 1}`, p)),

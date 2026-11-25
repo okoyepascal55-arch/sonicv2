@@ -296,12 +296,8 @@ function ExpandedPanel({ sKey, onClose, carouselRef, heroBgImages, woodTextures,
         <div className="bg-white py-10 md:py-14 px-4 md:px-8">
           <div className="sonic-container">
             <div className="mb-8 md:mb-14">
-              <p className="text-xs md:text-sm font-black text-foreground-400 uppercase tracking-widest mb-2">Der Weg zum Erfolg</p>
-              <h3 className="sonic-h3 text-foreground-950">
-                {sKey === 'markteintritt' ? 'So läuft dein Markteintritt mit Sonic' :
-                 sKey === 'absatz' ? 'Das Sonic-System mit fünf Schritten' :
-                 'So führen wir Video ein'}
-              </h3>
+              <p className="text-xs md:text-sm font-black text-foreground-400 uppercase tracking-widest mb-2">{s.stepsKicker}</p>
+              <h3 className="sonic-h3 text-foreground-950">{s.stepsHeading}</h3>
               {/* ── Compact stats pills ── */}
               <div className="flex flex-wrap items-center gap-2 mt-4 md:mt-6">
                 {s.stats.map((stat, idx) => (

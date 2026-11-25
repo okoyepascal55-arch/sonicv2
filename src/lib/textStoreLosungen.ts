@@ -77,6 +77,8 @@ const solutionSection = (key: typeof KEYS[number]): TextSection => {
     entries.push(e(`deliv-${i + 1}-title`, `Leistung ${i + 1} — Titel`, 'subheading', d.title));
     entries.push(e(`deliv-${i + 1}-desc`, `Leistung ${i + 1} — Text`, 'paragraph', d.desc, true));
   });
+  entries.push(e('stepsKicker', '„Der Weg zum Erfolg“ — Kicker', 'badge', s.stepsKicker));
+  entries.push(e('stepsHeading', '„Der Weg zum Erfolg“ — Überschrift', 'heading', s.stepsHeading));
   s.steps.forEach((st, i) => {
     entries.push(e(`step-${i + 1}-title`, `Schritt ${i + 1} — Titel`, 'subheading', st.title));
     entries.push(e(`step-${i + 1}-desc`, `Schritt ${i + 1} — Text`, 'paragraph', st.desc, true));
