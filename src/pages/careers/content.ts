@@ -28,6 +28,13 @@ const WACHSEN_ROWS = [
   { title: 'Weiterbildung', text: 'Individuelle externe Weiterbildungen.' },
 ];
 
+/** Benefits that are switched off (1-based position in the list above). They stay in the list so
+ *  the dashboard field numbers (Benefit 1, 2, …) and saved texts don't shift (25.11.2026). */
+export const KARRIERE_HIDDEN_BENEFITS: Record<'sales' | 'staff', readonly number[]> = {
+  sales: [],
+  staff: [7], // Wellpass (Sport & Fitness) — not offered to the POS Team
+};
+
 export const KARRIERE_PATHS: Record<'sales' | 'staff', {
   title: string;
   headline: string;
@@ -72,7 +79,7 @@ export const KARRIERE_PATHS: Record<'sales' | 'staff', {
         note: 'Deine Einsätze, Zeiten und Abrechnungen siehst du jederzeit in der Sonic-App.',
       },
       { id: 'benefits', label: 'Benefits', items: ['Bonusprogramm', 'Verkaufs-Contests', 'Qualitätsbonus', 'Schulungen vor jedem Projekt', 'Onboarding', 'Zusätzliche freie Tage', 'Wellpass (Sport & Fitness)', 'Vorführgeräte', 'Team- & Promoter-Events'] },
-      { id: 'wachsen', label: 'Wachsen', rows: WACHSEN_ROWS },
+      // „Wachsen“ removed for the POS Team (25.11.2026) — saved dashboard texts stay in the database
       { id: 'bewerbung', label: 'Bewerbung', steps: ['Bewerbung', 'Rückmeldung von unserem HR-Team', 'Erstes Gespräch', 'Gespräch zu Team & Projekt', 'Bei manchen Projekten: Kennenlernen mit dem Kunden', 'Zusage & digitaler Vertrag'] },
     ],
   },

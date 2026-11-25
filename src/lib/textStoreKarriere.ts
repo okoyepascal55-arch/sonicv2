@@ -4,7 +4,7 @@
    and team-event lines. Generated from src/pages/careers/content.ts.
 ───────────────────────────────────────────── */
 import type { TextEntry, TextSection } from './textStore';
-import { KARRIERE_TICKER, KARRIERE_PATHS, KARRIERE_AWARDS, KARRIERE_EVENT_STATS } from '@/pages/careers/content';
+import { KARRIERE_TICKER, KARRIERE_PATHS, KARRIERE_AWARDS, KARRIERE_EVENT_STATS, KARRIERE_HIDDEN_BENEFITS } from '@/pages/careers/content';
 
 type EntryType = TextEntry['type'];
 const e = (id: string, label: string, type: EntryType, value: string, multiline = false): TextEntry => ({
@@ -39,7 +39,10 @@ const pathEntries = (id: 'sales' | 'staff', name: string): TextEntry[] => {
       });
       out.push(e(`${pre}-note`, `${name} — Gehalt Hinweis`, 'caption', tab.note));
     } else if (tab.id === 'benefits') {
-      tab.items.forEach((it, i) => out.push(e(`${pre}-${i + 1}`, `${name} — Benefit ${i + 1}`, 'tag', it)));
+      tab.items.forEach((it, i) => {
+        if (KARRIERE_HIDDEN_BENEFITS[id].includes(i + 1)) return; // switched off — hidden here, saved text kept
+        out.push(e(`${pre}-${i + 1}`, `${name} — Benefit ${i + 1}`, 'tag', it));
+      });
     } else if (tab.id === 'wachsen') {
       tab.rows.forEach((r, i) => {
         out.push(e(`${pre}-${i + 1}-title`, `${name} — Wachsen ${i + 1} Titel`, 'label', r.title));

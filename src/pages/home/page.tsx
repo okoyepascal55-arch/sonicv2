@@ -11,6 +11,7 @@ import Contact from './components/Contact';
 import LeistungenKontakt from '../../components/feature/LeistungenKontakt';
 import { useCtaText } from '@/hooks/useCtaText';
 import { useReviewText } from '@/hooks/useReviewText';
+import { TESTIMONIAL_IDS, type TestimonialId } from '@/lib/textStoreStimmen';
 import WoodenDivider from '../../components/base/WoodenDivider';
 import { StackedSectionReveal } from '../../components/feature/SectionReveal';
 
@@ -37,6 +38,20 @@ export default function HomePage() {
   const cta = useCtaText();
   // Dashboard → Text → Home → „Abschluss-CTA (Home)“
   const closing = useReviewText('home_closing_cta');
+  // Dashboard → Startseite — Reihenfolge Kundenstimmen (25.11.2026): numbered cards first (1 = first),
+  // the rest keep today's order behind them. Nothing numbered → today's order.
+  const orderText = useReviewText('home_testimonials_order');
+  const testimonialOrder: readonly TestimonialId[] | undefined = (() => {
+    const posOf = (id: string) => {
+      const n = parseInt((orderText[`pos-${id}`] ?? '').trim(), 10);
+      return Number.isFinite(n) && n > 0 ? n : null;
+    };
+    if (!TESTIMONIAL_IDS.some((id) => posOf(id) !== null)) return undefined;
+    return [...TESTIMONIAL_IDS]
+      .map((id, i) => ({ id, i, pos: posOf(id) }))
+      .sort((a, b) => (a.pos ?? Infinity) - (b.pos ?? Infinity) || a.i - b.i)
+      .map((x) => x.id);
+  })();
 
   const totalSections = 8;
 
@@ -102,7 +117,7 @@ export default function HomePage() {
 
       <StackedSectionReveal index={6} totalSections={totalSections}>
         <section id="client-proof" className="relative z-10 bg-white">
-          <ClientProof />
+          <ClientProof only={testimonialOrder} />
         </section>
       </StackedSectionReveal>
 

@@ -116,6 +116,21 @@ export const REVIEW_TEXT_SECTIONS: TextSection[] = [
       e('c2-tags', 'Karte 02 — Pills (mit Komma trennen)', 'tag', 'Talentpool, Live-Einblick, Motivation'),
     ],
   },
+  /* Homepage only (25.11.2026): order of the client review cards. Number = position (1 = first).
+     Empty = keeps today's order behind the numbered ones. All empty = today's order. */
+  {
+    key: 'home_testimonials_order', label: 'Startseite — Reihenfolge Kundenstimmen', pageGroupId: 'home', pagePath: '/', description: 'Position der Kundenstimmen-Karten auf der Startseite: 1 = zuerst, 8 = zuletzt. Leeres Feld = bisherige Reihenfolge hinter den nummerierten. Texte & Logos: Stimmen & Gesichter → Kundenstimmen.',
+    entries: [
+      e('pos-garmin', 'Garmin — Position', 'label', ''),
+      e('pos-seb', 'Groupe SEB — Position', 'label', ''),
+      e('pos-nespresso', 'Nespresso — Position', 'label', ''),
+      e('pos-philips', 'Philips (TP Vision) — Position', 'label', ''),
+      e('pos-canon', 'Canon — Position', 'label', ''),
+      e('pos-mediamarktsaturn', 'MediaMarktSaturn — Position', 'label', ''),
+      e('pos-nexaro', 'Nexaro — Position', 'label', ''),
+      e('pos-vorwerk', 'Vorwerk — Position', 'label', ''),
+    ],
+  },
   {
     key: 'home_closing_cta', label: 'Abschluss-CTA (Home)', pageGroupId: 'home', pagePath: '/', description: 'Box am Seitenende nach „Was uns antreibt“ (Button: „Termin vereinbaren“).',
     entries: [
