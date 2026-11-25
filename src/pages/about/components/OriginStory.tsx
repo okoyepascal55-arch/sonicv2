@@ -124,10 +124,11 @@ export default function OriginStory({ focusImages }: { focusImages?: MediaItem[]
       {/* ── WOOD TICKER STRIP ── */}
       <div className="relative overflow-hidden border-y border-primary-500/15 py-3" aria-hidden="true">
         <div className="absolute inset-0">
-          <img
-            src={tickerBg}
-            alt=""
-            className="w-full h-full object-cover"
+          {/* Tiled at the strip's own height, same as the homepage ticker (25.11.2026) — object-cover
+              stretched the small texture across the full width and made it look blurry */}
+          <div
+            className="w-full h-full"
+            style={{ backgroundImage: `url("${tickerBg}")`, backgroundRepeat: 'repeat-x', backgroundSize: 'auto 100%', backgroundPosition: 'left center' }}
           />
           <div className="absolute inset-0 bg-foreground-950/45" />
         </div>
