@@ -149,6 +149,10 @@ export default function Navigation() {
     .map((cat) => ({ ...cat, items: cat.items.filter((item) => pages.isOn(item.href)) }))
     .filter((cat) => cat.items.length > 0);
   const aboutDropdownItems = aboutDropdownItemsAll.filter((item) => pages.isOn(item.href));
+  // Only one page left (e.g. Sonic Reels switched off) → direct link instead of a dropdown (25.11.2026)
+  const aboutDirect = aboutDropdownItems.length === 1
+    ? { ...aboutDropdownItems[0], name: aboutDropdownItems[0].href === '/ueber-uns' ? tNavAbout : aboutDropdownItems[0].name }
+    : null;
 
   return (
     <>
@@ -215,7 +219,12 @@ export default function Navigation() {
                 )}
               </div>)}
 
-              {aboutDropdownItems.length > 0 && (<div className="relative" onMouseEnter={() => setActiveDropdown('about')} onMouseLeave={() => setActiveDropdown(null)}>
+              {aboutDirect && (<button onClick={() => handleNavClick(aboutDirect.href)} className={`text-sm font-medium transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isPageActive(aboutDirect.href))}`}>
+                {aboutDirect.name}
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full ${isPageActive(aboutDirect.href) ? 'w-full' : 'w-0'}`}></span>
+              </button>)}
+
+              {aboutDropdownItems.length > 1 && (<div className="relative" onMouseEnter={() => setActiveDropdown('about')} onMouseLeave={() => setActiveDropdown(null)}>
                 <button
                   onClick={() => setActiveDropdown(activeDropdown === 'about' ? null : 'about')}
                   className={`text-sm font-medium transition-colors relative group flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 rounded-sm ${navText(isAboutActive)}`} aria-haspopup="true" aria-expanded={activeDropdown === 'about'} aria-controls="desktop-about-menu">
@@ -368,7 +377,15 @@ export default function Navigation() {
             )}
           </div>)}
 
-          {aboutDropdownItems.length > 0 && (<div className="px-4 mt-1">
+          {aboutDirect && (<div className="px-4 mt-1">
+            <button onClick={() => handleNavClick(aboutDirect.href)}
+              className={`flex items-center gap-3 w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isPageActive(aboutDirect.href) ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}>
+              <i className={`${aboutDirect.icon} text-base w-5 text-center ${isPageActive(aboutDirect.href) ? 'text-primary-500' : 'text-foreground-500'}`} aria-hidden="true"></i>
+              {aboutDirect.name}
+            </button>
+          </div>)}
+
+          {aboutDropdownItems.length > 1 && (<div className="px-4 mt-1">
             <button
               onClick={() => setMobileExpanded(mobileExpanded === 'about' ? null : 'about')}
               className={`flex items-center justify-between w-full px-3 py-3 font-semibold transition-colors text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${isAboutActive ? 'text-primary-500 bg-primary-500/8' : 'text-foreground-900 hover:bg-primary-500/10 hover:text-primary-500'}`}
